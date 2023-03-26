@@ -65,45 +65,69 @@ internal sealed class QueryCommand : Command
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{
-		_ = (this, messageReceiver) switch
+		switch (this, messageReceiver)
 		{
 			// 默认情况 -> 查询本人的基本信息。
-			({ UserId: null, UserNickname: null, QueryContentKind: var kind }, { Sender: { Group: var group, Name: var senderName, Id: var senderId } })
-				=> await messageReceiver.QuoteMessageAsync(await getResultMessage(senderName, senderId, kind, group)),
+#pragma warning disable format
+			case (
+				{ UserId: null, UserNickname: null, QueryContentKind: var kind },
+				{ Sender: { Group: var group, Name: var senderName, Id: var senderId } }
+			):
+#pragma warning restore format
+			{
+				await messageReceiver.SendMessageAsync(await getResultMessage(senderName, senderId, kind, group));
+				break;
+			}
 
 			// 根据昵称查人。
-			({ UserNickname: { } nickname, QueryContentKind: var kind }, { Sender.Group: var group })
-				=> await group.GetMatchedMembersViaNicknameAsync(nickname) switch
-				{
-					var matchedMembers
-						=> await messageReceiver.QuoteMessageAsync(
-							matchedMembers switch
-							{
-								[] => $"本群不存在昵称为“{nickname}”的用户。请检查一下然后重新查询。",
-								[{ Id: var senderId, Name: var senderName }] => await getResultMessage(senderName, senderId, kind, group),
-								_ => "本群存在多个人的群名片一致的情况。请使用 QQ 严格确定唯一的查询用户。"
-							}
-						)
-				},
+			case ({ UserNickname: { } nickname, QueryContentKind: var kind }, { Sender.Group: var group }):
+			{
+				await messageReceiver.SendMessageAsync(
+					await group.GetMatchedMembersViaNicknameAsync(nickname) switch
+					{
+						[] => $"本群不存在昵称为“{nickname}”的用户。请检查一下然后重新查询。",
+						[{ Id: var senderId, Name: var senderName }] => await getResultMessage(senderName, senderId, kind, group),
+						_ => "本群存在多个人的群名片一致的情况。请使用 QQ 严格确定唯一的查询用户。"
+					}
+				);
+
+				break;
+			}
 
 			// 根据 QQ 号码查人。
-			({ UserId: { } id, QueryContentKind: var kind }, { Sender.Group: var group })
-				=> await group.GetMatchedMemberViaIdAsync(id) switch
+			case ({ UserId: { } id, QueryContentKind: var kind }, { Sender.Group: var group }):
+			{
+				switch (await group.GetMatchedMemberViaIdAsync(id))
 				{
-					{ Id: var senderId, Name: var senderName }
-						=> await messageReceiver.QuoteMessageAsync(await getResultMessage(senderName, senderId, kind, group)),
-					_ => await messageReceiver.QuoteMessageAsync($"本群不存在 QQ 号码为“{id}”的用户。请检查一下后重新查询。")
-				},
+					case { Id: var senderId, Name: var senderName }:
+					{
+						await messageReceiver.SendMessageAsync(await getResultMessage(senderName, senderId, kind, group));
+						break;
+					}
+					default:
+					{
+						await messageReceiver.SendMessageAsync($"本群不存在 QQ 号码为“{id}”的用户。请检查一下后重新查询。");
+						break;
+					}
+				}
+
+				break;
+			}
 
 			// 数据不合法。
-			_ => await messageReceiver.QuoteMessageAsync("查询数据不合法。")
-		};
+			default:
+			{
+				await messageReceiver.SendMessageAsync("查询数据不合法。");
+				break;
+			}
+		}
 
 
 		async Task<string> getResultMessage(string senderName, string senderId, string? viewContentKind, Group group)
 		{
-			return StorageHandler.Read(senderId) switch
+			switch (StorageHandler.Read(senderId))
 			{
+				case
 				{
 					ExperiencePoint: var score,
 					Coin: var coin,
@@ -114,85 +138,98 @@ internal sealed class QueryCommand : Command
 					CorrectedCount: var correctedCount,
 					Items: var items,
 					UplevelingCards: var uplevelingCards
-				} user => viewContentKind switch
+				} user:
 				{
-					QueryContentKinds.Elementary
-						=>
-						$"""
-						用户 {senderName}（{senderId}）基本数据📦
-						---
-						经验值：{score}
-						金币：{coin}
-						级别：{ScoreHandler.GetGrade(score)}
-						排名：第 {getRank((await ScoreHandler.GetUserRankingListAsync(group, rankingEmptyCallback))!)} 名
-						连续签到天数：{comboCheckedIn}
-						签到倍数：{ScoreHandler.GetCheckInRate(comboCheckedIn)}
-						总倍数：{ScoreHandler.GetGlobalRate(cardLevel):0.0}（卡片 {cardLevel} 级）
-						""",
-					QueryContentKinds.PkResult
-						=>
-						$"""
-						用户 {senderName}（{senderId}）PK 数据📦
-						---
-						{(
-							playingCount.Count != 0
-								? string.Join(
-									Environment.NewLine,
-									from kvp in playingCount
-									let mode = kvp.Key
-									let tried = triedCount.TryGetValue(mode, out var r) ? r : 0
-									where tried != 0
-									let total = kvp.Value
-									let corrected = correctedCount.TryGetValue(mode, out var r) ? r : 0
-									let modeName = mode.GetType().GetField(mode.ToString())!.GetCustomAttribute<NameAttribute>()!.Name
-									select $"  * {modeName}：回答数 {tried}，正确数 {corrected}，总答题数 {total}（正确率：{corrected / total:P2}）"
-								)
-								: "无"
-						)}
-						""",
-					QueryContentKinds.Items
-						=>
-						$"""
-						用户 {senderName}（{senderId}）物品数据📦
-						{(
-							items.Count != 0
-								? string.Join(
-									Environment.NewLine,
-									from kvp in items
-									let item = kvp.Key
-									let itemName = item.GetType().GetField(item.ToString())!.GetCustomAttribute<NameAttribute>()!.Name
-									let count = kvp.Value
-									where count != 0
-									select $"  * {itemName}：{count} 个"
-								)
-								: "无"
-						)}
-						---
-						辅助卡片情况：
-						{(
-							uplevelingCards.Count != 0
-								? string.Join(
-									Environment.NewLine,
-									from kvp in uplevelingCards
-									let level = kvp.Key
-									let count = kvp.Value
-									where count != 0
-									select $"  * {level} 级辅助卡：{count} 张"
-								)
-								: "无"
-						)}
-						""",
-					QueryContentKinds.Upleveling => this switch
+					switch (viewContentKind)
 					{
-						{ AuxiliaryCards: null or [] or { Length: > 3 } }
-							=> "查询失败。辅助卡至少需要一张，最多三张，输入的时候使用逗号分开，中间没有空格。",
-						{ CloverLevel: < -1 or > 10 }
-							=> "查询失败。三叶草等级只能为 1 到 10，或者不填，表示不带三叶草强化。",
-						{ AuxiliaryCards: var auxiliary, CloverLevel: var clover, MainLevel: var mainTemp }
-							=> (mainTemp == -1 ? cardLevel : mainTemp) switch
+						case QueryContentKinds.Elementary:
+						{
+							return
+								$"""
+								用户 {senderName}（{senderId}）基本数据📦
+								---
+								经验值：{score}
+								金币：{coin}
+								级别：{ScoreHandler.GetGrade(score)}
+								排名：第 {getRank((await ScoreHandler.GetUserRankingListAsync(group, rankingEmptyCallback))!)} 名
+								连续签到天数：{comboCheckedIn}
+								签到倍数：{ScoreHandler.GetCheckInRate(comboCheckedIn)}
+								总倍数：{ScoreHandler.GetGlobalRate(cardLevel):0.0}（卡片 {cardLevel} 级）
+								""";
+						}
+						case QueryContentKinds.PkResult:
+						{
+							return
+								$"""
+								用户 {senderName}（{senderId}）PK 数据📦
+								---
+								{(
+									playingCount.Count != 0
+										? string.Join(
+											Environment.NewLine,
+											from kvp in playingCount
+											let mode = kvp.Key
+											let tried = triedCount.TryGetValue(mode, out var r) ? r : 0
+											where tried != 0
+											let total = kvp.Value
+											let corrected = correctedCount.TryGetValue(mode, out var r) ? r : 0
+											let modeName = mode.GetType().GetField(mode.ToString())!.GetCustomAttribute<NameAttribute>()!.Name
+											select $"  * {modeName}：回答数 {tried}，正确数 {corrected}，总答题数 {total}（正确率：{corrected / total:P2}）"
+										)
+										: "无"
+								)}
+								""";
+						}
+						case QueryContentKinds.Items:
+						{
+							return
+								$"""
+								用户 {senderName}（{senderId}）物品数据📦
+								{(
+									items.Count != 0
+										? string.Join(
+											Environment.NewLine,
+											from kvp in items
+											let item = kvp.Key
+											let itemName = item.GetType().GetField(item.ToString())!.GetCustomAttribute<NameAttribute>()!.Name
+											let count = kvp.Value
+											where count != 0
+											select $"  * {itemName}：{count} 个"
+										)
+										: "无"
+								)}
+								---
+								辅助卡片情况：
+								{(
+									uplevelingCards.Count != 0
+										? string.Join(
+											Environment.NewLine,
+											from kvp in uplevelingCards
+											let level = kvp.Key
+											let count = kvp.Value
+											where count != 0
+											select $"  * {level} 级辅助卡：{count} 张"
+										)
+										: "无"
+								)}
+								""";
+						}
+						case QueryContentKinds.Upleveling:
+						{
+							switch (this)
 							{
-								var main
-									=> Array.Exists(auxiliary, card => main - card < 0)
+								case { AuxiliaryCards: null or [] or { Length: > 3 } }:
+								{
+									return "查询失败。辅助卡至少需要一张，最多三张，输入的时候使用逗号分开，中间没有空格。";
+								}
+								case { CloverLevel: < -1 or > 10 }:
+								{
+									return "查询失败。三叶草等级只能为 1 到 10，或者不填，表示不带三叶草强化。";
+								}
+								case { AuxiliaryCards: var auxiliary, CloverLevel: var clover, MainLevel: var mainTemp }:
+								{
+									var main = mainTemp == -1 ? cardLevel : mainTemp;
+									return Array.Exists(auxiliary, card => main - card < 0)
 										? $"查询失败。主卡级别为 {main}，但填入的辅助卡级别比主卡级别还要高。不支持这种强化。"
 										: Array.Exists(auxiliary, card => main - card >= 3)
 											? $"查询失败。主卡级别为 {main}，但填入的辅助卡级别存在至少一张卡的等级和主卡级别差了 3 级甚至以上。不支持这种强化。"
@@ -210,13 +247,43 @@ internal sealed class QueryCommand : Command
 													[var c1, var c2, var c3]
 														=> $"主卡级别：{main}，辅助卡级别：{c1}、{c2} 和 {c3}{c}，成功率：{p:P2}。"
 												}
-											}
-							},
-					},
-					_ => "参数“内容”的数值有误——它只能是“对抗”、“基本”、“物品”或“强化”，请检查。"
-				},
-				_ => $"用户 {senderName}（{senderId}）尚未使用过机器人。"
-			};
+											};
+								}
+								default:
+								{
+									goto Final;
+								}
+							}
+						}
+						case QueryContentKinds.PuzzleLibrary:
+						{
+							return PuzzleLibraryOperations.GetLibraries(group) switch
+							{
+								var puzzleLibraries and not (null or [])
+									=>
+									$"""
+									本群题库：{string.Join("、", from puzzleLibrary in puzzleLibraries select puzzleLibrary.Name)}
+									题库总数量：{puzzleLibraries.Length}
+									---
+									如需要使用题库，请使用“！抽题”指令。
+									""",
+								_ => "本群尚不存在任何题库。"
+							};
+						}
+						default:
+						{
+							return "参数“内容”的数值有误——它只能是“对抗”、“基本”、“物品”、“强化”或“题库”，请检查。";
+						}
+					}
+				}
+				case var _ when viewContentKind is QueryContentKinds.Elementary or QueryContentKinds.PkResult:
+				{
+					return $"用户 {senderName}（{senderId}）尚未使用过机器人。";
+				}
+			}
+
+		Final:
+			return "处理数据不合法。";
 
 
 			int getRank((string, User Data)[] ranking)
@@ -261,4 +328,9 @@ file static class QueryContentKinds
 	/// 表示查询强化的成功率情况。
 	/// </summary>
 	public const string Upleveling = "强化";
+
+	/// <summary>
+	/// 表示查询本群的题库数据。
+	/// </summary>
+	public const string PuzzleLibrary = "题库";
 }

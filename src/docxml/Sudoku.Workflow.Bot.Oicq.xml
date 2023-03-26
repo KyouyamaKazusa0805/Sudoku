@@ -166,12 +166,14 @@
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.DisplayingIndexAttribute">
             <summary>
             提供一个特性，表示某指令里的某个参数的显示顺序。
+            该特性专门用于显示帮助信息的时候，按显示位置（即 <see cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.DisplayingIndexAttribute.Index"/> 属性）从小到大排列出来，提供一个更加良好的帮助信息文字的呈现。
             </summary>
             <param name="index">表示该指令的显示位置。</param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.DisplayingIndexAttribute.#ctor(System.Int32)">
             <summary>
             提供一个特性，表示某指令里的某个参数的显示顺序。
+            该特性专门用于显示帮助信息的时候，按显示位置（即 <see cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.DisplayingIndexAttribute.Index"/> 属性）从小到大排列出来，提供一个更加良好的帮助信息文字的呈现。
             </summary>
             <param name="index">表示该指令的显示位置。</param>
         </member>
@@ -584,6 +586,34 @@
         <member name="F:Sudoku.Workflow.Bot.Oicq.ComponentModel.ItemGroup.Clover">
             <summary>
             表示物品是属于三叶草组别的。
+            </summary>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary">
+            <summary>
+            表示一个题库的数据。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.FinishedPuzzlesCount">
+            <summary>
+            表示题库在目标群里已经完成了多少个了。
+            </summary>
+            <remarks>
+            由于题库机制的设计，我们抽取题目是固定按照次序抽取，而不是随机抽取题目。这样的话，可以只需要这一个属性就可以控制完成题目的基本数据信息，比较方便代码书写。
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.Name">
+            <summary>
+            表示题库的题库名称。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.Path">
+            <summary>
+            表示题库的文件路径。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.GroupId">
+            <summary>
+            表示题库的所在群。
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User">
@@ -1529,6 +1559,29 @@
             表示数值“强化卡”。
             </summary>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryExtractCommand">
+            <summary>
+            表示从题库里抽取题目的指令。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryExtractCommand.GroupName">
+            <summary>
+            表示你需要抽取的题库的所在群（即跨群抽取题目）。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryExtractCommand.GroupId">
+            <summary>
+            表示你需要抽取的题库的所在群的 QQ 号码。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryExtractCommand.LibraryName">
+            <summary>
+            表示你需要抽取的题库的题库名称。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryExtractCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand">
             <summary>
             查询指令。
@@ -1592,6 +1645,11 @@
             表示查询强化的成功率情况。
             </summary>
         </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryContentKinds.PuzzleLibrary">
+            <summary>
+            表示查询本群的题库数据。
+            </summary>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.RankCommand">
             <summary>
             排名指令。
@@ -1646,6 +1704,74 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.UplevelCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations">
+            <summary>
+            一个静态类，提供一系列和本地交互有关题库数据的操作方法集。
+            </summary>
+            <remarks>
+            <inheritdoc cref="T:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler" path="/remarks"/>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.UpdateLibrary(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
+            <summary>
+            更新指定群名的指定题库名称的题库数据。
+            </summary>
+            <param name="groupId">群号。</param>
+            <param name="library">题库数据，这个数据用于替换掉。</param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.Initialize(System.String)">
+            <summary>
+            初始化指定群号（QQ）的群的所有题库的本地数据。
+            </summary>
+            <param name="groupId">群号。</param>
+            <returns>返回一个 <see cref="T:System.Boolean"/> 结果，表示是否完成初始化。如果失败（例如中途文件夹不存在等），则返回 <see langword="false"/>。</returns>
+            <remarks>
+            在“<c>BotData/PuzzleLibrary</c>”文件夹里包含众多子文件夹，这些文件夹命名均为群号，表示的是一个群里包裹的所有题库完成数据和题库本身。
+            通过“<c>BotData/PuzzleLibrary/群号</c>”文件夹里搜索所有文本文件，就可以获得指定群的题库数据；
+            而和文件夹同名的 JSON 文件则是该群完成的此群的题库数据的序列化文件。
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.CheckValidPuzzlesCountInPuzzleLibrary(System.String,System.String)">
+            <summary>
+            根据指定群号（QQ）和题库名称，获取该题库的完整题目的数量。
+            </summary>
+            <param name="groupId">群号。</param>
+            <param name="libraryName">题库名称。</param>
+            <returns>
+            返回一个数字，表示这个题库有多少个题目。如果题库没有找到，则返回 -1。
+            </returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.CheckValidPuzzlesCountInPuzzleLibrary(Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.CheckValidPuzzlesCountInPuzzleLibrary(System.String,System.String)" path="/summary"/>
+            </summary>
+            <param name="puzzleLibrary"><see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 的实例。</param>
+            <returns>
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.CheckValidPuzzlesCountInPuzzleLibrary(System.String,System.String)" path="/returns"/>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetLibrary(System.String,System.String)">
+            <summary>
+            根据群号（QQ）和题库名称去搜索该群的匹配题库。如果找不到，则返回 <see langword="null"/>。
+            </summary>
+            <param name="groupId">群号。</param>
+            <param name="libraryName">题库名称。</param>
+            <returns>返回 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 实例，表示题库的基本信息。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetLibraries(System.String)">
+            <summary>
+            根据群号（QQ）获取本群的所有题库信息，并返回一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 构成的数组。如果本群不存在本地数据，
+            则返回 <see langword="null"/>。
+            </summary>
+            <param name="groupId">群号。</param>
+            <returns>一个由 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 元素构成的数组。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetLibraries(Mirai.Net.Data.Shared.Group)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetLibraries(System.String)" path="/summary"/>
+            </summary>
+            <param name="group">一个 <see cref="T:Mirai.Net.Data.Shared.Group"/> 对象，表示的是当前操作的群的基本数据。</param>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.ValueConverters.NumericArrayConverter`1">
             <summary>
