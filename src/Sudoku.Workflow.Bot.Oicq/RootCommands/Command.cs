@@ -192,24 +192,11 @@ public abstract class Command : IModule
 					' ',
 					from index in indexedDictionary.Keys
 					orderby index
-					let pi = indexedDictionary[index]
-					select pi switch
+					let currentPropertiesInfo = indexedDictionary[index]
+					select currentPropertiesInfo switch
 					{
-						[var pi]
-						when pi.GetCustomAttribute<ArgumentAttribute>()!.Name is var name
-						&& pi.GetCustomAttribute<ArgumentDisplayerAttribute>()?.ArgumentDisplayer is var argumentDisplayer
-							=> $"{name} <{argumentDisplayer ?? name}>",
-						_
-							=>
-							$"""
-							({string.Join(
-								'|',
-								from pi in propertiesInfo
-								let name = pi.GetCustomAttribute<ArgumentAttribute>()!.Name
-								let argumentDisplayer = pi.GetCustomAttribute<ArgumentDisplayerAttribute>()?.ArgumentDisplayer
-								select $"{name} <{argumentDisplayer ?? name}>"
-							)})
-							"""
+						[var pi] when g(pi) is var (name, argumentDisplayer) => $"{name} <{argumentDisplayer}>",
+						_ => $"({string.Join('|', from pi in currentPropertiesInfo let p = g(pi) select $"{p.Name} <{p.ArgumentDisplayer}>")})"
 					}
 				);
 
@@ -230,6 +217,14 @@ public abstract class Command : IModule
 				);
 
 				break;
+
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				static (string Name, string ArgumentDisplayer) g(PropertyInfo pi)
+				{
+					var name = pi.GetCustomAttribute<ArgumentAttribute>()!.Name;
+					return (name, pi.GetCustomAttribute<ArgumentDisplayerAttribute>()?.ArgumentDisplayer ?? name);
+				}
 			}
 
 			// ！指令 参数 值
