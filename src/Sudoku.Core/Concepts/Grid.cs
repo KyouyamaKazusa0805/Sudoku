@@ -620,6 +620,32 @@ public unsafe partial struct Grid :
 		}
 	}
 
+	/// <inheritdoc cref="this[in CellMap]"/>
+	public readonly int[] this[int[] cells]
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get
+		{
+			var @this = this;
+			return from cellIndex in cells select @this[cellIndex];
+		}
+	}
+
+	/// <summary>
+	/// Gets a list of <see cref="int"/> values that are created via raw usages from <see cref="this[int]"/>.
+	/// </summary>
+	/// <param name="cells">The cell indices.</param>
+	/// <returns>A list of digits selected.</returns>
+	public readonly int[] this[scoped in CellMap cells]
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get
+		{
+			var @this = this;
+			return from cell in cells select @this[cell];
+		}
+	}
+
 	/// <summary>
 	/// Gets or sets a candidate existence case with a <see cref="bool"/> value.
 	/// </summary>
