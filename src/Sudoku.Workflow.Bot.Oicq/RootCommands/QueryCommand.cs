@@ -91,116 +91,111 @@ internal sealed class QueryCommand : Command
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{
-		switch (this, messageReceiver)
+		switch (QueryContentKind)
 		{
-			// 根据群号查题库。
-			case ({ GroupId: { } groupId, QueryContentKind: QueryContentKinds.PuzzleLibrary, PuzzleLibraryName: null }, _):
+			case QueryContentKinds.PuzzleLibrary:
 			{
-				await getResultMessage_PuzzleLibraries(groupId);
-				break;
-			}
-
-			// 根据群名查题库。
-			case ({ GroupName: { } groupName, QueryContentKind: QueryContentKinds.PuzzleLibrary, PuzzleLibraryName: null }, _):
-			{
-				var groups = (from @group in await AccountManager.GetGroupsAsync() where @group.Name == groupName select @group).ToArray();
-				if (groups is not [{ Id: var groupId }])
+				switch (this)
 				{
-					await messageReceiver.SendMessageAsync("机器人添加的群里包含多个重名的群，或者没有找到该名称的群。请使用“群号”严格确定群。");
-					break;
-				}
-
-				await getResultMessage_PuzzleLibraries(groupId);
-				break;
-			}
-
-			// 查询题库信息。
-			case ({ QueryContentKind: QueryContentKinds.PuzzleLibrary, PuzzleLibraryName: { } name }, { GroupId: var groupId }):
-			{
-				await getResultMessage_PuzzleLibrary(groupId, name);
-				break;
-			}
-
-			// 查询跨群题库信息。
-			case ({ GroupId: { } groupId, QueryContentKind: QueryContentKinds.PuzzleLibrary, PuzzleLibraryName: { } name }, _):
-			{
-				await getResultMessage_PuzzleLibrary(groupId, name);
-				break;
-			}
-
-			// 查询跨群题库信息，指定名称。
-			case ({ GroupName: { } groupName, QueryContentKind: QueryContentKinds.PuzzleLibrary, PuzzleLibraryName: { } name }, _):
-			{
-				var groups = (from @group in await AccountManager.GetGroupsAsync() where @group.Name == groupName select @group).ToArray();
-				if (groups is not [{ Id: var groupId }])
-				{
-					await messageReceiver.SendMessageAsync("机器人添加的群里包含多个重名的群，或者没有找到该名称的群。请使用“群号”严格确定群。");
-					break;
-				}
-
-				await getResultMessage_PuzzleLibrary(groupId, name);
-				break;
-			}
-
-			// 默认情况 -> 查询本人的基本信息。
-#pragma warning disable format
-			case (
-				{ UserId: null, UserNickname: null, QueryContentKind: var kind },
-				{ Sender: { Group: var group, Name: var senderName, Id: var senderId } }
-			):
-#pragma warning restore format
-			{
-				await getResultMessage(senderName, senderId, kind, group);
-				break;
-			}
-
-			// 根据昵称查人。
-			case ({ UserNickname: { } nickname, QueryContentKind: var kind }, { Sender.Group: var group }):
-			{
-				switch (await group.GetMatchedMembersViaNicknameAsync(nickname))
-				{
-					case []:
+					// 查询跨群题库信息。
+					case { GroupId: { } groupId }:
 					{
-						await messageReceiver.SendMessageAsync($"本群不存在昵称为“{nickname}”的用户。请检查一下然后重新查询。");
+						await (
+							PuzzleLibraryName is { } name
+								? getResultMessage_PuzzleLibrary(groupId, name)
+								: getResultMessage_PuzzleLibraries(groupId)
+						);
 						break;
 					}
-					case [{ Id: var senderId, Name: var senderName }]:
+
+					// 查询跨群题库信息，指定名称。
+					case { GroupName: { } groupName }:
+					{
+						var groups = (from g in await AccountManager.GetGroupsAsync() where g.Name == groupName select g).ToArray();
+						if (groups is not [{ Id: var groupId }])
+						{
+							await messageReceiver.SendMessageAsync("机器人添加的群里包含多个重名的群，或者没有找到该名称的群。请使用“群号”严格确定群。");
+							break;
+						}
+
+						await (
+							PuzzleLibraryName is { } name
+								? getResultMessage_PuzzleLibrary(groupId, name)
+								: getResultMessage_PuzzleLibraries(groupId)
+						);
+						break;
+					}
+
+					// 查询题库信息。
+					case { PuzzleLibraryName: { } name }:
+					{
+						await getResultMessage_PuzzleLibrary(messageReceiver.GroupId, name);
+						break;
+					}
+				}
+				break;
+			}
+			case var kind:
+			{
+				switch (this, messageReceiver)
+				{
+					// 默认情况 -> 查询本人的基本信息。
+					case ({ UserId: null, UserNickname: null }, { Sender: { Group: var group, Name: var senderName, Id: var senderId } }):
 					{
 						await getResultMessage(senderName, senderId, kind, group);
 						break;
 					}
+
+					// 根据昵称查人。
+					case ({ UserNickname: { } nickname }, { Sender.Group: var group }):
+					{
+						switch (await group.GetMatchedMembersViaNicknameAsync(nickname))
+						{
+							case []:
+							{
+								await messageReceiver.SendMessageAsync($"本群不存在昵称为“{nickname}”的用户。请检查一下然后重新查询。");
+								break;
+							}
+							case [{ Id: var senderId, Name: var senderName }]:
+							{
+								await getResultMessage(senderName, senderId, kind, group);
+								break;
+							}
+							default:
+							{
+								await messageReceiver.SendMessageAsync("本群存在多个人的群名片一致的情况。请使用 QQ 严格确定唯一的查询用户。");
+								break;
+							}
+						}
+						break;
+					}
+
+					// 根据 QQ 号码查人。
+					case ({ UserId: { } id }, { Sender.Group: var group }):
+					{
+						switch (await group.GetMatchedMemberViaIdAsync(id))
+						{
+							case { Id: var senderId, Name: var senderName }:
+							{
+								await getResultMessage(senderName, senderId, kind, group);
+								break;
+							}
+							default:
+							{
+								await messageReceiver.SendMessageAsync($"本群不存在 QQ 号码为“{id}”的用户。请检查一下后重新查询。");
+								break;
+							}
+						}
+						break;
+					}
+
+					// 数据不合法。
 					default:
 					{
-						await messageReceiver.SendMessageAsync("本群存在多个人的群名片一致的情况。请使用 QQ 严格确定唯一的查询用户。");
+						await messageReceiver.SendMessageAsync("查询数据不合法。");
 						break;
 					}
 				}
-				break;
-			}
-
-			// 根据 QQ 号码查人。
-			case ({ UserId: { } id, QueryContentKind: var kind }, { Sender.Group: var group }):
-			{
-				switch (await group.GetMatchedMemberViaIdAsync(id))
-				{
-					case { Id: var senderId, Name: var senderName }:
-					{
-						await getResultMessage(senderName, senderId, kind, group);
-						break;
-					}
-					default:
-					{
-						await messageReceiver.SendMessageAsync($"本群不存在 QQ 号码为“{id}”的用户。请检查一下后重新查询。");
-						break;
-					}
-				}
-				break;
-			}
-
-			// 数据不合法。
-			default:
-			{
-				await messageReceiver.SendMessageAsync("查询数据不合法。");
 				break;
 			}
 		}
