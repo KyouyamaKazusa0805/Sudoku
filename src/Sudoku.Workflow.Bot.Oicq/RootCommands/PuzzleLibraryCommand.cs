@@ -27,7 +27,7 @@ internal sealed class PuzzleLibraryCommand : Command
 	/// <summary>
 	/// 表示你要操作的目标群的群号。
 	/// </summary>
-	[DoubleArgument("QQ")]
+	[DoubleArgument("群号")]
 	[Hint("表示你要操作的目标群的群号。")]
 	[DisplayingIndex(1)]
 	public string? GroupId { get; set; }

@@ -119,33 +119,16 @@ public abstract class Command : IModule
 
 		if (!ParseMessageCore(text, this, out var failedReason, out var requestedHintArgumentName, out var requestedCommandHint))
 		{
-			switch (failedReason)
-			{
-				case ParsingFailedReason.InvalidInput:
+			await gmr.SendMessageAsync(
+				failedReason switch
 				{
-					await gmr.SendMessageAsync("请检查指令输入是否正确。尤其是缺少空格。空格作为指令识别期间较为重要的分隔符号，请勿缺少。");
-					return;
+					ParsingFailedReason.InvalidInput => "请检查指令输入是否正确。尤其是缺少空格。空格作为指令识别期间较为重要的分隔符号，请勿缺少。",
+					ParsingFailedReason.PropertyNotFound => "输入的指令有误，导致参数信息不匹配。请不要省略一些固定词语，如“！购买 物品 强化卡”的“物品”。",
+					ParsingFailedReason.PropertyMissingAccessor or ParsingFailedReason.PropertyIsIndexer or ParsingFailedReason.PropertyMissingConverter
+						=> throw new InvalidOperationException($"Internal error: {failedReason}"),
+					_ => throw new InvalidOperationException("Other invalid cases on parsing.")
 				}
-				case ParsingFailedReason.TargetPropertyNotFound:
-				{
-					await gmr.SendMessageAsync("输入的指令有误，导致你要具体指定的参数信息不能成功匹配。请不要省略一些固定词语，如“！购买 物品 强化卡”的“物品”。");
-					return;
-				}
-				case ParsingFailedReason.NotCurrentModule:
-				{
-					return;
-				}
-				case ParsingFailedReason.TargetPropertyMissingAccessor:
-				case ParsingFailedReason.TargetPropertyIsIndexer:
-				case ParsingFailedReason.TargetPropertyMissingConverter:
-				{
-					throw new InvalidOperationException($"目标属性存在解析异常，内部错误：{failedReason}");
-				}
-				default:
-				{
-					throw new InvalidOperationException("存在解析异常，但是属于其他情况。请打开调试器进行调试，了解错误来源。");
-				}
-			}
+			);
 		}
 
 		switch (requestedHintArgumentName, requestedCommandHint)
@@ -379,7 +362,7 @@ public abstract class Command : IModule
 		out bool requestedCommandHint
 	)
 	{
-		(requestedHintArgumentName, requestedCommandHint, var moduleType, var isFirstArg) = (null, false, module.EqualityContract, true);
+		(requestedHintArgumentName, requestedCommandHint, var moduleType) = (null, false, module.EqualityContract);
 		switch (ParseCommandLine(commandLine, """[\""“”].+?[\""“”]|[^ ]+""", '"', '“', '”'))
 		{
 			case []:
@@ -396,21 +379,9 @@ public abstract class Command : IModule
 			}
 			case var args:
 			{
-				for (var i = 0; i < args.Length; i++)
+				for (var i = 1; i < args.Length; i++)
 				{
 					var arg = args[i];
-					if (isFirstArg)
-					{
-						if (!CommandEqualityComparer(arg, module))
-						{
-							failedReason = ParsingFailedReason.NotCurrentModule;
-							return false;
-						}
-
-						isFirstArg = false;
-						continue;
-					}
-
 					var foundPropertyInfo = default(PropertyInfo?);
 					foreach (var tempPropertyInfo in moduleType.GetProperties())
 					{
@@ -423,19 +394,19 @@ public abstract class Command : IModule
 
 					if (foundPropertyInfo is null)
 					{
-						failedReason = ParsingFailedReason.TargetPropertyNotFound;
+						failedReason = ParsingFailedReason.PropertyNotFound;
 						return false;
 					}
 
 					if (foundPropertyInfo is not { CanRead: true, CanWrite: true })
 					{
-						failedReason = ParsingFailedReason.TargetPropertyMissingAccessor;
+						failedReason = ParsingFailedReason.PropertyMissingAccessor;
 						return false;
 					}
 
 					if (foundPropertyInfo.GetIndexParameters().Length != 0)
 					{
-						failedReason = ParsingFailedReason.TargetPropertyIsIndexer;
+						failedReason = ParsingFailedReason.PropertyIsIndexer;
 						return false;
 					}
 
@@ -455,7 +426,7 @@ public abstract class Command : IModule
 						{
 							if (foundPropertyInfo.PropertyType != typeof(string))
 							{
-								failedReason = ParsingFailedReason.TargetPropertyMissingConverter;
+								failedReason = ParsingFailedReason.PropertyMissingConverter;
 								return false;
 							}
 

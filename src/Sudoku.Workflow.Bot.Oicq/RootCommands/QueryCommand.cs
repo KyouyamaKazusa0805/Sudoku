@@ -217,20 +217,32 @@ internal sealed class QueryCommand : Command
 			};
 
 		async Task getResultMessage_PuzzleLibrary(string groupId, string name)
-			=> await messageReceiver.SendMessageAsync(
-				PuzzleLibraryOperations.GetLibrary(groupId, name) switch
+		{
+			switch (PuzzleLibraryOperations.GetLibrary(groupId, name))
+			{
+				case { Name: var libName, FinishedPuzzlesCount: var count } lib:
 				{
-					{ Name: var libName, FinishedPuzzlesCount: var count }
-						=>
+					var totalNumberOfPuzzles = PuzzleLibraryOperations.GetPuzzlesCount(lib);
+					await messageReceiver.SendMessageAsync(
 						$"""
 						题库信息：
 						---
 						题库：{libName}
-						完成题目数量：{count}
-						""",
-					_ => $"当前群不包含名称为“{name}”的题库。查询失败。"
+						题目数量：{totalNumberOfPuzzles}
+						已完成：{count} 题
+						完成进度：{count / (double)totalNumberOfPuzzles:P2}
+						"""
+					);
+
+					break;
 				}
-			);
+				default:
+				{
+					await messageReceiver.SendMessageAsync($"当前群不包含名称为“{name}”的题库。查询失败。");
+					break;
+				}
+			}
+		}
 
 		async Task getResultMessage(string senderName, string senderId, string? viewContentKind, Group group)
 		{

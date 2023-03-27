@@ -68,7 +68,7 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 					return;
 				}
 
-				if (PuzzleLibraryOperations.CheckValidPuzzlesCountInPuzzleLibrary(lib) == finishedCount)
+				if (PuzzleLibraryOperations.GetPuzzlesCount(lib) == finishedCount)
 				{
 					// 说明已经完成这个题库了，所有题目已经全部完成。
 					await messageReceiver.SendMessageAsync(
@@ -102,7 +102,7 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 					return;
 				}
 
-				if (PuzzleLibraryOperations.CheckValidPuzzlesCountInPuzzleLibrary(lib) == finishedCount)
+				if (PuzzleLibraryOperations.GetPuzzlesCount(lib) == finishedCount)
 				{
 					// 说明已经完成这个题库了，所有题目已经全部完成。
 					await messageReceiver.SendMessageAsync(

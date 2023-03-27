@@ -9,6 +9,12 @@ namespace Sudoku.Workflow.Bot.Oicq.Storage;
 public static class PuzzleLibraryOperations
 {
 	/// <summary>
+	/// 默认的 JSON 序列化配置项。
+	/// </summary>
+	private static readonly JsonSerializerOptions DefaultOptions = new() { WriteIndented = true };
+
+
+	/// <summary>
 	/// 更新指定群名的指定题库名称的题库数据。
 	/// </summary>
 	/// <param name="groupId">群号。</param>
@@ -52,7 +58,7 @@ public static class PuzzleLibraryOperations
 			puzzleLibraries[index] = library;
 		}
 
-		File.WriteAllText(groupLibraryDataFileName, Serialize(puzzleLibraries));
+		File.WriteAllText(groupLibraryDataFileName, Serialize(puzzleLibraries, DefaultOptions));
 	}
 
 	/// <summary>
@@ -114,7 +120,8 @@ public static class PuzzleLibraryOperations
 					let finalName = name[..name.LastIndexOf(".txt")] // 忽略掉末尾的 .txt。
 					let fullName = fileInfo.FullName
 					select new PuzzleLibrary { GroupId = groupId, Name = finalName, Path = fullName }
-				).ToList()
+				).ToList(),
+				DefaultOptions
 			)
 		);
 		return true;
@@ -129,18 +136,18 @@ public static class PuzzleLibraryOperations
 	/// 返回一个数字，表示这个题库有多少个题目。如果题库没有找到，则返回 -1。
 	/// </returns>
 	[MethodImpl(MethodImplOptions.Synchronized)]
-	public static int CheckValidPuzzlesCountInPuzzleLibrary(string groupId, string libraryName)
-		=> GetLibrary(groupId, libraryName) switch { { } lib => CheckValidPuzzlesCountInPuzzleLibrary(lib), _ => -1 };
+	public static int GetPuzzlesCount(string groupId, string libraryName)
+		=> GetLibrary(groupId, libraryName) switch { { } lib => GetPuzzlesCount(lib), _ => -1 };
 
 	/// <summary>
-	/// <inheritdoc cref="CheckValidPuzzlesCountInPuzzleLibrary(string, string)" path="/summary"/>
+	/// <inheritdoc cref="GetPuzzlesCount(string, string)" path="/summary"/>
 	/// </summary>
 	/// <param name="puzzleLibrary"><see cref="PuzzleLibrary"/> 的实例。</param>
 	/// <returns>
-	/// <inheritdoc cref="CheckValidPuzzlesCountInPuzzleLibrary(string, string)" path="/returns"/>
+	/// <inheritdoc cref="GetPuzzlesCount(string, string)" path="/returns"/>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.Synchronized)]
-	public static int CheckValidPuzzlesCountInPuzzleLibrary(PuzzleLibrary puzzleLibrary)
+	public static int GetPuzzlesCount(PuzzleLibrary puzzleLibrary)
 		=> File.ReadLines(puzzleLibrary.Path).Count(static line => !string.IsNullOrWhiteSpace(line) && Grid.TryParse(line, out _));
 
 	/// <summary>
@@ -155,7 +162,7 @@ public static class PuzzleLibraryOperations
 	public static Grid GetPuzzleFor(PuzzleLibrary puzzleLibrary)
 	{
 		var current = puzzleLibrary.FinishedPuzzlesCount;
-		var total = CheckValidPuzzlesCountInPuzzleLibrary(puzzleLibrary);
+		var total = GetPuzzlesCount(puzzleLibrary);
 		if (current == total)
 		{
 			throw new InvalidOperationException("This puzzle library has already been finished.");

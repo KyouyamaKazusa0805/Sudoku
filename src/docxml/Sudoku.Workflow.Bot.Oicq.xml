@@ -1023,27 +1023,22 @@
             表示没有错误。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.NotCurrentModule">
-            <summary>
-            表示解析失败，因为解析的指令不属于当前指令（不匹配）。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.TargetPropertyNotFound">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.PropertyNotFound">
             <summary>
             表示解析失败，因为目标属性没有找到。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.TargetPropertyMissingAccessor">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.PropertyMissingAccessor">
             <summary>
             表示解析失败，因为目标属性缺少 <see langword="get"/> 或 <see langword="set"/> 方法的至少一个。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.TargetPropertyIsIndexer">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.PropertyIsIndexer">
             <summary>
             表示解析失败，因为目标属性是索引器（有参属性）。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.TargetPropertyMissingConverter">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason.PropertyMissingConverter">
             <summary>
             表示解析失败，因为目标属性不是 <see cref="T:System.String"/> 类型，却缺少 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.ValueConverterAttribute`1"/> 的转换指示情况。
             </summary>
@@ -1757,6 +1752,11 @@
             <inheritdoc cref="T:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler" path="/remarks"/>
             </remarks>
         </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.DefaultOptions">
+            <summary>
+            默认的 JSON 序列化配置项。
+            </summary>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.UpdateLibrary(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
             <summary>
             更新指定群名的指定题库名称的题库数据。
@@ -1789,7 +1789,7 @@
             而和文件夹同名的 JSON 文件则是该群完成的此群的题库数据的序列化文件。
             </remarks>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.CheckValidPuzzlesCountInPuzzleLibrary(System.String,System.String)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetPuzzlesCount(System.String,System.String)">
             <summary>
             根据指定群号（QQ）和题库名称，获取该题库的完整题目的数量。
             </summary>
@@ -1799,13 +1799,13 @@
             返回一个数字，表示这个题库有多少个题目。如果题库没有找到，则返回 -1。
             </returns>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.CheckValidPuzzlesCountInPuzzleLibrary(Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetPuzzlesCount(Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.CheckValidPuzzlesCountInPuzzleLibrary(System.String,System.String)" path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetPuzzlesCount(System.String,System.String)" path="/summary"/>
             </summary>
             <param name="puzzleLibrary"><see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 的实例。</param>
             <returns>
-            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.CheckValidPuzzlesCountInPuzzleLibrary(System.String,System.String)" path="/returns"/>
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetPuzzlesCount(System.String,System.String)" path="/returns"/>
             </returns>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetPuzzleFor(Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
