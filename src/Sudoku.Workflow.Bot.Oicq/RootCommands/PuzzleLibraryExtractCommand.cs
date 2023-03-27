@@ -171,6 +171,18 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 			// 获取题目。
 			var grid = PuzzleLibraryOperations.GetPuzzleFor(lib);
 
+			// 这里需要提前读取本地缓存，查看是否用户本来就在这个题目。
+			// 如果抽取题目期间，本地缓存的题目和现在即将抽取的题目一致，就说明用户还没有完成此题，因此直接退出避免抽取新题目。
+			// 注意，LoadFromCachedPath 方法会返回 Grid.Undefined 结果作为默认（失败）的结果数值。
+			// 这里不需要让 lastGrid 去额外处理和 Grid.Undefined 有关的情况，因为 grid 走 GetPuzzleFor 获得，
+			// 而那个方法根本不会产生 Grid.Undefined 结果，反而是抛异常。所以我们无需关心 lastGrid 和 Grid.Undefined 的相等性。
+			var lastGrid = PuzzleLibraryOperations.LoadFromCachedPath(groupId, lib);
+			if (lastGrid == grid)
+			{
+				await messageReceiver.SendMessageAsync("本群尚未完成前一个题目。请完成题目后（回答了题目）再继续抽取新题目。");
+				return;
+			}
+
 			// 把得到的题目拿去分析，并得到分析结果（看一下题目是否唯一解之类的）。然后打印一下一共使用了什么技巧。
 			var analysisResult = Solver.Analyze(grid);
 			if (analysisResult is not { IsSolved: true, DifficultyLevel: var difficultyLevel })
@@ -193,6 +205,10 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 			// 显示题目的分析结果（使用的技巧）。
 			// 这里只显示技巧，题目的其他要素（比如卡点、题目的终盘等）都不应该显示出来。
 			await messageReceiver.SendMessageAsync(analysisResult.ToString(SolverResultFormattingOptions.ShowElapsedTime));
+
+			// 这里需要在本地给出缓存路径，缓存一下用户当前完成的这个题目的具体数据。
+			// 这样做是为了保证用户在长时间不使用机器人的时候，机器人也能快速恢复环境，校验题目回答是否正确。
+			PuzzleLibraryOperations.SaveToCachedPath(groupId, lib, grid);
 		}
 	}
 }
