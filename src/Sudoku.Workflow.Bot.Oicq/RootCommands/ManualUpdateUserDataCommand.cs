@@ -15,7 +15,7 @@ internal sealed class ManualUpdateUserDataCommand : Command
 	/// <summary>
 	/// 表示你要为谁进行加分操作。该参数指定的是用户的 QQ 号。
 	/// </summary>
-	[DoubleArgument("QQ")]
+	[DoubleArgument("账号")]
 	[Hint("表示你要为谁进行加分操作。该参数指定的是用户的 QQ 号。")]
 	[DisplayingIndex(0)]
 	public string? UserId { get; set; }

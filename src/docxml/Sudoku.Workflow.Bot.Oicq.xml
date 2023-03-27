@@ -1638,12 +1638,22 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.UserId">
             <summary>
-            表示你需要查询的用户的 QQ 号码。
+            表示你需要查询的用户或群的 QQ 号码。
             </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.UserNickname">
             <summary>
-            表示你需要查询的用户的群名片。
+            表示你需要查询的用户的群名片，或群的群名称。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.GroupId">
+            <summary>
+            表示你需要查询的群的群号。该参数主要用于查询例如题库之类的内容。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.GroupName">
+            <summary>
+            表示你需要查询的群的群名。该参数主要用于查询例如题库之类的内容。
             </summary>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">

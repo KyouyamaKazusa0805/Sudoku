@@ -62,15 +62,11 @@ internal sealed class PuzzleLibraryCommand : Command
 			}
 			case (Operations.Initialize, { } name, _):
 			{
-				if ((await AccountManager.GetGroupsAsync()).FirstOrDefault(group => group.Name == name) is not { Id: var id })
+				var groups = (from @group in await AccountManager.GetGroupsAsync() where @group.Name == name select @group).ToArray();
+				if (groups is not [{ Id: var id }])
 				{
-					await messageReceiver.SendMessageAsync(
-						"""
-						指定的群名称的群无法找到，或者是机器人没有添加。
-						机器人没有添加的群是无法发送消息的，所以给这种群增添的题库也是没有意义的。
-						""".RemoveLineEndings()
-					);
-					return;
+					await messageReceiver.SendMessageAsync("机器人添加的群里包含多个重名的群，或者没有找到该名称的群。请使用“群号”严格确定群。");
+					break;
 				}
 
 				await messageReceiver.SendMessageAsync(initializeCore(id));

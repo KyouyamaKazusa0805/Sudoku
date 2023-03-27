@@ -46,20 +46,36 @@ internal sealed class QueryCommand : Command
 	public string? QueryContentKind { get; set; }
 
 	/// <summary>
-	/// 表示你需要查询的用户的 QQ 号码。
+	/// 表示你需要查询的用户或群的 QQ 号码。
 	/// </summary>
-	[DoubleArgument("QQ")]
+	[DoubleArgument("账号")]
 	[Hint("表示你需要查询的用户的 QQ 号码。")]
 	[DisplayingIndex(0)]
 	public string? UserId { get; set; }
 
 	/// <summary>
-	/// 表示你需要查询的用户的群名片。
+	/// 表示你需要查询的用户的群名片，或群的群名称。
 	/// </summary>
 	[DoubleArgument("昵称")]
 	[Hint("表示你需要查询的用户的群名片。")]
 	[DisplayingIndex(0)]
 	public string? UserNickname { get; set; }
+
+	/// <summary>
+	/// 表示你需要查询的群的群号。该参数主要用于查询例如题库之类的内容。
+	/// </summary>
+	[DoubleArgument("群号")]
+	[Hint("表示你需要查询的群的群号。该参数主要用于查询例如题库之类的内容。")]
+	[DisplayingIndex(2)]
+	public string? GroupId { get; set; }
+
+	/// <summary>
+	/// 表示你需要查询的群的群名。该参数主要用于查询例如题库之类的内容。
+	/// </summary>
+	[DoubleArgument("群名")]
+	[Hint("表示你需要查询的群的群名。该参数主要用于查询例如题库之类的内容。")]
+	[DisplayingIndex(2)]
+	public string? GroupName { get; set; }
 
 
 	/// <inheritdoc/>
@@ -114,6 +130,27 @@ internal sealed class QueryCommand : Command
 				break;
 			}
 
+			// 根据群号查题库。
+			case ({ GroupId: { } groupId, QueryContentKind: QueryContentKinds.PuzzleLibrary }, _):
+			{
+				await messageReceiver.SendMessageAsync(getResultMessage_PuzzleLibrary(groupId));
+				break;
+			}
+
+			// 根据群名查题库。
+			case ({ GroupName: { } groupName, QueryContentKind: QueryContentKinds.PuzzleLibrary }, _):
+			{
+				var groups = (from @group in await AccountManager.GetGroupsAsync() where @group.Name == groupName select @group).ToArray();
+				if (groups is not [{ Id: var id }])
+				{
+					await messageReceiver.SendMessageAsync("机器人添加的群里包含多个重名的群，或者没有找到该名称的群。请使用“群号”严格确定群。");
+					break;
+				}
+
+				await messageReceiver.SendMessageAsync(getResultMessage_PuzzleLibrary(id));
+				break;
+			}
+
 			// 数据不合法。
 			default:
 			{
@@ -122,6 +159,20 @@ internal sealed class QueryCommand : Command
 			}
 		}
 
+
+		static string getResultMessage_PuzzleLibrary(string groupId)
+			=> PuzzleLibraryOperations.GetLibraries(groupId) switch
+			{
+				{ Length: var length } libs and not [] when (from lib in libs select lib.Name) is var libraryNames
+					=>
+					$"""
+					本群题库：{string.Join("、", libraryNames)}
+					题库总数量：{length}
+					---
+					如需要使用题库，请使用“！抽题”指令。
+					""",
+				_ => "本群尚不存在任何题库。"
+			};
 
 		async Task<string> getResultMessage(string senderName, string senderId, string? viewContentKind, Group group)
 		{
@@ -257,18 +308,7 @@ internal sealed class QueryCommand : Command
 						}
 						case QueryContentKinds.PuzzleLibrary:
 						{
-							return PuzzleLibraryOperations.GetLibraries(group) switch
-							{
-								var puzzleLibraries and not (null or [])
-									=>
-									$"""
-									本群题库：{string.Join("、", from puzzleLibrary in puzzleLibraries select puzzleLibrary.Name)}
-									题库总数量：{puzzleLibraries.Length}
-									---
-									如需要使用题库，请使用“！抽题”指令。
-									""",
-								_ => "本群尚不存在任何题库。"
-							};
+							return getResultMessage_PuzzleLibrary(group.Id);
 						}
 						default:
 						{
