@@ -4,6 +4,7 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 /// 游戏指令。
 /// </summary>
 [Command("开始游戏")]
+[RequiredRole(BotRole = GroupRoleKind.Owner)]
 [SupportedOSPlatform(OperatingSystemNames.Windows)]
 internal sealed class GameCommand : Command
 {
