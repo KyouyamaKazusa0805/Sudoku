@@ -15,11 +15,65 @@ public static class PuzzleLibraryOperations
 
 
 	/// <summary>
-	/// 从本地的题库进度缓存文件里读取指定题库的缓存，并得到当前用户正在完成的题目。
+	/// 直接删除掉本地缓存的题库完成进度文件。如果文件未找到，也不会产生异常，直接退出而已。
+	/// </summary>
+	/// <param name="groupId">群号（QQ）。</param>
+	/// <param name="puzzleLibrary">题库的基本数据。</param>
+	/// <remarks>
+	/// <para>
+	/// 本方法只会产生一个 <see cref="InvalidOperationException"/> 异常，就是你使用操作系统不包含“我的文档”这个文件夹的时候。
+	/// 当然，机器人是在我自己电脑上测试使用的，所以这里就可以完全不考虑别的操作系统的问题。
+	/// </para>
+	/// <para>
+	/// 另外，本方法不会产生别的异常，也就是说，文件会被静默删除。而正是因为这个原因，所以删除操作变得非常敏感。
+	/// <b><i>请确保确实需要删除文件的时候，才调用此方法。</i></b>
+	/// </para>
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.Synchronized)]
+	public static void DeleteCachedFile(string groupId, PuzzleLibrary puzzleLibrary)
+	{
+		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+		if (!Directory.Exists(folder))
+		{
+			throw new InvalidOperationException("严重错误：无法找到“我的文档”文件夹。");
+		}
+
+		var botDataFolder = $"""{folder}\BotData""";
+		if (!Directory.Exists(botDataFolder))
+		{
+			return;
+		}
+
+		var libraryFolder = $"""{botDataFolder}\PuzzleLibrary""";
+		if (!Directory.Exists(libraryFolder))
+		{
+			return;
+		}
+
+		var groupLibraryFolder = $"""{libraryFolder}\{groupId}""";
+		if (!Directory.Exists(groupLibraryFolder))
+		{
+			return;
+		}
+
+		var libName = puzzleLibrary.Name;
+		var currentCachedPath = $"""{groupLibraryFolder}\{libName}.json""";
+		if (!File.Exists(currentCachedPath))
+		{
+			return;
+		}
+
+		File.Delete(currentCachedPath);
+	}
+
+	/// <summary>
+	/// 从本地的题库进度缓存文件里读取指定题库的缓存，并得到当前用户正在完成的题目。如果题库不包含本地的缓存进度文件，
+	/// 则返回 <see cref="Grid.Undefined"/> 作为默认结果。
 	/// </summary>
 	/// <param name="groupId">群号（QQ）。</param>
 	/// <param name="puzzleLibrary">题库的基本数据。</param>
 	/// <returns>用户正在完成的题目。</returns>
+	/// <seealso cref="Grid.Undefined"/>
 	[MethodImpl(MethodImplOptions.Synchronized)]
 	public static Grid LoadFromCachedPath(string groupId, PuzzleLibrary puzzleLibrary)
 	{

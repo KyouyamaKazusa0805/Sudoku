@@ -187,7 +187,7 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 			var analysisResult = Solver.Analyze(grid);
 			if (analysisResult is not { IsSolved: true, DifficultyLevel: var difficultyLevel })
 			{
-				await messageReceiver.SendMessageAsync("抽取到的题目无法被解出，即多解或无解。请联系题目发布者询问错误情况。");
+				await messageReceiver.SendMessageAsync("抽取到的题目无法被解出，即多解或无解。请联系题目发布者询问是否题库存在问题。");
 				return;
 			}
 
@@ -204,7 +204,14 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 
 			// 显示题目的分析结果（使用的技巧）。
 			// 这里只显示技巧，题目的其他要素（比如卡点、题目的终盘等）都不应该显示出来。
-			await messageReceiver.SendMessageAsync(analysisResult.ToString(SolverResultFormattingOptions.ShowElapsedTime));
+			await messageReceiver.SendMessageAsync(
+				$"""
+				{analysisResult.ToString(SolverResultFormattingOptions.ShowElapsedTime)}
+				---
+				如果需要继续抽取题目，请优先回答该题目的结果后方可继续抽取题目。回答请使用“！题库 操作 回答 答案 <结果>”的指令进行回答。
+				其中“结果”固定为每一个题目的最后一行的 9 个数字（从左往右书写）即可，如“123456789”，中间不含空格。
+				"""
+			);
 
 			// 这里需要在本地给出缓存路径，缓存一下用户当前完成的这个题目的具体数据。
 			// 这样做是为了保证用户在长时间不使用机器人的时候，机器人也能快速恢复环境，校验题目回答是否正确。

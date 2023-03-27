@@ -1618,6 +1618,21 @@
             表示你要操作的目标群的群号。
             </summary>
         </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.PuzzleLibraryName">
+            <summary>
+            表示你要回答的题目所在题库的题库名称。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.UserResultAnswer">
+            <summary>
+            表示你需要回答的答案。
+            </summary>
+            <remarks>
+            由于 OCR 系统极为复杂，而且识别成功率（尤其是手写字体）较低，无法 100% 正确判断结果（尤其是一些题库的难度特别大，
+            玩家手写的答案是辛辛苦苦俩小时仨小时才完成的一个题，结果 OCR 识别不了正确答案，这不要人命么），因此回答答案采用字符串的形式进行比较。
+            考虑到用户把 81 个空格都写上数字的字符串特别长，所以只要求固定某行/列/宫的 9 个数字作为结果即可。
+            </remarks>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
@@ -1630,6 +1645,11 @@
         <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Initialize">
             <summary>
             表示初始化题库。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Answer">
+            <summary>
+            表示操作为回答题库的答案。
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryExtractCommand">
@@ -1811,13 +1831,32 @@
             默认的 JSON 序列化配置项。
             </summary>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.DeleteCachedFile(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
+            <summary>
+            直接删除掉本地缓存的题库完成进度文件。如果文件未找到，也不会产生异常，直接退出而已。
+            </summary>
+            <param name="groupId">群号（QQ）。</param>
+            <param name="puzzleLibrary">题库的基本数据。</param>
+            <remarks>
+            <para>
+            本方法只会产生一个 <see cref="T:System.InvalidOperationException"/> 异常，就是你使用操作系统不包含“我的文档”这个文件夹的时候。
+            当然，机器人是在我自己电脑上测试使用的，所以这里就可以完全不考虑别的操作系统的问题。
+            </para>
+            <para>
+            另外，本方法不会产生别的异常，也就是说，文件会被静默删除。而正是因为这个原因，所以删除操作变得非常敏感。
+            <b><i>请确保确实需要删除文件的时候，才调用此方法。</i></b>
+            </para>
+            </remarks>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.LoadFromCachedPath(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
             <summary>
-            从本地的题库进度缓存文件里读取指定题库的缓存，并得到当前用户正在完成的题目。
+            从本地的题库进度缓存文件里读取指定题库的缓存，并得到当前用户正在完成的题目。如果题库不包含本地的缓存进度文件，
+            则返回 <see cref="F:Sudoku.Concepts.Grid.Undefined"/> 作为默认结果。
             </summary>
             <param name="groupId">群号（QQ）。</param>
             <param name="puzzleLibrary">题库的基本数据。</param>
             <returns>用户正在完成的题目。</returns>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.SaveToCachedPath(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary,Sudoku.Concepts.Grid@)">
             <summary>
