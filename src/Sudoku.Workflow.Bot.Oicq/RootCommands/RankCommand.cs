@@ -1,9 +1,10 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
+namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
 /// <summary>
 /// 排名指令。
 /// </summary>
 [Command("排名")]
+[RequiredRole(SenderRole = GroupRoleKind.God)]
 internal sealed class RankCommand : Command
 {
 	/// <inheritdoc/>
