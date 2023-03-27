@@ -69,6 +69,8 @@ internal sealed class GameCommand : Command
 						continue;
 					}
 
+					await messageReceiver.RecallAsync();
+
 					switch (answeredCellIndex - 1 == finalCellIndex, answeringContext.AnsweredUsers.ContainsKey(userId))
 					{
 						case (false, false):
