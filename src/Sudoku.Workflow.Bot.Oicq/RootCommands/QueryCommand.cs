@@ -44,7 +44,7 @@ internal sealed class QueryCommand : Command
 	[DoubleArgument("内容")]
 	[Hint("表示你需要查询的具体内容。可以是“基本”、“对抗”、“物品”和“强化”。该参数可以没有，默认表示的是查询基本信息，即“基本”。")]
 	[DefaultValue<string>(QueryContentKinds.Elementary)]
-	[DisplayingIndex(1)]
+	[DisplayingIndex(0)]
 	public string? QueryContentKind { get; set; }
 
 	/// <summary>
@@ -52,7 +52,7 @@ internal sealed class QueryCommand : Command
 	/// </summary>
 	[DoubleArgument("账号")]
 	[Hint("表示你需要查询的用户的 QQ 号码。")]
-	[DisplayingIndex(0)]
+	[DisplayingIndex(1)]
 	public string? UserId { get; set; }
 
 	/// <summary>
@@ -60,7 +60,7 @@ internal sealed class QueryCommand : Command
 	/// </summary>
 	[DoubleArgument("昵称")]
 	[Hint("表示你需要查询的用户的群名片。")]
-	[DisplayingIndex(0)]
+	[DisplayingIndex(1)]
 	public string? UserNickname { get; set; }
 
 	/// <summary>
