@@ -179,8 +179,7 @@ public abstract class Command : IModule
 					}
 				}
 
-				var hint = string.Join(
-					' ',
+				var rawHintArguments =
 					from index in indexedDictionary.Keys
 					orderby index
 					let currentPropertiesInfo = indexedDictionary[index]
@@ -188,21 +187,33 @@ public abstract class Command : IModule
 					{
 						[var pi] when g(pi) is var (name, argumentDisplayer) => $"{name} <{argumentDisplayer}>",
 						_ => $"({string.Join('|', from pi in currentPropertiesInfo let p = g(pi) select $"{p.Name} <{p.ArgumentDisplayer}>")})"
-					}
-				);
-
-				hint = string.IsNullOrWhiteSpace(hint) ? $"  {Name}" : $"  {Name} {hint}";
+					};
+				var hint = string.Join(' ', rawHintArguments) is var h && string.IsNullOrWhiteSpace(h) ? $"  {Name}" : $"  {Name} {h}";
+				var usageText = EqualityContract.GetCustomAttributes<UsageAttribute>().ToArray() switch
+				{
+					var attributes and not []
+						=>
+						$"""
+						
+						---
+						用法举例：
+						{string.Join(
+							Environment.NewLine,
+							from attribute in attributes select $"{attribute.UsageText}：{attribute.Description}"
+						)}
+						""",
+					_ => string.Empty
+				};
 				await gmr.SendMessageAsync(
 					$$"""
 					指令“{{Name}}”语法：
-					{{hint}}
+					{{hint}}{{usageText}}
 					---
-					解释：
+					符号说明：
 					  * 小括号“(a|b)”：a 或 b 只需要给出任一个即可。
 					  * 中括号“[a]”：表示参数 a 可以没有。
 					  * 尖括号“<a>”：这里填入的是该参数配套的数值。
 					---
-					所有参数按照配对规则下，可以任意交换次序，如“！强化 主卡 2 辅助 1，1”和“！强化 辅助 1，1 主卡 2”是一样的。
 					需要查询详细参数，请在参数名之后跟问号“？”以查询参数的详情信息，如“！查询 昵称 ？”。
 					"""
 				);

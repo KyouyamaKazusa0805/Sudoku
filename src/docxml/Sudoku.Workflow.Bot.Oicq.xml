@@ -361,6 +361,30 @@
             表示用户的级别。
             </summary>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.UsageAttribute">
+            <summary>
+            提供一个特性，标记到指令的类型上，表示该类型的指令使用情况。
+            </summary>
+            <param name="usageText">表示指令的说明字符串。</param>
+            <param name="description">表示指令的解释，为 <paramref name="usageText"/> 的解释文字。</param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.UsageAttribute.#ctor(System.String,System.String)">
+            <summary>
+            提供一个特性，标记到指令的类型上，表示该类型的指令使用情况。
+            </summary>
+            <param name="usageText">表示指令的说明字符串。</param>
+            <param name="description">表示指令的解释，为 <paramref name="usageText"/> 的解释文字。</param>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.UsageAttribute.UsageText">
+            <summary>
+            表示使用指令的字符串。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.UsageAttribute.Description">
+            <summary>
+            表示说明文字，为 <see cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.UsageAttribute.UsageText"/> 的解释文字。
+            </summary>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.ValueConverterAttribute`1">
             <summary>
             提供一个特性，用于一个命令模块类型的某属性，表示该属性在它可能需要进行数据转换的时候，用于转换的转换器类型。经常被用在它是非 <see cref="T:System.String"/>

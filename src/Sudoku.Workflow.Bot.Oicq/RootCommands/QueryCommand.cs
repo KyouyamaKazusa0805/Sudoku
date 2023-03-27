@@ -4,6 +4,9 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 /// 查询指令。
 /// </summary>
 [Command("查询")]
+[Usage("！查询 内容 物品", "查询用户自己的物品所有情况。")]
+[Usage("！查询 内容 强化 主卡 3 辅助 1，1，1 三叶草 1", "查询强化期间，主卡为 3 级，辅助卡为三张 1 级，带有 1 级三叶草强化时，成功率为多少。")]
+[Usage("！查询 内容 题库 群名 摇曳数独 题库名 sdc", "查询群名为“摇曳数独”的“sdc”题库的数据（完成情况等）。")]
 internal sealed class QueryCommand : Command
 {
 	/// <summary>
