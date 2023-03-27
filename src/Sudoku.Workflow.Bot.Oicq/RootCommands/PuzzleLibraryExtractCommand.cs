@@ -19,6 +19,7 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 	[DoubleArgument("群名")]
 	[Hint("表示你需要抽取的题库的所在群（即跨群抽取题目）。")]
 	[DisplayingIndex(0)]
+	[ArgumentDisplayer("QQ")]
 	public string? GroupName { get; set; }
 
 	/// <summary>
@@ -32,7 +33,7 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 	/// <summary>
 	/// 表示你需要抽取的题库的题库名称。
 	/// </summary>
-	[DoubleArgument("名称")]
+	[DoubleArgument("题库名")]
 	[Hint("表示你需要抽取的题库的题库名称。")]
 	[DisplayingIndex(1)]
 	public string? LibraryName { get; set; }

@@ -53,6 +53,7 @@ internal sealed class QueryCommand : Command
 	[DoubleArgument("账号")]
 	[Hint("表示你需要查询的用户的 QQ 号码。")]
 	[DisplayingIndex(1)]
+	[ArgumentDisplayer("QQ")]
 	public string? UserId { get; set; }
 
 	/// <summary>
@@ -61,6 +62,7 @@ internal sealed class QueryCommand : Command
 	[DoubleArgument("昵称")]
 	[Hint("表示你需要查询的用户的群名片。")]
 	[DisplayingIndex(1)]
+	[ArgumentDisplayer("名称")]
 	public string? UserNickname { get; set; }
 
 	/// <summary>
@@ -69,6 +71,7 @@ internal sealed class QueryCommand : Command
 	[DoubleArgument("群号")]
 	[Hint("表示你需要查询的群的群号。该参数主要用于查询例如题库之类的内容。")]
 	[DisplayingIndex(2)]
+	[ArgumentDisplayer("QQ")]
 	public string? GroupId { get; set; }
 
 	/// <summary>
@@ -82,9 +85,10 @@ internal sealed class QueryCommand : Command
 	/// <summary>
 	/// 表示你需要查询的题库名称。
 	/// </summary>
-	[DoubleArgument("题库")]
+	[DoubleArgument("题库名")]
 	[Hint("表示你需要查询的题库名称。")]
 	[DisplayingIndex(6)]
+	[ArgumentDisplayer("名称")]
 	public string? PuzzleLibraryName { get; set; }
 
 
@@ -97,19 +101,29 @@ internal sealed class QueryCommand : Command
 			{
 				switch (this)
 				{
-					// 查询跨群题库信息。
-					case { GroupId: { } groupId }:
+					// 查询当前群的所有题库。
+					case { GroupName: null, GroupId: null, PuzzleLibraryName: null }:
 					{
-						await (
-							PuzzleLibraryName is { } name
-								? getResultMessage_PuzzleLibrary(groupId, name)
-								: getResultMessage_PuzzleLibraries(groupId)
-						);
+						await getResultMessage_PuzzleLibraries(messageReceiver.GroupId);
+						break;
+					}
+
+					// 查询题库信息。
+					case { GroupName: null, GroupId: null, PuzzleLibraryName: { } name }:
+					{
+						await getResultMessage_PuzzleLibrary(messageReceiver.GroupId, name);
+						break;
+					}
+
+					// 查询跨群题库信息。
+					case { GroupId: { } groupId, PuzzleLibraryName: var name }:
+					{
+						await (name is null ? getResultMessage_PuzzleLibraries(groupId) : getResultMessage_PuzzleLibrary(groupId, name));
 						break;
 					}
 
 					// 查询跨群题库信息，指定名称。
-					case { GroupName: { } groupName }:
+					case { GroupName: { } groupName, PuzzleLibraryName: var name }:
 					{
 						var groups = (from g in await AccountManager.GetGroupsAsync() where g.Name == groupName select g).ToArray();
 						if (groups is not [{ Id: var groupId }])
@@ -118,18 +132,7 @@ internal sealed class QueryCommand : Command
 							break;
 						}
 
-						await (
-							PuzzleLibraryName is { } name
-								? getResultMessage_PuzzleLibrary(groupId, name)
-								: getResultMessage_PuzzleLibraries(groupId)
-						);
-						break;
-					}
-
-					// 查询题库信息。
-					case { PuzzleLibraryName: { } name }:
-					{
-						await getResultMessage_PuzzleLibrary(messageReceiver.GroupId, name);
+						await (name is null ? getResultMessage_PuzzleLibraries(groupId) : getResultMessage_PuzzleLibrary(groupId, name));
 						break;
 					}
 				}
