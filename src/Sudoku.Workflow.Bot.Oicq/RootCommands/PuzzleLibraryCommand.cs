@@ -140,7 +140,7 @@ internal sealed class PuzzleLibraryCommand : Command
 					break;
 				}
 
-				// HouseCells 是一个锯齿数组，第一个维度传入的数值范围是 0 到 26，为 27 个数独基本区域（行 1-9、列 1-9、宫 1-9）。
+				// HousesMap 是一个 CellMap[]，传入的索引器范围是 0 到 26，为 27 个数独基本区域（行 1-9、列 1-9、宫 1-9）。
 				// 由于体系设计的问题，宫会被优先计算，因此 0-8 对应了第一到第九个宫，而 9-17 是第一到第九行。所以 17 对应的是最后一行。
 				var answerValues = grid.GetSolution()[HousesMap[17]];
 				var userResult = (from character in UserResultAnswer select character - '1').ToArray();
