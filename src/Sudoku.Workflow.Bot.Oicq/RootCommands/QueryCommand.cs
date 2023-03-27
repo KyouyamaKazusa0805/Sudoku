@@ -35,7 +35,7 @@ internal sealed class QueryCommand : Command
 	[Hint("表示你需要查询的强化期间，三张辅助卡的级别，书写格式和“强化”指令里的“辅助”用法一致。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。")]
 	[ValueConverter<NumericArrayConverter<int>>]
 	[DisplayingIndex(4)]
-	[ArgumentDisplayer("辅卡1，辅卡2?，辅卡3?")]
+	[ArgumentDisplayer("辅卡1，[辅卡2]，[辅卡3]")]
 	public int[]? AuxiliaryCards { get; set; }
 
 	/// <summary>
