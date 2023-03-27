@@ -79,12 +79,69 @@ internal sealed class QueryCommand : Command
 	[DisplayingIndex(2)]
 	public string? GroupName { get; set; }
 
+	/// <summary>
+	/// 表示你需要查询的题库名称。
+	/// </summary>
+	[DoubleArgument("题库")]
+	[Hint("表示你需要查询的题库名称。")]
+	[DisplayingIndex(6)]
+	public string? PuzzleLibraryName { get; set; }
+
 
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
 	{
 		switch (this, messageReceiver)
 		{
+			// 根据群号查题库。
+			case ({ GroupId: { } groupId, QueryContentKind: QueryContentKinds.PuzzleLibrary, PuzzleLibraryName: null }, _):
+			{
+				await getResultMessage_PuzzleLibraries(groupId);
+				break;
+			}
+
+			// 根据群名查题库。
+			case ({ GroupName: { } groupName, QueryContentKind: QueryContentKinds.PuzzleLibrary, PuzzleLibraryName: null }, _):
+			{
+				var groups = (from @group in await AccountManager.GetGroupsAsync() where @group.Name == groupName select @group).ToArray();
+				if (groups is not [{ Id: var groupId }])
+				{
+					await messageReceiver.SendMessageAsync("机器人添加的群里包含多个重名的群，或者没有找到该名称的群。请使用“群号”严格确定群。");
+					break;
+				}
+
+				await getResultMessage_PuzzleLibraries(groupId);
+				break;
+			}
+
+			// 查询题库信息。
+			case ({ QueryContentKind: QueryContentKinds.PuzzleLibrary, PuzzleLibraryName: { } name }, { GroupId: var groupId }):
+			{
+				await getResultMessage_PuzzleLibrary(groupId, name);
+				break;
+			}
+
+			// 查询跨群题库信息。
+			case ({ GroupId: { } groupId, QueryContentKind: QueryContentKinds.PuzzleLibrary, PuzzleLibraryName: { } name }, _):
+			{
+				await getResultMessage_PuzzleLibrary(groupId, name);
+				break;
+			}
+
+			// 查询跨群题库信息，指定名称。
+			case ({ GroupName: { } groupName, QueryContentKind: QueryContentKinds.PuzzleLibrary, PuzzleLibraryName: { } name }, _):
+			{
+				var groups = (from @group in await AccountManager.GetGroupsAsync() where @group.Name == groupName select @group).ToArray();
+				if (groups is not [{ Id: var groupId }])
+				{
+					await messageReceiver.SendMessageAsync("机器人添加的群里包含多个重名的群，或者没有找到该名称的群。请使用“群号”严格确定群。");
+					break;
+				}
+
+				await getResultMessage_PuzzleLibrary(groupId, name);
+				break;
+			}
+
 			// 默认情况 -> 查询本人的基本信息。
 #pragma warning disable format
 			case (
@@ -93,22 +150,31 @@ internal sealed class QueryCommand : Command
 			):
 #pragma warning restore format
 			{
-				await messageReceiver.SendMessageAsync(await getResultMessage(senderName, senderId, kind, group));
+				await getResultMessage(senderName, senderId, kind, group);
 				break;
 			}
 
 			// 根据昵称查人。
 			case ({ UserNickname: { } nickname, QueryContentKind: var kind }, { Sender.Group: var group }):
 			{
-				await messageReceiver.SendMessageAsync(
-					await group.GetMatchedMembersViaNicknameAsync(nickname) switch
+				switch (await group.GetMatchedMembersViaNicknameAsync(nickname))
+				{
+					case []:
 					{
-						[] => $"本群不存在昵称为“{nickname}”的用户。请检查一下然后重新查询。",
-						[{ Id: var senderId, Name: var senderName }] => await getResultMessage(senderName, senderId, kind, group),
-						_ => "本群存在多个人的群名片一致的情况。请使用 QQ 严格确定唯一的查询用户。"
+						await messageReceiver.SendMessageAsync($"本群不存在昵称为“{nickname}”的用户。请检查一下然后重新查询。");
+						break;
 					}
-				);
-
+					case [{ Id: var senderId, Name: var senderName }]:
+					{
+						await getResultMessage(senderName, senderId, kind, group);
+						break;
+					}
+					default:
+					{
+						await messageReceiver.SendMessageAsync("本群存在多个人的群名片一致的情况。请使用 QQ 严格确定唯一的查询用户。");
+						break;
+					}
+				}
 				break;
 			}
 
@@ -119,7 +185,7 @@ internal sealed class QueryCommand : Command
 				{
 					case { Id: var senderId, Name: var senderName }:
 					{
-						await messageReceiver.SendMessageAsync(await getResultMessage(senderName, senderId, kind, group));
+						await getResultMessage(senderName, senderId, kind, group);
 						break;
 					}
 					default:
@@ -128,28 +194,6 @@ internal sealed class QueryCommand : Command
 						break;
 					}
 				}
-
-				break;
-			}
-
-			// 根据群号查题库。
-			case ({ GroupId: { } groupId, QueryContentKind: QueryContentKinds.PuzzleLibrary }, _):
-			{
-				await messageReceiver.SendMessageAsync(getResultMessage_PuzzleLibrary(groupId));
-				break;
-			}
-
-			// 根据群名查题库。
-			case ({ GroupName: { } groupName, QueryContentKind: QueryContentKinds.PuzzleLibrary }, _):
-			{
-				var groups = (from @group in await AccountManager.GetGroupsAsync() where @group.Name == groupName select @group).ToArray();
-				if (groups is not [{ Id: var id }])
-				{
-					await messageReceiver.SendMessageAsync("机器人添加的群里包含多个重名的群，或者没有找到该名称的群。请使用“群号”严格确定群。");
-					break;
-				}
-
-				await messageReceiver.SendMessageAsync(getResultMessage_PuzzleLibrary(id));
 				break;
 			}
 
@@ -162,21 +206,38 @@ internal sealed class QueryCommand : Command
 		}
 
 
-		static string getResultMessage_PuzzleLibrary(string groupId)
-			=> PuzzleLibraryOperations.GetLibraries(groupId) switch
+		async Task getResultMessage_PuzzleLibraries(string groupId)
+			=> _ = PuzzleLibraryOperations.GetLibraries(groupId) switch
 			{
 				{ Length: var length } libs and not [] when (from lib in libs select lib.Name) is var libraryNames
-					=>
-					$"""
-					本群题库：{string.Join("、", libraryNames)}
-					题库总数量：{length}
-					---
-					如需要使用题库，请使用“！抽题”指令。
-					""",
-				_ => "本群尚不存在任何题库。"
+					=> await messageReceiver.SendMessageAsync(
+						$"""
+						本群题库：{string.Join("、", libraryNames)}
+						题库总数量：{length}
+						---
+						如需要使用题库，请使用“！抽题”指令。
+						"""
+					),
+				_ => await messageReceiver.SendMessageAsync("本群尚不存在任何题库。")
 			};
 
-		async Task<string> getResultMessage(string senderName, string senderId, string? viewContentKind, Group group)
+		async Task getResultMessage_PuzzleLibrary(string groupId, string name)
+			=> await messageReceiver.SendMessageAsync(
+				PuzzleLibraryOperations.GetLibrary(groupId, name) switch
+				{
+					{ Name: var libName, FinishedPuzzlesCount: var count }
+						=>
+						$"""
+						题库信息：
+						---
+						题库：{libName}
+						完成题目数量：{count}
+						""",
+					_ => $"当前群不包含名称为“{name}”的题库。查询失败。"
+				}
+			);
+
+		async Task getResultMessage(string senderName, string senderId, string? viewContentKind, Group group)
 		{
 			switch (StorageHandler.Read(senderId))
 			{
@@ -197,7 +258,7 @@ internal sealed class QueryCommand : Command
 					{
 						case QueryContentKinds.Elementary:
 						{
-							return
+							await messageReceiver.SendMessageAsync(
 								$"""
 								用户 {senderName}（{senderId}）基本数据📦
 								---
@@ -208,11 +269,13 @@ internal sealed class QueryCommand : Command
 								连续签到天数：{comboCheckedIn}
 								签到倍数：{ScoreHandler.GetCheckInRate(comboCheckedIn)}
 								总倍数：{ScoreHandler.GetGlobalRate(cardLevel):0.0}（卡片 {cardLevel} 级）
-								""";
+								"""
+							);
+							break;
 						}
 						case QueryContentKinds.PkResult:
 						{
-							return
+							await messageReceiver.SendMessageAsync(
 								$"""
 								用户 {senderName}（{senderId}）PK 数据📦
 								---
@@ -231,11 +294,13 @@ internal sealed class QueryCommand : Command
 										)
 										: "无"
 								)}
-								""";
+								"""
+							);
+							break;
 						}
 						case QueryContentKinds.Items:
 						{
-							return
+							await messageReceiver.SendMessageAsync(
 								$"""
 								用户 {senderName}（{senderId}）物品数据📦
 								{(
@@ -265,7 +330,9 @@ internal sealed class QueryCommand : Command
 										)
 										: "无"
 								)}
-								""";
+								"""
+							);
+							break;
 						}
 						case QueryContentKinds.Upleveling:
 						{
@@ -273,16 +340,19 @@ internal sealed class QueryCommand : Command
 							{
 								case { AuxiliaryCards: null or [] or { Length: > 3 } }:
 								{
-									return "查询失败。辅助卡至少需要一张，最多三张，输入的时候使用逗号分开，中间没有空格。";
+									await messageReceiver.SendMessageAsync("查询失败。辅助卡至少需要一张，最多三张，输入的时候使用逗号分开，中间没有空格。");
+									break;
 								}
 								case { CloverLevel: < -1 or > 10 }:
 								{
-									return "查询失败。三叶草等级只能为 1 到 10，或者不填，表示不带三叶草强化。";
+									await messageReceiver.SendMessageAsync("查询失败。三叶草等级只能为 1 到 10，或者不填，表示不带三叶草强化。");
+									break;
 								}
 								case { AuxiliaryCards: var auxiliary, CloverLevel: var clover, MainLevel: var mainTemp }:
 								{
 									var main = mainTemp == -1 ? cardLevel : mainTemp;
-									return Array.Exists(auxiliary, card => main - card < 0)
+									await messageReceiver.SendMessageAsync(
+										Array.Exists(auxiliary, card => main - card < 0)
 										? $"查询失败。主卡级别为 {main}，但填入的辅助卡级别比主卡级别还要高。不支持这种强化。"
 										: Array.Exists(auxiliary, card => main - card >= 3)
 											? $"查询失败。主卡级别为 {main}，但填入的辅助卡级别存在至少一张卡的等级和主卡级别差了 3 级甚至以上。不支持这种强化。"
@@ -300,32 +370,32 @@ internal sealed class QueryCommand : Command
 													[var c1, var c2, var c3]
 														=> $"主卡级别：{main}，辅助卡级别：{c1}、{c2} 和 {c3}{c}，成功率：{p:P2}。"
 												}
-											};
-								}
-								default:
-								{
-									goto Final;
+											}
+									);
+									break;
 								}
 							}
+							break;
 						}
 						case QueryContentKinds.PuzzleLibrary:
 						{
-							return getResultMessage_PuzzleLibrary(group.Id);
+							await getResultMessage_PuzzleLibraries(group.Id);
+							break;
 						}
 						default:
 						{
-							return "参数“内容”的数值有误——它只能是“对抗”、“基本”、“物品”、“强化”或“题库”，请检查。";
+							await messageReceiver.SendMessageAsync("参数“内容”的数值有误——它只能是“对抗”、“基本”、“物品”、“强化”或“题库”，请检查。");
+							break;
 						}
 					}
+					break;
 				}
 				case var _ when viewContentKind is QueryContentKinds.Elementary or QueryContentKinds.PkResult:
 				{
-					return $"用户 {senderName}（{senderId}）尚未使用过机器人。";
+					await messageReceiver.SendMessageAsync($"用户 {senderName}（{senderId}）尚未使用过机器人。");
+					break;
 				}
 			}
-
-		Final:
-			return "处理数据不合法。";
 
 
 			int getRank((string, User Data)[] ranking)

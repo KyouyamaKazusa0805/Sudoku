@@ -1656,6 +1656,11 @@
             表示你需要查询的群的群名。该参数主要用于查询例如题库之类的内容。
             </summary>
         </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.PuzzleLibraryName">
+            <summary>
+            表示你需要查询的题库名称。
+            </summary>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
@@ -1758,6 +1763,19 @@
             </summary>
             <param name="groupId">群号。</param>
             <param name="library">题库数据，这个数据用于替换掉。</param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.NameEquals(Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary,System.String)">
+            <summary>
+            表示是否指定的 <paramref name="library"/> 的名称和 <paramref name="name"/> 近似或相同。
+            所谓的近似，指的是名称的大小写被忽略掉的情况，比如用户打字的时候习惯使用小写：“sdc”，那么题库名叫“SDC”、“SdC”的时候都可以匹配上。
+            </summary>
+            <param name="library">题库数据。</param>
+            <param name="name">题库名称。</param>
+            <returns>一个 <see cref="T:System.Boolean"/> 结果，表示是否名称相同或近似。</returns>
+            <remarks>
+            该方法作为本类型为数不多的、不操作 I/O 的方法，该方法不带有
+            [<see cref="T:System.Runtime.CompilerServices.MethodImplAttribute"/>(<see cref="F:System.Runtime.CompilerServices.MethodImplOptions.Synchronized"/>)] 标记。
+            </remarks>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.Initialize(System.String)">
             <summary>

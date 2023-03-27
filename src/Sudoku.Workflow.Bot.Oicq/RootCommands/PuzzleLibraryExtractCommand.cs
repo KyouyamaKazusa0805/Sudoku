@@ -24,7 +24,7 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 	/// <summary>
 	/// 表示你需要抽取的题库的所在群的 QQ 号码。
 	/// </summary>
-	[DoubleArgument("QQ")]
+	[DoubleArgument("群号")]
 	[Hint("表示你需要抽取的题库的所在群的 QQ 号码。")]
 	[DisplayingIndex(0)]
 	public string? GroupId { get; set; }
@@ -187,17 +187,11 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 					.WithPreferenceSettings(static pref => pref.CandidateScale = 0.4M)
 			);
 
-			await Task.Delay(2000);
+			await Task.Delay(200);
 
 			// 显示题目的分析结果（使用的技巧）。
 			// 这里只显示技巧，题目的其他要素（比如卡点、题目的终盘等）都不应该显示出来。
-			var analysisText = analysisResult.ToString(SolverResultFormattingOptions.ShowElapsedTime);
-			await messageReceiver.SendMessageAsync(
-				$"""
-				题目分析情况：
-				{analysisText}
-				"""
-			);
+			await messageReceiver.SendMessageAsync(analysisResult.ToString(SolverResultFormattingOptions.ShowElapsedTime));
 		}
 	}
 }

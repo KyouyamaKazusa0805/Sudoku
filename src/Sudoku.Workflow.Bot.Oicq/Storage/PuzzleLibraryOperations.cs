@@ -56,6 +56,19 @@ public static class PuzzleLibraryOperations
 	}
 
 	/// <summary>
+	/// 表示是否指定的 <paramref name="library"/> 的名称和 <paramref name="name"/> 近似或相同。
+	/// 所谓的近似，指的是名称的大小写被忽略掉的情况，比如用户打字的时候习惯使用小写：“sdc”，那么题库名叫“SDC”、“SdC”的时候都可以匹配上。
+	/// </summary>
+	/// <param name="library">题库数据。</param>
+	/// <param name="name">题库名称。</param>
+	/// <returns>一个 <see cref="bool"/> 结果，表示是否名称相同或近似。</returns>
+	/// <remarks>
+	/// 该方法作为本类型为数不多的、不操作 I/O 的方法，该方法不带有
+	/// [<see cref="MethodImplAttribute"/>(<see cref="MethodImplOptions.Synchronized"/>)] 标记。
+	/// </remarks>
+	public static bool NameEquals(PuzzleLibrary library, string name) => library.Name.Equals(name, StringComparison.OrdinalIgnoreCase);
+
+	/// <summary>
 	/// 初始化指定群号（QQ）的群的所有题库的本地数据。
 	/// </summary>
 	/// <param name="groupId">群号。</param>
@@ -173,9 +186,7 @@ public static class PuzzleLibraryOperations
 	/// <returns>返回 <see cref="PuzzleLibrary"/> 实例，表示题库的基本信息。</returns>
 	[MethodImpl(MethodImplOptions.Synchronized)]
 	public static PuzzleLibrary? GetLibrary(string groupId, string libraryName)
-		=> GetLibraries(groupId) is { } libraries
-			? Array.Find(libraries, puzzleLibrary => puzzleLibrary.Name.Equals(libraryName, StringComparison.OrdinalIgnoreCase))
-			: null;
+		=> GetLibraries(groupId) is { } libraries ? Array.Find(libraries, puzzleLibrary => NameEquals(puzzleLibrary, libraryName)) : null;
 
 	/// <summary>
 	/// 根据群号（QQ）获取本群的所有题库信息，并返回一个 <see cref="PuzzleLibrary"/> 构成的数组。如果本群不存在本地数据，
