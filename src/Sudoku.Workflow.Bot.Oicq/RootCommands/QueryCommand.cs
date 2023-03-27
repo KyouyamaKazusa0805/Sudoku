@@ -14,6 +14,7 @@ internal sealed class QueryCommand : Command
 	[ValueConverter<NumericConverter<int>>]
 	[DefaultValue<int>(-1)]
 	[DisplayingIndex(3)]
+	[ArgumentDisplayer("1-16")]
 	public int MainLevel { get; set; }
 
 	/// <summary>
@@ -24,6 +25,7 @@ internal sealed class QueryCommand : Command
 	[ValueConverter<NumericConverter<int>>]
 	[DefaultValue<int>(-1)]
 	[DisplayingIndex(5)]
+	[ArgumentDisplayer("1-10")]
 	public int CloverLevel { get; set; }
 
 	/// <summary>
