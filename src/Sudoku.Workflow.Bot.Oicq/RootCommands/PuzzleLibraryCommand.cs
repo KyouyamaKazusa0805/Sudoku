@@ -8,10 +8,10 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 internal sealed class PuzzleLibraryCommand : Command
 {
 	/// <summary>
-	/// 表示你需要操作题库的具体操作类型。默认情况下该数值是“初始化”。
+	/// 表示你需要操作题库的具体操作类型。支持的值有“初始化”、“回答”和“设置”。默认情况下该数值是“初始化”。
 	/// </summary>
 	[DoubleArgument("操作")]
-	[Hint("表示你需要操作题库的具体操作类型。默认情况下该数值是“初始化”。")]
+	[Hint("表示你需要操作题库的具体操作类型。支持的值有“初始化”、“回答”和“设置”。默认情况下该数值是“初始化”。")]
 	[DefaultValue<string>(Operations.Initialize)]
 	[DisplayingIndex(0)]
 	public string Operation { get; set; } = null!;
@@ -52,6 +52,23 @@ internal sealed class PuzzleLibraryCommand : Command
 	[Hint("表示你需要回答的答案。")]
 	[DisplayingIndex(3)]
 	public string? UserResultAnswer { get; set; }
+
+	/// <summary>
+	/// 表示你需要设置的属性名称。该属性配合 <see cref="Operation"/> 为 <see cref="Operations.Update"/> 的时候。支持的有“描述”、“难度”和“标签”。
+	/// </summary>
+	/// <seealso cref="Operations.Update"/>
+	[DoubleArgument("属性")]
+	[Hint("表示你需要更新的属性名称。支持的有“描述”、“难度”和“标签”。")]
+	[DisplayingIndex(4)]
+	public string? SetPropertyName { get; set; }
+
+	/// <summary>
+	/// 表示你需要更新的属性的对应值。若要清除值则缺省该参数；若要赋值“标签”，请用分号分隔每一个标签。
+	/// </summary>
+	[DoubleArgument("值")]
+	[Hint("表示你需要更新的属性的对应值。若要清除值则缺省该参数；若要赋值“标签”，请用分号分隔每一个标签。")]
+	[DisplayingIndex(5)]
+	public string? Value { get; set; }
 
 
 	/// <inheritdoc/>
@@ -160,6 +177,61 @@ internal sealed class PuzzleLibraryCommand : Command
 
 				break;
 			}
+			case Operations.Update:
+			{
+				if (SetPropertyName is null)
+				{
+					await messageReceiver.SendMessageAsync("必要的参数“属性”缺失。请给出该参数的数值。");
+					break;
+				}
+
+				if (PuzzleLibraryName is null)
+				{
+					await messageReceiver.SendMessageAsync("必要的参数“题库名”缺失。请给出该参数的数值。");
+					break;
+				}
+
+				if (PuzzleLibraryOperations.GetLibrary(groupId, PuzzleLibraryName) is not { } lib)
+				{
+					await messageReceiver.SendMessageAsync($"抱歉，指定题库名称“{PuzzleLibraryName}”的题库不存在。请检查输入是否有误。");
+					break;
+				}
+
+				// Value 此时不作判定。如果不赋值，那么 Value 就是默认数值 null，那么就表示该参数缺省，用于清空该属性的结果。
+				switch (SetPropertyName)
+				{
+					case SetPropertyNames.DifficultyText:
+					{
+						lib.DifficultyText = Value;
+						PuzzleLibraryOperations.UpdateLibrary(groupId, lib);
+
+						await messageReceiver.SendMessageAsync("属性“难度”更新成功。");
+						break;
+					}
+					case SetPropertyNames.Description:
+					{
+						lib.Description = Value;
+						PuzzleLibraryOperations.UpdateLibrary(groupId, lib);
+
+						await messageReceiver.SendMessageAsync("属性“描述”更新成功。");
+						break;
+					}
+					case SetPropertyNames.Tags:
+					{
+						lib.Tags = Value?.Split(new[] { ';', '；' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+						PuzzleLibraryOperations.UpdateLibrary(groupId, lib);
+
+						await messageReceiver.SendMessageAsync("属性“标签”更新成功。");
+						break;
+					}
+					default:
+					{
+						await messageReceiver.SendMessageAsync("抱歉，参数“属性”的数值不合法。它目前只支持“难度”、“描述”和“标签”这三个值。");
+						break;
+					}
+				}
+				break;
+			}
 			default:
 			{
 				await messageReceiver.SendMessageAsync("指令的参数有误，导致无法成功解析。请检查你的输入。");
@@ -206,4 +278,34 @@ file static class Operations
 	/// 表示操作为回答题库的答案。
 	/// </summary>
 	public const string Answer = "回答";
+
+	/// <summary>
+	/// 表示操作为设置属性的数值。
+	/// </summary>
+	public const string Update = "设置";
+}
+
+/// <summary>
+/// 为 <see cref="PuzzleLibraryCommand.SetPropertyName"/> 提供数值。
+/// </summary>
+/// <seealso cref="PuzzleLibraryCommand.SetPropertyName"/>
+file static class SetPropertyNames
+{
+	/// <summary>
+	/// 表示你要设置的是难度这个属性。它对应了 <see cref="PuzzleLibrary.DifficultyText"/> 属性。
+	/// </summary>
+	/// <seealso cref="PuzzleLibrary.DifficultyText"/>
+	public const string DifficultyText = "难度";
+
+	/// <summary>
+	/// 表示你要设置的是描述这个属性。它对应了 <see cref="PuzzleLibrary.Description"/> 属性。
+	/// </summary>
+	/// <seealso cref="PuzzleLibrary.Description"/>
+	public const string Description = "描述";
+
+	/// <summary>
+	/// 表示你要设置的是标签这个属性。它对应了 <see cref="PuzzleLibrary.Tags"/> 属性。
+	/// </summary>
+	/// <seealso cref="PuzzleLibrary.Tags"/>
+	public const string Tags = "标签";
 }

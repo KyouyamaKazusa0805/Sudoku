@@ -129,6 +129,7 @@ public abstract class Command : IModule
 					_ => throw new InvalidOperationException("Other invalid cases on parsing.")
 				}
 			);
+			return;
 		}
 
 		switch (requestedHintArgumentName, requestedCommandHint)

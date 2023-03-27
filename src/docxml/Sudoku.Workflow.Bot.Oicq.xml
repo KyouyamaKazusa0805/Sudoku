@@ -640,6 +640,22 @@
             表示题库的所在群。
             </summary>
         </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.DifficultyText">
+            <summary>
+            表示题目对难度的描述。比如说这个题库的题目都需要使用 SDC 技巧，而 SDC 技巧难度在“极难”这一档，那么这个属性就传这个“极难”进去就行，
+            或者“极难+”表示它除了极难还有比极难还要难的题目。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.Description">
+            <summary>
+            表示题库的描述信息。默认值为 <see langword="null"/>。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.Tags">
+            <summary>
+            表示题库的标签，比如题库包含的使用技巧的突出、题库的风格（对称性）等。默认值为 <see langword="null"/>。
+            </summary>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleProgress">
             <summary>
             定义一个类型，包裹的数据是表示用户在某个群里的题库完成的临时产生数据。
@@ -1605,7 +1621,7 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.Operation">
             <summary>
-            表示你需要操作题库的具体操作类型。默认情况下该数值是“初始化”。
+            表示你需要操作题库的具体操作类型。支持的值有“初始化”、“回答”和“设置”。默认情况下该数值是“初始化”。
             </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.GroupName">
@@ -1633,6 +1649,17 @@
             考虑到用户把 81 个空格都写上数字的字符串特别长，所以只要求固定某行/列/宫的 9 个数字作为结果即可。
             </remarks>
         </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.SetPropertyName">
+            <summary>
+            表示你需要设置的属性名称。该属性配合 <see cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.Operation"/> 为 <see cref="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Update"/> 的时候。支持的有“描述”、“难度”和“标签”。
+            </summary>
+            <seealso cref="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Update"/>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.Value">
+            <summary>
+            表示你需要更新的属性的对应值。若要清除值则缺省该参数；若要赋值“标签”，请用分号分隔每一个标签。
+            </summary>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
@@ -1651,6 +1678,35 @@
             <summary>
             表示操作为回答题库的答案。
             </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Update">
+            <summary>
+            表示操作为设置属性的数值。
+            </summary>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.SetPropertyNames">
+            <summary>
+            为 <see cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.SetPropertyName"/> 提供数值。
+            </summary>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.SetPropertyName"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.SetPropertyNames.DifficultyText">
+            <summary>
+            表示你要设置的是难度这个属性。它对应了 <see cref="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.DifficultyText"/> 属性。
+            </summary>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.DifficultyText"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.SetPropertyNames.Description">
+            <summary>
+            表示你要设置的是描述这个属性。它对应了 <see cref="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.Description"/> 属性。
+            </summary>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.Description"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.SetPropertyNames.Tags">
+            <summary>
+            表示你要设置的是标签这个属性。它对应了 <see cref="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.Tags"/> 属性。
+            </summary>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.Tags"/>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryExtractCommand">
             <summary>
