@@ -1638,12 +1638,12 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.UserId">
             <summary>
-            表示你需要查询的用户或群的 QQ 号码。
+            表示你需要查询的用户的 QQ 号码。
             </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.UserNickname">
             <summary>
-            表示你需要查询的用户的群名片，或群的群名称。
+            表示你需要查询的用户的群名片。
             </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.GroupId">

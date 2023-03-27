@@ -48,7 +48,7 @@ internal sealed class QueryCommand : Command
 	public string? QueryContentKind { get; set; }
 
 	/// <summary>
-	/// 表示你需要查询的用户或群的 QQ 号码。
+	/// 表示你需要查询的用户的 QQ 号码。
 	/// </summary>
 	[DoubleArgument("账号")]
 	[Hint("表示你需要查询的用户的 QQ 号码。")]
@@ -56,7 +56,7 @@ internal sealed class QueryCommand : Command
 	public string? UserId { get; set; }
 
 	/// <summary>
-	/// 表示你需要查询的用户的群名片，或群的群名称。
+	/// 表示你需要查询的用户的群名片。
 	/// </summary>
 	[DoubleArgument("昵称")]
 	[Hint("表示你需要查询的用户的群名片。")]
