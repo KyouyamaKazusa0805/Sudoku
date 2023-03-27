@@ -640,6 +640,11 @@
             表示题库的所在群。
             </summary>
         </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.Author">
+            <summary>
+            表示题库的作者。
+            </summary>
+        </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.DifficultyText">
             <summary>
             表示题目对难度的描述。比如说这个题库的题目都需要使用 SDC 技巧，而 SDC 技巧难度在“极难”这一档，那么这个属性就传这个“极难”进去就行，
@@ -1651,13 +1656,13 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.SetPropertyName">
             <summary>
-            表示你需要设置的属性名称。该属性配合 <see cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.Operation"/> 为 <see cref="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Update"/> 的时候。支持的有“描述”、“难度”和“标签”。
+            表示你需要设置的属性名称。该属性配合 <see cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.Operation"/> 为 <see cref="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Update"/> 的时候。支持的有“描述”、“难度”、“标签”和“作者”。
             </summary>
             <seealso cref="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Update"/>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.Value">
             <summary>
-            表示你需要更新的属性的对应值。若要清除值则缺省该参数；若要赋值“标签”，请用分号分隔每一个标签。
+            表示你需要更新的属性的对应值。若要清除值则缺省该参数；若要赋值“标签”，请用逗号“，”分隔每一个标签。
             </summary>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
@@ -1689,6 +1694,12 @@
             为 <see cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.SetPropertyName"/> 提供数值。
             </summary>
             <seealso cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.SetPropertyName"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.SetPropertyNames.Author">
+            <summary>
+            表示你要设置的是作者这个属性。它对应了 <see cref="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.Author"/> 属性。
+            </summary>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.Author"/>
         </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.SetPropertyNames.DifficultyText">
             <summary>

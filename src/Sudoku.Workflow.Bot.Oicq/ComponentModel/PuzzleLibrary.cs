@@ -34,6 +34,12 @@ public sealed class PuzzleLibrary
 	public required string GroupId { get; set; }
 
 	/// <summary>
+	/// 表示题库的作者。
+	/// </summary>
+	[JsonPropertyName("author")]
+	public string? Author { get; set; }
+
+	/// <summary>
 	/// 表示题目对难度的描述。比如说这个题库的题目都需要使用 SDC 技巧，而 SDC 技巧难度在“极难”这一档，那么这个属性就传这个“极难”进去就行，
 	/// 或者“极难+”表示它除了极难还有比极难还要难的题目。
 	/// </summary>

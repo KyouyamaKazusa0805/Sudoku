@@ -54,19 +54,19 @@ internal sealed class PuzzleLibraryCommand : Command
 	public string? UserResultAnswer { get; set; }
 
 	/// <summary>
-	/// 表示你需要设置的属性名称。该属性配合 <see cref="Operation"/> 为 <see cref="Operations.Update"/> 的时候。支持的有“描述”、“难度”和“标签”。
+	/// 表示你需要设置的属性名称。该属性配合 <see cref="Operation"/> 为 <see cref="Operations.Update"/> 的时候。支持的有“描述”、“难度”、“标签”和“作者”。
 	/// </summary>
 	/// <seealso cref="Operations.Update"/>
 	[DoubleArgument("属性")]
-	[Hint("表示你需要更新的属性名称。支持的有“描述”、“难度”和“标签”。")]
+	[Hint("表示你需要更新的属性名称。支持的有“描述”、“难度”、“标签”和“作者”。")]
 	[DisplayingIndex(4)]
 	public string? SetPropertyName { get; set; }
 
 	/// <summary>
-	/// 表示你需要更新的属性的对应值。若要清除值则缺省该参数；若要赋值“标签”，请用分号分隔每一个标签。
+	/// 表示你需要更新的属性的对应值。若要清除值则缺省该参数；若要赋值“标签”，请用逗号“，”分隔每一个标签。
 	/// </summary>
 	[DoubleArgument("值")]
-	[Hint("表示你需要更新的属性的对应值。若要清除值则缺省该参数；若要赋值“标签”，请用分号分隔每一个标签。")]
+	[Hint("表示你需要更新的属性的对应值。若要清除值则缺省该参数；若要赋值“标签”，请用逗号“，”分隔每一个标签。")]
 	[DisplayingIndex(5)]
 	public string? Value { get; set; }
 
@@ -200,6 +200,14 @@ internal sealed class PuzzleLibraryCommand : Command
 				// Value 此时不作判定。如果不赋值，那么 Value 就是默认数值 null，那么就表示该参数缺省，用于清空该属性的结果。
 				switch (SetPropertyName)
 				{
+					case SetPropertyNames.Author:
+					{
+						lib.Author = Value;
+						PuzzleLibraryOperations.UpdateLibrary(groupId, lib);
+
+						await messageReceiver.SendMessageAsync("属性“作者”更新成功。");
+						break;
+					}
 					case SetPropertyNames.DifficultyText:
 					{
 						lib.DifficultyText = Value;
@@ -218,7 +226,7 @@ internal sealed class PuzzleLibraryCommand : Command
 					}
 					case SetPropertyNames.Tags:
 					{
-						lib.Tags = Value?.Split(new[] { ';', '；' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+						lib.Tags = Value?.Split(new[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 						PuzzleLibraryOperations.UpdateLibrary(groupId, lib);
 
 						await messageReceiver.SendMessageAsync("属性“标签”更新成功。");
@@ -226,7 +234,7 @@ internal sealed class PuzzleLibraryCommand : Command
 					}
 					default:
 					{
-						await messageReceiver.SendMessageAsync("抱歉，参数“属性”的数值不合法。它目前只支持“难度”、“描述”和“标签”这三个值。");
+						await messageReceiver.SendMessageAsync("抱歉，参数“属性”的数值不合法。它目前只支持“难度”、“描述”、“标签”和“作者”这几个值。");
 						break;
 					}
 				}
@@ -291,6 +299,12 @@ file static class Operations
 /// <seealso cref="PuzzleLibraryCommand.SetPropertyName"/>
 file static class SetPropertyNames
 {
+	/// <summary>
+	/// 表示你要设置的是作者这个属性。它对应了 <see cref="PuzzleLibrary.Author"/> 属性。
+	/// </summary>
+	/// <seealso cref="PuzzleLibrary.Author"/>
+	public const string Author = "作者";
+
 	/// <summary>
 	/// 表示你要设置的是难度这个属性。它对应了 <see cref="PuzzleLibrary.DifficultyText"/> 属性。
 	/// </summary>

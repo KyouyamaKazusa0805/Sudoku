@@ -226,7 +226,15 @@ internal sealed class QueryCommand : Command
 		{
 			switch (PuzzleLibraryOperations.GetLibrary(groupId, name))
 			{
-				case { Name: var libName, FinishedPuzzlesCount: var count } lib:
+				case
+				{
+					Name: var libName,
+					Author: var author,
+					Description: var description,
+					DifficultyText: var difficultyText,
+					Tags: var tags,
+					FinishedPuzzlesCount: var count
+				} lib:
 				{
 					var totalNumberOfPuzzles = PuzzleLibraryOperations.GetPuzzlesCount(lib);
 					await messageReceiver.SendMessageAsync(
@@ -234,6 +242,10 @@ internal sealed class QueryCommand : Command
 						题库信息：
 						---
 						题库：{libName}
+						作者：{author ?? "<匿名>"}
+						描述：{description ?? "<无描述>"}
+						难度：{difficultyText ?? "<未知>"}
+						标签：{(tags is null ? "<未设置>" : string.Join('，', tags))}
 						题目数量：{totalNumberOfPuzzles}
 						已完成：{count} 题
 						完成进度：{count / (double)totalNumberOfPuzzles:P2}
