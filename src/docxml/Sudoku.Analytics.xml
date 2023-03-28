@@ -474,7 +474,7 @@
             <para>
             The reason why I defined them as <see langword="static"/> fields is that they are cached values.
             "<see langword="static"/>" means caching, and "field" means the value to be fetched without encapsulation,
-            for a better performace.
+            for a better performance.
             </para>
             <para>Some <see cref="T:Sudoku.Analytics.StepSearcher"/>s may rely on this type.</para>
             </summary>

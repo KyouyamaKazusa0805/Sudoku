@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Buffers;
+namespace Sudoku.Analytics.Buffers;
 
 /// <summary>
 /// <para>Represents cached fields used by solving and analyzation for a sudoku puzzle, reducing repeated and redundant calculations.</para>
@@ -19,7 +19,7 @@
 /// <para>
 /// The reason why I defined them as <see langword="static"/> fields is that they are cached values.
 /// "<see langword="static"/>" means caching, and "field" means the value to be fetched without encapsulation,
-/// for a better performace.
+/// for a better performance.
 /// </para>
 /// <para>Some <see cref="StepSearcher"/>s may rely on this type.</para>
 /// </summary>
