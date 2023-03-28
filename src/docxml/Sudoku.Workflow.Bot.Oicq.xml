@@ -140,7 +140,7 @@
             比如，本地函数的名字本身，和本地函数在程序里使用的实际名称是不同的。所以，这里传入的必须得是反射使用的实际名称。
             </i></b></remarks>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.DependencyModuleAttribute`1">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.DependencyCommandAttribute`1">
             <summary>
             表示一个特性，用于一个命令模块的类型本身上，表示该命令模块执行需要依赖于某个命令。
             </summary>
@@ -1330,6 +1330,14 @@
             获得的物品。
             </summary>
             <returns>获得的物品。可能为 <see langword="null"/>。</returns>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.DrawingCancelCommand">
+            <summary>
+            表示一个退出结束绘图操作的指令。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.DrawingCancelCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.DrawingCommand">
             <summary>

@@ -4,7 +4,7 @@
 /// 取消游戏指令。
 /// </summary>
 [Command("结束游戏")]
-[DependencyModule<GameCommand>]
+[DependencyCommand<GameCommand>]
 internal sealed class GameCancelCommand : Command
 {
 	/// <inheritdoc/>

@@ -43,7 +43,7 @@ public abstract class Command : IModule
 	/// 这个属性对于“结束游戏”指令的实现类型来说，它的依赖指令名就是“开始游戏”。如果类型不依赖于任何其他的指令，这个属性则会保持 <see langword="null"/> 值。
 	/// </summary>
 	private string? RequiredEnvironmentCommand
-		=> EqualityContract.GetGenericAttributeTypeArguments(typeof(DependencyModuleAttribute<>)) switch
+		=> EqualityContract.GetGenericAttributeTypeArguments(typeof(DependencyCommandAttribute<>)) switch
 		{
 			[var typeArgument] => typeArgument.GetCustomAttribute<CommandAttribute>()!.Name,
 			_ => null
