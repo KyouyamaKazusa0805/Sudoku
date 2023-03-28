@@ -1,5 +1,5 @@
 ﻿// Registers the resource fetching.
-R.AddExternalResourceFetecher(typeof(Program).Assembly, static key => Resources.ResourceManager.GetString(key));
+R.AddExternalResourceFetcher(typeof(Program).Assembly, static key => Resources.ResourceManager.GetString(key));
 
 // Parse and route commands.
 try

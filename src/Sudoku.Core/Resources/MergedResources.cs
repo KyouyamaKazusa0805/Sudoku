@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Resources;
+namespace Sudoku.Resources;
 
 /// <summary>
 /// Defines a merged resource dictionary.
@@ -87,8 +87,7 @@ public sealed class MergedResources
 	/// The LCID of the culture, such as <c>1033</c> for <c>en-US</c> or <c>2052</c> for <c>zh-CN</c>.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ChangeLanguage(int lcid)
-		=> Resources.Culture = lcid == NeutralLanguageLcid ? Neutral : CultureInfo.GetCultureInfo(lcid);
+	public void ChangeLanguage(int lcid) => Resources.Culture = lcid == NeutralLanguageLcid ? Neutral : CultureInfo.GetCultureInfo(lcid);
 
 	/// <summary>
 	/// Changes the language to the specified language.
@@ -107,7 +106,7 @@ public sealed class MergedResources
 	/// <param name="assembly">The assembly.</param>
 	/// <seealso cref="R"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void RegisterAssembly(Assembly assembly) => AddExternalResourceFetecher(assembly, static key => R[key]);
+	public void RegisterAssembly(Assembly assembly) => AddExternalResourceFetcher(assembly, static key => R[key]);
 
 	/// <summary>
 	/// Adds an extra value selector into the current resource fetching instance.
@@ -115,8 +114,8 @@ public sealed class MergedResources
 	/// <param name="assembly">The assembly.</param>
 	/// <param name="valueSelector">The value selector.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddExternalResourceFetecher(Assembly assembly, Func<string, string?> valueSelector)
-		=> AddExternalResourceFetecher(new[] { assembly }, valueSelector);
+	public void AddExternalResourceFetcher(Assembly assembly, Func<string, string?> valueSelector)
+		=> AddExternalResourceFetcher(new[] { assembly }, valueSelector);
 
 	/// <summary>
 	/// Adds an extra value selector into the current resource fetching instance.
@@ -124,7 +123,7 @@ public sealed class MergedResources
 	/// <param name="assemblies">The supported assemblies.</param>
 	/// <param name="valueSelector">The value selector.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddExternalResourceFetecher(Assembly[] assemblies, Func<string, string?> valueSelector)
+	public void AddExternalResourceFetcher(Assembly[] assemblies, Func<string, string?> valueSelector)
 		=> (_valueSelectors ??= new List<(Assembly[], Func<string, string?>)>()).Add((assemblies, valueSelector));
 
 	/// <summary>
