@@ -170,19 +170,7 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 
 			// 获取题目。
 			var grid = PuzzleLibraryOperations.GetPuzzleFor(lib);
-
-			// 这里需要提前读取本地缓存，查看是否用户本来就在这个题目。
-			// 如果抽取题目期间，本地缓存的题目和现在即将抽取的题目一致，就说明用户还没有完成此题，因此直接退出避免抽取新题目。
-			// 注意，LoadFromCachedPath 方法会返回 Grid.Undefined 结果作为默认（失败）的结果数值。
-			// 这里不需要让 lastGrid 去额外处理和 Grid.Undefined 有关的情况，因为 grid 走 GetPuzzleFor 获得，
-			// 而那个方法根本不会产生 Grid.Undefined 结果，反而是抛异常。所以我们无需关心 lastGrid 和 Grid.Undefined 的相等性。
-			var lastGrid = PuzzleLibraryOperations.LoadFromCachedPath(groupId, lib);
-			if (lastGrid == grid)
-			{
-				await messageReceiver.SendMessageAsync("本群尚未完成前一个题目。请完成题目后（回答了题目）再继续抽取新题目。");
-				return;
-			}
-
+			
 			// 把得到的题目拿去分析，并得到分析结果（看一下题目是否唯一解之类的）。然后打印一下一共使用了什么技巧。
 			var analysisResult = Solver.Analyze(grid);
 			if (analysisResult is not { IsSolved: true, DifficultyLevel: var difficultyLevel })
@@ -190,6 +178,10 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 				await messageReceiver.SendMessageAsync("抽取到的题目无法被解出，即多解或无解。请联系题目发布者询问是否题库存在问题。");
 				return;
 			}
+
+			// 填充一下前面没有必要的步骤（如排除、唯余之类的）。
+			// 这里由于题目可能会比较难的关系，我们可以故意先完成一些相对于链和一些复杂结构来说，不太重要的步骤。
+			grid = AutoFiller.Fill(analysisResult);
 
 			// 根据绘图对象直接创建图片，然后发送出去。
 			await messageReceiver.SendPictureThenDeleteAsync(
@@ -204,18 +196,60 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 
 			// 显示题目的分析结果（使用的技巧）。
 			// 这里只显示技巧，题目的其他要素（比如卡点、题目的终盘等）都不应该显示出来。
-			await messageReceiver.SendMessageAsync(
-				$"""
-				{analysisResult.ToString(SolverResultFormattingOptions.ShowElapsedTime)}
-				---
-				如果需要继续抽取题目，请优先回答该题目的结果后方可继续抽取题目。回答请使用“！题库 操作 回答 答案 <结果>”的指令进行回答。
-				其中“结果”固定为每一个题目的最后一行的 9 个数字（从左往右书写）即可，如“123456789”，中间不含空格。
-				"""
-			);
+			await messageReceiver.SendMessageAsync(analysisResult.ToString(SolverResultFormattingOptions.ShowElapsedTime));
 
-			// 这里需要在本地给出缓存路径，缓存一下用户当前完成的这个题目的具体数据。
-			// 这样做是为了保证用户在长时间不使用机器人的时候，机器人也能快速恢复环境，校验题目回答是否正确。
-			PuzzleLibraryOperations.SaveToCachedPath(groupId, lib, grid);
+			// 目前为了考虑代码简便，暂时直接完成题目。如果用户抽了题目，这个题就自动完成了。
+			// 之后有空我们再来考虑回答题目的事情。
+			lib.FinishedPuzzlesCount++;
+			PuzzleLibraryOperations.UpdateLibrary(groupId, lib);
+		}
+	}
+}
+
+/// <summary>
+/// 定义一个临时用的、自动完成前面排除、唯一余数、区块等技巧的实例。
+/// </summary>
+file static class AutoFiller
+{
+	/// <summary>
+	/// 通过指定的 <see cref="LogicalSolverResult"/> 实例来获得题目的基本解题信息，并通过该实例，自动完成前面一些不重要的题目步骤。
+	/// </summary>
+	/// <param name="result"><see cref="LogicalSolverResult"/> 类型的实例。</param>
+	/// <returns>返回一个 <see cref="Grid"/> 结果。</returns>
+	/// <exception cref="InvalidOperationException">如果题目无解或多解、题目难度未知或过于复杂时，就会产生此异常。</exception>
+	public static Grid Fill(LogicalSolverResult result)
+	{
+		if (result is not { Puzzle: var grid, IsSolved: true, DifficultyLevel: var diffLevel, SolvingPath: var path })
+		{
+			throw new InvalidOperationException("The target grid is not unique.");
+		}
+
+		switch (diffLevel)
+		{
+			case DifficultyLevel.Unknown:
+			{
+				throw new InvalidOperationException("The difficulty level of the target grid is unknown.");
+			}
+			case DifficultyLevel.Easy or DifficultyLevel.Moderate:
+			{
+				return grid;
+			}
+			case >= DifficultyLevel.Hard and <= DifficultyLevel.Nightmare or DifficultyLevel.LastResort:
+			{
+				foreach (var (stepGrid, step) in path)
+				{
+					if (step.DifficultyLevel is not (DifficultyLevel.Easy or DifficultyLevel.Moderate))
+					{
+						return stepGrid;
+					}
+				}
+
+				throw new InvalidOperationException("Generally program cannot reach here.");
+			}
+			default:
+			{
+				throw new InvalidOperationException("The target grid is invalid - its difficulty level is too complex to be checked.");
+			}
 		}
 	}
 }

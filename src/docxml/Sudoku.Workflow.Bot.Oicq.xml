@@ -1644,16 +1644,6 @@
             表示你要回答的题目所在题库的题库名称。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.UserResultAnswer">
-            <summary>
-            表示你需要回答的答案。
-            </summary>
-            <remarks>
-            由于 OCR 系统极为复杂，而且识别成功率（尤其是手写字体）较低，无法 100% 正确判断结果（尤其是一些题库的难度特别大，
-            玩家手写的答案是辛辛苦苦俩小时仨小时才完成的一个题，结果 OCR 识别不了正确答案，这不要人命么），因此回答答案采用字符串的形式进行比较。
-            考虑到用户把 81 个空格都写上数字的字符串特别长，所以只要求固定某行/列/宫的 9 个数字作为结果即可。
-            </remarks>
-        </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.SetPropertyName">
             <summary>
             表示你需要设置的属性名称。该属性配合 <see cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryCommand.Operation"/> 为 <see cref="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Update"/> 的时候。支持的有“描述”、“难度”、“标签”和“作者”。
@@ -1677,11 +1667,6 @@
         <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Initialize">
             <summary>
             表示初始化题库。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Answer">
-            <summary>
-            表示操作为回答题库的答案。
             </summary>
         </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Update">
@@ -1746,6 +1731,19 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryExtractCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.AutoFiller">
+            <summary>
+            定义一个临时用的、自动完成前面排除、唯一余数、区块等技巧的实例。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.AutoFiller.Fill(Sudoku.Solving.Logical.LogicalSolverResult)">
+            <summary>
+            通过指定的 <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> 实例来获得题目的基本解题信息，并通过该实例，自动完成前面一些不重要的题目步骤。
+            </summary>
+            <param name="result"><see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> 类型的实例。</param>
+            <returns>返回一个 <see cref="T:Sudoku.Concepts.Grid"/> 结果。</returns>
+            <exception cref="T:System.InvalidOperationException">如果题目无解或多解、题目难度未知或过于复杂时，就会产生此异常。</exception>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand">
             <summary>
@@ -1897,48 +1895,6 @@
             <summary>
             默认的 JSON 序列化配置项。
             </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.DeleteCachedFile(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
-            <summary>
-            直接删除掉本地缓存的题库完成进度文件。如果文件未找到，也不会产生异常，直接退出而已。
-            </summary>
-            <param name="groupId">群号（QQ）。</param>
-            <param name="puzzleLibrary">题库的基本数据。</param>
-            <remarks>
-            <para>
-            本方法只会产生一个 <see cref="T:System.InvalidOperationException"/> 异常，就是你使用操作系统不包含“我的文档”这个文件夹的时候。
-            当然，机器人是在我自己电脑上测试使用的，所以这里就可以完全不考虑别的操作系统的问题。
-            </para>
-            <para>
-            另外，本方法不会产生别的异常，也就是说，文件会被静默删除。而正是因为这个原因，所以删除操作变得非常敏感。
-            <b><i>请确保确实需要删除文件的时候，才调用此方法。</i></b>
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.LoadFromCachedPath(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
-            <summary>
-            从本地的题库进度缓存文件里读取指定题库的缓存，并得到当前用户正在完成的题目。如果题库不包含本地的缓存进度文件，
-            则返回 <see cref="F:Sudoku.Concepts.Grid.Undefined"/> 作为默认结果。
-            </summary>
-            <param name="groupId">群号（QQ）。</param>
-            <param name="puzzleLibrary">题库的基本数据。</param>
-            <returns>用户正在完成的题目。</returns>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.SaveToCachedPath(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary,Sudoku.Concepts.Grid@)">
-            <summary>
-            往本地缓存一个用户完成的题目数据。这样做是为了保证用户在下回使用机器人回答问题（比如它要抽取新题目的时候），校验题目是否已经完成。
-            </summary>
-            <param name="grid">数独题目。</param>
-            <param name="puzzleLibrary">
-            <para>用户使用的题库。</para>
-            <para>
-            该参数实际上只用到了其中的 <see cref="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.Name"/> 属性，不过有可能以后有改动，
-            以后可能会使用额外的属性数值，因此这里我们不使用直接传入 <see cref="T:System.String"/> 题库名称的方式。
-            </para>
-            </param>
-            <param name="groupId">题库所在群的群号（QQ）。</param>
-            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary.Name"/>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.UpdateLibrary(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
             <summary>
