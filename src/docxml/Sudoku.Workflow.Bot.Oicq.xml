@@ -1124,60 +1124,6 @@
             表示解析失败，因为用户输入的结果在转换期间失败。比如某处要求输入整数，结果输入了别的无法转为整数数据的结果，例如字母。
             </summary>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerCommand">
-            <summary>
-            表示回答指令。
-            </summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerCommand.AnswerKind">
-            <summary>
-            表示你需要回答的全局可用的内容。支持的参数有“每日一题”。
-            </summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerCommand.Answer">
-            <summary>
-            表示你需要回答的问题的答案。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerKinds">
-            <summary>
-            为参数 <see cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerCommand.AnswerKind"/> 提供参数。
-            </summary>
-            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerCommand.AnswerKind"/>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.AnswerKinds.DailyPuzzle">
-            <summary>
-            表示每日一题。
-            </summary>
-        </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer">
-            <summary>
-            本地的计分规则的方法。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetExperience(Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
-            <summary>
-            获得经验值。
-            </summary>
-            <param name="user">用户的基本信息。</param>
-            <returns>经验值获得。</returns>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetCoin(Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
-            <summary>
-            获得金币数。
-            </summary>
-            <param name="user">用户的基本信息。</param>
-            <returns>金币数。</returns>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetItem">
-            <summary>
-            获得的物品。
-            </summary>
-            <returns>获得的物品。可能为 <see langword="null"/>。</returns>
-        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.CheckInCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
@@ -1341,6 +1287,44 @@
             <summary>
             一个转换类型，将 <see cref="T:Mirai.Net.Data.Shared.Permissions"/> 实例转换为等同的 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.GroupRoleKind"/> 实例。
             </summary>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.DailyPuzzleAnswerCommand">
+            <summary>
+            表示每日一题的回答功能。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.DailyPuzzleAnswerCommand.Answer">
+            <summary>
+            表示你需要回答的问题的答案。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.DailyPuzzleAnswerCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer">
+            <summary>
+            本地的计分规则的方法。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetExperience(Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
+            <summary>
+            获得经验值。
+            </summary>
+            <param name="user">用户的基本信息。</param>
+            <returns>经验值获得。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetCoin(Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
+            <summary>
+            获得金币数。
+            </summary>
+            <param name="user">用户的基本信息。</param>
+            <returns>金币数。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetItem">
+            <summary>
+            获得的物品。
+            </summary>
+            <returns>获得的物品。可能为 <see langword="null"/>。</returns>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.GameCancelCommand">
             <summary>
