@@ -5,6 +5,7 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 /// </summary>
 [Command("结束绘图")]
 [DependencyCommand<DrawingCommand>]
+[RequiredUserLevel(30)]
 internal sealed class DrawingCancelCommand : Command
 {
 	/// <inheritdoc/>

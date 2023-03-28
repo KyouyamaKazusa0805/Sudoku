@@ -7,6 +7,7 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 /// 该指令也是执行时间较长的指令，和“！开始游戏”类似。不过，具体的绘图操作都是在别的指令里完成的。这里只记录一下绘图的基本环境，以及反馈空盘的信息。
 /// </remarks>
 [Command("开始绘图")]
+[RequiredUserLevel(30)]
 internal sealed class DrawingCommand : Command
 {
 	/// <inheritdoc/>
