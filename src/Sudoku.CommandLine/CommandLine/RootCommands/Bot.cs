@@ -1,4 +1,4 @@
-﻿#define AUTO_SEND_MESSAGE_AFTER_MEMBER_JOINED
+#define AUTO_SEND_MESSAGE_AFTER_MEMBER_JOINED
 #define ALLOW_MEMBER_REQUEST
 #undef ALLOW_INVITATION
 #define BASIC_LOG_INFO_OUTPUT
@@ -12,7 +12,7 @@ namespace Sudoku.CommandLine.RootCommands;
 [SupportedArguments("bot")]
 [Usage("bot -a <address> -q <number> -k <key>", IsPattern = true)]
 [Usage("bot -a localhost:8080 -q 1357924680 -k HelloWorld", DescriptionResourceKey = "_Usage_Bot_1")]
-[SupportedOSPlatform("windows")]
+[SupportedOSPlatform(OperatingSystemNames.Windows)]
 file sealed class Bot : IExecutable
 {
 	/// <summary>
@@ -162,6 +162,7 @@ file sealed class Bot : IExecutable
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+[SupportedOSPlatform(OperatingSystemNames.Windows)]
 file static class Extensions
 {
 	/// <summary>

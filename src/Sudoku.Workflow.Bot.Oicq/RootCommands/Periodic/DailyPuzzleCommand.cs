@@ -4,7 +4,6 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic;
 /// 每日一题模块。
 /// </summary>
 [PeriodicCommand(12)]
-[SupportedOSPlatform(OperatingSystemNames.Windows)]
 internal sealed class DailyPuzzleCommand : PeriodicCommand
 {
 	/// <inheritdoc/>
@@ -70,7 +69,6 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 			return;
 
 
-			[SupportedOSPlatform(OperatingSystemNames.Windows)]
 			async Task sendPictureAsync(string groupId, string grid, string footerText)
 			{
 				var picturePath = StorageHandler.GenerateCachedPicturePath(

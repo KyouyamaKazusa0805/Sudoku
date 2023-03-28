@@ -1,1 +1,2 @@
-﻿[assembly: InternalsVisibleTo("Sudoku.CommandLine")]
+[assembly: SupportedOSPlatform(OperatingSystemNames.Windows)]
+[assembly: InternalsVisibleTo("Sudoku.CommandLine")]

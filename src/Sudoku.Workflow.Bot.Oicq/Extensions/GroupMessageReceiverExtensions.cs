@@ -14,12 +14,9 @@ public static class GroupMessageReceiverExtensions
 	/// <inheritdoc cref="StorageHandler.GenerateCachedPicturePath(Func{ISudokuPainter}?)" path="/param[@name='painterCreator']"/>
 	/// </param>
 	/// <returns>一个 <see cref="Task"/> 对象，包裹了异步执行的基本信息。</returns>
-	[SupportedOSPlatform(OperatingSystemNames.Windows)]
-	public static async Task SendPictureThenDeleteAsync(this GroupMessageReceiver @this, Func<ISudokuPainter>? painterCreator = null)
+	public static async Task SendPictureThenDeleteAsync(this GroupMessageReceiver @this, Func<ISudokuPainter> painterCreator)
 	{
-		painterCreator ??= () => RunningContexts[@this.GroupId].DrawingContext.Painter!;
 		var picturePath = StorageHandler.GenerateCachedPicturePath(painterCreator)!;
-
 		await @this.SendMessageAsync(new ImageMessage { Path = picturePath });
 
 		File.Delete(picturePath);

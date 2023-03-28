@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.Lifecycle;
+namespace Sudoku.Workflow.Bot.Oicq.Lifecycle;
 
 /// <summary>
 /// 提供一个上下文，表示机器人在运行期间的数据。

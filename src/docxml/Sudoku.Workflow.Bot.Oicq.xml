@@ -1045,17 +1045,22 @@
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext">
             <summary>
-            The drawing context.
+            这是之前定义出来的一个绘图工具的上下文。这个上下文记录了当前绘图操作进行的环节，和已经保存起来的数据。一般取消或退出绘图，
+            则重置这些内容。
             </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle">
             <summary>
-            The grid to be operated with.
+            表示你操作的盘面是什么。
             </summary>
+            <remarks>
+            这个属性实际上没有什么特别大的用途，其实 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Painter"/> 属性里可以取出该数值结果，但这里先考虑单独提出来，因为可能以后有用。
+            </remarks>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Painter"/>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Painter">
             <summary>
-            The painter.
+            绘图的对象。这个对象专门用来绘图，带有初始化画布等基本的绘图操作。
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Lifecycle.EnvironmentVariables">
@@ -1325,6 +1330,17 @@
             获得的物品。
             </summary>
             <returns>获得的物品。可能为 <see langword="null"/>。</returns>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.DrawingCommand">
+            <summary>
+            表示绘图指令。
+            </summary>
+            <remarks>
+            该指令也是执行时间较长的指令，和“！开始游戏”类似。不过，具体的绘图操作都是在别的指令里完成的。这里只记录一下绘图的基本环境，以及反馈空盘的信息。
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.DrawingCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.GameCancelCommand">
             <summary>
