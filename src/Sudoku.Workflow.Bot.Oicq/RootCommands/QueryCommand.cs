@@ -388,12 +388,9 @@ internal sealed class QueryCommand : Command
 											{
 												var (p, c) => auxiliary switch
 												{
-													[var c1]
-														=> $"主卡级别：{main}，辅助卡级别：{c1}{c}，成功率：{p:P2}。",
-													[var c1, var c2]
-														=> $"主卡级别：{main}，辅助卡级别：{c1} 和 {c2}{c}，成功率：{p:P2}。",
-													[var c1, var c2, var c3]
-														=> $"主卡级别：{main}，辅助卡级别：{c1}、{c2} 和 {c3}{c}，成功率：{p:P2}。"
+													[var c1] => $"主卡级别：{main}，辅助卡级别：{c1}{c}，成功率：{p:P2}。",
+													[var c1, var c2] => $"主卡级别：{main}，辅助卡级别：{c1} 和 {c2}{c}，成功率：{p:P2}。",
+													[var c1, var c2, var c3] => $"主卡级别：{main}，辅助卡级别：{c1}、{c2} 和 {c3}{c}，成功率：{p:P2}。"
 												}
 											}
 									);
