@@ -1,4 +1,4 @@
-﻿namespace Sudoku.IO;
+namespace Sudoku.IO;
 
 /// <summary>
 /// Defines a <see cref="Grid"/> library that stores in a file, using lines to describe puzzles.
@@ -29,14 +29,14 @@ public sealed partial class GridLibrary(string filePath, GridLibraryIgnoringOpti
 	/// <summary>
 	/// Indicates the file path.
 	/// </summary>
-	public string FilePath { get; }
-		= File.Exists(filePath) ? filePath : throw new ArgumentException("Specified file does not exist.", nameof(filePath));
+	public string FilePath { get; } =
+		File.Exists(filePath) ? filePath : throw new ArgumentException("Specified file does not exist.", nameof(filePath));
 
 	/// <summary>
 	/// Indicates the ignore option that will be used for ignoring on iteration of library file.
 	/// </summary>
-	public GridLibraryIgnoringOption IgnoringOption { get; }
-		= Enum.IsDefined(ignoreOption) ? ignoreOption : throw new ArgumentOutOfRangeException(nameof(ignoreOption));
+	public GridLibraryIgnoringOption IgnoringOption { get; } =
+		Enum.IsDefined(ignoreOption) ? ignoreOption : throw new ArgumentOutOfRangeException(nameof(ignoreOption));
 
 
 	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
