@@ -1279,7 +1279,7 @@
             用来将一个字符串直接拆解成一个一个的参数序列。以空格分隔。如果带有引号，则引号是一个整体，里面可包含空格。
             </summary>
             <param name="s">字符串。</param>
-            <param name="argumentMatcherRegex">匹配字符串参数的正则表达式。</param>
+            <param name="argumentMatcher">匹配字符串参数的正则表达式。</param>
             <param name="trimmedCharacters">表示最终拆解字符串的时候，需要额外去除的字符。比如引号。</param>
             <returns>解析后的参数序列，按次序排列。</returns>
         </member>

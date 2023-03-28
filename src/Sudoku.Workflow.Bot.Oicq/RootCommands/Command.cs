@@ -375,7 +375,7 @@ public abstract class Command : IModule
 	)
 	{
 		(requestedHintArgumentName, requestedCommandHint, var moduleType) = (null, false, module.EqualityContract);
-		switch (ParseCommandLine(commandLine, """[\""“”].+?[\""“”]|[^ ]+""", '"', '“', '”'))
+		switch (ParseCommandLine(commandLine, """[\""“”].+?[\""“”]|[^ ]+""", new[] { '"', '“', '”' }))
 		{
 			case []:
 			{
@@ -493,15 +493,12 @@ public abstract class Command : IModule
 	/// 用来将一个字符串直接拆解成一个一个的参数序列。以空格分隔。如果带有引号，则引号是一个整体，里面可包含空格。
 	/// </summary>
 	/// <param name="s">字符串。</param>
-	/// <param name="argumentMatcherRegex">匹配字符串参数的正则表达式。</param>
+	/// <param name="argumentMatcher">匹配字符串参数的正则表达式。</param>
 	/// <param name="trimmedCharacters">表示最终拆解字符串的时候，需要额外去除的字符。比如引号。</param>
 	/// <returns>解析后的参数序列，按次序排列。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string[] ParseCommandLine(
-		string s,
-		[StringSyntax(StringSyntax.Regex)] string argumentMatcherRegex,
-		params char[]? trimmedCharacters
-	) => from match in new Regex(argumentMatcherRegex, RegexOptions.Singleline).Matches(s) select match.Value.Trim(trimmedCharacters);
+	private static string[] ParseCommandLine(string s, [StringSyntax(StringSyntax.Regex)] string argumentMatcher, char[]? trimmedCharacters)
+		=> from match in new Regex(argumentMatcher, RegexOptions.Singleline).Matches(s) select match.Value.Trim(trimmedCharacters);
 
 	/// <summary>
 	/// 一个转换类型，将 <see cref="Permissions"/> 实例转换为等同的 <see cref="GroupRoleKind"/> 实例。
