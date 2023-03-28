@@ -4,6 +4,8 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 /// 表示题库指令。
 /// </summary>
 [Command("题库")]
+[Usage("！题库 操作 初始化", "初始化本群所有题库的信息，将数据重置。")]
+[Usage("！题库 操作 设置 题库名 sdc 属性 作者 SunnieShine", "将本群题库“SDC”的作者配置项改成“SunnieShine”。")]
 [RequiredRole(SenderRole = GroupRoleKind.God)]
 internal sealed class PuzzleLibraryCommand : Command
 {

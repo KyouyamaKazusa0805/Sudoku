@@ -4,6 +4,7 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 /// 表示从题库里抽取题目的指令。
 /// </summary>
 [Command("抽题")]
+[Usage("！抽题 题库名 sdc", "抽取本群题库“SDC”的题目。")]
 [SupportedOSPlatform(OperatingSystemNames.Windows)]
 internal sealed class PuzzleLibraryExtractCommand : Command
 {
