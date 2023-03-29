@@ -104,4 +104,6 @@ partial class DrawingOperations
 
 		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
 	}
+
+
 }

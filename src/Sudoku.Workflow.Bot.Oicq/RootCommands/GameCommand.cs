@@ -41,7 +41,7 @@ internal sealed class GameCommand : Command
 
 		var answeringContext = context.AnsweringContext;
 
-		answeringContext.CurrentRoundAnsweredValues.Clear();
+		answeringContext.CurrentTimesliceAnswered.Clear();
 
 		// 使用反复的循环来等待用户回答。
 		for (int timeLastSeconds = (int)timeLimit.TotalSeconds, elapsedTime = 0; timeLastSeconds > 0; timeLastSeconds--, elapsedTime++)
@@ -62,7 +62,7 @@ internal sealed class GameCommand : Command
 
 				// 判别用户的回答是否正确。
 				// 这里我们用到的是 'AnsweringContext.CurrentRoundAnsweredValues' 属性。
-				foreach (var data in answeringContext.CurrentRoundAnsweredValues)
+				foreach (var data in answeringContext.CurrentTimesliceAnswered)
 				{
 					if (data is not { Conclusion: var answeredCellIndex, User: { Id: var userId, Name: var userName } })
 					{
@@ -154,7 +154,7 @@ internal sealed class GameCommand : Command
 					}
 				}
 
-				answeringContext.CurrentRoundAnsweredValues.Clear();
+				answeringContext.CurrentTimesliceAnswered.Clear();
 			}
 		}
 

@@ -32,7 +32,7 @@ file sealed class MentioningCommand : IModule
 		switch (context)
 		{
 			// 开始游戏指令。
-			case { AnsweringContext.CurrentRoundAnsweredValues: { } answeredValues, ExecutingCommand: "开始游戏" }
+			case { AnsweringContext.CurrentTimesliceAnswered: { } answeredValues, ExecutingCommand: "开始游戏" }
 			when int.TryParse(message.Trim(), out var validInteger):
 			{
 				answeredValues.Add(new(sender, validInteger));

@@ -1071,9 +1071,9 @@
             表示本局游戏已经有哪些人回答了题目。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.AnsweringContext.CurrentRoundAnsweredValues">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.AnsweringContext.CurrentTimesliceAnswered">
             <summary>
-            表示在判别结果的循环过程的单位量下，用户回答的信息列表。
+            表示在判别结果的循环过程的单位量（250 毫秒为单位的时间片）下，用户回答的信息列表。
             </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.AnsweringContext.IsCancelled">
