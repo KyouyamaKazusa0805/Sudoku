@@ -44,7 +44,7 @@ file sealed class MentioningCommand : IModule
 			{
 				switch (message.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
 				{
-					// 填 132：往 r1c3（即 A3 格）填入 2
+					// 132：往 r1c3（即 A3 格）填入 2
 #pragma warning disable format
 					case [[var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '0' and <= '9']]:
 #pragma warning restore format
@@ -85,8 +85,8 @@ file sealed class MentioningCommand : IModule
 						break;
 					}
 
-					// 132：往 r1c3（即 A3 格）增加候选数 2
-					case ["增", [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']]:
+					// 增加 132：往 r1c3（即 A3 格）增加候选数 2
+					case ["增加", [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']]:
 					{
 						var (cell, digit) = g(r, c, d);
 						switch (drawingContext.Puzzle.GetStatus(cell))
@@ -122,8 +122,8 @@ file sealed class MentioningCommand : IModule
 						break;
 					}
 
-					// 删 132：将 r1c3（即 A3 格）里的候选数 2 删去
-					case ["删", [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']]:
+					// 删除 132：将 r1c3（即 A3 格）里的候选数 2 删去
+					case ["删除", [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']]:
 					{
 						var (cell, digit) = g(r, c, d);
 						switch (drawingContext.Puzzle.GetStatus(cell))
