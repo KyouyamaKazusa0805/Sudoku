@@ -23,8 +23,5 @@ internal sealed class DrawingContext
 	/// <summary>
 	/// 绘图的对象。这个对象专门用来绘图，带有初始化画布等基本的绘图操作。
 	/// </summary>
-	public ISudokuPainter Painter { get; set; } =
-		ISudokuPainter.Create(1000, 20)
-			.WithRenderingCandidates(true)
-			.WithGrid(Grid.Undefined);
+	public ISudokuPainter Painter { get; set; } = ISudokuPainter.Create(1000, 20).WithRenderingCandidates(true).WithGrid(Grid.Undefined);
 }
