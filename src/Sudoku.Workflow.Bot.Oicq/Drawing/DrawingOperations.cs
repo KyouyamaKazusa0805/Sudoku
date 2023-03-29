@@ -96,7 +96,7 @@ internal static partial class DrawingOperations
 	/// <param name="c">一个字符，表示一个所在列的数据。</param>
 	/// <returns>单元格的索引。范围为 0 到 80。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static int DeconstructCharacters(char r, char c) => (r - '1') * 9 + (c - '1');
+	private static int GetCellIndex(char r, char c) => (r - '1') * 9 + (c - '1');
 
 	/// <summary>
 	/// 将前文传入的三个字符信息直接转为“行”、“列”和“数”三个数值，然后将其解析成合适的单元格坐标和数，以二元组（数对）的形式返回。
@@ -106,5 +106,26 @@ internal static partial class DrawingOperations
 	/// <param name="d">一个字符，表示一个数值数据。</param>
 	/// <returns>一个二元组（数对），其中一个元素是单元格，第二个元素是数值。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static (int Cell, int Digit) DeconstructCharacters(char r, char c, char d) => (DeconstructCharacters(r, c), d - '1');
+	private static (int Cell, int Digit) GetCandidateIndex(char r, char c, char d) => (GetCellIndex(r, c), d - '1');
+
+	/// <summary>
+	/// 将前文传入的两个字符信息直接转为“区域类型名称”和“索引”两个数值，并表达成区域绝对索引值。区域从 0 到 26 编号，分别表示 27 个不同的区域类型
+	/// （宫 1-9、行 1-9、列 1-9）。由于 API 基本设计架构，宫被优先计算，所以 0-8 是宫的编号，请尤其注意。
+	/// </summary>
+	/// <param name="r">表示区域类型的名称标签。支持的值可以是行列宫的基本中文汉字，或是表示同名字的 R、C、B 字母（大小写均可）。</param>
+	/// <param name="i">索引。表示属于该区域类型 <paramref name="r"/> 的顺数第几个。比如“行3”就表示第 3 行。</param>
+	/// <returns>返回一个绝对索引，取值范围在 0 到 26 之间，包含边界。</returns>
+	/// <exception cref="ArgumentException">
+	/// 如果 <paramref name="r"/> 输入的数值不合法，就会产生此异常；<paramref name="i"/> 我们这里没有给出处理，因为在调用方基本就处理过了。
+	/// 这也是为什么我把这个方法定义为 <see langword="private"/> 的原因。
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static int GetHouseIndex(char r, char i)
+		=> r switch
+		{
+			'行' or 'R' or 'r' => 9,
+			'列' or 'C' or 'c' => 18,
+			'宫' or 'B' or 'b' => 0,
+			_ => throw new ArgumentException("The specified value is invalid.", nameof(r))
+		} + (i - '1');
 }

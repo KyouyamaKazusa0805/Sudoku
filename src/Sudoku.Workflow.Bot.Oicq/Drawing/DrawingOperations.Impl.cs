@@ -11,7 +11,7 @@ partial class DrawingOperations
 		foreach (var element in rawString.LocalSplit())
 		{
 			if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '0' and <= '9']
-				&& DeconstructCharacters(r, c, d) is var (cell, digit))
+				&& GetCandidateIndex(r, c, d) is var (cell, digit))
 			{
 				switch (drawingContext.Puzzle.GetStatus(cell))
 				{
@@ -50,7 +50,7 @@ partial class DrawingOperations
 		foreach (var element in rawString.LocalSplit())
 		{
 			if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']
-				&& DeconstructCharacters(r, c, d) is var (cell, digit))
+				&& GetCandidateIndex(r, c, d) is var (cell, digit))
 			{
 				switch (drawingContext.Puzzle.GetStatus(cell))
 				{
@@ -80,7 +80,7 @@ partial class DrawingOperations
 		foreach (var element in rawString.LocalSplit())
 		{
 			if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']
-				&& DeconstructCharacters(r, c, d) is var (cell, digit))
+				&& GetCandidateIndex(r, c, d) is var (cell, digit))
 			{
 				switch (drawingContext.Puzzle.GetStatus(cell))
 				{
@@ -103,9 +103,25 @@ partial class DrawingOperations
 	}
 
 	/// <summary>
-	/// 往绘图盘面里追加单元格和候选数涂色的视图节点。
+	/// 往绘图盘面里追加涂色的视图节点。这些基本节点均走 <see cref="BasicViewNode"/> 类型进行派生，
+	/// 这个方法也是为了处理所有走该类型派生的具体实例的绘图逻辑。
 	/// </summary>
-	public static async Task AddCellOrCandidateNodesAsync(
+	/// <remarks>
+	/// 这个方法处理的视图节点包含如下这些：
+	/// <list type="bullet">
+	/// <item>单元格 <see cref="CellViewNode"/></item>
+	/// <item>候选数 <see cref="CandidateViewNode"/></item>
+	/// <item>区域 <see cref="HouseViewNode"/></item>
+	/// <item>大行列 <see cref="ChuteViewNode"/></item>
+	/// <item>链的强弱关系 <see cref="LinkViewNode"/></item>
+	/// <item>代数字母 <see cref="BabaGroupViewNode"/></item>
+	/// </list>
+	/// 顺带一提，之所以给代数取名叫 <c>BabaGroup</c>，是因为有一个游戏叫《<see href="https://www.hempuli.com/baba/">Baba Is You</see>》。
+	/// 这游戏里有一个 Group 单词，表示放在谓词 Is 左边的词语属于同一组处理逻辑。代数思想和这一点非常相似（也是一组数字按同一种思路推导），
+	/// 恰好这技巧又没有英语名字，就干脆取了个这个名字。
+	/// </remarks>
+	/// <seealso cref="BasicViewNode"/>
+	public static async Task AddBasicViewNodesAsync(
 		GroupMessageReceiver messageReceiver,
 		DrawingContext drawingContext,
 		string rawString,
@@ -122,15 +138,26 @@ partial class DrawingOperations
 
 			switch (element)
 			{
-				case [var r and >= '1' and <= '9', var c and >= '1' and <= '9'] when DeconstructCharacters(r, c) is var cell:
+				// 单元格。
+				case [var r and >= '1' and <= '9', var c and >= '1' and <= '9'] when GetCellIndex(r, c) is var cell:
 				{
 					nodes.Add(new CellViewNode(identifier, cell));
 					break;
 				}
+
+				// 候选数。
 				case [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']
-				when DeconstructCharacters(r, c, d) is var (cell, digit):
+				when GetCandidateIndex(r, c, d) is var (cell, digit):
 				{
 					nodes.Add(new CandidateViewNode(identifier, cell * 9 + digit));
+					break;
+				}
+
+				// 区域。
+				case [var r and ('行' or '列' or '宫' or 'R' or 'r' or 'C' or 'c' or 'B' or 'b'), var i and >= '1' and <= '9']
+				when GetHouseIndex(r, i) is var house:
+				{
+					nodes.Add(new HouseViewNode(identifier, house));
 					break;
 				}
 			}
@@ -194,6 +221,7 @@ file sealed class ViewNodeComparer : IEqualityComparer<ViewNode>
 		{
 			(CellViewNode a, CellViewNode b) => a.Cell == b.Cell,
 			(CandidateViewNode a, CandidateViewNode b) => a.Candidate == b.Candidate,
+			(HouseViewNode a, HouseViewNode b) => a.House == b.House,
 			_ => false
 		};
 
@@ -203,6 +231,7 @@ file sealed class ViewNodeComparer : IEqualityComparer<ViewNode>
 		{
 			CellViewNode o => o.Cell,
 			CandidateViewNode o => o.Candidate,
+			HouseViewNode o => o.House,
 			_ => 0
 		};
 }
