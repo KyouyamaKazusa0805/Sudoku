@@ -19,7 +19,10 @@ internal sealed class DrawingCommand : Command
 		}
 
 		// 优先设置环境，避免用户触发其他指令。
-		var painter = ISudokuPainter.Create(1000, 20).WithRenderingCandidates(true).WithGrid(Grid.Undefined);
+		var painter = ISudokuPainter.Create(1000, 20)
+			.WithRenderingCandidates(true)
+			.WithPreferenceSettings(static pref => pref.CandidateScale = .4M)
+			.WithGrid(Grid.Undefined);
 		context.ExecutingCommand = Name;
 		context.DrawingContext = new() { Painter = painter };
 
