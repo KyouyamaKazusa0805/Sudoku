@@ -40,33 +40,71 @@ file sealed class MentioningCommand : IModule
 			}
 
 			// 开始绘图指令。
-			case { DrawingContext: { Puzzle: var puzzle, Painter: var painter }, ExecutingCommand: "开始绘图" }:
+			case { DrawingContext: var drawingContext, ExecutingCommand: "开始绘图" }:
 			{
 				switch (message.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
 				{
-					// 132：往 r1c3（即 A3 格）增加候选数 2
-					// 双层中括号表示整个 switch 括起来的那个表达式结果是一个字符串数组，其中只包含一个字符串元素，然后将该字符串继续进行列表模式匹配。
+					// 填 132：往 r1c3（即 A3 格）填入 2
 #pragma warning disable format
-					case [[var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']]:
+					case [[var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '0' and <= '9']]:
 #pragma warning restore format
 					{
 						var (cell, digit) = g(r, c, d);
-						switch (puzzle.GetStatus(cell))
+						switch (drawingContext.Puzzle.GetStatus(cell))
 						{
-							case CellStatus.Empty:
+							case CellStatus.Undefined:
+							case CellStatus.Modifiable:
 							{
-								if ((puzzle.GetCandidates(cell) >> digit & 1) != 0)
+								var puzzle = drawingContext.Puzzle;
+								if (digit == -1)
+								{
+									puzzle.SetMask(cell, 0);
+								}
+								else
+								{
+									puzzle[cell] = digit;
+								}
+
+								drawingContext.Puzzle = puzzle;
+								drawingContext.Painter.WithGrid(puzzle);
+
+								await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
+								break;
+							}
+							case CellStatus.Given:
+							{
+								await messageReceiver.SendMessageAsync($"单元格 r{r}c{c} 是提示数。无法修改。");
+								break;
+							}
+							default:
+							{
+								@throw();
+								break;
+							}
+						}
+						break;
+					}
+
+					// 132：往 r1c3（即 A3 格）增加候选数 2
+					case ["增", [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']]:
+					{
+						var (cell, digit) = g(r, c, d);
+						switch (drawingContext.Puzzle.GetStatus(cell))
+						{
+							case CellStatus.Undefined:
+							{
+								if (drawingContext.Pencilmarks.Contains(cell * 9 + digit))
 								{
 									await messageReceiver.SendMessageAsync($"单元格 r{r}c{c} 已包含此候选数。");
 									break;
 								}
 
-								puzzle[cell, digit] = true;
+								drawingContext.AddCandidate(cell, digit);
 
 								// puzzle 这里虽然传入了 lambda 里使用，还是异步的，但它毕竟不是引用，所以编译器不会告诉你不能这么用。
 								// 只有当异步环境下，往 lambda 传入的值类型的值带有引用的时候（比如 ref 啊、in 之类的修饰符的参数往 lambda 里传）
 								// 才会产生编译器错误。
-								await messageReceiver.SendPictureThenDeleteAsync(() => painter.WithGrid(puzzle));
+								await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
 								break;
 							}
 							case CellStatus.Modifiable:
@@ -84,28 +122,23 @@ file sealed class MentioningCommand : IModule
 						break;
 					}
 
-					// 填 132：往 r1c3（即 A3 格）填入 2
-					case ["填", [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '0' and <= '9']]:
+					// 删 132：将 r1c3（即 A3 格）里的候选数 2 删去
+					case ["删", [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']]:
 					{
 						var (cell, digit) = g(r, c, d);
-						switch (puzzle.GetStatus(cell))
+						switch (drawingContext.Puzzle.GetStatus(cell))
 						{
-							case CellStatus.Empty:
+							case CellStatus.Undefined:
 							{
-								puzzle[cell] = digit;
-								await messageReceiver.SendPictureThenDeleteAsync(() => painter.WithGrid(puzzle));
+								drawingContext.RemoveCandidate(cell, digit);
+
+								await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
 								break;
 							}
 							case CellStatus.Modifiable:
-							{
-								puzzle[cell] = -1; // 这里要重置候选数，避免下回输入的数字导致候选数出现内部矛盾，引发 bug。
-								puzzle[cell] = digit;
-								await messageReceiver.SendPictureThenDeleteAsync(() => painter.WithGrid(puzzle));
-								break;
-							}
 							case CellStatus.Given:
 							{
-								await messageReceiver.SendMessageAsync($"单元格 r{r}c{c} 是提示数。无法修改。");
+								await messageReceiver.SendMessageAsync($"单元格 r{r}c{c} 为非空格，无法删除候选数。");
 								break;
 							}
 							default:
@@ -114,15 +147,6 @@ file sealed class MentioningCommand : IModule
 								break;
 							}
 						}
-						break;
-					}
-
-					// 删 132：将 r1c3（即 A3 格）里的候选数 2 删去
-					case ["删", [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']]:
-					{
-						var (cell, digit) = g(r, c, d);
-						puzzle[cell, digit] = false;
-						await messageReceiver.SendPictureThenDeleteAsync(() => painter.WithGrid(puzzle));
 						break;
 					}
 				}
@@ -138,5 +162,70 @@ file sealed class MentioningCommand : IModule
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static (int Cell, int Digit) g(char r, char c, char d) => ((r - '1') * 9 + (c - '1'), d - '1');
+	}
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// 追加新候选数。
+	/// </summary>
+	/// <param name="this">表示作用于某实例。</param>
+	/// <param name="cell">需要追加的候选数单元格。</param>
+	/// <param name="digit">需要追加的候选数数值。</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void AddCandidate(this DrawingContext @this, int cell, int digit)
+	{
+		var pencilmark = @this.Pencilmarks;
+		pencilmark.Add(cell * 9 + digit);
+		@this.Pencilmarks = pencilmark;
+
+		@this.UpdateCandidates();
+
+		@this.Painter.WithGrid(@this.Puzzle);
+	}
+
+	/// <summary>
+	/// 删除候选数。
+	/// </summary>
+	/// <param name="this">表示作用于某实例。</param>
+	/// <param name="cell">需要追加的候选数单元格。</param>
+	/// <param name="digit">需要追加的候选数数值。</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void RemoveCandidate(this DrawingContext @this, int cell, int digit)
+	{
+		var pencilmark = @this.Pencilmarks;
+		pencilmark.Remove(cell * 9 + digit);
+		@this.Pencilmarks = pencilmark;
+
+		@this.UpdateCandidates();
+
+		@this.Painter.WithGrid(@this.Puzzle);
+	}
+
+	/// <summary>
+	/// 将该实例的 <see cref="DrawingContext.Pencilmarks"/> 属性，所代表的候选数覆盖到 <see cref="DrawingContext.Puzzle"/> 属性之中。
+	/// </summary>
+	/// <param name="this">表示作用于某实例。</param>
+	/// <seealso cref="DrawingContext.Pencilmarks"/>
+	/// <seealso cref="DrawingContext.Puzzle"/>
+	private static void UpdateCandidates(this DrawingContext @this)
+	{
+		var puzzle = @this.Puzzle;
+		for (var c = 0; c < 81; c++)
+		{
+			if (puzzle.GetStatus(c) is CellStatus.Given or CellStatus.Modifiable)
+			{
+				continue;
+			}
+
+			for (var d = 0; d < 9; d++)
+			{
+				puzzle[c, d] = @this.Pencilmarks.Contains(c * 9 + d);
+			}
+		}
+
+		@this.Puzzle = puzzle;
 	}
 }

@@ -32,7 +32,7 @@ internal sealed class GameCommand : Command
 
 		// 根据绘图对象直接创建图片，然后发送出去。
 		await messageReceiver.SendPictureThenDeleteAsync(
-			() => ISudokuPainter.Create(1000)
+			ISudokuPainter.Create(1000)
 				.WithGrid(puzzle)
 				.WithRenderingCandidates(false)
 				.WithNodes(selectedNodes)
@@ -193,7 +193,7 @@ internal sealed class GameCommand : Command
 
 		// 发送答案。
 		await messageReceiver.SendPictureThenDeleteAsync(
-			() => ISudokuPainter.Create(1000)
+			ISudokuPainter.Create(1000)
 				.WithGrid(puzzle.GetSolution())
 				.WithRenderingCandidates(false)
 				.WithNodes(

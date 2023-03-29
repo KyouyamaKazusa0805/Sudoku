@@ -177,14 +177,13 @@ public static class StorageHandler
 	}
 
 	/// <summary>
-	/// 产生一个图片缓存路径，它会将指定参数的回调函数，所产生的 <see cref="ISudokuPainter"/> 的对象给绘制出来，并保存到此缓存路径下。
+	/// 产生一个图片缓存路径，根据 <see cref="ISudokuPainter"/> 类型的实例给绘制出来，并保存到此缓存路径下。
 	/// </summary>
-	/// <param name="painterCreator">回调函数，用来生成一个 <see cref="ISudokuPainter"/> 的绘图实例。</param>
+	/// <param name="painter">一个 <see cref="ISudokuPainter"/> 的绘图实例。</param>
 	/// <returns>图片在本地存储的缓存路径。</returns>
 	[MethodImpl(MethodImplOptions.Synchronized)]
-	public static string? GenerateCachedPicturePath(Func<ISudokuPainter> painterCreator)
+	public static string? GenerateCachedPicturePath(ISudokuPainter painter)
 	{
-		var painter = painterCreator();
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 		if (!Directory.Exists(folder))
 		{

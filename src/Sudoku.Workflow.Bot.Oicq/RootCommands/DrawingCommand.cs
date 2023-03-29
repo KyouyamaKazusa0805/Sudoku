@@ -19,9 +19,9 @@ internal sealed class DrawingCommand : Command
 		}
 
 		// 优先设置环境，避免用户触发其他指令。
-		var painter = ISudokuPainter.Create(1000, 20).WithRenderingCandidates(false).WithGrid(Grid.Empty);
+		var painter = ISudokuPainter.Create(1000, 20).WithRenderingCandidates(true).WithGrid(Grid.Undefined);
 		context.ExecutingCommand = Name;
-		context.DrawingContext = new() { Puzzle = Grid.Empty, Painter = painter };
+		context.DrawingContext = new() { Painter = painter };
 
 		// 列举基本操作指令。
 		// 考虑到用户使用手机打字特别不方便，所以等号之类的、什么字母输入啥的，就不考虑了。
@@ -33,10 +33,10 @@ internal sealed class DrawingCommand : Command
 			欢迎使用绘图功能！请艾特机器人，发送如下指令的其中一个就可以开始各种绘图操作了。
 			---
 			基本命令：
-			@机器人 填 132：往 r1c3（即 A3 格）填入 2
-			@机器人 填 130：将 r1c3（即 A3 格）的填数去掉
-			@机器人 132：往 r1c3 增加候选数 2
+			@机器人 增 132：往 r1c3 增加候选数 2
 			@机器人 删 132：将 r1c3（即 A3 格）里的候选数 2 删去
+			@机器人 132：往 r1c3（即 A3 格）填入 2
+			@机器人 130：将 r1c3（即 A3 格）的填数去掉
 			"""
 		);
 
@@ -49,6 +49,6 @@ internal sealed class DrawingCommand : Command
 		// 利用前面创建的 painter 对象，直接产生图片并发送。这里的 painter 是初始化的结果，所以发送出去的图片也是空盘，没有标记，没有候选数，啥都没有。
 		// 注意，这个指令到这里就结束了。后面没有代码了。
 		// 因为这里随后的操作是艾特机器人，在别的指令里完成，这里我们不处理它（实际上也处理不了，因为 API 是这么设计的）。
-		await messageReceiver.SendPictureThenDeleteAsync(() => painter);
+		await messageReceiver.SendPictureThenDeleteAsync(painter);
 	}
 }

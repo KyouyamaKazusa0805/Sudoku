@@ -69,10 +69,10 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 			return;
 
 
-			async Task sendPictureAsync(string groupId, string grid, string footerText)
+			static async Task sendPictureAsync(string groupId, string grid, string footerText)
 			{
 				var picturePath = StorageHandler.GenerateCachedPicturePath(
-					() => ISudokuPainter.Create(1000)
+					ISudokuPainter.Create(1000)
 						.WithGridCode(grid)
 						.WithRenderingCandidates(false)
 						.WithFooterText(footerText)

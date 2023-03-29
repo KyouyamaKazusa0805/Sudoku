@@ -185,7 +185,7 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 
 			// 根据绘图对象直接创建图片，然后发送出去。
 			await messageReceiver.SendPictureThenDeleteAsync(
-				() => ISudokuPainter.Create(1000)
+				ISudokuPainter.Create(1000)
 					.WithGrid(grid)
 					.WithRenderingCandidates(difficultyLevel >= DifficultyLevel.Hard)
 					.WithFooterText($"@{lib.Name} #{lib.FinishedPuzzlesCount + 1}")

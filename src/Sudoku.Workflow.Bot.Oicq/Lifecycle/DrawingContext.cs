@@ -13,10 +13,18 @@ internal sealed class DrawingContext
 	/// 这个属性实际上没有什么特别大的用途，其实 <see cref="Painter"/> 属性里可以取出该数值结果，但这里先考虑单独提出来，因为可能以后有用。
 	/// </remarks>
 	/// <seealso cref="Painter"/>
-	public Grid Puzzle { get; set; } = Grid.Empty;
+	public Grid Puzzle { get; set; } = Grid.Undefined;
+
+	/// <summary>
+	/// 表示用户标记的候选数。
+	/// </summary>
+	public CandidateMap Pencilmarks { get; set; } = CandidateMap.Empty;
 
 	/// <summary>
 	/// 绘图的对象。这个对象专门用来绘图，带有初始化画布等基本的绘图操作。
 	/// </summary>
-	public ISudokuPainter Painter { get; set; } = ISudokuPainter.Create(1000, 20).WithRenderingCandidates(false).WithGrid(Grid.Empty);
+	public ISudokuPainter Painter { get; set; } =
+		ISudokuPainter.Create(1000, 20)
+			.WithRenderingCandidates(true)
+			.WithGrid(Grid.Undefined);
 }

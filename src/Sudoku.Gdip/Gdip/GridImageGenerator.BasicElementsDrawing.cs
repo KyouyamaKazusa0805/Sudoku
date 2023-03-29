@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Gdip;
+namespace Sudoku.Gdip;
 
 partial class GridImageGenerator
 {
@@ -27,7 +27,7 @@ partial class GridImageGenerator
 	{
 		if (this is not
 			{
-				Puzzle: { IsUndefined: false } puzzle,
+				Puzzle: var puzzle,
 				Calculator: { CellSize.Width: var cellWidth, CandidateSize.Width: var candidateWidth } calc,
 				Preferences:
 				{
@@ -66,6 +66,20 @@ partial class GridImageGenerator
 			var mask = puzzle._values[cell];
 			switch (MaskOperations.MaskToStatus(mask))
 			{
+				case CellStatus.Undefined when showCandidates:
+				{
+					// Draw candidates.
+					// This block is use when user draw candidates from undefined grid.
+					var overlaps = View.UnknownOverlaps(cell);
+					foreach (var digit in (short)(mask & Grid.MaxCandidatesMask))
+					{
+						var originalPoint = calc.GetMousePointInCenter(cell, digit);
+						var point = originalPoint with { Y = originalPoint.Y + vOffsetCandidate };
+						g.DrawValue(digit + 1, fCandidate, overlaps ? bCandidateLighter : bCandidate, point, StringLocating);
+					}
+
+					break;
+				}
 				case CellStatus.Empty when showCandidates:
 				{
 					// Draw candidates.
