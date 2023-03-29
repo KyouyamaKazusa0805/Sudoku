@@ -55,34 +55,32 @@ file sealed class MentioningCommand : IModule
 					case [var rawString]:
 					{
 						var puzzle = drawingContext.Puzzle;
-						foreach (var element in rawString.Split(Separator, splitOptions))
+						foreach (var element in split(rawString))
 						{
-							if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '0' and <= '9'])
+							if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '0' and <= '9']
+								&& g(r, c, d) is var (cell, digit))
 							{
-								continue;
-							}
-
-							var (cell, digit) = g(r, c, d);
-							switch (drawingContext.Puzzle.GetStatus(cell))
-							{
-								case CellStatus.Undefined:
-								case CellStatus.Modifiable:
+								switch (drawingContext.Puzzle.GetStatus(cell))
 								{
-									if (digit == -1)
+									case CellStatus.Undefined:
+									case CellStatus.Modifiable:
 									{
-										puzzle.SetMask(cell, 0);
-									}
-									else
-									{
-										puzzle[cell] = digit;
-									}
+										if (digit == -1)
+										{
+											puzzle.SetMask(cell, 0);
+										}
+										else
+										{
+											puzzle[cell] = digit;
+										}
 
-									break;
-								}
-								case not CellStatus.Given:
-								{
-									@throw();
-									break;
+										break;
+									}
+									case not CellStatus.Given:
+									{
+										@throw();
+										break;
+									}
 								}
 							}
 						}
@@ -97,25 +95,23 @@ file sealed class MentioningCommand : IModule
 					// 增加 132：往 r1c3（即 A3 格）增加候选数 2
 					case ["增加", var rawString]:
 					{
-						foreach (var element in rawString.Split(Separator, splitOptions))
+						foreach (var element in split(rawString))
 						{
-							if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9'])
+							if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']
+								&& g(r, c, d) is var (cell, digit))
 							{
-								continue;
-							}
-
-							var (cell, digit) = g(r, c, d);
-							switch (drawingContext.Puzzle.GetStatus(cell))
-							{
-								case CellStatus.Undefined:
+								switch (drawingContext.Puzzle.GetStatus(cell))
 								{
-									drawingContext.Pencilmarks.Add(cell * 9 + digit);
-									break;
-								}
-								case not (CellStatus.Modifiable or CellStatus.Given):
-								{
-									@throw();
-									break;
+									case CellStatus.Undefined:
+									{
+										drawingContext.Pencilmarks.Add(cell * 9 + digit);
+										break;
+									}
+									case not (CellStatus.Modifiable or CellStatus.Given):
+									{
+										@throw();
+										break;
+									}
 								}
 							}
 						}
@@ -130,25 +126,23 @@ file sealed class MentioningCommand : IModule
 					// 删除 132：将 r1c3（即 A3 格）里的候选数 2 删去
 					case ["删除", var rawString]:
 					{
-						foreach (var element in rawString.Split(Separator, splitOptions))
+						foreach (var element in split(rawString))
 						{
-							if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9'])
+							if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']
+								&& g(r, c, d) is var (cell, digit))
 							{
-								continue;
-							}
-
-							var (cell, digit) = g(r, c, d);
-							switch (drawingContext.Puzzle.GetStatus(cell))
-							{
-								case CellStatus.Undefined:
+								switch (drawingContext.Puzzle.GetStatus(cell))
 								{
-									drawingContext.Pencilmarks.Remove(cell * 9 + digit);
-									break;
-								}
-								case not (CellStatus.Modifiable or CellStatus.Given):
-								{
-									@throw();
-									break;
+									case CellStatus.Undefined:
+									{
+										drawingContext.Pencilmarks.Remove(cell * 9 + digit);
+										break;
+									}
+									case not (CellStatus.Modifiable or CellStatus.Given):
+									{
+										@throw();
+										break;
+									}
 								}
 							}
 						}
@@ -169,6 +163,9 @@ file sealed class MentioningCommand : IModule
 		[DoesNotReturn]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void @throw() => throw new InvalidOperationException("Operation failed due to internal exception.");
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string[] split(string rawString) => rawString.Split(Separator, splitOptions);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static (int Cell, int Digit) g(char r, char c, char d) => ((r - '1') * 9 + (c - '1'), d - '1');
