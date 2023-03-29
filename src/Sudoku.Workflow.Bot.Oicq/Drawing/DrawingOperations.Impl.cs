@@ -47,6 +47,7 @@ partial class DrawingOperations
 	/// </summary>
 	public static async Task AddPencilmarkAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
 	{
+		var pencilmarks = drawingContext.Pencilmarks;
 		foreach (var element in rawString.LocalSplit())
 		{
 			if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']
@@ -56,7 +57,7 @@ partial class DrawingOperations
 				{
 					case CellStatus.Undefined:
 					{
-						drawingContext.Pencilmarks.Add(cell * 9 + digit);
+						pencilmarks.Add(cell * 9 + digit);
 						break;
 					}
 					case not (CellStatus.Modifiable or CellStatus.Given):
@@ -67,9 +68,11 @@ partial class DrawingOperations
 			}
 		}
 
+		drawingContext.Pencilmarks = pencilmarks;
 		drawingContext.UpdateCandidatesViaPencilmarks();
+		drawingContext.Painter.WithGrid(drawingContext.Puzzle);
 
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.WithGrid(drawingContext.Puzzle));
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
 	}
 
 	/// <summary>
@@ -77,6 +80,7 @@ partial class DrawingOperations
 	/// </summary>
 	public static async Task RemovePencilmarkAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
 	{
+		var pencilmarks = drawingContext.Pencilmarks;
 		foreach (var element in rawString.LocalSplit())
 		{
 			if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']
@@ -86,7 +90,7 @@ partial class DrawingOperations
 				{
 					case CellStatus.Undefined:
 					{
-						drawingContext.Pencilmarks.Remove(cell * 9 + digit);
+						pencilmarks.Remove(cell * 9 + digit);
 						break;
 					}
 					case not (CellStatus.Modifiable or CellStatus.Given):
@@ -97,9 +101,11 @@ partial class DrawingOperations
 			}
 		}
 
+		drawingContext.Pencilmarks = pencilmarks;
 		drawingContext.UpdateCandidatesViaPencilmarks();
+		drawingContext.Painter.WithGrid(drawingContext.Puzzle);
 
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.WithGrid(drawingContext.Puzzle));
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
 	}
 
 	/// <summary>
