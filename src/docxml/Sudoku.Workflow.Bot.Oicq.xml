@@ -1529,6 +1529,11 @@
             它主要是为了去处理一些其他指令里的回复情况，如开始游戏后，回答问题需要艾特的时候，就会用到这个指令来处理。
             </summary>
         </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.MentioningCommand.Separator">
+            <summary>
+            字符串的分割字符，用于绘图操作输入一系列数据的时候使用。
+            </summary>
+        </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.MentioningCommand.Mirai#Net#Modules#IModule#IsEnable">
             <inheritdoc/>
         </member>
@@ -1542,23 +1547,7 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.Extensions.AddCandidate(Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.Int32,System.Int32)">
-            <summary>
-            追加新候选数。
-            </summary>
-            <param name="this">表示作用于某实例。</param>
-            <param name="cell">需要追加的候选数单元格。</param>
-            <param name="digit">需要追加的候选数数值。</param>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.Extensions.RemoveCandidate(Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.Int32,System.Int32)">
-            <summary>
-            删除候选数。
-            </summary>
-            <param name="this">表示作用于某实例。</param>
-            <param name="cell">需要追加的候选数单元格。</param>
-            <param name="digit">需要追加的候选数数值。</param>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.Extensions.UpdateCandidates(Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.Extensions.UpdateCandidatesViaPencilmarks(Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext)">
             <summary>
             将该实例的 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/> 属性，所代表的候选数覆盖到 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/> 属性之中。
             </summary>
