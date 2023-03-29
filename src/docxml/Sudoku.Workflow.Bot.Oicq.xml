@@ -917,6 +917,21 @@
             <returns>将字符串进行分割之后的数组序列，去掉了头尾的空白字符，也舍弃掉了只有空白字符的匹配项。</returns>
             <seealso cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.GetIdentifier(System.String)">
+            <summary>
+            通过一个颜色表达出来的字符串，转换为一个实体的 <see cref="T:Sudoku.Presentation.Identifier"/> 类型的实例，用于绘图。
+            </summary>
+            <param name="this">颜色字符串。</param>
+            <returns>一个 <see cref="T:Sudoku.Presentation.Identifier"/> 实例，表示颜色的标识符。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.DeconstructCharacters(System.Char,System.Char)">
+            <summary>
+            将前文传入的两个字符信息直接转为“行”和“列”两个数值，然后直接解析成合适的单元格坐标。
+            </summary>
+            <param name="r">一个字符，表示一个所在行的数据。</param>
+            <param name="c">一个字符，表示一个所在列的数据。</param>
+            <returns>单元格的索引。范围为 0 到 80。</returns>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.DeconstructCharacters(System.Char,System.Char,System.Char)">
             <summary>
             将前文传入的三个字符信息直接转为“行”、“列”和“数”三个数值，然后将其解析成合适的单元格坐标和数，以二元组（数对）的形式返回。
@@ -940,6 +955,33 @@
             <summary>
             从绘图盘面内删除一个已经标记了的候选数。
             </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.AddCellNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
+            <summary>
+            往绘图盘面里追加单元格涂色的视图节点。
+            </summary>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Drawing.EqualityComparers.CellViewNodeComparer">
+            <summary>
+            提供一个比较 <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/> 相等性的实例类型。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Drawing.EqualityComparers.CellViewNodeComparer.Instance">
+            <summary>
+            提供一个默认的实例。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.EqualityComparers.CellViewNodeComparer.#ctor">
+            <summary>
+            无参构造器。该构造器设置为 <see langword="private"/> 修饰是为了防止外部调用该构造器；因为我们这里为了考虑性能的问题，
+            使用到的是一个 <see langword="static readonly"/> 组合修饰的字段，它在程序运行期间只创建一次。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.EqualityComparers.CellViewNodeComparer.Equals(Sudoku.Presentation.Nodes.CellViewNode,Sudoku.Presentation.Nodes.CellViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.EqualityComparers.CellViewNodeComparer.GetHashCode(Sudoku.Presentation.Nodes.CellViewNode)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler">
             <summary>
@@ -2091,52 +2133,18 @@
         <member name="M:Sudoku.Workflow.Bot.Oicq.ValueConverters.NumericConverter`1.Convert(System.String)">
             <inheritdoc/>
         </member>
-        <member name="T:Mirai.Net.Data.Shared.GroupExtensions">
+        <member name="T:System.Drawing.ColorExtensions">
             <summary>
-            为 <see cref="T:Mirai.Net.Data.Shared.Group"/> 类型的实例提供扩展方法。
+            提供关于 <see cref="T:System.Drawing.Color"/> 类型实例的扩展方法。
             </summary>
-            <seealso cref="T:Mirai.Net.Data.Shared.Group"/>
+            <seealso cref="T:System.Drawing.Color"/>
         </member>
-        <member name="M:Mirai.Net.Data.Shared.GroupExtensions.GetMatchedMembersViaNicknameAsync(Mirai.Net.Data.Shared.Group,System.String)">
+        <member name="M:System.Drawing.ColorExtensions.ToIdentifier(System.Drawing.Color)">
             <summary>
-            获取指定群，群成员的昵称等于参数 <paramref name="nickname"/> 的成员。注意，群可能存在多个人名片一样的情况，所以该方法返回的是一个数组，而不是一个元素。
+            将指定的 <see cref="T:System.Drawing.Color"/> 实例转换为等价的 <see cref="T:Sudoku.Presentation.Identifier"/> 实例。
             </summary>
-        </member>
-        <member name="M:Mirai.Net.Data.Shared.GroupExtensions.GetMatchedMemberViaIdAsync(Mirai.Net.Data.Shared.Group,System.String)">
-            <summary>
-            获取指定群，群成员的 QQ 等于参数 <paramref name="id"/> 的成员。
-            </summary>
-        </member>
-        <member name="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiverExtensions">
-            <summary>
-            为类型 <see cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/> 实例提供扩展方法。
-            </summary>
-            <seealso cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/>
-        </member>
-        <member name="M:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiverExtensions.SendPictureThenDeleteAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Drawing.ISudokuPainter)">
-            <summary>
-            根据指定的 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 对象，将该对象产生的图片保存至本地，然后将其发送出去，然后自动删掉本地的图片缓存。
-            </summary>
-            <param name="this">用来发送消息的对象。</param>
-            <param name="painter">
-            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.GenerateCachedPicturePath(Sudoku.Drawing.ISudokuPainter)" path="/param[@name='painterCreator']"/>
-            </param>
-            <returns>一个 <see cref="T:System.Threading.Tasks.Task"/> 对象，包裹了异步执行的基本信息。</returns>
-        </member>
-        <member name="T:Mirai.Net.Modules.IPeriodicModule">
-            <summary>
-            提供一个周期性自动执行的模块。这个模块不同于群指令的模块，它在每一天的固定时候自动执行。
-            </summary>
-        </member>
-        <member name="P:Mirai.Net.Modules.IPeriodicModule.TriggeringTime">
-            <summary>
-            表示该模块自动执行的时间。由于它每天都执行，因此无关日期数据，所以返回值类型为 <see cref="T:System.TimeOnly"/> 而不是 <see cref="T:System.DateTime"/>。
-            </summary>
-        </member>
-        <member name="M:Mirai.Net.Modules.IPeriodicModule.Execute">
-            <summary>
-            执行的具体实现逻辑。
-            </summary>
+            <param name="this"><see cref="T:System.Drawing.Color"/> 实例。</param>
+            <returns>等价的 <see cref="T:Sudoku.Presentation.Identifier"/> 实例。</returns>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.BilibiliPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the BilibiliPattern method.</summary>
@@ -2271,6 +2279,53 @@
         </member>
         <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32)">
             <summary>Pushes 2 values onto the backtracking stack.</summary>
+        </member>
+        <member name="T:Mirai.Net.Data.Shared.GroupExtensions">
+            <summary>
+            为 <see cref="T:Mirai.Net.Data.Shared.Group"/> 类型的实例提供扩展方法。
+            </summary>
+            <seealso cref="T:Mirai.Net.Data.Shared.Group"/>
+        </member>
+        <member name="M:Mirai.Net.Data.Shared.GroupExtensions.GetMatchedMembersViaNicknameAsync(Mirai.Net.Data.Shared.Group,System.String)">
+            <summary>
+            获取指定群，群成员的昵称等于参数 <paramref name="nickname"/> 的成员。注意，群可能存在多个人名片一样的情况，所以该方法返回的是一个数组，而不是一个元素。
+            </summary>
+        </member>
+        <member name="M:Mirai.Net.Data.Shared.GroupExtensions.GetMatchedMemberViaIdAsync(Mirai.Net.Data.Shared.Group,System.String)">
+            <summary>
+            获取指定群，群成员的 QQ 等于参数 <paramref name="id"/> 的成员。
+            </summary>
+        </member>
+        <member name="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiverExtensions">
+            <summary>
+            为类型 <see cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/> 实例提供扩展方法。
+            </summary>
+            <seealso cref="T:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver"/>
+        </member>
+        <member name="M:Mirai.Net.Data.Messages.Receivers.GroupMessageReceiverExtensions.SendPictureThenDeleteAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Drawing.ISudokuPainter)">
+            <summary>
+            根据指定的 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 对象，将该对象产生的图片保存至本地，然后将其发送出去，然后自动删掉本地的图片缓存。
+            </summary>
+            <param name="this">用来发送消息的对象。</param>
+            <param name="painter">
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.GenerateCachedPicturePath(Sudoku.Drawing.ISudokuPainter)" path="/param[@name='painterCreator']"/>
+            </param>
+            <returns>一个 <see cref="T:System.Threading.Tasks.Task"/> 对象，包裹了异步执行的基本信息。</returns>
+        </member>
+        <member name="T:Mirai.Net.Modules.IPeriodicModule">
+            <summary>
+            提供一个周期性自动执行的模块。这个模块不同于群指令的模块，它在每一天的固定时候自动执行。
+            </summary>
+        </member>
+        <member name="P:Mirai.Net.Modules.IPeriodicModule.TriggeringTime">
+            <summary>
+            表示该模块自动执行的时间。由于它每天都执行，因此无关日期数据，所以返回值类型为 <see cref="T:System.TimeOnly"/> 而不是 <see cref="T:System.DateTime"/>。
+            </summary>
+        </member>
+        <member name="M:Mirai.Net.Modules.IPeriodicModule.Execute">
+            <summary>
+            执行的具体实现逻辑。
+            </summary>
         </member>
     </members>
 </doc>

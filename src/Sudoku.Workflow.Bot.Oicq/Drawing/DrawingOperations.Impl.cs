@@ -38,9 +38,8 @@ partial class DrawingOperations
 		}
 
 		drawingContext.Puzzle = puzzle;
-		drawingContext.Painter.WithGrid(puzzle);
 
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.WithGrid(puzzle));
 	}
 
 	/// <summary>
@@ -69,9 +68,8 @@ partial class DrawingOperations
 		}
 
 		drawingContext.UpdateCandidatesViaPencilmarks();
-		drawingContext.Painter.WithGrid(drawingContext.Puzzle);
 
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.WithGrid(drawingContext.Puzzle));
 	}
 
 	/// <summary>
@@ -100,10 +98,30 @@ partial class DrawingOperations
 		}
 
 		drawingContext.UpdateCandidatesViaPencilmarks();
-		drawingContext.Painter.WithGrid(drawingContext.Puzzle);
 
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.WithGrid(drawingContext.Puzzle));
 	}
 
+	/// <summary>
+	/// 往绘图盘面里追加单元格涂色的视图节点。
+	/// </summary>
+	public static async Task AddCellNodesAsync(
+		GroupMessageReceiver messageReceiver,
+		DrawingContext drawingContext,
+		string rawString,
+		string colorString
+	)
+	{
+		var nodes = new HashSet<CellViewNode>(CellViewNodeComparer.Instance);
+		foreach (var element in rawString.LocalSplit())
+		{
+			if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9']
+				&& colorString.GetIdentifier() is { } identifier && DeconstructCharacters(r, c) is var cell)
+			{
+				nodes.Add(new(identifier, cell));
+			}
+		}
 
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(nodes));
+	}
 }

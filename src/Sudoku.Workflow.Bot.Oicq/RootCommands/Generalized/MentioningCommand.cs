@@ -18,7 +18,7 @@ file sealed class MentioningCommand : IModule
 			{
 				GroupId: var groupId,
 				Sender: var sender,
-				MessageChain: [SourceMessage, AtMessage { Target: BotNumber }, PlainMessage { Text: var message }]
+				MessageChain: [SourceMessage, AtMessage { Target: BotNumber }, PlainMessage { Text: var m }]
 			} messageReceiver)
 		{
 			return;
@@ -29,41 +29,32 @@ file sealed class MentioningCommand : IModule
 			return;
 		}
 
+		// 去掉头尾的空格。
+		m = m.Trim();
+
 		switch (context)
 		{
 			// 开始游戏指令。
-			case { AnsweringContext.CurrentTimesliceAnswered: { } answeredValues, ExecutingCommand: "开始游戏" }
-			when int.TryParse(message.Trim(), out var validInteger):
+			case { AnsweringContext.CurrentTimesliceAnswered: { } answered, ExecutingCommand: "开始游戏" } when int.TryParse(m, out var value):
 			{
-				answeredValues.Add(new(sender, validInteger));
+				answered.Add(new(sender, value));
 				break;
 			}
 
 			// 开始绘图指令。
 			case { DrawingContext: var drawingContext, ExecutingCommand: "开始绘图" }:
 			{
-				switch (message.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+				var task = m.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) switch
 				{
-					// 132：往 r1c3（即 A3 格）填入 2
-					case [var rawString]:
-					{
-						await DrawingOperations.SetDigitAsync(messageReceiver, drawingContext, rawString);
-						break;
-					}
-
-					// 增加 132：往 r1c3（即 A3 格）增加候选数 2
-					case ["增加", var rawString]:
-					{
-						await DrawingOperations.AddPencilmarkAsync(messageReceiver, drawingContext, rawString);
-						break;
-					}
-
-					// 删除 132：将 r1c3（即 A3 格）里的候选数 2 删去
-					case ["删除", var rawString]:
-					{
-						await DrawingOperations.RemovePencilmarkAsync(messageReceiver, drawingContext, rawString);
-						break;
-					}
+					[var s] => DrawingOperations.SetDigitAsync(messageReceiver, drawingContext, s),
+					["增加", var s] => DrawingOperations.AddPencilmarkAsync(messageReceiver, drawingContext, s),
+					["删除", var s] => DrawingOperations.RemovePencilmarkAsync(messageReceiver, drawingContext, s),
+					["涂色", var s, var c] => DrawingOperations.AddCellNodesAsync(messageReceiver, drawingContext, s, c),
+					_ => null
+				};
+				if (task is not null)
+				{
+					await task;
 				}
 
 				break;
