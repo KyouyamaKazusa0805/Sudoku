@@ -136,30 +136,28 @@ partial class DrawingOperations
 				continue;
 			}
 
-			switch (element)
+			if (element switch
 			{
-				// 单元格。
-				case [var r and >= '1' and <= '9', var c and >= '1' and <= '9'] when GetCellIndex(r, c) is var cell:
-				{
-					nodes.Add(new CellViewNode(identifier, cell));
-					break;
-				}
-
-				// 候选数。
-				case [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']
-				when GetCandidateIndex(r, c, d) is var (cell, digit):
-				{
-					nodes.Add(new CandidateViewNode(identifier, cell * 9 + digit));
-					break;
-				}
-
-				// 区域。
-				case [var r and ('行' or '列' or '宫' or 'R' or 'r' or 'C' or 'c' or 'B' or 'b'), var i and >= '1' and <= '9']
-				when GetHouseIndex(r, i) is var house:
-				{
-					nodes.Add(new HouseViewNode(identifier, house));
-					break;
-				}
+				[var r and >= '1' and <= '9', var c and >= '1' and <= '9']
+				when GetCellIndex(r, c) is var cell
+					=> new CellViewNode(identifier, cell), // 单元格。
+				[var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']
+				when GetCandidateIndex(r, c, d) is var (cell, digit)
+					=> new CandidateViewNode(identifier, cell * 9 + digit), // 候选数。
+				[var r and ('行' or '列' or '宫' or 'R' or 'r' or 'C' or 'c' or 'B' or 'b'), var i and >= '1' and <= '9']
+				when GetHouseIndex(r, i) is var house
+					=> new HouseViewNode(identifier, house), // 区域。
+				['大', var r and ('行' or '列'), var i and >= '1' and <= '3']
+				when GetChuteIndex(r, i) is var chute
+					=> new ChuteViewNode(identifier, chute), // 大行列（汉字匹配）。
+				['B' or 'b', var r and ('R' or 'r' or 'C' or 'c'), var i and >= '1' and <= '3']
+				when GetChuteIndex(r, i) is var chute
+					=> new ChuteViewNode(identifier, chute), // 大行列（字母匹配）。
+				_
+					=> default(ViewNode?) // 其他情况。
+			} is { } nodeToBeAdded)
+			{
+				nodes.Add(nodeToBeAdded);
 			}
 		}
 

@@ -128,4 +128,23 @@ internal static partial class DrawingOperations
 			'宫' or 'B' or 'b' => 0,
 			_ => throw new ArgumentException("The specified value is invalid.", nameof(r))
 		} + (i - '1');
+
+	/// <summary>
+	/// 将前文传入的两个字符信息直接转为“大行列类型名称”和“索引”两个数值，并表达成大行类的绝对索引值。大行列从 0 到 5 编号，分别表示 6 个不同的大行列类型
+	/// （大行 1-3、大列 1-3）。
+	/// </summary>
+	/// <param name="r">表示大行列类型的名称标签。支持的值可以是中文汉字“行”和“列”，也可以是表示区域的字母。</param>
+	/// <param name="i">索引。表示属于该大行列类型 <paramref name="r"/> 的顺数第几个。比如“大行2”就表示第 2 个大行。</param>
+	/// <returns>返回一个绝对索引，取值范围在 0 到 5 之间，包含边界。</returns>
+	/// <exception cref="ArgumentException">
+	/// <inheritdoc cref="GetHouseIndex(char, char)" path="/exception[@cref='ArgumentException']"/>
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static int GetChuteIndex(char r, char i)
+		=> r switch
+		{
+			'行' or 'R' or 'r' => 0,
+			'列' or 'C' or 'c' => 3,
+			_ => throw new ArgumentException("The specified value is invalid.", nameof(r))
+		} + (i - '1');
 }

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Gdip;
+namespace Sudoku.Gdip;
 
 partial class GridImageGenerator
 {
@@ -361,6 +361,44 @@ partial class GridImageGenerator
 			else if (pt1y > pt2y && pt1x < pt2x) { pt1.X += x / 2; pt1.Y -= y / 2; pt2.X -= x / 2; pt2.Y += y / 2; }
 			else if (pt1y < pt2y && pt1x > pt2x) { pt1.X -= x / 2; pt1.Y += y / 2; pt2.X += x / 2; pt2.Y -= y / 2; }
 			else if (pt1y < pt2y && pt1x < pt2x) { pt1.X += x / 2; pt1.Y += y / 2; pt2.X -= x / 2; pt2.Y -= y / 2; }
+		}
+	}
+
+	/// <summary>
+	/// Draw chutes.
+	/// </summary>
+	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
+	private void DrawChute(Graphics g)
+	{
+		if (this is not { View: { } view, Preferences.ShowLightHouse: var showLightHouse })
+		{
+			return;
+		}
+
+		foreach (var chuteNode in view.OfType<ChuteViewNode>())
+		{
+			if (chuteNode is not { ChuteIndex: var chute, Identifier: var id })
+			{
+				continue;
+			}
+
+			var color = GetColor(id);
+			using var brush = new SolidBrush(showLightHouse ? color.QuarterAlpha() : color);
+
+			if (chute is >= 0 and < 3)
+			{
+				var (pt1, _) = Calculator.GetAnchorsViaHouse(9 + chute * 3);
+				var (_, pt2) = Calculator.GetAnchorsViaHouse(8 + (chute + 1) * 3);
+				var rect = RectangleCreator.Create(pt1, pt2);
+				g.FillRectangle(brush, rect);
+			}
+			else
+			{
+				var (pt1, _) = Calculator.GetAnchorsViaHouse(18 + (chute - 3) * 3);
+				var (_, pt2) = Calculator.GetAnchorsViaHouse(17 + (chute - 2) * 3);
+				var rect = RectangleCreator.Create(pt1, pt2);
+				g.FillRectangle(brush, rect);
+			}
 		}
 	}
 

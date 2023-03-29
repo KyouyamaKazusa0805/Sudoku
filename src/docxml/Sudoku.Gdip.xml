@@ -945,6 +945,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawChute(System.Drawing.Graphics)">
+            <summary>
+            Draw chutes.
+            </summary>
+            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
+        </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawUnknownValue(System.Drawing.Graphics)">
             <summary>
             Draw unknown values.

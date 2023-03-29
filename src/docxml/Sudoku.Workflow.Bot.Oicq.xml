@@ -954,6 +954,18 @@
             这也是为什么我把这个方法定义为 <see langword="private"/> 的原因。
             </exception>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.GetChuteIndex(System.Char,System.Char)">
+            <summary>
+            将前文传入的两个字符信息直接转为“大行列类型名称”和“索引”两个数值，并表达成大行类的绝对索引值。大行列从 0 到 5 编号，分别表示 6 个不同的大行列类型
+            （大行 1-3、大列 1-3）。
+            </summary>
+            <param name="r">表示大行列类型的名称标签。支持的值可以是中文汉字“行”和“列”，也可以是表示区域的字母。</param>
+            <param name="i">索引。表示属于该大行列类型 <paramref name="r"/> 的顺数第几个。比如“大行2”就表示第 2 个大行。</param>
+            <returns>返回一个绝对索引，取值范围在 0 到 5 之间，包含边界。</returns>
+            <exception cref="T:System.ArgumentException">
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.GetHouseIndex(System.Char,System.Char)" path="/exception[@cref='ArgumentException']"/>
+            </exception>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.SetDigitAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
             <summary>
             往绘图盘面内填入一个数（或者去掉一个填数）。
