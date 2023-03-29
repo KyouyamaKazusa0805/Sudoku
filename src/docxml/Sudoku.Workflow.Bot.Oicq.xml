@@ -1602,21 +1602,6 @@
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.MentioningCommand.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.Extensions.UpdateCandidatesViaPencilmarks(Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext)">
-            <summary>
-            将该实例的 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/> 属性，所代表的候选数覆盖到 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/> 属性之中。
-            </summary>
-            <param name="this">表示作用于某实例。</param>
-            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/>
-            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/>
-        </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserDataCommand.UserNickname">
             <summary>
             表示你要为谁进行加分操作。该参数指定的是用户的群名片。

@@ -71,32 +71,3 @@ file sealed class MentioningCommand : IModule
 		}
 	}
 }
-
-/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
-file static class Extensions
-{
-	/// <summary>
-	/// 将该实例的 <see cref="DrawingContext.Pencilmarks"/> 属性，所代表的候选数覆盖到 <see cref="DrawingContext.Puzzle"/> 属性之中。
-	/// </summary>
-	/// <param name="this">表示作用于某实例。</param>
-	/// <seealso cref="DrawingContext.Pencilmarks"/>
-	/// <seealso cref="DrawingContext.Puzzle"/>
-	public static void UpdateCandidatesViaPencilmarks(this DrawingContext @this)
-	{
-		var puzzle = @this.Puzzle;
-		for (var c = 0; c < 81; c++)
-		{
-			if (puzzle.GetStatus(c) is CellStatus.Given or CellStatus.Modifiable)
-			{
-				continue;
-			}
-
-			for (var d = 0; d < 9; d++)
-			{
-				puzzle[c, d] = @this.Pencilmarks.Contains(c * 9 + d);
-			}
-		}
-
-		@this.Puzzle = puzzle;
-	}
-}
