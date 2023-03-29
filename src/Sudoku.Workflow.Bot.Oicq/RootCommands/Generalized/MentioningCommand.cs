@@ -50,6 +50,7 @@ file sealed class MentioningCommand : IModule
 					["增加", var s] => DrawingOperations.AddPencilmarkAsync(messageReceiver, drawingContext, s),
 					["删除", var s] => DrawingOperations.RemovePencilmarkAsync(messageReceiver, drawingContext, s),
 					["涂色", var s, var c] => DrawingOperations.AddBasicViewNodesAsync(messageReceiver, drawingContext, s, c),
+					["代数" or "袋鼠", var s, [var c and (>= 'A' and <= 'Z' or >= 'a' and <= 'z')]] => DrawingOperations.AddBabaGroupNodesAsync(messageReceiver, drawingContext, s, (Utf8Char)c),
 					_ => null
 				};
 				if (task is not null)

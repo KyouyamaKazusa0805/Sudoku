@@ -994,13 +994,21 @@
             <item>区域 <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/></item>
             <item>大行列 <see cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/></item>
             <item>链的强弱关系 <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/></item>
-            <item>代数字母 <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/></item>
+            <item>
+            代数字母 <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>
+            （这个在 <see cref="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.AddBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Utf8Char)"/> 方法里处理）
+            </item>
             </list>
             顺带一提，之所以给代数取名叫 <c>BabaGroup</c>，是因为有一个游戏叫《<see href="https://www.hempuli.com/baba/">Baba Is You</see>》。
             这游戏里有一个 Group 单词，表示放在谓词 Is 左边的词语属于同一组处理逻辑。代数思想和这一点非常相似（也是一组数字按同一种思路推导），
             恰好这技巧又没有英语名字，就干脆取了个这个名字。
             </remarks>
             <seealso cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.AddBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Utf8Char)">
+            <summary>
+            往绘图盘面里面追加代数字母的视图节点。
+            </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Drawing.ViewNodeComparer">
             <summary>

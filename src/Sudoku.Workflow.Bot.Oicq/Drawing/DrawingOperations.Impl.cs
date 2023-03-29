@@ -114,7 +114,10 @@ partial class DrawingOperations
 	/// <item>区域 <see cref="HouseViewNode"/></item>
 	/// <item>大行列 <see cref="ChuteViewNode"/></item>
 	/// <item>链的强弱关系 <see cref="LinkViewNode"/></item>
-	/// <item>代数字母 <see cref="BabaGroupViewNode"/></item>
+	/// <item>
+	/// 代数字母 <see cref="BabaGroupViewNode"/>
+	/// （这个在 <see cref="AddBabaGroupNodesAsync(GroupMessageReceiver, DrawingContext, string, Utf8Char)"/> 方法里处理）
+	/// </item>
 	/// </list>
 	/// 顺带一提，之所以给代数取名叫 <c>BabaGroup</c>，是因为有一个游戏叫《<see href="https://www.hempuli.com/baba/">Baba Is You</see>》。
 	/// 这游戏里有一个 Group 单词，表示放在谓词 Is 左边的词语属于同一组处理逻辑。代数思想和这一点非常相似（也是一组数字按同一种思路推导），
@@ -128,14 +131,14 @@ partial class DrawingOperations
 		string colorString
 	)
 	{
+		if (colorString.GetIdentifier() is not { } identifier)
+		{
+			return;
+		}
+
 		var nodes = new HashSet<ViewNode>(ViewNodeComparer.Instance);
 		foreach (var element in rawString.LocalSplit())
 		{
-			if (colorString.GetIdentifier() is not { } identifier)
-			{
-				continue;
-			}
-
 			if (element switch
 			{
 				[var r and >= '1' and <= '9', var c and >= '1' and <= '9']
@@ -159,6 +162,43 @@ partial class DrawingOperations
 			{
 				nodes.Add(nodeToBeAdded);
 			}
+		}
+
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(nodes));
+	}
+
+	/// <summary>
+	/// 往绘图盘面里面追加代数字母的视图节点。
+	/// </summary>
+	public static async Task AddBabaGroupNodesAsync(
+		GroupMessageReceiver messageReceiver,
+		DrawingContext drawingContext,
+		string rawString,
+		Utf8Char character
+	)
+	{
+		var nodes = new HashSet<BabaGroupViewNode>(ViewNodeComparer.Instance); // 这里用到的是接口泛型参数的逆变性。
+		foreach (var element in rawString.LocalSplit())
+		{
+			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
+			{
+				continue;
+			}
+
+			var cell = GetCellIndex(r, c);
+			nodes.Add(
+				new(
+					// 这里是 Identifier。因为程序设计的缘故，代数的字母是不能调颜色的，所以这里设啥都没用。
+					// 这里只是因为这个类型走 ViewNode 派生，而 ViewNode 需要一个 Identifier 罢了。
+					default,
+					cell,
+					character,
+					// 这个参数是保留给找代数技巧的时候用的，表示的是这个代数字母代表哪些数字。
+					// 比如远程数对技巧里的字母 x 可以表示两种数字，这个参数传入的就是这两个数字的掩码信息（1 << digit1 | 1 << digit2)。
+					// 这里是绘图，所以跟这个参数没有任何关系——它在绘图操作期间是用不上的，这里我们设置啥都可以。
+					Grid.MaxCandidatesMask
+				)
+			);
 		}
 
 		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(nodes));
@@ -220,6 +260,8 @@ file sealed class ViewNodeComparer : IEqualityComparer<ViewNode>
 			(CellViewNode a, CellViewNode b) => a.Cell == b.Cell,
 			(CandidateViewNode a, CandidateViewNode b) => a.Candidate == b.Candidate,
 			(HouseViewNode a, HouseViewNode b) => a.House == b.House,
+			(ChuteViewNode a, ChuteViewNode b) => a.ChuteIndex == b.ChuteIndex,
+			(BabaGroupViewNode a, BabaGroupViewNode b) => a.Cell == b.Cell,
 			_ => false
 		};
 
@@ -230,6 +272,8 @@ file sealed class ViewNodeComparer : IEqualityComparer<ViewNode>
 			CellViewNode o => o.Cell,
 			CandidateViewNode o => o.Candidate,
 			HouseViewNode o => o.House,
+			ChuteViewNode o => o.ChuteIndex,
+			BabaGroupViewNode o => o.Cell,
 			_ => 0
 		};
 }
