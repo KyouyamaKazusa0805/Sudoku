@@ -7,12 +7,6 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized;
 [Command]
 file sealed class MentioningCommand : IModule
 {
-	/// <summary>
-	/// 字符串的分割字符，用于绘图操作输入一系列数据的时候使用。
-	/// </summary>
-	private static readonly char[] Separator = { ',', '，' };
-
-
 	/// <inheritdoc/>
 	bool? IModule.IsEnable { get; set; } = true;
 
@@ -35,7 +29,6 @@ file sealed class MentioningCommand : IModule
 			return;
 		}
 
-		const StringSplitOptions splitOptions = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries;
 		switch (context)
 		{
 			// 开始游戏指令。
@@ -49,108 +42,26 @@ file sealed class MentioningCommand : IModule
 			// 开始绘图指令。
 			case { DrawingContext: var drawingContext, ExecutingCommand: "开始绘图" }:
 			{
-				switch (message.Trim().Split(' ', splitOptions))
+				switch (message.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
 				{
 					// 132：往 r1c3（即 A3 格）填入 2
 					case [var rawString]:
 					{
-						var puzzle = drawingContext.Puzzle;
-						foreach (var element in split(rawString))
-						{
-							if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '0' and <= '9']
-								&& g(r, c, d) is var (cell, digit))
-							{
-								switch (drawingContext.Puzzle.GetStatus(cell))
-								{
-									case CellStatus.Undefined:
-									case CellStatus.Modifiable:
-									{
-										if (digit == -1)
-										{
-											puzzle.SetMask(cell, 0);
-										}
-										else
-										{
-											puzzle[cell] = digit;
-										}
-
-										break;
-									}
-									case not CellStatus.Given:
-									{
-										@throw();
-										break;
-									}
-								}
-							}
-						}
-
-						drawingContext.Puzzle = puzzle;
-						drawingContext.Painter.WithGrid(puzzle);
-
-						await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
+						await DrawingOperations.SetDigitAsync(messageReceiver, drawingContext, rawString);
 						break;
 					}
 
 					// 增加 132：往 r1c3（即 A3 格）增加候选数 2
 					case ["增加", var rawString]:
 					{
-						foreach (var element in split(rawString))
-						{
-							if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']
-								&& g(r, c, d) is var (cell, digit))
-							{
-								switch (drawingContext.Puzzle.GetStatus(cell))
-								{
-									case CellStatus.Undefined:
-									{
-										drawingContext.Pencilmarks.Add(cell * 9 + digit);
-										break;
-									}
-									case not (CellStatus.Modifiable or CellStatus.Given):
-									{
-										@throw();
-										break;
-									}
-								}
-							}
-						}
-
-						drawingContext.UpdateCandidatesViaPencilmarks();
-						drawingContext.Painter.WithGrid(drawingContext.Puzzle);
-
-						await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
+						await DrawingOperations.AddPencilmarkAsync(messageReceiver, drawingContext, rawString);
 						break;
 					}
 
 					// 删除 132：将 r1c3（即 A3 格）里的候选数 2 删去
 					case ["删除", var rawString]:
 					{
-						foreach (var element in split(rawString))
-						{
-							if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']
-								&& g(r, c, d) is var (cell, digit))
-							{
-								switch (drawingContext.Puzzle.GetStatus(cell))
-								{
-									case CellStatus.Undefined:
-									{
-										drawingContext.Pencilmarks.Remove(cell * 9 + digit);
-										break;
-									}
-									case not (CellStatus.Modifiable or CellStatus.Given):
-									{
-										@throw();
-										break;
-									}
-								}
-							}
-						}
-
-						drawingContext.UpdateCandidatesViaPencilmarks();
-						drawingContext.Painter.WithGrid(drawingContext.Puzzle);
-
-						await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
+						await DrawingOperations.RemovePencilmarkAsync(messageReceiver, drawingContext, rawString);
 						break;
 					}
 				}
@@ -158,17 +69,6 @@ file sealed class MentioningCommand : IModule
 				break;
 			}
 		}
-
-
-		[DoesNotReturn]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void @throw() => throw new InvalidOperationException("Operation failed due to internal exception.");
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static string[] split(string rawString) => rawString.Split(Separator, splitOptions);
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static (int Cell, int Digit) g(char r, char c, char d) => ((r - '1') * 9 + (c - '1'), d - '1');
 	}
 }
 

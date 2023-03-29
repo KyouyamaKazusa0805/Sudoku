@@ -874,6 +874,73 @@
             </code>
             </remarks>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations">
+            <summary>
+            提供一些基本绘图操作，和 <see cref="N:Sudoku.Drawing"/> 以及 <see cref="N:Sudoku.Gdip"/> 命名空间进行交互的方法集。
+            </summary>
+            <seealso cref="N:Sudoku.Drawing"/>
+            <seealso cref="N:Sudoku.Gdip"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.SplitOptionsBoth">
+            <summary>
+            用于 <see cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/> 操作的枚举常量值，
+            表示既将空白字符片段舍弃（对应 <see cref="F:System.StringSplitOptions.RemoveEmptyEntries"/>），
+            又将其它满足条件的片段的头尾空白字符自动去除（对应 <see cref="F:System.StringSplitOptions.TrimEntries"/>）。
+            </summary>
+            <seealso cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/>
+            <seealso cref="F:System.StringSplitOptions.RemoveEmptyEntries"/>
+            <seealso cref="F:System.StringSplitOptions.TrimEntries"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.Separator">
+            <summary>
+            字符串的分割字符，用于绘图操作输入一系列数据的时候使用。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.DefaultException">
+            <summary>
+            用于快捷抛出的 <see cref="T:System.InvalidOperationException"/> 异常实例。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.UpdateCandidatesViaPencilmarks(Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext)">
+            <summary>
+            将该实例的 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/> 属性，所代表的候选数覆盖到 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/> 属性之中。
+            </summary>
+            <param name="this">表示作用于某实例。</param>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.LocalSplit(System.String)">
+            <summary>
+            快捷调用 <see cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/> 操作。
+            </summary>
+            <param name="this">需要处理的字符串。</param>
+            <returns>将字符串进行分割之后的数组序列，去掉了头尾的空白字符，也舍弃掉了只有空白字符的匹配项。</returns>
+            <seealso cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.DeconstructCharacters(System.Char,System.Char,System.Char)">
+            <summary>
+            将前文传入的三个字符信息直接转为“行”、“列”和“数”三个数值，然后将其解析成合适的单元格坐标和数，以二元组（数对）的形式返回。
+            </summary>
+            <param name="r">一个字符，表示一个所在行的数据。</param>
+            <param name="c">一个字符，表示一个所在列的数据。</param>
+            <param name="d">一个字符，表示一个数值数据。</param>
+            <returns>一个二元组（数对），其中一个元素是单元格，第二个元素是数值。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.SetDigitAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            往绘图盘面内填入一个数（或者去掉一个填数）。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.AddPencilmarkAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            往绘图盘面内追加一个候选数标记。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.RemovePencilmarkAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            从绘图盘面内删除一个已经标记了的候选数。
+            </summary>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler">
             <summary>
             提供一个分数（经验值和金币）的处理器类型。
@@ -1527,11 +1594,6 @@
             <summary>
             艾特指令。该指令较为特殊，它不带有前缀，也不是人触发的条件。
             它主要是为了去处理一些其他指令里的回复情况，如开始游戏后，回答问题需要艾特的时候，就会用到这个指令来处理。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.MentioningCommand.Separator">
-            <summary>
-            字符串的分割字符，用于绘图操作输入一系列数据的时候使用。
             </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.MentioningCommand.Mirai#Net#Modules#IModule#IsEnable">

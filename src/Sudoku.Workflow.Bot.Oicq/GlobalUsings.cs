@@ -35,6 +35,7 @@ global using Sudoku.Solving.Logical;
 global using Sudoku.Solving.Logical.Techniques;
 global using Sudoku.Workflow.Bot.Oicq.Annotations;
 global using Sudoku.Workflow.Bot.Oicq.ComponentModel;
+global using Sudoku.Workflow.Bot.Oicq.Drawing;
 global using Sudoku.Workflow.Bot.Oicq.Handlers;
 global using Sudoku.Workflow.Bot.Oicq.Lifecycle;
 global using Sudoku.Workflow.Bot.Oicq.Parsing;
