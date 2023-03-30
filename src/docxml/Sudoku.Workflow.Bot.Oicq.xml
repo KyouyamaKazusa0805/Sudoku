@@ -1007,12 +1007,84 @@
             <seealso cref="N:Sudoku.Drawing"/>
             <seealso cref="N:Sudoku.Gdip"/>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RecordBasicNodesInternal(System.String,Sudoku.Presentation.Identifier)">
+            <summary>
+            内部方法，记录 <see cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/> 类型的节点。
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GenerateCachedPicturePath(Sudoku.Drawing.ISudokuPainter)">
             <summary>
             产生一个图片缓存路径，根据 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 类型的实例给绘制出来，并保存到此缓存路径下。
             </summary>
             <param name="painter">一个 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 的绘图实例。</param>
             <returns>图片在本地存储的缓存路径。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddBasicViewNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
+            <summary>
+            往绘图盘面里追加涂色的视图节点。这些基本节点均走 <see cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/> 类型进行派生，
+            这个方法也是为了处理所有走该类型派生的具体实例的绘图逻辑。
+            </summary>
+            <remarks>
+            这个方法处理的视图节点包含如下这些：
+            <list type="bullet">
+            <item>单元格 <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/></item>
+            <item>候选数 <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/></item>
+            <item>区域 <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/></item>
+            <item>大行列 <see cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/></item>
+            <item>链的强弱关系 <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/></item>
+            <item>
+            代数字母 <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>
+            （这个在 <see cref="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Utf8Char)"/> 方法里处理）
+            </item>
+            </list>
+            顺带一提，之所以给代数取名叫 <c>BabaGroup</c>，是因为有一个游戏叫《<see href="https://www.hempuli.com/baba/">Baba Is You</see>》。
+            这游戏里有一个 Group 单词，表示放在谓词 Is 左边的词语属于同一组处理逻辑。代数思想和这一点非常相似（也是一组数字按同一种思路推导），
+            恰好这技巧又没有英语名字，就干脆取了个这个名字。
+            </remarks>
+            <seealso cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveBasicViewNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            从绘图盘面内删除指定的绘图节点。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Utf8Char)">
+            <summary>
+            往绘图盘面里面追加代数字母的视图节点。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            从绘图盘面内删除代数字母的视图节点。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddLinkNodeAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String,System.String)">
+            <summary>
+            往绘图盘面内绘制一条强或弱关系的链的连接线。
+            </summary>
+            <remarks>
+            注意，追加链的线条的时候，强或弱是必要的选项。因为它影响了绘制的逻辑。
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveLinkNodeAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
+            <summary>
+            从绘图盘面里删除一条强或弱关系的连接线。
+            </summary>
+            <remarks>
+            注意，删除链的线条的时候，是强或弱都无关紧要了。这是因为，链的强弱关系不可能在同一时刻落在同样两个候选数之上，
+            不论这两个节点原本是强还是弱，都不能再叠加新的重叠的线条。
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddFigureViewNodeAsync``1(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String,System.Func{Sudoku.Presentation.Identifier,System.Int32,``0})">
+            <summary>
+            添加一个单元格图标。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveFigureViewNodeAsync``1(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Func{System.Int32,``0})">
+            <summary>
+            删除一个单元格图标。
+            </summary>
         </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SplitOptionsBoth">
             <summary>
@@ -1034,13 +1106,10 @@
             用于快捷抛出的 <see cref="T:System.InvalidOperationException"/> 异常实例。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.UpdateCandidatesViaPencilmarks(Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.ClearAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.BotRunningContext)">
             <summary>
-            将该实例的 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/> 属性，所代表的候选数覆盖到 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/> 属性之中。
+            直接清空整个绘图操作里已经设置了的视图节点，恢复为空盘面。
             </summary>
-            <param name="this">表示作用于某实例。</param>
-            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/>
-            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.LocalSplit(System.String)">
             <summary>
@@ -1106,17 +1175,7 @@
             <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetHouseIndex(System.Char,System.Char)" path="/exception[@cref='ArgumentException']"/>
             </exception>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RecordBasicNodesInternal(System.String,Sudoku.Presentation.Identifier)">
-            <summary>
-            内部方法，记录 <see cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/> 类型的节点。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.ClearAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.BotRunningContext)">
-            <summary>
-            直接清空整个绘图操作里已经设置了的视图节点，恢复为空盘面。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SetDigitAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SetOrDeleteDigitAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
             <summary>
             往绘图盘面内填入一个数（或者去掉一个填数）。
             </summary>
@@ -1131,62 +1190,6 @@
             从绘图盘面内删除一个已经标记了的候选数。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddBasicViewNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
-            <summary>
-            往绘图盘面里追加涂色的视图节点。这些基本节点均走 <see cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/> 类型进行派生，
-            这个方法也是为了处理所有走该类型派生的具体实例的绘图逻辑。
-            </summary>
-            <remarks>
-            这个方法处理的视图节点包含如下这些：
-            <list type="bullet">
-            <item>单元格 <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/></item>
-            <item>候选数 <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/></item>
-            <item>区域 <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/></item>
-            <item>大行列 <see cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/></item>
-            <item>链的强弱关系 <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/></item>
-            <item>
-            代数字母 <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>
-            （这个在 <see cref="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Utf8Char)"/> 方法里处理）
-            </item>
-            </list>
-            顺带一提，之所以给代数取名叫 <c>BabaGroup</c>，是因为有一个游戏叫《<see href="https://www.hempuli.com/baba/">Baba Is You</see>》。
-            这游戏里有一个 Group 单词，表示放在谓词 Is 左边的词语属于同一组处理逻辑。代数思想和这一点非常相似（也是一组数字按同一种思路推导），
-            恰好这技巧又没有英语名字，就干脆取了个这个名字。
-            </remarks>
-            <seealso cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveBasicViewNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
-            <summary>
-            从绘图盘面内删除指定的绘图节点。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Utf8Char)">
-            <summary>
-            往绘图盘面里面追加代数字母的视图节点。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
-            <summary>
-            从绘图盘面内删除代数字母的视图节点。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddLinkNodeAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String,System.String)">
-            <summary>
-            往绘图盘面内绘制一条强或弱关系的链的连接线。
-            </summary>
-            <remarks>
-            注意，追加链的线条的时候，强或弱是必要的选项。因为它影响了绘制的逻辑。
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveLinkNodeAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
-            <summary>
-            从绘图盘面里删除一条强或弱关系的连接线。
-            </summary>
-            <remarks>
-            注意，删除链的线条的时候，是强或弱都无关紧要了。这是因为，链的强弱关系不可能在同一时刻落在同样两个候选数之上，
-            不论这两个节点原本是强还是弱，都不能再叠加新的重叠的线条。
-            </remarks>
-        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.ApplyGridAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
             <summary>
             从 <paramref name="gridString"/> 之中获取盘面的文本字符串，并直接解析成合适的 <see cref="T:Sudoku.Concepts.Grid"/> 盘面数据后，直接导入到绘图盘面里使用。
@@ -1199,6 +1202,14 @@
             <seealso cref="T:Sudoku.Concepts.Grid"/>
             <seealso cref="F:Sudoku.Concepts.CellStatus.Empty"/>
             <seealso cref="F:Sudoku.Concepts.CellStatus.Undefined"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.UpdateCandidatesViaPencilmarks(Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext)">
+            <summary>
+            将该实例的 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/> 属性，所代表的候选数覆盖到 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/> 属性之中。
+            </summary>
+            <param name="this">表示作用于某实例。</param>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations">
             <summary>
