@@ -109,7 +109,7 @@ public abstract class Command : IModule
 		}
 
 		if (RequiredUserLevel != 0
-			&& (StorageHandler.Read(senderId) is not { ExperiencePoint: var exp } || ScoreHandler.GetGrade(exp) < RequiredUserLevel))
+			&& (UserOperations.Read(senderId) is not { ExperiencePoint: var exp } || ScoringOperation.GetGrade(exp) < RequiredUserLevel))
 		{
 			await gmr.SendMessageAsync($"抱歉，该至少需要用户达到 {RequiredUserLevel} 级才可使用。");
 			return;

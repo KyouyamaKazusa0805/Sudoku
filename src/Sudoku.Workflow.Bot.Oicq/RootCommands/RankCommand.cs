@@ -16,7 +16,7 @@ internal sealed class RankCommand : Command
 		}
 
 		var context = BotRunningContext.GetContext(group);
-		var usersData = (await ScoreHandler.GetUserRankingListAsync(group, async () => await messageReceiver.SendMessageAsync("群用户列表为空。")))!.Take(10);
+		var usersData = (await ScoringOperation.GetUserRankingListAsync(group, async () => await messageReceiver.SendMessageAsync("群用户列表为空。")))!.Take(10);
 
 		await messageReceiver.SendMessageAsync(
 			$"""
@@ -30,7 +30,7 @@ internal sealed class RankCommand : Command
 						var qq = pair.Data.Number;
 						var score = pair.Data.ExperiencePoint;
 						var coin = pair.Data.Coin;
-						var grade = ScoreHandler.GetGrade(score);
+						var grade = ScoringOperation.GetGrade(score);
 						return $"#{i + 1,2} {name}（{qq}） 🚩{score} 💴{coin} 🏅{grade}";
 					}
 				)

@@ -264,7 +264,7 @@ internal sealed class QueryCommand : Command
 
 		async Task getResultMessage(string senderName, string senderId, string? viewContentKind, Group group)
 		{
-			switch (StorageHandler.Read(senderId))
+			switch (UserOperations.Read(senderId))
 			{
 				case
 				{
@@ -289,11 +289,11 @@ internal sealed class QueryCommand : Command
 								---
 								经验值：{score}
 								金币：{coin}
-								级别：{ScoreHandler.GetGrade(score)}
-								排名：第 {getRank((await ScoreHandler.GetUserRankingListAsync(group, rankingEmptyCallback))!)} 名
+								级别：{ScoringOperation.GetGrade(score)}
+								排名：第 {getRank((await ScoringOperation.GetUserRankingListAsync(group, rankingEmptyCallback))!)} 名
 								连续签到天数：{comboCheckedIn}
-								签到倍数：{ScoreHandler.GetCheckInRate(comboCheckedIn)}
-								总倍数：{ScoreHandler.GetGlobalRate(cardLevel):0.0}（卡片 {cardLevel} 级）
+								签到倍数：{ScoringOperation.GetCheckInRate(comboCheckedIn)}
+								总倍数：{ScoringOperation.GetGlobalRate(cardLevel):0.0}（卡片 {cardLevel} 级）
 								"""
 							);
 							break;
@@ -382,7 +382,7 @@ internal sealed class QueryCommand : Command
 										: Array.Exists(auxiliary, card => main - card >= 3)
 											? $"查询失败。主卡级别为 {main}，但填入的辅助卡级别存在至少一张卡的等级和主卡级别差了 3 级甚至以上。不支持这种强化。"
 											: (
-												ScoreHandler.GetUpLevelingSuccessPossibility(main, auxiliary, clover),
+												ScoringOperation.GetUpLevelingSuccessPossibility(main, auxiliary, clover),
 												clover == -1 ? string.Empty : $"，三叶草等级：{clover}"
 											) switch
 											{

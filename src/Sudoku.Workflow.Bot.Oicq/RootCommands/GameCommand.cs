@@ -134,11 +134,11 @@ internal sealed class GameCommand : Command
 										? string.Join(
 											Environment.NewLine,
 											from tuple in scoringTableLines
-											let user = StorageHandler.Read(tuple.Id, new() { Number = tuple.Id })
+											let user = UserOperations.Read(tuple.Id, new() { Number = tuple.Id })
 											let scoreEarned = LocalScorer.GetExperiencePoint(tuple.ExperiencePoint, user.CardLevel)
 											let coinEarned = LocalScorer.GetCoin(tuple.Coin, user.CardLevel)
-											let finalScoreToDisplay = ScoreHandler.GetEarnedScoringDisplayingString(scoreEarned)
-											let finalCoinToDisplay = ScoreHandler.GetEarnedCoinDisplayingString(coinEarned)
+											let finalScoreToDisplay = ScoringOperation.GetEarnedScoringDisplayingString(scoreEarned)
+											let finalCoinToDisplay = ScoringOperation.GetEarnedCoinDisplayingString(coinEarned)
 											let earnedItemName = tuple.EarnedItem is { } earnedItem ? $"，{earnedItem.GetName()} * 1" : string.Empty
 											select $"{tuple.UserName}（{tuple.Id}）{separator}{finalScoreToDisplay} 经验，{finalCoinToDisplay} 金币{earnedItemName}"
 										)
@@ -179,11 +179,11 @@ internal sealed class GameCommand : Command
 					? string.Join(
 						Environment.NewLine,
 						from tuple in scoringTableLinesDeductOnly
-						let user = StorageHandler.Read(tuple.Id, new() { Number = tuple.Id })
+						let user = UserOperations.Read(tuple.Id, new() { Number = tuple.Id })
 						let scoreEarned = LocalScorer.GetExperiencePoint(tuple.ExperiencePoint, user.CardLevel)
 						let coinEarned = LocalScorer.GetCoin(tuple.Coin, user.CardLevel)
-						let finalScoreToDisplay = ScoreHandler.GetEarnedScoringDisplayingString(scoreEarned)
-						let finalCoinToDisplay = ScoreHandler.GetEarnedCoinDisplayingString(coinEarned)
+						let finalScoreToDisplay = ScoringOperation.GetEarnedScoringDisplayingString(scoreEarned)
+						let finalCoinToDisplay = ScoringOperation.GetEarnedCoinDisplayingString(coinEarned)
 						select $"{tuple.UserName}（{tuple.Id}）{separator}{finalScoreToDisplay} 经验，{finalCoinToDisplay} 金币"
 					)
 					: "无"
@@ -212,7 +212,7 @@ internal sealed class GameCommand : Command
 		{
 			foreach (var (_, id, score, coin, earnedItemNullable, times, isCorrectedUser) in scoringTableLines)
 			{
-				var user = StorageHandler.Read(id, new() { Number = id, LastCheckIn = DateTime.MinValue });
+				var user = UserOperations.Read(id, new() { Number = id, LastCheckIn = DateTime.MinValue });
 				user.ExperiencePoint += LocalScorer.GetExperiencePoint(score, user.CardLevel);
 				user.Coin += LocalScorer.GetCoin(coin, user.CardLevel);
 
@@ -236,7 +236,7 @@ internal sealed class GameCommand : Command
 					user.Items[earnedItem]++;
 				}
 
-				StorageHandler.Write(user);
+				UserOperations.Write(user);
 			}
 		}
 
@@ -393,7 +393,7 @@ file static class LocalScorer
 			2 => 12,
 			>= 3 => 18,
 			_ => throw new ArgumentOutOfRangeException(nameof(times))
-		} * ScoreHandler.GetWeekendFactor();
+		} * ScoringOperation.GetWeekendFactor();
 
 	/// <summary>
 	/// 获得金币获得的基础数值。
@@ -423,7 +423,7 @@ file static class LocalScorer
 			_ => throw new ArgumentOutOfRangeException(nameof(difficultyLevel))
 		};
 
-		return @base * ScoreHandler.GetWeekendFactor();
+		return @base * ScoringOperation.GetWeekendFactor();
 	}
 
 	/// <summary>
@@ -434,7 +434,7 @@ file static class LocalScorer
 	/// <returns>经验值。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetExperiencePoint(int @base, int cardLevel)
-		=> (int)Round(@base * ScoreHandler.GetGlobalRate(cardLevel)) * ScoreHandler.GetWeekendFactor();
+		=> (int)Round(@base * ScoringOperation.GetGlobalRate(cardLevel)) * ScoringOperation.GetWeekendFactor();
 
 	/// <summary>
 	/// 获得的金币。
@@ -443,7 +443,7 @@ file static class LocalScorer
 	/// <param name="cardLevel">用户的卡片级别。</param>
 	/// <returns>金币。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCoin(int @base, int cardLevel) => (int)Round(@base * ScoreHandler.GetGlobalRate(cardLevel)) * ScoreHandler.GetWeekendFactor();
+	public static int GetCoin(int @base, int cardLevel) => (int)Round(@base * ScoringOperation.GetGlobalRate(cardLevel)) * ScoringOperation.GetWeekendFactor();
 
 	/// <summary>
 	/// 获得的物品。

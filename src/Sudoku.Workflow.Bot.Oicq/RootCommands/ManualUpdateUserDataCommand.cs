@@ -98,9 +98,9 @@ internal sealed class ManualUpdateUserDataCommand : Command
 						await messageReceiver.SendMessageAsync(
 							$"恭喜用户“{name}”获得{(expAdd, coinAdd) switch
 							{
-								(not 0, 0) => $" {ScoreHandler.GetEarnedScoringDisplayingString(expAdd)} 经验",
-								(0, not 0) => $" {ScoreHandler.GetEarnedCoinDisplayingString(coinAdd)} 金币",
-								_ => $" {ScoreHandler.GetEarnedScoringDisplayingString(expAdd)} 经验，{ScoreHandler.GetEarnedCoinDisplayingString(coinAdd)} 金币"
+								(not 0, 0) => $" {ScoringOperation.GetEarnedScoringDisplayingString(expAdd)} 经验",
+								(0, not 0) => $" {ScoringOperation.GetEarnedCoinDisplayingString(coinAdd)} 金币",
+								_ => $" {ScoringOperation.GetEarnedScoringDisplayingString(expAdd)} 经验，{ScoringOperation.GetEarnedCoinDisplayingString(coinAdd)} 金币"
 							}}！"
 						);
 
@@ -133,9 +133,9 @@ internal sealed class ManualUpdateUserDataCommand : Command
 						await messageReceiver.SendMessageAsync(
 							$"恭喜用户“{name}”获得{(expAdd, coinAdd) switch
 							{
-								(not 0, 0) => $" {ScoreHandler.GetEarnedScoringDisplayingString(expAdd)} 经验",
-								(0, not 0) => $" {ScoreHandler.GetEarnedCoinDisplayingString(coinAdd)} 金币",
-								_ => $" {ScoreHandler.GetEarnedScoringDisplayingString(expAdd)} 经验，{ScoreHandler.GetEarnedCoinDisplayingString(coinAdd)} 金币"
+								(not 0, 0) => $" {ScoringOperation.GetEarnedScoringDisplayingString(expAdd)} 经验",
+								(0, not 0) => $" {ScoringOperation.GetEarnedCoinDisplayingString(coinAdd)} 金币",
+								_ => $" {ScoringOperation.GetEarnedScoringDisplayingString(expAdd)} 经验，{ScoringOperation.GetEarnedCoinDisplayingString(coinAdd)} 金币"
 							}}！"
 						);
 

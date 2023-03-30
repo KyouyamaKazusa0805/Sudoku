@@ -1,9 +1,9 @@
-namespace Sudoku.Workflow.Bot.Oicq.Handlers;
+namespace Sudoku.Workflow.Bot.Oicq.Operation;
 
 /// <summary>
 /// 提供一个分数（经验值和金币）的处理器类型。
 /// </summary>
-public static class ScoreHandler
+public static class ScoringOperation
 {
 	/// <summary>
 	/// 强化系统的成功率表。

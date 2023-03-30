@@ -45,7 +45,7 @@ internal sealed class UplevelCommand : Command
 			return;
 		}
 
-		if (StorageHandler.Read(senderId) is not { CardLevel: var userCardLevel, Coin: var coin } user)
+		if (UserOperations.Read(senderId) is not { CardLevel: var userCardLevel, Coin: var coin } user)
 		{
 			await messageReceiver.SendMessageAsync("很抱歉，你尚未使用过机器人。强化系统至少要求用户达到 25 级。");
 			return;
@@ -108,7 +108,7 @@ internal sealed class UplevelCommand : Command
 						return;
 					}
 
-					var possibility = ScoreHandler.GetUpLevelingSuccessPossibility(main, cards, level);
+					var possibility = ScoringOperation.GetUpLevelingSuccessPossibility(main, cards, level);
 
 					user.Coin -= 30;
 
@@ -128,7 +128,7 @@ internal sealed class UplevelCommand : Command
 						}
 						user.UplevelingCards = copied;
 
-						StorageHandler.Write(user);
+						UserOperations.Write(user);
 
 						await messageReceiver.SendMessageAsync($"恭喜你，强化成功！卡片等级变动：{main - 1} -> {main}！");
 					}
@@ -149,7 +149,7 @@ internal sealed class UplevelCommand : Command
 						}
 						user.UplevelingCards = copied;
 
-						StorageHandler.Write(user);
+						UserOperations.Write(user);
 
 						await messageReceiver.SendMessageAsync(
 							originalLevel switch

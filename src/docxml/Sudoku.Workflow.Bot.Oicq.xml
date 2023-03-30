@@ -874,126 +874,6 @@
             </code>
             </remarks>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler">
-            <summary>
-            提供一个分数（经验值和金币）的处理器类型。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.Possibilities">
-            <summary>
-            强化系统的成功率表。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.CloverLevels">
-            <summary>
-            三叶草的成功率翻倍表。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GlobalRates">
-            <summary>
-            强化系统里，强化卡的对应级别，以及全局的加成倍数表。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetGrade(System.Int32)">
-            <summary>
-            根据经验值判断用户的级别。
-            </summary>
-            <param name="score">经验值。</param>
-            <returns>用户的级别。</returns>
-            <exception cref="T:System.InvalidOperationException">如果分数过大，就会产生此异常。</exception>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetGlobalRate(System.Int32)">
-            <summary>
-            根据用户提供的卡片级别，求得用户的卡片加成倍数。
-            </summary>
-            <param name="cardLevel">卡片级别。</param>
-            <returns>用户卡片加成倍数。</returns>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetCheckInRate(System.Int32)">
-            <summary>
-            根据用户的连续签到天数，求得用户的连续签到的倍数。
-            </summary>
-            <param name="continuousDaysCount">连续签到的天数。</param>
-            <returns>用户的签到倍数。</returns>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetUpLevelingSuccessPossibility(System.Int32,System.Int32[],System.Int32)">
-            <summary>
-            根据用户提供的主卡级别、辅助卡级别和三叶草级别，求得卡片强化的成功率。
-            </summary>
-            <param name="main">主卡级别。</param>
-            <param name="auxiliary">辅助卡级别。辅助卡最少一张，最多三张。</param>
-            <param name="cloverLevel">三叶草的级别。如果不需要三叶草，则传 -1。</param>
-            <returns>强化的成功率。</returns>
-            <exception cref="T:System.ArgumentException">如果辅助卡为空数组，或超过 3 个元素，则产生此异常。</exception>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetUserRankingListAsync(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task})">
-            <summary>
-            求得群的排名信息。
-            </summary>
-            <param name="group">所在群。</param>
-            <param name="rankingListIsEmptyCallback">一个回调函数。如果本群没有人使用过机器人，该回调函数会触发。</param>
-            <returns>一个 <see cref="T:System.Threading.Tasks.Task`1"/> 实例，表示该异步执行的逻辑数据，并带出计算结果。</returns>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetEarnedScoringDisplayingString(System.Int32)">
-            <summary>
-            获取一个字符串，表示的是数值的字符串写法；如果是愚人节当天，则故意显示为 <see cref="F:System.Int32.MinValue"/> 的字符串写法，作为一个玩笑。
-            </summary>
-            <param name="base">基础数值。</param>
-            <returns>字符串写法。</returns>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetEarnedCoinDisplayingString(System.Int32)">
-            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetEarnedScoringDisplayingString(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler.GetWeekendFactor">
-            <summary>
-            获取周末的翻倍情况。如果当天不是周末，则返回 1；否则返回 2。
-            </summary>
-            <returns>周末翻倍情况。</returns>
-        </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler">
-            <summary>
-            提供一个文件或文件夹存储（读、写）操作的处理器类型。
-            </summary>
-            <remarks>
-            由于文件读写操作较慢，又考虑到项目使用异步操作较多，因此本类型里所有的方法均为带锁的同步方法，基本等价于包裹了一层
-            <see langword="lock"/>(<see langword="typeof"/>(<see cref="T:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler"/>))
-            的代码片段。
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.ReadDailyPuzzleAnswer">
-            <summary>
-            从本地读取每日一题的答案。
-            </summary>
-            <returns>每日一题的答案。如果当天没有记录（比如机器人临时维护）导致题目尚未生成，本地没有数据的时候，会返回 <see langword="null"/>。</returns>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.ReadAll(System.Predicate{System.String})">
-            <summary>
-            从配置文件路径读取所有用户信息，并返回 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 数组。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.Read(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
-            <summary>
-            读取指定 QQ 号码的用户数据，并返回 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 实例。如果用户不存在本地数据，则默认将参数 <paramref name="default"/> 的结果返回。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.WriteDailyPuzzleAnswer(Sudoku.Concepts.Grid@)">
-            <summary>
-            将每日一题的答案抄写到本地。
-            </summary>
-            <param name="grid">题目答案。</param>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.Write(Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
-            <summary>
-            将 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 数据写出到本地文件。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.GenerateCachedPicturePath(Sudoku.Drawing.ISudokuPainter)">
-            <summary>
-            产生一个图片缓存路径，根据 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 类型的实例给绘制出来，并保存到此缓存路径下。
-            </summary>
-            <param name="painter">一个 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 的绘图实例。</param>
-            <returns>图片在本地存储的缓存路径。</returns>
-        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Lifecycle.AnsweringContext">
             <summary>
             一个上下文类型，记录了用户回答题目的结果信息。
@@ -1098,12 +978,41 @@
             机器人的运行上下文。为一个并发字典，按群存储不同的上下文数据。
             </summary>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.DailyPuzzleOperations">
+            <summary>
+            提供有关于每日一题的一些功能性操作。
+            </summary>
+            <remarks>
+            由于文件读写操作较慢，又考虑到项目使用异步操作较多，因此本类型里所有的方法均为带锁的同步方法，基本等价于包裹了一层
+            <see langword="lock"/>(<see langword="typeof"/>(<see cref="T:Sudoku.Workflow.Bot.Oicq.Operation.DailyPuzzleOperations"/>))
+            的代码片段。
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DailyPuzzleOperations.WriteDailyPuzzleAnswer(Sudoku.Concepts.Grid@)">
+            <summary>
+            将每日一题的答案抄写到本地。
+            </summary>
+            <param name="grid">题目答案。</param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DailyPuzzleOperations.ReadDailyPuzzleAnswer">
+            <summary>
+            从本地读取每日一题的答案。
+            </summary>
+            <returns>每日一题的答案。如果当天没有记录（比如机器人临时维护）导致题目尚未生成，本地没有数据的时候，会返回 <see langword="null"/>。</returns>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations">
             <summary>
             提供一些基本绘图操作，和 <see cref="N:Sudoku.Drawing"/> 以及 <see cref="N:Sudoku.Gdip"/> 命名空间进行交互的方法集。
             </summary>
             <seealso cref="N:Sudoku.Drawing"/>
             <seealso cref="N:Sudoku.Gdip"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GenerateCachedPicturePath(Sudoku.Drawing.ISudokuPainter)">
+            <summary>
+            产生一个图片缓存路径，根据 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 类型的实例给绘制出来，并保存到此缓存路径下。
+            </summary>
+            <param name="painter">一个 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 的绘图实例。</param>
+            <returns>图片在本地存储的缓存路径。</returns>
         </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SplitOptionsBoth">
             <summary>
@@ -1296,7 +1205,7 @@
             一个静态类，提供一系列和本地交互有关题库数据的操作方法集。
             </summary>
             <remarks>
-            <inheritdoc cref="T:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler" path="/remarks"/>
+            <inheritdoc cref="T:Sudoku.Workflow.Bot.Oicq.Operation.UserOperations" path="/remarks"/>
             </remarks>
         </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.DefaultOptions">
@@ -1386,6 +1295,107 @@
             <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.GetLibraries(System.String)" path="/summary"/>
             </summary>
             <param name="group">一个 <see cref="T:Mirai.Net.Data.Shared.Group"/> 对象，表示的是当前操作的群的基本数据。</param>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation">
+            <summary>
+            提供一个分数（经验值和金币）的处理器类型。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.Possibilities">
+            <summary>
+            强化系统的成功率表。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.CloverLevels">
+            <summary>
+            三叶草的成功率翻倍表。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GlobalRates">
+            <summary>
+            强化系统里，强化卡的对应级别，以及全局的加成倍数表。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetGrade(System.Int32)">
+            <summary>
+            根据经验值判断用户的级别。
+            </summary>
+            <param name="score">经验值。</param>
+            <returns>用户的级别。</returns>
+            <exception cref="T:System.InvalidOperationException">如果分数过大，就会产生此异常。</exception>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetGlobalRate(System.Int32)">
+            <summary>
+            根据用户提供的卡片级别，求得用户的卡片加成倍数。
+            </summary>
+            <param name="cardLevel">卡片级别。</param>
+            <returns>用户卡片加成倍数。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetCheckInRate(System.Int32)">
+            <summary>
+            根据用户的连续签到天数，求得用户的连续签到的倍数。
+            </summary>
+            <param name="continuousDaysCount">连续签到的天数。</param>
+            <returns>用户的签到倍数。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetUpLevelingSuccessPossibility(System.Int32,System.Int32[],System.Int32)">
+            <summary>
+            根据用户提供的主卡级别、辅助卡级别和三叶草级别，求得卡片强化的成功率。
+            </summary>
+            <param name="main">主卡级别。</param>
+            <param name="auxiliary">辅助卡级别。辅助卡最少一张，最多三张。</param>
+            <param name="cloverLevel">三叶草的级别。如果不需要三叶草，则传 -1。</param>
+            <returns>强化的成功率。</returns>
+            <exception cref="T:System.ArgumentException">如果辅助卡为空数组，或超过 3 个元素，则产生此异常。</exception>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetUserRankingListAsync(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            求得群的排名信息。
+            </summary>
+            <param name="group">所在群。</param>
+            <param name="rankingListIsEmptyCallback">一个回调函数。如果本群没有人使用过机器人，该回调函数会触发。</param>
+            <returns>一个 <see cref="T:System.Threading.Tasks.Task`1"/> 实例，表示该异步执行的逻辑数据，并带出计算结果。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetEarnedScoringDisplayingString(System.Int32)">
+            <summary>
+            获取一个字符串，表示的是数值的字符串写法；如果是愚人节当天，则故意显示为 <see cref="F:System.Int32.MinValue"/> 的字符串写法，作为一个玩笑。
+            </summary>
+            <param name="base">基础数值。</param>
+            <returns>字符串写法。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetEarnedCoinDisplayingString(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetEarnedScoringDisplayingString(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetWeekendFactor">
+            <summary>
+            获取周末的翻倍情况。如果当天不是周末，则返回 1；否则返回 2。
+            </summary>
+            <returns>周末翻倍情况。</returns>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.UserOperations">
+            <summary>
+            提供一个文件或文件夹存储（读、写）操作的处理器类型。
+            </summary>
+            <remarks>
+            由于文件读写操作较慢，又考虑到项目使用异步操作较多，因此本类型里所有的方法均为带锁的同步方法，基本等价于包裹了一层
+            <see langword="lock"/>(<see langword="typeof"/>(<see cref="T:Sudoku.Workflow.Bot.Oicq.Operation.UserOperations"/>))
+            的代码片段。
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.UserOperations.ReadAll(System.Predicate{System.String})">
+            <summary>
+            从配置文件路径读取所有用户信息，并返回 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 数组。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.UserOperations.Read(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
+            <summary>
+            读取指定 QQ 号码的用户数据，并返回 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 实例。如果用户不存在本地数据，则默认将参数 <paramref name="default"/> 的结果返回。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.UserOperations.Write(Sudoku.Workflow.Bot.Oicq.ComponentModel.User)">
+            <summary>
+            将 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.User"/> 数据写出到本地文件。
+            </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason">
             <summary>
@@ -2408,7 +2418,7 @@
             </summary>
             <param name="this">用来发送消息的对象。</param>
             <param name="painter">
-            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler.GenerateCachedPicturePath(Sudoku.Drawing.ISudokuPainter)" path="/param[@name='painterCreator']"/>
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GenerateCachedPicturePath(Sudoku.Drawing.ISudokuPainter)" path="/param[@name='painterCreator']"/>
             </param>
             <returns>一个 <see cref="T:System.Threading.Tasks.Task"/> 对象，包裹了异步执行的基本信息。</returns>
         </member>

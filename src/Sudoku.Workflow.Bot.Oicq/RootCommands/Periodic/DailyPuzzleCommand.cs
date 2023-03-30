@@ -63,7 +63,7 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 			await sendPictureAsync(SudokuGroupNumber, grid.ToString(), $"#{DateTime.Today:yyyyMMdd} 难度级别：{diffString}，难度系数：{diff:0.0}");
 
 			// 保存答案到本地。
-			StorageHandler.WriteDailyPuzzleAnswer(solution);
+			DailyPuzzleOperations.WriteDailyPuzzleAnswer(solution);
 
 			// 这是在循环里。这里我们要退出指令，因为已经发送了一个题目。
 			return;
@@ -71,7 +71,7 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 
 			static async Task sendPictureAsync(string groupId, string grid, string footerText)
 			{
-				var picturePath = StorageHandler.GenerateCachedPicturePath(
+				var picturePath = DrawingOperations.GenerateCachedPicturePath(
 					ISudokuPainter.Create(1000)
 						.WithGridCode(grid)
 						.WithRenderingCandidates(false)

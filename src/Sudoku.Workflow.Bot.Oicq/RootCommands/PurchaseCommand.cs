@@ -43,13 +43,13 @@ internal sealed class PurchaseCommand : Command
 			return;
 		}
 
-		if (StorageHandler.Read(senderId) is not { ExperiencePoint: var exp, Coin: var coin } user)
+		if (UserOperations.Read(senderId) is not { ExperiencePoint: var exp, Coin: var coin } user)
 		{
 			await messageReceiver.SendMessageAsync("用户没有使用过机器人。无法购买商品。");
 			return;
 		}
 
-		if (ScoreHandler.GetGrade(exp) < 20)
+		if (ScoringOperation.GetGrade(exp) < 20)
 		{
 			await messageReceiver.SendMessageAsync("购买功能至少需要用户达到 20 级才可使用。");
 			return;
@@ -72,7 +72,7 @@ internal sealed class PurchaseCommand : Command
 					user.UplevelingCards[0] += count;
 				}
 
-				StorageHandler.Write(user);
+				UserOperations.Write(user);
 
 				goto Successful;
 			}
@@ -104,7 +104,7 @@ internal sealed class PurchaseCommand : Command
 					user.Items[targetItem] += count;
 				}
 
-				StorageHandler.Write(user);
+				UserOperations.Write(user);
 
 				goto Successful;
 			}

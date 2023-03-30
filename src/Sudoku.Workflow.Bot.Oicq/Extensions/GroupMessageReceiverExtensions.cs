@@ -11,12 +11,12 @@ public static class GroupMessageReceiverExtensions
 	/// </summary>
 	/// <param name="this">用来发送消息的对象。</param>
 	/// <param name="painter">
-	/// <inheritdoc cref="StorageHandler.GenerateCachedPicturePath(ISudokuPainter)" path="/param[@name='painterCreator']"/>
+	/// <inheritdoc cref="DrawingOperations.GenerateCachedPicturePath(ISudokuPainter)" path="/param[@name='painterCreator']"/>
 	/// </param>
 	/// <returns>一个 <see cref="Task"/> 对象，包裹了异步执行的基本信息。</returns>
 	public static async Task SendPictureThenDeleteAsync(this GroupMessageReceiver @this, ISudokuPainter painter)
 	{
-		var picturePath = StorageHandler.GenerateCachedPicturePath(painter)!;
+		var picturePath = DrawingOperations.GenerateCachedPicturePath(painter)!;
 		await @this.SendMessageAsync(new ImageMessage { Path = picturePath });
 
 		File.Delete(picturePath);

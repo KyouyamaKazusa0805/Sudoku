@@ -30,13 +30,13 @@ internal sealed class DailyPuzzleAnswerCommand : Command
 		await messageReceiver.RecallAsync();
 		await Task.Delay(100);
 
-		if (StorageHandler.ReadDailyPuzzleAnswer() is not { } answer)
+		if (DailyPuzzleOperations.ReadDailyPuzzleAnswer() is not { } answer)
 		{
 			await messageReceiver.SendMessageAsync("抱歉，当前没有每日一题。");
 			return;
 		}
 
-		var user = StorageHandler.Read(senderId, new() { Number = senderId });
+		var user = UserOperations.Read(senderId, new() { Number = senderId });
 		if (user.LastAnswerDailyPuzzle.Date == DateTime.Today)
 		{
 			await messageReceiver.SendMessageAsync("抱歉，你今日已完成正确作答。请勿重复作答。");
@@ -55,8 +55,8 @@ internal sealed class DailyPuzzleAnswerCommand : Command
 		user.ExperiencePoint += exp;
 		user.Coin += coin;
 
-		var finalScore = ScoreHandler.GetEarnedScoringDisplayingString(exp);
-		var finalCoin = ScoreHandler.GetEarnedCoinDisplayingString(coin);
+		var finalScore = ScoringOperation.GetEarnedScoringDisplayingString(exp);
+		var finalCoin = ScoringOperation.GetEarnedCoinDisplayingString(coin);
 		if (item is { } earnedItem)
 		{
 			if (!user.Items.TryAdd(earnedItem, 1))
@@ -85,7 +85,7 @@ internal sealed class DailyPuzzleAnswerCommand : Command
 		}
 
 		user.LastAnswerDailyPuzzle = DateTime.Today;
-		StorageHandler.Write(user);
+		UserOperations.Write(user);
 
 
 		static bool sequenceEquals(int[] realAnswer, int[]? userAnswered)
@@ -119,7 +119,7 @@ file static class LocalScorer
 	/// <param name="user">用户的基本信息。</param>
 	/// <returns>经验值获得。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetExperience(User user) => (int)(30 * ScoreHandler.GetGlobalRate(user.CardLevel) * ScoreHandler.GetWeekendFactor());
+	public static int GetExperience(User user) => (int)(30 * ScoringOperation.GetGlobalRate(user.CardLevel) * ScoringOperation.GetWeekendFactor());
 
 	/// <summary>
 	/// 获得金币数。
@@ -128,7 +128,7 @@ file static class LocalScorer
 	/// <returns>金币数。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetCoin(User user)
-		=> (int)((500 + Rng.Next(-30, 35)) * ScoreHandler.GetGlobalRate(user.CardLevel) * ScoreHandler.GetWeekendFactor());
+		=> (int)((500 + Rng.Next(-30, 35)) * ScoringOperation.GetGlobalRate(user.CardLevel) * ScoringOperation.GetWeekendFactor());
 
 	/// <summary>
 	/// 获得的物品。

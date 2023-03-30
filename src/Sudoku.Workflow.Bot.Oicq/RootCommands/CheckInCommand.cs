@@ -11,7 +11,7 @@ internal sealed class CheckInCommand : Command
 			return;
 		}
 
-		var user = StorageHandler.Read(senderId, new() { Number = senderId });
+		var user = UserOperations.Read(senderId, new() { Number = senderId });
 		switch (user)
 		{
 			case { LastCheckIn: { Date: var date, TimeOfDay: var time } } when date == DateTime.Today:
@@ -27,13 +27,13 @@ internal sealed class CheckInCommand : Command
 				user.ComboCheckedIn++;
 
 				var expEarned = LocalScorer.GetExperiencePoint(user.ComboCheckedIn, user.CardLevel);
-				var coinEarned = LocalScorer.GetCoin(ScoreHandler.GetGlobalRate(user.CardLevel));
+				var coinEarned = LocalScorer.GetCoin(ScoringOperation.GetGlobalRate(user.CardLevel));
 				user.ExperiencePoint += expEarned;
 				user.Coin += coinEarned;
 				user.LastCheckIn = DateTime.Now;
 
-				var finalScore = ScoreHandler.GetEarnedScoringDisplayingString(expEarned);
-				var finalCoin = ScoreHandler.GetEarnedCoinDisplayingString(coinEarned);
+				var finalScore = ScoringOperation.GetEarnedScoringDisplayingString(expEarned);
+				var finalCoin = ScoringOperation.GetEarnedCoinDisplayingString(coinEarned);
 				if (LocalScorer.GetItem() is { } earnedItem)
 				{
 					if (!user.Items.TryAdd(earnedItem, 1))
@@ -78,8 +78,8 @@ internal sealed class CheckInCommand : Command
 				user.Coin += coinEarned;
 				user.LastCheckIn = DateTime.Now;
 
-				var finalScore = ScoreHandler.GetEarnedScoringDisplayingString(expEarned);
-				var finalCoin = ScoreHandler.GetEarnedCoinDisplayingString(coinEarned);
+				var finalScore = ScoringOperation.GetEarnedScoringDisplayingString(expEarned);
+				var finalCoin = ScoringOperation.GetEarnedCoinDisplayingString(coinEarned);
 				if (LocalScorer.GetItem() is { } earnedItem)
 				{
 					if (!user.Items.TryAdd(earnedItem, 1))
@@ -115,7 +115,7 @@ internal sealed class CheckInCommand : Command
 			}
 		}
 
-		StorageHandler.Write(user);
+		UserOperations.Write(user);
 	}
 }
 
@@ -190,8 +190,8 @@ file static class LocalScorer
 	/// <returns>经验值。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetExperiencePoint(int continuousDaysCount, int cardLevel)
-		=> (int)Round(GetExperienceOriginal() * (ScoreHandler.GetCheckInRate(continuousDaysCount) + ScoreHandler.GetGlobalRate(cardLevel)))
-			* ScoreHandler.GetWeekendFactor();
+		=> (int)Round(GetExperienceOriginal() * (ScoringOperation.GetCheckInRate(continuousDaysCount) + ScoringOperation.GetGlobalRate(cardLevel)))
+			* ScoringOperation.GetWeekendFactor();
 
 	/// <summary>
 	/// 获得金币。
@@ -199,7 +199,7 @@ file static class LocalScorer
 	/// <param name="rate">加成倍率。</param>
 	/// <returns>金币。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCoin(decimal rate) => (int)Round(GetCoinOriginal() * ScoreHandler.GetWeekendFactor() * rate);
+	public static int GetCoin(decimal rate) => (int)Round(GetCoinOriginal() * ScoringOperation.GetWeekendFactor() * rate);
 
 	/// <summary>
 	/// 获得的物品。

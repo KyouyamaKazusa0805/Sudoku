@@ -4,7 +4,7 @@ namespace Sudoku.Workflow.Bot.Oicq.Operation;
 /// 一个静态类，提供一系列和本地交互有关题库数据的操作方法集。
 /// </summary>
 /// <remarks>
-/// <inheritdoc cref="StorageHandler" path="/remarks"/>
+/// <inheritdoc cref="UserOperations" path="/remarks"/>
 /// </remarks>
 public static class PuzzleLibraryOperations
 {
