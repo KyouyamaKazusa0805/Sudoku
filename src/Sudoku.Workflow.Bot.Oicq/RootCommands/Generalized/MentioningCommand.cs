@@ -62,7 +62,7 @@ file sealed class MentioningCommand : IModule
 					["反涂色", var s] => DrawingOperations.RemoveBasicViewNodesAsync(messageReceiver, drawingContext, s),
 					["代数" or "袋鼠", var s, [var c and (>= 'A' and <= 'Z' or >= 'a' and <= 'z')]] => DrawingOperations.AddBabaGroupNodesAsync(messageReceiver, drawingContext, s, (Utf8Char)c),
 					["反代数" or "反袋鼠", var s] => DrawingOperations.RemoveBabaGroupNodesAsync(messageReceiver, drawingContext, s),
-					[var l and ("强" or "弱"), var s, var e] => DrawingOperations.AddLinkNodeAsync(messageReceiver, drawingContext, l, s, e),
+					[("强" or "弱") and var l, var s, var e] => DrawingOperations.AddLinkNodeAsync(messageReceiver, drawingContext, l, s, e),
 					["反强" or "反弱", var s, var e] => DrawingOperations.RemoveLinkNodeAsync(messageReceiver, drawingContext, s, e),
 					["盘面", var g] => DrawingOperations.ApplyGridAsync(messageReceiver, drawingContext, g),
 					_ => null
