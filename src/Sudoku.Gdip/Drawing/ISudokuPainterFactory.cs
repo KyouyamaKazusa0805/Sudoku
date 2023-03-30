@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing;
+namespace Sudoku.Drawing;
 
 /// <summary>
 /// Defines the factory methods that can append custom configurations for <see cref="ISudokuPainter"/> instances.
@@ -147,7 +147,7 @@ public interface ISudokuPainterFactory
 	/// Append extra nodes.
 	/// </summary>
 	/// <param name="nodes">Extra nodes.</param>
-	/// <returns>The target instance.</returns>
+	/// <returns>The target painter.</returns>
 	ISudokuPainter AddNodes(IEnumerable<ViewNode> nodes);
 
 	/// <summary>
@@ -156,6 +156,14 @@ public interface ISudokuPainterFactory
 	/// <param name="nodes">Nodes.</param>
 	/// <returns>The target painter.</returns>
 	ISudokuPainter RemoveNodes(IEnumerable<ViewNode> nodes);
+
+	/// <summary>
+	/// Remove nodes via the specified equality comparer.
+	/// </summary>
+	/// <param name="nodes">Nodes to be removed.</param>
+	/// <param name="comparer">The equality comparer.</param>
+	/// <returns>The target painter.</returns>
+	ISudokuPainter RemoveNodes(IEnumerable<ViewNode> nodes, IEqualityComparer<ViewNode> comparer);
 
 	/// <summary>
 	/// Remove nodes if the target node satisfies the specified condition.

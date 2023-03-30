@@ -46,11 +46,14 @@ file sealed class MentioningCommand : IModule
 			{
 				var task = m.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) switch
 				{
+					["清空"] => DrawingOperations.ClearAsync(messageReceiver, context),
 					[var s] => DrawingOperations.SetDigitAsync(messageReceiver, drawingContext, s),
-					["增加", var s] => DrawingOperations.AddPencilmarkAsync(messageReceiver, drawingContext, s),
-					["删除", var s] => DrawingOperations.RemovePencilmarkAsync(messageReceiver, drawingContext, s),
+					["添加", var s] => DrawingOperations.AddPencilmarkAsync(messageReceiver, drawingContext, s),
+					["反添加", var s] => DrawingOperations.RemovePencilmarkAsync(messageReceiver, drawingContext, s),
 					["涂色", var s, var c] => DrawingOperations.AddBasicViewNodesAsync(messageReceiver, drawingContext, s, c),
+					["反涂色", var s] => DrawingOperations.RemoveBasicViewNodesAsync(messageReceiver, drawingContext, s),
 					["代数" or "袋鼠", var s, [var c and (>= 'A' and <= 'Z' or >= 'a' and <= 'z')]] => DrawingOperations.AddBabaGroupNodesAsync(messageReceiver, drawingContext, s, (Utf8Char)c),
+					["反代数" or "反袋鼠", var s] => DrawingOperations.RemoveBabaGroupNodesAsync(messageReceiver, drawingContext, s),
 					_ => null
 				};
 				if (task is not null)

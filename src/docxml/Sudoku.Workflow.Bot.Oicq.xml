@@ -923,6 +923,13 @@
             </summary>
             <param name="this">颜色字符串。</param>
             <returns>一个 <see cref="T:Sudoku.Presentation.Identifier"/> 实例，表示颜色的标识符。</returns>
+            <remarks>
+            该方法支持的输入可以是基本的配色表（配色 #1 到 #15），也可以是 RGB 和 ARGB 的代码。
+            </remarks>
+            <seealso cref="T:Sudoku.Presentation.Identifier"/>
+            <seealso href="https://source.dot.net/#System.Private.CoreLib/src/libraries/Common/src/System/HexConverter.cs,2094caa70f8308bc">
+            char.IsAsciiHexDigit 方法
+            </seealso>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.GetCellIndex(System.Char,System.Char)">
             <summary>
@@ -966,6 +973,16 @@
             <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.GetHouseIndex(System.Char,System.Char)" path="/exception[@cref='ArgumentException']"/>
             </exception>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.RecordBasicNodesInternal(System.String,Sudoku.Presentation.Identifier)">
+            <summary>
+            内部方法，记录 <see cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/> 类型的节点。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.ClearAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.BotRunningContext)">
+            <summary>
+            直接清空整个绘图操作里已经设置了的视图节点，恢复为空盘面。
+            </summary>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.SetDigitAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
             <summary>
             往绘图盘面内填入一个数（或者去掉一个填数）。
@@ -1005,9 +1022,19 @@
             </remarks>
             <seealso cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.RemoveBasicViewNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            从绘图盘面内删除指定的绘图节点。
+            </summary>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.AddBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Utf8Char)">
             <summary>
             往绘图盘面里面追加代数字母的视图节点。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.RemoveBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            从绘图盘面内删除代数字母的视图节点。
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Drawing.ViewNodeComparer">
@@ -1027,13 +1054,6 @@
             所以，我们为了避免这种比较 <see cref="T:Sudoku.Presentation.Identifier"/> 的情况，我们不得不自己写一个比较器对象，来避免运行时 <see cref="T:System.Collections.Generic.HashSet`1"/> 这种
             要使用 <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> 对象的比较的类型，自动去获取默认的 <c>Equals</c> 比较规则。
             </para>
-            <para>
-            顺带一说，放在这里并使用 <see langword="file"/> 修饰符，是 C# 11 提供的一个新特性，叫“<see href="https://github.com/dotnet/csharplang/blob/main/proposals/csharp-11.0/file-local-types.md">基于文件的本地类型</see>”
-            （File-Local Types）。
-            被 <see langword="file"/> 修饰符修饰的类型，只能在当前文件内可以访问，出了这个文件就看不到这个类型了。
-            换言之，如果你想在不同文件创建同一个名字的类型，可以使用这个机制，将不同的类型执行逻辑分为多个文件存在，用 <see langword="file"/> 修饰符去修饰它们，
-            这样它们每一个类型都是独立的，也不会因为重名而导致编译器或运行时冲突。
-            </para>
             </remarks>
             <seealso cref="T:Sudoku.Presentation.Nodes.ViewNode"/>
             <seealso cref="M:Sudoku.Presentation.Nodes.ViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)"/>
@@ -1043,7 +1063,7 @@
             <seealso cref="P:System.Collections.Generic.EqualityComparer`1.Default"/>
             <seealso cref="M:System.Collections.Generic.EqualityComparer`1.Equals(`0,`0)"/>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Drawing.ViewNodeComparer.Instance">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Drawing.ViewNodeComparer.Default">
             <summary>
             提供一个默认的实例。
             </summary>

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing;
+namespace Sudoku.Drawing;
 
 /// <summary>
 /// Defines a sudoku painter instance.
@@ -259,6 +259,23 @@ file sealed class SudokuPainter : ISudokuPainter
 		foreach (var node in nodes)
 		{
 			view.Remove(node);
+		}
+
+	ReturnThis:
+		return this;
+	}
+
+	/// <inheritdoc/>
+	public ISudokuPainter RemoveNodes(IEnumerable<ViewNode> nodes, IEqualityComparer<ViewNode> comparer)
+	{
+		if (GridImageGenerator.View is not { } view)
+		{
+			goto ReturnThis;
+		}
+
+		foreach (var node in nodes)
+		{
+			view.Remove(node, comparer);
 		}
 
 	ReturnThis:

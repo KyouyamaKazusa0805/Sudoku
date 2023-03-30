@@ -2532,6 +2532,13 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="node">The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
         </member>
+        <member name="M:Sudoku.Presentation.View.Remove(Sudoku.Presentation.Nodes.ViewNode,System.Collections.Generic.IEqualityComparer{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Removes the specified <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> from the collection via the specified equality comparer.
+            </summary>
+            <param name="node">The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
+            <param name="comparer">The equality comparer.</param>
+        </member>
         <member name="M:Sudoku.Presentation.View.ConflictWith(System.Int32)">
             <summary>
             <para>Determines whether the current view contains a view node using the specified candidate value.</para>

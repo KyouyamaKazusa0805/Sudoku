@@ -1,4 +1,4 @@
-﻿#define ENHANCED_DRAWING_APIS
+#define ENHANCED_DRAWING_APIS
 namespace Sudoku.Presentation;
 
 /// <summary>
@@ -111,6 +111,20 @@ public sealed partial class View : ICloneable<View>, IEnumerable<ViewNode>
 	public void Remove(ViewNode node)
 	{
 		if (_nodes.Contains(node))
+		{
+			_nodes.Remove(node);
+		}
+	}
+
+	/// <summary>
+	/// Removes the specified <see cref="ViewNode"/> from the collection via the specified equality comparer.
+	/// </summary>
+	/// <param name="node">The <see cref="ViewNode"/> instance.</param>
+	/// <param name="comparer">The equality comparer.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Remove(ViewNode node, IEqualityComparer<ViewNode> comparer)
+	{
+		if (_nodes.Contains(node, comparer))
 		{
 			_nodes.Remove(node);
 		}

@@ -131,6 +131,9 @@
         <member name="M:Sudoku.Drawing.SudokuPainter.RemoveNodes(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Drawing.SudokuPainter.RemoveNodes(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode},System.Collections.Generic.IEqualityComparer{Sudoku.Presentation.Nodes.ViewNode})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.RemoveNodesWhen(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})">
             <inheritdoc/>
         </member>
@@ -271,13 +274,21 @@
             Append extra nodes.
             </summary>
             <param name="nodes">Extra nodes.</param>
-            <returns>The target instance.</returns>
+            <returns>The target painter.</returns>
         </member>
         <member name="M:Sudoku.Drawing.ISudokuPainterFactory.RemoveNodes(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
             <summary>
             Remove nodes.
             </summary>
             <param name="nodes">Nodes.</param>
+            <returns>The target painter.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.RemoveNodes(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode},System.Collections.Generic.IEqualityComparer{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Remove nodes via the specified equality comparer.
+            </summary>
+            <param name="nodes">Nodes to be removed.</param>
+            <param name="comparer">The equality comparer.</param>
             <returns>The target painter.</returns>
         </member>
         <member name="M:Sudoku.Drawing.ISudokuPainterFactory.RemoveNodesWhen(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})">

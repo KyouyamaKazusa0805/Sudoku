@@ -68,24 +68,19 @@ internal static partial class DrawingOperations
 	/// </summary>
 	/// <param name="this">颜色字符串。</param>
 	/// <returns>一个 <see cref="Identifier"/> 实例，表示颜色的标识符。</returns>
+	/// <remarks>
+	/// 该方法支持的输入可以是基本的配色表（配色 #1 到 #15），也可以是 RGB 和 ARGB 的代码。
+	/// </remarks>
+	/// <seealso cref="Identifier"/>
+	/// <seealso href="https://source.dot.net/#System.Private.CoreLib/src/libraries/Common/src/System/HexConverter.cs,2094caa70f8308bc">
+	/// char.IsAsciiHexDigit 方法
+	/// </seealso>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static Identifier? GetIdentifier(this string @this)
 		=> @this switch
 		{
-			// 预设方案表。数值可取的范围是 1-15。
-			// 注意最后映射的时候要减去 1，因为程序设计里是 0 为索引最开始。
-			[>= '1' and <= '9'] or ['1', >= '0' and <= '5'] when int.TryParse(@this, out var v) && v is > 0 and <= 15
-				=> v - 1,
-
-			// ARGB 或 RGB 代码。
-			// 这里为了简单输入，忽略掉前面的井号。
-			// char.IsAsciiHexDigit 方法校验的是字符是否是 16 进制的数字或字母符号：
-			// https://source.dot.net/#System.Private.CoreLib/src/libraries/Common/src/System/HexConverter.cs,2094caa70f8308bc
-			{ Length: 6 or 8 } when @this.All(char.IsAsciiHexDigit)
-				=> ColorTranslator.FromHtml(@this).ToIdentifier(),
-
-			// 其他情况。
-			// 这里我们暂时不考虑其他的匹配模式，比如说 HSV（饱和度那个）。这里我们直接返回默认情况，表示字符串无法正确解析成颜色就行了。
+			[>= '1' and <= '9'] or ['1', >= '0' and <= '5'] when int.TryParse(@this, out var v) && v is > 0 and <= 15 => v - 1,
+			{ Length: 6 or 8 } when @this.All(char.IsAsciiHexDigit) => ColorTranslator.FromHtml(@this).ToIdentifier(),
 			_ => null
 		};
 
@@ -147,4 +142,37 @@ internal static partial class DrawingOperations
 			'列' or 'C' or 'c' => 3,
 			_ => throw new ArgumentException("The specified value is invalid.", nameof(r))
 		} + (i - '1');
+
+	/// <summary>
+	/// 内部方法，记录 <see cref="BasicViewNode"/> 类型的节点。
+	/// </summary>
+	private static HashSet<ViewNode> RecordBasicNodesInternal(string rawString, Identifier identifier = default)
+	{
+		var nodes = new HashSet<ViewNode>(ViewNodeComparer.Default);
+		foreach (var element in rawString.LocalSplit())
+		{
+			var node = element switch
+			{
+				[var r and >= '1' and <= '9', var c and >= '1' and <= '9'] when GetCellIndex(r, c) is var cell
+					=> new CellViewNode(identifier, cell), // 单元格。
+				[var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9'] when GetCandidateIndex(r, c, d) is var (cell, digit)
+					=> new CandidateViewNode(identifier, cell * 9 + digit), // 候选数。
+				[var r and ('行' or '列' or '宫' or 'R' or 'r' or 'C' or 'c' or 'B' or 'b'), var i and >= '1' and <= '9'] when GetHouseIndex(r, i) is var house
+					=> new HouseViewNode(identifier, house), // 区域。
+				['大', var r and ('行' or '列'), var i and >= '1' and <= '3'] when GetChuteIndex(r, i) is var chute
+					=> new ChuteViewNode(identifier, chute), // 大行列（汉字匹配）。
+				['B' or 'b', var r and ('R' or 'r' or 'C' or 'c'), var i and >= '1' and <= '3'] when GetChuteIndex(r, i) is var chute
+					=> new ChuteViewNode(identifier, chute), // 大行列（字母匹配）。
+				_
+					=> default(ViewNode?) // 其他情况。
+			};
+
+			if (node is not null)
+			{
+				nodes.Add(node);
+			}
+		}
+
+		return nodes;
+	}
 }
