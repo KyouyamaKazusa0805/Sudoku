@@ -220,4 +220,72 @@ partial class DrawingOperations
 
 		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
 	}
+
+	/// <summary>
+	/// 往绘图盘面内绘制一条强或弱关系的链的连接线。
+	/// </summary>
+	/// <remarks>
+	/// 注意，追加链的线条的时候，强或弱是必要的选项。因为它影响了绘制的逻辑。
+	/// </remarks>
+	public static async Task AddLinkNodeAsync(
+		GroupMessageReceiver messageReceiver,
+		DrawingContext drawingContext,
+		string linkTypeString,
+		string startCandidateString,
+		string endCandidateString
+	)
+	{
+		if (
+			(startCandidateString, endCandidateString) is not (
+				[var sr and >= '1' and <= '9', var sc and >= '1' and <= '9', var sd and >= '1' and <= '9'],
+				[var er and >= '1' and <= '9', var ec and >= '1' and <= '9', var ed and >= '1' and <= '9']
+			)
+		)
+		{
+			return;
+		}
+
+		var (startCell, startDigit) = GetCandidateIndex(sr, sc, sd);
+		var (endCell, endDigit) = GetCandidateIndex(er, ec, ed);
+		var inference = linkTypeString switch { "强" => Inference.Strong, "弱" => Inference.Weak };
+
+		// 根据前面给的数据创建实例。
+		// 和代数一样，链的强弱线条的颜色也是不配置的。
+		var node = new LinkViewNode(default, new(startDigit, startCell), new(endDigit, endCell), inference);
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(new[] { node }));
+	}
+
+	/// <summary>
+	/// 从绘图盘面里删除一条强或弱关系的连接线。
+	/// </summary>
+	/// <remarks>
+	/// 注意，删除链的线条的时候，是强或弱都无关紧要了。这是因为，链的强弱关系不可能在同一时刻落在同样两个候选数之上，
+	/// 不论这两个节点原本是强还是弱，都不能再叠加新的重叠的线条。
+	/// </remarks>
+	public static async Task RemoveLinkNodeAsync(
+		GroupMessageReceiver messageReceiver,
+		DrawingContext drawingContext,
+		string startCandidateString,
+		string endCandidateString
+	)
+	{
+		if (
+			(startCandidateString, endCandidateString) is not (
+				[var sr and >= '1' and <= '9', var sc and >= '1' and <= '9', var sd and >= '1' and <= '9'],
+				[var er and >= '1' and <= '9', var ec and >= '1' and <= '9', var ed and >= '1' and <= '9']
+			)
+		)
+		{
+			return;
+		}
+
+		var (startCell, startDigit) = GetCandidateIndex(sr, sc, sd);
+		var (endCell, endDigit) = GetCandidateIndex(er, ec, ed);
+
+		// 这里是用作删除比较的节点。
+		// 节点只比较起始点和结束点是否一致，所以跟它是什么关系（强关系还是弱关系）没有关系。这里设置成 default 就行。
+		// 注意顺序。强弱关系本身是没有方向性的，但是在绘制链的时候，是有方向性的，所以如果删除的方向反了，也是不可以正确删除掉的。
+		var node = new LinkViewNode(default, new(startDigit, startCell), new(endDigit, endCell), default);
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(new[] { node }));
+	}
 }
