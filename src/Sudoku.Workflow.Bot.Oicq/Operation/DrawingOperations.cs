@@ -1,9 +1,9 @@
-namespace Sudoku.Workflow.Bot.Oicq.Drawing;
+namespace Sudoku.Workflow.Bot.Oicq.Operation;
 
 /// <summary>
-/// 提供一些基本绘图操作，和 <see cref="Sudoku.Drawing"/> 以及 <see cref="Gdip"/> 命名空间进行交互的方法集。
+/// 提供一些基本绘图操作，和 <see cref="Drawing"/> 以及 <see cref="Gdip"/> 命名空间进行交互的方法集。
 /// </summary>
-/// <seealso cref="Sudoku.Drawing"/>
+/// <seealso cref="Drawing"/>
 /// <seealso cref="Gdip"/>
 internal static partial class DrawingOperations
 {

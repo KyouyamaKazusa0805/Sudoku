@@ -1,4 +1,4 @@
-namespace Sudoku.Workflow.Bot.Oicq.Drawing;
+namespace Sudoku.Workflow.Bot.Oicq.Operation;
 
 partial class DrawingOperations
 {

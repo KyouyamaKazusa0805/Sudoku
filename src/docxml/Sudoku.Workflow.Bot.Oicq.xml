@@ -874,169 +874,6 @@
             </code>
             </remarks>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations">
-            <summary>
-            提供一些基本绘图操作，和 <see cref="N:Sudoku.Drawing"/> 以及 <see cref="N:Sudoku.Gdip"/> 命名空间进行交互的方法集。
-            </summary>
-            <seealso cref="N:Sudoku.Drawing"/>
-            <seealso cref="N:Sudoku.Gdip"/>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.SplitOptionsBoth">
-            <summary>
-            用于 <see cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/> 操作的枚举常量值，
-            表示既将空白字符片段舍弃（对应 <see cref="F:System.StringSplitOptions.RemoveEmptyEntries"/>），
-            又将其它满足条件的片段的头尾空白字符自动去除（对应 <see cref="F:System.StringSplitOptions.TrimEntries"/>）。
-            </summary>
-            <seealso cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/>
-            <seealso cref="F:System.StringSplitOptions.RemoveEmptyEntries"/>
-            <seealso cref="F:System.StringSplitOptions.TrimEntries"/>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.Separator">
-            <summary>
-            字符串的分割字符，用于绘图操作输入一系列数据的时候使用。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.DefaultException">
-            <summary>
-            用于快捷抛出的 <see cref="T:System.InvalidOperationException"/> 异常实例。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.UpdateCandidatesViaPencilmarks(Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext)">
-            <summary>
-            将该实例的 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/> 属性，所代表的候选数覆盖到 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/> 属性之中。
-            </summary>
-            <param name="this">表示作用于某实例。</param>
-            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/>
-            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.LocalSplit(System.String)">
-            <summary>
-            快捷调用 <see cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/> 操作。
-            </summary>
-            <param name="this">需要处理的字符串。</param>
-            <returns>将字符串进行分割之后的数组序列，去掉了头尾的空白字符，也舍弃掉了只有空白字符的匹配项。</returns>
-            <seealso cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.GetIdentifier(System.String)">
-            <summary>
-            通过一个颜色表达出来的字符串，转换为一个实体的 <see cref="T:Sudoku.Presentation.Identifier"/> 类型的实例，用于绘图。
-            </summary>
-            <param name="this">颜色字符串。</param>
-            <returns>一个 <see cref="T:Sudoku.Presentation.Identifier"/> 实例，表示颜色的标识符。</returns>
-            <remarks>
-            该方法支持的输入可以是基本的配色表（配色 #1 到 #15），也可以是 RGB 和 ARGB 的代码。
-            </remarks>
-            <seealso cref="T:Sudoku.Presentation.Identifier"/>
-            <seealso href="https://source.dot.net/#System.Private.CoreLib/src/libraries/Common/src/System/HexConverter.cs,2094caa70f8308bc">
-            char.IsAsciiHexDigit 方法
-            </seealso>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.GetCellIndex(System.Char,System.Char)">
-            <summary>
-            将前文传入的两个字符信息直接转为“行”和“列”两个数值，然后直接解析成合适的单元格坐标。
-            </summary>
-            <param name="r">一个字符，表示一个所在行的数据。</param>
-            <param name="c">一个字符，表示一个所在列的数据。</param>
-            <returns>单元格的索引。范围为 0 到 80。</returns>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.GetCandidateIndex(System.Char,System.Char,System.Char)">
-            <summary>
-            将前文传入的三个字符信息直接转为“行”、“列”和“数”三个数值，然后将其解析成合适的单元格坐标和数，以二元组（数对）的形式返回。
-            </summary>
-            <param name="r">一个字符，表示一个所在行的数据。</param>
-            <param name="c">一个字符，表示一个所在列的数据。</param>
-            <param name="d">一个字符，表示一个数值数据。</param>
-            <returns>一个二元组（数对），其中一个元素是单元格，第二个元素是数值。</returns>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.GetHouseIndex(System.Char,System.Char)">
-            <summary>
-            将前文传入的两个字符信息直接转为“区域类型名称”和“索引”两个数值，并表达成区域绝对索引值。区域从 0 到 26 编号，分别表示 27 个不同的区域类型
-            （宫 1-9、行 1-9、列 1-9）。由于 API 基本设计架构，宫被优先计算，所以 0-8 是宫的编号，请尤其注意。
-            </summary>
-            <param name="r">表示区域类型的名称标签。支持的值可以是行列宫的基本中文汉字，或是表示同名字的 R、C、B 字母（大小写均可）。</param>
-            <param name="i">索引。表示属于该区域类型 <paramref name="r"/> 的顺数第几个。比如“行3”就表示第 3 行。</param>
-            <returns>返回一个绝对索引，取值范围在 0 到 26 之间，包含边界。</returns>
-            <exception cref="T:System.ArgumentException">
-            如果 <paramref name="r"/> 输入的数值不合法，就会产生此异常；<paramref name="i"/> 我们这里没有给出处理，因为在调用方基本就处理过了。
-            这也是为什么我把这个方法定义为 <see langword="private"/> 的原因。
-            </exception>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.GetChuteIndex(System.Char,System.Char)">
-            <summary>
-            将前文传入的两个字符信息直接转为“大行列类型名称”和“索引”两个数值，并表达成大行类的绝对索引值。大行列从 0 到 5 编号，分别表示 6 个不同的大行列类型
-            （大行 1-3、大列 1-3）。
-            </summary>
-            <param name="r">表示大行列类型的名称标签。支持的值可以是中文汉字“行”和“列”，也可以是表示区域的字母。</param>
-            <param name="i">索引。表示属于该大行列类型 <paramref name="r"/> 的顺数第几个。比如“大行2”就表示第 2 个大行。</param>
-            <returns>返回一个绝对索引，取值范围在 0 到 5 之间，包含边界。</returns>
-            <exception cref="T:System.ArgumentException">
-            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.GetHouseIndex(System.Char,System.Char)" path="/exception[@cref='ArgumentException']"/>
-            </exception>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.RecordBasicNodesInternal(System.String,Sudoku.Presentation.Identifier)">
-            <summary>
-            内部方法，记录 <see cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/> 类型的节点。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.ClearAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.BotRunningContext)">
-            <summary>
-            直接清空整个绘图操作里已经设置了的视图节点，恢复为空盘面。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.SetDigitAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
-            <summary>
-            往绘图盘面内填入一个数（或者去掉一个填数）。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.AddPencilmarkAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
-            <summary>
-            往绘图盘面内追加一个候选数标记。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.RemovePencilmarkAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
-            <summary>
-            从绘图盘面内删除一个已经标记了的候选数。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.AddBasicViewNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
-            <summary>
-            往绘图盘面里追加涂色的视图节点。这些基本节点均走 <see cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/> 类型进行派生，
-            这个方法也是为了处理所有走该类型派生的具体实例的绘图逻辑。
-            </summary>
-            <remarks>
-            这个方法处理的视图节点包含如下这些：
-            <list type="bullet">
-            <item>单元格 <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/></item>
-            <item>候选数 <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/></item>
-            <item>区域 <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/></item>
-            <item>大行列 <see cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/></item>
-            <item>链的强弱关系 <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/></item>
-            <item>
-            代数字母 <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>
-            （这个在 <see cref="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.AddBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Utf8Char)"/> 方法里处理）
-            </item>
-            </list>
-            顺带一提，之所以给代数取名叫 <c>BabaGroup</c>，是因为有一个游戏叫《<see href="https://www.hempuli.com/baba/">Baba Is You</see>》。
-            这游戏里有一个 Group 单词，表示放在谓词 Is 左边的词语属于同一组处理逻辑。代数思想和这一点非常相似（也是一组数字按同一种思路推导），
-            恰好这技巧又没有英语名字，就干脆取了个这个名字。
-            </remarks>
-            <seealso cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.RemoveBasicViewNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
-            <summary>
-            从绘图盘面内删除指定的绘图节点。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.AddBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Utf8Char)">
-            <summary>
-            往绘图盘面里面追加代数字母的视图节点。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Drawing.DrawingOperations.RemoveBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
-            <summary>
-            从绘图盘面内删除代数字母的视图节点。
-            </summary>
-        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Handlers.ScoreHandler">
             <summary>
             提供一个分数（经验值和金币）的处理器类型。
@@ -1260,6 +1097,265 @@
             <summary>
             机器人的运行上下文。为一个并发字典，按群存储不同的上下文数据。
             </summary>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations">
+            <summary>
+            提供一些基本绘图操作，和 <see cref="N:Sudoku.Drawing"/> 以及 <see cref="N:Sudoku.Gdip"/> 命名空间进行交互的方法集。
+            </summary>
+            <seealso cref="N:Sudoku.Drawing"/>
+            <seealso cref="N:Sudoku.Gdip"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SplitOptionsBoth">
+            <summary>
+            用于 <see cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/> 操作的枚举常量值，
+            表示既将空白字符片段舍弃（对应 <see cref="F:System.StringSplitOptions.RemoveEmptyEntries"/>），
+            又将其它满足条件的片段的头尾空白字符自动去除（对应 <see cref="F:System.StringSplitOptions.TrimEntries"/>）。
+            </summary>
+            <seealso cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/>
+            <seealso cref="F:System.StringSplitOptions.RemoveEmptyEntries"/>
+            <seealso cref="F:System.StringSplitOptions.TrimEntries"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.Separator">
+            <summary>
+            字符串的分割字符，用于绘图操作输入一系列数据的时候使用。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.DefaultException">
+            <summary>
+            用于快捷抛出的 <see cref="T:System.InvalidOperationException"/> 异常实例。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.UpdateCandidatesViaPencilmarks(Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext)">
+            <summary>
+            将该实例的 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/> 属性，所代表的候选数覆盖到 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/> 属性之中。
+            </summary>
+            <param name="this">表示作用于某实例。</param>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.LocalSplit(System.String)">
+            <summary>
+            快捷调用 <see cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/> 操作。
+            </summary>
+            <param name="this">需要处理的字符串。</param>
+            <returns>将字符串进行分割之后的数组序列，去掉了头尾的空白字符，也舍弃掉了只有空白字符的匹配项。</returns>
+            <seealso cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetIdentifier(System.String)">
+            <summary>
+            通过一个颜色表达出来的字符串，转换为一个实体的 <see cref="T:Sudoku.Presentation.Identifier"/> 类型的实例，用于绘图。
+            </summary>
+            <param name="this">颜色字符串。</param>
+            <returns>一个 <see cref="T:Sudoku.Presentation.Identifier"/> 实例，表示颜色的标识符。</returns>
+            <remarks>
+            该方法支持的输入可以是基本的配色表（配色 #1 到 #15），也可以是 RGB 和 ARGB 的代码。
+            </remarks>
+            <seealso cref="T:Sudoku.Presentation.Identifier"/>
+            <seealso href="https://source.dot.net/#System.Private.CoreLib/src/libraries/Common/src/System/HexConverter.cs,2094caa70f8308bc">
+            char.IsAsciiHexDigit 方法
+            </seealso>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetCellIndex(System.Char,System.Char)">
+            <summary>
+            将前文传入的两个字符信息直接转为“行”和“列”两个数值，然后直接解析成合适的单元格坐标。
+            </summary>
+            <param name="r">一个字符，表示一个所在行的数据。</param>
+            <param name="c">一个字符，表示一个所在列的数据。</param>
+            <returns>单元格的索引。范围为 0 到 80。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetCandidateIndex(System.Char,System.Char,System.Char)">
+            <summary>
+            将前文传入的三个字符信息直接转为“行”、“列”和“数”三个数值，然后将其解析成合适的单元格坐标和数，以二元组（数对）的形式返回。
+            </summary>
+            <param name="r">一个字符，表示一个所在行的数据。</param>
+            <param name="c">一个字符，表示一个所在列的数据。</param>
+            <param name="d">一个字符，表示一个数值数据。</param>
+            <returns>一个二元组（数对），其中一个元素是单元格，第二个元素是数值。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetHouseIndex(System.Char,System.Char)">
+            <summary>
+            将前文传入的两个字符信息直接转为“区域类型名称”和“索引”两个数值，并表达成区域绝对索引值。区域从 0 到 26 编号，分别表示 27 个不同的区域类型
+            （宫 1-9、行 1-9、列 1-9）。由于 API 基本设计架构，宫被优先计算，所以 0-8 是宫的编号，请尤其注意。
+            </summary>
+            <param name="r">表示区域类型的名称标签。支持的值可以是行列宫的基本中文汉字，或是表示同名字的 R、C、B 字母（大小写均可）。</param>
+            <param name="i">索引。表示属于该区域类型 <paramref name="r"/> 的顺数第几个。比如“行3”就表示第 3 行。</param>
+            <returns>返回一个绝对索引，取值范围在 0 到 26 之间，包含边界。</returns>
+            <exception cref="T:System.ArgumentException">
+            如果 <paramref name="r"/> 输入的数值不合法，就会产生此异常；<paramref name="i"/> 我们这里没有给出处理，因为在调用方基本就处理过了。
+            这也是为什么我把这个方法定义为 <see langword="private"/> 的原因。
+            </exception>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetChuteIndex(System.Char,System.Char)">
+            <summary>
+            将前文传入的两个字符信息直接转为“大行列类型名称”和“索引”两个数值，并表达成大行类的绝对索引值。大行列从 0 到 5 编号，分别表示 6 个不同的大行列类型
+            （大行 1-3、大列 1-3）。
+            </summary>
+            <param name="r">表示大行列类型的名称标签。支持的值可以是中文汉字“行”和“列”，也可以是表示区域的字母。</param>
+            <param name="i">索引。表示属于该大行列类型 <paramref name="r"/> 的顺数第几个。比如“大行2”就表示第 2 个大行。</param>
+            <returns>返回一个绝对索引，取值范围在 0 到 5 之间，包含边界。</returns>
+            <exception cref="T:System.ArgumentException">
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetHouseIndex(System.Char,System.Char)" path="/exception[@cref='ArgumentException']"/>
+            </exception>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RecordBasicNodesInternal(System.String,Sudoku.Presentation.Identifier)">
+            <summary>
+            内部方法，记录 <see cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/> 类型的节点。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.ClearAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.BotRunningContext)">
+            <summary>
+            直接清空整个绘图操作里已经设置了的视图节点，恢复为空盘面。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SetDigitAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            往绘图盘面内填入一个数（或者去掉一个填数）。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddPencilmarkAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            往绘图盘面内追加一个候选数标记。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemovePencilmarkAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            从绘图盘面内删除一个已经标记了的候选数。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddBasicViewNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
+            <summary>
+            往绘图盘面里追加涂色的视图节点。这些基本节点均走 <see cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/> 类型进行派生，
+            这个方法也是为了处理所有走该类型派生的具体实例的绘图逻辑。
+            </summary>
+            <remarks>
+            这个方法处理的视图节点包含如下这些：
+            <list type="bullet">
+            <item>单元格 <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/></item>
+            <item>候选数 <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/></item>
+            <item>区域 <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/></item>
+            <item>大行列 <see cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/></item>
+            <item>链的强弱关系 <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/></item>
+            <item>
+            代数字母 <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>
+            （这个在 <see cref="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Utf8Char)"/> 方法里处理）
+            </item>
+            </list>
+            顺带一提，之所以给代数取名叫 <c>BabaGroup</c>，是因为有一个游戏叫《<see href="https://www.hempuli.com/baba/">Baba Is You</see>》。
+            这游戏里有一个 Group 单词，表示放在谓词 Is 左边的词语属于同一组处理逻辑。代数思想和这一点非常相似（也是一组数字按同一种思路推导），
+            恰好这技巧又没有英语名字，就干脆取了个这个名字。
+            </remarks>
+            <seealso cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveBasicViewNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            从绘图盘面内删除指定的绘图节点。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Utf8Char)">
+            <summary>
+            往绘图盘面里面追加代数字母的视图节点。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            从绘图盘面内删除代数字母的视图节点。
+            </summary>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations">
+            <summary>
+            一个静态类，提供一系列和本地交互有关题库数据的操作方法集。
+            </summary>
+            <remarks>
+            <inheritdoc cref="T:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler" path="/remarks"/>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.DefaultOptions">
+            <summary>
+            默认的 JSON 序列化配置项。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.UpdateLibrary(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
+            <summary>
+            更新指定群名的指定题库名称的题库数据。
+            </summary>
+            <param name="groupId">群号。</param>
+            <param name="library">题库数据，这个数据用于替换掉。</param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.NameEquals(Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary,System.String)">
+            <summary>
+            表示是否指定的 <paramref name="library"/> 的名称和 <paramref name="name"/> 近似或相同。
+            所谓的近似，指的是名称的大小写被忽略掉的情况，比如用户打字的时候习惯使用小写：“sdc”，那么题库名叫“SDC”、“SdC”的时候都可以匹配上。
+            </summary>
+            <param name="library">题库数据。</param>
+            <param name="name">题库名称。</param>
+            <returns>一个 <see cref="T:System.Boolean"/> 结果，表示是否名称相同或近似。</returns>
+            <remarks>
+            该方法作为本类型为数不多的、不操作 I/O 的方法，该方法不带有
+            [<see cref="T:System.Runtime.CompilerServices.MethodImplAttribute"/>(<see cref="F:System.Runtime.CompilerServices.MethodImplOptions.Synchronized"/>)] 标记。
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.Initialize(System.String)">
+            <summary>
+            初始化指定群号（QQ）的群的所有题库的本地数据。
+            </summary>
+            <param name="groupId">群号。</param>
+            <returns>返回一个 <see cref="T:System.Boolean"/> 结果，表示是否完成初始化。如果失败（例如中途文件夹不存在等），则返回 <see langword="false"/>。</returns>
+            <remarks>
+            在“<c>BotData/PuzzleLibrary</c>”文件夹里包含众多子文件夹，这些文件夹命名均为群号，表示的是一个群里包裹的所有题库完成数据和题库本身。
+            通过“<c>BotData/PuzzleLibrary/群号</c>”文件夹里搜索所有文本文件，就可以获得指定群的题库数据；
+            而和文件夹同名的 JSON 文件则是该群完成的此群的题库数据的序列化文件。
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.GetPuzzlesCount(System.String,System.String)">
+            <summary>
+            根据指定群号（QQ）和题库名称，获取该题库的完整题目的数量。
+            </summary>
+            <param name="groupId">群号。</param>
+            <param name="libraryName">题库名称。</param>
+            <returns>
+            返回一个数字，表示这个题库有多少个题目。如果题库没有找到，则返回 -1。
+            </returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.GetPuzzlesCount(Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.GetPuzzlesCount(System.String,System.String)" path="/summary"/>
+            </summary>
+            <param name="puzzleLibrary"><see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 的实例。</param>
+            <returns>
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.GetPuzzlesCount(System.String,System.String)" path="/returns"/>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.GetPuzzleFor(Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
+            <summary>
+            通过指定的 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 数据实例，获得题库路径，以及完成题目的数量，以这两个数值来确定抽取的题目。
+            </summary>
+            <param name="puzzleLibrary">一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 类型的实例。</param>
+            <returns>返回一个 <see cref="T:Sudoku.Concepts.Grid"/> 实例，表示结果。</returns>
+            <exception cref="T:System.InvalidOperationException">
+            如果题库已经完成，就会产生此异常。这里属于是一个补救措施，因为调用此方法之前应本身就先得确保题库可以抽取题目。
+            </exception>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.GetLibrary(System.String,System.String)">
+            <summary>
+            根据群号（QQ）和题库名称去搜索该群的匹配题库。如果找不到，则返回 <see langword="null"/>。
+            </summary>
+            <param name="groupId">群号。</param>
+            <param name="libraryName">题库名称。</param>
+            <returns>返回 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 实例，表示题库的基本信息。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.GetLibraries(System.String)">
+            <summary>
+            根据群号（QQ）获取本群的所有题库信息，并返回一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 构成的数组。如果本群不存在本地数据，
+            则返回 <see langword="null"/>。
+            </summary>
+            <param name="groupId">群号。</param>
+            <returns>一个由 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 元素构成的数组。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.GetLibraries(Mirai.Net.Data.Shared.Group)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.GetLibraries(System.String)" path="/summary"/>
+            </summary>
+            <param name="group">一个 <see cref="T:Mirai.Net.Data.Shared.Group"/> 对象，表示的是当前操作的群的基本数据。</param>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Parsing.ParsingFailedReason">
             <summary>
@@ -2058,102 +2154,6 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.UplevelCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations">
-            <summary>
-            一个静态类，提供一系列和本地交互有关题库数据的操作方法集。
-            </summary>
-            <remarks>
-            <inheritdoc cref="T:Sudoku.Workflow.Bot.Oicq.Handlers.StorageHandler" path="/remarks"/>
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.DefaultOptions">
-            <summary>
-            默认的 JSON 序列化配置项。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.UpdateLibrary(System.String,Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
-            <summary>
-            更新指定群名的指定题库名称的题库数据。
-            </summary>
-            <param name="groupId">群号。</param>
-            <param name="library">题库数据，这个数据用于替换掉。</param>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.NameEquals(Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary,System.String)">
-            <summary>
-            表示是否指定的 <paramref name="library"/> 的名称和 <paramref name="name"/> 近似或相同。
-            所谓的近似，指的是名称的大小写被忽略掉的情况，比如用户打字的时候习惯使用小写：“sdc”，那么题库名叫“SDC”、“SdC”的时候都可以匹配上。
-            </summary>
-            <param name="library">题库数据。</param>
-            <param name="name">题库名称。</param>
-            <returns>一个 <see cref="T:System.Boolean"/> 结果，表示是否名称相同或近似。</returns>
-            <remarks>
-            该方法作为本类型为数不多的、不操作 I/O 的方法，该方法不带有
-            [<see cref="T:System.Runtime.CompilerServices.MethodImplAttribute"/>(<see cref="F:System.Runtime.CompilerServices.MethodImplOptions.Synchronized"/>)] 标记。
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.Initialize(System.String)">
-            <summary>
-            初始化指定群号（QQ）的群的所有题库的本地数据。
-            </summary>
-            <param name="groupId">群号。</param>
-            <returns>返回一个 <see cref="T:System.Boolean"/> 结果，表示是否完成初始化。如果失败（例如中途文件夹不存在等），则返回 <see langword="false"/>。</returns>
-            <remarks>
-            在“<c>BotData/PuzzleLibrary</c>”文件夹里包含众多子文件夹，这些文件夹命名均为群号，表示的是一个群里包裹的所有题库完成数据和题库本身。
-            通过“<c>BotData/PuzzleLibrary/群号</c>”文件夹里搜索所有文本文件，就可以获得指定群的题库数据；
-            而和文件夹同名的 JSON 文件则是该群完成的此群的题库数据的序列化文件。
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetPuzzlesCount(System.String,System.String)">
-            <summary>
-            根据指定群号（QQ）和题库名称，获取该题库的完整题目的数量。
-            </summary>
-            <param name="groupId">群号。</param>
-            <param name="libraryName">题库名称。</param>
-            <returns>
-            返回一个数字，表示这个题库有多少个题目。如果题库没有找到，则返回 -1。
-            </returns>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetPuzzlesCount(Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
-            <summary>
-            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetPuzzlesCount(System.String,System.String)" path="/summary"/>
-            </summary>
-            <param name="puzzleLibrary"><see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 的实例。</param>
-            <returns>
-            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetPuzzlesCount(System.String,System.String)" path="/returns"/>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetPuzzleFor(Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary)">
-            <summary>
-            通过指定的 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 数据实例，获得题库路径，以及完成题目的数量，以这两个数值来确定抽取的题目。
-            </summary>
-            <param name="puzzleLibrary">一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 类型的实例。</param>
-            <returns>返回一个 <see cref="T:Sudoku.Concepts.Grid"/> 实例，表示结果。</returns>
-            <exception cref="T:System.InvalidOperationException">
-            如果题库已经完成，就会产生此异常。这里属于是一个补救措施，因为调用此方法之前应本身就先得确保题库可以抽取题目。
-            </exception>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetLibrary(System.String,System.String)">
-            <summary>
-            根据群号（QQ）和题库名称去搜索该群的匹配题库。如果找不到，则返回 <see langword="null"/>。
-            </summary>
-            <param name="groupId">群号。</param>
-            <param name="libraryName">题库名称。</param>
-            <returns>返回 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 实例，表示题库的基本信息。</returns>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetLibraries(System.String)">
-            <summary>
-            根据群号（QQ）获取本群的所有题库信息，并返回一个 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 构成的数组。如果本群不存在本地数据，
-            则返回 <see langword="null"/>。
-            </summary>
-            <param name="groupId">群号。</param>
-            <returns>一个由 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.PuzzleLibrary"/> 元素构成的数组。</returns>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetLibraries(Mirai.Net.Data.Shared.Group)">
-            <summary>
-            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Storage.PuzzleLibraryOperations.GetLibraries(System.String)" path="/summary"/>
-            </summary>
-            <param name="group">一个 <see cref="T:Mirai.Net.Data.Shared.Group"/> 对象，表示的是当前操作的群的基本数据。</param>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.ValueConverters.NumericArrayConverter`1">
             <summary>
