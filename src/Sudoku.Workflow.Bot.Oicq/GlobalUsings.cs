@@ -31,6 +31,7 @@ global using Sudoku.Preprocessing.AutoFiller;
 global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
 global using Sudoku.Runtime.AnalysisServices;
+global using Sudoku.Runtime.MaskServices;
 global using Sudoku.Solving.Logical;
 global using Sudoku.Solving.Logical.Techniques;
 global using Sudoku.Workflow.Bot.Oicq.Annotations;

@@ -1,5 +1,3 @@
-using Sudoku.Runtime.MaskServices;
-
 namespace Sudoku.Workflow.Bot.Oicq.Operation;
 
 partial class DrawingOperations
@@ -339,7 +337,7 @@ partial class DrawingOperations
 			//     foreach (scoped ref var mask in grid.EnumerateMasks())
 			//
 			// 但是，因为 foreach 循环的迭代变量本身就不可能超出这个循环体，所以它标记不标记 scoped 都是一回事。写了可以，但是不写也可以。
-			// 官方叫这种 scoped 情况叫“隐式 scoped”（Implicitly-Scoped）。
+			// 官方叫这种 scoped 情况叫“隐式 scoped 的变量”（Implicitly-Scoped Variables）。
 			foreach (ref var mask in grid.EnumerateMasks())
 			{
 				// mask 是盘面每一个单元格的底层掩码。掩码用的是 12 个比特位表示一个单元格的信息。其中最后 9 个比特是表示这个格子里数字 1 到 9 的可能填数状态
