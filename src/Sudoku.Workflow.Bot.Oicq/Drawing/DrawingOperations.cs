@@ -148,7 +148,7 @@ internal static partial class DrawingOperations
 	/// </summary>
 	private static HashSet<ViewNode> RecordBasicNodesInternal(string rawString, Identifier identifier = default)
 	{
-		var nodes = new HashSet<ViewNode>(ViewNodeComparer.Default);
+		var nodes = new HashSet<ViewNode>();
 		foreach (var element in rawString.LocalSplit())
 		{
 			var node = element switch

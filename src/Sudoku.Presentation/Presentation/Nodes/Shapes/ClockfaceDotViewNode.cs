@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation.Nodes.Shapes;
+namespace Sudoku.Presentation.Nodes.Shapes;
 
 /// <summary>
 /// Defines a clockface dot view node.
@@ -26,11 +26,9 @@ public sealed partial class ClockfaceDotViewNode(Identifier identifier, scoped i
 
 
 	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is ClockfaceDotViewNode comparer
-		&& Identifier == comparer.Identifier && Cells == comparer.Cells && IsClockwise == comparer.IsClockwise;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is ClockfaceDotViewNode comparer && Cells == comparer.Cells;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cells), nameof(IsClockwise))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cells))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cells), nameof(IsClockwise))]

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation.Nodes.Shapes;
+namespace Sudoku.Presentation.Nodes.Shapes;
 
 /// <summary>
 /// Defines a view node that displays as a bar on shared border line of two adjacent cells.
@@ -23,9 +23,9 @@ public sealed partial class BorderBarViewNode(Identifier identifier, int cell1, 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is BorderBarViewNode comparer && Identifier == comparer.Identifier && Cell1 == comparer.Cell1 && Cell2 == comparer.Cell2;
+		=> other is BorderBarViewNode comparer && Cell1 == comparer.Cell1 && Cell2 == comparer.Cell2;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell1), nameof(Cell2))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell1), nameof(Cell2))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell1String), nameof(Cell2String))]

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation.Nodes.Shapes;
+namespace Sudoku.Presentation.Nodes.Shapes;
 
 /// <summary>
 /// Defines a star view node used by star product.
@@ -8,11 +8,9 @@ public sealed partial class StarProductStarViewNode(Identifier identifier, int c
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is StarProductStarViewNode comparer
-		&& Identifier == comparer.Identifier && Cell == comparer.Cell && Directions == comparer.Directions;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is StarProductStarViewNode comparer && Cell == comparer.Cell;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell), nameof(Directions))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell), nameof(Directions))]

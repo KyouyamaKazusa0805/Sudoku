@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation.Nodes.Shapes;
+namespace Sudoku.Presentation.Nodes.Shapes;
 
 /// <summary>
 /// Defines a battenburg view node.
@@ -19,10 +19,9 @@ public sealed partial class BattenburgViewNode(Identifier identifier, scoped in 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is BattenburgViewNode comparer && Identifier == comparer.Identifier && Cells == comparer.Cells;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is BattenburgViewNode comparer && Cells == comparer.Cells;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cells))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cells))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cells))]

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation.Nodes.Shapes;
+namespace Sudoku.Presentation.Nodes.Shapes;
 
 /// <summary>
 /// Defines a neighbor sign view node.
@@ -22,11 +22,9 @@ public sealed partial class NeighborSignViewNode(Identifier identifier, int cell
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is NeighborSignViewNode comparer
-		&& Identifier == comparer.Identifier && Cell == comparer.Cell && IsFourDirections == comparer.IsFourDirections;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is NeighborSignViewNode comparer && Cell == comparer.Cell;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell), nameof(IsFourDirections))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CellString), nameof(IsFourDirections))]

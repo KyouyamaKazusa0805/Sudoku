@@ -1,12 +1,8 @@
-﻿namespace Sudoku.Presentation.Nodes;
+namespace Sudoku.Presentation.Nodes;
 
 /// <summary>
 /// Defines a view node that highlights for a link.
 /// </summary>
-/// <param name="identifier"><inheritdoc cref="BasicViewNode(Identifier)" path="/param[@name='identifier']"/></param>
-/// <param name="startPoint">The start point of the link.</param>
-/// <param name="endPoint">The end point of the link.</param>
-/// <param name="inference">The inference type.</param>
 public sealed partial class LinkViewNode(
 	Identifier identifier,
 	scoped in LockedTarget startPoint,
@@ -36,9 +32,9 @@ public sealed partial class LinkViewNode(
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is LinkViewNode comparer && Start == comparer.Start && End == comparer.End && Inference == comparer.Inference;
+		=> other is LinkViewNode comparer && Start == comparer.Start && End == comparer.End;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Identifier), nameof(Start), nameof(End))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Start), nameof(End))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Start), nameof(End), nameof(Inference))]

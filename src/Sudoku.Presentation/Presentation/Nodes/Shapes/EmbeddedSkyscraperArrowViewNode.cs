@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation.Nodes.Shapes;
+namespace Sudoku.Presentation.Nodes.Shapes;
 
 /// <summary>
 /// Defines an embedded skyscraper arrow view node.
@@ -6,6 +6,11 @@
 public sealed class EmbeddedSkyscraperArrowViewNode(Identifier identifier, int cell, Direction directions) :
 	SingleCellMarkViewNode(identifier, cell, directions)
 {
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] ViewNode? other)
+		=> other is EmbeddedSkyscraperArrowViewNode comparer && Cell == comparer.Cell;
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override EmbeddedSkyscraperArrowViewNode Clone() => new(Identifier, Cell, Directions);

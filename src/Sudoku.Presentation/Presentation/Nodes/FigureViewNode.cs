@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation.Nodes;
+namespace Sudoku.Presentation.Nodes;
 
 /// <summary>
 /// Defines a figure view node.
@@ -18,10 +18,9 @@ public abstract partial class FigureViewNode(Identifier identifier, int cell) : 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is FigureViewNode comparer && Identifier == comparer.Identifier && Cell == comparer.Cell;
+	public sealed override bool Equals([NotNullWhen(true)] ViewNode? other) => other is FigureViewNode comparer && Cell == comparer.Cell;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
 	public sealed override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell))]

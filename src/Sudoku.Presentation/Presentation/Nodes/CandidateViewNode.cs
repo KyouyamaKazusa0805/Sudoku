@@ -1,10 +1,8 @@
-﻿namespace Sudoku.Presentation.Nodes;
+namespace Sudoku.Presentation.Nodes;
 
 /// <summary>
 /// Defines a view node that highlights for a candidate.
 /// </summary>
-/// <param name="identifier"><inheritdoc cref="BasicViewNode(Identifier)" path="/param[@name='identifier']"/></param>
-/// <param name="candidate">The candidate.</param>
 public sealed partial class CandidateViewNode(Identifier identifier, int candidate) : BasicViewNode(identifier)
 {
 	/// <summary>
@@ -26,10 +24,9 @@ public sealed partial class CandidateViewNode(Identifier identifier, int candida
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is CandidateViewNode comparer && Identifier == comparer.Identifier && Candidate == comparer.Candidate;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is CandidateViewNode comparer && Candidate == comparer.Candidate;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Identifier), nameof(Candidate))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Candidate))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CandidateString))]

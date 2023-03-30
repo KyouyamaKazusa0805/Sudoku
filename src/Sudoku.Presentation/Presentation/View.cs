@@ -117,20 +117,6 @@ public sealed partial class View : ICloneable<View>, IEnumerable<ViewNode>
 	}
 
 	/// <summary>
-	/// Removes the specified <see cref="ViewNode"/> from the collection via the specified equality comparer.
-	/// </summary>
-	/// <param name="node">The <see cref="ViewNode"/> instance.</param>
-	/// <param name="comparer">The equality comparer.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Remove(ViewNode node, IEqualityComparer<ViewNode> comparer)
-	{
-		if (_nodes.Contains(node, comparer))
-		{
-			_nodes.Remove(node);
-		}
-	}
-
-	/// <summary>
 	/// <para>Determines whether the current view contains a view node using the specified candidate value.</para>
 	/// <para>This method will be useful for cannibalism checking cases.</para>
 	/// </summary>

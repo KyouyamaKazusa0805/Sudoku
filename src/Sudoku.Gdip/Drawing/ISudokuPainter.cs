@@ -266,23 +266,6 @@ file sealed class SudokuPainter : ISudokuPainter
 	}
 
 	/// <inheritdoc/>
-	public ISudokuPainter RemoveNodes(IEnumerable<ViewNode> nodes, IEqualityComparer<ViewNode> comparer)
-	{
-		if (GridImageGenerator.View is not { } view)
-		{
-			goto ReturnThis;
-		}
-
-		foreach (var node in nodes)
-		{
-			view.Remove(node, comparer);
-		}
-
-	ReturnThis:
-		return this;
-	}
-
-	/// <inheritdoc/>
 	public ISudokuPainter RemoveNodesWhen(Predicate<ViewNode> predicate)
 	{
 		if (GridImageGenerator.View is not { } view)

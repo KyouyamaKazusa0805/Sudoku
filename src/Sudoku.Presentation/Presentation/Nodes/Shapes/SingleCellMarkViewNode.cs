@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation.Nodes.Shapes;
+namespace Sudoku.Presentation.Nodes.Shapes;
 
 /// <summary>
 /// Defines a single-cell mark view node.
@@ -29,13 +29,7 @@ public abstract partial class SingleCellMarkViewNode(Identifier identifier, int 
 	[DeconstructionMethod]
 	public partial void Deconstruct(out int cell, out Direction directions);
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> GetType() == other?.GetType() && other is SingleCellMarkViewNode comparer
-		&& Identifier == comparer.Identifier && Cell == comparer.Cell && Directions == comparer.Directions;
-
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell), nameof(Directions))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CellString), nameof(Directions))]

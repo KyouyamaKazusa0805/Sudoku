@@ -167,7 +167,7 @@ partial class DrawingOperations
 	public static async Task RemoveBasicViewNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
 	{
 		var nodes = RecordBasicNodesInternal(rawString);
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes, ViewNodeComparer.Default));
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
 	}
 
 	/// <summary>
@@ -180,7 +180,7 @@ partial class DrawingOperations
 		Utf8Char character
 	)
 	{
-		var nodes = new HashSet<BabaGroupViewNode>(ViewNodeComparer.Default); // 这里用到的是接口泛型参数的逆变性。
+		var nodes = new HashSet<BabaGroupViewNode>();
 		foreach (var element in rawString.LocalSplit())
 		{
 			if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9'] && GetCellIndex(r, c) is var cell)
@@ -209,14 +209,15 @@ partial class DrawingOperations
 	/// </summary>
 	public static async Task RemoveBabaGroupNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
 	{
+		var nodes = new HashSet<BabaGroupViewNode>();
 		foreach (var element in rawString.LocalSplit())
 		{
 			if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9'] && GetCellIndex(r, c) is var cell)
 			{
-				drawingContext.Painter.RemoveNodesWhen(node => node is BabaGroupViewNode { Cell: var c } && c == cell);
+				nodes.Add(new(default, cell, default, default));
 			}
 		}
 
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
 	}
 }

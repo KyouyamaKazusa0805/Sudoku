@@ -158,14 +158,6 @@ public interface ISudokuPainterFactory
 	ISudokuPainter RemoveNodes(IEnumerable<ViewNode> nodes);
 
 	/// <summary>
-	/// Remove nodes via the specified equality comparer.
-	/// </summary>
-	/// <param name="nodes">Nodes to be removed.</param>
-	/// <param name="comparer">The equality comparer.</param>
-	/// <returns>The target painter.</returns>
-	ISudokuPainter RemoveNodes(IEnumerable<ViewNode> nodes, IEqualityComparer<ViewNode> comparer);
-
-	/// <summary>
 	/// Remove nodes if the target node satisfies the specified condition.
 	/// </summary>
 	/// <param name="predicate">The predicate.</param>

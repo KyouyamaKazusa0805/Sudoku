@@ -1,13 +1,10 @@
-﻿namespace Sudoku.Presentation.Nodes.Shapes;
+namespace Sudoku.Presentation.Nodes.Shapes;
 
 /// <summary>
 /// Defines an average bar view node.
 /// </summary>
-public sealed partial class AverageBarViewNode(
-	Identifier identifier,
-	int cell,
-	AdjacentCellType type
-) : SingleCellMarkViewNode(identifier, cell, Direction.None)
+public sealed partial class AverageBarViewNode(Identifier identifier, int cell, AdjacentCellType type) :
+	SingleCellMarkViewNode(identifier, cell, Direction.None)
 {
 	/// <summary>
 	/// Indicates the adjacent cell type.
@@ -17,11 +14,9 @@ public sealed partial class AverageBarViewNode(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is AverageBarViewNode comparer
-		&& Identifier == comparer.Identifier && Cell == comparer.Cell && Type == comparer.Type;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is AverageBarViewNode comparer && Cell == comparer.Cell;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell), nameof(Type))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell), nameof(Type))]

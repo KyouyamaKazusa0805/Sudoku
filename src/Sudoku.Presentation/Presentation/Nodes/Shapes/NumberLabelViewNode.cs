@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation.Nodes.Shapes;
+namespace Sudoku.Presentation.Nodes.Shapes;
 
 /// <summary>
 /// Defines a number label view node.
@@ -32,10 +32,9 @@ public sealed partial class NumberLabelViewNode(Identifier identifier, int cell1
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is NumberLabelViewNode comparer
-		&& Identifier == comparer.Identifier && Cell1 == comparer.Cell1 && Cell2 == comparer.Cell2 && Label == comparer.Label;
+		=> other is NumberLabelViewNode comparer && Cell1 == comparer.Cell1 && Cell2 == comparer.Cell2;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell1), nameof(Cell2), nameof(Label))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell1), nameof(Cell2))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell1String), nameof(Cell2String), nameof(Label))]

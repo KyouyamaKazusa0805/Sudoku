@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation.Nodes.Shapes;
+namespace Sudoku.Presentation.Nodes.Shapes;
 
 /// <summary>
 /// Represents with a greater-than sign view node.
@@ -29,10 +29,9 @@ public sealed partial class GreaterThanSignViewNode(Identifier identifier, int c
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is GreaterThanSignViewNode comparer
-		&& Identifier == comparer.Identifier && Cell1 == comparer.Cell1 && Cell2 == comparer.Cell2 && IsGreaterThan == comparer.IsGreaterThan;
+		=> other is GreaterThanSignViewNode comparer && Cell1 == comparer.Cell1 && Cell2 == comparer.Cell2;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(TypeIdentifier), nameof(Cell1), nameof(Cell2), nameof(IsGreaterThan))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell1), nameof(Cell2))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell1String), nameof(Cell2String), nameof(IsGreaterThan))]

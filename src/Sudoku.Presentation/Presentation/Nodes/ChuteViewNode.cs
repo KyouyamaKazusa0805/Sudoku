@@ -3,8 +3,6 @@ namespace Sudoku.Presentation.Nodes;
 /// <summary>
 /// Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
 /// </summary>
-/// <param name="identifier"><inheritdoc cref="BasicViewNode(Identifier)" path="/param[@name='identifier']"/></param>
-/// <param name="chuteIndex">The chute index.</param>
 public sealed partial class ChuteViewNode(Identifier identifier, int chuteIndex) : BasicViewNode(identifier)
 {
 	/// <summary>
@@ -36,9 +34,9 @@ public sealed partial class ChuteViewNode(Identifier identifier, int chuteIndex)
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is ChuteViewNode comparer && Identifier == comparer.Identifier && ChuteIndex == comparer.ChuteIndex;
+		=> other is ChuteViewNode comparer && ChuteIndex == comparer.ChuteIndex;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Identifier), nameof(ChuteIndex))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(ChuteIndex))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(ChuteIndex))]

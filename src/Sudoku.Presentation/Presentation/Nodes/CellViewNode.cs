@@ -1,10 +1,8 @@
-﻿namespace Sudoku.Presentation.Nodes;
+namespace Sudoku.Presentation.Nodes;
 
 /// <summary>
 /// Defines a view node that highlights for a cell.
 /// </summary>
-/// <param name="identifier"><inheritdoc cref="BasicViewNode(Identifier)" path="/param[@name='identifier']"/></param>
-/// <param name="cell">The cell.</param>
 public sealed partial class CellViewNode(Identifier identifier, int cell) : BasicViewNode(identifier)
 {
 	/// <summary>
@@ -26,10 +24,9 @@ public sealed partial class CellViewNode(Identifier identifier, int cell) : Basi
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is CellViewNode comparer && Identifier == comparer.Identifier && Cell == comparer.Cell;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is CellViewNode comparer && Cell == comparer.Cell;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Identifier), nameof(Cell))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CellString))]

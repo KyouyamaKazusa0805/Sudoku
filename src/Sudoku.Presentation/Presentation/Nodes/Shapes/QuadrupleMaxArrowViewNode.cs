@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation.Nodes.Shapes;
+namespace Sudoku.Presentation.Nodes.Shapes;
 
 /// <summary>
 /// Defines a quadruple max arrow view node.
@@ -30,11 +30,9 @@ public sealed partial class QuadrupleMaxArrowViewNode(Identifier identifier, sco
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is QuadrupleMaxArrowViewNode comparer
-		&& Identifier == comparer.Identifier && Cells == comparer.Cells && ArrowDirection == comparer.ArrowDirection;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is QuadrupleMaxArrowViewNode comparer && Cells == comparer.Cells;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cells), nameof(ArrowDirection))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cells))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cells), nameof(ArrowDirection))]

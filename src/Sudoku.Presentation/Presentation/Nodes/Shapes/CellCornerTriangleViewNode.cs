@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation.Nodes.Shapes;
+namespace Sudoku.Presentation.Nodes.Shapes;
 
 /// <summary>
 /// Defines a triangle view node that is used in a cell.
@@ -6,6 +6,10 @@
 public sealed class CellCornerTriangleViewNode(Identifier identifier, int cell, Direction directions) :
 	SingleCellMarkViewNode(identifier, cell, directions)
 {
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is CellCornerTriangleViewNode comparer && Cell == comparer.Cell;
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override CellCornerTriangleViewNode Clone() => new(Identifier, Cell, Directions);
