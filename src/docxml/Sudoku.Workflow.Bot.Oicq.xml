@@ -1278,6 +1278,19 @@
             不论这两个节点原本是强还是弱，都不能再叠加新的重叠的线条。
             </remarks>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.ApplyGridAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            从 <paramref name="gridString"/> 之中获取盘面的文本字符串，并直接解析成合适的 <see cref="T:Sudoku.Concepts.Grid"/> 盘面数据后，直接导入到绘图盘面里使用。
+            </summary>
+            <remarks>
+            注意，这里除了解析之后，还得考虑候选数的情况。因为前文我们用到了一种特殊逻辑去支持用户友好的标记候选数的模式（直观模式）。这个模式下，盘面的空格
+            并非为 <see cref="F:Sudoku.Concepts.CellStatus.Empty"/> 状态的，而是 <see cref="F:Sudoku.Concepts.CellStatus.Undefined"/> 状态的。盘面默认情况是 <see cref="F:Sudoku.Concepts.CellStatus.Empty"/>，
+            所以我们在解析成正确结果后，还需要将每一个空格的状态手动调整成 <see cref="F:Sudoku.Concepts.CellStatus.Undefined"/>，来达到兼容。
+            </remarks>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+            <seealso cref="F:Sudoku.Concepts.CellStatus.Empty"/>
+            <seealso cref="F:Sudoku.Concepts.CellStatus.Undefined"/>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations">
             <summary>
             一个静态类，提供一系列和本地交互有关题库数据的操作方法集。
@@ -1810,6 +1823,22 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.MentioningCommand.Execute(Mirai.Net.Data.Messages.MessageReceiverBase)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Generalized.Extensions.ParseAsCommandLine(System.String,System.String,System.Char[])">
+            <summary>
+            用来将一个字符串直接拆解成一个一个的参数序列。以空格分隔。如果带有引号，则引号是一个整体，里面可包含空格。
+            </summary>
+            <param name="s">字符串。</param>
+            <param name="argumentMatcher">匹配字符串参数的正则表达式。</param>
+            <param name="trimmedCharacters">表示最终拆解字符串的时候，需要额外去除的字符。比如引号。</param>
+            <returns>解析后的参数序列，按次序排列。</returns>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserDataCommand.UserNickname">
             <summary>
