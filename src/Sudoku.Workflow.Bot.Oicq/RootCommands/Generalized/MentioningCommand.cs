@@ -65,18 +65,18 @@ file sealed class MentioningCommand : IModule
 					[("强" or "弱") and var l, var s, var e] => DrawingOperations.AddLinkNodeAsync(messageReceiver, drawingContext, l, s, e),
 					["反强" or "反弱", var s, var e] => DrawingOperations.RemoveLinkNodeAsync(messageReceiver, drawingContext, s, e),
 					["盘面", var g] => DrawingOperations.ApplyGridAsync(messageReceiver, drawingContext, g),
-					["圆形", var s, var c] => DrawingOperations.AddFigureViewNodeAsync<CircleViewNode>(messageReceiver, drawingContext, s, c, static (i, c) => new(i, c)),
-					["菱形", var s, var c] => DrawingOperations.AddFigureViewNodeAsync<DiamondViewNode>(messageReceiver, drawingContext, s, c, static (i, c) => new(i, c)),
-					["心形", var s, var c] => DrawingOperations.AddFigureViewNodeAsync<HeartViewNode>(messageReceiver, drawingContext, s, c, static (i, c) => new(i, c)),
-					["正方形", var s, var c] => DrawingOperations.AddFigureViewNodeAsync<SquareViewNode>(messageReceiver, drawingContext, s, c, static (i, c) => new(i, c)),
-					["五角星", var s, var c] => DrawingOperations.AddFigureViewNodeAsync<StarViewNode>(messageReceiver, drawingContext, s, c, static (i, c) => new(i, c)),
-					["三角形", var s, var c] => DrawingOperations.AddFigureViewNodeAsync<TriangleViewNode>(messageReceiver, drawingContext, s, c, static (i, c) => new(i, c)),
-					["反圆形", var s] => DrawingOperations.RemoveFigureViewNodeAsync<CircleViewNode>(messageReceiver, drawingContext, s, static c => new(default, c)),
-					["反菱形", var s] => DrawingOperations.RemoveFigureViewNodeAsync<DiamondViewNode>(messageReceiver, drawingContext, s, static c => new(default, c)),
-					["反心形", var s] => DrawingOperations.RemoveFigureViewNodeAsync<HeartViewNode>(messageReceiver, drawingContext, s, static c => new(default, c)),
-					["反正方形", var s] => DrawingOperations.RemoveFigureViewNodeAsync<SquareViewNode>(messageReceiver, drawingContext, s, static c => new(default, c)),
-					["反五角星", var s] => DrawingOperations.RemoveFigureViewNodeAsync<TriangleViewNode>(messageReceiver, drawingContext, s, static c => new(default, c)),
-					["反三角形", var s] => DrawingOperations.RemoveFigureViewNodeAsync<TriangleViewNode>(messageReceiver, drawingContext, s, static c => new(default, c)),
+					["圆形", var s, var c] => DrawingOperations.AddFigureViewNodeAsync(messageReceiver, drawingContext, s, c, f1<CircleViewNode>),
+					["菱形", var s, var c] => DrawingOperations.AddFigureViewNodeAsync(messageReceiver, drawingContext, s, c, f1<DiamondViewNode>),
+					["心形", var s, var c] => DrawingOperations.AddFigureViewNodeAsync(messageReceiver, drawingContext, s, c, f1<HeartViewNode>),
+					["正方形", var s, var c] => DrawingOperations.AddFigureViewNodeAsync(messageReceiver, drawingContext, s, c, f1<SquareViewNode>),
+					["五角星", var s, var c] => DrawingOperations.AddFigureViewNodeAsync(messageReceiver, drawingContext, s, c, f1<StarViewNode>),
+					["三角形", var s, var c] => DrawingOperations.AddFigureViewNodeAsync(messageReceiver, drawingContext, s, c, f1<TriangleViewNode>),
+					["反圆形", var s] => DrawingOperations.RemoveFigureViewNodeAsync(messageReceiver, drawingContext, s, f2<CircleViewNode>),
+					["反菱形", var s] => DrawingOperations.RemoveFigureViewNodeAsync(messageReceiver, drawingContext, s, f2<DiamondViewNode>),
+					["反心形", var s] => DrawingOperations.RemoveFigureViewNodeAsync(messageReceiver, drawingContext, s, f2<HeartViewNode>),
+					["反正方形", var s] => DrawingOperations.RemoveFigureViewNodeAsync(messageReceiver, drawingContext, s, f2<SquareViewNode>),
+					["反五角星", var s] => DrawingOperations.RemoveFigureViewNodeAsync(messageReceiver, drawingContext, s, f2<StarViewNode>),
+					["反三角形", var s] => DrawingOperations.RemoveFigureViewNodeAsync(messageReceiver, drawingContext, s, f2<TriangleViewNode>),
 					_ => null
 				};
 				if (task is not null)
@@ -85,6 +85,11 @@ file sealed class MentioningCommand : IModule
 				}
 
 				break;
+
+
+				static T f1<T>(Identifier i, int c) where T : FigureViewNode => (T)Activator.CreateInstance(typeof(T), new[] { i, c })!;
+
+				static T f2<T>(int c) where T : FigureViewNode => (T)Activator.CreateInstance(typeof(T), new[] { default(Identifier), c })!;
 			}
 		}
 	}
