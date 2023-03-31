@@ -31,7 +31,13 @@ partial class DrawingOperations
 	{
 		var painter = ISudokuPainter.Create(1000, 20)
 			.WithRenderingCandidates(true)
-			.WithPreferenceSettings(static pref => pref.CandidateScale = .4M)
+			.WithPreferenceSettings(
+				static pref =>
+				{
+					pref.CandidateScale = .4M;
+					pref.BattenburgSize = 42.666668F;
+				}
+			)
 			.WithGrid(Grid.Undefined);
 		context.DrawingContext = new() { Painter = painter };
 
