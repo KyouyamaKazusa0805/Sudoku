@@ -19,7 +19,7 @@ public sealed partial class BattenburgViewNode(Identifier identifier, scoped in 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is BattenburgViewNode comparer && Cells == comparer.Cells;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is BattenburgViewNode comparer && Cells[0] == comparer.Cells[0];
 
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cells))]
 	public override partial int GetHashCode();

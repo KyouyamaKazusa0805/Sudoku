@@ -54,17 +54,22 @@ file sealed class MentioningCommand : IModule
 			{
 				var task = args switch
 				{
+					// 盘面基本操作
 					["清空"] => DrawingOperations.ClearAsync(messageReceiver, context),
 					[var s] => DrawingOperations.SetOrDeleteDigitAsync(messageReceiver, drawingContext, s),
 					["添加", var s] => DrawingOperations.AddPencilmarkAsync(messageReceiver, drawingContext, s),
 					["反添加", var s] => DrawingOperations.RemovePencilmarkAsync(messageReceiver, drawingContext, s),
-					["涂色", var s, var c] => DrawingOperations.AddBasicViewNodesAsync(messageReceiver, drawingContext, s, c),
-					["反涂色", var s] => DrawingOperations.RemoveBasicViewNodesAsync(messageReceiver, drawingContext, s),
-					["代数" or "袋鼠", var s, [var c and (>= 'A' and <= 'Z' or >= 'a' and <= 'z')]] => DrawingOperations.AddBabaGroupNodesAsync(messageReceiver, drawingContext, s, (Utf8Char)c),
-					["反代数" or "反袋鼠", var s] => DrawingOperations.RemoveBabaGroupNodesAsync(messageReceiver, drawingContext, s),
-					[("强" or "弱") and var l, var s, var e] => DrawingOperations.AddLinkNodeAsync(messageReceiver, drawingContext, l, s, e),
-					["反强" or "反弱", var s, var e] => DrawingOperations.RemoveLinkNodeAsync(messageReceiver, drawingContext, s, e),
 					["盘面", var g] => DrawingOperations.ApplyGridAsync(messageReceiver, drawingContext, g),
+
+					// BasicViewNode 节点
+					["涂色", var s, var c] => DrawingOperations.AddBasicViewNodesAsync(messageReceiver, drawingContext, s, c),
+					["代数" or "袋鼠", var s, [var c and (>= 'A' and <= 'Z' or >= 'a' and <= 'z')]] => DrawingOperations.AddBabaGroupNodesAsync(messageReceiver, drawingContext, s, (Utf8Char)c),
+					[("强" or "弱") and var l, var s, var e] => DrawingOperations.AddLinkNodeAsync(messageReceiver, drawingContext, l, s, e),
+					["反涂色", var s] => DrawingOperations.RemoveBasicViewNodesAsync(messageReceiver, drawingContext, s),
+					["反代数" or "反袋鼠", var s] => DrawingOperations.RemoveBabaGroupNodesAsync(messageReceiver, drawingContext, s),
+					["反强" or "反弱", var s, var e] => DrawingOperations.RemoveLinkNodeAsync(messageReceiver, drawingContext, s, e),
+
+					// IconViewNode 节点
 					["圆形", var s, var c] => DrawingOperations.AddIconViewNodeAsync(messageReceiver, drawingContext, s, c, f1<CircleViewNode>),
 					["菱形", var s, var c] => DrawingOperations.AddIconViewNodeAsync(messageReceiver, drawingContext, s, c, f1<DiamondViewNode>),
 					["心形", var s, var c] => DrawingOperations.AddIconViewNodeAsync(messageReceiver, drawingContext, s, c, f1<HeartViewNode>),
@@ -77,6 +82,16 @@ file sealed class MentioningCommand : IModule
 					["反正方形", var s] => DrawingOperations.RemoveIconViewNodeAsync(messageReceiver, drawingContext, s, f2<SquareViewNode>),
 					["反五角星", var s] => DrawingOperations.RemoveIconViewNodeAsync(messageReceiver, drawingContext, s, f2<StarViewNode>),
 					["反三角形", var s] => DrawingOperations.RemoveIconViewNodeAsync(messageReceiver, drawingContext, s, f2<TriangleViewNode>),
+
+					// ShapeViewNode 节点
+					["横平均", var s] => DrawingOperations.AddAverageBarNodesAsync(messageReceiver, drawingContext, s, true),
+					["竖平均", var s] => DrawingOperations.AddAverageBarNodesAsync(messageReceiver, drawingContext, s, false),
+					["反横平均", var s] => DrawingOperations.RemoveAverageBarNodesAsync(messageReceiver, drawingContext, s, true),
+					["反竖平均", var s] => DrawingOperations.RemoveAverageBarNodesAsync(messageReceiver, drawingContext, s, false),
+					["双色蛋糕", var s] => DrawingOperations.AddBattenburgNodesAsync(messageReceiver, drawingContext, s),
+					["反双色蛋糕", var s] => DrawingOperations.RemoveBattenburgNodesAsync(messageReceiver, drawingContext, s),
+
+					// 其他情况。这里要返回 null。如果不写的话，是会默认产生 SwitchExpressionException 的异常的。
 					_ => null
 				};
 				if (task is not null)

@@ -14,9 +14,10 @@ public sealed partial class AverageBarViewNode(Identifier identifier, int cell, 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is AverageBarViewNode comparer && Cell == comparer.Cell;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other)
+		=> other is AverageBarViewNode comparer && Cell == comparer.Cell && Type == comparer.Type;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell), nameof(Type))]
 	public override partial int GetHashCode();
 
 	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell), nameof(Type))]

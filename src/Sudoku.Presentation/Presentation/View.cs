@@ -1,4 +1,3 @@
-#define ENHANCED_DRAWING_APIS
 namespace Sudoku.Presentation;
 
 /// <summary>
@@ -43,7 +42,6 @@ public sealed partial class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	public OfTypeIterator<IconViewNode> FigureNodes => OfType<IconViewNode>();
 
-#if ENHANCED_DRAWING_APIS
 	/// <summary>
 	/// Indicates the shape view nodes.
 	/// </summary>
@@ -53,7 +51,6 @@ public sealed partial class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// Indicates the grouped view nodes.
 	/// </summary>
 	public OfTypeIterator<GroupedViewNode> GroupedViewNodes => OfType<GroupedViewNode>();
-#endif
 
 
 	/// <summary>

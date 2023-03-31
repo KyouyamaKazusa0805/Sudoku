@@ -31,4 +31,12 @@ internal static partial class DrawingOperations
 	//
 	public static partial Task AddIconViewNodeAsync<TNode>(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, string colorString, Func<Identifier, int, TNode> nodeCreator) where TNode : IconViewNode;
 	public static partial Task RemoveIconViewNodeAsync<TNode>(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, Func<int, TNode> nodeCreator) where TNode : IconViewNode;
+
+	//
+	// ShapeViewNode 节点处理方法集
+	//
+	public static partial Task AddAverageBarNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, bool isHorizontal);
+	public static partial Task RemoveAverageBarNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, bool isHorizontal);
+	public static partial Task AddBattenburgNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
+	public static partial Task RemoveBattenburgNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
 }

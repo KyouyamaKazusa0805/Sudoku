@@ -30,6 +30,7 @@ global using Sudoku.Drawing;
 global using Sudoku.Preprocessing.AutoFiller;
 global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
+global using Sudoku.Presentation.Nodes.Shapes;
 global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Runtime.MaskServices;
 global using Sudoku.Solving.Logical;

@@ -1,4 +1,3 @@
-﻿#define ENHANCED_DRAWING_APIS
 namespace Sudoku.Gdip;
 
 /// <summary>

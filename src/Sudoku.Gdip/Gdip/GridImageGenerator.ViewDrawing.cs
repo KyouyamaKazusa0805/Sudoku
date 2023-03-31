@@ -87,7 +87,6 @@ partial class GridImageGenerator
 	/// Draw <see cref="ShapeViewNode"/> instances.
 	/// </summary>
 	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
 	private void DrawShapeNodes(Graphics g)
 	{
 		if (this is not { View.ShapeViewNodes: var nodes, Calculator: { CellSize: (var cw, var ch) cellSize } calc })
@@ -234,7 +233,6 @@ partial class GridImageGenerator
 	/// Draw <see cref="GroupedViewNode"/> instances.
 	/// </summary>
 	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	[Conditional("ENHANCED_DRAWING_APIS")]
 	private void DrawGroupedNodes(Graphics g)
 	{
 		if (this is not { View.GroupedViewNodes: var nodes, Calculator: { CellSize: (var cw, var ch) cs, GridSize: var gs } calc })
