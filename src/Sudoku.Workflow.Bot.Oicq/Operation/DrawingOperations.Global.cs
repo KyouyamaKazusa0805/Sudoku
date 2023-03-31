@@ -27,7 +27,7 @@ partial class DrawingOperations
 	/// <summary>
 	/// 直接清空整个绘图操作里已经设置了的视图节点，恢复为空盘面。
 	/// </summary>
-	public static async Task ClearAsync(GroupMessageReceiver messageReceiver, BotRunningContext context)
+	public static async partial Task ClearAsync(GroupMessageReceiver messageReceiver, BotRunningContext context)
 	{
 		var painter = ISudokuPainter.Create(1000, 20)
 			.WithRenderingCandidates(true)

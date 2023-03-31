@@ -1020,6 +1020,39 @@
             <param name="painter">一个 <see cref="T:Sudoku.Drawing.ISudokuPainter"/> 的绘图实例。</param>
             <returns>图片在本地存储的缓存路径。</returns>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.ClearAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.BotRunningContext)">
+            <summary>
+            直接清空整个绘图操作里已经设置了的视图节点，恢复为空盘面。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SetOrDeleteDigitAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            往绘图盘面内填入一个数（或者去掉一个填数）。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddPencilmarkAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            往绘图盘面内追加一个候选数标记。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemovePencilmarkAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            从绘图盘面内删除一个已经标记了的候选数。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.ApplyGridAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            从 <paramref name="gridString"/> 之中获取盘面的文本字符串，并直接解析成合适的 <see cref="T:Sudoku.Concepts.Grid"/> 盘面数据后，直接导入到绘图盘面里使用。
+            </summary>
+            <remarks>
+            注意，这里除了解析之后，还得考虑候选数的情况。因为前文我们用到了一种特殊逻辑去支持用户友好的标记候选数的模式（直观模式）。这个模式下，盘面的空格
+            并非为 <see cref="F:Sudoku.Concepts.CellStatus.Empty"/> 状态的，而是 <see cref="F:Sudoku.Concepts.CellStatus.Undefined"/> 状态的。盘面默认情况是 <see cref="F:Sudoku.Concepts.CellStatus.Empty"/>，
+            所以我们在解析成正确结果后，还需要将每一个空格的状态手动调整成 <see cref="F:Sudoku.Concepts.CellStatus.Undefined"/>，来达到兼容。
+            </remarks>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+            <seealso cref="F:Sudoku.Concepts.CellStatus.Empty"/>
+            <seealso cref="F:Sudoku.Concepts.CellStatus.Undefined"/>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddBasicViewNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
             <summary>
             往绘图盘面里追加涂色的视图节点。这些基本节点均走 <see cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/> 类型进行派生，
@@ -1106,11 +1139,6 @@
             用于快捷抛出的 <see cref="T:System.InvalidOperationException"/> 异常实例。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.ClearAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.BotRunningContext)">
-            <summary>
-            直接清空整个绘图操作里已经设置了的视图节点，恢复为空盘面。
-            </summary>
-        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.LocalSplit(System.String)">
             <summary>
             快捷调用 <see cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/> 操作。
@@ -1174,34 +1202,6 @@
             <exception cref="T:System.ArgumentException">
             <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetHouseIndex(System.Char,System.Char)" path="/exception[@cref='ArgumentException']"/>
             </exception>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SetOrDeleteDigitAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
-            <summary>
-            往绘图盘面内填入一个数（或者去掉一个填数）。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddPencilmarkAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
-            <summary>
-            往绘图盘面内追加一个候选数标记。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemovePencilmarkAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
-            <summary>
-            从绘图盘面内删除一个已经标记了的候选数。
-            </summary>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.ApplyGridAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
-            <summary>
-            从 <paramref name="gridString"/> 之中获取盘面的文本字符串，并直接解析成合适的 <see cref="T:Sudoku.Concepts.Grid"/> 盘面数据后，直接导入到绘图盘面里使用。
-            </summary>
-            <remarks>
-            注意，这里除了解析之后，还得考虑候选数的情况。因为前文我们用到了一种特殊逻辑去支持用户友好的标记候选数的模式（直观模式）。这个模式下，盘面的空格
-            并非为 <see cref="F:Sudoku.Concepts.CellStatus.Empty"/> 状态的，而是 <see cref="F:Sudoku.Concepts.CellStatus.Undefined"/> 状态的。盘面默认情况是 <see cref="F:Sudoku.Concepts.CellStatus.Empty"/>，
-            所以我们在解析成正确结果后，还需要将每一个空格的状态手动调整成 <see cref="F:Sudoku.Concepts.CellStatus.Undefined"/>，来达到兼容。
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-            <seealso cref="F:Sudoku.Concepts.CellStatus.Empty"/>
-            <seealso cref="F:Sudoku.Concepts.CellStatus.Undefined"/>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.UpdateCandidatesViaPencilmarks(Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext)">
             <summary>

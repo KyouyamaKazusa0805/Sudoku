@@ -5,7 +5,7 @@ partial class DrawingOperations
 	/// <summary>
 	/// 添加一个单元格图标。
 	/// </summary>
-	public static partial async Task AddFigureViewNodeAsync<TNode>(
+	public static async partial Task AddFigureViewNodeAsync<TNode>(
 		GroupMessageReceiver messageReceiver,
 		DrawingContext drawingContext,
 		string rawString,
@@ -36,7 +36,7 @@ partial class DrawingOperations
 	/// <summary>
 	/// 删除一个单元格图标。
 	/// </summary>
-	public static partial async Task RemoveFigureViewNodeAsync<TNode>(
+	public static async partial Task RemoveFigureViewNodeAsync<TNode>(
 		GroupMessageReceiver messageReceiver,
 		DrawingContext drawingContext,
 		string rawString,

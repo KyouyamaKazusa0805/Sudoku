@@ -8,6 +8,15 @@ namespace Sudoku.Workflow.Bot.Oicq.Operation;
 internal static partial class DrawingOperations
 {
 	//
+	// 盘面操作方法集
+	//
+	public static partial Task ClearAsync(GroupMessageReceiver messageReceiver, BotRunningContext context);
+	public static partial Task SetOrDeleteDigitAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
+	public static partial Task AddPencilmarkAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
+	public static partial Task RemovePencilmarkAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
+	public static partial Task ApplyGridAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string gridString);
+
+	//
 	// BasicViewNode 节点处理方法集
 	//
 	public static partial Task AddBasicViewNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, string colorString);

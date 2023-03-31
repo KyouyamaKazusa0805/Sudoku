@@ -24,7 +24,7 @@ partial class DrawingOperations
 	/// 恰好这技巧又没有英语名字，就干脆取了个这个名字。
 	/// </remarks>
 	/// <seealso cref="BasicViewNode"/>
-	public static partial async Task AddBasicViewNodesAsync(
+	public static async partial Task AddBasicViewNodesAsync(
 		GroupMessageReceiver messageReceiver,
 		DrawingContext drawingContext,
 		string rawString,
@@ -41,7 +41,7 @@ partial class DrawingOperations
 	/// <summary>
 	/// 从绘图盘面内删除指定的绘图节点。
 	/// </summary>
-	public static partial async Task RemoveBasicViewNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
+	public static async partial Task RemoveBasicViewNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
 	{
 		var nodes = RecordBasicNodesInternal(rawString);
 		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
@@ -50,7 +50,7 @@ partial class DrawingOperations
 	/// <summary>
 	/// 往绘图盘面里面追加代数字母的视图节点。
 	/// </summary>
-	public static partial async Task AddBabaGroupNodesAsync(
+	public static async partial Task AddBabaGroupNodesAsync(
 		GroupMessageReceiver messageReceiver,
 		DrawingContext drawingContext,
 		string rawString,
@@ -84,7 +84,7 @@ partial class DrawingOperations
 	/// <summary>
 	/// 从绘图盘面内删除代数字母的视图节点。
 	/// </summary>
-	public static partial async Task RemoveBabaGroupNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
+	public static async partial Task RemoveBabaGroupNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
 	{
 		var nodes = new HashSet<BabaGroupViewNode>();
 		foreach (var element in rawString.LocalSplit())
@@ -104,7 +104,7 @@ partial class DrawingOperations
 	/// <remarks>
 	/// 注意，追加链的线条的时候，强或弱是必要的选项。因为它影响了绘制的逻辑。
 	/// </remarks>
-	public static partial async Task AddLinkNodeAsync(
+	public static async partial Task AddLinkNodeAsync(
 		GroupMessageReceiver messageReceiver,
 		DrawingContext drawingContext,
 		string linkTypeString,
@@ -139,7 +139,7 @@ partial class DrawingOperations
 	/// 注意，删除链的线条的时候，是强或弱都无关紧要了。这是因为，链的强弱关系不可能在同一时刻落在同样两个候选数之上，
 	/// 不论这两个节点原本是强还是弱，都不能再叠加新的重叠的线条。
 	/// </remarks>
-	public static partial async Task RemoveLinkNodeAsync(
+	public static async partial Task RemoveLinkNodeAsync(
 		GroupMessageReceiver messageReceiver,
 		DrawingContext drawingContext,
 		string startCandidateString,

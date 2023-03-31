@@ -5,7 +5,7 @@ partial class DrawingOperations
 	/// <summary>
 	/// 往绘图盘面内填入一个数（或者去掉一个填数）。
 	/// </summary>
-	public static async Task SetOrDeleteDigitAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
+	public static async partial Task SetOrDeleteDigitAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
 	{
 		var puzzle = drawingContext.Puzzle;
 		foreach (var element in rawString.LocalSplit())
@@ -45,7 +45,7 @@ partial class DrawingOperations
 	/// <summary>
 	/// 往绘图盘面内追加一个候选数标记。
 	/// </summary>
-	public static async Task AddPencilmarkAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
+	public static async partial Task AddPencilmarkAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
 	{
 		var pencilmarks = drawingContext.Pencilmarks;
 		foreach (var element in rawString.LocalSplit())
@@ -78,7 +78,7 @@ partial class DrawingOperations
 	/// <summary>
 	/// 从绘图盘面内删除一个已经标记了的候选数。
 	/// </summary>
-	public static async Task RemovePencilmarkAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
+	public static async partial Task RemovePencilmarkAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
 	{
 		var pencilmarks = drawingContext.Pencilmarks;
 		foreach (var element in rawString.LocalSplit())
@@ -119,7 +119,7 @@ partial class DrawingOperations
 	/// <seealso cref="Grid"/>
 	/// <seealso cref="CellStatus.Empty"/>
 	/// <seealso cref="CellStatus.Undefined"/>
-	public static async Task ApplyGridAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string gridString)
+	public static async partial Task ApplyGridAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string gridString)
 	{
 		// 解析 gridString，看它是不是合适的盘面的文本字符串。
 		if (!Grid.TryParse(gridString, out var grid))
