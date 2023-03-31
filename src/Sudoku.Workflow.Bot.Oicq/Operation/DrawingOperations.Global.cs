@@ -36,6 +36,7 @@ partial class DrawingOperations
 				{
 					pref.CandidateScale = .4M;
 					pref.BattenburgSize = 42.666668F;
+					pref.BorderBarWidth = 10F;
 				}
 			)
 			.WithGrid(Grid.Undefined);

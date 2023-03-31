@@ -39,4 +39,6 @@ internal static partial class DrawingOperations
 	public static partial Task RemoveAverageBarNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, bool isHorizontal);
 	public static partial Task AddBattenburgNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
 	public static partial Task RemoveBattenburgNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
+	public static partial Task AddConsecutiveNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, bool isHorizontal);
+	public static partial Task RemoveConsecutiveNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, bool isHorizontal);
 }

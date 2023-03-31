@@ -1139,6 +1139,22 @@
             删除一个或一组双色蛋糕标记。
             </summary>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddConsecutiveNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Boolean)">
+            <summary>
+            添加一个或一组连续数独使用的连续挡板标记。
+            </summary>
+            <remarks>
+            注意，这里的参数 <paramref name="isHorizontal"/> 的横纵是取决于单元格相邻的关系，<b>不是挡板线条的横纵走向</b>。
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveConsecutiveNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Boolean)">
+            <summary>
+            删除一个或一组连续数独使用的连续挡板标记。
+            </summary>
+            <remarks>
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddConsecutiveNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Boolean)" path="/remarks"/>
+            </remarks>
+        </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SplitOptionsBoth">
             <summary>
             用于 <see cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/> 操作的枚举常量值，
@@ -1243,6 +1259,27 @@
             手动处理盘面，将盘面里的掩码的高 3 个比特位处理为 <c>0b000</c>。
             </summary>
             <param name="grid">盘面 <see cref="T:Sudoku.Concepts.Grid"/> 对象。</param>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.IsValidCellForAdjacentCell(System.Int32)">
+            <summary>
+            判别当前输入的数值（对应的单元格索引）是否为绘图支持的、相邻单元格之间的格线标记的指定单元格数值。
+            </summary>
+            <param name="this">单元格索引。</param>
+            <returns>一个 <see cref="T:System.Boolean"/> 结果表示是否满足。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.IsValidCellFor2x2Cells(System.Int32)">
+            <summary>
+            判别当前输入的数值（对应的单元格索引）是否为绘图支持的、2x2 的四个单元格之间的标记的指定单元格数值。
+            </summary>
+            <param name="this">单元格索引。</param>
+            <returns>一个 <see cref="T:System.Boolean"/> 结果表示是否满足。</returns>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations">
             <summary>
