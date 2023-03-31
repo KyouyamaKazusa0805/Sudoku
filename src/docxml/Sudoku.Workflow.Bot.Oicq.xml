@@ -2175,6 +2175,19 @@
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.RankCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.SetTitleCommand">
+            <summary>
+            表示设置头衔的指令。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.SetTitleCommand.Title">
+            <summary>
+            表示设置的头衔。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.SetTitleCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ShopCommand.ItemKind">
             <summary>
             表示你要查看的商店的物品类型。可以填入的值有“强化卡”和“三叶草”。
