@@ -41,4 +41,6 @@ internal static partial class DrawingOperations
 	public static partial Task RemoveBattenburgNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
 	public static partial Task AddConsecutiveNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, bool isHorizontal);
 	public static partial Task RemoveConsecutiveNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, bool isHorizontal);
+	public static partial Task AddCellArrowNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, string directionString);
+	public static partial Task RemoveCellArrowNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
 }

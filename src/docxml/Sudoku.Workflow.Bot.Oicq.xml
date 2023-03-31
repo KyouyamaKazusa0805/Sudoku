@@ -1155,6 +1155,16 @@
             <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddConsecutiveNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Boolean)" path="/remarks"/>
             </remarks>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddCellArrowNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
+            <summary>
+            添加一个或一组单元格箭头图标。这种图标主要用于寻 9 数独之中。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveCellArrowNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            删除一个或一组单元格箭头图标。
+            </summary>
+        </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SplitOptionsBoth">
             <summary>
             用于 <see cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/> 操作的枚举常量值，
@@ -1280,6 +1290,13 @@
             </summary>
             <param name="this">单元格索引。</param>
             <returns>一个 <see cref="T:System.Boolean"/> 结果表示是否满足。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.ToDirection(System.String)">
+            <summary>
+            根据指定的方向字符串，转为对应的 <see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/> 结果；如果不合法，将返回 <see langword="null"/>。
+            </summary>
+            <param name="this">字符串。</param>
+            <returns><see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/> 的实例。</returns>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations">
             <summary>

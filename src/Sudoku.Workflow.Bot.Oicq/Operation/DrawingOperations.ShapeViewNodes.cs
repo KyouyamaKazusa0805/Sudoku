@@ -21,6 +21,7 @@ partial class DrawingOperations
 			}
 
 			var cell = GetCellIndex(r, c);
+			// TODO: 有个 bug，马上修
 			if (!cell.IsValidCellFor2x2Cells())
 			{
 				// 当前单元格不满足平均数独标记使用的地方：平均数独的线条标记格，它必须包含同时左右两个格子，或上下两个格子。边界处的单元格不具备此条件。
@@ -55,6 +56,7 @@ partial class DrawingOperations
 			}
 
 			var cell = GetCellIndex(r, c);
+			// TODO: 有个 bug，马上修
 			if (!cell.IsValidCellFor2x2Cells())
 			{
 				// 当前单元格不满足平均数独标记使用的地方：平均数独的线条标记格，它必须包含同时左右两个格子，或上下两个格子。边界处的单元格不具备此条件。
@@ -144,6 +146,7 @@ partial class DrawingOperations
 			}
 
 			var cell = GetCellIndex(r, c);
+			// TODO: 有个 bug，马上修
 			if (!cell.IsValidCellForAdjacentCell())
 			{
 				// 当前单元格不满足平均数独标记使用的地方。
@@ -178,13 +181,64 @@ partial class DrawingOperations
 			}
 
 			var cell = GetCellIndex(r, c);
+			// TODO: 有个 bug，马上修
 			if (!cell.IsValidCellForAdjacentCell())
 			{
 				// 当前单元格不满足平均数独标记使用的地方。
 				continue;
 			}
 
-			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, cell + 1));
+			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, cell + (isHorizontal ? 1 : 9)));
+		}
+
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
+	}
+
+	/// <summary>
+	/// 添加一个或一组单元格箭头图标。这种图标主要用于寻 9 数独之中。
+	/// </summary>
+	public static async partial Task AddCellArrowNodesAsync(
+		GroupMessageReceiver messageReceiver,
+		DrawingContext drawingContext,
+		string rawString,
+		string directionString
+	)
+	{
+		if (directionString.ToDirection() is not { } direction)
+		{
+			return;
+		}
+
+		var nodes = new HashSet<CellArrowViewNode>();
+		foreach (var element in rawString.LocalSplit())
+		{
+			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
+			{
+				continue;
+			}
+
+			var cell = GetCellIndex(r, c);
+			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, direction));
+		}
+
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(nodes));
+	}
+
+	/// <summary>
+	/// 删除一个或一组单元格箭头图标。
+	/// </summary>
+	public static async partial Task RemoveCellArrowNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
+	{
+		var nodes = new HashSet<CellArrowViewNode>();
+		foreach (var element in rawString.LocalSplit())
+		{
+			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
+			{
+				continue;
+			}
+
+			var cell = GetCellIndex(r, c);
+			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, default));
 		}
 
 		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
@@ -211,4 +265,23 @@ file static class Extensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsValidCellFor2x2Cells(this int @this)
 		=> !Array.Exists(new[] { HousesMap[9], HousesMap[17], HousesMap[18], HousesMap[26] }, c => c.Contains(@this));
+
+	/// <summary>
+	/// 根据指定的方向字符串，转为对应的 <see cref="Direction"/> 结果；如果不合法，将返回 <see langword="null"/>。
+	/// </summary>
+	/// <param name="this">字符串。</param>
+	/// <returns><see cref="Direction"/> 的实例。</returns>
+	public static Direction? ToDirection(this string @this)
+		=> @this switch
+		{
+			"左" => Direction.Left,
+			"右" => Direction.Right,
+			"上" => Direction.Up,
+			"下" => Direction.Down,
+			"左上" => Direction.TopLeft,
+			"右上" => Direction.TopRight,
+			"左下" => Direction.BottomLeft,
+			"右下" => Direction.BottomRight,
+			_ => null
+		};
 }

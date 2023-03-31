@@ -251,7 +251,7 @@ if (student is (name: var name, age: >= 18))
             Defines a cell arrow view node.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.#ctor(System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
             <summary>
             Defines a cell arrow view node.
             </summary>
