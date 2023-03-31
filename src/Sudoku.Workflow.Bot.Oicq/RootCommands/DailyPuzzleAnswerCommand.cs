@@ -4,7 +4,6 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 /// 表示每日一题的回答功能。
 /// </summary>
 [Command("每日一题")]
-[RequiredRole(BotRole = GroupRoleKind.Owner)]
 internal sealed class DailyPuzzleAnswerCommand : Command
 {
 	/// <summary>
@@ -25,10 +24,8 @@ internal sealed class DailyPuzzleAnswerCommand : Command
 			return;
 		}
 
-		// 优先撤回用户回复消息，避免后续回答的用户查看答案。
-		// 当然，有些人会使用破解工具，破解撤回，但是首先它就不属于不正常的操作；其次，使用其他的验证模式（例如私聊回答答案等）都比起这种回答来说复杂特别多。
-		await messageReceiver.RecallAsync();
-		await Task.Delay(100);
+		// 本来这里有一段是撤回消息防止其他人偷看的代码的。
+		// 但是想了又想，我还是觉得不加这段比较好。靠自觉吧。毕竟每日一题是拿来讨论的。得分只是次要的。
 
 		if (DailyPuzzleOperations.ReadDailyPuzzleAnswer() is not { } answer)
 		{

@@ -4,7 +4,6 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 /// 游戏指令。
 /// </summary>
 [Command("开始游戏")]
-[RequiredRole(BotRole = GroupRoleKind.Owner)]
 internal sealed class GameCommand : Command
 {
 	/// <inheritdoc/>
@@ -68,8 +67,6 @@ internal sealed class GameCommand : Command
 					{
 						continue;
 					}
-
-					await messageReceiver.RecallAsync();
 
 					switch (answeredCellIndex - 1 == finalCellIndex, answeringContext.AnsweredUsers.ContainsKey(userId))
 					{
