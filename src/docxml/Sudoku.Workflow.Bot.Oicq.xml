@@ -1167,12 +1167,23 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddCellCornerArrowNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
             <summary>
-            添加一个或一组单元格内的小箭头图标。这些小箭头图标不会整体占据整个单元格，而是标记在单元格的格线周围的 8 个方向。这些小箭头主要用于内摩天楼数独。
+            添加一个或一组单元格内的小箭头图标。这些小箭头图标不会整体占据整个单元格，而是标记在单元格的格线周围的 8 个方向。
             </summary>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveCellCornerArrowNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
             <summary>
             删除一个或一组单元格内使用的小箭头图标。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddCellCornerTriangleNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
+            <summary>
+            添加一个或一组单元格边角处的三角形图标。这个三角形和前面的箭头样貌不同，使用的变型数独也不同。
+            这种专门用于斜向的大小比较类数独，比如斜不等号数独。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveCellCornerTriangleNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            删除一个或一组单元格边角处的三角形图标。
             </summary>
         </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SplitOptionsBoth">

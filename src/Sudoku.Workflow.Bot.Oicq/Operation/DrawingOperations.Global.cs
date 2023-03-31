@@ -38,6 +38,7 @@ partial class DrawingOperations
 					pref.BattenburgSize = 42.666668F;
 					pref.BorderBarWidth = 10F;
 					pref.CellCornerArrowWidth = 20F;
+					pref.CellCornerTriangleSize = 30F;
 				}
 			)
 			.WithGrid(Grid.Undefined);

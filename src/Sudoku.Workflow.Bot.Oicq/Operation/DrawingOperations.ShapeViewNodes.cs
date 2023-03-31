@@ -229,7 +229,7 @@ partial class DrawingOperations
 	}
 
 	/// <summary>
-	/// 添加一个或一组单元格内的小箭头图标。这些小箭头图标不会整体占据整个单元格，而是标记在单元格的格线周围的 8 个方向。这些小箭头主要用于内摩天楼数独。
+	/// 添加一个或一组单元格内的小箭头图标。这些小箭头图标不会整体占据整个单元格，而是标记在单元格的格线周围的 8 个方向。
 	/// </summary>
 	public static async partial Task AddCellCornerArrowNodesAsync(
 		GroupMessageReceiver messageReceiver,
@@ -269,6 +269,64 @@ partial class DrawingOperations
 	public static async partial Task RemoveCellCornerArrowNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
 	{
 		var nodes = new HashSet<CellCornerArrowViewNode>();
+		foreach (var element in rawString.LocalSplit())
+		{
+			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
+			{
+				continue;
+			}
+
+			var cell = GetCellIndex(r, c);
+			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, default));
+		}
+
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
+	}
+
+	/// <summary>
+	/// 添加一个或一组单元格边角处的三角形图标。这个三角形和前面的箭头样貌不同，使用的变型数独也不同。
+	/// 这种专门用于斜向的大小比较类数独，比如斜不等号数独。
+	/// </summary>
+	public static async partial Task AddCellCornerTriangleNodesAsync(
+		GroupMessageReceiver messageReceiver,
+		DrawingContext drawingContext,
+		string rawString,
+		string directionsString
+	)
+	{
+		if (directionsString.ToDirections() is not (var directions and not 0))
+		{
+			return;
+		}
+
+		// 要去掉基本的四个方向。因为这个三角形图标不能用于标准的上下左右四个方向。
+		directions &= ~(Direction.Up | Direction.Down | Direction.Left | Direction.Right);
+
+		var nodes = new HashSet<CellCornerTriangleViewNode>();
+		foreach (var element in rawString.LocalSplit())
+		{
+			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
+			{
+				continue;
+			}
+
+			var cell = GetCellIndex(r, c);
+			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, directions));
+		}
+
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(nodes));
+	}
+
+	/// <summary>
+	/// 删除一个或一组单元格边角处的三角形图标。
+	/// </summary>
+	public static async partial Task RemoveCellCornerTriangleNodesAsync(
+		GroupMessageReceiver messageReceiver,
+		DrawingContext drawingContext,
+		string rawString
+	)
+	{
+		var nodes = new HashSet<CellCornerTriangleViewNode>();
 		foreach (var element in rawString.LocalSplit())
 		{
 			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])

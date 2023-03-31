@@ -45,4 +45,6 @@ internal static partial class DrawingOperations
 	public static partial Task RemoveCellArrowNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
 	public static partial Task AddCellCornerArrowNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, string directionsString);
 	public static partial Task RemoveCellCornerArrowNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
+	public static partial Task AddCellCornerTriangleNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, string directionsString);
+	public static partial Task RemoveCellCornerTriangleNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
 }

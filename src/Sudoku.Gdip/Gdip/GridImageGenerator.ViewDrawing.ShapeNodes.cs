@@ -472,7 +472,7 @@ partial class GridImageGenerator
 		Identifier identifier,
 		PointCalculator calc,
 		int cell,
-		Direction direction,
+		Direction directions,
 		float cw,
 		float ch,
 		float padding,
@@ -482,40 +482,43 @@ partial class GridImageGenerator
 	{
 		using var brush = new SolidBrush(GetColor(identifier));
 		var (centerX, centerY) = calc.GetMousePointInCenter(cell);
-		var points = direction switch
+		foreach (var direction in directions.GetAllFlagsDistinct()!)
 		{
-			Direction.TopLeft => new PointF[]
+			var points = direction switch
 			{
-				new(centerX - cw / 2 + padding, centerY - ch / 2 + padding),
-				new(centerX - cw / 2 + padding + size, centerY - ch / 2 + padding),
-				new(centerX - cw / 2 + padding, centerY - ch / 2 + padding + size)
-			},
-			Direction.TopRight => new PointF[]
-			{
-				new(centerX + cw / 2 - padding, centerY - ch / 2 + padding),
-				new(centerX + cw / 2 - padding - size, centerY - ch / 2 + padding),
-				new(centerX + cw / 2 - padding, centerY - ch / 2 + padding + size)
-			},
-			Direction.BottomLeft => new PointF[]
-			{
-				new(centerX - cw / 2 + padding, centerY + ch / 2 - padding),
-				new(centerX - cw / 2 + padding + size, centerY + ch / 2 - padding),
-				new(centerX - cw / 2 + padding, centerY + ch / 2 - padding - size)
-			},
-			Direction.BottomRight => new PointF[]
-			{
-				new(centerX + cw / 2 - padding, centerY + ch / 2 - padding),
-				new(centerX + cw / 2 - padding - size, centerY + ch / 2 - padding),
-				new(centerX + cw / 2 - padding, centerY + ch / 2 - padding - size)
-			},
-		};
+				Direction.TopLeft => new PointF[]
+				{
+					new(centerX - cw / 2 + padding, centerY - ch / 2 + padding),
+					new(centerX - cw / 2 + padding + size, centerY - ch / 2 + padding),
+					new(centerX - cw / 2 + padding, centerY - ch / 2 + padding + size)
+				},
+				Direction.TopRight => new PointF[]
+				{
+					new(centerX + cw / 2 - padding, centerY - ch / 2 + padding),
+					new(centerX + cw / 2 - padding - size, centerY - ch / 2 + padding),
+					new(centerX + cw / 2 - padding, centerY - ch / 2 + padding + size)
+				},
+				Direction.BottomLeft => new PointF[]
+				{
+					new(centerX - cw / 2 + padding, centerY + ch / 2 - padding),
+					new(centerX - cw / 2 + padding + size, centerY + ch / 2 - padding),
+					new(centerX - cw / 2 + padding, centerY + ch / 2 - padding - size)
+				},
+				Direction.BottomRight => new PointF[]
+				{
+					new(centerX + cw / 2 - padding, centerY + ch / 2 - padding),
+					new(centerX + cw / 2 - padding - size, centerY + ch / 2 - padding),
+					new(centerX + cw / 2 - padding, centerY + ch / 2 - padding - size)
+				}
+			};
 
-		using var path = new GraphicsPath();
-		path.AddLine(points[0], points[1]);
-		path.AddLine(points[1], points[2]);
-		path.AddLine(points[2], points[0]);
+			using var path = new GraphicsPath();
+			path.AddLine(points[0], points[1]);
+			path.AddLine(points[1], points[2]);
+			path.AddLine(points[2], points[0]);
 
-		g.FillPath(brush, path);
+			g.FillPath(brush, path);
+		}
 
 		return true;
 	}

@@ -205,8 +205,8 @@ partial class GridImageGenerator
 				// Cell-corner triangle
 				{
 					This.Preferences: { CellCornerTriangleSize: var size, CellCornerTriangleCellPadding: var padding },
-					Node: CellCornerTriangleViewNode { Identifier: var identifier, Cell: var cell, Directions: var direction }
-				} => DrawCellCornerTriangle(identifier, calc, cell, direction, cw, ch, padding, size, g),
+					Node: CellCornerTriangleViewNode { Identifier: var identifier, Cell: var cell, Directions: var directions }
+				} => DrawCellCornerTriangle(identifier, calc, cell, directions, cw, ch, padding, size, g),
 
 				// Average bar
 				{
