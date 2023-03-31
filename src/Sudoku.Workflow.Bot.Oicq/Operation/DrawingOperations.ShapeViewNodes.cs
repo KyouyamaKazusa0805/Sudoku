@@ -227,6 +227,61 @@ partial class DrawingOperations
 
 		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
 	}
+
+	/// <summary>
+	/// 添加一个或一组单元格内的小箭头图标。这些小箭头图标不会整体占据整个单元格，而是标记在单元格的格线周围的 8 个方向。这些小箭头主要用于内摩天楼数独。
+	/// </summary>
+	public static async partial Task AddCellCornerArrowNodesAsync(
+		GroupMessageReceiver messageReceiver,
+		DrawingContext drawingContext,
+		string rawString,
+		string directionsString
+	)
+	{
+		// 模式匹配冷知识：
+		// 模式匹配在使用期间，如果表达式（is 左边这个）和模式（is 右边这些）里的其中一个子模式（常量模式）里的值可进行隐式转换，
+		// 那么这个隐式转换是可以不写的——它会被自动转换。也就是说，这里的 and not 0 的 0 其实等价于 default(Direction)，即 Direction 类型的默认值。
+		// 虽然这个数是 0，而表达式结果是一个枚举类型的数值，看起来似乎这俩根本就不匹配，但模式匹配允许这一点。
+		// 这个经常被用于枚举在模式匹配的时候和它的默认数值进行比较，比如这里。这种用法以后还会有很多。请格外留意。
+		if (directionsString.ToDirections() is not (var directions and not 0))
+		{
+			return;
+		}
+
+		var nodes = new HashSet<CellCornerArrowViewNode>();
+		foreach (var element in rawString.LocalSplit())
+		{
+			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
+			{
+				continue;
+			}
+
+			var cell = GetCellIndex(r, c);
+			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, directions));
+		}
+
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(nodes));
+	}
+
+	/// <summary>
+	/// 删除一个或一组单元格内使用的小箭头图标。
+	/// </summary>
+	public static async partial Task RemoveCellCornerArrowNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
+	{
+		var nodes = new HashSet<CellCornerArrowViewNode>();
+		foreach (var element in rawString.LocalSplit())
+		{
+			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
+			{
+				continue;
+			}
+
+			var cell = GetCellIndex(r, c);
+			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, default));
+		}
+
+		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
+	}
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
@@ -278,4 +333,24 @@ file static class Extensions
 			"右下" => Direction.BottomRight,
 			_ => null
 		};
+
+	/// <summary>
+	/// 根据指定的方向字符串，转换为对应的 <see cref="Direction"/>[] 结果；如果内部出现的文字不合法，则会被忽略。
+	/// </summary>
+	/// <param name="this">方向字符串。</param>
+	/// <returns>一个 <see cref="Direction"/> 数组结果。</returns>
+	public static Direction ToDirections(this string @this)
+	{
+		var split = @this.Split(DrawingOperations.Separators, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+		var result = Direction.None;
+		foreach (var element in split)
+		{
+			if (element.ToDirection() is { } direction)
+			{
+				result |= direction;
+			}
+		}
+
+		return result;
+	}
 }

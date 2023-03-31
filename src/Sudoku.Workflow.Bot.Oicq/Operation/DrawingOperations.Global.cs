@@ -16,7 +16,7 @@ partial class DrawingOperations
 	/// <summary>
 	/// 字符串的分割字符，用于绘图操作输入一系列数据的时候使用。
 	/// </summary>
-	private static readonly char[] Separator = { ',', '，' };
+	internal static readonly char[] Separators = { ',', '，', '、' };
 
 	/// <summary>
 	/// 用于快捷抛出的 <see cref="InvalidOperationException"/> 异常实例。
@@ -37,6 +37,7 @@ partial class DrawingOperations
 					pref.CandidateScale = .4M;
 					pref.BattenburgSize = 42.666668F;
 					pref.BorderBarWidth = 10F;
+					pref.CellCornerArrowWidth = 20F;
 				}
 			)
 			.WithGrid(Grid.Undefined);
@@ -55,7 +56,7 @@ partial class DrawingOperations
 	/// <returns>将字符串进行分割之后的数组序列，去掉了头尾的空白字符，也舍弃掉了只有空白字符的匹配项。</returns>
 	/// <seealso cref="string.Split(char[], StringSplitOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string[] LocalSplit(this string @this) => @this.Split(Separator, SplitOptionsBoth);
+	private static string[] LocalSplit(this string @this) => @this.Split(Separators, SplitOptionsBoth);
 
 	/// <summary>
 	/// 通过一个颜色表达出来的字符串，转换为一个实体的 <see cref="Identifier"/> 类型的实例，用于绘图。

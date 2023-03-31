@@ -1165,6 +1165,16 @@
             删除一个或一组单元格箭头图标。
             </summary>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddCellCornerArrowNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
+            <summary>
+            添加一个或一组单元格内的小箭头图标。这些小箭头图标不会整体占据整个单元格，而是标记在单元格的格线周围的 8 个方向。这些小箭头主要用于内摩天楼数独。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveCellCornerArrowNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            删除一个或一组单元格内使用的小箭头图标。
+            </summary>
+        </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SplitOptionsBoth">
             <summary>
             用于 <see cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/> 操作的枚举常量值，
@@ -1175,7 +1185,7 @@
             <seealso cref="F:System.StringSplitOptions.RemoveEmptyEntries"/>
             <seealso cref="F:System.StringSplitOptions.TrimEntries"/>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.Separator">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.Separators">
             <summary>
             字符串的分割字符，用于绘图操作输入一系列数据的时候使用。
             </summary>
@@ -1306,6 +1316,13 @@
             </summary>
             <param name="this">字符串。</param>
             <returns><see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/> 的实例。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.ToDirections(System.String)">
+            <summary>
+            根据指定的方向字符串，转换为对应的 <see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/>[] 结果；如果内部出现的文字不合法，则会被忽略。
+            </summary>
+            <param name="this">方向字符串。</param>
+            <returns>一个 <see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/> 数组结果。</returns>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations">
             <summary>
