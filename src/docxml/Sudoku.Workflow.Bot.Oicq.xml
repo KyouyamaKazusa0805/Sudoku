@@ -1203,13 +1203,26 @@
             <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetHouseIndex(System.Char,System.Char)" path="/exception[@cref='ArgumentException']"/>
             </exception>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.UpdateCandidatesViaPencilmarks(Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext)">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.UpdateCandidatesViaPencilmarks(Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext)">
             <summary>
             将该实例的 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/> 属性，所代表的候选数覆盖到 <see cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/> 属性之中。
             </summary>
             <param name="this">表示作用于某实例。</param>
             <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Pencilmarks"/>
             <seealso cref="P:Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext.Puzzle"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.ManualUpdateCellStatus(Sudoku.Concepts.Grid@)">
+            <summary>
+            手动处理盘面，将盘面里的掩码的高 3 个比特位处理为 <c>0b000</c>。
+            </summary>
+            <param name="grid">盘面 <see cref="T:Sudoku.Concepts.Grid"/> 对象。</param>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations">
             <summary>
