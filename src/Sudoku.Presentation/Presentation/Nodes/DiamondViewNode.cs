@@ -3,9 +3,9 @@
 /// <summary>
 /// Defines a diamond view node.
 /// </summary>
-/// <param name="identifier"><inheritdoc cref="FigureViewNode(Identifier, int)" path="/param[@name='identifier']"/></param>
-/// <param name="cell"><inheritdoc cref="FigureViewNode(Identifier, int)" path="/param[@name='cell']"/></param>
-public sealed class DiamondViewNode(Identifier identifier, int cell) : FigureViewNode(identifier, cell)
+/// <param name="identifier"><inheritdoc cref="IconViewNode(Identifier, int)" path="/param[@name='identifier']"/></param>
+/// <param name="cell"><inheritdoc cref="IconViewNode(Identifier, int)" path="/param[@name='cell']"/></param>
+public sealed class DiamondViewNode(Identifier identifier, int cell) : IconViewNode(identifier, cell)
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

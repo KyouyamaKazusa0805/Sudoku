@@ -27,8 +27,8 @@ internal static partial class DrawingOperations
 	public static partial Task RemoveLinkNodeAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string startCandidateString, string endCandidateString);
 
 	//
-	// FigureViewNode 节点处理方法集
+	// IconViewNode 节点处理方法集
 	//
-	public static partial Task AddFigureViewNodeAsync<TNode>(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, string colorString, Func<Identifier, int, TNode> nodeCreator) where TNode : FigureViewNode;
-	public static partial Task RemoveFigureViewNodeAsync<TNode>(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, Func<int, TNode> nodeCreator) where TNode : FigureViewNode;
+	public static partial Task AddIconViewNodeAsync<TNode>(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, string colorString, Func<Identifier, int, TNode> nodeCreator) where TNode : IconViewNode;
+	public static partial Task RemoveIconViewNodeAsync<TNode>(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, Func<int, TNode> nodeCreator) where TNode : IconViewNode;
 }

@@ -1109,12 +1109,12 @@
             不论这两个节点原本是强还是弱，都不能再叠加新的重叠的线条。
             </remarks>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddFigureViewNodeAsync``1(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String,System.Func{Sudoku.Presentation.Identifier,System.Int32,``0})">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddIconViewNodeAsync``1(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String,System.Func{Sudoku.Presentation.Identifier,System.Int32,``0})">
             <summary>
             添加一个单元格图标。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveFigureViewNodeAsync``1(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Func{System.Int32,``0})">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveIconViewNodeAsync``1(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Func{System.Int32,``0})">
             <summary>
             删除一个单元格图标。
             </summary>

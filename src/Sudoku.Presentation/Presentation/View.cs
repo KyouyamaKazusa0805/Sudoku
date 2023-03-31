@@ -39,9 +39,9 @@ public sealed partial class View : ICloneable<View>, IEnumerable<ViewNode>
 	public OfTypeIterator<BasicViewNode> BasicNodes => OfType<BasicViewNode>();
 
 	/// <summary>
-	/// Indicates figure nodes that the current data type stores.
+	/// Indicates icon nodes that the current data type stores.
 	/// </summary>
-	public OfTypeIterator<FigureViewNode> FigureNodes => OfType<FigureViewNode>();
+	public OfTypeIterator<IconViewNode> FigureNodes => OfType<IconViewNode>();
 
 #if ENHANCED_DRAWING_APIS
 	/// <summary>
