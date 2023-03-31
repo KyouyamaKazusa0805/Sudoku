@@ -1277,11 +1277,12 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.IsValidCellForAdjacentCell(System.Int32)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.IsValidCellForAdjacentCell(System.Int32,System.Boolean)">
             <summary>
             判别当前输入的数值（对应的单元格索引）是否为绘图支持的、相邻单元格之间的格线标记的指定单元格数值。
             </summary>
             <param name="this">单元格索引。</param>
+            <param name="isHorizontal">表示标记是否用于横向。如果不是，该参数传 <see langword="false"/>。</param>
             <returns>一个 <see cref="T:System.Boolean"/> 结果表示是否满足。</returns>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.IsValidCellFor2x2Cells(System.Int32)">
@@ -1289,6 +1290,14 @@
             判别当前输入的数值（对应的单元格索引）是否为绘图支持的、2x2 的四个单元格之间的标记的指定单元格数值。
             </summary>
             <param name="this">单元格索引。</param>
+            <returns>一个 <see cref="T:System.Boolean"/> 结果表示是否满足。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.IsValidCellForAverage(System.Int32,System.Boolean)">
+            <summary>
+            判别当前输入的数值（对应的单元格索引）是否为绘图支持的、平均数独线条的指定单元格数值。
+            </summary>
+            <param name="this">单元格索引。</param>
+            <param name="isHorizontal">表示标记是否用于横向。如果不是，该参数传 <see langword="false"/>。</param>
             <returns>一个 <see cref="T:System.Boolean"/> 结果表示是否满足。</returns>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.ToDirection(System.String)">

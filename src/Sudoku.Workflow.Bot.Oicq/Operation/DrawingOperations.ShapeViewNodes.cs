@@ -21,13 +21,8 @@ partial class DrawingOperations
 			}
 
 			var cell = GetCellIndex(r, c);
-			// TODO: 有个 bug，马上修
-			if (!cell.IsValidCellFor2x2Cells())
+			if (!cell.IsValidCellForAverage(isHorizontal))
 			{
-				// 当前单元格不满足平均数独标记使用的地方：平均数独的线条标记格，它必须包含同时左右两个格子，或上下两个格子。边界处的单元格不具备此条件。
-				// 其实你让程序画也不是画不出来，但有些变型数独的标记依赖于它所处的行列的数值；有些不一定画得出来，甚至会产生异常。
-				// 为了规避这种错误，也为了好习惯，我们应率先避免错误的绘制情况。
-				// 特别注意，0-8 是宫索引，9 开始才是行索引。
 				continue;
 			}
 
@@ -56,13 +51,8 @@ partial class DrawingOperations
 			}
 
 			var cell = GetCellIndex(r, c);
-			// TODO: 有个 bug，马上修
-			if (!cell.IsValidCellFor2x2Cells())
+			if (!cell.IsValidCellForAverage(isHorizontal))
 			{
-				// 当前单元格不满足平均数独标记使用的地方：平均数独的线条标记格，它必须包含同时左右两个格子，或上下两个格子。边界处的单元格不具备此条件。
-				// 其实你让程序画也不是画不出来，但有些变型数独的标记依赖于它所处的行列的数值；有些不一定画得出来，甚至会产生异常。
-				// 为了规避这种错误，也为了好习惯，我们应率先避免错误的绘制情况。
-				// 特别注意，0-8 是宫索引，9 开始才是行索引。
 				continue;
 			}
 
@@ -86,9 +76,8 @@ partial class DrawingOperations
 			}
 
 			var cell = GetCellIndex(r, c);
-			if (!cell.IsValidCellForAdjacentCell())
+			if (!cell.IsValidCellFor2x2Cells())
 			{
-				// 当前单元格不满足平均数独标记使用的地方。
 				continue;
 			}
 
@@ -112,9 +101,8 @@ partial class DrawingOperations
 			}
 
 			var cell = GetCellIndex(r, c);
-			if (!cell.IsValidCellForAdjacentCell())
+			if (!cell.IsValidCellFor2x2Cells())
 			{
-				// 当前单元格不满足平均数独标记使用的地方。
 				continue;
 			}
 
@@ -146,10 +134,8 @@ partial class DrawingOperations
 			}
 
 			var cell = GetCellIndex(r, c);
-			// TODO: 有个 bug，马上修
-			if (!cell.IsValidCellForAdjacentCell())
+			if (!cell.IsValidCellForAdjacentCell(isHorizontal))
 			{
-				// 当前单元格不满足平均数独标记使用的地方。
 				continue;
 			}
 
@@ -181,10 +167,8 @@ partial class DrawingOperations
 			}
 
 			var cell = GetCellIndex(r, c);
-			// TODO: 有个 bug，马上修
-			if (!cell.IsValidCellForAdjacentCell())
+			if (!cell.IsValidCellForAdjacentCell(isHorizontal))
 			{
-				// 当前单元格不满足平均数独标记使用的地方。
 				continue;
 			}
 
@@ -252,10 +236,10 @@ file static class Extensions
 	/// 判别当前输入的数值（对应的单元格索引）是否为绘图支持的、相邻单元格之间的格线标记的指定单元格数值。
 	/// </summary>
 	/// <param name="this">单元格索引。</param>
+	/// <param name="isHorizontal">表示标记是否用于横向。如果不是，该参数传 <see langword="false"/>。</param>
 	/// <returns>一个 <see cref="bool"/> 结果表示是否满足。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsValidCellForAdjacentCell(this int @this)
-		=> !Array.Exists(new[] { HousesMap[17], HousesMap[26] }, c => c.Contains(@this));
+	public static bool IsValidCellForAdjacentCell(this int @this, bool isHorizontal) => !HousesMap[isHorizontal ? 26 : 17].Contains(@this);
 
 	/// <summary>
 	/// 判别当前输入的数值（对应的单元格索引）是否为绘图支持的、2x2 的四个单元格之间的标记的指定单元格数值。
@@ -264,7 +248,17 @@ file static class Extensions
 	/// <returns>一个 <see cref="bool"/> 结果表示是否满足。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsValidCellFor2x2Cells(this int @this)
-		=> !Array.Exists(new[] { HousesMap[9], HousesMap[17], HousesMap[18], HousesMap[26] }, c => c.Contains(@this));
+		=> !Array.Exists(new[] { HousesMap[17], HousesMap[26] }, c => c.Contains(@this));
+
+	/// <summary>
+	/// 判别当前输入的数值（对应的单元格索引）是否为绘图支持的、平均数独线条的指定单元格数值。
+	/// </summary>
+	/// <param name="this">单元格索引。</param>
+	/// <param name="isHorizontal">表示标记是否用于横向。如果不是，该参数传 <see langword="false"/>。</param>
+	/// <returns>一个 <see cref="bool"/> 结果表示是否满足。</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool IsValidCellForAverage(this int @this, bool isHorizontal)
+		=> !Array.Exists(isHorizontal ? new[] { HousesMap[18], HousesMap[26] } : new[] { HousesMap[9], HousesMap[17] }, c => c.Contains(@this));
 
 	/// <summary>
 	/// 根据指定的方向字符串，转为对应的 <see cref="Direction"/> 结果；如果不合法，将返回 <see langword="null"/>。
