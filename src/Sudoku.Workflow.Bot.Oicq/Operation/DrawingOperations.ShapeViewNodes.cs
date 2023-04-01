@@ -411,6 +411,42 @@ partial class DrawingOperations
 			cell => new QuadrupleHintViewNode(default, cell, null!),
 			static cell => cell.IsValidCellFor2x2Cells()
 		);
+
+	/// <summary>
+	/// 添加一个或一组四格最大值指向数独（“田大”数独）的箭头。
+	/// </summary>
+	public static async partial Task AddQuadMaxNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string directionString)
+	{
+		if (directionString.ToDirection() is not { } direction)
+		{
+			return;
+		}
+
+		// 去掉上下左右四个标准方向。因为箭头是放在四个格子的正中间的，它只能斜着指向这四个格子。
+		direction &= ~(Direction.Up | Direction.Down | Direction.Left | Direction.Right);
+
+		await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new QuadrupleMaxArrowViewNode(Color.DimGray.ToIdentifier(), cell, direction),
+			static cell => cell.IsValidCellFor2x2Cells()
+		);
+	}
+
+	/// <summary>
+	/// 删除一个或一组田大数独的箭头。
+	/// </summary>
+	public static async partial Task RemoveQuadMaxNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			static cell => new QuadrupleMaxArrowViewNode(default, cell, default),
+			static cell => cell.IsValidCellFor2x2Cells()
+		);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

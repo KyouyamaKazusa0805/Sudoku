@@ -67,4 +67,6 @@ internal static partial class DrawingOperations
 	public static partial Task RemoveCellPencilmarkNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
 	public static partial Task AddQuadHintNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string labelString);
 	public static partial Task RemoveQuadHintNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
+	public static partial Task AddQuadMaxNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string directionString);
+	public static partial Task RemoveQuadMaxNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
 }
