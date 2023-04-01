@@ -360,8 +360,7 @@ file static class Extensions
 	/// <param name="this">单元格索引。</param>
 	/// <returns>一个 <see cref="bool"/> 结果表示是否满足。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsValidCellFor2x2Cells(this int @this)
-		=> !Array.Exists(new[] { HousesMap[17], HousesMap[26] }, c => c.Contains(@this));
+	public static bool IsValidCellFor2x2Cells(this int @this) => !Array.Exists(new[] { HousesMap[17], HousesMap[26] }, c => c.Contains(@this));
 
 	/// <summary>
 	/// 判别当前输入的数值（对应的单元格索引）是否为绘图支持的、平均数独线条的指定单元格数值。
