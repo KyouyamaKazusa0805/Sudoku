@@ -447,6 +447,39 @@ partial class DrawingOperations
 			static cell => new QuadrupleMaxArrowViewNode(default, cell, default),
 			static cell => cell.IsValidCellFor2x2Cells()
 		);
+
+	/// <summary>
+	/// 添加一个三角形求和数独的三角形。
+	/// </summary>
+	public static async partial Task AddTriangleSumNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string directionString)
+	{
+		if (directionString.ToDirection2() is not { } direction)
+		{
+			return;
+		}
+
+		await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new TriangleSumViewNode(Color.FromArgb(128, Color.Black).ToIdentifier(), cell, direction),
+			null
+		);
+	}
+
+	/// <summary>
+	/// 删除一个三角形求和数独的三角形。
+	/// </summary>
+	public static async partial Task RemoveTriangleSumNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			static cell => new TriangleSumViewNode(default, cell, default),
+			null
+		);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
@@ -496,6 +529,17 @@ file static class Extensions
 			"左下" => Direction.BottomLeft,
 			"右下" => Direction.BottomRight,
 			_ => null
+		};
+
+	/// <inheritdoc cref="ToDirection(string)"/>
+	public static Direction? ToDirection2(this string @this)
+		=> @this switch
+		{
+			"左上" => Direction.TopLeft,
+			"右上" => Direction.TopRight,
+			"左下" => Direction.BottomLeft,
+			"右下" => Direction.BottomRight,
+			"全" => Direction.TopLeft | Direction.BottomRight
 		};
 
 	/// <summary>

@@ -1276,6 +1276,16 @@
             删除一个或一组田大数独的箭头。
             </summary>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddTriangleSumNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
+            <summary>
+            添加一个三角形求和数独的三角形。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveTriangleSumNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            删除一个三角形求和数独的三角形。
+            </summary>
+        </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SplitOptionsBoth">
             <summary>
             用于 <see cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/> 操作的枚举常量值，
@@ -1429,6 +1439,9 @@
             </summary>
             <param name="this">字符串。</param>
             <returns><see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/> 的实例。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.ToDirection2(System.String)">
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.ToDirection(System.String)"/>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.ToDirections(System.String)">
             <summary>
