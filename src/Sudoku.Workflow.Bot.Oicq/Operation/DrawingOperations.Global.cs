@@ -39,6 +39,8 @@ partial class DrawingOperations
 					pref.BorderBarWidth = 10F;
 					pref.CellCornerArrowWidth = 20F;
 					pref.CellCornerTriangleSize = 30F;
+					pref.ClockfaceDotBorderWidth = 4F;
+					pref.ClockfaceDotSize = 30F;
 				}
 			)
 			.WithGrid(Grid.Undefined);

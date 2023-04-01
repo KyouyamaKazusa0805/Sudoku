@@ -24,7 +24,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new AverageBarViewNode(Color.DimGray.ToIdentifier(), cell, isHorizontal ? AdjacentCellType.Rowish : AdjacentCellType.Columnish),
+			cell => new AverageBarViewNode(default, cell, isHorizontal ? AdjacentCellType.Rowish : AdjacentCellType.Columnish),
 			cell => cell.IsValidCellForAverage(isHorizontal)
 		);
 
@@ -50,7 +50,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			static cell => new BattenburgViewNode(Color.Black.ToIdentifier(), cell),
+			static cell => new BattenburgViewNode(default, cell),
 			static cell => cell.IsValidCellFor2x2Cells()
 		);
 
@@ -82,7 +82,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new BorderBarViewNode(Color.DimGray.ToIdentifier(), cell, cell + (isHorizontal ? 1 : 9)),
+			cell => new BorderBarViewNode(default, cell, cell + (isHorizontal ? 1 : 9)),
 			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
 		);
 
@@ -115,7 +115,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			static cell => new CellArrowViewNode(Color.DimGray.ToIdentifier(), cell, default),
+			static cell => new CellArrowViewNode(default, cell, default),
 			null
 		);
 
@@ -153,7 +153,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			static cell => new CellCornerArrowViewNode(Color.DimGray.ToIdentifier(), cell, default),
+			static cell => new CellCornerArrowViewNode(default, cell, default),
 			null
 		);
 
@@ -190,8 +190,34 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new CellCornerTriangleViewNode(Color.DimGray.ToIdentifier(), cell, default),
+			cell => new CellCornerTriangleViewNode(default, cell, default),
 			null
+		);
+
+	/// <summary>
+	/// 添加一个或一组钟面数独的黑或白色圆点。
+	/// </summary>
+	public static async partial Task AddClockfaceNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isClockwise)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new ClockfaceDotViewNode(Color.DimGray.ToIdentifier(), cell, isClockwise),
+			static cell => cell.IsValidCellFor2x2Cells()
+		);
+
+	/// <summary>
+	/// 删除一个或一组钟面数独的黑色或白色圆点。
+	/// </summary>
+	public static async partial Task RemoveClockfaceNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isClockwise)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			cell => new ClockfaceDotViewNode(default, cell, isClockwise),
+			static cell => cell.IsValidCellFor2x2Cells()
 		);
 }
 
