@@ -24,41 +24,31 @@ partial class DrawingOperations
 	/// 恰好这技巧又没有英语名字，就干脆取了个这个名字。
 	/// </remarks>
 	/// <seealso cref="BasicViewNode"/>
-	public static async partial Task AddBasicViewNodesAsync(
-		GroupMessageReceiver messageReceiver,
-		DrawingContext drawingContext,
-		string rawString,
-		string colorString
-	)
+	public static async partial Task AddBasicViewNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string colorString)
 	{
 		if (colorString.GetIdentifier() is { } identifier)
 		{
-			var nodes = RecordBasicNodesInternal(rawString, identifier);
-			await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(nodes));
+			var nodes = RecordBasicNodesInternal(raw, identifier);
+			await receiver.SendPictureThenDeleteAsync(context.Painter.AddNodes(nodes));
 		}
 	}
 
 	/// <summary>
 	/// 从绘图盘面内删除指定的绘图节点。
 	/// </summary>
-	public static async partial Task RemoveBasicViewNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
+	public static async partial Task RemoveBasicViewNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
 	{
-		var nodes = RecordBasicNodesInternal(rawString);
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
+		var nodes = RecordBasicNodesInternal(raw);
+		await receiver.SendPictureThenDeleteAsync(context.Painter.RemoveNodes(nodes));
 	}
 
 	/// <summary>
 	/// 往绘图盘面里面追加代数字母的视图节点。
 	/// </summary>
-	public static async partial Task AddBabaGroupNodesAsync(
-		GroupMessageReceiver messageReceiver,
-		DrawingContext drawingContext,
-		string rawString,
-		Utf8Char character
-	)
+	public static async partial Task AddBabaGroupNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, Utf8Char character)
 	{
 		var nodes = new HashSet<BabaGroupViewNode>();
-		foreach (var element in rawString.LocalSplit())
+		foreach (var element in raw.LocalSplit())
 		{
 			if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9'] && GetCellIndex(r, c) is var cell)
 			{
@@ -78,16 +68,16 @@ partial class DrawingOperations
 			}
 		}
 
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(nodes));
+		await receiver.SendPictureThenDeleteAsync(context.Painter.AddNodes(nodes));
 	}
 
 	/// <summary>
 	/// 从绘图盘面内删除代数字母的视图节点。
 	/// </summary>
-	public static async partial Task RemoveBabaGroupNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
+	public static async partial Task RemoveBabaGroupNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
 	{
 		var nodes = new HashSet<BabaGroupViewNode>();
-		foreach (var element in rawString.LocalSplit())
+		foreach (var element in raw.LocalSplit())
 		{
 			if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9'] && GetCellIndex(r, c) is var cell)
 			{
@@ -95,7 +85,7 @@ partial class DrawingOperations
 			}
 		}
 
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
+		await receiver.SendPictureThenDeleteAsync(context.Painter.RemoveNodes(nodes));
 	}
 
 	/// <summary>
@@ -104,13 +94,7 @@ partial class DrawingOperations
 	/// <remarks>
 	/// 注意，追加链的线条的时候，强或弱是必要的选项。因为它影响了绘制的逻辑。
 	/// </remarks>
-	public static async partial Task AddLinkNodeAsync(
-		GroupMessageReceiver messageReceiver,
-		DrawingContext drawingContext,
-		string linkTypeString,
-		string startCandidateString,
-		string endCandidateString
-	)
+	public static async partial Task AddLinkNodeAsync(GroupMessageReceiver receiver, DrawingContext context, string linkTypeString, string startCandidateString, string endCandidateString)
 	{
 		if (
 			(startCandidateString, endCandidateString) is not (
@@ -129,7 +113,7 @@ partial class DrawingOperations
 		// 根据前面给的数据创建实例。
 		// 和代数一样，链的强弱线条的颜色也是不配置的。
 		var node = new LinkViewNode(default, new(startDigit, startCell), new(endDigit, endCell), inference);
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(new[] { node }));
+		await receiver.SendPictureThenDeleteAsync(context.Painter.AddNodes(new[] { node }));
 	}
 
 	/// <summary>
@@ -139,12 +123,7 @@ partial class DrawingOperations
 	/// 注意，删除链的线条的时候，是强或弱都无关紧要了。这是因为，链的强弱关系不可能在同一时刻落在同样两个候选数之上，
 	/// 不论这两个节点原本是强还是弱，都不能再叠加新的重叠的线条。
 	/// </remarks>
-	public static async partial Task RemoveLinkNodeAsync(
-		GroupMessageReceiver messageReceiver,
-		DrawingContext drawingContext,
-		string startCandidateString,
-		string endCandidateString
-	)
+	public static async partial Task RemoveLinkNodeAsync(GroupMessageReceiver receiver, DrawingContext context, string startCandidateString, string endCandidateString)
 	{
 		if (
 			(startCandidateString, endCandidateString) is not (
@@ -163,17 +142,17 @@ partial class DrawingOperations
 		// 节点只比较起始点和结束点是否一致，所以跟它是什么关系（强关系还是弱关系）没有关系。这里设置成 default 就行。
 		// 注意顺序。强弱关系本身是没有方向性的，但是在绘制链的时候，是有方向性的，所以如果删除的方向反了，也是不可以正确删除掉的。
 		var node = new LinkViewNode(default, new(startDigit, startCell), new(endDigit, endCell), default);
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(new[] { node }));
+		await receiver.SendPictureThenDeleteAsync(context.Painter.RemoveNodes(new[] { node }));
 	}
 
 	/// <summary>
 	/// 内部方法，记录 <see cref="BasicViewNode"/> 类型的节点。
 	/// </summary>
 	/// <seealso cref="BasicViewNode"/>
-	private static HashSet<ViewNode> RecordBasicNodesInternal(string rawString, Identifier identifier = default)
+	private static HashSet<ViewNode> RecordBasicNodesInternal(string raw, Identifier identifier = default)
 	{
 		var nodes = new HashSet<ViewNode>();
-		foreach (var element in rawString.LocalSplit())
+		foreach (var element in raw.LocalSplit())
 		{
 			var node = element switch
 			{

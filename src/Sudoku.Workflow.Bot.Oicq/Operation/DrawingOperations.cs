@@ -8,43 +8,47 @@ namespace Sudoku.Workflow.Bot.Oicq.Operation;
 internal static partial class DrawingOperations
 {
 	//
+	// 全局方法集
+	//
+	public static partial Task ClearAsync(GroupMessageReceiver receiver, BotRunningContext context);
+
+	//
 	// 盘面操作方法集
 	//
-	public static partial Task ClearAsync(GroupMessageReceiver messageReceiver, BotRunningContext context);
-	public static partial Task SetOrDeleteDigitAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
-	public static partial Task AddPencilmarkAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
-	public static partial Task RemovePencilmarkAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
-	public static partial Task ApplyGridAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string gridString);
+	public static partial Task SetOrDeleteDigitAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
+	public static partial Task AddPencilmarkAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
+	public static partial Task RemovePencilmarkAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
+	public static partial Task ApplyGridAsync(GroupMessageReceiver receiver, DrawingContext context, string gridString);
 
 	//
 	// BasicViewNode 节点处理方法集
 	//
-	public static partial Task AddBasicViewNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, string colorString);
-	public static partial Task RemoveBasicViewNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
-	public static partial Task AddBabaGroupNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, Utf8Char character);
-	public static partial Task RemoveBabaGroupNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
-	public static partial Task AddLinkNodeAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string linkTypeString, string startCandidateString, string endCandidateString);
-	public static partial Task RemoveLinkNodeAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string startCandidateString, string endCandidateString);
+	public static partial Task AddBasicViewNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string colorString);
+	public static partial Task RemoveBasicViewNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
+	public static partial Task AddBabaGroupNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, Utf8Char character);
+	public static partial Task RemoveBabaGroupNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
+	public static partial Task AddLinkNodeAsync(GroupMessageReceiver receiver, DrawingContext context, string linkTypeString, string startCandidateString, string endCandidateString);
+	public static partial Task RemoveLinkNodeAsync(GroupMessageReceiver receiver, DrawingContext context, string startCandidateString, string endCandidateString);
 
 	//
 	// IconViewNode 节点处理方法集
 	//
-	public static partial Task AddIconViewNodeAsync<TNode>(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, string colorString, Func<Identifier, int, TNode> nodeCreator) where TNode : IconViewNode;
-	public static partial Task RemoveIconViewNodeAsync<TNode>(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, Func<int, TNode> nodeCreator) where TNode : IconViewNode;
+	public static partial Task AddIconViewNodeAsync<T>(GroupMessageReceiver receiver, DrawingContext context, string raw, string colorString, Func<Identifier, int, T> nodeCreator) where T : IconViewNode;
+	public static partial Task RemoveIconViewNodeAsync<T>(GroupMessageReceiver receiver, DrawingContext context, string raw, Func<int, T> nodeCreator) where T : IconViewNode;
 
 	//
 	// ShapeViewNode 节点处理方法集
 	//
-	public static partial Task AddAverageBarNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, bool isHorizontal);
-	public static partial Task RemoveAverageBarNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, bool isHorizontal);
-	public static partial Task AddBattenburgNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
-	public static partial Task RemoveBattenburgNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
-	public static partial Task AddConsecutiveNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, bool isHorizontal);
-	public static partial Task RemoveConsecutiveNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, bool isHorizontal);
-	public static partial Task AddCellArrowNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, string directionString);
-	public static partial Task RemoveCellArrowNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
-	public static partial Task AddCellCornerArrowNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, string directionsString);
-	public static partial Task RemoveCellCornerArrowNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
-	public static partial Task AddCellCornerTriangleNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString, string directionsString);
-	public static partial Task RemoveCellCornerTriangleNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString);
+	public static partial Task AddAverageBarNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal);
+	public static partial Task RemoveAverageBarNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal);
+	public static partial Task AddBattenburgNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
+	public static partial Task RemoveBattenburgNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
+	public static partial Task AddConsecutiveNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal);
+	public static partial Task RemoveConsecutiveNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal);
+	public static partial Task AddCellArrowNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string directionString);
+	public static partial Task RemoveCellArrowNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
+	public static partial Task AddCellCornerArrowNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string directionsString);
+	public static partial Task RemoveCellCornerArrowNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
+	public static partial Task AddCellCornerTriangleNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string directionsString);
+	public static partial Task RemoveCellCornerTriangleNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
 }

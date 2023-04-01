@@ -5,15 +5,15 @@ partial class DrawingOperations
 	/// <summary>
 	/// 往绘图盘面内填入一个数（或者去掉一个填数）。
 	/// </summary>
-	public static async partial Task SetOrDeleteDigitAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
+	public static async partial Task SetOrDeleteDigitAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
 	{
-		var puzzle = drawingContext.Puzzle;
-		foreach (var element in rawString.LocalSplit())
+		var puzzle = context.Puzzle;
+		foreach (var element in raw.LocalSplit())
 		{
 			if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '0' and <= '9']
 				&& GetCandidateIndex(r, c, d) is var (cell, digit))
 			{
-				switch (drawingContext.Puzzle.GetStatus(cell))
+				switch (context.Puzzle.GetStatus(cell))
 				{
 					case CellStatus.Undefined:
 					case CellStatus.Modifiable:
@@ -37,23 +37,23 @@ partial class DrawingOperations
 			}
 		}
 
-		drawingContext.Puzzle = puzzle;
+		context.Puzzle = puzzle;
 
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.WithGrid(puzzle));
+		await receiver.SendPictureThenDeleteAsync(context.Painter.WithGrid(puzzle));
 	}
 
 	/// <summary>
 	/// 往绘图盘面内追加一个候选数标记。
 	/// </summary>
-	public static async partial Task AddPencilmarkAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
+	public static async partial Task AddPencilmarkAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
 	{
-		var pencilmarks = drawingContext.Pencilmarks;
-		foreach (var element in rawString.LocalSplit())
+		var pencilmarks = context.Pencilmarks;
+		foreach (var element in raw.LocalSplit())
 		{
 			if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']
 				&& GetCandidateIndex(r, c, d) is var (cell, digit))
 			{
-				switch (drawingContext.Puzzle.GetStatus(cell))
+				switch (context.Puzzle.GetStatus(cell))
 				{
 					case CellStatus.Undefined:
 					{
@@ -68,25 +68,25 @@ partial class DrawingOperations
 			}
 		}
 
-		drawingContext.Pencilmarks = pencilmarks;
-		drawingContext.UpdateCandidatesViaPencilmarks();
-		drawingContext.Painter.WithGrid(drawingContext.Puzzle);
+		context.Pencilmarks = pencilmarks;
+		context.UpdateCandidatesViaPencilmarks();
+		context.Painter.WithGrid(context.Puzzle);
 
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
+		await receiver.SendPictureThenDeleteAsync(context.Painter);
 	}
 
 	/// <summary>
 	/// 从绘图盘面内删除一个已经标记了的候选数。
 	/// </summary>
-	public static async partial Task RemovePencilmarkAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
+	public static async partial Task RemovePencilmarkAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
 	{
-		var pencilmarks = drawingContext.Pencilmarks;
-		foreach (var element in rawString.LocalSplit())
+		var pencilmarks = context.Pencilmarks;
+		foreach (var element in raw.LocalSplit())
 		{
 			if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']
 				&& GetCandidateIndex(r, c, d) is var (cell, digit))
 			{
-				switch (drawingContext.Puzzle.GetStatus(cell))
+				switch (context.Puzzle.GetStatus(cell))
 				{
 					case CellStatus.Undefined:
 					{
@@ -101,11 +101,11 @@ partial class DrawingOperations
 			}
 		}
 
-		drawingContext.Pencilmarks = pencilmarks;
-		drawingContext.UpdateCandidatesViaPencilmarks();
-		drawingContext.Painter.WithGrid(drawingContext.Puzzle);
+		context.Pencilmarks = pencilmarks;
+		context.UpdateCandidatesViaPencilmarks();
+		context.Painter.WithGrid(context.Puzzle);
 
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter);
+		await receiver.SendPictureThenDeleteAsync(context.Painter);
 	}
 
 	/// <summary>
@@ -119,12 +119,12 @@ partial class DrawingOperations
 	/// <seealso cref="Grid"/>
 	/// <seealso cref="CellStatus.Empty"/>
 	/// <seealso cref="CellStatus.Undefined"/>
-	public static async partial Task ApplyGridAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string gridString)
+	public static async partial Task ApplyGridAsync(GroupMessageReceiver receiver, DrawingContext context, string gridString)
 	{
 		// 解析 gridString，看它是不是合适的盘面的文本字符串。
 		if (!Grid.TryParse(gridString, out var grid))
 		{
-			await messageReceiver.SendMessageAsync("请输入正确的盘面文本字符串。");
+			await receiver.SendMessageAsync("请输入正确的盘面文本字符串。");
 			return;
 		}
 
@@ -132,8 +132,8 @@ partial class DrawingOperations
 		grid.ManualUpdateCellStatus();
 
 		// 调整完成，赋值回去，并渲染出来即可。
-		drawingContext.Puzzle = grid;
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.WithGrid(grid));
+		context.Puzzle = grid;
+		await receiver.SendPictureThenDeleteAsync(context.Painter.WithGrid(grid));
 	}
 }
 

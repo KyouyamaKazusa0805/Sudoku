@@ -5,112 +5,54 @@ partial class DrawingOperations
 	/// <summary>
 	/// 添加一个或一组平均数独里的平均线。
 	/// </summary>
-	public static async partial Task AddAverageBarNodesAsync(
-		GroupMessageReceiver messageReceiver,
-		DrawingContext drawingContext,
-		string rawString,
-		bool isHorizontal
-	)
-	{
-		var nodes = new HashSet<AverageBarViewNode>();
-		foreach (var element in rawString.LocalSplit())
-		{
-			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
-			{
-				continue;
-			}
-
-			var cell = GetCellIndex(r, c);
-			if (!cell.IsValidCellForAverage(isHorizontal))
-			{
-				continue;
-			}
-
-			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, isHorizontal ? AdjacentCellType.Rowish : AdjacentCellType.Columnish));
-		}
-
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(nodes));
-	}
+	public static async partial Task AddAverageBarNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new AverageBarViewNode(Color.DimGray.ToIdentifier(), cell, isHorizontal ? AdjacentCellType.Rowish : AdjacentCellType.Columnish),
+			cell => cell.IsValidCellForAverage(isHorizontal)
+		);
 
 	/// <summary>
 	/// 删除一个或一组平均线。
 	/// </summary>
-	public static async partial Task RemoveAverageBarNodesAsync(
-		GroupMessageReceiver messageReceiver,
-		DrawingContext drawingContext,
-		string rawString,
-		bool isHorizontal
-	)
-	{
-		var nodes = new HashSet<AverageBarViewNode>();
-		foreach (var element in rawString.LocalSplit())
-		{
-			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
-			{
-				continue;
-			}
-
-			var cell = GetCellIndex(r, c);
-			if (!cell.IsValidCellForAverage(isHorizontal))
-			{
-				continue;
-			}
-
-			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, isHorizontal ? AdjacentCellType.Rowish : AdjacentCellType.Columnish));
-		}
-
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
-	}
+	public static async partial Task RemoveAverageBarNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			cell => new AverageBarViewNode(Color.DimGray.ToIdentifier(), cell, isHorizontal ? AdjacentCellType.Rowish : AdjacentCellType.Columnish),
+			cell => cell.IsValidCellForAverage(isHorizontal)
+		);
 
 	/// <summary>
 	/// 添加一个或一组双色蛋糕数独里的双色蛋糕标记。
 	/// </summary>
-	public static async partial Task AddBattenburgNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
-	{
-		var nodes = new HashSet<BattenburgViewNode>();
-		foreach (var element in rawString.LocalSplit())
-		{
-			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
-			{
-				continue;
-			}
-
-			var cell = GetCellIndex(r, c);
-			if (!cell.IsValidCellFor2x2Cells())
-			{
-				continue;
-			}
-
-			nodes.Add(new(Color.Black.ToIdentifier(), cell));
-		}
-
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(nodes));
-	}
+	public static async partial Task AddBattenburgNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			static cell => new BattenburgViewNode(Color.Black.ToIdentifier(), cell),
+			static cell => cell.IsValidCellFor2x2Cells()
+		);
 
 	/// <summary>
 	/// 删除一个或一组双色蛋糕标记。
 	/// </summary>
-	public static async partial Task RemoveBattenburgNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
-	{
-		var nodes = new HashSet<BattenburgViewNode>();
-		foreach (var element in rawString.LocalSplit())
-		{
-			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
-			{
-				continue;
-			}
-
-			var cell = GetCellIndex(r, c);
-			if (!cell.IsValidCellFor2x2Cells())
-			{
-				continue;
-			}
-
-			nodes.Add(new(Color.Black.ToIdentifier(), cell));
-		}
-
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
-	}
+	public static async partial Task RemoveBattenburgNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			static cell => new BattenburgViewNode(Color.Black.ToIdentifier(), cell),
+			static cell => cell.IsValidCellFor2x2Cells()
+		);
 
 	/// <summary>
 	/// 添加一个或一组连续数独使用的连续挡板标记。
@@ -118,32 +60,15 @@ partial class DrawingOperations
 	/// <remarks>
 	/// 注意，这里的参数 <paramref name="isHorizontal"/> 的横纵是取决于单元格相邻的关系，<b>不是挡板线条的横纵走向</b>。
 	/// </remarks>
-	public static async partial Task AddConsecutiveNodesAsync(
-		GroupMessageReceiver messageReceiver,
-		DrawingContext drawingContext,
-		string rawString,
-		bool isHorizontal
-	)
-	{
-		var nodes = new HashSet<BorderBarViewNode>();
-		foreach (var element in rawString.LocalSplit())
-		{
-			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
-			{
-				continue;
-			}
-
-			var cell = GetCellIndex(r, c);
-			if (!cell.IsValidCellForAdjacentCell(isHorizontal))
-			{
-				continue;
-			}
-
-			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, cell + 1));
-		}
-
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(nodes));
-	}
+	public static async partial Task AddConsecutiveNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new BorderBarViewNode(Color.DimGray.ToIdentifier(), cell, cell + (isHorizontal ? 1 : 9)),
+			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
+		);
 
 	/// <summary>
 	/// 删除一个或一组连续数独使用的连续挡板标记。
@@ -151,92 +76,53 @@ partial class DrawingOperations
 	/// <remarks>
 	/// <inheritdoc cref="AddConsecutiveNodesAsync(GroupMessageReceiver, DrawingContext, string, bool)" path="/remarks"/>
 	/// </remarks>
-	public static async partial Task RemoveConsecutiveNodesAsync(
-		GroupMessageReceiver messageReceiver,
-		DrawingContext drawingContext,
-		string rawString,
-		bool isHorizontal
-	)
-	{
-		var nodes = new HashSet<BorderBarViewNode>();
-		foreach (var element in rawString.LocalSplit())
-		{
-			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
-			{
-				continue;
-			}
-
-			var cell = GetCellIndex(r, c);
-			if (!cell.IsValidCellForAdjacentCell(isHorizontal))
-			{
-				continue;
-			}
-
-			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, cell + (isHorizontal ? 1 : 9)));
-		}
-
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
-	}
+	public static async partial Task RemoveConsecutiveNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			cell => new BorderBarViewNode(Color.DimGray.ToIdentifier(), cell, cell + (isHorizontal ? 1 : 9)),
+			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
+		);
 
 	/// <summary>
 	/// 添加一个或一组单元格箭头图标。这种图标主要用于寻 9 数独之中。
 	/// </summary>
-	public static async partial Task AddCellArrowNodesAsync(
-		GroupMessageReceiver messageReceiver,
-		DrawingContext drawingContext,
-		string rawString,
-		string directionString
-	)
+	public static async partial Task AddCellArrowNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string directionString)
 	{
 		if (directionString.ToDirection() is not { } direction)
 		{
 			return;
 		}
 
-		var nodes = new HashSet<CellArrowViewNode>();
-		foreach (var element in rawString.LocalSplit())
-		{
-			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
-			{
-				continue;
-			}
-
-			var cell = GetCellIndex(r, c);
-			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, direction));
-		}
-
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(nodes));
+		await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new CellArrowViewNode(Color.DimGray.ToIdentifier(), cell, direction),
+			null
+		);
 	}
 
 	/// <summary>
 	/// 删除一个或一组单元格箭头图标。
 	/// </summary>
-	public static async partial Task RemoveCellArrowNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
-	{
-		var nodes = new HashSet<CellArrowViewNode>();
-		foreach (var element in rawString.LocalSplit())
-		{
-			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
-			{
-				continue;
-			}
-
-			var cell = GetCellIndex(r, c);
-			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, default));
-		}
-
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
-	}
+	public static async partial Task RemoveCellArrowNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			static cell => new CellArrowViewNode(Color.DimGray.ToIdentifier(), cell, default),
+			null
+		);
 
 	/// <summary>
 	/// 添加一个或一组单元格内的小箭头图标。这些小箭头图标不会整体占据整个单元格，而是标记在单元格的格线周围的 8 个方向。
 	/// </summary>
-	public static async partial Task AddCellCornerArrowNodesAsync(
-		GroupMessageReceiver messageReceiver,
-		DrawingContext drawingContext,
-		string rawString,
-		string directionsString
-	)
+	public static async partial Task AddCellCornerArrowNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string directionsString)
 	{
 		// 模式匹配冷知识：
 		// 模式匹配在使用期间，如果表达式（is 左边这个）和模式（is 右边这些）里的其中一个子模式（常量模式）里的值可进行隐式转换，
@@ -248,51 +134,34 @@ partial class DrawingOperations
 			return;
 		}
 
-		var nodes = new HashSet<CellCornerArrowViewNode>();
-		foreach (var element in rawString.LocalSplit())
-		{
-			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
-			{
-				continue;
-			}
-
-			var cell = GetCellIndex(r, c);
-			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, directions));
-		}
-
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(nodes));
+		await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new CellCornerArrowViewNode(Color.DimGray.ToIdentifier(), cell, directions),
+			null
+		);
 	}
 
 	/// <summary>
 	/// 删除一个或一组单元格内使用的小箭头图标。
 	/// </summary>
-	public static async partial Task RemoveCellCornerArrowNodesAsync(GroupMessageReceiver messageReceiver, DrawingContext drawingContext, string rawString)
-	{
-		var nodes = new HashSet<CellCornerArrowViewNode>();
-		foreach (var element in rawString.LocalSplit())
-		{
-			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
-			{
-				continue;
-			}
-
-			var cell = GetCellIndex(r, c);
-			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, default));
-		}
-
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
-	}
+	public static async partial Task RemoveCellCornerArrowNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			static cell => new CellCornerArrowViewNode(Color.DimGray.ToIdentifier(), cell, default),
+			null
+		);
 
 	/// <summary>
 	/// 添加一个或一组单元格边角处的三角形图标。这个三角形和前面的箭头样貌不同，使用的变型数独也不同。
 	/// 这种专门用于斜向的大小比较类数独，比如斜不等号数独。
 	/// </summary>
-	public static async partial Task AddCellCornerTriangleNodesAsync(
-		GroupMessageReceiver messageReceiver,
-		DrawingContext drawingContext,
-		string rawString,
-		string directionsString
-	)
+	public static async partial Task AddCellCornerTriangleNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string directionsString)
 	{
 		if (directionsString.ToDirections() is not (var directions and not 0))
 		{
@@ -302,44 +171,28 @@ partial class DrawingOperations
 		// 要去掉基本的四个方向。因为这个三角形图标不能用于标准的上下左右四个方向。
 		directions &= ~(Direction.Up | Direction.Down | Direction.Left | Direction.Right);
 
-		var nodes = new HashSet<CellCornerTriangleViewNode>();
-		foreach (var element in rawString.LocalSplit())
-		{
-			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
-			{
-				continue;
-			}
-
-			var cell = GetCellIndex(r, c);
-			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, directions));
-		}
-
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.AddNodes(nodes));
+		await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new CellCornerTriangleViewNode(Color.DimGray.ToIdentifier(), cell, directions),
+			null
+		);
 	}
 
 	/// <summary>
 	/// 删除一个或一组单元格边角处的三角形图标。
 	/// </summary>
-	public static async partial Task RemoveCellCornerTriangleNodesAsync(
-		GroupMessageReceiver messageReceiver,
-		DrawingContext drawingContext,
-		string rawString
-	)
-	{
-		var nodes = new HashSet<CellCornerTriangleViewNode>();
-		foreach (var element in rawString.LocalSplit())
-		{
-			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
-			{
-				continue;
-			}
-
-			var cell = GetCellIndex(r, c);
-			nodes.Add(new(Color.DimGray.ToIdentifier(), cell, default));
-		}
-
-		await messageReceiver.SendPictureThenDeleteAsync(drawingContext.Painter.RemoveNodes(nodes));
-	}
+	public static async partial Task RemoveCellCornerTriangleNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			cell => new CellCornerTriangleViewNode(Color.DimGray.ToIdentifier(), cell, default),
+			null
+		);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

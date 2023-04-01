@@ -27,7 +27,7 @@ partial class DrawingOperations
 	/// <summary>
 	/// 直接清空整个绘图操作里已经设置了的视图节点，恢复为空盘面。
 	/// </summary>
-	public static async partial Task ClearAsync(GroupMessageReceiver messageReceiver, BotRunningContext context)
+	public static async partial Task ClearAsync(GroupMessageReceiver receiver, BotRunningContext context)
 	{
 		var painter = ISudokuPainter.Create(1000, 20)
 			.WithRenderingCandidates(true)
@@ -47,7 +47,7 @@ partial class DrawingOperations
 		// 利用前面创建的 painter 对象，直接产生图片并发送。这里的 painter 是初始化的结果，所以发送出去的图片也是空盘，没有标记，没有候选数，啥都没有。
 		// 注意，这个指令到这里就结束了。后面没有代码了。
 		// 因为这里随后的操作是艾特机器人，在别的指令里完成，这里我们不处理它（实际上也处理不了，因为 API 是这么设计的）。
-		await messageReceiver.SendPictureThenDeleteAsync(painter);
+		await receiver.SendPictureThenDeleteAsync(painter);
 	}
 
 	/// <summary>
@@ -138,4 +138,43 @@ partial class DrawingOperations
 			'列' or 'C' or 'c' => 3,
 			_ => throw new ArgumentException("The specified value is invalid.", nameof(r))
 		} + (i - '1');
+
+	/// <summary>
+	/// 使用参数 <paramref name="receiver"/> 创建缓存图片，并发送。
+	/// </summary>
+	/// <param name="receiver"><see cref="GroupMessageReceiver"/> 实例。</param>
+	/// <param name="context">绘图使用的上下文。</param>
+	/// <param name="raw">原始数据（字符串）。</param>
+	/// <param name="isAdding">表示是否最终是追加到集合之中。</param>
+	/// <param name="nodeCreator">一个方法，表示创建一个 <see cref="ViewNode"/> 的实例。</param>
+	/// <param name="cellPredicate">一个单元格是否满足条件的判别方法。</param>
+	/// <returns>一个 <see cref="Task"/> 类型的实例，表示异步操作期间的基本数据。</returns>
+	private static async Task GeneratePictureAsync(
+		GroupMessageReceiver receiver,
+		DrawingContext context,
+		string raw,
+		bool isAdding,
+		Func<int, ViewNode> nodeCreator,
+		Func<int, bool>? cellPredicate
+	)
+	{
+		var nodes = new HashSet<ViewNode>();
+		foreach (var element in raw.LocalSplit())
+		{
+			if (element is not [var r and >= '1' and <= '9', var c and >= '1' and <= '9'])
+			{
+				continue;
+			}
+
+			var cell = GetCellIndex(r, c);
+			if (cellPredicate is not null && !cellPredicate(cell))
+			{
+				continue;
+			}
+
+			nodes.Add(nodeCreator(cell));
+		}
+
+		await receiver.SendPictureThenDeleteAsync(isAdding ? context.Painter.AddNodes(nodes) : context.Painter.RemoveNodes(nodes));
+	}
 }
