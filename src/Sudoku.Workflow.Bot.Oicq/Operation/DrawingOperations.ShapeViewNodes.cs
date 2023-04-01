@@ -307,6 +307,32 @@ partial class DrawingOperations
 			cell => new KropkiDotViewNode(default, cell, cell + (isHorizontal ? 1 : 9), default),
 			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
 		);
+
+	/// <summary>
+	/// 添加一个或一组邻居数独里使用的圆圈和叉叉图标。
+	/// </summary>
+	public static async partial Task AddNeighborNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isCross)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new NeighborSignViewNode(Color.FromArgb(128, Color.Black).ToIdentifier(), cell, isCross),
+			null
+		);
+
+	/// <summary>
+	/// 删除一个或一组邻居数独里使用的圆圈和叉叉图标。
+	/// </summary>
+	public static async partial Task RemoveNeighborNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			static cell => new NeighborSignViewNode(default, cell, default),
+			null
+		);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

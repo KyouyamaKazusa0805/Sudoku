@@ -45,6 +45,8 @@ partial class DrawingOperations
 					pref.GreaterThanSignFont = new("Consolas", 28F, FontStyle.Bold);
 					pref.KropkiDotBorderWidth = 4F;
 					pref.KropkiDotSize = 30F;
+					pref.NeighborSignCellPadding = 10F;
+					pref.NeighborSignsWidth = 6F;
 				}
 			)
 			.WithGrid(Grid.Undefined);
