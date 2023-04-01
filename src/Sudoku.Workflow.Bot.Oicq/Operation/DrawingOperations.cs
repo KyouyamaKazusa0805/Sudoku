@@ -72,4 +72,6 @@ internal static partial class DrawingOperations
 	//public static partial Task AddStarProductNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
 	public static partial Task AddTriangleSumNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string directionString);
 	public static partial Task RemoveTriangleSumNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
+	public static partial Task AddWheelNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string digitsString);
+	public static partial Task RemoveWheelNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
 }

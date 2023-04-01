@@ -1286,6 +1286,16 @@
             删除一个三角形求和数独的三角形。
             </summary>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddWheelNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
+            <summary>
+            添加一个转轮数独的转轮。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveWheelNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            删除一个转轮数独的转轮。
+            </summary>
+        </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SplitOptionsBoth">
             <summary>
             用于 <see cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/> 操作的枚举常量值，
@@ -1409,6 +1419,13 @@
 					Provides with file-local extension methods.
 				</summary>
 			</target>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.IsValidCellForWheel(System.Int32)">
+            <summary>
+            判别当前输入的数值（对应的单元格索引）是否为绘图支持的、转轮数独的指定单元格数值。
+            </summary>
+            <param name="this">单元格索引。</param>
+            <returns>一个 <see cref="T:System.Boolean"/> 结果表示是否满足。</returns>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.IsValidCellForAdjacentCell(System.Int32,System.Boolean)">
             <summary>

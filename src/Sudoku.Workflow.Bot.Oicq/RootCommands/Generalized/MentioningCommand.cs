@@ -138,6 +138,8 @@ file sealed class MentioningCommand : IModule
 					["反田大", var s] => DrawingOperations.RemoveQuadMaxNodesAsync(messageReceiver, drawingContext, s),
 					["三角和", var s, var d] => DrawingOperations.AddTriangleSumNodesAsync(messageReceiver, drawingContext, s, d),
 					["反三角和", var s] => DrawingOperations.RemoveTriangleSumNodesAsync(messageReceiver, drawingContext, s),
+					["转轮", var s, var d] => DrawingOperations.AddWheelNodesAsync(messageReceiver, drawingContext, s, d),
+					["反转轮", var s] => DrawingOperations.RemoveWheelNodesAsync(messageReceiver, drawingContext, s),
 
 					// 其他情况。这里要返回 null。如果不写的话，是会默认产生 SwitchExpressionException 的异常的。
 					_ => null

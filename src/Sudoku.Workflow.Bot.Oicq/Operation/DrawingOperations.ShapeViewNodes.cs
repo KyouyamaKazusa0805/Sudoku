@@ -480,11 +480,46 @@ partial class DrawingOperations
 			static cell => new TriangleSumViewNode(default, cell, default),
 			null
 		);
+
+	/// <summary>
+	/// 添加一个转轮数独的转轮。
+	/// </summary>
+	public static async partial Task AddWheelNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string digitsString)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new WheelViewNode(Color.DimGray.ToIdentifier(), cell, digitsString),
+			static cell => cell.IsValidCellForWheel()
+		);
+
+	/// <summary>
+	/// 删除一个转轮数独的转轮。
+	/// </summary>
+	public static async partial Task RemoveWheelNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			static cell => new WheelViewNode(default, cell, null!),
+			static cell => cell.IsValidCellForWheel()
+		);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
+	/// <summary>
+	/// 判别当前输入的数值（对应的单元格索引）是否为绘图支持的、转轮数独的指定单元格数值。
+	/// </summary>
+	/// <param name="this">单元格索引。</param>
+	/// <returns>一个 <see cref="bool"/> 结果表示是否满足。</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool IsValidCellForWheel(this int @this)
+		=> !Array.Exists(new[] { HousesMap[9], HousesMap[17], HousesMap[18], HousesMap[26] }, c => c.Contains(@this));
+
 	/// <summary>
 	/// 判别当前输入的数值（对应的单元格索引）是否为绘图支持的、相邻单元格之间的格线标记的指定单元格数值。
 	/// </summary>
