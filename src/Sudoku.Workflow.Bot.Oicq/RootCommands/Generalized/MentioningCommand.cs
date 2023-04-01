@@ -140,6 +140,14 @@ file sealed class MentioningCommand : IModule
 					["反三角和", var s] => DrawingOperations.RemoveTriangleSumNodesAsync(messageReceiver, drawingContext, s),
 					["转轮", var s, var d] => DrawingOperations.AddWheelNodesAsync(messageReceiver, drawingContext, s, d),
 					["反转轮", var s] => DrawingOperations.RemoveWheelNodesAsync(messageReceiver, drawingContext, s),
+					["横X", var s] => DrawingOperations.AddXvNodesAsync(messageReceiver, drawingContext, s, true, true),
+					["横V", var s] => DrawingOperations.AddXvNodesAsync(messageReceiver, drawingContext, s, true, false),
+					["竖X", var s] => DrawingOperations.AddXvNodesAsync(messageReceiver, drawingContext, s, false, true),
+					["竖V", var s] => DrawingOperations.AddXvNodesAsync(messageReceiver, drawingContext, s, false, false),
+					["反横X", var s] => DrawingOperations.RemoveXvNodesAsync(messageReceiver, drawingContext, s, true),
+					["反横V", var s] => DrawingOperations.RemoveXvNodesAsync(messageReceiver, drawingContext, s, true),
+					["反竖X", var s] => DrawingOperations.RemoveXvNodesAsync(messageReceiver, drawingContext, s, false),
+					["反竖V", var s] => DrawingOperations.RemoveXvNodesAsync(messageReceiver, drawingContext, s, false),
 
 					// 其他情况。这里要返回 null。如果不写的话，是会默认产生 SwitchExpressionException 的异常的。
 					_ => null

@@ -51,6 +51,7 @@ partial class DrawingOperations
 					pref.PencilmarkFont = new("Segoe UI", 24F, FontStyle.Regular);
 					pref.QuadrupleMaxArrowSize = 16F;
 					pref.WheelFont = new("MiSans", 24F, FontStyle.Regular);
+					pref.XvSignFont = new("Consolas", 28F, FontStyle.Bold);
 				}
 			)
 			.WithGrid(Grid.Undefined);

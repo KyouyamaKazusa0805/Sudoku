@@ -449,7 +449,7 @@ partial class DrawingOperations
 		);
 
 	/// <summary>
-	/// 添加一个三角形求和数独的三角形。
+	/// 添加一个或一组三角形求和数独的三角形。
 	/// </summary>
 	public static async partial Task AddTriangleSumNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string directionString)
 	{
@@ -469,7 +469,7 @@ partial class DrawingOperations
 	}
 
 	/// <summary>
-	/// 删除一个三角形求和数独的三角形。
+	/// 删除一个或一组三角形求和数独的三角形。
 	/// </summary>
 	public static async partial Task RemoveTriangleSumNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
 		=> await GeneratePictureAsync(
@@ -482,7 +482,7 @@ partial class DrawingOperations
 		);
 
 	/// <summary>
-	/// 添加一个转轮数独的转轮。
+	/// 添加一个或一组转轮数独的转轮。
 	/// </summary>
 	public static async partial Task AddWheelNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string digitsString)
 		=> await GeneratePictureAsync(
@@ -495,7 +495,7 @@ partial class DrawingOperations
 		);
 
 	/// <summary>
-	/// 删除一个转轮数独的转轮。
+	/// 删除一个或一组转轮数独的转轮。
 	/// </summary>
 	public static async partial Task RemoveWheelNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
 		=> await GeneratePictureAsync(
@@ -505,6 +505,32 @@ partial class DrawingOperations
 			false,
 			static cell => new WheelViewNode(default, cell, null!),
 			static cell => cell.IsValidCellForWheel()
+		);
+
+	/// <summary>
+	/// 添加一个或一组 VX 数独（或者叫 XV 数独）的 V 和 X 的标记。
+	/// </summary>
+	public static async partial Task AddXvNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal, bool isX)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new XvSignViewNode(Color.DimGray.ToIdentifier(), cell, cell + (isHorizontal ? 1 : 9), isX),
+			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
+		);
+
+	/// <summary>
+	/// 删除一个或一组 XV 标记。
+	/// </summary>
+	public static async partial Task RemoveXvNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			cell => new XvSignViewNode(default, cell, cell + (isHorizontal ? 1 : 9), default),
+			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
 		);
 }
 

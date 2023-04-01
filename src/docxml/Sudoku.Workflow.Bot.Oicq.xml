@@ -1278,22 +1278,32 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddTriangleSumNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
             <summary>
-            添加一个三角形求和数独的三角形。
+            添加一个或一组三角形求和数独的三角形。
             </summary>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveTriangleSumNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
             <summary>
-            删除一个三角形求和数独的三角形。
+            删除一个或一组三角形求和数独的三角形。
             </summary>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddWheelNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
             <summary>
-            添加一个转轮数独的转轮。
+            添加一个或一组转轮数独的转轮。
             </summary>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveWheelNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
             <summary>
-            删除一个转轮数独的转轮。
+            删除一个或一组转轮数独的转轮。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddXvNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            添加一个或一组 VX 数独（或者叫 XV 数独）的 V 和 X 的标记。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveXvNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Boolean)">
+            <summary>
+            删除一个或一组 XV 标记。
             </summary>
         </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SplitOptionsBoth">
