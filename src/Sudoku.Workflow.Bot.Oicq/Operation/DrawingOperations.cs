@@ -57,4 +57,6 @@ internal static partial class DrawingOperations
 	public static partial Task RemoveEmbeddedSkyscraperArrowNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
 	public static partial Task AddGreaterThanNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal, bool isGreaterThan);
 	public static partial Task RemoveGreaterThanNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal);
+	public static partial Task AddKropkiNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal, bool isBlack);
+	public static partial Task RemoveKropkiNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal);
 }

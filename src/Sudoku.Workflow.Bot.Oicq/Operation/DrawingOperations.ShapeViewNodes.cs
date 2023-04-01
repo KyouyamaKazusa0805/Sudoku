@@ -281,6 +281,32 @@ partial class DrawingOperations
 			cell => new GreaterThanSignViewNode(default, cell, cell + (isHorizontal ? 1 : 9), default),
 			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
 		);
+
+	/// <summary>
+	/// 添加一个或一组黑白点数独里使用的黑白点。
+	/// </summary>
+	public static async partial Task AddKropkiNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal, bool isBlack)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new KropkiDotViewNode(Color.DimGray.ToIdentifier(), cell, cell + (isHorizontal ? 1 : 9), isBlack),
+			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
+		);
+
+	/// <summary>
+	/// 删除一个或一组黑白点数独里使用的黑白点。
+	/// </summary>
+	public static async partial Task RemoveKropkiNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			cell => new KropkiDotViewNode(default, cell, cell + (isHorizontal ? 1 : 9), default),
+			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
+		);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

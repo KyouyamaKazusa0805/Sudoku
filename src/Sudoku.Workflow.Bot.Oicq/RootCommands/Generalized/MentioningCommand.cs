@@ -114,6 +114,14 @@ file sealed class MentioningCommand : IModule
 					["反横小于", var s] => DrawingOperations.RemoveGreaterThanNodesAsync(messageReceiver, drawingContext, s, true),
 					["反竖大于", var s] => DrawingOperations.RemoveGreaterThanNodesAsync(messageReceiver, drawingContext, s, false),
 					["反竖小于", var s] => DrawingOperations.RemoveGreaterThanNodesAsync(messageReceiver, drawingContext, s, false),
+					["横黑点", var s] => DrawingOperations.AddKropkiNodesAsync(messageReceiver, drawingContext, s, true, true),
+					["横白点", var s] => DrawingOperations.AddKropkiNodesAsync(messageReceiver, drawingContext, s, true, false),
+					["竖黑点", var s] => DrawingOperations.AddKropkiNodesAsync(messageReceiver, drawingContext, s, false, true),
+					["竖白点", var s] => DrawingOperations.AddKropkiNodesAsync(messageReceiver, drawingContext, s, false, false),
+					["反横黑点", var s] => DrawingOperations.RemoveKropkiNodesAsync(messageReceiver, drawingContext, s, true),
+					["反横白点", var s] => DrawingOperations.RemoveKropkiNodesAsync(messageReceiver, drawingContext, s, true),
+					["反竖黑点", var s] => DrawingOperations.RemoveKropkiNodesAsync(messageReceiver, drawingContext, s, false),
+					["反竖白点", var s] => DrawingOperations.RemoveKropkiNodesAsync(messageReceiver, drawingContext, s, false),
 
 					// 其他情况。这里要返回 null。如果不写的话，是会默认产生 SwitchExpressionException 的异常的。
 					_ => null

@@ -42,7 +42,9 @@ partial class DrawingOperations
 					pref.ClockfaceDotBorderWidth = 4F;
 					pref.ClockfaceDotSize = 30F;
 					pref.EmbeddedSkyscraperArrowFont = new("Times New Roman", 24F, FontStyle.Bold);
-					pref.GreaterThanSignFont = new("Times New Roman", 28F, FontStyle.Bold);
+					pref.GreaterThanSignFont = new("Consolas", 28F, FontStyle.Bold);
+					pref.KropkiDotBorderWidth = 4F;
+					pref.KropkiDotSize = 30F;
 				}
 			)
 			.WithGrid(Grid.Undefined);
