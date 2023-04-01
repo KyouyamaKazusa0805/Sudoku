@@ -333,6 +333,41 @@ partial class DrawingOperations
 			static cell => new NeighborSignViewNode(default, cell, default),
 			null
 		);
+
+	/// <summary>
+	/// 往相邻的两个单元格的格线上添加标签信息。这里的标签一般是数字，比如用于四则运算数独；但也可以输入一些其他的字符，比如字母之类的。
+	/// </summary>
+	public static async partial Task AddAdjacentLabelNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string labelString, bool isHorizontal)
+	{
+		if (!labelString.All(char.IsAscii))
+		{
+			// 传入的字符串里包含无法绘制的字符。
+			// Emoji 什么的这里肯定是不支持的，这不是我限制的，这是 GDI+ 绘图的 API 自身的问题。
+			return;
+		}
+
+		await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new NumberLabelViewNode(Color.Red.ToIdentifier(), cell, cell + (isHorizontal ? 1 : 9), labelString),
+			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
+		);
+	}
+
+	/// <summary>
+	/// 从盘面上删除一个或一组相邻单元格标记的标签。
+	/// </summary>
+	public static async partial Task RemoveAdjacentLabelNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			cell => new NumberLabelViewNode(default, cell, cell + (isHorizontal ? 1 : 9), null!),
+			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
+		);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

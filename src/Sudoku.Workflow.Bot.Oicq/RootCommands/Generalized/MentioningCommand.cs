@@ -126,6 +126,10 @@ file sealed class MentioningCommand : IModule
 					["八邻居", var s] => DrawingOperations.AddNeighborNodesAsync(messageReceiver, drawingContext, s, false),
 					["反四邻居", var s] => DrawingOperations.RemoveNeighborNodesAsync(messageReceiver, drawingContext, s),
 					["反八邻居", var s] => DrawingOperations.RemoveNeighborNodesAsync(messageReceiver, drawingContext, s),
+					["横标签", var s, var l] => DrawingOperations.AddAdjacentLabelNodesAsync(messageReceiver, drawingContext, s, l, true),
+					["竖标签", var s, var l] => DrawingOperations.AddAdjacentLabelNodesAsync(messageReceiver, drawingContext, s, l, false),
+					["反横标签", var s, var l] => DrawingOperations.RemoveAdjacentLabelNodesAsync(messageReceiver, drawingContext, s, true),
+					["反竖标签", var s, var l] => DrawingOperations.RemoveAdjacentLabelNodesAsync(messageReceiver, drawingContext, s, false),
 
 					// 其他情况。这里要返回 null。如果不写的话，是会默认产生 SwitchExpressionException 的异常的。
 					_ => null

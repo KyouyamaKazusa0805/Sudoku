@@ -47,6 +47,7 @@ partial class DrawingOperations
 					pref.KropkiDotSize = 30F;
 					pref.NeighborSignCellPadding = 10F;
 					pref.NeighborSignsWidth = 6F;
+					pref.NumberLabelFont = new("Consolas", 28F, FontStyle.Bold);
 				}
 			)
 			.WithGrid(Grid.Undefined);
