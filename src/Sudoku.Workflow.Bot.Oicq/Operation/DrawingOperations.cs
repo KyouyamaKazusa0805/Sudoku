@@ -65,4 +65,6 @@ internal static partial class DrawingOperations
 	public static partial Task RemoveAdjacentLabelNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal);
 	public static partial Task AddCellPencilmarkNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string notationString);
 	public static partial Task RemoveCellPencilmarkNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
+	public static partial Task AddQuadHintNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string labelString);
+	public static partial Task RemoveQuadHintNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw);
 }

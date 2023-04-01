@@ -382,8 +382,34 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new PencilMarkViewNode(cell, null!),
+			static cell => new PencilMarkViewNode(cell, null!),
 			null
+		);
+
+	/// <summary>
+	/// 添加一个或一组四个提示数数独的四格提示信息的文本。
+	/// </summary>
+	public static async partial Task AddQuadHintNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string labelString)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new QuadrupleHintViewNode(Color.DimGray.ToIdentifier(), cell, labelString),
+			static cell => cell.IsValidCellFor2x2Cells()
+		);
+
+	/// <summary>
+	/// 删除一个或一组四格提示数数独的提示信息文本。
+	/// </summary>
+	public static async partial Task RemoveQuadHintNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			cell => new QuadrupleHintViewNode(default, cell, null!),
+			static cell => cell.IsValidCellFor2x2Cells()
 		);
 }
 

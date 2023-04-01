@@ -1256,6 +1256,16 @@
             从单元格里删除用户自定义的注释标记。
             </summary>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddQuadHintNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
+            <summary>
+            添加一个或一组四个提示数数独的四格提示信息的文本。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveQuadHintNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
+            <summary>
+            删除一个或一组四格提示数数独的提示信息文本。
+            </summary>
+        </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SplitOptionsBoth">
             <summary>
             用于 <see cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/> 操作的枚举常量值，
