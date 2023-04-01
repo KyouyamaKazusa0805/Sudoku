@@ -41,6 +41,7 @@ partial class DrawingOperations
 					pref.CellCornerTriangleSize = 30F;
 					pref.ClockfaceDotBorderWidth = 4F;
 					pref.ClockfaceDotSize = 30F;
+					pref.EmbeddedSkyscraperArrowFont = new("Times New Roman", 24F, FontStyle.Bold);
 				}
 			)
 			.WithGrid(Grid.Undefined);

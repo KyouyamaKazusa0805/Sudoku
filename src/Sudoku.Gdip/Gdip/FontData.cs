@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Gdip;
+namespace Sudoku.Gdip;
 
 /// <summary>
 /// Encapsulates a font data to be serialized.
@@ -6,7 +6,7 @@
 public sealed partial class FontData : IEquatable<FontData>
 {
 	/// <summary>
-	/// Initalizes a <see cref="FontData"/> instance.
+	/// Initializes a <see cref="FontData"/> instance.
 	/// </summary>
 	/// <param name="fontName">The font name.</param>
 	/// <param name="fontSize">The font size.</param>

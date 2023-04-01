@@ -681,7 +681,7 @@
         </member>
         <member name="M:Sudoku.Gdip.FontData.#ctor(System.String,System.Single,System.Drawing.FontStyle)">
             <summary>
-            Initalizes a <see cref="T:Sudoku.Gdip.FontData"/> instance.
+            Initializes a <see cref="T:Sudoku.Gdip.FontData"/> instance.
             </summary>
             <param name="fontName">The font name.</param>
             <param name="fontSize">The font size.</param>

@@ -219,6 +219,42 @@ partial class DrawingOperations
 			cell => new ClockfaceDotViewNode(default, cell, isClockwise),
 			static cell => cell.IsValidCellFor2x2Cells()
 		);
+
+	/// <summary>
+	/// 添加一个或一组内摩天楼箭头。
+	/// </summary>
+	public static async partial Task AddEmbeddedSkyscraperArrowNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string directionsString)
+	{
+		if (directionsString.ToDirections() is not (var directions and not 0))
+		{
+			return;
+		}
+
+		// 内摩天楼箭头不允许斜向指向。
+		directions &= ~(Direction.TopLeft | Direction.TopRight | Direction.BottomLeft | Direction.BottomRight);
+
+		await GeneratePictureAsync(
+		   receiver,
+		   context,
+		   raw,
+		   true,
+		   cell => new EmbeddedSkyscraperArrowViewNode(Color.Black.ToIdentifier(), cell, directions),
+		   null
+	   );
+	}
+
+	/// <summary>
+	/// 删除一个或一组内摩天楼箭头。
+	/// </summary>
+	public static async partial Task RemoveEmbeddedSkyscraperArrowNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			cell => new EmbeddedSkyscraperArrowViewNode(default, cell, default),
+			null
+		);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
