@@ -255,6 +255,32 @@ partial class DrawingOperations
 			cell => new EmbeddedSkyscraperArrowViewNode(default, cell, default),
 			null
 		);
+
+	/// <summary>
+	/// 添加一个或一组不等号数独（数比数独）的大于或小于符号。
+	/// </summary>
+	public static async partial Task AddGreaterThanNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal, bool isGreaterThan)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new GreaterThanSignViewNode(Color.DimGray.ToIdentifier(), cell, cell + (isHorizontal ? 1 : 9), isGreaterThan),
+			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
+		);
+
+	/// <summary>
+	/// 删除一个或一组不等号数独（数比数独）的大小于符号。
+	/// </summary>
+	public static async partial Task RemoveGreaterThanNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, bool isHorizontal)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			cell => new GreaterThanSignViewNode(default, cell, cell + (isHorizontal ? 1 : 9), default),
+			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
+		);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

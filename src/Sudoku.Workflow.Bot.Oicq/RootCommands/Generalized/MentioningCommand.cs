@@ -106,6 +106,14 @@ file sealed class MentioningCommand : IModule
 					["反逆钟面", var s] => DrawingOperations.RemoveClockfaceNodesAsync(messageReceiver, drawingContext, s, false),
 					["内摩天楼", var s, var d] => DrawingOperations.AddEmbeddedSkyscraperArrowNodesAsync(messageReceiver, drawingContext, s, d),
 					["反内摩天楼", var s] => DrawingOperations.RemoveEmbeddedSkyscraperArrowNodesAsync(messageReceiver, drawingContext, s),
+					["横大于", var s] => DrawingOperations.AddGreaterThanNodesAsync(messageReceiver, drawingContext, s, true, true),
+					["横小于", var s] => DrawingOperations.AddGreaterThanNodesAsync(messageReceiver, drawingContext, s, true, false),
+					["竖大于", var s] => DrawingOperations.AddGreaterThanNodesAsync(messageReceiver, drawingContext, s, false, true),
+					["竖小于", var s] => DrawingOperations.AddGreaterThanNodesAsync(messageReceiver, drawingContext, s, false, false),
+					["反横大于", var s] => DrawingOperations.RemoveGreaterThanNodesAsync(messageReceiver, drawingContext, s, true),
+					["反横小于", var s] => DrawingOperations.RemoveGreaterThanNodesAsync(messageReceiver, drawingContext, s, true),
+					["反竖大于", var s] => DrawingOperations.RemoveGreaterThanNodesAsync(messageReceiver, drawingContext, s, false),
+					["反竖小于", var s] => DrawingOperations.RemoveGreaterThanNodesAsync(messageReceiver, drawingContext, s, false),
 
 					// 其他情况。这里要返回 null。如果不写的话，是会默认产生 SwitchExpressionException 的异常的。
 					_ => null

@@ -1206,6 +1206,16 @@
             删除一个或一组内摩天楼箭头。
             </summary>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddGreaterThanNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            添加一个或一组不等号数独（数比数独）的大于或小于符号。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveGreaterThanNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Boolean)">
+            <summary>
+            删除一个或一组不等号数独（数比数独）的大小于符号。
+            </summary>
+        </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.SplitOptionsBoth">
             <summary>
             用于 <see cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/> 操作的枚举常量值，
