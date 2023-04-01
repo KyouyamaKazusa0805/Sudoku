@@ -48,6 +48,7 @@ partial class DrawingOperations
 					pref.NeighborSignCellPadding = 10F;
 					pref.NeighborSignsWidth = 6F;
 					pref.NumberLabelFont = new("Consolas", 28F, FontStyle.Bold);
+					pref.PencilmarkFont = new("Segoe UI", 24F, FontStyle.Regular);
 				}
 			)
 			.WithGrid(Grid.Undefined);

@@ -130,6 +130,8 @@ file sealed class MentioningCommand : IModule
 					["竖标签", var s, var l] => DrawingOperations.AddAdjacentLabelNodesAsync(messageReceiver, drawingContext, s, l, false),
 					["反横标签", var s, var l] => DrawingOperations.RemoveAdjacentLabelNodesAsync(messageReceiver, drawingContext, s, true),
 					["反竖标签", var s, var l] => DrawingOperations.RemoveAdjacentLabelNodesAsync(messageReceiver, drawingContext, s, false),
+					["标记", var s, var l] => DrawingOperations.AddCellPencilmarkNodesAsync(messageReceiver, drawingContext, s, l),
+					["反标记", var s] => DrawingOperations.RemoveCellPencilmarkNodesAsync(messageReceiver, drawingContext, s),
 
 					// 其他情况。这里要返回 null。如果不写的话，是会默认产生 SwitchExpressionException 的异常的。
 					_ => null

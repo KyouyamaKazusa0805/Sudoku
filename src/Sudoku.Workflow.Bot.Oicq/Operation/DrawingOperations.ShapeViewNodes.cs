@@ -338,15 +338,7 @@ partial class DrawingOperations
 	/// 往相邻的两个单元格的格线上添加标签信息。这里的标签一般是数字，比如用于四则运算数独；但也可以输入一些其他的字符，比如字母之类的。
 	/// </summary>
 	public static async partial Task AddAdjacentLabelNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string labelString, bool isHorizontal)
-	{
-		if (!labelString.All(char.IsAscii))
-		{
-			// 传入的字符串里包含无法绘制的字符。
-			// Emoji 什么的这里肯定是不支持的，这不是我限制的，这是 GDI+ 绘图的 API 自身的问题。
-			return;
-		}
-
-		await GeneratePictureAsync(
+		=> await GeneratePictureAsync(
 			receiver,
 			context,
 			raw,
@@ -354,7 +346,6 @@ partial class DrawingOperations
 			cell => new NumberLabelViewNode(Color.Red.ToIdentifier(), cell, cell + (isHorizontal ? 1 : 9), labelString),
 			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
 		);
-	}
 
 	/// <summary>
 	/// 从盘面上删除一个或一组相邻单元格标记的标签。
@@ -367,6 +358,32 @@ partial class DrawingOperations
 			false,
 			cell => new NumberLabelViewNode(default, cell, cell + (isHorizontal ? 1 : 9), null!),
 			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
+		);
+
+	/// <summary>
+	/// 往单元格里追加一个标记。这个标记放在单元格的顶部，类似于注释一样的内容，你可以拿来当手动输入的候选数的记号信息。
+	/// </summary>
+	public static async partial Task AddCellPencilmarkNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw, string notationString)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			true,
+			cell => new PencilMarkViewNode(cell, notationString),
+			null
+		);
+
+	/// <summary>
+	/// 从单元格里删除用户自定义的注释标记。
+	/// </summary>
+	public static async partial Task RemoveCellPencilmarkNodesAsync(GroupMessageReceiver receiver, DrawingContext context, string raw)
+		=> await GeneratePictureAsync(
+			receiver,
+			context,
+			raw,
+			false,
+			cell => new PencilMarkViewNode(cell, null!),
+			null
 		);
 }
 
