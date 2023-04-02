@@ -75,6 +75,9 @@ internal sealed class TowerSorcererCommand : Command
 		}
 
 		// 回答题目。
+		// 回答之前先撤回消息，防止别人偷看。
+		await messageReceiver.RecallAsync();
+
 		var solution = grid.GetSolution();
 		var digits = solution[HousesMap[17]];
 		if (Answer.Length != 9)
