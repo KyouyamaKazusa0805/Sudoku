@@ -4,16 +4,12 @@ namespace Sudoku.Workflow.Bot.Oicq.Operation;
 /// 一个静态类，提供一系列和本地交互有关题库数据的操作方法集。
 /// </summary>
 /// <remarks>
-/// <inheritdoc cref="UserOperations" path="/remarks"/>
+/// 由于文件读写操作较慢，又考虑到项目使用异步操作较多，因此本类型里所有的方法均为带锁的同步方法，基本等价于包裹了一层
+/// <see langword="lock"/>(<see langword="typeof"/>(<see cref="PuzzleLibraryOperations"/>))
+/// 的代码片段。
 /// </remarks>
 public static class PuzzleLibraryOperations
 {
-	/// <summary>
-	/// 默认的 JSON 序列化配置项。
-	/// </summary>
-	private static readonly JsonSerializerOptions DefaultOptions = new() { WriteIndented = true };
-
-
 	/// <summary>
 	/// 更新指定群名的指定题库名称的题库数据。
 	/// </summary>
@@ -25,7 +21,7 @@ public static class PuzzleLibraryOperations
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 		if (!Directory.Exists(folder))
 		{
-			throw new InvalidOperationException("严重错误：无法找到“我的文档”文件夹。");
+			throw new();
 		}
 
 		var botDataFolder = $"""{folder}\BotData""";
@@ -90,7 +86,7 @@ public static class PuzzleLibraryOperations
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 		if (!Directory.Exists(folder))
 		{
-			throw new InvalidOperationException("严重错误：无法找到“我的文档”文件夹。");
+			throw new();
 		}
 
 		var botDataFolder = $"""{folder}\BotData""";
@@ -207,7 +203,7 @@ public static class PuzzleLibraryOperations
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 		if (!Directory.Exists(folder))
 		{
-			throw new InvalidOperationException("严重错误：无法找到“我的文档”文件夹。");
+			throw new();
 		}
 
 		var botDataFolder = $"""{folder}\BotData""";

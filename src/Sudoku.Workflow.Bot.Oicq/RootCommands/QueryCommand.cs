@@ -334,6 +334,7 @@ internal sealed class QueryCommand : Command
 											Environment.NewLine,
 											from kvp in items
 											let item = kvp.Key
+											orderby item
 											let itemName = item.GetType().GetField(item.ToString())!.GetCustomAttribute<NameAttribute>()!.Name
 											let count = kvp.Value
 											where count != 0
@@ -349,6 +350,7 @@ internal sealed class QueryCommand : Command
 											Environment.NewLine,
 											from kvp in uplevelingCards
 											let level = kvp.Key
+											orderby level
 											let count = kvp.Value
 											where count != 0
 											select $"  * {level} 级辅助卡：{count} 张"

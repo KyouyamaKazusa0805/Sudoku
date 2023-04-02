@@ -41,7 +41,7 @@ public static class UserOperations
 			var id = Path.GetFileNameWithoutExtension(file.FullName);
 			if (predicate(id))
 			{
-				result.Add(Deserialize<User>(File.ReadAllText(file.FullName))!);
+				result.Add(Deserialize<User>(File.ReadAllText(file.FullName), DefaultOptions)!);
 			}
 		}
 
@@ -74,7 +74,7 @@ public static class UserOperations
 		}
 
 		var fileName = $"""{botUsersDataFolder}\{userId}.json""";
-		return File.Exists(fileName) ? Deserialize<User>(File.ReadAllText(fileName)) : @default;
+		return File.Exists(fileName) ? Deserialize<User>(File.ReadAllText(fileName), DefaultOptions) : @default;
 	}
 
 	/// <summary>
@@ -86,7 +86,7 @@ public static class UserOperations
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 		if (!Directory.Exists(folder))
 		{
-			throw new InvalidOperationException("严重错误：无法找到“我的文档”文件夹。");
+			throw new();
 		}
 
 		var botDataFolder = $"""{folder}\BotData""";
@@ -103,6 +103,6 @@ public static class UserOperations
 
 		var userId = userData.Number;
 		var fileName = $"""{botUsersDataFolder}\{userId}.json""";
-		File.WriteAllText(fileName, Serialize(userData));
+		File.WriteAllText(fileName, Serialize(userData, DefaultOptions));
 	}
 }

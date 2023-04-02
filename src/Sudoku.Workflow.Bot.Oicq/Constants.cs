@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq;
+namespace Sudoku.Workflow.Bot.Oicq;
 
 /// <summary>
 /// 表示该项目里反复使用的一些常量或静态只读量。
@@ -20,4 +20,10 @@ internal static partial class Constants
 	/// 这个是单独为数独群设立的一个特殊群账号。很多特殊限制都跟这个特殊群有关系。
 	/// </summary>
 	public const string SudokuGroupNumber = "924849321";
+
+
+	/// <summary>
+	/// 默认的 JSON 序列化配置项。
+	/// </summary>
+	public static readonly JsonSerializerOptions DefaultOptions = new() { WriteIndented = true };
 }
