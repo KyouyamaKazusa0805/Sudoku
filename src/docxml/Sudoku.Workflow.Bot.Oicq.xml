@@ -721,6 +721,11 @@
             表示用户连续签到的天数。
             </summary>
         </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.User.TowerOfSorcerer">
+            <summary>
+            表示用户的魔塔爬塔层数。
+            </summary>
+        </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.User.LastCheckIn">
             <summary>
             记录的是用户上一次签到时候的时间。之所以不是 <see cref="T:System.TimeOnly"/> 是因为程序需要判别签到是否连续，需要明确知晓日期；

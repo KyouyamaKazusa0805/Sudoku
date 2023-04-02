@@ -37,6 +37,12 @@ public sealed class User
 	public int ComboCheckedIn { get; set; }
 
 	/// <summary>
+	/// 表示用户的魔塔爬塔层数。
+	/// </summary>
+	[JsonPropertyName("tower")]
+	public int TowerOfSorcerer { get; set; }
+
+	/// <summary>
 	/// 记录的是用户上一次签到时候的时间。之所以不是 <see cref="TimeOnly"/> 是因为程序需要判别签到是否连续，需要明确知晓日期；
 	/// 而之所以不是 <see cref="DateOnly"/> 是因为程序需要按签到的精确时间提示用户当天已经签过到了。
 	/// </summary>
