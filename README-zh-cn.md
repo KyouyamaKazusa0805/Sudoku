@@ -53,7 +53,9 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 
 ### 群机器人
 
-<img src="docs/pic/bot.jpg" style="zoom:40%" />
+<img src="docs/pic/bot-1.png" style="zoom:40%" />
+
+<img src="docs/pic/bot-2.png" style="zoom:40%" />
 
 ## 支持的技巧
 
