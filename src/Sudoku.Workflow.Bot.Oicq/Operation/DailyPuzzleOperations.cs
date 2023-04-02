@@ -26,7 +26,7 @@ public static class DailyPuzzleOperations
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 		if (!Directory.Exists(folder))
 		{
-			throw new InvalidOperationException("严重错误：无法找到“我的文档”文件夹。");
+			throw new();
 		}
 
 		var botDataFolder = $"""{folder}\BotData""";
@@ -55,7 +55,7 @@ public static class DailyPuzzleOperations
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 		if (!Directory.Exists(folder))
 		{
-			throw new InvalidOperationException("严重错误：无法找到“我的文档”文件夹。");
+			throw new();
 		}
 
 		var botDataFolder = $"""{folder}\BotData""";

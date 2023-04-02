@@ -1656,6 +1656,18 @@
             </summary>
             <returns>周末翻倍情况。</returns>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.TowerOfSorcererOperations">
+            <summary>
+            提供魔塔相关的操作。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.TowerOfSorcererOperations.GetPuzzleFor(System.Int32)">
+            <summary>
+            获取魔塔的第 <paramref name="index"/> 个题目。
+            </summary>
+            <param name="index">表示第几个题目。</param>
+            <returns>返回一个 <see cref="T:Sudoku.Concepts.Grid"/> 盘面对象。</returns>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.UserOperations">
             <summary>
             提供一个文件或文件夹存储（读、写）操作的处理器类型。
@@ -2485,6 +2497,40 @@
             <summary>
             表示物品是三叶草。
             </summary>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.TowerSorcererCommand">
+            <summary>
+            表示魔塔功能。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.TowerSorcererCommand.Answer">
+            <summary>
+            表示你需要回答的答案。该参数可以不写。不写的时候是抽取题目；写的时候，则是你当前爬塔的层级数对应题目的回答答案。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.TowerSorcererCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer">
+            <summary>
+            本地的计分规则的方法。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetExperiencePoint(System.Int32,System.Int32)">
+            <summary>
+            获得的经验值。
+            </summary>
+            <param name="base">基础数值。</param>
+            <param name="cardLevel">用户的卡片级别。</param>
+            <returns>经验值。</returns>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetCoin(System.Int32,System.Int32)">
+            <summary>
+            获得的金币。
+            </summary>
+            <param name="base">基础数值。</param>
+            <param name="cardLevel">用户的卡片级别。</param>
+            <returns>金币。</returns>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.UplevelCommand">
             <summary>
