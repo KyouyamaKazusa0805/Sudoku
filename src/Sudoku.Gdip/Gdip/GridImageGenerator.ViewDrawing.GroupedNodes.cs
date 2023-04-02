@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Gdip;
+namespace Sudoku.Gdip;
 
 partial class GridImageGenerator
 {
@@ -153,7 +153,7 @@ partial class GridImageGenerator
 		using var brush = new SolidBrush(color);
 		using var pivotPen = new Pen(Color.FromArgb(192, color), pivotWidth);
 		using var linePen = new Pen(Color.FromArgb(192, color), barWidth);
-		using var pivorFillBrush = new SolidBrush(Color.FromArgb(128, color));
+		using var pivotFillBrush = new SolidBrush(Color.FromArgb(128, color));
 
 		// Draw bars.
 		g.DrawLine(linePen, leverCenterPoint, leverLeftPoint);
@@ -161,7 +161,7 @@ partial class GridImageGenerator
 
 		// Draw pivot.
 		g.DrawPolygon(pivotPen, new[] { leverCenterPoint, ttl, ttr });
-		g.FillPolygon(pivorFillBrush, new[] { leverCenterPoint, ttl, ttr });
+		g.FillPolygon(pivotFillBrush, new[] { leverCenterPoint, ttl, ttr });
 
 		return true;
 	}
