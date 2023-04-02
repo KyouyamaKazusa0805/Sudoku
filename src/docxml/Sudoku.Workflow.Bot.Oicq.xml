@@ -1747,10 +1747,11 @@
             <param name="rate">加成倍率。</param>
             <returns>金币。</returns>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetItem">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetItem(System.Int32)">
             <summary>
             获得的物品。
             </summary>
+            <param name="continuousDays">表示连续签到的天数。</param>
             <returns>获得的物品。可能为 <see langword="null"/>。</returns>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Command">

@@ -34,11 +34,21 @@ internal sealed class CheckInCommand : Command
 
 				var finalScore = ScoringOperation.GetEarnedScoringDisplayingString(expEarned);
 				var finalCoin = ScoringOperation.GetEarnedCoinDisplayingString(coinEarned);
-				if (LocalScorer.GetItem() is { } earnedItem)
+				if (LocalScorer.GetItem(user.ComboCheckedIn) is { } earnedItem)
 				{
-					if (!user.Items.TryAdd(earnedItem, 1))
+					if (earnedItem == Item.Card)
 					{
-						user.Items[earnedItem]++;
+						if (!user.UplevelingCards.TryAdd(0, 1))
+						{
+							user.UplevelingCards[0]++;
+						}
+					}
+					else
+					{
+						if (!user.Items.TryAdd(earnedItem, 1))
+						{
+							user.Items[earnedItem]++;
+						}
 					}
 
 					await messageReceiver.QuoteMessageAsync(
@@ -80,11 +90,21 @@ internal sealed class CheckInCommand : Command
 
 				var finalScore = ScoringOperation.GetEarnedScoringDisplayingString(expEarned);
 				var finalCoin = ScoringOperation.GetEarnedCoinDisplayingString(coinEarned);
-				if (LocalScorer.GetItem() is { } earnedItem)
+				if (LocalScorer.GetItem(1) is { } earnedItem)
 				{
-					if (!user.Items.TryAdd(earnedItem, 1))
+					if (earnedItem == Item.Card)
 					{
-						user.Items[earnedItem]++;
+						if (!user.UplevelingCards.TryAdd(0, 1))
+						{
+							user.UplevelingCards[0]++;
+						}
+					}
+					else
+					{
+						if (!user.Items.TryAdd(earnedItem, 1))
+						{
+							user.Items[earnedItem]++;
+						}
 					}
 
 					await messageReceiver.QuoteMessageAsync(
@@ -204,16 +224,27 @@ file static class LocalScorer
 	/// <summary>
 	/// 获得的物品。
 	/// </summary>
+	/// <param name="continuousDays">表示连续签到的天数。</param>
 	/// <returns>获得的物品。可能为 <see langword="null"/>。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Item? GetItem()
-		=> Rng.Next(0, 10000) switch
+	public static Item? GetItem(int continuousDays)
+		=> continuousDays switch
 		{
-			< 400 => Item.CloverLevel4,
-			< 1000 => Item.CloverLevel3,
-			< 2500 => Item.CloverLevel2,
-			< 4000 => Item.CloverLevel1,
-			< 8000 => Item.Card,
-			_ => null
+			30 => Item.CloverLevel5,
+			60 => Item.CloverLevel6,
+			120 => Item.CloverLevel7,
+			180 => Item.CloverLevel8,
+			240 => Item.CloverLevel9,
+			300 => Item.CloverFinal,
+			> 300 when continuousDays % 60 == 0 => Item.CloverFinal,
+			_ => Rng.Next(0, 10000) switch
+			{
+				< 400 => Item.CloverLevel4,
+				< 1000 => Item.CloverLevel3,
+				< 2500 => Item.CloverLevel2,
+				< 4000 => Item.CloverLevel1,
+				< 8000 => Item.Card,
+				_ => null
+			}
 		};
 }
