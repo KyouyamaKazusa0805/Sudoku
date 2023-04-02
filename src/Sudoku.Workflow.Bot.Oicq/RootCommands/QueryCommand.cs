@@ -276,7 +276,8 @@ internal sealed class QueryCommand : Command
 					TriedCount: var triedCount,
 					CorrectedCount: var correctedCount,
 					Items: var items,
-					UplevelingCards: var uplevelingCards
+					UplevelingCards: var uplevelingCards,
+					TowerOfSorcerer: var tower
 				} user:
 				{
 					switch (viewContentKind)
@@ -291,6 +292,7 @@ internal sealed class QueryCommand : Command
 								金币：{coin}
 								级别：{ScoringOperation.GetGrade(score)}
 								排名：第 {getRank((await ScoringOperation.GetUserRankingListAsync(group, rankingEmptyCallback))!)} 名
+								魔塔：{(tower == 0 ? "尚未开始" : $"第 {tower} 层")}
 								连续签到天数：{comboCheckedIn}
 								签到倍数：{ScoringOperation.GetCheckInRate(comboCheckedIn)}
 								总倍数：{ScoringOperation.GetGlobalRate(cardLevel):0.0}（卡片 {cardLevel} 级）

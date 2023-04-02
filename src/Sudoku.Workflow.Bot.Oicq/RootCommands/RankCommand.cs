@@ -29,9 +29,9 @@ internal sealed class RankCommand : Command
 						var name = pair.Name;
 						var qq = pair.Data.Number;
 						var score = pair.Data.ExperiencePoint;
-						var coin = pair.Data.Coin;
+						var tower = pair.Data.TowerOfSorcerer;
 						var grade = ScoringOperation.GetGrade(score);
-						return $"#{i + 1,2} {name}（{qq}） 🚩{score} 💴{coin} 🏅{grade}";
+						return $"#{i + 1,2} {name} 🚩{score} 📈{tower + 1} 🏅{grade}";
 					}
 				)
 			)}
