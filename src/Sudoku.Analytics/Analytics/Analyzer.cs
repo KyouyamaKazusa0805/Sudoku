@@ -56,6 +56,34 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	[DisallowNull]
 	public StepSearcher[]? CustomStepSearchers { get; set; }
 
+	/// <summary>
+	/// Indicates the final found step searchers used in the current analyzer.
+	/// </summary>
+	private StepSearcher[] StepSearchers
+		=> (
+			from searcher in CustomStepSearchers ?? StepSearcherPool.BuiltIn
+			where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
+			select searcher
+		).ToArray();
+
+
+	/// <summary>
+	/// Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
+	/// If the target <see cref="StepSearcher"/> collection does not contain the step searcher instance
+	/// of type <typeparamref name="TStepSearcher"/>, the assignment will be skipped, never throwing exceptions.
+	/// </summary>
+	/// <typeparam name="TStepSearcher">The type of the <see cref="StepSearcher"/>.</typeparam>
+	/// <param name="propertySetter">The method to set the target property with new value.</param>
+	public void SetProperty<TStepSearcher>(Action<TStepSearcher> propertySetter) where TStepSearcher : StepSearcher
+	{
+		foreach (var stepSearcher in StepSearchers)
+		{
+			if (stepSearcher is TStepSearcher target)
+			{
+				propertySetter(target);
+			}
+		}
+	}
 
 	/// <inheritdoc/>
 	public AnalyzerResult Analyze(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
@@ -129,11 +157,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 		var totalCandidatesCount = playground.CandidatesCount;
 		var recordedSteps = new List<Step>(100);
 		var stepGrids = new List<Grid>(100);
-		var stepSearchers = (
-			from searcher in CustomStepSearchers ?? StepSearcherPool.BuiltIn
-			where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
-			select searcher
-		).ToArray();
+		var stepSearchers = StepSearchers;
 
 		scoped var stopwatch = ValueStopwatch.StartNew();
 

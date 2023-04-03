@@ -114,6 +114,20 @@
             </summary>
             <seealso cref="P:Sudoku.Analytics.StepSearcherPool.BuiltIn"/>
         </member>
+        <member name="P:Sudoku.Analytics.Analyzer.StepSearchers">
+            <summary>
+            Indicates the final found step searchers used in the current analyzer.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Analyzer.SetProperty``1(System.Action{``0})">
+            <summary>
+            Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
+            If the target <see cref="T:Sudoku.Analytics.StepSearcher"/> collection does not contain the step searcher instance
+            of type <typeparamref name="TStepSearcher"/>, the assignment will be skipped, never throwing exceptions.
+            </summary>
+            <typeparam name="TStepSearcher">The type of the <see cref="T:Sudoku.Analytics.StepSearcher"/>.</typeparam>
+            <param name="propertySetter">The method to set the target property with new value.</param>
+        </member>
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
