@@ -64,7 +64,14 @@
             Provides an analyzer that solves a sudoku puzzle using the human-friendly logics, and creates an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance
             indicating the analytics data.
             </summary>
+            <remarks>
+            Please note that this type has no accessible constructors,
+            you can just use type <see cref="T:Sudoku.Analytics.PredefinedAnalyzers"/> to get <see cref="T:Sudoku.Analytics.Analyzer"/>s you want to get.
+            In addition, you can also use <see cref="T:Sudoku.Analytics.AnalyzerFactory"/> to create some extra configuration.
+            </remarks>
             <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+            <seealso cref="T:Sudoku.Analytics.PredefinedAnalyzers"/>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerFactory"/>
             <completionlist cref="T:Sudoku.Analytics.PredefinedAnalyzers"/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.IsFullApplying">
@@ -120,29 +127,10 @@
             Indicates the final found step searchers used in the current analyzer.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Analyzer.WithAlgorithmLimits(System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Analyzer.#ctor">
             <summary>
-            Try to set algorithm limits.
+            Initializes an <see cref="T:Sudoku.Analytics.Analyzer"/> instance.
             </summary>
-            <param name="ignoreLargeTimeComplexity">Indicates whether the analyzer ignores for large time-complexity step searchers.</param>
-            <param name="ignoreLargeSpaceComplexity">Indicates whether the analyzer ignores for large space-complexity step searchers.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Analyzer.WithStepSearchers(Sudoku.Analytics.StepSearcher[])">
-            <summary>
-            Try to set property <see cref="P:Sudoku.Analytics.Analyzer.CustomStepSearchers"/> with the specified value.
-            </summary>
-            <param name="stepSearchers">The custom collection of <see cref="T:Sudoku.Analytics.StepSearcher"/>s.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Analyzer.WithStepSearcherSetters``1(System.Action{``0})">
-            <summary>
-            Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
-            If the target <see cref="T:Sudoku.Analytics.StepSearcher"/> collection does not contain the step searcher instance
-            of type <typeparamref name="TStepSearcher"/>, the assignment will be skipped, never throwing exceptions.
-            </summary>
-            <typeparam name="TStepSearcher">The type of the <see cref="T:Sudoku.Analytics.StepSearcher"/>.</typeparam>
-            <param name="propertySetter">The method to set the target property with new value.</param>
         </member>
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -186,6 +174,42 @@
             A <see cref="T:System.Boolean"/> result indicating whether the current step is worth to be saved,
             meaning it contains at least one conclusion that the current grid <paramref name="playground"/> contains.
             </returns>
+        </member>
+        <member name="T:Sudoku.Analytics.AnalyzerFactory">
+            <summary>
+            Represents a factory for construction of type <see cref="T:Sudoku.Analytics.Analyzer"/>, with extra configuration.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithAlgorithmLimits(Sudoku.Analytics.Analyzer,System.Boolean,System.Boolean)">
+            <summary>
+            Try to set algorithm limits.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="ignoreLargeTimeComplexity">Indicates whether the analyzer ignores for large time-complexity step searchers.</param>
+            <param name="ignoreLargeSpaceComplexity">Indicates whether the analyzer ignores for large space-complexity step searchers.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[])">
+            <summary>
+            Try to set property <see cref="P:Sudoku.Analytics.Analyzer.CustomStepSearchers"/> with the specified value.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="stepSearchers">The custom collection of <see cref="T:Sudoku.Analytics.StepSearcher"/>s.</param>
+            <returns>The result.</returns>
+            <seealso cref="P:Sudoku.Analytics.Analyzer.CustomStepSearchers"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearcherSetters``1(Sudoku.Analytics.Analyzer,System.Action{``0})">
+            <summary>
+            Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
+            If the target <see cref="T:Sudoku.Analytics.StepSearcher"/> collection does not contain the step searcher instance
+            of type <typeparamref name="TStepSearcher"/>, the assignment will be skipped, never throwing exceptions.
+            </summary>
+            <typeparam name="TStepSearcher">The type of the <see cref="T:Sudoku.Analytics.StepSearcher"/>.</typeparam>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="propertySetter">The method to set the target property with new value.</param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerResult">
             <summary>
@@ -4302,12 +4326,17 @@ result ^= expression;
             Indicates the default <see cref="T:Sudoku.Analytics.Analyzer"/> instance that has no extra configuration.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.PredefinedAnalyzers.AllIn">
+            <summary>
+            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that all possible <see cref="T:Sudoku.Analytics.StepSearcher"/> instances are included.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.PredefinedAnalyzers.Balanced">
             <summary>
             Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that has some extra configuration which are suitable for a whole analysis lifecycle.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.PredefinedAnalyzers.SstsTechniquesOnly">
+        <member name="P:Sudoku.Analytics.PredefinedAnalyzers.SstsOnly">
             <summary>
             Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that only contains SSTS techniques:
             <list type="bullet">
@@ -4317,6 +4346,9 @@ result ^= expression;
             <item></item>
             </list>
             </summary>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.SubsetStepSearcher"/>
         </member>
         <member name="T:Sudoku.Analytics.Rating.ChainDifficultyRating">
             <summary>

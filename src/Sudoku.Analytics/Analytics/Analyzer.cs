@@ -4,7 +4,14 @@ namespace Sudoku.Analytics;
 /// Provides an analyzer that solves a sudoku puzzle using the human-friendly logics, and creates an <see cref="AnalyzerResult"/> instance
 /// indicating the analytics data.
 /// </summary>
+/// <remarks>
+/// Please note that this type has no accessible constructors,
+/// you can just use type <see cref="PredefinedAnalyzers"/> to get <see cref="Analyzer"/>s you want to get.
+/// In addition, you can also use <see cref="AnalyzerFactory"/> to create some extra configuration.
+/// </remarks>
 /// <seealso cref="AnalyzerResult"/>
+/// <seealso cref="PredefinedAnalyzers"/>
+/// <seealso cref="AnalyzerFactory"/>
 /// <completionlist cref="PredefinedAnalyzers"/>
 public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 {
@@ -28,7 +35,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	/// <seealso cref="ConditionalCase.UnlimitedTimeComplexity"/>
-	public bool IgnoreSlowAlgorithms { get; private set; }
+	public bool IgnoreSlowAlgorithms { get; internal set; }
 
 	/// <summary>
 	/// Indicates whether the solver will ignore slow step searchers being configured
@@ -38,7 +45,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	/// <seealso cref="ConditionalCase.UnlimitedSpaceComplexity"/>
-	public bool IgnoreHighAllocationAlgorithms { get; private set; }
+	public bool IgnoreHighAllocationAlgorithms { get; internal set; }
 
 	/// <summary>
 	/// <para>
@@ -55,12 +62,12 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// </summary>
 	/// <seealso cref="StepSearcherPool.BuiltIn"/>
 	[DisallowNull]
-	public StepSearcher[]? CustomStepSearchers { get; private set; }
+	public StepSearcher[]? CustomStepSearchers { get; internal set; }
 
 	/// <summary>
 	/// Indicates the final found step searchers used in the current analyzer.
 	/// </summary>
-	private StepSearcher[] StepSearchers
+	internal StepSearcher[] StepSearchers
 		=> (
 			from searcher in CustomStepSearchers ?? StepSearcherPool.BuiltIn
 			where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
@@ -69,48 +76,12 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 
 
 	/// <summary>
-	/// Try to set algorithm limits.
+	/// Initializes an <see cref="Analyzer"/> instance.
 	/// </summary>
-	/// <param name="ignoreLargeTimeComplexity">Indicates whether the analyzer ignores for large time-complexity step searchers.</param>
-	/// <param name="ignoreLargeSpaceComplexity">Indicates whether the analyzer ignores for large space-complexity step searchers.</param>
-	/// <returns>The result.</returns>
-	public Analyzer WithAlgorithmLimits(bool ignoreLargeTimeComplexity, bool ignoreLargeSpaceComplexity)
+	internal Analyzer()
 	{
-		IgnoreSlowAlgorithms = ignoreLargeTimeComplexity;
-		IgnoreHighAllocationAlgorithms = ignoreLargeSpaceComplexity;
-		return this;
 	}
 
-	/// <summary>
-	/// Try to set property <see cref="CustomStepSearchers"/> with the specified value.
-	/// </summary>
-	/// <param name="stepSearchers">The custom collection of <see cref="StepSearcher"/>s.</param>
-	/// <returns>The result.</returns>
-	public Analyzer WithStepSearchers(StepSearcher[] stepSearchers)
-	{
-		CustomStepSearchers = stepSearchers;
-		return this;
-	}
-
-	/// <summary>
-	/// Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
-	/// If the target <see cref="StepSearcher"/> collection does not contain the step searcher instance
-	/// of type <typeparamref name="TStepSearcher"/>, the assignment will be skipped, never throwing exceptions.
-	/// </summary>
-	/// <typeparam name="TStepSearcher">The type of the <see cref="StepSearcher"/>.</typeparam>
-	/// <param name="propertySetter">The method to set the target property with new value.</param>
-	public Analyzer WithStepSearcherSetters<TStepSearcher>(Action<TStepSearcher> propertySetter) where TStepSearcher : StepSearcher
-	{
-		foreach (var stepSearcher in StepSearchers)
-		{
-			if (stepSearcher is TStepSearcher target)
-			{
-				propertySetter(target);
-			}
-		}
-
-		return this;
-	}
 
 	/// <inheritdoc/>
 	public AnalyzerResult Analyze(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default)

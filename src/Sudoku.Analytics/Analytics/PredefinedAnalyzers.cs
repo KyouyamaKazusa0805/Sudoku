@@ -12,10 +12,20 @@ public static class PredefinedAnalyzers
 	public static Analyzer Default => new();
 
 	/// <summary>
+	/// Indicates an <see cref="Analyzer"/> instance that all possible <see cref="StepSearcher"/> instances are included.
+	/// </summary>
+	public static Analyzer AllIn
+		=> Balanced
+			.WithAlgorithmLimits(false, false)
+			.WithStepSearcherSetters<RegularWingStepSearcher>(static s => s.MaxSearchingPivotsCount = 9)
+			.WithStepSearcherSetters<ComplexFishStepSearcher>(static s => s.MaxSize = 7)
+			.WithStepSearcherSetters<BowmanBingoStepSearcher>(static s => s.MaxLength = 64);
+
+	/// <summary>
 	/// Indicates an <see cref="Analyzer"/> instance that has some extra configuration which are suitable for a whole analysis lifecycle.
 	/// </summary>
 	public static Analyzer Balanced
-		=> new Analyzer()
+		=> Default
 			.WithAlgorithmLimits(false, true)
 			.WithStepSearcherSetters<SingleStepSearcher>(static s => { s.EnableFullHouse = true; s.EnableLastDigit = true; s.HiddenSinglesInBlockFirst = true; s.UseIttoryuMode = false; })
 			.WithStepSearcherSetters<UniqueRectangleStepSearcher>(static s => { s.AllowIncompleteUniqueRectangles = true; s.SearchForExtendedUniqueRectangles = true; })
@@ -37,8 +47,11 @@ public static class PredefinedAnalyzers
 	/// <item></item>
 	/// </list>
 	/// </summary>
-	public static Analyzer SstsTechniquesOnly
-		=> new Analyzer()
+	/// <seealso cref="SingleStepSearcher"/>
+	/// <seealso cref="LockedCandidatesStepSearcher"/>
+	/// <seealso cref="SubsetStepSearcher"/>
+	public static Analyzer SstsOnly
+		=> Default
 			.WithStepSearchers(new StepSearcher[] { new SingleStepSearcher(), new LockedCandidatesStepSearcher(), new SubsetStepSearcher() })
 			.WithStepSearcherSetters<SingleStepSearcher>(
 				static s =>
