@@ -35,7 +35,7 @@ public abstract class StepSearcher(int priority, StepSearcherLevel level, StepSe
 	/// If you don't know what is a direct step searcher, please visit the property <see cref="FixedAttribute"/> to learn more information.
 	/// </remarks>
 	/// <seealso cref="FixedAttribute"/>
-	public bool IsOptionsFixed => EqualityContract.IsDefined(typeof(FixedAttribute));
+	public bool IsFixed => EqualityContract.IsDefined(typeof(FixedAttribute));
 
 	/// <summary>
 	/// Determines whether the current step searcher is not supported for sukaku solving mode.

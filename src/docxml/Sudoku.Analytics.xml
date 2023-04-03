@@ -4640,7 +4640,7 @@ result ^= expression;
             </remarks>
             <seealso cref="T:Sudoku.Analytics.Metadata.DirectAttribute"/>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.IsOptionsFixed">
+        <member name="P:Sudoku.Analytics.StepSearcher.IsFixed">
             <summary>
             Determines whether we can adjust the ordering of the current step searcher
             as a customized configuration option before solving a puzzle.
