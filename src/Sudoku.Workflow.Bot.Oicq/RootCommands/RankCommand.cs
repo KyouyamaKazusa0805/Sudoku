@@ -31,7 +31,7 @@ internal sealed class RankCommand : Command
 						var score = pair.Data.ExperiencePoint;
 						var tower = pair.Data.TowerOfSorcerer;
 						var grade = ScoringOperation.GetGrade(score);
-						return $"#{i + 1,2} {name} 🚩{score} 📈{tower + 1} 🏅{grade}";
+						return $"#{i + 1,2} {name} 🚩{score} 📈{tower} 🏅{grade}";
 					}
 				)
 			)}
