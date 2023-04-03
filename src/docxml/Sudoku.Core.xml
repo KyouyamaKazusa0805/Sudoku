@@ -6169,11 +6169,6 @@ fixed (short* ptr = instance)
               Looks up a localized string similar to True candidates: {0}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_BivalueUniversalGraveType1Step">
-            <summary>
-              Looks up a localized string similar to .
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_BivalueUniversalGraveType2Step">
             <summary>
               Looks up a localized string similar to {0} with cells {1}.
@@ -6324,11 +6319,6 @@ fixed (short* ptr = instance)
               Looks up a localized string similar to It is proved that the candidate {0} is {1}, the state of the candidate will be flipped, forming a contradiction.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_FullHouseStep">
-            <summary>
-              Looks up a localized string similar to .
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_GroupedWWingStep">
             <summary>
               Looks up a localized string similar to {0} to {1} with bridge cells {2}.
@@ -6382,11 +6372,6 @@ fixed (short* ptr = instance)
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_MultisectorLockedSetsStep">
             <summary>
               Looks up a localized string similar to {0} cells {1}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_NakedSingleStep">
-            <summary>
-              Looks up a localized string similar to .
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_NakedSubsetStep">

@@ -306,9 +306,6 @@
   <data name="TechniqueFormat_BivalueUniversalGraveMultipleStep" xml:space="preserve">
     <value>True candidates: {0}</value>
   </data>
-  <data name="TechniqueFormat_BivalueUniversalGraveType1Step" xml:space="preserve">
-    <value />
-  </data>
   <data name="TechniqueFormat_BivalueUniversalGraveType2Step" xml:space="preserve">
     <value>{0} with cells {1}</value>
   </data>
@@ -363,9 +360,6 @@
   <data name="TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate" xml:space="preserve">
     <value>All digits can't be duplicate in cells {0}</value>
   </data>
-  <data name="TechniqueFormat_FullHouseStep" xml:space="preserve">
-    <value />
-  </data>
   <data name="TechniqueFormat_GuardianStep" xml:space="preserve">
     <value>Cells {0} with {1} {2}</value>
   </data>
@@ -383,9 +377,6 @@
   </data>
   <data name="TechniqueFormat_MultisectorLockedSetsStep" xml:space="preserve">
     <value>{0} cells {1}</value>
-  </data>
-  <data name="TechniqueFormat_NakedSingleStep" xml:space="preserve">
-    <value />
   </data>
   <data name="TechniqueFormat_NakedSubsetStep" xml:space="preserve">
     <value>{0} in {1}</value>

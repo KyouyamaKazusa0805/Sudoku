@@ -3598,15 +3598,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string TechniqueFormat_BivalueUniversalGraveType1Step {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_BivalueUniversalGraveType1Step", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0} with cells {1}.
         /// </summary>
         public static string TechniqueFormat_BivalueUniversalGraveType2Step {
@@ -3877,15 +3868,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string TechniqueFormat_FullHouseStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_FullHouseStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0} to {1} with bridge cells {2}.
         /// </summary>
         public static string TechniqueFormat_GroupedWWingStep {
@@ -3981,15 +3963,6 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_MultisectorLockedSetsStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_MultisectorLockedSetsStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string TechniqueFormat_NakedSingleStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_NakedSingleStep", resourceCulture);
             }
         }
         

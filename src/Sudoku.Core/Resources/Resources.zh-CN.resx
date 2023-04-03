@@ -312,9 +312,6 @@
   <data name="TechniqueFormat_BivalueUniversalGraveMultipleStep" xml:space="preserve">
     <value>真数为 {0}</value>
   </data>
-  <data name="TechniqueFormat_BivalueUniversalGraveType1Step" xml:space="preserve">
-    <value />
-  </data>
   <data name="TechniqueFormat_BivalueUniversalGraveType2Step" xml:space="preserve">
     <value>单元格 {0} 里包含额外数字 {1}</value>
   </data>
@@ -369,9 +366,6 @@
   <data name="TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate" xml:space="preserve">
     <value>所有在 {0} 里面的数字都不相同</value>
   </data>
-  <data name="TechniqueFormat_FullHouseStep" xml:space="preserve">
-    <value />
-  </data>
   <data name="TechniqueFormat_GuardianStep" xml:space="preserve">
     <value>单元格 {0} 并带有{1} {2}</value>
   </data>
@@ -389,9 +383,6 @@
   </data>
   <data name="TechniqueFormat_MultisectorLockedSetsStep" xml:space="preserve">
     <value>共 {0} 个单元格 {1}</value>
-  </data>
-  <data name="TechniqueFormat_NakedSingleStep" xml:space="preserve">
-    <value />
   </data>
   <data name="TechniqueFormat_NakedSubsetStep" xml:space="preserve">
     <value>数字 {0} 位于区域 {1} 里有显性{2}结构</value>

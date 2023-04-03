@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Provides with a logical solving step that is a technique usage, and contains the conclusions.
@@ -57,11 +57,9 @@ public abstract class Step(Conclusion[] conclusions, View[]? views) : IVisual
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	/// <exception cref="ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
 	/// <seealso cref="FormatInterpolatedParts"/>
 	/// <seealso cref="R"/>
-	public virtual string? Format
-		=> R[$"TechniqueFormat_{EqualityContract.Name}"] ?? throw new ResourceNotFoundException(Code.ToString(), EqualityContract.Assembly);
+	public virtual string? Format => R[$"TechniqueFormat_{EqualityContract.Name}"];
 
 	/// <summary>
 	/// Indicates the difficulty of this technique step.

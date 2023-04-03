@@ -4546,7 +4546,6 @@ result ^= expression;
             ]]></code>
             </para>
             </remarks>
-            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
             <seealso cref="P:Sudoku.Analytics.Step.FormatInterpolatedParts"/>
             <seealso cref="F:Sudoku.Resources.MergedResources.R"/>
         </member>
