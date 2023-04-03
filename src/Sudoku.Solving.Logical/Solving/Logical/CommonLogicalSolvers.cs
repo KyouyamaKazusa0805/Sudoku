@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical;
+namespace Sudoku.Solving.Logical;
 
 /// <summary>
 /// Provides with some commonly-used <see cref="LogicalSolver"/> instances.
@@ -15,7 +15,7 @@ public static class CommonLogicalSolvers
 	public static readonly LogicalSolver Default = new();
 
 	/// <summary>
-	/// Indicates a <see cref="LogicalSolver"/> instance that only provides steps for simple-sudoku techinques:
+	/// Indicates a <see cref="LogicalSolver"/> instance that only provides steps for simple-sudoku techniques:
 	/// <list type="bullet">
 	/// <item>Hidden/Naked Singles</item>
 	/// <item>Locked Candidates</item>

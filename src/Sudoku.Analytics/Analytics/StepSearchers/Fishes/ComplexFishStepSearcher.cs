@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Complex Fish</b> step searcher.
@@ -42,6 +42,10 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 
 		// Gather the POM eliminations to get all possible fish eliminations.
 		var pomElims = GetPomEliminationsFirstly(grid);
+		if (!Array.Exists(pomElims, static map => map is not []))
+		{
+			return null;
+		}
 
 		// Other variables.
 		var tempGrid = grid;

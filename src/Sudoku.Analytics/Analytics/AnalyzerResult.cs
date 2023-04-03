@@ -449,6 +449,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 		{
 			sb.Append(R["AnalysisResultPuzzleSolution"]!);
 			sb.Append(solution.ToString("!"));
+			sb.AppendLine();
 		}
 
 		// Print the elapsed time.

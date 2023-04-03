@@ -7591,7 +7591,11 @@ result ^= expression;
             <param name="house">The house used.</param>
             <returns>Not <see langword="null" /> if conclusion can be found.</returns>
             <remarks>
-            <para><!-- No matching elements were found for the following include tag --><include file="../../global-doc-comments.xml" path="/g/deverloper-notes" /></para>
+            <para><developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes></para>
             <para>
             The main idea of hidden single is to search for a digit can only appear once in a house,
             so we should check all possibilities in a house to found whether the house exists a digit

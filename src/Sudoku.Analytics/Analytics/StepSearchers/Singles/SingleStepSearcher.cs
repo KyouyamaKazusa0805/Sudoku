@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
@@ -304,7 +304,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <param name="house">The house used.</param>
 	/// <returns>Not <see langword="null"/> if conclusion can be found.</returns>
 	/// <remarks>
-	/// <para><include file="../../global-doc-comments.xml" path="/g/deverloper-notes"/></para>
+	/// <para><include file="../../global-doc-comments.xml" path="/g/developer-notes"/></para>
 	/// <para>
 	/// The main idea of hidden single is to search for a digit can only appear once in a house,
 	/// so we should check all possibilities in a house to found whether the house exists a digit
