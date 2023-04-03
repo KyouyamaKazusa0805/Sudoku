@@ -65,6 +65,7 @@
             indicating the analytics data.
             </summary>
             <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+            <completionlist cref="T:Sudoku.Analytics.PredefinedAnalyzers"/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.IsFullApplying">
             <summary>
@@ -119,7 +120,22 @@
             Indicates the final found step searchers used in the current analyzer.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Analyzer.SetProperty``1(System.Action{``0})">
+        <member name="M:Sudoku.Analytics.Analyzer.WithAlgorithmLimits(System.Boolean,System.Boolean)">
+            <summary>
+            Try to set algorithm limits.
+            </summary>
+            <param name="ignoreLargeTimeComplexity">Indicates whether the analyzer ignores for large time-complexity step searchers.</param>
+            <param name="ignoreLargeSpaceComplexity">Indicates whether the analyzer ignores for large space-complexity step searchers.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Analyzer.WithStepSearchers(Sudoku.Analytics.StepSearcher[])">
+            <summary>
+            Try to set property <see cref="P:Sudoku.Analytics.Analyzer.CustomStepSearchers"/> with the specified value.
+            </summary>
+            <param name="stepSearchers">The custom collection of <see cref="T:Sudoku.Analytics.StepSearcher"/>s.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Analyzer.WithStepSearcherSetters``1(System.Action{``0})">
             <summary>
             Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
             If the target <see cref="T:Sudoku.Analytics.StepSearcher"/> collection does not contain the step searcher instance
@@ -4274,6 +4290,33 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Patterns.UniqueLoop.DigitsMask">
             <summary>Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</summary>
+        </member>
+        <member name="T:Sudoku.Analytics.PredefinedAnalyzers">
+            <summary>
+            Represents a list of <see cref="T:Sudoku.Analytics.Analyzer"/> instances that are already configured.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+        </member>
+        <member name="P:Sudoku.Analytics.PredefinedAnalyzers.Default">
+            <summary>
+            Indicates the default <see cref="T:Sudoku.Analytics.Analyzer"/> instance that has no extra configuration.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.PredefinedAnalyzers.Balanced">
+            <summary>
+            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that has some extra configuration which are suitable for a whole analysis lifecycle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.PredefinedAnalyzers.SstsTechniquesOnly">
+            <summary>
+            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that only contains SSTS techniques:
+            <list type="bullet">
+            <item><see cref="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher"/></item>
+            <item><see cref="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher"/></item>
+            <item><see cref="T:Sudoku.Analytics.StepSearchers.SubsetStepSearcher"/></item>
+            <item></item>
+            </list>
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Rating.ChainDifficultyRating">
             <summary>

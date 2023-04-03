@@ -5,6 +5,7 @@ namespace Sudoku.Analytics;
 /// indicating the analytics data.
 /// </summary>
 /// <seealso cref="AnalyzerResult"/>
+/// <completionlist cref="PredefinedAnalyzers"/>
 public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 {
 	/// <summary>
@@ -27,7 +28,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	/// <seealso cref="ConditionalCase.UnlimitedTimeComplexity"/>
-	public bool IgnoreSlowAlgorithms { get; set; }
+	public bool IgnoreSlowAlgorithms { get; private set; }
 
 	/// <summary>
 	/// Indicates whether the solver will ignore slow step searchers being configured
@@ -37,7 +38,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	/// <seealso cref="ConditionalCase.UnlimitedSpaceComplexity"/>
-	public bool IgnoreHighAllocationAlgorithms { get; set; }
+	public bool IgnoreHighAllocationAlgorithms { get; private set; }
 
 	/// <summary>
 	/// <para>
@@ -54,7 +55,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// </summary>
 	/// <seealso cref="StepSearcherPool.BuiltIn"/>
 	[DisallowNull]
-	public StepSearcher[]? CustomStepSearchers { get; set; }
+	public StepSearcher[]? CustomStepSearchers { get; private set; }
 
 	/// <summary>
 	/// Indicates the final found step searchers used in the current analyzer.
@@ -68,13 +69,37 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 
 
 	/// <summary>
+	/// Try to set algorithm limits.
+	/// </summary>
+	/// <param name="ignoreLargeTimeComplexity">Indicates whether the analyzer ignores for large time-complexity step searchers.</param>
+	/// <param name="ignoreLargeSpaceComplexity">Indicates whether the analyzer ignores for large space-complexity step searchers.</param>
+	/// <returns>The result.</returns>
+	public Analyzer WithAlgorithmLimits(bool ignoreLargeTimeComplexity, bool ignoreLargeSpaceComplexity)
+	{
+		IgnoreSlowAlgorithms = ignoreLargeTimeComplexity;
+		IgnoreHighAllocationAlgorithms = ignoreLargeSpaceComplexity;
+		return this;
+	}
+
+	/// <summary>
+	/// Try to set property <see cref="CustomStepSearchers"/> with the specified value.
+	/// </summary>
+	/// <param name="stepSearchers">The custom collection of <see cref="StepSearcher"/>s.</param>
+	/// <returns>The result.</returns>
+	public Analyzer WithStepSearchers(StepSearcher[] stepSearchers)
+	{
+		CustomStepSearchers = stepSearchers;
+		return this;
+	}
+
+	/// <summary>
 	/// Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
 	/// If the target <see cref="StepSearcher"/> collection does not contain the step searcher instance
 	/// of type <typeparamref name="TStepSearcher"/>, the assignment will be skipped, never throwing exceptions.
 	/// </summary>
 	/// <typeparam name="TStepSearcher">The type of the <see cref="StepSearcher"/>.</typeparam>
 	/// <param name="propertySetter">The method to set the target property with new value.</param>
-	public void SetProperty<TStepSearcher>(Action<TStepSearcher> propertySetter) where TStepSearcher : StepSearcher
+	public Analyzer WithStepSearcherSetters<TStepSearcher>(Action<TStepSearcher> propertySetter) where TStepSearcher : StepSearcher
 	{
 		foreach (var stepSearcher in StepSearchers)
 		{
@@ -83,6 +108,8 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 				propertySetter(target);
 			}
 		}
+
+		return this;
 	}
 
 	/// <inheritdoc/>
