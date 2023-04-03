@@ -4699,8 +4699,7 @@ result ^= expression;
             Indicates the running area which describes a function where the current step searcher can be invoked.
             </summary>
             <remarks>
-            By default, the step searcher will support both <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching"/>
-            and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering"/>.
+            By default, the step searcher will support both <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching"/> and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering"/>.
             </remarks>
         </member>
         <member name="P:Sudoku.Analytics.StepSearcher.TypeName">
@@ -4713,22 +4712,6 @@ result ^= expression;
             Indicates the <see cref="T:System.Type"/> instance that represents the reflection data for the current instance.
             This property is used as type checking to distinct with multiple <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.Equals(System.Object)">
-            <summary>
-            Determines whether the specified object has same type as the current instance.
-            </summary>
-            <param name="obj">The object to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.Equals(Sudoku.Analytics.StepSearcher)">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.CompareTo(Sudoku.Analytics.StepSearcher)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.ToString">
             <summary>
@@ -4773,24 +4756,6 @@ result ^= expression;
             </returns>
             <seealso cref="T:Sudoku.Analytics.Step"/>
             <seealso cref="T:Sudoku.Analytics.AnalysisContext"/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.op_Equality(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.op_Inequality(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.op_GreaterThan(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.op_GreaterThanOrEqual(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.op_LessThan(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.op_LessThanOrEqual(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherPool">
             <summary>

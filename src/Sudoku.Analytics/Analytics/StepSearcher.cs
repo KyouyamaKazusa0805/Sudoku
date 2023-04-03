@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics;
 
+using static StepSearcherRunningArea;
+
 /// <summary>
 /// Represents a searcher that can creates <see cref="Step"/> instances for the specified technique.
 /// </summary>
@@ -7,15 +9,7 @@ namespace Sudoku.Analytics;
 /// <param name="level"><inheritdoc cref="Level" path="/summary"/></param>
 /// <param name="runningArea"><inheritdoc cref="RunningArea" path="/summary"/></param>
 /// <seealso cref="Step"/>
-public abstract class StepSearcher(
-	int priority,
-	StepSearcherLevel level,
-	StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering
-) :
-	IComparable<StepSearcher>,
-	IComparisonOperators<StepSearcher, StepSearcher, bool>,
-	IEquatable<StepSearcher>,
-	IEqualityOperators<StepSearcher, StepSearcher, bool>
+public abstract class StepSearcher(int priority, StepSearcherLevel level, StepSearcherRunningArea runningArea = Searching | Gathering)
 {
 	/// <summary>
 	/// Determines whether the current step searcher is separated one, which mean it can be created
@@ -96,8 +90,7 @@ public abstract class StepSearcher(
 	/// Indicates the running area which describes a function where the current step searcher can be invoked.
 	/// </summary>
 	/// <remarks>
-	/// By default, the step searcher will support both <see cref="StepSearcherRunningArea.Searching"/>
-	/// and <see cref="StepSearcherRunningArea.Gathering"/>.
+	/// By default, the step searcher will support both <see cref="Searching"/> and <see cref="Gathering"/>.
 	/// </remarks>
 	public StepSearcherRunningArea RunningArea { get; } = runningArea;
 
@@ -112,34 +105,6 @@ public abstract class StepSearcher(
 	/// </summary>
 	protected Type EqualityContract => GetType();
 
-
-	/// <summary>
-	/// Determines whether the specified object has same type as the current instance.
-	/// </summary>
-	/// <param name="obj">The object to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override bool Equals([NotNullWhen(true)] object? obj)
-		=> obj switch { StepSearcher s => Equals(s), _ => EqualityContract == obj?.GetType() };
-
-	/// <inheritdoc cref="Equals(object?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] StepSearcher? other) => EqualityContract == other?.EqualityContract;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override int GetHashCode() => EqualityContract.GetHashCode();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(StepSearcher? other)
-	{
-		ArgumentNullException.ThrowIfNull(other);
-
-		return Priority != other.Priority
-			? Priority.CompareTo(other.Priority)
-			: throw new InvalidOperationException("Two step searchers cannot contain a same priority value.");
-	}
 
 	/// <summary>
 	/// Returns the real name of this instance.
@@ -185,30 +150,4 @@ public abstract class StepSearcher(
 	/// <seealso cref="Step"/>
 	/// <seealso cref="AnalysisContext"/>
 	protected internal abstract Step? GetAll(scoped ref AnalysisContext context);
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(StepSearcher? left, StepSearcher? right)
-		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(StepSearcher? left, StepSearcher? right) => !(left == right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >(StepSearcher left, StepSearcher right) => left.CompareTo(right) > 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >=(StepSearcher left, StepSearcher right) => left.CompareTo(right) >= 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <(StepSearcher left, StepSearcher right) => left.CompareTo(right) < 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <=(StepSearcher left, StepSearcher right) => left.CompareTo(right) <= 0;
 }
