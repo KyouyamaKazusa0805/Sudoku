@@ -14,7 +14,6 @@ public sealed partial class CellViewNode(Identifier identifier, int cell) : Basi
 	/// <summary>
 	/// Indicates the cell string.
 	/// </summary>
-	[DebuggerHidden]
 	[GeneratedDisplayName(nameof(Cell))]
 	private string CellString => CellsMap[Cell].ToString();
 

@@ -10335,7 +10335,7 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.IsSashimi">
             <summary>
-            Indicates whether the fish instance is a sashimi fish. All possible values are as belows:
+            Indicates whether the fish instance is a sashimi fish. All possible values are as below:
             <list type="table">
             <item>
             <term><see langword="true"/></term>

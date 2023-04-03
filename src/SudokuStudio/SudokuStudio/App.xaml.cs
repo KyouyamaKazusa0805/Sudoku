@@ -103,7 +103,6 @@ public partial class App : Application
 	/// <summary>
 	/// Indicates the assembly version.
 	/// </summary>
-	[DebuggerHidden]
 	internal static Version AssemblyVersion => typeof(App).Assembly.GetName().Version!;
 
 

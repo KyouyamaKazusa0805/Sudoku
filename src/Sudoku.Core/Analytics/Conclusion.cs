@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Defines a type that can describe a candidate is the correct or wrong digit.
@@ -89,7 +89,6 @@ public readonly partial struct Conclusion(int mask) :
 		get => (ConclusionType)(_mask >> 10 & 1);
 	}
 
-	[DebuggerHidden]
 	private string OutputString => $"{CellsMap[Cell]}{ConclusionType.Notation()}{Digit + 1}";
 
 

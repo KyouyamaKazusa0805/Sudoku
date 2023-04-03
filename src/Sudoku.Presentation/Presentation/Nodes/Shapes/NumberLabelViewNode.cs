@@ -18,14 +18,12 @@ public sealed partial class NumberLabelViewNode(Identifier identifier, int cell1
 	/// <summary>
 	/// Indicates the cell 1 string.
 	/// </summary>
-	[DebuggerHidden]
 	[GeneratedDisplayName(nameof(Cell1))]
 	private string Cell1String => CellsMap[Cell1].ToString();
 
 	/// <summary>
 	/// Indicates the cell 2 string.
 	/// </summary>
-	[DebuggerHidden]
 	[GeneratedDisplayName(nameof(Cell2))]
 	private string Cell2String => CellsMap[Cell2].ToString();
 

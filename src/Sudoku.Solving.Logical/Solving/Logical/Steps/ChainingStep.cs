@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Steps;
+namespace Sudoku.Solving.Logical.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
@@ -206,7 +206,6 @@ internal abstract record ChainingStep(
 	/// <summary>
 	/// Indicates the difficulty rating of the current step, which binds with length factor.
 	/// </summary>
-	[DebuggerHidden]
 	private decimal LengthDifficulty
 	{
 		get
@@ -229,13 +228,11 @@ internal abstract record ChainingStep(
 	/// <summary>
 	/// Indicates the total number of views the step will be displayed.
 	/// </summary>
-	[DebuggerHidden]
 	private int ViewsCount => FlatViewsCount + NestedViewsCount;
 
 	/// <summary>
 	/// Indicates the complexity of the chain. The complexity value generally indicates the total length of all branches in a chain.
 	/// </summary>
-	[DebuggerHidden]
 	private int FlatComplexity
 		=> this switch
 		{
@@ -250,7 +247,6 @@ internal abstract record ChainingStep(
 	/// <summary>
 	/// Indicates the nested complexity of the chain. This property is useful on checking nesting chains.
 	/// </summary>
-	[DebuggerHidden]
 	private int NestedComplexity
 	{
 		get
@@ -276,7 +272,6 @@ internal abstract record ChainingStep(
 	/// <summary>
 	/// Returns the number of nested views.
 	/// </summary>
-	[DebuggerHidden]
 	private int NestedViewsCount
 	{
 		get

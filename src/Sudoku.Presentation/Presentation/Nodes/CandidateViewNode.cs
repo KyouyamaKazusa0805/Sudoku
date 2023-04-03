@@ -14,7 +14,6 @@ public sealed partial class CandidateViewNode(Identifier identifier, int candida
 	/// <summary>
 	/// Indicates the candidate string.
 	/// </summary>
-	[DebuggerHidden]
 	[GeneratedDisplayName(nameof(Candidate))]
 	private string CandidateString => RxCyNotation.ToCandidateString(Candidate);
 

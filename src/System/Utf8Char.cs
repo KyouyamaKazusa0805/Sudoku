@@ -1,4 +1,4 @@
-﻿namespace System;
+namespace System;
 
 /// <summary>
 /// Represents a character as a UTF-8 code unit.
@@ -43,7 +43,6 @@ public readonly partial struct Utf8Char :
 	/// <summary>
 	/// Indicates the character string.
 	/// </summary>
-	[DebuggerHidden]
 	private string CharString => ((char)_char).ToString();
 
 

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Regular Wing</b> technique.
@@ -125,7 +125,6 @@ public sealed class RegularWingStep(
 	/// <summary>
 	/// Indicates the internal name.
 	/// </summary>
-	[DebuggerHidden]
 	private string InternalName
 		=> Size switch
 		{

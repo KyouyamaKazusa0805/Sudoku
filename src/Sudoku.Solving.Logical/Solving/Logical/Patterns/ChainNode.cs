@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Patterns;
+namespace Sudoku.Solving.Logical.Patterns;
 
 /// <summary>
 /// Defines a node used in chaining.
@@ -144,14 +144,12 @@ internal readonly partial struct ChainNode : IEquatable<ChainNode>, IEqualityOpe
 	/// <summary>
 	/// Indicates the candidate string representation.
 	/// </summary>
-	[DebuggerHidden]
 	[GeneratedDisplayName(nameof(Candidate))]
 	private string CandidateString => $"{CellsMap[Cell]}({Digit + 1})";
 
 	/// <summary>
 	/// Indicates the string that is used for display on debugger.
 	/// </summary>
-	[DebuggerHidden]
 	private string DebuggerDisplayString => $"{CandidateString} is {(IsOn ? bool.TrueString : bool.FalseString).ToLower()}";
 
 

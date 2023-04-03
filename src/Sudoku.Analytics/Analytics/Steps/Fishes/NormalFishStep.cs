@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Normal Fish</b> technique.
@@ -14,7 +14,7 @@ public sealed class NormalFishStep(
 ) : FishStep(conclusions, views, digit, baseSetsMask, coverSetsMask)
 {
 	/// <summary>
-	/// Indicates whether the fish instance is a sashimi fish. All possible values are as belows:
+	/// Indicates whether the fish instance is a sashimi fish. All possible values are as below:
 	/// <list type="table">
 	/// <item>
 	/// <term><see langword="true"/></term>
@@ -88,7 +88,6 @@ public sealed class NormalFishStep(
 	/// <summary>
 	/// Indicates the internal name.
 	/// </summary>
-	[DebuggerHidden]
 	private string InternalName
 	{
 		get

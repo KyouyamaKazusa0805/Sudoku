@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Input;
+namespace SudokuStudio.Input;
 
 /// <summary>
 /// Defines a converter instance that calculates for cursor pointers.
@@ -70,11 +70,9 @@ internal readonly partial record struct SudokuPanePositionConverter(GridLayout G
 		}
 	}
 
-	[DebuggerHidden]
 	[GeneratedDisplayName("GridWidth")]
 	private string GridWidthString => ((int)GridSize.Width).ToString();
 
-	[DebuggerHidden]
 	[GeneratedDisplayName("GridHeight")]
 	private string GridHeightString => ((int)GridSize.Height).ToString();
 

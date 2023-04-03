@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Collection;
+namespace SudokuStudio.Collection;
 
 /// <summary>
 /// Defines a dash array of <see cref="double"/> values used by <see cref="DoubleCollection"/>-typed properties in controls,
@@ -46,7 +46,6 @@ public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashA
 	public int Count => _doubles.Length;
 
 	[JsonIgnore]
-	[DebuggerHidden]
 	private string ValuesString => $"[{string.Join(", ", _doubles)}]";
 
 

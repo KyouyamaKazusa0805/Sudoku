@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation;
+namespace Sudoku.Presentation;
 
 /// <summary>
 /// Defines the data structure that stores a set of cells and a digit, indicating the information
@@ -43,7 +43,6 @@ public readonly partial struct LockedTarget(int digit, scoped in CellMap cells) 
 	/// <summary>
 	/// The digit string value.
 	/// </summary>
-	[DebuggerHidden]
 	[GeneratedDisplayName(nameof(Digit))]
 	private int DigitString => Digit + 1;
 

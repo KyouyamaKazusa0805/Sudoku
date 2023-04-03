@@ -206,19 +206,16 @@ public abstract class ChainingStep(
 	/// <summary>
 	/// Indicates the difficulty rating of the current step, which binds with length factor.
 	/// </summary>
-	[DebuggerHidden]
 	private decimal LengthDifficulty => ChainDifficultyRating.GetExtraDifficultyByLength(Complexity - 2);
 
 	/// <summary>
 	/// Indicates the total number of views the step will be displayed.
 	/// </summary>
-	[DebuggerHidden]
 	private int ViewsCount => FlatViewsCount + NestedViewsCount;
 
 	/// <summary>
 	/// Indicates the complexity of the chain. The complexity value generally indicates the total length of all branches in a chain.
 	/// </summary>
-	[DebuggerHidden]
 	private int FlatComplexity
 		=> this switch
 		{
@@ -233,7 +230,6 @@ public abstract class ChainingStep(
 	/// <summary>
 	/// Indicates the nested complexity of the chain. This property is useful on checking nesting chains.
 	/// </summary>
-	[DebuggerHidden]
 	private int NestedComplexity
 	{
 		get
@@ -259,7 +255,6 @@ public abstract class ChainingStep(
 	/// <summary>
 	/// Returns the number of nested views.
 	/// </summary>
-	[DebuggerHidden]
 	private int NestedViewsCount
 	{
 		get

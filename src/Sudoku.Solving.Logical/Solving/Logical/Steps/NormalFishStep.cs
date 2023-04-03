@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Steps;
+namespace Sudoku.Solving.Logical.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Normal Fish</b> technique.
@@ -90,7 +90,6 @@ internal sealed record NormalFishStep(
 	/// <summary>
 	/// Indicates the internal name.
 	/// </summary>
-	[DebuggerHidden]
 	private string InternalName
 	{
 		get

@@ -145,7 +145,6 @@ public sealed class ComplexFishStep(
 	/// <summary>
 	/// The internal name.
 	/// </summary>
-	[DebuggerHidden]
 	private string InternalName
 	{
 		get

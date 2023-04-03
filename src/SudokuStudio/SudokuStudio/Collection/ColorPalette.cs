@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Collection;
+namespace SudokuStudio.Collection;
 
 /// <summary>
 /// Represents a color palette that contains a list of <see cref="Color"/> instances that can be used in UI binding.
@@ -24,7 +24,6 @@ public sealed partial class ColorPalette :
 	}
 
 
-	[DebuggerHidden]
 	private string ElementsString => $"[{string.Join(", ", this)}]";
 
 

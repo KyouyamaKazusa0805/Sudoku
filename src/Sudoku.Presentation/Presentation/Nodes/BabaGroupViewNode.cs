@@ -24,14 +24,12 @@ public sealed partial class BabaGroupViewNode(Identifier identifier, int cell, U
 	/// <summary>
 	/// Indicates the cell string.
 	/// </summary>
-	[DebuggerHidden]
 	[GeneratedDisplayName(nameof(Cell))]
 	private string CellString => CellsMap[Cell].ToString();
 
 	/// <summary>
 	/// Indicates the digits mask string.
 	/// </summary>
-	[DebuggerHidden]
 	[GeneratedDisplayName(nameof(DigitsMask))]
 	private string DigitsMaskString => Convert.ToString(DigitsMask, 2).ToString();
 
