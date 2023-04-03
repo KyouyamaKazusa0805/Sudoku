@@ -15,7 +15,7 @@ public abstract class StepSearcher(int priority, StepSearcherLevel level, StepSe
 	/// Determines whether the current step searcher is separated one, which mean it can be created
 	/// as many possible instances in a same step searchers pool.
 	/// </summary>
-	public bool IsSeparated => GetType().GetCustomAttribute<SeparatedAttribute>() is not null;
+	public bool IsSeparated => EqualityContract.GetCustomAttribute<SeparatedAttribute>() is not null;
 
 	/// <summary>
 	/// Determines whether the current step searcher is a direct one.
@@ -25,7 +25,7 @@ public abstract class StepSearcher(int priority, StepSearcherLevel level, StepSe
 	/// <see cref="DirectAttribute"/> to learn more information.
 	/// </remarks>
 	/// <seealso cref="DirectAttribute"/>
-	public bool IsDirect => GetType().IsDefined(typeof(DirectAttribute));
+	public bool IsDirect => EqualityContract.IsDefined(typeof(DirectAttribute));
 
 	/// <summary>
 	/// Determines whether we can adjust the ordering of the current step searcher
@@ -35,13 +35,13 @@ public abstract class StepSearcher(int priority, StepSearcherLevel level, StepSe
 	/// If you don't know what is a direct step searcher, please visit the property <see cref="FixedAttribute"/> to learn more information.
 	/// </remarks>
 	/// <seealso cref="FixedAttribute"/>
-	public bool IsOptionsFixed => GetType().IsDefined(typeof(FixedAttribute));
+	public bool IsOptionsFixed => EqualityContract.IsDefined(typeof(FixedAttribute));
 
 	/// <summary>
 	/// Determines whether the current step searcher is not supported for sukaku solving mode.
 	/// </summary>
 	public bool IsNotSupportedForSukaku
-		=> GetType().GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases } && cases.Flags(ConditionalCase.Standard);
+		=> EqualityContract.GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases } && cases.Flags(ConditionalCase.Standard);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
@@ -49,7 +49,7 @@ public abstract class StepSearcher(int priority, StepSearcherLevel level, StepSe
 	/// </summary>
 	/// <seealso cref="ConditionalCase.UnlimitedTimeComplexity"/>
 	public bool IsConfiguredSlow
-		=> GetType().GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases }
+		=> EqualityContract.GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases }
 		&& cases.Flags(ConditionalCase.UnlimitedTimeComplexity);
 
 	/// <summary>
@@ -58,7 +58,7 @@ public abstract class StepSearcher(int priority, StepSearcherLevel level, StepSe
 	/// </summary>
 	/// <seealso cref="ConditionalCase.UnlimitedSpaceComplexity"/>
 	public bool IsConfiguredHighAllocation
-		=> GetType().GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases }
+		=> EqualityContract.GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases }
 		&& cases.Flags(ConditionalCase.UnlimitedSpaceComplexity);
 
 	/// <summary>
