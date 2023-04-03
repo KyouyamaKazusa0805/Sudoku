@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with an <b>Almost Locked Candidates</b> step searcher.
@@ -16,13 +16,6 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	/// Indicates whether the user checks the almost locked quadruple.
 	/// </summary>
 	public bool CheckAlmostLockedQuadruple { get; set; }
-
-	/// <summary>
-	/// Indicates whether the searcher checks for values (givens and modifiables)
-	/// to form an almost locked candidates. If the value is <see langword="true"/>,
-	/// some possible Sue de Coqs steps will be replaced with Almost Locked Candidates ones.
-	/// </summary>
-	public bool CheckForValues { get; set; }
 
 
 	/// <inheritdoc/>

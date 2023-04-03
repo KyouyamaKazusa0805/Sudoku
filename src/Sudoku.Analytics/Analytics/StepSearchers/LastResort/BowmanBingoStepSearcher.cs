@@ -23,10 +23,10 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 
 
 	/// <summary>
-	/// Indicates the maximum length of the bowman bingo you want to search for. The maximum possible value is 64,
-	/// because a valid sudoku grid must contain at least 17 given digits, and 64 = 9 * 9 - 17.
+	/// Indicates the maximum length of the bowman bingo you want to search for. The maximum possible value is 64 (81 - 17).
+	/// The default value is 32.
 	/// </summary>
-	public int MaxLength { get; set; }
+	public int MaxLength { get; set; } = 32;
 
 
 	/// <inheritdoc/>

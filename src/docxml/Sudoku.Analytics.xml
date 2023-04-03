@@ -6827,6 +6827,7 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.MaxSize">
             <summary>
             Indicates the maximum size of the fish the step searcher instance can search for. The maximum possible value of this property is 7.
+            The default value is 3.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
@@ -6929,13 +6930,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple">
             <summary>
             Indicates whether the user checks the almost locked quadruple.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckForValues">
-            <summary>
-            Indicates whether the searcher checks for values (givens and modifiables)
-            to form an almost locked candidates. If the value is <see langword="true"/>,
-            some possible Sue de Coqs steps will be replaced with Almost Locked Candidates ones.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
@@ -7116,8 +7110,8 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.MaxLength">
             <summary>
-            Indicates the maximum length of the bowman bingo you want to search for. The maximum possible value is 64,
-            because a valid sudoku grid must contain at least 17 given digits, and 64 = 9 * 9 - 17.
+            Indicates the maximum length of the bowman bingo you want to search for. The maximum possible value is 64 (81 - 17).
+            The default value is 32.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
@@ -7733,7 +7727,7 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.MaxSearchingPivotsCount">
             <summary>
-            Indicates the maximum number of pivots to be searched for.
+            Indicates the maximum number of pivots to be searched for. The default value is 3.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">

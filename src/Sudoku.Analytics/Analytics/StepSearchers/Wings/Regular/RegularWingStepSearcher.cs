@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Regular Wing</b> step searcher.
@@ -18,9 +18,9 @@
 public sealed partial class RegularWingStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// Indicates the maximum number of pivots to be searched for.
+	/// Indicates the maximum number of pivots to be searched for. The default value is 3.
 	/// </summary>
-	public int MaxSearchingPivotsCount { get; set; }
+	public int MaxSearchingPivotsCount { get; set; } = 3;
 
 
 	/// <inheritdoc/>
