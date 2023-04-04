@@ -93,10 +93,6 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 			{
 				return InternalSolve(puzzle, solution, isSukaku, result, progress, cancellationToken);
 			}
-			catch (OperationCanceledException ex) when (ex.CancellationToken != cancellationToken)
-			{
-				throw;
-			}
 			catch (Exception ex)
 			{
 				return ex switch
@@ -111,7 +107,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 							WrongStep = s,
 							UnhandledException = ex
 						},
-					OperationCanceledException
+					OperationCanceledException { CancellationToken: var c } when c == cancellationToken
 						=> result with { IsSolved = false, FailedReason = AnalyzerFailedReason.UserCancelled },
 					_
 						=> result with { IsSolved = false, FailedReason = AnalyzerFailedReason.ExceptionThrown, UnhandledException = ex }
