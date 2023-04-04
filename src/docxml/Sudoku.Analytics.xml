@@ -30,11 +30,6 @@
             Indicates whether the solver only find one possible step and exit the searcher.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.AnalysisContext.PreviousSetDigit">
-            <summary>
-            Indicates the previously set digit.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.AnalysisContext.Grid">
             <summary>
             Indicates the puzzle to be solved and analyzed.
@@ -53,6 +48,11 @@
             </para>
             </summary>
             <seealso cref="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisContext.PreviousSetDigit">
+            <summary>
+            Indicates the previously set digit.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Analyzer">
             <summary>

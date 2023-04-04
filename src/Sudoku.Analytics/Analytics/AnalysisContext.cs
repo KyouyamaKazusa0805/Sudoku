@@ -18,12 +18,7 @@ public ref struct AnalysisContext(List<Step>? accumulator, [UnscopedRef] in Grid
 	/// Indicates whether the solver only find one possible step and exit the searcher.
 	/// </summary>
 	[MemberNotNullWhen(false, nameof(Accumulator))]
-	public bool OnlyFindOne { get; } = onlyFindOne;
-
-	/// <summary>
-	/// Indicates the previously set digit.
-	/// </summary>
-	public int PreviousSetDigit { get; internal set; }
+	public readonly bool OnlyFindOne { get; } = onlyFindOne;
 
 	/// <summary>
 	/// Indicates the puzzle to be solved and analyzed.
@@ -42,5 +37,10 @@ public ref struct AnalysisContext(List<Step>? accumulator, [UnscopedRef] in Grid
 	/// </para>
 	/// </summary>
 	/// <seealso cref="OnlyFindOne"/>
-	public List<Step>? Accumulator { get; } = accumulator;
+	public readonly List<Step>? Accumulator { get; } = accumulator;
+
+	/// <summary>
+	/// Indicates the previously set digit.
+	/// </summary>
+	public int PreviousSetDigit { get; internal set; }
 }
