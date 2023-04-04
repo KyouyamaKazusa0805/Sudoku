@@ -242,32 +242,75 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 	/// </summary>
 	/// <param name="index">The index.</param>
 	/// <returns>The step information.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the <see cref="Steps"/> is <see langword="null"/> or empty.</exception>
-	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
-	/// <seealso cref="Steps"/>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle is not solved.</exception>
 	public Step this[int index]
-		=> Steps switch
-		{
-			null
-				=> throw new InvalidOperationException("You can't extract any elements because of being null or empty."),
-			{ Length: var length } when index < 0 || index >= length
-				=> throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range."),
-			_
-				=> Steps[index]
-		};
+		=> IsSolved ? Steps[index] : throw new InvalidOperationException("The puzzle must have been solved before you use this indexer.");
 
 	/// <summary>
-	/// Gets the first <see cref="Step"/> instance that matches the specified technique.
+	/// Gets the found <see cref="Step"/> instance whose corresponding candidates are same with the specified argument <paramref name="grid"/>.
 	/// </summary>
-	/// <param name="code">The technique code to check and fetch.</param>
-	/// <returns>The step information instance as the result.</returns>
+	/// <param name="grid">The grid to be matched.</param>
+	/// <returns>The found <see cref="Step"/> instance.</returns>
 	/// <exception cref="InvalidOperationException">
-	/// Throws when the list doesn't contain any valid instance to get.
+	/// Throws when the puzzle is not solved (i.e. <see cref="IsSolved"/> property returns <see langword="false"/>).
 	/// </exception>
-	public Step this[Technique code]
-		=> IsSolved
-			? Array.Find(Steps, step => step.Code == code)!
-			: throw new InvalidOperationException("The specified instance can't get the result.");
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the specified puzzle cannot correspond to a paired <see cref="Step"/> instance.
+	/// </exception>
+	public Step this[scoped in Grid grid]
+	{
+		get
+		{
+			if (!IsSolved)
+			{
+				throw new InvalidOperationException("The puzzle must have been solved before you use this indexer.");
+			}
+
+			foreach (var (g, s) in SolvingPath)
+			{
+				if (g == grid)
+				{
+					return s;
+				}
+			}
+
+			throw new ArgumentOutOfRangeException("The specified step is not found.");
+		}
+	}
+
+	/// <summary>
+	/// Gets a list of <see cref="Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
+	/// </summary>
+	/// <param name="difficultyRating">The specified difficulty rating value.</param>
+	/// <returns>
+	/// A list of <see cref="Step"/>s found. If the puzzle cannot be solved (i.e. <see cref="IsSolved"/> returns <see langword="false"/>),
+	/// the return value will be <see langword="null"/>. If the puzzle is solved, but the specified value is not found,
+	/// the return value will be an empty array, rather than <see langword="null"/>. The nullability of the return value
+	/// only depends on property <see cref="IsSolved"/>.
+	/// </returns>
+	/// <seealso cref="IsSolved"/>
+	public Step[]? this[decimal difficultyRating] => IsSolved ? Array.FindAll(Steps, step => step.Difficulty == difficultyRating) : null;
+
+	/// <summary>
+	/// Gets a list of <see cref="Step"/>s that matches the specified technique.
+	/// </summary>
+	/// <param name="code">The specified technique code.</param>
+	/// <returns>
+	/// <inheritdoc cref="this[decimal]" path="/returns"/>
+	/// </returns>
+	/// <seealso cref="IsSolved"/>
+	public Step[]? this[Technique code] => IsSolved ? Array.FindAll(Steps, step => step.Code == code) : null;
+
+	/// <summary>
+	/// Gets a list of <see cref="Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
+	/// </summary>
+	/// <param name="difficultyLevel">The specified difficulty level.</param>
+	/// <returns>
+	/// <inheritdoc cref="this[decimal]" path="/returns"/>
+	/// </returns>
+	/// <seealso cref="IsSolved"/>
+	public Step[]? this[DifficultyLevel difficultyLevel]
+		=> IsSolved ? Array.FindAll(Steps, step => step.DifficultyLevel == difficultyLevel) : null;
 
 
 	/// <inheritdoc/>

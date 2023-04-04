@@ -19,9 +19,8 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 					IsSolved: true,
 					DifficultyLevel: var diffLevel and <= DifficultyLevel.Hard and not 0,
 					MaxDifficulty: var diff and >= 2.3M and <= 4.5M,
-					Steps: var steps,
 					Solution: var solution
-				})
+				} analyzerResult)
 			{
 				continue;
 			}
@@ -29,9 +28,14 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 			// 根据题目难度确定是否满足题目发送的条件。
 			switch (diffLevel)
 			{
-				case DifficultyLevel.Easy when steps.Count(static step => step.Difficulty == 2.3M) <= 2:
+				case DifficultyLevel.Easy when analyzerResult[2.3M]!.Length <= 2:
 				case DifficultyLevel.Moderate:
-				case DifficultyLevel.Hard when steps.Count(hardPredicate) > 2:
+				case DifficultyLevel.Hard
+				when (
+					from step in analyzerResult[DifficultyLevel.Hard]!
+					where step is WingStep or SingleDigitPatternStep or UniqueRectangleStep or AlmostLockedCandidatesStep
+					select step
+				).Take(2).Count() > 2:
 				{
 					continue;
 				}
@@ -60,10 +64,6 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 			return;
 		}
 
-
-		static bool hardPredicate(Step step)
-			=> step.DifficultyLevel == DifficultyLevel.Hard
-			&& step is WingStep or SingleDigitPatternStep or UniqueRectangleStep or AlmostLockedCandidatesStep;
 
 		static async Task sendPictureAsync(string groupId, string grid, string footerText)
 		{

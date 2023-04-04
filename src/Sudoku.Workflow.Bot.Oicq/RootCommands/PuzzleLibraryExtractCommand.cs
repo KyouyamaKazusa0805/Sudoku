@@ -166,8 +166,8 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 			var grid = PuzzleLibraryOperations.GetPuzzleFor(lib);
 			
 			// 把得到的题目拿去分析，并得到分析结果（看一下题目是否唯一解之类的）。然后打印一下一共使用了什么技巧。
-			var analysisResult = PuzzleAnalyzer.Analyze(grid);
-			if (analysisResult is not { IsSolved: true, DifficultyLevel: var difficultyLevel })
+			var analyzerResult = PuzzleAnalyzer.Analyze(grid);
+			if (analyzerResult is not { IsSolved: true, DifficultyLevel: var difficultyLevel })
 			{
 				await messageReceiver.SendMessageAsync("抽取到的题目无法被解出，即多解或无解。请联系题目发布者询问是否题库存在问题。");
 				return;
@@ -175,7 +175,7 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 
 			// 填充一下前面没有必要的步骤（如排除、唯余之类的）。
 			// 这里由于题目可能会比较难的关系，我们可以故意先完成一些相对于链和一些复杂结构来说，不太重要的步骤。
-			grid = AutoFiller.Fill(analysisResult);
+			grid = AutoFiller.Fill(analyzerResult);
 
 			// 根据绘图对象直接创建图片，然后发送出去。
 			await messageReceiver.SendPictureThenDeleteAsync(
@@ -190,7 +190,7 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 
 			// 显示题目的分析结果（使用的技巧）。
 			// 这里只显示技巧，题目的其他要素（比如卡点、题目的终盘等）都不应该显示出来。
-			await messageReceiver.SendMessageAsync(analysisResult.ToString(AnalyzerResultFormattingOptions.ShowElapsedTime));
+			await messageReceiver.SendMessageAsync(analyzerResult.ToString(AnalyzerResultFormattingOptions.ShowElapsedTime));
 
 			// 目前为了考虑代码简便，暂时直接完成题目。如果用户抽了题目，这个题就自动完成了。
 			// 之后有空我们再来考虑回答题目的事情。

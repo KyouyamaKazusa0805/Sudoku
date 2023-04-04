@@ -1724,6 +1724,20 @@
             表示解析失败，因为用户输入的结果在转换期间失败。比如某处要求输入整数，结果输入了别的无法转为整数数据的结果，例如字母。
             </summary>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand">
+            <summary>
+            表示一个分析指令。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.Puzzle">
+            <summary>
+            表示你输入的题目代码。代码支持各种数独可解析的文本形式，包括但不限于 Sudoku Explainer、Hodoku、Excel 的数独的输入格式。
+            如果文字带有空格，由于空格本身对于程序解析命令参数有意义，所以你需要将你的代码用双引号引起来，来告知机器人该文本代码包含空格。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.CheckInCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
@@ -2543,6 +2557,14 @@
             </summary>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.UplevelCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.ValueConverters.GridConverter">
+            <summary>
+            表示一个转换器，将文本字符串解析为 <see cref="T:Sudoku.Concepts.Grid"/> 结果。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.ValueConverters.GridConverter.Convert(System.String)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.ValueConverters.NumericArrayConverter`1">

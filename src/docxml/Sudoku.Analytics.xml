@@ -376,19 +376,53 @@
             </summary>
             <param name="index">The index.</param>
             <returns>The step information.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the <see cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/> is <see langword="null"/> or empty.</exception>
-            <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is not solved.</exception>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(Sudoku.Concepts.Grid@)">
+            <summary>
+            Gets the found <see cref="T:Sudoku.Analytics.Step"/> instance whose corresponding candidates are same with the specified argument <paramref name="grid"/>.
+            </summary>
+            <param name="grid">The grid to be matched.</param>
+            <returns>The found <see cref="T:Sudoku.Analytics.Step"/> instance.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the puzzle is not solved (i.e. <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> property returns <see langword="false"/>).
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified puzzle cannot correspond to a paired <see cref="T:Sudoku.Analytics.Step"/> instance.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(System.Decimal)">
+            <summary>
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
+            </summary>
+            <param name="difficultyRating">The specified difficulty rating value.</param>
+            <returns>
+            A list of <see cref="T:Sudoku.Analytics.Step"/>s found. If the puzzle cannot be solved (i.e. <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> returns <see langword="false"/>),
+            the return value will be <see langword="null"/>. If the puzzle is solved, but the specified value is not found,
+            the return value will be an empty array, rather than <see langword="null"/>. The nullability of the return value
+            only depends on property <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>.
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.Item(Sudoku.Analytics.Categorization.Technique)">
             <summary>
-            Gets the first <see cref="T:Sudoku.Analytics.Step"/> instance that matches the specified technique.
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that matches the specified technique.
             </summary>
-            <param name="code">The technique code to check and fetch.</param>
-            <returns>The step information instance as the result.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the list doesn't contain any valid instance to get.
-            </exception>
+            <param name="code">The specified technique code.</param>
+            <returns>
+            <inheritdoc cref="P:Sudoku.Analytics.AnalyzerResult.Item(System.Decimal)" path="/returns"/>
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(Sudoku.Analytics.Categorization.DifficultyLevel)">
+            <summary>
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
+            </summary>
+            <param name="difficultyLevel">The specified difficulty level.</param>
+            <returns>
+            <inheritdoc cref="P:Sudoku.Analytics.AnalyzerResult.Item(System.Decimal)" path="/returns"/>
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerResult.ToString">
             <inheritdoc/>
