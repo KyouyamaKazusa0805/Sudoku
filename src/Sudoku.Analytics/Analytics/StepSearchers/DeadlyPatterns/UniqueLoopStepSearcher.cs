@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Unique Loop</b> step searcher.
@@ -50,9 +50,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					case 0:
 					{
 						// The puzzle is invalid - it doesn't contain any possible correct solution.
-						// Although the puzzle is invalid, we can also use other step searchers to solve
-						// this strange puzzle.
-						return new InvalidStep();
+						// Although the puzzle is invalid, we can also use other step searchers to solve this strange puzzle.
+						throw new StepSearcherProcessException<UniqueLoopStepSearcher>();
 					}
 					case 1:
 					{

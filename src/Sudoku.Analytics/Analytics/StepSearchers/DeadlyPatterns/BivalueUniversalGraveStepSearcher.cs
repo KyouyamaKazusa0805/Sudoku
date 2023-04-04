@@ -65,7 +65,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		{
 			case []:
 			{
-				return new InvalidStep();
+				throw new StepSearcherProcessException<BivalueUniversalGraveStepSearcher>();
 			}
 			case [var trueCandidate]:
 			{

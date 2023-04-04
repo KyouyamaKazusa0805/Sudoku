@@ -211,7 +211,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 					scoped var context = new AnalysisContext(null, playground, true);
 					switch (searcher.GetAll(ref context))
 					{
-						case null or InvalidStep:
+						case null:
 						{
 							continue;
 						}

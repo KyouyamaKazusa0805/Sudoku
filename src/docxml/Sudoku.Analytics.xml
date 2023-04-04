@@ -4842,6 +4842,12 @@ result ^= expression;
             Indicates an array of built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearcherProcessException`1">
+            <summary>
+            Represents an exception that will be thrown if an invalid case has been encountered during analyzing a sudoku puzzle.
+            </summary>
+            <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher">
             <summary>
             Provides with an <b>Almost Locked Sets W-Wing</b> step searcher.
@@ -10745,42 +10751,6 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.FormatInterpolatedParts">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.InvalidStep">
-            <summary>
-            The background type that has implemented the type <see cref="T:Sudoku.Analytics.Steps.InvalidStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.InvalidStep"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.InvalidStep.#ctor">
-            <summary>
-            The background type that has implemented the type <see cref="T:Sudoku.Analytics.Steps.InvalidStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.InvalidStep"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.InvalidStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.InvalidStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.InvalidStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.InvalidStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.InvalidStep.Group">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.InvalidStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.InvalidStep.ExtraDifficultyCases">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.InvalidStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BowmanBingoStep">

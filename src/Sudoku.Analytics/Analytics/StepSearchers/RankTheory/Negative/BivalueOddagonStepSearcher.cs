@@ -54,7 +54,8 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 				{
 					case 0:
 					{
-						return new InvalidStep();
+						// This puzzle has no puzzle solutions.
+						throw new StepSearcherProcessException<BivalueOddagonStepSearcher>();
 					}
 					case not 1:
 					{
