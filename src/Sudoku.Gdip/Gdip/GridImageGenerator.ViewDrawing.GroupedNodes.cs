@@ -21,7 +21,7 @@ partial class GridImageGenerator
 
 	private bool DrawCapsule(
 		int head,
-		AdjacentCellType adjacentType,
+		bool isHorizontal,
 		float padding,
 		PointCalculator calc,
 		SizeF cs,
@@ -30,12 +30,11 @@ partial class GridImageGenerator
 		Graphics g
 	)
 	{
-		var nextCell = head + adjacentType switch { AdjacentCellType.Rowish => 1, AdjacentCellType.Columnish => 9 };
+		var nextCell = head + (isHorizontal ? 1 : 9);
 		var paddingSize = new SizeF(padding, padding);
 		var topLeft = calc.GetMousePointInCenter(head) - cs / 2 + paddingSize;
 		var bottomRight = calc.GetMousePointInCenter(nextCell) + cs / 2 - paddingSize;
 		var rect = RectangleCreator.Create(topLeft, bottomRight);
-
 		using var pen = new Pen(GetColor(identifier), width);
 
 		g.DrawCapsule(pen, rect);

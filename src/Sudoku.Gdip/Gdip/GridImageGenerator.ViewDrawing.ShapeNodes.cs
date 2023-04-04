@@ -528,7 +528,7 @@ partial class GridImageGenerator
 		float width,
 		PointCalculator calc,
 		int cell,
-		AdjacentCellType type,
+		bool isHorizontal,
 		float cw,
 		float ch,
 		Graphics g
@@ -536,21 +536,10 @@ partial class GridImageGenerator
 	{
 		using var pen = new Pen(GetColor(identifier), width);
 		var (x, y) = calc.GetMousePointInCenter(cell);
-
-		// Draw line.
-		foreach (var (p1, p2) in type switch
-		{
-			AdjacentCellType.Rowish => new (PointF, PointF)[] { (new(x - cw / 2, y), new(x + cw / 2, y)) },
-			AdjacentCellType.Columnish => new (PointF, PointF)[] { (new(x, y - ch / 2), new(x, y + ch / 2)) },
-			AdjacentCellType.Rowish | AdjacentCellType.Columnish => new (PointF, PointF)[]
-			{
-				(new(x - cw / 2, y), new(x + cw / 2, y)),
-				(new(x, y - ch / 2), new(x, y + ch / 2))
-			}
-		})
-		{
-			g.DrawLine(pen, p1, p2);
-		}
+		var (p1, p2) = isHorizontal
+			? (new PointF(x - cw / 2, y), new PointF(x + cw / 2, y))
+			: (new PointF(x, y - ch / 2), new PointF(x, y + ch / 2));
+		g.DrawLine(pen, p1, p2);
 
 		return true;
 	}

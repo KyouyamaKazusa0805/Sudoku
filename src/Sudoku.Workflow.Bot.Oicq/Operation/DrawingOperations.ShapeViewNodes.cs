@@ -11,7 +11,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			true,
-			cell => new AverageBarViewNode(Color.DimGray.ToIdentifier(), cell, isHorizontal ? AdjacentCellType.Rowish : AdjacentCellType.Columnish),
+			cell => new AverageBarViewNode(Color.DimGray.ToIdentifier(), cell, isHorizontal),
 			cell => cell.IsValidCellForAverage(isHorizontal)
 		);
 
@@ -24,7 +24,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new AverageBarViewNode(default, cell, isHorizontal ? AdjacentCellType.Rowish : AdjacentCellType.Columnish),
+			cell => new AverageBarViewNode(default, cell, isHorizontal),
 			cell => cell.IsValidCellForAverage(isHorizontal)
 		);
 

@@ -3,22 +3,13 @@ namespace Sudoku.Presentation.Nodes.Grouped;
 /// <summary>
 /// Defines a capsule view node.
 /// </summary>
-public sealed partial class CapsuleViewNode(Identifier identifier, int headCell, AdjacentCellType adjacentType) :
-	GroupedViewNode(
-		identifier,
-		headCell,
-		adjacentType switch
-		{
-			AdjacentCellType.Rowish => ImmutableArray.Create(headCell + 1),
-			AdjacentCellType.Columnish => ImmutableArray.Create(headCell + 9),
-			_ => throw new NotSupportedException("Other adjacent cell types are not supported.")
-		}
-	)
+public sealed partial class CapsuleViewNode(Identifier identifier, int headCell, bool isHorizontal) :
+	GroupedViewNode(identifier, headCell, ImmutableArray.Create(headCell + (isHorizontal ? 1 : 9)))
 {
 	/// <summary>
-	/// Indicates the adjacent cell type.
+	/// Indicates whether the view node is horizontal.
 	/// </summary>
-	public AdjacentCellType AdjacentType { get; } = adjacentType;
+	public bool IsHorizontal { get; } = isHorizontal;
 
 
 	/// <inheritdoc/>
@@ -28,10 +19,10 @@ public sealed partial class CapsuleViewNode(Identifier identifier, int headCell,
 	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(HeadCell))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(HeadCell), nameof(AdjacentType))]
+	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(HeadCell), nameof(IsHorizontal))]
 	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override CapsuleViewNode Clone() => new(Identifier, HeadCell, AdjacentType);
+	public override CapsuleViewNode Clone() => new(Identifier, HeadCell, IsHorizontal);
 }

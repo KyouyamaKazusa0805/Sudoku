@@ -211,8 +211,8 @@ partial class GridImageGenerator
 				// Average bar
 				{
 					This.Preferences.AverageBarWidth: var width,
-					Node: AverageBarViewNode { Identifier: var identifier, Cell: var cell, Type: var type }
-				} => DrawAverageBar(identifier, width, calc, cell, type, cw, ch, g),
+					Node: AverageBarViewNode { Identifier: var identifier, Cell: var cell, IsHorizontal: var isHorizontal }
+				} => DrawAverageBar(identifier, width, calc, cell, isHorizontal, cw, ch, g),
 
 				// Cell-corner arrow
 				{
@@ -253,8 +253,8 @@ partial class GridImageGenerator
 				// Capsule
 				{
 					This.Preferences: { CapsulePadding: var padding, CapsuleWidth: var width },
-					Node: CapsuleViewNode(var head, _) { Identifier: var identifier, AdjacentType: var adjacentType }
-				} => DrawCapsule(head, adjacentType, padding, calc, cs, identifier, width, g),
+					Node: CapsuleViewNode(var head, _) { Identifier: var identifier, IsHorizontal: var isHorizontal }
+				} => DrawCapsule(head, isHorizontal, padding, calc, cs, identifier, width, g),
 
 				// Oblique line
 				{

@@ -138,39 +138,19 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
-        <member name="T:Sudoku.Presentation.Nodes.Shapes.AdjacentCellType">
-            <summary>
-            Defines an adjacent cell type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.Nodes.Shapes.AdjacentCellType.None">
-            <summary>
-            Indicates the default value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.Nodes.Shapes.AdjacentCellType.Rowish">
-            <summary>
-            Indicates the adjacent cell type is rowish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.Nodes.Shapes.AdjacentCellType.Columnish">
-            <summary>
-            Indicates the adjacent cell type is columnish.
-            </summary>
-        </member>
         <member name="T:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode">
             <summary>
             Defines an average bar view node.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.AdjacentCellType)">
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Boolean)">
             <summary>
             Defines an average bar view node.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.Type">
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.IsHorizontal">
             <summary>
-            Indicates the adjacent cell type.
+            Indicates whether the view node is for horizontal one.
             </summary>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
@@ -1354,14 +1334,14 @@ if (student is (name: var name, age: >= 18))
             Defines a capsule view node.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.AdjacentCellType)">
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Boolean)">
             <summary>
             Defines a capsule view node.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.AdjacentType">
+        <member name="P:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.IsHorizontal">
             <summary>
-            Indicates the adjacent cell type.
+            Indicates whether the view node is horizontal.
             </summary>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
