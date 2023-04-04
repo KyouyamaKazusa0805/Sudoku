@@ -13,6 +13,7 @@ internal sealed class AnalyzeCommand : Command
 	[DoubleArgument("题目")]
 	[Hint("表示你输入的题目代码。代码支持各种数独可解析的文本形式，包括但不限于 Sudoku Explainer、Hodoku、Excel 的数独的输入格式。如果文字带有空格，由于空格本身对于程序解析命令参数有意义，所以你需要将你的代码用双引号引起来，来告知机器人该文本代码包含空格。")]
 	[ValueConverter<GridConverter>]
+	[DisplayingIndex(0)]
 	public Grid Puzzle { get; set; }
 
 
