@@ -1,4 +1,4 @@
-﻿namespace Sudoku.CommandLine.RootCommands;
+namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
 /// Represents a solve command.
@@ -33,7 +33,7 @@ public sealed class Solve : IExecutable
 		}
 
 		foreach (var type in
-			from assembly in new[] { typeof(BacktrackingSolver).Assembly, typeof(LogicalSolver).Assembly }
+			from assembly in new[] { typeof(BacktrackingSolver).Assembly, typeof(Analyzer).Assembly }
 			from type in assembly.GetTypes()
 			where type.IsClass && (type.IsAssignableTo(typeof(ISolver)) || type.IsGenericAssignableTo(typeof(IAnalyzer<,>)))
 			let parameterlessConstructor = type.GetConstructor(Type.EmptyTypes)
@@ -79,7 +79,7 @@ public sealed class Solve : IExecutable
 
 					break;
 				}
-				case IAnalyzer<LogicalSolver, LogicalSolverResult> puzzleSolver:
+				case IAnalyzer<Analyzer, AnalyzerResult> puzzleSolver:
 				{
 					if (puzzleSolver.Analyze(Grid, cancellationToken: cancellationToken) is not { IsSolved: true } solverResult)
 					{
