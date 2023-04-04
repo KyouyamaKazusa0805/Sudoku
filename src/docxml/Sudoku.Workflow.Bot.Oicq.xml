@@ -973,14 +973,9 @@
             题目生成器。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Lifecycle.EnvironmentVariables.Solver">
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Lifecycle.EnvironmentVariables.PuzzleAnalyzer">
             <summary>
-            逻辑解题工具。
-            </summary>
-        </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.Lifecycle.EnvironmentVariables.GridAutoFiller">
-            <summary>
-            自动填充题目一些无关紧要的填数的实例。
+            逻辑解题的工具。
             </summary>
         </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Lifecycle.EnvironmentVariables.RunningContexts">
@@ -1967,13 +1962,13 @@
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.GameCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.GameCommand.GetGameTimeLimit(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.GameCommand.GetGameTimeLimit(Sudoku.Analytics.Categorization.DifficultyLevel)">
             <summary>
             根据题目难度，求得题目限时。
             </summary>
             <param name="difficultyLevel">难度的级别。</param>
             <returns>该题目的限时。</returns>
-            <exception cref="T:System.NotSupportedException">如果题目难度未知，或超过了 <see cref="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.Hard"/>，就会产生此异常。</exception>
+            <exception cref="T:System.NotSupportedException">如果题目难度未知，或超过了 <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Hard"/>，就会产生此异常。</exception>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData">
             <summary>
@@ -2086,7 +2081,7 @@
             </summary>
             <returns>金币数。</returns>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetExperiencePointPerPuzzle(Sudoku.Runtime.AnalysisServices.DifficultyLevel)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetExperiencePointPerPuzzle(Sudoku.Analytics.Categorization.DifficultyLevel)">
             <summary>
             获得经验值的基础数值。
             </summary>
@@ -2094,7 +2089,7 @@
             <returns>经验值。</returns>
             <exception cref="T:System.NotSupportedException">如果 <paramref name="difficultyLevel"/> 未定义，就会产生此异常。</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            如果 <paramref name="difficultyLevel"/> 超过了 <see cref="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.Hard"/> 难度，就会产生此异常。
+            如果 <paramref name="difficultyLevel"/> 超过了 <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Hard"/> 难度，就会产生此异常。
             </exception>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.LocalScorer.GetExperiencePoint(System.Int32,System.Int32)">
@@ -2334,11 +2329,6 @@
             表示从题库里抽取题目的指令。
             </summary>
         </member>
-        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryExtractCommand.Solver">
-            <summary>
-            表示一个临时的解题器对象。这个对象可以校验题目的难度。
-            </summary>
-        </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PuzzleLibraryExtractCommand.GroupName">
             <summary>
             表示你需要抽取的题库的所在群（即跨群抽取题目）。
@@ -2362,11 +2352,11 @@
             定义一个临时用的、自动完成前面排除、唯一余数、区块等技巧的实例。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.AutoFiller.Fill(Sudoku.Solving.Logical.LogicalSolverResult)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.AutoFiller.Fill(Sudoku.Analytics.AnalyzerResult)">
             <summary>
-            通过指定的 <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> 实例来获得题目的基本解题信息，并通过该实例，自动完成前面一些不重要的题目步骤。
+            通过指定的 <see cref="T:Sudoku.Analytics.AnalyzerResult"/> 实例来获得题目的基本解题信息，并通过该实例，自动完成前面一些不重要的题目步骤。
             </summary>
-            <param name="result"><see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> 类型的实例。</param>
+            <param name="result"><see cref="T:Sudoku.Analytics.AnalyzerResult"/> 类型的实例。</param>
             <returns>返回一个 <see cref="T:Sudoku.Concepts.Grid"/> 结果。</returns>
             <exception cref="T:System.InvalidOperationException">如果题目无解或多解、题目难度未知或过于复杂时，就会产生此异常。</exception>
         </member>

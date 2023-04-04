@@ -9,16 +9,15 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 	/// <inheritdoc/>
 	public override async Task ExecuteAsync()
 	{
-		var solver = Solver with { IgnoreSlowAlgorithms = true };
-
+		var analyzer = PuzzleAnalyzer.WithAlgorithmLimits(true, true);
 		for (var trial = 0; trial < 100; trial++)
 		{
 			// 出题。
 			var grid = Generator.Generate();
-			if (Solver.Analyze(grid) is not
+			if (PuzzleAnalyzer.Analyze(grid) is not
 				{
 					IsSolved: true,
-					DifficultyLevel: var diffLevel and (DifficultyLevel.Easy or DifficultyLevel.Moderate or DifficultyLevel.Hard),
+					DifficultyLevel: var diffLevel and <= DifficultyLevel.Hard and not 0,
 					MaxDifficulty: var diff and >= 2.3M and <= 4.5M,
 					Steps: var steps,
 					Solution: var solution
@@ -32,15 +31,7 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 			{
 				case DifficultyLevel.Easy when steps.Count(static step => step.Difficulty == 2.3M) <= 2:
 				case DifficultyLevel.Moderate:
-				case DifficultyLevel.Hard when steps.Count(static step => step is
-				{
-					DifficultyLevel: DifficultyLevel.Hard,
-					TechniqueGroup: not (
-						TechniqueGroup.Wing or TechniqueGroup.SingleDigitPattern
-							or TechniqueGroup.UniqueRectangle
-							or TechniqueGroup.AlmostLockedCandidates
-					)
-				}) > 2:
+				case DifficultyLevel.Hard when steps.Count(hardPredicate) > 2:
 				{
 					continue;
 				}
@@ -67,21 +58,25 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 
 			// 这是在循环里。这里我们要退出指令，因为已经发送了一个题目。
 			return;
+		}
 
 
-			static async Task sendPictureAsync(string groupId, string grid, string footerText)
-			{
-				var picturePath = DrawingOperations.GenerateCachedPicturePath(
-					ISudokuPainter.Create(1000)
-						.WithGridCode(grid)
-						.WithRenderingCandidates(false)
-						.WithFooterText(footerText)
-				)!;
+		static bool hardPredicate(Step step)
+			=> step.DifficultyLevel == DifficultyLevel.Hard
+			&& step is WingStep or SingleDigitPatternStep or UniqueRectangleStep or AlmostLockedCandidatesStep;
 
-				await MessageManager.SendGroupMessageAsync(groupId, new ImageMessage { Path = picturePath });
+		static async Task sendPictureAsync(string groupId, string grid, string footerText)
+		{
+			var picturePath = DrawingOperations.GenerateCachedPicturePath(
+				ISudokuPainter.Create(1000)
+					.WithGridCode(grid)
+					.WithRenderingCandidates(false)
+					.WithFooterText(footerText)
+			)!;
 
-				File.Delete(picturePath);
-			}
+			await MessageManager.SendGroupMessageAsync(groupId, new ImageMessage { Path = picturePath });
+
+			File.Delete(picturePath);
 		}
 	}
 }

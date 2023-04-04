@@ -8,12 +8,6 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 internal sealed class PuzzleLibraryExtractCommand : Command
 {
 	/// <summary>
-	/// 表示一个临时的解题器对象。这个对象可以校验题目的难度。
-	/// </summary>
-	private static readonly LogicalSolver Solver = CommonLogicalSolvers.Suitable;
-
-
-	/// <summary>
 	/// 表示你需要抽取的题库的所在群（即跨群抽取题目）。
 	/// </summary>
 	[DoubleArgument("群名")]
@@ -172,7 +166,7 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 			var grid = PuzzleLibraryOperations.GetPuzzleFor(lib);
 			
 			// 把得到的题目拿去分析，并得到分析结果（看一下题目是否唯一解之类的）。然后打印一下一共使用了什么技巧。
-			var analysisResult = Solver.Analyze(grid);
+			var analysisResult = PuzzleAnalyzer.Analyze(grid);
 			if (analysisResult is not { IsSolved: true, DifficultyLevel: var difficultyLevel })
 			{
 				await messageReceiver.SendMessageAsync("抽取到的题目无法被解出，即多解或无解。请联系题目发布者询问是否题库存在问题。");
@@ -196,7 +190,7 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 
 			// 显示题目的分析结果（使用的技巧）。
 			// 这里只显示技巧，题目的其他要素（比如卡点、题目的终盘等）都不应该显示出来。
-			await messageReceiver.SendMessageAsync(analysisResult.ToString(SolverResultFormattingOptions.ShowElapsedTime));
+			await messageReceiver.SendMessageAsync(analysisResult.ToString(AnalyzerResultFormattingOptions.ShowElapsedTime));
 
 			// 目前为了考虑代码简便，暂时直接完成题目。如果用户抽了题目，这个题就自动完成了。
 			// 之后有空我们再来考虑回答题目的事情。
@@ -212,12 +206,12 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 file static class AutoFiller
 {
 	/// <summary>
-	/// 通过指定的 <see cref="LogicalSolverResult"/> 实例来获得题目的基本解题信息，并通过该实例，自动完成前面一些不重要的题目步骤。
+	/// 通过指定的 <see cref="AnalyzerResult"/> 实例来获得题目的基本解题信息，并通过该实例，自动完成前面一些不重要的题目步骤。
 	/// </summary>
-	/// <param name="result"><see cref="LogicalSolverResult"/> 类型的实例。</param>
+	/// <param name="result"><see cref="AnalyzerResult"/> 类型的实例。</param>
 	/// <returns>返回一个 <see cref="Grid"/> 结果。</returns>
 	/// <exception cref="InvalidOperationException">如果题目无解或多解、题目难度未知或过于复杂时，就会产生此异常。</exception>
-	public static Grid Fill(LogicalSolverResult result)
+	public static Grid Fill(AnalyzerResult result)
 	{
 		if (result is not { Puzzle: var grid, IsSolved: true, DifficultyLevel: var diffLevel, SolvingPath: var path })
 		{
