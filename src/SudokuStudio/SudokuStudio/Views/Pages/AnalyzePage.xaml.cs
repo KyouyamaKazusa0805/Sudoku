@@ -453,14 +453,6 @@ public sealed partial class AnalyzePage : Page
 				IconSource = createIconSource(Symbol.ShowResults),
 				TabPage = createPage<SolvingPath>()
 			},
-#if UI_FEATURE_ANALYSIS_GRAPHS
-			new()
-			{
-				Header = GetString("AnalyzePage_LiveCharts"),
-				IconSource = createIconSource(Symbol.ZeroBars),
-				Page = createPage<PuzzleGraphs>()
-			},
-#endif
 			new()
 			{
 				Header = GetString("AnalyzePage_AllStepsInCurrentGrid"),

@@ -215,43 +215,6 @@
 					</TabView>
 				</Grid>
 			</Grid>
-
-			<!--
-			Extra information
-			-->
-			<!--
-			<StackPanel Orientation="Vertical" Spacing="40" Margin="0,120,20,60">
-			<TextBlock Text="{m:R Key=AnalyzePage_PuzzleData}" Style="{StaticResource SubtitleTextBlockStyle}" />
-				<TextBlock TextWrapping="Wrap" IsTextSelectionEnabled="True">
-					<Bold>
-						<Run Text="{m:R Key=AnalyzePage_GivensCount}" />
-					</Bold>
-					<LineBreak />
-					<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleHintsCount(SudokuPane.Puzzle),Mode=OneWay}" />
-					<LineBreak />
-					<LineBreak />
-					<Bold>
-						<Run Text="{m:R Key=AnalyzePage_PuzzleCode}" />
-					</Bold>
-					<LineBreak />
-					<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleCode(SudokuPane.Puzzle),Mode=OneWay}" />
-					<LineBreak />
-					<LineBreak />
-					<Bold>
-						<Run Text="{m:R Key=AnalyzePage_Uniqueness}" />
-					</Bold>
-					<LineBreak />
-					<Run Text="{x:Bind cvt:SudokuGridConversion.GetPuzzleUniqueness(SudokuPane.Puzzle),Mode=OneWay}" />
-					<LineBreak />
-					<LineBreak />
-					<Bold>
-						<Run Text="{m:R Key=AnalyzePage_IsMinimal}" />
-					</Bold>
-					<LineBreak />
-					<Run Text="{x:Bind cvt:SudokuGridConversion.GetIsMinimal(SudokuPane.Puzzle),Mode=OneWay}" />
-				</TextBlock>
-			</StackPanel>
-			-->
 		</StackPanel>
 	</ScrollViewer>
 </Page>
