@@ -102,8 +102,8 @@ internal sealed class TowerSorcererCommand : Command
 		}
 
 		var cardLevel = user.CardLevel;
-		var exp = LocalScorer.GetExperiencePoint(count + 1, cardLevel);
-		var coin = LocalScorer.GetCoin((count + 1) * 30, cardLevel);
+		var exp = LocalScorer.GetExperiencePoint((count + 1) << 1, cardLevel);
+		var coin = LocalScorer.GetCoin((count + 1) * 30 << 1, cardLevel);
 		user.ExperiencePoint += exp;
 		user.Coin += coin;
 		user.TowerOfSorcerer++;
@@ -138,5 +138,6 @@ file static class LocalScorer
 	/// <param name="cardLevel">用户的卡片级别。</param>
 	/// <returns>金币。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCoin(int @base, int cardLevel) => (int)Round(@base * ScoringOperation.GetGlobalRate(cardLevel)) * ScoringOperation.GetWeekendFactor();
+	public static int GetCoin(int @base, int cardLevel)
+		=> (int)Round(@base * ScoringOperation.GetGlobalRate(cardLevel)) * ScoringOperation.GetWeekendFactor();
 }
