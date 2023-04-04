@@ -20,20 +20,10 @@
             <param name="grid">The reference to the puzzle.</param>
             <param name="onlyFindOne">Indicates whether the step searcher only find one possible step and exit.</param>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisContext.Grid">
+        <member name="F:Sudoku.Analytics.AnalysisContext._grid">
             <summary>
-            Indicates the puzzle to be solved and analyzed.
+            Indicates the backing field of property <see cref="P:Sudoku.Analytics.AnalysisContext.Grid"/>.
             </summary>
-            <remarks>
-            <target name="field">
-				<b>
-					<i>
-						This field is not encapsulated into a property because C# doesn't support auto read-only properties
-						returning <see langword="ref" /> or <see langword="ref readonly" />.
-					</i>
-				</b>
-			</target>
-            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne">
             <summary>
@@ -43,6 +33,11 @@
         <member name="P:Sudoku.Analytics.AnalysisContext.PreviousSetDigit">
             <summary>
             Indicates the previously set digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisContext.Grid">
+            <summary>
+            Indicates the puzzle to be solved and analyzed.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisContext.Accumulator">
@@ -2891,10 +2886,10 @@
             <summary>
             Defines an attribute type that is applied to a <see cref="T:Sudoku.Analytics.StepSearcher"/> derived type,
             indicating the searching logic only uses cached fields in type <see cref="T:Sudoku.Analytics.Buffers.CachedFields"/>,
-            and it does not use field <see cref="F:Sudoku.Analytics.AnalysisContext.Grid"/>.
+            and it does not use field <see cref="P:Sudoku.Analytics.AnalysisContext.Grid"/>.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Buffers.CachedFields"/>
-            <seealso cref="F:Sudoku.Analytics.AnalysisContext.Grid"/>
+            <seealso cref="P:Sudoku.Analytics.AnalysisContext.Grid"/>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.ConditionalCase">
             <summary>
@@ -6110,7 +6105,7 @@ result ^= expression;
             Get all possible hints from the grid.
             </summary>
             <param name="gathered"><inheritdoc cref="P:Sudoku.Analytics.AnalysisContext.Accumulator" path="/summary"/></param>
-            <param name="grid"><inheritdoc cref="F:Sudoku.Analytics.AnalysisContext.Grid" path="/summary"/></param>
+            <param name="grid"><inheritdoc cref="P:Sudoku.Analytics.AnalysisContext.Grid" path="/summary"/></param>
             <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsIncomplete(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.CandidateViewNode})">

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Defines a context that is used by step searchers to check the details of the solving and analysis information.
@@ -9,12 +9,9 @@
 public ref struct AnalysisContext(List<Step>? accumulator, [UnscopedRef] in Grid grid, bool onlyFindOne)
 {
 	/// <summary>
-	/// Indicates the puzzle to be solved and analyzed.
+	/// Indicates the backing field of property <see cref="Grid"/>.
 	/// </summary>
-	/// <remarks>
-	/// <include file="../../global-doc-comments.xml" path="/g/csharp11/feature[@name='ref-fields']/target[@name='field']" />
-	/// </remarks>
-	public readonly ref readonly Grid Grid = ref grid;
+	private readonly ref readonly Grid _grid = ref grid;
 
 
 	/// <summary>
@@ -27,6 +24,11 @@ public ref struct AnalysisContext(List<Step>? accumulator, [UnscopedRef] in Grid
 	/// Indicates the previously set digit.
 	/// </summary>
 	public int PreviousSetDigit { get; internal set; }
+
+	/// <summary>
+	/// Indicates the puzzle to be solved and analyzed.
+	/// </summary>
+	public readonly ref readonly Grid Grid => ref _grid;
 
 	/// <summary>
 	/// <para>
