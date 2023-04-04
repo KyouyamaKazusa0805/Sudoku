@@ -29,7 +29,6 @@ global using Sudoku.CommandLine.Strings;
 global using Sudoku.CommandLine.ValueConverters;
 global using Sudoku.Concepts;
 global using Sudoku.Drawing;
-global using Sudoku.Solving.Logical;
 global using Sudoku.Text.Parsing;
 global using Sudoku.Workflow.Bot.Oicq.Collections;
 global using Sudoku.Workflow.Bot.Oicq.Lifecycle;
