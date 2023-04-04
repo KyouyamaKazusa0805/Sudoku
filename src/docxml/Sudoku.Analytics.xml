@@ -11966,10 +11966,8 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Analytics.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.WrongStepException"/> with the specified invalid grid and the wrong step.
+            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
             </summary>
-            <param name="grid">The invalid sudoku grid.</param>
-            <param name="wrongStep">The wrong step.</param>
         </member>
         <member name="P:Sudoku.Analytics.WrongStepException.Message">
             <inheritdoc/>
