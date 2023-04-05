@@ -13,8 +13,5 @@ public sealed partial class StepSearcherSerializationData : DependencyObject
 	/// </summary>
 	/// <returns>A list of <see cref="StepSearcher"/> instances.</returns>
 	public StepSearcher[] CreateStepSearchers()
-	{
-		var stepSearcherName = $"Sudoku.Analytics.StepSearchers.{TypeName}";
-		return StepSearcherPool.GetStepSearchers(typeof(StepSearcher).Assembly.GetType(stepSearcherName)!, true);
-	}
+		=> StepSearcherPool.GetStepSearchers(typeof(StepSearcher).Assembly.GetType($"Sudoku.Analytics.StepSearchers.{TypeName}")!, true);
 }
