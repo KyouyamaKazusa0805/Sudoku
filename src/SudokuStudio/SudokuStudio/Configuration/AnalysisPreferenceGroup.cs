@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Configuration;
+namespace SudokuStudio.Configuration;
 
 /// <summary>
 /// Represents with preference items that is used by <see cref="LogicalSolver"/>.
@@ -21,6 +21,4 @@
 [DependencyProperty<int>("MaxSizeOfRegularWing", DefaultValue = 5, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.RegularWingStepSearcher_MaxSize")]
 [DependencyProperty<int>("MaxSizeOfComplexFish", DefaultValue = 5, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.ComplexFishStepSearcher_MaxSize")]
 [DependencyProperty<int>("StepGathererMaxStepsGathered", DefaultValue = 1000, DocReferencedMemberName = "global::Sudoku.Solving.Logical.StepGatherers.StepsGatherer.MaxStepsGathered")]
-public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
-{
-}
+public sealed partial class AnalysisPreferenceGroup : PreferenceGroup;

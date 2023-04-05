@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Annotations;
+namespace Sudoku.Solving.Logical.Annotations;
 
 /// <summary>
 /// Defines an attribute that can be applied to a property in step searcher interface type,
@@ -7,6 +7,4 @@
 /// </summary>
 /// <seealso cref="IAnalyzer{TSolver, TSolverResult}"/>
 [AttributeUsage(AttributeTargets.Property, Inherited = false)]
-public sealed class StepSearcherPropertyAttribute : Attribute
-{
-}
+public sealed class StepSearcherPropertyAttribute : Attribute;

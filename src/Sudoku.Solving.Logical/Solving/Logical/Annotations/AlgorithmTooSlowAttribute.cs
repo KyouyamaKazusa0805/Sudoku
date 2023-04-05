@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Annotations;
+namespace Sudoku.Solving.Logical.Annotations;
 
 /// <summary>
 /// Defines an attribute annotation that can be applied to a step searcher type,
@@ -9,6 +9,4 @@
 /// </remarks>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 [Obsolete($"The type is being deprecated. Please use option '{nameof(StepSearcherRunningOptions.SlowAlgorithm)}' instead.", false)]
-public sealed class AlgorithmTooSlowAttribute : Attribute
-{
-}
+public sealed class AlgorithmTooSlowAttribute : Attribute;

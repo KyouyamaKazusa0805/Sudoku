@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Logical.Annotations;
+namespace Sudoku.Solving.Logical.Annotations;
 
 /// <summary>
 /// Defines an attribute annotation that can be applied to a step searcher type,
@@ -6,6 +6,4 @@
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 [Obsolete($"The type is being deprecated. Please use the option '{nameof(StepSearcherRunningOptions.OnlyForStandardSudoku)}' instead.", false)]
-public sealed class SukakuNotSupportedAttribute : Attribute
-{
-}
+public sealed class SukakuNotSupportedAttribute : Attribute;
