@@ -8,14 +8,13 @@
 
 属于该类型的项目有：
 
-* [`Sudoku.Analytics`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Analytics)：提供分析数独基本技巧或搜索技巧序列的 API。是原本 `Sudoku.Solving.Logical` 项目的翻新；
+* [`Sudoku.Analytics`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Analytics)：提供分析数独基本技巧或搜索技巧序列的 API；
 * [`Sudoku.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core)：提供基本的数独相关的数据结构的实现，如数独盘面的实现 [`Grid`](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.cs) 类型等；
 * [`Sudoku.Gdip`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Gdip)：提供一种简单、轻量级的数独绘图 API；
 * [`Sudoku.IO`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.IO)：提供 I/O 操作的 API，例如交互题库文件；
 * [`Sudoku.Presentation`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Presentation)：提供 API 用于专门呈现数独或数独有关的一些东西用在 UI 上，比如一个步骤（即 `IStep` 类型）的 UI 呈现视图的抽象数据结构；
 * [`Sudoku.Workflow.Bot.Oicq`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Workflow.Bot.Oicq)：提供 API 专门用于操作和建立 Mirai 连接，用于 QQ 平台，创建机器人模式的自动化处理的相关功能（比如数独的绘图、数独的 PK 竞技等）；
 * [`Sudoku.Recognition`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Recognition)：提供识别一个图片里的数独题目的基本 API（实现得非常简单）；
-* [`Sudoku.Solving.Logical`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Logical)：提供对于逻辑解题过程处理的 API；
 * [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System)：为整个解决方案的别的项目提供关于 .NET 基本库 API 拓展 API 或功能代码。
 
 ## 源代码生成器项目
@@ -25,9 +24,8 @@
 属于该类型的项目有：
 
 * [`Global.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Global.CodeGen)：为高阶的源代码生成器。它生成一些东西，专门提供给其它的源代码生成器项目使用，也提供一些 API；
+* [`Sudoku.Analytics.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Analytics.CodeGen)：为 `Sudoku.Analytics` 项目提供源代码生成；
 * [`Sudoku.Diagnostics.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeGen)：为解决方案提供一些基本的、不必手写的源代码的功能性扩展；
-* [`Sudoku.Diagnostics.CodeAnalysis.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis.CodeGen)：提供对  [`Sudoku.Diagnostics.CodeAnalysis`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis/Sudoku.Diagnostics.CodeAnalysis) 项目进行代码生成服务；
-* [`Sudoku.Solving.Logical.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Logical.CodeGen)：提供对 [`Sudoku.Solving.Logical`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Logical) 项目的源代码生成服务；
 * [`System.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/System.CodeGen)：提供对 [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System) 项目的源代码生成服务。
 
 ## 解决方案项目
