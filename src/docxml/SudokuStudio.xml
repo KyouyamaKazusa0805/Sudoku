@@ -563,9 +563,9 @@
         </member>
         <member name="T:SudokuStudio.Configuration.AnalysisPreferenceGroup">
             <summary>
-            Represents with preference items that is used by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>.
+            Represents with preference items that is used by <see cref="T:Sudoku.Analytics.Analyzer"/>.
             </summary>
-            <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableFullHouseProperty">
             <summary>

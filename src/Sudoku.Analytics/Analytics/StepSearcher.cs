@@ -9,8 +9,19 @@ using static StepSearcherRunningArea;
 /// <param name="level"><inheritdoc cref="Level" path="/summary"/></param>
 /// <param name="runningArea"><inheritdoc cref="RunningArea" path="/summary"/></param>
 /// <seealso cref="Step"/>
-public abstract class StepSearcher(int priority, StepSearcherLevel level, StepSearcherRunningArea runningArea = Searching | Gathering)
+public abstract partial class StepSearcher(int priority, StepSearcherLevel level, StepSearcherRunningArea runningArea = Searching | Gathering) :
+	IComparable<StepSearcher>,
+	IComparisonOperators<StepSearcher, StepSearcher, bool>,
+	IEqualityOperators<StepSearcher, StepSearcher, bool>,
+	IEquatable<StepSearcher>
 {
+	/// <summary>
+	/// Indicates the backing field of property <see cref="SeparatedPriority"/>.
+	/// </summary>
+	/// <seealso cref="SeparatedPriority"/>
+	private int _separatedPriority;
+
+
 	/// <summary>
 	/// Determines whether the current step searcher is separated one, which mean it can be created
 	/// as many possible instances in a same step searchers pool.
@@ -77,6 +88,24 @@ public abstract class StepSearcher(int priority, StepSearcherLevel level, StepSe
 	public int Priority { get; } = priority;
 
 	/// <summary>
+	/// Indicates the separated priority. This value cannot be greater than 16 due to design of <see cref="SeparatedAttribute"/>.
+	/// </summary>
+	/// <value>The value to be set. The value must be between 0 and 16 (i.e. <![CDATA[>= 0 and < 16]]>).</value>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when <see langword="value"/> is below 0, greater than 16 or equal to 16.
+	/// </exception>
+	/// <seealso cref="SeparatedAttribute"/>
+	public int SeparatedPriority
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _separatedPriority;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[RequiresUnreferencedCode("This setter can only be invoked by reflection.")]
+		internal init => _separatedPriority = value is >= 0 and < 16 ? value : throw new ArgumentOutOfRangeException(nameof(value));
+	}
+
+	/// <summary>
 	/// Indicates the level that the current step searcher belongs to.
 	/// </summary>
 	/// <remarks>
@@ -95,6 +124,11 @@ public abstract class StepSearcher(int priority, StepSearcherLevel level, StepSe
 	public StepSearcherRunningArea RunningArea { get; } = runningArea;
 
 	/// <summary>
+	/// Indicates the final priority value ID of the step searcher. This property is used as comparison.
+	/// </summary>
+	internal int PriorityId => Priority << 4 | SeparatedPriority;
+
+	/// <summary>
 	/// The qualified type name of this instance.
 	/// </summary>
 	protected string TypeName => EqualityContract.Name;
@@ -105,6 +139,23 @@ public abstract class StepSearcher(int priority, StepSearcherLevel level, StepSe
 	/// </summary>
 	protected Type EqualityContract => GetType();
 
+
+	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
+	public override partial bool Equals(object? obj);
+
+	/// <inheritdoc/>
+	public bool Equals([NotNullWhen(true)] StepSearcher? other) => other is not null && CompareTo(other) == 0;
+
+	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(PriorityId))]
+	public override partial int GetHashCode();
+
+	/// <inheritdoc/>
+	public int CompareTo(StepSearcher? other)
+	{
+		ArgumentNullException.ThrowIfNull(other);
+
+		return Sign(PriorityId - other.PriorityId);
+	}
 
 	/// <summary>
 	/// Returns the real name of this instance.
@@ -150,4 +201,30 @@ public abstract class StepSearcher(int priority, StepSearcherLevel level, StepSe
 	/// <seealso cref="Step"/>
 	/// <seealso cref="AnalysisContext"/>
 	protected internal abstract Step? GetAll(scoped ref AnalysisContext context);
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(StepSearcher? left, StepSearcher? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(StepSearcher? left, StepSearcher? right) => !(left == right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator >(StepSearcher left, StepSearcher right) => left.CompareTo(right) > 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator >=(StepSearcher left, StepSearcher right) => left.CompareTo(right) >= 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator <(StepSearcher left, StepSearcher right) => left.CompareTo(right) < 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator <=(StepSearcher left, StepSearcher right) => left.CompareTo(right) <= 0;
 }

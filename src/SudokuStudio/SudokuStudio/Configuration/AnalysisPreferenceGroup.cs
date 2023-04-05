@@ -1,9 +1,9 @@
 namespace SudokuStudio.Configuration;
 
 /// <summary>
-/// Represents with preference items that is used by <see cref="LogicalSolver"/>.
+/// Represents with preference items that is used by <see cref="Analyzer"/>.
 /// </summary>
-/// <seealso cref="LogicalSolver"/>
+/// <seealso cref="Analyzer"/>
 [DependencyProperty<bool>("EnableFullHouse", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableFullHouse")]
 [DependencyProperty<bool>("EnableLastDigit", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableLastDigit")]
 [DependencyProperty<bool>("HiddenSinglesInBlockFirst", DefaultValue = true, DocReferencedMemberName = "global::Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_HiddenSinglesInBlockFirst")]

@@ -50,9 +50,9 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// <summary>
 	/// <para>
 	/// Indicates the custom <see cref="StepSearcher"/>s you defined to solve a puzzle. By default,
-	/// the solver will use <see cref="StepSearcherPool.BuiltIn"/> to solve a puzzle.
+	/// the solver will use <see cref="StepSearcherPool.Default(bool)"/> to solve a puzzle.
 	/// If you assign a new array of <see cref="StepSearcher"/>s into this property
-	/// the step searchers will use this property instead of <see cref="StepSearcherPool.BuiltIn"/> to solve a puzzle.
+	/// the step searchers will use this property instead of <see cref="StepSearcherPool.Default(bool)"/> to solve a puzzle.
 	/// </para>
 	/// <para>
 	/// Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
@@ -60,7 +60,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// array into it.
 	/// </para>
 	/// </summary>
-	/// <seealso cref="StepSearcherPool.BuiltIn"/>
+	/// <seealso cref="StepSearcherPool.Default(bool)"/>
 	[DisallowNull]
 	public StepSearcher[]? CustomStepSearchers { get; internal set; }
 
@@ -69,7 +69,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// </summary>
 	internal StepSearcher[] StepSearchers
 		=> (
-			from searcher in CustomStepSearchers ?? StepSearcherPool.BuiltIn
+			from searcher in CustomStepSearchers ?? StepSearcherPool.Default(true)
 			where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
 			select searcher
 		).ToArray();
