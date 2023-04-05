@@ -175,7 +175,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 	/// </summary>
 	/// <seealso cref="IsSolved"/>
 	/// <seealso cref="Puzzle"/>
-	public Step? WrongStep { get; init; }
+	public Step? WrongStep => (UnhandledException as WrongStepException)?.WrongStep;
 
 	/// <summary>
 	/// Gets the bottleneck during the whole grid solving. Returns <see langword="null"/> if the property

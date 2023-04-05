@@ -1738,6 +1738,20 @@
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.Extensions.GetFailedReasonText(Sudoku.Analytics.Metadata.AnalyzerFailedReason)">
+            <summary>
+            获取 <see cref="T:Sudoku.Analytics.Metadata.AnalyzerFailedReason"/> 对应的错误文字。
+            </summary>
+            <param name="this"><see cref="T:Sudoku.Analytics.Metadata.AnalyzerFailedReason"/> 实例。</param>
+            <returns>字符串写法。</returns>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.CheckInCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>

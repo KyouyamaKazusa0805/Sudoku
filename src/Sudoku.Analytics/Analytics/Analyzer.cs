@@ -99,14 +99,8 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 				{
 					NotImplementedException or NotSupportedException
 						=> result with { IsSolved = false, FailedReason = AnalyzerFailedReason.NotImplemented },
-					WrongStepException { WrongStep: var s }
-						=> result with
-						{
-							IsSolved = false,
-							FailedReason = AnalyzerFailedReason.WrongStep,
-							WrongStep = s,
-							UnhandledException = ex
-						},
+					WrongStepException
+						=> result with { IsSolved = false, FailedReason = AnalyzerFailedReason.WrongStep, UnhandledException = ex },
 					OperationCanceledException { CancellationToken: var c } when c == cancellationToken
 						=> result with { IsSolved = false, FailedReason = AnalyzerFailedReason.UserCancelled },
 					_

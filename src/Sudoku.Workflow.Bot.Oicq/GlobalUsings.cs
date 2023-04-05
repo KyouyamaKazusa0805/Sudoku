@@ -28,6 +28,7 @@ global using Sudoku.Algorithms.Generating;
 global using Sudoku.Analytics;
 global using Sudoku.Analytics.Categorization;
 global using Sudoku.Analytics.Formatting;
+global using Sudoku.Analytics.Metadata;
 global using Sudoku.Analytics.Steps;
 global using Sudoku.Concepts;
 global using Sudoku.Drawing;

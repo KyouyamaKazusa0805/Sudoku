@@ -12167,6 +12167,20 @@ result ^= expression;
 				</remarks>
 			</target>
         </member>
+        <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Drawing.ISudokuPainter"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.ISudokuPainter"/>
+        </member>
+        <member name="M:Sudoku.Drawing.ISudokuPainterExtensions.WithStep(Sudoku.Drawing.ISudokuPainter,Sudoku.Analytics.Step)">
+            <summary>
+            Sets <see cref="T:Sudoku.Analytics.Conclusion"/>s and <see cref="T:Sudoku.Presentation.View"/>s for the specified step.
+            </summary>
+            <param name="this">The sudoku painter instance.</param>
+            <param name="step">The step instance.</param>
+            <returns>Argument <paramref name="this"/>.</returns>
+        </member>
         <member name="T:Sudoku.Preprocessing.TrueCandidatesSearcher">
             <summary>
             Defines a searcher that searches for the true candidates of the current sudoku grid.
