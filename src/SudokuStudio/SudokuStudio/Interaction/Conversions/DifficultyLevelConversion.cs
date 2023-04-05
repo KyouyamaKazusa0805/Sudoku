@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interaction.Conversions;
+namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>
 /// Provides with conversion methods used by XAML designer, about difficulty level title label.

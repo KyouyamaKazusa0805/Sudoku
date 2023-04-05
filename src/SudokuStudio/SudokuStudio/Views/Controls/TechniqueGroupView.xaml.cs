@@ -30,11 +30,9 @@ public sealed partial class TechniqueGroupView : UserControl
 	/// <param name="e">The event arguments provided.</param>
 	private void ListView_ItemClick(object sender, ItemClickEventArgs e)
 	{
-		if (e.ClickedItem is not IStep step)
+		if (e.ClickedItem is Step step)
 		{
-			return;
+			StepChosen?.Invoke(this, new(step));
 		}
-
-		StepChosen?.Invoke(this, new(step));
 	}
 }

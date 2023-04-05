@@ -20,13 +20,13 @@ public sealed partial class ErrorStepDialogContent : Page
 	/// <value>
 	/// <para><inheritdoc cref="ErrorStepText" path="//summary/para[1]"/></para>
 	/// <para>
-	/// This value can be get by calling <see cref="object.ToString"/> method of type <see cref="IStep"/> like:
+	/// This value can be get by calling <see cref="object.ToString"/> method of type <see cref="Step"/> like:
 	/// <code>
 	/// ErrorStepText = wrongStep.ToString();
 	/// </code>
 	/// </para>
 	/// </value>
-	/// <seealso cref="IStep"/>
+	/// <seealso cref="Step"/>
 	public string ErrorStepText
 	{
 		set => ErrorStepDetailsDisplayer.Text = value;

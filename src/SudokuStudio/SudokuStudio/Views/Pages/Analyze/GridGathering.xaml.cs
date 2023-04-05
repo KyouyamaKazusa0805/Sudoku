@@ -8,7 +8,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	/// <summary>
 	/// Indicates the found steps currently.
 	/// </summary>
-	internal IEnumerable<IStep>? _currentFountSteps;
+	internal IEnumerable<Step>? _currentFountSteps;
 
 
 	/// <summary>
@@ -21,7 +21,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	public AnalyzePage BasePage { get; set; } = null!;
 
 	/// <inheritdoc/>
-	LogicalSolverResult? IAnalyzeTabPage.AnalysisResult
+	AnalyzerResult? IAnalyzeTabPage.AnalysisResult
 	{
 		[DoesNotReturn]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -38,7 +38,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	/// </summary>
 	/// <param name="collection">The raw collection.</param>
 	/// <returns>The collection that can be used as view source.</returns>
-	internal static ObservableCollection<TechniqueGroupModel> GetTechniqueGroups(IEnumerable<IStep> collection)
+	internal static ObservableCollection<TechniqueGroupModel> GetTechniqueGroups(IEnumerable<Step> collection)
 	{
 		return new(
 			from step in collection
@@ -52,7 +52,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		);
 
 
-		static decimal difficultySelector(IStep step) => step.Difficulty;
+		static decimal difficultySelector(Step step) => step.Difficulty;
 	}
 
 
@@ -104,7 +104,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		BasePage.IsGathererLaunched = false;
 
 
-		IEnumerable<IStep> gather()
+		IEnumerable<Step> gather()
 		{
 			lock (App.SyncRoot)
 			{

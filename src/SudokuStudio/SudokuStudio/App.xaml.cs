@@ -54,12 +54,12 @@ public partial class App : Application
 	/// <summary>
 	/// Indicates the program solver.
 	/// </summary>
-	public LogicalSolver ProgramSolver { get; } = new();
+	public Analyzer ProgramSolver { get; } = PredefinedAnalyzers.Default;
 
 	/// <summary>
 	/// Indicates the program step gatherer.
 	/// </summary>
-	public StepsGatherer ProgramGatherer { get; } = new();
+	public Gatherer ProgramGatherer { get; } = new();
 
 	/// <summary>
 	/// Indicates the first-opened grid.

@@ -6,8 +6,8 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
-	xmlns:l="using:Sudoku.Solving.Logical"
 	xmlns:m="using:SudokuStudio.Models"
+	xmlns:analytics="using:Sudoku.Analytics"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:TechniqueGroupView}">
 	<UserControl.Resources>
 		<CollectionViewSource x:Name="TechniqueGroups" x:FieldModifier="internal" IsSourceGrouped="True" />
@@ -33,7 +33,7 @@
 			</GroupStyle>
 		</ListView.GroupStyle>
 		<ListView.ItemTemplate>
-			<DataTemplate x:DataType="l:IStep">
+			<DataTemplate x:DataType="analytics:Step">
 				<ListViewItem Tag="{x:Bind}" Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel)}">
 					<TextBlock
 						Text="{x:Bind ToSimpleString()}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"

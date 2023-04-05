@@ -337,11 +337,11 @@
             </summary>
             <param name="steps">The solving path steps.</param>
         </member>
-        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.Create(Sudoku.Solving.Logical.LogicalSolverResult,SudokuStudio.Interaction.StepTooltipDisplayKind)">
+        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.Create(Sudoku.Analytics.AnalyzerResult,SudokuStudio.Interaction.StepTooltipDisplayKind)">
             <summary>
-            Creates a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance via the specified <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance.
+            Creates a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance via the specified <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
             </summary>
-            <param name="analysisResult">A <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance.</param>
+            <param name="analysisResult">A <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.</param>
             <param name="displayKind">Indicates all displaying values.</param>
             <returns>An instance of the current type.</returns>
         </member>
@@ -563,9 +563,10 @@
         </member>
         <member name="T:SudokuStudio.Configuration.AnalysisPreferenceGroup">
             <summary>
-            Represents with preference items that is used by <see cref="T:Sudoku.Analytics.Analyzer"/>.
+            Represents with preference items that is used by <see cref="T:Sudoku.Analytics.Analyzer"/> or <see cref="T:Sudoku.Analytics.Gatherer"/>.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso cref="T:Sudoku.Analytics.Gatherer"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableFullHouseProperty">
             <summary>
@@ -670,55 +671,55 @@
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererMaxStepsGathered"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableFullHouse">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableFullHouse"/>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableFullHouse"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableLastDigit">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_EnableLastDigit"/>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableLastDigit"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSinglesInBlockFirst">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_HiddenSinglesInBlockFirst"/>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuMode">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.SingleStepSearcher_UseIttoryuMode"/>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowIncompleteUniqueRectangles">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_AllowIncompleteUniqueRectangles"/>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForExtendedUniqueRectangles">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.UniqueRectangleStepSearcher_SearchForExtendedUniqueRectangles"/>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchExtendedBivalueUniversalGraveTypes">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.BivalueUniversalGraveStepSearcher_SearchExtendedTypes"/>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXzRule">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowCollision"/>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.AllowCollision"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowLoopedPatternsOnAlmostLockedSetXzRule">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXzStepSearcher_AllowLoopedPatterns"/>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXyWing">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.AlmostLockedSetsXyWingStepSearcher_AllowCollision"/>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIsFullApplying">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.IsFullApplying"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIgnoresSlowAlgorithms">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreSlowAlgorithms"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IgnoreSlowAlgorithms"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIgnoresHighAllocationAlgorithms">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.IgnoreHighAllocationAlgorithms"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.StepGatherers.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Gatherer.OnlyShowSameLevelTechniquesInFindAllSteps"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.RegularWingStepSearcher_MaxSize"/>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.MaxSearchingPivotsCount"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfComplexFish">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.LogicalSolver.ComplexFishStepSearcher_MaxSize"/>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.MaxSize"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererMaxStepsGathered">
-            <inheritdoc cref="P:Sudoku.Solving.Logical.StepGatherers.StepsGatherer.MaxStepsGathered"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Gatherer.MaxStepsGathered"/>
         </member>
         <member name="T:SudokuStudio.Configuration.BuiltInColorPalette">
             <summary>
@@ -764,10 +765,10 @@
         </member>
         <member name="T:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup">
             <summary>
-            Represents with preference items that is used by <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/>, for the ordering of <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/>s.
+            Represents with preference items that is used by <see cref="T:Sudoku.Analytics.Analyzer"/>, for the ordering of <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
             </summary>
-            <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
-            <seealso cref="T:Sudoku.Solving.Logical.IStepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty">
             <summary>
@@ -2174,7 +2175,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventHandler"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventArgs.#ctor(Sudoku.Solving.Logical.IStep)">
+        <member name="M:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventArgs.#ctor(Sudoku.Analytics.Step)">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventArgs"/> instance via the specified step.
             </summary>
@@ -2561,13 +2562,13 @@ if (student is (name: var name, age: >= 18))
             Indicates the difficulty level of the technique belonging to.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Models.AnalysisResultTableRow.CreateListFrom(Sudoku.Solving.Logical.LogicalSolverResult)">
+        <member name="M:SudokuStudio.Models.AnalysisResultTableRow.CreateListFrom(Sudoku.Analytics.AnalyzerResult)">
             <summary>
             Creates the list of <see cref="T:SudokuStudio.Models.AnalysisResultTableRow"/> as the result value,
-            via the specified <paramref name="analysisResult"/> instance of <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> type.
+            via the specified <paramref name="analysisResult"/> instance of <see cref="T:Sudoku.Analytics.AnalyzerResult"/> type.
             </summary>
             <param name="analysisResult">
-            The <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance that is used for creating the result value.
+            The <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance that is used for creating the result value.
             </param>
             <returns>The result list of <see cref="T:SudokuStudio.Models.AnalysisResultTableRow"/>-typed elements.</returns>
         </member>
@@ -2724,9 +2725,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Models.StepSearcherSerializationData.CreateStepSearchers">
             <summary>
-            Creates a list of <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/> instances.
+            Creates a list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
             </summary>
-            <returns>A list of <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/> instances.</returns>
+            <returns>A list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.</returns>
         </member>
         <member name="F:SudokuStudio.Models.StepSearcherSerializationData.IsEnabledProperty">
             <summary>
@@ -2765,10 +2766,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates a group of technique steps.
             </summary>
+            <param name="elements">The elements.</param>
         </member>
         <member name="M:SudokuStudio.Models.TechniqueGroup.#ctor(System.Collections.Generic.IEnumerable{System.Object})">
             <summary>
-            Initializes a <see cref="T:SudokuStudio.Models.TechniqueGroup"/> instance via the specified list of elements.
+            Indicates a group of technique steps.
             </summary>
             <param name="elements">The elements.</param>
         </member>
@@ -2851,7 +2853,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Models.ViewUnit.Conclusions">
             <summary>
-            Indicates the candidates as conclusions in a single <see cref="T:Sudoku.Solving.Logical.IStep"/>.
+            Indicates the candidates as conclusions in a single <see cref="T:Sudoku.Analytics.Step"/>.
             </summary>
         </member>
         <member name="P:SudokuStudio.Models.ViewUnit.View">
@@ -4652,6 +4654,353 @@ if (student is (name: var name, age: >= 18))
             The routing groups.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Views.Attached.AnalyzerProperties">
+            <summary>
+            Defines a bind behaviors on <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instances, for <see cref="T:Sudoku.Analytics.Analyzer"/> instance's interaction.
+            </summary>
+            <seealso cref="T:SudokuStudio.Views.Controls.SudokuPane"/>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.EnableFullHouseProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>EnableFullHouse</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.EnableLastDigitProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>EnableLastDigit</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSinglesInBlockFirstProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>HiddenSinglesInBlockFirst</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.UseIttoryuModeProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>UseIttoryuMode</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowIncompleteUniqueRectanglesProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>AllowIncompleteUniqueRectangles</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForExtendedUniqueRectanglesProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>SearchForExtendedUniqueRectangles</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedBivalueUniversalGraveTypesProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>SearchExtendedBivalueUniversalGraveTypes</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlsXzProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>AllowCollisionOnAlsXz</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLoopedPatternsOnAlsXzProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>AllowLoopedPatternsOnAlsXz</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlsXyWingProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>AllowCollisionOnAlsXyWing</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.MaxSizeOfRegularWingProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>MaxSizeOfRegularWing</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.MaxSizeOfComplexFishProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>MaxSizeOfComplexFish</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnlyProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>TemplateDeleteOnly</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLengthProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>BowmanBingoMaxLength</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadrupleProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>CheckAlmostLockedQuadruple</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedJuniorExocetProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>CheckAdvancedJuniorExocet</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedSeniorExocetProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>CheckAdvancedSeniorExocet</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIsFullApplyingProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>SolverIsFullApplying</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIgnoreSlowAlgorithmsProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>SolverIgnoreSlowAlgorithms</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIgnoreHighAllocationAlgorithmsProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>SolverIgnoreHighAllocationAlgorithms</c>.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetEnableFullHouse(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.EnableFullHouseProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.EnableFullHouseProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetEnableFullHouse(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.EnableFullHouseProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.EnableFullHouseProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetEnableLastDigit(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.EnableLastDigitProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.EnableLastDigitProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetEnableLastDigit(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.EnableLastDigitProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.EnableLastDigitProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetHiddenSinglesInBlockFirst(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSinglesInBlockFirstProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSinglesInBlockFirstProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetHiddenSinglesInBlockFirst(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSinglesInBlockFirstProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSinglesInBlockFirstProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetUseIttoryuMode(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.UseIttoryuModeProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.UseIttoryuModeProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetUseIttoryuMode(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.UseIttoryuModeProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.UseIttoryuModeProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowIncompleteUniqueRectangles(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowIncompleteUniqueRectanglesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowIncompleteUniqueRectanglesProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowIncompleteUniqueRectangles(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowIncompleteUniqueRectanglesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowIncompleteUniqueRectanglesProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetSearchForExtendedUniqueRectangles(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForExtendedUniqueRectanglesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForExtendedUniqueRectanglesProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetSearchForExtendedUniqueRectangles(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForExtendedUniqueRectanglesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForExtendedUniqueRectanglesProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetSearchExtendedBivalueUniversalGraveTypes(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedBivalueUniversalGraveTypesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedBivalueUniversalGraveTypesProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetSearchExtendedBivalueUniversalGraveTypes(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedBivalueUniversalGraveTypesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedBivalueUniversalGraveTypesProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowCollisionOnAlsXz(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlsXzProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlsXzProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowCollisionOnAlsXz(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlsXzProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlsXzProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowLoopedPatternsOnAlsXz(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLoopedPatternsOnAlsXzProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLoopedPatternsOnAlsXzProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowLoopedPatternsOnAlsXz(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLoopedPatternsOnAlsXzProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLoopedPatternsOnAlsXzProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowCollisionOnAlsXyWing(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlsXyWingProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlsXyWingProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowCollisionOnAlsXyWing(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlsXyWingProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlsXyWingProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetMaxSizeOfRegularWing(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.MaxSizeOfRegularWingProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.MaxSizeOfRegularWingProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetMaxSizeOfRegularWing(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.MaxSizeOfRegularWingProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.MaxSizeOfRegularWingProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetMaxSizeOfComplexFish(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.MaxSizeOfComplexFishProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.MaxSizeOfComplexFishProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetMaxSizeOfComplexFish(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.MaxSizeOfComplexFishProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.MaxSizeOfComplexFishProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetTemplateDeleteOnly(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnlyProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnlyProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetTemplateDeleteOnly(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnlyProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnlyProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetBowmanBingoMaxLength(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLengthProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLengthProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetBowmanBingoMaxLength(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLengthProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLengthProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetCheckAlmostLockedQuadruple(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadrupleProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadrupleProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetCheckAlmostLockedQuadruple(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadrupleProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadrupleProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetCheckAdvancedJuniorExocet(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedJuniorExocetProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedJuniorExocetProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetCheckAdvancedJuniorExocet(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedJuniorExocetProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedJuniorExocetProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetCheckAdvancedSeniorExocet(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedSeniorExocetProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedSeniorExocetProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetCheckAdvancedSeniorExocet(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedSeniorExocetProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedSeniorExocetProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetSolverIsFullApplying(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIsFullApplyingProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIsFullApplyingProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetSolverIsFullApplying(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIsFullApplyingProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIsFullApplyingProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetSolverIgnoreSlowAlgorithms(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIgnoreSlowAlgorithmsProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIgnoreSlowAlgorithmsProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetSolverIgnoreSlowAlgorithms(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIgnoreSlowAlgorithmsProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIgnoreSlowAlgorithmsProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetSolverIgnoreHighAllocationAlgorithms(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIgnoreHighAllocationAlgorithmsProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIgnoreHighAllocationAlgorithmsProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetSolverIgnoreHighAllocationAlgorithms(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIgnoreHighAllocationAlgorithmsProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIgnoreHighAllocationAlgorithmsProperty" />
+        </member>
         <member name="T:SudokuStudio.Views.Attached.FontPickerBindable">
             <summary>
             Defines a bind behaviors on <see cref="T:SudokuStudio.Views.Controls.FontPicker"/> instances.
@@ -4675,393 +5024,46 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.FontPickerBindable.SelectedFontDataProperty" />
         </member>
-        <member name="T:SudokuStudio.Views.Attached.LogicalSolverProperties">
+        <member name="T:SudokuStudio.Views.Attached.GathererProperties">
             <summary>
-            Defines a bind behaviors on <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instances, for <see cref="T:Sudoku.Solving.Logical.LogicalSolver"/> instance's interaction.
+            Defines a bind behaviors on <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instances, for <see cref="T:Sudoku.Analytics.Gatherer"/> instance's interaction.
             </summary>
             <seealso cref="T:SudokuStudio.Views.Controls.SudokuPane"/>
-            <seealso cref="T:Sudoku.Solving.Logical.LogicalSolver"/>
+            <seealso cref="T:Sudoku.Analytics.Gatherer"/>
         </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.EnableFullHouseProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>EnableFullHouse</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.EnableLastDigitProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>EnableLastDigit</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.HiddenSinglesInBlockFirstProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>HiddenSinglesInBlockFirst</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.UseIttoryuModeProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>UseIttoryuMode</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowIncompleteUniqueRectanglesProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>AllowIncompleteUniqueRectangles</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SearchForExtendedUniqueRectanglesProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>SearchForExtendedUniqueRectangles</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SearchExtendedBivalueUniversalGraveTypesProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>SearchExtendedBivalueUniversalGraveTypes</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowCollisionOnAlsXzProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>AllowCollisionOnAlsXz</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowLoopedPatternsOnAlsXzProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>AllowLoopedPatternsOnAlsXz</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowCollisionOnAlsXyWingProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>AllowCollisionOnAlsXyWing</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.MaxSizeOfRegularWingProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>MaxSizeOfRegularWing</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.MaxSizeOfComplexFishProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>MaxSizeOfComplexFish</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.TemplateDeleteOnlyProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>TemplateDeleteOnly</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.BowmanBingoMaxLengthProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>BowmanBingoMaxLength</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAlmostLockedQuadrupleProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>CheckAlmostLockedQuadruple</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAdvancedJuniorExocetProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>CheckAdvancedJuniorExocet</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAdvancedSeniorExocetProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>CheckAdvancedSeniorExocet</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIsFullApplyingProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>SolverIsFullApplying</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIgnoreSlowAlgorithmsProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>SolverIgnoreSlowAlgorithms</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIgnoreHighAllocationAlgorithmsProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>SolverIgnoreHighAllocationAlgorithms</c>.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetEnableFullHouse(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.EnableFullHouseProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.EnableFullHouseProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetEnableFullHouse(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.EnableFullHouseProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.EnableFullHouseProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetEnableLastDigit(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.EnableLastDigitProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.EnableLastDigitProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetEnableLastDigit(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.EnableLastDigitProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.EnableLastDigitProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetHiddenSinglesInBlockFirst(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.HiddenSinglesInBlockFirstProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.HiddenSinglesInBlockFirstProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetHiddenSinglesInBlockFirst(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.HiddenSinglesInBlockFirstProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.HiddenSinglesInBlockFirstProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetUseIttoryuMode(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.UseIttoryuModeProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.UseIttoryuModeProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetUseIttoryuMode(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.UseIttoryuModeProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.UseIttoryuModeProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetAllowIncompleteUniqueRectangles(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowIncompleteUniqueRectanglesProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowIncompleteUniqueRectanglesProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetAllowIncompleteUniqueRectangles(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowIncompleteUniqueRectanglesProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowIncompleteUniqueRectanglesProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetSearchForExtendedUniqueRectangles(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SearchForExtendedUniqueRectanglesProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SearchForExtendedUniqueRectanglesProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetSearchForExtendedUniqueRectangles(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SearchForExtendedUniqueRectanglesProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SearchForExtendedUniqueRectanglesProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetSearchExtendedBivalueUniversalGraveTypes(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SearchExtendedBivalueUniversalGraveTypesProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SearchExtendedBivalueUniversalGraveTypesProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetSearchExtendedBivalueUniversalGraveTypes(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SearchExtendedBivalueUniversalGraveTypesProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SearchExtendedBivalueUniversalGraveTypesProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetAllowCollisionOnAlsXz(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowCollisionOnAlsXzProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowCollisionOnAlsXzProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetAllowCollisionOnAlsXz(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowCollisionOnAlsXzProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowCollisionOnAlsXzProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetAllowLoopedPatternsOnAlsXz(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowLoopedPatternsOnAlsXzProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowLoopedPatternsOnAlsXzProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetAllowLoopedPatternsOnAlsXz(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowLoopedPatternsOnAlsXzProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowLoopedPatternsOnAlsXzProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetAllowCollisionOnAlsXyWing(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowCollisionOnAlsXyWingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowCollisionOnAlsXyWingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetAllowCollisionOnAlsXyWing(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowCollisionOnAlsXyWingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.AllowCollisionOnAlsXyWingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetMaxSizeOfRegularWing(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.MaxSizeOfRegularWingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.MaxSizeOfRegularWingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetMaxSizeOfRegularWing(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.MaxSizeOfRegularWingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.MaxSizeOfRegularWingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetMaxSizeOfComplexFish(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.MaxSizeOfComplexFishProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.MaxSizeOfComplexFishProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetMaxSizeOfComplexFish(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.MaxSizeOfComplexFishProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.MaxSizeOfComplexFishProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetTemplateDeleteOnly(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.TemplateDeleteOnlyProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.TemplateDeleteOnlyProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetTemplateDeleteOnly(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.TemplateDeleteOnlyProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.TemplateDeleteOnlyProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetBowmanBingoMaxLength(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.BowmanBingoMaxLengthProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.BowmanBingoMaxLengthProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetBowmanBingoMaxLength(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.BowmanBingoMaxLengthProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.BowmanBingoMaxLengthProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetCheckAlmostLockedQuadruple(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAlmostLockedQuadrupleProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAlmostLockedQuadrupleProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetCheckAlmostLockedQuadruple(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAlmostLockedQuadrupleProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAlmostLockedQuadrupleProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetCheckAdvancedJuniorExocet(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAdvancedJuniorExocetProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAdvancedJuniorExocetProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetCheckAdvancedJuniorExocet(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAdvancedJuniorExocetProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAdvancedJuniorExocetProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetCheckAdvancedSeniorExocet(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAdvancedSeniorExocetProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAdvancedSeniorExocetProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetCheckAdvancedSeniorExocet(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAdvancedSeniorExocetProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.CheckAdvancedSeniorExocetProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetSolverIsFullApplying(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIsFullApplyingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIsFullApplyingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetSolverIsFullApplying(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIsFullApplyingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIsFullApplyingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetSolverIgnoreSlowAlgorithms(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIgnoreSlowAlgorithmsProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIgnoreSlowAlgorithmsProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetSolverIgnoreSlowAlgorithms(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIgnoreSlowAlgorithmsProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIgnoreSlowAlgorithmsProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.SetSolverIgnoreHighAllocationAlgorithms(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIgnoreHighAllocationAlgorithmsProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIgnoreHighAllocationAlgorithmsProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.LogicalSolverProperties.GetSolverIgnoreHighAllocationAlgorithms(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIgnoreHighAllocationAlgorithmsProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.LogicalSolverProperties.SolverIgnoreHighAllocationAlgorithmsProperty" />
-        </member>
-        <member name="T:SudokuStudio.Views.Attached.StepGathererProperties">
-            <summary>
-            Defines a bind behaviors on <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instances, for <see cref="T:Sudoku.Solving.Logical.StepGatherers.StepsGatherer"/> instance's interaction.
-            </summary>
-            <seealso cref="T:SudokuStudio.Views.Controls.SudokuPane"/>
-            <seealso cref="T:Sudoku.Solving.Logical.StepGatherers.StepsGatherer"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.StepGathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty">
+        <member name="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <c>StepGathererOnlySearchSameLevelTechniquesInFindAllSteps</c>.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Attached.StepGathererProperties.StepGathererMaxStepsGatheredProperty">
+        <member name="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererMaxStepsGatheredProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <c>StepGathererMaxStepsGathered</c>.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Attached.StepGathererProperties.SetStepGathererOnlySearchSameLevelTechniquesInFindAllSteps(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+        <member name="M:SudokuStudio.Views.Attached.GathererProperties.SetStepGathererOnlySearchSameLevelTechniquesInFindAllSteps(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.StepGathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty"/> to get or set value.
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty"/> to get or set value.
             </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.StepGathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty" />
+            <seealso cref="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty" />
         </member>
-        <member name="M:SudokuStudio.Views.Attached.StepGathererProperties.GetStepGathererOnlySearchSameLevelTechniquesInFindAllSteps(Microsoft.UI.Xaml.DependencyObject)">
+        <member name="M:SudokuStudio.Views.Attached.GathererProperties.GetStepGathererOnlySearchSameLevelTechniquesInFindAllSteps(Microsoft.UI.Xaml.DependencyObject)">
             <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.StepGathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty"/> to get or set value.
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty"/> to get or set value.
             </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.StepGathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty" />
+            <seealso cref="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty" />
         </member>
-        <member name="M:SudokuStudio.Views.Attached.StepGathererProperties.SetStepGathererMaxStepsGathered(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
+        <member name="M:SudokuStudio.Views.Attached.GathererProperties.SetStepGathererMaxStepsGathered(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
             <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.StepGathererProperties.StepGathererMaxStepsGatheredProperty"/> to get or set value.
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererMaxStepsGatheredProperty"/> to get or set value.
             </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.StepGathererProperties.StepGathererMaxStepsGatheredProperty" />
+            <seealso cref="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererMaxStepsGatheredProperty" />
         </member>
-        <member name="M:SudokuStudio.Views.Attached.StepGathererProperties.GetStepGathererMaxStepsGathered(Microsoft.UI.Xaml.DependencyObject)">
+        <member name="M:SudokuStudio.Views.Attached.GathererProperties.GetStepGathererMaxStepsGathered(Microsoft.UI.Xaml.DependencyObject)">
             <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.StepGathererProperties.StepGathererMaxStepsGatheredProperty"/> to get or set value.
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererMaxStepsGatheredProperty"/> to get or set value.
             </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.StepGathererProperties.StepGathererMaxStepsGatheredProperty" />
+            <seealso cref="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererMaxStepsGatheredProperty" />
         </member>
         <member name="T:SudokuStudio.Views.Attached.SudokuPaneBindable">
             <summary>
@@ -5079,7 +5081,7 @@ if (student is (name: var name, age: >= 18))
             Defines a attached property that binds with setter and getter methods <c>ProgramStepGatherer</c>.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Attached.SudokuPaneBindable.SetProgramSolver(Microsoft.UI.Xaml.DependencyObject,Sudoku.Solving.Logical.LogicalSolver)">
+        <member name="M:SudokuStudio.Views.Attached.SudokuPaneBindable.SetProgramSolver(Microsoft.UI.Xaml.DependencyObject,Sudoku.Analytics.Analyzer)">
             <summary>
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.SudokuPaneBindable.ProgramSolverProperty"/> to get or set value.
             </summary>
@@ -5091,7 +5093,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.SudokuPaneBindable.ProgramSolverProperty" />
         </member>
-        <member name="M:SudokuStudio.Views.Attached.SudokuPaneBindable.SetProgramStepGatherer(Microsoft.UI.Xaml.DependencyObject,Sudoku.Solving.Logical.StepGatherers.StepsGatherer)">
+        <member name="M:SudokuStudio.Views.Attached.SudokuPaneBindable.SetProgramStepGatherer(Microsoft.UI.Xaml.DependencyObject,Sudoku.Analytics.Gatherer)">
             <summary>
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.SudokuPaneBindable.ProgramStepGathererProperty"/> to get or set value.
             </summary>
@@ -5318,8 +5320,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Views.Controls.StepSearcherListView">
             <summary>
-            Represents a <see cref="T:Microsoft.UI.Xaml.Controls.ListView"/> control that displays for <see cref="T:Sudoku.Solving.Logical.IStepSearcher"/> instances.
+            Represents a <see cref="T:Microsoft.UI.Xaml.Controls.ListView"/> control that displays for <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
             </summary>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="M:SudokuStudio.Views.Controls.StepSearcherListView.#ctor">
             <summary>
@@ -6326,12 +6329,12 @@ if (student is (name: var name, age: >= 18))
             To clear all possible data from the analyze tabs.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.UpdateAnalysisResult(Sudoku.Solving.Logical.LogicalSolverResult)">
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.UpdateAnalysisResult(Sudoku.Analytics.AnalyzerResult)">
             <summary>
-            To update values via the specified <see cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/> instance.
+            To update values via the specified <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
             </summary>
             <param name="analysisResult">The analysis result instance.</param>
-            <seealso cref="T:Sudoku.Solving.Logical.LogicalSolverResult"/>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.CopySudokuGridText">
             <summary>
@@ -6592,7 +6595,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.SudokuStudio#ComponentModel#IAnalyzeTabPage#AnalysisResult">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.GetTechniqueGroups(System.Collections.Generic.IEnumerable{Sudoku.Solving.Logical.IStep})">
+        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.GetTechniqueGroups(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Step})">
             <summary>
             Converts the specified collection into the target view source collection.
             </summary>
@@ -6723,13 +6726,13 @@ if (student is (name: var name, age: >= 18))
             <value>
             <para><inheritdoc cref="P:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.ErrorStepText" path="//summary/para[1]"/></para>
             <para>
-            This value can be get by calling <see cref="M:System.Object.ToString"/> method of type <see cref="T:Sudoku.Solving.Logical.IStep"/> like:
+            This value can be get by calling <see cref="M:System.Object.ToString"/> method of type <see cref="T:Sudoku.Analytics.Step"/> like:
             <code>
             ErrorStepText = wrongStep.ToString();
             </code>
             </para>
             </value>
-            <seealso cref="T:Sudoku.Solving.Logical.IStep"/>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="P:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.ErrorStepGrid">
             <summary>
@@ -7089,7 +7092,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.AnalysisResultDocumentCreator">
             <summary>
-            Provdies with a PDF document creator that constructs analysis result of a puzzle.
+            Provides with a PDF document creator that constructs analysis result of a puzzle.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Operation.AnalysisResultDocumentCreator.TitleStyle">
@@ -7467,9 +7470,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage">
             <summary>
-            Introduction page of technique <see cref="F:Sudoku.Solving.Logical.Techniques.Technique.FullHouse"/>.
+            Introduction page of technique <see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>.
             </summary>
-            <seealso cref="F:Sudoku.Solving.Logical.Techniques.Technique.FullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage.#ctor">
             <summary>

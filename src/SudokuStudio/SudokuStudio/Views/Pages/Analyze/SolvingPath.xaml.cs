@@ -4,7 +4,7 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// Defines the solving path page.
 /// </summary>
 [DependencyProperty<StepTooltipDisplayKind>("StepTooltipDisplayKind", DefaultValue = StepTooltipDisplayKind.TechniqueName | StepTooltipDisplayKind.DifficultyRating | StepTooltipDisplayKind.SimpleDescription | StepTooltipDisplayKind.ExtraDifficultyCases, DocSummary = "Indicates the tooltip display kind.")]
-[DependencyProperty<LogicalSolverResult>("AnalysisResult", IsNullable = true, DocSummary = "Indicates the analysis result.")]
+[DependencyProperty<AnalyzerResult>("AnalysisResult", IsNullable = true, DocSummary = "Indicates the analysis result.")]
 public sealed partial class SolvingPath : Page, IAnalyzeTabPage
 {
 	/// <summary>
@@ -24,7 +24,7 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage
 #pragma warning disable format
 			(d, e) is not (
 				SolvingPath { StepTooltipDisplayKind: var kind, SolvingPathList: var pathListView } path,
-				{ NewValue: var value and (null or LogicalSolverResult) }
+				{ NewValue: var value and (null or AnalyzerResult) }
 			)
 #pragma warning restore format
 		)
@@ -32,7 +32,7 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage
 			return;
 		}
 
-		pathListView.ItemsSource = value is LogicalSolverResult analysisResult
+		pathListView.ItemsSource = value is AnalyzerResult analysisResult
 			? SolvingPathStepCollection.Create(analysisResult, kind)
 			: null;
 	}

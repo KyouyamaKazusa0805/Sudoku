@@ -10,6 +10,12 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher]
 public sealed partial class SeniorExocetStepSearcher : StepSearcher
 {
+	/// <summary>
+	/// Indicates whether the searcher will find advanced eliminations.
+	/// </summary>
+	public bool CheckAdvanced { get; set; }
+
+
 	/// <inheritdoc/>
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)
 	{

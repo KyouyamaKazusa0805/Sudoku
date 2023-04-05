@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Collection;
+namespace SudokuStudio.Collection;
 
 /// <summary>
 /// Defines a solving path.
@@ -22,14 +22,14 @@ public sealed class SolvingPathStepCollection : List<SolvingPathStep>
 
 
 	/// <summary>
-	/// Creates a <see cref="SolvingPathStepCollection"/> instance via the specified <see cref="LogicalSolverResult"/> instance.
+	/// Creates a <see cref="SolvingPathStepCollection"/> instance via the specified <see cref="AnalyzerResult"/> instance.
 	/// </summary>
-	/// <param name="analysisResult">A <see cref="LogicalSolverResult"/> instance.</param>
+	/// <param name="analysisResult">A <see cref="AnalyzerResult"/> instance.</param>
 	/// <param name="displayKind">Indicates all displaying values.</param>
 	/// <returns>An instance of the current type.</returns>
-	public static SolvingPathStepCollection Create(LogicalSolverResult analysisResult, StepTooltipDisplayKind displayKind)
+	public static SolvingPathStepCollection Create(AnalyzerResult analysisResult, StepTooltipDisplayKind displayKind)
 	{
-		if (analysisResult is not { IsSolved: true, SolvingPath: { IsDefaultOrEmpty: false, Length: var pathStepsCount } steps })
+		if (analysisResult is not { IsSolved: true, SolvingPath: { Length: var pathStepsCount } steps })
 		{
 			return new();
 		}

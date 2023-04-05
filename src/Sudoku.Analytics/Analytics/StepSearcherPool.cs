@@ -48,7 +48,7 @@ public abstract class StepSearcherPool
 	/// </param>
 	/// <returns><inheritdoc cref="Default(bool)" path="/returns"/></returns>
 	/// <seealso cref="SeparatedAttribute"/>
-	private static StepSearcher[] GetStepSearchers(Type type, bool separated)
+	public static StepSearcher[] GetStepSearchers(Type type, bool separated)
 	{
 		// Check whether the step searcher is marked 'SeparatedAttribute'.
 		switch (type.GetCustomAttributes<SeparatedAttribute>().ToArray())

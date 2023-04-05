@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.ComponentModel;
+namespace SudokuStudio.ComponentModel;
 
 /// <summary>
 /// Defines a page that is used for displaying analysis result for a puzzle.
@@ -14,5 +14,5 @@ public interface IAnalyzeTabPage
 	/// Gets or sets the analysis result, updating the current tab page using this property.
 	/// </summary>
 	/// <value>The value you want to update. If <see langword="null"/>, clears the page data.</value>
-	LogicalSolverResult? AnalysisResult { get; set; }
+	AnalyzerResult? AnalysisResult { get; set; }
 }

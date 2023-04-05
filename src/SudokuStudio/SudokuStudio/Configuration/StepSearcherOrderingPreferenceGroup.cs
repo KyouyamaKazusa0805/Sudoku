@@ -1,21 +1,21 @@
 namespace SudokuStudio.Configuration;
 
 /// <summary>
-/// Represents with preference items that is used by <see cref="LogicalSolver"/>, for the ordering of <see cref="IStepSearcher"/>s.
+/// Represents with preference items that is used by <see cref="Analyzer"/>, for the ordering of <see cref="StepSearcher"/>s.
 /// </summary>
-/// <seealso cref="LogicalSolver"/>
-/// <seealso cref="IStepSearcher"/>
+/// <seealso cref="Analyzer"/>
+/// <seealso cref="StepSearcher"/>
 [DependencyProperty<ObservableCollection<StepSearcherSerializationData>>("StepSearchersOrder")]
 public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGroup
 {
 	[DefaultValue]
 	private static readonly ObservableCollection<StepSearcherSerializationData> StepSearchersOrderDefaultValue = new(
-		from searcher in Sudoku.Buffers.StepSearcherPool.DefaultCollection(false)
+		from searcher in StepSearcherPool.Default(false)
 		select new StepSearcherSerializationData
 		{
-			IsEnabled = searcher.Options.EnabledArea.Flags(SearcherEnabledArea.Default) && !searcher.IsTemporarilyDisabled,
-			Name = searcher.TypeResourceName,
-			TypeName = searcher.TypeName
+			IsEnabled = searcher.RunningArea.Flags(StepSearcherRunningArea.Searching),
+			Name = searcher.ToString(),
+			TypeName = searcher.GetType().Name
 		}
 	);
 
@@ -33,10 +33,12 @@ public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGrou
 			return;
 		}
 
-		programSolver.CustomSearcherCollection = (
-			from data in stepSearchersData
-			from stepSearcher in data.CreateStepSearchers()
-			select stepSearcher
-		).ToArray();
+		programSolver.WithStepSearchers(
+			(
+				from data in stepSearchersData
+				from stepSearcher in data.CreateStepSearchers()
+				select stepSearcher
+			).ToArray()
+		);
 	}
 }

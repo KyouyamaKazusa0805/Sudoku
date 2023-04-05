@@ -65,7 +65,7 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 }
 
 /// <summary>
-/// Provdies with a PDF document creator that constructs analysis result of a puzzle.
+/// Provides with a PDF document creator that constructs analysis result of a puzzle.
 /// </summary>
 file sealed class AnalysisResultDocumentCreator
 {
@@ -88,7 +88,7 @@ file sealed class AnalysisResultDocumentCreator
 	/// <summary>
 	/// Indicates the analysis result to be used.
 	/// </summary>
-	public required LogicalSolverResult AnalysisResult { get; init; }
+	public required AnalyzerResult AnalysisResult { get; init; }
 
 
 	/// <summary>

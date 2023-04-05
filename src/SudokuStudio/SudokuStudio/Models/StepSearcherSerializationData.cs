@@ -9,9 +9,12 @@ namespace SudokuStudio.Models;
 public sealed partial class StepSearcherSerializationData : DependencyObject
 {
 	/// <summary>
-	/// Creates a list of <see cref="IStepSearcher"/> instances.
+	/// Creates a list of <see cref="StepSearcher"/> instances.
 	/// </summary>
-	/// <returns>A list of <see cref="IStepSearcher"/> instances.</returns>
-	public IStepSearcher[] CreateStepSearchers()
-		=> Sudoku.Buffers.StepSearcherPool.GetStepSearchers(typeof(IStepSearcher).Assembly.GetType($"Sudoku.Solving.Logical.StepSearchers.{TypeName}")!, true);
+	/// <returns>A list of <see cref="StepSearcher"/> instances.</returns>
+	public StepSearcher[] CreateStepSearchers()
+	{
+		var stepSearcherName = $"Sudoku.Analytics.StepSearchers.{TypeName}";
+		return StepSearcherPool.GetStepSearchers(typeof(StepSearcher).Assembly.GetType(stepSearcherName)!, true);
+	}
 }

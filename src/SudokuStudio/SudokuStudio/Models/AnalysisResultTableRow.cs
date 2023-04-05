@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Models;
+namespace SudokuStudio.Models;
 
 /// <summary>
 /// Defines a row of analysis result table.
@@ -33,17 +33,17 @@ internal sealed class AnalysisResultTableRow
 
 	/// <summary>
 	/// Creates the list of <see cref="AnalysisResultTableRow"/> as the result value,
-	/// via the specified <paramref name="analysisResult"/> instance of <see cref="LogicalSolverResult"/> type.
+	/// via the specified <paramref name="analysisResult"/> instance of <see cref="AnalyzerResult"/> type.
 	/// </summary>
 	/// <param name="analysisResult">
-	/// The <see cref="LogicalSolverResult"/> instance that is used for creating the result value.
+	/// The <see cref="AnalyzerResult"/> instance that is used for creating the result value.
 	/// </param>
 	/// <returns>The result list of <see cref="AnalysisResultTableRow"/>-typed elements.</returns>
-	public static IEnumerable<AnalysisResultTableRow> CreateListFrom(LogicalSolverResult analysisResult)
+	public static IEnumerable<AnalysisResultTableRow> CreateListFrom(AnalyzerResult analysisResult)
 	{
 		return
 			from step in analysisResult.Steps
-			orderby step.DifficultyLevel, step.TechniqueCode
+			orderby step.DifficultyLevel, step.Code
 			group step by step.Name into stepGroup
 			let stepGroupArray = stepGroup.ToArray()
 			let difficultyLevels =
@@ -62,7 +62,7 @@ internal sealed class AnalysisResultTableRow
 			};
 
 
-		static decimal selector(IStep step) => step.Difficulty;
+		static decimal selector(Step step) => step.Difficulty;
 
 		static DifficultyLevel aggregateFunc(DifficultyLevel interim, DifficultyLevel next) => interim | next;
 	}

@@ -8,7 +8,7 @@ namespace SudokuStudio.Views.Pages;
 [DependencyProperty<bool>("GeneratorIsNotRunning", DefaultValue = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the generator is not running currently.")]
 [DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"VisualUnit.Views\"/> displayed.")]
 [DependencyProperty<double>("ProgressPercent", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the progress percent value.")]
-[DependencyProperty<LogicalSolverResult>("AnalysisResultCache", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the analysis result cache.")]
+[DependencyProperty<AnalyzerResult>("AnalysisResultCache", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the analysis result cache.")]
 [DependencyProperty<ColorPalette>("UserDefinedPalette", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the user-defined colors.")]
 [DependencyProperty<VisualUnit>("VisualUnit", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the visual unit.")]
 public sealed partial class AnalyzePage : Page
@@ -70,11 +70,11 @@ public sealed partial class AnalyzePage : Page
 	}
 
 	/// <summary>
-	/// To update values via the specified <see cref="LogicalSolverResult"/> instance.
+	/// To update values via the specified <see cref="AnalyzerResult"/> instance.
 	/// </summary>
 	/// <param name="analysisResult">The analysis result instance.</param>
-	/// <seealso cref="LogicalSolverResult"/>
-	internal void UpdateAnalysisResult(LogicalSolverResult analysisResult)
+	/// <seealso cref="AnalyzerResult"/>
+	internal void UpdateAnalysisResult(AnalyzerResult analysisResult)
 	{
 		foreach (var pageData in (IEnumerable<AnalyzeTabPageData>)AnalyzeTabs.TabItemsSource)
 		{
@@ -769,8 +769,8 @@ public sealed partial class AnalyzePage : Page
 			case
 			{
 				WrongStep: { } wrongStep,
-				FailedReason: SearcherFailedReason.WrongStep,
-				UnhandledException: Sudoku.Runtime.AnalysisServices.WrongStepException { CurrentInvalidGrid: var invalidGrid }
+				FailedReason: AnalyzerFailedReason.WrongStep,
+				UnhandledException: WrongStepException { CurrentInvalidGrid: var invalidGrid }
 			}:
 			{
 				await new ContentDialog
@@ -789,7 +789,7 @@ public sealed partial class AnalyzePage : Page
 
 				break;
 			}
-			case { FailedReason: SearcherFailedReason.ExceptionThrown, UnhandledException: { } ex }:
+			case { FailedReason: AnalyzerFailedReason.ExceptionThrown, UnhandledException: { } ex }:
 			{
 				await new ContentDialog
 				{
@@ -806,7 +806,7 @@ public sealed partial class AnalyzePage : Page
 		}
 
 
-		LogicalSolverResult analyze()
+		AnalyzerResult analyze()
 		{
 			lock (App.SyncRoot)
 			{

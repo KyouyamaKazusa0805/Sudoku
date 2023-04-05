@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Models;
+namespace SudokuStudio.Models;
 
 /// <summary>
 /// Defines a path step in a whole solving path.
@@ -23,5 +23,5 @@ public sealed class SolvingPathStep
 	/// <summary>
 	/// Indicates the step details.
 	/// </summary>
-	public required IStep Step { get; set; }
+	public required Step Step { get; set; }
 }

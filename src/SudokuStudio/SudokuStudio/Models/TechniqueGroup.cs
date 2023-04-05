@@ -1,19 +1,11 @@
-﻿namespace SudokuStudio.Models;
+namespace SudokuStudio.Models;
 
 /// <summary>
 /// Indicates a group of technique steps.
 /// </summary>
-public sealed class TechniqueGroup : List<object>
+/// <param name="elements">The elements.</param>
+public sealed class TechniqueGroup(IEnumerable<object> elements) : List<object>(elements)
 {
-	/// <summary>
-	/// Initializes a <see cref="TechniqueGroupModel"/> instance via the specified list of elements.
-	/// </summary>
-	/// <param name="elements">The elements.</param>
-	public TechniqueGroup(IEnumerable<object> elements) : base(elements)
-	{
-	}
-
-
 	/// <summary>
 	/// Indicates the key of the group.
 	/// </summary>
