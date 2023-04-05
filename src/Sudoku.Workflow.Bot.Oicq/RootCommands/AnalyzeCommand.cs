@@ -27,6 +27,11 @@ internal sealed class AnalyzeCommand : Command
 			return;
 		}
 
+		const string errorMessageHeader =
+			"""
+			抱歉，由于程序算法设计的错误导致的 bug，导致这个题无法正确分析，得到正确结果。
+			请将该错误步骤截图或图文信息反馈给程序设计者，并修复此 bug。
+			""";
 		switch (PuzzleAnalyzer.Analyze(Puzzle))
 		{
 			case { IsSolved: true } analyzerResult:
@@ -42,8 +47,7 @@ internal sealed class AnalyzeCommand : Command
 			{
 				await messageReceiver.SendMessageAsync(
 					$"""
-					抱歉，由于程序算法设计的错误导致的 bug，导致这个题无法正确分析，得到正确结果。
-					请将该错误步骤截图或图文信息反馈给程序设计者，并修复此 bug。
+					{errorMessageHeader}
 					---
 					错误盘面代码：{currentGrid:#}
 					错误步骤描述：{step}
@@ -67,8 +71,7 @@ internal sealed class AnalyzeCommand : Command
 			{
 				await messageReceiver.SendMessageAsync(
 					$"""
-					抱歉，由于程序算法设计的错误导致的 bug，导致这个题无法正确分析，得到正确结果。
-					请将该错误步骤截图或图文信息反馈给程序设计者，并修复此 bug。
+					{errorMessageHeader}
 					---
 					错误信息：{message}
 					异常类型：{exception.GetType()}
@@ -81,8 +84,7 @@ internal sealed class AnalyzeCommand : Command
 			{
 				await messageReceiver.SendMessageAsync(
 					$"""
-					抱歉，由于程序算法设计的错误导致的 bug，导致这个题无法正确分析，得到正确结果。
-					请将该错误步骤截图或图文信息反馈给程序设计者，并修复此 bug。
+					{errorMessageHeader}
 					---
 					内部错误代码：{failedReason}（{failedReason.GetFailedReasonText()}）
 					"""
