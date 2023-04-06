@@ -1025,7 +1025,7 @@ public unsafe partial struct Grid :
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="Undefined"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool ExactlyValidate(out Grid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
+	public readonly bool ExactlyValidate(out Grid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
 	{
 		SkipInit(out solutionIfValid);
 		if (BackingSolver.CheckValidity(ToString(), out var solution))
