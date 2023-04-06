@@ -2387,26 +2387,16 @@ if (student is (name: var name, age: >= 18))
             Provides with a data structure that displays a view for basic information.
             </summary>
         </member>
-        <member name="F:Sudoku.Presentation.View._nodes">
-            <summary>
-            Indicates the inner dictionary.
-            </summary>
-        </member>
         <member name="M:Sudoku.Presentation.View.#ctor">
             <summary>
             Creates an empty <see cref="T:Sudoku.Presentation.View"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.View.#ctor(System.Collections.Generic.List{Sudoku.Presentation.Nodes.ViewNode})">
+        <member name="M:Sudoku.Presentation.View.#ctor(System.Collections.Generic.HashSet{Sudoku.Presentation.Nodes.ViewNode})">
             <summary>
             Initializes a <see cref="T:Sudoku.Presentation.View"/> instance via the specified list as the raw value.
             </summary>
             <param name="nodes">The list as the raw value.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.View.Count">
-            <summary>
-            Indicates the number of elements stored in the current collection.
-            </summary>
         </member>
         <member name="P:Sudoku.Presentation.View.BasicNodes">
             <summary>
@@ -2433,71 +2423,21 @@ if (student is (name: var name, age: >= 18))
             Indicates the empty instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.View.Item(System.Int32)">
-            <summary>
-            Gets the <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> at the specified position.
-            </summary>
-            <param name="index">The index.</param>
-            <returns>The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.Add(Sudoku.Presentation.Nodes.ViewNode)">
-            <summary>
-            Adds the specified <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> into the collection.
-            </summary>
-            <param name="node">The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
-        </member>
         <member name="M:Sudoku.Presentation.View.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
             <summary>
             Adds a list of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s into the collection.
             </summary>
             <param name="nodes">A list of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
         </member>
-        <member name="M:Sudoku.Presentation.View.Remove(Sudoku.Presentation.Nodes.ViewNode)">
+        <member name="M:Sudoku.Presentation.View.Find(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})">
             <summary>
-            Removes the specified <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> from the collection.
+            Searches for an element that matches the conditions defined by the specified predicate,
+            and returns the first occurrence within the entire <see cref="T:Sudoku.Presentation.View"/>.
             </summary>
-            <param name="node">The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.View.ConflictWith(System.Int32)">
-            <summary>
-            <para>Determines whether the current view contains a view node using the specified candidate value.</para>
-            <para>This method will be useful for cannibalism checking cases.</para>
-            </summary>
-            <param name="candidate">The candidate to be determined.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.Contains(Sudoku.Presentation.Nodes.ViewNode)">
-            <summary>
-            Determines whether the current collection contains a <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance whose value is considered equal
-            with the specified node.
-            </summary>
-            <param name="node">The node.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.Exists(System.Predicate{Sudoku.Presentation.Nodes.ViewNode},Sudoku.Presentation.Nodes.ViewNode@)">
-            <summary>
-            Determines whether the current collection contains a <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance whose value satisfies the specified condition.
-            </summary>
-            <param name="predicate">The condition to check for each node.</param>
-            <param name="node">The found node.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.Select``1(System.Func{Sudoku.Presentation.Nodes.ViewNode,``0})">
-            <summary>
-            Projects the collection, converting it into a new collection whose elements is converted by the specified method.
-            </summary>
-            <param name="selector">The selector.</param>
-            <returns>The target iterator.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.Where(System.Func{Sudoku.Presentation.Nodes.ViewNode,System.Boolean})">
-            <summary>
-            Filters the collection by specified condition.
-            </summary>
-            <param name="selector">The selector.</param>
-            <returns>The target iterator.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+            <param name="match">The <see cref="T:System.Predicate`1"/> delegate that defines the conditions of the element to search for.</param>
+            <returns>
+            The first element that matches the conditions defined by the specified predicate, if found; otherwise, <see langword="null"/>.
+            </returns>
         </member>
         <member name="M:Sudoku.Presentation.View.OfType``1">
             <summary>
@@ -2507,12 +2447,6 @@ if (student is (name: var name, age: >= 18))
             <returns>The target collection of element type <typeparamref name="T"/>.</returns>
         </member>
         <member name="M:Sudoku.Presentation.View.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.View.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.View.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.View.op_BitwiseOr(Sudoku.Presentation.View,Sudoku.Presentation.Nodes.ViewNode)">
@@ -2542,47 +2476,19 @@ if (student is (name: var name, age: >= 18))
             is based on the argument <paramref name="originalView"/>.
             </remarks>
         </member>
-        <member name="T:Sudoku.Presentation.View.Iterator">
-            <summary>
-            Represents with a default enumerator type that provides the mechanism of elementary operations
-            used by <see langword="foreach"/> statements.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.View.Iterator._enumerator">
-            <summary>
-            The internal enumerator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.View.Iterator.#ctor(Sudoku.Presentation.View)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.View.Iterator"/> instance via the specified list of nodes.
-            </summary>
-            <param name="view">The internal nodes.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.View.Iterator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="M:Sudoku.Presentation.View.Iterator.Any(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})">
-            <summary>
-            Determines whether the collection contains at least one element satisfying the specified condition.
-            </summary>
-            <param name="predicate">The condition.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.Iterator.GetEnumerator">
-            <summary>
-            Creates an <see cref="T:Sudoku.Presentation.View.OfTypeIterator`1"/> instance.
-            </summary>
-            <returns>An <see cref="T:Sudoku.Presentation.View.OfTypeIterator`1"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.Iterator.MoveNext">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
         <member name="T:Sudoku.Presentation.View.OfTypeIterator`1">
             <summary>
             Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
             </summary>
             <typeparam name="T">The type of the element node.</typeparam>
+            <param name="view">The internal nodes.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.#ctor(Sudoku.Presentation.View)">
+            <summary>
+            Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
+            </summary>
+            <typeparam name="T">The type of the element node.</typeparam>
+            <param name="view">The internal nodes.</param>
         </member>
         <member name="F:Sudoku.Presentation.View.OfTypeIterator`1._count">
             <summary>
@@ -2593,12 +2499,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The internal enumerator.
             </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.#ctor(Sudoku.Presentation.View)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.View.OfTypeIterator`1"/> instance via the specified list of nodes.
-            </summary>
-            <param name="view">The internal nodes.</param>
         </member>
         <member name="P:Sudoku.Presentation.View.OfTypeIterator`1.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
@@ -2624,76 +2524,6 @@ if (student is (name: var name, age: >= 18))
             <returns>An array of elements.</returns>
         </member>
         <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="T:Sudoku.Presentation.View.SelectIterator`1">
-            <summary>
-            Represents an enumerator that iterates for a list of elements that is projected by the current collection,
-            converting by the specified converter.
-            </summary>
-            <typeparam name="T">The type of projected elements.</typeparam>
-        </member>
-        <member name="F:Sudoku.Presentation.View.SelectIterator`1._selector">
-            <summary>
-            The selector method.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.View.SelectIterator`1._enumerator">
-            <summary>
-            The internal enumerator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.View.SelectIterator`1.#ctor(Sudoku.Presentation.View,System.Func{Sudoku.Presentation.Nodes.ViewNode,`0})">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.View.SelectIterator`1"/> instance via the specified list of nodes.
-            </summary>
-            <param name="view">The internal nodes.</param>
-            <param name="selector">The selector.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.View.SelectIterator`1.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="M:Sudoku.Presentation.View.SelectIterator`1.GetEnumerator">
-            <summary>
-            Creates an <see cref="T:Sudoku.Presentation.View.SelectIterator`1"/> instance.
-            </summary>
-            <returns>An <see cref="T:Sudoku.Presentation.View.SelectIterator`1"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.SelectIterator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="T:Sudoku.Presentation.View.WhereIterator">
-            <summary>
-            Represents an enumerator that iterates for view nodes satisfying the specified condition.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.View.WhereIterator._filteringCondition">
-            <summary>
-            The filtering condition.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.View.WhereIterator._enumerator">
-            <summary>
-            The internal enumerator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.View.WhereIterator.#ctor(Sudoku.Presentation.View,System.Func{Sudoku.Presentation.Nodes.ViewNode,System.Boolean})">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.View.WhereIterator"/> instance via the specified list of nodes.
-            </summary>
-            <param name="view">The internal nodes.</param>
-            <param name="filteringCondition">The condition.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.View.WhereIterator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="M:Sudoku.Presentation.View.WhereIterator.GetEnumerator">
-            <summary>
-            Creates an <see cref="T:Sudoku.Presentation.View.WhereIterator"/> instance.
-            </summary>
-            <returns>An <see cref="T:Sudoku.Presentation.View.WhereIterator"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.WhereIterator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="T:Sudoku.Presentation.ViewExtensions">

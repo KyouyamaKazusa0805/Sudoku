@@ -6,33 +6,24 @@ partial class View
 	/// Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
 	/// </summary>
 	/// <typeparam name="T">The type of the element node.</typeparam>
-	public ref struct OfTypeIterator<T> where T : ViewNode
+	/// <param name="view">The internal nodes.</param>
+	public ref struct OfTypeIterator<T>(View view) where T : ViewNode
 	{
 		/// <summary>
 		/// The total number of elements.
 		/// </summary>
-		private readonly int _count;
+		private readonly int _count = view.Count;
 
 		/// <summary>
 		/// The internal enumerator.
 		/// </summary>
-		private List<ViewNode>.Enumerator _enumerator;
+		private Enumerator _enumerator = view.GetEnumerator();
 
 
-		/// <summary>
-		/// Initializes an <see cref="OfTypeIterator{T}"/> instance via the specified list of nodes.
-		/// </summary>
-		/// <param name="view">The internal nodes.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal OfTypeIterator(View view)
-		{
-			_count = view._nodes.Count;
-			_enumerator = view._nodes.GetEnumerator();
-		}
-
-
+#nullable disable
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>
-		public T Current { get; private set; } = default!;
+		public T Current { get; private set; }
+#nullable restore
 
 
 		/// <summary>

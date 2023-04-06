@@ -65,7 +65,7 @@ public sealed partial class DrawingPage : Page
 		{
 			case { Cell: var cell, MouseButton: MouseButton.Left }:
 			{
-				if (_localView.View.Exists(element => element is CellViewNode { Cell: var c } && c == cell, out var foundNode))
+				if (_localView.View.Find(node => node is CellViewNode { Cell: var c } && c == cell) is { } foundNode)
 				{
 					_localView.View.Remove(foundNode);
 				}
@@ -90,7 +90,7 @@ public sealed partial class DrawingPage : Page
 		{
 			case { Candidate: var candidate, MouseButton: MouseButton.Left }:
 			{
-				if (_localView.View.Exists(element => element is CandidateViewNode { Candidate: var c } && c == candidate, out var foundNode))
+				if (_localView.View.Find(node => node is CandidateViewNode { Candidate: var c } && c == candidate) is { } foundNode)
 				{
 					_localView.View.Remove(foundNode);
 				}
@@ -130,7 +130,7 @@ public sealed partial class DrawingPage : Page
 				}
 
 				var house = TrailingZeroCount(coveredHouses);
-				if (_localView.View.Exists(element => element is HouseViewNode { House: var h } && h == house, out var foundNode))
+				if (_localView.View.Find(node => node is HouseViewNode { House: var h } && h == house) is { } foundNode)
 				{
 					_localView.View.Remove(foundNode);
 				}
@@ -165,7 +165,7 @@ public sealed partial class DrawingPage : Page
 				var (mr2, mc2) = GridClickedEventArgs.GetChute(candidate2);
 				if (mr1 == mr2)
 				{
-					if (_localView.View.Exists(element => element is ChuteViewNode { ChuteIndex: var c } && c == mr1, out var foundNode))
+					if (_localView.View.Find(node => node is ChuteViewNode { ChuteIndex: var c } && c == mr1) is { } foundNode)
 					{
 						_localView.View.Remove(foundNode);
 					}
@@ -182,7 +182,7 @@ public sealed partial class DrawingPage : Page
 
 				if (mc1 == mc2)
 				{
-					if (_localView.View.Exists(element => element is ChuteViewNode { ChuteIndex: var c } && c - 3 == mc1, out var foundNode))
+					if (_localView.View.Find(node => node is ChuteViewNode { ChuteIndex: var c } && c - 3 == mc1) is { } foundNode)
 					{
 						_localView.View.Remove(foundNode);
 					}
@@ -220,7 +220,7 @@ public sealed partial class DrawingPage : Page
 				var cell2 = candidate2 / 9;
 				var digit1 = candidate1 % 9;
 				var digit2 = candidate2 % 9;
-				if (_localView.View.Exists(predicate, out var foundNode))
+				if (_localView.View.Find(predicate) is { } foundNode)
 				{
 					_localView.View.Remove(foundNode);
 				}
@@ -266,7 +266,7 @@ public sealed partial class DrawingPage : Page
 					case { Candidate: var candidate }:
 					{
 						var cell = candidate / 9;
-						if (_localView.View.Exists(element => element is BabaGroupViewNode { Cell: var c } && c == cell, out var foundNode))
+						if (_localView.View.Find(node => node is BabaGroupViewNode { Cell: var c } && c == cell) is { } foundNode)
 						{
 							_localView.View.Remove(foundNode);
 						}

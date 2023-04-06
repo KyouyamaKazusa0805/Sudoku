@@ -3,19 +3,13 @@ namespace Sudoku.Presentation;
 /// <summary>
 /// Provides with a data structure that displays a view for basic information.
 /// </summary>
-public sealed partial class View : ICloneable<View>, IEnumerable<ViewNode>
+public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 {
-	/// <summary>
-	/// Indicates the inner dictionary.
-	/// </summary>
-	private readonly List<ViewNode> _nodes = new();
-
-
 	/// <summary>
 	/// Creates an empty <see cref="View"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private View()
+	private View() : base()
 	{
 	}
 
@@ -24,13 +18,10 @@ public sealed partial class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// </summary>
 	/// <param name="nodes">The list as the raw value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private View(List<ViewNode> nodes) => _nodes = nodes;
+	private View(HashSet<ViewNode> nodes) : base(nodes)
+	{
+	}
 
-
-	/// <summary>
-	/// Indicates the number of elements stored in the current collection.
-	/// </summary>
-	public int Count => _nodes.Count;
 
 	/// <summary>
 	/// Indicates the basic nodes that the current data type stores.
@@ -56,37 +47,8 @@ public sealed partial class View : ICloneable<View>, IEnumerable<ViewNode>
 	/// <summary>
 	/// Indicates the empty instance.
 	/// </summary>
-	public static View Empty
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new();
-	}
+	public static View Empty => new();
 
-
-	/// <summary>
-	/// Gets the <see cref="ViewNode"/> at the specified position.
-	/// </summary>
-	/// <param name="index">The index.</param>
-	/// <returns>The <see cref="ViewNode"/> instance.</returns>
-	public ViewNode this[int index]
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _nodes[index];
-	}
-
-
-	/// <summary>
-	/// Adds the specified <see cref="ViewNode"/> into the collection.
-	/// </summary>
-	/// <param name="node">The <see cref="ViewNode"/> instance.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Add(ViewNode node)
-	{
-		if (!_nodes.Contains(node))
-		{
-			_nodes.Add(node);
-		}
-	}
 
 	/// <summary>
 	/// Adds a list of <see cref="ViewNode"/>s into the collection.
@@ -101,75 +63,25 @@ public sealed partial class View : ICloneable<View>, IEnumerable<ViewNode>
 	}
 
 	/// <summary>
-	/// Removes the specified <see cref="ViewNode"/> from the collection.
+	/// Searches for an element that matches the conditions defined by the specified predicate,
+	/// and returns the first occurrence within the entire <see cref="View"/>.
 	/// </summary>
-	/// <param name="node">The <see cref="ViewNode"/> instance.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Remove(ViewNode node)
+	/// <param name="match">The <see cref="Predicate{T}"/> delegate that defines the conditions of the element to search for.</param>
+	/// <returns>
+	/// The first element that matches the conditions defined by the specified predicate, if found; otherwise, <see langword="null"/>.
+	/// </returns>
+	public ViewNode? Find(Predicate<ViewNode> match)
 	{
-		if (_nodes.Contains(node))
+		foreach (var element in this)
 		{
-			_nodes.Remove(node);
-		}
-	}
-
-	/// <summary>
-	/// <para>Determines whether the current view contains a view node using the specified candidate value.</para>
-	/// <para>This method will be useful for cannibalism checking cases.</para>
-	/// </summary>
-	/// <param name="candidate">The candidate to be determined.</param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool ConflictWith(int candidate) => OfType<CandidateViewNode>().Any(n => n.Candidate == candidate);
-
-	/// <summary>
-	/// Determines whether the current collection contains a <see cref="ViewNode"/> instance whose value is considered equal
-	/// with the specified node.
-	/// </summary>
-	/// <param name="node">The node.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool Contains(ViewNode node) => Exists(element => element == node, out _);
-
-	/// <summary>
-	/// Determines whether the current collection contains a <see cref="ViewNode"/> instance whose value satisfies the specified condition.
-	/// </summary>
-	/// <param name="predicate">The condition to check for each node.</param>
-	/// <param name="node">The found node.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool Exists(Predicate<ViewNode> predicate, [NotNullWhen(true)] out ViewNode? node)
-	{
-		foreach (var element in _nodes)
-		{
-			if (predicate(element))
+			if (match(element))
 			{
-				node = element;
-				return true;
+				return element;
 			}
 		}
 
-		node = null;
-		return false;
+		return null;
 	}
-
-	/// <summary>
-	/// Projects the collection, converting it into a new collection whose elements is converted by the specified method.
-	/// </summary>
-	/// <param name="selector">The selector.</param>
-	/// <returns>The target iterator.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SelectIterator<T> Select<T>(Func<ViewNode, T> selector) => new(this, selector);
-
-	/// <summary>
-	/// Filters the collection by specified condition.
-	/// </summary>
-	/// <param name="selector">The selector.</param>
-	/// <returns>The target iterator.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public WhereIterator Where(Func<ViewNode, bool> selector) => new(this, selector);
-
-	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Iterator GetEnumerator() => new(this);
 
 	/// <summary>
 	/// Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
@@ -181,15 +93,22 @@ public sealed partial class View : ICloneable<View>, IEnumerable<ViewNode>
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View Clone() => Count == 0 ? Empty : new(new(from node in _nodes select node.Clone()));
+	public View Clone()
+	{
+		return Count == 0 ? Empty : new(cloneNodes());
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator IEnumerable.GetEnumerator() => _nodes.GetEnumerator();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator<ViewNode> IEnumerable<ViewNode>.GetEnumerator() => _nodes.GetEnumerator();
+		HashSet<ViewNode> cloneNodes()
+		{
+			var result = new HashSet<ViewNode>(Count);
+			foreach (var node in this)
+			{
+				result.Add(node.Clone());
+			}
+
+			return result;
+		}
+	}
 
 
 	/// <summary>
