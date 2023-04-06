@@ -322,6 +322,12 @@ public unsafe partial struct Grid :
 	public readonly bool IsValid => BackingSolver.CheckValidity(ToString());
 
 	/// <summary>
+	/// Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
+	/// if arbitrary one given digit will be removed from the grid.
+	/// </summary>
+	public readonly bool IsMinimal => CheckMinimal(out _);
+
+	/// <summary>
 	/// Indicates the number of total candidates.
 	/// </summary>
 	public readonly int CandidatesCount
@@ -1044,6 +1050,58 @@ public unsafe partial struct Grid :
 		{
 			sukaku = null;
 			return false;
+		}
+	}
+
+	/// <summary>
+	/// Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
+	/// if arbitrary one given digit will be removed from the grid.
+	/// </summary>
+	/// <param name="firstCandidateMakePuzzleNotMinimal">
+	/// <para>
+	/// Indicates the first found candidate that can make the puzzle not minimal, which means
+	/// if we remove the digit in the cell, the puzzle will still keep unique.
+	/// </para>
+	/// <para>If the return value is <see langword="true"/>, this argument will be -1.</para>
+	/// </param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
+	public readonly bool CheckMinimal(out int firstCandidateMakePuzzleNotMinimal)
+	{
+		switch (this)
+		{
+			case { IsValid: false }:
+			{
+				throw new InvalidOperationException("The puzzle is not unique.");
+			}
+			case { IsSolved: true, GivenCells.Count: 81 }:
+			{
+				// Very special case: all cells are givens.
+				// The puzzle is considered not a minimal puzzle, because any one digit in the grid can be removed.
+				firstCandidateMakePuzzleNotMinimal = this[0];
+				return false;
+			}
+			default:
+			{
+				var gridCanBeModified = this;
+				gridCanBeModified.Unfix();
+
+				foreach (var cell in gridCanBeModified.ModifiableCells)
+				{
+					var newGrid = gridCanBeModified;
+					newGrid[cell] = -1;
+					newGrid.Fix();
+
+					if (newGrid.IsValid)
+					{
+						firstCandidateMakePuzzleNotMinimal = cell * 9 + this[cell];
+						return false;
+					}
+				}
+
+				firstCandidateMakePuzzleNotMinimal = -1;
+				return true;
+			}
 		}
 	}
 

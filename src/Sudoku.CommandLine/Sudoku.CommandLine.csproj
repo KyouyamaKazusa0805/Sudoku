@@ -10,7 +10,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.Algorithms\Sudoku.Algorithms.csproj" />
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 		<ProjectReference Include="..\Sudoku.Gdip\Sudoku.Gdip.csproj" />
 		<ProjectReference Include="..\Sudoku.Workflow.Bot.Oicq\Sudoku.Workflow.Bot.Oicq.csproj" />

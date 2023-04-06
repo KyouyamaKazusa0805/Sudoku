@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interaction.Conversions;
+namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>
 /// Provides with conversion methods used by XAML designer, about puzzle details displayed.
@@ -67,7 +67,7 @@ internal static class SudokuGridConversion
 			return GetString("AnalyzePage_MinimalResult_NotUniquePuzzle");
 		}
 
-		if (!MinimalPuzzleChecker.IsMinimal(grid, out var firstCandidateMakePuzzleNotMinimal))
+		if (!grid.CheckMinimal(out var firstCandidateMakePuzzleNotMinimal))
 		{
 			return string.Format(
 				GetString("AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved"),

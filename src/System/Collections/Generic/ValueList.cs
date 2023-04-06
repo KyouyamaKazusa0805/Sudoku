@@ -1,4 +1,4 @@
-﻿#pragma warning disable IDE0032, IDE0044
+#pragma warning disable IDE0032, IDE0044
 namespace System.Collections.Generic;
 
 /// <summary>
@@ -34,6 +34,14 @@ public unsafe ref partial struct ValueList<T> where T : notnull
 	/// </summary>
 	private T* _startPtr;
 
+
+	/// <summary>
+	/// Initializes a <see cref="ValueList{T}"/> instance via the default capacity 256.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ValueList() : this(byte.MaxValue)
+	{
+	}
 
 	/// <summary>
 	/// Initializes a list that stores the specified number of elements.

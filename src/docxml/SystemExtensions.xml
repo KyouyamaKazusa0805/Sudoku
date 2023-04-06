@@ -639,6 +639,11 @@
             Indicates the pointer that points to the first element.
             </summary>
         </member>
+        <member name="M:System.Collections.Generic.ValueList`1.#ctor">
+            <summary>
+            Initializes a <see cref="T:System.Collections.Generic.ValueList`1"/> instance via the default capacity 256.
+            </summary>
+        </member>
         <member name="M:System.Collections.Generic.ValueList`1.#ctor(System.Byte)">
             <summary>
             Initializes a list that stores the specified number of elements.
