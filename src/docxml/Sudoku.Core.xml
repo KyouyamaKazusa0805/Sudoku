@@ -3173,18 +3173,18 @@ if (student is (name: var name, age: >= 18))
             Indicates the minimum possible grid value that the current type can reach.
             </summary>
             <remarks>
-            This value is found out via backtracking algorithm. For more information about backtracking
-            algorithm, please visit documentation comments in project <c>Sudoku.Algorithms</c>.
+            This value is found out via backtracking algorithm. For more information, please visit type <see cref="T:Sudoku.Algorithms.Solving.BacktrackingSolver"/>.
             </remarks>
+            <seealso cref="T:Sudoku.Algorithms.Solving.BacktrackingSolver"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.MaxValue">
             <summary>
             Indicates the maximum possible grid value that the current type can reach.
             </summary>
             <remarks>
-            This value is found out via backtracking algorithm. For more information about backtracking
-            algorithm, please visit documentation comments in project <c>Sudoku.Algorithms</c>.
+            This value is found out via backtracking algorithm. For more information, please visit type <see cref="T:Sudoku.Algorithms.Solving.BacktrackingSolver"/>.
             </remarks>
+            <seealso cref="T:Sudoku.Algorithms.Solving.BacktrackingSolver"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.BackingSolver">
             <summary>

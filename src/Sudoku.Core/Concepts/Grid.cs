@@ -87,18 +87,18 @@ public unsafe partial struct Grid :
 	/// Indicates the minimum possible grid value that the current type can reach.
 	/// </summary>
 	/// <remarks>
-	/// This value is found out via backtracking algorithm. For more information about backtracking
-	/// algorithm, please visit documentation comments in project <c>Sudoku.Algorithms</c>.
+	/// This value is found out via backtracking algorithm. For more information, please visit type <see cref="BacktrackingSolver"/>.
 	/// </remarks>
+	/// <seealso cref="BacktrackingSolver"/>
 	public static readonly Grid MinValue;
 
 	/// <summary>
 	/// Indicates the maximum possible grid value that the current type can reach.
 	/// </summary>
 	/// <remarks>
-	/// This value is found out via backtracking algorithm. For more information about backtracking
-	/// algorithm, please visit documentation comments in project <c>Sudoku.Algorithms</c>.
+	/// This value is found out via backtracking algorithm. For more information, please visit type <see cref="BacktrackingSolver"/>.
 	/// </remarks>
+	/// <seealso cref="BacktrackingSolver"/>
 	public static readonly Grid MaxValue;
 
 	/// <summary>
