@@ -6,19 +6,11 @@ namespace Sudoku.Preprocessing;
 public static class BackdoorSearcher
 {
 	/// <summary>
-	/// Indicates the bitwise solver.
-	/// </summary>
-	private static readonly BitwiseSolver BitwiseSolver = new();
-
-
-	/// <summary>
 	/// Try to get all possible backdoors.
 	/// </summary>
 	/// <param name="grid">The grid to be checked.</param>
 	/// <returns>A list of backdoors.</returns>
-	/// <exception cref="ArgumentException">
-	/// Throws when the grid is not unique, or the puzzle is too easy.
-	/// </exception>
+	/// <exception cref="ArgumentException">Throws when the grid is not unique, or the puzzle is too easy.</exception>
 	public static Conclusion[] GetBackdoors(scoped in Grid grid)
 	{
 		if (!grid.IsValid)
@@ -37,7 +29,7 @@ public static class BackdoorSearcher
 
 		var assignmentBackdoors = new List<Conclusion>(81);
 		var eliminationBackdoors = new List<Conclusion>(729);
-		var solution = BitwiseSolver.Solve(grid);
+		var solution = grid.SolutionGrid;
 		foreach (var cell in grid.EmptyCells)
 		{
 			// Case 1: Assignments.
