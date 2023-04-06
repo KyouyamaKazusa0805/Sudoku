@@ -1,4 +1,4 @@
-﻿namespace System.Collections;
+namespace System.Collections;
 
 /// <summary>
 /// Provides extension methods on <see cref="BitArray"/>.
@@ -17,18 +17,7 @@ public static class BitArrayExtensions
 		try
 		{
 			@this.CopyTo(integers, 0);
-
-			var result = 0;
-			fixed (int* p = integers)
-			{
-				int i = 0, length = integers.Length;
-				for (var ptr = p; i < length; ptr++, i++)
-				{
-					result += PopCount((uint)*ptr);
-				}
-			}
-
-			return result;
+			return integers.Sum(static integer => PopCount((uint)integer));
 		}
 		finally
 		{
