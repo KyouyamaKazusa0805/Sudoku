@@ -43,5 +43,5 @@ public sealed class CommandLineParserException : CommandLineException
 			.Description!;
 
 		return $"{baseMessage}{(extraMessage is null ? string.Empty : $"\r\n\r\n{extraMessage}")}";
-	}	
+	}
 }

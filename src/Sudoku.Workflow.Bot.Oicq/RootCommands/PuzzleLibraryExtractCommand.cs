@@ -164,7 +164,7 @@ internal sealed class PuzzleLibraryExtractCommand : Command
 
 			// 获取题目。
 			var grid = PuzzleLibraryOperations.GetPuzzleFor(lib);
-			
+
 			// 把得到的题目拿去分析，并得到分析结果（看一下题目是否唯一解之类的）。然后打印一下一共使用了什么技巧。
 			var analyzerResult = PuzzleAnalyzer.Analyze(grid);
 			if (analyzerResult is not { IsSolved: true, DifficultyLevel: var difficultyLevel })

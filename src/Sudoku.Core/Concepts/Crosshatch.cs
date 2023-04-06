@@ -211,7 +211,7 @@ public readonly partial struct Crosshatch(ulong mask) : IEquatable<Crosshatch>, 
 		var houseCells = HousesMap[house];
 		var valueCellsOfDigit = (house, grid) switch
 		{
-			(>= 0 and < 27, { CandidatesMap: var cMap, ValuesMap: var vMap }) => (cMap[digit] & houseCells) switch
+			( >= 0 and < 27, { CandidatesMap: var cMap, ValuesMap: var vMap }) => (cMap[digit] & houseCells) switch
 			{
 				[var c] when (targetCell = c) is var _ => house switch
 				{

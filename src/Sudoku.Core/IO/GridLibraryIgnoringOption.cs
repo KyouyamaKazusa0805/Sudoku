@@ -10,7 +10,7 @@ public enum GridLibraryIgnoringOption
 	/// Indicates the puzzle will be never ignored.
 	/// </summary>
 	Never,
-	
+
 	/// <summary>
 	/// Indicates the puzzle will be ignored when it is not unique.
 	/// </summary>
