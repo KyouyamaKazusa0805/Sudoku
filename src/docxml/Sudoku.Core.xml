@@ -2497,6 +2497,11 @@ if (student is (name: var name, age: >= 18))
             algorithm, please visit documentation comments in project <c>Sudoku.Solving.Algorithms</c>.
             </remarks>
         </member>
+        <member name="F:Sudoku.Concepts.Grid.BackingSolver">
+            <summary>
+            Indicates the backing solver.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.Grid._values">
             <summary>
             Indicates the inner array that stores the masks of the sudoku grid, which stores the in-time sudoku grid inner information.
@@ -2612,6 +2617,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:Sudoku.Concepts.Grid.Empty"/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.IsValid">
+            <summary>
+            Indicates whether the puzzle has a unique solution.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.CandidatesCount">
             <summary>
             Indicates the number of total candidates.
@@ -2705,6 +2715,13 @@ if (student is (name: var name, age: >= 18))
             Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.SolutionGrid">
+            <summary>
+            Indicates the solution of the current grid. If the puzzle has no solution or multiple solutions,
+            this property will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
             <inheritdoc/>
         </member>
@@ -2747,9 +2764,6 @@ if (student is (name: var name, age: >= 18))
             Throws when the specified cell keeps a wrong cell status value. For example, <see cref="F:Sudoku.Concepts.CellStatus.Undefined"/>.
             </exception>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Item(System.Int32[])">
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)"/>
-        </member>
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
             <summary>
             Gets a list of <see cref="T:System.Int32"/> values that are created via raw usages from <see cref="P:Sudoku.Concepts.Grid.Item(System.Int32)"/>.
@@ -2787,6 +2801,39 @@ if (student is (name: var name, age: >= 18))
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.ExactlyValidate(Sudoku.Concepts.Grid@,System.Nullable{System.Boolean}@)">
+            <summary>
+            <para>
+            Determines whether the current grid is valid, checking on both normal and sukaku cases
+            and returning a <see cref="T:System.Boolean"/>? value indicating whether the current sudoku grid is valid
+            only on sukaku case.
+            </para>
+            <para>
+            For more information, please see the introduction about the parameter
+            <paramref name="sukaku"/>.
+            </para>
+            </summary>
+            <param name="solutionIfValid">
+            The solution if the puzzle is valid; otherwise, <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </param>
+            <param name="sukaku">Indicates whether the current mode is sukaku mode.<list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The puzzle is a sukaku puzzle.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The puzzle is a normal sudoku puzzle.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The puzzle is invalid.</description>
+            </item>
+            </list>
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Exists(System.Int32)">
             <summary>

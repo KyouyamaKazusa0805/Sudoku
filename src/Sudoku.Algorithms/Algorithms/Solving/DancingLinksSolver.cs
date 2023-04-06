@@ -150,7 +150,7 @@ public sealed class DancingLinksSolver : ISolver
 		idList.Sort();
 		var gridArray = (from id in idList select id % 9 + 1).ToArray();
 		var grid = Grid.Create(gridArray, GridCreatingOption.MinusOne);
-		result = grid.IsValid() ? grid : throw new InvalidOperationException("The puzzle has no possible solutions.");
+		result = grid.IsValid ? grid : throw new InvalidOperationException("The puzzle has no possible solutions.");
 	}
 
 	/// <summary>

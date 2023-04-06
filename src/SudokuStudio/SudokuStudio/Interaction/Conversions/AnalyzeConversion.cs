@@ -5,7 +5,7 @@ namespace SudokuStudio.Interaction.Conversions;
 /// </summary>
 internal static class AnalyzeConversion
 {
-	public static bool GetIsEnabled(Grid grid) => !grid.GetSolution().IsUndefined;
+	public static bool GetIsEnabled(Grid grid) => !grid.SolutionGrid.IsUndefined;
 
 	public static int GetViewPipsPagerPageCount(VisualUnit? visualUnit) => visualUnit?.Views?.Length ?? 0;
 

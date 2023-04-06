@@ -15,7 +15,7 @@ public static class TrueCandidatesSearcher
 	/// <exception cref="ArgumentException">Throws when the puzzle is invalid.</exception>
 	public static unsafe CandidateMap GetAllTrueCandidates(scoped in Grid grid, CancellationToken cancellationToken = default)
 	{
-		if (!grid.IsValid())
+		if (!grid.IsValid)
 		{
 			throw new ArgumentException("The puzzle must be valid.", nameof(grid));
 		}

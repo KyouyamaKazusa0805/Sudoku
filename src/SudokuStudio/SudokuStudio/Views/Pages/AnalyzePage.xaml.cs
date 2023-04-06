@@ -740,7 +740,7 @@ public sealed partial class AnalyzePage : Page
 	private async void AnalyzeButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var puzzle = SudokuPane.Puzzle;
-		if (!puzzle.IsValid())
+		if (!puzzle.IsValid)
 		{
 			return;
 		}

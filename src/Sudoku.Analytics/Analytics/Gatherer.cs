@@ -42,7 +42,7 @@ public sealed class Gatherer
 		var possibleStepSearchers = StepSearcherPool.Default();
 		var totalSearchersCount = possibleStepSearchers.Length;
 
-		Initialize(puzzle, puzzle.GetSolution());
+		Initialize(puzzle, puzzle.SolutionGrid);
 
 		var (i, bag, currentSearcherIndex) = (defaultLevelValue, new List<Step>(), 0);
 		foreach (var searcher in possibleStepSearchers)

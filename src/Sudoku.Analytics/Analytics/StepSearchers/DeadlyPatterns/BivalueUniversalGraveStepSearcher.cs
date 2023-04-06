@@ -616,7 +616,7 @@ file static class Cached
 		int maximumCellsToCheck = 20
 	)
 	{
-		Argument.ThrowIfInvalid(grid.IsValid(), "The puzzle must be valid (containing a unique solution).");
+		Argument.ThrowIfInvalid(grid.IsValid, "The puzzle must be valid (containing a unique solution).");
 
 		// Get the number of multi-value cells.
 		// If the number of that is greater than the specified number,

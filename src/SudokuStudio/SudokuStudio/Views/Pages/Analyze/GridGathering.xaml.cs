@@ -62,7 +62,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	private void FilterGatheredStepsButton_Click(object sender, RoutedEventArgs e)
 	{
 		var puzzle = BasePage.SudokuPane.Puzzle;
-		if (_currentFountSteps is null || !puzzle.IsValid())
+		if (_currentFountSteps is null || !puzzle.IsValid)
 		{
 			return;
 		}
@@ -84,7 +84,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	private async void GatherButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var grid = BasePage.SudokuPane.Puzzle;
-		if (!grid.IsValid())
+		if (!grid.IsValid)
 		{
 			return;
 		}

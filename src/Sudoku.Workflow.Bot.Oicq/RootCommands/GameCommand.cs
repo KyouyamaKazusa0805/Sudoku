@@ -191,7 +191,7 @@ internal sealed class GameCommand : Command
 		// 发送答案。
 		await messageReceiver.SendPictureThenDeleteAsync(
 			ISudokuPainter.Create(1000)
-				.WithGrid(puzzle.GetSolution())
+				.WithGrid(puzzle.SolutionGrid)
 				.WithRenderingCandidates(false)
 				.WithNodes(
 					finalCellIndex == -1

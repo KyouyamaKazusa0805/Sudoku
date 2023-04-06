@@ -21,7 +21,7 @@ public static class BackdoorSearcher
 	/// </exception>
 	public static Conclusion[] GetBackdoors(scoped in Grid grid)
 	{
-		if (!grid.IsValid())
+		if (!grid.IsValid)
 		{
 			throw new ArgumentException("The grid must be unique.", nameof(grid));
 		}

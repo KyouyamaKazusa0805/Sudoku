@@ -101,6 +101,11 @@ public unsafe partial struct Grid :
 	/// </remarks>
 	public static readonly Grid MaxValue;
 
+	/// <summary>
+	/// Indicates the backing solver.
+	/// </summary>
+	private static readonly BitwiseSolver BackingSolver = new();
+
 
 	/// <summary>
 	/// Indicates the inner array that stores the masks of the sudoku grid, which stores the in-time sudoku grid inner information.
@@ -310,6 +315,11 @@ public unsafe partial struct Grid :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => this == Empty;
 	}
+
+	/// <summary>
+	/// Indicates whether the puzzle has a unique solution.
+	/// </summary>
+	public readonly bool IsValid => BackingSolver.CheckValidity(ToString());
 
 	/// <summary>
 	/// Indicates the number of total candidates.
@@ -537,6 +547,34 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public readonly Grid ResetGrid => Preserve(GivenCells);
 
+	/// <summary>
+	/// Indicates the solution of the current grid. If the puzzle has no solution or multiple solutions,
+	/// this property will return <see cref="Undefined"/>.
+	/// </summary>
+	/// <seealso cref="Undefined"/>
+	public readonly Grid SolutionGrid
+	{
+		get
+		{
+			return BackingSolver.Solve(this) is { IsUndefined: false } solution ? unfix(solution, GivenCells) : Undefined;
+
+
+			static Grid unfix(scoped in Grid solution, scoped in CellMap pattern)
+			{
+				var result = solution;
+				foreach (var cell in ~pattern)
+				{
+					if (result.GetStatus(cell) == CellStatus.Given)
+					{
+						result.SetStatus(cell, CellStatus.Modifiable);
+					}
+				}
+
+				return result;
+			}
+		}
+	}
+
 	/// <inheritdoc/>
 	readonly int IReadOnlyCollection<int>.Count => 81;
 
@@ -617,17 +655,6 @@ public unsafe partial struct Grid :
 					break;
 				}
 			}
-		}
-	}
-
-	/// <inheritdoc cref="this[in CellMap]"/>
-	public readonly int[] this[int[] cells]
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			var @this = this;
-			return from cellIndex in cells select @this[cellIndex];
 		}
 	}
 
@@ -964,6 +991,60 @@ public unsafe partial struct Grid :
 		}
 
 		return false;
+	}
+
+	/// <summary>
+	/// <para>
+	/// Determines whether the current grid is valid, checking on both normal and sukaku cases
+	/// and returning a <see cref="bool"/>? value indicating whether the current sudoku grid is valid
+	/// only on sukaku case.
+	/// </para>
+	/// <para>
+	/// For more information, please see the introduction about the parameter
+	/// <paramref name="sukaku"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="solutionIfValid">
+	/// The solution if the puzzle is valid; otherwise, <see cref="Undefined"/>.
+	/// </param>
+	/// <param name="sukaku">Indicates whether the current mode is sukaku mode.<list type="table">
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>The puzzle is a sukaku puzzle.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>The puzzle is a normal sudoku puzzle.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term>
+	/// <description>The puzzle is invalid.</description>
+	/// </item>
+	/// </list>
+	/// </param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	/// <seealso cref="Undefined"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool ExactlyValidate(out Grid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
+	{
+		SkipInit(out solutionIfValid);
+		if (BackingSolver.CheckValidity(ToString(), out var solution))
+		{
+			solutionIfValid = Parse(solution);
+			sukaku = false;
+			return true;
+		}
+		else if (BackingSolver.CheckValidity(ToString("~"), out solution))
+		{
+			solutionIfValid = Parse(solution);
+			sukaku = true;
+			return true;
+		}
+		else
+		{
+			sukaku = null;
+			return false;
+		}
 	}
 
 	/// <summary>

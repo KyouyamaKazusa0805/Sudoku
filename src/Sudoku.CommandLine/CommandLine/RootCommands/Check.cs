@@ -1,4 +1,4 @@
-﻿namespace Sudoku.CommandLine.RootCommands;
+namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
 /// Represents a check command.
@@ -35,7 +35,7 @@ public sealed class Check : IExecutable
 					string.Format(
 						R["_MessageFormat_CheckValidityResult"]!,
 						Grid.ToString("#"),
-						(Grid.IsValid() ? R["_MessageFormat_Has"] : R["_MessageFormat_DoesNotHave"])!
+						(Grid.IsValid ? R["_MessageFormat_Has"] : R["_MessageFormat_DoesNotHave"])!
 					)
 				);
 

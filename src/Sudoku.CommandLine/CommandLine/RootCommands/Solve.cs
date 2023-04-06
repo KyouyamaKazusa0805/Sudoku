@@ -27,7 +27,7 @@ public sealed class Solve : IExecutable
 	/// <inheritdoc/>
 	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
-		if (Grid.GetSolution() is not { IsUndefined: false } solution)
+		if (Grid.SolutionGrid is not { IsUndefined: false } solution)
 		{
 			throw new CommandLineRuntimeException((int)ErrorCode.ArgGridValueIsNotUnique);
 		}
