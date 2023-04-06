@@ -1,28 +1,22 @@
-﻿namespace Sudoku.Analytics;
+namespace Sudoku.Analytics;
 
 partial record AnalyzerResult
 {
 	/// <summary>
 	/// Defines an enumerator type that allows iterating on steps of the containing type.
 	/// </summary>
-	public ref struct StepsEnumerator
+	/// <param name="steps">The steps.</param>
+	public ref struct StepsEnumerator(Step[]? steps)
 	{
 		/// <summary>
 		/// The internal enumerator instance.
 		/// </summary>
-		private readonly Step[]? _steps;
+		private readonly Step[]? _steps = steps;
 
 		/// <summary>
 		/// Indicates the index.
 		/// </summary>
 		private int _index = -1;
-
-
-		/// <summary>
-		/// Initializes a <see cref="StepsEnumerator"/> instance via the steps.
-		/// </summary>
-		/// <param name="steps">The steps.</param>
-		internal StepsEnumerator(Step[]? steps) => _steps = steps;
 
 
 		/// <inheritdoc cref="IEnumerator.Current"/>

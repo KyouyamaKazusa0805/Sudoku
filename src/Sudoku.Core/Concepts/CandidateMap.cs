@@ -977,35 +977,24 @@ file readonly ref struct RefPair
 /// <summary>
 /// Defines an enumerator that iterates the one-dimensional array.
 /// </summary>
-file ref struct RefEnumerator
+/// <param name="first">The first reference.</param>
+/// <param name="second">The second reference.</param>
+file ref struct RefEnumerator([UnscopedRef] ref long first, [UnscopedRef] in long second)
 {
 	/// <summary>
 	/// Indicates the first reference.
 	/// </summary>
-	private readonly ref long _refFirst;
+	private readonly ref long _refFirst = ref first;
 
 	/// <summary>
 	/// Indicates the second reference.
 	/// </summary>
-	private readonly ref readonly long _refSecond;
+	private readonly ref readonly long _refSecond = ref second;
 
 	/// <summary>
 	/// Indicates the current index being iterated.
 	/// </summary>
 	private int _index = -1;
-
-
-	/// <summary>
-	/// Initializes a <see cref="RefEnumerator"/> instance via the specified two references to iterate.
-	/// </summary>
-	/// <param name="first">The first reference.</param>
-	/// <param name="second">The second reference.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal RefEnumerator(ref long first, in long second)
-	{
-		_refFirst = ref first;
-		_refSecond = ref second;
-	}
 
 
 	/// <summary>

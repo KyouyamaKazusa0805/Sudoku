@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // https://github.com/dotnet/runtime/blob/57bfe474518ab5b7cfe6bf7424a79ce3af9d6657/src/libraries/System.Runtime/tests/System/Runtime/CompilerServices/DefaultInterpolatedStringHandlerTests.cs
 
@@ -38,7 +38,7 @@ partial struct StringHandler
 		/// <seealso cref="Span{T}"/>
 		/// <seealso cref="Span{T}.GetPinnableReference()"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal Enumerator(StringHandler chars) : this()
+		public Enumerator(StringHandler chars) : this()
 		{
 			_length = chars.Length;
 			_index = -1;

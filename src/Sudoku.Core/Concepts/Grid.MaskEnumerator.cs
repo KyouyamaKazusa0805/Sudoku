@@ -1,42 +1,23 @@
-﻿namespace Sudoku.Concepts;
+namespace Sudoku.Concepts;
 
 partial struct Grid
 {
 	/// <summary>
 	/// Defines the default enumerator that iterates the <see cref="Grid"/> through the masks in the current <see cref="Grid"/> instance.
 	/// </summary>
+	/// <param name="arr">The pointer to an array.</param>
 	/// <seealso cref="Grid"/>
-	public ref struct MaskEnumerator
+	public ref struct MaskEnumerator([UnscopedRef] ref short arr)
 	{
-		/// <summary>
-		/// The pointer to the start value.
-		/// </summary>
-		private readonly ref short _start;
-
 		/// <summary>
 		/// The current pointer.
 		/// </summary>
-		private ref short _refCurrent;
+		private ref short _refCurrent = ref SubtractByteOffset(ref arr, 1);
 
 		/// <summary>
 		/// The current index.
 		/// </summary>
 		private int _currentIndex = -1;
-
-
-		/// <summary>
-		/// Initializes an instance with the specified pointer to an array to iterate.
-		/// </summary>
-		/// <param name="arr">The pointer to an array.</param>
-		/// <remarks>
-		/// Note here we should point at the one-unit-length memory before the array start.
-		/// </remarks>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal MaskEnumerator(ref short arr)
-		{
-			_refCurrent = ref SubtractByteOffset(ref arr, 1);
-			_start = ref _refCurrent;
-		}
 
 
 		/// <summary>
@@ -80,16 +61,6 @@ partial struct Grid
 				RefMoveNext(ref _refCurrent);
 				return true;
 			}
-		}
-
-		/// <summary>
-		/// Sets the enumerator to its initial position, which is before the first element in the collection.
-		/// </summary>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void Reset()
-		{
-			_refCurrent = ref _start;
-			_currentIndex = -1;
 		}
 
 		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>

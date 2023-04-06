@@ -1,28 +1,22 @@
-﻿namespace SudokuStudio.Collection;
+namespace SudokuStudio.Collection;
 
 partial struct DashArray
 {
 	/// <summary>
 	/// Defines an enumerator of this type.
 	/// </summary>
-	public ref struct Enumerator
+	/// <param name="doubles">The double values.</param>
+	public ref struct Enumerator(double[] doubles)
 	{
 		/// <summary>
 		/// The internal array to be iterated.
 		/// </summary>
-		private readonly double[] _doubles;
+		private readonly double[] _doubles = doubles;
 
 		/// <summary>
 		/// Indicates the index of the current position.
 		/// </summary>
 		private int _index = -1;
-
-
-		/// <summary>
-		/// Initializes a <see cref="Enumerator"/> instance.
-		/// </summary>
-		/// <param name="doubles">The double values.</param>
-		internal Enumerator(double[] doubles) => _doubles = doubles;
 
 
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>

@@ -1244,6 +1244,15 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines an enumerator that iterates the one-dimensional array.
             </summary>
+            <param name="first">The first reference.</param>
+            <param name="second">The second reference.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.RefEnumerator.#ctor(System.Int64@,System.Int64@)">
+            <summary>
+            Defines an enumerator that iterates the one-dimensional array.
+            </summary>
+            <param name="first">The first reference.</param>
+            <param name="second">The second reference.</param>
         </member>
         <member name="F:Sudoku.Concepts.RefEnumerator._refFirst">
             <summary>
@@ -1259,13 +1268,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the current index being iterated.
             </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.RefEnumerator.#ctor(System.Int64@,System.Int64@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.RefEnumerator"/> instance via the specified two references to iterate.
-            </summary>
-            <param name="first">The first reference.</param>
-            <param name="second">The second reference.</param>
         </member>
         <member name="P:Sudoku.Concepts.RefEnumerator.Current">
             <summary>
@@ -2339,6 +2341,14 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
+            <param name="arr">The reference to an array.</param>
+            <see cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.CandidateEnumerator.#ctor(System.Int16@)">
+            <summary>
+            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            </summary>
+            <param name="arr">The reference to an array.</param>
             <see cref="T:Sudoku.Concepts.Grid"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.CandidateEnumerator._start">
@@ -2360,16 +2370,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The current index.
             </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.CandidateEnumerator.#ctor(System.Int16@)">
-            <summary>
-            Initializes an instance with the specified reference to an array to iterate.
-            </summary>
-            <param name="arr">The reference to an array.</param>
-            <remarks>
-            Please note that the argument <paramref name="arr"/> must be a reference instead of a constant,
-            even though C# allows we passing a constant as an <see langword="in"/> argument.
-            </remarks>
         </member>
         <member name="P:Sudoku.Concepts.Grid.CandidateEnumerator.Current">
             <summary>
@@ -2396,11 +2396,6 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.CandidateEnumerator.Reset">
-            <summary>
-            Sets the enumerator to its initial position, which is before the first element in the collection.
-            </summary>
         </member>
         <member name="M:Sudoku.Concepts.Grid.CandidateEnumerator.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
@@ -3352,12 +3347,15 @@ fixed (short* ptr = instance)
             <summary>
             Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the masks in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
+            <param name="arr">The pointer to an array.</param>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="F:Sudoku.Concepts.Grid.MaskEnumerator._start">
+        <member name="M:Sudoku.Concepts.Grid.MaskEnumerator.#ctor(System.Int16@)">
             <summary>
-            The pointer to the start value.
+            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the masks in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
+            <param name="arr">The pointer to an array.</param>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.MaskEnumerator._refCurrent">
             <summary>
@@ -3368,15 +3366,6 @@ fixed (short* ptr = instance)
             <summary>
             The current index.
             </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.MaskEnumerator.#ctor(System.Int16@)">
-            <summary>
-            Initializes an instance with the specified pointer to an array to iterate.
-            </summary>
-            <param name="arr">The pointer to an array.</param>
-            <remarks>
-            Note here we should point at the one-unit-length memory before the array start.
-            </remarks>
         </member>
         <member name="P:Sudoku.Concepts.Grid.MaskEnumerator.Current">
             <summary>
@@ -3403,11 +3392,6 @@ fixed (short* ptr = instance)
             </item>
             </list>
             </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.MaskEnumerator.Reset">
-            <summary>
-            Sets the enumerator to its initial position, which is before the first element in the collection.
-            </summary>
         </member>
         <member name="M:Sudoku.Concepts.Grid.MaskEnumerator.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>

@@ -1,4 +1,4 @@
-﻿namespace System.Collections.Generic;
+namespace System.Collections.Generic;
 
 partial struct ValueList<T>
 {
@@ -34,7 +34,7 @@ partial struct ValueList<T>
 		/// Initializes the <see cref="Enumerator"/> type via the current instance.
 		/// </summary>
 		/// <param name="ptr">The pointer that points to the list.</param>
-		internal unsafe Enumerator(scoped in ValueList<T> ptr)
+		public unsafe Enumerator(scoped in ValueList<T> ptr)
 		{
 			fixed (ValueList<T>* p = &ptr)
 			{

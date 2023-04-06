@@ -514,6 +514,13 @@
             <summary>
             Defines an enumerator type that allows iterating on steps of the containing type.
             </summary>
+            <param name="steps">The steps.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.StepsEnumerator.#ctor(Sudoku.Analytics.Step[])">
+            <summary>
+            Defines an enumerator type that allows iterating on steps of the containing type.
+            </summary>
+            <param name="steps">The steps.</param>
         </member>
         <member name="F:Sudoku.Analytics.AnalyzerResult.StepsEnumerator._steps">
             <summary>
@@ -524,12 +531,6 @@
             <summary>
             Indicates the index.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.StepsEnumerator.#ctor(Sudoku.Analytics.Step[])">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.AnalyzerResult.StepsEnumerator"/> instance via the steps.
-            </summary>
-            <param name="steps">The steps.</param>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.StepsEnumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>

@@ -244,6 +244,13 @@
             <summary>
             Defines an enumerator of this type.
             </summary>
+            <param name="doubles">The double values.</param>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.Enumerator.#ctor(System.Double[])">
+            <summary>
+            Defines an enumerator of this type.
+            </summary>
+            <param name="doubles">The double values.</param>
         </member>
         <member name="F:SudokuStudio.Collection.DashArray.Enumerator._doubles">
             <summary>
@@ -254,12 +261,6 @@
             <summary>
             Indicates the index of the current position.
             </summary>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.Enumerator.#ctor(System.Double[])">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Collection.DashArray.Enumerator"/> instance.
-            </summary>
-            <param name="doubles">The double values.</param>
         </member>
         <member name="P:SudokuStudio.Collection.DashArray.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
