@@ -32,7 +32,7 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Extensions.WithRegisteredSourceOutput``1(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext@,System.Func{Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken,System.Nullable{``0}},System.Action{Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{System.Nullable{``0}},System.Type},System.Predicate{Microsoft.CodeAnalysis.SyntaxNode})">
             <summary>
-            Regiseters a source output action.
+            Registers a source output action.
             </summary>
             <typeparam name="T">The type of the output data structure.</typeparam>
             <param name="this">The <see cref="T:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext"/> instance.</param>

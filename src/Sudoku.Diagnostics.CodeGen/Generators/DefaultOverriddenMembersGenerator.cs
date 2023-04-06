@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
+namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Defines a source generator that generates the source code for default-overridden members
@@ -26,9 +26,9 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 					TargetNode: MethodDeclarationSyntax { Modifiers: var modifiers },
 					TargetSymbol: IMethodSymbol
 					{
-						OverriddenMethod: var overridenMethod,
+						OverriddenMethod: var overriddenMethod,
 						ContainingType: { } type,
-						Name: nameof(object.Equals),
+						Name: nameof(Equals),
 						IsOverride: true,
 						IsStatic: false,
 						ReturnType.SpecialType: SpecialType.System_Boolean,
@@ -47,7 +47,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 			}
 
 			// Check whether the method is overridden from object.Equals(object?).
-			var rootMethod = overridenMethod;
+			var rootMethod = overriddenMethod;
 			var currentMethod = method;
 			for (; rootMethod is not null; rootMethod = rootMethod.OverriddenMethod, currentMethod = currentMethod!.OverriddenMethod) ;
 			if (currentMethod!.ContainingType.SpecialType is not (SpecialType.System_Object or SpecialType.System_ValueType))
@@ -79,7 +79,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 					{
 						OverriddenMethod: var overriddenMethod,
 						ContainingType: { } type,
-						Name: nameof(object.GetHashCode),
+						Name: nameof(GetHashCode),
 						IsOverride: true,
 						IsStatic: false,
 						ReturnType.SpecialType: SpecialType.System_Int32,
@@ -118,7 +118,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 					{
 						OverriddenMethod: var overriddenMethod,
 						ContainingType: { } type,
-						Name: nameof(object.ToString),
+						Name: nameof(ToString),
 						IsOverride: true,
 						IsStatic: false,
 						ReturnType.SpecialType: SpecialType.System_String,
@@ -325,7 +325,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 				{
 					0 => (
 						from IMethodSymbol method in type.GetAllMembers().OfType<IMethodSymbol>().Distinct(SymbolEqualityComparer.Default)
-						where method is { Name: nameof(object.ToString), Parameters: [{ Type.IsReferenceType: true }] }
+						where method is { Name: nameof(ToString), Parameters: [{ Type.IsReferenceType: true }] }
 						select method
 					).Take(2).Count() == 2,
 					_ => default(bool?)
@@ -402,7 +402,7 @@ file readonly record struct ToStringData(int GeneratedMode, SyntaxTokenList Meth
 file static class Extensions
 {
 	/// <summary>
-	/// Regiseters a source output action.
+	/// Registers a source output action.
 	/// </summary>
 	/// <typeparam name="T">The type of the output data structure.</typeparam>
 	/// <param name="this">The <see cref="IncrementalGeneratorInitializationContext"/> instance.</param>
