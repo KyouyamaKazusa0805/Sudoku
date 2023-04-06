@@ -55,12 +55,12 @@ public sealed class RegionForcingChainsStep(
 
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetGreenPotentials(int viewIndex)
-		=> viewIndex >= FlatViewsCount ? GetNestedGreenPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), true, true);
+	protected override CandidateMap GetOnPotentials(int viewIndex)
+		=> viewIndex >= FlatViewsCount ? GetNestedOnPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), true, true);
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetRedPotentials(int viewIndex)
-		=> viewIndex >= FlatViewsCount ? GetNestedRedPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), false, false);
+	protected override CandidateMap GetOffPotentials(int viewIndex)
+		=> viewIndex >= FlatViewsCount ? GetNestedOffPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), false, false);
 
 	/// <inheritdoc/>
 	protected override List<LinkViewNode> GetLinks(int viewIndex)

@@ -307,14 +307,13 @@ public abstract class ChainingStep(
 	protected internal View[]? CreateViews(scoped in Grid grid)
 	{
 		var result = new View[ViewsCount];
-
 		var i = 0;
 		for (; i < FlatViewsCount; i++)
 		{
 			var view = View.Empty;
 
-			GetGreenPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Normal, candidate)));
-			GetRedPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Auxiliary1, candidate)));
+			GetOffPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Auxiliary1, candidate)));
+			GetOnPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Normal, candidate)));
 			view.AddRange(GetLinks(i));
 
 			result[i] = view;
@@ -323,9 +322,9 @@ public abstract class ChainingStep(
 		{
 			var view = View.Empty;
 
-			GetNestedGreenPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Normal, candidate)));
-			GetNestedRedPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Auxiliary1, candidate)));
-			GetBluePotentials(grid, i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Auxiliary2, candidate)));
+			GetNestedOnPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Normal, candidate)));
+			GetNestedOffPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Auxiliary1, candidate)));
+			GetPartiallyOffPotentials(grid, i).ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Auxiliary2, candidate)));
 			view.AddRange(GetNestedLinks(i));
 
 			result[i] = view;
@@ -413,12 +412,12 @@ public abstract class ChainingStep(
 	/// </summary>
 	/// <param name="nestedViewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected CandidateMap GetNestedGreenPotentials(int nestedViewIndex)
+	protected CandidateMap GetNestedOnPotentials(int nestedViewIndex)
 	{
 		nestedViewIndex -= FlatViewsCount;
 
 		var (step, viewIndex) = GetNestedChain(nestedViewIndex);
-		return step.GetGreenPotentials(viewIndex);
+		return step.GetOnPotentials(viewIndex);
 	}
 
 	/// <summary>
@@ -426,36 +425,36 @@ public abstract class ChainingStep(
 	/// </summary>
 	/// <param name="nestedViewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected CandidateMap GetNestedRedPotentials(int nestedViewIndex)
+	protected CandidateMap GetNestedOffPotentials(int nestedViewIndex)
 	{
 		nestedViewIndex -= FlatViewsCount;
 
 		var (step, viewIndex) = GetNestedChain(nestedViewIndex);
-		return step.GetRedPotentials(viewIndex);
+		return step.GetOffPotentials(viewIndex);
 	}
 
 	/// <summary>
-	/// Try to fetch all candidates to be colored in green (state 1: the candidate is "on").
+	/// Try to fetch all candidates to be colored as state 1: the candidate is "on".
 	/// </summary>
 	/// <param name="viewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected abstract CandidateMap GetGreenPotentials(int viewIndex);
+	protected abstract CandidateMap GetOnPotentials(int viewIndex);
 
 	/// <summary>
-	/// Try to fetch all candidates to be colored in red (state 2: the candidate is "off").
+	/// Try to fetch all candidates to be colored as state 2: the candidate is "off".
 	/// </summary>
 	/// <param name="viewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected abstract CandidateMap GetRedPotentials(int viewIndex);
+	protected abstract CandidateMap GetOffPotentials(int viewIndex);
 
 	/// <summary>
-	/// Try to fetch all candidates to be colored in blue
-	/// (state 3: the candidate is partially "off"; they will be "off" in this view, but "on" in other views if used).
+	/// Try to fetch all candidates to be colored as state 3: the candidate is partially "off";
+	/// they will be "off" in this view, but "on" in other views if used.
 	/// </summary>
 	/// <param name="grid">The grid as a candidate reference.</param>
 	/// <param name="viewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected CandidateMap GetBluePotentials(scoped in Grid grid, int viewIndex)
+	protected CandidateMap GetPartiallyOffPotentials(scoped in Grid grid, int viewIndex)
 	{
 		var result = CandidateMap.Empty;
 

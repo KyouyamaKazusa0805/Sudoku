@@ -94,12 +94,12 @@ public sealed class BinaryForcingChainsStep(
 
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetGreenPotentials(int viewIndex)
-		=> viewIndex >= FlatViewsCount ? GetNestedGreenPotentials(viewIndex) : GetColorCandidates(viewIndex, true);
+	protected override CandidateMap GetOnPotentials(int viewIndex)
+		=> viewIndex >= FlatViewsCount ? GetNestedOnPotentials(viewIndex) : GetColorCandidates(viewIndex, true);
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetRedPotentials(int viewIndex)
-		=> viewIndex >= FlatViewsCount ? GetNestedRedPotentials(viewIndex) : GetColorCandidates(viewIndex, false);
+	protected override CandidateMap GetOffPotentials(int viewIndex)
+		=> viewIndex >= FlatViewsCount ? GetNestedOffPotentials(viewIndex) : GetColorCandidates(viewIndex, false);
 
 	/// <inheritdoc/>
 	protected override List<LinkViewNode> GetLinks(int viewIndex)

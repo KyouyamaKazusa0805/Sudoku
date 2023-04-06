@@ -358,16 +358,12 @@ public unsafe partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(int offset)
 	{
-		fixed (long* pBits = _bits)
+		scoped ref var v = ref _bits[offset >> 6];
+		var older = Contains(offset);
+		v |= 1L << (offset & 63);
+		if (!older)
 		{
-			var v = &pBits[offset >> 6];
-			var older = Contains(offset);
-
-			*v |= 1L << (offset & 63);
-			if (!older)
-			{
-				_count++;
-			}
+			_count++;
 		}
 	}
 
@@ -397,14 +393,12 @@ public unsafe partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Remove(int offset)
 	{
-		fixed (long* pBits = _bits)
+		scoped ref var v = ref _bits[offset >> 6];
+		var older = Contains(offset);
+		v &= ~(1L << (offset & 63));
+		if (older)
 		{
-			var older = Contains(offset);
-			pBits[offset >> 6] &= ~(1L << (offset & 63));
-			if (older)
-			{
-				_count--;
-			}
+			_count--;
 		}
 	}
 

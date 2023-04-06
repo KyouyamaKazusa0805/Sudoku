@@ -2366,7 +2366,7 @@ if (student is (name: var name, age: >= 18))
             </exception>
             <seealso cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.BabaGroupNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.BabaGroupViewNode)">
+        <member name="M:SudokuStudio.Interaction.ViewUnitFrameworkElementFactory.ForBabaGroupNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Presentation.Nodes.BabaGroupViewNode)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>.
             </summary>

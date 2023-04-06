@@ -30,10 +30,10 @@ public sealed class BidirectionalCycleStep(Conclusion[] conclusions, View[]? vie
 
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetGreenPotentials(int viewIndex) => GetColorCandidates(DestinationOn, true, false);
+	protected override CandidateMap GetOnPotentials(int viewIndex) => GetColorCandidates(DestinationOn, true, false);
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetRedPotentials(int viewIndex) => GetColorCandidates(DestinationOn, false, true);
+	protected override CandidateMap GetOffPotentials(int viewIndex) => GetColorCandidates(DestinationOn, false, true);
 
 	/// <inheritdoc/>
 	protected override List<LinkViewNode> GetLinks(int viewIndex) => GetLinks(DestinationOn);

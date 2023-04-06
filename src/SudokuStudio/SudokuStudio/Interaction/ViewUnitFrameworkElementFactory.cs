@@ -84,7 +84,7 @@ internal static class ViewUnitFrameworkElementFactory
 #pragma warning restore format
 					HouseViewNode h => () => ForHouseNode(sudokuPane, h),
 					ChuteViewNode c => () => ForChuteNode(sudokuPane, c),
-					BabaGroupViewNode b => () => BabaGroupNode(sudokuPane, b),
+					BabaGroupViewNode b => () => ForBabaGroupNode(sudokuPane, b),
 					LinkViewNode l => () => links.Add(l),
 					_ => default(Action?)
 				}
@@ -344,7 +344,7 @@ internal static class ViewUnitFrameworkElementFactory
 	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode)" path="/param[@name='cellNode']"/>
 	/// </param>
 	/// <seealso cref="BabaGroupViewNode"/>
-	private static void BabaGroupNode(SudokuPane sudokuPane, BabaGroupViewNode babaGroupNode)
+	private static void ForBabaGroupNode(SudokuPane sudokuPane, BabaGroupViewNode babaGroupNode)
 	{
 		var (id, cell, @char) = babaGroupNode;
 		var paneCellControl = sudokuPane._children[cell];

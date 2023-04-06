@@ -33,15 +33,15 @@ public sealed class ForcingChainStep(Conclusion[] conclusions, View[]? views, Ch
 
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetGreenPotentials(int viewIndex)
+	protected override CandidateMap GetOnPotentials(int viewIndex)
 	{
 		if (viewIndex >= FlatViewsCount)
 		{
-			return GetNestedGreenPotentials(viewIndex);
+			return GetNestedOnPotentials(viewIndex);
 		}
 
 		var result = GetColorCandidates(true);
-		if (Target is var (cand, isOn) && !isOn)
+		if (Target is (var cand, false))
 		{
 			result.Remove(cand);
 		}
@@ -50,15 +50,15 @@ public sealed class ForcingChainStep(Conclusion[] conclusions, View[]? views, Ch
 	}
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetRedPotentials(int viewIndex)
+	protected override CandidateMap GetOffPotentials(int viewIndex)
 	{
 		if (viewIndex >= FlatViewsCount)
 		{
-			return GetNestedRedPotentials(viewIndex);
+			return GetNestedOffPotentials(viewIndex);
 		}
 
 		var result = GetColorCandidates(false);
-		if (Target is var (cand, isOn) && isOn)
+		if (Target is (var cand, true))
 		{
 			result.Remove(cand);
 		}
