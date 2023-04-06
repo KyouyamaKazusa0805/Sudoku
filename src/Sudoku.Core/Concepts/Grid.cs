@@ -88,7 +88,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <remarks>
 	/// This value is found out via backtracking algorithm. For more information about backtracking
-	/// algorithm, please visit documentation comments in project <c>Sudoku.Solving.Algorithms</c>.
+	/// algorithm, please visit documentation comments in project <c>Sudoku.Algorithms</c>.
 	/// </remarks>
 	public static readonly Grid MinValue;
 
@@ -97,7 +97,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <remarks>
 	/// This value is found out via backtracking algorithm. For more information about backtracking
-	/// algorithm, please visit documentation comments in project <c>Sudoku.Solving.Algorithms</c>.
+	/// algorithm, please visit documentation comments in project <c>Sudoku.Algorithms</c>.
 	/// </remarks>
 	public static readonly Grid MaxValue;
 

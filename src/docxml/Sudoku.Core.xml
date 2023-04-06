@@ -2485,7 +2485,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <remarks>
             This value is found out via backtracking algorithm. For more information about backtracking
-            algorithm, please visit documentation comments in project <c>Sudoku.Solving.Algorithms</c>.
+            algorithm, please visit documentation comments in project <c>Sudoku.Algorithms</c>.
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.MaxValue">
@@ -2494,7 +2494,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <remarks>
             This value is found out via backtracking algorithm. For more information about backtracking
-            algorithm, please visit documentation comments in project <c>Sudoku.Solving.Algorithms</c>.
+            algorithm, please visit documentation comments in project <c>Sudoku.Algorithms</c>.
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.BackingSolver">
