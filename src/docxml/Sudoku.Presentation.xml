@@ -2476,34 +2476,34 @@ if (student is (name: var name, age: >= 18))
             is based on the argument <paramref name="originalView"/>.
             </remarks>
         </member>
-        <member name="T:Sudoku.Presentation.View.OfTypeIterator`1">
+        <member name="T:Sudoku.Presentation.View.OfTypeEnumerator`1">
             <summary>
             Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
             </summary>
             <typeparam name="T">The type of the element node.</typeparam>
             <param name="view">The internal nodes.</param>
         </member>
-        <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.#ctor(Sudoku.Presentation.View)">
+        <member name="M:Sudoku.Presentation.View.OfTypeEnumerator`1.#ctor(Sudoku.Presentation.View)">
             <summary>
             Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
             </summary>
             <typeparam name="T">The type of the element node.</typeparam>
             <param name="view">The internal nodes.</param>
         </member>
-        <member name="F:Sudoku.Presentation.View.OfTypeIterator`1._count">
+        <member name="F:Sudoku.Presentation.View.OfTypeEnumerator`1._count">
             <summary>
             The total number of elements.
             </summary>
         </member>
-        <member name="F:Sudoku.Presentation.View.OfTypeIterator`1._enumerator">
+        <member name="F:Sudoku.Presentation.View.OfTypeEnumerator`1._enumerator">
             <summary>
             The internal enumerator.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.View.OfTypeIterator`1.Current">
+        <member name="P:Sudoku.Presentation.View.OfTypeEnumerator`1.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
-        <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.Any(System.Predicate{`0})">
+        <member name="M:Sudoku.Presentation.View.OfTypeEnumerator`1.Any(System.Predicate{`0})">
             <summary>
             Determines whether the collection of elements of type <typeparamref name="T"/> contains at least one element
             satisfying the specified condition.
@@ -2511,19 +2511,19 @@ if (student is (name: var name, age: >= 18))
             <param name="predicate">The condition.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.GetEnumerator">
+        <member name="M:Sudoku.Presentation.View.OfTypeEnumerator`1.GetEnumerator">
             <summary>
-            Creates an <see cref="T:Sudoku.Presentation.View.OfTypeIterator`1"/> instance.
+            Creates an <see cref="T:Sudoku.Presentation.View.OfTypeEnumerator`1"/> instance.
             </summary>
-            <returns>An <see cref="T:Sudoku.Presentation.View.OfTypeIterator`1"/> instance.</returns>
+            <returns>An <see cref="T:Sudoku.Presentation.View.OfTypeEnumerator`1"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.ToArray">
+        <member name="M:Sudoku.Presentation.View.OfTypeEnumerator`1.ToArray">
             <summary>
             Casts the iterator, enumerating all elements and converting into an array.
             </summary>
             <returns>An array of elements.</returns>
         </member>
-        <member name="M:Sudoku.Presentation.View.OfTypeIterator`1.MoveNext">
+        <member name="M:Sudoku.Presentation.View.OfTypeEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="T:Sudoku.Presentation.ViewExtensions">

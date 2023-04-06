@@ -7,7 +7,7 @@ partial class View
 	/// </summary>
 	/// <typeparam name="T">The type of the element node.</typeparam>
 	/// <param name="view">The internal nodes.</param>
-	public ref struct OfTypeIterator<T>(View view) where T : ViewNode
+	public ref struct OfTypeEnumerator<T>(View view) where T : ViewNode
 	{
 		/// <summary>
 		/// The total number of elements.
@@ -46,11 +46,11 @@ partial class View
 		}
 
 		/// <summary>
-		/// Creates an <see cref="OfTypeIterator{T}"/> instance.
+		/// Creates an <see cref="OfTypeEnumerator{T}"/> instance.
 		/// </summary>
-		/// <returns>An <see cref="OfTypeIterator{T}"/> instance.</returns>
+		/// <returns>An <see cref="OfTypeEnumerator{T}"/> instance.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly OfTypeIterator<T> GetEnumerator() => this;
+		public readonly OfTypeEnumerator<T> GetEnumerator() => this;
 
 		/// <summary>
 		/// Casts the iterator, enumerating all elements and converting into an array.

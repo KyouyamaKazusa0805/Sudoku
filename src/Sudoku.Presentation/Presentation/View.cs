@@ -26,22 +26,22 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	/// <summary>
 	/// Indicates the basic nodes that the current data type stores.
 	/// </summary>
-	public OfTypeIterator<BasicViewNode> BasicNodes => OfType<BasicViewNode>();
+	public OfTypeEnumerator<BasicViewNode> BasicNodes => OfType<BasicViewNode>();
 
 	/// <summary>
 	/// Indicates icon nodes that the current data type stores.
 	/// </summary>
-	public OfTypeIterator<IconViewNode> FigureNodes => OfType<IconViewNode>();
+	public OfTypeEnumerator<IconViewNode> FigureNodes => OfType<IconViewNode>();
 
 	/// <summary>
 	/// Indicates the shape view nodes.
 	/// </summary>
-	public OfTypeIterator<ShapeViewNode> ShapeViewNodes => OfType<ShapeViewNode>();
+	public OfTypeEnumerator<ShapeViewNode> ShapeViewNodes => OfType<ShapeViewNode>();
 
 	/// <summary>
 	/// Indicates the grouped view nodes.
 	/// </summary>
-	public OfTypeIterator<GroupedViewNode> GroupedViewNodes => OfType<GroupedViewNode>();
+	public OfTypeEnumerator<GroupedViewNode> GroupedViewNodes => OfType<GroupedViewNode>();
 
 
 	/// <summary>
@@ -89,7 +89,7 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	/// <typeparam name="T">The type of the node.</typeparam>
 	/// <returns>The target collection of element type <typeparamref name="T"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OfTypeIterator<T> OfType<T>() where T : ViewNode => new(this);
+	public OfTypeEnumerator<T> OfType<T>() where T : ViewNode => new(this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
