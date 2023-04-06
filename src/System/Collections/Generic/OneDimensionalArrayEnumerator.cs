@@ -42,10 +42,10 @@ public ref partial struct OneDimensionalArrayEnumerator<T>
 	}
 
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.RefStructDefault)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.RefStructDefault)]
 	public override readonly partial bool Equals(object? obj);
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
 	public override readonly partial int GetHashCode();
 
 	/// <summary>

@@ -102,14 +102,14 @@ public readonly partial struct Conjugate(int mask) : IEquatable<Conjugate>, IEqu
 	[DeconstructionMethod]
 	public partial void Deconstruct([DeconstructionMethodArgument(nameof(FromCandidate))] out int fromCand, [DeconstructionMethodArgument(nameof(ToCandidate))] out int toCand);
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Conjugate other) => Map == other.Map && Digit == other.Digit;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Map), nameof(Digit))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Map), nameof(Digit))]
 	public override partial int GetHashCode();
 
 	/// <inheritdoc cref="object.ToString"/>

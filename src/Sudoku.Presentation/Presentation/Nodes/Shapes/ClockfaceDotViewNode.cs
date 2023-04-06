@@ -28,10 +28,10 @@ public sealed partial class ClockfaceDotViewNode(Identifier identifier, scoped i
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is ClockfaceDotViewNode comparer && Cells == comparer.Cells;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cells))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cells))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cells), nameof(IsClockwise))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cells), nameof(IsClockwise))]
 	public override partial string ToString();
 
 	/// <inheritdoc/>

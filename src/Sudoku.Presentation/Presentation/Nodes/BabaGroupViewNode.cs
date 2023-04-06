@@ -44,10 +44,10 @@ public sealed partial class BabaGroupViewNode(Identifier identifier, int cell, U
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is BabaGroupViewNode comparer && Cell == comparer.Cell;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CellString), nameof(DigitsMaskString), nameof(UnknownValueChar))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CellString), nameof(DigitsMaskString), nameof(UnknownValueChar))]
 	public override partial string ToString();
 
 	/// <inheritdoc/>

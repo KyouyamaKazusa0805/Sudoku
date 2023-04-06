@@ -34,10 +34,10 @@ public sealed partial class LinkViewNode(
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is LinkViewNode comparer && Start == comparer.Start && End == comparer.End;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Start), nameof(End))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Start), nameof(End))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Start), nameof(End), nameof(Inference))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Start), nameof(End), nameof(Inference))]
 	public override partial string ToString();
 
 	/// <inheritdoc/>

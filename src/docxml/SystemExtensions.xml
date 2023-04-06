@@ -2058,7 +2058,7 @@
             </remarks>
             <seealso cref="M:System.HashCode.Combine``1(``0)"/>
         </member>
-        <member name="T:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute">
+        <member name="T:System.Diagnostics.CodeGen.GeneratedOverridingMemberAttribute">
             <summary>
             Represents a marker attribute to tell source generators that the member derived from type <see cref="T:System.Object"/>
             or <see cref="T:System.ValueType"/> should be automatically implemented.
@@ -2074,27 +2074,27 @@
             <seealso cref="T:System.Object"/>
             <seealso cref="T:System.ValueType"/>
         </member>
-        <member name="M:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute.#ctor(System.Diagnostics.CodeGen.GeneratedEqualsBehavior)">
+        <member name="M:System.Diagnostics.CodeGen.GeneratedOverridingMemberAttribute.#ctor(System.Diagnostics.CodeGen.GeneratedEqualsBehavior)">
             <summary>
-            Initializes a <see cref="T:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute"/> instance via the specified behavior on generating
+            Initializes a <see cref="T:System.Diagnostics.CodeGen.GeneratedOverridingMemberAttribute"/> instance via the specified behavior on generating
             <see cref="M:System.Object.Equals(System.Object)"/>.
             </summary>
-            <param name="overriddingEqualsBehavior">The behavior.</param>
+            <param name="overridingEqualsBehavior">The behavior.</param>
         </member>
-        <member name="M:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute.#ctor(System.Diagnostics.CodeGen.GeneratedGetHashCodeBehavior,System.Object[])">
+        <member name="M:System.Diagnostics.CodeGen.GeneratedOverridingMemberAttribute.#ctor(System.Diagnostics.CodeGen.GeneratedGetHashCodeBehavior,System.Object[])">
             <summary>
-            Initializes a <see cref="T:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute"/> instance via the specified behavior on generating
+            Initializes a <see cref="T:System.Diagnostics.CodeGen.GeneratedOverridingMemberAttribute"/> instance via the specified behavior on generating
             <see cref="M:System.Object.GetHashCode"/>, with the specified array as extra arguments.
             </summary>
-            <param name="overriddingGetHashCodeBehavior">The behavior.</param>
+            <param name="overridingGetHashCodeBehavior">The behavior.</param>
             <param name="arguments">Extra arguments.</param>
         </member>
-        <member name="M:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute.#ctor(System.Diagnostics.CodeGen.GeneratedToStringBehavior,System.Object[])">
+        <member name="M:System.Diagnostics.CodeGen.GeneratedOverridingMemberAttribute.#ctor(System.Diagnostics.CodeGen.GeneratedToStringBehavior,System.Object[])">
             <summary>
-            Initializes a <see cref="T:System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute"/> instance via the specified behavior on generating
+            Initializes a <see cref="T:System.Diagnostics.CodeGen.GeneratedOverridingMemberAttribute"/> instance via the specified behavior on generating
             <see cref="M:System.Object.ToString"/>, with the specified array as extra arguments.
             </summary>
-            <param name="overriddingToStringBehavior">The behavior.</param>
+            <param name="overridingToStringBehavior">The behavior.</param>
             <param name="arguments">Extra arguments.</param>
         </member>
         <member name="T:System.Diagnostics.CodeGen.GeneratedToStringBehavior">

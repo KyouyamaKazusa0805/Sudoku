@@ -28,9 +28,9 @@ public abstract partial class SingleCellMarkViewNode(Identifier identifier, int 
 	[DeconstructionMethod]
 	public partial void Deconstruct(out int cell, out Direction directions);
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CellString), nameof(Directions))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CellString), nameof(Directions))]
 	public override partial string ToString();
 }

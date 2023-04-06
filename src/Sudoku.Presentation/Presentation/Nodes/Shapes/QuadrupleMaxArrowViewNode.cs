@@ -32,10 +32,10 @@ public sealed partial class QuadrupleMaxArrowViewNode(Identifier identifier, sco
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is QuadrupleMaxArrowViewNode comparer && Cells == comparer.Cells;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cells))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cells))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cells), nameof(ArrowDirection))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cells), nameof(ArrowDirection))]
 	public override partial string ToString();
 
 	/// <inheritdoc/>

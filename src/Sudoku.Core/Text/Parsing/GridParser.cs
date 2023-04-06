@@ -109,10 +109,10 @@ public unsafe ref partial struct GridParser(string parsingValue, bool compatible
 	private readonly bool ContainsTab => ParsingValue.Contains('\t');
 
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.RefStructDefault)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.RefStructDefault)]
 	public override readonly partial bool Equals(object? obj);
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
 	public override readonly partial int GetHashCode();
 
 	/// <summary>

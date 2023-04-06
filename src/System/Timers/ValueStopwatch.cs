@@ -39,10 +39,10 @@ public readonly ref partial struct ValueStopwatch
 	}
 
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.RefStructDefault)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.RefStructDefault)]
 	public override partial bool Equals(object? obj);
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
 	public override partial int GetHashCode();
 
 	/// <summary>

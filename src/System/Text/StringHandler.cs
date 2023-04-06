@@ -232,7 +232,7 @@ public unsafe ref partial struct StringHandler
 	public readonly void CopyTo(scoped ref StringHandler handler)
 		=> CopyBlock(ref AsByteRef(ref handler._chars[0]), ref AsByteRef(ref _chars[0]), (uint)(sizeof(char) * Length));
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.RefStructDefault)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.RefStructDefault)]
 	public override readonly partial bool Equals(object? obj);
 
 	/// <summary>
@@ -267,7 +267,7 @@ public unsafe ref partial struct StringHandler
 		return ref MemoryMarshal.GetReference(_chars);
 	}
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
 	public override readonly partial int GetHashCode();
 
 	/// <inheritdoc/>

@@ -420,7 +420,7 @@ file static class Extensions
 		Predicate<SyntaxNode>? nodePredicate = null
 	) where T : struct
 	{
-		const string attributeFullName = "System.Diagnostics.CodeGen.GeneratedOverriddingMemberAttribute";
+		const string attributeFullName = "System.Diagnostics.CodeGen.GeneratedOverridingMemberAttribute";
 
 		nodePredicate ??= static n => n is MethodDeclarationSyntax { Modifiers: var m } && m.Any(SyntaxKind.PartialKeyword);
 

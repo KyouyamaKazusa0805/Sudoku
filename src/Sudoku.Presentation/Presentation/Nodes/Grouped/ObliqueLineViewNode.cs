@@ -17,10 +17,10 @@ public sealed partial class ObliqueLineViewNode(Identifier identifier, int first
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is ObliqueLineViewNode comparer && HeadCell == comparer.HeadCell && TailCell == comparer.TailCell;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(HeadCell), nameof(TailCell))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(HeadCell), nameof(TailCell))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(HeadCell), nameof(TailCell))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(HeadCell), nameof(TailCell))]
 	public override partial string ToString();
 
 	/// <inheritdoc/>

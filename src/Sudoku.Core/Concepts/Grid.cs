@@ -683,7 +683,7 @@ public unsafe partial struct Grid :
 	}
 
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override readonly partial bool Equals(object? obj);
 
 	/// <summary>
@@ -1155,7 +1155,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly ref readonly short GetPinnableReference() => ref _values[0];
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.CallOverloadWithNull)]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.CallOverloadWithNull)]
 	public override readonly partial string ToString();
 
 	/// <inheritdoc/>

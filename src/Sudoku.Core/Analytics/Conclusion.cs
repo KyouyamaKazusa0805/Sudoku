@@ -120,7 +120,7 @@ public readonly partial struct Conclusion(int mask) :
 		}
 	}
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
@@ -131,10 +131,10 @@ public readonly partial struct Conclusion(int mask) :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(Conclusion other) => _mask.CompareTo(_mask);
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_mask))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_mask))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.SimpleMember, nameof(OutputString))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.SimpleMember, nameof(OutputString))]
 	public override partial string ToString();
 
 

@@ -35,7 +35,7 @@ public sealed partial class FontData : IEquatable<FontData>
 	[DeconstructionMethod]
 	public partial void Deconstruct(out string fontName, out float fontSize, out FontStyle fontStyle);
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
@@ -43,7 +43,7 @@ public sealed partial class FontData : IEquatable<FontData>
 	public bool Equals([NotNullWhen(true)] FontData? other)
 		=> other is not null && FontName == other.FontName && FontSize == other.FontSize && FontStyle == other.FontStyle;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(FontName), nameof(FontSize), nameof(FontStyle))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(FontName), nameof(FontSize), nameof(FontStyle))]
 	public override partial int GetHashCode();
 
 

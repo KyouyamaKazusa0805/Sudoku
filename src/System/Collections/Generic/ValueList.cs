@@ -176,7 +176,7 @@ public unsafe ref partial struct ValueList<T> where T : notnull
 		return false;
 	}
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.CallOverloadWithNull)]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.CallOverloadWithNull)]
 	public override readonly partial string ToString();
 
 	/// <summary>

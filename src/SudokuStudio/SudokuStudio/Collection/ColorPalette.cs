@@ -27,7 +27,7 @@ public sealed partial class ColorPalette :
 	private string ElementsString => $"[{string.Join(", ", this)}]";
 
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
@@ -66,7 +66,7 @@ public sealed partial class ColorPalette :
 		return result.ToHashCode();
 	}
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.SimpleMember, nameof(ElementsString))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.SimpleMember, nameof(ElementsString))]
 	public override partial string ToString();
 
 

@@ -88,21 +88,21 @@ public readonly partial struct Utf8Char :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool IsLetterOrDigit() => IsLetter() || IsDigit();
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Utf8Char other) => _char == other._char;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_char))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_char))]
 	public override partial int GetHashCode();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(Utf8Char other) => _char.CompareTo(_char);
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.SimpleMember, nameof(CharString))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.SimpleMember, nameof(CharString))]
 	public override partial string ToString();
 
 	/// <summary>

@@ -29,10 +29,10 @@ public sealed partial class GreaterThanSignViewNode(Identifier identifier, int c
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is GreaterThanSignViewNode comparer && Cell1 == comparer.Cell1 && Cell2 == comparer.Cell2;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell1), nameof(Cell2))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell1), nameof(Cell2))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell1String), nameof(Cell2String), nameof(IsGreaterThan))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell1String), nameof(Cell2String), nameof(IsGreaterThan))]
 	public override partial string ToString();
 
 	/// <inheritdoc/>

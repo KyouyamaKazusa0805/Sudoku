@@ -262,7 +262,7 @@ public unsafe partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Contains(int offset) => (_bits[offset >> 6] >> (offset & 63) & 1) != 0;
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>

@@ -134,14 +134,14 @@ public readonly partial struct Crosshatch(ulong mask) : IEquatable<Crosshatch>, 
 	}
 
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Crosshatch other) => _mask == other._mask;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Digit), nameof(From), nameof(To))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Digit), nameof(From), nameof(To))]
 	public override partial int GetHashCode();
 
 	/// <inheritdoc cref="object.ToString"/>

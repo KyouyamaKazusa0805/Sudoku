@@ -86,10 +86,10 @@ internal readonly partial record struct SudokuPanePositionConverter(GridLayout G
 	/// <inheritdoc/>
 	public bool Equals(SudokuPanePositionConverter other) => GridSize == other.GridSize;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Grid))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Grid))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(GridWidthString), nameof(GridHeightString))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(GridWidthString), nameof(GridHeightString))]
 	public override partial string ToString();
 
 	/// <summary>

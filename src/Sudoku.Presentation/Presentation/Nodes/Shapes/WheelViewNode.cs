@@ -24,10 +24,10 @@ public sealed partial class WheelViewNode(Identifier identifier, int cell, strin
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is WheelViewNode comparer && Cell == comparer.Cell;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(CellString), nameof(DigitString))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(CellString), nameof(DigitString))]
 	public override partial string ToString();
 
 	/// <inheritdoc/>

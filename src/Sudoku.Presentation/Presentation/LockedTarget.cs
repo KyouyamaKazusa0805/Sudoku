@@ -50,17 +50,17 @@ public readonly partial struct LockedTarget(int digit, scoped in CellMap cells) 
 	[DeconstructionMethod]
 	public partial void Deconstruct(out CellMap cells, out int digit);
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(scoped in LockedTarget other) => Digit == other.Digit && Cells == other.Cells;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Cells), nameof(Digit))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Cells), nameof(Digit))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(DigitString), nameof(Cells))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(DigitString), nameof(Cells))]
 	public override partial string ToString();
 
 	/// <inheritdoc/>

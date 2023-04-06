@@ -51,14 +51,14 @@ public readonly partial struct DigitRange : IEquatable<DigitRange>, IEqualityOpe
 	public ConclusionType ConclusionType { get; }
 
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(DigitRange other) => ConclusionType == other.ConclusionType && DigitsMask == other.DigitsMask;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(DigitsMask), nameof(ConclusionType))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(DigitsMask), nameof(ConclusionType))]
 	public override partial int GetHashCode();
 
 	/// <inheritdoc cref="object.ToString"/>

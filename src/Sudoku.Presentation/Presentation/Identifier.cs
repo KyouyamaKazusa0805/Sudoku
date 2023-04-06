@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation;
+namespace Sudoku.Presentation;
 
 /// <summary>
 /// Defines an identifier that can differ colors.
@@ -97,7 +97,7 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 		};
 
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
@@ -113,10 +113,10 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 			_ => throw new NotSupportedException("The specified mode is not supported.")
 		};
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Mode), nameof(TemporaryHashCodeBase))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Mode), nameof(TemporaryHashCodeBase))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(RawValueDisplayer))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(RawValueDisplayer))]
 	public override partial string ToString();
 
 

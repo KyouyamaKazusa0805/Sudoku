@@ -65,14 +65,14 @@ public readonly partial struct CellRange(short mask) :
 	[DeconstructionMethod]
 	public partial void Deconstruct(out int minValue, out int maxValue);
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(CellRange other) => _mask == other._mask;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_mask))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_mask))]
 	public override partial int GetHashCode();
 
 	/// <inheritdoc cref="object.ToString"/>

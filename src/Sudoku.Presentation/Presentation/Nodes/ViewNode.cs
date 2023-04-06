@@ -19,7 +19,7 @@ public abstract partial class ViewNode(Identifier identifier) : ICloneable<ViewN
 	protected string TypeIdentifier => GetType().Name;
 
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
 	public sealed override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>

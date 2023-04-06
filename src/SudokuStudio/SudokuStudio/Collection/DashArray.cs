@@ -49,7 +49,7 @@ public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashA
 	private string ValuesString => $"[{string.Join(", ", _doubles)}]";
 
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
@@ -72,7 +72,7 @@ public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashA
 		return result.ToHashCode();
 	}
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.SimpleMember, nameof(ValuesString))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.SimpleMember, nameof(ValuesString))]
 	public override partial string ToString();
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>

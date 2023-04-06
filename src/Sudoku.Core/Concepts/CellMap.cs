@@ -574,14 +574,14 @@ public unsafe partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Contains(int offset) => ((offset < Shifting ? _low : _high) >> offset % Shifting & 1) != 0;
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override readonly partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(scoped in CellMap other) => _low == other._low && _high == other._high;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(_low), nameof(_high))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(_low), nameof(_high))]
 	public override readonly partial int GetHashCode();
 
 	/// <summary>
@@ -625,7 +625,7 @@ public unsafe partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int[] ToArray() => Offsets;
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.CallOverloadWithNull)]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.CallOverloadWithNull)]
 	public override readonly partial string ToString();
 
 	/// <inheritdoc/>

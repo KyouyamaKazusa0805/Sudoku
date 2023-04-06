@@ -1,4 +1,4 @@
-﻿namespace System.Diagnostics.CodeGen;
+namespace System.Diagnostics.CodeGen;
 
 /// <summary>
 /// Represents a marker attribute to tell source generators that the member derived from type <see cref="object"/>
@@ -15,40 +15,40 @@
 /// <seealso cref="object"/>
 /// <seealso cref="ValueType"/>
 [AttributeUsage(AttributeTargets.Method, Inherited = false)]
-public sealed class GeneratedOverriddingMemberAttribute : Attribute
+public sealed class GeneratedOverridingMemberAttribute : Attribute
 {
 	/// <summary>
-	/// Initializes a <see cref="GeneratedOverriddingMemberAttribute"/> instance via the specified behavior on generating
+	/// Initializes a <see cref="GeneratedOverridingMemberAttribute"/> instance via the specified behavior on generating
 	/// <see cref="object.Equals(object?)"/>.
 	/// </summary>
-	/// <param name="overriddingEqualsBehavior">The behavior.</param>
-	public GeneratedOverriddingMemberAttribute(
-		[SuppressMessage("Style", IDE0060, Justification = Pending)] GeneratedEqualsBehavior overriddingEqualsBehavior
+	/// <param name="overridingEqualsBehavior">The behavior.</param>
+	public GeneratedOverridingMemberAttribute(
+		[SuppressMessage("Style", IDE0060, Justification = Pending)] GeneratedEqualsBehavior overridingEqualsBehavior
 	)
 	{
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="GeneratedOverriddingMemberAttribute"/> instance via the specified behavior on generating
+	/// Initializes a <see cref="GeneratedOverridingMemberAttribute"/> instance via the specified behavior on generating
 	/// <see cref="object.GetHashCode"/>, with the specified array as extra arguments.
 	/// </summary>
-	/// <param name="overriddingGetHashCodeBehavior">The behavior.</param>
+	/// <param name="overridingGetHashCodeBehavior">The behavior.</param>
 	/// <param name="arguments">Extra arguments.</param>
-	public GeneratedOverriddingMemberAttribute(
-		[SuppressMessage("Style", IDE0060, Justification = Pending)] GeneratedGetHashCodeBehavior overriddingGetHashCodeBehavior,
+	public GeneratedOverridingMemberAttribute(
+		[SuppressMessage("Style", IDE0060, Justification = Pending)] GeneratedGetHashCodeBehavior overridingGetHashCodeBehavior,
 		[SuppressMessage("Style", IDE0060, Justification = Pending)] params object?[]? arguments
 	)
 	{
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="GeneratedOverriddingMemberAttribute"/> instance via the specified behavior on generating
+	/// Initializes a <see cref="GeneratedOverridingMemberAttribute"/> instance via the specified behavior on generating
 	/// <see cref="object.ToString"/>, with the specified array as extra arguments.
 	/// </summary>
-	/// <param name="overriddingToStringBehavior">The behavior.</param>
+	/// <param name="overridingToStringBehavior">The behavior.</param>
 	/// <param name="arguments">Extra arguments.</param>
-	public GeneratedOverriddingMemberAttribute(
-		[SuppressMessage("Style", IDE0060, Justification = Pending)] GeneratedToStringBehavior overriddingToStringBehavior,
+	public GeneratedOverridingMemberAttribute(
+		[SuppressMessage("Style", IDE0060, Justification = Pending)] GeneratedToStringBehavior overridingToStringBehavior,
 		[SuppressMessage("Style", IDE0060, Justification = Pending)] params object?[]? arguments
 	)
 	{

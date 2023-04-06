@@ -114,7 +114,7 @@ public readonly unsafe partial struct Utf8String :
 	Utf8Char IReadOnlyList<Utf8Char>.this[int index] => _value[index];
 
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>

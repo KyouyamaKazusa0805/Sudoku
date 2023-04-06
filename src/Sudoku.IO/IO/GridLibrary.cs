@@ -39,17 +39,17 @@ public sealed partial class GridLibrary(string filePath, GridLibraryIgnoringOpti
 		Enum.IsDefined(ignoreOption) ? ignoreOption : throw new ArgumentOutOfRangeException(nameof(ignoreOption));
 
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] GridLibrary? other) => other is not null && FilePath == other.FilePath;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(FilePath))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(FilePath))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(FilePath))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(FilePath))]
 	public override partial string ToString();
 
 	/// <inheritdoc/>

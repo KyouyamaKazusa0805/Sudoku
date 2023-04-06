@@ -162,17 +162,17 @@ public readonly partial struct ChainNode(short mask) : IEquatable<ChainNode>, IE
 	[DeconstructionMethod]
 	public partial void Deconstruct(out byte cell, out byte digit, out bool isOn);
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(ChainNode other) => _mask == other._mask;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_mask))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_mask))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(CandidateString), nameof(IsOn))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(CandidateString), nameof(IsOn))]
 	public override partial string ToString();
 
 

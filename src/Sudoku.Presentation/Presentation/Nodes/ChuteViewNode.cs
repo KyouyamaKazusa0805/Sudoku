@@ -36,10 +36,10 @@ public sealed partial class ChuteViewNode(Identifier identifier, int chuteIndex)
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is ChuteViewNode comparer && ChuteIndex == comparer.ChuteIndex;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(ChuteIndex))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(ChuteIndex))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(ChuteIndex))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(ChuteIndex))]
 	public override partial string ToString();
 
 	/// <inheritdoc/>

@@ -41,10 +41,10 @@ public ref partial struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, E
 	public T Current { get; private set; } = default;
 
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.RefStructDefault)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.RefStructDefault)]
 	public override readonly partial bool Equals(object? obj);
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
 	public override readonly partial int GetHashCode();
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>

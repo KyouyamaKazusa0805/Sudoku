@@ -140,13 +140,13 @@ public abstract partial class StepSearcher(int priority, StepSearcherLevel level
 	protected Type EqualityContract => GetType();
 
 
-	[GeneratedOverriddingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
+	[GeneratedOverridingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] StepSearcher? other) => other is not null && CompareTo(other) == 0;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(PriorityId))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(PriorityId))]
 	public override partial int GetHashCode();
 
 	/// <inheritdoc/>

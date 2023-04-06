@@ -29,10 +29,10 @@ public sealed partial class XvSignViewNode(Identifier identifier, int cell1, int
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is XvSignViewNode comparer && Cell1 == comparer.Cell1 && Cell2 == comparer.Cell2;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell1), nameof(Cell2))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell1), nameof(Cell2))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell1String), nameof(Cell2String), nameof(IsX))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell1String), nameof(Cell2String), nameof(IsX))]
 	public override partial string ToString();
 
 	/// <inheritdoc/>

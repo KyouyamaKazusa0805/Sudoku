@@ -17,10 +17,10 @@ public sealed partial class AverageBarViewNode(Identifier identifier, int cell, 
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is AverageBarViewNode comparer && Cell == comparer.Cell && IsHorizontal == comparer.IsHorizontal;
 
-	[GeneratedOverriddingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell), nameof(IsHorizontal))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell), nameof(IsHorizontal))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverriddingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell))]
 	public override partial string ToString();
 
 	/// <inheritdoc/>
