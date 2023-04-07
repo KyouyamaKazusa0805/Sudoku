@@ -277,7 +277,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			var otherCells = (HousesMap[houseIndex] & EmptyCells) - loop;
 			for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
 			{
-				foreach (int[] cells in otherCells & size)
+				foreach (var cells in otherCells & size)
 				{
 					var mask = grid.GetDigitsUnion(cells);
 					if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
@@ -285,7 +285,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						continue;
 					}
 
-					if ((HousesMap[houseIndex] & EmptyCells) - (CellMap)cells - loop is not (var elimMap and not []))
+					if ((HousesMap[houseIndex] & EmptyCells) - cells - loop is not (var elimMap and not []))
 					{
 						continue;
 					}
@@ -331,7 +331,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						d2,
 						loop,
 						mask,
-						(CellMap)cells
+						cells
 					);
 
 					if (onlyFindOne)
