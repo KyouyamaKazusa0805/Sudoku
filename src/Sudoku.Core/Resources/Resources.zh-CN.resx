@@ -2039,7 +2039,7 @@
     <value>唯一性提示信息覆盖</value>
     <comment>Step Searcher Name</comment>
   </data>
-  <data name="StepSearcherName_UniquePolygonStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_BorescoperDeadlyPatternStepSearcher" xml:space="preserve">
     <value>探长致命结构</value>
     <comment>Step Searcher Name</comment>
   </data>

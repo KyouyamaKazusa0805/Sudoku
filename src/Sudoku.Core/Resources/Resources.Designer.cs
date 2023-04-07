@@ -3076,6 +3076,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Borescoper&apos;s Deadly Pattern.
+        /// </summary>
+        public static string StepSearcherName_BorescoperDeadlyPatternStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_BorescoperDeadlyPatternStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bowman&apos;s Bingo.
         /// </summary>
         public static string StepSearcherName_BowmanBingoStepSearcher {
@@ -3378,15 +3387,6 @@ namespace Sudoku.Resources {
         public static string StepSearcherName_UniquenessClueCoverStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_UniquenessClueCoverStepSearcher", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unique Polygon.
-        /// </summary>
-        public static string StepSearcherName_UniquePolygonStepSearcher {
-            get {
-                return ResourceManager.GetString("StepSearcherName_UniquePolygonStepSearcher", resourceCulture);
             }
         }
         

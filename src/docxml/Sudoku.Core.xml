@@ -7021,6 +7021,11 @@ fixed (short* ptr = instance)
               Looks up a localized string similar to Bi-value Universal Grave.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_BorescoperDeadlyPatternStepSearcher">
+            <summary>
+              Looks up a localized string similar to Borescoper&apos;s Deadly Pattern.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_BowmanBingoStepSearcher">
             <summary>
               Looks up a localized string similar to Bowman&apos;s Bingo.
@@ -7189,11 +7194,6 @@ fixed (short* ptr = instance)
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_UniquenessClueCoverStepSearcher">
             <summary>
               Looks up a localized string similar to Uniqueness Clue Cover.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.StepSearcherName_UniquePolygonStepSearcher">
-            <summary>
-              Looks up a localized string similar to Unique Polygon.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_UniqueRectangleStepSearcher">

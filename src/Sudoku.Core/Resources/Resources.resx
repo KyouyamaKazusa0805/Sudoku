@@ -1683,8 +1683,8 @@
   <data name="StepSearcherName_UniquenessClueCoverStepSearcher" xml:space="preserve">
     <value>Uniqueness Clue Cover</value>
   </data>
-  <data name="StepSearcherName_UniquePolygonStepSearcher" xml:space="preserve">
-    <value>Unique Polygon</value>
+  <data name="StepSearcherName_BorescoperDeadlyPatternStepSearcher" xml:space="preserve">
+    <value>Borescoper's Deadly Pattern</value>
   </data>
   <data name="StepSearcherName_UniqueRectangleStepSearcher" xml:space="preserve">
     <value>Unique Rectangle</value>
