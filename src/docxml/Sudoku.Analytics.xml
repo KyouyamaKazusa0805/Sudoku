@@ -2819,13 +2819,13 @@
             <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> code instance.</returns>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
-        <member name="T:Sudoku.Analytics.InternalHelpers.UniqueRectangStepSearcherHelper">
+        <member name="T:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper">
             <summary>
             Used by <see cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>.
             </summary>
             <seealso cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>
         </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangStepSearcherHelper.CheckPreconditions(Sudoku.Concepts.Grid@,System.Int32[],System.Boolean)">
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.CheckPreconditions(Sudoku.Concepts.Grid@,System.Int32[],System.Boolean)">
             <summary>
             Check preconditions.
             </summary>
@@ -2834,7 +2834,7 @@
             <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
             <returns>Indicates whether the UR is passed to check.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangStepSearcherHelper.CheckPreconditionsOnIncomplete(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32)">
             <summary>
             Checks whether the specified UR cells satisfies the precondition of an incomplete UR.
             </summary>
@@ -2844,7 +2844,7 @@
             <param name="d2">The second digit used.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangStepSearcherHelper.IsConjugatePair(System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.IsConjugatePair(System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             To determine whether the specified house forms a conjugate pair
             of the specified digit, and the cells where they contain the digit
@@ -2855,18 +2855,7 @@
             <param name="houseIndex">The house index.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangStepSearcherHelper.GetDiagonalCell(System.Int32[],System.Int32)">
-            <summary>
-            Get a cell that can't see each other.
-            </summary>
-            <param name="urCells">The UR cells.</param>
-            <param name="cell">The current cell.</param>
-            <returns>The diagonal cell.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the specified argument <paramref name="cell"/> is invalid.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangStepSearcherHelper.IsSameHouseCell(System.Int32,System.Int32,System.Int32@)">
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.IsSameHouseCell(System.Int32,System.Int32,System.Int32@)">
             <summary>
             Get whether two cells are in a same house.
             </summary>
@@ -2879,7 +2868,31 @@
             The <see cref="T:System.Boolean"/> value indicating whether the another cell is same house as the current one.
             </returns>
         </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangStepSearcherHelper.GetHighlightCells(System.Int32[])">
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.IsIncomplete(System.Boolean,System.Collections.Generic.List{Sudoku.Presentation.Nodes.CandidateViewNode})">
+            <summary>
+            Check whether the highlight UR candidates is incomplete.
+            </summary>
+            <param name="allowIncomplete"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles" path="/summary"/></param>
+            <param name="list">The list to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <remarks>
+            This method uses a trick to check a UR structure: to count up the number of "Normal colored"
+            candidates used in the current UR structure. If and only if the full structure uses 8 candidates
+            colored with normal one, the structure will be complete.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.GetDiagonalCell(System.Int32[],System.Int32)">
+            <summary>
+            Get a cell that can't see each other.
+            </summary>
+            <param name="urCells">The UR cells.</param>
+            <param name="cell">The current cell.</param>
+            <returns>The diagonal cell.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the specified argument <paramref name="cell"/> is invalid.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.GetHighlightCells(System.Int32[])">
             <summary>
             Get all highlight cells.
             </summary>
@@ -6241,18 +6254,6 @@ result ^= expression;
             <param name="gathered"><inheritdoc cref="P:Sudoku.Analytics.AnalysisContext.Accumulator" path="/summary"/></param>
             <param name="grid"><inheritdoc cref="P:Sudoku.Analytics.AnalysisContext.Grid" path="/summary"/></param>
             <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsIncomplete(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.CandidateViewNode})">
-            <summary>
-            Check whether the highlight UR candidates is incomplete.
-            </summary>
-            <param name="list">The list to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <remarks>
-            This method uses a trick to check a UR structure: to count up the number of "Normal colored"
-            candidates used in the current UR structure. If and only if the full structure uses 8 candidates
-            colored with normal one, the structure will be complete.
-            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>

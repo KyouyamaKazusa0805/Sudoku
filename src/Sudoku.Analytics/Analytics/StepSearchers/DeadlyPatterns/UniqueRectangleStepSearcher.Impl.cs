@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 unsafe partial class UniqueRectangleStepSearcher
 {
@@ -85,7 +85,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				new[]
 				{
 					View.Empty
-						| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+						| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 						| (arMode ? null : candidateOffsets)
 				},
 				d1,
@@ -173,7 +173,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			}
 		}
 
-		if (IsIncomplete(candidateOffsets))
+		if (UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
 		{
 			return;
 		}
@@ -182,7 +182,7 @@ unsafe partial class UniqueRectangleStepSearcher
 		accumulator.Add(
 			new UniqueRectangleType2Step(
 				from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-				new[] { View.Empty | (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null) | candidateOffsets },
+				new[] { View.Empty | (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null) | candidateOffsets },
 				d1,
 				d2,
 				(arMode, isType5) switch
@@ -404,7 +404,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			for (var digitIndex = 0; digitIndex < 2; digitIndex++)
 			{
 				var digit = p[digitIndex];
-				if (!UniqueRectangStepSearcherHelper.IsConjugatePair(digit, otherCellsMap, houseIndex))
+				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, otherCellsMap, houseIndex))
 				{
 					continue;
 				}
@@ -459,7 +459,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						new[]
 						{
 							View.Empty
-								| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+								| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 								| candidateOffsets
 								| new HouseViewNode(DisplayColorKind.Normal, houseIndex)
 						},
@@ -553,7 +553,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				candidateOffsets.Add(new(digit == extraDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cell * 9 + digit));
 			}
 		}
-		if (IsIncomplete(candidateOffsets))
+		if (UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
 		{
 			return;
 		}
@@ -561,7 +561,7 @@ unsafe partial class UniqueRectangleStepSearcher
 		accumulator.Add(
 			new UniqueRectangleType2Step(
 				from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-				new[] { View.Empty | (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null) | candidateOffsets },
+				new[] { View.Empty | (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null) | candidateOffsets },
 				d1,
 				d2,
 				arMode ? Technique.AvoidableRectangleType5 : Technique.UniqueRectangleType5,
@@ -637,11 +637,11 @@ unsafe partial class UniqueRectangleStepSearcher
 		void gather(scoped in Grid grid, scoped in CellMap otherCellsMap, bool isRow, int digit, int house1, int house2)
 		{
 			var precheck = isRow
-				&& UniqueRectangStepSearcherHelper.IsConjugatePair(digit, CellsMap[corner1] + o1, house1)
-				&& UniqueRectangStepSearcherHelper.IsConjugatePair(digit, CellsMap[corner2] + o2, house2)
+				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, CellsMap[corner1] + o1, house1)
+				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, CellsMap[corner2] + o2, house2)
 				|| !isRow
-				&& UniqueRectangStepSearcherHelper.IsConjugatePair(digit, CellsMap[corner1] + o2, house1)
-				&& UniqueRectangStepSearcherHelper.IsConjugatePair(digit, CellsMap[corner2] + o1, house2);
+				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, CellsMap[corner1] + o2, house1)
+				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, CellsMap[corner2] + o1, house2);
 			if (!precheck)
 			{
 				return;
@@ -688,7 +688,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					new[]
 					{
 						View.Empty
-							| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+							| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 							| candidateOffsets
 							| new HouseViewNode[]
 							{
@@ -747,7 +747,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var abzCell = UniqueRectangStepSearcherHelper.GetDiagonalCell(urCells, cornerCell);
+		var abzCell = UniqueRectangleStepSearcherHelper.GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
@@ -766,8 +766,8 @@ unsafe partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
-			if (!UniqueRectangStepSearcherHelper.IsConjugatePair(digit, map1, m1cl)
-				|| !UniqueRectangStepSearcherHelper.IsConjugatePair(digit, map2, m2cl))
+			if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, map1, m1cl)
+				|| !UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, map2, m2cl))
 			{
 				continue;
 			}
@@ -818,7 +818,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					new[]
 					{
 						View.Empty
-							| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+							| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 							| candidateOffsets
 							| new HouseViewNode[] { new(DisplayColorKind.Normal, r), new(DisplayColorKind.Normal, c) }
 					},
@@ -939,7 +939,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, possibleXyCell * 9 + digit));
 			}
 
-			if (IsIncomplete(candidateOffsets))
+			if (UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
 			{
 				return;
 			}
@@ -947,7 +947,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			accumulator.Add(
 				new UniqueRectangle2DOr3XStep(
 					conclusions.ToArray(),
-					new[] { View.Empty | (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null) | candidateOffsets },
+					new[] { View.Empty | (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null) | candidateOffsets },
 					arMode ? Technique.AvoidableRectangle2D : Technique.UniqueRectangle2D,
 					d1,
 					d2,
@@ -1013,7 +1013,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			var cell = corners[cellIndex];
 			foreach (var otherCell in otherCellsMap)
 			{
-				if (!UniqueRectangStepSearcherHelper.IsSameHouseCell(cell, otherCell, out var houses))
+				if (!UniqueRectangleStepSearcherHelper.IsSameHouseCell(cell, otherCell, out var houses))
 				{
 					continue;
 				}
@@ -1028,7 +1028,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					for (var digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
 						var digit = digits[digitIndex];
-						if (!UniqueRectangStepSearcherHelper.IsConjugatePair(digit, CellsMap[cell] + otherCell, house))
+						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, CellsMap[cell] + otherCell, house))
 						{
 							continue;
 						}
@@ -1116,7 +1116,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								new[]
 								{
 									View.Empty
-										| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+										| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 										| candidateOffsets
 										| new HouseViewNode(DisplayColorKind.Normal, house)
 								},
@@ -1187,7 +1187,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			var cell = corners[cellIndex];
 			foreach (var otherCell in otherCellsMap)
 			{
-				if (!UniqueRectangStepSearcherHelper.IsSameHouseCell(cell, otherCell, out var houses))
+				if (!UniqueRectangleStepSearcherHelper.IsSameHouseCell(cell, otherCell, out var houses))
 				{
 					continue;
 				}
@@ -1202,7 +1202,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					for (var digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
 						var digit = digits[digitIndex];
-						if (!UniqueRectangStepSearcherHelper.IsConjugatePair(digit, CellsMap[cell] + otherCell, house))
+						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, CellsMap[cell] + otherCell, house))
 						{
 							continue;
 						}
@@ -1292,7 +1292,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								new[]
 								{
 									View.Empty
-										| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+										| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 										| candidateOffsets
 										| new HouseViewNode(DisplayColorKind.Normal, house)
 								},
@@ -1424,7 +1424,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			{
 				candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, possibleXyCell * 9 + digit));
 			}
-			if (IsIncomplete(candidateOffsets))
+			if (UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
 			{
 				return;
 			}
@@ -1432,7 +1432,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			accumulator.Add(
 				new UniqueRectangle2DOr3XStep(
 					conclusions.ToArray(),
-					new[] { View.Empty | (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null) | candidateOffsets },
+					new[] { View.Empty | (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null) | candidateOffsets },
 					arMode ? Technique.AvoidableRectangle3X : Technique.UniqueRectangle3X,
 					d1,
 					d2,
@@ -1489,7 +1489,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var abzCell = UniqueRectangStepSearcherHelper.GetDiagonalCell(urCells, cornerCell);
+		var abzCell = UniqueRectangleStepSearcherHelper.GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var pairs = stackalloc[] { (d1, d2), (d2, d1) };
 		for (var pairIndex = 0; pairIndex < 2; pairIndex++)
@@ -1499,8 +1499,8 @@ unsafe partial class UniqueRectangleStepSearcher
 			var abyCell = adjacentCellsMap[1];
 			var map1 = CellsMap[abzCell] + abxCell;
 			var map2 = CellsMap[abzCell] + abyCell;
-			if (!UniqueRectangStepSearcherHelper.IsConjugatePair(b, map1, map1.CoveredLine)
-				|| !UniqueRectangStepSearcherHelper.IsConjugatePair(a, map2, map2.CoveredLine))
+			if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(b, map1, map1.CoveredLine)
+				|| !UniqueRectangleStepSearcherHelper.IsConjugatePair(a, map2, map2.CoveredLine))
 			{
 				continue;
 			}
@@ -1556,7 +1556,7 @@ unsafe partial class UniqueRectangleStepSearcher
 					new[]
 					{
 						View.Empty
-							| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+							| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 							| candidateOffsets
 							| new HouseViewNode[]
 							{
@@ -1619,7 +1619,7 @@ unsafe partial class UniqueRectangleStepSearcher
 		}
 
 		// Step 1: Get the diagonal cell of 'cornerCell' and determine the existence of strong link.
-		var abzCell = UniqueRectangStepSearcherHelper.GetDiagonalCell(urCells, cornerCell);
+		var abzCell = UniqueRectangleStepSearcherHelper.GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
@@ -1633,14 +1633,14 @@ unsafe partial class UniqueRectangleStepSearcher
 			for (var digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 			{
 				var (a, b) = digitPairs[digitPairIndex];
-				if (!UniqueRectangStepSearcherHelper.IsConjugatePair(b, linkMap, linkMap.CoveredLine))
+				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(b, linkMap, linkMap.CoveredLine))
 				{
 					continue;
 				}
 
 				// Step 2: Get the link cell that is adjacent to 'cornerCell' and check the strong link.
 				var secondLinkMap = CellsMap[cornerCell] + begin;
-				if (!UniqueRectangStepSearcherHelper.IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
+				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
 				{
 					continue;
 				}
@@ -1691,7 +1691,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						new[]
 						{
 							View.Empty
-								| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+								| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
@@ -1754,7 +1754,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var abzCell = UniqueRectangStepSearcherHelper.GetDiagonalCell(urCells, cornerCell);
+		var abzCell = UniqueRectangleStepSearcherHelper.GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
@@ -1767,13 +1767,13 @@ unsafe partial class UniqueRectangleStepSearcher
 			for (var digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 			{
 				var (a, b) = digitPairs[digitPairIndex];
-				if (!UniqueRectangStepSearcherHelper.IsConjugatePair(b, linkMap, linkMap.CoveredLine))
+				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(b, linkMap, linkMap.CoveredLine))
 				{
 					continue;
 				}
 
 				var secondLinkMap = CellsMap[cornerCell] + end;
-				if (!UniqueRectangStepSearcherHelper.IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
+				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
 				{
 					continue;
 				}
@@ -1821,7 +1821,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						new[]
 						{
 							View.Empty
-								| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+								| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
@@ -1884,7 +1884,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var abzCell = UniqueRectangStepSearcherHelper.GetDiagonalCell(urCells, cornerCell);
+		var abzCell = UniqueRectangleStepSearcherHelper.GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
@@ -1897,13 +1897,13 @@ unsafe partial class UniqueRectangleStepSearcher
 			for (var digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 			{
 				var (a, b) = digitPairs[digitPairIndex];
-				if (!UniqueRectangStepSearcherHelper.IsConjugatePair(a, linkMap, linkMap.CoveredLine))
+				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(a, linkMap, linkMap.CoveredLine))
 				{
 					continue;
 				}
 
 				var secondLinkMap = CellsMap[cornerCell] + end;
-				if (!UniqueRectangStepSearcherHelper.IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
+				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
 				{
 					continue;
 				}
@@ -1951,7 +1951,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						new[]
 						{
 							View.Empty
-								| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+								| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
@@ -2016,25 +2016,25 @@ unsafe partial class UniqueRectangleStepSearcher
 		for (var digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 		{
 			var (a, b) = digitPairs[digitPairIndex];
-			if (!UniqueRectangStepSearcherHelper.IsConjugatePair(a, link1Map, link1Map.CoveredLine))
+			if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(a, link1Map, link1Map.CoveredLine))
 			{
 				continue;
 			}
 
-			var abwCell = UniqueRectangStepSearcherHelper.GetDiagonalCell(urCells, corner1);
+			var abwCell = UniqueRectangleStepSearcherHelper.GetDiagonalCell(urCells, corner1);
 			var abzCell = (otherCellsMap - abwCell)[0];
 			var cellQuadruples = stackalloc[] { (corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell) };
 			for (var cellQuadrupleIndex = 0; cellQuadrupleIndex < 2; cellQuadrupleIndex++)
 			{
 				var (head, begin, end, extra) = cellQuadruples[cellQuadrupleIndex];
 				var link2Map = CellsMap[begin] + end;
-				if (!UniqueRectangStepSearcherHelper.IsConjugatePair(b, link2Map, link2Map.CoveredLine))
+				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(b, link2Map, link2Map.CoveredLine))
 				{
 					continue;
 				}
 
 				var link3Map = CellsMap[end] + extra;
-				if (!UniqueRectangStepSearcherHelper.IsConjugatePair(a, link3Map, link3Map.CoveredLine))
+				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(a, link3Map, link3Map.CoveredLine))
 				{
 					continue;
 				}
@@ -2094,7 +2094,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						new[]
 						{
 							View.Empty
-								| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+								| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
@@ -2175,19 +2175,19 @@ unsafe partial class UniqueRectangleStepSearcher
 		for (var digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 		{
 			var (a, b) = digitPairs[digitPairIndex];
-			if (!UniqueRectangStepSearcherHelper.IsConjugatePair(a, link1Map, link1Map.CoveredLine))
+			if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(a, link1Map, link1Map.CoveredLine))
 			{
 				continue;
 			}
 
-			var end = UniqueRectangStepSearcherHelper.GetDiagonalCell(urCells, corner1);
+			var end = UniqueRectangleStepSearcherHelper.GetDiagonalCell(urCells, corner1);
 			var extra = (otherCellsMap - end)[0];
 			var cellQuadruples = stackalloc[] { (corner2, corner1, extra, end), (corner1, corner2, end, extra) };
 			for (var cellQuadrupleIndex = 0; cellQuadrupleIndex < 2; cellQuadrupleIndex++)
 			{
 				var (abx, aby, abw, abz) = cellQuadruples[cellQuadrupleIndex];
 				var link2Map = CellsMap[aby] + abw;
-				if (!UniqueRectangStepSearcherHelper.IsConjugatePair(a, link2Map, link2Map.CoveredLine))
+				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(a, link2Map, link2Map.CoveredLine))
 				{
 					continue;
 				}
@@ -2199,7 +2199,7 @@ unsafe partial class UniqueRectangleStepSearcher
 				for (var i = 0; i < 2; i++)
 				{
 					var linkMap = innerMaps[i];
-					if (!UniqueRectangStepSearcherHelper.IsConjugatePair(b, link3Map1, link3Map1.CoveredLine))
+					if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(b, link3Map1, link3Map1.CoveredLine))
 					{
 						continue;
 					}
@@ -2255,7 +2255,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							new[]
 							{
 								View.Empty
-									| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+									| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 									| candidateOffsets
 									| new HouseViewNode[]
 									{
@@ -2441,7 +2441,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							candidateOffsets.Add(
 								new(digit == elimDigit ? DisplayColorKind.Auxiliary2 : DisplayColorKind.Auxiliary1, c2 * 9 + digit));
 						}
-						if (IsIncomplete(candidateOffsets))
+						if (UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
 						{
 							return;
 						}
@@ -2452,7 +2452,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								new[]
 								{
 									View.Empty
-										| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+										| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 										| candidateOffsets
 								},
 								arMode ? Technique.AvoidableRectangleXyWing : Technique.UniqueRectangleXyWing,
@@ -2545,7 +2545,7 @@ unsafe partial class UniqueRectangleStepSearcher
 									candidateOffsets.Add(
 										new(digit == elimDigit ? DisplayColorKind.Auxiliary2 : DisplayColorKind.Auxiliary1, c3 * 9 + digit));
 								}
-								if (IsIncomplete(candidateOffsets))
+								if (UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
 								{
 									return;
 								}
@@ -2556,7 +2556,7 @@ unsafe partial class UniqueRectangleStepSearcher
 										new[]
 										{
 											View.Empty
-												| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+												| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 												| candidateOffsets
 										},
 										arMode ? Technique.AvoidableRectangleXyzWing : Technique.UniqueRectangleXyzWing,
@@ -2670,7 +2670,7 @@ unsafe partial class UniqueRectangleStepSearcher
 											)
 										);
 									}
-									if (IsIncomplete(candidateOffsets))
+									if (UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
 									{
 										return;
 									}
@@ -2681,7 +2681,7 @@ unsafe partial class UniqueRectangleStepSearcher
 											new[]
 											{
 												View.Empty
-													| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+													| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 													| candidateOffsets
 											},
 											arMode ? Technique.AvoidableRectangleWxyzWing : Technique.UniqueRectangleWxyzWing,
@@ -3006,7 +3006,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						new[]
 						{
 							View.Empty
-								| (arMode ? UniqueRectangStepSearcherHelper.GetHighlightCells(urCells) : null)
+								| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
@@ -3152,7 +3152,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						var resultCell = (cells - urCellInSameBlock - anotherCell - targetCell)[0];
 						var map = CellsMap[targetCell] + resultCell;
 						var line = map.CoveredLine;
-						if (!UniqueRectangStepSearcherHelper.IsConjugatePair(extraDigit, map, line))
+						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(extraDigit, map, line))
 						{
 							continue;
 						}
@@ -3254,7 +3254,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						// The extra digit should form a conjugate pair in that line.
 						var anotherMap = CellsMap[urCellInSameBlock] + anotherCell;
 						var anotherLine = anotherMap.CoveredLine;
-						if (!UniqueRectangStepSearcherHelper.IsConjugatePair(extraDigit, anotherMap, anotherLine))
+						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(extraDigit, anotherMap, anotherLine))
 						{
 							continue;
 						}
@@ -3400,7 +3400,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	{
 		var cells = (CellMap)urCells;
 
-		if (!UniqueRectangStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
 		}
@@ -3487,7 +3487,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						(CellMap)urCells,
 						guardianMap,
 						guardianDigit,
-						IsIncomplete(candidateOffsets),
+						UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets),
 						arMode,
 						index
 					)
@@ -3520,7 +3520,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	{
 		var cells = (CellMap)urCells;
 
-		if (!UniqueRectangStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
 		}
@@ -3545,7 +3545,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			{
 				var c1 = guardianCellPair[0];
 				var c2 = guardianCellPair[1];
-				if (!UniqueRectangStepSearcherHelper.IsSameHouseCell(c1, c2, out var houses))
+				if (!UniqueRectangleStepSearcherHelper.IsSameHouseCell(c1, c2, out var houses))
 				{
 					// Those two cells must lie in a same house.
 					continue;
@@ -3661,7 +3661,7 @@ unsafe partial class UniqueRectangleStepSearcher
 									guardianCellPair,
 									otherCells,
 									subsetDigitsMask,
-									IsIncomplete(candidateOffsets),
+									UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets),
 									arMode,
 									index
 								)
@@ -3697,7 +3697,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	{
 		var cells = (CellMap)urCells;
 
-		if (!UniqueRectangStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
 		}
@@ -3722,7 +3722,7 @@ unsafe partial class UniqueRectangleStepSearcher
 			{
 				var c1 = guardianCellPair[0];
 				var c2 = guardianCellPair[1];
-				if (!UniqueRectangStepSearcherHelper.IsSameHouseCell(c1, c2, out var houses))
+				if (!UniqueRectangleStepSearcherHelper.IsSameHouseCell(c1, c2, out var houses))
 				{
 					// Those two cells must lie in a same house.
 					continue;
@@ -3832,7 +3832,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								cells,
 								guardianCellPair,
 								new(guardianCellPair, conjugatePairDigit),
-								IsIncomplete(candidateOffsets),
+								UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets),
 								arMode,
 								index
 							)
@@ -3867,7 +3867,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	{
 		var cells = (CellMap)urCells;
 
-		if (!UniqueRectangStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
 		}
@@ -3999,7 +3999,7 @@ unsafe partial class UniqueRectangleStepSearcher
 							guardianDigit,
 							coveredHouse,
 							house,
-							IsIncomplete(candidateOffsets),
+							UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets),
 							arMode,
 							index
 						)
@@ -4033,7 +4033,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	{
 		var cells = (CellMap)urCells;
 
-		if (!UniqueRectangStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
 		}
@@ -4170,7 +4170,7 @@ unsafe partial class UniqueRectangleStepSearcher
 						cells,
 						guardianCells,
 						cellPair,
-						IsIncomplete(candidateOffsets),
+						UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets),
 						arMode,
 						index
 					)
@@ -4205,7 +4205,7 @@ unsafe partial class UniqueRectangleStepSearcher
 	{
 		var cells = (CellMap)urCells;
 
-		if (!UniqueRectangStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
 		}
@@ -4343,7 +4343,7 @@ unsafe partial class UniqueRectangleStepSearcher
 								cells,
 								guardianCells,
 								als,
-								IsIncomplete(candidateOffsets),
+								UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets),
 								arMode,
 								index
 							)

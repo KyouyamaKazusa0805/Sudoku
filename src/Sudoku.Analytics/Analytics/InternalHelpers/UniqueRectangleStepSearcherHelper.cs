@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Analytics.InternalHelpers;
+namespace Sudoku.Analytics.InternalHelpers;
 
 /// <summary>
 /// Used by <see cref="UniqueRectangleStepSearcher"/>.
 /// </summary>
 /// <seealso cref="UniqueRectangleStepSearcher"/>
-internal static class UniqueRectangStepSearcherHelper
+internal static class UniqueRectangleStepSearcherHelper
 {
 	/// <summary>
 	/// Check preconditions.
@@ -92,19 +92,6 @@ internal static class UniqueRectangStepSearcherHelper
 		=> (HousesMap[houseIndex] & CandidatesMap[digit]) == map;
 
 	/// <summary>
-	/// Get a cell that can't see each other.
-	/// </summary>
-	/// <param name="urCells">The UR cells.</param>
-	/// <param name="cell">The current cell.</param>
-	/// <returns>The diagonal cell.</returns>
-	/// <exception cref="ArgumentException">
-	/// Throws when the specified argument <paramref name="cell"/> is invalid.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetDiagonalCell(int[] urCells, int cell)
-		=> cell == urCells[0] ? urCells[3] : cell == urCells[1] ? urCells[2] : cell == urCells[2] ? urCells[1] : urCells[0];
-
-	/// <summary>
 	/// Get whether two cells are in a same house.
 	/// </summary>
 	/// <param name="cell1">The cell 1 to check.</param>
@@ -122,6 +109,35 @@ internal static class UniqueRectangStepSearcherHelper
 		(var r, houses) = v != 0 ? (true, v) : (false, 0);
 		return r;
 	}
+
+	/// <summary>
+	/// Check whether the highlight UR candidates is incomplete.
+	/// </summary>
+	/// <param name="allowIncomplete"><inheritdoc cref="UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles" path="/summary"/></param>
+	/// <param name="list">The list to check.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <remarks>
+	/// This method uses a trick to check a UR structure: to count up the number of "Normal colored"
+	/// candidates used in the current UR structure. If and only if the full structure uses 8 candidates
+	/// colored with normal one, the structure will be complete.
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool IsIncomplete(bool allowIncomplete, List<CandidateViewNode> list)
+		=> !allowIncomplete
+		&& list.Count(static d => d.Identifier is { Mode: IdentifierColorMode.Named, NamedKind: DisplayColorKind.Normal }) != 8;
+
+	/// <summary>
+	/// Get a cell that can't see each other.
+	/// </summary>
+	/// <param name="urCells">The UR cells.</param>
+	/// <param name="cell">The current cell.</param>
+	/// <returns>The diagonal cell.</returns>
+	/// <exception cref="ArgumentException">
+	/// Throws when the specified argument <paramref name="cell"/> is invalid.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetDiagonalCell(int[] urCells, int cell)
+		=> cell == urCells[0] ? urCells[3] : cell == urCells[1] ? urCells[2] : cell == urCells[2] ? urCells[1] : urCells[0];
 
 	/// <summary>
 	/// Get all highlight cells.

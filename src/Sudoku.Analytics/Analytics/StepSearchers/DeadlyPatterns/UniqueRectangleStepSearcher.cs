@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Unique Rectangle</b> step searcher.
@@ -111,7 +111,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var urCells = UniqueRectanglePatterns[index];
 
 			// Check preconditions.
-			if (!UniqueRectangStepSearcherHelper.CheckPreconditions(grid, urCells, arMode))
+			if (!UniqueRectangleStepSearcherHelper.CheckPreconditions(grid, urCells, arMode))
 			{
 				continue;
 			}
@@ -259,21 +259,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			}
 		}
 	}
-
-	/// <summary>
-	/// Check whether the highlight UR candidates is incomplete.
-	/// </summary>
-	/// <param name="list">The list to check.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	/// <remarks>
-	/// This method uses a trick to check a UR structure: to count up the number of "Normal colored"
-	/// candidates used in the current UR structure. If and only if the full structure uses 8 candidates
-	/// colored with normal one, the structure will be complete.
-	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool IsIncomplete(IEnumerable<CandidateViewNode> list)
-		=> !AllowIncompleteUniqueRectangles
-		&& list.Count(static d => d.Identifier is { Mode: IdentifierColorMode.Named, NamedKind: DisplayColorKind.Normal }) != 8;
 
 	partial void CheckType1(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int cornerCell, scoped in CellMap otherCellsMap, int index);
 	partial void CheckType2(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, short comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
