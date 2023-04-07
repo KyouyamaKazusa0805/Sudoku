@@ -1,8 +1,11 @@
 namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
+/// <summary>
+/// 手动更改用户的数据的命令。
+/// </summary>
 [Command("加分")]
 [RequiredRole(SenderRole = GroupRoleKind.God)]
-internal sealed class ManualUpdateUserDataCommand : Command
+internal sealed class ManualUpdateUserCommand : Command
 {
 	/// <summary>
 	/// 表示你要为谁进行加分操作。该参数指定的是用户的群名片。

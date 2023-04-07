@@ -1524,6 +1524,13 @@
             而和文件夹同名的 JSON 文件则是该群完成的此群的题库数据的序列化文件。
             </remarks>
         </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.Sync(System.String)">
+            <summary>
+            根据指定的群号（QQ），获取该群的所有题库的题库文件，并自动识别尚未追加的题库数据，并自动移除已经录入过但题库本身已经被移除掉的题库对应的配置数据。
+            </summary>
+            <param name="groupId">群号。</param>
+            <returns>一个 <see cref="T:System.Boolean"/> 结果表示同步操作是否成功。</returns>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.GetPuzzlesCount(System.String,System.String)">
             <summary>
             根据指定群号（QQ）和题库名称，获取该题库的完整题目的数量。
@@ -1574,6 +1581,14 @@
             <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.GetLibraries(System.String)" path="/summary"/>
             </summary>
             <param name="group">一个 <see cref="T:Mirai.Net.Data.Shared.Group"/> 对象，表示的是当前操作的群的基本数据。</param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations.GetLibrariesInternal(System.String,System.String)">
+            <summary>
+            根据指定的群号搜索所有的本地预存题库。
+            </summary>
+            <param name="groupId">群号。</param>
+            <param name="groupLibraryFolder">群对应的文件夹路径。</param>
+            <returns>所有题库。</returns>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation">
             <summary>
@@ -2170,27 +2185,32 @@
             <param name="trimmedCharacters">表示最终拆解字符串的时候，需要额外去除的字符。比如引号。</param>
             <returns>解析后的参数序列，按次序排列。</returns>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserDataCommand.UserNickname">
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserCommand">
+            <summary>
+            手动更改用户的数据的命令。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserCommand.UserNickname">
             <summary>
             表示你要为谁进行加分操作。该参数指定的是用户的群名片。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserDataCommand.UserId">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserCommand.UserId">
             <summary>
             表示你要为谁进行加分操作。该参数指定的是用户的 QQ 号。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserDataCommand.ExperiencePointAddition">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserCommand.ExperiencePointAddition">
             <summary>
             表示你要为该用户加多少经验值。
             </summary>
         </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserDataCommand.CoinAddition">
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserCommand.CoinAddition">
             <summary>
             表示你要为该用户加多少金币。
             </summary>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserDataCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.DailyPuzzleCommand">
@@ -2320,6 +2340,11 @@
         <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Update">
             <summary>
             表示操作为设置属性的数值。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Sync">
+            <summary>
+            表示操作为添加新题库。
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.SetPropertyNames">

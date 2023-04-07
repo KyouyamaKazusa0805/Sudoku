@@ -107,19 +107,67 @@ public static class PuzzleLibraryOperations
 			return false;
 		}
 
-		File.WriteAllText(
-			$"""{groupLibraryFolder}\{groupId}.json""",
-			Serialize(
-				(
-					from fileInfo in new DirectoryInfo(groupLibraryFolder).EnumerateFiles("*.txt")
-					let name = fileInfo.Name
-					let finalName = name[..name.LastIndexOf(".txt")] // 忽略掉末尾的 .txt。
-					let fullName = fileInfo.FullName
-					select new PuzzleLibrary { GroupId = groupId, Name = finalName, Path = fullName }
-				).ToList(),
-				DefaultOptions
-			)
-		);
+		File.WriteAllText($"""{groupLibraryFolder}\{groupId}.json""", Serialize(GetLibrariesInternal(groupId, groupLibraryFolder), DefaultOptions));
+		return true;
+	}
+
+	/// <summary>
+	/// 根据指定的群号（QQ），获取该群的所有题库的题库文件，并自动识别尚未追加的题库数据，并自动移除已经录入过但题库本身已经被移除掉的题库对应的配置数据。
+	/// </summary>
+	/// <param name="groupId">群号。</param>
+	/// <returns>一个 <see cref="bool"/> 结果表示同步操作是否成功。</returns>
+	[MethodImpl(MethodImplOptions.Synchronized)]
+	public static bool Sync(string groupId)
+	{
+		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+		if (!Directory.Exists(folder))
+		{
+			throw new();
+		}
+
+		var botDataFolder = $"""{folder}\BotData""";
+		if (!Directory.Exists(botDataFolder))
+		{
+			return false;
+		}
+
+		var libraryFolder = $"""{botDataFolder}\PuzzleLibrary""";
+		if (!Directory.Exists(libraryFolder))
+		{
+			return false;
+		}
+
+		var groupLibraryFolder = $"""{libraryFolder}\{groupId}""";
+		if (!Directory.Exists(groupLibraryFolder))
+		{
+			return false;
+		}
+
+		var configFilePath = $"""{groupLibraryFolder}\{groupId}.json""";
+		var originalLibs = File.Exists(configFilePath)
+			? Deserialize<List<PuzzleLibrary>>(File.ReadAllText(configFilePath), DefaultOptions) ?? new()
+			: new();
+
+		// 追加没有录入进去的数据。
+		var refreshedLibs = GetLibrariesInternal(groupId, groupLibraryFolder);
+		foreach (var refreshedLib in refreshedLibs)
+		{
+			if (originalLibs.Find(lib => refreshedLib.Name == lib.Name) is null)
+			{
+				originalLibs.Add(refreshedLib);
+			}
+		}
+
+		// 删除新题库不包含的数据。
+		foreach (var originalLib in new List<PuzzleLibrary>(originalLibs))
+		{
+			if (refreshedLibs.Find(lib => lib.Name == originalLib.Name) is null)
+			{
+				originalLibs.Remove(originalLib);
+			}
+		}
+
+		File.WriteAllText(configFilePath, Serialize(originalLibs, DefaultOptions));
 		return true;
 	}
 
@@ -239,4 +287,20 @@ public static class PuzzleLibraryOperations
 	/// <param name="group">一个 <see cref="Group"/> 对象，表示的是当前操作的群的基本数据。</param>
 	[MethodImpl(MethodImplOptions.Synchronized)]
 	public static PuzzleLibrary[]? GetLibraries(Group group) => GetLibraries(group.Id);
+
+	/// <summary>
+	/// 根据指定的群号搜索所有的本地预存题库。
+	/// </summary>
+	/// <param name="groupId">群号。</param>
+	/// <param name="groupLibraryFolder">群对应的文件夹路径。</param>
+	/// <returns>所有题库。</returns>
+	[MethodImpl(MethodImplOptions.Synchronized)]
+	private static List<PuzzleLibrary> GetLibrariesInternal(string groupId, string groupLibraryFolder)
+		=> (
+			from fileInfo in new DirectoryInfo(groupLibraryFolder).EnumerateFiles("*.txt")
+			let name = fileInfo.Name
+			let finalName = name[..name.LastIndexOf(".txt")] // 忽略掉末尾的 .txt。
+			let fullName = fileInfo.FullName
+			select new PuzzleLibrary { GroupId = groupId, Name = finalName, Path = fullName }
+		).ToList();
 }

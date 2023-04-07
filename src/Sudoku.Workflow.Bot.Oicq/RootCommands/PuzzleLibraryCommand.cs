@@ -106,6 +106,13 @@ internal sealed class PuzzleLibraryCommand : Command
 				}
 				break;
 			}
+			case Operations.Sync:
+			{
+				PuzzleLibraryOperations.Sync(groupId);
+
+				await messageReceiver.SendMessageAsync("同步数据成功。");
+				break;
+			}
 			case Operations.Update:
 			{
 				if (SetPropertyName is null)
@@ -200,6 +207,11 @@ file static class Operations
 	/// 表示操作为设置属性的数值。
 	/// </summary>
 	public const string Update = "设置";
+
+	/// <summary>
+	/// 表示操作为添加新题库。
+	/// </summary>
+	public const string Sync = "同步";
 }
 
 /// <summary>
