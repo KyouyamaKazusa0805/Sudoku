@@ -49,8 +49,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				{
 					case 0:
 					{
-						// The puzzle is invalid - it doesn't contain any possible correct solution.
-						// Although the puzzle is invalid, we can also use other step searchers to solve this strange puzzle.
+						// The current puzzle has multiple solutions.
 						throw new StepSearcherProcessException<UniqueLoopStepSearcher>();
 					}
 					case 1:
@@ -376,12 +375,10 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			goto ReturnNull;
 		}
 
-		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
 		foreach (var houseIndex in extraCellsMap.CoveredHouses)
 		{
-			for (var digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
+			foreach (var (digit, otherDigit) in stackalloc[] { (d1, d2), (d2, d1) })
 			{
-				var (digit, otherDigit) = digitPairs[digitPairIndex];
 				var map = HousesMap[houseIndex] & CandidatesMap[digit];
 				if (map != (HousesMap[houseIndex] & loop))
 				{
