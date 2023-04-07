@@ -81,20 +81,20 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					}
 				}
 			}
-
-			if (resultAccumulator.Count == 0)
-			{
-				continue;
-			}
-
-			resultList = from step in EquatableStep.Distinct(resultAccumulator) orderby step.Loop.Count select step;
-			if (onlyFindOne)
-			{
-				return resultList.First();
-			}
-
-			accumulator.AddRange(resultList);
 		}
+
+		if (resultAccumulator.Count == 0)
+		{
+			return null;
+		}
+
+		resultList = from step in EquatableStep.Distinct(resultAccumulator) orderby step.Loop.Count select step;
+		if (onlyFindOne)
+		{
+			return resultList.First();
+		}
+
+		accumulator.AddRange(resultList);
 
 		return null;
 	}
