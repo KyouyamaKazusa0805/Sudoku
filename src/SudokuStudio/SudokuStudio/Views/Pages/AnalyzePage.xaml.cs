@@ -648,13 +648,15 @@ public sealed partial class AnalyzePage : Page
 		};
 
 
-	[Callback]
-	private static void CurrentViewIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	/// <summary>
+	/// Try to change the value of the property <see cref="CurrentViewIndex"/>.
+	/// </summary>
+	/// <param name="page">The triggering page.</param>
+	/// <param name="value">The index value set.</param>
+	/// <seealso cref="CurrentViewIndex"/>
+	private static void ChangeCurrentViewIndex(AnalyzePage page, int value)
 	{
-		if ((d, e) is not (AnalyzePage { VisualUnit: var visualUnit } page, { NewValue: int value }))
-		{
-			return;
-		}
+		var visualUnit = page.VisualUnit;
 
 		if (value == -1)
 		{
@@ -671,6 +673,17 @@ public sealed partial class AnalyzePage : Page
 	}
 
 	[Callback]
+	private static void CurrentViewIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if ((d, e) is not (AnalyzePage page, { NewValue: int value }))
+		{
+			return;
+		}
+
+		ChangeCurrentViewIndex(page, value);
+	}
+
+	[Callback]
 	private static void VisualUnitPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		if ((d, e) is not (AnalyzePage page, { NewValue: var value and (null or VisualUnit _) }))
@@ -678,7 +691,10 @@ public sealed partial class AnalyzePage : Page
 			return;
 		}
 
-		page.CurrentViewIndex = value is VisualUnit ? 0 : -1;
+		var currentViewIndex = value is VisualUnit ? 0 : -1;
+		page.CurrentViewIndex = currentViewIndex;
+
+		ChangeCurrentViewIndex(page, currentViewIndex);
 
 		// A rescue. The code snippet is used for manually updating the pips pager and text block.
 		page.ViewsSwitcher.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;

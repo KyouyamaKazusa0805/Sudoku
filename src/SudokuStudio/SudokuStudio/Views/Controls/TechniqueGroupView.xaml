@@ -4,10 +4,10 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:analytics="using:Sudoku.Analytics"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Models"
-	xmlns:analytics="using:Sudoku.Analytics"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:TechniqueGroupView}">
 	<UserControl.Resources>
 		<CollectionViewSource x:Name="TechniqueGroups" x:FieldModifier="internal" IsSourceGrouped="True" />

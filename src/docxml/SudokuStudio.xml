@@ -6472,6 +6472,14 @@ if (student is (name: var name, age: >= 18))
             <returns>The main window.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the base window cannot be found.</exception>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.ChangeCurrentViewIndex(SudokuStudio.Views.Pages.AnalyzePage,System.Int32)">
+            <summary>
+            Try to change the value of the property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex"/>.
+            </summary>
+            <param name="page">The triggering page.</param>
+            <param name="value">The index value set.</param>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex"/>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.InitializeComponent">
             <summary>
             InitializeComponent()
