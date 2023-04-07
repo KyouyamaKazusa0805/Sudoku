@@ -4666,6 +4666,16 @@ fixed (short* ptr = instance)
             </summary>
             <param name="offsets">The cells to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <remarks>
+            The type of the current collection supports using <see cref="T:System.Boolean"/>-like expression to determine whether the collection is not empty,
+            for example:
+            <code><![CDATA[
+            if (collection)
+                // ...
+            ]]></code>
+            The statement <c>collection</c> will be expanded to <c>collection.Count != 0</c>. Therefore, the negation operator <c>!</c>
+            will invert the result of above expression. This is why I use <see langword="operator"/> <c>!</c> to determine on this.
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_OnesComplement(`0@)">
             <summary>
@@ -5639,6 +5649,26 @@ fixed (short* ptr = instance)
         <member name="P:Sudoku.Resources.Resources.BivalueUniversalGraveXzRule">
             <summary>
               Looks up a localized string similar to Bi-value Universal Grave XZ Rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.BorescoperDeadlyPatternType1">
+            <summary>
+              Looks up a localized string similar to Borescoper&apos;s Deadly Pattern Type 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.BorescoperDeadlyPatternType2">
+            <summary>
+              Looks up a localized string similar to Borescoper&apos;s Deadly Pattern Type 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.BorescoperDeadlyPatternType3">
+            <summary>
+              Looks up a localized string similar to Borescoper&apos;s Deadly Pattern Type 3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.BorescoperDeadlyPatternType4">
+            <summary>
+              Looks up a localized string similar to Borescoper&apos;s Deadly Pattern Type 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.BowmanBingo">
@@ -7804,26 +7834,6 @@ fixed (short* ptr = instance)
         <member name="P:Sudoku.Resources.Resources.UniquenessClueCoverType2">
             <summary>
               Looks up a localized string similar to Uniqueness Clue Cover Type 2.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.UniquePolygonType1">
-            <summary>
-              Looks up a localized string similar to Unique Polygon Type 1.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.UniquePolygonType2">
-            <summary>
-              Looks up a localized string similar to Unique Polygon Type 2.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.UniquePolygonType3">
-            <summary>
-              Looks up a localized string similar to Unique Polygon Type 3.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.UniquePolygonType4">
-            <summary>
-              Looks up a localized string similar to Unique Polygon Type 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.UniqueRectangle2B1">

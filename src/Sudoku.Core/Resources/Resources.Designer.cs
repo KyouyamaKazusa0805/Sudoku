@@ -610,6 +610,42 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Borescoper&apos;s Deadly Pattern Type 1.
+        /// </summary>
+        public static string BorescoperDeadlyPatternType1 {
+            get {
+                return ResourceManager.GetString("BorescoperDeadlyPatternType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Borescoper&apos;s Deadly Pattern Type 2.
+        /// </summary>
+        public static string BorescoperDeadlyPatternType2 {
+            get {
+                return ResourceManager.GetString("BorescoperDeadlyPatternType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Borescoper&apos;s Deadly Pattern Type 3.
+        /// </summary>
+        public static string BorescoperDeadlyPatternType3 {
+            get {
+                return ResourceManager.GetString("BorescoperDeadlyPatternType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Borescoper&apos;s Deadly Pattern Type 4.
+        /// </summary>
+        public static string BorescoperDeadlyPatternType4 {
+            get {
+                return ResourceManager.GetString("BorescoperDeadlyPatternType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bowman Bingo.
         /// </summary>
         public static string BowmanBingo {
@@ -4503,42 +4539,6 @@ namespace Sudoku.Resources {
         public static string UniquenessClueCoverType2 {
             get {
                 return ResourceManager.GetString("UniquenessClueCoverType2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unique Polygon Type 1.
-        /// </summary>
-        public static string UniquePolygonType1 {
-            get {
-                return ResourceManager.GetString("UniquePolygonType1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unique Polygon Type 2.
-        /// </summary>
-        public static string UniquePolygonType2 {
-            get {
-                return ResourceManager.GetString("UniquePolygonType2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unique Polygon Type 3.
-        /// </summary>
-        public static string UniquePolygonType3 {
-            get {
-                return ResourceManager.GetString("UniquePolygonType3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unique Polygon Type 4.
-        /// </summary>
-        public static string UniquePolygonType4 {
-            get {
-                return ResourceManager.GetString("UniquePolygonType4", resourceCulture);
             }
         }
         

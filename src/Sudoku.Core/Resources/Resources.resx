@@ -1080,17 +1080,17 @@
   <data name="BivalueUniversalGraveXyWing" xml:space="preserve">
     <value>Bi-value Universal Grave XY-Wing</value>
   </data>
-  <data name="UniquePolygonType1" xml:space="preserve">
-    <value>Unique Polygon Type 1</value>
+  <data name="BorescoperDeadlyPatternType1" xml:space="preserve">
+    <value>Borescoper's Deadly Pattern Type 1</value>
   </data>
-  <data name="UniquePolygonType2" xml:space="preserve">
-    <value>Unique Polygon Type 2</value>
+  <data name="BorescoperDeadlyPatternType2" xml:space="preserve">
+    <value>Borescoper's Deadly Pattern Type 2</value>
   </data>
-  <data name="UniquePolygonType3" xml:space="preserve">
-    <value>Unique Polygon Type 3</value>
+  <data name="BorescoperDeadlyPatternType3" xml:space="preserve">
+    <value>Borescoper's Deadly Pattern Type 3</value>
   </data>
-  <data name="UniquePolygonType4" xml:space="preserve">
-    <value>Unique Polygon Type 4</value>
+  <data name="BorescoperDeadlyPatternType4" xml:space="preserve">
+    <value>Borescoper's Deadly Pattern Type 4</value>
   </data>
   <data name="QiuDeadlyPatternType1" xml:space="preserve">
     <value>Qiu's Deadly Pattern Type 1</value>

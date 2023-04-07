@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Extracts a base type that describes status table from elements of <typeparamref name="TSelf"/> type.
@@ -433,6 +433,16 @@ public interface IBitStatusMap<TSelf> :
 	/// </summary>
 	/// <param name="offsets">The cells to be checked.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	/// <remarks>
+	/// The type of the current collection supports using <see cref="bool"/>-like expression to determine whether the collection is not empty,
+	/// for example:
+	/// <code><![CDATA[
+	/// if (collection)
+	///     // ...
+	/// ]]></code>
+	/// The statement <c>collection</c> will be expanded to <c>collection.Count != 0</c>. Therefore, the negation operator <c>!</c>
+	/// will invert the result of above expression. This is why I use <see langword="operator"/> <c>!</c> to determine on this.
+	/// </remarks>
 	static abstract bool operator !(scoped in TSelf offsets);
 
 	/// <summary>

@@ -36,13 +36,13 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			var d2 = mask.GetNextSet(d1);
 			var comparer = (short)(1 << d1 | 1 << d2);
 
-			var foundData = Cached.GatherUniqueLoops(comparer);
-			if (foundData.Length == 0)
+			var patterns = Cached.GatherUniqueLoops(comparer);
+			if (patterns.Length == 0)
 			{
 				continue;
 			}
 
-			foreach (var (currentLoop, digitsMask) in foundData)
+			foreach (var (currentLoop, digitsMask) in patterns)
 			{
 				var extraCellsMap = currentLoop - BivalueCells;
 				switch (extraCellsMap.Count)
@@ -68,17 +68,13 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						{
 							return step2;
 						}
-
-						if (extraCellsMap.Count == 2)
+						if (CheckType3(resultAccumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer, onlyFindOne) is { } step3)
 						{
-							if (CheckType3(resultAccumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer, onlyFindOne) is { } step3)
-							{
-								return step3;
-							}
-							if (CheckType4(resultAccumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer, onlyFindOne) is { } step4)
-							{
-								return step4;
-							}
+							return step3;
+						}
+						if (CheckType4(resultAccumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer, onlyFindOne) is { } step4)
+						{
+							return step4;
 						}
 
 						break;
@@ -244,6 +240,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		bool onlyFindOne
 	)
 	{
+		// Check whether the extra cells contain at least one digit of digit 1 and 2,
+		// and extra digits not appeared in two digits mentioned above.
 		var notSatisfiedType3 = false;
 		foreach (var cell in extraCellsMap)
 		{
@@ -254,26 +252,116 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				break;
 			}
 		}
-		if (!extraCellsMap.InOneHouse || notSatisfiedType3)
+		if (notSatisfiedType3)
 		{
-			goto ReturnNull;
+			return null;
 		}
 
+		// Gather the union result of digits appeared, and check whether the result mask
+		// contains both digit 1 and 2.
 		var m = grid.GetDigitsUnion(extraCellsMap);
 		if ((m & comparer) != comparer)
 		{
-			goto ReturnNull;
+			return null;
 		}
 
 		var otherDigitsMask = (short)(m & ~comparer);
-		foreach (var houseIndex in extraCellsMap.CoveredHouses)
+		if (extraCellsMap.InOneHouse)
 		{
-			if ((ValuesMap[d1] || ValuesMap[d2]) && HousesMap[houseIndex])
+			if (extraCellsMap.Count != 2)
 			{
-				continue;
+				return null;
 			}
 
-			var otherCells = (HousesMap[houseIndex] & EmptyCells) - loop;
+			// All extra cells lie in a same house. This is the basic subtype of type 3.
+			foreach (var houseIndex in extraCellsMap.CoveredHouses)
+			{
+				if ((ValuesMap[d1] || ValuesMap[d2]) && HousesMap[houseIndex])
+				{
+					continue;
+				}
+
+				var otherCells = (HousesMap[houseIndex] & EmptyCells) - loop;
+				for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
+				{
+					foreach (var cells in otherCells & size)
+					{
+						var mask = grid.GetDigitsUnion(cells);
+						if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
+						{
+							continue;
+						}
+
+						if ((HousesMap[houseIndex] & EmptyCells) - cells - loop is not (var elimMap and not []))
+						{
+							continue;
+						}
+
+						var conclusions = new List<Conclusion>();
+						foreach (var digit in mask)
+						{
+							foreach (var cell in elimMap & CandidatesMap[digit])
+							{
+								conclusions.Add(new(Elimination, cell, digit));
+							}
+						}
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
+
+						var candidateOffsets = new List<CandidateViewNode>();
+						foreach (var cell in loop)
+						{
+							foreach (var digit in grid.GetCandidates(cell))
+							{
+								candidateOffsets.Add(
+									new(
+										(otherDigitsMask >> digit & 1) != 0 ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+										cell * 9 + digit
+									)
+								);
+							}
+						}
+						foreach (var cell in cells)
+						{
+							foreach (var digit in grid.GetCandidates(cell))
+							{
+								candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
+							}
+						}
+
+						var step = new UniqueLoopType3Step(
+							conclusions.ToArray(),
+							new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, houseIndex) },
+							d1,
+							d2,
+							loop,
+							mask,
+							cells
+						);
+
+						if (onlyFindOne)
+						{
+							return step;
+						}
+
+						accumulator.Add(step);
+					}
+				}
+			}
+
+			return null;
+		}
+		else
+		{
+			// Extra cells may not lie in a same house. However the type 3 can form in this case.
+			var otherCells = extraCellsMap.PeerIntersection - loop & EmptyCells;
+			if (!otherCells)
+			{
+				return null;
+			}
+
 			for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
 			{
 				foreach (var cells in otherCells & size)
@@ -284,15 +372,15 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						continue;
 					}
 
-					if ((HousesMap[houseIndex] & EmptyCells) - cells - loop is not (var elimMap and not []))
+					if ((extraCellsMap | cells).PeerIntersection - loop is not (var elimMap and not []))
 					{
 						continue;
 					}
 
 					var conclusions = new List<Conclusion>();
-					foreach (var digit in mask)
+					foreach (var cell in elimMap)
 					{
-						foreach (var cell in elimMap & CandidatesMap[digit])
+						foreach (var digit in (short)(grid.GetCandidates(cell) & otherDigitsMask))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -323,16 +411,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						}
 					}
 
-					var step = new UniqueLoopType3Step(
-						conclusions.ToArray(),
-						new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, houseIndex) },
-						d1,
-						d2,
-						loop,
-						mask,
-						cells
-					);
-
+					var step = new UniqueLoopType3Step(conclusions.ToArray(), new[] { View.Empty | candidateOffsets }, d1, d2, loop, mask, cells);
 					if (onlyFindOne)
 					{
 						return step;
@@ -341,10 +420,9 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					accumulator.Add(step);
 				}
 			}
-		}
 
-	ReturnNull:
-		return null;
+			return null;
+		}
 	}
 
 	/// <summary>
@@ -370,9 +448,9 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		bool onlyFindOne
 	)
 	{
-		if (!extraCellsMap.InOneHouse)
+		if (extraCellsMap is not { InOneHouse: true, Count: 2 })
 		{
-			goto ReturnNull;
+			return null;
 		}
 
 		foreach (var houseIndex in extraCellsMap.CoveredHouses)
@@ -432,7 +510,6 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			}
 		}
 
-	ReturnNull:
 		return null;
 	}
 }

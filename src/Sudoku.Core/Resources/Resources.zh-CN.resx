@@ -1280,19 +1280,19 @@
     <value>全双值格致死解法・XY-Wing</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="UniquePolygonType1" xml:space="preserve">
+  <data name="BorescoperDeadlyPatternType1" xml:space="preserve">
     <value>探长致命结构类型 1</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="UniquePolygonType2" xml:space="preserve">
+  <data name="BorescoperDeadlyPatternType2" xml:space="preserve">
     <value>探长致命结构类型 2</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="UniquePolygonType3" xml:space="preserve">
+  <data name="BorescoperDeadlyPatternType3" xml:space="preserve">
     <value>探长致命结构类型 3</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="UniquePolygonType4" xml:space="preserve">
+  <data name="BorescoperDeadlyPatternType4" xml:space="preserve">
     <value>探长致命结构类型 4</value>
     <comment>Technique Name</comment>
   </data>
