@@ -166,7 +166,7 @@ public abstract class Step(Conclusion[] conclusions, View[]? views) : IVisual
 	{
 		var currentCultureName = CultureInfo.CurrentCulture.Name;
 		var formatArgs = FormatInterpolatedParts?.FirstOrDefault(c).Value;
-		var colonToken = R.EmitPunctuation(Punctuation.Colon);
+		var colonToken = R["Colon"];
 		return (Format, formatArgs) switch
 		{
 			(null, _) => ToSimpleString(),

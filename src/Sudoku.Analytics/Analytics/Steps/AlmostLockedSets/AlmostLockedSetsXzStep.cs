@@ -99,5 +99,5 @@ public sealed class AlmostLockedSetsXzStep(
 	private string ZResultStr
 		=> ZDigitsMask == 0
 			? string.Empty
-			: $"{R.EmitPunctuation(Punctuation.Comma)}Z = {DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal)}";
+			: $"{R["Comma"]!}Z = {DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal)}";
 }

@@ -38,7 +38,7 @@ public sealed class GurthSymmetricalPlacementStep(Conclusion[] conclusions, View
 	{
 		get
 		{
-			var separator = R.EmitPunctuation(Punctuation.Comma);
+			var separator = R["Comma"]!;
 			if (Mapping is not null)
 			{
 				scoped var sb = new StringHandler(10);

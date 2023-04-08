@@ -125,12 +125,4 @@ public sealed class MergedResources
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void AddExternalResourceFetcher(Assembly[] assemblies, Func<string, string?> valueSelector)
 		=> (_valueSelectors ??= new List<(Assembly[], Func<string, string?>)>()).Add((assemblies, valueSelector));
-
-	/// <summary>
-	/// Emits a string value represented as the specified punctuation mark.
-	/// </summary>
-	/// <param name="punctuation">The punctuation mark.</param>
-	/// <returns>The string that represents the punctuation mark.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string EmitPunctuation(Punctuation punctuation) => R[punctuation.ToString()]!;
 }

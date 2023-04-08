@@ -5278,41 +5278,16 @@ fixed (short* ptr = instance)
             <param name="assemblies">The supported assemblies.</param>
             <param name="valueSelector">The value selector.</param>
         </member>
-        <member name="M:Sudoku.Resources.MergedResources.EmitPunctuation(Sudoku.Resources.Punctuation)">
-            <summary>
-            Emits a string value represented as the specified punctuation mark.
-            </summary>
-            <param name="punctuation">The punctuation mark.</param>
-            <returns>The string that represents the punctuation mark.</returns>
-        </member>
-        <member name="T:Sudoku.Resources.Punctuation">
-            <summary>
-            Defines a kind of the punctuation mark.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Resources.Punctuation.Colon">
-            <summary>
-            Defines the colon (<c>:</c>).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Resources.Punctuation.Comma">
-            <summary>
-            Defines the comma (<c>,</c>).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Resources.Punctuation.Ellipsis">
-            <summary>
-            Defines the ellipsis (<c>...</c>).
-            </summary>
-        </member>
         <member name="T:Sudoku.Resources.ResourceNotFoundException">
             <summary>
             Represents an exception that will be thrown when a certain resource key cannot be found in the resource dictionary.
             </summary>
+            <param name="resourceKey">The resource key that causes this error.</param>
+            <param name="assembly">Indicates the assembly where this error is thrown.</param>
         </member>
         <member name="M:Sudoku.Resources.ResourceNotFoundException.#ctor(System.String,System.Reflection.Assembly)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Resources.ResourceNotFoundException"/> instance via the specified resource key.
+            Represents an exception that will be thrown when a certain resource key cannot be found in the resource dictionary.
             </summary>
             <param name="resourceKey">The resource key that causes this error.</param>
             <param name="assembly">Indicates the assembly where this error is thrown.</param>

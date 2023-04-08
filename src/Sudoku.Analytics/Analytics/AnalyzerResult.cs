@@ -373,7 +373,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 				{
 					if (i > bIndex && !options.Flags(AnalyzerResultFormattingOptions.ShowStepsAfterBottleneck))
 					{
-						sb.Append(R.EmitPunctuation(Punctuation.Ellipsis));
+						sb.Append(R["Ellipsis"]!);
 						sb.AppendLine();
 
 						break;
@@ -408,7 +408,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 					{
 						sb.Append(R["AnalysisResultInStep"]!);
 						sb.Append(bIndex + 1);
-						sb.Append(R.EmitPunctuation(Punctuation.Colon));
+						sb.Append(R["Colon"]!);
 					}
 
 					sb.Append(' ');

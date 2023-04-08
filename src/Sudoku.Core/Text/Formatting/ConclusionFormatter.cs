@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Provides with a formatter that can format a list of <see cref="Conclusion"/>s,
@@ -95,7 +95,7 @@ public abstract class ConclusionFormatter : ICollectionFormatter<Conclusion>
 		{
 			FormattingMode.Simple
 				=> EliminationNotation.ToCandidatesString(CandidateMap.Empty + from c in conclusions select c.Cell * 9 + c.Digit),
-			FormattingMode.Normal => Format(conclusions, R.EmitPunctuation(Punctuation.Comma), true),
+			FormattingMode.Normal => Format(conclusions, R["Comma"]!, true),
 			FormattingMode.Full => throw new NotSupportedException("The full-formatting mode is not supported on conclusion collections."),
 			_ => throw new ArgumentOutOfRangeException(nameof(formattingMode))
 		};
