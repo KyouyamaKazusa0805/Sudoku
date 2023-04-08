@@ -4,15 +4,14 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 /// 表示一个分析指令。
 /// </summary>
 [Command("分析")]
-[RequiredUserLevel(20)]
+[RequiredUserLevel(5)]
 internal sealed class AnalyzeCommand : Command
 {
 	/// <summary>
-	/// 表示你输入的题目，经分析之后，想要查询的技巧是否存在。比如输入“唯一矩形”，则会产生分析过程，并搜索该题目经过分析后，
-	/// 绘制出第一个为该技巧名的技巧步骤的步骤图，以及解释文字。
+	/// 表示你需要查询的技巧名称或它的英文名。该参数支持技巧的中文名、英文简称等写法。
 	/// </summary>
 	[DoubleArgument("技巧")]
-	[Hint("表示你需要查询的技巧名称或它的英文名。")]
+	[Hint("表示你需要查询的技巧名称或它的英文名。该参数支持技巧的中文名、英文简称等写法。")]
 	[DisplayingIndex(1)]
 	public string? TechniqueName { get; set; }
 
