@@ -318,12 +318,9 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	[JsonInclude]
 	public readonly string[] StringChunks
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => this
+		=> this
 			? ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
 			: Array.Empty<string>();
-	}
 
 	/// <summary>
 	/// Gets the expanded peers of the current map.
