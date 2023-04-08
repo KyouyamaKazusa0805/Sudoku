@@ -279,6 +279,50 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 	}
 
 	/// <summary>
+	/// Gets the first found <see cref="Step"/> whose name is specified one, or nearly same as the specified one.
+	/// </summary>
+	/// <param name="techniqueName">Technique name.</param>
+	/// <returns>The first found step.</returns>
+	public (Grid StepGrid, Step Step)? this[string techniqueName]
+	{
+		get
+		{
+			if (!IsSolved)
+			{
+				return null;
+			}
+
+			foreach (var pair in SolvingPath)
+			{
+				var (_, step) = pair;
+
+				var name = step.Name;
+				if (nameEquality(name))
+				{
+					return pair;
+				}
+
+				var aliases = step.Code.GetAliases();
+				if (aliases is not null && Array.Exists(aliases, nameEquality))
+				{
+					return pair;
+				}
+
+				var abbr = step.Code.GetAbbreviation();
+				if (abbr is not null && nameEquality(abbr))
+				{
+					return pair;
+				}
+			}
+
+			return null;
+
+
+			bool nameEquality(string name) => name == techniqueName || name.Contains(techniqueName, StringComparison.OrdinalIgnoreCase);
+		}
+	}
+
+	/// <summary>
 	/// Gets a list of <see cref="Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
 	/// </summary>
 	/// <param name="difficultyRating">The specified difficulty rating value.</param>

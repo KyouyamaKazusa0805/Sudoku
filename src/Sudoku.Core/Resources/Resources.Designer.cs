@@ -3517,6 +3517,1068 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ALP.
+        /// </summary>
+        public static string TechniqueAbbr_AlmostLockedPair {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AlmostLockedPair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALQ.
+        /// </summary>
+        public static string TechniqueAbbr_AlmostLockedQuadruple {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AlmostLockedQuadruple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALS.
+        /// </summary>
+        public static string TechniqueAbbr_AlmostLockedSetsChain {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AlmostLockedSetsChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALS.
+        /// </summary>
+        public static string TechniqueAbbr_AlmostLockedSetsWWing {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AlmostLockedSetsWWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALS.
+        /// </summary>
+        public static string TechniqueAbbr_AlmostLockedSetsXyWing {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AlmostLockedSetsXyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALT.
+        /// </summary>
+        public static string TechniqueAbbr_AlmostLockedTriple {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AlmostLockedTriple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AIC.
+        /// </summary>
+        public static string TechniqueAbbr_AlternatingInferenceChain {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AlternatingInferenceChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangle2D {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangle2D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangle3X {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangle3X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleBrokenWing {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleBrokenWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleExternalAlmostLockedSetsXz {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleExternalAlmostLockedSetsXz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleExternalSkyscraper {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleExternalSkyscraper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleExternalTurbotFish {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleExternalTurbotFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleExternalTwoStringKite {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleExternalTwoStringKite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleExternalType1 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleExternalType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleExternalType2 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleExternalType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleExternalType3 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleExternalType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleExternalType4 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleExternalType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleExternalXyWing {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleExternalXyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleHiddenSingleBlock {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleHiddenSingleBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleHiddenSingleColumn {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleHiddenSingleColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleHiddenSingleRow {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleHiddenSingleRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR SDC.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleSueDeCoq {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleSueDeCoq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR1.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleType1 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR2.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleType2 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR3.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleType3 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR5.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleType5 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleType5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleWxyzWing {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleWxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleXyWing {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleXyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AR.
+        /// </summary>
+        public static string TechniqueAbbr_AvoidableRectangleXyzWing {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_AvoidableRectangleXyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BUG.
+        /// </summary>
+        public static string TechniqueAbbr_BivalueUniversalGraveFalseCandidateType {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_BivalueUniversalGraveFalseCandidateType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BUG.
+        /// </summary>
+        public static string TechniqueAbbr_BivalueUniversalGravePlusN {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_BivalueUniversalGravePlusN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BUG.
+        /// </summary>
+        public static string TechniqueAbbr_BivalueUniversalGravePlusNForcingChains {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_BivalueUniversalGravePlusNForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BUG1.
+        /// </summary>
+        public static string TechniqueAbbr_BivalueUniversalGraveType1 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_BivalueUniversalGraveType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BUG2.
+        /// </summary>
+        public static string TechniqueAbbr_BivalueUniversalGraveType2 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_BivalueUniversalGraveType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BUG3.
+        /// </summary>
+        public static string TechniqueAbbr_BivalueUniversalGraveType3 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_BivalueUniversalGraveType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BUG4.
+        /// </summary>
+        public static string TechniqueAbbr_BivalueUniversalGraveType4 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_BivalueUniversalGraveType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BUG.
+        /// </summary>
+        public static string TechniqueAbbr_BivalueUniversalGraveXyWing {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_BivalueUniversalGraveXyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BUG.
+        /// </summary>
+        public static string TechniqueAbbr_BivalueUniversalGraveXzRule {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_BivalueUniversalGraveXzRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BF.
+        /// </summary>
+        public static string TechniqueAbbr_BruteForce {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_BruteForce", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SE.
+        /// </summary>
+        public static string TechniqueAbbr_ComplexSeniorExocet {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_ComplexSeniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CNL.
+        /// </summary>
+        public static string TechniqueAbbr_ContinuousNiceLoop {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_ContinuousNiceLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DNL.
+        /// </summary>
+        public static string TechniqueAbbr_DiscontinuousNiceLoop {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_DiscontinuousNiceLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALS.
+        /// </summary>
+        public static string TechniqueAbbr_DoublyLinkedAlmostLockedSetsXzRule {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_DoublyLinkedAlmostLockedSetsXzRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ER.
+        /// </summary>
+        public static string TechniqueAbbr_EmptyRectangle {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_EmptyRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ERIP.
+        /// </summary>
+        public static string TechniqueAbbr_EmptyRectangleIntersectionPair {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_EmptyRectangleIntersectionPair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XR1.
+        /// </summary>
+        public static string TechniqueAbbr_ExtendedRectangleType1 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_ExtendedRectangleType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XR2.
+        /// </summary>
+        public static string TechniqueAbbr_ExtendedRectangleType2 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_ExtendedRectangleType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XR3.
+        /// </summary>
+        public static string TechniqueAbbr_ExtendedRectangleType3 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_ExtendedRectangleType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XR4.
+        /// </summary>
+        public static string TechniqueAbbr_ExtendedRectangleType4 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_ExtendedRectangleType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ESP.
+        /// </summary>
+        public static string TechniqueAbbr_ExtendedSubsetPrinciple {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_ExtendedSubsetPrinciple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GSP.
+        /// </summary>
+        public static string TechniqueAbbr_GurthSymmetricalPlacement {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_GurthSymmetricalPlacement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HAR.
+        /// </summary>
+        public static string TechniqueAbbr_HiddenAvoidableRectangle {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_HiddenAvoidableRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HUR.
+        /// </summary>
+        public static string TechniqueAbbr_HiddenUniqueRectangle {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_HiddenUniqueRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JE.
+        /// </summary>
+        public static string TechniqueAbbr_JuniorExocet {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_JuniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MSLS.
+        /// </summary>
+        public static string TechniqueAbbr_MultisectorLockedSets {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_MultisectorLockedSets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to POM.
+        /// </summary>
+        public static string TechniqueAbbr_PatternOverlay {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_PatternOverlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SE.
+        /// </summary>
+        public static string TechniqueAbbr_SeniorExocet {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_SeniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALS.
+        /// </summary>
+        public static string TechniqueAbbr_SinglyLinkedAlmostLockedSetsXzRule {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_SinglyLinkedAlmostLockedSetsXzRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SDC.
+        /// </summary>
+        public static string TechniqueAbbr_SueDeCoq {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_SueDeCoq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SDC.
+        /// </summary>
+        public static string TechniqueAbbr_SueDeCoq3Dimension {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_SueDeCoq3Dimension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SDC.
+        /// </summary>
+        public static string TechniqueAbbr_SueDeCoqCannibalism {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_SueDeCoqCannibalism", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SDC.
+        /// </summary>
+        public static string TechniqueAbbr_SueDeCoqIsolated {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_SueDeCoqIsolated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UL1.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueLoopType1 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueLoopType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UL2.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueLoopType2 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueLoopType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UL3.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueLoopType3 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueLoopType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UL4.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueLoopType4 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueLoopType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle2B1 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle2B1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle2D {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle2D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle2D1 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle2D1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle3E2 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle3E2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle3N2 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle3N2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle3U2 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle3U2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle3X {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle3X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle3X1L {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle3X1L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle3X1U {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle3X1U", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle3X2 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle3X2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle4C3 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle4C3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle4X1L {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle4X1L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle4X1U {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle4X1U", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle4X2L {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle4X2L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle4X2U {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle4X2U", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangle4X3 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangle4X3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleBabaGrouping {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleBabaGrouping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleExternalAlmostLockedSetsXz {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleExternalAlmostLockedSetsXz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleExternalSkyscraper {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleExternalSkyscraper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleExternalTurbotFish {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleExternalTurbotFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleExternalTwoStringKite {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleExternalTwoStringKite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleExternalType1 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleExternalType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleExternalType2 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleExternalType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleExternalType3 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleExternalType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleExternalType4 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleExternalType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleExternalXyWing {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleExternalXyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR SDC.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleSueDeCoq {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleSueDeCoq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR1.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleType1 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR2.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleType2 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR3.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleType3 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR4.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleType4 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR5.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleType5 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleType5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UR6.
+        /// </summary>
+        public static string TechniqueAbbr_UniqueRectangleType6 {
+            get {
+                return ResourceManager.GetString("TechniqueAbbr_UniqueRectangleType6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked Candidates Type 2.
+        /// </summary>
+        public static string TechniqueAlias_Claiming {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_Claiming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hanabi;Hanabi Pair.
+        /// </summary>
+        public static string TechniqueAlias_FireworkPairType1 {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_FireworkPairType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hanabi;Hanabi Pair.
+        /// </summary>
+        public static string TechniqueAlias_FireworkPairType2 {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_FireworkPairType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hanabi;Hanabi Pair.
+        /// </summary>
+        public static string TechniqueAlias_FireworkPairType3 {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_FireworkPairType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hanabi;Hanabi Quadruple;Hanabi Quad.
+        /// </summary>
+        public static string TechniqueAlias_FireworkQuadruple {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_FireworkQuadruple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hanabi;Hanabi Triple;Hanabi Triplet.
+        /// </summary>
+        public static string TechniqueAlias_FireworkTriple {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_FireworkTriple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hidden Rectangle.
+        /// </summary>
+        public static string TechniqueAlias_HiddenUniqueRectangle {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_HiddenUniqueRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4-Fish.
+        /// </summary>
+        public static string TechniqueAlias_Jellyfish {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_Jellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7-Fish.
+        /// </summary>
+        public static string TechniqueAlias_Leviathan {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_Leviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Quad.
+        /// </summary>
+        public static string TechniqueAlias_NakedQuadruple {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_NakedQuadruple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Quad (+).
+        /// </summary>
+        public static string TechniqueAlias_NakedQuadruplePlus {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_NakedQuadruplePlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Triplet.
+        /// </summary>
+        public static string TechniqueAlias_NakedTriple {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_NakedTriple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Triplet (+).
+        /// </summary>
+        public static string TechniqueAlias_NakedTriplePlus {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_NakedTriplePlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked Candidates Type 1.
+        /// </summary>
+        public static string TechniqueAlias_Pointing {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_Pointing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5-Fish;Starfish.
+        /// </summary>
+        public static string TechniqueAlias_Squirmbag {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_Squirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two-sector Locked Set.
+        /// </summary>
+        public static string TechniqueAlias_SueDeCoq {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_SueDeCoq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3-Fish.
+        /// </summary>
+        public static string TechniqueAlias_Swordfish {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_Swordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6-Fish.
+        /// </summary>
+        public static string TechniqueAlias_Whale {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_Whale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} from {1} to {2}.
         /// </summary>
         public static string TechniqueFormat_AlmostLockedCandidatesStep {

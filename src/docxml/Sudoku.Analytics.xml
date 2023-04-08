@@ -391,6 +391,13 @@
             Throws when the specified puzzle cannot correspond to a paired <see cref="T:Sudoku.Analytics.Step"/> instance.
             </exception>
         </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(System.String)">
+            <summary>
+            Gets the first found <see cref="T:Sudoku.Analytics.Step"/> whose name is specified one, or nearly same as the specified one.
+            </summary>
+            <param name="techniqueName">Technique name.</param>
+            <returns>The first found step.</returns>
+        </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.Item(System.Decimal)">
             <summary>
             Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
@@ -2088,8 +2095,7 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.NodeCollision">
             <summary>
-            Indicates special case that a grouped alternating inference chain has a collision
-            between start and end node.
+            Indicates special case that a grouped alternating inference chain has a collision between start and end node.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.NishioForcingChains">
@@ -2251,6 +2257,39 @@
             <summary>
             Indicates brute force.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetName(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>
+            The name of the current technique.
+            Return <see langword="null"/> if the current technique does not contain a valid name in resource dictionary.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAbbreviation(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the abbreviation of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>The abbreviation of the current technique.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAliases(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get all aliases of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>
+            All possible aliases of the current technique.
+            If the technique does not contain any aliases, the return value will be <see langword="null"/>.
+            </returns>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueGroup">
             <summary>

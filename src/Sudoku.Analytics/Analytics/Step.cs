@@ -12,7 +12,7 @@ public abstract class Step(Conclusion[] conclusions, View[]? views) : IVisual
 	/// you can find them in the <c>Resources</c> folder (Type <see cref="MergedResources"/>).
 	/// </summary>
 	/// <exception cref="ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
-	public virtual string Name => R[Code.ToString()] ?? throw new ResourceNotFoundException(Code.ToString(), EqualityContract.Assembly);
+	public virtual string Name => Code.GetName() ?? throw new ResourceNotFoundException(Code.ToString(), EqualityContract.Assembly);
 
 	/// <summary>
 	/// Gets the format of the current instance.

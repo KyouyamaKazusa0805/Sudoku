@@ -1709,8 +1709,7 @@ public enum Technique : short
 	GroupedAlternatingInferenceChain,
 
 	/// <summary>
-	/// Indicates special case that a grouped alternating inference chain has a collision
-	/// between start and end node.
+	/// Indicates special case that a grouped alternating inference chain has a collision between start and end node.
 	/// </summary>
 	NodeCollision,
 

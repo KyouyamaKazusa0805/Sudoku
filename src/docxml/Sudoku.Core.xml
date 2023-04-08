@@ -7241,6 +7241,596 @@ fixed (short* ptr = instance)
               Looks up a localized string similar to Swordfish.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AlmostLockedPair">
+            <summary>
+              Looks up a localized string similar to ALP.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AlmostLockedQuadruple">
+            <summary>
+              Looks up a localized string similar to ALQ.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AlmostLockedSetsChain">
+            <summary>
+              Looks up a localized string similar to ALS.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AlmostLockedSetsWWing">
+            <summary>
+              Looks up a localized string similar to ALS.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AlmostLockedSetsXyWing">
+            <summary>
+              Looks up a localized string similar to ALS.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AlmostLockedTriple">
+            <summary>
+              Looks up a localized string similar to ALT.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AlternatingInferenceChain">
+            <summary>
+              Looks up a localized string similar to AIC.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangle2D">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangle3X">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleBrokenWing">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleExternalAlmostLockedSetsXz">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleExternalSkyscraper">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleExternalTurbotFish">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleExternalTwoStringKite">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleExternalType1">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleExternalType2">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleExternalType3">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleExternalType4">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleExternalXyWing">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleHiddenSingleBlock">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleHiddenSingleColumn">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleHiddenSingleRow">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleSueDeCoq">
+            <summary>
+              Looks up a localized string similar to AR SDC.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleType1">
+            <summary>
+              Looks up a localized string similar to AR1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleType2">
+            <summary>
+              Looks up a localized string similar to AR2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleType3">
+            <summary>
+              Looks up a localized string similar to AR3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleType5">
+            <summary>
+              Looks up a localized string similar to AR5.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleWxyzWing">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleXyWing">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_AvoidableRectangleXyzWing">
+            <summary>
+              Looks up a localized string similar to AR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_BivalueUniversalGraveFalseCandidateType">
+            <summary>
+              Looks up a localized string similar to BUG.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_BivalueUniversalGravePlusN">
+            <summary>
+              Looks up a localized string similar to BUG.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_BivalueUniversalGravePlusNForcingChains">
+            <summary>
+              Looks up a localized string similar to BUG.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_BivalueUniversalGraveType1">
+            <summary>
+              Looks up a localized string similar to BUG1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_BivalueUniversalGraveType2">
+            <summary>
+              Looks up a localized string similar to BUG2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_BivalueUniversalGraveType3">
+            <summary>
+              Looks up a localized string similar to BUG3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_BivalueUniversalGraveType4">
+            <summary>
+              Looks up a localized string similar to BUG4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_BivalueUniversalGraveXyWing">
+            <summary>
+              Looks up a localized string similar to BUG.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_BivalueUniversalGraveXzRule">
+            <summary>
+              Looks up a localized string similar to BUG.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_BruteForce">
+            <summary>
+              Looks up a localized string similar to BF.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_ComplexSeniorExocet">
+            <summary>
+              Looks up a localized string similar to SE.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_ContinuousNiceLoop">
+            <summary>
+              Looks up a localized string similar to CNL.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_DiscontinuousNiceLoop">
+            <summary>
+              Looks up a localized string similar to DNL.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_DoublyLinkedAlmostLockedSetsXzRule">
+            <summary>
+              Looks up a localized string similar to ALS.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_EmptyRectangle">
+            <summary>
+              Looks up a localized string similar to ER.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_EmptyRectangleIntersectionPair">
+            <summary>
+              Looks up a localized string similar to ERIP.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_ExtendedRectangleType1">
+            <summary>
+              Looks up a localized string similar to XR1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_ExtendedRectangleType2">
+            <summary>
+              Looks up a localized string similar to XR2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_ExtendedRectangleType3">
+            <summary>
+              Looks up a localized string similar to XR3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_ExtendedRectangleType4">
+            <summary>
+              Looks up a localized string similar to XR4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_ExtendedSubsetPrinciple">
+            <summary>
+              Looks up a localized string similar to ESP.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_GurthSymmetricalPlacement">
+            <summary>
+              Looks up a localized string similar to GSP.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_HiddenAvoidableRectangle">
+            <summary>
+              Looks up a localized string similar to HAR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_HiddenUniqueRectangle">
+            <summary>
+              Looks up a localized string similar to HUR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_JuniorExocet">
+            <summary>
+              Looks up a localized string similar to JE.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_MultisectorLockedSets">
+            <summary>
+              Looks up a localized string similar to MSLS.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_PatternOverlay">
+            <summary>
+              Looks up a localized string similar to POM.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_SeniorExocet">
+            <summary>
+              Looks up a localized string similar to SE.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_SinglyLinkedAlmostLockedSetsXzRule">
+            <summary>
+              Looks up a localized string similar to ALS.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_SueDeCoq">
+            <summary>
+              Looks up a localized string similar to SDC.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_SueDeCoq3Dimension">
+            <summary>
+              Looks up a localized string similar to SDC.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_SueDeCoqCannibalism">
+            <summary>
+              Looks up a localized string similar to SDC.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_SueDeCoqIsolated">
+            <summary>
+              Looks up a localized string similar to SDC.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueLoopType1">
+            <summary>
+              Looks up a localized string similar to UL1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueLoopType2">
+            <summary>
+              Looks up a localized string similar to UL2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueLoopType3">
+            <summary>
+              Looks up a localized string similar to UL3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueLoopType4">
+            <summary>
+              Looks up a localized string similar to UL4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle2B1">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle2D">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle2D1">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle3E2">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle3N2">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle3U2">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle3X">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle3X1L">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle3X1U">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle3X2">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle4C3">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle4X1L">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle4X1U">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle4X2L">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle4X2U">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangle4X3">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleBabaGrouping">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleExternalAlmostLockedSetsXz">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleExternalSkyscraper">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleExternalTurbotFish">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleExternalTwoStringKite">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleExternalType1">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleExternalType2">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleExternalType3">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleExternalType4">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleExternalXyWing">
+            <summary>
+              Looks up a localized string similar to UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleSueDeCoq">
+            <summary>
+              Looks up a localized string similar to UR SDC.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleType1">
+            <summary>
+              Looks up a localized string similar to UR1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleType2">
+            <summary>
+              Looks up a localized string similar to UR2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleType3">
+            <summary>
+              Looks up a localized string similar to UR3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleType4">
+            <summary>
+              Looks up a localized string similar to UR4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleType5">
+            <summary>
+              Looks up a localized string similar to UR5.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAbbr_UniqueRectangleType6">
+            <summary>
+              Looks up a localized string similar to UR6.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_Claiming">
+            <summary>
+              Looks up a localized string similar to Locked Candidates Type 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_FireworkPairType1">
+            <summary>
+              Looks up a localized string similar to Hanabi;Hanabi Pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_FireworkPairType2">
+            <summary>
+              Looks up a localized string similar to Hanabi;Hanabi Pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_FireworkPairType3">
+            <summary>
+              Looks up a localized string similar to Hanabi;Hanabi Pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_FireworkQuadruple">
+            <summary>
+              Looks up a localized string similar to Hanabi;Hanabi Quadruple;Hanabi Quad.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_FireworkTriple">
+            <summary>
+              Looks up a localized string similar to Hanabi;Hanabi Triple;Hanabi Triplet.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_HiddenUniqueRectangle">
+            <summary>
+              Looks up a localized string similar to Hidden Rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_Jellyfish">
+            <summary>
+              Looks up a localized string similar to 4-Fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_Leviathan">
+            <summary>
+              Looks up a localized string similar to 7-Fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_NakedQuadruple">
+            <summary>
+              Looks up a localized string similar to Naked Quad.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_NakedQuadruplePlus">
+            <summary>
+              Looks up a localized string similar to Naked Quad (+).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_NakedTriple">
+            <summary>
+              Looks up a localized string similar to Naked Triplet.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_NakedTriplePlus">
+            <summary>
+              Looks up a localized string similar to Naked Triplet (+).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_Pointing">
+            <summary>
+              Looks up a localized string similar to Locked Candidates Type 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_Squirmbag">
+            <summary>
+              Looks up a localized string similar to 5-Fish;Starfish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_SueDeCoq">
+            <summary>
+              Looks up a localized string similar to Two-sector Locked Set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_Swordfish">
+            <summary>
+              Looks up a localized string similar to 3-Fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueAlias_Whale">
+            <summary>
+              Looks up a localized string similar to 6-Fish.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_AlmostLockedCandidatesStep">
             <summary>
               Looks up a localized string similar to {0} from {1} to {2}.

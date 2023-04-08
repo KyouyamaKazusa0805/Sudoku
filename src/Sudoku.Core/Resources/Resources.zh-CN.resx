@@ -1631,11 +1631,11 @@
     <comment>Technique Name</comment>
   </data>
   <data name="FireworkQuadruple" xml:space="preserve">
-    <value>花火四数组</value>
+    <value>烟花四数组</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FireworkTriple" xml:space="preserve">
-    <value>花火三数组</value>
+    <value>烟花三数组</value>
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_FireworkTripleStep" xml:space="preserve">
@@ -1645,11 +1645,11 @@
     <value>单元格 {0} 里必须构成关于数字 {1} 的跨区四数组结构</value>
   </data>
   <data name="FireworkPairType1" xml:space="preserve">
-    <value>花火数对・双值格对</value>
+    <value>烟花数对・双值格对</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FireworkPairType2" xml:space="preserve">
-    <value>花火数对・鸳鸯花火</value>
+    <value>烟花数对・鸳鸯烟花</value>
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_FireworkPairType1Step" xml:space="preserve">
@@ -1659,7 +1659,7 @@
     <value>花火结构 {0} 和 {1} 使用数字 {2}，并带有额外单元格 {3}</value>
   </data>
   <data name="FireworkPairType3" xml:space="preserve">
-    <value>花火数对・空矩形</value>
+    <value>烟花数对・空矩形</value>
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_FireworkPairType3Step" xml:space="preserve">
@@ -1940,7 +1940,7 @@
     <comment>Step Searcher Name</comment>
   </data>
   <data name="StepSearcherName_FireworkStepSearcher" xml:space="preserve">
-    <value>花火数组</value>
+    <value>烟花数组</value>
     <comment>Step Searcher Name</comment>
   </data>
   <data name="StepSearcherName_GuardianStepSearcher" xml:space="preserve">
@@ -2116,5 +2116,119 @@
   </data>
   <data name="ExtraDifficultyCaseNames_WingSize" xml:space="preserve">
     <value>Wing 的分支数量</value>
+  </data>
+  <data name="TechniqueAlias_AlmostLockedPair" xml:space="preserve">
+    <value>差一数对</value>
+  </data>
+  <data name="TechniqueAlias_AlmostLockedQuadruple" xml:space="preserve">
+    <value>差一四数组;差一四链数</value>
+  </data>
+  <data name="TechniqueAlias_AlmostLockedTriple" xml:space="preserve">
+    <value>差一三数组;差一三链数</value>
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType1" xml:space="preserve">
+    <value>全双值坟墓</value>
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType2" xml:space="preserve">
+    <value>全双值坟墓</value>
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType3" xml:space="preserve">
+    <value>全双值坟墓</value>
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType4" xml:space="preserve">
+    <value>全双值坟墓</value>
+  </data>
+  <data name="TechniqueAlias_FireworkPairType1" xml:space="preserve">
+    <value>花火数对</value>
+  </data>
+  <data name="TechniqueAlias_FireworkPairType2" xml:space="preserve">
+    <value>花火数对</value>
+  </data>
+  <data name="TechniqueAlias_FireworkPairType3" xml:space="preserve">
+    <value>花火数对</value>
+  </data>
+  <data name="TechniqueAlias_FireworkQuadruple" xml:space="preserve">
+    <value>花火四数组;花火四链数</value>
+  </data>
+  <data name="TechniqueAlias_FireworkTriple" xml:space="preserve">
+    <value>花火三数组;花火三链数</value>
+  </data>
+  <data name="TechniqueAlias_FullHouse" xml:space="preserve">
+    <value>唯余;唯一余数</value>
+  </data>
+  <data name="TechniqueAlias_HiddenPair" xml:space="preserve">
+    <value>数对占位</value>
+  </data>
+  <data name="TechniqueAlias_HiddenQuadruple" xml:space="preserve">
+    <value>隐性四链数;四数组占位</value>
+  </data>
+  <data name="TechniqueAlias_HiddenSingleBlock" xml:space="preserve">
+    <value>隐性唯一</value>
+  </data>
+  <data name="TechniqueAlias_HiddenSingleColumn" xml:space="preserve">
+    <value>隐性唯一</value>
+  </data>
+  <data name="TechniqueAlias_HiddenSingleRow" xml:space="preserve">
+    <value>隐性唯一</value>
+  </data>
+  <data name="TechniqueAlias_HiddenTriple" xml:space="preserve">
+    <value>隐性三链数;三数组占位</value>
+  </data>
+  <data name="TechniqueAlias_Jellyfish" xml:space="preserve">
+    <value>水母</value>
+  </data>
+  <data name="TechniqueAlias_LastDigit" xml:space="preserve">
+    <value>排除</value>
+  </data>
+  <data name="TechniqueAlias_Leviathan" xml:space="preserve">
+    <value>海怪;海妖</value>
+  </data>
+  <data name="TechniqueAlias_NakedPair" xml:space="preserve">
+    <value>数对唯余</value>
+  </data>
+  <data name="TechniqueAlias_NakedPairPlus" xml:space="preserve">
+    <value>区块数对</value>
+  </data>
+  <data name="TechniqueAlias_NakedQuadruple" xml:space="preserve">
+    <value>显性四链数;四数组唯余</value>
+  </data>
+  <data name="TechniqueAlias_NakedQuadruplePlus" xml:space="preserve">
+    <value>区块四数组</value>
+  </data>
+  <data name="TechniqueAlias_NakedSingle" xml:space="preserve">
+    <value>唯余;喂鱼</value>
+  </data>
+  <data name="TechniqueAlias_NakedTriple" xml:space="preserve">
+    <value>三数组唯余;显性三链数</value>
+  </data>
+  <data name="TechniqueAlias_NakedTriplePlus" xml:space="preserve">
+    <value>区块三数组</value>
+  </data>
+  <data name="TechniqueAlias_Skyscraper" xml:space="preserve">
+    <value>双强链</value>
+  </data>
+  <data name="TechniqueAlias_Squirmbag" xml:space="preserve">
+    <value>海星</value>
+  </data>
+  <data name="TechniqueAlias_Swordfish" xml:space="preserve">
+    <value>剑鱼</value>
+  </data>
+  <data name="TechniqueAlias_TurbotFish" xml:space="preserve">
+    <value>双强链</value>
+  </data>
+  <data name="TechniqueAlias_TwoStringKite" xml:space="preserve">
+    <value>双强链</value>
+  </data>
+  <data name="TechniqueAlias_Whale" xml:space="preserve">
+    <value>鲸;鲸鱼</value>
+  </data>
+  <data name="TechniqueAlias_XChain" xml:space="preserve">
+    <value>单数链;单链</value>
+  </data>
+  <data name="TechniqueAlias_XWing" xml:space="preserve">
+    <value>矩形删减法;四角对角线法则</value>
+  </data>
+  <data name="TechniqueAlias_XyChain" xml:space="preserve">
+    <value>双数链</value>
   </data>
 </root>

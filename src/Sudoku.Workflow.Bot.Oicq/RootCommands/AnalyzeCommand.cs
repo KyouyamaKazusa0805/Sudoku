@@ -8,6 +8,15 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 internal sealed class AnalyzeCommand : Command
 {
 	/// <summary>
+	/// 表示你输入的题目，经分析之后，想要查询的技巧是否存在。比如输入“唯一矩形”，则会产生分析过程，并搜索该题目经过分析后，
+	/// 绘制出第一个为该技巧名的技巧步骤的步骤图，以及解释文字。
+	/// </summary>
+	[DoubleArgument("技巧")]
+	[Hint("表示你需要查询的技巧名称或它的英文名。")]
+	[DisplayingIndex(1)]
+	public string? TechniqueName { get; set; }
+
+	/// <summary>
 	/// 表示你输入的题目代码。代码支持各种数独可解析的文本形式，包括但不限于 Sudoku Explainer、Hodoku、Excel 的数独的输入格式。
 	/// 如果文字带有空格，由于空格本身对于程序解析命令参数有意义，所以你需要将你的代码用双引号引起来，来告知机器人该文本代码包含空格。
 	/// </summary>
@@ -34,9 +43,44 @@ internal sealed class AnalyzeCommand : Command
 			""";
 		switch (PuzzleAnalyzer.Analyze(Puzzle))
 		{
-			case { IsSolved: true } analyzerResult:
+			case { IsSolved: true, SolvingPath: var path } analyzerResult:
 			{
-				await messageReceiver.SendMessageAsync(analyzerResult.ToString(AnalyzerResultFormattingOptions.ShowElapsedTime));
+				switch (TechniqueName)
+				{
+					case null:
+					{
+						await messageReceiver.SendMessageAsync(analyzerResult.ToString(AnalyzerResultFormattingOptions.ShowElapsedTime));
+						break;
+					}
+					default:
+					{
+						if (analyzerResult[TechniqueName] is not var (grid, step))
+						{
+							await messageReceiver.SendMessageAsync(
+								$"""
+								名为“{TechniqueName}”的技巧步骤在本题里尚未找到。没有找到的原因可能是如下的这些：
+								  * 输入的技巧名称（或它的别名）有误
+								  * 输入的技巧确实在这个题目里没有
+								  * 该技巧存在于其他不在按次序解题的主线步骤序列上
+								"""
+							);
+							break;
+						}
+
+						await messageReceiver.SendMessageAsync(step.ToString());
+						await Task.Delay(1000);
+
+						await messageReceiver.SendPictureThenDeleteAsync(
+							ISudokuPainter.Create(1000)
+								.WithGrid(Puzzle)
+								.WithRenderingCandidates(true)
+								.WithStep(step)
+								.WithPreferenceSettings(static pref => pref.CandidateScale = .4M)
+						);
+
+						break;
+					}
+				}
 				break;
 			}
 			case
