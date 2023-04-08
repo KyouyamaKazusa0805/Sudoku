@@ -3426,6 +3426,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.Grid.System#Numerics#IMinMaxValue{Sudoku#Concepts#Grid}#MaxValue">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Gets a list of <see cref="T:System.Int32"/> values that are created via raw usages from <see cref="P:Sudoku.Concepts.Grid.Item(System.Int32)"/>.
+            </summary>
+            <param name="cells">The cell indices.</param>
+            <returns>A list of digits selected.</returns>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.Item(System.Int32)">
             <summary>
             Gets or sets the digit that has been filled in the specified cell.
@@ -3458,13 +3465,6 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.InvalidOperationException">
             Throws when the specified cell keeps a wrong cell status value. For example, <see cref="F:Sudoku.Concepts.CellStatus.Undefined"/>.
             </exception>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Gets a list of <see cref="T:System.Int32"/> values that are created via raw usages from <see cref="P:Sudoku.Concepts.Grid.Item(System.Int32)"/>.
-            </summary>
-            <param name="cells">The cell indices.</param>
-            <returns>A list of digits selected.</returns>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Item(System.Int32,System.Int32)">
             <summary>

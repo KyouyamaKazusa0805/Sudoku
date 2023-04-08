@@ -592,6 +592,21 @@ public unsafe partial struct Grid :
 
 
 	/// <summary>
+	/// Gets a list of <see cref="int"/> values that are created via raw usages from <see cref="this[int]"/>.
+	/// </summary>
+	/// <param name="cells">The cell indices.</param>
+	/// <returns>A list of digits selected.</returns>
+	public readonly int[] this[scoped in CellMap cells]
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get
+		{
+			var @this = this;
+			return from cell in cells select @this[cell];
+		}
+	}
+
+	/// <summary>
 	/// Gets or sets the digit that has been filled in the specified cell.
 	/// </summary>
 	/// <param name="cell">The cell you want to get or set a value.</param>
@@ -661,21 +676,6 @@ public unsafe partial struct Grid :
 					break;
 				}
 			}
-		}
-	}
-
-	/// <summary>
-	/// Gets a list of <see cref="int"/> values that are created via raw usages from <see cref="this[int]"/>.
-	/// </summary>
-	/// <param name="cells">The cell indices.</param>
-	/// <returns>A list of digits selected.</returns>
-	public readonly int[] this[scoped in CellMap cells]
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			var @this = this;
-			return from cell in cells select @this[cell];
 		}
 	}
 
