@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.ComponentModel;
+namespace Sudoku.Workflow.Bot.Oicq.ComponentModel;
 
 /// <summary>
 /// 表示一种物品。该物品可能可以被购买到，也可能在商店里不提供购买，但它可以作为用户保留到数据内，作为数据的一部分。
@@ -10,7 +10,7 @@ public enum Item
 	/// </summary>
 	[Name("强化卡")]
 	[Description("可提供玩家 PK 或其他可获得经验值和金币时的加成倍数的基础卡片。卡片等级越高，卡片能带来的加成倍数越大。")]
-	[Price(100)]
+	[Price(10)]
 	[ItemGroup(ItemGroup.Card)]
 	Card,
 
@@ -19,7 +19,7 @@ public enum Item
 	/// </summary>
 	[Name("三叶草 1 级（倍率 1.1）")]
 	[Description("提供给玩家强化底卡时，提高成功率。")]
-	[Price(150)]
+	[Price(15)]
 	[ItemGroup(ItemGroup.Clover)]
 	CloverLevel1,
 
@@ -28,7 +28,7 @@ public enum Item
 	/// </summary>
 	[Name("三叶草 2 级（倍率 1.2）")]
 	[Description("提供给玩家强化底卡时，提高成功率。")]
-	[Price(400)]
+	[Price(40)]
 	[ItemGroup(ItemGroup.Clover)]
 	CloverLevel2,
 
@@ -37,7 +37,7 @@ public enum Item
 	/// </summary>
 	[Name("三叶草 3 级（倍率 1.4）")]
 	[Description("提供给玩家强化底卡时，提高成功率。")]
-	[Price(900)]
+	[Price(90)]
 	[ItemGroup(ItemGroup.Clover)]
 	CloverLevel3,
 
@@ -46,7 +46,7 @@ public enum Item
 	/// </summary>
 	[Name("三叶草 4 级（倍率 1.7）")]
 	[Description("提供给玩家强化底卡时，提高成功率。")]
-	[Price(1300)]
+	[Price(130)]
 	[ItemGroup(ItemGroup.Clover)]
 	CloverLevel4,
 
@@ -55,7 +55,7 @@ public enum Item
 	/// </summary>
 	[Name("三叶草 5 级（倍率 2.0）")]
 	[Description("提供给玩家强化底卡时，提高成功率。")]
-	[Price(2500)]
+	[Price(250)]
 	[ItemGroup(ItemGroup.Clover)]
 	CloverLevel5,
 
@@ -64,7 +64,7 @@ public enum Item
 	/// </summary>
 	[Name("三叶草 6 级（倍率 2.4）")]
 	[Description("提供给玩家强化底卡时，提高成功率。")]
-	[Price(5000)]
+	[Price(500)]
 	[ItemGroup(ItemGroup.Clover)]
 	CloverLevel6,
 
@@ -73,7 +73,7 @@ public enum Item
 	/// </summary>
 	[Name("三叶草 7 级（倍率 3.0）")]
 	[Description("提供给玩家强化底卡时，提高成功率。")]
-	[Price(10000)]
+	[Price(1000)]
 	[ItemGroup(ItemGroup.Clover)]
 	CloverLevel7,
 
@@ -82,7 +82,7 @@ public enum Item
 	/// </summary>
 	[Name("三叶草 8 级（倍率 3.3）")]
 	[Description("提供给玩家强化底卡时，提高成功率。")]
-	[Price(50000)]
+	[Price(5000)]
 	[ItemGroup(ItemGroup.Clover)]
 	CloverLevel8,
 
@@ -91,7 +91,7 @@ public enum Item
 	/// </summary>
 	[Name("三叶草 9 级（倍率 3.6）")]
 	[Description("提供给玩家强化底卡时，提高成功率。")]
-	[Price(100000)]
+	[Price(10000)]
 	[ItemGroup(ItemGroup.Clover)]
 	CloverLevel9,
 

@@ -45,15 +45,12 @@ internal sealed class UplevelCommand : Command
 			return;
 		}
 
-		if (UserOperations.Read(senderId) is not { CardLevel: var userCardLevel, Coin: var coin } user)
+		var user = UserOperations.Read(senderId)!;
+		var userCardLevel = user.CardLevel;
+		var coin = user.Coin;
+		if (coin < 3)
 		{
-			await messageReceiver.SendMessageAsync("很抱歉，你尚未使用过机器人。强化系统至少要求用户达到 25 级。");
-			return;
-		}
-
-		if (coin < 30)
-		{
-			await messageReceiver.SendMessageAsync("强化一次需消耗 30 金币。金币不足，无法强化。");
+			await messageReceiver.SendMessageAsync("强化一次需消耗 3 金币。金币不足，无法强化。");
 			return;
 		}
 
@@ -71,7 +68,7 @@ internal sealed class UplevelCommand : Command
 			}
 			case { MainCardLevel: < -1 or >= 17 }:
 			{
-				await messageReceiver.SendMessageAsync("参数有误。主卡级别必须介于 0 到 17 之间，且不包含 17。");
+				await messageReceiver.SendMessageAsync("参数有误。可强化的主卡级别必须介于 0 到 16 之间。");
 				break;
 			}
 			case { AuxiliaryCards: { } cards, CloverLevel: var level, MainCardLevel: var main }:
@@ -110,7 +107,7 @@ internal sealed class UplevelCommand : Command
 
 					var possibility = ScoringOperation.GetUpLevelingSuccessPossibility(main, cards, level);
 
-					user.Coin -= 30;
+					user.Coin -= 3;
 
 					var final = Rng.Next(0, 10000);
 					var boundary = possibility * 10000;

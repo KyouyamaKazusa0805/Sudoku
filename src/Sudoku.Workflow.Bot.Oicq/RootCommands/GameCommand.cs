@@ -397,7 +397,7 @@ file static class LocalScorer
 	/// </summary>
 	/// <returns>金币数。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCoinOriginal() => 480 + Rng.Next(-6, 7);
+	public static int GetCoinOriginal() => 48 + Rng.Next(-6, 7);
 
 	/// <summary>
 	/// 获得经验值的基础数值。
@@ -440,7 +440,8 @@ file static class LocalScorer
 	/// <param name="cardLevel">用户的卡片级别。</param>
 	/// <returns>金币。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCoin(int @base, int cardLevel) => (int)Round(@base * ScoringOperation.GetGlobalRate(cardLevel)) * ScoringOperation.GetWeekendFactor();
+	public static int GetCoin(int @base, int cardLevel)
+		=> (int)Round(@base * ScoringOperation.GetGlobalRate(cardLevel)) * ScoringOperation.GetWeekendFactor();
 
 	/// <summary>
 	/// 获得的物品。

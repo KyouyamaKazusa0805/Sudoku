@@ -127,7 +127,7 @@ file static class LocalScorer
 	/// <returns>金币数。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetCoin(User user)
-		=> (int)((500 + Rng.Next(-30, 35)) * ScoringOperation.GetGlobalRate(user.CardLevel) * ScoringOperation.GetWeekendFactor());
+		=> (int)((50 + Rng.Next(-8, 8)) * ScoringOperation.GetGlobalRate(user.CardLevel) * ScoringOperation.GetWeekendFactor());
 
 	/// <summary>
 	/// 获得的物品。

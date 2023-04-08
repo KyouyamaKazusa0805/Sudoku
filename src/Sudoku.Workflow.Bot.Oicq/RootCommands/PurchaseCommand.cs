@@ -4,6 +4,7 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 /// 购买指令。
 /// </summary>
 [Command("购买")]
+[RequiredUserLevel(20)]
 internal sealed class PurchaseCommand : Command
 {
 	/// <summary>
@@ -46,12 +47,6 @@ internal sealed class PurchaseCommand : Command
 		if (UserOperations.Read(senderId) is not { ExperiencePoint: var exp, Coin: var coin } user)
 		{
 			await messageReceiver.SendMessageAsync("用户没有使用过机器人。无法购买商品。");
-			return;
-		}
-
-		if (ScoringOperation.GetGrade(exp) < 20)
-		{
-			await messageReceiver.SendMessageAsync("购买功能至少需要用户达到 20 级才可使用。");
 			return;
 		}
 

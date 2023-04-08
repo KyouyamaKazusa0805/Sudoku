@@ -109,16 +109,11 @@ public static class ScoringOperation
 	{
 		var p = auxiliary switch
 		{
-			[]
-				=> throw new ArgumentException("辅助卡至少一张。", nameof(auxiliary)),
-			[var c]
-				=> Possibilities[main, main - c],
-			[var c1, var c2]
-				=> Possibilities[main, main - c1] + Possibilities[main, main - c2] / 3,
-			[var c1, var c2, var c3]
-				=> Possibilities[main, main - c1] + Possibilities[main, main - c2] / 3 + Possibilities[main, main - c3] / 3,
-			_
-				=> throw new ArgumentException("辅助卡最多三张。", nameof(auxiliary))
+			[] => throw new ArgumentException("辅助卡至少一张。", nameof(auxiliary)),
+			[var c] => Possibilities[main, main - c],
+			[var c1, var c2] => Possibilities[main, main - c1] + Possibilities[main, main - c2] / 3,
+			[var c1, var c2, var c3] => Possibilities[main, main - c1] + Possibilities[main, main - c2] / 3 + Possibilities[main, main - c3] / 3,
+			_ => throw new ArgumentException("辅助卡最多三张。", nameof(auxiliary))
 		};
 
 		return Clamp(cloverLevel switch { -1 => p, _ => p * CloverLevels[cloverLevel] }, 0, 1);

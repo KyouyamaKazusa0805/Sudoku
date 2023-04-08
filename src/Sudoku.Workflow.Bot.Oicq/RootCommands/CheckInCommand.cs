@@ -200,7 +200,7 @@ file static class LocalScorer
 	/// </summary>
 	/// <returns>金币数。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCoinOriginal() => 240 + Rng.Next(-6, 7);
+	public static int GetCoinOriginal() => 24 + Rng.Next(-8, 8);
 
 	/// <summary>
 	/// 获得经验值。
