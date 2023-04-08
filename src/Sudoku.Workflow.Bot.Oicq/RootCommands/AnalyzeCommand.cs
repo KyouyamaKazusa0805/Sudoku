@@ -43,7 +43,7 @@ internal sealed class AnalyzeCommand : Command
 			""";
 		switch (PuzzleAnalyzer.Analyze(Puzzle))
 		{
-			case { IsSolved: true, SolvingPath: var path } analyzerResult:
+			case { IsSolved: true } analyzerResult:
 			{
 				switch (TechniqueName)
 				{
@@ -72,7 +72,7 @@ internal sealed class AnalyzeCommand : Command
 
 						await messageReceiver.SendPictureThenDeleteAsync(
 							ISudokuPainter.Create(1000)
-								.WithGrid(Puzzle)
+								.WithGrid(grid)
 								.WithRenderingCandidates(true)
 								.WithStep(step)
 								.WithPreferenceSettings(static pref => pref.CandidateScale = .4M)
