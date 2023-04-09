@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.
@@ -43,9 +43,6 @@ public sealed class EmptyRectangleIntersectionPairStep(
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.EmptyRectangleIntersectionPair;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.EmptyRectangleIntersectionPair;

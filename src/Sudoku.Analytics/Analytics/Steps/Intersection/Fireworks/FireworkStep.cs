@@ -10,7 +10,4 @@ public abstract class FireworkStep(Conclusion[] conclusions, View[]? views) : In
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
-	public sealed override TechniqueGroup Group => TechniqueGroup.Firework;
 }

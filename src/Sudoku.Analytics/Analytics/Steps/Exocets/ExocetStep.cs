@@ -21,9 +21,6 @@ public abstract class ExocetStep(View[]? views, Exocet exocet, short digitsMask,
 	public sealed override string? Format => base.Format;
 
 	/// <inheritdoc/>
-	public sealed override TechniqueGroup Group => TechniqueGroup.Exocet;
-
-	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 	/// <summary>

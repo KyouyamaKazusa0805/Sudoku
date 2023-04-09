@@ -16,7 +16,4 @@ public abstract class BivalueUniversalGraveStep(Conclusion[] conclusions, View[]
 
 	/// <inheritdoc/>
 	public abstract override Technique Code { get; }
-
-	/// <inheritdoc/>
-	public sealed override TechniqueGroup Group => TechniqueGroup.BivalueUniversalGrave;
 }

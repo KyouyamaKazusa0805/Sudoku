@@ -127,14 +127,6 @@ public abstract class ChainingStep(
 		};
 
 	/// <inheritdoc/>
-	public sealed override TechniqueGroup Group
-		=> this switch
-		{
-			ForcingChainStep or BidirectionalCycleStep => TechniqueGroup.AlternatingInferenceChain,
-			_ => TechniqueGroup.ForcingChains
-		};
-
-	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel
 		=> this switch
 		{

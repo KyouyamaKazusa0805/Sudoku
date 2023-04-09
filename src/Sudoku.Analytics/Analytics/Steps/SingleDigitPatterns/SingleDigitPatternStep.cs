@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Single Digit Pattern</b> technique.
@@ -15,7 +15,4 @@ public abstract class SingleDigitPatternStep(Conclusion[] conclusions, View[]? v
 
 	/// <inheritdoc/>
 	public sealed override string? Format => base.Format;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.SingleDigitPattern;
 }

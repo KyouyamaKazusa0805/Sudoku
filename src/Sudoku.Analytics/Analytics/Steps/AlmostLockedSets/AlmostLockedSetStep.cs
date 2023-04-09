@@ -7,7 +7,4 @@ public abstract class AlmostLockedSetsStep(Conclusion[] conclusions, View[]? vie
 {
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.AlmostLockedSetsChainingLike;
 }

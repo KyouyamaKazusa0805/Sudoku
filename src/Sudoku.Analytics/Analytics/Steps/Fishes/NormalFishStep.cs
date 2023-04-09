@@ -75,9 +75,6 @@ public sealed class NormalFishStep(
 	}
 
 	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.NormalFish;
-
-	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{

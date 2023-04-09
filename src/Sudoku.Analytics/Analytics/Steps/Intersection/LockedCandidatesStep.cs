@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Locked Candidates</b> technique.
@@ -26,9 +26,6 @@ public sealed class LockedCandidatesStep(Conclusion[] conclusions, View[]? views
 
 	/// <inheritdoc/>
 	public override Technique Code => BaseSet < 9 ? Technique.Pointing : Technique.Claiming;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.LockedCandidates;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;

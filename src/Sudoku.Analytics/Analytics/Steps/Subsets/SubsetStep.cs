@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Subset</b> technique.
@@ -38,7 +38,4 @@ public abstract class SubsetStep(Conclusion[] conclusions, View[]? views, int ho
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;
-
-	/// <inheritdoc/>
-	public sealed override TechniqueGroup Group => TechniqueGroup.Subset;
 }

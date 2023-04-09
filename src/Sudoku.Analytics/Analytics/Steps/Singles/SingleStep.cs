@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Single</b> technique.
@@ -20,7 +20,4 @@ public abstract class SingleStep(Conclusion[] conclusions, View[]? views, int ce
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Easy;
-
-	/// <inheritdoc/>
-	public sealed override TechniqueGroup Group => TechniqueGroup.Single;
 }

@@ -4711,11 +4711,6 @@ result ^= expression;
             The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Step.Group">
-            <summary>
-            The technique group that this technique instance belongs to.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Step.DifficultyLevel">
             <summary>
             The difficulty level of this step.
@@ -7956,9 +7951,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsStep.Name">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
@@ -7983,9 +7975,6 @@ result ^= expression;
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.Code">
@@ -8036,9 +8025,6 @@ result ^= expression;
             <summary>
             Indicates the mask that holds the digits for the Z value.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.Group">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.DifficultyLevel">
             <inheritdoc/>
@@ -8158,9 +8144,6 @@ result ^= expression;
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Code">
@@ -8287,9 +8270,6 @@ result ^= expression;
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ChainingStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.DifficultyLevel">
@@ -8674,9 +8654,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step">
             <summary>
             Provides with a step that is a <b>Bivalue Universal Grave Type 1</b> technique.
@@ -8863,9 +8840,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Code">
             <inheritdoc/>
         </member>
@@ -8982,12 +8956,6 @@ result ^= expression;
             Provides with a step that is a <b>Deadly Pattern</b> technique.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.ExtendedRectangleStep">
             <summary>
             Provides with a step that is an <b>Extended Rectangle</b> technique.
@@ -9018,9 +8986,6 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Cells">
@@ -9163,9 +9128,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -9303,9 +9265,6 @@ result ^= expression;
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Code">
@@ -9475,9 +9434,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.Pattern">
             <summary>
             Indicates the pattern.
@@ -9617,9 +9573,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
@@ -9667,9 +9620,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
@@ -9689,9 +9639,6 @@ result ^= expression;
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.GuardianCells">
@@ -9790,9 +9737,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.GuardianCells">
             <summary>
             Indicates the cells that the guardians lie in.
@@ -9830,9 +9774,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.GuardianCells">
             <summary>
             Indicates the cells that the guardians lie in.
@@ -9868,9 +9809,6 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.ConjugatePair">
@@ -9968,9 +9906,6 @@ result ^= expression;
             </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Cells">
@@ -10089,9 +10024,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
@@ -10109,9 +10041,6 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.ConjugatePairs">
@@ -10178,9 +10107,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.BlockCells">
             <summary>
             Indicates the cells in the block of the Sue de Coq structure.
@@ -10220,9 +10146,6 @@ result ^= expression;
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.DifficultyLevel">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.Branches">
@@ -10304,9 +10227,6 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetStep.DifficultyLevel">
@@ -10432,9 +10352,6 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Exofins">
@@ -10577,9 +10494,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
@@ -10643,9 +10557,6 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.BaseCells">
@@ -10830,9 +10741,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.FireworkStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.FireworkTripleStep">
             <summary>
             Provides with a step that is a <b>Firework Triple</b> technique.
@@ -10909,9 +10817,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -10940,9 +10845,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.ContradictionLinks">
             <summary>
             Indicates the list of contradiction links.
@@ -10968,9 +10870,6 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BruteForceStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.BruteForceStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BruteForceStep.FormatInterpolatedParts">
@@ -11010,9 +10909,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.PatternOverlayStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.PatternOverlayStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.PatternOverlayStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
@@ -11045,9 +10941,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.TemplateStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.TemplateStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.TemplateStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
@@ -11077,9 +10970,6 @@ result ^= expression;
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Code">
@@ -11181,9 +11071,6 @@ result ^= expression;
             Indicates the mask of digits.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.ChromaticPatternStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -11268,9 +11155,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.GuardianStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.GuardianStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.GuardianStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -11345,9 +11229,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -11376,9 +11257,6 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.DifficultyLevel">
@@ -11424,9 +11302,6 @@ result ^= expression;
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.Group">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.DifficultyLevel">
@@ -11504,9 +11379,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.BlockCells">
             <summary>
             Indicates the cells that the current pattern used in a block.
@@ -11561,9 +11433,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.Code">
             <inheritdoc/>
         </member>
@@ -11594,9 +11463,6 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SingleDigitPatternStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SingleDigitPatternStep.Group">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.TwoStrongLinksStep">
@@ -11727,9 +11593,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.SingleStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SingleStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenSubsetStep">
             <summary>
             Provides with a step that is a <b>Hidden Subset</b> technique.
@@ -11833,9 +11696,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Group">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep">
             <summary>
             Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
@@ -11879,9 +11739,6 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Symmetrical</b> technique.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SymmetryStep.Group">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SymmetryStep.DifficultyLevel">
             <inheritdoc/>
@@ -12124,9 +11981,6 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WingStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WingStep.Group">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.WrongStepException">

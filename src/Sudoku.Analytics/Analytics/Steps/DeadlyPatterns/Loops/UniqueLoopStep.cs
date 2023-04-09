@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Loop</b> technique.
@@ -30,9 +30,6 @@ public abstract class UniqueLoopStep(Conclusion[] conclusions, View[]? views, in
 
 	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"UniqueLoopType{Type}");
-
-	/// <inheritdoc/>
-	public sealed override TechniqueGroup Group => TechniqueGroup.UniqueLoop;
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

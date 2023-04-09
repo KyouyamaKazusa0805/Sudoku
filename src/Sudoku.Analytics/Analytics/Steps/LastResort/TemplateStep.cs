@@ -25,9 +25,6 @@ public sealed class TemplateStep(Conclusion[] conclusions, View[]? views, bool i
 	public override Technique Code => IsTemplateDeletion ? Technique.TemplateDelete : Technique.TemplateSet;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.Templating;
-
-	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?> { { "en", new[] { DigitStr } }, { "zh", new[] { DigitStr } } };
 

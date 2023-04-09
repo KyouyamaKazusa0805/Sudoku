@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
@@ -10,9 +10,6 @@ public sealed class MultisectorLockedSetsStep(Conclusion[] conclusions, View[]? 
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.MultisectorLockedSets;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.MultisectorLockedSets;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;

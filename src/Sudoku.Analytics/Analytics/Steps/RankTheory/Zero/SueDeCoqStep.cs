@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Sue de Coq</b> technique.
@@ -61,9 +61,6 @@ public sealed class SueDeCoqStep(
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.SueDeCoq;
 
 	/// <summary>
 	/// Indicates the cells that the current pattern used in a block.

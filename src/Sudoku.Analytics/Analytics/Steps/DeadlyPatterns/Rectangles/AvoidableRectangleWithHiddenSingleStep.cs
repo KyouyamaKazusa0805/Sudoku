@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
@@ -44,9 +44,6 @@ public sealed class AvoidableRectangleWithHiddenSingleStep(
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.UniqueRectanglePlus;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts

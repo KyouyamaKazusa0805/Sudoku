@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
@@ -33,9 +33,6 @@ public sealed class UniqueRectangleWithWingStep(
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.UniqueRectanglePlus;
 
 	/// <summary>
 	/// Indicates the branches used.

@@ -52,9 +52,6 @@ public sealed class ComplexFishStep(
 	/// <inheritdoc/>
 	public override Technique Code => FishStepSearcherHelper.GetComplexFishTechniqueCodeFromName(InternalName);
 
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.ComplexFish;
-
 	/// <summary>
 	/// Indicates the fins, positioned outside the fish.
 	/// They will be defined if cover sets cannot be fully covered, with the number of cover sets being equal to the number of base sets.

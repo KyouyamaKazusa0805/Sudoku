@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle</b> technique.
@@ -47,9 +47,6 @@ public abstract class UniqueRectangleStep(
 
 	/// <inheritdoc/>
 	public sealed override Technique Code => code;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.UniqueRectangle;
 
 	/// <summary>
 	/// Indicates the cells used in this pattern.

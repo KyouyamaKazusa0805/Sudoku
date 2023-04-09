@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
@@ -20,9 +20,6 @@ public class UniqueRectangleWithConjugatePairStep(
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
-	public sealed override TechniqueGroup Group => TechniqueGroup.UniqueRectanglePlus;
 
 	/// <summary>
 	/// Indicates the conjugate pairs used.

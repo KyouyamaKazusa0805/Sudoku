@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Almost Locked Candidates</b> technique.
@@ -35,9 +35,6 @@ public sealed class AlmostLockedCandidatesStep(
 
 	/// <inheritdoc/>
 	public override Technique Code => (Technique)((int)Technique.AlmostLockedPair + Size - 2);
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.AlmostLockedCandidates;
 
 	/// <summary>
 	/// Indicates the base cells.

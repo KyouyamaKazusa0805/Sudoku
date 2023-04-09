@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle External Type 4</b> technique.
@@ -35,9 +35,6 @@ public sealed class UniqueRectangleExternalType4Step(
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.UniqueRectanglePlus;
 
 	/// <summary>
 	/// Indicates the conjugate pair used.

@@ -88,11 +88,6 @@ public abstract class Step(Conclusion[] conclusions, View[]? views) : IVisual
 	public abstract Technique Code { get; }
 
 	/// <summary>
-	/// The technique group that this technique instance belongs to.
-	/// </summary>
-	public virtual TechniqueGroup Group => Enum.TryParse<TechniqueGroup>(Code.ToString(), out var instance) ? instance : TechniqueGroup.None;
-
-	/// <summary>
 	/// The difficulty level of this step.
 	/// </summary>
 	/// <remarks>

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
@@ -32,9 +32,6 @@ public sealed class UniqueRectangleExternalAlmostLockedSetsXzStep(
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.UniqueRectanglePlus;
 
 	/// <summary>
 	/// Indicates the cells that the guardians lie in.

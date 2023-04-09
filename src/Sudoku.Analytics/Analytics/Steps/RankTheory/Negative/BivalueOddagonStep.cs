@@ -26,9 +26,6 @@ public abstract class BivalueOddagonStep(Conclusion[] conclusions, View[]? views
 	public override decimal BaseDifficulty => 6.3M;
 
 	/// <inheritdoc/>
-	public sealed override TechniqueGroup Group => TechniqueGroup.BivalueOddagon;
-
-	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"BivalueOddagonType{Type}");
 
 	/// <summary>

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Brute Force</b> technique.
@@ -13,9 +13,6 @@ public sealed class BruteForceStep(Conclusion[] conclusions, View[]? views) : La
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BruteForce;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.BruteForce;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

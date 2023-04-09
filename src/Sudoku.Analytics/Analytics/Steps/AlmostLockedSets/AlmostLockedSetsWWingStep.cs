@@ -30,9 +30,6 @@ public sealed class AlmostLockedSetsWWingStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.AlmostLockedSetsChainingLike;
-
-	/// <inheritdoc/>
 	public override Technique Code => Technique.AlmostLockedSetsWWing;
 
 	/// <summary>

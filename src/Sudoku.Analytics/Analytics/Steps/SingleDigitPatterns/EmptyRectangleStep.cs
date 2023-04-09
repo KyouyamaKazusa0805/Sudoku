@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Empty Rectangle</b> technique.
@@ -16,9 +16,6 @@ public sealed class EmptyRectangleStep(Conclusion[] conclusions, View[]? views, 
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.EmptyRectangle;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.EmptyRectangle;

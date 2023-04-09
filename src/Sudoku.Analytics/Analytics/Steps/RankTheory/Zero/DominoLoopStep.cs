@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Domino Loop</b> technique.
@@ -7,9 +7,6 @@ public sealed class DominoLoopStep(Conclusion[] conclusions, View[]? views, scop
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 9.6M;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.DominoLoop;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;

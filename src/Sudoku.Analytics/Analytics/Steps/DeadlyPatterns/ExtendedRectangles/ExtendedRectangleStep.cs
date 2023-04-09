@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Extended Rectangle</b> technique.
@@ -27,9 +27,6 @@ public abstract class ExtendedRectangleStep(Conclusion[] conclusions, View[]? vi
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
-	public sealed override TechniqueGroup Group => TechniqueGroup.ExtendedRectangle;
 
 	/// <summary>
 	/// Indicates the cells used in this pattern.

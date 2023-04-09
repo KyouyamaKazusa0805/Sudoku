@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Pattern Overlay</b> technique.
@@ -18,9 +18,6 @@ public sealed class PatternOverlayStep(Conclusion[] conclusions) : LastResortSte
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.PatternOverlay;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.PatternOverlay;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
@@ -34,9 +34,6 @@ public sealed class SueDeCoq3DimensionStep(
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.SueDeCoq3Dimension;
-
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.SueDeCoq;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

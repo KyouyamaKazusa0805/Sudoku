@@ -33,9 +33,6 @@ public sealed class AlmostLockedSetsXyWingStep(
 	public short ZDigitsMask { get; } = zDigitsMask;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.AlmostLockedSetsChainingLike;
-
-	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>

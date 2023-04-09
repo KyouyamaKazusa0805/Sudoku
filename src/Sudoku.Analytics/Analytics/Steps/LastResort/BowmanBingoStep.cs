@@ -21,9 +21,6 @@ public sealed class BowmanBingoStep(Conclusion[] conclusions, View[]? views, Con
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BowmanBingo;
 
-	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.BowmanBingo;
-
 	/// <summary>
 	/// Indicates the list of contradiction links.
 	/// </summary>

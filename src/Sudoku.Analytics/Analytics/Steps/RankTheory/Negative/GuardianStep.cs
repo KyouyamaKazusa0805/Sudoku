@@ -19,9 +19,6 @@ public sealed class GuardianStep(Conclusion[] conclusions, View[]? views, int di
 	public override Technique Code => Technique.BrokenWing;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup Group => TechniqueGroup.BrokenWing;
-
-	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <summary>

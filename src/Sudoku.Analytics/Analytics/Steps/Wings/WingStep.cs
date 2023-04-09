@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Wing</b> technique.
@@ -10,7 +10,4 @@ public abstract class WingStep(Conclusion[] conclusions, View[]? views) : Step(c
 
 	/// <inheritdoc/>
 	public sealed override string? Format => base.Format;
-
-	/// <inheritdoc/>
-	public sealed override TechniqueGroup Group => TechniqueGroup.Wing;
 }
