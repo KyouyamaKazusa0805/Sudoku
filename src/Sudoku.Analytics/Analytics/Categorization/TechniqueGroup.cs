@@ -71,7 +71,7 @@ public enum TechniqueGroup : byte
 	AlternatingInferenceChain,
 
 	/// <summary>
-	/// Indicates the forcing chains (FC) technique.
+	/// Indicates the forcing chains technique.
 	/// </summary>
 	ForcingChains,
 
@@ -106,6 +106,26 @@ public enum TechniqueGroup : byte
 	BivalueUniversalGrave,
 
 	/// <summary>
+	/// Indicates the Borescoper's deadly pattern technique.
+	/// </summary>
+	BorescoperDeadlyPattern,
+
+	/// <summary>
+	/// Indicates the Qiu's deadly pattern technique.
+	/// </summary>
+	QiuDeadlyPattern,
+
+	/// <summary>
+	/// Indicates the RW's deadly pattern technique.
+	/// </summary>
+	RwDeadlyPattern,
+
+	/// <summary>
+	/// Indicates the unique matrix technique.
+	/// </summary>
+	UniqueMatrix,
+
+	/// <summary>
 	/// Indicates the reverse bi-value universal grave (Reverse BUG) technique.
 	/// </summary>
 	ReverseBivalueUniversalGrave,
@@ -116,17 +136,12 @@ public enum TechniqueGroup : byte
 	UniquenessClueCover,
 
 	/// <summary>
-	/// Indicates the deadly pattern technique.
-	/// </summary>
-	DeadlyPattern,
-
-	/// <summary>
 	/// Indicates the bi-value oddagon technique.
 	/// </summary>
 	BivalueOddagon,
 
 	/// <summary>
-	/// Indicates the tri-value oddagon technique.
+	/// Indicates the chromatic pattern technique.
 	/// </summary>
 	ChromaticPattern,
 
@@ -144,6 +159,16 @@ public enum TechniqueGroup : byte
 	/// Indicates the ALS chaining-like (ALS-XZ, ALS-XY-Wing, ALS-W-Wing) technique.
 	/// </summary>
 	AlmostLockedSetsChainingLike,
+
+	/// <summary>
+	/// Indicates the extended subset principle technique.
+	/// </summary>
+	ExtendedSubsetPrinciple,
+
+	/// <summary>
+	/// Indicates the death blossom technique.
+	/// </summary>
+	DeathBlossom,
 
 	/// <summary>
 	/// Indicates the SK-Loop technique.

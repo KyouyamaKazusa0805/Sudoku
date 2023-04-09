@@ -1705,7 +1705,7 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates RW's deadly pattern.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
+	[TechniqueGroup(TechniqueGroup.RwDeadlyPattern)]
 	RwDeadlyPattern,
 	#endregion
 
@@ -1716,25 +1716,25 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates Borescoper's deadly pattern type 1.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
+	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
 	BorescoperDeadlyPatternType1,
 
 	/// <summary>
 	/// Indicates Borescoper's deadly pattern type 2.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
+	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
 	BorescoperDeadlyPatternType2,
 
 	/// <summary>
 	/// Indicates Borescoper's deadly pattern type 3.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
+	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
 	BorescoperDeadlyPatternType3,
 
 	/// <summary>
 	/// Indicates Borescoper's deadly pattern type 4.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
+	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
 	BorescoperDeadlyPatternType4,
 	#endregion
 
@@ -1745,31 +1745,31 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 1.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
+	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	QiuDeadlyPatternType1,
 
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 2.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
+	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	QiuDeadlyPatternType2,
 
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 3.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
+	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	QiuDeadlyPatternType3,
 
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 4.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
+	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	QiuDeadlyPatternType4,
 
 	/// <summary>
 	/// Indicates locked Qiu's deadly pattern.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
+	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	LockedQiuDeadlyPattern,
 	#endregion
 
@@ -1780,39 +1780,39 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates unique matrix type 1.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
+	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
 	UniqueMatrixType1,
 
 	/// <summary>
 	/// Indicates unique matrix type 2.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
+	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
 	UniqueMatrixType2,
 
 	/// <summary>
 	/// Indicates unique matrix type 3.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
+	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
 	UniqueMatrixType3,
 
 	/// <summary>
 	/// Indicates unique matrix type 4.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
+	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
 	UniqueMatrixType4,
 	#endregion
 
 	//
-	// Ranking Logic
+	// Sue de Coq
 	//
-	#region Ranking Logic
+	#region Sue de Coq
 	/// <summary>
 	/// Indicates sue de coq.
 	/// </summary>
 	[HodokuTechniquePrefix("1101")]
 	[HodokuDifficultyRating(250, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(5.0, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	SueDeCoq,
 
 	/// <summary>
@@ -1821,46 +1821,61 @@ public enum Technique : short
 	[HodokuTechniquePrefix("1101")]
 	[HodokuDifficultyRating(250, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(5.0, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	SueDeCoqIsolated,
 
 	/// <summary>
 	/// Indicates 3-dimensional sue de coq.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	SueDeCoq3Dimension,
 
 	/// <summary>
 	/// Indicates sue de coq cannibalism.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	SueDeCoqCannibalism,
+	#endregion
 
+	//
+	// Broken Wing
+	//
+	#region Broken Wing
 	/// <summary>
 	/// Indicates broken wing.
 	/// </summary>
 	[HodokuTechniquePrefix("0705")]
-	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	[TechniqueGroup(TechniqueGroup.BrokenWing)]
 	BrokenWing,
+	#endregion
 
+	//
+	// Bi-value Oddagon
+	//
+	#region Bivalue Oddagon
 	/// <summary>
 	/// Indicates bi-value oddagon type 2.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
 	BivalueOddagonType2,
 
 	/// <summary>
 	/// Indicates bi-value oddagon type 3.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
 	BivalueOddagonType3,
 
 	/// <summary>
 	/// Indicates grouped bi-value oddagon.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
 	GroupedBivalueOddagon,
+	#endregion
 
+	//
+	// Chromatic Pattern
+	//
+	#region Chromatic Pattern
 	/// <summary>
 	/// Indicates chromatic pattern (tri-value oddagon) type 1.
 	/// </summary>
@@ -1890,18 +1905,6 @@ public enum Technique : short
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	ChromaticPatternXzRule,
-
-	/// <summary>
-	/// Indicates domino loop.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.RankTheory)]
-	DominoLoop,
-
-	/// <summary>
-	/// Indicates multi-sector locked sets.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.RankTheory)]
-	MultisectorLockedSets,
 	#endregion
 
 	//
@@ -1940,13 +1943,18 @@ public enum Technique : short
 	[SudokuExplainerDifficultyRating(6.6)]
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	TurbotFish,
+	#endregion
 
+	//
+	// Empty Rectangle
+	//
+	#region Empty Rectangle
 	/// <summary>
 	/// Indicates empty rectangle.
 	/// </summary>
 	[HodokuTechniquePrefix("0402")]
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
-	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
+	[TechniqueGroup(TechniqueGroup.EmptyRectangle)]
 	EmptyRectangle,
 	#endregion
 
@@ -2184,22 +2192,21 @@ public enum Technique : short
 	#endregion
 
 	//
-	// Almost Locked Sets
+	// Extended Subset Principle
 	//
-	#region Almost Locked Sets
-	/// <summary>
-	/// Indicates empty rectangle intersection pair.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
-	EmptyRectangleIntersectionPair,
-
+	#region Extended Subset Principle
 	/// <summary>
 	/// Indicates extended subset principle.
 	/// </summary>
 	[HodokuTechniquePrefix("1102")]
-	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
+	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
 	ExtendedSubsetPrinciple,
+	#endregion
 
+	//
+	// Almost Locked Sets
+	//
+	#region Almost Locked Sets
 	/// <summary>
 	/// Indicates singly linked ALS-XZ.
 	/// </summary>
@@ -2240,20 +2247,36 @@ public enum Technique : short
 	[HodokuDifficultyRating(340, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	AlmostLockedSetsChain,
+	#endregion
 
+	//
+	// Empty Rectangle Intersection Pair
+	//
+	#region Empty Rectangle Intersection Pair
+	/// <summary>
+	/// Indicates empty rectangle intersection pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.EmptyRectangleIntersectionPair)]
+	EmptyRectangleIntersectionPair,
+	#endregion
+
+	//
+	// Death Blossom
+	//
+	#region Death Blossom
 	/// <summary>
 	/// Indicates death blossom cell type.
 	/// </summary>
 	[HodokuTechniquePrefix("0904")]
 	[HodokuDifficultyRating(360, HodokuDifficultyLevel.Unfair)]
 	[HodokuAliasedNames("Death Blossom")]
-	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
+	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	DeathBlossomCellType,
 
 	/// <summary>
 	/// Indicates death blossom house type.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
+	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	DeathBlossomHouseType,
 	#endregion
 
@@ -2307,6 +2330,28 @@ public enum Technique : short
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	SiameseSeniorExocet,
+	#endregion
+
+	//
+	// Domino Loop
+	//
+	#region Domino Loop
+	/// <summary>
+	/// Indicates domino loop.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DominoLoop)]
+	DominoLoop,
+	#endregion
+
+	//
+	// Multi-sector Locked Sets
+	//
+	#region Multi-sector Locked Sets
+	/// <summary>
+	/// Indicates multi-sector locked sets.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.MultisectorLockedSets)]
+	MultisectorLockedSets,
 	#endregion
 
 	//

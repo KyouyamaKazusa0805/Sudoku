@@ -1933,16 +1933,6 @@
             Indicates chromatic pattern (tri-value oddagon) XZ rule.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.DominoLoop">
-            <summary>
-            Indicates domino loop.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.MultisectorLockedSets">
-            <summary>
-            Indicates multi-sector locked sets.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.Skyscraper">
             <summary>
             Indicates skyscraper.
@@ -2108,11 +2098,6 @@
             Indicates dynamic forcing chains.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.EmptyRectangleIntersectionPair">
-            <summary>
-            Indicates empty rectangle intersection pair.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.ExtendedSubsetPrinciple">
             <summary>
             Indicates extended subset principle.
@@ -2141,6 +2126,11 @@
         <member name="F:Sudoku.Analytics.Categorization.Technique.AlmostLockedSetsChain">
             <summary>
             Indicates ALS chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.EmptyRectangleIntersectionPair">
+            <summary>
+            Indicates empty rectangle intersection pair.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.DeathBlossomCellType">
@@ -2186,6 +2176,16 @@
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSeniorExocet">
             <summary>
             Indicates Siamese senior exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DominoLoop">
+            <summary>
+            Indicates domino loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MultisectorLockedSets">
+            <summary>
+            Indicates multi-sector locked sets.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.PatternOverlay">
@@ -2328,7 +2328,7 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ForcingChains">
             <summary>
-            Indicates the forcing chains (FC) technique.
+            Indicates the forcing chains technique.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.UniqueRectangle">
@@ -2361,6 +2361,26 @@
             Indicates the bi-value universal grave (BUG) technique.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.BorescoperDeadlyPattern">
+            <summary>
+            Indicates the Borescoper's deadly pattern technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.QiuDeadlyPattern">
+            <summary>
+            Indicates the Qiu's deadly pattern technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.RwDeadlyPattern">
+            <summary>
+            Indicates the RW's deadly pattern technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.UniqueMatrix">
+            <summary>
+            Indicates the unique matrix technique.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ReverseBivalueUniversalGrave">
             <summary>
             Indicates the reverse bi-value universal grave (Reverse BUG) technique.
@@ -2371,11 +2391,6 @@
             Indicates the uniqueness clue cover.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.DeadlyPattern">
-            <summary>
-            Indicates the deadly pattern technique.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.BivalueOddagon">
             <summary>
             Indicates the bi-value oddagon technique.
@@ -2383,7 +2398,7 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ChromaticPattern">
             <summary>
-            Indicates the tri-value oddagon technique.
+            Indicates the chromatic pattern technique.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.SueDeCoq">
@@ -2399,6 +2414,16 @@
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.AlmostLockedSetsChainingLike">
             <summary>
             Indicates the ALS chaining-like (ALS-XZ, ALS-XY-Wing, ALS-W-Wing) technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ExtendedSubsetPrinciple">
+            <summary>
+            Indicates the extended subset principle technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.DeathBlossom">
+            <summary>
+            Indicates the death blossom technique.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.DominoLoop">
