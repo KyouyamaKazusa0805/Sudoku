@@ -91,7 +91,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 			return null;
 		}
 
-		var tempAccumulator = from info in EquatableStep.Distinct(resultAccumulator) orderby info.LoopCells.Count, info.Guardians.Count select info;
+		var tempAccumulator = from step in resultAccumulator.Distinct() orderby step.LoopCells.Count, step.Guardians.Count select step;
 		if (context.OnlyFindOne)
 		{
 			return tempAccumulator.First();
