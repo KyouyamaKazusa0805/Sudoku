@@ -119,7 +119,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	)
 	{
 		var extraCell = extraCellsMap[0];
-		var conclusions = new List<Conclusion>(2);
+		using scoped var conclusions = new ValueList<Conclusion>(2);
 		if (CandidatesMap[d1].Contains(extraCell))
 		{
 			conclusions.Add(new(Elimination, extraCell, d1));
@@ -465,7 +465,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 				var first = extraCellsMap[0];
 				var second = extraCellsMap[1];
-				var conclusions = new List<Conclusion>(2);
+				using scoped var conclusions = new ValueList<Conclusion>(2);
 				if (CandidatesMap[otherDigit].Contains(first))
 				{
 					conclusions.Add(new(Elimination, first, otherDigit));

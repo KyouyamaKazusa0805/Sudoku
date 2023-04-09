@@ -128,7 +128,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				continue;
 			}
 
-			var conclusions = new List<Conclusion>(4);
+			using scoped var conclusions = new ValueList<Conclusion>(4);
 			foreach (var digit in elimMask)
 			{
 				conclusions.Add(new(Elimination, elimCell, digit));

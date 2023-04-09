@@ -194,7 +194,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						continue;
 					}
 
-					var conclusions = new List<Conclusion>(2);
+					using scoped var conclusions = new ValueList<Conclusion>(2);
 					if (CandidatesMap[digits[0]].Contains(elimCell))
 					{
 						conclusions.Add(new(Elimination, elimCell * 9 + digits[0]));

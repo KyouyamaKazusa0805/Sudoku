@@ -51,7 +51,7 @@ partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var conclusions = new List<Conclusion>(2);
+		using scoped var conclusions = new ValueList<Conclusion>(2);
 		if (d1Exists)
 		{
 			conclusions.Add(new(Elimination, cornerCell, d1));
