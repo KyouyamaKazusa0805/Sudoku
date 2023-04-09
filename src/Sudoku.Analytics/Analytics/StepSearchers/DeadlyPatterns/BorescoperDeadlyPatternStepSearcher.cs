@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Borescoper's Deadly Pattern</b> step searcher.
@@ -77,18 +77,18 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				var house2 = (CellsMap[t1] + t3).CoveredLine;
 				var pair1 = new int[6, 2];
 				var pair2 = new int[6, 2];
-				var (incre1, incre2) = i switch { >= 0 and <= 3 => (9, 1), 4 or 5 => (9, 2), 6 or 7 => (18, 1), 8 => (18, 2) };
+				var (o1, o2) = i switch { >= 0 and <= 3 => (9, 1), 4 or 5 => (9, 2), 6 or 7 => (18, 1), 8 => (18, 2) };
 				if (house1 is >= 9 and < 18)
 				{
 					// 'house1' is a row and 'house2' is a column.
-					r(block, house1, pair1, incre1, j);
-					r(block, house2, pair2, incre2, j);
+					r(block, house1, pair1, o1, j);
+					r(block, house2, pair2, o2, j);
 				}
 				else
 				{
 					// 'house1' is a column and 'house2' is a row.
-					r(block, house1, pair1, incre2, j);
-					r(block, house2, pair2, incre1, j);
+					r(block, house1, pair1, o2, j);
+					r(block, house2, pair2, o1, j);
 				}
 
 				for (var i1 = 0; i1 < 6; i1++)
@@ -131,18 +131,18 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			var house2 = (CellsMap[t1] + t3).CoveredLine;
 			var pair1 = new int[6, 2];
 			var pair2 = new int[6, 2];
-			var (incre1, incre2) = i switch { >= 0 and <= 3 => (9, 1), 4 or 5 => (9, 2), 6 or 7 => (18, 1), 8 => (18, 2) };
+			var (o1, o2) = i switch { >= 0 and <= 3 => (9, 1), 4 or 5 => (9, 2), 6 or 7 => (18, 1), 8 => (18, 2) };
 			if (house1 is >= 9 and < 18)
 			{
 				// 'house1' is a row and 'house2' is a column.
-				r(block, house1, pair1, incre1, 0);
-				r(block, house2, pair2, incre2, 0);
+				r(block, house1, pair1, o1, 0);
+				r(block, house2, pair2, o2, 0);
 			}
 			else
 			{
 				// 'house1' is a column and 'house2' is a row.
-				r(block, house1, pair1, incre2, 0);
-				r(block, house2, pair2, incre1, 0);
+				r(block, house1, pair1, o2, 0);
+				r(block, house2, pair2, o1, 0);
 			}
 
 			for (var i1 = 0; i1 < 6; i1++)
