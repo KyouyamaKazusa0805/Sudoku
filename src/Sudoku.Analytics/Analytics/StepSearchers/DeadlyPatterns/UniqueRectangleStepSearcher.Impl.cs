@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-unsafe partial class UniqueRectangleStepSearcher
+partial class UniqueRectangleStepSearcher
 {
 	/// <summary>
 	/// Check type 1.
@@ -392,7 +392,6 @@ unsafe partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var p = stackalloc[] { d1, d2 };
 		foreach (var houseIndex in otherCellsMap.CoveredHouses)
 		{
 			if (houseIndex < 9)
@@ -401,9 +400,8 @@ unsafe partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
-			for (var digitIndex = 0; digitIndex < 2; digitIndex++)
+			foreach (var digit in stackalloc[] { d1, d2 })
 			{
-				var digit = p[digitIndex];
 				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, otherCellsMap, houseIndex))
 				{
 					continue;
@@ -621,14 +619,10 @@ unsafe partial class UniqueRectangleStepSearcher
 		var c1 = corner1.ToHouseIndex(HouseType.Column);
 		var r2 = corner2.ToHouseIndex(HouseType.Row);
 		var c2 = corner2.ToHouseIndex(HouseType.Column);
-		var p = stackalloc[] { d1, d2 };
-		var q = stackalloc[] { (r1, r2), (c1, c2) };
-		for (var digitIndex = 0; digitIndex < 2; digitIndex++)
+		foreach (var digit in stackalloc[] { d1, d2 })
 		{
-			var digit = p[digitIndex];
-			for (var housePairIndex = 0; housePairIndex < 2; housePairIndex++)
+			foreach (var (h1, h2) in stackalloc[] { (r1, r2), (c1, c2) })
 			{
-				var (h1, h2) = q[housePairIndex];
 				gather(grid, otherCellsMap, h1 is >= 9 and < 18, digit, h1, h2);
 			}
 		}
@@ -753,10 +747,8 @@ unsafe partial class UniqueRectangleStepSearcher
 		var abyCell = adjacentCellsMap[1];
 		var r = abzCell.ToHouseIndex(HouseType.Row);
 		var c = abzCell.ToHouseIndex(HouseType.Column);
-		var p = stackalloc[] { d1, d2 };
-		for (var digitIndex = 0; digitIndex < 2; digitIndex++)
+		foreach (var digit in stackalloc[] { d1, d2 })
 		{
-			var digit = p[digitIndex];
 			var map1 = CellsMap[abzCell] + abxCell;
 			var map2 = CellsMap[abzCell] + abyCell;
 			if (map1.CoveredLine is not (var m1cl and not InvalidValidOfTrailingZeroCountMethodFallback)
@@ -1006,11 +998,9 @@ unsafe partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var corners = stackalloc[] { corner1, corner2 };
-		var digits = stackalloc[] { d1, d2 };
-		for (var cellIndex = 0; cellIndex < 2; cellIndex++)
+		scoped ReadOnlySpan<int> digits = (stackalloc[] { d1, d2 });
+		foreach (var cell in stackalloc[] { corner1, corner2 })
 		{
-			var cell = corners[cellIndex];
 			foreach (var otherCell in otherCellsMap)
 			{
 				if (!UniqueRectangleStepSearcherHelper.IsSameHouseCell(cell, otherCell, out var houses))
@@ -1180,11 +1170,9 @@ unsafe partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var corners = stackalloc[] { corner1, corner2 };
-		var digits = stackalloc[] { d1, d2 };
-		for (var cellIndex = 0; cellIndex < 2; cellIndex++)
+		scoped ReadOnlySpan<int> digits = (stackalloc[] { d1, d2 });
+		foreach (var cell in stackalloc[] { corner1, corner2 })
 		{
-			var cell = corners[cellIndex];
 			foreach (var otherCell in otherCellsMap)
 			{
 				if (!UniqueRectangleStepSearcherHelper.IsSameHouseCell(cell, otherCell, out var houses))
@@ -1491,10 +1479,8 @@ unsafe partial class UniqueRectangleStepSearcher
 
 		var abzCell = UniqueRectangleStepSearcherHelper.GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = otherCellsMap - abzCell;
-		var pairs = stackalloc[] { (d1, d2), (d2, d1) };
-		for (var pairIndex = 0; pairIndex < 2; pairIndex++)
+		foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 		{
-			var (a, b) = pairs[pairIndex];
 			var abxCell = adjacentCellsMap[0];
 			var abyCell = adjacentCellsMap[1];
 			var map1 = CellsMap[abzCell] + abxCell;
@@ -1623,16 +1609,13 @@ unsafe partial class UniqueRectangleStepSearcher
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
-		var cellPairs = stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) };
-		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
-		var digits = stackalloc[] { d1, d2 };
-		for (var cellPairIndex = 0; cellPairIndex < 2; cellPairIndex++)
+		scoped ReadOnlySpan<(int, int)> digitPairs = (stackalloc[] { (d1, d2), (d2, d1) });
+		scoped ReadOnlySpan<int> digits = (stackalloc[] { d1, d2 });
+		foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 		{
-			var (begin, end) = cellPairs[cellPairIndex];
 			var linkMap = CellsMap[begin] + abzCell;
-			for (var digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
+			foreach (var (a, b) in digitPairs)
 			{
-				var (a, b) = digitPairs[digitPairIndex];
 				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(b, linkMap, linkMap.CoveredLine))
 				{
 					continue;
@@ -1657,9 +1640,8 @@ unsafe partial class UniqueRectangleStepSearcher
 				{
 					candidateOffsets.Add(new(d == a ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cornerCell * 9 + d));
 				}
-				for (var digitIndex = 0; digitIndex < 2; digitIndex++)
+				foreach (var d in digits)
 				{
-					var d = digits[digitIndex];
 					if (CandidatesMap[d].Contains(abzCell))
 					{
 						candidateOffsets.Add(new(d == b ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, abzCell * 9 + d));
@@ -1758,15 +1740,12 @@ unsafe partial class UniqueRectangleStepSearcher
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
-		var cellPairs = stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) };
-		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
-		for (var cellPairIndex = 0; cellPairIndex < 2; cellPairIndex++)
+		scoped ReadOnlySpan<(int, int)> digitPairs = (stackalloc[] { (d1, d2), (d2, d1) });
+		foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 		{
-			var (begin, end) = cellPairs[cellPairIndex];
 			var linkMap = CellsMap[begin] + abzCell;
-			for (var digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
+			foreach (var (a, b) in digitPairs)
 			{
-				var (a, b) = digitPairs[digitPairIndex];
 				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(b, linkMap, linkMap.CoveredLine))
 				{
 					continue;
@@ -1888,15 +1867,12 @@ unsafe partial class UniqueRectangleStepSearcher
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
-		var cellPairs = stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) };
-		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
-		for (var cellPairIndex = 0; cellPairIndex < 2; cellPairIndex++)
+		scoped ReadOnlySpan<(int, int)> digitPairs = (stackalloc[] { (d1, d2), (d2, d1) });
+		foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 		{
-			var (begin, end) = cellPairs[cellPairIndex];
 			var linkMap = CellsMap[begin] + abzCell;
-			for (var digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
+			foreach (var (a, b) in digitPairs)
 			{
-				var (a, b) = digitPairs[digitPairIndex];
 				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(a, linkMap, linkMap.CoveredLine))
 				{
 					continue;
@@ -2012,10 +1988,8 @@ unsafe partial class UniqueRectangleStepSearcher
 	)
 	{
 		var link1Map = CellsMap[corner1] + corner2;
-		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
-		for (var digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
+		foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 		{
-			var (a, b) = digitPairs[digitPairIndex];
 			if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(a, link1Map, link1Map.CoveredLine))
 			{
 				continue;
@@ -2023,10 +1997,8 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			var abwCell = UniqueRectangleStepSearcherHelper.GetDiagonalCell(urCells, corner1);
 			var abzCell = (otherCellsMap - abwCell)[0];
-			var cellQuadruples = stackalloc[] { (corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell) };
-			for (var cellQuadrupleIndex = 0; cellQuadrupleIndex < 2; cellQuadrupleIndex++)
+			foreach (var (head, begin, end, extra) in stackalloc[] { (corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell) })
 			{
-				var (head, begin, end, extra) = cellQuadruples[cellQuadrupleIndex];
 				var link2Map = CellsMap[begin] + end;
 				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(b, link2Map, link2Map.CoveredLine))
 				{
@@ -2170,11 +2142,9 @@ unsafe partial class UniqueRectangleStepSearcher
 	)
 	{
 		var link1Map = CellsMap[corner1] + corner2;
-		var innerMaps = stackalloc CellMap[2];
-		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
-		for (var digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
+		scoped var innerMaps = (stackalloc CellMap[2]);
+		foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 		{
-			var (a, b) = digitPairs[digitPairIndex];
 			if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(a, link1Map, link1Map.CoveredLine))
 			{
 				continue;
@@ -2182,10 +2152,8 @@ unsafe partial class UniqueRectangleStepSearcher
 
 			var end = UniqueRectangleStepSearcherHelper.GetDiagonalCell(urCells, corner1);
 			var extra = (otherCellsMap - end)[0];
-			var cellQuadruples = stackalloc[] { (corner2, corner1, extra, end), (corner1, corner2, end, extra) };
-			for (var cellQuadrupleIndex = 0; cellQuadrupleIndex < 2; cellQuadrupleIndex++)
+			foreach (var (abx, aby, abw, abz) in stackalloc[] { (corner2, corner1, extra, end), (corner1, corner2, end, extra) })
 			{
-				var (abx, aby, abw, abz) = cellQuadruples[cellQuadrupleIndex];
 				var link2Map = CellsMap[aby] + abw;
 				if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(a, link2Map, link2Map.CoveredLine))
 				{
@@ -2389,10 +2357,8 @@ unsafe partial class UniqueRectangleStepSearcher
 						// Now check whether all cells found should see their corresponding
 						// cells in UR structure ('otherCells1' or 'otherCells2').
 						var flag = true;
-						var combinationCells = stackalloc[] { c1, c2 };
-						for (var cellIndex = 0; cellIndex < 2; cellIndex++)
+						foreach (var cell in stackalloc[] { c1, c2 })
 						{
-							var cell = combinationCells[cellIndex];
 							var extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
 							if (!(testMap & CandidatesMap[extraDigit]).Contains(cell))
 							{
@@ -2490,10 +2456,8 @@ unsafe partial class UniqueRectangleStepSearcher
 								// Now check whether all cells found should see their corresponding
 								// cells in UR structure ('otherCells1' or 'otherCells2').
 								var flag = true;
-								var combinationCells = stackalloc[] { c1, c2, c3 };
-								for (var cellIndex = 0; cellIndex < 3; cellIndex++)
+								foreach (var cell in stackalloc[] { c1, c2, c3 })
 								{
-									var cell = combinationCells[cellIndex];
 									var extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
 									if (!(testMap & CandidatesMap[extraDigit]).Contains(cell))
 									{
@@ -2592,10 +2556,8 @@ unsafe partial class UniqueRectangleStepSearcher
 									// Now check whether all cells found should see their corresponding
 									// cells in UR structure ('otherCells1' or 'otherCells2').
 									var flag = true;
-									var combinationCells = stackalloc[] { c1, c2, c3, c4 };
-									for (var cellIndex = 0; cellIndex < 4; cellIndex++)
+									foreach (var cell in stackalloc[] { c1, c2, c3, c4 })
 									{
-										var cell = combinationCells[cellIndex];
 										var extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
 										if (!(testMap & CandidatesMap[extraDigit]).Contains(cell))
 										{
@@ -2773,15 +2735,13 @@ unsafe partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var cannibalModeCases = stackalloc[] { false, true };
 		var otherDigitsMask = (short)(mergedMaskInOtherCells & ~comparer);
 		var line = (byte)otherCellsMap.CoveredLine;
 		var block = (byte)TrailingZeroCount(otherCellsMap.CoveredHouses & ~(1 << line));
 		var (a, _, _, d) = IntersectionMaps[(line, block)];
 		using scoped var list = new ValueList<CellMap>(4);
-		for (var caseIndex = 0; caseIndex < 2; caseIndex++)
+		foreach (var cannibalMode in stackalloc[] { false, true })
 		{
-			var cannibalMode = cannibalModeCases[caseIndex];
 			foreach (var otherBlock in d)
 			{
 				var emptyCellsInInterMap = HousesMap[otherBlock] & HousesMap[line] & EmptyCells;
