@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
 /// Represents a technique group.
@@ -86,6 +86,11 @@ public enum TechniqueGroup : byte
 	UniqueRectanglePlus,
 
 	/// <summary>
+	/// Indicates the avoidable rectangle (AR) technique.
+	/// </summary>
+	AvoidableRectangle,
+
+	/// <summary>
 	/// Indicates the unique loop (UL) technique.
 	/// </summary>
 	UniqueLoop,
@@ -123,7 +128,7 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the tri-value oddagon technique.
 	/// </summary>
-	TrivalueOddagon,
+	ChromaticPattern,
 
 	/// <summary>
 	/// Indicates the sue de coq (SdC) technique.

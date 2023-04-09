@@ -36,4 +36,17 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[]? GetAliases(this Technique @this)
 		=> R[$"TechniqueAlias_{@this}"]?.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+	/// <summary>
+	/// Try to get the group that the current <see cref="Technique"/> belongs to.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>The <see cref="TechniqueGroup"/> value that the current <see cref="Technique"/> belongs to.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the specified <see cref="Technique"/> does not belong to any <see cref="TechniqueGroup"/>.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TechniqueGroup GetGroup(this Technique @this)
+		=> typeof(Technique).GetField(@this.ToString())?.GetCustomAttribute<TechniqueGroupAttribute>()?.Group
+		?? throw new ArgumentOutOfRangeException(nameof(@this));
 }

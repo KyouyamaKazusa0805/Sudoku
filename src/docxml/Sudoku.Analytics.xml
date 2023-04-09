@@ -1888,26 +1888,6 @@
             Indicates sue de coq cannibalism.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.Skyscraper">
-            <summary>
-            Indicates skyscraper.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.TwoStringKite">
-            <summary>
-            Indicates two-string kite.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.TurbotFish">
-            <summary>
-            Indicates turbot fish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.EmptyRectangle">
-            <summary>
-            Indicates empty rectangle.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.BrokenWing">
             <summary>
             Indicates broken wing.
@@ -1951,6 +1931,36 @@
         <member name="F:Sudoku.Analytics.Categorization.Technique.ChromaticPatternXzRule">
             <summary>
             Indicates chromatic pattern (tri-value oddagon) XZ rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DominoLoop">
+            <summary>
+            Indicates domino loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MultisectorLockedSets">
+            <summary>
+            Indicates multi-sector locked sets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.Skyscraper">
+            <summary>
+            Indicates skyscraper.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.TwoStringKite">
+            <summary>
+            Indicates two-string kite.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.TurbotFish">
+            <summary>
+            Indicates turbot fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.EmptyRectangle">
+            <summary>
+            Indicates empty rectangle.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.XChain">
@@ -2133,11 +2143,6 @@
             Indicates ALS chain.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.AlmostHiddenSetsChain">
-            <summary>
-            Indicates AHS chain.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.DeathBlossomCellType">
             <summary>
             Indicates death blossom cell type.
@@ -2181,16 +2186,6 @@
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSeniorExocet">
             <summary>
             Indicates Siamese senior exocet.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.DominoLoop">
-            <summary>
-            Indicates domino loop.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.MultisectorLockedSets">
-            <summary>
-            Indicates multi-sector locked sets.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.PatternOverlay">
@@ -2250,6 +2245,16 @@
             All possible aliases of the current technique.
             If the technique does not contain any aliases, the return value will be <see langword="null"/>.
             </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetGroup(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the group that the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> belongs to.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> value that the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> belongs to.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified <see cref="T:Sudoku.Analytics.Categorization.Technique"/> does not belong to any <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>.
+            </exception>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueGroup">
             <summary>
@@ -2336,6 +2341,11 @@
             Indicates the unique rectangle plus (UR+) technique.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.AvoidableRectangle">
+            <summary>
+            Indicates the avoidable rectangle (AR) technique.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.UniqueLoop">
             <summary>
             Indicates the unique loop (UL) technique.
@@ -2371,7 +2381,7 @@
             Indicates the bi-value oddagon technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.TrivalueOddagon">
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ChromaticPattern">
             <summary>
             Indicates the tri-value oddagon technique.
             </summary>
@@ -2434,6 +2444,23 @@
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.BruteForce">
             <summary>
             Indicates the brute force (BF) technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueGroupAttribute">
+            <summary>
+            Represents an attribute type that describes for a group that the marked technique belongs to.
+            </summary>
+            <param name="group"><inheritdoc cref="P:Sudoku.Analytics.Categorization.TechniqueGroupAttribute.Group" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupAttribute.#ctor(Sudoku.Analytics.Categorization.TechniqueGroup)">
+            <summary>
+            Represents an attribute type that describes for a group that the marked technique belongs to.
+            </summary>
+            <param name="group"><inheritdoc cref="P:Sudoku.Analytics.Categorization.TechniqueGroupAttribute.Group" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueGroupAttribute.Group">
+            <summary>
+            Indicates the group that the current technique belong to.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Compatibility.HodokuLibraryCompatibility">

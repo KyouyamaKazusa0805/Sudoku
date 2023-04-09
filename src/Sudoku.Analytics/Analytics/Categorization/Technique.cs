@@ -15,6 +15,10 @@ public enum Technique : short
 	/// </summary>
 	None,
 
+	//
+	// Singles
+	//
+	#region Singles
 	/// <summary>
 	/// Indicates full house.
 	/// </summary>
@@ -22,12 +26,14 @@ public enum Technique : short
 	[HodokuDifficultyRating(4, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(1.0)]
 	[SudokuExplainerAliasedNames("Single")]
+	[TechniqueGroup(TechniqueGroup.Single)]
 	FullHouse,
 
 	/// <summary>
 	/// Indicates last digit.
 	/// </summary>
 	[HodokuTechniquePrefix("0001")]
+	[TechniqueGroup(TechniqueGroup.Single)]
 	LastDigit,
 
 	/// <summary>
@@ -36,6 +42,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0002")]
 	[HodokuDifficultyRating(14, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(1.2)]
+	[TechniqueGroup(TechniqueGroup.Single)]
 	HiddenSingleBlock,
 
 	/// <summary>
@@ -44,6 +51,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0002")]
 	[HodokuDifficultyRating(14, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(1.5)]
+	[TechniqueGroup(TechniqueGroup.Single)]
 	HiddenSingleRow,
 
 	/// <summary>
@@ -52,6 +60,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0002")]
 	[HodokuDifficultyRating(14, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(1.5)]
+	[TechniqueGroup(TechniqueGroup.Single)]
 	HiddenSingleColumn,
 
 	/// <summary>
@@ -60,8 +69,14 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0003")]
 	[HodokuDifficultyRating(4, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(2.3)]
+	[TechniqueGroup(TechniqueGroup.Single)]
 	NakedSingle,
+	#endregion
 
+	//
+	// Locked Candidates
+	//
+	#region Locked Candidates
 	/// <summary>
 	/// Indicates pointing.
 	/// </summary>
@@ -69,6 +84,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(50, HodokuDifficultyLevel.Medium)]
 	[HodokuAliasedNames("Locked Candidates Type 1")]
 	[SudokuExplainerDifficultyRating(2.6)]
+	[TechniqueGroup(TechniqueGroup.LockedCandidates)]
 	Pointing,
 
 	/// <summary>
@@ -78,62 +94,88 @@ public enum Technique : short
 	[HodokuDifficultyRating(50, HodokuDifficultyLevel.Medium)]
 	[HodokuAliasedNames("Locked Candidates Type 2")]
 	[SudokuExplainerDifficultyRating(2.8)]
+	[TechniqueGroup(TechniqueGroup.LockedCandidates)]
 	Claiming,
+	#endregion
 
+	//
+	// Almost Locked Candidates
+	//
+	#region Almost Locked Candidates
 	/// <summary>
 	/// Indicates almost locked pair.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	AlmostLockedPair,
 
 	/// <summary>
 	/// Indicates almost locked triple.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(5.2, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	AlmostLockedTriple,
 
 	/// <summary>
 	/// Indicates almost locked quadruple.
 	/// The technique may not be useful because it'll be replaced with Sue de Coq.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	AlmostLockedQuadruple,
+	#endregion
 
+	//
+	// Fireworks
+	//
+	#region Fireworks
 	/// <summary>
 	/// Indicates firework pair type 1.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Firework)]
 	FireworkPairType1,
 
 	/// <summary>
 	/// Indicates firework pair type 2.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Firework)]
 	FireworkPairType2,
 
 	/// <summary>
 	/// Indicates firework pair type 3.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Firework)]
 	FireworkPairType3,
 
 	/// <summary>
 	/// Indicates firework triple.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Firework)]
 	FireworkTriple,
 
 	/// <summary>
 	/// Indicates firework quadruple.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Firework)]
 	FireworkQuadruple,
+	#endregion
 
+	//
+	// Subsets
+	//
+	#region Subsets
 	/// <summary>
 	/// Indicates naked pair.
 	/// </summary>
 	[HodokuTechniquePrefix("0200")]
 	[HodokuDifficultyRating(60, HodokuDifficultyLevel.Medium)]
 	[SudokuExplainerDifficultyRating(3.0)]
+	[TechniqueGroup(TechniqueGroup.Subset)]
 	NakedPair,
 
 	/// <summary>
 	/// Indicates naked pair plus (naked pair (+)).
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Subset)]
 	NakedPairPlus,
 
 	/// <summary>
@@ -145,6 +187,7 @@ public enum Technique : short
 	[SudokuExplainerDifficultyRating(2.0)]
 	[SudokuExplainerAliasNames("Direct Hidden Pair")]
 #endif
+	[TechniqueGroup(TechniqueGroup.Subset)]
 	LockedPair,
 
 	/// <summary>
@@ -153,6 +196,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0210")]
 	[HodokuDifficultyRating(70, HodokuDifficultyLevel.Medium)]
 	[SudokuExplainerDifficultyRating(3.4)]
+	[TechniqueGroup(TechniqueGroup.Subset)]
 	HiddenPair,
 
 	/// <summary>
@@ -162,11 +206,13 @@ public enum Technique : short
 	[HodokuDifficultyRating(80, HodokuDifficultyLevel.Medium)]
 	[SudokuExplainerDifficultyRating(3.6)]
 	[SudokuExplainerAliasedNames("Naked Triplet")]
+	[TechniqueGroup(TechniqueGroup.Subset)]
 	NakedTriple,
 
 	/// <summary>
 	/// Indicates naked triple plus (naked triple (+)).
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Subset)]
 	NakedTriplePlus,
 
 	/// <summary>
@@ -178,6 +224,7 @@ public enum Technique : short
 	[SudokuExplainerDifficultyRating(2.5)]
 	[SudokuExplainerAliasNames("Direct Hidden Triplet")]
 #endif
+	[TechniqueGroup(TechniqueGroup.Subset)]
 	LockedTriple,
 
 	/// <summary>
@@ -187,6 +234,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Medium)]
 	[SudokuExplainerDifficultyRating(4.0)]
 	[SudokuExplainerAliasedNames("Hidden Triplet")]
+	[TechniqueGroup(TechniqueGroup.Subset)]
 	HiddenTriple,
 
 	/// <summary>
@@ -196,11 +244,13 @@ public enum Technique : short
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(5.0)]
 	[SudokuExplainerAliasedNames("Naked Quad")]
+	[TechniqueGroup(TechniqueGroup.Subset)]
 	NakedQuadruple,
 
 	/// <summary>
 	/// Indicates naked quadruple plus (naked quadruple (+)).
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Subset)]
 	NakedQuadruplePlus,
 
 	/// <summary>
@@ -210,14 +260,21 @@ public enum Technique : short
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(5.4)]
 	[SudokuExplainerAliasedNames("Hidden Quad")]
+	[TechniqueGroup(TechniqueGroup.Subset)]
 	HiddenQuadruple,
+	#endregion
 
+	//
+	// Fishes
+	//
+	#region Fishes
 	/// <summary>
 	/// Indicates X-Wing.
 	/// </summary>
 	[HodokuTechniquePrefix("0300")]
 	[HodokuDifficultyRating(140, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(3.2)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	XWing,
 
 	/// <summary>
@@ -226,6 +283,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0310")]
 	[HodokuDifficultyRating(130, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(3.4, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	FinnedXWing,
 
 	/// <summary>
@@ -234,16 +292,19 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0320")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(3.5, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SashimiXWing,
 
 	/// <summary>
 	/// Indicates Siamese finned X-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SiameseFinnedXWing,
 
 	/// <summary>
 	/// Indicates Siamese sashimi X-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SiameseSashimiXWing,
 
 	/// <summary>
@@ -251,6 +312,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0330")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FrankenXWing,
 
 	/// <summary>
@@ -258,21 +320,25 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0340")]
 	[HodokuDifficultyRating(390, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FinnedFrankenXWing,
 
 	/// <summary>
 	/// Indicates sashimi franken X-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SashimiFrankenXWing,
 
 	/// <summary>
 	/// Indicates Siamese finned franken X-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseFinnedFrankenXWing,
 
 	/// <summary>
 	/// Indicates Siamese sashimi franken X-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseSashimiFrankenXWing,
 
 	/// <summary>
@@ -280,6 +346,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0350")]
 	[HodokuDifficultyRating(450, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	MutantXWing,
 
 	/// <summary>
@@ -287,21 +354,25 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0360")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FinnedMutantXWing,
 
 	/// <summary>
 	/// Indicates sashimi mutant X-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SashimiMutantXWing,
 
 	/// <summary>
 	/// Indicates Siamese finned mutant X-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseFinnedMutantXWing,
 
 	/// <summary>
 	/// Indicates Siamese sashimi mutant X-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseSashimiMutantXWing,
 
 	/// <summary>
@@ -310,6 +381,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0301")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(3.8)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	Swordfish,
 
 	/// <summary>
@@ -318,6 +390,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0311")]
 	[HodokuDifficultyRating(200, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(4.0, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	FinnedSwordfish,
 
 	/// <summary>
@@ -326,16 +399,19 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0321")]
 	[HodokuDifficultyRating(240, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(4.1, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SashimiSwordfish,
 
 	/// <summary>
 	/// Indicates Siamese finned swordfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SiameseFinnedSwordfish,
 
 	/// <summary>
 	/// Indicates Siamese sashimi swordfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SiameseSashimiSwordfish,
 
 	/// <summary>
@@ -343,6 +419,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0331")]
 	[HodokuDifficultyRating(350, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FrankenSwordfish,
 
 	/// <summary>
@@ -350,16 +427,19 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0341")]
 	[HodokuDifficultyRating(410, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FinnedFrankenSwordfish,
 
 	/// <summary>
 	/// Indicates sashimi franken swordfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SashimiFrankenSwordfish,
 
 	/// <summary>
 	/// Indicates Siamese finned franken swordfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseFinnedFrankenSwordfish,
 
 	/// <summary>
@@ -372,6 +452,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0351")]
 	[HodokuDifficultyRating(450, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	MutantSwordfish,
 
 	/// <summary>
@@ -379,21 +460,25 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0361")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FinnedMutantSwordfish,
 
 	/// <summary>
 	/// Indicates sashimi mutant swordfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SashimiMutantSwordfish,
 
 	/// <summary>
 	/// Indicates Siamese finned mutant swordfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseFinnedMutantSwordfish,
 
 	/// <summary>
 	/// Indicates Siamese sashimi mutant swordfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseSashimiMutantSwordfish,
 
 	/// <summary>
@@ -402,6 +487,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0302")]
 	[HodokuDifficultyRating(160, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(5.2)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	Jellyfish,
 
 	/// <summary>
@@ -410,6 +496,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0312")]
 	[HodokuDifficultyRating(250, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(5.4, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	FinnedJellyfish,
 
 	/// <summary>
@@ -418,16 +505,19 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0322")]
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(5.6, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SashimiJellyfish,
 
 	/// <summary>
 	/// Indicates Siamese finned jellyfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SiameseFinnedJellyfish,
 
 	/// <summary>
 	/// Indicates Siamese sashimi jellyfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SiameseSashimiJellyfish,
 
 	/// <summary>
@@ -435,6 +525,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0332")]
 	[HodokuDifficultyRating(370, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FrankenJellyfish,
 
 	/// <summary>
@@ -442,21 +533,25 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0342")]
 	[HodokuDifficultyRating(430, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FinnedFrankenJellyfish,
 
 	/// <summary>
 	/// Indicates sashimi franken jellyfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SashimiFrankenJellyfish,
 
 	/// <summary>
 	/// Indicates Siamese finned franken jellyfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseFinnedFrankenJellyfish,
 
 	/// <summary>
 	/// Indicates Siamese sashimi franken jellyfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseSashimiFrankenJellyfish,
 
 	/// <summary>
@@ -464,6 +559,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0352")]
 	[HodokuDifficultyRating(450, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	MutantJellyfish,
 
 	/// <summary>
@@ -471,21 +567,25 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0362")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FinnedMutantJellyfish,
 
 	/// <summary>
 	/// Indicates sashimi mutant jellyfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SashimiMutantJellyfish,
 
 	/// <summary>
 	/// Indicates Siamese finned mutant jellyfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseFinnedMutantJellyfish,
 
 	/// <summary>
 	/// Indicates Siamese sashimi mutant jellyfish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseSashimiMutantJellyfish,
 
 	/// <summary>
@@ -493,6 +593,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0303")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	Squirmbag,
 
 	/// <summary>
@@ -500,6 +601,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0313")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	FinnedSquirmbag,
 
 	/// <summary>
@@ -507,16 +609,19 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0323")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SashimiSquirmbag,
 
 	/// <summary>
 	/// Indicates Siamese finned squirmbag.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SiameseFinnedSquirmbag,
 
 	/// <summary>
 	/// Indicates Siamese sashimi squirmbag.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SiameseSashimiSquirmbag,
 
 	/// <summary>
@@ -524,6 +629,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0333")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FrankenSquirmbag,
 
 	/// <summary>
@@ -531,21 +637,25 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0343")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FinnedFrankenSquirmbag,
 
 	/// <summary>
 	/// Indicates sashimi franken squirmbag.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SashimiFrankenSquirmbag,
 
 	/// <summary>
 	/// Indicates Siamese finned franken squirmbag.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseFinnedFrankenSquirmbag,
 
 	/// <summary>
 	/// Indicates Siamese sashimi franken squirmbag.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseSashimiFrankenSquirmbag,
 
 	/// <summary>
@@ -553,6 +663,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0353")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	MutantSquirmbag,
 
 	/// <summary>
@@ -560,21 +671,25 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0363")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FinnedMutantSquirmbag,
 
 	/// <summary>
 	/// Indicates sashimi mutant squirmbag.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SashimiMutantSquirmbag,
 
 	/// <summary>
 	/// Indicates Siamese finned mutant squirmbag.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseFinnedMutantSquirmbag,
 
 	/// <summary>
 	/// Indicates Siamese sashimi mutant squirmbag.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseSashimiMutantSquirmbag,
 
 	/// <summary>
@@ -582,6 +697,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0304")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	Whale,
 
 	/// <summary>
@@ -589,6 +705,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0314")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	FinnedWhale,
 
 	/// <summary>
@@ -596,16 +713,19 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0324")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SashimiWhale,
 
 	/// <summary>
 	/// Indicates Siamese finned whale.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SiameseFinnedWhale,
 
 	/// <summary>
 	/// Indicates Siamese sashimi whale.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SiameseSashimiWhale,
 
 	/// <summary>
@@ -613,6 +733,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0334")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FrankenWhale,
 
 	/// <summary>
@@ -620,21 +741,25 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0344")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FinnedFrankenWhale,
 
 	/// <summary>
 	/// Indicates sashimi franken whale.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SashimiFrankenWhale,
 
 	/// <summary>
 	/// Indicates Siamese finned franken whale.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseFinnedFrankenWhale,
 
 	/// <summary>
 	/// Indicates Siamese sashimi franken whale.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseSashimiFrankenWhale,
 
 	/// <summary>
@@ -642,6 +767,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0354")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	MutantWhale,
 
 	/// <summary>
@@ -649,21 +775,25 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0364")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FinnedMutantWhale,
 
 	/// <summary>
 	/// Indicates sashimi mutant whale.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SashimiMutantWhale,
 
 	/// <summary>
 	/// Indicates Siamese finned mutant whale.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseFinnedMutantWhale,
 
 	/// <summary>
 	/// Indicates Siamese sashimi mutant whale.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseSashimiMutantWhale,
 
 	/// <summary>
@@ -671,6 +801,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0305")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	Leviathan,
 
 	/// <summary>
@@ -678,6 +809,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0315")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	FinnedLeviathan,
 
 	/// <summary>
@@ -685,16 +817,19 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0325")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SashimiLeviathan,
 
 	/// <summary>
 	/// Indicates Siamese finned leviathan.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SiameseFinnedLeviathan,
 
 	/// <summary>
 	/// Indicates Siamese sashimi leviathan.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	SiameseSashimiLeviathan,
 
 	/// <summary>
@@ -702,6 +837,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0335")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FrankenLeviathan,
 
 	/// <summary>
@@ -709,21 +845,25 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0345")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FinnedFrankenLeviathan,
 
 	/// <summary>
 	/// Indicates sashimi franken leviathan.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SashimiFrankenLeviathan,
 
 	/// <summary>
 	/// Indicates Siamese finned franken leviathan.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseFinnedFrankenLeviathan,
 
 	/// <summary>
 	/// Indicates Siamese sashimi franken leviathan.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseSashimiFrankenLeviathan,
 
 	/// <summary>
@@ -731,6 +871,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0355")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	MutantLeviathan,
 
 	/// <summary>
@@ -738,29 +879,39 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0365")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	FinnedMutantLeviathan,
 
 	/// <summary>
 	/// Indicates sashimi mutant leviathan.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SashimiMutantLeviathan,
 
 	/// <summary>
 	/// Indicates Siamese finned mutant leviathan.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseFinnedMutantLeviathan,
 
 	/// <summary>
 	/// Indicates Siamese sashimi mutant leviathan.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	SiameseSashimiMutantLeviathan,
+	#endregion
 
+	//
+	// Wings
+	//
+	#region Wings
 	/// <summary>
 	/// Indicates XY-Wing.
 	/// </summary>
 	[HodokuTechniquePrefix("0800")]
 	[HodokuDifficultyRating(160, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.2)]
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	XyWing,
 
 	/// <summary>
@@ -769,6 +920,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0801")]
 	[HodokuDifficultyRating(180, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.4)]
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	XyzWing,
 
 	/// <summary>
@@ -776,66 +928,78 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0802")]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	WxyzWing,
 
 	/// <summary>
 	/// Indicates VWXYZ-Wing.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	VwxyzWing,
 
 	/// <summary>
 	/// Indicates UVWXYZ-Wing.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	UvwxyzWing,
 
 	/// <summary>
 	/// Indicates TUVWXYZ-Wing.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	TuvwxyzWing,
 
 	/// <summary>
 	/// Indicates STUVWXYZ-Wing.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	StuvwxyzWing,
 
 	/// <summary>
 	/// Indicates RSTUVWXYZ-Wing.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	RstuvwxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete WXYZ-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	IncompleteWxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete VWXYZ-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	IncompleteVwxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete UVWXYZ-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	IncompleteUvwxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete TUVWXYZ-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	IncompleteTuvwxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete STUVWXYZ-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	IncompleteStuvwxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete RSTUVWXYZ-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	IncompleteRstuvwxyzWing,
 
 	/// <summary>
@@ -844,63 +1008,80 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0803")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.4, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	WWing,
 
 	/// <summary>
 	/// Indicates Multi-Branch W-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	MultiBranchWWing,
 
 	/// <summary>
 	/// Indicates M-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	MWing,
 
 	/// <summary>
 	/// Indicates local wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	LocalWing,
 
 	/// <summary>
 	/// Indicates split wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	SplitWing,
 
 	/// <summary>
 	/// Indicates hybrid wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	HybridWing,
 
 	/// <summary>
 	/// Indicates grouped XY-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	GroupedXyWing,
 
 	/// <summary>
 	/// Indicates grouped W-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	GroupedWWing,
 
 	/// <summary>
 	/// Indicates grouped M-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	GroupedMWing,
 
 	/// <summary>
 	/// Indicates grouped local wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	GroupedLocalWing,
 
 	/// <summary>
 	/// Indicates grouped split wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	GroupedSplitWing,
 
 	/// <summary>
 	/// Indicates grouped hybrid wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
 	GroupedHybridWing,
+	#endregion
 
+	//
+	// Unique Rectangle
+	//
+	#region Unique Rectangle
 	/// <summary>
 	/// Indicates unique rectangle type 1.
 	/// </summary>
@@ -908,6 +1089,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Uniqueness Test 1")]
 	[SudokuExplainerDifficultyRating(4.5)]
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleType1,
 
 	/// <summary>
@@ -918,6 +1100,7 @@ public enum Technique : short
 	[HodokuAliasedNames("Uniqueness Test 2")]
 	[SudokuExplainerDifficultyRating(4.5)]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleType2,
 
 	/// <summary>
@@ -928,6 +1111,7 @@ public enum Technique : short
 	[HodokuAliasedNames("Uniqueness Test 3")]
 	[SudokuExplainerDifficultyRating(4.5, 4.8)]
 	[SudokuExplainerDifficultyRating(4.6, 4.9, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleType3,
 
 	/// <summary>
@@ -938,6 +1122,7 @@ public enum Technique : short
 	[HodokuAliasedNames("Uniqueness Test 4")]
 	[SudokuExplainerDifficultyRating(4.5)]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleType4,
 
 	/// <summary>
@@ -947,6 +1132,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Uniqueness Test 5")]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleType5,
 
 	/// <summary>
@@ -956,6 +1142,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Uniqueness Test 6")]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleType6,
 
 	/// <summary>
@@ -965,164 +1152,201 @@ public enum Technique : short
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Hidden Rectangle")]
 	[SudokuExplainerDifficultyRating(4.8, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	HiddenUniqueRectangle,
 
 	/// <summary>
 	/// Indicates unique rectangle + 2D.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle2D,
 
 	/// <summary>
 	/// Indicates unique rectangle + 2B / 1SL.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle2B1,
 
 	/// <summary>
 	/// Indicates unique rectangle + 2D / 1SL.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle2D1,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3X.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle3X,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3x / 1SL.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle3X1L,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3X / 1SL.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle3X1U,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3X / 2SL.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle3X2,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3N / 2SL.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle3N2,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3U / 2SL.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle3U2,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3E / 2SL.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle3E2,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4x / 1SL.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle4X1L,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4X / 1SL.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle4X1U,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4x / 2SL.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle4X2L,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4X / 2SL.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle4X2U,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4X / 3SL.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle4X3,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4C / 3SL.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangle4C3,
 
 	/// <summary>
 	/// Indicates unique rectangle-XY-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleXyWing,
 
 	/// <summary>
 	/// Indicates unique rectangle-XYZ-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleXyzWing,
 
 	/// <summary>
 	/// Indicates unique rectangle-WXYZ-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleWxyzWing,
 
 	/// <summary>
 	/// Indicates unique rectangle sue de coq.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleSueDeCoq,
 
 	/// <summary>
 	/// Indicates unique rectangle baba grouping.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleBabaGrouping,
 
 	/// <summary>
 	/// Indicates unique rectangle external type 1.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleExternalType1,
 
 	/// <summary>
 	/// Indicates unique rectangle external type 2.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleExternalType2,
 
 	/// <summary>
 	/// Indicates unique rectangle external type 3.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleExternalType3,
 
 	/// <summary>
 	/// Indicates unique rectangle external type 4.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleExternalType4,
 
 	/// <summary>
 	/// Indicates unique rectangle external skyscraper.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleExternalSkyscraper,
 
 	/// <summary>
 	/// Indicates unique rectangle external two-string kite.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleExternalTwoStringKite,
 
 	/// <summary>
 	/// Indicates unique rectangle external turbot fish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleExternalTurbotFish,
 
 	/// <summary>
 	/// Indicates unique rectangle external XY-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleExternalXyWing,
 
 	/// <summary>
 	/// Indicates unique rectangle external almost locked sets XZ rule.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	UniqueRectangleExternalAlmostLockedSetsXz,
+	#endregion
 
+	//
+	// Avoidable Rectangle
+	//
+	#region Avoidable Rectangle
 	/// <summary>
 	/// Indicates avoidable rectangle type 1.
 	/// </summary>
 	[HodokuTechniquePrefix("0607")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.7, IsAdvancedDefined = true)] // I think this difficulty may be a mistake.
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleType1,
 
 	/// <summary>
@@ -1131,122 +1355,151 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0608")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)] // I think this difficulty may be a mistake.
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleType2,
 
 	/// <summary>
 	/// Indicates avoidable rectangle type 3.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleType3,
 
 	/// <summary>
 	/// Indicates avoidable rectangle type 5.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleType5,
 
 	/// <summary>
 	/// Indicates hidden avoidable rectangle.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	HiddenAvoidableRectangle,
 
 	/// <summary>
 	/// Indicates avoidable rectangle + 2D.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangle2D,
 
 	/// <summary>
 	/// Indicates avoidable rectangle + 3X.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangle3X,
 
 	/// <summary>
 	/// Indicates avoidable rectangle XY-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleXyWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle XYZ-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleXyzWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle WXYZ-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleWxyzWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle sue de coq.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleSueDeCoq,
 
 	/// <summary>
 	/// Indicates avoidable rectangle guardian.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleBrokenWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle hidden single in block.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleHiddenSingleBlock,
 
 	/// <summary>
 	/// Indicates avoidable rectangle hidden single in row.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleHiddenSingleRow,
 
 	/// <summary>
 	/// Indicates avoidable rectangle hidden single in column.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleHiddenSingleColumn,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external type 1.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleExternalType1,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external type 2.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleExternalType2,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external type 3.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleExternalType3,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external type 4.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleExternalType4,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external skyscraper.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleExternalSkyscraper,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external two-string kite.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleExternalTwoStringKite,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external turbot fish.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleExternalTurbotFish,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external XY-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleExternalXyWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external almost locked sets XZ rule.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	AvoidableRectangleExternalAlmostLockedSetsXz,
+	#endregion
 
+	//
+	// Unique Loop
+	//
+	#region Unique Loop
 	/// <summary>
 	/// Indicates unique loop type 1.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
+	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
 	UniqueLoopType1,
 
 	/// <summary>
@@ -1254,6 +1507,7 @@ public enum Technique : short
 	/// </summary>
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
 	UniqueLoopType2,
 
 	/// <summary>
@@ -1261,6 +1515,7 @@ public enum Technique : short
 	/// </summary>
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
 	UniqueLoopType3,
 
 	/// <summary>
@@ -1268,14 +1523,21 @@ public enum Technique : short
 	/// </summary>
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
 	UniqueLoopType4,
+	#endregion
 
+	//
+	// Extended Rectangle
+	//
+	#region Extended Rectangle
 	/// <summary>
 	/// Indicates extended rectangle type 1.
 	/// </summary>
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[HodokuTechniquePrefix("0620")]
 #endif
+	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
 	ExtendedRectangleType1,
 
 	/// <summary>
@@ -1284,6 +1546,7 @@ public enum Technique : short
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[HodokuTechniquePrefix("0621")]
 #endif
+	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
 	ExtendedRectangleType2,
 
 	/// <summary>
@@ -1292,6 +1555,7 @@ public enum Technique : short
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[HodokuTechniquePrefix("0622")]
 #endif
+	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
 	ExtendedRectangleType3,
 
 	/// <summary>
@@ -1300,8 +1564,14 @@ public enum Technique : short
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[HodokuTechniquePrefix("0623")]
 #endif
+	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
 	ExtendedRectangleType4,
+	#endregion
 
+	//
+	// Bivalue Universal Grave
+	//
+	#region Bivalue Universal Grave
 	/// <summary>
 	/// Indicates bi-value universal grave type 1.
 	/// </summary>
@@ -1309,172 +1579,240 @@ public enum Technique : short
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Bivalue Universal Grave + 1")]
 	[SudokuExplainerDifficultyRating(5.6)]
+	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	BivalueUniversalGraveType1,
 
 	/// <summary>
 	/// Indicates bi-value universal grave type 2.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(5.7)]
+	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	BivalueUniversalGraveType2,
 
 	/// <summary>
 	/// Indicates bi-value universal grave type 3.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(5.8, 6.1)]
+	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	BivalueUniversalGraveType3,
 
 	/// <summary>
 	/// Indicates bi-value universal grave type 4.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(5.7)]
+	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	BivalueUniversalGraveType4,
 
 	/// <summary>
 	/// Indicates bi-value universal grave + n.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	BivalueUniversalGravePlusN,
 
 	/// <summary>
 	/// Indicates bi-value universal grave false candidate type.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	BivalueUniversalGraveFalseCandidateType,
 
 	/// <summary>
 	/// Indicates bi-value universal grave + n with forcing chains.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	BivalueUniversalGravePlusNForcingChains,
 
 	/// <summary>
 	/// Indicates bi-value universal grave XZ rule.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	BivalueUniversalGraveXzRule,
 
 	/// <summary>
 	/// Indicates bi-value universal grave XY-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	BivalueUniversalGraveXyWing,
+	#endregion
 
+	//
+	// Reverse Bivalue Universal Grave
+	//
+	#region Reverse Bivalue Universal Grave
 	/// <summary>
 	/// Indicates reverse unique rectangle type 1.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	ReverseUniqueRectangleType1,
 
 	/// <summary>
 	/// Indicates reverse unique rectangle type 2.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	ReverseUniqueRectangleType2,
 
 	/// <summary>
 	/// Indicates reverse unique rectangle type 3.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	ReverseUniqueRectangleType3,
 
 	/// <summary>
 	/// Indicates reverse unique rectangle type 4.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	ReverseUniqueRectangleType4,
 
 	/// <summary>
 	/// Indicates reverse unique loop type 1.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	ReverseUniqueLoopType1,
 
 	/// <summary>
 	/// Indicates reverse unique loop type 2.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	ReverseUniqueLoopType2,
 
 	/// <summary>
 	/// Indicates reverse unique loop type 3.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	ReverseUniqueLoopType3,
 
 	/// <summary>
 	/// Indicates reverse unique loop type 4.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	ReverseUniqueLoopType4,
+	#endregion
 
+	//
+	// Uniqueness Clue Cover
+	//
+	#region Uniqueness Clue Cover
 	/// <summary>
 	/// Indicates uniqueness clue cover type 2.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniquenessClueCover)]
 	UniquenessClueCoverType2,
+	#endregion
 
+	//
+	// RW's Theory
+	//
+	#region RW's Theory
 	/// <summary>
 	/// Indicates RW's deadly pattern.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
 	RwDeadlyPattern,
+	#endregion
 
+	//
+	// Borescoper's Deadly Pattern
+	//
+	#region Borescoper's Deadly Pattern
 	/// <summary>
 	/// Indicates Borescoper's deadly pattern type 1.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
 	BorescoperDeadlyPatternType1,
 
 	/// <summary>
 	/// Indicates Borescoper's deadly pattern type 2.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
 	BorescoperDeadlyPatternType2,
 
 	/// <summary>
 	/// Indicates Borescoper's deadly pattern type 3.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
 	BorescoperDeadlyPatternType3,
 
 	/// <summary>
 	/// Indicates Borescoper's deadly pattern type 4.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
 	BorescoperDeadlyPatternType4,
+	#endregion
 
+	//
+	// Qiu's Deadly Pattern
+	//
+	#region Qiu's Deadly Pattern
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 1.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
 	QiuDeadlyPatternType1,
 
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 2.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
 	QiuDeadlyPatternType2,
 
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 3.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
 	QiuDeadlyPatternType3,
 
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 4.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
 	QiuDeadlyPatternType4,
 
 	/// <summary>
 	/// Indicates locked Qiu's deadly pattern.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
 	LockedQiuDeadlyPattern,
+	#endregion
 
+	//
+	// Unique Matrix
+	//
+	#region Unique Matrix
 	/// <summary>
 	/// Indicates unique matrix type 1.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
 	UniqueMatrixType1,
 
 	/// <summary>
 	/// Indicates unique matrix type 2.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
 	UniqueMatrixType2,
 
 	/// <summary>
 	/// Indicates unique matrix type 3.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
 	UniqueMatrixType3,
 
 	/// <summary>
 	/// Indicates unique matrix type 4.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeadlyPattern)]
 	UniqueMatrixType4,
+	#endregion
 
+	//
+	// Ranking Logic
+	//
+	#region Ranking Logic
 	/// <summary>
 	/// Indicates sue de coq.
 	/// </summary>
 	[HodokuTechniquePrefix("1101")]
 	[HodokuDifficultyRating(250, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(5.0, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	SueDeCoq,
 
 	/// <summary>
@@ -1483,18 +1821,93 @@ public enum Technique : short
 	[HodokuTechniquePrefix("1101")]
 	[HodokuDifficultyRating(250, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(5.0, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	SueDeCoqIsolated,
 
 	/// <summary>
 	/// Indicates 3-dimensional sue de coq.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	SueDeCoq3Dimension,
 
 	/// <summary>
 	/// Indicates sue de coq cannibalism.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	SueDeCoqCannibalism,
 
+	/// <summary>
+	/// Indicates broken wing.
+	/// </summary>
+	[HodokuTechniquePrefix("0705")]
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	BrokenWing,
+
+	/// <summary>
+	/// Indicates bi-value oddagon type 2.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	BivalueOddagonType2,
+
+	/// <summary>
+	/// Indicates bi-value oddagon type 3.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	BivalueOddagonType3,
+
+	/// <summary>
+	/// Indicates grouped bi-value oddagon.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	GroupedBivalueOddagon,
+
+	/// <summary>
+	/// Indicates chromatic pattern (tri-value oddagon) type 1.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	ChromaticPatternType1,
+
+	/// <summary>
+	/// Indicates chromatic pattern (tri-value oddagon) type 2.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	ChromaticPatternType2,
+
+	/// <summary>
+	/// Indicates chromatic pattern (tri-value oddagon) type 3.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	ChromaticPatternType3,
+
+	/// <summary>
+	/// Indicates chromatic pattern (tri-value oddagon) type 4.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	ChromaticPatternType4,
+
+	/// <summary>
+	/// Indicates chromatic pattern (tri-value oddagon) XZ rule.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	ChromaticPatternXzRule,
+
+	/// <summary>
+	/// Indicates domino loop.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	DominoLoop,
+
+	/// <summary>
+	/// Indicates multi-sector locked sets.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	MultisectorLockedSets,
+	#endregion
+
+	//
+	// Single Digit Pattern
+	//
+	#region Single Digit Pattern
 	/// <summary>
 	/// Indicates skyscraper.
 	/// </summary>
@@ -1504,6 +1917,7 @@ public enum Technique : short
 	[SudokuExplainerDifficultyRating(6.6)]
 	[SudokuExplainerAliasNames("Turbot Fish")]
 #endif
+	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	Skyscraper,
 
 	/// <summary>
@@ -1515,6 +1929,7 @@ public enum Technique : short
 	[SudokuExplainerDifficultyRating(6.6)]
 	[SudokuExplainerAliasNames("Turbot Fish")]
 #endif
+	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	TwoStringKite,
 
 	/// <summary>
@@ -1523,6 +1938,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0403")]
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(6.6)]
+	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	TurbotFish,
 
 	/// <summary>
@@ -1530,60 +1946,21 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0402")]
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
+	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	EmptyRectangle,
+	#endregion
 
-	/// <summary>
-	/// Indicates broken wing.
-	/// </summary>
-	[HodokuTechniquePrefix("0705")]
-	BrokenWing,
-
-	/// <summary>
-	/// Indicates bi-value oddagon type 2.
-	/// </summary>
-	BivalueOddagonType2,
-
-	/// <summary>
-	/// Indicates bi-value oddagon type 3.
-	/// </summary>
-	BivalueOddagonType3,
-
-	/// <summary>
-	/// Indicates grouped bi-value oddagon.
-	/// </summary>
-	GroupedBivalueOddagon,
-
-	/// <summary>
-	/// Indicates chromatic pattern (tri-value oddagon) type 1.
-	/// </summary>
-	ChromaticPatternType1,
-
-	/// <summary>
-	/// Indicates chromatic pattern (tri-value oddagon) type 2.
-	/// </summary>
-	ChromaticPatternType2,
-
-	/// <summary>
-	/// Indicates chromatic pattern (tri-value oddagon) type 3.
-	/// </summary>
-	ChromaticPatternType3,
-
-	/// <summary>
-	/// Indicates chromatic pattern (tri-value oddagon) type 4.
-	/// </summary>
-	ChromaticPatternType4,
-
-	/// <summary>
-	/// Indicates chromatic pattern (tri-value oddagon) XZ rule.
-	/// </summary>
-	ChromaticPatternXzRule,
-
+	//
+	// Alternating Inference Chain
+	//
+	#region Chaining
 	/// <summary>
 	/// Indicates X-Chain.
 	/// </summary>
 	[HodokuTechniquePrefix("0701")]
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(6.6, 6.9)]
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	XChain,
 
 	/// <summary>
@@ -1593,6 +1970,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0702")]
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
 #endif
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	YChain,
 
 	/// <summary>
@@ -1601,6 +1979,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0704")]
 	[SudokuExplainerDifficultyRating(6.5, 6.6)]
 	[SudokuExplainerAliasedNames("Bidirectional X-Cycle")]
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	FishyCycle,
 
 	/// <summary>
@@ -1608,16 +1987,19 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0702")]
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	XyChain,
 
 	/// <summary>
 	/// Indicates XY-Cycle.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	XyCycle,
 
 	/// <summary>
 	/// Indicates XY-X-Chain.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	XyXChain,
 
 	/// <summary>
@@ -1625,11 +2007,13 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0703")]
 	[HodokuDifficultyRating(110, HodokuDifficultyLevel.Hard)]
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	RemotePair,
 
 	/// <summary>
 	/// Indicates purple cow.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	PurpleCow,
 
 	/// <summary>
@@ -1639,6 +2023,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(7.0, 7.6)]
 	[SudokuExplainerAliasedNames("Forcing Chain")]
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	DiscontinuousNiceLoop,
 
 	/// <summary>
@@ -1648,6 +2033,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(7.0, 7.3)]
 	[SudokuExplainerAliasedNames("Bidirectional Cycle")]
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	ContinuousNiceLoop,
 
 	/// <summary>
@@ -1655,36 +2041,43 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0708")]
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	AlternatingInferenceChain,
 
 	/// <summary>
 	/// Indicates grouped X-Chain.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	GroupedXChain,
 
 	/// <summary>
 	/// Indicates grouped fishy cycle (grouped X-Cycle).
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	GroupedFishyCycle,
 
 	/// <summary>
 	/// Indicates grouped XY-Chain.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	GroupedXyChain,
 
 	/// <summary>
 	/// Indicates grouped XY-Cycle.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	GroupedXyCycle,
 
 	/// <summary>
 	/// Indicates grouped XY-X-Chain.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	GroupedXyXChain,
 
 	/// <summary>
 	/// Indicates grouped purple cow.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	GroupedPurpleCow,
 
 	/// <summary>
@@ -1692,6 +2085,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0710")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	GroupedDiscontinuousNiceLoop,
 
 	/// <summary>
@@ -1699,6 +2093,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0709")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	GroupedContinuousNiceLoop,
 
 	/// <summary>
@@ -1706,17 +2101,25 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0711")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	GroupedAlternatingInferenceChain,
 
 	/// <summary>
 	/// Indicates special case that a grouped alternating inference chain has a collision between start and end node.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	NodeCollision,
+	#endregion
 
+	//
+	// Forcing Chains
+	//
+	#region Forcing Chains
 	/// <summary>
 	/// Indicates nishio forcing chains.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(7.6, 8.1)]
+	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	NishioForcingChains,
 
 	/// <summary>
@@ -1725,6 +2128,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("1301")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerDifficultyRating(8.2, 8.6)]
+	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	RegionForcingChains,
 
 	/// <summary>
@@ -1733,6 +2137,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("1301")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerDifficultyRating(8.2, 8.6)]
+	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	CellForcingChains,
 
 	/// <summary>
@@ -1741,6 +2146,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("1303")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerDifficultyRating(8.6, 9.4)]
+	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	DynamicRegionForcingChains,
 
 	/// <summary>
@@ -1749,6 +2155,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("1303")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerDifficultyRating(8.6, 9.4)]
+	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	DynamicCellForcingChains,
 
 	/// <summary>
@@ -1757,6 +2164,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("1304")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerDifficultyRating(8.8, 9.4)]
+	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	DynamicContradictionForcingChains,
 
 	/// <summary>
@@ -1765,22 +2173,31 @@ public enum Technique : short
 	[HodokuTechniquePrefix("1304")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerDifficultyRating(8.8, 9.4)]
+	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	DynamicDoubleForcingChains,
 
 	/// <summary>
 	/// Indicates dynamic forcing chains.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	DynamicForcingChains,
+	#endregion
 
+	//
+	// Almost Locked Sets
+	//
+	#region Almost Locked Sets
 	/// <summary>
 	/// Indicates empty rectangle intersection pair.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	EmptyRectangleIntersectionPair,
 
 	/// <summary>
 	/// Indicates extended subset principle.
 	/// </summary>
 	[HodokuTechniquePrefix("1102")]
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	ExtendedSubsetPrinciple,
 
 	/// <summary>
@@ -1789,6 +2206,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0901")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(7.5, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	SinglyLinkedAlmostLockedSetsXzRule,
 
 	/// <summary>
@@ -1797,6 +2215,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0901")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(7.5, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	DoublyLinkedAlmostLockedSetsXzRule,
 
 	/// <summary>
@@ -1805,11 +2224,13 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0902")]
 	[HodokuDifficultyRating(320, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(8.0, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	AlmostLockedSetsXyWing,
 
 	/// <summary>
 	/// Indicates ALS-W-Wing.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	AlmostLockedSetsWWing,
 
 	/// <summary>
@@ -1817,12 +2238,8 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("0903")]
 	[HodokuDifficultyRating(340, HodokuDifficultyLevel.Unfair)]
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	AlmostLockedSetsChain,
-
-	/// <summary>
-	/// Indicates AHS chain.
-	/// </summary>
-	AlmostHiddenSetsChain,
 
 	/// <summary>
 	/// Indicates death blossom cell type.
@@ -1830,68 +2247,89 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0904")]
 	[HodokuDifficultyRating(360, HodokuDifficultyLevel.Unfair)]
 	[HodokuAliasedNames("Death Blossom")]
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	DeathBlossomCellType,
 
 	/// <summary>
 	/// Indicates death blossom house type.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	DeathBlossomHouseType,
+	#endregion
 
+	//
+	// Symmetry
+	//
+	#region Symmetry
 	/// <summary>
 	/// Indicates Gurth's symmetrical placement.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Symmetry)]
 	GurthSymmetricalPlacement,
 
 	/// <summary>
 	/// Indicates extended Gurth's symmetrical placement.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Symmetry)]
 	ExtendedGurthSymmetricalPlacement,
+	#endregion
 
+	//
+	// Exocet
+	//
+	#region Exocet
 	/// <summary>
 	/// Indicates junior exocet.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
 	JuniorExocet,
 
 	/// <summary>
 	/// Indicates senior exocet.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
 	SeniorExocet,
 
 	/// <summary>
 	/// Indicates complex senior exocet.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
 	ComplexSeniorExocet,
 
 	/// <summary>
 	/// Indicates Siamese junior exocet.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
 	SiameseJuniorExocet,
 
 	/// <summary>
 	/// Indicates Siamese senior exocet.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
 	SiameseSeniorExocet,
+	#endregion
 
-	/// <summary>
-	/// Indicates domino loop.
-	/// </summary>
-	DominoLoop,
-
-	/// <summary>
-	/// Indicates multi-sector locked sets.
-	/// </summary>
-	MultisectorLockedSets,
-
+	//
+	// Pattern Overlay
+	//
+	#region Pattern Overlay
 	/// <summary>
 	/// Indicates pattern overlay method.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.PatternOverlay)]
 	PatternOverlay,
+	#endregion
 
+	//
+	// Templating
+	//
+	#region Templating
 	/// <summary>
 	/// Indicates template set.
 	/// </summary>
 	[HodokuTechniquePrefix("1201")]
 	[HodokuDifficultyRating(10000, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.Templating)]
 	TemplateSet,
 
 	/// <summary>
@@ -1899,17 +2337,31 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("1202")]
 	[HodokuDifficultyRating(10000, HodokuDifficultyLevel.Extreme)]
+	[TechniqueGroup(TechniqueGroup.Templating)]
 	TemplateDelete,
+	#endregion
 
+	//
+	// Bowman's Bingo
+	//
+	#region Bowman's Bingo
 	/// <summary>
 	/// Indicates bowman's bingo.
 	/// </summary>
+	[TechniqueGroup(TechniqueGroup.BowmanBingo)]
 	BowmanBingo,
+	#endregion
 
+	//
+	// Brute Force
+	//
+	#region Brute Force
 	/// <summary>
 	/// Indicates brute force.
 	/// </summary>
 	[HodokuDifficultyRating(10000, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerAliasedNames("Try & Error")]
+	[TechniqueGroup(TechniqueGroup.BruteForce)]
 	BruteForce,
+	#endregion
 }

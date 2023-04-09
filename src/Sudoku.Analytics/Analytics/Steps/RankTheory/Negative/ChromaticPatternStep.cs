@@ -20,7 +20,7 @@ public abstract class ChromaticPatternStep(Conclusion[] conclusions, View[]? vie
 	public short DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
-	public sealed override TechniqueGroup Group => TechniqueGroup.TrivalueOddagon;
+	public sealed override TechniqueGroup Group => TechniqueGroup.ChromaticPattern;
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
