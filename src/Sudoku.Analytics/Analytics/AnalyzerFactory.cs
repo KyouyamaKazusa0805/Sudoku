@@ -21,16 +21,16 @@ public static class AnalyzerFactory
 	}
 
 	/// <summary>
-	/// Try to set property <see cref="Analyzer.CustomStepSearchers"/> with the specified value.
+	/// Try to set property <see cref="Analyzer.StepSearchers"/> with the specified value.
 	/// </summary>
 	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
 	/// <param name="stepSearchers">The custom collection of <see cref="StepSearcher"/>s.</param>
 	/// <returns>The result.</returns>
-	/// <seealso cref="Analyzer.CustomStepSearchers"/>
+	/// <seealso cref="Analyzer.StepSearchers"/>
 	/// <seealso cref="StepSearcher"/>
 	public static Analyzer WithStepSearchers(this Analyzer @this, StepSearcher[] stepSearchers)
 	{
-		@this.CustomStepSearchers = stepSearchers;
+		@this.StepSearchers = stepSearchers;
 		return @this;
 	}
 
@@ -46,7 +46,7 @@ public static class AnalyzerFactory
 	public static Analyzer WithStepSearcherSetters<TStepSearcher>(this Analyzer @this, Action<TStepSearcher> propertySetter)
 		where TStepSearcher : StepSearcher
 	{
-		foreach (var stepSearcher in @this.StepSearchers)
+		foreach (var stepSearcher in @this.ResultStepSearchers)
 		{
 			if (stepSearcher is TStepSearcher target)
 			{

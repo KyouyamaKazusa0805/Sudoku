@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics.Metadata;
 
 /// <summary>
 /// Defines a reason why the puzzle is failed to be analyzed.
@@ -18,8 +18,12 @@ public enum AnalyzerFailedReason : byte
 	/// before solving, we should use this field.
 	/// </para>
 	/// </summary>
+	/// <remarks>
+	/// This field can also be used for false-positive on analyzing a puzzle, raising <see cref="StepSearcherProcessException{TStepSearcher}"/>.
+	/// </remarks>
 	/// <seealso cref="PuzzleHasNoSolution"/>
 	/// <seealso cref="PuzzleHasMultipleSolutions"/>
+	/// <seealso cref="StepSearcherProcessException{TStepSearcher}"/>
 	PuzzleIsInvalid,
 
 	/// <summary>

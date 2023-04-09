@@ -101,7 +101,7 @@
             </remarks>
             <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.UnlimitedSpaceComplexity"/>
         </member>
-        <member name="P:Sudoku.Analytics.Analyzer.CustomStepSearchers">
+        <member name="P:Sudoku.Analytics.Analyzer.StepSearchers">
             <summary>
             <para>
             Indicates the custom <see cref="T:Sudoku.Analytics.StepSearcher"/>s you defined to solve a puzzle. By default,
@@ -117,7 +117,7 @@
             </summary>
             <seealso cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)"/>
         </member>
-        <member name="P:Sudoku.Analytics.Analyzer.StepSearchers">
+        <member name="P:Sudoku.Analytics.Analyzer.ResultStepSearchers">
             <summary>
             Indicates the final found step searchers used in the current analyzer.
             </summary>
@@ -129,46 +129,6 @@
         </member>
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Analyzer.InternalSolve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.AnalyzerResult,System.IProgress{System.Double},System.Threading.CancellationToken)">
-            <summary>
-            The inner solving operation method.
-            </summary>
-            <param name="puzzle">
-            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='puzzle']"/>
-            </param>
-            <param name="solution">The solution of the puzzle. Some step searchers will use this value.</param>
-            <param name="isSukaku">A <see cref="T:System.Boolean"/> value indicating whether the puzzle is a sukaku.</param>
-            <param name="resultBase">The base solver result already included the base information.</param>
-            <param name="progress">
-            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='progress']"/>
-            </param>
-            <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
-            </param>
-            <returns>The solver result.</returns>
-            <exception cref="T:Sudoku.Analytics.WrongStepException">Throws when found wrong steps to apply.</exception>
-            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Analyzer.RecordStep(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Analytics.Step,Sudoku.Concepts.Grid@,System.Timers.ValueStopwatch@,System.Collections.Generic.List{Sudoku.Concepts.Grid},Sudoku.Analytics.AnalyzerResult,System.Threading.CancellationToken,Sudoku.Analytics.AnalyzerResult@)">
-            <summary>
-            Try to record the current step, saving it into the argument <paramref name="steps"/>.
-            </summary>
-            <param name="steps">The accumulator.</param>
-            <param name="step">The step to be saved.</param>
-            <param name="playground">The currently used grid.</param>
-            <param name="stopwatch">The stopwatch, in order to check elapsed time.</param>
-            <param name="stepGrids">The step grids.</param>
-            <param name="resultBase">The <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance as a base value provider.</param>
-            <param name="cancellationToken">The cancellation token that allows user cancelling the operation.</param>
-            <param name="result">
-            The result returned.
-            If this step is the final step, the result <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance will be assigned into this argument.
-            </param>
-            <returns>
-            A <see cref="T:System.Boolean"/> result indicating whether the current step is worth to be saved,
-            meaning it contains at least one conclusion that the current grid <paramref name="playground"/> contains.
-            </returns>
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerFactory">
             <summary>
@@ -187,12 +147,12 @@
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[])">
             <summary>
-            Try to set property <see cref="P:Sudoku.Analytics.Analyzer.CustomStepSearchers"/> with the specified value.
+            Try to set property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/> with the specified value.
             </summary>
             <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
             <param name="stepSearchers">The custom collection of <see cref="T:Sudoku.Analytics.StepSearcher"/>s.</param>
             <returns>The result.</returns>
-            <seealso cref="P:Sudoku.Analytics.Analyzer.CustomStepSearchers"/>
+            <seealso cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearcherSetters``1(Sudoku.Analytics.Analyzer,System.Action{``0})">
@@ -2957,8 +2917,12 @@
             before solving, we should use this field.
             </para>
             </summary>
+            <remarks>
+            This field can also be used for false-positive on analyzing a puzzle, raising <see cref="T:Sudoku.Analytics.StepSearcherProcessException`1"/>.
+            </remarks>
             <seealso cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasNoSolution"/>
             <seealso cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasMultipleSolutions"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearcherProcessException`1"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasNoSolution">
             <summary>
