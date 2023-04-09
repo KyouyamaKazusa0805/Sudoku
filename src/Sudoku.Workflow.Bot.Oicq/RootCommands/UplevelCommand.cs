@@ -125,13 +125,14 @@ internal sealed class UplevelCommand : Command
 
 							if (level != -1)
 							{
-								if (!user.Items.ContainsKey(Item.CloverLevel1 + level))
+								var targetClover = Item.CloverLevel1 + level - 1;
+								if (!user.Items.ContainsKey(targetClover) || user.Items[targetClover] <= 0)
 								{
 									await messageReceiver.SendMessageAsync("抱歉，你的三叶草不够使用。");
 									return;
 								}
 
-								user.Items[Item.CloverLevel1 + level]--;
+								user.Items[targetClover]--;
 							}
 
 							user.Coin -= 3;
@@ -280,12 +281,13 @@ internal sealed class UplevelCommand : Command
 
 							if (level != -1)
 							{
-								if (!user.Items.ContainsKey(Item.CloverLevel1 + level))
+								var targetClover = Item.CloverLevel1 + level - 1;
+								if (!user.Items.ContainsKey(targetClover) || user.Items[targetClover] <= 0)
 								{
 									goto Rollback;
 								}
 
-								user.Items[Item.CloverLevel1 + level]--;
+								user.Items[targetClover]--;
 							}
 
 							tryUplevel(user, ref succeed, ref failed);
