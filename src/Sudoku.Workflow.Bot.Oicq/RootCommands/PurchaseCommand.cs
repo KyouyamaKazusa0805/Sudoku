@@ -44,9 +44,15 @@ internal sealed class PurchaseCommand : Command
 			return;
 		}
 
-		if (UserOperations.Read(senderId) is not { ExperiencePoint: var exp, Coin: var coin } user)
+		if (UserOperations.Read(senderId) is not { Coin: var coin } user)
 		{
 			await messageReceiver.SendMessageAsync("用户没有使用过机器人。无法购买商品。");
+			return;
+		}
+
+		if (BatchedCount < 0)
+		{
+			await messageReceiver.SendMessageAsync("抱歉，批量购买的次数至少为 1。");
 			return;
 		}
 

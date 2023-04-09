@@ -2585,6 +2585,11 @@
             强化指令。
             </summary>
         </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.UplevelCommand.BatchedCount">
+            <summary>
+            表示你进行当前强化方案下，批量强化操作的次数。默认不写的时候为 1，即只执行一次。
+            </summary>
+        </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.UplevelCommand.CloverLevel">
             <summary>
             表示强化期间，需要的三叶草的级别，支持 1 到 10 级。该参数可以没有，默认情况下表示不带三叶草进行强化。

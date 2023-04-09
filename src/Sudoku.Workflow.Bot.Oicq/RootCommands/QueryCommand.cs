@@ -354,7 +354,7 @@ internal sealed class QueryCommand : Command
 											orderby level
 											let count = kvp.Value
 											where count != 0
-											select $"  * {level} 级辅助卡：{count} 张"
+											select $"  * {level} 级强化卡：{count} 张"
 										)
 										: "无"
 								)}
