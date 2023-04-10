@@ -64,7 +64,7 @@ internal sealed class TowerSorcererCommand : Command
 			await messageReceiver.SendPictureThenDeleteAsync(
 				ISudokuPainter.Create(1000)
 					.WithGrid(grid)
-					.WithRenderingCandidates(false)
+					.WithRenderingCandidates(count >= 80)
 					.WithFooterText($"魔塔 #{count + 1}")
 			);
 
