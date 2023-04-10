@@ -28,7 +28,7 @@ public sealed class BivalueUniversalGraveMultipleStep(Conclusion[] conclusions, 
 	public IReadOnlyList<int> TrueCandidates { get; } = trueCandidates;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?> { { "en", new[] { CandidatesStr } }, { "zh", new[] { CandidatesStr } } };
 
 	private string CandidatesStr => (CandidateMap.Empty + TrueCandidates).ToString();

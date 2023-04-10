@@ -46,7 +46,7 @@ public sealed class AvoidableRectangleWithHiddenSingleStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
 			{ "en", new[] { D1Str, D2Str, CellsStr, BaseCellStr, HouseStr, TargetCellStr } },

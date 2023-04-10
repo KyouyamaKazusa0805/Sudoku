@@ -34,7 +34,7 @@ public sealed class BivalueOddagonType3Step(
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, (ExtraCells.Count >> 1) * .1M) };
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
 			{ "en", new[] { LoopStr, Digit1Str, Digit2Str, DigitsStr, ExtraCellsStr } },

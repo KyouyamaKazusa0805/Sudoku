@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Bi-value Universal Grave Type 2</b> technique.
@@ -24,7 +24,7 @@ public sealed class BivalueUniversalGraveType2Step(Conclusion[] conclusions, Vie
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, A002024(Cells.Count) * .1M) };
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?> { { "en", new[] { ExtraDigitStr, CellsStr } }, { "zh", new[] { CellsStr, ExtraDigitStr } } };
 
 	private string ExtraDigitStr => (digit + 1).ToString();

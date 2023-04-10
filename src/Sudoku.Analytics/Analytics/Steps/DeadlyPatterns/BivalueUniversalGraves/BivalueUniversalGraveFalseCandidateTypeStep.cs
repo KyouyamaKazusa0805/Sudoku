@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Bi-value Universal Grave False Candidate Type</b> technique.
@@ -18,7 +18,7 @@ public sealed class BivalueUniversalGraveFalseCandidateTypeStep(Conclusion[] con
 	public override Technique Code => Technique.BivalueUniversalGraveFalseCandidateType;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?> { { "en", new[] { FalseCandidateStr } }, { "zh", new[] { FalseCandidateStr } } };
 
 	private string FalseCandidateStr => RxCyNotation.ToCandidateString(FalseCandidate);

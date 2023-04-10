@@ -55,7 +55,7 @@ public sealed class AlmostLockedCandidatesStep(
 		};
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
 			{ "en", new[] { DigitsStr, BaseCellsStr, TargetCellsStr } },

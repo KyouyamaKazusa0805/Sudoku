@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Bi-value Universal Grave Type 3</b> technique.
@@ -44,7 +44,7 @@ public sealed class BivalueUniversalGraveType3Step(
 	public IReadOnlyList<int> TrueCandidates { get; } = trueCandidates;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
 			{ "en", new[] { TrueCandidatesStr, SubsetTypeStr, SizeStr, ExtraDigitsStr, CellsStr } },

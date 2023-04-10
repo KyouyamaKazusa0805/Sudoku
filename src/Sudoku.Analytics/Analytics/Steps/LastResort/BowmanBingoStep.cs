@@ -27,7 +27,7 @@ public sealed class BowmanBingoStep(Conclusion[] conclusions, View[]? views, Con
 	public Conclusion[] ContradictionLinks { get; } = contradictionLinks;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?> { { "en", new[] { ContradictionSeriesStr } }, { "zh", new[] { ContradictionSeriesStr } } };
 
 	private string ContradictionSeriesStr => ConclusionFormatter.Format(ContradictionLinks, " -> ", false);

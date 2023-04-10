@@ -24,7 +24,7 @@ public sealed class MultisectorLockedSetsStep(Conclusion[] conclusions, View[]? 
 		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, A002024(Cells.Count) * .1M) };
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?> { { "en", new[] { CellsCountStr, CellsStr } }, { "zh", new[] { CellsCountStr, CellsStr } } };
 
 	private string CellsCountStr => Cells.Count.ToString();
