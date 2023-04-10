@@ -12,7 +12,7 @@ public abstract class Step(Conclusion[] conclusions, View[]? views) : IVisual
 	/// you can find them in the <c>Resources</c> folder (Type <see cref="MergedResources"/>).
 	/// </summary>
 	/// <exception cref="ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
-	public virtual string Name => Code.GetName() ?? throw new ResourceNotFoundException(Code.ToString(), EqualityContract.Assembly);
+	public virtual string Name => Code.GetName() ?? throw new ResourceNotFoundException(Code.ToString(), GetType().Assembly);
 
 	/// <summary>
 	/// Gets the format of the current instance.
@@ -59,7 +59,7 @@ public abstract class Step(Conclusion[] conclusions, View[]? views) : IVisual
 	/// </remarks>
 	/// <seealso cref="FormatInterpolatedParts"/>
 	/// <seealso cref="R"/>
-	public virtual string? Format => R[$"TechniqueFormat_{EqualityContract.Name}"];
+	public virtual string? Format => R[$"TechniqueFormat_{GetType().Name}"];
 
 	/// <summary>
 	/// Indicates the difficulty of this technique step.
@@ -131,11 +131,6 @@ public abstract class Step(Conclusion[] conclusions, View[]? views) : IVisual
 	/// Indicates the string representation of the conclusions of the step.
 	/// </summary>
 	protected string ConclusionText => ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
-
-	/// <summary>
-	/// Returns a <see cref="Type"/> instance that specifies the type information of this current object.
-	/// </summary>
-	protected Type EqualityContract => GetType();
 
 
 	/// <summary>

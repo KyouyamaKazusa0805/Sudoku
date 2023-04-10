@@ -4781,11 +4781,6 @@ result ^= expression;
             Indicates the string representation of the conclusions of the step.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Step.EqualityContract">
-            <summary>
-            Returns a <see cref="T:System.Type"/> instance that specifies the type information of this current object.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.Step.ApplyTo(Sudoku.Concepts.Grid@)">
             <summary>
             Put this instance into the specified grid.
