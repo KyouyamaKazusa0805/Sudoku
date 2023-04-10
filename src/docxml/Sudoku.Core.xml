@@ -5072,6 +5072,2543 @@ fixed (short* ptr = instance)
             Indicates all symmetry types should be satisfied.
             </summary>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.DirectionExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.DirectionExtensions.GetRotatingAngle(Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Gets the rotating angle. The result value is described using degrees.
+            </summary>
+            <param name="this">The direction.</param>
+            <returns>The rotating angle (degrees).</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the value is not defined or <see cref="F:Sudoku.Presentation.Nodes.Shapes.Direction.None"/>.</exception>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.AdjacentCellMarkViewNode">
+            <summary>
+            Represents a view node that describes a shape that is a mark, displayed between two adjacent cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.AdjacentCellMarkViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32)">
+            <summary>
+            Represents a view node that describes a shape that is a mark, displayed between two adjacent cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.AdjacentCellMarkViewNode.IsRow">
+            <summary>
+            Indicates whether two cells <see cref="P:Sudoku.Presentation.Nodes.Shapes.AdjacentCellMarkViewNode.Cell1"/> and <see cref="P:Sudoku.Presentation.Nodes.Shapes.AdjacentCellMarkViewNode.Cell2"/> are adjacent by row.
+            If <see langword="true"/>, row; otherwise, column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.AdjacentCellMarkViewNode.Cell1">
+            <summary>
+            Indicates the first cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.AdjacentCellMarkViewNode.Cell2">
+            <summary>
+            Indicates the second cell used. This cell should be adjacent with <see cref="P:Sudoku.Presentation.Nodes.Shapes.AdjacentCellMarkViewNode.Cell1"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.AdjacentCellMarkViewNode.Deconstruct(System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.AdjacentCellMarkViewNode.Deconstruct(System.Int32@,System.Int32@,System.Boolean@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode">
+            <summary>
+            Defines an average bar view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Boolean)">
+            <summary>
+            Defines an average bar view node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.IsHorizontal">
+            <summary>
+            Indicates whether the view node is for horizontal one.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.AverageBarViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode">
+            <summary>
+            Defines a battenburg view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a battenburg view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="topLeftCell">The top-left cell used.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BattenburgViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode">
+            <summary>
+            Defines a view node that displays as a bar on shared border line of two adjacent cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32)">
+            <summary>
+            Defines a view node that displays as a bar on shared border line of two adjacent cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Cell1String">
+            <summary>
+            Indicates the cell 1 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Cell2String">
+            <summary>
+            Indicates the cell 2 string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.BorderBarViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode">
+            <summary>
+            Defines a cell arrow view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Defines a cell arrow view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellArrowViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode">
+            <summary>
+            Defines a cell corner arrow view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Defines a cell corner arrow view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerArrowViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.CellCornerTriangleViewNode">
+            <summary>
+            Defines a triangle view node that is used in a cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerTriangleViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Defines a triangle view node that is used in a cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerTriangleViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.CellCornerTriangleViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode">
+            <summary>
+            Defines a clockface dot view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@,System.Boolean)">
+            <summary>
+            Defines a clockface dot view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="topLeftCell">The top-left cell.</param>
+            <param name="isClockwise">Indicates whether the dot is marked as clockwise.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.IsClockwise">
+            <summary>
+            Indicates whether the dot is marked as clockwise. If <see langword="true"/>, clockwise; otherwise, counterclockwise.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.ClockfaceDotViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.Direction">
+            <summary>
+            Defines a direction. This type provides both 4-direction values and 8-direction values.
+            If you want to use by 4-direction notation, just use values:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Presentation.Nodes.Shapes.Direction.Up"/></item>
+            <item><see cref="F:Sudoku.Presentation.Nodes.Shapes.Direction.Down"/></item>
+            <item><see cref="F:Sudoku.Presentation.Nodes.Shapes.Direction.Left"/></item>
+            <item><see cref="F:Sudoku.Presentation.Nodes.Shapes.Direction.Right"/></item>
+            </list>
+            Others are provided and used by 8-direction notation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.None">
+            <summary>
+            Indicates the direction is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.TopLeft">
+            <summary>
+            Indicates the direction is top-left.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.TopCenter">
+            <summary>
+            Indicates the direction is top-center.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.Up">
+            <summary>
+            Indicates the up direction.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.TopRight">
+            <summary>
+            Indicates the direction is top-right.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.MiddleLeft">
+            <summary>
+            Indicates the direction is middle-left.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.Left">
+            <summary>
+            Indicates the left direction.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.MiddleRight">
+            <summary>
+            Indicates the direction is middle-right.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.Right">
+            <summary>
+            Indicates the right direction.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.BottomLeft">
+            <summary>
+            Indicates the direction is bottom-left.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.BottomCenter">
+            <summary>
+            Indicates the direction is bottom-center.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.Down">
+            <summary>
+            Indicates the down direction.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Nodes.Shapes.Direction.BottomRight">
+            <summary>
+            Indicates the direction is bottom-right.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.EmbeddedSkyscraperArrowViewNode">
+            <summary>
+            Defines an embedded skyscraper arrow view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.EmbeddedSkyscraperArrowViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Defines an embedded skyscraper arrow view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.EmbeddedSkyscraperArrowViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.EmbeddedSkyscraperArrowViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode">
+            <summary>
+            Represents with a greater-than sign view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Represents with a greater-than sign view node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.IsGreaterThan">
+            <summary>
+            Indicates whether the current sign is a greater-than sign.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.Cell1String">
+            <summary>
+            Indicates the cell 1 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.Cell2String">
+            <summary>
+            Indicates the cell 2 string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.GreaterThanSignViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode">
+            <summary>
+            Represents with a Kropki dot view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Represents with a Kropki dot view node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.IsSolid">
+            <summary>
+            Indicates whether the dot will be displayed as solid one.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Cell1String">
+            <summary>
+            Indicates the cell 1 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Cell2String">
+            <summary>
+            Indicates the cell 2 string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.KropkiDotViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode">
+            <summary>
+            Defines a neighbor sign view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Boolean)">
+            <summary>
+            Defines a neighbor sign view node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.IsFourDirections">
+            <summary>
+            Indicates whether the sign only records for 4 directions (top-left, top-right, bottom-left and bottom-right).
+            If <see langword="true"/>, 4 directions; otherwise, 8 directions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.CellString">
+            <summary>
+            Indicates the cell string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NeighborSignViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode">
+            <summary>
+            Defines a number label view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.String)">
+            <summary>
+            Defines a number label view node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Label">
+            <summary>
+            Indicates the target value you want to display.
+            </summary>
+            <remarks><i>
+            Please note that the target value is a <see cref="T:System.String"/> value. We don't limit you only input numbers <b>on purpose</b>.
+            You can use instances of the current type to display what you want to display.
+            </i></remarks>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Cell1String">
+            <summary>
+            Indicates the cell 1 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Cell2String">
+            <summary>
+            Indicates the cell 2 string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.NumberLabelViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode">
+            <summary>
+            Defines a pencil-mark view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode.#ctor(System.Int32,System.String)">
+            <summary>
+            Defines a pencil-mark view node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode.Notation">
+            <summary>
+            Indicates the notation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.PencilMarkViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleCellMarkViewNode">
+            <summary>
+            Defines a quadruple cell mark view node that lies on a 2x2 squared cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleCellMarkViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a quadruple cell mark view node that lies on a 2x2 squared cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleCellMarkViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Assigns properties with target values.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode.#ctor(Sudoku.Presentation.Identifier)" path="/param[@name='identifier']"/></param>
+            <param name="topLeftCell">The top-left cell.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.QuadrupleCellMarkViewNode.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode">
+            <summary>
+            Defines a quadruple hint view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@,System.String)">
+            <summary>
+            Defines a quadruple hint view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="topLeftCell">The top-left cell.</param>
+            <param name="s">The string.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.Hint">
+            <summary>
+            The hint string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleHintViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode">
+            <summary>
+            Defines a quadruple max arrow view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.CellMap@,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Defines a quadruple max arrow view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode"/> instance via the specified values.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="topLeftCell">The top-left cell.</param>
+            <param name="arrowDirection">The arrow direction.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.ArrowDirection">
+            <summary>
+            Indicates the arrow direction.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.QuadrupleMaxArrowViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode">
+            <summary>
+            Defines a shape view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.ShapeViewNode.#ctor(Sudoku.Presentation.Identifier)">
+            <summary>
+            Defines a shape view node.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode">
+            <summary>
+            Defines a single-cell mark view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Defines a single-cell mark view node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.Directions">
+            <summary>
+            Indicates the directions that the current mark points to. <see cref="F:Sudoku.Presentation.Nodes.Shapes.Direction.None"/> is for default case.
+            Use <see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/>.<see langword="operator"/> |(<see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/>, <see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/>)
+            to combine multiple directions.
+            </summary>
+            <seealso cref="F:Sudoku.Presentation.Nodes.Shapes.Direction.None"/>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.CellString">
+            <summary>
+            Indicates the cell string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.Deconstruct(System.Int32@,Sudoku.Presentation.Nodes.Shapes.Direction@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.SingleCellMarkViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode">
+            <summary>
+            Defines a star view node used by star product.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Defines a star view node used by star product.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.StarProductStarViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode">
+            <summary>
+            Defines a triangle-sum view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,Sudoku.Presentation.Nodes.Shapes.Direction)">
+            <summary>
+            Defines a triangle-sum view node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode.IsComplement">
+            <summary>
+            Determines whether the shape is full complement.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.TriangleSumViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.WheelViewNode">
+            <summary>
+            Defines a wheel view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.String)">
+            <summary>
+            Defines a wheel view node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.DigitString">
+            <summary>
+            The digit string. The string is of length 4, as a four-number digit,
+            describing 4 digits surrounding with the target cell in clockwise order.
+            The first one is displayed on the top cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.CellString">
+            <summary>
+            Indicates the cell string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.WheelViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode">
+            <summary>
+            Defines a XV sign view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Defines a XV sign view node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.IsX">
+            <summary>
+            Indicates whether the mark is <c>X</c>. If <see langword="true"/>, <c>X</c>; otherwise, <c>V</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.Cell1String">
+            <summary>
+            Indicates the cell 1 string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.Cell2String">
+            <summary>
+            Indicates the cell 2 string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Shapes.XvSignViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.BabaGroupViewNode">
+            <summary>
+            Defines a view node that highlights for a Baba group.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.BabaGroupViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Utf8Char,System.Int16)">
+            <summary>
+            Defines a view node that highlights for a Baba group.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.BabaGroupViewNode.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.BabaGroupViewNode.DigitsMask">
+            <summary>
+            Indicates the digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.BabaGroupViewNode.UnknownValueChar">
+            <summary>
+            Indicates the character that represents the unknown range.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.BabaGroupViewNode.CellString">
+            <summary>
+            Indicates the cell string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.BabaGroupViewNode.DigitsMaskString">
+            <summary>
+            Indicates the digits mask string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.BabaGroupViewNode.Deconstruct(Sudoku.Presentation.Identifier@,System.Int32@,System.Utf8Char@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.BabaGroupViewNode.Deconstruct(Sudoku.Presentation.Identifier@,System.Int32@,System.Int16@,System.Utf8Char@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.BabaGroupViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.BabaGroupViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.BabaGroupViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.BabaGroupViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.BasicViewNode">
+            <summary>
+            Defines a basic view node type that provides with basic displaying elements from a grid.
+            </summary>
+            <param name="identifier"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.BasicViewNode.#ctor(Sudoku.Presentation.Identifier)">
+            <summary>
+            Defines a basic view node type that provides with basic displaying elements from a grid.
+            </summary>
+            <param name="identifier"><inheritdoc/></param>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.CandidateViewNode">
+            <summary>
+            Defines a view node that highlights for a candidate.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Defines a view node that highlights for a candidate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.CandidateViewNode.Candidate">
+            <summary>
+            Indicates the candidate highlighted.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.CandidateViewNode.CandidateString">
+            <summary>
+            Indicates the candidate string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.Deconstruct(Sudoku.Presentation.Identifier@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.CellViewNode">
+            <summary>
+            Defines a view node that highlights for a cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Defines a view node that highlights for a cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.CellViewNode.Cell">
+            <summary>
+            Indicates the cell highlighted.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.CellViewNode.CellString">
+            <summary>
+            Indicates the cell string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Deconstruct(Sudoku.Presentation.Identifier@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.ChuteViewNode">
+            <summary>
+            Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ChuteViewNode.IsRow">
+            <summary>
+            Indicates whether the chute is in a row.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ChuteViewNode.ChuteIndex">
+            <summary>
+            Indicates the chute index. The value can be between 0 and 5.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ChuteViewNode.HousesMask">
+            <summary>
+            <para>
+            Indicates a <see cref="T:System.Int16"/> mask that represents for the houses used.
+            The result mask is a 27-bit digit that represents every possible houses using cases.
+            </para>
+            <para>
+            Please note that the first 9-bit always keep the zero value because they is reserved bits
+            for block houses, but all chutes don't use them.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.Deconstruct(Sudoku.Presentation.Identifier@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ChuteViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.CircleViewNode">
+            <summary>
+            Defines a circle view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CircleViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Defines a circle view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CircleViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.DiamondViewNode">
+            <summary>
+            Defines a diamond view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.DiamondViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Defines a diamond view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.DiamondViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode">
+            <summary>
+            Defines a capsule view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Boolean)">
+            <summary>
+            Defines a capsule view node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.IsHorizontal">
+            <summary>
+            Indicates whether the view node is horizontal.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.CapsuleViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Grouped.DiagonalLinesViewNode">
+            <summary>
+            Defines a diagonal line pair view node. The node can only contain one in a <see cref="T:Sudoku.Presentation.View"/> because it is special.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.DiagonalLinesViewNode.#ctor(Sudoku.Presentation.Identifier)">
+            <summary>
+            Defines a diagonal line pair view node. The node can only contain one in a <see cref="T:Sudoku.Presentation.View"/> because it is special.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.DiagonalLinesViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.DiagonalLinesViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.DiagonalLinesViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.DiagonalLinesViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode">
+            <summary>
+            Defines a grouped view node.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="headCell">The head cell.</param>
+            <param name="cells">The cells.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})">
+            <summary>
+            Defines a grouped view node.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="headCell">The head cell.</param>
+            <param name="cells">The cells.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.HeadCell">
+            <summary>
+            Indicates the head cell. If the node does not use this property, assign -1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.Cells">
+            <summary>
+            Indicates the cells used. If the node does not use this property, assign <see cref="F:System.Collections.Immutable.ImmutableArray`1.Empty"/>.
+            </summary>
+            <seealso cref="F:System.Collections.Immutable.ImmutableArray`1.Empty"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.GroupedViewNode.Deconstruct(System.Int32@,System.Collections.Immutable.ImmutableArray{System.Int32}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Grouped.LeverViewNode">
+            <summary>
+            Defines a lever view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Defines a lever view node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.TailCell">
+            <summary>
+            Indicates the tail cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.CenterCell">
+            <summary>
+            Indicates the center cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.LeverViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode">
+            <summary>
+            Defines an oblique line view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Int32)">
+            <summary>
+            Defines an oblique line view node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.TailCell">
+            <summary>
+            Indicates the last cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.ObliqueLineViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Grouped.PyramidViewNode">
+            <summary>
+            Defines a pyramid view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.PyramidViewNode.#ctor(Sudoku.Presentation.Identifier)">
+            <summary>
+            Defines a pyramid view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.PyramidViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.PyramidViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.PyramidViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.PyramidViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode">
+            <summary>
+            Defines a windoku view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode.#ctor(Sudoku.Presentation.Identifier)">
+            <summary>
+            Defines a windoku view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.Grouped.WindokuViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.HeartViewNode">
+            <summary>
+            Defines a heart view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HeartViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Defines a heart view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HeartViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.HouseViewNode">
+            <summary>
+            Defines a view node that highlights for a house.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Defines a view node that highlights for a house.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.HouseViewNode.House">
+            <summary>
+            Indicates the house highlighted.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.Deconstruct(Sudoku.Presentation.Identifier@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.IconViewNode">
+            <summary>
+            Defines an icon view node that applies to a cell, indicating the icon of the cell. The icons can be used on some sudoku variants.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.ViewNode.#ctor(Sudoku.Presentation.Identifier)"/></param>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Defines an icon view node that applies to a cell, indicating the icon of the cell. The icons can be used on some sudoku variants.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.ViewNode.#ctor(Sudoku.Presentation.Identifier)"/></param>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.IconViewNode.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.IconViewNode.Deconstruct(System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.IconViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.IconViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.IconViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.LinkViewNode">
+            <summary>
+            Defines a view node that highlights for a link.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@,Sudoku.Concepts.Inference)">
+            <summary>
+            Defines a view node that highlights for a link.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.LinkViewNode.Start">
+            <summary>
+            Indicates the start point.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.LinkViewNode.End">
+            <summary>
+            Indicates the end point.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.LinkViewNode.Inference">
+            <summary>
+            Indicates the inference type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Deconstruct(Sudoku.Presentation.Identifier@,Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@,Sudoku.Concepts.Inference@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.SquareViewNode">
+            <summary>
+            Defines a square view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.SquareViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Defines a square view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.SquareViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.StarViewNode">
+            <summary>
+            Defines a star view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.StarViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Defines a star view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.StarViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.TriangleViewNode">
+            <summary>
+            Defines a triangle view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.TriangleViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Defines a triangle view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Presentation.Nodes.IconViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)" path="/param[@name='cell']"/></param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.TriangleViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.ViewNode">
+            <summary>
+            Defines a view node.
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.#ctor(Sudoku.Presentation.Identifier)">
+            <summary>
+            Defines a view node.
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ViewNode.Identifier">
+            <summary>
+            Indicates the identifier used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ViewNode.TypeIdentifier">
+            <summary>
+            Indicates the inner identifier to distinct the different types that is derived from <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Nodes.ViewNode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.op_Equality(Sudoku.Presentation.Nodes.ViewNode,Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.op_Inequality(Sudoku.Presentation.Nodes.ViewNode,Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.DisplayColorKind">
+            <summary>
+            Defines a display color kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Normal">
+            <summary>
+            Indicates the normal color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Auxiliary1">
+            <summary>
+            Indicates the first auxiliary color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Auxiliary2">
+            <summary>
+            Indicates the second auxiliary color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Auxiliary3">
+            <summary>
+            Indicates the third auxiliary color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Assignment">
+            <summary>
+            Indicates the assignment color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.OverlappedAssignment">
+            <summary>
+            Indicates the overlapped assignment color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Elimination">
+            <summary>
+            Indicates the elimination color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Exofin">
+            <summary>
+            Indicates the exo-fin color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Endofin">
+            <summary>
+            Indicates the endo-fin color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Cannibalism">
+            <summary>
+            Indicates the cannibalism color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.Link">
+            <summary>
+            Indicates the link color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet1">
+            <summary>
+            Indicates the first ALS recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet2">
+            <summary>
+            Indicates the second ALS recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet3">
+            <summary>
+            Indicates the third ALS recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet4">
+            <summary>
+            Indicates the fourth ALS recorded.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.DisplayColorKind.AlmostLockedSet5">
+            <summary>
+            Indicates the fifth ALS recorded.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Presentation.Identifier">
+            <summary>
+            Defines an identifier that can differ colors.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.#ctor(System.Int32)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the ID value.
+            </summary>
+            <param name="id">The ID value.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the color value.
+            </summary>
+            <param name="a">The alpha value.</param>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.#ctor(Sudoku.Presentation.DisplayColorKind)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the specified displaying color kind as the named kind.
+            </summary>
+            <param name="namedKind">The color kind.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.A">
+            <summary>
+            Indicates the alpha value.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Raw"/>.</b>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.R">
+            <summary>
+            Indicates the red value.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Raw"/>.</b>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.G">
+            <summary>
+            Indicates the green value.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Raw"/>.</b>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.B">
+            <summary>
+            Indicates the blue value.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Raw"/>.</b>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.Id">
+            <summary>
+            Indicates the ID value used.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Id"/>.</b>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.ColorRawValue">
+            <summary>
+            Indicates the raw color value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.NamedKind">
+            <summary>
+            Indicates the kind of the identifier named.
+            <b>The value can only be used when the <see cref="P:Sudoku.Presentation.Identifier.Mode"/> is <see cref="F:Sudoku.Presentation.IdentifierColorMode.Named"/>.</b>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.Mode">
+            <summary>
+            Indicates the mode.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.Equals(Sudoku.Presentation.Identifier)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Throws when the specified mode is not supported.</exception>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.FromId(System.Int32)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the specified ID value.
+            </summary>
+            <param name="id">The ID value.</param>
+            <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.FromColor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the color value.
+            </summary>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+            <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.FromColor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the color value.
+            </summary>
+            <param name="a">The alpha value.</param>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+            <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.FromNamedKind(Sudoku.Presentation.DisplayColorKind)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the named kind.
+            </summary>
+            <param name="namedKind">The named kind.</param>
+            <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Equality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Inequality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~System.Int32">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to <see cref="T:System.Int32"/> indicating the ID value.
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~Sudoku.Presentation.DisplayColorKind">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to <see cref="T:Sudoku.Presentation.DisplayColorKind"/> indicating the named kind value.
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~System.ValueTuple{System.Byte,System.Byte,System.Byte}">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to (<see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>,
+            <see cref="T:System.Byte"/>).
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~System.ValueTuple{System.Byte,System.Byte,System.Byte,System.Byte}">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to (<see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>,
+            <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>).
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Implicit(System.ValueTuple{System.Byte,System.Byte,System.Byte,System.Byte})~Sudoku.Presentation.Identifier">
+            <summary>
+            Implicit cast from (<see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>)
+            to <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <param name="colorQuadruple">
+            The quadruple of element types <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>
+            and <see cref="T:System.Byte"/>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Implicit(System.ValueTuple{System.Byte,System.Byte,System.Byte})~Sudoku.Presentation.Identifier">
+            <summary>
+            Implicit cast from (<see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>)
+            to <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <param name="colorTriple">
+            The quadruple of element types <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/> and <see cref="T:System.Byte"/>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Implicit(System.Int32)~Sudoku.Presentation.Identifier">
+            <summary>
+            Implicit cast from <see cref="T:System.Int32"/> indicating the ID value to <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <param name="id">The ID value.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Implicit(Sudoku.Presentation.DisplayColorKind)~Sudoku.Presentation.Identifier">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Presentation.DisplayColorKind"/> indicating the displaying color kind as the named kind,
+            as the ID value to <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <param name="namedKind">The displaying color kind.</param>
+        </member>
+        <member name="T:Sudoku.Presentation.Converter">
+            <summary>
+            Defines a JSON converter that is used for the serialization and deserialization on type <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <remarks>
+            JSON Pattern:
+            <code>
+            {
+              "mode": "Raw",
+              "value": {
+                "a": 255,
+                "r": 0,
+                "g": 0,
+                "b": 0
+              }
+            }
+            </code>
+            </remarks>
+            <seealso cref="T:Sudoku.Presentation.Identifier"/>
+        </member>
+        <member name="F:Sudoku.Presentation.Converter.ValuePropertyName">
+            <summary>
+            Indicates the property name <c>"Value"</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Identifier,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Converter.ConvertName(System.String,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Try to convert the specified string value as the specified naming policy
+            specified in argument <paramref name="options"/>.
+            </summary>
+            <param name="base">The string to convert.</param>
+            <param name="options">The options.</param>
+            <returns>The value converted.</returns>
+        </member>
+        <member name="T:Sudoku.Presentation.IdentifierColorMode">
+            <summary>
+            Indicates a mode to display a color used by type <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Identifier"/>
+        </member>
+        <member name="F:Sudoku.Presentation.IdentifierColorMode.Raw">
+            <summary>
+            Indicates the raw mode. The mode uses alpha, red, green and blue to represent a color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.IdentifierColorMode.Id">
+            <summary>
+            Indicates the ID mode. The mode uses an ID to represent a color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.IdentifierColorMode.Named">
+            <summary>
+            Indicates the named mode. The mode uses an enumeration field name to differ color.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Presentation.IVisual">
+            <summary>
+            Provides with a visual item.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.IVisual.Conclusions">
+            <summary>
+            Indicates the conclusions that the step can be eliminated or assigned to.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.IVisual.Views">
+            <summary>
+            Indicates the views of the step that may be displayed onto the screen using pictures.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Presentation.LockedTarget">
+            <summary>
+            Defines the data structure that stores a set of cells and a digit, indicating the information
+            about the locked candidate node.
+            </summary>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="cells">Indicates the cells used.</param>
+            <remarks>
+            <large-structure>
+		<b>
+			<i>
+				This is a large structure, which means it may cost more time to copy instance than normal structures.
+				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				to tell runtime that it should be copied by its reference instead of internal value.
+			</i>
+		</b>
+	</large-structure>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.#ctor(System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines the data structure that stores a set of cells and a digit, indicating the information
+            about the locked candidate node.
+            </summary>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="cells">Indicates the cells used.</param>
+            <remarks>
+            <large-structure>
+		<b>
+			<i>
+				This is a large structure, which means it may cost more time to copy instance than normal structures.
+				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				to tell runtime that it should be copied by its reference instead of internal value.
+			</i>
+		</b>
+	</large-structure>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.LockedTarget"/> instance via the specified cell and the specified digit used.
+            </summary>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="cell">Indicates the cell used.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.LockedTarget.IsSole">
+            <summary>
+            Indicates whether the number of cells is 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.LockedTarget.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.LockedTarget.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.LockedTarget.DigitString">
+            <summary>
+            The digit string value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.Equals(Sudoku.Presentation.LockedTarget@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.System#IEquatable{Sudoku#Presentation#LockedTarget}#Equals(Sudoku.Presentation.LockedTarget)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.op_Equality(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.op_Inequality(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.System#Numerics#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget,System#Boolean}#op_Equality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.System#Numerics#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget,System#Boolean}#op_Inequality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.View">
+            <summary>
+            Provides with a data structure that displays a view for basic information.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.View.#ctor">
+            <summary>
+            Creates an empty <see cref="T:Sudoku.Presentation.View"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.View.#ctor(System.Collections.Generic.HashSet{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.View"/> instance via the specified list as the raw value.
+            </summary>
+            <param name="nodes">The list as the raw value.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.View.BasicNodes">
+            <summary>
+            Indicates the basic nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.FigureNodes">
+            <summary>
+            Indicates icon nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.ShapeViewNodes">
+            <summary>
+            Indicates the shape view nodes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.GroupedViewNodes">
+            <summary>
+            Indicates the grouped view nodes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.Empty">
+            <summary>
+            Indicates the empty instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.View.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Adds a list of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s into the collection.
+            </summary>
+            <param name="nodes">A list of <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Find(System.Predicate{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate,
+            and returns the first occurrence within the entire <see cref="T:Sudoku.Presentation.View"/>.
+            </summary>
+            <param name="match">The <see cref="T:System.Predicate`1"/> delegate that defines the conditions of the element to search for.</param>
+            <returns>
+            The first element that matches the conditions defined by the specified predicate, if found; otherwise, <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.OfType``1">
+            <summary>
+            Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of the node.</typeparam>
+            <returns>The target collection of element type <typeparamref name="T"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.op_BitwiseOr(Sudoku.Presentation.View,Sudoku.Presentation.Nodes.ViewNode)">
+            <summary>
+            Adds a new node into the collection.
+            </summary>
+            <param name="originalView">The original view.</param>
+            <param name="newNode">The new item to be added.</param>
+            <returns>The reference that is same as the argument <paramref name="originalView"/>.</returns>
+            <remarks>
+            Please note that the operator is mutable one, which means the appending operation
+            is based on the argument <paramref name="originalView"/>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Presentation.View.op_BitwiseOr(Sudoku.Presentation.View,Sudoku.Presentation.Nodes.ViewNode[])">
+            <inheritdoc cref="M:Sudoku.Presentation.View.op_BitwiseOr(Sudoku.Presentation.View,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.op_BitwiseOr(Sudoku.Presentation.View,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
+            <summary>
+            Adds a serial of view nodes into the collection.
+            </summary>
+            <param name="originalView">The original view.</param>
+            <param name="highlightedItems">The highlighted items.</param>
+            <returns>The reference that is same as the argument <paramref name="originalView"/>.</returns>
+            <remarks>
+            Please note that the operator is mutable one, which means the appending operation
+            is based on the argument <paramref name="originalView"/>.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Presentation.View.OfTypeEnumerator`1">
+            <summary>
+            Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
+            </summary>
+            <typeparam name="T">The type of the element node.</typeparam>
+            <param name="view">The internal nodes.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.View.OfTypeEnumerator`1.#ctor(Sudoku.Presentation.View)">
+            <summary>
+            Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
+            </summary>
+            <typeparam name="T">The type of the element node.</typeparam>
+            <param name="view">The internal nodes.</param>
+        </member>
+        <member name="F:Sudoku.Presentation.View.OfTypeEnumerator`1._count">
+            <summary>
+            The total number of elements.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.View.OfTypeEnumerator`1._enumerator">
+            <summary>
+            The internal enumerator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.OfTypeEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.OfTypeEnumerator`1.Any(System.Predicate{`0})">
+            <summary>
+            Determines whether the collection of elements of type <typeparamref name="T"/> contains at least one element
+            satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.OfTypeEnumerator`1.GetEnumerator">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.View.OfTypeEnumerator`1"/> instance.
+            </summary>
+            <returns>An <see cref="T:Sudoku.Presentation.View.OfTypeEnumerator`1"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.OfTypeEnumerator`1.ToArray">
+            <summary>
+            Casts the iterator, enumerating all elements and converting into an array.
+            </summary>
+            <returns>An array of elements.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.OfTypeEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="T:Sudoku.Presentation.ViewExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Presentation.View"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.View"/>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewExtensions.UnknownOverlaps(Sudoku.Presentation.View,System.Int32)">
+            <summary>
+            Determines whether the specified <see cref="T:Sudoku.Presentation.View"/> stores several <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>s,
+            and at least one of it overlaps the specified cell.
+            </summary>
+            <param name="this">The view instance.</param>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether being overlapped.</returns>
+        </member>
         <member name="T:Sudoku.IO.GridLibrary">
             <summary>
             Defines a <see cref="T:Sudoku.Concepts.Grid"/> library that stores in a file, using lines to describe puzzles.
@@ -11287,6 +13824,159 @@ if (student is (name: var name, age: >= 18))
             ]]></code>
             </para>
             </summary>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.ColorInternal">
+            <summary>
+            The internal color structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternal.A">
+            <summary>
+            The alpha value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternal.R">
+            <summary>
+            The red value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternal.G">
+            <summary>
+            The green value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternal.B">
+            <summary>
+            The blue value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.ColorInternalSerializerContext">
+            <summary>
+            Provides with a serializer context that uses source generator to produce necessary code on serialization
+            or deserialization on type <see cref="P:Sudoku.Text.Serialization.ColorInternalSerializerContext.ColorInternal"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Serialization.ColorInternalSerializerContext.ColorInternal"/>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternalSerializerContext.Byte">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternalSerializerContext.ColorInternal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternalSerializerContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.ColorInternalSerializerContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.ColorInternalSerializerContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.ColorInternalSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.ColorInternalSerializerContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.IdInternal">
+            <summary>
+            The internal ID structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.IdInternal.Id">
+            <summary>
+            The raw ID value of an identifier instance.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.IdInternalSerializerContext">
+            <summary>
+            Provides with a serializer context that uses source generator to produce necessary code on serialization
+            or deserialization on type <see cref="P:Sudoku.Text.Serialization.IdInternalSerializerContext.IdInternal"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Serialization.IdInternalSerializerContext.IdInternal"/>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.IdInternalSerializerContext.Int32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.IdInternalSerializerContext.IdInternal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.IdInternalSerializerContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.IdInternalSerializerContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.IdInternalSerializerContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.IdInternalSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.IdInternalSerializerContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.NamedKindInternal">
+            <summary>
+            The internal named kind structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.NamedKindInternal.NamedKind">
+            <summary>
+            Indicates the named kind value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext">
+            <summary>
+            Provides with a serializer context that uses source generator to produce necessary code on serialization
+            or deserialization on type <see cref="P:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.NamedKindInternal"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.NamedKindInternal"/>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.NamedKindInternal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.NamedKindInternalJsonSerializerContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.EliminationPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the EliminationPattern method.</summary>
