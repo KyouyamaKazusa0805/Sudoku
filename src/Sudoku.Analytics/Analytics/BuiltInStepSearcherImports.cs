@@ -1,5 +1,5 @@
 // This file stores built-in 'StepSearcher' instances,
-// in order to create default collection of member 'StepSearcherPool.BuiltIn'.
+// in order to create default collection of member 'StepSearcherPool.Default'.
 
 [assembly: StepSearcherImport<SingleStepSearcher>(StepSearcherLevel.Elementary)]
 [assembly: StepSearcherImport<LockedCandidatesStepSearcher>(StepSearcherLevel.Elementary)]
