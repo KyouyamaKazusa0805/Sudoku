@@ -22,7 +22,6 @@ global using Expressive.Exceptions;
 global using Expressive.Expressions;
 global using Expressive.Expressions.Binary;
 global using Expressive.Operators;
-global using Sudoku.Algorithms.Solving;
 global using Sudoku.Analytics;
 global using Sudoku.Analytics.Buffers;
 global using Sudoku.Analytics.Categorization;
