@@ -403,6 +403,5 @@ file sealed class Converter : JsonConverter<Identifier>
 	/// <param name="options">The options.</param>
 	/// <returns>The value converted.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string ConvertName(string @base, JsonSerializerOptions options)
-		=> options.PropertyNamingPolicy?.ConvertName(@base) ?? @base;
+	private static string ConvertName(string @base, JsonSerializerOptions options) => options.PropertyNamingPolicy?.ConvertName(@base) ?? @base;
 }
