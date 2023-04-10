@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Full House</b> technique.
@@ -10,7 +10,4 @@ public sealed class FullHouseStep(Conclusion[] conclusions, View[]? views, int c
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.FullHouse;
-
-	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts => null;
 }

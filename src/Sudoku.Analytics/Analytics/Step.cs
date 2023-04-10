@@ -125,7 +125,7 @@ public abstract class Step(Conclusion[] conclusions, View[]? views) : IVisual
 	/// <seealso cref="Format"/>
 	/// <seealso cref="CultureInfo"/>
 	/// <seealso cref="ToString"/>
-	public abstract IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts { get; }
+	public virtual IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts => null;
 
 	/// <summary>
 	/// Indicates the string representation of the conclusions of the step.

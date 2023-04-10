@@ -44,9 +44,6 @@ public sealed class JuniorExocetStep(
 			new(ExtraDifficultyCaseNames.GeneralizedSwordfish, Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.GeneralizedSwordfish) ? .2M : 0)
 		};
 
-	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts => null;
-
 #if false
 	/// <summary>
 	/// Indicates the locked member Q string.

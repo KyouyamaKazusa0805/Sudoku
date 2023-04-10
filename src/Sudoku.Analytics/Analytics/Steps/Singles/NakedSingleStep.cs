@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Naked Single</b> technique.
@@ -10,7 +10,4 @@ public sealed class NakedSingleStep(Conclusion[] conclusions, View[]? views, int
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.NakedSingle;
-
-	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts => null;
 }
