@@ -26,8 +26,6 @@ global using Sudoku.Algorithms.Collections;
 global using Sudoku.Algorithms.Solving;
 global using Sudoku.Analytics;
 global using Sudoku.Concepts;
-global using Sudoku.Linq;
-global using Sudoku.Resources;
 global using Sudoku.Text.Formatting;
 global using Sudoku.Text.Notations;
 global using Sudoku.Text.Parsing;

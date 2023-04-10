@@ -3830,6 +3830,20 @@ fixed (short* ptr = instance)
             </para>
             </remarks>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.Select``1(System.Func{System.Int32,``0})">
+            <summary>
+            Projects each element of a sequence into a new form.
+            </summary>
+            <typeparam name="TResult">
+            The type of the value returned by <paramref name="selector"/>.
+            This type must be an <see langword="unmanaged"/> type in order to make optimization
+            in the future release of C# versions.
+            </typeparam>
+            <param name="selector">A transform function to apply to each element.</param>
+            <returns>
+            An array of <typeparamref name="TResult"/> elements converted.
+            </returns>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.Reset">
             <summary>
             Reset the sudoku grid, to set all modifiable values to empty ones.
@@ -3884,15 +3898,6 @@ fixed (short* ptr = instance)
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.System#Collections#Generic#IEnumerable{System#Int16}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.System#Linq#ISelectClauseProvider{System#Int32}#Select``1(System.Func{System.Int32,``0})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.System#Linq#ISelectClauseProvider{System#Int16}#Select``1(System.Func{System.Int16,``0})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMap()">
@@ -4654,9 +4659,6 @@ fixed (short* ptr = instance)
         <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Linq#ISelectClauseProvider{System#Int32}#Select``1(System.Func{System.Int32,``0})">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
@@ -5160,28 +5162,6 @@ fixed (short* ptr = instance)
             <summary>
             Indicates the puzzle will be ignored when it is not unique.
             </summary>
-        </member>
-        <member name="T:Sudoku.Linq.GridEnumerable">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> type, around LINQ.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Linq.GridEnumerable.Select``1(Sudoku.Concepts.Grid@,System.Func{System.Int32,``0})">
-            <summary>
-            Projects each element of a sequence into a new form.
-            </summary>
-            <typeparam name="TResult">
-            The type of the value returned by <paramref name="selector"/>.
-            This type must be an <see langword="unmanaged"/> type in order to make optimization
-            in the future release of C# versions.
-            </typeparam>
-            <param name="source">A sequence of values to invoke a transform function on.</param>
-            <param name="selector">A transform function to apply to each element.</param>
-            <returns>
-            A <see cref="T:System.Collections.Immutable.ImmutableArray`1"/> of <typeparamref name="TResult"/> whose elements are the result
-            of invoking the transform function on each element of <paramref name="source"/>.
-            </returns>
         </member>
         <member name="T:Sudoku.Resources.MergedResources">
             <summary>

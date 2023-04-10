@@ -7,9 +7,7 @@ namespace Sudoku.Analytics;
 public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 	IAnalyzerResult<Analyzer, AnalyzerResult>,
 	IEnumerable,
-	IEnumerable<Step>,
-	ISelectClauseProvider<Step>,
-	IWhereClauseProvider<Step>
+	IEnumerable<Step>
 {
 	/// <inheritdoc/>
 	[MemberNotNullWhen(true, nameof(Steps), nameof(StepGrids), nameof(SolvingPath))]
@@ -725,15 +723,6 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator<Step> IEnumerable<Step>.GetEnumerator() => ((IEnumerable<Step>)(Steps?.ToArray() ?? Array.Empty<Step>())).GetEnumerator();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerable<TResult> ISelectClauseProvider<Step>.Select<TResult>(Func<Step, TResult> selector)
-		=> Select(selector) ?? Enumerable.Empty<TResult>();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerable<Step> IWhereClauseProvider<Step>.Where(Func<Step, bool> condition) => Where(condition) ?? Enumerable.Empty<Step>();
 
 	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).

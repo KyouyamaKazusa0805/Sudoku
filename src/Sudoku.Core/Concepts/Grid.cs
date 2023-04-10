@@ -17,8 +17,6 @@ public unsafe partial struct Grid :
 	IParsable<Grid>,
 	IReadOnlyCollection<int>,
 	IReadOnlyList<int>,
-	ISelectClauseProvider<short>,
-	ISelectClauseProvider<int>,
 	ISimpleFormattable,
 	ISimpleParsable<Grid>
 {
@@ -1432,6 +1430,30 @@ public unsafe partial struct Grid :
 	public readonly MaskEnumerator EnumerateMasks() => new(ref AsRef(_values[0]));
 
 	/// <summary>
+	/// Projects each element of a sequence into a new form.
+	/// </summary>
+	/// <typeparam name="TResult">
+	/// The type of the value returned by <paramref name="selector"/>.
+	/// This type must be an <see langword="unmanaged"/> type in order to make optimization
+	/// in the future release of C# versions.
+	/// </typeparam>
+	/// <param name="selector">A transform function to apply to each element.</param>
+	/// <returns>
+	/// An array of <typeparamref name="TResult"/> elements converted.
+	/// </returns>
+	public readonly TResult[] Select<TResult>(Func<int, TResult> selector)
+	{
+		var result = new TResult[81];
+		var i = 0;
+		foreach (var candidate in this)
+		{
+			result[i++] = selector(candidate);
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// Reset the sudoku grid, to set all modifiable values to empty ones.
 	/// </summary>
 	public void Reset()
@@ -1533,33 +1555,6 @@ public unsafe partial struct Grid :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)ToArray()).GetEnumerator();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerator<short> IEnumerable<short>.GetEnumerator()
-	{
-		var maskArray = new short[81];
-		CopyBlock(ref AsByteRef(ref AsRef(_values[0])), ref AsByteRef(ref maskArray[0]), sizeof(short) * 81);
-
-		return ((IEnumerable<short>)maskArray).GetEnumerator();
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerable<TResult> ISelectClauseProvider<int>.Select<TResult>(Func<int, TResult> selector) => this.Select(selector);
-
-	/// <inheritdoc/>
-	readonly IEnumerable<TResult> ISelectClauseProvider<short>.Select<TResult>(Func<short, TResult> selector)
-	{
-		var result = new TResult[81];
-		var i = 0;
-		foreach (var mask in EnumerateMasks())
-		{
-			result[i++] = selector(mask);
-		}
-
-		return result;
-	}
 
 	/// <summary>
 	/// Called by properties <see cref="EmptyCells"/> and <see cref="BivalueCells"/>.

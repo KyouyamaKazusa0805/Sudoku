@@ -20,7 +20,6 @@ public interface IBitStatusMap<TSelf> :
 	IReadOnlyList<int>,
 	IReadOnlySet<int>,
 	ISet<int>,
-	ISelectClauseProvider<int>,
 	ISimpleFormattable,
 	ISimpleParsable<TSelf>,
 	ISubtractionOperators<TSelf, TSelf, TSelf>
@@ -407,19 +406,6 @@ public interface IBitStatusMap<TSelf> :
 		}
 
 		return collection.GetEnumerator();
-	}
-
-	/// <inheritdoc/>
-	IEnumerable<TResult> ISelectClauseProvider<int>.Select<TResult>(Func<int, TResult> selector)
-	{
-		var result = new TResult[Count];
-		var i = 0;
-		foreach (var cell in this)
-		{
-			result[i++] = selector(cell);
-		}
-
-		return ImmutableArray.Create(result);
 	}
 
 
