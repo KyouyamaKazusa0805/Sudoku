@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Binary Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.

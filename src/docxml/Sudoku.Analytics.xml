@@ -5240,69 +5240,6 @@ result ^= expression;
             Try to create a region (house) forcing chain hint.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep">
-            <summary>
-            Provides with a step that is a <b>Binary Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
-            The technique contains two kinds of forcing chains:
-            <list type="bullet">
-            <item>Dynamic Contradiction Forcing Chains</item>
-            <item>Dynamic Double Forcing Chains</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Binary Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
-            The technique contains two kinds of forcing chains:
-            <list type="bullet">
-            <item>Dynamic Contradiction Forcing Chains</item>
-            <item>Dynamic Double Forcing Chains</item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.IsAbsurd">
-            <summary>
-            Indicates whether the forcing chains kind is contradiction.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.SourcePotential">
-            <summary>
-            Indicates the source potential of the chain.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.FromOnPotential">
-            <summary>
-            Indicates the "on" branch.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.FromOffPotential">
-            <summary>
-            Indicates the "off" branch.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.FormatInterpolatedParts">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.GetOnPotentials(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.GetOffPotentials(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.GetLinks(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BinaryForcingChainsStep.GetColorCandidates(System.Int32,System.Boolean)">
-            <summary>
-            Gets all colored candidates with the specified state.
-            </summary>
-            <param name="viewIndex">The view index.</param>
-            <param name="state">The state of the candidate you want to color.</param>
-            <returns>All colored candidates with a same state.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ChainingStepSearcher">
             <summary>
             Represents a <see cref="T:Sudoku.Analytics.StepSearcher"/> as base type of the chaining step searcher types.
@@ -8198,6 +8135,69 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Analytics.Steps.BidirectionalCycleStep.GetLinks(System.Int32)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BinaryForcingChainsStep">
+            <summary>
+            Provides with a step that is a <b>Binary Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            The technique contains two kinds of forcing chains:
+            <list type="bullet">
+            <item>Dynamic Contradiction Forcing Chains</item>
+            <item>Dynamic Double Forcing Chains</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BinaryForcingChainsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Binary Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
+            The technique contains two kinds of forcing chains:
+            <list type="bullet">
+            <item>Dynamic Contradiction Forcing Chains</item>
+            <item>Dynamic Double Forcing Chains</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.IsAbsurd">
+            <summary>
+            Indicates whether the forcing chains kind is contradiction.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.SourcePotential">
+            <summary>
+            Indicates the source potential of the chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.FromOnPotential">
+            <summary>
+            Indicates the "on" branch.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.FromOffPotential">
+            <summary>
+            Indicates the "off" branch.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BinaryForcingChainsStep.GetOnPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BinaryForcingChainsStep.GetOffPotentials(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BinaryForcingChainsStep.GetLinks(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BinaryForcingChainsStep.GetColorCandidates(System.Int32,System.Boolean)">
+            <summary>
+            Gets all colored candidates with the specified state.
+            </summary>
+            <param name="viewIndex">The view index.</param>
+            <param name="state">The state of the candidate you want to color.</param>
+            <returns>All colored candidates with a same state.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Steps.CellForcingChainsStep">
             <summary>
