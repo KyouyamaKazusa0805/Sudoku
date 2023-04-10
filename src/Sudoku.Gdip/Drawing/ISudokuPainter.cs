@@ -156,18 +156,13 @@ public interface ISudokuPainter : ISudokuPainterFactory
 /// <summary>
 /// The backing type that implements type <see cref="ISudokuPainter"/>.
 /// </summary>
+/// <param name="defaultSize">The default size.</param>
+/// <param name="defaultOffset">The default outside offset.</param>
 /// <seealso cref="ISudokuPainter"/>
-file sealed class SudokuPainter : ISudokuPainter
+file sealed class SudokuPainter(int defaultSize, int defaultOffset) : ISudokuPainter
 {
-	/// <summary>
-	/// Initializes a <see cref="SudokuPainter"/> instance.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SudokuPainter(int defaultSize, int defaultOffset) => GridImageGenerator = new(new(defaultSize, defaultOffset));
-
-
 	/// <inheritdoc/>
-	public GridImageGenerator GridImageGenerator { get; }
+	public GridImageGenerator GridImageGenerator { get; } = new(new(defaultSize, defaultOffset));
 
 
 	/// <inheritdoc/>

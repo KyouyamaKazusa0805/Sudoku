@@ -91,12 +91,17 @@
             <summary>
             The backing type that implements type <see cref="T:Sudoku.Drawing.ISudokuPainter"/>.
             </summary>
+            <param name="defaultSize">The default size.</param>
+            <param name="defaultOffset">The default outside offset.</param>
             <seealso cref="T:Sudoku.Drawing.ISudokuPainter"/>
         </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.#ctor(System.Int32,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Drawing.SudokuPainter"/> instance.
+            The backing type that implements type <see cref="T:Sudoku.Drawing.ISudokuPainter"/>.
             </summary>
+            <param name="defaultSize">The default size.</param>
+            <param name="defaultOffset">The default outside offset.</param>
+            <seealso cref="T:Sudoku.Drawing.ISudokuPainter"/>
         </member>
         <member name="P:Sudoku.Drawing.SudokuPainter.GridImageGenerator">
             <inheritdoc/>
