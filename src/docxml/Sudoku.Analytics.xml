@@ -2957,7 +2957,7 @@
             The <see cref="T:System.Boolean"/> value indicating whether the another cell is same house as the current one.
             </returns>
         </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.IsIncomplete(System.Boolean,System.Collections.Generic.List{Sudoku.Presentation.Nodes.CandidateViewNode})">
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.IsIncomplete(System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode})">
             <summary>
             Check whether the highlight UR candidates is incomplete.
             </summary>
@@ -4684,15 +4684,15 @@ result ^= expression;
             <summary>
             Provides with a logical solving step that is a technique usage, and contains the conclusions.
             </summary>
-            <param name="conclusions"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></param>
-            <param name="views"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Rendering.IVisual.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Rendering.IVisual.Views" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a logical solving step that is a technique usage, and contains the conclusions.
             </summary>
-            <param name="conclusions"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Conclusions" path="/summary"/></param>
-            <param name="views"><inheritdoc cref="P:Sudoku.Presentation.IVisual.Views" path="/summary"/></param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Rendering.IVisual.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Rendering.IVisual.Views" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Analytics.Step.Name">
             <summary>
@@ -7856,7 +7856,7 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.RecordHighlightCells(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Presentation.Nodes.CellViewNode},System.Nullable{System.Int32}[])">
+        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.RecordHighlightCells(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Nullable{System.Int32}[])">
             <summary>
             Records all possible highlight cells.
             </summary>
@@ -7938,7 +7938,7 @@ result ^= expression;
             Provides with a step that is an <b>Almost Locked Sets</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets</b> technique.
             </summary>
@@ -7951,7 +7951,7 @@ result ^= expression;
             Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Concepts.Conjugate,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Concepts.Conjugate,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
             </summary>
@@ -7998,7 +7998,7 @@ result ^= expression;
             Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,System.Int16,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,System.Int16,System.Int16,System.Int16)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.
             </summary>
@@ -8050,7 +8050,7 @@ result ^= expression;
             Provides with a step that is an <b>Almost Locked Sets XZ</b> or <b>Extended Subset Principle</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,System.Int16,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,System.Int16,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XZ</b> or <b>Extended Subset Principle</b> technique.
             </summary>
@@ -8105,7 +8105,7 @@ result ^= expression;
             Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.
             </summary>
@@ -8152,7 +8152,7 @@ result ^= expression;
             Provides with a step that is a <b>Bidirectional Cycle</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BidirectionalCycleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.BidirectionalCycleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Bidirectional Cycle</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -8184,7 +8184,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BinaryForcingChainsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.BinaryForcingChainsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Binary Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             The technique contains two kinds of forcing chains:
@@ -8242,7 +8242,7 @@ result ^= expression;
             Provides with a step that is an <b>Cell Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.CellForcingChainsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Byte,Sudoku.Analytics.Patterns.MultipleForcingChains,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.CellForcingChainsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Byte,Sudoku.Analytics.Patterns.MultipleForcingChains,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is an <b>Cell Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -8281,7 +8281,7 @@ result ^= expression;
             Provides with a step that is a <b>Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ChainingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -8463,25 +8463,25 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetLinks(System.Int32)">
             <summary>
-            Try to fetch all <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> instances of the specified view index.
+            Try to fetch all <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instances of the specified view index.
             </summary>
             <param name="viewIndex">The view index.</param>
-            <returns>All <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>.</returns>
+            <returns>All <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetLinks(Sudoku.Analytics.Patterns.ChainNode)">
             <summary>
-            Try to fetch all <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> instances of the branch from the specified target,
+            Try to fetch all <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instances of the branch from the specified target,
             specified as a <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instance.
             </summary>
             <param name="target">The target node.</param>
-            <returns>All <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> displayed in this branch.</returns>
+            <returns>All <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> displayed in this branch.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetNestedLinks(System.Int32)">
             <summary>
-            Try to fetch all nested <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> instances of the specified view.
+            Try to fetch all nested <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instances of the specified view.
             </summary>
             <param name="nestedViewNum">The specified index of the view.</param>
-            <returns>All <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> instance in this view.</returns>
+            <returns>All <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instance in this view.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetChainTargetAt(System.Int32)">
             <summary>
@@ -8557,7 +8557,7 @@ result ^= expression;
             Provides with a step that is an <b>Alternating Inference Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ForcingChainStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.ForcingChainStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean)">
             <summary>
             Provides with a step that is an <b>Alternating Inference Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -8591,7 +8591,7 @@ result ^= expression;
             Provides with a step that is an <b>Region (House) Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.RegionForcingChainsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Byte,Sudoku.Analytics.Patterns.MultipleForcingChains,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.RegionForcingChainsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Byte,Sudoku.Analytics.Patterns.MultipleForcingChains,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is an <b>Region (House) Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -8635,7 +8635,7 @@ result ^= expression;
             Provides with a step that is a <b>Bi-value Universal Grave False Candidate Type</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave False Candidate Type</b> technique.
             </summary>
@@ -8662,7 +8662,7 @@ result ^= expression;
             <param name="views"><inheritdoc/></param>
             <param name="trueCandidates">Indicates the true candidates.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave + n</b> technique.
             </summary>
@@ -8695,7 +8695,7 @@ result ^= expression;
             Provides with a step that is a <b>Bivalue Universal Grave</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Bivalue Universal Grave</b> technique.
             </summary>
@@ -8717,7 +8717,7 @@ result ^= expression;
             Provides with a step that is a <b>Bivalue Universal Grave Type 1</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Bivalue Universal Grave Type 1</b> technique.
             </summary>
@@ -8730,7 +8730,7 @@ result ^= expression;
             Provides with a step that is a <b>Bi-value Universal Grave Type 2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 2</b> technique.
             </summary>
@@ -8759,7 +8759,7 @@ result ^= expression;
             Provides with a step that is a <b>Bi-value Universal Grave Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 3</b> technique.
             </summary>
@@ -8803,7 +8803,7 @@ result ^= expression;
             Provides with a step that is a <b>Bi-value Universal Grave Type 4</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 4</b> technique.
             </summary>
@@ -8837,7 +8837,7 @@ result ^= expression;
             Provides with a step that is a <b>Bi-value Universal Grave XZ</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int16,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int16,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave XZ</b> technique.
             </summary>
@@ -8871,7 +8871,7 @@ result ^= expression;
             Provides with a step that is a <b>Borescoper's Deadly Pattern</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern</b> technique.
             </summary>
@@ -8908,7 +8908,7 @@ result ^= expression;
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 1</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 1</b> technique.
             </summary>
@@ -8924,7 +8924,7 @@ result ^= expression;
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 2</b> technique.
             </summary>
@@ -8948,7 +8948,7 @@ result ^= expression;
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 3</b> technique.
             </summary>
@@ -8977,7 +8977,7 @@ result ^= expression;
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 4</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 4</b> technique.
             </summary>
@@ -9006,7 +9006,7 @@ result ^= expression;
             Provides with a step that is a <b>Deadly Pattern</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DeadlyPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.DeadlyPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Deadly Pattern</b> technique.
             </summary>
@@ -9016,7 +9016,7 @@ result ^= expression;
             Provides with a step that is an <b>Extended Rectangle</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle</b> technique.
             </summary>
@@ -9056,7 +9056,7 @@ result ^= expression;
             Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.
             </summary>
@@ -9072,7 +9072,7 @@ result ^= expression;
             Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
             </summary>
@@ -9096,7 +9096,7 @@ result ^= expression;
             Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
             </summary>
@@ -9130,7 +9130,7 @@ result ^= expression;
             Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
             </summary>
@@ -9154,7 +9154,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Loop</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Loop</b> technique.
             </summary>
@@ -9205,7 +9205,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Loop Type 1</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 1</b> technique.
             </summary>
@@ -9221,7 +9221,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Loop Type 2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 2</b> technique.
             </summary>
@@ -9245,7 +9245,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Loop Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 3</b> technique.
             </summary>
@@ -9274,7 +9274,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Loop Type 4</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 4</b> technique.
             </summary>
@@ -9298,7 +9298,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Matrix</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Matrix</b> technique.
             </summary>
@@ -9335,7 +9335,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
             </summary>
@@ -9356,7 +9356,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Square Type 2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 2</b> technique.
             </summary>
@@ -9380,7 +9380,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Square Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 3</b> technique.
             </summary>
@@ -9409,7 +9409,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Square Type 4</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 4</b> technique.
             </summary>
@@ -9440,7 +9440,7 @@ result ^= expression;
             Provides with a step that is a <b>Qiu's Deadly Pattern Locked Type</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,Sudoku.Concepts.CandidateMap@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Locked Type</b> technique.
             </summary>
@@ -9464,7 +9464,7 @@ result ^= expression;
             Provides with a step that is a <b>Qiu's Deadly Pattern</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern</b> technique.
             </summary>
@@ -9499,7 +9499,7 @@ result ^= expression;
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 1</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 1</b> technique.
             </summary>
@@ -9520,7 +9520,7 @@ result ^= expression;
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 2</b> technique.
             </summary>
@@ -9544,7 +9544,7 @@ result ^= expression;
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
             </summary>
@@ -9578,7 +9578,7 @@ result ^= expression;
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 4</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 4</b> technique.
             </summary>
@@ -9602,7 +9602,7 @@ result ^= expression;
             Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
             </summary>
@@ -9636,7 +9636,7 @@ result ^= expression;
             Provides with a step that is a <b>Hidden Unique Rectangle</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenUniqueRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenUniqueRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Hidden Unique Rectangle</b> technique.
             </summary>
@@ -9649,7 +9649,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
             </summary>
@@ -9683,7 +9683,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.AlmostLockedSet,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.AlmostLockedSet,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
             </summary>
@@ -9717,7 +9717,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Rectangle External Turbot Fish</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Turbot Fish</b> technique.
             </summary>
@@ -9773,7 +9773,7 @@ result ^= expression;
             or <b>Avoidable Rectangle External Type 1/2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Type 1/2</b>
             or <b>Avoidable Rectangle External Type 1/2</b> technique.
@@ -9808,7 +9808,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Rectangle External Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Type 3</b> technique.
             </summary>
@@ -9850,7 +9850,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Rectangle External Type 4</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Type 4</b> technique.
             </summary>
@@ -9887,7 +9887,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Rectangle External XY-Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External XY-Wing</b> technique.
             </summary>
@@ -9924,7 +9924,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Rectangle</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle</b> technique.
             </summary>
@@ -9979,7 +9979,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.
             </summary>
@@ -9995,7 +9995,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Analytics.Categorization.Technique,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Analytics.Categorization.Technique,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
             </summary>
@@ -10019,7 +10019,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
             </summary>
@@ -10058,7 +10058,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
             </summary>
@@ -10087,7 +10087,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
             </summary>
@@ -10114,7 +10114,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Rectangle with Sue de Coq</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Sue de Coq</b> technique.
             </summary>
@@ -10190,7 +10190,7 @@ result ^= expression;
             Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
             </summary>
@@ -10265,7 +10265,7 @@ result ^= expression;
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetStep.#ctor(Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.Exocet,System.Int16,Sudoku.Analytics.Eliminations.ExocetElimination[])">
+        <member name="M:Sudoku.Analytics.Steps.ExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.Exocet,System.Int16,Sudoku.Analytics.Eliminations.ExocetElimination[])">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
@@ -10307,7 +10307,7 @@ result ^= expression;
             Provides with a step that is a <b>Junior Exocet</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.JuniorExocetStep.#ctor(Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.Exocet,System.Int16,Sudoku.Analytics.Eliminations.ExocetElimination[])">
+        <member name="M:Sudoku.Analytics.Steps.JuniorExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.Exocet,System.Int16,Sudoku.Analytics.Eliminations.ExocetElimination[])">
             <summary>
             Provides with a step that is a <b>Junior Exocet</b> technique.
             </summary>
@@ -10328,7 +10328,7 @@ result ^= expression;
             Provides with a step that is a <b>Senior Exocet</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SeniorExocetStep.#ctor(Sudoku.Presentation.View[],Sudoku.Analytics.Patterns.Exocet,System.Int16,System.Int32,System.Int32[],Sudoku.Analytics.Eliminations.ExocetElimination[])">
+        <member name="M:Sudoku.Analytics.Steps.SeniorExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.Exocet,System.Int16,System.Int32,System.Int32[],Sudoku.Analytics.Eliminations.ExocetElimination[])">
             <summary>
             Provides with a step that is a <b>Senior Exocet</b> technique.
             </summary>
@@ -10362,7 +10362,7 @@ result ^= expression;
             Provides with a step that is a <b>Complex Fish</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is a <b>Complex Fish</b> technique.
             </summary>
@@ -10456,7 +10456,7 @@ result ^= expression;
             Provides with a step that is a <b>Fish</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.FishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Fish</b> technique.
             </summary>
@@ -10502,7 +10502,7 @@ result ^= expression;
             Provides with a step that is an <b>Normal Fish</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NormalFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Analytics.Steps.NormalFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is an <b>Normal Fish</b> technique.
             </summary>
@@ -10579,7 +10579,7 @@ result ^= expression;
             Provides with a step that is an <b>Almost Locked Candidates</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Provides with a step that is an <b>Almost Locked Candidates</b> technique.
             </summary>
@@ -10629,7 +10629,7 @@ result ^= expression;
             Provides with a step that is a <b>Firework Pair Type 1</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FireworkPairType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.FireworkPairType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 1</b> technique.
             </summary>
@@ -10671,7 +10671,7 @@ result ^= expression;
             <param name="pattern2">The second pattern used.</param>
             <param name="extraCell">The extra cell used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FireworkPairType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int16,Sudoku.Analytics.Patterns.Firework@,Sudoku.Analytics.Patterns.Firework@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.FireworkPairType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int16,Sudoku.Analytics.Patterns.Firework@,Sudoku.Analytics.Patterns.Firework@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 2</b> technique.
             </summary>
@@ -10716,7 +10716,7 @@ result ^= expression;
             Provides with a step that is a <b>Firework Pair Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FireworkPairType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.FireworkPairType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 3</b> technique.
             </summary>
@@ -10750,7 +10750,7 @@ result ^= expression;
             Provides with a step that is a <b>Firework Quadruple</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FireworkQuadrupleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.FireworkQuadrupleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Firework Quadruple</b> technique.
             </summary>
@@ -10779,7 +10779,7 @@ result ^= expression;
             Provides with a step that is a <b>Firework</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FireworkStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.FireworkStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Firework</b> technique.
             </summary>
@@ -10795,7 +10795,7 @@ result ^= expression;
             Provides with a step that is a <b>Firework Triple</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FireworkTripleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.FireworkTripleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Firework Triple</b> technique.
             </summary>
@@ -10824,7 +10824,7 @@ result ^= expression;
             Provides with a step that is an <b>Intersection</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.IntersectionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.IntersectionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is an <b>Intersection</b> technique.
             </summary>
@@ -10840,7 +10840,7 @@ result ^= expression;
             Provides with a step that is a <b>Locked Candidates</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LockedCandidatesStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.LockedCandidatesStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Locked Candidates</b> technique.
             </summary>
@@ -10877,7 +10877,7 @@ result ^= expression;
             Provides with a step that is a <b>Bowman's Bingo</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BowmanBingoStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Analytics.Conclusion[])">
+        <member name="M:Sudoku.Analytics.Steps.BowmanBingoStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Conclusion[])">
             <summary>
             Provides with a step that is a <b>Bowman's Bingo</b> technique.
             </summary>
@@ -10907,7 +10907,7 @@ result ^= expression;
             Provides with a step that is a <b>Brute Force</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BruteForceStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.BruteForceStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Brute Force</b> technique.
             </summary>
@@ -10929,7 +10929,7 @@ result ^= expression;
             Provides with a step that is a <b>Last Resort</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LastResortStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.LastResortStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Last Resort</b> technique.
             </summary>
@@ -10966,7 +10966,7 @@ result ^= expression;
             Provides with a step that is a <b>Template</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.TemplateStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.TemplateStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Boolean)">
             <summary>
             Provides with a step that is a <b>Template</b> technique.
             </summary>
@@ -10998,7 +10998,7 @@ result ^= expression;
             Provides with a step that is a <b>Bi-value Oddagon</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon</b> technique.
             </summary>
@@ -11043,7 +11043,7 @@ result ^= expression;
             Provides with a step that is a <b>Bivalue Oddagon Type 2</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bivalue Oddagon Type 2</b> technique.
             </summary>
@@ -11070,7 +11070,7 @@ result ^= expression;
             Provides with a step that is a <b>Bivalue Oddagon Type 3</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Bivalue Oddagon Type 3</b> technique.
             </summary>
@@ -11102,7 +11102,7 @@ result ^= expression;
             Provides with a step that is a <b>Chromatic Pattern</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Chromatic Pattern</b> technique.
             </summary>
@@ -11133,7 +11133,7 @@ result ^= expression;
             Provides with a step that is a <b>Chromatic Pattern Type 1</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32[],Sudoku.Concepts.CellMap@,System.Int32,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32[],Sudoku.Concepts.CellMap@,System.Int32,System.Int16)">
             <summary>
             Provides with a step that is a <b>Chromatic Pattern Type 1</b> technique.
             </summary>
@@ -11154,7 +11154,7 @@ result ^= expression;
             Provides with a step that is a <b>Chromatic Pattern XZ</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16,System.Int16)">
             <summary>
             Provides with a step that is a <b>Chromatic Pattern XZ</b> technique.
             </summary>
@@ -11188,7 +11188,7 @@ result ^= expression;
             Provides with a step that is a <b>Guardian</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.GuardianStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.GuardianStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Guardian</b> technique.
             </summary>
@@ -11234,7 +11234,7 @@ result ^= expression;
             Provides with a step that is a <b>Negative Rank</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NegativeRankStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.NegativeRankStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Negative Rank</b> technique.
             </summary>
@@ -11244,7 +11244,7 @@ result ^= expression;
             Provides with a step that is a <b>Positive Rank</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.PositiveRankStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.PositiveRankStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Positive Rank</b> technique.
             </summary>
@@ -11254,7 +11254,7 @@ result ^= expression;
             Provides with a step that is a <b>Rank Theory</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.RankTheoryStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.RankTheoryStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Rank Theory</b> technique.
             </summary>
@@ -11270,7 +11270,7 @@ result ^= expression;
             Provides with a step that is a <b>Domino Loop</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DominoLoopStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.DominoLoopStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Domino Loop</b> technique.
             </summary>
@@ -11297,7 +11297,7 @@ result ^= expression;
             Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
             </summary>
@@ -11327,7 +11327,7 @@ result ^= expression;
             Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
             </summary>
@@ -11379,7 +11379,7 @@ result ^= expression;
             Provides with a step that is a <b>Sue de Coq</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SueDeCoqStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.SueDeCoqStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Sue de Coq</b> technique.
             </summary>
@@ -11456,7 +11456,7 @@ result ^= expression;
             Provides with a step that is a <b>Zero Rank</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ZeroRankStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.ZeroRankStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Zero Rank</b> technique.
             </summary>
@@ -11466,7 +11466,7 @@ result ^= expression;
             Provides with a step that is an <b>Empty Rectangle</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.EmptyRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.EmptyRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is an <b>Empty Rectangle</b> technique.
             </summary>
@@ -11498,7 +11498,7 @@ result ^= expression;
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SingleDigitPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.SingleDigitPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
             </summary>
@@ -11519,7 +11519,7 @@ result ^= expression;
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.TwoStrongLinksStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.TwoStrongLinksStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
             </summary>
@@ -11551,7 +11551,7 @@ result ^= expression;
             Provides with a step that is a <b>Full House</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Full House</b> technique.
             </summary>
@@ -11567,7 +11567,7 @@ result ^= expression;
             Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
             </summary>
@@ -11599,7 +11599,7 @@ result ^= expression;
             Provides with a step that is a <b>Naked Single</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Naked Single</b> technique.
             </summary>
@@ -11615,7 +11615,7 @@ result ^= expression;
             Provides with a step that is a <b>Single</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Single</b> technique.
             </summary>
@@ -11641,7 +11641,7 @@ result ^= expression;
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
@@ -11663,7 +11663,7 @@ result ^= expression;
             Provides with a step that is a <b>Naked Subset</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is a <b>Naked Subset</b> technique.
             </summary>
@@ -11701,7 +11701,7 @@ result ^= expression;
             Provides with a step that is a <b>Subset</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.SubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Subset</b> technique.
             </summary>
@@ -11744,7 +11744,7 @@ result ^= expression;
             Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.SymmetryType,System.Nullable{System.Int32}[])">
+        <member name="M:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.SymmetryType,System.Nullable{System.Int32}[])">
             <summary>
             Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
             </summary>
@@ -11778,7 +11778,7 @@ result ^= expression;
             Provides with a step that is a <b>Symmetrical</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SymmetryStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.SymmetryStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Symmetrical</b> technique.
             </summary>
@@ -11791,7 +11791,7 @@ result ^= expression;
             Provides with a step that is a <b>Grouped W-Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.GroupedWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.GroupedWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Grouped W-Wing</b> technique.
             </summary>
@@ -11828,7 +11828,7 @@ result ^= expression;
             Provides with a step that is a <b>Irregular Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.IrregularWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.IrregularWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Irregular Wing</b> technique.
             </summary>
@@ -11838,7 +11838,7 @@ result ^= expression;
             Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.MultiBranchWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.MultiBranchWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
             </summary>
@@ -11883,7 +11883,7 @@ result ^= expression;
             Provides with a step that is a <b>W-Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.WWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>W-Wing</b> technique.
             </summary>
@@ -11920,7 +11920,7 @@ result ^= expression;
             Provides with a step that is a <b>Regular Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.RegularWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[],System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.RegularWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Regular Wing</b> technique.
             </summary>
@@ -12015,7 +12015,7 @@ result ^= expression;
             Provides with a step that is a <b>Wing</b> technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Presentation.View[])">
+        <member name="M:Sudoku.Analytics.Steps.WingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Wing</b> technique.
             </summary>
@@ -12208,7 +12208,7 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Drawing.ISudokuPainterExtensions.WithStep(Sudoku.Drawing.ISudokuPainter,Sudoku.Analytics.Step)">
             <summary>
-            Sets <see cref="T:Sudoku.Analytics.Conclusion"/>s and <see cref="T:Sudoku.Presentation.View"/>s for the specified step.
+            Sets <see cref="T:Sudoku.Analytics.Conclusion"/>s and <see cref="T:Sudoku.Rendering.View"/>s for the specified step.
             </summary>
             <param name="this">The sudoku painter instance.</param>
             <param name="step">The step instance.</param>

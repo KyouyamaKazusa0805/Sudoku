@@ -1012,11 +1012,11 @@
             <seealso cref="N:Sudoku.Drawing"/>
             <seealso cref="N:Sudoku.Gdip"/>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RecordBasicNodesInternal(System.String,Sudoku.Presentation.Identifier)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RecordBasicNodesInternal(System.String,Sudoku.Rendering.Identifier)">
             <summary>
-            内部方法，记录 <see cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/> 类型的节点。
+            内部方法，记录 <see cref="T:Sudoku.Rendering.Nodes.BasicViewNode"/> 类型的节点。
             </summary>
-            <seealso cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/>
+            <seealso cref="T:Sudoku.Rendering.Nodes.BasicViewNode"/>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GenerateCachedPicturePath(Sudoku.Drawing.ISudokuPainter)">
             <summary>
@@ -1060,19 +1060,19 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddBasicViewNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String)">
             <summary>
-            往绘图盘面里追加涂色的视图节点。这些基本节点均走 <see cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/> 类型进行派生，
+            往绘图盘面里追加涂色的视图节点。这些基本节点均走 <see cref="T:Sudoku.Rendering.Nodes.BasicViewNode"/> 类型进行派生，
             这个方法也是为了处理所有走该类型派生的具体实例的绘图逻辑。
             </summary>
             <remarks>
             这个方法处理的视图节点包含如下这些：
             <list type="bullet">
-            <item>单元格 <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/></item>
-            <item>候选数 <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/></item>
-            <item>区域 <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/></item>
-            <item>大行列 <see cref="T:Sudoku.Presentation.Nodes.ChuteViewNode"/></item>
-            <item>链的强弱关系 <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/></item>
+            <item>单元格 <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/></item>
+            <item>候选数 <see cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/></item>
+            <item>区域 <see cref="T:Sudoku.Rendering.Nodes.HouseViewNode"/></item>
+            <item>大行列 <see cref="T:Sudoku.Rendering.Nodes.ChuteViewNode"/></item>
+            <item>链的强弱关系 <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/></item>
             <item>
-            代数字母 <see cref="T:Sudoku.Presentation.Nodes.BabaGroupViewNode"/>
+            代数字母 <see cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>
             （这个在 <see cref="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddBabaGroupNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Utf8Char)"/> 方法里处理）
             </item>
             </list>
@@ -1080,7 +1080,7 @@
             这游戏里有一个 Group 单词，表示放在谓词 Is 左边的词语属于同一组处理逻辑。代数思想和这一点非常相似（也是一组数字按同一种思路推导），
             恰好这技巧又没有英语名字，就干脆取了个这个名字。
             </remarks>
-            <seealso cref="T:Sudoku.Presentation.Nodes.BasicViewNode"/>
+            <seealso cref="T:Sudoku.Rendering.Nodes.BasicViewNode"/>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RemoveBasicViewNodesAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String)">
             <summary>
@@ -1114,7 +1114,7 @@
             不论这两个节点原本是强还是弱，都不能再叠加新的重叠的线条。
             </remarks>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddIconViewNodeAsync``1(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String,System.Func{Sudoku.Presentation.Identifier,System.Int32,``0})">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddIconViewNodeAsync``1(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String,System.Func{Sudoku.Rendering.Identifier,System.Int32,``0})">
             <summary>
             添加一个单元格图标。
             </summary>
@@ -1341,14 +1341,14 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetIdentifier(System.String)">
             <summary>
-            通过一个颜色表达出来的字符串，转换为一个实体的 <see cref="T:Sudoku.Presentation.Identifier"/> 类型的实例，用于绘图。
+            通过一个颜色表达出来的字符串，转换为一个实体的 <see cref="T:Sudoku.Rendering.Identifier"/> 类型的实例，用于绘图。
             </summary>
             <param name="this">颜色字符串。</param>
-            <returns>一个 <see cref="T:Sudoku.Presentation.Identifier"/> 实例，表示颜色的标识符。</returns>
+            <returns>一个 <see cref="T:Sudoku.Rendering.Identifier"/> 实例，表示颜色的标识符。</returns>
             <remarks>
             该方法支持的输入可以是基本的配色表（配色 #1 到 #15），也可以是 RGB 和 ARGB 的代码。
             </remarks>
-            <seealso cref="T:Sudoku.Presentation.Identifier"/>
+            <seealso cref="T:Sudoku.Rendering.Identifier"/>
             <seealso href="https://source.dot.net/#System.Private.CoreLib/src/libraries/Common/src/System/HexConverter.cs,2094caa70f8308bc">
             char.IsAsciiHexDigit 方法
             </seealso>
@@ -1395,7 +1395,7 @@
             <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetHouseIndex(System.Char,System.Char)" path="/exception[@cref='ArgumentException']"/>
             </exception>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GeneratePictureAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Boolean,System.Func{System.Int32,Sudoku.Presentation.Nodes.ViewNode},System.Func{System.Int32,System.Boolean})">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GeneratePictureAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Boolean,System.Func{System.Int32,Sudoku.Rendering.Nodes.ViewNode},System.Func{System.Int32,System.Boolean})">
             <summary>
             使用参数 <paramref name="receiver"/> 创建缓存图片，并发送。
             </summary>
@@ -1403,7 +1403,7 @@
             <param name="context">绘图使用的上下文。</param>
             <param name="raw">原始数据（字符串）。</param>
             <param name="isAdding">表示是否最终是追加到集合之中。</param>
-            <param name="nodeCreator">一个方法，表示创建一个 <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> 的实例。</param>
+            <param name="nodeCreator">一个方法，表示创建一个 <see cref="T:Sudoku.Rendering.Nodes.ViewNode"/> 的实例。</param>
             <param name="cellPredicate">一个单元格是否满足条件的判别方法。</param>
             <returns>一个 <see cref="T:System.Threading.Tasks.Task"/> 类型的实例，表示异步操作期间的基本数据。</returns>
         </member>
@@ -1467,20 +1467,20 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.ToDirection(System.String)">
             <summary>
-            根据指定的方向字符串，转为对应的 <see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/> 结果；如果不合法，将返回 <see langword="null"/>。
+            根据指定的方向字符串，转为对应的 <see cref="T:Sudoku.Rendering.Nodes.Shapes.Direction"/> 结果；如果不合法，将返回 <see langword="null"/>。
             </summary>
             <param name="this">字符串。</param>
-            <returns><see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/> 的实例。</returns>
+            <returns><see cref="T:Sudoku.Rendering.Nodes.Shapes.Direction"/> 的实例。</returns>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.ToDirection2(System.String)">
             <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.ToDirection(System.String)"/>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.Extensions.ToDirections(System.String)">
             <summary>
-            根据指定的方向字符串，转换为对应的 <see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/>[] 结果；如果内部出现的文字不合法，则会被忽略。
+            根据指定的方向字符串，转换为对应的 <see cref="T:Sudoku.Rendering.Nodes.Shapes.Direction"/>[] 结果；如果内部出现的文字不合法，则会被忽略。
             </summary>
             <param name="this">方向字符串。</param>
-            <returns>一个 <see cref="T:Sudoku.Presentation.Nodes.Shapes.Direction"/> 数组结果。</returns>
+            <returns>一个 <see cref="T:Sudoku.Rendering.Nodes.Shapes.Direction"/> 数组结果。</returns>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.PuzzleLibraryOperations">
             <summary>
@@ -2657,10 +2657,10 @@
         </member>
         <member name="M:System.Drawing.ColorExtensions.ToIdentifier(System.Drawing.Color)">
             <summary>
-            将指定的 <see cref="T:System.Drawing.Color"/> 实例转换为等价的 <see cref="T:Sudoku.Presentation.Identifier"/> 实例。
+            将指定的 <see cref="T:System.Drawing.Color"/> 实例转换为等价的 <see cref="T:Sudoku.Rendering.Identifier"/> 实例。
             </summary>
             <param name="this"><see cref="T:System.Drawing.Color"/> 实例。</param>
-            <returns>等价的 <see cref="T:Sudoku.Presentation.Identifier"/> 实例。</returns>
+            <returns>等价的 <see cref="T:Sudoku.Rendering.Identifier"/> 实例。</returns>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.BilibiliPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the BilibiliPattern method.</summary>

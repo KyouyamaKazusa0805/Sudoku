@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation.Nodes.Shapes;
+﻿namespace Sudoku.Rendering.Nodes.Shapes;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Direction"/>.
