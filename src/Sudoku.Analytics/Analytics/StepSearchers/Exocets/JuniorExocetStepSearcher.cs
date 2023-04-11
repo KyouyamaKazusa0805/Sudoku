@@ -110,8 +110,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		var exocetPatterns = Patterns;
-		foreach (ref readonly var currentJe in exocetPatterns.EnumerateRef())
+		foreach (var currentJe in Patterns)
 		{
 			if (!EmptyCells.Contains(currentJe.Base1) || !EmptyCells.Contains(currentJe.Base2))
 			{
