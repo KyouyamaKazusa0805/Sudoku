@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Locked Candidates</b> step searcher.
@@ -13,7 +13,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	/// <remarks>
-	/// <include file="../../global-doc-comments.xml" path="/g/deverloper-notes" />
+	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
 	/// <para>The main idea of this searching operation:</para>
 	/// <para>
 	/// <code><![CDATA[

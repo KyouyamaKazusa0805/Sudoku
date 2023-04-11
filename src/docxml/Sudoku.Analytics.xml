@@ -7269,7 +7269,11 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc />
             <remarks>
-            <!-- No matching elements were found for the following include tag --><include file="../../global-doc-comments.xml" path="/g/deverloper-notes" />
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
             <para>The main idea of this searching operation:</para>
             <para>
             <code><![CDATA[
