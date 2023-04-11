@@ -7445,9 +7445,9 @@ if (student is (name: var name, age: >= 18))
         <member name="T:Sudoku.Rendering.LocalSerialization.ColorInternalSerializerContext">
             <summary>
             Provides with a serializer context that uses source generator to produce necessary code on serialization
-            or deserialization on type <see cref="P:Sudoku.Rendering.LocalSerialization.ColorInternalSerializerContext.ColorInternal"/>.
+            or deserialization on type <see cref="T:Sudoku.Rendering.LocalSerialization.ColorInternal"/>.
             </summary>
-            <seealso cref="P:Sudoku.Rendering.LocalSerialization.ColorInternalSerializerContext.ColorInternal"/>
+            <seealso cref="T:Sudoku.Rendering.LocalSerialization.ColorInternal"/>
         </member>
         <member name="P:Sudoku.Rendering.LocalSerialization.ColorInternalSerializerContext.Byte">
             <summary>
@@ -7491,9 +7491,9 @@ if (student is (name: var name, age: >= 18))
         <member name="T:Sudoku.Rendering.LocalSerialization.IdInternalSerializerContext">
             <summary>
             Provides with a serializer context that uses source generator to produce necessary code on serialization
-            or deserialization on type <see cref="P:Sudoku.Rendering.LocalSerialization.IdInternalSerializerContext.IdInternal"/>.
+            or deserialization on type <see cref="T:Sudoku.Rendering.LocalSerialization.IdInternal"/>.
             </summary>
-            <seealso cref="P:Sudoku.Rendering.LocalSerialization.IdInternalSerializerContext.IdInternal"/>
+            <seealso cref="T:Sudoku.Rendering.LocalSerialization.IdInternal"/>
         </member>
         <member name="P:Sudoku.Rendering.LocalSerialization.IdInternalSerializerContext.Int32">
             <summary>
@@ -7537,9 +7537,9 @@ if (student is (name: var name, age: >= 18))
         <member name="T:Sudoku.Rendering.LocalSerialization.NamedKindInternalJsonSerializerContext">
             <summary>
             Provides with a serializer context that uses source generator to produce necessary code on serialization
-            or deserialization on type <see cref="P:Sudoku.Rendering.LocalSerialization.NamedKindInternalJsonSerializerContext.NamedKindInternal"/>.
+            or deserialization on type <see cref="T:Sudoku.Rendering.LocalSerialization.NamedKindInternal"/>.
             </summary>
-            <seealso cref="P:Sudoku.Rendering.LocalSerialization.NamedKindInternalJsonSerializerContext.NamedKindInternal"/>
+            <seealso cref="T:Sudoku.Rendering.LocalSerialization.NamedKindInternal"/>
         </member>
         <member name="P:Sudoku.Rendering.LocalSerialization.NamedKindInternalJsonSerializerContext.String">
             <summary>
