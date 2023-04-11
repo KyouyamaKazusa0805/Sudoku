@@ -1,4 +1,4 @@
-namespace Sudoku.Rendering;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Defines the data structure that stores a set of cells and a digit, indicating the information
