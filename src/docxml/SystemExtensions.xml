@@ -1871,29 +1871,6 @@
             Indicates the accessibility is <see langword="public"/>.
             </summary>
         </member>
-        <member name="T:System.Diagnostics.CodeGen.GeneratedDeconstructionArgumentAttribute">
-            <summary>
-            Defines an attribute that is used as a parameter mark that tells source generators to route to the specified target expression.
-            </summary>
-            <param name="targetPropertyExpression">
-            Indicates the target property expression used. This property specifies and controls the target behavior
-            that output what final deconstruction assignment expression should be.
-            </param>
-        </member>
-        <member name="M:System.Diagnostics.CodeGen.GeneratedDeconstructionArgumentAttribute.#ctor(System.String)">
-            <summary>
-            Defines an attribute that is used as a parameter mark that tells source generators to route to the specified target expression.
-            </summary>
-            <param name="targetPropertyExpression">
-            Indicates the target property expression used. This property specifies and controls the target behavior
-            that output what final deconstruction assignment expression should be.
-            </param>
-        </member>
-        <member name="T:System.Diagnostics.CodeGen.GeneratedDeconstructionAttribute">
-            <summary>
-            Defines an attribute that is used as a mark that tells source generators to generate deconstruction methods of this type.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeGen.GeneratedDisplayNameAttribute">
             <summary>
             Indicates the display name on generated code of <c>ToString</c> method.

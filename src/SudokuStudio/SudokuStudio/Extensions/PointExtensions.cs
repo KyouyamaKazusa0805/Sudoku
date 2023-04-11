@@ -1,13 +1,14 @@
-﻿namespace Windows.Foundation;
+namespace Windows.Foundation;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Point"/>.
 /// </summary>
 /// <seealso cref="Point"/>
-public static partial class PointExtensions
+public static class PointExtensions
 {
-	[GeneratedDeconstruction]
-	public static partial void Deconstruct(this Point @this, out double x, out double y);
+	/// <include file="../../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void Deconstruct(this Point @this, out double x, out double y) => (x, y) = (@this.X, @this.Y);
 
 	/// <summary>
 	/// Gets the distance between the two points, starting with the current point, and ending with the specified point.

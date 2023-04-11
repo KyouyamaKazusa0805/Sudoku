@@ -1,10 +1,10 @@
-﻿namespace System.Drawing;
+namespace System.Drawing;
 
 /// <summary>
 /// Provides extension methods on <see cref="PointF"/>.
 /// </summary>
 /// <seealso cref="PointF"/>
-internal static partial class PointFExtensions
+internal static class PointFExtensions
 {
 	/// <summary>
 	/// To truncate the point.
@@ -14,6 +14,7 @@ internal static partial class PointFExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Point Truncate(this PointF @this) => new((int)@this.X, (int)@this.Y);
 
-	[GeneratedDeconstruction]
-	public static partial void Deconstruct(this PointF @this, out float x, out float y);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void Deconstruct(this PointF @this, out float x, out float y) => (x, y) = (@this.X, @this.Y);
 }

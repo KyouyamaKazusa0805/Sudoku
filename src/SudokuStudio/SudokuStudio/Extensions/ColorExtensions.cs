@@ -1,16 +1,19 @@
-﻿namespace Windows.UI;
+namespace Windows.UI;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Color"/>.
 /// </summary>
 /// <seealso cref="Color"/>
-public static partial class ColorExtensions
+public static class ColorExtensions
 {
-	[GeneratedDeconstruction]
-	public static partial void Deconstruct(this Color @this, out byte r, out byte g, out byte b);
+	/// <include file="../../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void Deconstruct(this Color @this, out byte r, out byte g, out byte b) => (r, g, b) = (@this.R, @this.G, @this.B);
 
-	[GeneratedDeconstruction]
-	public static partial void Deconstruct(this Color @this, out byte a, out byte r, out byte g, out byte b);
+	/// <include file="../../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void Deconstruct(this Color @this, out byte a, out byte r, out byte g, out byte b)
+		=> (a, r, g, b) = (@this.A, @this.R, @this.G, @this.B);
 
 	/// <summary>
 	/// Converts the specified color into equivalent <see cref="SKColor"/> instance.
