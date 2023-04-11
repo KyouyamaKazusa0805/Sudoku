@@ -18,6 +18,7 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the locked candidates (LC) technique.
 	/// </summary>
+	[Abbreviation("LC")]
 	LockedCandidates,
 
 	/// <summary>
@@ -43,21 +44,25 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the empty rectangle technique.
 	/// </summary>
+	[Abbreviation("ER")]
 	EmptyRectangle,
 
 	/// <summary>
 	/// Indicates the single digit pattern (SDP) technique.
 	/// </summary>
+	[Abbreviation("SDP")]
 	SingleDigitPattern,
 
 	/// <summary>
 	/// Indicates the empty rectangle intersection pair (ERIP) technique.
 	/// </summary>
+	[Abbreviation("ERIP")]
 	EmptyRectangleIntersectionPair,
 
 	/// <summary>
 	/// Indicates the almost locked candidates (ALC) technique.
 	/// </summary>
+	[Abbreviation("ALC")]
 	AlmostLockedCandidates,
 
 	/// <summary>
@@ -68,6 +73,7 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the alternating inference chain (AIC) technique.
 	/// </summary>
+	[Abbreviation("AIC")]
 	AlternatingInferenceChain,
 
 	/// <summary>
@@ -78,31 +84,37 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the unique rectangle (UR) technique.
 	/// </summary>
+	[Abbreviation("UR")]
 	UniqueRectangle,
 
 	/// <summary>
 	/// Indicates the unique rectangle plus (UR+) technique.
 	/// </summary>
+	[Abbreviation("UR+")]
 	UniqueRectanglePlus,
 
 	/// <summary>
 	/// Indicates the avoidable rectangle (AR) technique.
 	/// </summary>
+	[Abbreviation("AR")]
 	AvoidableRectangle,
 
 	/// <summary>
 	/// Indicates the unique loop (UL) technique.
 	/// </summary>
+	[Abbreviation("UL")]
 	UniqueLoop,
 
 	/// <summary>
 	/// Indicates the extended rectangle (XR) technique.
 	/// </summary>
+	[Abbreviation("XR")]
 	ExtendedRectangle,
 
 	/// <summary>
 	/// Indicates the bi-value universal grave (BUG) technique.
 	/// </summary>
+	[Abbreviation("BUG")]
 	BivalueUniversalGrave,
 
 	/// <summary>
@@ -133,6 +145,7 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the uniqueness clue cover.
 	/// </summary>
+	[Abbreviation("UCC")]
 	UniquenessClueCover,
 
 	/// <summary>
@@ -148,6 +161,7 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the sue de coq (SdC) technique.
 	/// </summary>
+	[Abbreviation("SdC")]
 	SueDeCoq,
 
 	/// <summary>
@@ -163,6 +177,7 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the extended subset principle technique.
 	/// </summary>
+	[Abbreviation("ESP")]
 	ExtendedSubsetPrinciple,
 
 	/// <summary>
@@ -178,6 +193,7 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the multi-sector locked sets (MSLS) technique.
 	/// </summary>
+	[Abbreviation("MSLS")]
 	MultisectorLockedSets,
 
 	/// <summary>
@@ -203,6 +219,7 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the pattern overlay method (POM) technique.
 	/// </summary>
+	[Abbreviation("POM")]
 	PatternOverlay,
 
 	/// <summary>
@@ -213,5 +230,6 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the brute force (BF) technique.
 	/// </summary>
+	[Abbreviation("BF")]
 	BruteForce
 }

@@ -107,6 +107,7 @@ public enum Technique : short
 	/// </summary>
 	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
+	[Abbreviation("ALP")]
 	AlmostLockedPair,
 
 	/// <summary>
@@ -114,6 +115,7 @@ public enum Technique : short
 	/// </summary>
 	[SudokuExplainerDifficultyRating(5.2, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
+	[Abbreviation("ALT")]
 	AlmostLockedTriple,
 
 	/// <summary>
@@ -121,6 +123,7 @@ public enum Technique : short
 	/// The technique may not be useful because it'll be replaced with Sue de Coq.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
+	[Abbreviation("ALQ")]
 	AlmostLockedQuadruple,
 	#endregion
 
@@ -1153,6 +1156,7 @@ public enum Technique : short
 	[HodokuAliasedNames("Hidden Rectangle")]
 	[SudokuExplainerDifficultyRating(4.8, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[Abbreviation("HUR")]
 	HiddenUniqueRectangle,
 
 	/// <summary>
@@ -1374,6 +1378,7 @@ public enum Technique : short
 	/// Indicates hidden avoidable rectangle.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[Abbreviation("HAR")]
 	HiddenAvoidableRectangle,
 
 	/// <summary>
@@ -1607,6 +1612,7 @@ public enum Technique : short
 	/// Indicates bi-value universal grave + n.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
+	[Abbreviation("BUG + n")]
 	BivalueUniversalGravePlusN,
 
 	/// <summary>
@@ -1625,12 +1631,14 @@ public enum Technique : short
 	/// Indicates bi-value universal grave XZ rule.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
+	[Abbreviation("BUG-XZ")]
 	BivalueUniversalGraveXzRule,
 
 	/// <summary>
 	/// Indicates bi-value universal grave XY-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
+	[Abbreviation("BUG-XY-Wing")]
 	BivalueUniversalGraveXyWing,
 	#endregion
 
@@ -1813,6 +1821,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(250, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(5.0, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
+	[Abbreviation("SdC")]
 	SueDeCoq,
 
 	/// <summary>
@@ -1955,6 +1964,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0402")]
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
 	[TechniqueGroup(TechniqueGroup.EmptyRectangle)]
+	[Abbreviation("ER")]
 	EmptyRectangle,
 	#endregion
 
@@ -2032,6 +2042,7 @@ public enum Technique : short
 	[SudokuExplainerDifficultyRating(7.0, 7.6)]
 	[SudokuExplainerAliasedNames("Forcing Chain")]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[Abbreviation("DNL")]
 	DiscontinuousNiceLoop,
 
 	/// <summary>
@@ -2042,6 +2053,7 @@ public enum Technique : short
 	[SudokuExplainerDifficultyRating(7.0, 7.3)]
 	[SudokuExplainerAliasedNames("Bidirectional Cycle")]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[Abbreviation("CNL")]
 	ContinuousNiceLoop,
 
 	/// <summary>
@@ -2050,6 +2062,7 @@ public enum Technique : short
 	[HodokuTechniquePrefix("0708")]
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[Abbreviation("AIC")]
 	AlternatingInferenceChain,
 
 	/// <summary>
@@ -2200,6 +2213,7 @@ public enum Technique : short
 	/// </summary>
 	[HodokuTechniquePrefix("1102")]
 	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
+	[Abbreviation("ESP")]
 	ExtendedSubsetPrinciple,
 	#endregion
 
@@ -2214,6 +2228,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(7.5, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
+	[Abbreviation("ALS-XZ")]
 	SinglyLinkedAlmostLockedSetsXzRule,
 
 	/// <summary>
@@ -2223,6 +2238,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(7.5, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
+	[Abbreviation("ALS-XZ")]
 	DoublyLinkedAlmostLockedSetsXzRule,
 
 	/// <summary>
@@ -2232,12 +2248,14 @@ public enum Technique : short
 	[HodokuDifficultyRating(320, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(8.0, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
+	[Abbreviation("ALS-XY-Wing")]
 	AlmostLockedSetsXyWing,
 
 	/// <summary>
 	/// Indicates ALS-W-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
+	[Abbreviation("ALS-W-Wing")]
 	AlmostLockedSetsWWing,
 
 	/// <summary>
@@ -2257,6 +2275,7 @@ public enum Technique : short
 	/// Indicates empty rectangle intersection pair.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.EmptyRectangleIntersectionPair)]
+	[Abbreviation("ERIP")]
 	EmptyRectangleIntersectionPair,
 	#endregion
 
@@ -2288,6 +2307,7 @@ public enum Technique : short
 	/// Indicates Gurth's symmetrical placement.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Symmetry)]
+	[Abbreviation("GSP")]
 	GurthSymmetricalPlacement,
 
 	/// <summary>
@@ -2305,12 +2325,14 @@ public enum Technique : short
 	/// Indicates junior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[Abbreviation("JE")]
 	JuniorExocet,
 
 	/// <summary>
 	/// Indicates senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[Abbreviation("SE")]
 	SeniorExocet,
 
 	/// <summary>
@@ -2351,6 +2373,7 @@ public enum Technique : short
 	/// Indicates multi-sector locked sets.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.MultisectorLockedSets)]
+	[Abbreviation("MSLS")]
 	MultisectorLockedSets,
 	#endregion
 
@@ -2362,6 +2385,7 @@ public enum Technique : short
 	/// Indicates pattern overlay method.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.PatternOverlay)]
+	[Abbreviation("POM")]
 	PatternOverlay,
 	#endregion
 
@@ -2407,6 +2431,7 @@ public enum Technique : short
 	[HodokuDifficultyRating(10000, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerAliasedNames("Try & Error")]
 	[TechniqueGroup(TechniqueGroup.BruteForce)]
+	[Abbreviation("BF")]
 	BruteForce,
 	#endregion
 }

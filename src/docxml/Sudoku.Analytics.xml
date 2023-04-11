@@ -587,6 +587,23 @@
             <param name="g">The grid.</param>
             <param name="s">The solution of <paramref name="g"/>.</param>
         </member>
+        <member name="T:Sudoku.Analytics.Categorization.AbbreviationAttribute">
+            <summary>
+            Represents an attribute type that describes its abbreviation of a technique group.
+            </summary>
+            <param name="abbr"><inheritdoc cref="P:Sudoku.Analytics.Categorization.AbbreviationAttribute.Abbreviation" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.AbbreviationAttribute.#ctor(System.String)">
+            <summary>
+            Represents an attribute type that describes its abbreviation of a technique group.
+            </summary>
+            <param name="abbr"><inheritdoc cref="P:Sudoku.Analytics.Categorization.AbbreviationAttribute.Abbreviation" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.AbbreviationAttribute.Abbreviation">
+            <summary>
+            Indicates the abbreviation.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Categorization.DifficultyLevel">
             <summary>
             Provides a difficulty kind for a puzzle.
@@ -2229,6 +2246,20 @@
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>The abbreviation of the current technique.</returns>
+            <remarks>
+            The routing rule can be described as below:
+            <list type="number">
+            <item>
+            Check whether the field is marked attribute <see cref="T:Sudoku.Analytics.Categorization.AbbreviationAttribute"/>,
+            and return property value <see cref="P:Sudoku.Analytics.Categorization.AbbreviationAttribute.Abbreviation"/> if marked.
+            </item>
+            <item>If 1) returns <see langword="null"/>, then search for resource dictionary, and return the target value if found.</item>
+            <item>If 2) returns <see langword="null"/>, then check its <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>, then return its abbreviation if worth.</item>
+            <item>If 3) returns <see langword="null"/>, this method will return <see langword="null"/>; otherwise, a valid value.</item>
+            </list>
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Categorization.AbbreviationAttribute"/>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAliases(Sudoku.Analytics.Categorization.Technique)">
             <summary>
@@ -2481,6 +2512,19 @@
             <summary>
             Indicates the group that the current technique belong to.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueGroupExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetAbbreviation(Sudoku.Analytics.Categorization.TechniqueGroup)">
+            <summary>
+            Try to get abbreviation of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
+            <returns>The abbreviation.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Compatibility.HodokuLibraryCompatibility">
             <summary>

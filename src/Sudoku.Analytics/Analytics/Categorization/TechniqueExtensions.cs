@@ -22,8 +22,25 @@ public static class TechniqueExtensions
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
 	/// <returns>The abbreviation of the current technique.</returns>
+	/// <remarks>
+	/// The routing rule can be described as below:
+	/// <list type="number">
+	/// <item>
+	/// Check whether the field is marked attribute <see cref="AbbreviationAttribute"/>,
+	/// and return property value <see cref="AbbreviationAttribute.Abbreviation"/> if marked.
+	/// </item>
+	/// <item>If 1) returns <see langword="null"/>, then search for resource dictionary, and return the target value if found.</item>
+	/// <item>If 2) returns <see langword="null"/>, then check its <see cref="TechniqueGroup"/>, then return its abbreviation if worth.</item>
+	/// <item>If 3) returns <see langword="null"/>, this method will return <see langword="null"/>; otherwise, a valid value.</item>
+	/// </list>
+	/// </remarks>
+	/// <seealso cref="AbbreviationAttribute"/>
+	/// <seealso cref="TechniqueGroup"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? GetAbbreviation(this Technique @this) => R[$"TechniqueAbbr_{@this}"];
+	public static string? GetAbbreviation(this Technique @this)
+		=> typeof(Technique).GetField(@this.ToString())!.GetCustomAttribute<AbbreviationAttribute>()?.Abbreviation
+		?? R[$"TechniqueAbbr_{@this}"]
+		?? @this.GetGroup().GetAbbreviation();
 
 	/// <summary>
 	/// Try to get all aliases of the current <see cref="Technique"/>.
