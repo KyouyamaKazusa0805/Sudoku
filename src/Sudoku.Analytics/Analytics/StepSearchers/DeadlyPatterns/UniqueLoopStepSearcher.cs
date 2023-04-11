@@ -615,8 +615,27 @@ file static unsafe class Cached
 	/// <param name="loop">The loop to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	private static bool UniqueLoopSatisfyingPredicate(scoped in CellMap loop)
-		=> loop is { Count: var length, RowMask: var r, ColumnMask: var c, BlockMask: var b }
-		&& (length & 1) == 0 && length >= 6
-		&& length >> 1 is var halfLength
-		&& PopCount((uint)r) == halfLength && PopCount((uint)c) == halfLength && PopCount((uint)b) == halfLength;
+	{
+		_ = loop is { Count: var length, Houses: var houses, RowMask: var r, ColumnMask: var c, BlockMask: var b };
+		if ((length & 1) != 0 || length < 6)
+		{
+			return false;
+		}
+
+		var halfLength = length >> 1;
+		if (PopCount((uint)r) != halfLength || PopCount((uint)c) != halfLength || PopCount((uint)b) != halfLength)
+		{
+			return false;
+		}
+
+		foreach (var house in houses)
+		{
+			if ((HousesMap[house] & loop).Count != 2)
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
 }
