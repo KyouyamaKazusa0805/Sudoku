@@ -99,7 +99,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 1.
 	/// </summary>
-	private Step? CheckType1(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in CellMap pattern, short mask)
+	private Step? CheckType1(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in CellMap pattern, Mask mask)
 	{
 		if (PopCount((uint)mask) != 5)
 		{
@@ -108,10 +108,10 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
-			var digitsMask = (short)0;
+			var digitsMask = (Mask)0;
 			foreach (var digit in digits)
 			{
-				digitsMask |= (short)(1 << digit);
+				digitsMask |= (Mask)(1 << digit);
 			}
 
 			var extraDigit = TrailingZeroCount(mask & ~digitsMask);
@@ -122,7 +122,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			}
 
 			var cellMask = grid.GetCandidates(elimCell);
-			var elimMask = (short)(cellMask & ~(1 << extraDigit));
+			var elimMask = (Mask)(cellMask & ~(1 << extraDigit));
 			if (elimMask == 0)
 			{
 				continue;
@@ -159,7 +159,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 2.
 	/// </summary>
-	private Step? CheckType2(List<Step> accumulator, bool onlyFindOne, scoped in CellMap pattern, short mask)
+	private Step? CheckType2(List<Step> accumulator, bool onlyFindOne, scoped in CellMap pattern, Mask mask)
 	{
 		if (PopCount((uint)mask) != 5)
 		{
@@ -168,10 +168,10 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
-			var digitsMask = (short)0;
+			var digitsMask = (Mask)0;
 			foreach (var digit in digits)
 			{
-				digitsMask |= (short)(1 << digit);
+				digitsMask |= (Mask)(1 << digit);
 			}
 
 			var extraDigit = TrailingZeroCount(mask & ~digitsMask);
@@ -215,17 +215,17 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 3.
 	/// </summary>
-	private Step? CheckType3(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in CellMap pattern, short mask)
+	private Step? CheckType3(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in CellMap pattern, Mask mask)
 	{
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
-			var digitsMask = (short)0;
+			var digitsMask = (Mask)0;
 			foreach (var digit in digits)
 			{
-				digitsMask |= (short)(1 << digit);
+				digitsMask |= (Mask)(1 << digit);
 			}
 
-			var extraDigitsMask = (short)(mask & ~digitsMask);
+			var extraDigitsMask = (Mask)(mask & ~digitsMask);
 			var tempMap = CellMap.Empty;
 			foreach (var digit in extraDigitsMask)
 			{
@@ -308,17 +308,17 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 4.
 	/// </summary>
-	private Step? CheckType4(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in CellMap pattern, short mask)
+	private Step? CheckType4(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in CellMap pattern, Mask mask)
 	{
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
-			var digitsMask = (short)0;
+			var digitsMask = (Mask)0;
 			foreach (var digit in digits)
 			{
-				digitsMask |= (short)(1 << digit);
+				digitsMask |= (Mask)(1 << digit);
 			}
 
-			var extraDigitsMask = (short)(mask & ~digitsMask);
+			var extraDigitsMask = (Mask)(mask & ~digitsMask);
 			var tempMap = CellMap.Empty;
 			foreach (var digit in extraDigitsMask)
 			{
@@ -356,8 +356,8 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				}
 
 			Finally:
-				var comparer = (short)(1 << d1 | 1 << d2);
-				var otherDigitsMask = (short)(digitsMask & ~comparer);
+				var comparer = (Mask)(1 << d1 | 1 << d2);
+				var otherDigitsMask = (Mask)(digitsMask & ~comparer);
 				var conclusions = new List<Conclusion>();
 				foreach (var digit in otherDigitsMask)
 				{

@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Firework Pair Type 3</b> technique.
 /// </summary>
-public sealed class FireworkPairType3Step(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, short digitsMask, int emptyRectangleBlock) :
+public sealed class FireworkPairType3Step(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, Mask digitsMask, int emptyRectangleBlock) :
 	FireworkStep(conclusions, views)
 {
 	/// <inheritdoc/>
@@ -17,7 +17,7 @@ public sealed class FireworkPairType3Step(Conclusion[] conclusions, View[]? view
 	/// <summary>
 	/// Indicates the mask of digits used.
 	/// </summary>
-	public short DigitsMask { get; } = digitsMask;
+	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.FireworkPairType3;

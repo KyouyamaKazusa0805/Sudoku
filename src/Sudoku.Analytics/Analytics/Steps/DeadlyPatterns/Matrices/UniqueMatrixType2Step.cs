@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides with a step that is a <b>Unique Square Type 2</b> technique.
 /// </summary>
-public sealed class UniqueMatrixType2Step(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, short digitsMask, int extraDigit) :
+public sealed class UniqueMatrixType2Step(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, Mask digitsMask, int extraDigit) :
 	UniqueMatrixStep(conclusions, views, cells, digitsMask)
 {
 	/// <inheritdoc/>

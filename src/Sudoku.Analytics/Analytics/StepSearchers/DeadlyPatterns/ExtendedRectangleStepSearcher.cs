@@ -105,7 +105,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			{
 				var house1 = houses[i, 0];
 				var house2 = houses[i, 1];
-				foreach (short mask in new BitSubsetsGenerator(9, size))
+				foreach (Mask mask in new BitSubsetsGenerator(9, size))
 				{
 					// Check whether all cells are in same house. If so, continue the loop immediately.
 					if (size == 3 && (mask >> 6 == 7 || (mask >> 3 & 7) == 7 || (mask & 7) == 7))
@@ -149,7 +149,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			var checkKindsFlag = true;
 			foreach (var (l, r) in pairs)
 			{
-				var tempMask = (short)(grid.GetCandidates(l) & grid.GetCandidates(r));
+				var tempMask = (Mask)(grid.GetCandidates(l) & grid.GetCandidates(r));
 				if (tempMask == 0 || (tempMask & tempMask - 1) == 0)
 				{
 					checkKindsFlag = false;
@@ -163,17 +163,17 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			}
 
 			// Check the mask of cells from two houses.
-			var m1 = (short)0;
-			var m2 = (short)0;
+			var m1 = (Mask)0;
+			var m2 = (Mask)0;
 			foreach (var (l, r) in pairs)
 			{
 				m1 |= grid.GetCandidates(l);
 				m2 |= grid.GetCandidates(r);
 			}
 
-			var resultMask = (short)(m1 | m2);
-			var normalDigits = (short)0;
-			var extraDigits = (short)0;
+			var resultMask = (Mask)(m1 | m2);
+			var normalDigits = (Mask)0;
+			var extraDigits = (Mask)0;
 			foreach (var digit in resultMask)
 			{
 				var count = 0;
@@ -186,7 +186,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					}
 				}
 
-				(count >= 2 ? ref normalDigits : ref extraDigits) |= (short)(1 << digit);
+				(count >= 2 ? ref normalDigits : ref extraDigits) |= (Mask)(1 << digit);
 			}
 
 			if (PopCount((uint)normalDigits) != size)
@@ -270,7 +270,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		scoped in Grid grid,
 		scoped in CellMap allCellsMap,
 		scoped in CellMap extraCells,
-		short normalDigits,
+		Mask normalDigits,
 		int extraDigit,
 		bool onlyFindOne
 	)
@@ -330,7 +330,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		scoped in Grid grid,
 		scoped in CellMap allCellsMap,
 		scoped in CellMap extraCells,
-		short normalDigits,
+		Mask normalDigits,
 		int extraDigit,
 		bool onlyFindOne
 	)
@@ -384,8 +384,8 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		List<Step> accumulator,
 		scoped in Grid grid,
 		scoped in CellMap allCellsMap,
-		short normalDigits,
-		short extraDigits,
+		Mask normalDigits,
+		Mask extraDigits,
 		scoped in CellMap extraCellsMap,
 		bool onlyFindOne
 	)
@@ -475,7 +475,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 	/// <summary>
 	/// Check type 4 and a part of type 1 that the method
-	/// <see cref="CheckType1(List{Step}, in Grid, in CellMap, in CellMap, short, int, bool)"/>
+	/// <see cref="CheckType1(List{Step}, in Grid, in CellMap, in CellMap, Mask, int, bool)"/>
 	/// cannot be found.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
@@ -489,7 +489,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		List<Step> accumulator,
 		scoped in Grid grid,
 		scoped in CellMap allCellsMap,
-		short normalDigits,
+		Mask normalDigits,
 		scoped in CellMap extraCellsMap,
 		bool onlyFindOne
 	)
@@ -542,8 +542,8 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			case [var extraCell1, var extraCell2]:
 			{
 				// Type 4.
-				short m1 = grid.GetCandidates(extraCell1), m2 = grid.GetCandidates(extraCell2);
-				var conjugateMask = (short)(m1 & m2 & normalDigits);
+				Mask m1 = grid.GetCandidates(extraCell1), m2 = grid.GetCandidates(extraCell2);
+				var conjugateMask = (Mask)(m1 & m2 & normalDigits);
 				if (conjugateMask == 0)
 				{
 					goto ReturnNull;
@@ -559,7 +559,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 							continue;
 						}
 
-						var elimDigits = (short)(normalDigits & ~(1 << conjugateDigit));
+						var elimDigits = (Mask)(normalDigits & ~(1 << conjugateDigit));
 						var conclusions = new List<Conclusion>();
 						foreach (var digit in elimDigits)
 						{

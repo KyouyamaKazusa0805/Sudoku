@@ -8,11 +8,11 @@ public sealed class SueDeCoqStep(
 	View[]? views,
 	int block,
 	int line,
-	short blockMask,
-	short lineMask,
-	short intersectionMask,
+	Mask blockMask,
+	Mask lineMask,
+	Mask intersectionMask,
 	bool isCannibalistic,
-	short isolatedDigitsMask,
+	Mask isolatedDigitsMask,
 	scoped in CellMap blockCells,
 	scoped in CellMap lineCells,
 	scoped in CellMap intersectionCells
@@ -39,22 +39,22 @@ public sealed class SueDeCoqStep(
 	/// <summary>
 	/// Indicates the block mask.
 	/// </summary>
-	public short BlockMask { get; } = blockMask;
+	public Mask BlockMask { get; } = blockMask;
 
 	/// <summary>
 	/// Indicates the line mask.
 	/// </summary>
-	public short LineMask { get; } = lineMask;
+	public Mask LineMask { get; } = lineMask;
 
 	/// <summary>
 	/// Indicates the intersection mask.
 	/// </summary>
-	public short IntersectionMask { get; } = intersectionMask;
+	public Mask IntersectionMask { get; } = intersectionMask;
 
 	/// <summary>
 	/// The isolated digits mask.
 	/// </summary>
-	public short IsolatedDigitsMask { get; } = isolatedDigitsMask;
+	public Mask IsolatedDigitsMask { get; } = isolatedDigitsMask;
 
 	/// <inheritdoc/>
 	public override Technique Code => IsCannibalistic ? Technique.SueDeCoqCannibalism : Technique.SueDeCoq;

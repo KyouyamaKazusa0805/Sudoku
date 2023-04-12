@@ -20,7 +20,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		var rccList = new List<(AlmostLockedSet Left, AlmostLockedSet Right, short Mask)>();
+		var rccList = new List<(AlmostLockedSet Left, AlmostLockedSet Right, Mask Mask)>();
 		var alses = grid.GatherAlmostLockedSets();
 
 		// Gather all RCCs.
@@ -42,12 +42,12 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 
 				if ((mask1 & mask2) is var mask and not 0)
 				{
-					var rccMask = (short)0;
+					var rccMask = (Mask)0;
 					foreach (var digit in mask)
 					{
 						if ((map & CandidatesMap[digit]).InOneHouse)
 						{
-							rccMask |= (short)(1 << digit);
+							rccMask |= (Mask)(1 << digit);
 						}
 					}
 					if (rccMask == 0)
@@ -115,16 +115,16 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 							continue;
 						}
 
-						var finalX = (short)(1 << digit1);
-						var finalY = (short)(1 << digit2);
-						var digitsMask = (short)(aMask & bMask & ~(finalX | finalY));
+						var finalX = (Mask)(1 << digit1);
+						var finalY = (Mask)(1 << digit2);
+						var digitsMask = (Mask)(aMask & bMask & ~(finalX | finalY));
 						if (digitsMask == 0)
 						{
 							continue;
 						}
 
 						// Gather eliminations.
-						var finalZ = (short)0;
+						var finalZ = (Mask)0;
 						var conclusions = new List<Conclusion>();
 						foreach (var digit in digitsMask)
 						{
@@ -134,7 +134,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 								continue;
 							}
 
-							finalZ |= (short)(1 << digit);
+							finalZ |= (Mask)(1 << digit);
 							foreach (var cell in elimMap)
 							{
 								conclusions.Add(new(Elimination, cell, digit));
@@ -150,9 +150,9 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 						foreach (var cell in aMap)
 						{
 							var mask = grid.GetCandidates(cell);
-							var alsDigitsMask = (short)(mask & ~(finalX | finalZ));
-							var xDigitsMask = (short)(mask & finalX);
-							var zDigitsMask = (short)(mask & finalZ);
+							var alsDigitsMask = (Mask)(mask & ~(finalX | finalZ));
+							var xDigitsMask = (Mask)(mask & finalX);
+							var zDigitsMask = (Mask)(mask & finalZ);
 							foreach (var digit in alsDigitsMask)
 							{
 								candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet1, cell * 9 + digit));
@@ -169,9 +169,9 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 						foreach (var cell in bMap)
 						{
 							var mask = grid.GetCandidates(cell);
-							var alsDigitsMask = (short)(mask & ~(finalY | finalZ));
-							var yDigitsMask = (short)(mask & finalY);
-							var zDigitsMask = (short)(mask & finalZ);
+							var alsDigitsMask = (Mask)(mask & ~(finalY | finalZ));
+							var yDigitsMask = (Mask)(mask & finalY);
+							var zDigitsMask = (Mask)(mask & finalZ);
 							foreach (var digit in alsDigitsMask)
 							{
 								candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet1, cell * 9 + digit));
@@ -188,8 +188,8 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 						foreach (var cell in cMap)
 						{
 							var mask = grid.GetCandidates(cell);
-							var alsDigitsMask = (short)(mask & ~(finalX | finalY));
-							var xyDigitsMask = (short)(mask & (finalX | finalY));
+							var alsDigitsMask = (Mask)(mask & ~(finalX | finalY));
+							var xyDigitsMask = (Mask)(mask & (finalX | finalY));
 							foreach (var digit in alsDigitsMask)
 							{
 								candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet1, cell * 9 + digit));

@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is an <b>Exocet</b> technique.
 /// </summary>
-public abstract class ExocetStep(View[]? views, Exocet exocet, short digitsMask, ExocetElimination[] eliminations) :
+public abstract class ExocetStep(View[]? views, Exocet exocet, Mask digitsMask, ExocetElimination[] eliminations) :
 	Step((from e in eliminations from c in e.Conclusions select c).ToArray(), views)
 {
 	/// <inheritdoc/>
@@ -12,7 +12,7 @@ public abstract class ExocetStep(View[]? views, Exocet exocet, short digitsMask,
 	/// <summary>
 	/// Indicates the mask of digits used.
 	/// </summary>
-	public short DigitsMask { get; } = digitsMask;
+	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;

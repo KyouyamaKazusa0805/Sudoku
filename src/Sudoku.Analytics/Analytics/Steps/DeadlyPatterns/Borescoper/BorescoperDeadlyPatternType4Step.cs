@@ -7,9 +7,9 @@ public sealed class BorescoperDeadlyPatternType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in CellMap map,
-	short digitsMask,
+	Mask digitsMask,
 	scoped in CellMap conjugateHouse,
-	short extraDigitsMask
+	Mask extraDigitsMask
 ) : BorescoperDeadlyPatternStep(conclusions, views, map, digitsMask)
 {
 	/// <inheritdoc/>
@@ -21,7 +21,7 @@ public sealed class BorescoperDeadlyPatternType4Step(
 	/// <summary>
 	/// Indicates the mask of extra digits used.
 	/// </summary>
-	public short ExtraDigitsMask { get; } = extraDigitsMask;
+	public Mask ExtraDigitsMask { get; } = extraDigitsMask;
 
 	/// <summary>
 	/// Indicates the cells used as generialized conjugate.

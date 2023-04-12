@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Subset</b> technique.
 /// </summary>
-public abstract class SubsetStep(Conclusion[] conclusions, View[]? views, int house, scoped in CellMap cells, short digitsMask) :
+public abstract class SubsetStep(Conclusion[] conclusions, View[]? views, int house, scoped in CellMap cells, Mask digitsMask) :
 	Step(conclusions, views)
 {
 	/// <inheritdoc/>
@@ -23,7 +23,7 @@ public abstract class SubsetStep(Conclusion[] conclusions, View[]? views, int ho
 	/// <summary>
 	/// Indicates the mask that contains all digits used.
 	/// </summary>
-	public short DigitsMask { get; } = digitsMask;
+	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;

@@ -115,7 +115,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 
 			// Then check whether the another house (left-side block in those diagrams)
 			// forms an AHS (i.e. those digits must appear in the specified cells).
-			var ahsMask = (short)0;
+			var ahsMask = (Mask)0;
 			foreach (var digit in mask)
 			{
 				ahsMask |= (HousesMap[coverSet] & CandidatesMap[digit] & b) / coverSet;
@@ -141,12 +141,12 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 					continue;
 				}
 
-				foreach (var digit in (short)(mask & grid.GetCandidates(aCell)))
+				foreach (var digit in (Mask)(mask & grid.GetCandidates(aCell)))
 				{
 					conclusions.Add(new(Elimination, aCell, digit));
 				}
 			}
-			foreach (var digit in (short)(Grid.MaxCandidatesMask & ~mask))
+			foreach (var digit in (Mask)(Grid.MaxCandidatesMask & ~mask))
 			{
 				foreach (var ahsCell in ahsCells & CandidatesMap[digit])
 				{
@@ -171,14 +171,14 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			}
 			foreach (var cell in c)
 			{
-				foreach (var digit in (short)(mask & grid.GetCandidates(cell)))
+				foreach (var digit in (Mask)(mask & grid.GetCandidates(cell)))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 				}
 			}
 			foreach (var cell in ahsCells)
 			{
-				foreach (var digit in (short)(mask & grid.GetCandidates(cell)))
+				foreach (var digit in (Mask)(mask & grid.GetCandidates(cell)))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 				}

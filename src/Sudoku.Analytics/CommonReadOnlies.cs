@@ -125,7 +125,7 @@ public static class CommonReadOnlies
 	/// <summary>
 	/// All possible blocks combinations being reserved for chromatic pattern searcher's usages.
 	/// </summary>
-	public static readonly short[] ChromaticPatternBlocksCombinations =
+	public static readonly Mask[] ChromaticPatternBlocksCombinations =
 	{
 		0b000_011_011, 0b000_101_101, 0b000_110_110,
 		0b011_000_011, 0b101_000_101, 0b110_000_110,

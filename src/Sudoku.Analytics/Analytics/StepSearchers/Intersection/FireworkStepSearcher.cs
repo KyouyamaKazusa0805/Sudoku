@@ -167,7 +167,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		var elimCell = ((PeersMap[cell1] & PeersMap[cell2]) - pivot)[0];
 		foreach (var digits in satisfiedDigitsMask.GetAllSets().GetSubsets(2))
 		{
-			var currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1]);
+			var currentDigitsMask = (Mask)(1 << digits[0] | 1 << digits[1]);
 			var cell1TheOtherLine = cell1.ToHouseIndex((CellsMap[cell1] + pivot).CoveredLine.ToHouseType() == HouseType.Row ? HouseType.Column : HouseType.Row);
 			var cell2TheOtherLine = cell2.ToHouseIndex((CellsMap[cell2] + pivot).CoveredLine.ToHouseType() == HouseType.Row ? HouseType.Column : HouseType.Row);
 
@@ -212,7 +212,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					var candidateOffsets = new List<CandidateViewNode>(10);
 					foreach (var cell in map)
 					{
-						foreach (var digit in (short)(grid.GetCandidates(cell) & currentDigitsMask))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & currentDigitsMask))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						}
@@ -265,7 +265,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		scoped in Grid grid,
 		bool onlyFindOne,
 		scoped in Firework pattern,
-		short digitsMask,
+		Mask digitsMask,
 		int pivot
 	)
 	{
@@ -281,7 +281,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 
 		foreach (var digits in digitsMask.GetAllSets().GetSubsets(3))
 		{
-			var currentDigitsMask = (short)(1 << digits[0] | 1 << digits[1] | 1 << digits[2]);
+			var currentDigitsMask = (Mask)(1 << digits[0] | 1 << digits[1] | 1 << digits[2]);
 			if ((satisfiedDigitsMask & currentDigitsMask) != currentDigitsMask)
 			{
 				continue;
@@ -294,15 +294,15 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 
 			// Now check eliminations.
 			var conclusions = new List<Conclusion>(18);
-			foreach (var digit in (short)(grid.GetCandidates(pivot) & ~currentDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(pivot) & ~currentDigitsMask))
 			{
 				conclusions.Add(new(Elimination, pivot, digit));
 			}
-			foreach (var digit in (short)(grid.GetCandidates(cell1) & ~currentDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(cell1) & ~currentDigitsMask))
 			{
 				conclusions.Add(new(Elimination, cell1, digit));
 			}
-			foreach (var digit in (short)(grid.GetCandidates(cell2) & ~currentDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(cell2) & ~currentDigitsMask))
 			{
 				conclusions.Add(new(Elimination, cell2, digit));
 			}
@@ -321,15 +321,15 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			}
 
 			var candidateOffsets = new List<CandidateViewNode>();
-			foreach (var digit in (short)(grid.GetCandidates(pivot) & currentDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(pivot) & currentDigitsMask))
 			{
 				candidateOffsets.Add(new(DisplayColorKind.Normal, pivot * 9 + digit));
 			}
-			foreach (var digit in (short)(grid.GetCandidates(cell1) & currentDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(cell1) & currentDigitsMask))
 			{
 				candidateOffsets.Add(new(DisplayColorKind.Normal, cell1 * 9 + digit));
 			}
-			foreach (var digit in (short)(grid.GetCandidates(cell2) & currentDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
 			{
 				candidateOffsets.Add(new(DisplayColorKind.Normal, cell2 * 9 + digit));
 			}
@@ -366,9 +366,9 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						| unknowns
 						| new BabaGroupViewNode[]
 						{
-							new(DisplayColorKind.Normal, pivot, (Utf8Char)'z', (short)(grid.GetCandidates(pivot) & currentDigitsMask)),
-							new(DisplayColorKind.Normal, cell1, (Utf8Char)'x', (short)(grid.GetCandidates(cell1) & currentDigitsMask)),
-							new(DisplayColorKind.Normal, cell2, (Utf8Char)'y', (short)(grid.GetCandidates(cell2) & currentDigitsMask))
+							new(DisplayColorKind.Normal, pivot, (Utf8Char)'z', (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)),
+							new(DisplayColorKind.Normal, cell1, (Utf8Char)'x', (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)),
+							new(DisplayColorKind.Normal, cell2, (Utf8Char)'y', (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
 						}
 				},
 				pattern.Map,
@@ -423,8 +423,8 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 				var cell2Pivot2 = nonPivot2Cells[1];
 				foreach (var ((d1, d2), (d3, d4)) in cases)
 				{
-					var pair1DigitsMask = (short)(1 << d1 | 1 << d2);
-					var pair2DigitsMask = (short)(1 << d3 | 1 << d4);
+					var pair1DigitsMask = (Mask)(1 << d1 | 1 << d2);
+					var pair2DigitsMask = (Mask)(1 << d3 | 1 << d4);
 					var satisfiedDigitsMaskPivot1 = GetFireworkDigits(
 						cell1Pivot1, cell2Pivot1, pivot1, grid, out var house1CellsExcludedPivot1, out var house2CellsExcludedPivot1
 					);
@@ -438,19 +438,19 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					}
 
 					// Firework quadruple found.
-					var fourDigitsMask = (short)(pair1DigitsMask | pair2DigitsMask);
+					var fourDigitsMask = (Mask)(pair1DigitsMask | pair2DigitsMask);
 					var conclusions = new List<Conclusion>(20);
-					foreach (var digit in (short)(grid.GetCandidates(pivot1) & ~pair1DigitsMask))
+					foreach (var digit in (Mask)(grid.GetCandidates(pivot1) & ~pair1DigitsMask))
 					{
 						conclusions.Add(new(Elimination, pivot1, digit));
 					}
-					foreach (var digit in (short)(grid.GetCandidates(pivot2) & ~pair2DigitsMask))
+					foreach (var digit in (Mask)(grid.GetCandidates(pivot2) & ~pair2DigitsMask))
 					{
 						conclusions.Add(new(Elimination, pivot2, digit));
 					}
 					foreach (var cell in map - pivot1 - pivot2)
 					{
-						foreach (var digit in (short)(grid.GetCandidates(cell) & ~fourDigitsMask))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~fourDigitsMask))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -462,7 +462,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 								- HousesMap[pivot1.ToHouseIndex(HouseType.Column)]
 						) & EmptyCells)
 					{
-						foreach (var digit in (short)(grid.GetCandidates(cell) & pair1DigitsMask))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & pair1DigitsMask))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -474,7 +474,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 								- HousesMap[pivot2.ToHouseIndex(HouseType.Column)]
 						) & EmptyCells)
 					{
-						foreach (var digit in (short)(grid.GetCandidates(cell) & pair2DigitsMask))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & pair2DigitsMask))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -486,17 +486,17 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					}
 
 					var candidateOffsets = new List<CandidateViewNode>();
-					foreach (var digit in (short)(grid.GetCandidates(pivot1) & fourDigitsMask))
+					foreach (var digit in (Mask)(grid.GetCandidates(pivot1) & fourDigitsMask))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, pivot1 * 9 + digit));
 					}
-					foreach (var digit in (short)(grid.GetCandidates(pivot2) & fourDigitsMask))
+					foreach (var digit in (Mask)(grid.GetCandidates(pivot2) & fourDigitsMask))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Normal, pivot2 * 9 + digit));
 					}
 					foreach (var cell in map - pivot1 - pivot2)
 					{
-						foreach (var digit in (short)(grid.GetCandidates(cell) & fourDigitsMask))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & fourDigitsMask))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						}
@@ -505,7 +505,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					var candidateOffsetsView2 = new List<CandidateViewNode>();
 					foreach (var cell in map - pivot2)
 					{
-						foreach (var digit in (short)(grid.GetCandidates(cell) & pair1DigitsMask))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & pair1DigitsMask))
 						{
 							candidateOffsetsView2.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						}
@@ -513,7 +513,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					var candidateOffsetsView3 = new List<CandidateViewNode>();
 					foreach (var cell in map - pivot1)
 					{
-						foreach (var digit in (short)(grid.GetCandidates(cell) & pair2DigitsMask))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & pair2DigitsMask))
 						{
 							candidateOffsetsView3.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 						}
@@ -573,7 +573,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// The excluded cells that is out of the firework structure in the <paramref name="c2"/>'s house.
 	/// </param>
 	/// <returns>All digits that satisfied the firework rule. If none found, 0.</returns>
-	private static short GetFireworkDigits(
+	private static Mask GetFireworkDigits(
 		int c1,
 		int c2,
 		int pivot,
@@ -585,12 +585,12 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		var pivotCellBlock = pivot.ToHouseIndex(HouseType.Block);
 		var excluded1 = HousesMap[(CellsMap[c1] + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c1;
 		var excluded2 = HousesMap[(CellsMap[c2] + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c2;
-		var finalMask = (short)0;
+		var finalMask = (Mask)0;
 		foreach (var digit in grid.GetDigitsUnion(CellsMap[c1] + c2 + pivot))
 		{
 			if (isFireworkFor(digit, excluded1, grid) && isFireworkFor(digit, excluded2, grid))
 			{
-				finalMask |= (short)(1 << digit);
+				finalMask |= (Mask)(1 << digit);
 			}
 		}
 

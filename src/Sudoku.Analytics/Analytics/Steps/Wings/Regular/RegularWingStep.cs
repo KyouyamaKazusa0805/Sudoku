@@ -8,7 +8,7 @@ public sealed class RegularWingStep(
 	View[]? views,
 	int pivot,
 	int pivotCandidatesCount,
-	short digitsMask,
+	Mask digitsMask,
 	scoped in CellMap petals
 ) : WingStep(conclusions, views)
 {
@@ -73,7 +73,7 @@ public sealed class RegularWingStep(
 	/// <summary>
 	/// Indicates a mask that contains all digits used.
 	/// </summary>
-	public short DigitsMask { get; } = digitsMask;
+	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
 	public override Technique Code

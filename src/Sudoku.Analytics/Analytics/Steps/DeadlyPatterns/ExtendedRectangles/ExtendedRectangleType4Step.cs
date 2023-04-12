@@ -7,7 +7,7 @@ public sealed class ExtendedRectangleType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in CellMap cells,
-	short digitsMask,
+	Mask digitsMask,
 	scoped in Conjugate conjugatePair
 ) : ExtendedRectangleStep(conclusions, views, cells, digitsMask)
 {

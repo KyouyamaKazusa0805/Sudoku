@@ -11,7 +11,7 @@ public sealed class UniqueRectangleExternalType3Step(
 	scoped in CellMap cells,
 	scoped in CellMap guardianCells,
 	scoped in CellMap subsetCells,
-	short subsetDigitsMask,
+	Mask subsetDigitsMask,
 	bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
@@ -37,7 +37,7 @@ public sealed class UniqueRectangleExternalType3Step(
 	/// <summary>
 	/// Indicates the digits that the subset are used.
 	/// </summary>
-	public short SubsetDigitsMask { get; } = subsetDigitsMask;
+	public Mask SubsetDigitsMask { get; } = subsetDigitsMask;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

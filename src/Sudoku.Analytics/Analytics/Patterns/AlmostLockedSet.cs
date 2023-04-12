@@ -11,7 +11,7 @@
 /// <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
 /// The special case is a bi-value cell.
 /// </remarks>
-public sealed class AlmostLockedSet(short digitMask, scoped in CellMap map, scoped in CellMap possibleEliminationMap)
+public sealed class AlmostLockedSet(Mask digitMask, scoped in CellMap map, scoped in CellMap possibleEliminationMap)
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
@@ -46,23 +46,23 @@ public sealed class AlmostLockedSet(short digitMask, scoped in CellMap map, scop
 	/// <summary>
 	/// Indicates the mask of digits used.
 	/// </summary>
-	public short DigitsMask { get; } = digitMask;
+	public Mask DigitsMask { get; } = digitMask;
 
 	/// <summary>
 	/// Indicates all strong links in this ALS.
-	/// The result will be represented as a <see cref="short"/> mask of 9 bits indicating which bits used.
+	/// The result will be represented as a <see cref="Mask"/> mask of 9 bits indicating which bits used.
 	/// </summary>
-	public short[] StrongLinks
+	public Mask[] StrongLinks
 	{
 		get
 		{
 			scoped var digits = DigitsMask.GetAllSets();
-			var result = new short[StrongRelationsCount[digits.Length - 1]];
+			var result = new Mask[StrongRelationsCount[digits.Length - 1]];
 			for (int i = 0, x = 0, l = digits.Length; i < l - 1; i++)
 			{
 				for (var j = i + 1; j < l; j++)
 				{
-					result[x++] = (short)(1 << digits[i] | 1 << digits[j]);
+					result[x++] = (Mask)(1 << digits[i] | 1 << digits[j]);
 				}
 			}
 

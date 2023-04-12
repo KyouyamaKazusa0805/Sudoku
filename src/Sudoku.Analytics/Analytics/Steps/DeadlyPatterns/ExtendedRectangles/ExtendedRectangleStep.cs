@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is an <b>Extended Rectangle</b> technique.
 /// </summary>
-public abstract class ExtendedRectangleStep(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, short digitsMask) :
+public abstract class ExtendedRectangleStep(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, Mask digitsMask) :
 	DeadlyPatternStep(conclusions, views)
 {
 	/// <inheritdoc/>
@@ -17,7 +17,7 @@ public abstract class ExtendedRectangleStep(Conclusion[] conclusions, View[]? vi
 	/// <summary>
 	/// Indicates the mask of digits used.
 	/// </summary>
-	public short DigitsMask { get; } = digitsMask;
+	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
 	public sealed override string? Format => base.Format;

@@ -328,7 +328,7 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 			var (c2, d2, _) = nodes[i + 1];
 			if (c1 == c2)
 			{
-				foreach (var digit in (short)(grid.GetCandidates(c1) & ~(1 << d1 | 1 << d2)))
+				foreach (var digit in (Mask)(grid.GetCandidates(c1) & ~(1 << d1 | 1 << d2)))
 				{
 					conclusions.Add(new(Elimination, c1, digit));
 				}

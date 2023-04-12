@@ -175,7 +175,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result.</returns>
-	private static (List<int> CandidateList, short Mask) RecordUndoInfo(scoped in Grid grid, int cell, int digit)
+	private static (List<int> CandidateList, Mask Mask) RecordUndoInfo(scoped in Grid grid, int cell, int digit)
 	{
 		var list = new List<int>();
 		foreach (var c in PeersMap[cell] & CandidatesMap[digit])
@@ -193,7 +193,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="list">The list.</param>
 	/// <param name="cell">The cell.</param>
 	/// <param name="mask">The mask.</param>
-	private static void UndoGrid(scoped ref Grid grid, List<int> list, int cell, short mask)
+	private static void UndoGrid(scoped ref Grid grid, List<int> list, int cell, Mask mask)
 	{
 		foreach (var cand in list)
 		{

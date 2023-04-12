@@ -89,8 +89,8 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			}
 
 			// Step 1: To determine whether the distinction degree of base line is 1.
-			var appearedDigitsMask = (short)0;
-			var distinctionMask = (short)0;
+			var appearedDigitsMask = (Mask)0;
+			var distinctionMask = (Mask)0;
 			var appearedParts = 0;
 			for (int j = 0, house = isRow ? 18 : 9; j < 9; j++, house++)
 			{
@@ -109,8 +109,8 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				static void f(
 					scoped in Grid grid,
 					scoped in CellMap map,
-					scoped ref short appearedDigitsMask,
-					scoped ref short distinctionMask,
+					scoped ref Mask appearedDigitsMask,
+					scoped ref Mask distinctionMask,
 					scoped ref int appearedParts
 				)
 				{
@@ -121,16 +121,16 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					if (!EmptyCells.Contains(c1))
 					{
 						var d1 = grid[c1];
-						distinctionMask ^= (short)(1 << d1);
-						appearedDigitsMask |= (short)(1 << d1);
+						distinctionMask ^= (Mask)(1 << d1);
+						appearedDigitsMask |= (Mask)(1 << d1);
 
 						flag = true;
 					}
 					if (!EmptyCells.Contains(c2))
 					{
 						var d2 = grid[c2];
-						distinctionMask ^= (short)(1 << d2);
-						appearedDigitsMask |= (short)(1 << d2);
+						distinctionMask ^= (Mask)(1 << d2);
+						appearedDigitsMask |= (Mask)(1 << d2);
 
 						flag = true;
 					}
@@ -178,12 +178,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 						continue;
 					}
 
-					var comparer = (short)0;
+					var comparer = (Mask)0;
 					foreach (var digit in digits)
 					{
-						comparer |= (short)(1 << digit);
+						comparer |= (Mask)(1 << digit);
 					}
-					var otherDigitsMask = (short)(pairMask & ~comparer);
+					var otherDigitsMask = (Mask)(pairMask & ~comparer);
 					if (appearingMap == (tempMap & HousesMap[TrailingZeroCount(square.BlockMask)]))
 					{
 						// Qdp forms.
@@ -228,8 +228,8 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		scoped in CellMap square,
 		scoped in CellMap baseLine,
 		scoped in QiuDeadlyPattern pattern,
-		short comparer,
-		short otherDigitsMask,
+		Mask comparer,
+		Mask otherDigitsMask,
 		bool onlyFindOne
 	)
 	{
@@ -245,7 +245,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			return null;
 		}
 
-		var mask = (short)(grid.GetCandidates(elimCell) & ~(1 << extraDigit));
+		var mask = (Mask)(grid.GetCandidates(elimCell) & ~(1 << extraDigit));
 		if (mask == 0)
 		{
 			return null;
@@ -314,8 +314,8 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		scoped in CellMap square,
 		scoped in CellMap baseLine,
 		scoped in QiuDeadlyPattern pattern,
-		short comparer,
-		short otherDigitsMask,
+		Mask comparer,
+		Mask otherDigitsMask,
 		bool onlyFindOne
 	)
 	{
@@ -395,8 +395,8 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		scoped in CellMap square,
 		scoped in CellMap baseLine,
 		scoped in QiuDeadlyPattern pattern,
-		short comparer,
-		short otherDigitsMask,
+		Mask comparer,
+		Mask otherDigitsMask,
 		bool onlyFindOne
 	)
 	{
@@ -500,7 +500,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		scoped in CellMap square,
 		scoped in CellMap baseLine,
 		scoped in QiuDeadlyPattern pattern,
-		short comparer,
+		Mask comparer,
 		bool onlyFindOne
 	)
 	{
@@ -513,7 +513,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					continue;
 				}
 
-				var otherDigitsMask = (short)(comparer & ~(1 << digit));
+				var otherDigitsMask = (Mask)(comparer & ~(1 << digit));
 				var flag = false;
 				foreach (var d in otherDigitsMask)
 				{
@@ -598,7 +598,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		scoped in CellMap square,
 		scoped in CellMap baseLine,
 		scoped in QiuDeadlyPattern pattern,
-		short comparer,
+		Mask comparer,
 		bool onlyFindOne
 	)
 	{

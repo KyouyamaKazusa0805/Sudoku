@@ -83,8 +83,8 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override unsafe Step? GetAll(scoped ref AnalysisContext context)
 	{
-		var pairs = stackalloc short[8];
-		var tempLink = stackalloc short[8];
+		var pairs = stackalloc Mask[8];
+		var tempLink = stackalloc Mask[8];
 		var linkHouse = stackalloc int[8];
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var cells in SkLoopTable)
@@ -135,7 +135,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 				continue;
 			}
 
-			var candidateMask = (short)(pairs[0] & pairs[1]);
+			var candidateMask = (Mask)(pairs[0] & pairs[1]);
 			if (candidateMask == 0)
 			{
 				continue;
@@ -162,7 +162,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 				var k = 1;
 				for (; k < 8; k++)
 				{
-					candidateMask = (short)(tempLink[k - 1] ^ pairs[k]);
+					candidateMask = (Mask)(tempLink[k - 1] ^ pairs[k]);
 					if ((candidateMask & pairs[(k + 1) % 8]) != candidateMask)
 					{
 						break;
@@ -177,7 +177,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 				}
 
 				// Last check: Check the first and the last pair.
-				candidateMask = (short)(tempLink[7] ^ pairs[0]);
+				candidateMask = (Mask)(tempLink[7] ^ pairs[0]);
 				if ((candidateMask & pairs[(k + 1) % 8]) != candidateMask)
 				{
 					continue;
@@ -203,7 +203,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 
 					foreach (var cell in elimMap)
 					{
-						var cands = (short)(grid.GetCandidates(cell) & tempLink[k]);
+						var cands = (Mask)(grid.GetCandidates(cell) & tempLink[k]);
 						if (cands != 0)
 						{
 							foreach (var digit in cands)
@@ -222,13 +222,13 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 
 				// Highlight candidates.
 				var candidateOffsets = new List<CandidateViewNode>();
-				var link = new short[27];
+				var link = new Mask[27];
 				for (k = 0; k < 8; k++)
 				{
 					link[linkHouse[k]] = tempLink[k];
 					foreach (var cell in map & HousesMap[linkHouse[k]])
 					{
-						var cands = (short)(grid.GetCandidates(cell) & tempLink[k]);
+						var cands = (Mask)(grid.GetCandidates(cell) & tempLink[k]);
 						if (cands == 0)
 						{
 							continue;

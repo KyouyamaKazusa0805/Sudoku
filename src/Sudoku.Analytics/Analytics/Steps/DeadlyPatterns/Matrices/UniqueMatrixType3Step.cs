@@ -7,8 +7,8 @@ public sealed class UniqueMatrixType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in CellMap cells,
-	short digitsMask,
-	short subsetDigitsMask,
+	Mask digitsMask,
+	Mask subsetDigitsMask,
 	scoped in CellMap subsetCells
 ) : UniqueMatrixStep(conclusions, views, cells, digitsMask)
 {
@@ -18,7 +18,7 @@ public sealed class UniqueMatrixType3Step(
 	/// <summary>
 	/// Indicates the mask that describes the extra digits used in the subset.
 	/// </summary>
-	public short SubsetDigitsMask { get; } = subsetDigitsMask;
+	public Mask SubsetDigitsMask { get; } = subsetDigitsMask;
 
 	/// <summary>
 	/// Indicates the cells that the subset used.

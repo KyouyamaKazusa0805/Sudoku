@@ -8,8 +8,8 @@ public sealed class AlmostLockedSetsXzStep(
 	View[]? views,
 	AlmostLockedSet als1,
 	AlmostLockedSet als2,
-	short xDigitsMask,
-	short zDigitsMask,
+	Mask xDigitsMask,
+	Mask zDigitsMask,
 	bool? isDoublyLinked
 ) : AlmostLockedSetsStep(conclusions, views)
 {
@@ -29,12 +29,12 @@ public sealed class AlmostLockedSetsXzStep(
 	/// <summary>
 	/// Indicates the mask of X digits used.
 	/// </summary>
-	public short XDigitsMask { get; } = xDigitsMask;
+	public Mask XDigitsMask { get; } = xDigitsMask;
 
 	/// <summary>
 	/// Indicates the mask of Z digits used.
 	/// </summary>
-	public short ZDigitsMask { get; } = zDigitsMask;
+	public Mask ZDigitsMask { get; } = zDigitsMask;
 
 	/// <inheritdoc/>
 	public override string? Format

@@ -463,7 +463,7 @@ public abstract class ChainingStep(
 				if (!isOn)
 				{
 					// Remove deductions of the container chain.
-					nestedGrid.GetMaskRef(cell) &= (short)(1 << digit);
+					nestedGrid.GetMaskRef(cell) &= (Mask)(1 << digit);
 				}
 			}
 

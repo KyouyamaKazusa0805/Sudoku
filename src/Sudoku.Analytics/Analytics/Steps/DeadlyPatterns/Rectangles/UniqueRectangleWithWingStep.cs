@@ -13,7 +13,7 @@ public sealed class UniqueRectangleWithWingStep(
 	bool isAvoidable,
 	scoped in CellMap branches,
 	scoped in CellMap petals,
-	short extraDigitsMask,
+	Mask extraDigitsMask,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
@@ -29,7 +29,7 @@ public sealed class UniqueRectangleWithWingStep(
 	/// <summary>
 	/// Indicates the mask that contains all extra digits.
 	/// </summary>
-	public short ExtraDigitsMask { get; } = extraDigitsMask;
+	public Mask ExtraDigitsMask { get; } = extraDigitsMask;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

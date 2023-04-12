@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed class BivalueUniversalGraveXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	short digitsMask,
+	Mask digitsMask,
 	scoped in CellMap cells,
 	int xzCell
 ) : BivalueUniversalGraveStep(conclusions, views)
@@ -19,7 +19,7 @@ public sealed class BivalueUniversalGraveXzStep(
 	/// <summary>
 	/// Indicates the mask of digits used.
 	/// </summary>
-	public short DigitsMask { get; } = digitsMask;
+	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveXzRule;

@@ -122,9 +122,9 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 												continue;
 											}
 
-											mask = (short)((short)(blockMask | rowMask) | columnMask);
-											var rbMaskOnlyInInter = (short)(rbSelectedInterMask & ~mask);
-											var cbMaskOnlyInInter = (short)(cbSelectedInterMask & ~mask);
+											mask = (Mask)((Mask)(blockMask | rowMask) | columnMask);
+											var rbMaskOnlyInInter = (Mask)(rbSelectedInterMask & ~mask);
+											var cbMaskOnlyInInter = (Mask)(cbSelectedInterMask & ~mask);
 
 											var bCount = PopCount((uint)blockMask);
 											var rCount = PopCount((uint)rowMask);

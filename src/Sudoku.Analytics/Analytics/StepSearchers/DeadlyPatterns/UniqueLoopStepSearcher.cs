@@ -34,7 +34,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			var mask = grid.GetCandidates(cell);
 			var d1 = TrailingZeroCount(mask);
 			var d2 = mask.GetNextSet(d1);
-			var comparer = (short)(1 << d1 | 1 << d2);
+			var comparer = (Mask)(1 << d1 | 1 << d2);
 
 			var patterns = Cached.GatherUniqueLoops(comparer);
 			if (patterns.Length == 0)
@@ -171,11 +171,11 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		int d2,
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
-		short comparer,
+		Mask comparer,
 		bool onlyFindOne
 	)
 	{
-		var mask = (short)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
+		var mask = (Mask)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
 		if (!IsPow2(mask))
 		{
 			return null;
@@ -236,7 +236,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		int d2,
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
-		short comparer,
+		Mask comparer,
 		bool onlyFindOne
 	)
 	{
@@ -265,7 +265,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			return null;
 		}
 
-		var otherDigitsMask = (short)(m & ~comparer);
+		var otherDigitsMask = (Mask)(m & ~comparer);
 		if (extraCellsMap.InOneHouse)
 		{
 			if (extraCellsMap.Count != 2)
@@ -380,7 +380,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					var conclusions = new List<Conclusion>();
 					foreach (var cell in elimMap)
 					{
-						foreach (var digit in (short)(grid.GetCandidates(cell) & otherDigitsMask))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & otherDigitsMask))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -444,7 +444,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		int d2,
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
-		short comparer,
+		Mask comparer,
 		bool onlyFindOne
 	)
 	{
@@ -527,7 +527,7 @@ file static unsafe class Cached
 	/// <returns>
 	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
 	/// </returns>
-	public static UniqueLoop[] GatherUniqueLoops(short digitsMask)
+	public static UniqueLoop[] GatherUniqueLoops(Mask digitsMask)
 	{
 		LoopChecker condition = &UniqueLoopSatisfyingPredicate;
 
@@ -552,7 +552,7 @@ file static unsafe class Cached
 		int lastCell,
 		int lastHouse,
 		scoped in CellMap currentLoop,
-		short digitsMask,
+		Mask digitsMask,
 		scoped in CellMap fullCells,
 		LoopChecker condition,
 		List<UniqueLoop> result

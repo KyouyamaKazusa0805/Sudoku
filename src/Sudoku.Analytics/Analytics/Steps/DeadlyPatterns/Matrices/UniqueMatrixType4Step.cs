@@ -7,7 +7,7 @@ public sealed class UniqueMatrixType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in CellMap cells,
-	short digitsMask,
+	Mask digitsMask,
 	int digit1,
 	int digit2,
 	scoped in CellMap conjugateHouse

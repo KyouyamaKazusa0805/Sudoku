@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides with a step that is a <b>Borescoper's Deadly Pattern Type 1</b> technique.
 /// </summary>
-public sealed class BorescoperDeadlyPatternType1Step(Conclusion[] conclusions, View[]? views, scoped in CellMap map, short digitsMask) :
+public sealed class BorescoperDeadlyPatternType1Step(Conclusion[] conclusions, View[]? views, scoped in CellMap map, Mask digitsMask) :
 	BorescoperDeadlyPatternStep(conclusions, views, map, digitsMask)
 {
 	/// <inheritdoc/>

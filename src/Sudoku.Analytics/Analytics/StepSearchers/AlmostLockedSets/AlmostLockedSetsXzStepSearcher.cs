@@ -53,7 +53,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 				var mask2 = als2.DigitsMask;
 				var map2 = als2.Map;
 				var possibleElimMap2 = als2.PossibleEliminationMap;
-				var xzMask = (short)(mask1 & mask2);
+				var xzMask = (Mask)(mask1 & mask2);
 				var map = map1 | map2;
 				var overlapMap = map1 & map2;
 				if (!AllowCollision && overlapMap is not [])
@@ -65,7 +65,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 				// in the intersection of two ALSes.
 				foreach (var cell in overlapMap)
 				{
-					xzMask &= (short)~grid.GetCandidates(cell);
+					xzMask &= (Mask)~grid.GetCandidates(cell);
 				}
 
 				// If the number of digits that both two ALSes contain is only one (or zero),
@@ -75,21 +75,21 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					continue;
 				}
 
-				var rccMask = (short)0;
-				var z = (short)0;
+				var rccMask = (Mask)0;
+				var z = (Mask)0;
 				var nh = 0;
 				foreach (var digit in xzMask)
 				{
 					if ((map & CandidatesMap[digit]).AllSetsAreInOneHouse(out houseIndex))
 					{
 						// 'digit' is the RCC digit.
-						rccMask |= (short)(1 << digit);
+						rccMask |= (Mask)(1 << digit);
 						house[nh++] = houseIndex;
 					}
 					else
 					{
 						// 'digit' is the eliminating digit.
-						z |= (short)(1 << digit);
+						z |= (Mask)(1 << digit);
 					}
 				}
 
@@ -100,7 +100,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 
 				// Check basic eliminations.
 				var isDoublyLinked = (bool?)false;
-				var finalZ = (short)0;
+				var finalZ = (Mask)0;
 				var conclusions = new List<Conclusion>();
 				foreach (var elimDigit in z)
 				{
@@ -114,14 +114,14 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 						conclusions.Add(new(Elimination, cell, elimDigit));
 					}
 
-					finalZ |= (short)(1 << elimDigit);
+					finalZ |= (Mask)(1 << elimDigit);
 				}
 
 				if (AllowLoopedPatterns && PopCount((uint)rccMask) == 2)
 				{
 					// Doubly linked ALS-XZ.
 					isDoublyLinked = true;
-					foreach (var elimDigit in (short)(z & ~rccMask))
+					foreach (var elimDigit in (Mask)(z & ~rccMask))
 					{
 						if ((CandidatesMap[elimDigit] & map1) is not (var zMap and not []))
 						{
@@ -133,7 +133,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 							continue;
 						}
 
-						finalZ |= (short)(1 << elimDigit);
+						finalZ |= (Mask)(1 << elimDigit);
 					}
 
 					// RCC digit 2 eliminations.
@@ -158,7 +158,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					tempMap &= possibleElimMap1;
 					foreach (var cell in tempMap)
 					{
-						foreach (var digit in (short)(grid.GetCandidates(cell) & (mask1 & ~rccMask)))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & (mask1 & ~rccMask)))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -171,7 +171,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					tempMap &= possibleElimMap2;
 					foreach (var cell in tempMap)
 					{
-						foreach (var digit in (short)(grid.GetCandidates(cell) & (mask2 & ~rccMask)))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & (mask2 & ~rccMask)))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -201,9 +201,9 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					foreach (var cell in map1)
 					{
 						var mask = grid.GetCandidates(cell);
-						var alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
-						var targetDigitsMask = (short)(mask & finalZ);
-						var rccDigitsMask = (short)(mask & rccMask);
+						var alsDigitsMask = (Mask)(mask & ~(finalZ | rccMask));
+						var targetDigitsMask = (Mask)(mask & finalZ);
+						var rccDigitsMask = (Mask)(mask & rccMask);
 						foreach (var digit in alsDigitsMask)
 						{
 							candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet1, cell * 9 + digit));
@@ -220,9 +220,9 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					foreach (var cell in map2)
 					{
 						var mask = grid.GetCandidates(cell);
-						var alsDigitsMask = (short)(mask & ~(finalZ | rccMask));
-						var targetDigitsMask = (short)(mask & finalZ);
-						var rccDigitsMask = (short)(mask & rccMask);
+						var alsDigitsMask = (Mask)(mask & ~(finalZ | rccMask));
+						var targetDigitsMask = (Mask)(mask & finalZ);
+						var rccDigitsMask = (Mask)(mask & rccMask);
 						foreach (var digit in alsDigitsMask)
 						{
 							candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet2, cell * 9 + digit));

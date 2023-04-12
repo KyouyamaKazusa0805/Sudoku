@@ -10,7 +10,7 @@ public sealed class UniqueRectangleType3Step(
 	int digit2,
 	scoped in CellMap cells,
 	scoped in CellMap extraCells,
-	short extraDigitsMask,
+	Mask extraDigitsMask,
 	int house,
 	bool isAvoidable,
 	int absoluteOffset,
@@ -39,7 +39,7 @@ public sealed class UniqueRectangleType3Step(
 	/// <summary>
 	/// Indicates the mask that contains all extra digits used.
 	/// </summary>
-	public short ExtraDigitsMask { get; } = extraDigitsMask;
+	public Mask ExtraDigitsMask { get; } = extraDigitsMask;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

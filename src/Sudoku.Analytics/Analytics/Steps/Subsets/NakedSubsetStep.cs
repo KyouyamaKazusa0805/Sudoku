@@ -8,7 +8,7 @@ public sealed class NakedSubsetStep(
 	View[]? views,
 	int house,
 	scoped in CellMap cells,
-	short digitsMask,
+	Mask digitsMask,
 	bool? isLocked
 ) : SubsetStep(conclusions, views, house, cells, digitsMask)
 {

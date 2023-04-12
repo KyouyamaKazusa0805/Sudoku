@@ -7,7 +7,7 @@ public sealed class QiuDeadlyPatternType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in QiuDeadlyPattern pattern,
-	short subsetDigitsMask,
+	Mask subsetDigitsMask,
 	scoped in CellMap subsetCells,
 	bool isNaked
 ) : QiuDeadlyPatternStep(conclusions, views, pattern)
@@ -23,7 +23,7 @@ public sealed class QiuDeadlyPatternType3Step(
 	/// <summary>
 	/// Indicates the mask of subset digits used.
 	/// </summary>
-	public short SubsetDigitsMask { get; } = subsetDigitsMask;
+	public Mask SubsetDigitsMask { get; } = subsetDigitsMask;
 
 	/// <summary>
 	/// Indicates the subset cells used.

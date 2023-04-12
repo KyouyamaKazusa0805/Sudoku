@@ -46,7 +46,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 	/// </remarks>
 	protected internal override Step? GetAll(scoped ref AnalysisContext context)
 	{
-		var housesMask = (short)0;
+		var housesMask = (Mask)0;
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 		{
@@ -64,7 +64,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 
 			// Use the formula, and check whether the equation is correct.
 			// If so, the mask 'm' will hold the digits that form locked candidates structures.
-			var m = (short)(maskC & (maskA ^ maskB));
+			var m = (Mask)(maskC & (maskA ^ maskB));
 			if (m == 0)
 			{
 				continue;
@@ -75,8 +75,8 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 			{
 				// Check whether the digit contains any eliminations.
 				(housesMask, var elimMap) = a & CandidatesMap[digit]
-					? ((short)(coverSet << 8 | baseSet), a & CandidatesMap[digit])
-					: ((short)(baseSet << 8 | coverSet), b & CandidatesMap[digit]);
+					? ((Mask)(coverSet << 8 | baseSet), a & CandidatesMap[digit])
+					: ((Mask)(baseSet << 8 | coverSet), b & CandidatesMap[digit]);
 				if (!elimMap)
 				{
 					continue;

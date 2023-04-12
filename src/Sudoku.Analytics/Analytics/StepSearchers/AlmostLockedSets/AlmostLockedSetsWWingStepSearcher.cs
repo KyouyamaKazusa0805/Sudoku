@@ -47,7 +47,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 				}
 
 				// Then merge masks from two ALSes' into one using the operator &.
-				var mask = (short)(mask1 & mask2);
+				var mask = (Mask)(mask1 & mask2);
 				if (PopCount((uint)mask) < 2)
 				{
 					// If we can't find any digit that both two ALSes holds, the ALS-W-Wing won't form.
@@ -75,7 +75,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 
 					if (conjugatePairs[x] is { } conjPairs)
 					{
-						var wDigitsMask = (short)0;
+						var wDigitsMask = (Mask)0;
 						var conclusions = new List<Conclusion>();
 
 						// Iterate on each conjugate pair.
@@ -96,14 +96,14 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 							}
 
 							// Iterate on each digit as the digit 'w'.
-							foreach (var w in (short)(mask & ~(1 << x)))
+							foreach (var w in (Mask)(mask & ~(1 << x)))
 							{
 								if ((map1 | map2) % CandidatesMap[w] is not (var tempMap and not []))
 								{
 									continue;
 								}
 
-								wDigitsMask |= (short)(1 << w);
+								wDigitsMask |= (Mask)(1 << w);
 								foreach (var cell in tempMap)
 								{
 									conclusions.Add(new(Elimination, cell, w));

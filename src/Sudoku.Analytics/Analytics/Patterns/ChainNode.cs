@@ -9,12 +9,12 @@ namespace Sudoku.Analytics.Patterns;
 /// "<see href="https://sunnieshine.github.io/Sudoku/terms/node">Potential</see>".
 /// </remarks>
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayString)}},nq}""")]
-public readonly partial struct ChainNode(short mask) : IEquatable<ChainNode>, IEqualityOperators<ChainNode, ChainNode, bool>
+public readonly partial struct ChainNode(Mask mask) : IEquatable<ChainNode>, IEqualityOperators<ChainNode, ChainNode, bool>
 {
 	/// <summary>
 	/// The internal mask.
 	/// </summary>
-	private readonly short _mask = mask;
+	private readonly Mask _mask = mask;
 
 
 	/// <summary>
@@ -34,7 +34,7 @@ public readonly partial struct ChainNode(short mask) : IEquatable<ChainNode>, IE
 	/// <param name="digit">The digit.</param>
 	/// <param name="isOn"><inheritdoc cref="ChainNode(int, bool)" path="/param[@name='isOn']"/></param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ChainNode(byte cell, byte digit, bool isOn) : this((short)((isOn ? 1 : 0) << 10 | cell * 9 + digit))
+	public ChainNode(byte cell, byte digit, bool isOn) : this((Mask)((isOn ? 1 : 0) << 10 | cell * 9 + digit))
 	{
 	}
 

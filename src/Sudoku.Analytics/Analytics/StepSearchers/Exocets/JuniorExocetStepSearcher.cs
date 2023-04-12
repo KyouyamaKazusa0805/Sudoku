@@ -170,7 +170,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 			{
 				cellOffsets.Add(new(DisplayColorKind.Auxiliary2, cell));
 
-				foreach (var digit in (short)(grid.GetCandidates(cell) & baseCellsDigitsMask))
+				foreach (var digit in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask))
 				{
 					candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + digit));
 				}
@@ -194,9 +194,9 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 			context.Accumulator.Add(step);
 
 
-			void gatherEliminations(int targetCell, short baseCellsDigits, short otherDigits, scoped in Grid grid)
+			void gatherEliminations(int targetCell, Mask baseCellsDigits, Mask otherDigits, scoped in Grid grid)
 			{
-				var elimDigitsMask = (short)(grid.GetCandidates(targetCell) & ~(baseCellsDigits | otherDigits));
+				var elimDigitsMask = (Mask)(grid.GetCandidates(targetCell) & ~(baseCellsDigits | otherDigits));
 
 				if (EmptyCells.Contains(targetCell))
 				{
@@ -215,7 +215,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 					}
 
 					// Highlight candidates.
-					foreach (var digit in (short)(grid.GetCandidates(targetCell) & ~elimDigitsMask))
+					foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~elimDigitsMask))
 					{
 						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, targetCell * 9 + digit));
 					}
@@ -241,9 +241,9 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 	private unsafe bool CheckTargetCells(
 		int targetCell1,
 		int targetCell2,
-		short baseCellsDigitsMask,
+		Mask baseCellsDigitsMask,
 		scoped in Grid grid,
-		out short resultOtherDigitsMask
+		out Mask resultOtherDigitsMask
 	)
 	{
 		resultOtherDigitsMask = 0;
@@ -265,7 +265,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 			return false;
 		}
 
-		var otherDigitsMask = (short)((targetCell1Mask | targetCell2Mask) & ~baseCellsDigitsMask);
+		var otherDigitsMask = (Mask)((targetCell1Mask | targetCell2Mask) & ~baseCellsDigitsMask);
 		var housePair = stackalloc[]
 		{
 			targetCell1.ToHouseIndex(HouseType.Block),
@@ -278,10 +278,10 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 		{
 			foreach (var digits in otherDigitsMask.GetAllSets().GetSubsets(i))
 			{
-				var currentDigitsMask = (short)0;
+				var currentDigitsMask = (Mask)0;
 				foreach (var digit in digits)
 				{
-					currentDigitsMask |= (short)(1 << digit);
+					currentDigitsMask |= (Mask)(1 << digit);
 				}
 
 				for (var j = 0; j < 2; j++)
@@ -330,7 +330,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 	/// <param name="currentJe">The current JE pattern.</param>
 	/// <param name="digitsNeedChecking">The digits need checking.</param>
 	/// <returns>A <see cref="bool"/> indicating that.</returns>
-	private bool CheckCrossLineCells(scoped in Exocet currentJe, short digitsNeedChecking)
+	private bool CheckCrossLineCells(scoped in Exocet currentJe, Mask digitsNeedChecking)
 	{
 		foreach (var digitNeedChecking in digitsNeedChecking)
 		{

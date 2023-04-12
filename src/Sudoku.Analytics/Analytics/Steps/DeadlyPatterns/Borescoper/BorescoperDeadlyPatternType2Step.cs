@@ -7,7 +7,7 @@ public sealed class BorescoperDeadlyPatternType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in CellMap map,
-	short digitsMask,
+	Mask digitsMask,
 	int extraDigit
 ) : BorescoperDeadlyPatternStep(conclusions, views, map, digitsMask)
 {

@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides with a step that is a <b>Hidden Subset</b> technique.
 /// </summary>
-public sealed class HiddenSubsetStep(Conclusion[] conclusions, View[]? views, int house, scoped in CellMap cells, short digitsMask) :
+public sealed class HiddenSubsetStep(Conclusion[] conclusions, View[]? views, int house, scoped in CellMap cells, Mask digitsMask) :
 	SubsetStep(conclusions, views, house, cells, digitsMask)
 {
 	/// <inheritdoc/>

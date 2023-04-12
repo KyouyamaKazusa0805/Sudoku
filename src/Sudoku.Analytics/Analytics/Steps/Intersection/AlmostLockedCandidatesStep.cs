@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed class AlmostLockedCandidatesStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	short digitsMask,
+	Mask digitsMask,
 	scoped in CellMap baseCells,
 	scoped in CellMap targetCells,
 	bool hasValueCell
@@ -28,7 +28,7 @@ public sealed class AlmostLockedCandidatesStep(
 	/// <summary>
 	/// Indicates the mask that contains the digits used.
 	/// </summary>
-	public short DigitsMask { get; } = digitsMask;
+	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

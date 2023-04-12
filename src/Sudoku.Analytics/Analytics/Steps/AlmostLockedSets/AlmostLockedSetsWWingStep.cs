@@ -9,7 +9,7 @@ public sealed class AlmostLockedSetsWWingStep(
 	AlmostLockedSet als1,
 	AlmostLockedSet als2,
 	Conjugate conjugatePair,
-	short wDigitsMask,
+	Mask wDigitsMask,
 	int xDigit
 ) : AlmostLockedSetsStep(conclusions, views)
 {
@@ -24,7 +24,7 @@ public sealed class AlmostLockedSetsWWingStep(
 	/// <summary>
 	/// Indicates the mask of W digits used.
 	/// </summary>
-	public short WDigitsMask { get; } = wDigitsMask;
+	public Mask WDigitsMask { get; } = wDigitsMask;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

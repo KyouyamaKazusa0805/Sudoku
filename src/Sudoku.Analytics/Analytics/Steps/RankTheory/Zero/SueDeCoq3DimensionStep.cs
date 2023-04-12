@@ -6,9 +6,9 @@ namespace Sudoku.Analytics.Steps;
 public sealed class SueDeCoq3DimensionStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	short rowDigitsMask,
-	short columnDigitsMask,
-	short blockDigitsMask,
+	Mask rowDigitsMask,
+	Mask columnDigitsMask,
+	Mask blockDigitsMask,
 	scoped in CellMap rowCells,
 	scoped in CellMap columnCells,
 	scoped in CellMap blockCells
@@ -20,17 +20,17 @@ public sealed class SueDeCoq3DimensionStep(
 	/// <summary>
 	/// Indicates the digits mask that describes which digits are used in this pattern in a row.
 	/// </summary>
-	public short RowDigitsMask { get; } = rowDigitsMask;
+	public Mask RowDigitsMask { get; } = rowDigitsMask;
 
 	/// <summary>
 	/// Indicates the digits mask that describes which digits are used in this pattern in a column.
 	/// </summary>
-	public short ColumnDigitsMask { get; } = columnDigitsMask;
+	public Mask ColumnDigitsMask { get; } = columnDigitsMask;
 
 	/// <summary>
 	/// Indicates the digits mask that describes which digits are used in this pattern in a block.
 	/// </summary>
-	public short BlockDigitsMask { get; } = blockDigitsMask;
+	public Mask BlockDigitsMask { get; } = blockDigitsMask;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.SueDeCoq3Dimension;

@@ -65,8 +65,8 @@ public static class TrueCandidatesSearcher
 		// Store all multi-value cells.
 		// Suppose the pattern is the simplest BUG + 1 pattern (i.e. Only one multi-value cell).
 		// The comments will help you to understand the processing.
-		SkipInit(out short mask);
-		var pairs = new short[multivalueCellsCount, (1 + 8) * 8 / 2 + 1];
+		SkipInit(out Mask mask);
+		var pairs = new Mask[multivalueCellsCount, (1 + 8) * 8 / 2 + 1];
 		var multivalueCells = (grid.EmptyCells - grid.BivalueCells).ToArray();
 		for (var i = 0; i < multivalueCells.Length; i++)
 		{
@@ -77,7 +77,7 @@ public static class TrueCandidatesSearcher
 			var pairList = MaskOperations.GetMaskSubsets(mask, 2);
 
 			// e.g. pairs[i, ..] = { 3, { 2, 4 }, { 4, 6 }, { 2, 6 } } ({ 3, 10, 40, 34 })
-			pairs[i, 0] = (short)pairList.Length;
+			pairs[i, 0] = (Mask)pairList.Length;
 			for (var z = 1; z <= pairList.Length; z++)
 			{
 				pairs[i, z] = pairList[z - 1];

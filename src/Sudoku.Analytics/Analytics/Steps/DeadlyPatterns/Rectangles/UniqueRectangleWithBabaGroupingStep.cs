@@ -49,7 +49,7 @@ public sealed class UniqueRectangleWithBabaGroupingStep(
 
 	private string TargetCellStr => RxCyNotation.ToCellString(TargetCell);
 
-	private string DigitsStr => DigitMaskFormatter.Format((short)(1 << Digit1 | 1 << Digit2), R["OrKeywordWithSpaces"]!);
+	private string DigitsStr => DigitMaskFormatter.Format((Mask)(1 << Digit1 | 1 << Digit2), R["OrKeywordWithSpaces"]!);
 
 	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 }

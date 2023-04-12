@@ -99,7 +99,7 @@ public abstract class ChainingStepSearcher(
 		if (isY)
 		{
 			// First rule: if there is only two potentials in this cell, the other one gets on.
-			var mask = (short)(grid.GetCandidates(cell) & ~(1 << digit));
+			var mask = (Mask)(grid.GetCandidates(cell) & ~(1 << digit));
 			if (allowDynamic ? IsPow2(mask) : BivalueCells.Contains(cell))
 			{
 				var otherDigit = (byte)TrailingZeroCount(mask);
@@ -166,7 +166,7 @@ public abstract class ChainingStepSearcher(
 			var houseIndex = cell.ToHouseIndex(currentHouseType);
 
 			// Get positions of the potential value that have been removed.
-			foreach (var pos in (short)(g(original, houseIndex, digit) & ~g(current, houseIndex, digit)))
+			foreach (var pos in (Mask)(g(original, houseIndex, digit) & ~g(current, houseIndex, digit)))
 			{
 				// Add a hidden parent.
 				if (offPotentials.GetNullable(new((byte)HouseCells[houseIndex][pos], digit, false)) is not { } parent)
@@ -178,15 +178,15 @@ public abstract class ChainingStepSearcher(
 			}
 
 
-			static short g(scoped in Grid grid, int houseIndex, int digit)
+			static Mask g(scoped in Grid grid, int houseIndex, int digit)
 			{
-				var result = (short)0;
+				var result = (Mask)0;
 
 				for (var i = 0; i < 9; i++)
 				{
 					if (grid.Exists(HouseCells[houseIndex][i], digit) is true)
 					{
-						result |= (short)(1 << i);
+						result |= (Mask)(1 << i);
 					}
 				}
 

@@ -10,14 +10,14 @@ public sealed class ChromaticPatternXzStep(
 	scoped in CellMap pattern,
 	scoped in CellMap cells,
 	int extraCell,
-	short digitsMask,
-	short extraDigitsMask
+	Mask digitsMask,
+	Mask extraDigitsMask
 ) : ChromaticPatternStep(conclusions, views, blocks, pattern, digitsMask)
 {
 	/// <summary>
 	/// Indicates the mask of extra digits.
 	/// </summary>
-	public short ExtraDigitsMask { get; } = extraDigitsMask;
+	public Mask ExtraDigitsMask { get; } = extraDigitsMask;
 
 	/// <summary>
 	/// Indicates the extra cell used.

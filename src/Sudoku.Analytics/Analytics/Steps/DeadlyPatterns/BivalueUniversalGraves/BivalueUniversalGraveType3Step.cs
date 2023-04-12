@@ -7,7 +7,7 @@ public sealed class BivalueUniversalGraveType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	IReadOnlyList<int> trueCandidates,
-	short subsetDigitsMask,
+	Mask subsetDigitsMask,
 	scoped in CellMap cells,
 	bool isNaked
 ) : BivalueUniversalGraveStep(conclusions, views)
@@ -20,7 +20,7 @@ public sealed class BivalueUniversalGraveType3Step(
 	/// <summary>
 	/// Indicates the mask of subset digits.
 	/// </summary>
-	public short SubsetDigitsMask { get; } = subsetDigitsMask;
+	public Mask SubsetDigitsMask { get; } = subsetDigitsMask;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveType3;

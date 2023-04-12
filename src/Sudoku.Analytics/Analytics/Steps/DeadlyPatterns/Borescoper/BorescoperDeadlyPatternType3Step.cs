@@ -7,9 +7,9 @@ public sealed class BorescoperDeadlyPatternType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in CellMap map,
-	short digitsMask,
+	Mask digitsMask,
 	scoped in CellMap subsetCells,
-	short subsetDigitsMask
+	Mask subsetDigitsMask
 ) : BorescoperDeadlyPatternStep(conclusions, views, map, digitsMask)
 {
 	/// <inheritdoc/>
@@ -18,7 +18,7 @@ public sealed class BorescoperDeadlyPatternType3Step(
 	/// <summary>
 	/// Indicates the mask of subset digits used.
 	/// </summary>
-	public short SubsetDigitsMask { get; } = subsetDigitsMask;
+	public Mask SubsetDigitsMask { get; } = subsetDigitsMask;
 
 	/// <summary>
 	/// Indicates the cells that the subset used.

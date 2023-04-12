@@ -30,11 +30,11 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 			var columns = sizeList[i, 1];
 			foreach (var rowList in z.GetSubsets(rows))
 			{
-				var rowMask = (short)0;
+				var rowMask = (Mask)0;
 				var rowMap = CellMap.Empty;
 				foreach (var row in rowList)
 				{
-					rowMask |= (short)(1 << row);
+					rowMask |= (Mask)(1 << row);
 					rowMap |= HousesMap[row + 9];
 				}
 
@@ -45,11 +45,11 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 
 				foreach (var columnList in z.GetSubsets(columns))
 				{
-					var columnMask = (short)0;
+					var columnMask = (Mask)0;
 					var columnMap = CellMap.Empty;
 					foreach (var column in columnList)
 					{
-						columnMask |= (short)(1 << column);
+						columnMask |= (Mask)(1 << column);
 						columnMap |= HousesMap[column + 18];
 					}
 
@@ -70,7 +70,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override unsafe Step? GetAll(scoped ref AnalysisContext context)
 	{
-		scoped var linkForEachHouse = (stackalloc short[27]);
+		scoped var linkForEachHouse = (stackalloc Mask[27]);
 		scoped var linkForEachDigit = (stackalloc CellMap[9]);
 		scoped var canL = (stackalloc CellMap[9]);
 		scoped ref readonly var grid = ref context.Grid;
@@ -99,7 +99,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 				var candidateOffsets = new List<CandidateViewNode>();
 				for (var digit = 0; digit < 9; digit++)
 				{
-					var q = (short)(1 << digit);
+					var q = (Mask)(1 << digit);
 					var currentMap = linkForEachDigit[digit];
 					var rMask = (uint)currentMap.RowMask;
 					var cMask = (uint)currentMap.ColumnMask;
@@ -169,7 +169,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 
 					foreach (var cell in map & HousesMap[house])
 					{
-						var cands = (short)(grid.GetCandidates(cell) & linkMask);
+						var cands = (Mask)(grid.GetCandidates(cell) & linkMask);
 						if (cands == 0)
 						{
 							continue;

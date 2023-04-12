@@ -12,11 +12,11 @@ public sealed class UniqueRectangleWithSueDeCoqStep(
 	bool isAvoidable,
 	int block,
 	int line,
-	short blockMask,
-	short lineMask,
-	short intersectionMask,
+	Mask blockMask,
+	Mask lineMask,
+	Mask intersectionMask,
 	bool isCannibalistic,
-	short isolatedDigitsMask,
+	Mask isolatedDigitsMask,
 	scoped in CellMap blockCells,
 	scoped in CellMap lineCells,
 	scoped in CellMap intersectionCells,
@@ -53,24 +53,24 @@ public sealed class UniqueRectangleWithSueDeCoqStep(
 	/// <summary>
 	/// Indicates the mask that contains all digits from the block of the Sue de Coq structure.
 	/// </summary>
-	public short BlockMask { get; } = blockMask;
+	public Mask BlockMask { get; } = blockMask;
 
 	/// <summary>
 	/// Indicates the cells in the line of the Sue de Coq structure.
 	/// </summary>
-	public short LineMask { get; } = lineMask;
+	public Mask LineMask { get; } = lineMask;
 
 	/// <summary>
 	/// Indicates the mask that contains all digits from the intersection of houses <see cref="Block"/> and <see cref="Line"/>.
 	/// </summary>
 	/// <seealso cref="Block"/>
 	/// <seealso cref="Line"/>
-	public short IntersectionMask { get; } = intersectionMask;
+	public Mask IntersectionMask { get; } = intersectionMask;
 
 	/// <summary>
 	/// Indicates the mask that contains all isolated digits.
 	/// </summary>
-	public short IsolatedDigitsMask { get; } = isolatedDigitsMask;
+	public Mask IsolatedDigitsMask { get; } = isolatedDigitsMask;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
@@ -112,5 +112,5 @@ public sealed class UniqueRectangleWithSueDeCoqStep(
 
 	private string MergedCellsStr => (LineCells | BlockCells).ToString();
 
-	private string DigitsStr => DigitMaskFormatter.Format((short)(LineMask | BlockMask), FormattingMode.Normal);
+	private string DigitsStr => DigitMaskFormatter.Format((Mask)(LineMask | BlockMask), FormattingMode.Normal);
 }

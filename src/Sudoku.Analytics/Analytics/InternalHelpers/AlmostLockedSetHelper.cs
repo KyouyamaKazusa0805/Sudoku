@@ -38,7 +38,7 @@ internal static class AlmostLockedSetHelper
 					}
 
 					// Get all candidates in these cells.
-					var digitsMask = (short)0;
+					var digitsMask = (Mask)0;
 					foreach (var cell in map)
 					{
 						digitsMask |= @this.GetCandidates(cell);

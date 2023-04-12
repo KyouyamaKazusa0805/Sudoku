@@ -213,9 +213,9 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 
 			var map = pattern.Map;
 			var ((p11, p12), (p21, p22), (c1, c2, c3, c4)) = pattern;
-			var cornerMask1 = (short)(grid.GetCandidates(p11) | grid.GetCandidates(p12));
-			var cornerMask2 = (short)(grid.GetCandidates(p21) | grid.GetCandidates(p22));
-			var centerMask = (short)((short)(grid.GetCandidates(c1) | grid.GetCandidates(c2)) | grid.GetCandidates(c3));
+			var cornerMask1 = (Mask)(grid.GetCandidates(p11) | grid.GetCandidates(p12));
+			var cornerMask2 = (Mask)(grid.GetCandidates(p21) | grid.GetCandidates(p22));
+			var centerMask = (Mask)((Mask)(grid.GetCandidates(c1) | grid.GetCandidates(c2)) | grid.GetCandidates(c3));
 			if (map.Count == 8)
 			{
 				centerMask |= grid.GetCandidates(c4);
@@ -250,13 +250,13 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		scoped in Grid grid,
 		BorescoperDeadlyPattern pattern,
 		bool findOnlyOne,
-		short cornerMask1,
-		short cornerMask2,
-		short centerMask,
+		Mask cornerMask1,
+		Mask cornerMask2,
+		Mask centerMask,
 		scoped in CellMap map
 	)
 	{
-		var orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
+		var orMask = (Mask)((Mask)(cornerMask1 | cornerMask2) | centerMask);
 		if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
 		{
 			goto ReturnNull;
@@ -265,10 +265,10 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		// Iterate on each combination.
 		foreach (var digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 		{
-			var tempMask = (short)0;
+			var tempMask = (Mask)0;
 			foreach (var digit in digits)
 			{
-				tempMask |= (short)(1 << digit);
+				tempMask |= (Mask)(1 << digit);
 			}
 
 			var otherDigit = TrailingZeroCount(orMask & ~tempMask);
@@ -278,7 +278,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				continue;
 			}
 
-			var elimMask = (short)(grid.GetCandidates(elimCell) & tempMask);
+			var elimMask = (Mask)(grid.GetCandidates(elimCell) & tempMask);
 			if (elimMask == 0)
 			{
 				continue;
@@ -325,13 +325,13 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		scoped in Grid grid,
 		BorescoperDeadlyPattern pattern,
 		bool findOnlyOne,
-		short cornerMask1,
-		short cornerMask2,
-		short centerMask,
+		Mask cornerMask1,
+		Mask cornerMask2,
+		Mask centerMask,
 		scoped in CellMap map
 	)
 	{
-		var orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
+		var orMask = (Mask)((Mask)(cornerMask1 | cornerMask2) | centerMask);
 		if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
 		{
 			goto ReturnNull;
@@ -340,10 +340,10 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		// Iterate on each combination.
 		foreach (var digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 		{
-			var tempMask = (short)0;
+			var tempMask = (Mask)0;
 			foreach (var digit in digits)
 			{
-				tempMask |= (short)(1 << digit);
+				tempMask |= (Mask)(1 << digit);
 			}
 
 			var otherDigit = TrailingZeroCount(orMask & ~tempMask);
@@ -396,13 +396,13 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		scoped in Grid grid,
 		BorescoperDeadlyPattern pattern,
 		bool findOnlyOne,
-		short cornerMask1,
-		short cornerMask2,
-		short centerMask,
+		Mask cornerMask1,
+		Mask cornerMask2,
+		Mask centerMask,
 		scoped in CellMap map
 	)
 	{
-		var orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
+		var orMask = (Mask)((Mask)(cornerMask1 | cornerMask2) | centerMask);
 		foreach (var houseIndex in map.Houses)
 		{
 			var currentMap = HousesMap[houseIndex] & map;
@@ -410,10 +410,10 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			var otherMask = grid.GetDigitsUnion(otherCellsMap);
 			foreach (var digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 			{
-				var tempMask = (short)0;
+				var tempMask = (Mask)0;
 				foreach (var digit in digits)
 				{
-					tempMask |= (short)(1 << digit);
+					tempMask |= (Mask)(1 << digit);
 				}
 				if (otherMask != tempMask)
 				{
@@ -422,7 +422,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 
 				// Iterate on the cells by the specified size.
 				var iterationCellsMap = (HousesMap[houseIndex] - currentMap) & EmptyCells;
-				var otherDigitsMask = (short)(orMask & ~tempMask);
+				var otherDigitsMask = (Mask)(orMask & ~tempMask);
 				for (var size = PopCount((uint)otherDigitsMask) - 1; size < iterationCellsMap.Count; size++)
 				{
 					foreach (var combination in iterationCellsMap & size)
@@ -511,15 +511,15 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		scoped in Grid grid,
 		BorescoperDeadlyPattern pattern,
 		bool findOnlyOne,
-		short cornerMask1,
-		short cornerMask2,
-		short centerMask,
+		Mask cornerMask1,
+		Mask cornerMask2,
+		Mask centerMask,
 		scoped in CellMap map
 	)
 	{
 		// The type 4 may be complex and terrible to process.
 		// All houses that the pattern lies in should be checked.
-		var orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
+		var orMask = (Mask)((Mask)(cornerMask1 | cornerMask2) | centerMask);
 		foreach (var houseIndex in map.Houses)
 		{
 			var currentMap = HousesMap[houseIndex] & map;
@@ -531,10 +531,10 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			// are { 1, 2 }, { 2, 3 } and { 1, 3 }.
 			foreach (var digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 			{
-				var tempMask = (short)0;
+				var tempMask = (Mask)0;
 				foreach (var digit in digits)
 				{
-					tempMask |= (short)(1 << digit);
+					tempMask |= (Mask)(1 << digit);
 				}
 				if (otherMask != tempMask)
 				{
@@ -546,7 +546,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				// In a so-called conjugate house, the digits can only appear in these cells in this house.
 				foreach (var combination in (tempMask & orMask).GetAllSets().GetSubsets(currentMap.Count - 1))
 				{
-					var combinationMask = (short)0;
+					var combinationMask = (Mask)0;
 					var combinationMap = CellMap.Empty;
 					var flag = false;
 					foreach (var digit in combination)
@@ -557,7 +557,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 							break;
 						}
 
-						combinationMask |= (short)(1 << digit);
+						combinationMask |= (Mask)(1 << digit);
 						combinationMap |= CandidatesMap[digit] & HousesMap[houseIndex];
 					}
 					if (flag)
@@ -574,7 +574,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 					}
 
 					// Type 4 forms. Now check eliminations.
-					var finalDigits = (short)(tempMask & ~combinationMask);
+					var finalDigits = (Mask)(tempMask & ~combinationMask);
 					var possibleCandMaps = CellMap.Empty;
 					foreach (var finalDigit in finalDigits)
 					{
@@ -600,7 +600,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (var cell in currentMap)
 					{
-						foreach (var digit in (short)(grid.GetCandidates(cell) & combinationMask))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & combinationMask))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
 						}

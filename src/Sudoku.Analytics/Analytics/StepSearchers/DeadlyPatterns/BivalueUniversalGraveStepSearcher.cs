@@ -237,10 +237,10 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		}
 
 		// Get the digit mask.
-		var digitsMask = (short)0;
+		var digitsMask = (Mask)0;
 		foreach (var candidate in trueCandidates)
 		{
-			digitsMask |= (short)(1 << candidate % 9);
+			digitsMask |= (Mask)(1 << candidate % 9);
 		}
 
 		// Iterate on each house that the true candidates lying on.
@@ -257,7 +257,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			{
 				foreach (var cells in otherCellsMap & size)
 				{
-					var mask = (short)(digitsMask | grid.GetDigitsUnion(cells));
+					var mask = (Mask)(digitsMask | grid.GetDigitsUnion(cells));
 					if (PopCount((uint)mask) != size + 1)
 					{
 						continue;
@@ -388,14 +388,14 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				foreach (var candGroupByCell in candsGroupByCell)
 				{
 					var cell = candGroupByCell.Key;
-					var digitMask = (short)0;
+					var digitMask = (Mask)0;
 					foreach (var cand in candGroupByCell)
 					{
-						digitMask |= (short)(1 << cand % 9);
+						digitMask |= (Mask)(1 << cand % 9);
 					}
 
 					// Bitwise not.
-					foreach (var d in digitMask = (short)(~digitMask & Grid.MaxCandidatesMask))
+					foreach (var d in digitMask = (Mask)(~digitMask & Grid.MaxCandidatesMask))
 					{
 						if (conjugatePairDigit == d || !CandidatesMap[d].Contains(cell))
 						{
@@ -422,10 +422,10 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				candidateOffsets[^1] = new(DisplayColorKind.Auxiliary1, c2 * 9 + conjugatePairDigit);
 
 				// BUG type 4.
-				var digitsMask = (short)0;
+				var digitsMask = (Mask)0;
 				foreach (var digit in digits)
 				{
-					digitsMask |= (short)(1 << digit);
+					digitsMask |= (Mask)(1 << digit);
 				}
 
 				var step = new BivalueUniversalGraveType4Step(
@@ -510,7 +510,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		var c2 = cand2 / 9;
 		var d1 = cand1 % 9;
 		var d2 = cand2 % 9;
-		var mask = (short)(1 << d1 | 1 << d2);
+		var mask = (Mask)(1 << d1 | 1 << d2);
 		foreach (var cell in (PeersMap[c1] ^ PeersMap[c2]) & BivalueCells)
 		{
 			if (grid.GetCandidates(cell) != mask)
@@ -660,8 +660,8 @@ file static class Cached
 		// Store all multi-value cells.
 		// Suppose the pattern is the simplest BUG + 1 pattern (i.e. Only one multi-value cell).
 		// The comments will help you to understand the processing.
-		SkipInit(out short mask);
-		var pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
+		SkipInit(out Mask mask);
+		var pairs = new Mask[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
 		var multivalueCells = (EmptyCells - BivalueCells).ToArray();
 		for (var i = 0; i < multivalueCells.Length; i++)
 		{
@@ -672,7 +672,7 @@ file static class Cached
 			var pairList = MaskOperations.GetMaskSubsets(mask, 2);
 
 			// e.g. pairs[i, ..] = { 3, { 2, 4 }, { 4, 6 }, { 2, 6 } } ({ 3, 10, 40, 34 })
-			pairs[i, 0] = (short)pairList.Length;
+			pairs[i, 0] = (Mask)pairList.Length;
 			for (var z = 1; z <= pairList.Length; z++)
 			{
 				pairs[i, z] = pairList[z - 1];

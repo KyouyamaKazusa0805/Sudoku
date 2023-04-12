@@ -9,7 +9,7 @@ public sealed class ChromaticPatternType1Step(
 	int[] blocks,
 	scoped in CellMap pattern,
 	int extraCell,
-	short digitsMask
+	Mask digitsMask
 ) : ChromaticPatternStep(conclusions, views, blocks, pattern, digitsMask)
 {
 	/// <summary>

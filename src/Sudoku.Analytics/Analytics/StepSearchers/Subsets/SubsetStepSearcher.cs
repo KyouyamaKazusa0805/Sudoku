@@ -63,12 +63,12 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 					}
 
 					// Naked subset found. Now check eliminations.
-					var flagMask = (short)0;
+					var flagMask = (Mask)0;
 					var conclusions = new List<Conclusion>(18);
 					foreach (var digit in mask)
 					{
 						var map = cells % CandidatesMap[digit];
-						flagMask |= (short)(map.InOneHouse ? 0 : 1 << digit);
+						flagMask |= (Mask)(map.InOneHouse ? 0 : 1 << digit);
 
 						foreach (var cell in map)
 						{
@@ -121,17 +121,17 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 				var mask = Grid.MaxCandidatesMask;
 				foreach (var cell in traversingMap)
 				{
-					mask &= (short)~(1 << grid[cell]);
+					mask &= (Mask)~(1 << grid[cell]);
 				}
 				foreach (var digits in mask.GetAllSets().GetSubsets(size))
 				{
 					var tempMask = mask;
-					var digitsMask = (short)0;
+					var digitsMask = (Mask)0;
 					var map = CellMap.Empty;
 					foreach (var digit in digits)
 					{
-						tempMask &= (short)~(1 << digit);
-						digitsMask |= (short)(1 << digit);
+						tempMask &= (Mask)~(1 << digit);
+						digitsMask |= (Mask)(1 << digit);
 						map |= HousesMap[house] & CandidatesMap[digit];
 					}
 					if (map.Count != size)

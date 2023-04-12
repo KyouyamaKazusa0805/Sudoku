@@ -40,7 +40,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			var mask = grid.GetCandidates(cell);
 			var d1 = TrailingZeroCount(mask);
 			var d2 = mask.GetNextSet(d1);
-			var comparer = (short)(1 << d1 | 1 << d2);
+			var comparer = (Mask)(1 << d1 | 1 << d2);
 			var foundData = Cached.GatherBivalueOddagons(comparer);
 			if (foundData.Length == 0)
 			{
@@ -106,11 +106,11 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		int d2,
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
-		short comparer,
+		Mask comparer,
 		bool onlyFindOne
 	)
 	{
-		var mask = (short)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
+		var mask = (Mask)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
 		if (!IsPow2(mask))
 		{
 			goto ReturnNull;
@@ -161,7 +161,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		int d2,
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
-		short comparer,
+		Mask comparer,
 		bool onlyFindOne
 	)
 	{
@@ -187,7 +187,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			goto ReturnNull;
 		}
 
-		var otherDigitsMask = (short)(m & ~comparer);
+		var otherDigitsMask = (Mask)(m & ~comparer);
 		foreach (var house in extraCellsMap.CoveredHouses)
 		{
 			if ((ValuesMap[d1] | ValuesMap[d2]) & HousesMap[house])
@@ -283,7 +283,7 @@ file static unsafe class Cached
 	/// <returns>
 	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
 	/// </returns>
-	public static BivalueOddagon[] GatherBivalueOddagons(short digitsMask)
+	public static BivalueOddagon[] GatherBivalueOddagons(Mask digitsMask)
 	{
 		LoopChecker condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
 
@@ -308,7 +308,7 @@ file static unsafe class Cached
 		int lastCell,
 		int lastHouse,
 		scoped in CellMap currentLoop,
-		short digitsMask,
+		Mask digitsMask,
 		scoped in CellMap fullCells,
 		LoopChecker condition,
 		List<BivalueOddagon> result

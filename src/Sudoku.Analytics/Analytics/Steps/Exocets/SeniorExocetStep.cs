@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed class SeniorExocetStep(
 	View[]? views,
 	Exocet exocet,
-	short digitsMask,
+	Mask digitsMask,
 	int endoTargetCell,
 	int[]? extraHouses,
 	ExocetElimination[] eliminations

@@ -6,10 +6,10 @@ namespace Sudoku.Analytics.Steps;
 public sealed class JuniorExocetStep(
 	View[]? views,
 	Exocet exocet,
-	short digitsMask,
+	Mask digitsMask,
 #if false
-	short lockedMemberQ,
-	short lockedMemberR,
+	Mask lockedMemberQ,
+	Mask lockedMemberR,
 #endif
 	ExocetElimination[] eliminations
 ) : ExocetStep(views, exocet, digitsMask, eliminations)
@@ -18,12 +18,12 @@ public sealed class JuniorExocetStep(
 	/// <summary>
 	/// Indicates the locked member bound with Q cells.
 	/// </summary>
-	public short LockedMemberQ { get; } = lockedMemberQ;
+	public Mask LockedMemberQ { get; } = lockedMemberQ;
 
 	/// <summary>
 	/// Indicates the locked member bound with R cells.
 	/// </summary>
-	public short LockedMemberR { get; } = lockedMemberR;
+	public Mask LockedMemberR { get; } = lockedMemberR;
 #endif
 
 	/// <inheritdoc/>

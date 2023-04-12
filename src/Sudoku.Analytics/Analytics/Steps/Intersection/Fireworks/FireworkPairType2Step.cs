@@ -12,7 +12,7 @@
 public sealed class FireworkPairType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	short digitsMask,
+	Mask digitsMask,
 	scoped in Firework pattern1,
 	scoped in Firework pattern2,
 	int extraCell
@@ -29,7 +29,7 @@ public sealed class FireworkPairType2Step(
 	/// <summary>
 	/// Indicates the mask of digits used.
 	/// </summary>
-	public short DigitsMask { get; } = digitsMask;
+	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.FireworkPairType2;

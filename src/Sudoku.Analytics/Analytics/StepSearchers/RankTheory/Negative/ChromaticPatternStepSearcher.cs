@@ -94,12 +94,12 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 			return null;
 		}
 
-		var satisfiedBlocksMask = (short)0;
+		var satisfiedBlocksMask = (Mask)0;
 		for (var block = 0; block < 9; block++)
 		{
 			if ((EmptyCells & HousesMap[block]).Count >= 3)
 			{
-				satisfiedBlocksMask |= (short)(1 << block);
+				satisfiedBlocksMask |= (Mask)(1 << block);
 			}
 		}
 
@@ -112,10 +112,10 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var blocks in satisfiedBlocksMask.GetAllSets().GetSubsets(4))
 		{
-			var blocksMask = (short)0;
+			var blocksMask = (Mask)0;
 			foreach (var block in blocks)
 			{
-				blocksMask |= (short)(1 << block);
+				blocksMask |= (Mask)(1 << block);
 			}
 
 			var flag = false;
@@ -209,7 +209,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 				continue;
 			}
 
-			var elimDigitsMask = (short)(grid.GetCandidates(extraCell) & digitsMask);
+			var elimDigitsMask = (Mask)(grid.GetCandidates(extraCell) & digitsMask);
 			if (elimDigitsMask == 0)
 			{
 				// No eliminations.
@@ -275,8 +275,8 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 
 		foreach (var digits in allDigitsMask.GetAllSets().GetSubsets(3))
 		{
-			var patternDigitsMask = (short)(1 << digits[0] | 1 << digits[1] | 1 << digits[2]);
-			var otherDigitsMask = (short)(allDigitsMask & ~patternDigitsMask);
+			var patternDigitsMask = (Mask)(1 << digits[0] | 1 << digits[1] | 1 << digits[2]);
+			var otherDigitsMask = (Mask)(allDigitsMask & ~patternDigitsMask);
 			var d1 = TrailingZeroCount(otherDigitsMask);
 			var d2 = otherDigitsMask.GetNextSet(d1);
 			var otherDigitsCells = pattern & (CandidatesMap[d1] | CandidatesMap[d2]);

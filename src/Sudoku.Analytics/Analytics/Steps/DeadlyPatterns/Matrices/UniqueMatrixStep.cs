@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Unique Matrix</b> technique.
 /// </summary>
-public abstract class UniqueMatrixStep(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, short digitsMask) :
+public abstract class UniqueMatrixStep(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, Mask digitsMask) :
 	DeadlyPatternStep(conclusions, views)
 {
 	/// <inheritdoc/>
@@ -20,7 +20,7 @@ public abstract class UniqueMatrixStep(Conclusion[] conclusions, View[]? views, 
 	/// <summary>
 	/// Indicates the mask that describes all digits used in this pattern.
 	/// </summary>
-	public short DigitsMask { get; } = digitsMask;
+	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

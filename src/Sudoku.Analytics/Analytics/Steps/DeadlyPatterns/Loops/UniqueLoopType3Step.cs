@@ -9,7 +9,7 @@ public sealed class UniqueLoopType3Step(
 	int digit1,
 	int digit2,
 	scoped in CellMap loop,
-	short subsetDigitsMask,
+	Mask subsetDigitsMask,
 	scoped in CellMap subsetCells
 ) : UniqueLoopStep(conclusions, views, digit1, digit2, loop)
 {
@@ -19,7 +19,7 @@ public sealed class UniqueLoopType3Step(
 	/// <summary>
 	/// Indicates the mask that contains the subset digits used in this instance.
 	/// </summary>
-	public short SubsetDigitsMask { get; } = subsetDigitsMask;
+	public Mask SubsetDigitsMask { get; } = subsetDigitsMask;
 
 	/// <summary>
 	/// Indicates the cells that are subset cells.

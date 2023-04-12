@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
 /// </summary>
-public sealed class UniqueMatrixType1Step(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, short digitsMask, int candidate) :
+public sealed class UniqueMatrixType1Step(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, Mask digitsMask, int candidate) :
 	UniqueMatrixStep(conclusions, views, cells, digitsMask)
 {
 	/// <inheritdoc/>

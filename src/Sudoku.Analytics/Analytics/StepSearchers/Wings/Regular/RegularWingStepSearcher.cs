@@ -75,7 +75,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 					}
 
 					var union = mask;
-					var inter = (short)(Grid.MaxCandidatesMask & mask);
+					var inter = (Mask)(Grid.MaxCandidatesMask & mask);
 					foreach (var cell in cells)
 					{
 						var m = grid.GetCandidates(cell);
@@ -90,7 +90,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 
 					// Get the Z digit (The digit to be removed).
 					var isIncomplete = inter == 0;
-					var interWithoutPivot = (short)(union & ~grid.GetCandidates(pivot));
+					var interWithoutPivot = (Mask)(union & ~grid.GetCandidates(pivot));
 					var maskToCheck = isIncomplete ? interWithoutPivot : inter;
 					if (!IsPow2(maskToCheck))
 					{

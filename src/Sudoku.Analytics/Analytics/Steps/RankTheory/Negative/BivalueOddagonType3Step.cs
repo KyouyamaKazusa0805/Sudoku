@@ -10,7 +10,7 @@ public sealed class BivalueOddagonType3Step(
 	int digit1,
 	int digit2,
 	scoped in CellMap extraCells,
-	short extraDigitsMask
+	Mask extraDigitsMask
 ) : BivalueOddagonStep(conclusions, views, loopCells, digit1, digit2)
 {
 	/// <inheritdoc/>
@@ -19,7 +19,7 @@ public sealed class BivalueOddagonType3Step(
 	/// <summary>
 	/// Indicates the mask that contains all extra digits used.
 	/// </summary>
-	public short ExtraDigitsMask { get; } = extraDigitsMask;
+	public Mask ExtraDigitsMask { get; } = extraDigitsMask;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

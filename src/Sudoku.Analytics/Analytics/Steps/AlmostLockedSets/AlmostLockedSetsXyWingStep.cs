@@ -9,9 +9,9 @@ public sealed class AlmostLockedSetsXyWingStep(
 	AlmostLockedSet als1,
 	AlmostLockedSet als2,
 	AlmostLockedSet bridge,
-	short xDigitsMask,
-	short yDigitsMask,
-	short zDigitsMask
+	Mask xDigitsMask,
+	Mask yDigitsMask,
+	Mask zDigitsMask
 ) : AlmostLockedSetsStep(conclusions, views)
 {
 	/// <inheritdoc/>
@@ -20,17 +20,17 @@ public sealed class AlmostLockedSetsXyWingStep(
 	/// <summary>
 	/// Indicates the mask that holds the digits for the X value.
 	/// </summary>
-	public short XDigitsMask { get; } = xDigitsMask;
+	public Mask XDigitsMask { get; } = xDigitsMask;
 
 	/// <summary>
 	/// Indicates the mask that holds the digits for the Y value.
 	/// </summary>
-	public short YDigitsMask { get; } = yDigitsMask;
+	public Mask YDigitsMask { get; } = yDigitsMask;
 
 	/// <summary>
 	/// Indicates the mask that holds the digits for the Z value.
 	/// </summary>
-	public short ZDigitsMask { get; } = zDigitsMask;
+	public Mask ZDigitsMask { get; } = zDigitsMask;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

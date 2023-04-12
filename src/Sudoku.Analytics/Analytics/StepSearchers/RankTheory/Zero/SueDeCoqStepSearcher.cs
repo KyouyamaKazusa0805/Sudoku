@@ -106,12 +106,12 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 									}
 									elimMapLine &= lineMap - currentLineMap;
 
-									var maskIsolated = (short)(
+									var maskIsolated = (Mask)(
 										cannibalMode
 											? lineMask & blockMask & selectedInterMask
 											: selectedInterMask & ~(blockMask | lineMask)
 									);
-									var maskOnlyInInter = (short)(selectedInterMask & ~(blockMask | lineMask));
+									var maskOnlyInInter = (Mask)(selectedInterMask & ~(blockMask | lineMask));
 									if (!cannibalMode
 										&& ((blockMask & lineMask) != 0 || maskIsolated != 0 && !IsPow2(maskIsolated))
 										|| cannibalMode && !IsPow2(maskIsolated))

@@ -28,7 +28,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int cornerCell,
@@ -124,7 +124,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int corner1,
@@ -229,7 +229,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int corner1,
@@ -259,7 +259,7 @@ partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var otherDigitsMask = (short)(mask ^ comparer);
+		var otherDigitsMask = (Mask)(mask ^ comparer);
 		foreach (var houseIndex in otherCellsMap.CoveredHouses)
 		{
 			if ((ValuesMap[d1] || ValuesMap[d2]) && HousesMap[houseIndex])
@@ -378,7 +378,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int corner1,
@@ -500,7 +500,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int cornerCell,
@@ -517,7 +517,7 @@ partial class UniqueRectangleStepSearcher
 		var otherCellsMask = grid.GetDigitsUnion(otherCellsMap);
 
 		// Degenerate to type 1.
-		var extraMask = (short)(otherCellsMask ^ comparer);
+		var extraMask = (Mask)(otherCellsMask ^ comparer);
 		if ((extraMask & extraMask - 1) != 0)
 		{
 			return;
@@ -599,7 +599,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int corner1,
@@ -728,7 +728,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int cornerCell,
@@ -853,7 +853,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int corner1,
@@ -869,7 +869,7 @@ partial class UniqueRectangleStepSearcher
 
 		var o1 = grid.GetCandidates(otherCellsMap[0]);
 		var o2 = grid.GetCandidates(otherCellsMap[1]);
-		var o = (short)(o1 | o2);
+		var o = (Mask)(o1 | o2);
 		if (PopCount((uint)o) != 4 || PopCount((uint)o1) > 3 || PopCount((uint)o2) > 3
 			|| (o1 & comparer) == 0 || (o2 & comparer) == 0
 			|| (o & comparer) != comparer)
@@ -877,7 +877,7 @@ partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var xyMask = (short)(o ^ comparer);
+		var xyMask = (Mask)(o ^ comparer);
 		var x = TrailingZeroCount(xyMask);
 		var y = xyMask.GetNextSet(x);
 		var inter = otherCellsMap.PeerIntersection - (CellMap)urCells;
@@ -984,7 +984,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int corner1,
@@ -1156,7 +1156,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int corner1,
@@ -1326,7 +1326,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int cornerCell,
@@ -1345,7 +1345,7 @@ partial class UniqueRectangleStepSearcher
 		var m1 = grid.GetCandidates(c1);
 		var m2 = grid.GetCandidates(c2);
 		var m3 = grid.GetCandidates(c3);
-		var mask = (short)((short)(m1 | m2) | m3);
+		var mask = (Mask)((Mask)(m1 | m2) | m3);
 
 		if (PopCount((uint)mask) != 4
 			|| PopCount((uint)m1) > 3 || PopCount((uint)m2) > 3 || PopCount((uint)m3) > 3
@@ -1355,7 +1355,7 @@ partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var xyMask = (short)(mask ^ comparer);
+		var xyMask = (Mask)(mask ^ comparer);
 		var x = TrailingZeroCount(xyMask);
 		var y = xyMask.GetNextSet(x);
 		var inter = otherCellsMap.PeerIntersection - (CellMap)urCells;
@@ -1464,7 +1464,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int cornerCell,
@@ -1591,7 +1591,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int cornerCell,
@@ -1723,7 +1723,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int cornerCell,
@@ -1850,7 +1850,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int cornerCell,
@@ -1978,7 +1978,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int corner1,
@@ -2132,7 +2132,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int corner1,
@@ -2288,7 +2288,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int corner1,
@@ -2311,7 +2311,7 @@ partial class UniqueRectangleStepSearcher
 			var otherCell2 = offsets[1];
 			var mask1 = grid.GetCandidates(otherCell1);
 			var mask2 = grid.GetCandidates(otherCell2);
-			var mask = (short)(mask1 | mask2);
+			var mask = (Mask)(mask1 | mask2);
 
 			if (PopCount((uint)mask) != 2 + size || (mask & comparer) != comparer || mask1 == comparer || mask2 == comparer)
 			{
@@ -2325,7 +2325,7 @@ partial class UniqueRectangleStepSearcher
 			}
 
 			var testMap = (CellsMap[otherCell1] + otherCell2).PeerIntersection;
-			var extraDigitsMask = (short)(mask ^ comparer);
+			var extraDigitsMask = (Mask)(mask ^ comparer);
 			var cells = map.ToArray();
 			for (int i1 = 0, length = cells.Length; i1 < length - size + 1; i1++)
 			{
@@ -2348,7 +2348,7 @@ partial class UniqueRectangleStepSearcher
 					if (size == 2)
 					{
 						// Check XY-Wing.
-						var m = (short)((short)(m1 | m2) ^ extraDigitsMask);
+						var m = (Mask)((Mask)(m1 | m2) ^ extraDigitsMask);
 						if ((PopCount((uint)m), PopCount((uint)(m1 & m2))) != (1, 1))
 						{
 							continue;
@@ -2447,7 +2447,7 @@ partial class UniqueRectangleStepSearcher
 							if (size == 3)
 							{
 								// Check XYZ-Wing.
-								var m = (short)(((short)(m1 | m2) | m3) ^ extraDigitsMask);
+								var m = (Mask)(((Mask)(m1 | m2) | m3) ^ extraDigitsMask);
 								if ((PopCount((uint)m), PopCount((uint)(m1 & m2 & m3))) != (1, 1))
 								{
 									continue;
@@ -2547,7 +2547,7 @@ partial class UniqueRectangleStepSearcher
 									}
 
 									// Check WXYZ-Wing.
-									var m = (short)((short)((short)((short)(m1 | m2) | m3) | m4) ^ extraDigitsMask);
+									var m = (Mask)((Mask)((Mask)((Mask)(m1 | m2) | m3) | m4) ^ extraDigitsMask);
 									if ((PopCount((uint)m), PopCount((uint)(m1 & m2 & m3 & m4))) != (1, 1))
 									{
 										continue;
@@ -2700,7 +2700,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		bool arMode,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int corner1,
@@ -2710,7 +2710,7 @@ partial class UniqueRectangleStepSearcher
 	)
 	{
 		var notSatisfiedType3 = false;
-		var mergedMaskInOtherCells = (short)0;
+		var mergedMaskInOtherCells = (Mask)0;
 		foreach (var cell in otherCellsMap)
 		{
 			var currentMask = grid.GetCandidates(cell);
@@ -2735,7 +2735,7 @@ partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var otherDigitsMask = (short)(mergedMaskInOtherCells & ~comparer);
+		var otherDigitsMask = (Mask)(mergedMaskInOtherCells & ~comparer);
 		var line = (byte)otherCellsMap.CoveredLine;
 		var block = (byte)TrailingZeroCount(otherCellsMap.CoveredHouses & ~(1 << line));
 		var (a, _, _, d) = IntersectionMaps[(line, block)];
@@ -2854,10 +2854,10 @@ partial class UniqueRectangleStepSearcher
 			int[] urCells,
 			int line,
 			int block,
-			short lineMask,
-			short blockMask,
-			short selectedInterMask,
-			short otherDigitsMask,
+			Mask lineMask,
+			Mask blockMask,
+			Mask selectedInterMask,
+			Mask otherDigitsMask,
 			scoped in CellMap elimMapLine,
 			scoped in CellMap elimMapBlock,
 			scoped in CellMap currentLineMap,
@@ -2868,8 +2868,8 @@ partial class UniqueRectangleStepSearcher
 			int index
 		)
 		{
-			var maskOnlyInInter = (short)(selectedInterMask & ~(blockMask | lineMask));
-			var maskIsolated = (short)(cannibalMode ? (lineMask & blockMask & selectedInterMask) : maskOnlyInInter);
+			var maskOnlyInInter = (Mask)(selectedInterMask & ~(blockMask | lineMask));
+			var maskIsolated = (Mask)(cannibalMode ? (lineMask & blockMask & selectedInterMask) : maskOnlyInInter);
 			if (!cannibalMode && ((blockMask & lineMask) != 0 || maskIsolated != 0 && !IsPow2(maskIsolated))
 				|| cannibalMode && !IsPow2(maskIsolated))
 			{
@@ -3034,7 +3034,7 @@ partial class UniqueRectangleStepSearcher
 		ICollection<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		int[] urCells,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int index
@@ -3100,9 +3100,9 @@ partial class UniqueRectangleStepSearcher
 					}
 
 					var anotherCell = (cells - urCellInSameBlock & HousesMap[coveredLine])[0];
-					foreach (var extraDigit in (short)(grid.GetCandidates(targetCell) & ~comparer))
+					foreach (var extraDigit in (Mask)(grid.GetCandidates(targetCell) & ~comparer))
 					{
-						var abcMask = (short)(comparer | (short)(1 << extraDigit));
+						var abcMask = (Mask)(comparer | (Mask)(1 << extraDigit));
 						if (grid.GetCandidates(anotherCell) != abcMask)
 						{
 							continue;
@@ -3155,7 +3155,7 @@ partial class UniqueRectangleStepSearcher
 							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, resultCell * 9 + extraDigit));
 						}
 
-						foreach (var digit in (short)(grid.GetCandidates(urCellInSameBlock) & abcMask))
+						foreach (var digit in (Mask)(grid.GetCandidates(urCellInSameBlock) & abcMask))
 						{
 							candidateOffsets.Add(new(DisplayColorKind.Normal, urCellInSameBlock * 9 + digit));
 						}
@@ -3171,7 +3171,7 @@ partial class UniqueRectangleStepSearcher
 
 						// Add into the list.
 						var extraDigitId = (byte)(char)(extraDigit + '1');
-						var extraDigitMask = (short)(1 << extraDigit);
+						var extraDigitMask = (Mask)(1 << extraDigit);
 						accumulator.Add(
 							new UniqueRectangleWithBabaGroupingStep(
 								conclusions.ToArray(),
@@ -3256,7 +3256,7 @@ partial class UniqueRectangleStepSearcher
 							new(DisplayColorKind.Auxiliary1, resultCell * 9 + extraDigit),
 							new(DisplayColorKind.Auxiliary1, targetCell * 9 + extraDigit)
 						};
-						foreach (var digit in (short)(grid.GetCandidates(urCellInSameBlock) & abcMask))
+						foreach (var digit in (Mask)(grid.GetCandidates(urCellInSameBlock) & abcMask))
 						{
 							if (digit == extraDigit)
 							{
@@ -3288,7 +3288,7 @@ partial class UniqueRectangleStepSearcher
 
 						// Add into the list.
 						var extraDigitId2 = (byte)(char)(extraDigit + '1');
-						var extraDigitMask2 = (short)(1 << extraDigit);
+						var extraDigitMask2 = (Mask)(1 << extraDigit);
 						accumulator.Add(
 							new UniqueRectangleWithBabaGroupingStep(
 								conclusionsAnotherSubType.ToArray(),
@@ -3471,7 +3471,7 @@ partial class UniqueRectangleStepSearcher
 		ICollection<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		int[] urCells,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int index,
@@ -3511,7 +3511,7 @@ partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				var mask = (short)(grid.GetCandidates(c1) | grid.GetCandidates(c2));
+				var mask = (Mask)(grid.GetCandidates(c1) | grid.GetCandidates(c2));
 				if ((mask & comparer) != comparer)
 				{
 					// The two cells must contain both two digits.
@@ -3537,7 +3537,7 @@ partial class UniqueRectangleStepSearcher
 					{
 						foreach (var otherCells in houseCells & size - 1)
 						{
-							var subsetDigitsMask = (short)(grid.GetDigitsUnion(otherCells) | comparer);
+							var subsetDigitsMask = (Mask)(grid.GetDigitsUnion(otherCells) | comparer);
 							if (PopCount((uint)subsetDigitsMask) != size)
 							{
 								// The subset cannot formed.
@@ -3549,7 +3549,7 @@ partial class UniqueRectangleStepSearcher
 							var conclusions = new List<Conclusion>();
 							foreach (var cell in elimMap)
 							{
-								var elimDigitsMask = guardianCellPair.Contains(cell) ? (short)(subsetDigitsMask & ~comparer) : subsetDigitsMask;
+								var elimDigitsMask = guardianCellPair.Contains(cell) ? (Mask)(subsetDigitsMask & ~comparer) : subsetDigitsMask;
 								foreach (var digit in elimDigitsMask)
 								{
 									if (CandidatesMap[digit].Contains(cell))
@@ -3648,7 +3648,7 @@ partial class UniqueRectangleStepSearcher
 		ICollection<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		int[] urCells,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int index,
@@ -3688,7 +3688,7 @@ partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				var mask = (short)(grid.GetCandidates(c1) | grid.GetCandidates(c2));
+				var mask = (Mask)(grid.GetCandidates(c1) | grid.GetCandidates(c2));
 				if ((mask & comparer) != comparer)
 				{
 					// The two cells must contain both two digits.
@@ -3707,7 +3707,7 @@ partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				var possibleConjugatePairDigitsMask = (short)(grid.GetDigitsUnion(guardianCellPair) & ~comparer);
+				var possibleConjugatePairDigitsMask = (Mask)(grid.GetDigitsUnion(guardianCellPair) & ~comparer);
 				foreach (var house in houses)
 				{
 					foreach (var conjugatePairDigit in possibleConjugatePairDigitsMask)
@@ -3726,7 +3726,7 @@ partial class UniqueRectangleStepSearcher
 						}
 
 						var conclusions = new List<Conclusion>();
-						var elimDigitsMask = (short)(possibleConjugatePairDigitsMask & ~(1 << conjugatePairDigit));
+						var elimDigitsMask = (Mask)(possibleConjugatePairDigitsMask & ~(1 << conjugatePairDigit));
 						foreach (var elimDigit in elimDigitsMask)
 						{
 							foreach (var cell in CandidatesMap[elimDigit] & guardianCellPair)
@@ -3818,7 +3818,7 @@ partial class UniqueRectangleStepSearcher
 		ICollection<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		int[] urCells,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int index,
@@ -3914,7 +3914,7 @@ partial class UniqueRectangleStepSearcher
 						{
 							case CellStatus.Empty:
 							{
-								foreach (var digit in (short)(grid.GetCandidates(cell) & comparer))
+								foreach (var digit in (Mask)(grid.GetCandidates(cell) & comparer))
 								{
 									candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 								}
@@ -3984,7 +3984,7 @@ partial class UniqueRectangleStepSearcher
 		ICollection<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		int[] urCells,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int index,
@@ -4033,14 +4033,14 @@ partial class UniqueRectangleStepSearcher
 				var cell2 = cellPair[1];
 				var mask1 = grid.GetCandidates(cell1);
 				var mask2 = grid.GetCandidates(cell2);
-				var intersectionMask = (short)(mask1 & mask2);
+				var intersectionMask = (Mask)(mask1 & mask2);
 				if (!IsPow2(intersectionMask))
 				{
 					// No eliminations can be found in this structure.
 					continue;
 				}
 
-				var unionMask = (short)(mask1 | mask2);
+				var unionMask = (Mask)(mask1 | mask2);
 				if ((unionMask & comparer) != comparer)
 				{
 					// The two cells must contain both two digits.
@@ -4053,8 +4053,8 @@ partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				var cell1UrDigit = TrailingZeroCount((short)(mask1 & ~intersectionMask));
-				var cell2UrDigit = TrailingZeroCount((short)(mask2 & ~intersectionMask));
+				var cell1UrDigit = TrailingZeroCount((Mask)(mask1 & ~intersectionMask));
+				var cell2UrDigit = TrailingZeroCount((Mask)(mask2 & ~intersectionMask));
 				var guardianCellsThatContainsDigit1 = guardianCells & CandidatesMap[cell1UrDigit];
 				var guardianCellsThatContainsDigit2 = guardianCells & CandidatesMap[cell2UrDigit];
 				if ((PeersMap[cell1] & guardianCellsThatContainsDigit1) != guardianCellsThatContainsDigit1
@@ -4081,7 +4081,7 @@ partial class UniqueRectangleStepSearcher
 					{
 						case CellStatus.Empty:
 						{
-							foreach (var digit in (short)(grid.GetCandidates(cell) & comparer))
+							foreach (var digit in (Mask)(grid.GetCandidates(cell) & comparer))
 							{
 								candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
 							}
@@ -4156,7 +4156,7 @@ partial class UniqueRectangleStepSearcher
 		scoped in Grid grid,
 		int[] urCells,
 		AlmostLockedSet[] alses,
-		short comparer,
+		Mask comparer,
 		int d1,
 		int d2,
 		int index,

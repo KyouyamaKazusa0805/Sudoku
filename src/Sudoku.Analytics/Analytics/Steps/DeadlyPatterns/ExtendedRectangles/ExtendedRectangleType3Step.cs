@@ -7,9 +7,9 @@ public sealed class ExtendedRectangleType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in CellMap cells,
-	short digitsMask,
+	Mask digitsMask,
 	scoped in CellMap subsetCells,
-	short subsetDigitsMask,
+	Mask subsetDigitsMask,
 	int house
 ) : ExtendedRectangleStep(conclusions, views, cells, digitsMask)
 {
@@ -24,7 +24,7 @@ public sealed class ExtendedRectangleType3Step(
 	/// <summary>
 	/// Indicates the subset digits used.
 	/// </summary>
-	public short SubsetDigitsMask { get; } = subsetDigitsMask;
+	public Mask SubsetDigitsMask { get; } = subsetDigitsMask;
 
 	/// <summary>
 	/// Indicates the extra cells used that can form the subset.

@@ -49,7 +49,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 	private static void RecordHighlightCells(scoped in Grid grid, List<CellViewNode> cellOffsets, int?[] mapping)
 	{
 		scoped var colorIndices = (stackalloc int[9]);
-		for (var (digit, colorIndexCurrent, digitsMaskBucket) = (0, 0, (short)0); digit < 9; digit++)
+		for (var (digit, colorIndexCurrent, digitsMaskBucket) = (0, 0, (Mask)0); digit < 9; digit++)
 		{
 			if ((digitsMaskBucket >> digit & 1) != 0)
 			{
@@ -59,11 +59,11 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			var currentMappingRelationDigit = mapping[digit];
 
 			colorIndices[digit] = colorIndexCurrent;
-			digitsMaskBucket |= (short)(1 << digit);
+			digitsMaskBucket |= (Mask)(1 << digit);
 			if (currentMappingRelationDigit is { } relatedDigit && relatedDigit != digit)
 			{
 				colorIndices[relatedDigit] = colorIndexCurrent;
-				digitsMaskBucket |= (short)(1 << relatedDigit);
+				digitsMaskBucket |= (Mask)(1 << relatedDigit);
 			}
 
 			colorIndexCurrent++;

@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides with a step that is a <b>Firework Quadruple</b> technique.
 /// </summary>
-public sealed class FireworkQuadrupleStep(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, short digitsMask) :
+public sealed class FireworkQuadrupleStep(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, Mask digitsMask) :
 	FireworkStep(conclusions, views)
 {
 	/// <inheritdoc/>
@@ -12,7 +12,7 @@ public sealed class FireworkQuadrupleStep(Conclusion[] conclusions, View[]? view
 	/// <summary>
 	/// Indicates the mask of digits used.
 	/// </summary>
-	public short DigitsMask { get; } = digitsMask;
+	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.FireworkQuadruple;

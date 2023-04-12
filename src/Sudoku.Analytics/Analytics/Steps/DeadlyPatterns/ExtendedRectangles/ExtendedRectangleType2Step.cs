@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
 /// </summary>
-public sealed class ExtendedRectangleType2Step(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, short digitsMask, int extraDigit) :
+public sealed class ExtendedRectangleType2Step(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, Mask digitsMask, int extraDigit) :
 	ExtendedRectangleStep(conclusions, views, cells, digitsMask)
 {
 	/// <inheritdoc/>

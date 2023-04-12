@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Chromatic Pattern</b> technique.
 /// </summary>
-public abstract class ChromaticPatternStep(Conclusion[] conclusions, View[]? views, int[] blocks, scoped in CellMap pattern, short digitsMask) :
+public abstract class ChromaticPatternStep(Conclusion[] conclusions, View[]? views, int[] blocks, scoped in CellMap pattern, Mask digitsMask) :
 	NegativeRankStep(conclusions, views)
 {
 	/// <inheritdoc/>
@@ -17,7 +17,7 @@ public abstract class ChromaticPatternStep(Conclusion[] conclusions, View[]? vie
 	/// <summary>
 	/// Indicates the mask of digits.
 	/// </summary>
-	public short DigitsMask { get; } = digitsMask;
+	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

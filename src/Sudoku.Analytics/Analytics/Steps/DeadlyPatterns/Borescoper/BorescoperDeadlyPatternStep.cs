@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Borescoper's Deadly Pattern</b> technique.
 /// </summary>
-public abstract class BorescoperDeadlyPatternStep(Conclusion[] conclusions, View[]? views, scoped in CellMap map, short digitsMask) :
+public abstract class BorescoperDeadlyPatternStep(Conclusion[] conclusions, View[]? views, scoped in CellMap map, Mask digitsMask) :
 	DeadlyPatternStep(conclusions, views)
 {
 	/// <inheritdoc/>
@@ -17,7 +17,7 @@ public abstract class BorescoperDeadlyPatternStep(Conclusion[] conclusions, View
 	/// <summary>
 	/// Indicates the mask of used digits.
 	/// </summary>
-	public short DigitsMask { get; } = digitsMask;
+	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
 	public sealed override string Format => R[$"TechniqueFormat_UniquePolygonType{Type}Step"]!;
