@@ -141,7 +141,7 @@ public unsafe partial struct Grid :
 	/// </list>
 	/// </remarks>
 	/// <seealso cref="CellStatus"/>
-	internal fixed short _values[81];
+	private fixed short _values[81];
 
 
 	/// <summary>

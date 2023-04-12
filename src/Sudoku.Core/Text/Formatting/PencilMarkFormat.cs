@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Represents with a pencil-marked formatter.
@@ -63,7 +63,7 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatVa
 
 		for (var i = 0; i < 81; i++)
 		{
-			var value = grid._values[i];
+			var value = grid.GetMask(i);
 			valuesByRow[i / 9].Add(value);
 			valuesByColumn[i % 9].Add(value);
 		}

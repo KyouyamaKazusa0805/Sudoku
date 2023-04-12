@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Provides with a formatter that allows a <see cref="Grid"/> instance being formatted as Susser format.
@@ -135,7 +135,7 @@ public record SusserFormat(bool WithCandidates = false, bool WithModifiables = f
 			{
 				// Check if the value has been set 'true' and the value has already deleted at the grid
 				// with only givens and modifiables.
-				foreach (var i in (short)(originalGrid._values[c] & Grid.MaxCandidatesMask))
+				foreach (var i in (short)(originalGrid.GetMask(c) & Grid.MaxCandidatesMask))
 				{
 					if (!grid[c, i])
 					{
