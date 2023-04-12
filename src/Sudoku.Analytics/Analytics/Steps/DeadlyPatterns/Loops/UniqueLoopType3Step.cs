@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Loop Type 3</b> technique.
@@ -28,7 +28,7 @@ public sealed class UniqueLoopType3Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[] { base.ExtraDifficultyCases[0], new(ExtraDifficultyCaseNames.Size, SubsetCells.Count * .1M) };
+		=> new[] { base.ExtraDifficultyCases[0], (ExtraDifficultyCaseNames.Size, SubsetCells.Count * .1M) };
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

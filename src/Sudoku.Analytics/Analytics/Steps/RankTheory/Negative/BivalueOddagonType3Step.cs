@@ -30,8 +30,7 @@ public sealed class BivalueOddagonType3Step(
 	public CellMap ExtraCells { get; } = extraCells;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, (ExtraCells.Count >> 1) * .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Size, (ExtraCells.Count >> 1) * .1M) };
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

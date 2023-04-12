@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
@@ -51,10 +51,10 @@ public sealed class UniqueRectangleType3Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[]
+		=> new[]
 		{
-			new(ExtraDifficultyCaseNames.Hidden, IsNaked ? 0 : .1M),
-			new(ExtraDifficultyCaseNames.Size, PopCount((uint)ExtraDigitsMask) * .1M)
+			(ExtraDifficultyCaseNames.Hidden, IsNaked ? 0 : .1M),
+			(ExtraDifficultyCaseNames.Size, PopCount((uint)ExtraDigitsMask) * .1M)
 		};
 
 	/// <inheritdoc/>

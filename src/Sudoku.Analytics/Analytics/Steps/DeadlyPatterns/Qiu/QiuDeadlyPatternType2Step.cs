@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Qiu's Deadly Pattern Type 2</b> technique.
@@ -15,7 +15,7 @@ public sealed class QiuDeadlyPatternType2Step(Conclusion[] conclusions, View[]? 
 	public int ExtraDigit { get; } = extraDigit;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.ExtraDigit, .1M) };
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

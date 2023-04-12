@@ -19,8 +19,7 @@ public sealed class BivalueUniversalGraveMultipleStep(Conclusion[] conclusions, 
 	public override Technique Code => Technique.BivalueUniversalGravePlusN;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, A002024(TrueCandidates.Count) * .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Size, A002024(TrueCandidates.Count) * .1M) };
 
 	/// <summary>
 	/// Indicates the true candidates.

@@ -136,8 +136,7 @@ public abstract class ChainingStep(
 		};
 
 	/// <inheritdoc/>
-	public sealed override ExtraDifficultyCase[]? ExtraDifficultyCases
-		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Length, LengthDifficulty) };
+	public sealed override ExtraDifficultyCase[]? ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Length, LengthDifficulty) };
 
 	/// <summary>
 	/// Indicates an <see cref="int"/> value indicating the ordering priority of the chain. Greater is heavier.

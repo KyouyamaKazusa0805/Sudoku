@@ -4529,37 +4529,6 @@ result ^= expression;
             <param name="length">The length.</param>
             <returns>The difficulty.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyCase">
-            <summary>
-            Represents an extra rating case to be recorded into a technique step.
-            </summary>
-            <param name="Name">
-            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>,
-            you can use constants in that type to assign to this property.
-            </param>
-            <param name="Value">Indicates the value of the target rating.</param>
-            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.ExtraDifficultyCase.#ctor(System.String,System.Decimal)">
-            <summary>
-            Represents an extra rating case to be recorded into a technique step.
-            </summary>
-            <param name="Name">
-            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>,
-            you can use constants in that type to assign to this property.
-            </param>
-            <param name="Value">Indicates the value of the target rating.</param>
-            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyCase.Name">
-            <summary>
-            Indicates the name of the extra difficulty case. This value is an English word stored in type <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>,
-            you can use constants in that type to assign to this property.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyCase.Value">
-            <summary>Indicates the value of the target rating.</summary>
-        </member>
         <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames">
             <summary>
             Represents with kinds of the phased difficulty rating that is used for the calculations the total rating of a step.
@@ -4763,11 +4732,11 @@ result ^= expression;
             <summary>
             Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
             <see cref="P:Sudoku.Analytics.Step.BaseDifficulty"/> and <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>. For property <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>,
-            the result is to sum all values up of inner property <see cref="P:Sudoku.Analytics.Rating.ExtraDifficultyCase.Value"/>.
+            the result is to sum all values up of inner property <see cref="F:System.ValueTuple{System.String,System.Decimal}.Value"/>.
             </summary>
             <seealso cref="P:Sudoku.Analytics.Step.BaseDifficulty"/>
             <seealso cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>
-            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCase"/>
+            <seealso cref="T:System.ValueTuple`2"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.Code">
             <summary>

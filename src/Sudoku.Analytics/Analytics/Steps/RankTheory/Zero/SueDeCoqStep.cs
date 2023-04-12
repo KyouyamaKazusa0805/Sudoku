@@ -81,10 +81,10 @@ public sealed class SueDeCoqStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[]
+		=> new[]
 		{
-			new(ExtraDifficultyCaseNames.Isolated, IsolatedDigitsMask != 0 ? .1M : 0),
-			new(ExtraDifficultyCaseNames.Cannibalism, IsCannibalistic ? .2M : 0)
+			(ExtraDifficultyCaseNames.Isolated, IsolatedDigitsMask != 0 ? .1M : 0),
+			(ExtraDifficultyCaseNames.Cannibalism, IsCannibalistic ? .2M : 0)
 		};
 
 	/// <inheritdoc/>

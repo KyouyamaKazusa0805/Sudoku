@@ -46,10 +46,10 @@ public sealed class UniqueRectangleWithWingStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[]
+		=> new[]
 		{
-			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
-			new(
+			(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
+			(
 				ExtraDifficultyCaseNames.WingSize,
 				Code switch
 				{

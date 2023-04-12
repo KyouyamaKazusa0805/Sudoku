@@ -40,8 +40,7 @@ public abstract class UniqueLoopStep(Conclusion[] conclusions, View[]? views, in
 	public CellMap Loop { get; } = loop;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Length, (A004526(Loop.Count) - 3) * .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Length, (A004526(Loop.Count) - 3) * .1M) };
 
 	private protected string LoopStr => Loop.ToString();
 

@@ -34,8 +34,7 @@ public abstract class ExtendedRectangleStep(Conclusion[] conclusions, View[]? vi
 	public CellMap Cells { get; } = cells;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, (A004526(Cells.Count) - 2) * .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Size, (A004526(Cells.Count) - 2) * .1M) };
 
 	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 

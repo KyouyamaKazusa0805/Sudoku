@@ -32,11 +32,7 @@ public sealed class BivalueUniversalGraveType3Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[]
-		{
-			new(ExtraDifficultyCaseNames.Size, Size * .1M),
-			new(ExtraDifficultyCaseNames.Hidden, isNaked ? 0 : .1M)
-		};
+		=> new[] { (ExtraDifficultyCaseNames.Size, Size * .1M), (ExtraDifficultyCaseNames.Hidden, isNaked ? 0 : .1M) };
 
 	/// <summary>
 	/// Indicates the true candidates used.

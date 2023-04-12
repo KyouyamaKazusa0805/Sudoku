@@ -55,3 +55,4 @@ global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.SolutionWideReadOnlyFields;
 global using unsafe LoopChecker = delegate*<in Sudoku.Concepts.CellMap, bool>;
 global using Mask = short;
+global using ExtraDifficultyCase = (string Name, decimal Value);

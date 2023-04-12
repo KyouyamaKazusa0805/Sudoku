@@ -34,8 +34,7 @@ public abstract class BivalueOddagonStep(Conclusion[] conclusions, View[]? views
 	public CellMap LoopCells { get; } = loopCells;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, (LoopCells.Count >> 1) * .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Size, (LoopCells.Count >> 1) * .1M) };
 
 	private protected string LoopStr => LoopCells.ToString();
 

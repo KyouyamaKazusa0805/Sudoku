@@ -105,13 +105,13 @@ public sealed class RegularWingStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[]
+		=> new[]
 		{
-			new(
+			(
 				ExtraDifficultyCaseNames.WingSize,
 				Size switch { 3 => 0, 4 => .2M, 5 => .4M, 6 => .7M, 7 => 1.0M, 8 => 1.3M, 9 => 1.6M, _ => 2.0M }
 			),
-			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? Size == 3 ? .2M : .1M : 0)
+			(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? Size == 3 ? .2M : .1M : 0)
 		};
 
 	/// <inheritdoc/>

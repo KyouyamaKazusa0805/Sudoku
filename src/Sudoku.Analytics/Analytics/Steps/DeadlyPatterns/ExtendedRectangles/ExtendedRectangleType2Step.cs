@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
@@ -16,7 +16,7 @@ public sealed class ExtendedRectangleType2Step(Conclusion[] conclusions, View[]?
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[] { base.ExtraDifficultyCases[0], new(ExtraDifficultyCaseNames.ExtraDigit, .1M) };
+		=> new[] { base.ExtraDifficultyCases[0], (ExtraDifficultyCaseNames.ExtraDigit, .1M) };
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

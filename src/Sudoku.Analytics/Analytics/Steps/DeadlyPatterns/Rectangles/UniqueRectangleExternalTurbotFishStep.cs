@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle External Turbot Fish</b> technique.
@@ -77,11 +77,11 @@ public sealed class UniqueRectangleExternalTurbotFishStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[]
+		=> new[]
 		{
-			new(ExtraDifficultyCaseNames.Guardian, A004526(GuardianCells.Count) * .1M),
-			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
-			new(ExtraDifficultyCaseNames.Incompleteness, isIncomplete ? .1M : 0)
+			(ExtraDifficultyCaseNames.Guardian, A004526(GuardianCells.Count) * .1M),
+			(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
+			(ExtraDifficultyCaseNames.Incompleteness, isIncomplete ? .1M : 0)
 		};
 
 	/// <inheritdoc/>

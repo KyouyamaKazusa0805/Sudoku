@@ -36,12 +36,12 @@ public sealed class JuniorExocetStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[]
+		=> new[]
 		{
-			new(ExtraDifficultyCaseNames.Mirror, Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.Mirror) ? .1M : 0),
-			new(ExtraDifficultyCaseNames.BiBiPattern, Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.BiBiPattern) ? .3M : 0),
-			new(ExtraDifficultyCaseNames.TargetPair, Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.TargetPair) ? .1M : 0),
-			new(ExtraDifficultyCaseNames.GeneralizedSwordfish, Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.GeneralizedSwordfish) ? .2M : 0)
+			(ExtraDifficultyCaseNames.Mirror, Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.Mirror) ? .1M : 0),
+			(ExtraDifficultyCaseNames.BiBiPattern, Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.BiBiPattern) ? .3M : 0),
+			(ExtraDifficultyCaseNames.TargetPair, Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.TargetPair) ? .1M : 0),
+			(ExtraDifficultyCaseNames.GeneralizedSwordfish, Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.GeneralizedSwordfish) ? .2M : 0)
 		};
 
 #if false

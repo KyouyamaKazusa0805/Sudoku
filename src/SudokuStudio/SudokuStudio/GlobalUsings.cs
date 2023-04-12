@@ -129,3 +129,4 @@ global using SystemPath = System.IO.Path;
 global using Size = Windows.Foundation.Size;
 global using WinSysDispatcherQueue = Windows.System.DispatcherQueue;
 global using WinSysDispatcherQueueController = Windows.System.DispatcherQueueController;
+global using ExtraDifficultyCase = (string Name, decimal Value);

@@ -33,7 +33,7 @@ public sealed class GuardianStep(Conclusion[] conclusions, View[]? views, int di
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.Size, A004526(LoopCells.Count + A004526(Guardians.Count)) * .1M) };
+		=> new[] { (ExtraDifficultyCaseNames.Size, A004526(LoopCells.Count + A004526(Guardians.Count)) * .1M) };
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

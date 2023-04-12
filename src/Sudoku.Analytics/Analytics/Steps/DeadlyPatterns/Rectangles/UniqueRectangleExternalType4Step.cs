@@ -48,10 +48,10 @@ public sealed class UniqueRectangleExternalType4Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[]
+		=> new[]
 		{
-			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
-			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
+			(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
+			(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
 		};
 
 	/// <inheritdoc/>

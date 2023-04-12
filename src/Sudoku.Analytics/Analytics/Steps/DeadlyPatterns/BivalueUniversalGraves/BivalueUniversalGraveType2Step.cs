@@ -20,8 +20,7 @@ public sealed class BivalueUniversalGraveType2Step(Conclusion[] conclusions, Vie
 	public CellMap Cells { get; } = cells;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new ExtraDifficultyCase[] { new(ExtraDifficultyCaseNames.ExtraDigit, A002024(Cells.Count) * .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.ExtraDigit, A002024(Cells.Count) * .1M) };
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
