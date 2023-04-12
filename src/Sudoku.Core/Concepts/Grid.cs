@@ -23,27 +23,27 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
 	/// </summary>
-	public const short DefaultMask = EmptyMask | MaxCandidatesMask;
+	public const Mask DefaultMask = EmptyMask | MaxCandidatesMask;
 
 	/// <summary>
 	/// Indicates the maximum candidate mask that used.
 	/// </summary>
-	public const short MaxCandidatesMask = (1 << 9) - 1;
+	public const Mask MaxCandidatesMask = (1 << 9) - 1;
 
 	/// <summary>
 	/// Indicates the empty mask, modifiable mask and given mask.
 	/// </summary>
-	public const short EmptyMask = (int)CellStatus.Empty << 9;
+	public const Mask EmptyMask = (int)CellStatus.Empty << 9;
 
 	/// <summary>
 	/// Indicates the modifiable mask.
 	/// </summary>
-	public const short ModifiableMask = (int)CellStatus.Modifiable << 9;
+	public const Mask ModifiableMask = (int)CellStatus.Modifiable << 9;
 
 	/// <summary>
 	/// Indicates the given mask.
 	/// </summary>
-	public const short GivenMask = (int)CellStatus.Given << 9;
+	public const Mask GivenMask = (int)CellStatus.Given << 9;
 
 
 	/// <summary>
@@ -110,7 +110,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <remarks>
 	/// The field uses the mask table of length 81 to indicate the status and all possible candidates
-	/// holding for each cell. Each mask uses a <see cref="short"/> value, but only uses 11 of 16 bits.
+	/// holding for each cell. Each mask uses a <see cref="Mask"/> value, but only uses 11 of 16 bits.
 	/// <code>
 	///  | 16  15  14  13  12  11  10  9   8   7   6   5   4   3   2   1   0 |
 	///  |-------------------|-----------|-----------------------------------|
@@ -141,7 +141,7 @@ public unsafe partial struct Grid :
 	/// </list>
 	/// </remarks>
 	/// <seealso cref="CellStatus"/>
-	private fixed short _values[81];
+	private fixed Mask _values[81];
 
 
 	/// <summary>
@@ -193,7 +193,7 @@ public unsafe partial struct Grid :
 		scoped ref var firstElement = ref Empty.GetMaskRef(0);
 		for (var i = 0; i < 81; i++)
 		{
-			AddByteOffset(ref firstElement, (nuint)(i * sizeof(short))) = DefaultMask;
+			AddByteOffset(ref firstElement, (nuint)(i * sizeof(Mask))) = DefaultMask;
 		}
 
 		// Initializes events.
@@ -218,16 +218,16 @@ public unsafe partial struct Grid :
 					{
 						if (@this[cell] is var digit and not -1)
 						{
-							mask &= (short)~(1 << digit);
+							mask &= (Mask)~(1 << digit);
 						}
 					}
 
-					@this._values[i] = (short)(EmptyMask | mask);
+					@this._values[i] = (Mask)(EmptyMask | mask);
 				}
 			}
 		}
 
-		static void onValueChanged(ref Grid @this, int cell, short oldMask, short newMask, int setValue)
+		static void onValueChanged(ref Grid @this, int cell, Mask oldMask, Mask newMask, int setValue)
 		{
 			if (setValue != -1)
 			{
@@ -238,7 +238,7 @@ public unsafe partial struct Grid :
 						// You can't do this because of being invoked recursively.
 						//@this[peerCell, setValue] = false;
 
-						@this._values[peerCell] &= (short)~(1 << setValue);
+						@this._values[peerCell] &= (Mask)~(1 << setValue);
 					}
 				}
 			}
@@ -668,7 +668,7 @@ public unsafe partial struct Grid :
 					var copied = result;
 
 					// Set cell status to 'CellStatus.Modifiable'.
-					result = (short)(ModifiableMask | 1 << value);
+					result = (Mask)(ModifiableMask | 1 << value);
 
 					// To trigger the event, which is used for eliminate all same candidates in peer cells.
 					ValueChanged(ref this, cell, copied, result, value);
@@ -702,11 +702,11 @@ public unsafe partial struct Grid :
 				var copied = _values[cell];
 				if (value)
 				{
-					_values[cell] |= (short)(1 << digit);
+					_values[cell] |= (Mask)(1 << digit);
 				}
 				else
 				{
-					_values[cell] &= (short)~(1 << digit);
+					_values[cell] &= (Mask)~(1 << digit);
 				}
 
 				// To trigger the event.
@@ -727,7 +727,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(scoped in Grid other)
 	{
-		return e(ref AsByteRef(ref AsRef(_values[0])), ref AsByteRef(ref AsRef(other._values[0])), sizeof(short) * 81);
+		return e(ref AsByteRef(ref AsRef(_values[0])), ref AsByteRef(ref AsRef(other._values[0])), sizeof(Mask) * 81);
 
 
 #pragma warning disable CS1587
@@ -1191,7 +1191,7 @@ public unsafe partial struct Grid :
 	/// <param name="offset">The cell offset you want to get.</param>
 	/// <returns>The mask.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly short GetMask(int offset) => _values[offset];
+	public readonly Mask GetMask(int offset) => _values[offset];
 
 	/// <summary>
 	/// Get the candidate mask part of the specified cell.
@@ -1199,7 +1199,7 @@ public unsafe partial struct Grid :
 	/// <param name="cell">The cell offset you want to get.</param>
 	/// <returns>
 	/// <para>
-	/// The candidate mask. The return value is a 9-bit <see cref="short"/>
+	/// The candidate mask. The return value is a 9-bit <see cref="Mask"/>
 	/// value, where each bit will be:
 	/// <list type="table">
 	/// <item>
@@ -1218,35 +1218,35 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly short GetCandidates(int cell) => (short)(_values[cell] & MaxCandidatesMask);
+	public readonly Mask GetCandidates(int cell) => (Mask)(_values[cell] & MaxCandidatesMask);
 
 	/// <inheritdoc cref="GetDigitsUnion(in CellMap)"/>
-	public readonly short GetDigitsUnion(int[] cells)
+	public readonly Mask GetDigitsUnion(int[] cells)
 	{
-		var result = (short)0;
+		var result = (Mask)0;
 		for (var i = 0; i < cells.Length; i++)
 		{
 			result |= _values[cells[i]];
 		}
 
-		return (short)(result & MaxCandidatesMask);
+		return (Mask)(result & MaxCandidatesMask);
 	}
 
 	/// <summary>
-	/// Creates a mask of type <see cref="short"/> that represents the usages of digits 1 to 9,
+	/// Creates a mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9,
 	/// ranged in a specified list of cells in the current sudoku grid.
 	/// </summary>
 	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
-	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
-	public readonly short GetDigitsUnion(scoped in CellMap cells)
+	/// <returns>A mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9.</returns>
+	public readonly Mask GetDigitsUnion(scoped in CellMap cells)
 	{
-		var result = (short)0;
+		var result = (Mask)0;
 		foreach (var cell in cells)
 		{
 			result |= _values[cell];
 		}
 
-		return (short)(result & MaxCandidatesMask);
+		return (Mask)(result & MaxCandidatesMask);
 	}
 
 	/// <summary>
@@ -1258,9 +1258,9 @@ public unsafe partial struct Grid :
 	/// If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
 	/// </param>
 	/// <returns><inheritdoc cref="GetDigitsUnion(in CellMap)" path="/returns"/></returns>
-	public readonly short GetDigitsUnion(scoped in CellMap cells, bool withValueCells)
+	public readonly Mask GetDigitsUnion(scoped in CellMap cells, bool withValueCells)
 	{
-		var result = (short)0;
+		var result = (Mask)0;
 		foreach (var cell in cells)
 		{
 			if (!withValueCells && GetStatus(cell) != CellStatus.Empty || withValueCells)
@@ -1269,22 +1269,22 @@ public unsafe partial struct Grid :
 			}
 		}
 
-		return (short)(result & MaxCandidatesMask);
+		return (Mask)(result & MaxCandidatesMask);
 	}
 
 	/// <summary>
-	/// Creates a mask of type <see cref="short"/> that represents the usages of digits 1 to 9,
+	/// Creates a mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9,
 	/// ranged in a specified list of cells in the current sudoku grid,
 	/// to determine which digits are not used.
 	/// </summary>
 	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
-	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
-	public readonly short GetDigitsIntersection(scoped in CellMap cells)
+	/// <returns>A mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9.</returns>
+	public readonly Mask GetDigitsIntersection(scoped in CellMap cells)
 	{
 		var result = MaxCandidatesMask;
 		foreach (var cell in cells)
 		{
-			result &= (short)~_values[cell];
+			result &= (Mask)~_values[cell];
 		}
 
 		return result;
@@ -1292,7 +1292,7 @@ public unsafe partial struct Grid :
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='custom-fixed']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ref readonly short GetPinnableReference() => ref _values[0];
+	public readonly ref readonly Mask GetPinnableReference() => ref _values[0];
 
 	[GeneratedOverridingMember(GeneratedToStringBehavior.CallOverloadWithNull)]
 	public override readonly partial string ToString();
@@ -1418,7 +1418,8 @@ public unsafe partial struct Grid :
 	/// you can apply <see langword="ref"/> and <see langword="ref readonly"/> modifier
 	/// onto the iteration variable:
 	/// <code><![CDATA[
-	/// foreach (ref readonly short mask in grid)
+	/// // 'Mask' is a type alias for type 'short'.
+	/// foreach (ref readonly Mask mask in grid)
 	/// {
 	///     // Do something.
 	/// }
@@ -1507,7 +1508,7 @@ public unsafe partial struct Grid :
 	{
 		scoped ref var mask = ref _values[cell];
 		var copied = mask;
-		mask = (short)((int)status << 9 | mask & MaxCandidatesMask);
+		mask = (Mask)((int)status << 9 | mask & MaxCandidatesMask);
 
 		ValueChanged(ref this, cell, copied, mask, -1);
 	}
@@ -1518,7 +1519,7 @@ public unsafe partial struct Grid :
 	/// <param name="cell">The cell.</param>
 	/// <param name="mask">The mask to set.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetMask(int cell, short mask)
+	public void SetMask(int cell, Mask mask)
 	{
 		scoped ref var m = ref _values[cell];
 		var copied = m;
@@ -1537,7 +1538,7 @@ public unsafe partial struct Grid :
 	/// For example, if you want to use bitwise-or operator to update the value, you can use:
 	/// <code><![CDATA[
 	/// // Update the mask.
-	/// short mask = ...;
+	/// Mask mask = ...;
 	/// grid.GetMaskRefAt(0) |= mask;
 	/// ]]></code>
 	/// The expression <c>grid.GetMaskRefAt(0) |= mask</c> is equivalent to
@@ -1548,7 +1549,7 @@ public unsafe partial struct Grid :
 	/// <seealso cref="GetPinnableReference"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
-	public ref short GetMaskRef(int index) => ref _values[index];
+	public ref Mask GetMaskRef(int index) => ref _values[index];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1637,12 +1638,12 @@ public unsafe partial struct Grid :
 	/// <param name="masks">The masks.</param>
 	/// <exception cref="ArgumentException">Throws when <see cref="Array.Length"/> is not 81.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Create(short[] masks)
+	public static Grid Create(Mask[] masks)
 	{
 		Argument.ThrowIfNotEqual(masks.Length, 81, nameof(masks));
 
 		var result = Empty;
-		CopyBlock(ref AsByteRef(ref result._values[0]), ref AsByteRef(ref masks[0]), sizeof(short) * 81);
+		CopyBlock(ref AsByteRef(ref result._values[0]), ref AsByteRef(ref masks[0]), sizeof(Mask) * 81);
 
 		return result;
 	}

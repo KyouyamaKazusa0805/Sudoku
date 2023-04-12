@@ -5,8 +5,8 @@ namespace Sudoku.Concepts;
 /// </summary>
 /// <param name="Cells">Indicates the cells used in this chute.</param>
 /// <param name="IsRow">Indicates whether the current chute is for a row.</param>
-/// <param name="HousesMask">Indicates the houses used. The target value is a <see cref="short"/> value of 9 bits used.</param>
+/// <param name="HousesMask">Indicates the houses used. The target value is a <see cref="Mask"/> value of 9 bits used.</param>
 /// <remarks>
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
 /// </remarks>
-public readonly record struct Chute(scoped in CellMap Cells, bool IsRow, short HousesMask);
+public readonly record struct Chute(scoped in CellMap Cells, bool IsRow, Mask HousesMask);

@@ -3814,7 +3814,8 @@ fixed (short* ptr = instance)
             you can apply <see langword="ref" /> and <see langword="ref readonly" /> modifier
             onto the iteration variable:
             <code><![CDATA[
-            foreach (ref readonly short mask in grid)
+            // 'Mask' is a type alias for type 'short'.
+            foreach (ref readonly Mask mask in grid)
             {
                 // Do something.
             }
@@ -3886,7 +3887,7 @@ fixed (short* ptr = instance)
             For example, if you want to use bitwise-or operator to update the value, you can use:
             <code><![CDATA[
             // Update the mask.
-            short mask = ...;
+            Mask mask = ...;
             grid.GetMaskRefAt(0) |= mask;
             ]]></code>
             The expression <c>grid.GetMaskRefAt(0) |= mask</c> is equivalent to
@@ -6436,7 +6437,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Rendering.Nodes.ChuteViewNode.HousesMask">
             <summary>
             <para>
-            Indicates a <see cref="T:System.Int16"/> mask that represents for the houses used.
+            Indicates a <see cref="T:System.Int32"/> bits that represents for the houses used.
             The result mask is a 27-bit digit that represents every possible houses using cases.
             </para>
             <para>
@@ -11653,8 +11654,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Formatting.DigitMaskFormatter.Format(System.Int16,System.String)">
             <summary>
-            Gets a <see cref="T:System.String"/> value that can describes for a list of digits that is represented
-            as a <see cref="T:System.Int16"/> mask.
+            Gets a <see cref="T:System.String"/> value that can describes for a list of digits that is represented as a <see cref="T:System.Int16"/> mask.
             </summary>
             <param name="digitsMask">The digits mask.</param>
             <param name="separator">The separator used.</param>

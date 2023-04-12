@@ -7,12 +7,12 @@ partial struct Grid
 	/// </summary>
 	/// <param name="arr">The pointer to an array.</param>
 	/// <seealso cref="Grid"/>
-	public ref struct MaskEnumerator([UnscopedRef] ref short arr)
+	public ref struct MaskEnumerator([UnscopedRef] ref Mask arr)
 	{
 		/// <summary>
 		/// The current pointer.
 		/// </summary>
-		private ref short _refCurrent = ref SubtractByteOffset(ref arr, 1);
+		private ref Mask _refCurrent = ref SubtractByteOffset(ref arr, 1);
 
 		/// <summary>
 		/// The current index.
@@ -23,7 +23,7 @@ partial struct Grid
 		/// <summary>
 		/// Gets the element in the collection at the current position of the enumerator.
 		/// </summary>
-		public readonly ref short Current
+		public readonly ref Mask Current
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => ref _refCurrent;

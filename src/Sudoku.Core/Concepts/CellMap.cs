@@ -31,7 +31,7 @@ public unsafe partial struct CellMap :
 	IComparable,
 	IComparable<CellMap>,
 	IComparisonOperators<CellMap, CellMap, bool>,
-	IDivisionOperators<CellMap, int, short>,
+	IDivisionOperators<CellMap, int, Mask>,
 	IMultiplyOperators<CellMap, int, CandidateMap>,
 	ISubtractionOperators<CellMap, int, CellMap>,
 	ISubtractionOperators<CellMap, IEnumerable<int>, CellMap>,
@@ -160,12 +160,12 @@ public unsafe partial struct CellMap :
 	/// For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned blocks are 0 and 3, so the return
 	/// mask is <c>0b000001001</c> (i.e. 9).
 	/// </remarks>
-	public readonly short BlockMask
+	public readonly Mask BlockMask
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			short result = 0;
+			var result = (Mask)0;
 			if (this && HousesMap[0]) result |= 1;
 			if (this && HousesMap[1]) result |= 2;
 			if (this && HousesMap[2]) result |= 4;
@@ -186,12 +186,12 @@ public unsafe partial struct CellMap :
 	/// <remarks>
 	/// For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned rows are 0 and 3, so the return mask is <c>0b000001001</c> (i.e. 9).
 	/// </remarks>
-	public readonly short RowMask
+	public readonly Mask RowMask
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			short result = 0;
+			var result = (Mask)0;
 			if (this && HousesMap[9]) result |= 1;
 			if (this && HousesMap[10]) result |= 2;
 			if (this && HousesMap[11]) result |= 4;
@@ -212,12 +212,12 @@ public unsafe partial struct CellMap :
 	/// <remarks>
 	/// For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned columns are 0 and 1, so the return mask is <c>0b000000011</c> (i.e. 3).
 	/// </remarks>
-	public readonly short ColumnMask
+	public readonly Mask ColumnMask
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			short result = 0;
+			var result = (Mask)0;
 			if (this && HousesMap[18]) result |= 1;
 			if (this && HousesMap[19]) result |= 2;
 			if (this && HousesMap[20]) result |= 4;
@@ -1177,15 +1177,15 @@ public unsafe partial struct CellMap :
 	/// <param name="map">The map.</param>
 	/// <param name="houseIndex">The house index.</param>
 	/// <returns>The mask.</returns>
-	public static short operator /(scoped in CellMap map, int houseIndex)
+	public static Mask operator /(scoped in CellMap map, int houseIndex)
 	{
-		var p = (short)0;
+		var p = (Mask)0;
 		var i = 0;
 		foreach (var cell in HouseCells[houseIndex])
 		{
 			if (map.Contains(cell))
 			{
-				p |= (short)(1 << i);
+				p |= (Mask)(1 << i);
 			}
 
 			i++;
@@ -1196,7 +1196,7 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static short IDivisionOperators<CellMap, int, short>.operator /(CellMap left, int right) => left / right;
+	static Mask IDivisionOperators<CellMap, int, Mask>.operator /(CellMap left, int right) => left / right;
 
 	/// <summary>
 	/// Get the sub-view mask of this map. This operator will check the validity of the argument <paramref name="right"/>.
@@ -1205,7 +1205,7 @@ public unsafe partial struct CellMap :
 	/// <param name="right">The house index.</param>
 	/// <returns>The mask.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static short IDivisionOperators<CellMap, int, short>.operator checked /(CellMap left, int right)
+	static Mask IDivisionOperators<CellMap, int, Mask>.operator checked /(CellMap left, int right)
 	{
 		Argument.ThrowIfFalse(right is >= 0 and < 27);
 
@@ -1469,7 +1469,7 @@ file sealed class Converter : JsonConverter<CellMap>
 	public override CellMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		var result = CellMap.Empty;
-		var parts = JsonSerializer.Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
+		var parts = Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
 		foreach (var part in parts)
 		{
 			result |= RxCyNotation.ParseCells(part);

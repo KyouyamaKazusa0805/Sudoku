@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Provides with a formatter that can format a mask that represents for a list of houses.
@@ -112,10 +112,10 @@ public abstract class HouseFormatter : ICollectionFormatter<int>
 	/// <returns>The <see cref="string"/> result.</returns>
 	public static string Format(scoped ReadOnlySpan<int> houses)
 	{
-		short targetMask = 0;
+		var targetMask = (Mask)0;
 		foreach (var house in houses)
 		{
-			targetMask |= (short)(1 << house);
+			targetMask |= (Mask)(1 << house);
 		}
 
 		return Format(targetMask);
@@ -124,10 +124,10 @@ public abstract class HouseFormatter : ICollectionFormatter<int>
 	/// <inheritdoc/>
 	static string ICollectionFormatter<int>.Format(IEnumerable<int> elements, string separator)
 	{
-		short targetMask = 0;
+		var targetMask = (Mask)0;
 		foreach (var element in elements)
 		{
-			targetMask |= (short)(1 << element);
+			targetMask |= (Mask)(1 << element);
 		}
 
 		return Format(targetMask);
@@ -136,10 +136,10 @@ public abstract class HouseFormatter : ICollectionFormatter<int>
 	/// <inheritdoc/>
 	static string ICollectionFormatter<int>.Format(IEnumerable<int> elements, FormattingMode formattingMode)
 	{
-		short targetMask = 0;
+		var targetMask = (Mask)0;
 		foreach (var element in elements)
 		{
-			targetMask |= (short)(1 << element);
+			targetMask |= (Mask)(1 << element);
 		}
 
 		return Format(targetMask, formattingMode);

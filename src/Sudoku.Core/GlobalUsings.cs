@@ -44,6 +44,7 @@ global using static Sudoku.Analytics.ConclusionType;
 global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.MaskServices.MaskOperations;
 global using static Sudoku.SolutionWideReadOnlyFields;
+global using Mask = short;
 global using unsafe RefreshingCandidatesMethodPtr = delegate*<ref Sudoku.Concepts.Grid, void>;
 global using unsafe ValueChangedMethodPtr = delegate*<ref Sudoku.Concepts.Grid, int, short, short, int, void>;
 global using unsafe ParserMethodPtr = delegate*<ref Sudoku.Text.Parsing.GridParser, Sudoku.Concepts.Grid>;

@@ -7,22 +7,22 @@ partial struct Grid
 	/// </summary>
 	/// <param name="arr">The reference to an array.</param>
 	/// <see cref="Grid"/>
-	public ref struct CandidateEnumerator([UnscopedRef] ref short arr)
+	public ref struct CandidateEnumerator([UnscopedRef] ref Mask arr)
 	{
 		/// <summary>
 		/// The pointer to the start value.
 		/// </summary>
-		private readonly ref short _start = ref SubtractByteOffset(ref arr, 1);
+		private readonly ref Mask _start = ref SubtractByteOffset(ref arr, 1);
 
 		/// <summary>
 		/// The current pointer.
 		/// </summary>
-		private ref short _refCurrent = ref SubtractByteOffset(ref arr, 1);
+		private ref Mask _refCurrent = ref SubtractByteOffset(ref arr, 1);
 
 		/// <summary>
 		/// Indicates the current mask.
 		/// </summary>
-		private short _currentMask;
+		private Mask _currentMask;
 
 		/// <summary>
 		/// The current index.
@@ -60,7 +60,7 @@ partial struct Grid
 		/// </returns>
 		public bool MoveNext()
 		{
-			if (_currentMask != 0 && (_currentMask &= (short)~(1 << TrailingZeroCount(_currentMask))) != 0)
+			if (_currentMask != 0 && (_currentMask &= (Mask)~(1 << TrailingZeroCount(_currentMask))) != 0)
 			{
 				return true;
 			}
@@ -80,7 +80,7 @@ partial struct Grid
 			}
 
 			_refCurrent = ref AddByteOffset(ref _start, _currentIndex + 1);
-			_currentMask = (short)(_refCurrent & MaxCandidatesMask);
+			_currentMask = (Mask)(_refCurrent & MaxCandidatesMask);
 
 			return true;
 		}

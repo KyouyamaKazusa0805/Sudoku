@@ -17,7 +17,7 @@ public sealed partial class ChuteViewNode(Identifier identifier, int chuteIndex)
 
 	/// <summary>
 	/// <para>
-	/// Indicates a <see cref="short"/> mask that represents for the houses used.
+	/// Indicates a <see cref="int"/> bits that represents for the houses used.
 	/// The result mask is a 27-bit digit that represents every possible houses using cases.
 	/// </para>
 	/// <para>

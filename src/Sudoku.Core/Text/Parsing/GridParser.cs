@@ -391,10 +391,10 @@ public unsafe ref partial struct GridParser(string parsingValue, bool compatible
 				// Candidates.
 				// Here don't need to check the length of the string,
 				// and also all characters are digit characters.
-				short mask = 0;
+				var mask = (Mask)0;
 				foreach (var c in s)
 				{
-					mask |= (short)(1 << c - '1');
+					mask |= (Mask)(1 << c - '1');
 				}
 
 				if (mask == 0)
@@ -684,10 +684,10 @@ public unsafe ref partial struct GridParser(string parsingValue, bool compatible
 					return Grid.Undefined;
 				}
 
-				short mask = 0;
+				var mask = (Mask)0;
 				foreach (var c in s)
 				{
-					mask |= (short)(1 << c - '1');
+					mask |= (Mask)(1 << c - '1');
 				}
 
 				if (mask == 0)

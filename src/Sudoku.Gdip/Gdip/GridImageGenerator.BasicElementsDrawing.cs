@@ -71,7 +71,7 @@ partial class GridImageGenerator
 					// Draw candidates.
 					// This block is use when user draw candidates from undefined grid.
 					var overlaps = View.UnknownOverlaps(cell);
-					foreach (var digit in (short)(mask & Grid.MaxCandidatesMask))
+					foreach (var digit in (Mask)(mask & Grid.MaxCandidatesMask))
 					{
 						var originalPoint = calc.GetMousePointInCenter(cell, digit);
 						var point = originalPoint with { Y = originalPoint.Y + vOffsetCandidate };
@@ -84,7 +84,7 @@ partial class GridImageGenerator
 				{
 					// Draw candidates.
 					var overlaps = View.UnknownOverlaps(cell);
-					foreach (var digit in (short)(mask & Grid.MaxCandidatesMask))
+					foreach (var digit in (Mask)(mask & Grid.MaxCandidatesMask))
 					{
 						var originalPoint = calc.GetMousePointInCenter(cell, digit);
 						var point = originalPoint with { Y = originalPoint.Y + vOffsetCandidate };

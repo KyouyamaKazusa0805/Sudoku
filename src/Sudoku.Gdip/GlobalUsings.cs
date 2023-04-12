@@ -24,3 +24,4 @@ global using Sudoku.Runtime.MaskServices;
 global using static System.MathF;
 global using static Sudoku.Analytics.ConclusionType;
 global using static Sudoku.Drawing.ProjectWideConstants;
+global using Mask = short;

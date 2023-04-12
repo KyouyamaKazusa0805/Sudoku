@@ -169,7 +169,7 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatVa
 	/// <summary>
 	/// Default printing method.
 	/// </summary>
-	private unsafe void DefaultPrinting(scoped ref StringHandler sb, IList<short> valuesByRow, char c1, char c2, int* maxLengths)
+	private unsafe void DefaultPrinting(scoped ref StringHandler sb, IList<Mask> valuesByRow, char c1, char c2, int* maxLengths)
 	{
 		sb.Append(c1);
 		PrintValues(ref sb, valuesByRow, 0, 2, maxLengths);
@@ -184,7 +184,7 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatVa
 	/// <summary>
 	/// Print values.
 	/// </summary>
-	private unsafe void PrintValues(scoped ref StringHandler sb, IList<short> valuesByRow, int start, int end, int* maxLengths)
+	private unsafe void PrintValues(scoped ref StringHandler sb, IList<Mask> valuesByRow, int start, int end, int* maxLengths)
 	{
 		sb.Append(' ');
 		for (var i = start; i <= end; i++)
@@ -208,7 +208,7 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatVa
 		}
 
 
-		static string appendingMask(short value)
+		static string appendingMask(Mask value)
 		{
 			scoped var innerSb = new StringHandler(9);
 			foreach (var z in value)
@@ -241,8 +241,8 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatVa
 	/// </summary>
 	/// <returns>The dictionary instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static IDictionary<int, List<short>> CreateTempDictionary()
-		=> new Dictionary<int, List<short>>
+	private static IDictionary<int, List<Mask>> CreateTempDictionary()
+		=> new Dictionary<int, List<Mask>>
 		{
 			{ 0, new() },
 			{ 1, new() },

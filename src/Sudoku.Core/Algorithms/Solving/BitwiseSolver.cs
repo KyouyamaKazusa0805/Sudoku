@@ -374,12 +374,12 @@ public sealed unsafe class BitwiseSolver : ISolver
 			{
 				for (var cell = 0; cell < 81; cell++)
 				{
-					var mask = (short)0;
+					var mask = (Mask)0;
 					for (var digit = 0; digit < 9; digit++, puzzle++)
 					{
 						if (*puzzle == '0')
 						{
-							mask |= (short)(1 << digit);
+							mask |= (Mask)(1 << digit);
 						}
 					}
 

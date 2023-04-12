@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Provides with a formatter that can format a mask that represents for a list of digits.
@@ -11,13 +11,12 @@ public abstract class DigitMaskFormatter : ICollectionFormatter<int>
 
 
 	/// <summary>
-	/// Gets a <see cref="string"/> value that can describes for a list of digits that is represented
-	/// as a <see cref="short"/> mask.
+	/// Gets a <see cref="string"/> value that can describes for a list of digits that is represented as a <see cref="Mask"/> mask.
 	/// </summary>
 	/// <param name="digitsMask">The digits mask.</param>
 	/// <param name="separator">The separator used.</param>
 	/// <returns>The <see cref="string"/> result.</returns>
-	public static string Format(short digitsMask, string separator)
+	public static string Format(Mask digitsMask, string separator)
 	{
 		return digitsMask switch
 		{
@@ -27,7 +26,7 @@ public abstract class DigitMaskFormatter : ICollectionFormatter<int>
 		};
 
 
-		static string defaultToString(short digitsMask, string separator)
+		static string defaultToString(Mask digitsMask, string separator)
 		{
 			scoped var sb = new StringHandler(9);
 			foreach (var digit in digitsMask)
@@ -41,7 +40,7 @@ public abstract class DigitMaskFormatter : ICollectionFormatter<int>
 		}
 	}
 
-	/// <inheritdoc cref="Format(short, string)"/>
+	/// <inheritdoc cref="Format(Mask, string)"/>
 	/// <param name="digitsMask"><inheritdoc/></param>
 	/// <param name="formattingMode">The formatting mode.</param>
 	/// <returns><inheritdoc/></returns>
@@ -52,7 +51,7 @@ public abstract class DigitMaskFormatter : ICollectionFormatter<int>
 	/// Throws when the argument <paramref name="formattingMode"/> is not defined.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string Format(short digitsMask, FormattingMode formattingMode = FormattingMode.Simple)
+	public static string Format(Mask digitsMask, FormattingMode formattingMode = FormattingMode.Simple)
 		=> formattingMode switch
 		{
 			FormattingMode.Simple => Format(digitsMask, string.Empty),
@@ -64,10 +63,10 @@ public abstract class DigitMaskFormatter : ICollectionFormatter<int>
 	/// <inheritdoc/>
 	static string ICollectionFormatter<int>.Format(IEnumerable<int> elements, string separator)
 	{
-		short targetMask = 0;
+		var targetMask = (Mask)0;
 		foreach (var element in elements)
 		{
-			targetMask |= (short)(1 << element);
+			targetMask |= (Mask)(1 << element);
 		}
 
 		return Format(targetMask, separator);
@@ -76,10 +75,10 @@ public abstract class DigitMaskFormatter : ICollectionFormatter<int>
 	/// <inheritdoc/>
 	static string ICollectionFormatter<int>.Format(IEnumerable<int> elements, FormattingMode formattingMode)
 	{
-		short targetMask = 0;
+		var targetMask = (Mask)0;
 		foreach (var element in elements)
 		{
-			targetMask |= (short)(1 << element);
+			targetMask |= (Mask)(1 << element);
 		}
 
 		return Format(targetMask, formattingMode);

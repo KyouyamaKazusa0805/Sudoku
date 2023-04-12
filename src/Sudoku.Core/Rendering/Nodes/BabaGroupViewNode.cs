@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes;
 /// <summary>
 /// Defines a view node that highlights for a Baba group.
 /// </summary>
-public sealed partial class BabaGroupViewNode(Identifier identifier, int cell, Utf8Char unknownValueChar, short digitsMask) :
+public sealed partial class BabaGroupViewNode(Identifier identifier, int cell, Utf8Char unknownValueChar, Mask digitsMask) :
 	BasicViewNode(identifier)
 {
 	/// <summary>
@@ -14,7 +14,7 @@ public sealed partial class BabaGroupViewNode(Identifier identifier, int cell, U
 	/// <summary>
 	/// Indicates the digits used.
 	/// </summary>
-	public short DigitsMask { get; } = digitsMask;
+	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <summary>
 	/// Indicates the character that represents the unknown range.
@@ -38,7 +38,7 @@ public sealed partial class BabaGroupViewNode(Identifier identifier, int cell, U
 	public partial void Deconstruct(out Identifier identifier, out int cell, out Utf8Char unknownValueChar);
 
 	[DeconstructionMethod]
-	public partial void Deconstruct(out Identifier identifier, out int cell, out short digitsMask, out Utf8Char unknownValueChar);
+	public partial void Deconstruct(out Identifier identifier, out int cell, out Mask digitsMask, out Utf8Char unknownValueChar);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

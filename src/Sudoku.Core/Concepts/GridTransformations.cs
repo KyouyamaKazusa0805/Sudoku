@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Provides methods for <see cref="Grid"/> instances on transformations.
@@ -75,7 +75,7 @@ public static unsafe class GridTransformations
 	/// </remarks>
 	public static ref Grid MirrorLeftRight(this ref Grid @this)
 	{
-		fixed (short* p = @this)
+		fixed (Mask* p = @this)
 		{
 			for (var i = 0; i < 9; i++)
 			{
@@ -100,7 +100,7 @@ public static unsafe class GridTransformations
 	/// </remarks>
 	public static ref Grid MirrorTopBottom(this ref Grid @this)
 	{
-		fixed (short* p = @this)
+		fixed (Mask* p = @this)
 		{
 			for (var i = 0; i < 9; i++)
 			{
@@ -125,7 +125,7 @@ public static unsafe class GridTransformations
 	/// </remarks>
 	public static ref Grid MirrorDiagonal(this ref Grid @this)
 	{
-		fixed (short* p = @this)
+		fixed (Mask* p = @this)
 		{
 			for (var i = 0; i < 9; i++)
 			{
@@ -162,7 +162,7 @@ public static unsafe class GridTransformations
 	/// </remarks>
 	public static ref Grid MirrorAntidiagonal(this ref Grid @this)
 	{
-		fixed (short* p = @this)
+		fixed (Mask* p = @this)
 		{
 			for (var i = 0; i < 9; i++)
 			{
@@ -188,7 +188,7 @@ public static unsafe class GridTransformations
 	public static ref Grid RotateClockwise(this ref Grid @this)
 	{
 		var result = Grid.Undefined;
-		fixed (short* pThis = @this, pResult = result)
+		fixed (Mask* pThis = @this, pResult = result)
 		{
 			for (var cell = 0; cell < 81; cell++)
 			{
@@ -212,7 +212,7 @@ public static unsafe class GridTransformations
 	public static ref Grid RotateCounterclockwise(this ref Grid @this)
 	{
 		var result = Grid.Undefined;
-		fixed (short* pThis = @this, pResult = result)
+		fixed (Mask* pThis = @this, pResult = result)
 		{
 			for (var cell = 0; cell < 81; cell++)
 			{
@@ -236,7 +236,7 @@ public static unsafe class GridTransformations
 	public static ref Grid RotatePi(this ref Grid @this)
 	{
 		var result = Grid.Undefined;
-		fixed (short* pThis = @this, pResult = result)
+		fixed (Mask* pThis = @this, pResult = result)
 		{
 			for (var cell = 0; cell < 81; cell++)
 			{
@@ -270,7 +270,7 @@ public static unsafe class GridTransformations
 		Argument.ThrowIfFalse(houseIndex1.ToHouseType() == houseIndex2.ToHouseType(), "Two houses should be the same house type.");
 		Argument.ThrowIfFalse(Array.Exists(SwappableHouses, predicate));
 
-		fixed (short* p = @this)
+		fixed (Mask* p = @this)
 		{
 			for (var i = 0; i < 9; i++)
 			{
