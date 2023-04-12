@@ -285,7 +285,7 @@ file static unsafe class Cached
 	/// </returns>
 	public static BivalueOddagon[] GatherBivalueOddagons(short digitsMask)
 	{
-		delegate*<in CellMap, bool> condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
+		LoopChecker condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
 
 		var result = new List<BivalueOddagon>();
 		var d1 = TrailingZeroCount(digitsMask);
@@ -310,7 +310,7 @@ file static unsafe class Cached
 		scoped in CellMap currentLoop,
 		short digitsMask,
 		scoped in CellMap fullCells,
-		delegate*<in CellMap, bool> condition,
+		LoopChecker condition,
 		List<BivalueOddagon> result
 	)
 	{

@@ -117,7 +117,7 @@ file static unsafe class Cached
 	/// </returns>
 	public static Guardian[] GatherGuardianLoops(int digit)
 	{
-		delegate*<in CellMap, bool> condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
+		LoopChecker condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
 
 		var result = new List<Guardian>();
 		foreach (var cell in CandidatesMap[digit])
@@ -138,7 +138,7 @@ file static unsafe class Cached
 		scoped in CellMap currentLoop,
 		scoped in CellMap currentGuardians,
 		int digit,
-		delegate*<in CellMap, bool> condition,
+		LoopChecker condition,
 		List<Guardian> result
 	)
 	{

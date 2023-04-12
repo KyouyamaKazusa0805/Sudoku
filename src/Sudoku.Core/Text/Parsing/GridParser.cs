@@ -15,12 +15,12 @@ public unsafe ref partial struct GridParser(string parsingValue, bool compatible
 	/// <summary>
 	/// The list of all methods to parse.
 	/// </summary>
-	private static readonly delegate*<ref GridParser, Grid>[] ParseFunctions;
+	private static readonly ParserMethodPtr[] ParseFunctions;
 
 	/// <summary>
 	/// The list of all methods to parse multiple-line grid.
 	/// </summary>
-	private static readonly delegate*<ref GridParser, Grid>[] MultilineParseFunctions;
+	private static readonly ParserMethodPtr[] MultilineParseFunctions;
 
 
 	/// <summary>
@@ -37,8 +37,7 @@ public unsafe ref partial struct GridParser(string parsingValue, bool compatible
 	/// </summary>
 	/// <param name="parsingValue">The string to parse.</param>
 	/// <param name="compatibleFirst">
-	/// Indicates whether the parsing operation should use compatible mode to check
-	/// PM grid. See <see cref="CompatibleFirst"/> to learn more.
+	/// Indicates whether the parsing operation should use compatible mode to check PM grid. See <see cref="CompatibleFirst"/> to learn more.
 	/// </param>
 	/// <seealso cref="CompatibleFirst"/>
 	public GridParser(string parsingValue, bool compatibleFirst) : this(parsingValue, compatibleFirst, false)
@@ -49,7 +48,7 @@ public unsafe ref partial struct GridParser(string parsingValue, bool compatible
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static GridParser()
 	{
-		ParseFunctions = new delegate*<ref GridParser, Grid>[]
+		ParseFunctions = new ParserMethodPtr[]
 		{
 			&OnParsingSimpleTable,
 			&OnParsingSimpleMultilineGrid,
@@ -67,7 +66,7 @@ public unsafe ref partial struct GridParser(string parsingValue, bool compatible
 		// Array slicing on pointer type cannot be available for AnyCPU.
 		MultilineParseFunctions = ParseFunctions[1..3];
 #else
-		MultilineParseFunctions = new delegate*<ref GridParser, Grid>[] { &OnParsingSimpleMultilineGrid, &OnParsingPencilMarked };
+		MultilineParseFunctions = new ParserMethodPtr[] { &OnParsingSimpleMultilineGrid, &OnParsingPencilMarked };
 #endif
 
 		static Grid onParsingSukaku_1(ref GridParser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);

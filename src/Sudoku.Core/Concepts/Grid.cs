@@ -57,7 +57,7 @@ public unsafe partial struct Grid :
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/csharp9/feature[@name='function-pointer']"/>
 	/// </remarks>
-	public static readonly delegate*<ref Grid, int, short, short, int, void> ValueChanged;
+	public static readonly ValueChangedMethodPtr ValueChanged;
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
@@ -65,7 +65,7 @@ public unsafe partial struct Grid :
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/csharp9/feature[@name='function-pointer']"/>
 	/// </remarks>
-	public static readonly delegate*<ref Grid, void> RefreshingCandidates;
+	public static readonly RefreshingCandidatesMethodPtr RefreshingCandidates;
 
 	/// <summary>
 	/// The empty grid that is valid during implementation or running the program (all values are <see cref="DefaultMask"/>, i.e. empty cells).

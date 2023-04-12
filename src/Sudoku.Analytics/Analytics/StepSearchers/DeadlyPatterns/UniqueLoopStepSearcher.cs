@@ -529,7 +529,7 @@ file static unsafe class Cached
 	/// </returns>
 	public static UniqueLoop[] GatherUniqueLoops(short digitsMask)
 	{
-		delegate*<in CellMap, bool> condition = &UniqueLoopSatisfyingPredicate;
+		LoopChecker condition = &UniqueLoopSatisfyingPredicate;
 
 		var result = new List<UniqueLoop>();
 		var d1 = TrailingZeroCount(digitsMask);
@@ -554,7 +554,7 @@ file static unsafe class Cached
 		scoped in CellMap currentLoop,
 		short digitsMask,
 		scoped in CellMap fullCells,
-		delegate*<in CellMap, bool> condition,
+		LoopChecker condition,
 		List<UniqueLoop> result
 	)
 	{

@@ -13529,8 +13529,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="parsingValue">The string to parse.</param>
             <param name="compatibleFirst">
-            Indicates whether the parsing operation should use compatible mode to check
-            PM grid. See <see cref="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst"/> to learn more.
+            Indicates whether the parsing operation should use compatible mode to check PM grid. See <see cref="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst"/> to learn more.
             </param>
             <seealso cref="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst"/>
         </member>
