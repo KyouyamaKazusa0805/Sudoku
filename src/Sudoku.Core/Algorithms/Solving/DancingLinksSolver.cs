@@ -1,5 +1,7 @@
 namespace Sudoku.Algorithms.Solving;
 
+using MatrixRow = (DancingLinkNode Cell, DancingLinkNode Row, DancingLinkNode Column, DancingLinkNode Block);
+
 /// <summary>
 /// Defines a solver that uses the dancing links algorithm.
 /// </summary>
@@ -276,7 +278,7 @@ file sealed class DancingLink(ColumnNode root)
 		var row = new DancingLinkNode(x * 81 + y * 9 + d, columns[81 + x * 9 + d]);
 		var column = new DancingLinkNode(x * 81 + y * 9 + d, columns[162 + y * 9 + d]);
 		var block = new DancingLinkNode(x * 81 + y * 9 + d, columns[243 + (3 * (x / 3) + y / 3) * 9 + d]);
-		var matrixRow = new MatrixRow(cell, row, column, block);
+		var matrixRow = (MatrixRow)(cell, row, column, block);
 
 		LinkRow(ref matrixRow);
 		LinkRowToColumn(matrixRow.Cell);
@@ -285,12 +287,3 @@ file sealed class DancingLink(ColumnNode root)
 		LinkRowToColumn(matrixRow.Block);
 	}
 }
-
-/// <summary>
-/// Represents a matrix row.
-/// </summary>
-/// <param name="Cell">Indicates the node that represents the current cell.</param>
-/// <param name="Row">Indicates the nodes at the current row.</param>
-/// <param name="Column">Indicates the nodes at the current column.</param>
-/// <param name="Block">Indicates the nodes at the current block.</param>
-file record struct MatrixRow(DancingLinkNode Cell, DancingLinkNode Row, DancingLinkNode Column, DancingLinkNode Block);

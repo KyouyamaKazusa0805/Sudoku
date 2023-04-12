@@ -74,36 +74,6 @@
             Otherwise.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.DocumentationCommentData">
-            <summary>
-            Indicates the property generating data for XML documentation comments.
-            </summary>
-            <param name="DocSummary">Indicates the documentation comment <c>summary</c> part.</param>
-            <param name="DocRemarks">Indicates the documentation comment <c>remarks</c> part.</param>
-            <param name="DocCref">Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.</param>
-            <param name="DocPath">Indicates the referenced path that will be used for displaying <c>inheritdoc</c> part.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.DocumentationCommentData.#ctor(System.String,System.String,System.String,System.String)">
-            <summary>
-            Indicates the property generating data for XML documentation comments.
-            </summary>
-            <param name="DocSummary">Indicates the documentation comment <c>summary</c> part.</param>
-            <param name="DocRemarks">Indicates the documentation comment <c>remarks</c> part.</param>
-            <param name="DocCref">Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.</param>
-            <param name="DocPath">Indicates the referenced path that will be used for displaying <c>inheritdoc</c> part.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.DocumentationCommentData.DocSummary">
-            <summary>Indicates the documentation comment <c>summary</c> part.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.DocumentationCommentData.DocRemarks">
-            <summary>Indicates the documentation comment <c>remarks</c> part.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.DocumentationCommentData.DocCref">
-            <summary>Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.DocumentationCommentData.DocPath">
-            <summary>Indicates the referenced path that will be used for displaying <c>inheritdoc</c> part.</summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.AccessibilityExtensions">
             <summary>
             Provides with extension methods for <see cref="T:Sudoku.Diagnostics.CodeGen.Accessibility"/>.
@@ -131,89 +101,27 @@
             </summary>
             <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
             <param name="PropertiesData">
-            Indicates the internal data. For more information please visit doc comments for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            Indicates the internal data. For more information please visit doc comments for type <see cref="T:System.ValueTuple`8"/>.
             </param>
-            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>
+            <seealso cref="T:System.ValueTuple`8"/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.Diagnostics.CodeGen.Generators.PropertyData})">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{System.ValueTuple{System.String,Microsoft.CodeAnalysis.ITypeSymbol,System.ValueTuple{System.String,System.String,System.String,System.String},System.String,System.Nullable{Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind},System.Object,System.String,System.ValueTuple{System.Boolean}}})">
             <summary>
             The gathered data. This type is only used for describing the details of gathered result.
             </summary>
             <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
             <param name="PropertiesData">
-            Indicates the internal data. For more information please visit doc comments for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            Indicates the internal data. For more information please visit doc comments for type <see cref="T:System.ValueTuple`8"/>.
             </param>
-            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>
+            <seealso cref="T:System.ValueTuple`8"/>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Type">
             <summary>The type symbol whose corresponding type is one where attributes declared.</summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.PropertiesData">
             <summary>
-            Indicates the internal data. For more information please visit doc comments for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            Indicates the internal data. For more information please visit doc comments for type <see cref="T:System.ValueTuple`8"/>.
             </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData">
-            <summary>
-            Indicates the property generating data.
-            </summary>
-            <param name="PropertyName">Indicates the property name.</param>
-            <param name="PropertyType">Indicates the property type.</param>
-            <param name="DocumentationCommentData">Indicates the documentation data.</param>
-            <param name="DefaultValueGeneratingMemberName">
-            Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
-            </param>
-            <param name="DefaultValueGeneratingMemberKind">
-            Indicates the kind of the referenced member specified as the argument <see cref="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberName"/>.
-            </param>
-            <param name="DefaultValue">Indicates the real default value.</param>
-            <param name="CallbackMethodName">The callback method name.</param>
-            <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.Diagnostics.CodeGen.DocumentationCommentData,System.String,System.Nullable{Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean)">
-            <summary>
-            Indicates the property generating data.
-            </summary>
-            <param name="PropertyName">Indicates the property name.</param>
-            <param name="PropertyType">Indicates the property type.</param>
-            <param name="DocumentationCommentData">Indicates the documentation data.</param>
-            <param name="DefaultValueGeneratingMemberName">
-            Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
-            </param>
-            <param name="DefaultValueGeneratingMemberKind">
-            Indicates the kind of the referenced member specified as the argument <see cref="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberName"/>.
-            </param>
-            <param name="DefaultValue">Indicates the real default value.</param>
-            <param name="CallbackMethodName">The callback method name.</param>
-            <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.PropertyName">
-            <summary>Indicates the property name.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.PropertyType">
-            <summary>Indicates the property type.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DocumentationCommentData">
-            <summary>Indicates the documentation data.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberName">
-            <summary>
-            Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberKind">
-            <summary>
-            Indicates the kind of the referenced member specified as the argument <see cref="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberName"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValue">
-            <summary>Indicates the real default value.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.CallbackMethodName">
-            <summary>The callback method name.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.IsNullable">
-            <summary>Indicates whether the source generator will emit nullable token for reference typed properties.</summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.DependencyPropertyGenerator">
             <summary>
@@ -229,104 +137,26 @@
             </summary>
             <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
             <param name="PropertiesData">
-            Indicates the internal data. For more information please visit doc comments for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            Indicates the internal data. For more information please visit doc comments for type <see cref="T:System.ValueTuple`8"/>.
             </param>
-            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>
+            <seealso cref="T:System.ValueTuple`8"/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.Diagnostics.CodeGen.Generators.PropertyData})">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Data.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{System.ValueTuple{System.String,Microsoft.CodeAnalysis.ITypeSymbol,System.ValueTuple{System.String,System.String,System.String,System.String},System.String,System.Nullable{Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind},System.Object,System.String,System.ValueTuple{System.Boolean,Sudoku.Diagnostics.CodeGen.Accessibility,System.String[]}}})">
             <summary>
             The gathered data. This type is only used for describing the details of gathered result.
             </summary>
             <param name="Type">The type symbol whose corresponding type is one where attributes declared.</param>
             <param name="PropertiesData">
-            Indicates the internal data. For more information please visit doc comments for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
+            Indicates the internal data. For more information please visit doc comments for type <see cref="T:System.ValueTuple`8"/>.
             </param>
-            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>
+            <seealso cref="T:System.ValueTuple`8"/>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.Type">
             <summary>The type symbol whose corresponding type is one where attributes declared.</summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.Data.PropertiesData">
             <summary>
-            Indicates the internal data. For more information please visit doc comments for type <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData"/>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PropertyData">
-            <summary>
-            Indicates the property generating data.
-            </summary>
-            <param name="PropertyName">Indicates the property name.</param>
-            <param name="PropertyType">Indicates the property type.</param>
-            <param name="DocumentationCommentData">The documentation data.</param>
-            <param name="DefaultValueGeneratingMemberName">
-            Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
-            </param>
-            <param name="DefaultValueGeneratingMemberKind">
-            Indicates the kind of the referenced member specified as the argument <see cref="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberName"/>.
-            </param>
-            <param name="DefaultValue">Indicates the real default value.</param>
-            <param name="CallbackMethodName">Indicates the callback method name.</param>
-            <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
-            <param name="Accessibility">The accessibility.</param>
-            <param name="MembersNotNullWhenReturnsTrue">
-            Indicates the member names that won't be <see langword="null"/> if the dependency property returns <see langword="true"/>.
-            </param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.Diagnostics.CodeGen.DocumentationCommentData,System.String,System.Nullable{Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean,Sudoku.Diagnostics.CodeGen.Accessibility,System.String[])">
-            <summary>
-            Indicates the property generating data.
-            </summary>
-            <param name="PropertyName">Indicates the property name.</param>
-            <param name="PropertyType">Indicates the property type.</param>
-            <param name="DocumentationCommentData">The documentation data.</param>
-            <param name="DefaultValueGeneratingMemberName">
-            Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
-            </param>
-            <param name="DefaultValueGeneratingMemberKind">
-            Indicates the kind of the referenced member specified as the argument <see cref="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberName"/>.
-            </param>
-            <param name="DefaultValue">Indicates the real default value.</param>
-            <param name="CallbackMethodName">Indicates the callback method name.</param>
-            <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
-            <param name="Accessibility">The accessibility.</param>
-            <param name="MembersNotNullWhenReturnsTrue">
-            Indicates the member names that won't be <see langword="null"/> if the dependency property returns <see langword="true"/>.
-            </param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.PropertyName">
-            <summary>Indicates the property name.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.PropertyType">
-            <summary>Indicates the property type.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DocumentationCommentData">
-            <summary>The documentation data.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberName">
-            <summary>
-            Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberKind">
-            <summary>
-            Indicates the kind of the referenced member specified as the argument <see cref="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValueGeneratingMemberName"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.DefaultValue">
-            <summary>Indicates the real default value.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.CallbackMethodName">
-            <summary>Indicates the callback method name.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.IsNullable">
-            <summary>Indicates whether the source generator will emit nullable token for reference typed properties.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.Accessibility">
-            <summary>The accessibility.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PropertyData.MembersNotNullWhenReturnsTrue">
-            <summary>
-            Indicates the member names that won't be <see langword="null"/> if the dependency property returns <see langword="true"/>.
+            Indicates the internal data. For more information please visit doc comments for type <see cref="T:System.ValueTuple`8"/>.
             </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.NameAttribute">

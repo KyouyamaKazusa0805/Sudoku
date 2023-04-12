@@ -45,7 +45,7 @@ file sealed class MentioningCommand : IModule
 			// 开始游戏指令。
 			case { AnsweringContext.CurrentTimesliceAnswered: { } answered, ExecutingCommand: "开始游戏" } when int.TryParse(m, out var value):
 			{
-				answered.Add(new(sender, value));
+				answered.Add((sender, value));
 				break;
 			}
 

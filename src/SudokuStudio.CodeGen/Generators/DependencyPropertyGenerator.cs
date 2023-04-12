@@ -1,5 +1,7 @@
 namespace Sudoku.Diagnostics.CodeGen.Generators;
 
+using PropertyData = (string PropertyName, ITypeSymbol PropertyType, DocumentationCommentData DocumentationCommentData, string? DefaultValueGeneratingMemberName, DefaultValueGeneratingMemberKind? DefaultValueGeneratingMemberKind, object? DefaultValue, string? CallbackMethodName, bool IsNullable, Accessibility Accessibility, string[]? MembersNotNullWhenReturnsTrue);
+
 /// <summary>
 /// Defines a generator that generates the source code for dependency properties.
 /// </summary>
@@ -180,10 +182,10 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 				}
 
 				propertiesData.Add(
-					new(
+					(
 						propertyName,
 						propertyType,
-						new(docSummary, docRemarks, docCref, docPath),
+						(docSummary, docRemarks, docCref, docPath),
 						defaultValueGenerator,
 						defaultValueGeneratorKind,
 						defaultValue,
@@ -316,35 +318,3 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 /// </param>
 /// <seealso cref="PropertyData"/>
 file sealed record Data(INamedTypeSymbol Type, List<PropertyData> PropertiesData);
-
-/// <summary>
-/// Indicates the property generating data.
-/// </summary>
-/// <param name="PropertyName">Indicates the property name.</param>
-/// <param name="PropertyType">Indicates the property type.</param>
-/// <param name="DocumentationCommentData">The documentation data.</param>
-/// <param name="DefaultValueGeneratingMemberName">
-/// Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
-/// </param>
-/// <param name="DefaultValueGeneratingMemberKind">
-/// Indicates the kind of the referenced member specified as the argument <see cref="DefaultValueGeneratingMemberName"/>.
-/// </param>
-/// <param name="DefaultValue">Indicates the real default value.</param>
-/// <param name="CallbackMethodName">Indicates the callback method name.</param>
-/// <param name="IsNullable">Indicates whether the source generator will emit nullable token for reference typed properties.</param>
-/// <param name="Accessibility">The accessibility.</param>
-/// <param name="MembersNotNullWhenReturnsTrue">
-/// Indicates the member names that won't be <see langword="null"/> if the dependency property returns <see langword="true"/>.
-/// </param>
-file sealed record PropertyData(
-	string PropertyName,
-	ITypeSymbol PropertyType,
-	DocumentationCommentData DocumentationCommentData,
-	string? DefaultValueGeneratingMemberName,
-	DefaultValueGeneratingMemberKind? DefaultValueGeneratingMemberKind,
-	object? DefaultValue,
-	string? CallbackMethodName,
-	bool IsNullable,
-	Accessibility Accessibility,
-	string[]? MembersNotNullWhenReturnsTrue
-);

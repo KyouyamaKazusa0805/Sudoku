@@ -53,3 +53,4 @@ global using static Sudoku.Workflow.Bot.Oicq.Lifecycle.EnvironmentVariables;
 global using Group = Mirai.Net.Data.Shared.Group;
 global using SpecialFolder = System.Environment.SpecialFolder;
 global using File = System.IO.File;
+global using UserPuzzleAnswerDetails = (Mirai.Net.Data.Shared.Member User, int Conclusion);

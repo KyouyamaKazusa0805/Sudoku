@@ -1,5 +1,8 @@
 namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
+using GeneratedGridData = (Grid Puzzle, int[] ChosenCells, int FinalIndex, TimeSpan TimeLimit, int ExperiencePoint);
+using ResultInfo = (string UserName, string Id, int ExperiencePoint, int Coin, Item? EarnedItem, int Times, bool IsCorrectedUser);
+
 /// <summary>
 /// 游戏指令。
 /// </summary>
@@ -95,7 +98,7 @@ internal sealed class GameCommand : Command
 								let deduct = -Enumerable.Range(1, times).Sum(LocalScorer.GetExperiencePointDeduct)
 								let currentUser = messageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
 								let isCorrectedUser = currentUserId == userId
-								select new ResultInfo(
+								select (ResultInfo)(
 									currentUser.Name,
 									currentUserId,
 									deduct + (isCorrectedUser ? baseExp : 0),
@@ -163,7 +166,7 @@ internal sealed class GameCommand : Command
 			let times = pair.Value
 			let deduct = -Enumerable.Range(1, times).Sum(LocalScorer.GetExperiencePointDeduct)
 			let currentUser = messageReceiver.Sender.Group.GetMatchedMemberViaIdAsync(currentUserId).Result
-			select new ResultInfo(currentUser.Name, currentUserId, deduct, 0, default, times, false);
+			select (ResultInfo)(currentUser.Name, currentUserId, deduct, 0, default, times, false);
 
 		appendOrDeduceScore(scoringTableLinesDeductOnly);
 
@@ -302,10 +305,10 @@ internal sealed class GameCommand : Command
 								}
 							}
 
-							return new(grid, finalCellsChosen.ToArray(), digitChosen, timeLimit, expEarned);
+							return (grid, finalCellsChosen.ToArray(), digitChosen, timeLimit, expEarned);
 						}
 
-						return new(grid, finalCellsChosen.ToArray(), -1, timeLimit, expEarned);
+						return (grid, finalCellsChosen.ToArray(), -1, timeLimit, expEarned);
 					}
 				}
 			}
@@ -331,28 +334,6 @@ internal sealed class GameCommand : Command
 			_ => throw new NotSupportedException("The specified difficulty is not supported.")
 		};
 }
-
-/// <summary>
-/// 表示生成的题目数据。
-/// </summary>
-/// <param name="Puzzle">题目。</param>
-/// <param name="ChosenCells">选取出来的单元格。</param>
-/// <param name="FinalIndex">最终定下来的单元格（答案）。</param>
-/// <param name="TimeLimit">这个题目的限时。</param>
-/// <param name="ExperiencePoint">该题目可获得的经验值。</param>
-file sealed record GeneratedGridData(scoped in Grid Puzzle, int[] ChosenCells, int FinalIndex, TimeSpan TimeLimit, int ExperiencePoint);
-
-/// <summary>
-/// 表示题目的结果信息。
-/// </summary>
-/// <param name="UserName">表示该结果是谁回答的。</param>
-/// <param name="Id">该用户的 QQ 号码。</param>
-/// <param name="ExperiencePoint">该题目可获得的经验值。</param>
-/// <param name="Coin">该题目可获得的金币。</param>
-/// <param name="EarnedItem">获得的物品。可能为 <see langword="null"/>。</param>
-/// <param name="Times">本题该用户的用时。</param>
-/// <param name="IsCorrectedUser">表示这个人是否回答正确。</param>
-file sealed record ResultInfo(string UserName, string Id, int ExperiencePoint, int Coin, Item? EarnedItem, int Times, bool IsCorrectedUser);
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions

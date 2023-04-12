@@ -8,3 +8,4 @@ global using Microsoft.CodeAnalysis;
 global using Microsoft.CodeAnalysis.CSharp;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
 global using static CodeGen.Constants;
+global using DocumentationCommentData = (string? DocSummary, string? DocRemarks, string? DocCref, string? DocPath);

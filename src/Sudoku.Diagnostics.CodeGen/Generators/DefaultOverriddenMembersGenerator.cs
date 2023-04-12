@@ -1,5 +1,9 @@
 namespace Sudoku.Diagnostics.CodeGen.Generators;
 
+using EqualsData = (int GeneratedMode, SyntaxTokenList MethodModifiers, INamedTypeSymbol Type, string ParameterName);
+using GetHashCodeData = (int GeneratedMode, SyntaxTokenList MethodModifiers, INamedTypeSymbol Type, IEnumerable<string> ExpressionValueNames);
+using ToStringData = (int GeneratedMode, SyntaxTokenList MethodModifiers, INamedTypeSymbol Type, INamedTypeSymbol SpecialAttributeType, IEnumerable<string> ExpressionValueNames);
+
 /// <summary>
 /// Defines a source generator that generates the source code for default-overridden members
 /// from type <see cref="object"/> or <see cref="ValueType"/>.
@@ -66,7 +70,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 				return null;
 			}
 
-			return new(rawMode, modifiers, type, parameterName);
+			return (rawMode, modifiers, type, parameterName);
 		}
 
 		static GetHashCodeData? transformGetHashCodeData(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
@@ -105,7 +109,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 				return null;
 			}
 
-			return new(rawMode, modifiers, type, from extraArgument in extraArguments select (string)extraArgument.Value!);
+			return (rawMode, modifiers, type, from extraArgument in extraArguments select (string)extraArgument.Value!);
 		}
 
 		static ToStringData? transformToStringData(GeneratorAttributeSyntaxContext gasc, CancellationToken ct)
@@ -146,7 +150,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 				return null;
 			}
 
-			return new(rawMode, modifiers, type, attributeType, from extraArgument in extraArguments select (string)extraArgument.Value!);
+			return (rawMode, modifiers, type, attributeType, from extraArgument in extraArguments select (string)extraArgument.Value!);
 		}
 
 		static void outputEquals(SourceProductionContext spc, ImmutableArray<EqualsData?> data, Type sourceGeneratorType)
@@ -391,12 +395,6 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 		}
 	}
 }
-
-file readonly record struct EqualsData(int GeneratedMode, SyntaxTokenList MethodModifiers, INamedTypeSymbol Type, string ParameterName);
-
-file readonly record struct GetHashCodeData(int GeneratedMode, SyntaxTokenList MethodModifiers, INamedTypeSymbol Type, IEnumerable<string> ExpressionValueNames);
-
-file readonly record struct ToStringData(int GeneratedMode, SyntaxTokenList MethodModifiers, INamedTypeSymbol Type, INamedTypeSymbol SpecialAttributeType, IEnumerable<string> ExpressionValueNames);
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions

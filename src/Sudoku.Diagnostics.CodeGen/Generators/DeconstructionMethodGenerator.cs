@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
+namespace Sudoku.Diagnostics.CodeGen.Generators;
+
+using Data = (INamedTypeSymbol ContainingType, IMethodSymbol Method, ImmutableArray<IParameterSymbol> Parameters, SyntaxTokenList Modifiers, INamedTypeSymbol AttributeType, string AssemblyName);
 
 /// <summary>
 /// Defines a source generator that generates the source code for deconstruction methods.
@@ -62,7 +64,7 @@ public sealed class DeconstructionMethodGenerator : IIncrementalGenerator
 				return null;
 			}
 
-			return new(type, symbol, parameters, modifiers, argumentAttributeType, assemblyName);
+			return (type, symbol, parameters, modifiers, argumentAttributeType, assemblyName);
 		}
 
 		void outputInstance(SourceProductionContext spc, ImmutableArray<Data> data)
@@ -165,12 +167,3 @@ public sealed class DeconstructionMethodGenerator : IIncrementalGenerator
 		}
 	}
 }
-
-file readonly record struct Data(
-	INamedTypeSymbol ContainingType,
-	IMethodSymbol Method,
-	ImmutableArray<IParameterSymbol> Parameters,
-	SyntaxTokenList Modifiers,
-	INamedTypeSymbol AttributeType,
-	string AssemblyName
-);

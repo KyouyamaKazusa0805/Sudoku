@@ -809,7 +809,7 @@
             <param name="gridArray">The grid array.</param>
             <returns>The column node for the root node.</returns>
         </member>
-        <member name="M:Sudoku.Algorithms.Solving.DancingLink.LinkRow(Sudoku.Algorithms.Solving.MatrixRow@)">
+        <member name="M:Sudoku.Algorithms.Solving.DancingLink.LinkRow(System.ValueTuple{Sudoku.Algorithms.Collections.DancingLinkNode,Sudoku.Algorithms.Collections.DancingLinkNode,Sudoku.Algorithms.Collections.DancingLinkNode,Sudoku.Algorithms.Collections.DancingLinkNode}@)">
             <summary>
             Links the row.
             </summary>
@@ -829,36 +829,6 @@
             <param name="x">The current row index.</param>
             <param name="y">The current column index.</param>
             <param name="d">The current digit.</param>
-        </member>
-        <member name="T:Sudoku.Algorithms.Solving.MatrixRow">
-            <summary>
-            Represents a matrix row.
-            </summary>
-            <param name="Cell">Indicates the node that represents the current cell.</param>
-            <param name="Row">Indicates the nodes at the current row.</param>
-            <param name="Column">Indicates the nodes at the current column.</param>
-            <param name="Block">Indicates the nodes at the current block.</param>
-        </member>
-        <member name="M:Sudoku.Algorithms.Solving.MatrixRow.#ctor(Sudoku.Algorithms.Collections.DancingLinkNode,Sudoku.Algorithms.Collections.DancingLinkNode,Sudoku.Algorithms.Collections.DancingLinkNode,Sudoku.Algorithms.Collections.DancingLinkNode)">
-            <summary>
-            Represents a matrix row.
-            </summary>
-            <param name="Cell">Indicates the node that represents the current cell.</param>
-            <param name="Row">Indicates the nodes at the current row.</param>
-            <param name="Column">Indicates the nodes at the current column.</param>
-            <param name="Block">Indicates the nodes at the current block.</param>
-        </member>
-        <member name="P:Sudoku.Algorithms.Solving.MatrixRow.Cell">
-            <summary>Indicates the node that represents the current cell.</summary>
-        </member>
-        <member name="P:Sudoku.Algorithms.Solving.MatrixRow.Row">
-            <summary>Indicates the nodes at the current row.</summary>
-        </member>
-        <member name="P:Sudoku.Algorithms.Solving.MatrixRow.Column">
-            <summary>Indicates the nodes at the current column.</summary>
-        </member>
-        <member name="P:Sudoku.Algorithms.Solving.MatrixRow.Block">
-            <summary>Indicates the nodes at the current block.</summary>
         </member>
         <member name="T:Sudoku.Algorithms.Solving.DictionaryQuerySolver">
             <summary>
