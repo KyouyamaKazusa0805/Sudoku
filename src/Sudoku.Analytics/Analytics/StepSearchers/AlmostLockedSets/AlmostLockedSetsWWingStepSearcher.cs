@@ -201,16 +201,16 @@ file static class Cached
 	/// Gathers possible conjugate pairs grouped by digit.
 	/// </summary>
 	/// <returns>The conjugate pairs found, grouped by digit.</returns>
-	internal static ICollection<Conjugate>?[] Gather()
+	public static List<Conjugate>?[] Gather()
 	{
-		var conjugatePairs = new ICollection<Conjugate>?[9];
+		var conjugatePairs = new List<Conjugate>?[9];
 		for (var digit = 0; digit < 9; digit++)
 		{
 			for (var houseIndex = 0; houseIndex < 27; houseIndex++)
 			{
 				if ((HousesMap[houseIndex] & CandidatesMap[digit]) is { Count: 2 } temp)
 				{
-					(conjugatePairs[digit] ??= new List<Conjugate>()).Add(new(temp, digit));
+					(conjugatePairs[digit] ??= new()).Add(new(temp, digit));
 				}
 			}
 		}
