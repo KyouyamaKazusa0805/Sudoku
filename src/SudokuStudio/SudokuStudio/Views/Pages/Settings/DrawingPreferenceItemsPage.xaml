@@ -9,7 +9,7 @@
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:ps="using:SudokuStudio.Views.Pages.Settings"
-	xmlns:wc="using:WinUICommunity.SettingsUI.Controls"
+	xmlns:wc="using:WinUICommunity"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ps:DrawingPreferenceItemsPage}">

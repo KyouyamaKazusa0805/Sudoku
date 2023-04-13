@@ -20,19 +20,13 @@
             Indicates the transition that switching pages.
             </summary>
         </member>
-        <member name="F:SudokuStudio.App._commandLineArgs">
-            <summary>
-            Indicates the command-line arguments.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.App.#ctor(System.String[])">
+        <member name="M:SudokuStudio.App.#ctor">
             <summary>
             <para>Initializes the singleton application object via command-line arguments.</para>
             <para>
             This is the first line of authored code executed, and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
             </para>
             </summary>
-            <param name="args">The command-line arguments.</param>
         </member>
         <member name="P:SudokuStudio.App.Preference">
             <summary>
@@ -2861,17 +2855,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates a view of highlight elements.
             </summary>
-        </member>
-        <member name="T:SudokuStudio.Program">
-            <summary>
-            Represents a type that is only used for surrounding with main method <c>Main</c>.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Program.Main(System.String[])">
-            <summary>
-            Provides with the program entry point.
-            </summary>
-            <param name="args">The command-line arguments.</param>
         </member>
         <member name="T:SudokuStudio.ProjectWideWindowManager">
             <summary>
@@ -7509,36 +7492,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Window"/>
         </member>
-        <member name="F:SudokuStudio.Views.Windows.MainWindow._appWindow">
-            <summary>
-            Defines an <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance that is used by interaction with core application behaviors,
-            such as icon, title bars and so on.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Windowing.AppWindow"/>
-        </member>
         <member name="F:SudokuStudio.Views.Windows.MainWindow._navigatingData">
             <summary>
             The navigating data. This dictionary stores the routing data that can be used and controlled
             by control <see cref="F:SudokuStudio.Views.Windows.MainWindow.NavigationViewFrame"/>.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Windows.MainWindow.NavigationViewFrame"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Windows.MainWindow._micaController">
-            <summary>
-            Indicates the Mica controller instance. This instance is used as core implementation of Mica material of applications.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Windows.MainWindow._configurationSource">
-            <summary>
-            Indicates the material configuration instance. This field controls displaying with a customized material such as Mica and acrylic.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Windows.MainWindow._wsdqHelper">
-            <summary>
-            Defines a <see cref="T:SudokuStudio.Runtime.InteropServices.WinSysDispatcherQueueHelper"/> instance used for interaction with <see cref="T:Windows.System.DispatcherQueue"/>.
-            </summary>
-            <seealso cref="T:SudokuStudio.Runtime.InteropServices.WinSysDispatcherQueueHelper"/>
-            <seealso cref="T:Windows.System.DispatcherQueue"/>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.#ctor">
             <summary>
@@ -7593,13 +7552,23 @@ if (student is (name: var name, age: >= 18))
             Sets the status of app title bars conditionally.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeAppWindow">
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SetBackdrop">
             <summary>
-            Initializes for field <see cref="F:SudokuStudio.Views.Windows.MainWindow._appWindow"/>.
+            Try to set backdrop for the current window.
             </summary>
             <remarks>
-            For more information please visit
-            <see href="https://learn.microsoft.com/en-us/windows/apps/develop/title-bar">this link</see>.
+            This method will automatically be compatible with older version of Windows App SDK. If the version is below v1.3,
+            this type will create an extra field called <c>_appWindow</c> (of type <see cref="T:Microsoft.UI.Windowing.AppWindow"/>),
+            in order to be initialized manually; when is v1.3 or greater, Windows App SDK provides a property called <c>Window.AppWindow</c>,
+            and we can use this property instead of the complex initialization.
+            </remarks>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeAppWindow">
+            <summary>
+            Initializes for field <c>_appWindow</c> (For Windows App SDK below v1.3).
+            </summary>
+            <remarks>
+            For more information please visit <see href="https://learn.microsoft.com/en-us/windows/apps/develop/title-bar">this link</see>.
             This passage is for full customization of application title bar.
             </remarks>
         </member>
@@ -7608,17 +7577,6 @@ if (student is (name: var name, age: >= 18))
             Sets the draggable region that is used for the whole window.
             </summary>
             <param name="appWindow">The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</param>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.SetConfigurationSourceTheme">
-            <summary>
-            Sets <see cref="P:Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration.Theme"/> to the target value.
-            </summary>
-            <remarks>
-            This method requires the member <see cref="F:SudokuStudio.Views.Windows.MainWindow._configurationSource"/> be not <see langword="null"/>.
-            </remarks>
-            <exception cref="T:System.NotSupportedException">Throws when the actual theme is not defined.</exception>
-            <seealso cref="P:Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration.Theme"/>
-            <seealso cref="F:SudokuStudio.Views.Windows.MainWindow._configurationSource"/>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.SetFrameDisplayTitle(System.Type)">
             <summary>
@@ -7655,12 +7613,6 @@ if (student is (name: var name, age: >= 18))
             A <see cref="T:System.Boolean"/> value indicating whether the settings item is invoked or selected.
             </param>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.TrySetMicaBackdrop">
-            <summary>
-            Try to set Mica backdrop.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is succeeded.</returns>
-        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.GetScaleAdjustment">
             <summary>
             Try to adjust the scaling.
@@ -7683,19 +7635,10 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Windows.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.Extensions.GetAppWindow(Microsoft.UI.Xaml.Window)">
+        <member name="T:SudokuStudio.Program">
             <summary>
-            Gets <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance for the current <see cref="T:Microsoft.UI.Xaml.Window"/> instance.
+            Program class
             </summary>
-            <param name="this">The current <see cref="T:Microsoft.UI.Xaml.Window"/> instance.</param>
-            <returns>A valid <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
         </member>
         <member name="T:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider">
             <summary>

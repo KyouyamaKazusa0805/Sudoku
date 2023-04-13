@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio;
+namespace SudokuStudio;
 
 /// <summary>
 /// <para>Provides with a project-wide window manager type, as a helper class type.</para>

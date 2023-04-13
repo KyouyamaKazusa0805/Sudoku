@@ -8,7 +8,7 @@
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:models="using:SudokuStudio.Models"
-	xmlns:wc="using:WinUICommunity.SettingsUI.Controls"
+	xmlns:wc="using:WinUICommunity"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AboutPage}">
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">

@@ -6,30 +6,24 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
-	xmlns:wc="using:WinUICommunity.SettingsUI.Controls"
+	xmlns:w="using:WinUICommunity"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:SettingsPage}">
 	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
 		<TextBlock Text="{m:R Key=SettingsPage_Intro}" Margin="0,10,0,0" />
-		<wc:Setting Header="{m:R Key=SettingsPage_Basic}" Description="{m:R Key=SettingsPage_BasicDescription}">
-			<wc:Setting.ActionContent>
-				<Button Click="GoToBasicOptionsButton_Click">
-					<SymbolIcon Symbol="Forward" />
-				</Button>
-			</wc:Setting.ActionContent>
-		</wc:Setting>
-		<wc:Setting Header="{m:R Key=SettingsPage_Analysis}" Description="{m:R Key=SettingsPage_AnalysisDescription}">
-			<wc:Setting.ActionContent>
-				<Button Click="GoToAnalysisOptionsButton_Click">
-					<SymbolIcon Symbol="Forward" />
-				</Button>
-			</wc:Setting.ActionContent>
-		</wc:Setting>
-		<wc:Setting Header="{m:R Key=SettingsPage_Drawing}" Description="{m:R Key=SettingsPage_DrawingDescription}">
-			<wc:Setting.ActionContent>
-				<Button Click="GoToRenderingOptionsButton_Click">
-					<SymbolIcon Symbol="Forward" />
-				</Button>
-			</wc:Setting.ActionContent>
-		</wc:Setting>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_Basic}" Description="{m:R Key=SettingsPage_BasicDescription}">
+			<Button Click="GoToBasicOptionsButton_Click">
+				<SymbolIcon Symbol="Forward" />
+			</Button>
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_Analysis}" Description="{m:R Key=SettingsPage_AnalysisDescription}">
+			<Button Click="GoToAnalysisOptionsButton_Click">
+				<SymbolIcon Symbol="Forward" />
+			</Button>
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_Drawing}" Description="{m:R Key=SettingsPage_DrawingDescription}">
+			<Button Click="GoToRenderingOptionsButton_Click">
+				<SymbolIcon Symbol="Forward" />
+			</Button>
+		</w:SettingsCard>
 	</StackPanel>
 </Page>

@@ -21,24 +21,12 @@ public partial class App : Application
 
 
 	/// <summary>
-	/// Indicates the command-line arguments.
-	/// </summary>
-	private readonly string[] _commandLineArgs;
-
-
-	/// <summary>
 	/// <para>Initializes the singleton application object via command-line arguments.</para>
 	/// <para>
 	/// This is the first line of authored code executed, and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
 	/// </para>
 	/// </summary>
-	/// <param name="args">The command-line arguments.</param>
-	public App(string[] args)
-	{
-		InitializeComponent();
-
-		_commandLineArgs = args;
-	}
+	public App() => InitializeComponent();
 
 
 	/// <summary>
@@ -130,11 +118,6 @@ public partial class App : Application
 	/// </summary>
 	private void HandleOnProgramOpeningEntryCase()
 	{
-		if (_commandLineArgs is null or not [])
-		{
-			return;
-		}
-
 		switch (AppInstance.GetCurrent().GetActivatedEventArgs())
 		{
 			case { Kind: ExtendedActivationKind.Protocol, Data: IProtocolActivatedEventArgs { Uri: _ } }:
