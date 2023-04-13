@@ -169,7 +169,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 				{
 					0 => """
 					[global::System.Obsolete(global::System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenEqualsMethod, false, DiagnosticId = "SCA0104", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0104")]
-						
+							
 					""",
 					_ => string.Empty
 				};
