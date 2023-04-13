@@ -133,14 +133,14 @@ public sealed partial class WWingStepSearcher : StepSearcher
 										View.Empty
 											| new CandidateViewNode[]
 											{
-												new(DisplayColorKind.Normal, c1 * 9 + anotherDigit),
-												new(DisplayColorKind.Normal, c2 * 9 + anotherDigit),
-												new(DisplayColorKind.Auxiliary1, c1 * 9 + digit),
-												new(DisplayColorKind.Auxiliary1, c2 * 9 + digit),
-												new(DisplayColorKind.Auxiliary1, a * 9 + digit),
-												new(DisplayColorKind.Auxiliary1, b * 9 + digit)
+												new(WellKnownColorIdentifierKind.Normal, c1 * 9 + anotherDigit),
+												new(WellKnownColorIdentifierKind.Normal, c2 * 9 + anotherDigit),
+												new(WellKnownColorIdentifierKind.Auxiliary1, c1 * 9 + digit),
+												new(WellKnownColorIdentifierKind.Auxiliary1, c2 * 9 + digit),
+												new(WellKnownColorIdentifierKind.Auxiliary1, a * 9 + digit),
+												new(WellKnownColorIdentifierKind.Auxiliary1, b * 9 + digit)
 											}
-											| new HouseViewNode(DisplayColorKind.Auxiliary1, house)
+											| new HouseViewNode(WellKnownColorIdentifierKind.Auxiliary1, house)
 									},
 									c1,
 									c2,
@@ -153,20 +153,20 @@ public sealed partial class WWingStepSearcher : StepSearcher
 							{
 								var candidateOffsets = new List<CandidateViewNode>(8)
 								{
-									new(DisplayColorKind.Normal, c1 * 9 + anotherDigit),
-									new(DisplayColorKind.Normal, c2 * 9 + anotherDigit),
-									new(DisplayColorKind.Auxiliary1, c1 * 9 + digit),
-									new(DisplayColorKind.Auxiliary1, c2 * 9 + digit)
+									new(WellKnownColorIdentifierKind.Normal, c1 * 9 + anotherDigit),
+									new(WellKnownColorIdentifierKind.Normal, c2 * 9 + anotherDigit),
+									new(WellKnownColorIdentifierKind.Auxiliary1, c1 * 9 + digit),
+									new(WellKnownColorIdentifierKind.Auxiliary1, c2 * 9 + digit)
 								};
 
 								foreach (var cell in bridge)
 								{
-									candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
+									candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
 								}
 
 								step = new GroupedWWingStep(
 									from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit),
-									new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Auxiliary1, house) },
+									new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifierKind.Auxiliary1, house) },
 									c1,
 									c2,
 									bridge

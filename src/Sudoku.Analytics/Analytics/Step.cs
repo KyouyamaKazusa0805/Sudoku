@@ -3,9 +3,9 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Provides with a logical solving step that is a technique usage, and contains the conclusions.
 /// </summary>
-/// <param name="conclusions"><inheritdoc cref="IVisual.Conclusions" path="/summary"/></param>
-/// <param name="views"><inheritdoc cref="IVisual.Views" path="/summary"/></param>
-public abstract class Step(Conclusion[] conclusions, View[]? views) : IVisual
+/// <param name="conclusions"><inheritdoc cref="IRenderable.Conclusions" path="/summary"/></param>
+/// <param name="views"><inheritdoc cref="IRenderable.Views" path="/summary"/></param>
+public abstract class Step(Conclusion[] conclusions, View[]? views) : IRenderable
 {
 	/// <summary>
 	/// Indicates the technique name. The technique name are all stored in the resource dictionary,

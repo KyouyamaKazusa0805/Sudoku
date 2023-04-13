@@ -35,6 +35,12 @@ public sealed partial class ColorColorIdentifier(byte a, byte r, byte g, byte b)
 	private int RawValue => A << 24 | R << 16 | G << 8 | B;
 
 
+	[DeconstructionMethod]
+	public partial void Deconstruct(out byte r, out byte g, out byte b);
+
+	[DeconstructionMethod]
+	public partial void Deconstruct(out byte a, out byte r, out byte g, out byte b);
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ColorIdentifier? other)

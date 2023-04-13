@@ -121,8 +121,8 @@ internal static class ViewUnitFrameworkElementFactory
 			IdentifierConversion.GetColor(
 				type switch
 				{
-					Assignment => predicate() ? DisplayColorKind.OverlappedAssignment : DisplayColorKind.Assignment,
-					Elimination => predicate() ? DisplayColorKind.Cannibalism : DisplayColorKind.Elimination
+					Assignment => predicate() ? WellKnownColorIdentifierKind.OverlappedAssignment : WellKnownColorIdentifierKind.Assignment,
+					Elimination => predicate() ? WellKnownColorIdentifierKind.Cannibalism : WellKnownColorIdentifierKind.Elimination
 				}
 			),
 			candidate,

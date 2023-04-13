@@ -228,7 +228,7 @@ public sealed partial class DrawingPage : Page
 				{
 					var lt1 = new LockedTarget(candidate1 % 9, CellsMap[candidate1 / 9]);
 					var lt2 = new LockedTarget(candidate2 % 9, CellsMap[candidate2 / 9]);
-					_localView.View.Add(new LinkViewNode(default, lt1, lt2, LinkKind)); // Link nodes don't use identifier to display colors.
+					_localView.View.Add(new LinkViewNode(default!, lt1, lt2, LinkKind)); // Link nodes don't use identifier to display colors.
 				}
 
 				UpdateViewUnit();

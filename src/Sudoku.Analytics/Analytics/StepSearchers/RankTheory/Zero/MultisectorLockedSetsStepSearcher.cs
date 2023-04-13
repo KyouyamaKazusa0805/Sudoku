@@ -183,9 +183,9 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 									new(
 										house switch
 										{
-											< 9 => DisplayColorKind.Auxiliary2,
-											< 18 => DisplayColorKind.Normal,
-											_ => DisplayColorKind.Auxiliary1
+											< 9 => WellKnownColorIdentifierKind.Auxiliary2,
+											< 18 => WellKnownColorIdentifierKind.Normal,
+											_ => WellKnownColorIdentifierKind.Auxiliary1
 										},
 										cell * 9 + cand
 									)

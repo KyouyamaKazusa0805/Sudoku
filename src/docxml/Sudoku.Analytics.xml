@@ -4653,15 +4653,15 @@ result ^= expression;
             <summary>
             Provides with a logical solving step that is a technique usage, and contains the conclusions.
             </summary>
-            <param name="conclusions"><inheritdoc cref="P:Sudoku.Rendering.IVisual.Conclusions" path="/summary"/></param>
-            <param name="views"><inheritdoc cref="P:Sudoku.Rendering.IVisual.Views" path="/summary"/></param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Views" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a logical solving step that is a technique usage, and contains the conclusions.
             </summary>
-            <param name="conclusions"><inheritdoc cref="P:Sudoku.Rendering.IVisual.Conclusions" path="/summary"/></param>
-            <param name="views"><inheritdoc cref="P:Sudoku.Rendering.IVisual.Views" path="/summary"/></param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Views" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Analytics.Step.Name">
             <summary>

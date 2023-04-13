@@ -27,13 +27,13 @@ public static class ColorExtensions
 	}
 
 	/// <summary>
-	/// Gets an equivalent <see cref="Identifier"/> instance via the current color.
+	/// Gets an equivalent <see cref="ColorIdentifier"/> instance via the current color.
 	/// </summary>
 	/// <param name="color">The color.</param>
-	/// <returns>An <see cref="Identifier"/> instance.</returns>
-	public static Identifier GetIdentifier(this Color color)
+	/// <returns>An <see cref="ColorIdentifier"/> instance.</returns>
+	public static ColorIdentifier GetIdentifier(this Color color)
 	{
 		var (a, r, g, b) = color;
-		return (a, r, g, b);
+		return new ColorColorIdentifier(a, r, g, b);
 	}
 }

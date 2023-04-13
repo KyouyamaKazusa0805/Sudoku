@@ -3,7 +3,7 @@ namespace Sudoku.Gdip;
 partial class GridImageGenerator
 {
 	private bool DrawDiagonalLines(
-		Identifier identifier,
+		ColorIdentifier identifier,
 		float width,
 		PointCalculator calc,
 		SizeF cs,
@@ -25,7 +25,7 @@ partial class GridImageGenerator
 		float padding,
 		PointCalculator calc,
 		SizeF cs,
-		Identifier identifier,
+		ColorIdentifier identifier,
 		float width,
 		Graphics g
 	)
@@ -46,7 +46,7 @@ partial class GridImageGenerator
 		PointCalculator calc,
 		int head,
 		int tail,
-		Identifier identifier,
+		ColorIdentifier identifier,
 		float width,
 		float cw,
 		float ch,
@@ -79,7 +79,7 @@ partial class GridImageGenerator
 		return true;
 	}
 
-	private bool DrawWindoku(Identifier identifier, PointCalculator calc, SizeF cs, Graphics g)
+	private bool DrawWindoku(ColorIdentifier identifier, PointCalculator calc, SizeF cs, Graphics g)
 	{
 		using var brush = new SolidBrush(GetColor(identifier));
 
@@ -102,7 +102,7 @@ partial class GridImageGenerator
 		return true;
 	}
 
-	private bool DrawPyramid(Identifier identifier, PointCalculator calc, SizeF cs, Graphics g)
+	private bool DrawPyramid(ColorIdentifier identifier, PointCalculator calc, SizeF cs, Graphics g)
 	{
 		using var brush = new SolidBrush(GetColor(identifier));
 
@@ -129,7 +129,7 @@ partial class GridImageGenerator
 		float cw,
 		float ch,
 		float padding,
-		Identifier identifier,
+		ColorIdentifier identifier,
 		int left,
 		int right,
 		int center,

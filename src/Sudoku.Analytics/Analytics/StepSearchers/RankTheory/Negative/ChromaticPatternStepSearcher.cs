@@ -227,13 +227,13 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 			{
 				foreach (var otherDigit in grid.GetCandidates(otherCell))
 				{
-					candidateOffsets.Add(new(DisplayColorKind.Normal, otherCell * 9 + otherDigit));
+					candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, otherCell * 9 + otherDigit));
 				}
 			}
 
 			var step = new ChromaticPatternType1Step(
 				conclusions.ToArray(),
-				new[] { View.Empty | candidateOffsets | from house in blocks select new HouseViewNode(DisplayColorKind.Normal, house) },
+				new[] { View.Empty | candidateOffsets | from house in blocks select new HouseViewNode(WellKnownColorIdentifierKind.Normal, house) },
 				blocks,
 				pattern,
 				extraCell,
@@ -317,8 +317,8 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 						candidateOffsets.Add(
 							new(
 								otherDigitsCells.Contains(patternCell) && (d1 == digit || d2 == digit)
-									? DisplayColorKind.Auxiliary1
-									: DisplayColorKind.Normal,
+									? WellKnownColorIdentifierKind.Auxiliary1
+									: WellKnownColorIdentifierKind.Normal,
 								patternCell * 9 + digit
 							)
 						);
@@ -331,8 +331,8 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 					{
 						View.Empty
 							| candidateOffsets
-							| new CellViewNode(DisplayColorKind.Normal, extraCell)
-							| from block in blocks select new HouseViewNode(DisplayColorKind.Normal, block)
+							| new CellViewNode(WellKnownColorIdentifierKind.Normal, extraCell)
+							| from block in blocks select new HouseViewNode(WellKnownColorIdentifierKind.Normal, block)
 					},
 					blocks,
 					pattern,

@@ -192,7 +192,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					{
 						foreach (var digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new((DisplayColorKind)(finalZ >> digit & 1), cell * 9 + digit));
+							candidateOffsets.Add(new((WellKnownColorIdentifierKind)(finalZ >> digit & 1), cell * 9 + digit));
 						}
 					}
 				}
@@ -206,15 +206,15 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 						var rccDigitsMask = (Mask)(mask & rccMask);
 						foreach (var digit in alsDigitsMask)
 						{
-							candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet1, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifierKind.AlmostLockedSet1, cell * 9 + digit));
 						}
 						foreach (var digit in targetDigitsMask)
 						{
-							candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, cell * 9 + digit));
 						}
 						foreach (var digit in rccDigitsMask)
 						{
-							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 					foreach (var cell in map2)
@@ -225,15 +225,15 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 						var rccDigitsMask = (Mask)(mask & rccMask);
 						foreach (var digit in alsDigitsMask)
 						{
-							candidateOffsets.Add(new(DisplayColorKind.AlmostLockedSet2, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifierKind.AlmostLockedSet2, cell * 9 + digit));
 						}
 						foreach (var digit in targetDigitsMask)
 						{
-							candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, cell * 9 + digit));
 						}
 						foreach (var digit in rccDigitsMask)
 						{
-							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 				}
@@ -244,7 +244,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					{
 						View.Empty
 							| candidateOffsets
-							| (isEsp ? null : new HouseViewNode[] { new(DisplayColorKind.Normal, house1), new(DisplayColorKind.Auxiliary1, house2) })
+							| (isEsp ? null : new HouseViewNode[] { new(WellKnownColorIdentifierKind.Normal, house1), new(WellKnownColorIdentifierKind.Auxiliary1, house2) })
 					},
 					als1,
 					als2,

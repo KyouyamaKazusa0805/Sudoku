@@ -214,26 +214,26 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					{
 						foreach (var digit in (Mask)(grid.GetCandidates(cell) & currentDigitsMask))
 						{
-							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
 						}
 					}
 					foreach (var digit in grid.GetCandidates(extraCell1))
 					{
-						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, extraCell1 * 9 + digit));
+						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, extraCell1 * 9 + digit));
 					}
 					foreach (var digit in grid.GetCandidates(extraCell2))
 					{
-						candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, extraCell2 * 9 + digit));
+						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, extraCell2 * 9 + digit));
 					}
 
 					var cellOffsets = new List<CellViewNode>();
 					foreach (var cell in house1CellsExcluded)
 					{
-						cellOffsets.Add(new(DisplayColorKind.Elimination, cell));
+						cellOffsets.Add(new(WellKnownColorIdentifierKind.Elimination, cell));
 					}
 					foreach (var cell in house2CellsExcluded)
 					{
-						cellOffsets.Add(new(DisplayColorKind.Elimination, cell));
+						cellOffsets.Add(new(WellKnownColorIdentifierKind.Elimination, cell));
 					}
 
 					var step = new FireworkPairType1Step(
@@ -323,25 +323,25 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (var digit in (Mask)(grid.GetCandidates(pivot) & currentDigitsMask))
 			{
-				candidateOffsets.Add(new(DisplayColorKind.Normal, pivot * 9 + digit));
+				candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, pivot * 9 + digit));
 			}
 			foreach (var digit in (Mask)(grid.GetCandidates(cell1) & currentDigitsMask))
 			{
-				candidateOffsets.Add(new(DisplayColorKind.Normal, cell1 * 9 + digit));
+				candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell1 * 9 + digit));
 			}
 			foreach (var digit in (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
 			{
-				candidateOffsets.Add(new(DisplayColorKind.Normal, cell2 * 9 + digit));
+				candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell2 * 9 + digit));
 			}
 
 			var cellOffsets = new List<CellViewNode>(12);
 			foreach (var house1CellExcluded in house1CellsExcluded)
 			{
-				cellOffsets.Add(new(DisplayColorKind.Elimination, house1CellExcluded));
+				cellOffsets.Add(new(WellKnownColorIdentifierKind.Elimination, house1CellExcluded));
 			}
 			foreach (var house2CellExcluded in house2CellsExcluded)
 			{
-				cellOffsets.Add(new(DisplayColorKind.Elimination, house2CellExcluded));
+				cellOffsets.Add(new(WellKnownColorIdentifierKind.Elimination, house2CellExcluded));
 			}
 
 			var unknowns = new List<BabaGroupViewNode>(4);
@@ -349,11 +349,11 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			var house2 = (CellsMap[cell2] + pivot).CoveredLine;
 			foreach (var cell in (HousesMap[house1] & HousesMap[pivotCellBlock] & EmptyCells) - pivot)
 			{
-				unknowns.Add(new(DisplayColorKind.Normal, cell, (Utf8Char)'y', currentDigitsMask));
+				unknowns.Add(new(WellKnownColorIdentifierKind.Normal, cell, (Utf8Char)'y', currentDigitsMask));
 			}
 			foreach (var cell in (HousesMap[house2] & HousesMap[pivotCellBlock] & EmptyCells) - pivot)
 			{
-				unknowns.Add(new(DisplayColorKind.Normal, cell, (Utf8Char)'x', currentDigitsMask));
+				unknowns.Add(new(WellKnownColorIdentifierKind.Normal, cell, (Utf8Char)'x', currentDigitsMask));
 			}
 
 			var step = new FireworkTripleStep(
@@ -366,9 +366,9 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						| unknowns
 						| new BabaGroupViewNode[]
 						{
-							new(DisplayColorKind.Normal, pivot, (Utf8Char)'z', (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)),
-							new(DisplayColorKind.Normal, cell1, (Utf8Char)'x', (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)),
-							new(DisplayColorKind.Normal, cell2, (Utf8Char)'y', (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
+							new(WellKnownColorIdentifierKind.Normal, pivot, (Utf8Char)'z', (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)),
+							new(WellKnownColorIdentifierKind.Normal, cell1, (Utf8Char)'x', (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)),
+							new(WellKnownColorIdentifierKind.Normal, cell2, (Utf8Char)'y', (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
 						}
 				},
 				pattern.Map,
@@ -488,17 +488,17 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (var digit in (Mask)(grid.GetCandidates(pivot1) & fourDigitsMask))
 					{
-						candidateOffsets.Add(new(DisplayColorKind.Normal, pivot1 * 9 + digit));
+						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, pivot1 * 9 + digit));
 					}
 					foreach (var digit in (Mask)(grid.GetCandidates(pivot2) & fourDigitsMask))
 					{
-						candidateOffsets.Add(new(DisplayColorKind.Normal, pivot2 * 9 + digit));
+						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, pivot2 * 9 + digit));
 					}
 					foreach (var cell in map - pivot1 - pivot2)
 					{
 						foreach (var digit in (Mask)(grid.GetCandidates(cell) & fourDigitsMask))
 						{
-							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
 						}
 					}
 
@@ -507,7 +507,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					{
 						foreach (var digit in (Mask)(grid.GetCandidates(cell) & pair1DigitsMask))
 						{
-							candidateOffsetsView2.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+							candidateOffsetsView2.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
 						}
 					}
 					var candidateOffsetsView3 = new List<CandidateViewNode>();
@@ -515,19 +515,19 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					{
 						foreach (var digit in (Mask)(grid.GetCandidates(cell) & pair2DigitsMask))
 						{
-							candidateOffsetsView3.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+							candidateOffsetsView3.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
 						}
 					}
 
 					var cellOffsets1 = new List<CellViewNode>();
 					foreach (var cell in house1CellsExcludedPivot1 | house2CellsExcludedPivot1)
 					{
-						cellOffsets1.Add(new(DisplayColorKind.Elimination, cell));
+						cellOffsets1.Add(new(WellKnownColorIdentifierKind.Elimination, cell));
 					}
 					var cellOffsets2 = new List<CellViewNode>();
 					foreach (var cell in house1CellsExcludedPivot2 | house2CellsExcludedPivot2)
 					{
-						cellOffsets2.Add(new(DisplayColorKind.Elimination, cell));
+						cellOffsets2.Add(new(WellKnownColorIdentifierKind.Elimination, cell));
 					}
 
 					var step = new FireworkQuadrupleStep(

@@ -124,7 +124,7 @@ internal static class UniqueRectangleStepSearcherHelper
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsIncomplete(bool allowIncomplete, List<CandidateViewNode> list)
 		=> !allowIncomplete
-		&& list.Count(static d => d.Identifier is { Mode: IdentifierColorMode.Named, NamedKind: DisplayColorKind.Normal }) != 8;
+		&& list.Count(static d => d.Identifier is WellKnownColorIdentifier { Kind: WellKnownColorIdentifierKind.Normal }) != 8;
 
 	/// <summary>
 	/// Get a cell that can't see each other.
@@ -148,9 +148,9 @@ internal static class UniqueRectangleStepSearcherHelper
 	public static CellViewNode[] GetHighlightCells(int[] urCells)
 		=> new CellViewNode[]
 		{
-			new(DisplayColorKind.Normal, urCells[0]),
-			new(DisplayColorKind.Normal, urCells[1]),
-			new(DisplayColorKind.Normal, urCells[2]),
-			new(DisplayColorKind.Normal, urCells[3])
+			new(WellKnownColorIdentifierKind.Normal, urCells[0]),
+			new(WellKnownColorIdentifierKind.Normal, urCells[1]),
+			new(WellKnownColorIdentifierKind.Normal, urCells[2]),
+			new(WellKnownColorIdentifierKind.Normal, urCells[3])
 		};
 }

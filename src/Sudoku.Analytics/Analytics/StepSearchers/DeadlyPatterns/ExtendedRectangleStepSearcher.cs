@@ -292,7 +292,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			{
 				foreach (var digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
 				}
 			}
 		}
@@ -346,7 +346,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			foreach (var digit in grid.GetCandidates(cell))
 			{
 				candidateOffsets.Add(
-					new(digit == extraDigit ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal, cell * 9 + digit)
+					new(digit == extraDigit ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cell * 9 + digit)
 				);
 			}
 		}
@@ -427,7 +427,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					{
 						foreach (var digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
 						}
 					}
 					foreach (var cell in extraCellsMap)
@@ -436,7 +436,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						{
 							candidateOffsets.Add(
 								new(
-									(mask >> digit & 1) != 0 ? DisplayColorKind.Auxiliary1 : DisplayColorKind.Normal,
+									(mask >> digit & 1) != 0 ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal,
 									cell * 9 + digit
 								)
 							);
@@ -446,7 +446,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					{
 						foreach (var digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 
@@ -525,7 +525,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 					foreach (var digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
 					}
 				}
 
@@ -578,12 +578,12 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						{
 							foreach (var digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+								candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
 							}
 						}
 						foreach (var cell in extraCellsMap)
 						{
-							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + conjugateDigit));
+							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + conjugateDigit));
 						}
 
 						var step = new ExtendedRectangleType4Step(

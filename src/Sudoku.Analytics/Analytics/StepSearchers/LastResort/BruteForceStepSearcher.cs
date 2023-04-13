@@ -26,7 +26,7 @@ public sealed partial class BruteForceStepSearcher : StepSearcher
 				var cand = offset * 9 + Solution[offset];
 				var step = new BruteForceStep(
 					new[] { new Conclusion(Assignment, cand) },
-					new[] { View.Empty | new CandidateViewNode(DisplayColorKind.Normal, cand) }
+					new[] { View.Empty | new CandidateViewNode(WellKnownColorIdentifierKind.Normal, cand) }
 				);
 				if (context.OnlyFindOne)
 				{

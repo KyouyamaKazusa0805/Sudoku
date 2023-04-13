@@ -26,6 +26,9 @@ public sealed partial class LinkViewNode(
 	public Inference Inference { get; } = inference;
 
 
+	[DeconstructionMethod]
+	public partial void Deconstruct(out ColorIdentifier identifier, out LockedTarget start, out LockedTarget end, out Inference inference);
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)

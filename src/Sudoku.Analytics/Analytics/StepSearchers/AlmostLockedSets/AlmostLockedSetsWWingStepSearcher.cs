@@ -119,8 +119,8 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 							// Gather highlight cells and candidates.
 							var candidateOffsets = new List<CandidateViewNode>
 							{
-								new(DisplayColorKind.Normal, cpMap[0] * 9 + x),
-								new(DisplayColorKind.Normal, cpMap[1] * 9 + x)
+								new(WellKnownColorIdentifierKind.Normal, cpMap[0] * 9 + x),
+								new(WellKnownColorIdentifierKind.Normal, cpMap[1] * 9 + x)
 							};
 							foreach (var cell in map1)
 							{
@@ -130,9 +130,9 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 										new(
 											(digit == x, (wDigitsMask >> digit & 1) != 0) switch
 											{
-												(true, _) => DisplayColorKind.Auxiliary1,
-												(_, true) => DisplayColorKind.Auxiliary2,
-												_ => DisplayColorKind.AlmostLockedSet1
+												(true, _) => WellKnownColorIdentifierKind.Auxiliary1,
+												(_, true) => WellKnownColorIdentifierKind.Auxiliary2,
+												_ => WellKnownColorIdentifierKind.AlmostLockedSet1
 											},
 											cell * 9 + digit
 										)
@@ -147,9 +147,9 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 										new(
 											(digit == x, (wDigitsMask >> digit & 1) != 0) switch
 											{
-												(true, _) => DisplayColorKind.Auxiliary1,
-												(_, true) => DisplayColorKind.Auxiliary2,
-												_ => DisplayColorKind.AlmostLockedSet2
+												(true, _) => WellKnownColorIdentifierKind.Auxiliary1,
+												(_, true) => WellKnownColorIdentifierKind.Auxiliary2,
+												_ => WellKnownColorIdentifierKind.AlmostLockedSet2
 											},
 											cell * 9 + digit
 										)
@@ -165,9 +165,9 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 										| candidateOffsets
 										| new HouseViewNode[]
 										{
-											new(DisplayColorKind.AlmostLockedSet1, house1),
-											new(DisplayColorKind.AlmostLockedSet2, house2),
-											new(DisplayColorKind.Normal, TrailingZeroCount(conjugatePair.Houses))
+											new(WellKnownColorIdentifierKind.AlmostLockedSet1, house1),
+											new(WellKnownColorIdentifierKind.AlmostLockedSet2, house2),
+											new(WellKnownColorIdentifierKind.Normal, TrailingZeroCount(conjugatePair.Houses))
 										}
 								},
 								als1,

@@ -220,22 +220,22 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 					var houseOffsets = new List<HouseViewNode>();
 					foreach (var cell in withFin ? baseLine - fins : baseLine)
 					{
-						candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
 					}
 					if (withFin)
 					{
 						foreach (var cell in fins)
 						{
-							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 					foreach (var baseSet in bs)
 					{
-						houseOffsets.Add(new(DisplayColorKind.Normal, baseSet));
+						houseOffsets.Add(new(WellKnownColorIdentifierKind.Normal, baseSet));
 					}
 					foreach (var coverSet in cs)
 					{
-						houseOffsets.Add(new(DisplayColorKind.Auxiliary2, coverSet));
+						houseOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, coverSet));
 					}
 
 					int baseSetsMask = 0, coverSetsMask = 0;
@@ -294,7 +294,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 				{
 					case true when fins.Contains(cell):
 					{
-						cellOffsets.Add(new(DisplayColorKind.Auxiliary1, cell));
+						cellOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell));
 						break;
 					}
 					default:
@@ -329,7 +329,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 							continue;
 						}
 
-						cellOffsets.Add(new(DisplayColorKind.Normal, cell));
+						cellOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell));
 						break;
 					}
 				}
@@ -338,11 +338,11 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 
 		foreach (var cell in ValuesMap[digit])
 		{
-			cellOffsets.Add(new(DisplayColorKind.Auxiliary2, cell));
+			cellOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, cell));
 		}
 		foreach (var cell in fins)
 		{
-			candidateOffsets!.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
+			candidateOffsets!.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
 		}
 
 		return View.Empty | cellOffsets | candidateOffsets;

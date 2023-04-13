@@ -80,42 +80,14 @@ partial class GridImageGenerator
 				var digit = candidate % 9;
 				var overlaps = view.UnknownOverlaps(cell);
 
-				switch (id)
+				var color = GetColor(id);
+				using var brush = new SolidBrush(overlaps ? color.QuarterAlpha() : color);
+				g.FillEllipse(brush, calc.GetMouseRectangle(cell, digit));
+
+				// In direct view, candidates should be drawn also.
+				if (!showCandidates)
 				{
-					case { Mode: IdentifierColorMode.Raw, A: var alpha, R: var red, G: var green, B: var blue }:
-					{
-						using var brush = new SolidBrush(Color.FromArgb(overlaps ? alpha : alpha >> 2, red, green, blue));
-						g.FillEllipse(brush, calc.GetMouseRectangle(cell, digit));
-
-						// In direct view, candidates should be drawn also.
-						if (!showCandidates)
-						{
-							d(cell, digit, vOffsetCandidate, overlaps ? bCandidateLighter : bCandidate);
-						}
-
-						break;
-					}
-					case { Mode: var mode and (IdentifierColorMode.Id or IdentifierColorMode.Named) }:
-					{
-						var color = mode switch
-						{
-							IdentifierColorMode.Id when GetValueById(id, out var c) => c,
-							IdentifierColorMode.Named => GetColor(id),
-							_ => throw new InvalidOperationException()
-						};
-
-						// In the normal case, I'll draw these circles.
-						using var brush = new SolidBrush(overlaps ? color.QuarterAlpha() : color);
-						g.FillEllipse(brush, calc.GetMouseRectangle(cell, digit));
-
-						// In direct view, candidates should be drawn also.
-						if (!showCandidates)
-						{
-							d(cell, digit, vOffsetCandidate, overlaps ? bCandidateLighter : bCandidate);
-						}
-
-						break;
-					}
+					d(cell, digit, vOffsetCandidate, overlaps ? bCandidateLighter : bCandidate);
 				}
 			}
 		}

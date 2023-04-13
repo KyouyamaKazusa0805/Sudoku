@@ -63,11 +63,11 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (var c in loop)
 				{
-					candidateOffsets.Add(new(DisplayColorKind.Normal, c * 9 + digit));
+					candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, c * 9 + digit));
 				}
 				foreach (var c in guardians)
 				{
-					candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, c * 9 + digit));
+					candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, c * 9 + digit));
 				}
 
 				// Add found step into the collection.

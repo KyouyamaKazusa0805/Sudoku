@@ -3,7 +3,7 @@ namespace Sudoku.Gdip;
 partial class GridImageGenerator
 {
 	private bool DrawBorderBar(
-		Identifier identifier,
+		ColorIdentifier identifier,
 		float barWidth,
 		PointCalculator calc,
 		int c1,
@@ -23,7 +23,7 @@ partial class GridImageGenerator
 	}
 
 	private bool DrawKropkiDot(
-		Identifier identifier,
+		ColorIdentifier identifier,
 		Color backColor,
 		float borderWidth,
 		PointCalculator calc,
@@ -53,7 +53,7 @@ partial class GridImageGenerator
 	private bool DrawGreaterThanSign(
 		FontData fontData,
 		Color backColor,
-		Identifier identifier,
+		ColorIdentifier identifier,
 		bool isGreaterThan,
 		PointCalculator calc,
 		int c1,
@@ -106,7 +106,7 @@ partial class GridImageGenerator
 	private bool DrawXvSign(
 		FontData fontData,
 		Color backColor,
-		Identifier identifier,
+		ColorIdentifier identifier,
 		bool isX,
 		PointCalculator calc,
 		int c1,
@@ -133,7 +133,7 @@ partial class GridImageGenerator
 	private bool DrawNumberLabel(
 		FontData fontData,
 		Color backColor,
-		Identifier identifier,
+		ColorIdentifier identifier,
 		PointCalculator calc,
 		int c1,
 		int c2,
@@ -157,7 +157,7 @@ partial class GridImageGenerator
 	}
 
 	private bool DrawBattenburg(
-		Identifier identifier,
+		ColorIdentifier identifier,
 		PointCalculator calc,
 		int lastCell,
 		SizeF cellSize,
@@ -194,7 +194,7 @@ partial class GridImageGenerator
 	private bool DrawQuadrupleHint(
 		FontData fontData,
 		Color backColor,
-		Identifier identifier,
+		ColorIdentifier identifier,
 		Graphics g,
 		string hint,
 		PointCalculator calc,
@@ -216,7 +216,7 @@ partial class GridImageGenerator
 	}
 
 	private bool DrawClockfaceDot(
-		Identifier identifier,
+		ColorIdentifier identifier,
 		float borderWidth,
 		Color backColor,
 		PointCalculator calc,
@@ -248,7 +248,7 @@ partial class GridImageGenerator
 	}
 
 	private bool DrawNeighborSign(
-		Identifier identifier,
+		ColorIdentifier identifier,
 		float width,
 		PointCalculator calc,
 		int cell,
@@ -276,7 +276,7 @@ partial class GridImageGenerator
 		Color backColor,
 		FontData fontData,
 		Color textColor,
-		Identifier identifier,
+		ColorIdentifier identifier,
 		float width,
 		PointCalculator calc,
 		int cell,
@@ -344,7 +344,7 @@ partial class GridImageGenerator
 	}
 
 	private bool DrawTriangleSum(
-		Identifier identifier,
+		ColorIdentifier identifier,
 		float padding,
 		int cell,
 		Direction directions,
@@ -394,7 +394,7 @@ partial class GridImageGenerator
 
 	private bool DrawStarProductStar(
 		FontData fontData,
-		Identifier identifier,
+		ColorIdentifier identifier,
 		Graphics g,
 		PointCalculator calc,
 		int cell,
@@ -428,7 +428,7 @@ partial class GridImageGenerator
 	}
 
 	private bool DrawCellArrow(
-		Identifier identifier,
+		ColorIdentifier identifier,
 		PointCalculator calc,
 		int cell,
 		Direction direction,
@@ -448,7 +448,7 @@ partial class GridImageGenerator
 	}
 
 	private bool DrawQuadrupleMaxArrow(
-		Identifier identifier,
+		ColorIdentifier identifier,
 		PointCalculator calc,
 		int lastCell,
 		float cw,
@@ -469,7 +469,7 @@ partial class GridImageGenerator
 	}
 
 	private bool DrawCellCornerTriangle(
-		Identifier identifier,
+		ColorIdentifier identifier,
 		PointCalculator calc,
 		int cell,
 		Direction directions,
@@ -524,7 +524,7 @@ partial class GridImageGenerator
 	}
 
 	private bool DrawAverageBar(
-		Identifier identifier,
+		ColorIdentifier identifier,
 		float width,
 		PointCalculator calc,
 		int cell,
@@ -545,7 +545,7 @@ partial class GridImageGenerator
 	}
 
 	private bool DrawCellCornerArrow(
-		Identifier identifier,
+		ColorIdentifier identifier,
 		PointCalculator calc,
 		int cell,
 		float ch,
@@ -585,7 +585,7 @@ partial class GridImageGenerator
 
 	private bool DrawEmbeddedSkyscraperArrow(
 		FontData fontData,
-		Identifier identifier,
+		ColorIdentifier identifier,
 		PointCalculator calc,
 		int cell,
 		Direction directions,

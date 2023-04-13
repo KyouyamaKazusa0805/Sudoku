@@ -1581,9 +1581,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.IdentifierConversion">
             <summary>
-            Provides with conversion methods used by XAML designer, about <see cref="T:Sudoku.Rendering.Identifier"/> instances.
+            Provides with conversion methods used by XAML designer, about <see cref="T:Sudoku.Rendering.ColorIdentifier"/> instances.
             </summary>
-            <seealso cref="T:Sudoku.Rendering.Identifier"/>
+            <seealso cref="T:Sudoku.Rendering.ColorIdentifier"/>
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.PencilmarkTextConversion">
             <summary>
@@ -6560,7 +6560,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex">
             <summary>
-            Indicates the current index of the view of property <see cref="P:Sudoku.Rendering.IVisual.Views"/> displayed.
+            Indicates the current index of the view of property <see cref="P:Sudoku.Rendering.IRenderable.Views"/> displayed.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent">
@@ -6936,7 +6936,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit.Views">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit.Sudoku#Rendering#IVisual#Conclusions">
+        <member name="P:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit.Sudoku#Rendering#IRenderable#Conclusions">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit">
@@ -6954,7 +6954,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit.Views">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit.Sudoku#Rendering#IVisual#Conclusions">
+        <member name="P:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit.Sudoku#Rendering#IRenderable#Conclusions">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.BasicOperation">
@@ -7826,10 +7826,10 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Windows.UI.ColorExtensions.GetIdentifier(Windows.UI.Color)">
             <summary>
-            Gets an equivalent <see cref="T:Sudoku.Rendering.Identifier"/> instance via the current color.
+            Gets an equivalent <see cref="T:Sudoku.Rendering.ColorIdentifier"/> instance via the current color.
             </summary>
             <param name="color">The color.</param>
-            <returns>An <see cref="T:Sudoku.Rendering.Identifier"/> instance.</returns>
+            <returns>An <see cref="T:Sudoku.Rendering.ColorIdentifier"/> instance.</returns>
         </member>
         <member name="T:Windows.Foundation.PointExtensions">
             <summary>

@@ -120,7 +120,6 @@ global using MicrosoftXamlWindowActivatedEventArgs = Microsoft.UI.Xaml.WindowAct
 global using PdfColors = QuestPDF.Helpers.Colors;
 global using PdfContainer = QuestPDF.Infrastructure.IContainer;
 global using Grid = Sudoku.Concepts.Grid;
-global using VisualUnit = Sudoku.Rendering.IVisual;
 global using SudokuDefaultResource = Sudoku.Resources.Resources;
 global using DefaultValueAttribute = SudokuStudio.ComponentModel.DefaultValueAttribute;
 global using TechniqueGroupModel = SudokuStudio.Models.TechniqueGroup;

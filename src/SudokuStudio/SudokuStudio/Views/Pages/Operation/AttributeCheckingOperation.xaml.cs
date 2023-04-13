@@ -30,7 +30,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		var view = View.Empty;
 		foreach (var (type, candidate) in backdoors)
 		{
-			view.Add(new CandidateViewNode(type == Assignment ? DisplayColorKind.Assignment : DisplayColorKind.Elimination, candidate));
+			view.Add(new CandidateViewNode(type == Assignment ? WellKnownColorIdentifierKind.Assignment : WellKnownColorIdentifierKind.Elimination, candidate));
 		}
 
 		var visualUnit = new BackdoorVisualUnit(view);
@@ -66,7 +66,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		}
 
 		var view = View.Empty;
-		trueCandidates.ForEach(candidate => view.Add(new CandidateViewNode(DisplayColorKind.Assignment, candidate)));
+		trueCandidates.ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifierKind.Assignment, candidate)));
 
 		var visualUnit = new TrueCandidateVisualUnit(view);
 		BasePage.VisualUnit = visualUnit;
@@ -86,24 +86,24 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 /// Defines a backdoor visual unit.
 /// </summary>
 /// <param name="view">The view.</param>
-file sealed class BackdoorVisualUnit(View view) : VisualUnit
+file sealed class BackdoorVisualUnit(View view) : IRenderable
 {
 	/// <inheritdoc/>
 	public View[]? Views { get; } = new[] { view };
 
 	/// <inheritdoc/>
-	Conclusion[] VisualUnit.Conclusions { get; } = Array.Empty<Conclusion>();
+	Conclusion[] IRenderable.Conclusions { get; } = Array.Empty<Conclusion>();
 }
 
 /// <summary>
 /// Defines a true-candidate visual unit.
 /// </summary>
 /// <param name="view">The view.</param>
-file sealed class TrueCandidateVisualUnit(View view) : VisualUnit
+file sealed class TrueCandidateVisualUnit(View view) : IRenderable
 {
 	/// <inheritdoc/>
 	public View[]? Views { get; } = new[] { view };
 
 	/// <inheritdoc/>
-	Conclusion[] VisualUnit.Conclusions { get; } = Array.Empty<Conclusion>();
+	Conclusion[] IRenderable.Conclusions { get; } = Array.Empty<Conclusion>();
 }

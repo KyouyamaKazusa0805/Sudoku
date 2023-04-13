@@ -155,15 +155,15 @@ public sealed partial class GridImageGenerator
 	/// <summary>
 	/// Try to get the result color value.
 	/// </summary>
-	/// <param name="identifier">The color identifier.</param>
+	/// <param name="value">The value of ID.</param>
 	/// <param name="result">The result color got.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the ID is invalid.</exception>
-	private bool GetValueById(Identifier identifier, out Color result)
+	private bool GetValueById(int value, out Color result)
 	{
-		if ((Preferences, identifier) is ({ ColorPalette: var palette }, { Mode: IdentifierColorMode.Id, Id: var id }))
+		if (Preferences is { ColorPalette: var palette })
 		{
-			return (result = palette.Length > id ? palette[id] : Color.Transparent) != Color.Transparent;
+			return (result = palette.Length > value ? palette[value] : Color.Transparent) != Color.Transparent;
 		}
 		else
 		{
@@ -179,28 +179,28 @@ public sealed partial class GridImageGenerator
 	/// <returns></returns>
 	/// <exception cref="InvalidOperationException">Throws when the specified value is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Color GetColor(Identifier id)
+	private Color GetColor(ColorIdentifier id)
 		=> id switch
 		{
-			{ Mode: IdentifierColorMode.Raw, A: var a, R: var r, G: var g, B: var b } => Color.FromArgb(a, r, g, b),
-			{ Mode: IdentifierColorMode.Id } when GetValueById(id, out var color) => Color.FromArgb(64, color),
-			{ Mode: IdentifierColorMode.Named, NamedKind: var namedKind } => namedKind switch
+			ColorColorIdentifier(var a, var r, var g, var b) => Color.FromArgb(a, r, g, b),
+			PaletteIdColorIdentifier { Value: var value } when GetValueById(value, out var color) => Color.FromArgb(64, color),
+			WellKnownColorIdentifier { Kind: var kind } => kind switch
 			{
-				DisplayColorKind.Normal => Preferences.ColorPalette[0],
-				DisplayColorKind.Assignment => Preferences.ColorPalette[0],
-				DisplayColorKind.Elimination => Preferences.EliminationColor,
-				DisplayColorKind.Exofin => Preferences.ColorPalette[1],
-				DisplayColorKind.Endofin => Preferences.ColorPalette[2],
-				DisplayColorKind.Cannibalism => Preferences.CannibalismColor,
-				DisplayColorKind.Link => Preferences.ChainColor,
-				DisplayColorKind.Auxiliary1 => Preferences.ColorPalette[1],
-				DisplayColorKind.Auxiliary2 => Preferences.ColorPalette[2],
-				DisplayColorKind.Auxiliary3 => Preferences.ColorPalette[3],
-				DisplayColorKind.AlmostLockedSet1 => Preferences.ColorPalette[^5],
-				DisplayColorKind.AlmostLockedSet2 => Preferences.ColorPalette[^4],
-				DisplayColorKind.AlmostLockedSet3 => Preferences.ColorPalette[^3],
-				DisplayColorKind.AlmostLockedSet4 => Preferences.ColorPalette[^2],
-				DisplayColorKind.AlmostLockedSet5 => Preferences.ColorPalette[^1],
+				WellKnownColorIdentifierKind.Normal => Preferences.ColorPalette[0],
+				WellKnownColorIdentifierKind.Assignment => Preferences.ColorPalette[0],
+				WellKnownColorIdentifierKind.Elimination => Preferences.EliminationColor,
+				WellKnownColorIdentifierKind.Exofin => Preferences.ColorPalette[1],
+				WellKnownColorIdentifierKind.Endofin => Preferences.ColorPalette[2],
+				WellKnownColorIdentifierKind.Cannibalism => Preferences.CannibalismColor,
+				WellKnownColorIdentifierKind.Link => Preferences.ChainColor,
+				WellKnownColorIdentifierKind.Auxiliary1 => Preferences.ColorPalette[1],
+				WellKnownColorIdentifierKind.Auxiliary2 => Preferences.ColorPalette[2],
+				WellKnownColorIdentifierKind.Auxiliary3 => Preferences.ColorPalette[3],
+				WellKnownColorIdentifierKind.AlmostLockedSet1 => Preferences.ColorPalette[^5],
+				WellKnownColorIdentifierKind.AlmostLockedSet2 => Preferences.ColorPalette[^4],
+				WellKnownColorIdentifierKind.AlmostLockedSet3 => Preferences.ColorPalette[^3],
+				WellKnownColorIdentifierKind.AlmostLockedSet4 => Preferences.ColorPalette[^2],
+				WellKnownColorIdentifierKind.AlmostLockedSet5 => Preferences.ColorPalette[^1],
 				_ => throw new InvalidOperationException("Such displaying color kind is invalid.")
 			},
 			_ => throw new InvalidOperationException("Such identifier instance contains invalid value.")

@@ -72,7 +72,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				// BUG + 1 found.
 				var step = new BivalueUniversalGraveType1Step(
 					new[] { new Conclusion(Assignment, trueCandidate) },
-					new[] { View.Empty | new CandidateViewNode(DisplayColorKind.Normal, trueCandidate) }
+					new[] { View.Empty | new CandidateViewNode(WellKnownColorIdentifierKind.Normal, trueCandidate) }
 				);
 				if (context.OnlyFindOne)
 				{
@@ -158,7 +158,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				var cellOffsets = new List<CellViewNode>(multivalueCells.Count);
 				foreach (var multiValueCell in multivalueCells)
 				{
-					cellOffsets.Add(new(DisplayColorKind.Normal, multiValueCell));
+					cellOffsets.Add(new(WellKnownColorIdentifierKind.Normal, multiValueCell));
 				}
 
 				var step = new BivalueUniversalGraveFalseCandidateTypeStep(
@@ -209,7 +209,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		var candidateOffsets = new List<CandidateViewNode>(trueCandidates.Count);
 		foreach (var candidate in trueCandidates)
 		{
-			candidateOffsets.Add(new(DisplayColorKind.Normal, candidate));
+			candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, candidate));
 		}
 
 		// BUG type 2.
@@ -287,19 +287,19 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (var cand in trueCandidates)
 					{
-						candidateOffsets.Add(new(DisplayColorKind.Normal, cand));
+						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cand));
 					}
 					foreach (var cell in cells)
 					{
 						foreach (var digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
 						}
 					}
 
 					var step = new BivalueUniversalGraveType3Step(
 						conclusions.ToArray(),
-						new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, house) },
+						new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifierKind.Normal, house) },
 						trueCandidates,
 						digitsMask,
 						cells,
@@ -416,10 +416,10 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				var i = 0;
 				foreach (var candidate in trueCandidates)
 				{
-					candidateOffsets[i++] = new(DisplayColorKind.Normal, candidate);
+					candidateOffsets[i++] = new(WellKnownColorIdentifierKind.Normal, candidate);
 				}
-				candidateOffsets[^2] = new(DisplayColorKind.Auxiliary1, c1 * 9 + conjugatePairDigit);
-				candidateOffsets[^1] = new(DisplayColorKind.Auxiliary1, c2 * 9 + conjugatePairDigit);
+				candidateOffsets[^2] = new(WellKnownColorIdentifierKind.Auxiliary1, c1 * 9 + conjugatePairDigit);
+				candidateOffsets[^1] = new(WellKnownColorIdentifierKind.Auxiliary1, c2 * 9 + conjugatePairDigit);
 
 				// BUG type 4.
 				var digitsMask = (Mask)0;
@@ -430,7 +430,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 				var step = new BivalueUniversalGraveType4Step(
 					conclusions.ToArray(),
-					new[] { View.Empty | candidateOffsets | new HouseViewNode(DisplayColorKind.Normal, house) },
+					new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifierKind.Normal, house) },
 					digitsMask,
 					CellMap.Empty + cells,
 					new(c1, c2, conjugatePairDigit)
@@ -481,7 +481,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		var i = 0;
 		foreach (var candidate in trueCandidates)
 		{
-			candidateOffsets[i++] = new(DisplayColorKind.Normal, candidate);
+			candidateOffsets[i++] = new(WellKnownColorIdentifierKind.Normal, candidate);
 		}
 
 		// BUG + n.
@@ -538,12 +538,12 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			var candidateOffsets = new CandidateViewNode[trueCandidates.Count];
 			for (var i = 0; i < trueCandidates.Count; i++)
 			{
-				candidateOffsets[i] = new(DisplayColorKind.Normal, trueCandidates[i]);
+				candidateOffsets[i] = new(WellKnownColorIdentifierKind.Normal, trueCandidates[i]);
 			}
 
 			var step = new BivalueUniversalGraveXzStep(
 				conclusions.ToArray(),
-				new[] { View.Empty | new CellViewNode(DisplayColorKind.Normal, cell) | candidateOffsets },
+				new[] { View.Empty | new CellViewNode(WellKnownColorIdentifierKind.Normal, cell) | candidateOffsets },
 				mask,
 				CellsMap[c1] + c2,
 				cell

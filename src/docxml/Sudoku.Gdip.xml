@@ -127,16 +127,16 @@
         <member name="M:Sudoku.Drawing.SudokuPainter.WithConclusions(System.Collections.Immutable.ImmutableArray{Sudoku.Analytics.Conclusion})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.WithNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.Nodes.ViewNode})">
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.AddNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.Nodes.ViewNode})">
+        <member name="M:Sudoku.Drawing.SudokuPainter.AddNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.RemoveNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.Nodes.ViewNode})">
+        <member name="M:Sudoku.Drawing.SudokuPainter.RemoveNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.RemoveNodesWhen(System.Predicate{Sudoku.Rendering.Nodes.ViewNode})">
+        <member name="M:Sudoku.Drawing.SudokuPainter.RemoveNodesWhen(System.Predicate{Sudoku.Rendering.ViewNode})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterFactory">
@@ -264,28 +264,28 @@
             <param name="conclusions">The conclusions.</param>
             <returns>The target painter.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.Nodes.ViewNode})">
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
             <summary>
             Sets the view nodes used for rendering.
             </summary>
             <param name="nodes">The nodes.</param>
             <returns>The target painter.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.AddNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.Nodes.ViewNode})">
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.AddNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
             <summary>
             Append extra nodes.
             </summary>
             <param name="nodes">Extra nodes.</param>
             <returns>The target painter.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.RemoveNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.Nodes.ViewNode})">
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.RemoveNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
             <summary>
             Remove nodes.
             </summary>
             <param name="nodes">Nodes.</param>
             <returns>The target painter.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.RemoveNodesWhen(System.Predicate{Sudoku.Rendering.Nodes.ViewNode})">
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.RemoveNodesWhen(System.Predicate{Sudoku.Rendering.ViewNode})">
             <summary>
             Remove nodes if the target node satisfies the specified condition.
             </summary>
@@ -898,16 +898,16 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>Rendering data.</returns>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.GetValueById(Sudoku.Rendering.Identifier,System.Drawing.Color@)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.GetValueById(System.Int32,System.Drawing.Color@)">
             <summary>
             Try to get the result color value.
             </summary>
-            <param name="identifier">The color identifier.</param>
+            <param name="value">The value of ID.</param>
             <param name="result">The result color got.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the ID is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.GetColor(Sudoku.Rendering.Identifier)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.GetColor(Sudoku.Rendering.ColorIdentifier)">
             <summary>
             Gets the color value.
             </summary>

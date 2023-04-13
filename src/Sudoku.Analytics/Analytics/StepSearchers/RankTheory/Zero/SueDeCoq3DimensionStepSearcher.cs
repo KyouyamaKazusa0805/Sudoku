@@ -167,21 +167,21 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 												{
 													foreach (var cell in (selectedRowCells | rbCurrentMap) & CandidatesMap[digit])
 													{
-														candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+														candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
 													}
 												}
 												foreach (var digit in columnMask)
 												{
 													foreach (var cell in (selectedColumnCells | cbCurrentMap) & CandidatesMap[digit])
 													{
-														candidateOffsets.Add(new(DisplayColorKind.Auxiliary1, cell * 9 + digit));
+														candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
 													}
 												}
 												foreach (var digit in blockMask)
 												{
 													foreach (var cell in (selectedBlockCells | rbCurrentMap | cbCurrentMap) & CandidatesMap[digit])
 													{
-														candidateOffsets.Add(new(DisplayColorKind.Auxiliary2, cell * 9 + digit));
+														candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, cell * 9 + digit));
 													}
 												}
 
@@ -193,9 +193,9 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 															| candidateOffsets
 															| new HouseViewNode[]
 															{
-																new(DisplayColorKind.Normal, r),
-																new(DisplayColorKind.Auxiliary2, c),
-																new(DisplayColorKind.Auxiliary3, b)
+																new(WellKnownColorIdentifierKind.Normal, r),
+																new(WellKnownColorIdentifierKind.Auxiliary2, c),
+																new(WellKnownColorIdentifierKind.Auxiliary3, b)
 															}
 													},
 													rowMask,

@@ -182,7 +182,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			{
 				if (singleDigitList.Contains(digit))
 				{
-					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
 					continue;
 				}
 
@@ -308,7 +308,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			{
 				if (singleDigitList.Contains(digit))
 				{
-					candidateOffsets.Add(new(DisplayColorKind.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
 					continue;
 				}
 
@@ -403,7 +403,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 
 			return new(
 				new[] { new Conclusion(Assignment, 40, digit) },
-				new[] { View.Empty | cellOffsets | new CandidateViewNode(DisplayColorKind.Normal, 360 + digit) },
+				new[] { View.Empty | cellOffsets | new CandidateViewNode(WellKnownColorIdentifierKind.Normal, 360 + digit) },
 				SymmetryType.Central,
 				mapping
 			);

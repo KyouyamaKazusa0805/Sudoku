@@ -394,15 +394,15 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 								var houseOffsets = new List<HouseViewNode>();
 								foreach (var body in actualBaseMap)
 								{
-									candidateOffsets.Add(new(DisplayColorKind.Normal, body * 9 + digit));
+									candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, body * 9 + digit));
 								}
 								foreach (var exofin in exofins)
 								{
-									candidateOffsets.Add(new(DisplayColorKind.Exofin, exofin * 9 + digit));
+									candidateOffsets.Add(new(WellKnownColorIdentifierKind.Exofin, exofin * 9 + digit));
 								}
 								foreach (var endofin in endofins)
 								{
-									candidateOffsets.Add(new(DisplayColorKind.Endofin, endofin * 9 + digit));
+									candidateOffsets.Add(new(WellKnownColorIdentifierKind.Endofin, endofin * 9 + digit));
 								}
 
 								// Don't forget the extra cover set.
@@ -418,11 +418,11 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 								var coverSetsMask = 0;
 								foreach (var baseSet in baseSets)
 								{
-									houseOffsets.Add(new(DisplayColorKind.Normal, baseSet));
+									houseOffsets.Add(new(WellKnownColorIdentifierKind.Normal, baseSet));
 								}
 								foreach (var coverSet in actualCoverSets)
 								{
-									houseOffsets.Add(new(DisplayColorKind.Auxiliary2, coverSet));
+									houseOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, coverSet));
 									coverSetsMask |= 1 << coverSet;
 								}
 

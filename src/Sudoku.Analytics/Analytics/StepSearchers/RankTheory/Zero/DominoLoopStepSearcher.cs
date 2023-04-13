@@ -238,7 +238,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 						{
 							candidateOffsets.Add(
 								new(
-									(k & 3) switch { 0 => DisplayColorKind.Auxiliary1, 1 => DisplayColorKind.Auxiliary2, _ => DisplayColorKind.Normal },
+									(k & 3) switch { 0 => WellKnownColorIdentifierKind.Auxiliary1, 1 => WellKnownColorIdentifierKind.Auxiliary2, _ => WellKnownColorIdentifierKind.Normal },
 									cell * 9 + digit
 								)
 							);

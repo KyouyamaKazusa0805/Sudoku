@@ -178,8 +178,8 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 												candidateOffsets.Add(
 													new(
 														!cannibalMode && digit == digitIsolated
-															? DisplayColorKind.Auxiliary2
-															: DisplayColorKind.Normal,
+															? WellKnownColorIdentifierKind.Auxiliary2
+															: WellKnownColorIdentifierKind.Normal,
 														cell * 9 + digit
 													)
 												);
@@ -192,8 +192,8 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 												candidateOffsets.Add(
 													new(
 														!cannibalMode && digit == digitIsolated
-															? DisplayColorKind.Auxiliary2
-															: DisplayColorKind.Auxiliary1,
+															? WellKnownColorIdentifierKind.Auxiliary2
+															: WellKnownColorIdentifierKind.Auxiliary1,
 														cell * 9 + digit
 													)
 												);
@@ -206,10 +206,10 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 												candidateOffsets.Add(
 													new(
 														digitIsolated == digit
-															? DisplayColorKind.Auxiliary2
+															? WellKnownColorIdentifierKind.Auxiliary2
 															: (blockMask >> digit & 1) != 0
-																? DisplayColorKind.Normal
-																: DisplayColorKind.Auxiliary1,
+																? WellKnownColorIdentifierKind.Normal
+																: WellKnownColorIdentifierKind.Auxiliary1,
 														cell * 9 + digit
 													)
 												);
@@ -224,8 +224,8 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 													| candidateOffsets
 													| new HouseViewNode[]
 													{
-														new(DisplayColorKind.Normal, coverSet),
-														new(DisplayColorKind.Auxiliary2, baseSet)
+														new(WellKnownColorIdentifierKind.Normal, coverSet),
+														new(WellKnownColorIdentifierKind.Auxiliary2, baseSet)
 													}
 											},
 											coverSet,

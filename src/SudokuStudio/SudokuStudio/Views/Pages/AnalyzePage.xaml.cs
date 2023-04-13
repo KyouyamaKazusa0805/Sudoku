@@ -6,11 +6,11 @@ namespace SudokuStudio.Views.Pages;
 [DependencyProperty<bool>("IsAnalyzerLaunched", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the analyzer is launched.")]
 [DependencyProperty<bool>("IsGathererLaunched", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the gatherer is launched.")]
 [DependencyProperty<bool>("GeneratorIsNotRunning", DefaultValue = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the generator is not running currently.")]
-[DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"VisualUnit.Views\"/> displayed.")]
+[DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"IRenderable.Views\"/> displayed.")]
 [DependencyProperty<double>("ProgressPercent", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the progress percent value.")]
 [DependencyProperty<AnalyzerResult>("AnalysisResultCache", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the analysis result cache.")]
 [DependencyProperty<ColorPalette>("UserDefinedPalette", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the user-defined colors.")]
-[DependencyProperty<VisualUnit>("VisualUnit", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the visual unit.")]
+[DependencyProperty<IRenderable>("VisualUnit", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the visual unit.")]
 public sealed partial class AnalyzePage : Page
 {
 	[DefaultValue]
@@ -686,12 +686,12 @@ public sealed partial class AnalyzePage : Page
 	[Callback]
 	private static void VisualUnitPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (AnalyzePage page, { NewValue: var value and (null or VisualUnit _) }))
+		if ((d, e) is not (AnalyzePage page, { NewValue: var value and (null or IRenderable) }))
 		{
 			return;
 		}
 
-		var currentViewIndex = value is VisualUnit ? 0 : -1;
+		var currentViewIndex = value is IRenderable ? 0 : -1;
 		page.CurrentViewIndex = currentViewIndex;
 
 		ChangeCurrentViewIndex(page, currentViewIndex);
