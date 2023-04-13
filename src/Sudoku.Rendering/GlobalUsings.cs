@@ -1,0 +1,18 @@
+extern alias core;
+global using System;
+global using System.Collections;
+global using System.Collections.Generic;
+global using System.Collections.Immutable;
+global using System.Diagnostics.CodeAnalysis;
+global using System.Diagnostics.CodeGen;
+global using System.Numerics;
+global using System.Runtime.CompilerServices;
+global using System.Text.Json.Serialization;
+global using core::Sudoku.Analytics;
+global using core::Sudoku.Concepts;
+global using core::Sudoku.Text.Notations;
+global using Sudoku.Rendering.Nodes;
+global using Sudoku.Rendering.Nodes.Grouped;
+global using Sudoku.Rendering.Nodes.Shapes;
+global using static core::Sudoku.SolutionWideReadOnlyFields;
+global using Mask = short;

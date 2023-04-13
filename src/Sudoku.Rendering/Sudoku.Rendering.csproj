@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<RootNamespace>Sudoku</RootNamespace>
+		<Description>Provides rendering APIs for displaying sudoku grids.</Description>
+		<DocumentationFile>..\docxml\Sudoku.Rendering.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj">
+		  <Aliases>deprecated,core</Aliases>
+		</ProjectReference>
+		<ProjectReference Include="..\System\SystemExtensions.csproj" />
+		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+
+</Project>
