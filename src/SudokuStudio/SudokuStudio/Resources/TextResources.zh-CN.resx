@@ -666,6 +666,9 @@
   <data name="SettingsPage_AlmostLockedSetsColors" xml:space="preserve">
     <value>待定数组结构配色</value>
   </data>
+  <data name="SettingsPage_AlmostLockedSetsGroup" xml:space="preserve">
+    <value>待定数组（ALS）</value>
+  </data>
   <data name="SettingsPage_Analysis" xml:space="preserve">
     <value>解题与分析</value>
   </data>
@@ -705,14 +708,26 @@
   <data name="SettingsPage_ChainStrokeThicknessTitle" xml:space="preserve">
     <value>链的粗细</value>
   </data>
+  <data name="SettingsPage_Colors" xml:space="preserve">
+    <value>配色</value>
+  </data>
   <data name="SettingsPage_CoordinateLabelFontData" xml:space="preserve">
     <value>坐标字体</value>
+  </data>
+  <data name="SettingsPage_Coordinates" xml:space="preserve">
+    <value>坐标</value>
   </data>
   <data name="SettingsPage_CursorBackgroundColor" xml:space="preserve">
     <value>光标背景</value>
   </data>
   <data name="SettingsPage_CyclingCellLinkDashStyle" xml:space="preserve">
     <value>以单元格为单位的链接的虚线周期</value>
+  </data>
+  <data name="SettingsPage_DashStyles" xml:space="preserve">
+    <value>虚线周期</value>
+  </data>
+  <data name="SettingsPage_DeadlyPatternsGroup" xml:space="preserve">
+    <value>致命结构</value>
   </data>
   <data name="SettingsPage_DeltaCandidateColor" xml:space="preserve">
     <value>差分候选数</value>
@@ -725,6 +740,9 @@
   </data>
   <data name="SettingsPage_DeltaCellColorDescription" xml:space="preserve">
     <value>差分填数就是错误的填数，它会和它所在的行、列、宫里的数字冲突（相同）</value>
+  </data>
+  <data name="SettingsPage_Deltas" xml:space="preserve">
+    <value>差分数字</value>
   </data>
   <data name="SettingsPage_DifficultyLevelBackgrounds" xml:space="preserve">
     <value>难度系数文字底色</value>
@@ -785,6 +803,12 @@
   <data name="SettingsPage_ExofinColor" xml:space="preserve">
     <value>外鱼鳍</value>
   </data>
+  <data name="SettingsPage_FishesGroup" xml:space="preserve">
+    <value>鱼</value>
+  </data>
+  <data name="SettingsPage_Fonts" xml:space="preserve">
+    <value>字体</value>
+  </data>
   <data name="SettingsPage_GivenFontData" xml:space="preserve">
     <value>提示数字体</value>
   </data>
@@ -806,6 +830,9 @@
   <data name="SettingsPage_MaxSizeOfRegularWing" xml:space="preserve">
     <value>规则 Wing 结构的最大搜索规格</value>
   </data>
+  <data name="SettingsPage_MiscellaneousBehaviors" xml:space="preserve">
+    <value>其他行为</value>
+  </data>
   <data name="SettingsPage_ModifiableFontData" xml:space="preserve">
     <value>填入数字体</value>
   </data>
@@ -820,6 +847,9 @@
   </data>
   <data name="SettingsPage_OnContent" xml:space="preserve">
     <value>是</value>
+  </data>
+  <data name="SettingsPage_Others" xml:space="preserve">
+    <value>其他</value>
   </data>
   <data name="SettingsPage_OutsideCoordinateDisplayDirectionsTitle" xml:space="preserve">
     <value>坐标显示</value>
@@ -854,8 +884,17 @@
   <data name="SettingsPage_SearchForExtendedUniqueRectangles" xml:space="preserve">
     <value>允许搜索唯一矩形的各种拓展构型</value>
   </data>
+  <data name="SettingsPage_SinglesGroup" xml:space="preserve">
+    <value>出数类技巧</value>
+  </data>
   <data name="SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps" xml:space="preserve">
     <value>在单步所有步骤搜索功能中，只搜索同难度级别的技巧</value>
+  </data>
+  <data name="SettingsPage_StepsColoring" xml:space="preserve">
+    <value>步骤配色</value>
+  </data>
+  <data name="SettingsPage_StepSearcherBehaviors" xml:space="preserve">
+    <value>技巧搜索行为</value>
   </data>
   <data name="SettingsPage_StepSearcherOrdering" xml:space="preserve">
     <value>技巧搜索器的执行顺序</value>
@@ -868,6 +907,9 @@
   </data>
   <data name="SettingsPage_StrongLinkDashStyleDescription" xml:space="preserve">
     <value>请往文本框里输入一系列数字，用逗号隔开。数字表示的是链的线条的虚线断点规则。这一组数字代表了虚线的断点周期，将整个线条分段为多个部分，每个部分的长度对应该数字序列的每一个数值。例如“3,2”表示一条虚线，虚线被若干断点断开，每一段虚线长度为 3 和 2 一组为一个周期。文本框可留空，留空则表示该线条为实线，没有断点。</value>
+  </data>
+  <data name="SettingsPage_SudokuGridBehaviors" xml:space="preserve">
+    <value>数独盘面行为</value>
   </data>
   <data name="SettingsPage_WeakLinkDashStyle" xml:space="preserve">
     <value>弱链的虚线周期</value>

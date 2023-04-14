@@ -3931,6 +3931,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Colors of Almost Locked Sets.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AlmostLockedSetsGroup">
+            <summary>
+              Looks up a localized string similar to Almost Locked Sets (ALS).
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Analysis">
             <summary>
               Looks up a localized string similar to Solving &amp; Analysis.
@@ -3996,9 +4001,19 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Stroke thickness of chain links.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Colors">
+            <summary>
+              Looks up a localized string similar to Colors.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_CoordinateLabelFontData">
             <summary>
               Looks up a localized string similar to Coordinate label font.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Coordinates">
+            <summary>
+              Looks up a localized string similar to Coordinates.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_CursorBackgroundColor">
@@ -4009,6 +4024,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_CyclingCellLinkDashStyle">
             <summary>
               Looks up a localized string similar to Cycling cell-link dash style.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DashStyles">
+            <summary>
+              Looks up a localized string similar to Dash Styles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DeadlyPatternsGroup">
+            <summary>
+              Looks up a localized string similar to Deadly Patterns.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DeltaCandidateColor">
@@ -4029,6 +4054,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DeltaCellColorDescription">
             <summary>
               Looks up a localized string similar to Delta cells are digits that are confilct with its same house.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Deltas">
+            <summary>
+              Looks up a localized string similar to Deltas.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_DifficultyLevelBackgrounds">
@@ -4128,6 +4158,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Exo-fins.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_FishesGroup">
+            <summary>
+              Looks up a localized string similar to Fishes.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Fonts">
+            <summary>
+              Looks up a localized string similar to Fonts.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_GivenFontData">
             <summary>
               Looks up a localized string similar to Given font.
@@ -4163,6 +4203,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Maximum size of Regular Wing to be searched for.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_MiscellaneousBehaviors">
+            <summary>
+              Looks up a localized string similar to Miscellaneous.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_ModifiableFontData">
             <summary>
               Looks up a localized string similar to Modifiable font.
@@ -4186,6 +4231,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OnContent">
             <summary>
               Looks up a localized string similar to Yes.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_Others">
+            <summary>
+              Looks up a localized string similar to Others.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_OutsideCoordinateDisplayDirectionsTitle">
@@ -4243,9 +4293,24 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Allow searching for extended types of Unique Rectangle.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_SinglesGroup">
+            <summary>
+              Looks up a localized string similar to Singles.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps">
             <summary>
               Looks up a localized string similar to Only search for steps in a same difficulty level for step searchers.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepsColoring">
+            <summary>
+              Looks up a localized string similar to Colors For Techniques.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepSearcherBehaviors">
+            <summary>
+              Looks up a localized string similar to Step-Searcher Behaviors.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepSearcherOrdering">
@@ -4266,6 +4331,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StrongLinkDashStyleDescription">
             <summary>
               Looks up a localized string similar to Please input a series of digits, indicating the dash style of a chain link. Digits are the length of all split sub-lines. For example, &quot;3,2&quot; means a dotted line with contain several periods of two sub-lines, with lengths 3 and 2. You can keep the text box be empty, which means the line will not use dotted rule to separate it with multiple parts..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_SudokuGridBehaviors">
+            <summary>
+              Looks up a localized string similar to Sudoku Grid Behaviors.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_WeakLinkDashStyle">

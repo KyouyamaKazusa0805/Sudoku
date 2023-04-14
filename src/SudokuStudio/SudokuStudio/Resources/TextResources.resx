@@ -663,6 +663,9 @@
   <data name="SettingsPage_AlmostLockedSetsColors" xml:space="preserve">
     <value>Colors of Almost Locked Sets</value>
   </data>
+  <data name="SettingsPage_AlmostLockedSetsGroup" xml:space="preserve">
+    <value>Almost Locked Sets (ALS)</value>
+  </data>
   <data name="SettingsPage_Analysis" xml:space="preserve">
     <value>Solving &amp; Analysis</value>
   </data>
@@ -702,14 +705,26 @@
   <data name="SettingsPage_ChainStrokeThicknessTitle" xml:space="preserve">
     <value>Stroke thickness of chain links</value>
   </data>
+  <data name="SettingsPage_Colors" xml:space="preserve">
+    <value>Colors</value>
+  </data>
   <data name="SettingsPage_CoordinateLabelFontData" xml:space="preserve">
     <value>Coordinate label font</value>
+  </data>
+  <data name="SettingsPage_Coordinates" xml:space="preserve">
+    <value>Coordinates</value>
   </data>
   <data name="SettingsPage_CursorBackgroundColor" xml:space="preserve">
     <value>Cursor background</value>
   </data>
   <data name="SettingsPage_CyclingCellLinkDashStyle" xml:space="preserve">
     <value>Cycling cell-link dash style</value>
+  </data>
+  <data name="SettingsPage_DashStyles" xml:space="preserve">
+    <value>Dash Styles</value>
+  </data>
+  <data name="SettingsPage_DeadlyPatternsGroup" xml:space="preserve">
+    <value>Deadly Patterns</value>
   </data>
   <data name="SettingsPage_DeltaCandidateColor" xml:space="preserve">
     <value>Delta candidates</value>
@@ -722,6 +737,9 @@
   </data>
   <data name="SettingsPage_DeltaCellColorDescription" xml:space="preserve">
     <value>Delta cells are digits that are confilct with its same house</value>
+  </data>
+  <data name="SettingsPage_Deltas" xml:space="preserve">
+    <value>Deltas</value>
   </data>
   <data name="SettingsPage_DifficultyLevelBackgrounds" xml:space="preserve">
     <value>Background colors of difficulty levels</value>
@@ -782,6 +800,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_ExofinColor" xml:space="preserve">
     <value>Exo-fins</value>
   </data>
+  <data name="SettingsPage_FishesGroup" xml:space="preserve">
+    <value>Fishes</value>
+  </data>
+  <data name="SettingsPage_Fonts" xml:space="preserve">
+    <value>Fonts</value>
+  </data>
   <data name="SettingsPage_GivenFontData" xml:space="preserve">
     <value>Given font</value>
   </data>
@@ -803,6 +827,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_MaxSizeOfRegularWing" xml:space="preserve">
     <value>Maximum size of Regular Wing to be searched for</value>
   </data>
+  <data name="SettingsPage_MiscellaneousBehaviors" xml:space="preserve">
+    <value>Miscellaneous</value>
+  </data>
   <data name="SettingsPage_ModifiableFontData" xml:space="preserve">
     <value>Modifiable font</value>
   </data>
@@ -817,6 +844,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_OnContent" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="SettingsPage_Others" xml:space="preserve">
+    <value>Others</value>
   </data>
   <data name="SettingsPage_OutsideCoordinateDisplayDirectionsTitle" xml:space="preserve">
     <value>Coordinate display directions</value>
@@ -851,8 +881,17 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_SearchForExtendedUniqueRectangles" xml:space="preserve">
     <value>Allow searching for extended types of Unique Rectangle</value>
   </data>
+  <data name="SettingsPage_SinglesGroup" xml:space="preserve">
+    <value>Singles</value>
+  </data>
   <data name="SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps" xml:space="preserve">
     <value>Only search for steps in a same difficulty level for step searchers</value>
+  </data>
+  <data name="SettingsPage_StepsColoring" xml:space="preserve">
+    <value>Colors For Techniques</value>
+  </data>
+  <data name="SettingsPage_StepSearcherBehaviors" xml:space="preserve">
+    <value>Step-Searcher Behaviors</value>
   </data>
   <data name="SettingsPage_StepSearcherOrdering" xml:space="preserve">
     <value>Ordering of step searchers</value>
@@ -865,6 +904,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_StrongLinkDashStyleDescription" xml:space="preserve">
     <value>Please input a series of digits, indicating the dash style of a chain link. Digits are the length of all split sub-lines. For example, "3,2" means a dotted line with contain several periods of two sub-lines, with lengths 3 and 2. You can keep the text box be empty, which means the line will not use dotted rule to separate it with multiple parts.</value>
+  </data>
+  <data name="SettingsPage_SudokuGridBehaviors" xml:space="preserve">
+    <value>Sudoku Grid Behaviors</value>
   </data>
   <data name="SettingsPage_WeakLinkDashStyle" xml:space="preserve">
     <value>Weak link dash style</value>

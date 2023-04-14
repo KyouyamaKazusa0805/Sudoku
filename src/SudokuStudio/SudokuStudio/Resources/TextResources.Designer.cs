@@ -1870,6 +1870,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Sets (ALS).
+        /// </summary>
+        internal static string SettingsPage_AlmostLockedSetsGroup {
+            get {
+                return ResourceManager.GetString("SettingsPage_AlmostLockedSetsGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Solving &amp; Analysis.
         /// </summary>
         internal static string SettingsPage_Analysis {
@@ -1987,11 +1996,29 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Colors.
+        /// </summary>
+        internal static string SettingsPage_Colors {
+            get {
+                return ResourceManager.GetString("SettingsPage_Colors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Coordinate label font.
         /// </summary>
         internal static string SettingsPage_CoordinateLabelFontData {
             get {
                 return ResourceManager.GetString("SettingsPage_CoordinateLabelFontData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coordinates.
+        /// </summary>
+        internal static string SettingsPage_Coordinates {
+            get {
+                return ResourceManager.GetString("SettingsPage_Coordinates", resourceCulture);
             }
         }
         
@@ -2010,6 +2037,24 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_CyclingCellLinkDashStyle {
             get {
                 return ResourceManager.GetString("SettingsPage_CyclingCellLinkDashStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dash Styles.
+        /// </summary>
+        internal static string SettingsPage_DashStyles {
+            get {
+                return ResourceManager.GetString("SettingsPage_DashStyles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deadly Patterns.
+        /// </summary>
+        internal static string SettingsPage_DeadlyPatternsGroup {
+            get {
+                return ResourceManager.GetString("SettingsPage_DeadlyPatternsGroup", resourceCulture);
             }
         }
         
@@ -2046,6 +2091,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_DeltaCellColorDescription {
             get {
                 return ResourceManager.GetString("SettingsPage_DeltaCellColorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deltas.
+        /// </summary>
+        internal static string SettingsPage_Deltas {
+            get {
+                return ResourceManager.GetString("SettingsPage_Deltas", resourceCulture);
             }
         }
         
@@ -2223,6 +2277,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fishes.
+        /// </summary>
+        internal static string SettingsPage_FishesGroup {
+            get {
+                return ResourceManager.GetString("SettingsPage_FishesGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fonts.
+        /// </summary>
+        internal static string SettingsPage_Fonts {
+            get {
+                return ResourceManager.GetString("SettingsPage_Fonts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given font.
         /// </summary>
         internal static string SettingsPage_GivenFontData {
@@ -2286,6 +2358,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Miscellaneous.
+        /// </summary>
+        internal static string SettingsPage_MiscellaneousBehaviors {
+            get {
+                return ResourceManager.GetString("SettingsPage_MiscellaneousBehaviors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modifiable font.
         /// </summary>
         internal static string SettingsPage_ModifiableFontData {
@@ -2327,6 +2408,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_OnContent {
             get {
                 return ResourceManager.GetString("SettingsPage_OnContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Others.
+        /// </summary>
+        internal static string SettingsPage_Others {
+            get {
+                return ResourceManager.GetString("SettingsPage_Others", resourceCulture);
             }
         }
         
@@ -2430,11 +2520,38 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Singles.
+        /// </summary>
+        internal static string SettingsPage_SinglesGroup {
+            get {
+                return ResourceManager.GetString("SettingsPage_SinglesGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Only search for steps in a same difficulty level for step searchers.
         /// </summary>
         internal static string SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps {
             get {
                 return ResourceManager.GetString("SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colors For Techniques.
+        /// </summary>
+        internal static string SettingsPage_StepsColoring {
+            get {
+                return ResourceManager.GetString("SettingsPage_StepsColoring", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step-Searcher Behaviors.
+        /// </summary>
+        internal static string SettingsPage_StepSearcherBehaviors {
+            get {
+                return ResourceManager.GetString("SettingsPage_StepSearcherBehaviors", resourceCulture);
             }
         }
         
@@ -2471,6 +2588,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_StrongLinkDashStyleDescription {
             get {
                 return ResourceManager.GetString("SettingsPage_StrongLinkDashStyleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sudoku Grid Behaviors.
+        /// </summary>
+        internal static string SettingsPage_SudokuGridBehaviors {
+            get {
+                return ResourceManager.GetString("SettingsPage_SudokuGridBehaviors", resourceCulture);
             }
         }
         
