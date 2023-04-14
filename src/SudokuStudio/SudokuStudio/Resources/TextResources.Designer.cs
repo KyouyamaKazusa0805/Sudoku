@@ -358,11 +358,11 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LiveCharts2.
+        ///   Looks up a localized string similar to Settings UI.
         /// </summary>
-        internal static string AboutPage_SpecialThanks_LiveCharts2 {
+        internal static string AboutPage_SpecialThanks_SettingsUI {
             get {
-                return ResourceManager.GetString("AboutPage_SpecialThanks_LiveCharts2", resourceCulture);
+                return ResourceManager.GetString("AboutPage_SpecialThanks_SettingsUI", resourceCulture);
             }
         }
         

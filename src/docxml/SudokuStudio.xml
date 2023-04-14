@@ -3106,9 +3106,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Learn WinUI 3.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_SpecialThanks_LiveCharts2">
+        <member name="P:SudokuStudio.Resources.TextResources.AboutPage_SpecialThanks_SettingsUI">
             <summary>
-              Looks up a localized string similar to LiveCharts2.
+              Looks up a localized string similar to Settings UI.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AboutPage_SpecialThanks_UWPSamples">
@@ -7556,16 +7556,10 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Try to set backdrop for the current window.
             </summary>
-            <remarks>
-            This method will automatically be compatible with older version of Windows App SDK. If the version is below v1.3,
-            this type will create an extra field called <c>_appWindow</c> (of type <see cref="T:Microsoft.UI.Windowing.AppWindow"/>),
-            in order to be initialized manually; when is v1.3 or greater, Windows App SDK provides a property called <c>Window.AppWindow</c>,
-            and we can use this property instead of the complex initialization.
-            </remarks>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeAppWindow">
             <summary>
-            Initializes for field <c>_appWindow</c> (For Windows App SDK below v1.3).
+            Initializes for property <see cref="P:Microsoft.UI.Xaml.Window.AppWindow"/>.
             </summary>
             <remarks>
             For more information please visit <see href="https://learn.microsoft.com/en-us/windows/apps/develop/title-bar">this link</see>.

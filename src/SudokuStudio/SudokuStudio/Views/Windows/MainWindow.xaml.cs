@@ -136,12 +136,6 @@ public sealed partial class MainWindow : Window
 	/// <summary>
 	/// Try to set backdrop for the current window.
 	/// </summary>
-	/// <remarks>
-	/// This method will automatically be compatible with older version of Windows App SDK. If the version is below v1.3,
-	/// this type will create an extra field called <c>_appWindow</c> (of type <see cref="AppWindow"/>),
-	/// in order to be initialized manually; when is v1.3 or greater, Windows App SDK provides a property called <c>Window.AppWindow</c>,
-	/// and we can use this property instead of the complex initialization.
-	/// </remarks>
 	private void SetBackdrop()
 #if MICA_BACKDROP && ACRYLIC_BACKDROP
 #error You should not set both 'MICA_BACKDROP' and 'ACRYLIC_BACKDROP'.
@@ -156,7 +150,7 @@ public sealed partial class MainWindow : Window
 
 #if UI_FEATURE_CUSTOMIZED_TITLE_BAR
 	/// <summary>
-	/// Initializes for field <c>_appWindow</c> (For Windows App SDK below v1.3).
+	/// Initializes for property <see cref="Window.AppWindow"/>.
 	/// </summary>
 	/// <remarks>
 	/// For more information please visit <see href="https://learn.microsoft.com/en-us/windows/apps/develop/title-bar">this link</see>.

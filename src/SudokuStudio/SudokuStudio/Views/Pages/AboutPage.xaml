@@ -8,116 +8,107 @@
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:models="using:SudokuStudio.Models"
-	xmlns:wc="using:WinUICommunity"
+	xmlns:w="using:WinUICommunity"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AboutPage}">
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
 			<TextBlock Text="{m:R Key=AboutPage_DetailDescription}" Margin="0,0,0,12" />
 
 			<!--Author info-->
-			<wc:Setting Header="{m:R Key=AboutPage_Author}">
-				<wc:Setting.Icon>
+			<w:SettingsCard Header="{m:R Key=AboutPage_Author}">
+				<w:SettingsCard.HeaderIcon>
 					<SymbolIcon Symbol="People" />
-				</wc:Setting.Icon>
-				<wc:Setting.ActionContent>
-					<TextBlock Text="{m:R Key=AboutPage_AuthorName}" Padding="6" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:Setting Header="{m:R Key=AboutPage_AuthorMoreInfo}">
-				<wc:Setting.Icon>
+				</w:SettingsCard.HeaderIcon>
+
+				<TextBlock Text="{m:R Key=AboutPage_AuthorName}" Padding="6" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=AboutPage_AuthorMoreInfo}">
+				<w:SettingsCard.HeaderIcon>
 					<SymbolIcon Symbol="Contact" />
-				</wc:Setting.Icon>
-				<wc:Setting.ActionContent>
-					<StackPanel Orientation="Horizontal">
-						<HyperlinkButton NavigateUri="https://github.com/SunnieShine" Content="GitHub" />
-						<TextBlock Text=" | " VerticalAlignment="Center" />
-						<HyperlinkButton NavigateUri="https://space.bilibili.com/23736703" Content="{m:R Key=AboutPage_Bilibili}" />
-						<TextBlock Text=" | " VerticalAlignment="Center" />
-						<HyperlinkButton NavigateUri="https://gitee.com/SunnieShine" Content="Gitee" />
-					</StackPanel>
-				</wc:Setting.ActionContent>
-			</wc:Setting>
+				</w:SettingsCard.HeaderIcon>
+
+				<StackPanel Orientation="Horizontal">
+					<HyperlinkButton NavigateUri="https://github.com/SunnieShine" Content="GitHub" />
+					<TextBlock Text=" | " VerticalAlignment="Center" />
+					<HyperlinkButton NavigateUri="https://space.bilibili.com/23736703" Content="{m:R Key=AboutPage_Bilibili}" />
+					<TextBlock Text=" | " VerticalAlignment="Center" />
+					<HyperlinkButton NavigateUri="https://gitee.com/SunnieShine" Content="Gitee" />
+				</StackPanel>
+			</w:SettingsCard>
 
 			<!--Framework info-->
-			<wc:Setting Header="{m:R Key=AboutPage_Framework}" Description="{m:R Key=AboutPage_FrameworkDescription}">
-				<wc:Setting.Icon>
+			<w:SettingsCard Header="{m:R Key=AboutPage_Framework}" Description="{m:R Key=AboutPage_FrameworkDescription}">
+				<w:SettingsCard.HeaderIcon>
 					<SymbolIcon Symbol="Library" />
-				</wc:Setting.Icon>
-				<wc:Setting.ActionContent>
-					<StackPanel Orientation="Horizontal">
-						<HyperlinkButton NavigateUri="https://github.com/microsoft/microsoft-ui-xaml" Content="WinUI 3" />
-						<TextBlock Text=" | " VerticalAlignment="Center" />
-						<HyperlinkButton NavigateUri="https://github.com/microsoft/WindowsAppSDK" Content="Windows App SDK" />
-						<TextBlock Text=" | " VerticalAlignment="Center" />
-						<HyperlinkButton NavigateUri="https://github.com/dotnet/runtime" Content=".NET Runtime" />
-					</StackPanel>
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:Setting Header="{m:R Key=AboutPage_CompilationInfo}">
-				<wc:Setting.Icon>
+				</w:SettingsCard.HeaderIcon>
+
+				<StackPanel Orientation="Horizontal">
+					<HyperlinkButton NavigateUri="https://github.com/microsoft/microsoft-ui-xaml" Content="WinUI 3" />
+					<TextBlock Text=" | " VerticalAlignment="Center" />
+					<HyperlinkButton NavigateUri="https://github.com/microsoft/WindowsAppSDK" Content="Windows App SDK" />
+					<TextBlock Text=" | " VerticalAlignment="Center" />
+					<HyperlinkButton NavigateUri="https://github.com/dotnet/runtime" Content=".NET Runtime" />
+				</StackPanel>
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=AboutPage_CompilationInfo}">
+				<w:SettingsCard.HeaderIcon>
 					<ImageIcon Source="/Resources/images/icon.png" />
-				</wc:Setting.Icon>
-				<wc:Setting.ActionContent>
-					<TextBlock Text="{x:Bind cvt:CompilationConversion.GetCompilationInfo()}" Padding="6" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
+				</w:SettingsCard.HeaderIcon>
+
+				<TextBlock Text="{x:Bind cvt:CompilationConversion.GetCompilationInfo()}" Padding="6" />
+			</w:SettingsCard>
 
 			<!--Special thanks-->
-			<wc:SettingExpander Header="{m:R Key=AboutPage_SpecialThanks}">
-				<StackPanel Spacing="12" Margin="40,20">
-					<TextBlock Text="{m:R Key=AboutPage_SpecialThanksDescription}" />
-					<ListView SelectionMode="None">
-						<ListView.ItemTemplate>
-							<DataTemplate x:DataType="models:RepositoryInfo">
-								<Grid RowDefinitions="*,*,*" ColumnDefinitions="Auto,Auto,*">
-									<PersonPicture
-										Grid.RowSpan="3" Width="48" Height="48" Margin="6"
-										HorizontalAlignment="Center" Initials="{x:Bind Initials}"
-										VerticalAlignment="Center" ProfilePicture="{x:Bind IconPath}" />
-									<TextBlock
-										Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,6,0,0"
-										Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
-									<TextBlock
-										Grid.Row="1" Grid.Column="1" Margin="12,6,0,0" Style="{StaticResource BodyTextBlockStyle}"
-										Text="{x:Bind cvt:CompilationConversion.License(OpenSourceLicense)}" />
-									<TextBlock
-										Grid.Row="1" Grid.Column="2" Margin="12,6,0,0" Style="{StaticResource BaseTextBlockStyle}"
-										Text="{x:Bind cvt:CompilationConversion.ForReference(IsForReference)}" />
-									<HyperlinkButton
-										Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,0,0,6" NavigateUri="{x:Bind Site}">
-										<SymbolIcon Symbol="Link" />
-									</HyperlinkButton>
-								</Grid>
-							</DataTemplate>
-						</ListView.ItemTemplate>
-
-						<models:RepositoryInfo
-							Name="{m:R Key=AboutPage_SpecialThanks_DotnetRuntime}" OpenSourceLicense="MIT"
-							IconPath="/Resources/images/repo-dotnet.png" Site="https://github.com/dotnet/runtime" />
-						<models:RepositoryInfo
-							Name="{m:R Key=AboutPage_SpecialThanks_LearnWinUI3}" OpenSourceLicense="MIT"
-							Site="https://github.com/PacktPublishing/-Learn-WinUI-3.0" Initials="LW" IsForReference="True" />
-						<models:RepositoryInfo
-							Name="{m:R Key=AboutPage_SpecialThanks_WpfSamples}" OpenSourceLicense="MIT"
-							Site="https://github.com/microsoft/WPF-Samples" Initials="WS" IsForReference="True" />
-						<models:RepositoryInfo
-							Name="{m:R Key=AboutPage_SpecialThanks_UWPSamples}" OpenSourceLicense="MIT"
-							Site="https://github.com/microsoft/Windows-universal-samples" Initials="US" IsForReference="True" />
-						<models:RepositoryInfo
-							Name="{m:R Key=AboutPage_SpecialThanks_WinUI3Gallary}" OpenSourceLicense="MIT"
-							Site="https://github.com/microsoft/WinUI-Gallery" Initials="WG" />
-						<models:RepositoryInfo
-							Name="{m:R Key=AboutPage_SpecialThanks_DevToys}" OpenSourceLicense="MIT"
-							Site="https://github.com/veler/DevToys" IconPath="/Resources/images/logo-devtoys.png" IsForReference="True" />
-						<models:RepositoryInfo
-							Name="{m:R Key=AboutPage_SpecialThanks_LiveCharts2}" OpenSourceLicense="MIT"
-							Site="https://github.com/beto-rodriguez/LiveCharts2" Initials="LC" />
-						<models:RepositoryInfo
-							Name="{m:R Key=AboutPage_SpecialThanks_WindowsCommunityToolkit}" OpenSourceLicense="MIT"
-							Site="https://github.com/CommunityToolkit/WindowsCommunityToolkit" Initials="CT" />
-					</ListView>
-				</StackPanel>
-			</wc:SettingExpander>
+			<w:SettingsExpander Header="{m:R Key=AboutPage_SpecialThanks}" Description="{m:R Key=AboutPage_SpecialThanksDescription}">
+				<w:SettingsExpander.ItemTemplate>
+					<DataTemplate x:DataType="models:RepositoryInfo">
+						<Grid RowDefinitions="*,*,*" ColumnDefinitions="Auto,Auto,*">
+							<PersonPicture
+								Grid.RowSpan="3" Width="48" Height="48" Margin="46,6,12,6"
+								HorizontalAlignment="Center" Initials="{x:Bind Initials}"
+								VerticalAlignment="Center" ProfilePicture="{x:Bind IconPath}" />
+							<TextBlock
+								Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,6,0,0"
+								Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
+							<TextBlock
+								Grid.Row="1" Grid.Column="1" Margin="12,6,0,0" Style="{StaticResource BodyTextBlockStyle}"
+								Text="{x:Bind cvt:CompilationConversion.License(OpenSourceLicense)}" />
+							<TextBlock
+								Grid.Row="1" Grid.Column="2" Margin="12,6,0,0" Style="{StaticResource BaseTextBlockStyle}"
+								Text="{x:Bind cvt:CompilationConversion.ForReference(IsForReference)}" />
+							<HyperlinkButton Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,0,0,6" NavigateUri="{x:Bind Site}">
+								<SymbolIcon Symbol="Link" />
+							</HyperlinkButton>
+						</Grid>
+					</DataTemplate>
+				</w:SettingsExpander.ItemTemplate>
+				<w:SettingsExpander.Items>
+					<models:RepositoryInfo
+						Name="{m:R Key=AboutPage_SpecialThanks_DotnetRuntime}" OpenSourceLicense="MIT"
+						IconPath="/Resources/images/repo-dotnet.png" Site="https://github.com/dotnet/runtime" />
+					<models:RepositoryInfo
+						Name="{m:R Key=AboutPage_SpecialThanks_LearnWinUI3}" OpenSourceLicense="MIT"
+						Site="https://github.com/PacktPublishing/-Learn-WinUI-3.0" Initials="LW" IsForReference="True" />
+					<models:RepositoryInfo
+						Name="{m:R Key=AboutPage_SpecialThanks_WpfSamples}" OpenSourceLicense="MIT"
+						Site="https://github.com/microsoft/WPF-Samples" Initials="WS" IsForReference="True" />
+					<models:RepositoryInfo
+						Name="{m:R Key=AboutPage_SpecialThanks_UWPSamples}" OpenSourceLicense="MIT"
+						Site="https://github.com/microsoft/Windows-universal-samples" Initials="US" IsForReference="True" />
+					<models:RepositoryInfo
+						Name="{m:R Key=AboutPage_SpecialThanks_WinUI3Gallary}" OpenSourceLicense="MIT"
+						Site="https://github.com/microsoft/WinUI-Gallery" Initials="WG" />
+					<models:RepositoryInfo
+						Name="{m:R Key=AboutPage_SpecialThanks_DevToys}" OpenSourceLicense="MIT"
+						Site="https://github.com/veler/DevToys" IconPath="/Resources/images/logo-devtoys.png" IsForReference="True" />
+					<models:RepositoryInfo
+						Name="{m:R Key=AboutPage_SpecialThanks_SettingsUI}" OpenSourceLicense="MIT"
+						Site="https://github.com/WinUICommunity/SettingsUI" Initials="LC" />
+					<models:RepositoryInfo
+						Name="{m:R Key=AboutPage_SpecialThanks_WindowsCommunityToolkit}" OpenSourceLicense="MIT"
+						Site="https://github.com/CommunityToolkit/WindowsCommunityToolkit" Initials="CT" />
+				</w:SettingsExpander.Items>
+			</w:SettingsExpander>
 		</StackPanel>
 	</ScrollViewer>
 </Page>

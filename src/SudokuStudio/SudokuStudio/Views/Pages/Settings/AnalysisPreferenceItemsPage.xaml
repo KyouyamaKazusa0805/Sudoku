@@ -7,7 +7,7 @@
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:ps="using:SudokuStudio.Views.Pages.Settings"
-	xmlns:wc="using:WinUICommunity"
+	xmlns:w="using:WinUICommunity"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ps:AnalysisPreferenceItemsPage}">
@@ -22,164 +22,135 @@
 
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
-			<wc:Setting Header="{m:R Key=SettingsPage_EnableFullHouse}" Description="{m:R Key=SettingsPage_EnableFullHouseDescription}">
-				<wc:Setting.ActionContent>
-					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableFullHouse,Mode=TwoWay}" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:Setting Header="{m:R Key=SettingsPage_EnableLastDigit}">
-				<wc:Setting.ActionContent>
-					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableLastDigit,Mode=TwoWay}" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:Setting Header="{m:R Key=SettingsPage_HiddenSinglesInBlockFirst}">
-				<wc:Setting.ActionContent>
-					<ToggleSwitch
-						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSinglesInBlockFirst,Mode=TwoWay}" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:Setting Header="{m:R Key=SettingsPage_AllowIncompleteUniqueRectangles}">
-				<wc:Setting.ActionContent>
-					<ToggleSwitch
-						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowIncompleteUniqueRectangles,Mode=TwoWay}" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:Setting Header="{m:R Key=SettingsPage_SearchForExtendedUniqueRectangles}">
-				<wc:Setting.ActionContent>
-					<ToggleSwitch
-						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchForExtendedUniqueRectangles,Mode=TwoWay}" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:Setting Header="{m:R Key=SettingsPage_SearchExtendedBivalueUniversalGraveTypes}">
-				<wc:Setting.ActionContent>
-					<ToggleSwitch
-						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchExtendedBivalueUniversalGraveTypes,Mode=TwoWay}" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:Setting Header="{m:R Key=SettingsPage_AllowCollisionOnAlmostLockedSetXzRule}">
-				<wc:Setting.ActionContent>
-					<ToggleSwitch
-						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXzRule,Mode=TwoWay}" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:Setting Header="{m:R Key=SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule}">
-				<wc:Setting.ActionContent>
-					<ToggleSwitch
-						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowLoopedPatternsOnAlmostLockedSetXzRule,Mode=TwoWay}" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:Setting Header="{m:R Key=SettingsPage_AllowCollisionOnAlmostLockedSetXyWing}">
-				<wc:Setting.ActionContent>
-					<ToggleSwitch
-						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXyWing,Mode=TwoWay}" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:Setting Header="{m:R Key=SettingsPage_MaxSizeOfRegularWing}">
-				<wc:Setting.ActionContent>
-					<c:IntegerBox
-						Minimum="3" Maximum="9" LargeChange="2" SpinButtonPlacementMode="Inline" Width="150"
-						Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfRegularWing,Mode=TwoWay}" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:Setting Header="{m:R Key=SettingsPage_MaxSizeOfComplexFish}">
-				<wc:Setting.ActionContent>
-					<c:IntegerBox
-						Minimum="2" Maximum="7" LargeChange="2" SpinButtonPlacementMode="Inline" Width="150"
-						Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=TwoWay}" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:SettingExpander Header="{m:R Key=SettingsPage_DifficultyLevelForegrounds}">
-				<StackPanel Spacing="4" Margin="40,10">
-					<StackPanel Orientation="Horizontal" Spacing="20">
+			<w:SettingsCard Header="{m:R Key=SettingsPage_EnableFullHouse}" Description="{m:R Key=SettingsPage_EnableFullHouseDescription}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableFullHouse,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_EnableLastDigit}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableLastDigit,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_HiddenSinglesInBlockFirst}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSinglesInBlockFirst,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_AllowIncompleteUniqueRectangles}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowIncompleteUniqueRectangles,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_SearchForExtendedUniqueRectangles}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchForExtendedUniqueRectangles,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_SearchExtendedBivalueUniversalGraveTypes}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchExtendedBivalueUniversalGraveTypes,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_AllowCollisionOnAlmostLockedSetXzRule}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXzRule,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowLoopedPatternsOnAlmostLockedSetXzRule,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_AllowCollisionOnAlmostLockedSetXyWing}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXyWing,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_MaxSizeOfRegularWing}">
+				<c:IntegerBox
+					Minimum="3" Maximum="9" LargeChange="2" SpinButtonPlacementMode="Inline" Width="150"
+					Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfRegularWing,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_MaxSizeOfComplexFish}">
+				<c:IntegerBox
+					Minimum="2" Maximum="7" LargeChange="2" SpinButtonPlacementMode="Inline" Width="150"
+					Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsExpander Header="{m:R Key=SettingsPage_DifficultyLevelForegrounds}">
+				<w:SettingsExpander.Items>
+					<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
 						<TextBlock Text="{m:R Key=_DifficultyLevel_Easy}" VerticalAlignment="Center" />
 						<c:ColorSelector
 							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[0],Mode=TwoWay}" />
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Spacing="20">
+					<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
 						<TextBlock Text="{m:R Key=_DifficultyLevel_Moderate}" VerticalAlignment="Center" />
 						<c:ColorSelector
 							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[1],Mode=TwoWay}" />
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Spacing="20">
+					<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
 						<TextBlock Text="{m:R Key=_DifficultyLevel_Hard}" VerticalAlignment="Center"/>
 						<c:ColorSelector
 							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[2],Mode=TwoWay}" />
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Spacing="20">
+					<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
 						<TextBlock Text="{m:R Key=_DifficultyLevel_Fiendish}" VerticalAlignment="Center" />
 						<c:ColorSelector
 							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[3],Mode=TwoWay}" />
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Spacing="20">
+					<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
 						<TextBlock Text="{m:R Key=_DifficultyLevel_Nightmare}" VerticalAlignment="Center" />
 						<c:ColorSelector
 							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[4],Mode=TwoWay}" />
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Spacing="20">
+					<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
 						<TextBlock Text="{m:R Key=_DifficultyLevel_Unknown}" VerticalAlignment="Center" />
 						<c:ColorSelector
 							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[5],Mode=TwoWay}" />
 					</StackPanel>
-				</StackPanel>
-			</wc:SettingExpander>
-			<wc:SettingExpander Header="{m:R Key=SettingsPage_DifficultyLevelBackgrounds}">
-				<StackPanel Spacing="4" Margin="40,10">
-					<StackPanel Orientation="Horizontal" Spacing="20">
+				</w:SettingsExpander.Items>
+			</w:SettingsExpander>
+			<w:SettingsExpander Header="{m:R Key=SettingsPage_DifficultyLevelBackgrounds}">
+				<w:SettingsExpander.Items>
+					<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
 						<TextBlock Text="{m:R Key=_DifficultyLevel_Easy}" VerticalAlignment="Center" />
 						<c:ColorSelector
 							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[0],Mode=TwoWay}" />
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Spacing="20">
+					<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
 						<TextBlock Text="{m:R Key=_DifficultyLevel_Moderate}" VerticalAlignment="Center" />
 						<c:ColorSelector
 							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[1],Mode=TwoWay}" />
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Spacing="20">
+					<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
 						<TextBlock Text="{m:R Key=_DifficultyLevel_Hard}" VerticalAlignment="Center" />
 						<c:ColorSelector
 							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[2],Mode=TwoWay}" />
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Spacing="20">
+					<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
 						<TextBlock Text="{m:R Key=_DifficultyLevel_Fiendish}" VerticalAlignment="Center" />
 						<c:ColorSelector
 							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[3],Mode=TwoWay}" />
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Spacing="20">
+					<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
 						<TextBlock Text="{m:R Key=_DifficultyLevel_Nightmare}" VerticalAlignment="Center" />
 						<c:ColorSelector
 							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[4],Mode=TwoWay}" />
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Spacing="20">
+					<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
 						<TextBlock Text="{m:R Key=_DifficultyLevel_Unknown}" VerticalAlignment="Center" />
 						<c:ColorSelector
 							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[5],Mode=TwoWay}" />
 					</StackPanel>
-				</StackPanel>
-			</wc:SettingExpander>
-			<wc:Setting Header="{m:R Key=SettingsPage_MaxSizeOfComplexFish}">
-				<wc:Setting.ActionContent>
-					<ToggleSwitch
-						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=TwoWay}" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:Setting Header="{m:R Key=SettingsPage_MaxSizeOfComplexFish}">
-				<wc:Setting.ActionContent>
-					<c:IntegerBox
-						Minimum="100" Maximum="10000" SmallChange="10" LargeChange="150" SpinButtonPlacementMode="Inline" Width="150"
-						Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=TwoWay}" />
-				</wc:Setting.ActionContent>
-			</wc:Setting>
-			<wc:SettingExpander>
-				<wc:SettingExpander.Header>
-					<wc:Setting
-						Header="{m:R Key=SettingsPage_StepSearcherOrdering}"
-						Description="{m:R Key=SettingsPage_StepSearcherOrderingDescription}" />
-				</wc:SettingExpander.Header>
-
-				<c:StepSearcherListView
-					Margin="40,10" Width="300" HorizontalAlignment="Left"
-					StepSearchers="{x:Bind ((z:App)y:Application.Current).Preference.StepSearcherOrdering.StepSearchersOrder,Mode=TwoWay}" />
-			</wc:SettingExpander>
+				</w:SettingsExpander.Items>
+			</w:SettingsExpander>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_MaxSizeOfComplexFish}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_MaxSizeOfComplexFish}">
+				<c:IntegerBox
+					Minimum="100" Maximum="10000" SmallChange="10" LargeChange="150" SpinButtonPlacementMode="Inline" Width="150"
+					Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsExpander
+				Header="{m:R Key=SettingsPage_StepSearcherOrdering}"
+				Description="{m:R Key=SettingsPage_StepSearcherOrderingDescription}">
+				<w:SettingsExpander.Items>
+					<c:StepSearcherListView
+						Margin="40,10" Width="300" HorizontalAlignment="Left"
+						StepSearchers="{x:Bind ((z:App)y:Application.Current).Preference.StepSearcherOrdering.StepSearchersOrder,Mode=TwoWay}" />
+				</w:SettingsExpander.Items>
+			</w:SettingsExpander>
 		</StackPanel>
 	</ScrollViewer>
 </Page>
