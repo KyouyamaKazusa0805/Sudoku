@@ -22,7 +22,14 @@ public sealed partial class MainWindow : Window
 		InitializeComponent();
 		InitializeField();
 
-		SetBackdrop();
+#if MICA_BACKDROP && ACRYLIC_BACKDROP
+#warning Both 'MICA_BACKDROP' and 'ACRYLIC_BACKDROP' are set; 'ACRYLIC_BACKDROP' will be ignored.
+		SystemBackdrop = new MicaBackdrop();
+#elif MICA_BACKDROP
+		SystemBackdrop = new MicaBackdrop();
+#elif ACRYLIC_BACKDROP
+		SystemBackdrop = new DesktopAcrylicBackdrop();
+#endif
 
 #if UI_FEATURE_CUSTOMIZED_TITLE_BAR
 		InitializeAppWindow();
@@ -132,21 +139,6 @@ public sealed partial class MainWindow : Window
 		AppTitleBarWithoutAutoSuggestBox.Visibility = Visibility.Visible;
 #endif
 	}
-
-	/// <summary>
-	/// Try to set backdrop for the current window.
-	/// </summary>
-	private void SetBackdrop()
-#if MICA_BACKDROP && ACRYLIC_BACKDROP
-#error You should not set both 'MICA_BACKDROP' and 'ACRYLIC_BACKDROP'.
-#elif MICA_BACKDROP
-		=> SystemBackdrop = new MicaBackdrop();
-#elif ACRYLIC_BACKDROP
-#line 1 "Backdrop Configuration"
-#warning Acrylic backdrop is not fully supported in the program. Some UI features may not be configured so UI may not represent a good look.
-		=> SystemBackdrop = new DesktopAcrylicBackdrop();
-#line default
-#endif
 
 #if UI_FEATURE_CUSTOMIZED_TITLE_BAR
 	/// <summary>
