@@ -645,7 +645,7 @@
             <summary>
             Get as far as possible without guessing.
             </summary>
-            <returns>An <see cref="T:System.Byte"/> result.</returns>
+            <returns>A <see cref="T:System.Byte"/> result.</returns>
         </member>
         <member name="M:Sudoku.Algorithms.Solving.BitwiseSolver.BitPos(System.UInt32)">
             <summary>

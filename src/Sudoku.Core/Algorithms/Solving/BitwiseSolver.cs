@@ -942,7 +942,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <summary>
 	/// Get as far as possible without guessing.
 	/// </summary>
-	/// <returns>An <see cref="byte"/> result.</returns>
+	/// <returns>A <see cref="byte"/> result.</returns>
 	private byte FullUpdate()
 	{
 		if (_numSolutions >= _limitSolutions)
@@ -1005,7 +1005,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <see cref="char"/>[], they ends with the terminator symbol <c>'\0'</c>.
 	/// However, C# not.
 	/// </remarks>
-	private static unsafe int StringLengthOf(char* ptr)
+	private static int StringLengthOf(char* ptr)
 	{
 		ArgumentNullException.ThrowIfNull(ptr);
 
