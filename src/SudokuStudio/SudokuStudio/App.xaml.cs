@@ -59,19 +59,10 @@ public partial class App : Application
 	/// </summary>
 	/// <remarks>
 	/// <para>This property is used by checking running window, which is helpful on multiple-window interaction.</para>
-	/// <para><i>
+	/// <para>
 	/// This property can also be used by <see cref="FileOpenPicker"/> and <see cref="FileSavePicker"/> cases, for getting the running window
-	/// that the current control lies in. However, due to not implementing of WinUI 3 official APIs, when call
-	/// <see cref="FileOpenPicker.PickSingleFileAsync()"/> and <see cref="FileSavePicker.PickSaveFileAsync"/> will directly cause
-	/// an exception thrown, which scenario is nearly same as
-	/// <see href="https://github.com/microsoft/microsoft-ui-xaml/issues/2716">this issue</see> mentioned as an issue in GitHub.
-	/// In addition, I found <see href="https://github.com/microsoft/WindowsAppSDK/discussions/1887">this discussion</see>
-	/// to describe about <see cref="InitializeWithWindow"/> handling, which wants to solve this problem.
-	/// </i></para>
-	/// <para><i>
-	/// However, today's API still throw exception, which means we can still not use <see cref="FileOpenPicker"/>
-	/// and <see cref="FileSavePicker"/> at present.
-	/// </i></para>
+	/// that the current control lies in.
+	/// </para>
 	/// </remarks>
 	/// <seealso cref="FileOpenPicker"/>
 	/// <seealso cref="FileSavePicker"/>
