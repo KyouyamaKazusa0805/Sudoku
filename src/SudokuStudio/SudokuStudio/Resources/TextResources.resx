@@ -246,6 +246,15 @@
   <data name="AnalyzePage_CopyPictureCommandName" xml:space="preserve">
     <value>Copy image</value>
   </data>
+  <data name="AnalyzePage_CopySpecifiedFormats" xml:space="preserve">
+    <value>Copy...</value>
+  </data>
+  <data name="AnalyzePage_CopySpecifiedFormatsButtonContent" xml:space="preserve">
+    <value>Copy!</value>
+  </data>
+  <data name="AnalyzePage_CopySpecifiedFormatsTitle" xml:space="preserve">
+    <value>Copy formats!</value>
+  </data>
   <data name="AnalyzePage_CurrentGridFormat" xml:space="preserve">
     <value>Current grid format</value>
   </data>

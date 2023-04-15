@@ -2747,6 +2747,74 @@ if (student is (name: var name, age: >= 18))
             Indicates the type name of the step searcher. This property can be used for creating instances via reflection using method <see cref="M:System.Activator.CreateInstance(System.Type)"/>.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Models.SudokuFormatFlags">
+            <summary>
+            Represents a format flag.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Models.SudokuFormatFlags.None">
+            <summary>
+            Indicates the default format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Models.SudokuFormatFlags.InitialFormat">
+            <summary>
+            Indicates the initial grid format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Models.SudokuFormatFlags.CurrentFormat">
+            <summary>
+            Indicates the current grid format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Models.SudokuFormatFlags.CurrentFormatIgnoringValueKind">
+            <summary>
+            Indicates the current grid format , treating all modifiable values as given ones.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Models.SudokuFormatFlags.HodokuCompatibleFormat">
+            <summary>
+            Indicates the Hodoku grid format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Models.SudokuFormatFlags.MultipleGridFormat">
+            <summary>
+            Indicates the multiple-line grid format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Models.SudokuFormatFlags.PencilMarkFormat">
+            <summary>
+            Indicates the pencilmark format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Models.SudokuFormatFlags.SukakuFormat">
+            <summary>
+            Indicates the sukaku format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Models.SudokuFormatFlags.ExcelFormat">
+            <summary>
+            Indicates the excel format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Models.SudokuFormatFlags.OpenSudokuFormat">
+            <summary>
+            Indicates the open-sudoku format.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Models.SudokuFormatFlagsExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:SudokuStudio.Models.SudokuFormatFlags"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Models.SudokuFormatFlags"/>
+        </member>
+        <member name="M:SudokuStudio.Models.SudokuFormatFlagsExtensions.GetFormatter(SudokuStudio.Models.SudokuFormatFlags)">
+            <summary>
+            Try to get target <see cref="T:Sudoku.Text.Formatting.IGridFormatter"/> instance.
+            </summary>
+            <param name="this">The flag instance.</param>
+            <returns><see cref="T:Sudoku.Text.Formatting.IGridFormatter"/> instance.</returns>
+        </member>
         <member name="T:SudokuStudio.Models.TechniqueGroup">
             <summary>
             Indicates a group of technique steps.
@@ -3239,6 +3307,21 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CopyPictureCommandName">
             <summary>
               Looks up a localized string similar to Copy image.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CopySpecifiedFormats">
+            <summary>
+              Looks up a localized string similar to Copy....
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CopySpecifiedFormatsButtonContent">
+            <summary>
+              Looks up a localized string similar to Copy!.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CopySpecifiedFormatsTitle">
+            <summary>
+              Looks up a localized string similar to Copy formats!.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CurrentGridFormat">
@@ -6868,6 +6951,13 @@ if (student is (name: var name, age: >= 18))
             The method called by <see cref="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Page_Unloaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/>.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.GetFormatFlags(Microsoft.UI.Xaml.Controls.StackPanel)">
+            <summary>
+            Try to get all possible format flags.
+            </summary>
+            <param name="panel">The panel.</param>
+            <returns>All format flags.</returns>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -6882,61 +6972,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath">
             <summary>
             Indicates the path of the saved file.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Pages.Operation.FormatFlags">
-            <summary>
-            Represents a format flag.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.None">
-            <summary>
-            Indicates the default format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.InitialFormat">
-            <summary>
-            Indicates the initial grid format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.CurrentFormat">
-            <summary>
-            Indicates the current grid format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.CurrentFormatIgnoringValueKind">
-            <summary>
-            Indicates the current grid format , treating all modifiable values as given ones.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.HodokuCompatibleFormat">
-            <summary>
-            Indicates the Hodoku grid format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.MultipleGridFormat">
-            <summary>
-            Indicates the multiple-line grid format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.PencilMarkFormat">
-            <summary>
-            Indicates the pencilmark format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.SukakuFormat">
-            <summary>
-            Indicates the sukaku format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.ExcelFormat">
-            <summary>
-            Indicates the excel format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.FormatFlags.OpenSudokuFormat">
-            <summary>
-            Indicates the open-sudoku format.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.PrintingOperation">
