@@ -1,9 +1,9 @@
-﻿namespace SudokuStudio.Interaction;
+namespace SudokuStudio.Interaction;
 
 /// <summary>
 /// Indicates the drawing mode.
 /// </summary>
-public enum DrawingMode : int
+public enum DrawingMode
 {
 	/// <summary>
 	/// Indicates the mode is none.

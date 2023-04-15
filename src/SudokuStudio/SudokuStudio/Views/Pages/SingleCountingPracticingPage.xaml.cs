@@ -285,7 +285,7 @@ file static class Generator
 /// <summary>
 /// Indicates the generating mode.
 /// </summary>
-file enum GeneratingMode : int
+file enum GeneratingMode
 {
 	/// <summary>
 	/// Indicates the generator generates the puzzle that only uses row/column/block 5.

@@ -1,10 +1,10 @@
-﻿namespace SudokuStudio.Interaction;
+namespace SudokuStudio.Interaction;
 
 /// <summary>
 /// Defines a display kind that displays for a step on tooltip.
 /// </summary>
 [Flags]
-public enum StepTooltipDisplayKind : int
+public enum StepTooltipDisplayKind
 {
 	/// <summary>
 	/// Indicates none of all elements mentioned below will be displayed.

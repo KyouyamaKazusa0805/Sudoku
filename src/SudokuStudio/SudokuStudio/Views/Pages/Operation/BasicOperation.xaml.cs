@@ -152,7 +152,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 /// Represents a format flag.
 /// </summary>
 [Flags]
-file enum FormatFlags : int
+file enum FormatFlags
 {
 	/// <summary>
 	/// Indicates the default format.
