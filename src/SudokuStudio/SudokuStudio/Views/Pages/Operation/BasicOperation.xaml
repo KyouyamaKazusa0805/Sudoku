@@ -36,51 +36,15 @@
 			Title="{m:R Key=AnalyzePage_SaveFileAnother}" Subtitle="{m:R Key=AnalyzePage_ChooseFormats}"
 			ActionButtonClick="Dialog_FormatChoosing_ActionButtonClickAsync">
 			<StackPanel x:Name="FormatGroupPanel" Margin="0,16,0,0">
-				<CheckBox Content="{m:R Key=AnalyzePage_InitialGridFormat}">
-					<CheckBox.Tag>
-						<x:Int32>1</x:Int32>
-					</CheckBox.Tag>
-				</CheckBox>
-				<CheckBox Content="{m:R Key=AnalyzePage_CurrentGridFormat}">
-					<CheckBox.Tag>
-						<x:Int32>2</x:Int32>
-					</CheckBox.Tag>
-				</CheckBox>
-				<CheckBox Content="{m:R Key=AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven}">
-					<CheckBox.Tag>
-						<x:Int32>4</x:Int32>
-					</CheckBox.Tag>
-				</CheckBox>
-				<CheckBox Content="{m:R Key=AnalyzePage_HodokuFormat}">
-					<CheckBox.Tag>
-						<x:Int32>8</x:Int32>
-					</CheckBox.Tag>
-				</CheckBox>
-				<CheckBox Content="{m:R Key=AnalyzePage_MultipleLineGridFormat}">
-					<CheckBox.Tag>
-						<x:Int32>16</x:Int32>
-					</CheckBox.Tag>
-				</CheckBox>
-				<CheckBox Content="{m:R Key=AnalyzePage_PencilmarkFormat}">
-					<CheckBox.Tag>
-						<x:Int32>32</x:Int32>
-					</CheckBox.Tag>
-				</CheckBox>
-				<CheckBox Content="{m:R Key=AnalyzePage_SukakuFormat}">
-					<CheckBox.Tag>
-						<x:Int32>64</x:Int32>
-					</CheckBox.Tag>
-				</CheckBox>
-				<CheckBox Content="{m:R Key=AnalyzePage_ExcelFormat}">
-					<CheckBox.Tag>
-						<x:Int32>128</x:Int32>
-					</CheckBox.Tag>
-				</CheckBox>
-				<CheckBox Content="{m:R Key=AnalyzePage_OpenSudokuFormat}">
-					<CheckBox.Tag>
-						<x:Int32>256</x:Int32>
-					</CheckBox.Tag>
-				</CheckBox>
+				<CheckBox Content="{m:R Key=AnalyzePage_InitialGridFormat}" Tag="{m:Int32 Value=1}" />
+				<CheckBox Content="{m:R Key=AnalyzePage_CurrentGridFormat}" Tag="{m:Int32 Value=2}" />
+				<CheckBox Content="{m:R Key=AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven}" Tag="{m:Int32 Value=4}" />
+				<CheckBox Content="{m:R Key=AnalyzePage_HodokuFormat}" Tag="{m:Int32 Value=8}" />
+				<CheckBox Content="{m:R Key=AnalyzePage_MultipleLineGridFormat}" Tag="{m:Int32 Value=16}" />
+				<CheckBox Content="{m:R Key=AnalyzePage_PencilmarkFormat}" Tag="{m:Int32 Value=32}" />
+				<CheckBox Content="{m:R Key=AnalyzePage_SukakuFormat}" Tag="{m:Int32 Value=64}" />
+				<CheckBox Content="{m:R Key=AnalyzePage_ExcelFormat}" Tag="{m:Int32 Value=128}" />
+				<CheckBox Content="{m:R Key=AnalyzePage_OpenSudokuFormat}" Tag="{m:Int32 Value=256}" />
 			</StackPanel>
 		</TeachingTip>
 		<TeachingTip

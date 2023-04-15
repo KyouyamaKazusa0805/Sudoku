@@ -2465,6 +2465,20 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Markup.GridExtension.ProvideValue">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Markup.Int32Extension">
+            <summary>
+            Defines a markup extension that can parse a <see cref="T:System.String"/> value, converting it into a valid <see cref="T:System.Int32"/>
+            or throwing exceptions when the code is invalid.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Markup.Int32Extension.Value">
+            <summary>
+            Indicates the target value input.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Markup.Int32Extension.ProvideValue">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Markup.RExtension">
             <summary>
             Defines a markup extension that only fetches for string resources defined by folder <c>Resources</c>.
