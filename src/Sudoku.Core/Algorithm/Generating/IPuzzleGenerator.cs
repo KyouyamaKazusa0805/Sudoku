@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Generating;
+namespace Sudoku.Algorithm.Generating;
 
 /// <summary>
 /// Represents an instance that has ability to create a new sudoku puzzle game, allow cancelling.

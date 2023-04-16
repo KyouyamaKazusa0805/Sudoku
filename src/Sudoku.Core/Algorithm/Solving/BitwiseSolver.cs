@@ -1,5 +1,5 @@
 #pragma warning disable IDE0032
-namespace Sudoku.Algorithms.Solving;
+namespace Sudoku.Algorithm.Solving;
 
 using static Constants;
 

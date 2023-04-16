@@ -24,7 +24,7 @@ global using Mirai.Net.Modules;
 global using Mirai.Net.Sessions;
 global using Mirai.Net.Sessions.Http.Managers;
 global using Mirai.Net.Utils.Scaffolds;
-global using Sudoku.Algorithms.Generating;
+global using Sudoku.Algorithm.Generating;
 global using Sudoku.Analytics;
 global using Sudoku.Analytics.Categorization;
 global using Sudoku.Analytics.Formatting;

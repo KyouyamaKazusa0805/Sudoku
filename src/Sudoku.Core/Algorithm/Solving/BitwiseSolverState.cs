@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Solving;
+namespace Sudoku.Algorithm.Solving;
 
 /// <summary>
 /// Represents a data structure, used by type <see cref="BitwiseSolver"/>, describing state for a current grid using binary values.
