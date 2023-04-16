@@ -155,7 +155,6 @@ internal static class RenderableFactory
 
 		var control = new Border
 		{
-			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = nameof(RenderableFactory),
 			Opacity = sudokuPane.HighlightBackgroundOpacity
@@ -165,7 +164,11 @@ internal static class RenderableFactory
 		GridLayout.SetColumnSpan(control, 3);
 		Canvas.SetZIndex(control, -1);
 
+		control.SetTransition(static control => control.BackgroundTransition = new());
+		
 		paneCellControl.MainGrid.Children.Add(control);
+
+		control.Background = new SolidColorBrush(IdentifierConversion.GetColor(id));
 	}
 
 	/// <summary>
@@ -227,7 +230,8 @@ internal static class RenderableFactory
 			HorizontalAlignment = HorizontalAlignment.Center,
 			VerticalAlignment = VerticalAlignment.Center,
 			Fill = new SolidColorBrush(color),
-			Tag = nameof(RenderableFactory)
+			Tag = nameof(RenderableFactory),
+			Opacity = 0
 		};
 
 		var digit = candidate % 9;
@@ -235,7 +239,11 @@ internal static class RenderableFactory
 		GridLayout.SetColumn(control, digit % 3);
 		Canvas.SetZIndex(control, -1);
 
+		control.SetTransition(static control => control.OpacityTransition = new());
+		
 		paneCellControl.MainGrid.Children.Add(control);
+
+		control.Opacity = 1;
 	}
 
 	/// <summary>
@@ -265,7 +273,7 @@ internal static class RenderableFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = nameof(RenderableFactory),
-			Opacity = sudokuPane.HighlightBackgroundOpacity
+			Opacity = 0
 		};
 
 		var (row, column, rowSpan, columnSpan) = house switch
@@ -285,7 +293,11 @@ internal static class RenderableFactory
 		GridLayout.SetRowSpan(control, rowSpan);
 		GridLayout.SetColumnSpan(control, columnSpan);
 
+		control.SetTransition(static control => control.BackgroundTransition = new());
+		
 		gridControl.Children.Add(control);
+
+		control.Opacity = sudokuPane.HighlightBackgroundOpacity;
 	}
 
 	/// <summary>
@@ -315,7 +327,7 @@ internal static class RenderableFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = nameof(RenderableFactory),
-			Opacity = sudokuPane.HighlightBackgroundOpacity
+			Opacity = 0
 		};
 
 		var (row, column, rowSpan, columnSpan) = chute switch
@@ -334,7 +346,11 @@ internal static class RenderableFactory
 		GridLayout.SetRowSpan(control, rowSpan);
 		GridLayout.SetColumnSpan(control, columnSpan);
 
+		control.SetTransition(static control => control.BackgroundTransition = new());
+		
 		gridControl.Children.Add(control);
+
+		control.Opacity = sudokuPane.HighlightBackgroundOpacity;
 	}
 
 	/// <summary>
@@ -361,7 +377,7 @@ internal static class RenderableFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = nameof(RenderableFactory),
-			Opacity = sudokuPane.HighlightBackgroundOpacity,
+			Opacity = 0,
 			Child = new TextBlock
 			{
 				Text = @char.ToString(),
@@ -381,7 +397,11 @@ internal static class RenderableFactory
 		GridLayout.SetColumnSpan(control, 3);
 		Canvas.SetZIndex(control, -1);
 
+		control.SetTransition(static control => control.BackgroundTransition = new());
+		
 		paneCellControl.MainGrid.Children.Add(control);
+
+		control.Opacity = sudokuPane.HighlightBackgroundOpacity;
 	}
 
 	/// <summary>
@@ -414,7 +434,11 @@ internal static class RenderableFactory
 			GridLayout.SetColumnSpan(link, 9);
 			Canvas.SetZIndex(link, -1);
 
+			link.SetTransition(static control => control.OpacityTransition = new());
+			
 			gridControl.Children.Add(link);
+
+			link.Opacity = 1;
 		}
 	}
 }
@@ -482,7 +506,8 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						StrokeThickness = Pane.ChainStrokeThickness,
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup { Children = new() { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
-						Tag = nameof(RenderableFactory)
+						Tag = nameof(RenderableFactory),
+						Opacity = 0
 					};
 
 					break;
@@ -584,7 +609,8 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 									}
 								}
 							},
-							Tag = nameof(RenderableFactory)
+							Tag = nameof(RenderableFactory),
+							Opacity = 0
 						};
 						yield return new()
 						{
@@ -612,14 +638,16 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 									new LineGeometry { StartPoint = pt1, EndPoint = pt2 }
 								}
 							},
-							Tag = nameof(RenderableFactory)
+							Tag = nameof(RenderableFactory),
+							Opacity = 0
 						};
 						yield return new()
 						{
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-							Tag = nameof(RenderableFactory)
+							Tag = nameof(RenderableFactory),
+							Opacity = 0
 						};
 					}
 
@@ -797,6 +825,29 @@ file static class Extensions
 		foreach (var element in gathered)
 		{
 			@this.Remove(element);
+		}
+	}
+
+	/// <summary>
+	/// Try to set a <see cref="Transition"/> property if animation feedback is enabled.
+	/// </summary>
+	/// <typeparam name="T">The type of the control.</typeparam>
+	/// <param name="this">The control.</param>
+	/// <param name="transitionSettingAction">
+	/// The transition setting action. Generally the argument should be like:
+	/// <code><![CDATA[
+	/// static (Border border) => border.BackgroundTransition = new();
+	/// ]]></code>
+	/// If the type argument <typeparamref name="T"/> can be inferred by compiler, you can omit lambda parameter type:
+	/// <code><![CDATA[
+	/// static border => border.BackgroundTransition = new();
+	/// ]]></code>
+	/// </param>
+	public static void SetTransition<T>(this T @this, Action<T> transitionSettingAction) where T : FrameworkElement
+	{
+		if (((App)Application.Current).Preference.UIPreferences.EnableAnimationFeedback)
+		{
+			transitionSettingAction(@this);
 		}
 	}
 

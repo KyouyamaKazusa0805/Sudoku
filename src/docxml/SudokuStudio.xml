@@ -2267,6 +2267,23 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The collection.</param>
         </member>
+        <member name="M:SudokuStudio.Interaction.Extensions.SetTransition``1(``0,System.Action{``0})">
+            <summary>
+            Try to set a <see cref="T:Microsoft.UI.Xaml.Media.Animation.Transition"/> property if animation feedback is enabled.
+            </summary>
+            <typeparam name="T">The type of the control.</typeparam>
+            <param name="this">The control.</param>
+            <param name="transitionSettingAction">
+            The transition setting action. Generally the argument should be like:
+            <code><![CDATA[
+            static (Border border) => border.BackgroundTransition = new();
+            ]]></code>
+            If the type argument <typeparamref name="T"/> can be inferred by compiler, you can omit lambda parameter type:
+            <code><![CDATA[
+            static border => border.BackgroundTransition = new();
+            ]]></code>
+            </param>
+        </member>
         <member name="M:SudokuStudio.Interaction.Extensions.ConflictWith(Sudoku.Analytics.Conclusion[],System.Int32,System.Nullable{Sudoku.Analytics.Conclusion}@)">
             <summary>
             <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
