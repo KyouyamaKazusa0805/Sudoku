@@ -780,6 +780,12 @@
   <data name="SettingsPage_EliminationColor" xml:space="preserve">
     <value>Eliminations</value>
   </data>
+  <data name="SettingsPage_EnableAnimationFeedback" xml:space="preserve">
+    <value>Enable animation feedback</value>
+  </data>
+  <data name="SettingsPage_EnableAnimationFeedbackDescription" xml:space="preserve">
+    <value>If this option is set true, when you adjust status of the sudoku grid pane, you can see animation (such as candidates ease in/out). Such animations are called "Animation Feedback".</value>
+  </data>
   <data name="SettingsPage_EnableDoubleTapFillingForSudokuPane" xml:space="preserve">
     <value>Enable double tapping to fill digit</value>
   </data>

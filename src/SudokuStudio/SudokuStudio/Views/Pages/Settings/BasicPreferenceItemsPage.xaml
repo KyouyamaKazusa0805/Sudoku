@@ -48,6 +48,11 @@
 					Description="{m:R Key=SettingsPage_EnableRightTapRemovingForSudokuPaneDescription}">
 					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableRightTapRemovingForSudokuPane,Mode=TwoWay}" />
 				</w:SettingsCard>
+				<w:SettingsCard
+					Header="{m:R Key=SettingsPage_EnableAnimationFeedback}"
+					Description="{m:R Key=SettingsPage_EnableAnimationFeedbackDescription}">
+					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableAnimationFeedback,Mode=TwoWay}" />
+				</w:SettingsCard>
 			</w:SettingsGroup>
 			<w:SettingsGroup Header="{m:R Key=SettingsPage_MiscellaneousBehaviors}">
 				<w:SettingsCard

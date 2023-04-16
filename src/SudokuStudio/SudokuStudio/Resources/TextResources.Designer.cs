@@ -2221,6 +2221,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable animation feedback.
+        /// </summary>
+        internal static string SettingsPage_EnableAnimationFeedback {
+            get {
+                return ResourceManager.GetString("SettingsPage_EnableAnimationFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If this option is set true, when you adjust status of the sudoku grid pane, you can see animation (such as candidates ease in/out). Such animations are called &quot;Animation Feedback&quot;..
+        /// </summary>
+        internal static string SettingsPage_EnableAnimationFeedbackDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_EnableAnimationFeedbackDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable double tapping to fill digit.
         /// </summary>
         internal static string SettingsPage_EnableDoubleTapFillingForSudokuPane {

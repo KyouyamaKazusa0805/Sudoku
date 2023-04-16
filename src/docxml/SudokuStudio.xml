@@ -807,6 +807,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableRightTapRemovingForSudokuPane"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EnableAnimationFeedbackProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableAnimationFeedback"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableAnimationFeedback"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScaleProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale"/>.
@@ -1021,6 +1027,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableRightTapRemovingForSudokuPane">
             <summary>
             Indicates whether sudoku pane in analysis page provides with a simpler way to delete digits via right tapping.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableAnimationFeedback">
+            <summary>
+            Indicates whether sudoku pane enables for animation feedback.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale">
@@ -4197,6 +4208,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_EliminationColor">
             <summary>
               Looks up a localized string similar to Eliminations.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_EnableAnimationFeedback">
+            <summary>
+              Looks up a localized string similar to Enable animation feedback.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_EnableAnimationFeedbackDescription">
+            <summary>
+              Looks up a localized string similar to If this option is set true, when you adjust status of the sudoku grid pane, you can see animation (such as candidates ease in/out). Such animations are called &quot;Animation Feedback&quot;..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_EnableDoubleTapFillingForSudokuPane">
