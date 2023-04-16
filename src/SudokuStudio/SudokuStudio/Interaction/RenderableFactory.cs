@@ -12,38 +12,29 @@ namespace SudokuStudio.Interaction;
 internal static class RenderableFactory
 {
 	/// <summary>
-	/// Try to get all possible <see cref="FrameworkElement"/>s that are candidate controls
-	/// storing <see cref="ViewUnit"/>-displaying <see cref="FrameworkElement"/>s.
-	/// </summary>
-	/// <param name="sudokuPane">The target pane.</param>
-	/// <returns>
-	/// A list of controls, whose <c>Children</c> property can be used for removing <see cref="ViewUnit"/>-displaying controls.
-	/// </returns>
-	/// <seealso cref="FrameworkElement"/>
-	/// <seealso cref="ViewUnit"/>
-	public static IEnumerable<FrameworkElement> GetViewUnitTargetParentControls(SudokuPane sudokuPane)
-	{
-		foreach (var children in sudokuPane._children)
-		{
-			yield return children.MainGrid; // cell / candidate / baba group
-		}
-
-		yield return sudokuPane.MainGrid; // house / chute / link
-	}
-
-	/// <summary>
 	/// Removes all possible controls that are used for displaying elements in a <see cref="ViewUnit"/>.
 	/// </summary>
 	/// <param name="sudokuPane">The target pane.</param>
 	/// <seealso cref="ViewUnit"/>
 	public static void RemoveViewUnitControls(SudokuPane sudokuPane)
 	{
-		foreach (var targetControl in GetViewUnitTargetParentControls(sudokuPane))
+		foreach (var targetControl in getParentControls(sudokuPane))
 		{
 			if (targetControl is GridLayout { Children: var children })
 			{
 				children.RemoveAllViewUnitControls();
 			}
+		}
+
+
+		static IEnumerable<FrameworkElement> getParentControls(SudokuPane sudokuPane)
+		{
+			foreach (var children in sudokuPane._children)
+			{
+				yield return children.MainGrid; // cell / candidate / baba group
+			}
+
+			yield return sudokuPane.MainGrid; // house / chute / link
 		}
 	}
 
@@ -65,27 +56,44 @@ internal static class RenderableFactory
 		var links = new List<LinkViewNode>();
 		foreach (var viewNode in nodes)
 		{
-			(
-				viewNode switch
+			switch (viewNode)
+			{
+				case CellViewNode c:
 				{
-					CellViewNode c => () => ForCellNode(sudokuPane, c),
-					CandidateViewNode c => () =>
-					{
-						ForCandidateNode(sudokuPane, c, conclusions, out var o);
-						if (o is { } currentOverlappedConclusion)
-						{
-							overlapped.Add(currentOverlappedConclusion);
-						}
-#pragma warning disable format
-					}, // Guess what? This comma is troublesome while formatting.
-#pragma warning restore format
-					HouseViewNode h => () => ForHouseNode(sudokuPane, h),
-					ChuteViewNode c => () => ForChuteNode(sudokuPane, c),
-					BabaGroupViewNode b => () => ForBabaGroupNode(sudokuPane, b),
-					LinkViewNode l => () => links.Add(l),
-					_ => default(Action?)
+					ForCellNode(sudokuPane, c);
+					break;
 				}
-			)?.Invoke();
+				case CandidateViewNode c:
+				{
+					ForCandidateNode(sudokuPane, c, conclusions, out var o);
+					if (o is { } currentOverlappedConclusion)
+					{
+						overlapped.Add(currentOverlappedConclusion);
+					}
+
+					break;
+				}
+				case HouseViewNode h:
+				{
+					ForHouseNode(sudokuPane, h);
+					break;
+				}
+				case ChuteViewNode c:
+				{
+					ForChuteNode(sudokuPane, c);
+					break;
+				}
+				case BabaGroupViewNode b:
+				{
+					ForBabaGroupNode(sudokuPane, b);
+					break;
+				}
+				case LinkViewNode l:
+				{
+					links.Add(l);
+					break;
+				}
+			}
 		}
 
 		foreach (var conclusion in conclusions)
