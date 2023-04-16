@@ -122,20 +122,18 @@ internal static class RenderableFactory
 			return;
 		}
 
+		var predicate = overlapped.Exists(conclusion => conclusion.Candidate == candidate);
 		ForCandidateNodeCore(
 			IdentifierConversion.GetColor(
 				type switch
 				{
-					Assignment => predicate() ? WellKnownColorIdentifierKind.OverlappedAssignment : WellKnownColorIdentifierKind.Assignment,
-					Elimination => predicate() ? WellKnownColorIdentifierKind.Cannibalism : WellKnownColorIdentifierKind.Elimination
+					Assignment => predicate ? WellKnownColorIdentifierKind.OverlappedAssignment : WellKnownColorIdentifierKind.Assignment,
+					Elimination => predicate ? WellKnownColorIdentifierKind.Cannibalism : WellKnownColorIdentifierKind.Elimination
 				}
 			),
 			candidate,
 			paneCellControl
 		);
-
-
-		bool predicate() => overlapped.Exists(conclusion => conclusion.Candidate == candidate);
 	}
 
 	/// <summary>
