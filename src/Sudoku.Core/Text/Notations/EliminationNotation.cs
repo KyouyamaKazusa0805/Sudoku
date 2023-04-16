@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Notations;
+namespace Sudoku.Text.Notations;
 
 /// <summary>
 /// Encapsulates a set of methods that handles a variety of instances, using Hodoku elimination notation
@@ -7,7 +7,7 @@
 /// </summary>
 public sealed class EliminationNotation : ICandidateNotation<EliminationNotation, EliminationNotationOptions>
 {
-	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false, DiagnosticId = "SCA0108", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0108")]
+	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
 	private EliminationNotation() => throw new NotSupportedException();
 
 

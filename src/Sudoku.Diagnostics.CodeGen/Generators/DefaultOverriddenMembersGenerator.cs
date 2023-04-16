@@ -168,7 +168,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 				var extraAttributeStr = mode switch
 				{
 					0 => """
-					[global::System.Obsolete(global::System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenEqualsMethod, false, DiagnosticId = "SCA0104", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0104")]
+					[global::System.Obsolete(global::System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenEqualsMethod, false)]
 							
 					""",
 					_ => string.Empty
@@ -256,7 +256,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 				var extraAttributeStr = mode switch
 				{
 					0 => """
-					[global::System.Obsolete(global::System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod, false, DiagnosticId = "SCA0105", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0105")]
+					[global::System.Obsolete(global::System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod, false)]
 							
 					""",
 					_ => string.Empty

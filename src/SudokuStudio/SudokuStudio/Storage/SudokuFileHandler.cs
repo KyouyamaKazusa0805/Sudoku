@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Storage;
+namespace SudokuStudio.Storage;
 
 /// <summary>
 /// Defines a handler that handles the file of file extension <see cref="CommonFileExtensions.Text"/>.
@@ -6,7 +6,7 @@
 /// <seealso cref="CommonFileExtensions.Text"/>
 public sealed class SudokuFileHandler : IProgramSupportedFileHandler<GridSerializationData[]>
 {
-	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, DiagnosticId = "SCA0108", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0108")]
+	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
 	private SudokuFileHandler() => throw new NotSupportedException();
 
 

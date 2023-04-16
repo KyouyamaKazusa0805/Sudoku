@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a crosshatch factor. The type can describe an elimination that starts with a certain cell
@@ -32,9 +32,7 @@ public readonly partial struct Crosshatch(ulong mask) : IEquatable<Crosshatch>, 
 
 
 	/// <summary>
-	/// <para>
-	/// Indicates the inner mask.
-	/// </para>
+	/// <para>Indicates the inner mask.</para>
 	/// <para>
 	/// The mask uses 46 bits to describe two intersections and a digit information.
 	/// The higher 4 bits is the digit, and last 42 bits are two intersections representing the start
@@ -52,8 +50,8 @@ public readonly partial struct Crosshatch(ulong mask) : IEquatable<Crosshatch>, 
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[JsonConstructor]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true, DiagnosticId = "SCA0103", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0103")]
-	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, Url = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0103")]
+	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true)]
+	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly)]
 	public Crosshatch(int digit, CellMap from, CellMap to) : this(CreateMask(digit, from, to))
 	{
 	}

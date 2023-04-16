@@ -1,4 +1,4 @@
-﻿namespace System.Diagnostics.CodeGen;
+namespace System.Diagnostics.CodeGen;
 
 /// <summary>
 /// Defines a kind of behavior describing source generator's generated source code on overridding <see cref="object.GetHashCode"/>.
@@ -20,11 +20,7 @@ public enum GeneratedGetHashCodeBehavior
 	///     /// <inheritdoc cref="object.Equals(object?)"/>
 	///     [CompilerGenerated]
 	///     [GeneratedCode("SourceGeneratorName", "1.0.0.0")]
-	///     [Obsolete(
-	///         RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod,
-	///         false,
-	///         DiagnosticId = "SCA0105",
-	///         UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0105")]
+	///     [Obsolete(RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod, false)]
 	///     public override readonly partial int GetHashCode()
 	///         => throw new NotSupportedException(RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod);
 	/// }

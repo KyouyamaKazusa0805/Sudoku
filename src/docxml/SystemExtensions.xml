@@ -1904,11 +1904,7 @@
                 /// <inheritdoc cref="object.Equals(object?)"/>
                 [CompilerGenerated]
                 [GeneratedCode("SourceGeneratorName", "1.0.0.0")]
-                [Obsolete(
-                    RefStructDefaultImplementationMessage.OverriddenEqualsMethod,
-                    false,
-                    DiagnosticId = "SCA0104",
-                    UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0104")]
+                [Obsolete(RefStructDefaultImplementationMessage.OverriddenEqualsMethod, false)]
                 public override readonly partial bool Equals([NotNullWhen(false)] object? obj) => false;
             }
             ]]></code>
@@ -1980,11 +1976,7 @@
                 /// <inheritdoc cref="object.Equals(object?)"/>
                 [CompilerGenerated]
                 [GeneratedCode("SourceGeneratorName", "1.0.0.0")]
-                [Obsolete(
-                    RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod,
-                    false,
-                    DiagnosticId = "SCA0105",
-                    UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0105")]
+                [Obsolete(RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod, false)]
                 public override readonly partial int GetHashCode()
                     => throw new NotSupportedException(RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod);
             }

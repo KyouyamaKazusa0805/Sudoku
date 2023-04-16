@@ -1,4 +1,4 @@
-﻿namespace System.Diagnostics.CodeGen;
+namespace System.Diagnostics.CodeGen;
 
 /// <summary>
 /// Defines a kind of behavior describing source generator's generated source code on overridding <see cref="object.Equals(object?)"/>.
@@ -20,11 +20,7 @@ public enum GeneratedEqualsBehavior
 	///     /// <inheritdoc cref="object.Equals(object?)"/>
 	///     [CompilerGenerated]
 	///     [GeneratedCode("SourceGeneratorName", "1.0.0.0")]
-	///     [Obsolete(
-	///         RefStructDefaultImplementationMessage.OverriddenEqualsMethod,
-	///         false,
-	///         DiagnosticId = "SCA0104",
-	///         UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0104")]
+	///     [Obsolete(RefStructDefaultImplementationMessage.OverriddenEqualsMethod, false)]
 	///     public override readonly partial bool Equals([NotNullWhen(false)] object? obj) => false;
 	/// }
 	/// ]]></code>

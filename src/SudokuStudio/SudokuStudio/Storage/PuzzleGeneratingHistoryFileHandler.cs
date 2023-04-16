@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Storage;
+namespace SudokuStudio.Storage;
 
 /// <summary>
 /// Defines a handler that handles the file of file extension <see cref="CommonFileExtensions.GeneratingHistory"/>.
@@ -6,7 +6,7 @@
 /// <seealso cref="CommonFileExtensions.GeneratingHistory"/>
 public sealed class PuzzleGeneratingHistoryFileHandler : IProgramSupportedFileHandler<PuzzleGenertingHistory>
 {
-	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, DiagnosticId = "SCA0108", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0108")]
+	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
 	private PuzzleGeneratingHistoryFileHandler() => throw new NotSupportedException();
 
 

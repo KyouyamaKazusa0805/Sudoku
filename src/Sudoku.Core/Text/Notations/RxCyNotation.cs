@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Notations;
+namespace Sudoku.Text.Notations;
 
 /// <summary>
 /// Encapsulates a set of methods that handles a variety of instances, using RxCy notation
@@ -21,7 +21,7 @@ public sealed partial class RxCyNotation :
 	ICellNotation<RxCyNotation, RxCyNotationOptions>,
 	ICandidateNotation<RxCyNotation, RxCyNotationOptions>
 {
-	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false, DiagnosticId = "SCA0108", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0108")]
+	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
 	private RxCyNotation() => throw new NotSupportedException();
 
 

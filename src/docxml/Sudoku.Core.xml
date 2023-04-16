@@ -2874,9 +2874,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Concepts.Crosshatch._mask">
             <summary>
-            <para>
-            Indicates the inner mask.
-            </para>
+            <para>Indicates the inner mask.</para>
             <para>
             The mask uses 46 bits to describe two intersections and a digit information.
             The higher 4 bits is the digit, and last 42 bits are two intersections representing the start

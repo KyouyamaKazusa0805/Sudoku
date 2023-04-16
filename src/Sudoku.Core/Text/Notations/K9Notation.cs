@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Notations;
+namespace Sudoku.Text.Notations;
 
 /// <summary>
 /// Encapsulates a set of methods that handles a variety of instances, using K9 notation
@@ -27,7 +27,7 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 	private static readonly char[] Letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'K' };
 
 
-	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false, DiagnosticId = "SCA0108", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0108")]
+	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
 	private K9Notation() => throw new NotSupportedException();
 
 

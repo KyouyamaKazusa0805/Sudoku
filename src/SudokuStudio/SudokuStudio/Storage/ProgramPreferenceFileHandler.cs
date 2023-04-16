@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Storage;
+namespace SudokuStudio.Storage;
 
 /// <summary>
 /// Defines a handler that handles the file of file extension <see cref="CommonFileExtensions.UserPreference"/>.
@@ -6,7 +6,7 @@
 /// <seealso cref="CommonFileExtensions.UserPreference"/>
 public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<ProgramPreference>
 {
-	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, DiagnosticId = "SCA0108", UrlFormat = "https://sunnieshine.github.io/Sudoku/code-analysis/sca0108")]
+	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
 	private ProgramPreferenceFileHandler() => throw new NotSupportedException();
 
 
