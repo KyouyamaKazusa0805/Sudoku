@@ -169,6 +169,8 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 				{
 					0 => """
 					[global::System.Obsolete(global::System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenEqualsMethod, false)]
+							[global::System.Diagnostics.DebuggerHiddenAttribute]
+							[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
 							
 					""",
 					_ => string.Empty
@@ -257,6 +259,8 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 				{
 					0 => """
 					[global::System.Obsolete(global::System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod, false)]
+							[global::System.Diagnostics.DebuggerHiddenAttribute]
+							[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
 							
 					""",
 					_ => string.Empty
