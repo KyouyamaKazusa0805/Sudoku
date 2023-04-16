@@ -4,16 +4,13 @@ namespace SudokuStudio.Interaction;
 /// Defines a factory type that is used for creating a list of <see cref="FrameworkElement"/>
 /// to display for highlighted cells, candidates and so on.
 /// </summary>
+/// <remarks>
+/// All created <see cref="FrameworkElement"/> instances will be tagged as a <see cref="string"/>, whose value is "<c>RenderableFactory</c>",
+/// in order to be used for distinction with other controls in the collection.
+/// </remarks>
 /// <seealso cref="FrameworkElement"/>
-internal static class ViewUnitFrameworkElementFactory
+internal static class RenderableFactory
 {
-	/// <summary>
-	/// Indicates the tag that is used to describe the control is only used for displaying highlighted elements in a <see cref="ViewUnit"/>.
-	/// </summary>
-	/// <seealso cref="ViewUnit"/>
-	internal const string InternalTag = $"{nameof(ViewUnitFrameworkElementFactory)}.{nameof(FrameworkElement)}";
-
-
 	/// <summary>
 	/// Try to get all possible <see cref="FrameworkElement"/>s that are candidate controls
 	/// storing <see cref="ViewUnit"/>-displaying <see cref="FrameworkElement"/>s.
@@ -154,7 +151,7 @@ internal static class ViewUnitFrameworkElementFactory
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
-			Tag = InternalTag,
+			Tag = nameof(RenderableFactory),
 			Opacity = sudokuPane.HighlightBackgroundOpacity
 		};
 
@@ -224,7 +221,7 @@ internal static class ViewUnitFrameworkElementFactory
 			HorizontalAlignment = HorizontalAlignment.Center,
 			VerticalAlignment = VerticalAlignment.Center,
 			Fill = new SolidColorBrush(color),
-			Tag = InternalTag
+			Tag = nameof(RenderableFactory)
 		};
 
 		var digit = candidate % 9;
@@ -261,7 +258,7 @@ internal static class ViewUnitFrameworkElementFactory
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
-			Tag = InternalTag,
+			Tag = nameof(RenderableFactory),
 			Opacity = sudokuPane.HighlightBackgroundOpacity
 		};
 
@@ -311,7 +308,7 @@ internal static class ViewUnitFrameworkElementFactory
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
-			Tag = InternalTag,
+			Tag = nameof(RenderableFactory),
 			Opacity = sudokuPane.HighlightBackgroundOpacity
 		};
 
@@ -357,7 +354,7 @@ internal static class ViewUnitFrameworkElementFactory
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
-			Tag = InternalTag,
+			Tag = nameof(RenderableFactory),
 			Opacity = sudokuPane.HighlightBackgroundOpacity,
 			Child = new TextBlock
 			{
@@ -479,7 +476,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						StrokeThickness = Pane.ChainStrokeThickness,
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup { Children = new() { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
-						Tag = ViewUnitFrameworkElementFactory.InternalTag
+						Tag = nameof(RenderableFactory)
 					};
 
 					break;
@@ -567,20 +564,28 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 												StartPoint = pt1,
 												IsClosed = false,
 												IsFilled = false,
-												Segments = new() { new BezierSegment { Point1 = new(bx1, by1), Point2 = new(bx2, by2), Point3 = pt2 } }
+												Segments = new()
+												{
+													new BezierSegment
+													{
+														Point1 = new(bx1, by1),
+														Point2 = new(bx2, by2),
+														Point3 = pt2
+													}
+												}
 											}
 										}
 									}
 								}
 							},
-							Tag = ViewUnitFrameworkElementFactory.InternalTag
+							Tag = nameof(RenderableFactory)
 						};
 						yield return new()
 						{
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-							Tag = ViewUnitFrameworkElementFactory.InternalTag
+							Tag = nameof(RenderableFactory)
 						};
 					}
 					else
@@ -594,15 +599,21 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = Pane.ChainStrokeThickness,
 							StrokeDashArray = dashArray,
-							Data = new GeometryGroup { Children = new GeometryCollection { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
-							Tag = ViewUnitFrameworkElementFactory.InternalTag
+							Data = new GeometryGroup
+							{
+								Children = new GeometryCollection
+								{
+									new LineGeometry { StartPoint = pt1, EndPoint = pt2 }
+								}
+							},
+							Tag = nameof(RenderableFactory)
 						};
 						yield return new()
 						{
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-							Tag = ViewUnitFrameworkElementFactory.InternalTag
+							Tag = nameof(RenderableFactory)
 						};
 					}
 
@@ -771,7 +782,7 @@ file static class Extensions
 		var gathered = new List<FrameworkElement>();
 		foreach (var element in @this.OfType<FrameworkElement>())
 		{
-			if (element.Tag is ViewUnitFrameworkElementFactory.InternalTag)
+			if (element.Tag is nameof(RenderableFactory))
 			{
 				gathered.Add(element);
 			}

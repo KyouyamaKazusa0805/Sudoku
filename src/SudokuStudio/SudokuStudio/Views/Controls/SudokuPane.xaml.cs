@@ -482,11 +482,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			return;
 		}
 
-		ViewUnitFrameworkElementFactory.RemoveViewUnitControls(pane);
+		RenderableFactory.RemoveViewUnitControls(pane);
 
 		if (rawValue is ViewUnit value)
 		{
-			ViewUnitFrameworkElementFactory.AddViewUnitControls(pane, value);
+			RenderableFactory.AddViewUnitControls(pane, value);
 		}
 	}
 
@@ -533,74 +533,74 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				break;
 			}
+		}
 
 
-			async Task handleSudokuFileAsync(StorageFile file)
+		async Task handleSudokuFileAsync(StorageFile file)
+		{
+			var filePath = file.Path;
+			var fileInfo = new FileInfo(filePath);
+			switch (fileInfo.Length)
 			{
-				var filePath = file.Path;
-				var fileInfo = new FileInfo(filePath);
-				switch (fileInfo.Length)
+				case 0:
 				{
-					case 0:
+					FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsEmpty));
+					return;
+				}
+				case > 1024:
+				{
+					FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsTooLarge));
+					return;
+				}
+				default:
+				{
+					switch (SystemPath.GetExtension(filePath))
 					{
-						FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsEmpty));
-						return;
-					}
-					case > 1024:
-					{
-						FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsTooLarge));
-						return;
-					}
-					default:
-					{
-						switch (SystemPath.GetExtension(filePath))
+						case CommonFileExtensions.PlainText:
 						{
-							case CommonFileExtensions.PlainText:
+							var content = await FileIO.ReadTextAsync(file);
+							if (string.IsNullOrWhiteSpace(content))
 							{
-								var content = await FileIO.ReadTextAsync(file);
-								if (string.IsNullOrWhiteSpace(content))
-								{
-									FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsEmpty));
-									return;
-								}
-
-								if (!Grid.TryParse(content, out var g))
-								{
-									FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileCannotBeParsed));
-									return;
-								}
-
-								Puzzle = g;
-								break;
+								FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsEmpty));
+								return;
 							}
-							case CommonFileExtensions.Text:
-							{
-								switch (SudokuFileHandler.Read(filePath))
-								{
-									case [{ GridString: var str }]:
-									{
-										if (!Grid.TryParse(str, out var g))
-										{
-											FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileCannotBeParsed));
-											return;
-										}
 
-										Puzzle = g;
-										break;
-									}
-									default:
+							if (!Grid.TryParse(content, out var g))
+							{
+								FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileCannotBeParsed));
+								return;
+							}
+
+							Puzzle = g;
+							break;
+						}
+						case CommonFileExtensions.Text:
+						{
+							switch (SudokuFileHandler.Read(filePath))
+							{
+								case [{ GridString: var str }]:
+								{
+									if (!Grid.TryParse(str, out var g))
 									{
 										FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileCannotBeParsed));
 										return;
 									}
+
+									Puzzle = g;
+									break;
 								}
-
-								break;
+								default:
+								{
+									FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileCannotBeParsed));
+									return;
+								}
 							}
-						}
 
-						break;
+							break;
+						}
 					}
+
+					break;
 				}
 			}
 		}
