@@ -101,6 +101,7 @@ global using static System.Numerics.BitOperations;
 global using static System.Text.Json.JsonSerializer;
 global using static Sudoku.Analytics.ConclusionType;
 global using static Sudoku.SolutionWideReadOnlyFields;
+global using static SudokuStudio.ProjectWideConstants;
 global using static SudokuStudio.Resources.ResourceDictionary;
 global using Colors = Microsoft.UI.Colors;
 global using DispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue;

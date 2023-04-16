@@ -106,7 +106,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 
 		IEnumerable<Step> gather()
 		{
-			lock (App.SyncRoot)
+			lock (StepSearchingOrGatheringSyncRoot)
 			{
 				return gatherer.Search(grid, new Progress<double>(progressReportHandler));
 			}

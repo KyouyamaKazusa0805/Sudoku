@@ -527,7 +527,7 @@ public sealed partial class AnalyzePage : Page
 	{
 		if (CommandBarFrame.SourcePageType != pageType)
 		{
-			CommandBarFrame.Navigate(pageType, this, App.DefaultNavigationTransitionInfo);
+			CommandBarFrame.Navigate(pageType, this, DefaultNavigationTransitionInfo);
 		}
 	}
 
@@ -821,7 +821,7 @@ public sealed partial class AnalyzePage : Page
 
 		AnalyzerResult analyze()
 		{
-			lock (App.SyncRoot)
+			lock (StepSearchingOrGatheringSyncRoot)
 			{
 				return solver.Analyze(
 					puzzle,

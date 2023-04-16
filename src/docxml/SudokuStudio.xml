@@ -10,16 +10,6 @@
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Application"/>
         </member>
-        <member name="F:SudokuStudio.App.SyncRoot">
-            <summary>
-            Indicates the instance that is used for synchronization for asynchronized environment.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.App.DefaultNavigationTransitionInfo">
-            <summary>
-            Indicates the transition that switching pages.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.App.#ctor">
             <summary>
             <para>Initializes the singleton application object via command-line arguments.</para>
@@ -2948,6 +2938,29 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Models.ViewUnit.View">
             <summary>
             Indicates a view of highlight elements.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.ProjectWideConstants">
+            <summary>
+            Represents a list of constant or <see langword="static readonly"/> fields used in the whole project.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.ProjectWideConstants.StepSearchingOrGatheringSyncRoot">
+            <summary>
+            Indicates the instance that is used for synchronization for asynchronized environment,
+            used for the operations that is analyzing a puzzle, or gathering steps.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="F:SudokuStudio.ProjectWideConstants.CurrentAssembly">
+            <summary>
+            Indicates the current assembly, of type <see cref="T:System.Reflection.Assembly"/>.
+            </summary>
+            <seealso cref="T:System.Reflection.Assembly"/>
+        </member>
+        <member name="F:SudokuStudio.ProjectWideConstants.DefaultNavigationTransitionInfo">
+            <summary>
+            Indicates the default <see cref="T:Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo"/> instance that describes the details of data while switching pages.
             </summary>
         </member>
         <member name="T:SudokuStudio.ProjectWideWindowManager">

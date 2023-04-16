@@ -47,7 +47,7 @@ public sealed partial class MainWindow : Window
 	{
 		if (NavigationViewFrame.SourcePageType != pageType)
 		{
-			NavigationViewFrame.Navigate(pageType, null, App.DefaultNavigationTransitionInfo);
+			NavigationViewFrame.Navigate(pageType, null, DefaultNavigationTransitionInfo);
 			SetFrameDisplayTitle(pageType);
 		}
 	}
@@ -62,7 +62,7 @@ public sealed partial class MainWindow : Window
 	{
 		if (NavigationViewFrame.SourcePageType != pageType)
 		{
-			NavigationViewFrame.Navigate(pageType, data, App.DefaultNavigationTransitionInfo);
+			NavigationViewFrame.Navigate(pageType, data, DefaultNavigationTransitionInfo);
 			SetFrameDisplayTitle(pageType);
 		}
 	}

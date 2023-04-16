@@ -7,20 +7,6 @@ namespace SudokuStudio;
 public partial class App : Application
 {
 	/// <summary>
-	/// Indicates the instance that is used for synchronization for asynchronized environment.
-	/// </summary>
-	internal static readonly object SyncRoot = new();
-
-	/// <summary>
-	/// Indicates the transition that switching pages.
-	/// </summary>
-	internal static readonly NavigationTransitionInfo DefaultNavigationTransitionInfo = new SlideNavigationTransitionInfo
-	{
-		Effect = SlideNavigationTransitionEffect.FromRight
-	};
-
-
-	/// <summary>
 	/// <para>Initializes the singleton application object via command-line arguments.</para>
 	/// <para>
 	/// This is the first line of authored code executed, and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
@@ -82,7 +68,7 @@ public partial class App : Application
 	/// <summary>
 	/// Indicates the assembly version.
 	/// </summary>
-	internal static Version AssemblyVersion => typeof(App).Assembly.GetName().Version!;
+	internal static Version AssemblyVersion => CurrentAssembly.GetName().Version!;
 
 
 	/// <inheritdoc/>
@@ -97,7 +83,7 @@ public partial class App : Application
 	/// <summary>
 	/// Register resource-fetching service.
 	/// </summary>
-	private void RegisterResourceFetching() => MergedResources.R.RegisterAssembly(typeof(App).Assembly);
+	private void RegisterResourceFetching() => MergedResources.R.RegisterAssembly(CurrentAssembly);
 
 	/// <summary>
 	/// Creates a window, and activate it.
