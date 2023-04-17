@@ -33,7 +33,7 @@ internal static partial class DrawingOperations
 	//
 	// IconViewNode 节点处理方法集
 	//
-	public static partial Task AddIconViewNodeAsync<T>(GroupMessageReceiver receiver, DrawingContext context, string raw, string colorString, Func<Identifier, int, T> nodeCreator) where T : IconViewNode;
+	public static partial Task AddIconViewNodeAsync<T>(GroupMessageReceiver receiver, DrawingContext context, string raw, string colorString, Func<ColorIdentifier, int, T> nodeCreator) where T : IconViewNode;
 	public static partial Task RemoveIconViewNodeAsync<T>(GroupMessageReceiver receiver, DrawingContext context, string raw, Func<int, T> nodeCreator) where T : IconViewNode;
 
 	//

@@ -73,27 +73,6 @@ partial class DrawingOperations
 	private static string[] LocalSplit(this string @this) => @this.Split(Separators, SplitOptionsBoth);
 
 	/// <summary>
-	/// 通过一个颜色表达出来的字符串，转换为一个实体的 <see cref="Identifier"/> 类型的实例，用于绘图。
-	/// </summary>
-	/// <param name="this">颜色字符串。</param>
-	/// <returns>一个 <see cref="Identifier"/> 实例，表示颜色的标识符。</returns>
-	/// <remarks>
-	/// 该方法支持的输入可以是基本的配色表（配色 #1 到 #15），也可以是 RGB 和 ARGB 的代码。
-	/// </remarks>
-	/// <seealso cref="Identifier"/>
-	/// <seealso href="https://source.dot.net/#System.Private.CoreLib/src/libraries/Common/src/System/HexConverter.cs,2094caa70f8308bc">
-	/// char.IsAsciiHexDigit 方法
-	/// </seealso>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static Identifier? GetIdentifier(this string @this)
-		=> @this switch
-		{
-			[>= '1' and <= '9'] or ['1', >= '0' and <= '5'] when int.TryParse(@this, out var v) && v is > 0 and <= 15 => v - 1,
-			{ Length: 6 or 8 } when @this.All(char.IsAsciiHexDigit) => ColorTranslator.FromHtml(@this).ToIdentifier(),
-			_ => null
-		};
-
-	/// <summary>
 	/// 将前文传入的两个字符信息直接转为“行”和“列”两个数值，然后直接解析成合适的单元格坐标。
 	/// </summary>
 	/// <param name="r">一个字符，表示一个所在行的数据。</param>
@@ -151,6 +130,27 @@ partial class DrawingOperations
 			'列' or 'C' or 'c' => 3,
 			_ => throw new ArgumentException("The specified value is invalid.", nameof(r))
 		} + (i - '1');
+
+	/// <summary>
+	/// 通过一个颜色表达出来的字符串，转换为一个实体的 <see cref="ColorIdentifier"/> 类型的实例，用于绘图。
+	/// </summary>
+	/// <param name="this">颜色字符串。</param>
+	/// <returns>一个 <see cref="ColorIdentifier"/> 实例，表示颜色的标识符。</returns>
+	/// <remarks>
+	/// 该方法支持的输入可以是基本的配色表（配色 #1 到 #15），也可以是 RGB 和 ARGB 的代码。
+	/// </remarks>
+	/// <seealso cref="ColorIdentifier"/>
+	/// <seealso href="https://source.dot.net/#System.Private.CoreLib/src/libraries/Common/src/System/HexConverter.cs,2094caa70f8308bc">
+	/// char.IsAsciiHexDigit 方法
+	/// </seealso>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static ColorIdentifier? GetIdentifier(this string @this)
+		=> @this switch
+		{
+			[>= '1' and <= '9'] or ['1', >= '0' and <= '5'] when int.TryParse(@this, out var v) && v is > 0 and <= 15 => v - 1,
+			{ Length: 6 or 8 } when @this.All(char.IsAsciiHexDigit) => ColorTranslator.FromHtml(@this).ToIdentifier(),
+			_ => null
+		};
 
 	/// <summary>
 	/// 使用参数 <paramref name="receiver"/> 创建缓存图片，并发送。

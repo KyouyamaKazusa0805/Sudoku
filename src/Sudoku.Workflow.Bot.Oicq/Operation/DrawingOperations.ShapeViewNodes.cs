@@ -24,7 +24,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new AverageBarViewNode(default, cell, isHorizontal),
+			cell => new AverageBarViewNode(default!, cell, isHorizontal),
 			cell => cell.IsValidCellForAverage(isHorizontal)
 		);
 
@@ -50,7 +50,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			static cell => new BattenburgViewNode(default, cell),
+			static cell => new BattenburgViewNode(default!, cell),
 			static cell => cell.IsValidCellFor2x2Cells()
 		);
 
@@ -82,7 +82,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new BorderBarViewNode(default, cell, cell + (isHorizontal ? 1 : 9)),
+			cell => new BorderBarViewNode(default!, cell, cell + (isHorizontal ? 1 : 9)),
 			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
 		);
 
@@ -115,7 +115,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			static cell => new CellArrowViewNode(default, cell, default),
+			static cell => new CellArrowViewNode(default!, cell, default),
 			null
 		);
 
@@ -153,7 +153,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			static cell => new CellCornerArrowViewNode(default, cell, default),
+			static cell => new CellCornerArrowViewNode(default!, cell, default),
 			null
 		);
 
@@ -190,7 +190,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new CellCornerTriangleViewNode(default, cell, default),
+			cell => new CellCornerTriangleViewNode(default!, cell, default),
 			null
 		);
 
@@ -216,7 +216,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new ClockfaceDotViewNode(default, cell, isClockwise),
+			cell => new ClockfaceDotViewNode(default!, cell, isClockwise),
 			static cell => cell.IsValidCellFor2x2Cells()
 		);
 
@@ -252,7 +252,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new EmbeddedSkyscraperArrowViewNode(default, cell, default),
+			cell => new EmbeddedSkyscraperArrowViewNode(default!, cell, default),
 			null
 		);
 
@@ -278,7 +278,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new GreaterThanSignViewNode(default, cell, cell + (isHorizontal ? 1 : 9), default),
+			cell => new GreaterThanSignViewNode(default!, cell, cell + (isHorizontal ? 1 : 9), default),
 			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
 		);
 
@@ -304,7 +304,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new KropkiDotViewNode(default, cell, cell + (isHorizontal ? 1 : 9), default),
+			cell => new KropkiDotViewNode(default!, cell, cell + (isHorizontal ? 1 : 9), default),
 			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
 		);
 
@@ -330,7 +330,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			static cell => new NeighborSignViewNode(default, cell, default),
+			static cell => new NeighborSignViewNode(default!, cell, default),
 			null
 		);
 
@@ -356,7 +356,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new NumberLabelViewNode(default, cell, cell + (isHorizontal ? 1 : 9), null!),
+			cell => new NumberLabelViewNode(default!, cell, cell + (isHorizontal ? 1 : 9), null!),
 			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
 		);
 
@@ -408,7 +408,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new QuadrupleHintViewNode(default, cell, null!),
+			cell => new QuadrupleHintViewNode(default!, cell, null!),
 			static cell => cell.IsValidCellFor2x2Cells()
 		);
 
@@ -444,7 +444,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			static cell => new QuadrupleMaxArrowViewNode(default, cell, default),
+			static cell => new QuadrupleMaxArrowViewNode(default!, cell, default),
 			static cell => cell.IsValidCellFor2x2Cells()
 		);
 
@@ -477,7 +477,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			static cell => new TriangleSumViewNode(default, cell, default),
+			static cell => new TriangleSumViewNode(default!, cell, default),
 			null
 		);
 
@@ -503,7 +503,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			static cell => new WheelViewNode(default, cell, null!),
+			static cell => new WheelViewNode(default!, cell, null!),
 			static cell => cell.IsValidCellForWheel()
 		);
 
@@ -529,7 +529,7 @@ partial class DrawingOperations
 			context,
 			raw,
 			false,
-			cell => new XvSignViewNode(default, cell, cell + (isHorizontal ? 1 : 9), default),
+			cell => new XvSignViewNode(default!, cell, cell + (isHorizontal ? 1 : 9), default),
 			cell => cell.IsValidCellForAdjacentCell(isHorizontal)
 		);
 }

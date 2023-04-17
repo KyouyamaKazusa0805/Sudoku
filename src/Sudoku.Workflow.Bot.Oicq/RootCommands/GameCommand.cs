@@ -199,7 +199,7 @@ internal sealed class GameCommand : Command
 				.WithNodes(
 					finalCellIndex == -1
 						? selectedNodes
-						: selectedNodes.Prepend(new CellViewNode(DisplayColorKind.Normal, chosenCells[finalCellIndex]))
+						: selectedNodes.Prepend(new CellViewNode(WellKnownColorIdentifierKind.Normal, chosenCells[finalCellIndex]))
 				)
 				.WithPreferenceSettings(static pref => pref.UnknownIdentifierColor = Color.FromArgb(96, Color.Red))
 		);
@@ -315,7 +315,7 @@ internal sealed class GameCommand : Command
 		}
 
 		static ViewNode markerNodeSelector(int element, int i)
-			=> new BabaGroupViewNode(DisplayColorKind.Normal, element, (Utf8Char)(char)(i + '1'), 511);
+			=> new BabaGroupViewNode(WellKnownColorIdentifierKind.Normal, element, (Utf8Char)(char)(i + '1'), 511);
 	}
 
 

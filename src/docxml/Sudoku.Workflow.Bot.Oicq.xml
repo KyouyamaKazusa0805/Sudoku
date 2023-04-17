@@ -762,26 +762,6 @@
             表示用户一共尝试完成了多少次答题。
             </summary>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.UserPuzzleAnswerDetails">
-            <summary>
-            表示一个用户回答题目的数据。
-            </summary>
-            <param name="User">表示是谁回答的题目。</param>
-            <param name="Conclusion">表示用户回答的结果。</param>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.ComponentModel.UserPuzzleAnswerDetails.#ctor(Mirai.Net.Data.Shared.Member,System.Int32)">
-            <summary>
-            表示一个用户回答题目的数据。
-            </summary>
-            <param name="User">表示是谁回答的题目。</param>
-            <param name="Conclusion">表示用户回答的结果。</param>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.UserPuzzleAnswerDetails.User">
-            <summary>表示是谁回答的题目。</summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.ComponentModel.UserPuzzleAnswerDetails.Conclusion">
-            <summary>表示用户回答的结果。</summary>
-        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Constants">
             <summary>
             表示该项目里反复使用的一些常量或静态只读量。
@@ -1012,7 +992,7 @@
             <seealso cref="N:Sudoku.Drawing"/>
             <seealso cref="N:Sudoku.Gdip"/>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RecordBasicNodesInternal(System.String,Sudoku.Rendering.Identifier)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.RecordBasicNodesInternal(System.String,Sudoku.Rendering.ColorIdentifier)">
             <summary>
             内部方法，记录 <see cref="T:Sudoku.Rendering.Nodes.BasicViewNode"/> 类型的节点。
             </summary>
@@ -1114,7 +1094,7 @@
             不论这两个节点原本是强还是弱，都不能再叠加新的重叠的线条。
             </remarks>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddIconViewNodeAsync``1(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String,System.Func{Sudoku.Rendering.Identifier,System.Int32,``0})">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.AddIconViewNodeAsync``1(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.String,System.Func{Sudoku.Rendering.ColorIdentifier,System.Int32,``0})">
             <summary>
             添加一个单元格图标。
             </summary>
@@ -1339,20 +1319,6 @@
             <returns>将字符串进行分割之后的数组序列，去掉了头尾的空白字符，也舍弃掉了只有空白字符的匹配项。</returns>
             <seealso cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetIdentifier(System.String)">
-            <summary>
-            通过一个颜色表达出来的字符串，转换为一个实体的 <see cref="T:Sudoku.Rendering.Identifier"/> 类型的实例，用于绘图。
-            </summary>
-            <param name="this">颜色字符串。</param>
-            <returns>一个 <see cref="T:Sudoku.Rendering.Identifier"/> 实例，表示颜色的标识符。</returns>
-            <remarks>
-            该方法支持的输入可以是基本的配色表（配色 #1 到 #15），也可以是 RGB 和 ARGB 的代码。
-            </remarks>
-            <seealso cref="T:Sudoku.Rendering.Identifier"/>
-            <seealso href="https://source.dot.net/#System.Private.CoreLib/src/libraries/Common/src/System/HexConverter.cs,2094caa70f8308bc">
-            char.IsAsciiHexDigit 方法
-            </seealso>
-        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetCellIndex(System.Char,System.Char)">
             <summary>
             将前文传入的两个字符信息直接转为“行”和“列”两个数值，然后直接解析成合适的单元格坐标。
@@ -1395,7 +1361,21 @@
             <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetHouseIndex(System.Char,System.Char)" path="/exception[@cref='ArgumentException']"/>
             </exception>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GeneratePictureAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Boolean,System.Func{System.Int32,Sudoku.Rendering.Nodes.ViewNode},System.Func{System.Int32,System.Boolean})">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GetIdentifier(System.String)">
+            <summary>
+            通过一个颜色表达出来的字符串，转换为一个实体的 <see cref="T:Sudoku.Rendering.ColorIdentifier"/> 类型的实例，用于绘图。
+            </summary>
+            <param name="this">颜色字符串。</param>
+            <returns>一个 <see cref="T:Sudoku.Rendering.ColorIdentifier"/> 实例，表示颜色的标识符。</returns>
+            <remarks>
+            该方法支持的输入可以是基本的配色表（配色 #1 到 #15），也可以是 RGB 和 ARGB 的代码。
+            </remarks>
+            <seealso cref="T:Sudoku.Rendering.ColorIdentifier"/>
+            <seealso href="https://source.dot.net/#System.Private.CoreLib/src/libraries/Common/src/System/HexConverter.cs,2094caa70f8308bc">
+            char.IsAsciiHexDigit 方法
+            </seealso>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.DrawingOperations.GeneratePictureAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver,Sudoku.Workflow.Bot.Oicq.Lifecycle.DrawingContext,System.String,System.Boolean,System.Func{System.Int32,Sudoku.Rendering.ViewNode},System.Func{System.Int32,System.Boolean})">
             <summary>
             使用参数 <paramref name="receiver"/> 创建缓存图片，并发送。
             </summary>
@@ -1403,7 +1383,7 @@
             <param name="context">绘图使用的上下文。</param>
             <param name="raw">原始数据（字符串）。</param>
             <param name="isAdding">表示是否最终是追加到集合之中。</param>
-            <param name="nodeCreator">一个方法，表示创建一个 <see cref="T:Sudoku.Rendering.Nodes.ViewNode"/> 的实例。</param>
+            <param name="nodeCreator">一个方法，表示创建一个 <see cref="T:Sudoku.Rendering.ViewNode"/> 的实例。</param>
             <param name="cellPredicate">一个单元格是否满足条件的判别方法。</param>
             <returns>一个 <see cref="T:System.Threading.Tasks.Task"/> 类型的实例，表示异步操作期间的基本数据。</returns>
         </member>
@@ -2018,86 +1998,6 @@
             <returns>该题目的限时。</returns>
             <exception cref="T:System.NotSupportedException">如果题目难度未知，或超过了 <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Hard"/>，就会产生此异常。</exception>
         </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData">
-            <summary>
-            表示生成的题目数据。
-            </summary>
-            <param name="Puzzle">题目。</param>
-            <param name="ChosenCells">选取出来的单元格。</param>
-            <param name="FinalIndex">最终定下来的单元格（答案）。</param>
-            <param name="TimeLimit">这个题目的限时。</param>
-            <param name="ExperiencePoint">该题目可获得的经验值。</param>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData.#ctor(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.TimeSpan,System.Int32)">
-            <summary>
-            表示生成的题目数据。
-            </summary>
-            <param name="Puzzle">题目。</param>
-            <param name="ChosenCells">选取出来的单元格。</param>
-            <param name="FinalIndex">最终定下来的单元格（答案）。</param>
-            <param name="TimeLimit">这个题目的限时。</param>
-            <param name="ExperiencePoint">该题目可获得的经验值。</param>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData.Puzzle">
-            <summary>题目。</summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData.ChosenCells">
-            <summary>选取出来的单元格。</summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData.FinalIndex">
-            <summary>最终定下来的单元格（答案）。</summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData.TimeLimit">
-            <summary>这个题目的限时。</summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.GeneratedGridData.ExperiencePoint">
-            <summary>该题目可获得的经验值。</summary>
-        </member>
-        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo">
-            <summary>
-            表示题目的结果信息。
-            </summary>
-            <param name="UserName">表示该结果是谁回答的。</param>
-            <param name="Id">该用户的 QQ 号码。</param>
-            <param name="ExperiencePoint">该题目可获得的经验值。</param>
-            <param name="Coin">该题目可获得的金币。</param>
-            <param name="EarnedItem">获得的物品。可能为 <see langword="null"/>。</param>
-            <param name="Times">本题该用户的用时。</param>
-            <param name="IsCorrectedUser">表示这个人是否回答正确。</param>
-        </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.#ctor(System.String,System.String,System.Int32,System.Int32,System.Nullable{Sudoku.Workflow.Bot.Oicq.ComponentModel.Item},System.Int32,System.Boolean)">
-            <summary>
-            表示题目的结果信息。
-            </summary>
-            <param name="UserName">表示该结果是谁回答的。</param>
-            <param name="Id">该用户的 QQ 号码。</param>
-            <param name="ExperiencePoint">该题目可获得的经验值。</param>
-            <param name="Coin">该题目可获得的金币。</param>
-            <param name="EarnedItem">获得的物品。可能为 <see langword="null"/>。</param>
-            <param name="Times">本题该用户的用时。</param>
-            <param name="IsCorrectedUser">表示这个人是否回答正确。</param>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.UserName">
-            <summary>表示该结果是谁回答的。</summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.Id">
-            <summary>该用户的 QQ 号码。</summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.ExperiencePoint">
-            <summary>该题目可获得的经验值。</summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.Coin">
-            <summary>该题目可获得的金币。</summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.EarnedItem">
-            <summary>获得的物品。可能为 <see langword="null"/>。</summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.Times">
-            <summary>本题该用户的用时。</summary>
-        </member>
-        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ResultInfo.IsCorrectedUser">
-            <summary>表示这个人是否回答正确。</summary>
-        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Extensions">
             <target name="class" when="extension">
 				<summary>
@@ -2657,10 +2557,10 @@
         </member>
         <member name="M:System.Drawing.ColorExtensions.ToIdentifier(System.Drawing.Color)">
             <summary>
-            将指定的 <see cref="T:System.Drawing.Color"/> 实例转换为等价的 <see cref="T:Sudoku.Rendering.Identifier"/> 实例。
+            将指定的 <see cref="T:System.Drawing.Color"/> 实例转换为等价的 <see cref="T:Sudoku.Rendering.ColorIdentifier"/> 实例。
             </summary>
             <param name="this"><see cref="T:System.Drawing.Color"/> 实例。</param>
-            <returns>等价的 <see cref="T:Sudoku.Rendering.Identifier"/> 实例。</returns>
+            <returns>等价的 <see cref="T:Sudoku.Rendering.ColorIdentifier"/> 实例。</returns>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.BilibiliPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the BilibiliPattern method.</summary>

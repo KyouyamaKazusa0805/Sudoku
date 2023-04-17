@@ -19,10 +19,10 @@ public sealed partial class GridImageGenerator
 	/// <inheritdoc path="/summary"/>
 	/// </summary>
 	/// <param name="canvasSize">The size of the drawing canvas.</param>
-	/// <param name="outsideOffset">The outside offset.</param>
+	/// <param name="padding">The padding.</param>
 	[SetsRequiredMembers]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GridImageGenerator(float canvasSize, float outsideOffset) : this(new(canvasSize, outsideOffset))
+	public GridImageGenerator(float canvasSize, float padding) : this(new(canvasSize, padding))
 	{
 	}
 

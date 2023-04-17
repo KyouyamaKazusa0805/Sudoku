@@ -819,7 +819,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc path="/summary"/>
             </summary>
             <param name="canvasSize">The size of the drawing canvas.</param>
-            <param name="outsideOffset">The outside offset.</param>
+            <param name="padding">The padding.</param>
         </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator)">
             <inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.#ctor(Sudoku.Gdip.PointCalculator,Sudoku.Gdip.DrawingConfigurations)"/>

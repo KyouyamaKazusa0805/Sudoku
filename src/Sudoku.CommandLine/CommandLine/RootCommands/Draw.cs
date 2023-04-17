@@ -1,4 +1,4 @@
-﻿namespace Sudoku.CommandLine.RootCommands;
+namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
 /// Represents a draw command.
@@ -21,9 +21,9 @@ public sealed class Draw : IExecutable
 	/// <summary>
 	/// The outside offset.
 	/// </summary>
-	[DoubleArgumentsCommand('o', "offset", DescriptionResourceKey = "_Description_OutsideOffset_Draw")]
+	[DoubleArgumentsCommand('P', "padding", DescriptionResourceKey = "_Description_OutsideOffset_Draw")]
 	[CommandConverter<NumericConverter<float>>]
-	public float OutsideOffset { get; set; } = 10;
+	public float Padding { get; set; } = 10;
 
 	/// <summary>
 	/// The extra footer.
@@ -34,7 +34,7 @@ public sealed class Draw : IExecutable
 	/// <summary>
 	/// The output path.
 	/// </summary>
-	[DoubleArgumentsCommand('p', "path", DescriptionResourceKey = "_Description_OutputPath_Draw", IsRequired = true)]
+	[DoubleArgumentsCommand('o', "output", DescriptionResourceKey = "_Description_OutputPath_Draw", IsRequired = true)]
 	public string? OutputPath { get; set; }
 
 	/// <summary>
@@ -48,7 +48,7 @@ public sealed class Draw : IExecutable
 	/// <inheritdoc/>
 	public async Task ExecuteAsync(CancellationToken cancellationToken = default)
 	{
-		if (OutsideOffset < 0)
+		if (Padding < 0)
 		{
 			throw new CommandLineRuntimeException((int)ErrorCode.ArgNumericValueBelowZero);
 		}
@@ -58,7 +58,7 @@ public sealed class Draw : IExecutable
 			throw new CommandLineRuntimeException((int)ErrorCode.ArgGridIsUndefined);
 		}
 
-		var sudokuPainter = ISudokuPainter.Create((int)Size, (int)OutsideOffset)
+		var sudokuPainter = ISudokuPainter.Create((int)Size, (int)Padding)
 			.WithGrid(Grid)
 			.WithFooterTextIfNotNull(ExtraFooter);
 

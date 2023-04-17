@@ -160,9 +160,9 @@ file sealed class MentioningCommand : IModule
 				break;
 
 
-				static T f1<T>(Identifier i, int c) where T : IconViewNode => (T)Activator.CreateInstance(typeof(T), new[] { i, c })!;
+				static T f1<T>(ColorIdentifier i, int c) where T : IconViewNode => (T)Activator.CreateInstance(typeof(T), new[] { i, c })!;
 
-				static T f2<T>(int c) where T : IconViewNode => (T)Activator.CreateInstance(typeof(T), new[] { default(Identifier), c })!;
+				static T f2<T>(int c) where T : IconViewNode => (T)Activator.CreateInstance(typeof(T), new[] { default(ColorIdentifier), c })!;
 			}
 		}
 	}

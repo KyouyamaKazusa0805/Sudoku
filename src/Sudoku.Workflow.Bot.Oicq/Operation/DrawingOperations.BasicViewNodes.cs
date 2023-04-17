@@ -56,7 +56,7 @@ partial class DrawingOperations
 					new(
 						// 这里是 Identifier。因为程序设计的缘故，代数的字母是不能调颜色的，所以这里设啥都没用。
 						// 这里只是因为这个类型走 ViewNode 派生，而 ViewNode 需要一个 Identifier 罢了。
-						default,
+						default!,
 						cell,
 						character,
 						// 这个参数是保留给找代数技巧的时候用的，表示的是这个代数字母代表哪些数字。
@@ -81,7 +81,7 @@ partial class DrawingOperations
 		{
 			if (element is [var r and >= '1' and <= '9', var c and >= '1' and <= '9'] && GetCellIndex(r, c) is var cell)
 			{
-				nodes.Add(new(default, cell, default, default));
+				nodes.Add(new(default!, cell, default, default));
 			}
 		}
 
@@ -112,7 +112,7 @@ partial class DrawingOperations
 
 		// 根据前面给的数据创建实例。
 		// 和代数一样，链的强弱线条的颜色也是不配置的。
-		var node = new LinkViewNode(default, new(startDigit, startCell), new(endDigit, endCell), inference);
+		var node = new LinkViewNode(default!, new(startDigit, startCell), new(endDigit, endCell), inference);
 		await receiver.SendPictureThenDeleteAsync(context.Painter.AddNodes(new[] { node }));
 	}
 
@@ -141,7 +141,7 @@ partial class DrawingOperations
 		// 这里是用作删除比较的节点。
 		// 节点只比较起始点和结束点是否一致，所以跟它是什么关系（强关系还是弱关系）没有关系。这里设置成 default 就行。
 		// 注意顺序。强弱关系本身是没有方向性的，但是在绘制链的时候，是有方向性的，所以如果删除的方向反了，也是不可以正确删除掉的。
-		var node = new LinkViewNode(default, new(startDigit, startCell), new(endDigit, endCell), default);
+		var node = new LinkViewNode(default!, new(startDigit, startCell), new(endDigit, endCell), default);
 		await receiver.SendPictureThenDeleteAsync(context.Painter.RemoveNodes(new[] { node }));
 	}
 
@@ -149,7 +149,7 @@ partial class DrawingOperations
 	/// 内部方法，记录 <see cref="BasicViewNode"/> 类型的节点。
 	/// </summary>
 	/// <seealso cref="BasicViewNode"/>
-	private static HashSet<ViewNode> RecordBasicNodesInternal(string raw, Identifier identifier = default)
+	private static HashSet<ViewNode> RecordBasicNodesInternal(string raw, ColorIdentifier identifier = default!)
 	{
 		var nodes = new HashSet<ViewNode>();
 		foreach (var element in raw.LocalSplit())
