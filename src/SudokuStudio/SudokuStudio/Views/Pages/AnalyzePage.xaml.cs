@@ -152,8 +152,18 @@ public sealed partial class AnalyzePage : Page
 		// Creates the stream to store the output image data.
 		var stream = new InMemoryRandomAccessStream();
 
+		if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
+		{
+			SudokuPane.MainGrid.Background = new SolidColorBrush(Colors.White);
+		}
+
 		// Gets the snapshot of the control.
 		await SudokuPane.RenderToAsync(stream);
+
+		if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
+		{
+			SudokuPane.MainGrid.Background = null;
+		}
 
 		// Copies the data to the data package.
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
@@ -259,7 +269,18 @@ public sealed partial class AnalyzePage : Page
 			}
 			case CommonFileExtensions.PortablePicture:
 			{
+				if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
+				{
+					SudokuPane.MainGrid.Background = new SolidColorBrush(Colors.White);
+				}
+
 				await SudokuPane.RenderToAsync(file);
+
+				if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
+				{
+					SudokuPane.MainGrid.Background = null;
+				}
+
 				break;
 			}
 		}
@@ -321,7 +342,18 @@ public sealed partial class AnalyzePage : Page
 			}
 			case CommonFileExtensions.PortablePicture:
 			{
+				if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
+				{
+					SudokuPane.MainGrid.Background = new SolidColorBrush(Colors.White);
+				}
+
 				await SudokuPane.RenderToAsync(file);
+
+				if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
+				{
+					SudokuPane.MainGrid.Background = null;
+				}
+
 				break;
 			}
 		}
