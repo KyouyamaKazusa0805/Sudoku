@@ -24,6 +24,8 @@
 				<c:SudokuPane
 					x:Name="SudokuPane" Width="610" Height="610" Margin="0,0,40,0" SelectedCell="-1"
 					HorizontalAlignment="Left" VerticalAlignment="Top" DisplayCandidates="True" EnableUndoRedoStacking="False"
+					EnableAnimationFeedback="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableAnimationFeedback,Mode=OneWay}"
+					TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=OneWay}"
 					EnableDoubleTapFilling="False" EnableRightTapRemoving="False"
 					DisableFlyout="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisableSudokuPaneLayout,Mode=OneWay}"
 					PreventConflictingInput="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PreventConflictingInput,Mode=OneWay}"
