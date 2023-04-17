@@ -1,4 +1,4 @@
-﻿namespace System.Diagnostics.CodeAnalysis;
+namespace System.Diagnostics.CodeAnalysis;
 
 /// <summary>
 /// Represents diagnostic results.

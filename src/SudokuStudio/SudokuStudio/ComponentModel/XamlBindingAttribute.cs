@@ -1,20 +1,13 @@
-﻿namespace SudokuStudio.ComponentModel;
+#pragma warning disable CS9113
+namespace SudokuStudio.ComponentModel;
 
 /// <summary>
 /// Defines a binding base attribute type.
 /// </summary>
 /// <typeparam name="T">The type of the property.</typeparam>
-public abstract class XamlBindingAttribute<T> : Attribute
+/// <param name="propertyName">The property name.</param>
+public abstract class XamlBindingAttribute<T>(string propertyName) : Attribute
 {
-	/// <summary>
-	/// Assigns the value <paramref name="propertyName"/>.
-	/// </summary>
-	/// <param name="propertyName">The property name.</param>
-	protected XamlBindingAttribute([SuppressMessage("Style", IDE0060, Justification = Pending)] string propertyName)
-	{
-	}
-
-
 	/// <summary>
 	/// Indicates whether the property type is nullable if the member is reference type; for value type, this property has no effect.
 	/// </summary>

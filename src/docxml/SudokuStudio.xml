@@ -394,12 +394,14 @@
             Defines an attribute that defines an attached property.
             </summary>
             <typeparam name="T">Indicates the type of the property evaluated.</typeparam>
+            <param name="propertyName"><inheritdoc/></param>
         </member>
         <member name="M:SudokuStudio.ComponentModel.AttachedPropertyAttribute`1.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:SudokuStudio.ComponentModel.AttachedPropertyAttribute`1"/> instance via the generated property name.
+            Defines an attribute that defines an attached property.
             </summary>
-            <param name="propertyName">The property name.</param>
+            <typeparam name="T">Indicates the type of the property evaluated.</typeparam>
+            <param name="propertyName"><inheritdoc/></param>
         </member>
         <member name="T:SudokuStudio.ComponentModel.CallbackAttribute">
             <summary>
@@ -415,13 +417,15 @@
             <summary>
             Defines an attribute that defines a dependency property.
             </summary>
+            <param name="propertyName"><inheritdoc/></param>
             <typeparam name="T">Indicates the type of the property evaluated.</typeparam>
         </member>
         <member name="M:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1"/> instance via the generated property name.
+            Defines an attribute that defines a dependency property.
             </summary>
-            <param name="propertyName">The property name.</param>
+            <param name="propertyName"><inheritdoc/></param>
+            <typeparam name="T">Indicates the type of the property evaluated.</typeparam>
         </member>
         <member name="P:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1.MembersNotNullWhenReturnsTrue">
             <summary>
@@ -469,11 +473,13 @@
             Defines a binding base attribute type.
             </summary>
             <typeparam name="T">The type of the property.</typeparam>
+            <param name="propertyName">The property name.</param>
         </member>
         <member name="M:SudokuStudio.ComponentModel.XamlBindingAttribute`1.#ctor(System.String)">
             <summary>
-            Assigns the value <paramref name="propertyName"/>.
+            Defines a binding base attribute type.
             </summary>
+            <typeparam name="T">The type of the property.</typeparam>
             <param name="propertyName">The property name.</param>
         </member>
         <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.IsNullable">
