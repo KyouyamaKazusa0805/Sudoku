@@ -930,7 +930,8 @@
     <value>数独盘面设置透明背景</value>
   </data>
   <data name="SettingsPage_TransparentBackgroundDescription" xml:space="preserve">
-    <value>如果该设置项为“是”的话，那么数独盘面将不会带有任何的背景色，这样会更加契合 UI 的配色风格。</value>
+    <value>如果该设置项为“是”的话，那么数独盘面将不会带有任何的背景色，这样会更加契合 UI 的配色风格。
+不过请注意，要想保存图片文件或复制图片的时候，没有背景的图片是很糟糕的情况，因此程序提供了一种补救措施避免了“透明背景的数独盘面图片”的漏洞出现。不过这会使你在想保存图片文件或复制图片的时候，出现一次由补救措施而引起的临时闪烁。</value>
   </data>
   <data name="SettingsPage_WeakLinkDashStyle" xml:space="preserve">
     <value>弱链的虚线周期</value>

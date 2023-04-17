@@ -2655,7 +2655,8 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If this option is true, white background of sudoku pane will not be rendered. This will make the sudoku pane a better look..
+        ///   Looks up a localized string similar to If this option is true, white background of sudoku pane will not be rendered. This will make the sudoku pane a better look.
+        ///Please note that saving/copying transparent-background sudoku pane is terrible, so this program offers a rescue that prevents &quot;Empty background&quot; bug, but it may cause a flashing while saving/copying pictures from sudoku pane..
         /// </summary>
         internal static string SettingsPage_TransparentBackgroundDescription {
             get {

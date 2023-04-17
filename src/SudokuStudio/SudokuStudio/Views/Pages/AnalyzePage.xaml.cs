@@ -151,19 +151,7 @@ public sealed partial class AnalyzePage : Page
 
 		// Creates the stream to store the output image data.
 		var stream = new InMemoryRandomAccessStream();
-
-		if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
-		{
-			SudokuPane.MainGrid.Background = new SolidColorBrush(Colors.White);
-		}
-
-		// Gets the snapshot of the control.
-		await SudokuPane.RenderToAsync(stream);
-
-		if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
-		{
-			SudokuPane.MainGrid.Background = null;
-		}
+		await OnSavingOrCopyingSudokuPanePictureAsync(stream);
 
 		// Copies the data to the data package.
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
@@ -269,18 +257,7 @@ public sealed partial class AnalyzePage : Page
 			}
 			case CommonFileExtensions.PortablePicture:
 			{
-				if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
-				{
-					SudokuPane.MainGrid.Background = new SolidColorBrush(Colors.White);
-				}
-
-				await SudokuPane.RenderToAsync(file);
-
-				if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
-				{
-					SudokuPane.MainGrid.Background = null;
-				}
-
+				await OnSavingOrCopyingSudokuPanePictureAsync(file);
 				break;
 			}
 		}
@@ -342,18 +319,7 @@ public sealed partial class AnalyzePage : Page
 			}
 			case CommonFileExtensions.PortablePicture:
 			{
-				if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
-				{
-					SudokuPane.MainGrid.Background = new SolidColorBrush(Colors.White);
-				}
-
-				await SudokuPane.RenderToAsync(file);
-
-				if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
-				{
-					SudokuPane.MainGrid.Background = null;
-				}
-
+				await OnSavingOrCopyingSudokuPanePictureAsync(file);
 				break;
 			}
 		}
@@ -675,6 +641,39 @@ public sealed partial class AnalyzePage : Page
 			MainWindow mainWindow => mainWindow,
 			_ => throw new InvalidOperationException("Main window cannot be found.")
 		};
+
+	/// <summary>
+	/// Produces a copying/saving operation for pictures from sudoku pane <see cref="SudokuPane"/>.
+	/// </summary>
+	/// <typeparam name="T">
+	/// The type of the handling argument. This type should be <see cref="IRandomAccessStream"/> or <see cref="StorageFile"/>.
+	/// </typeparam>
+	/// <param name="obj">The argument.</param>
+	/// <returns>A <see cref="Task"/> instance that contains details for the current asynchronous operation.</returns>
+	/// <seealso cref="IRandomAccessStream"/>
+	/// <seealso cref="StorageFile"/>
+	private async Task OnSavingOrCopyingSudokuPanePictureAsync<T>(T obj)
+	{
+		Debug.Assert(obj is IRandomAccessStream or StorageFile);
+
+		if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
+		{
+			SudokuPane.MainGrid.Background = new SolidColorBrush(Colors.White);
+		}
+
+		await (
+			obj switch
+			{
+				IRandomAccessStream stream => SudokuPane.RenderToAsync(stream),
+				StorageFile file => SudokuPane.RenderToAsync(file)
+			}
+		);
+
+		if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
+		{
+			SudokuPane.MainGrid.Background = null;
+		}
+	}
 
 
 	/// <summary>

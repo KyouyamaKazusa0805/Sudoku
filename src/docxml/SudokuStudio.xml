@@ -4504,9 +4504,10 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_TransparentBackgroundDescription">
-            <summary>
-              Looks up a localized string similar to If this option is true, white background of sudoku pane will not be rendered. This will make the sudoku pane a better look..
-            </summary>
+             <summary>
+               Looks up a localized string similar to If this option is true, white background of sudoku pane will not be rendered. This will make the sudoku pane a better look.
+            Please note that saving/copying transparent-background sudoku pane is terrible, so this program offers a rescue that prevents &quot;Empty background&quot; bug, but it may cause a flashing while saving/copying pictures from sudoku pane..
+             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_WeakLinkDashStyle">
             <summary>
@@ -6621,6 +6622,18 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>The main window.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the base window cannot be found.</exception>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.OnSavingOrCopyingSudokuPanePictureAsync``1(``0)">
+            <summary>
+            Produces a copying/saving operation for pictures from sudoku pane <see cref="F:SudokuStudio.Views.Pages.AnalyzePage.SudokuPane"/>.
+            </summary>
+            <typeparam name="T">
+            The type of the handling argument. This type should be <see cref="T:Windows.Storage.Streams.IRandomAccessStream"/> or <see cref="T:Windows.Storage.StorageFile"/>.
+            </typeparam>
+            <param name="obj">The argument.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> instance that contains details for the current asynchronous operation.</returns>
+            <seealso cref="T:Windows.Storage.Streams.IRandomAccessStream"/>
+            <seealso cref="T:Windows.Storage.StorageFile"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.ChangeCurrentViewIndex(SudokuStudio.Views.Pages.AnalyzePage,System.Int32)">
             <summary>
