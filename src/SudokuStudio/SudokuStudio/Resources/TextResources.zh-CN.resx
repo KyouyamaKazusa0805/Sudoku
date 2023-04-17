@@ -926,6 +926,12 @@
   <data name="SettingsPage_SudokuGridBehaviors" xml:space="preserve">
     <value>数独盘面行为</value>
   </data>
+  <data name="SettingsPage_TransparentBackground" xml:space="preserve">
+    <value>数独盘面设置透明背景</value>
+  </data>
+  <data name="SettingsPage_TransparentBackgroundDescription" xml:space="preserve">
+    <value>如果该设置项为“是”的话，那么数独盘面将不会带有任何的背景色，这样会更加契合 UI 的配色风格。</value>
+  </data>
   <data name="SettingsPage_WeakLinkDashStyle" xml:space="preserve">
     <value>弱链的虚线周期</value>
   </data>

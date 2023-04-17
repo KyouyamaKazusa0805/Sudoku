@@ -11,6 +11,8 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<bool>("EnableUndoRedoStacking", DefaultValue = true, MembersNotNullWhenReturnsTrue = new[] { nameof(_redoStack), nameof(_undoStack) }, DocSummary = "Indicates whether the pane enables for undoing and redoing operation.")]
 [DependencyProperty<bool>("EnableDoubleTapFilling", DefaultValue = true, DocSummary = "Indicates whether the digit will be automatically input by double tapping a candidate.")]
 [DependencyProperty<bool>("EnableRightTapRemoving", DefaultValue = true, DocSummary = "Indicates whether the digit will be removed (eliminated) from the containing cell by tapping a candidate using right mouse button.")]
+[DependencyProperty<bool>("EnableAnimationFeedback", DefaultValue = true, DocSummary = "Indicates whether sudoku pane enables for animation feedback.")]
+[DependencyProperty<bool>("TransparentBackground", DocSummary = "Indicates whether sudoku pane does not use background color to display a sudoku puzzle.")]
 [DependencyProperty<double>("GivenFontScale", DefaultValue = 1.0, DocSummary = "Indicates the font scale of given digits. The value should generally be below 1.0.")]
 [DependencyProperty<double>("ModifiableFontScale", DefaultValue = 1.0, DocSummary = "Indicates the font scale of modifiable digits. The value should generally be below 1.0.")]
 [DependencyProperty<double>("PencilmarkFontScale", DefaultValue = .33, DocSummary = "Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.")]

@@ -2646,6 +2646,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Make sudoku pane background transparent.
+        /// </summary>
+        internal static string SettingsPage_TransparentBackground {
+            get {
+                return ResourceManager.GetString("SettingsPage_TransparentBackground", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If this option is true, white background of sudoku pane will not be rendered. This will make the sudoku pane a better look..
+        /// </summary>
+        internal static string SettingsPage_TransparentBackgroundDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_TransparentBackgroundDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Weak link dash style.
         /// </summary>
         internal static string SettingsPage_WeakLinkDashStyle {

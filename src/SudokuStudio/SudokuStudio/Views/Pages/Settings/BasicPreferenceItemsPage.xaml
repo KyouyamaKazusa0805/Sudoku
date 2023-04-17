@@ -53,6 +53,11 @@
 					Description="{m:R Key=SettingsPage_EnableAnimationFeedbackDescription}">
 					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableAnimationFeedback,Mode=TwoWay}" />
 				</w:SettingsCard>
+				<w:SettingsCard
+					Header="{m:R Key=SettingsPage_TransparentBackground}"
+					Description="{m:R Key=SettingsPage_TransparentBackgroundDescription}">
+					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=TwoWay}" />
+				</w:SettingsCard>
 			</w:SettingsGroup>
 			<w:SettingsGroup Header="{m:R Key=SettingsPage_MiscellaneousBehaviors}">
 				<w:SettingsCard

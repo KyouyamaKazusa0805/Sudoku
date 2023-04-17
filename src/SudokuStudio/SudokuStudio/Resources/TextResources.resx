@@ -923,6 +923,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_SudokuGridBehaviors" xml:space="preserve">
     <value>Sudoku Grid Behaviors</value>
   </data>
+  <data name="SettingsPage_TransparentBackground" xml:space="preserve">
+    <value>Make sudoku pane background transparent</value>
+  </data>
+  <data name="SettingsPage_TransparentBackgroundDescription" xml:space="preserve">
+    <value>If this option is true, white background of sudoku pane will not be rendered. This will make the sudoku pane a better look.</value>
+  </data>
   <data name="SettingsPage_WeakLinkDashStyle" xml:space="preserve">
     <value>Weak link dash style</value>
   </data>

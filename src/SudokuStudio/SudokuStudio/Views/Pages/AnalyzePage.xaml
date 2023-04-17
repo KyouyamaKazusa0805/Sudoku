@@ -99,6 +99,8 @@
 					<c:SudokuPane
 						x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0" SelectedCell="-1"
 						HorizontalAlignment="Left" VerticalAlignment="Top" ViewUnit="{x:Null}"
+						EnableAnimationFeedback="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableAnimationFeedback,Mode=TwoWay}"
+						TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=TwoWay}"
 						EnableDoubleTapFilling="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableDoubleTapFillingForSudokuPane,Mode=OneWay}"
 						EnableRightTapRemoving="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableRightTapRemovingForSudokuPane,Mode=OneWay}"
 						DisableFlyout="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisableSudokuPaneLayout,Mode=OneWay}"

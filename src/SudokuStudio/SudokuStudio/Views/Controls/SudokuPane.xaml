@@ -33,7 +33,8 @@
 	</UserControl.Resources>
 
 	<Grid
-		x:Name="MainGrid" x:FieldModifier="internal" Background="White"
+		x:Name="MainGrid" x:FieldModifier="internal"
+		Background="{x:Bind cvt:ColorConversion.GetSudokuPaneBackground(TransparentBackground),Mode=OneWay}"
 		RowDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4,Auto" ColumnDefinitions="Auto,4,*,*,*,*,*,*,*,*,*,4,Auto">
 		<!--Outside border-->
 		<Border
