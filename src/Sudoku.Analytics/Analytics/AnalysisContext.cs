@@ -26,9 +26,7 @@ public ref struct AnalysisContext(List<Step>? accumulator, [UnscopedRef] in Grid
 	public readonly ref readonly Grid Grid => ref _grid;
 
 	/// <summary>
-	/// <para>
 	/// <para>The accumulator to store each step.</para>
-	/// </para>
 	/// <para>
 	/// If <see cref="OnlyFindOne"/> is set to <see langword="true"/>,
 	/// this argument will become useless because we only finding one step is okay,
