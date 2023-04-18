@@ -94,8 +94,6 @@ global using Windows.UI.Text;
 global using Windows.UI.ViewManagement;
 global using WinRT;
 global using WinRT.Interop;
-global using static System.Diagnostics.CodeAnalysis.DiagnosticResults;
-global using static System.Diagnostics.CodeAnalysis.Justification;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
 global using static System.Text.Json.JsonSerializer;

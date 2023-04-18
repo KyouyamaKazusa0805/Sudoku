@@ -1,4 +1,4 @@
-﻿global using System.Buffers;
+global using System.Buffers;
 global using System.Collections;
 global using System.Collections.Generic;
 global using System.Collections.Immutable;
@@ -20,8 +20,6 @@ global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using System.Threading;
 global using System.Threading.Tasks;
-global using static System.Diagnostics.CodeAnalysis.DiagnosticResults;
-global using static System.Diagnostics.CodeAnalysis.Justification;
 global using static System.Math;
 global using static System.MathF;
 global using static System.Numerics.BitOperations;

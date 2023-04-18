@@ -1,3 +1,4 @@
+#pragma warning disable IDE0060
 namespace System.Diagnostics.CodeGen;
 
 /// <summary>
@@ -22,9 +23,7 @@ public sealed class GeneratedOverridingMemberAttribute : Attribute
 	/// <see cref="object.Equals(object?)"/>.
 	/// </summary>
 	/// <param name="overridingEqualsBehavior">The behavior.</param>
-	public GeneratedOverridingMemberAttribute(
-		[SuppressMessage("Style", IDE0060, Justification = Pending)] GeneratedEqualsBehavior overridingEqualsBehavior
-	)
+	public GeneratedOverridingMemberAttribute(GeneratedEqualsBehavior overridingEqualsBehavior)
 	{
 	}
 
@@ -34,10 +33,7 @@ public sealed class GeneratedOverridingMemberAttribute : Attribute
 	/// </summary>
 	/// <param name="overridingGetHashCodeBehavior">The behavior.</param>
 	/// <param name="arguments">Extra arguments.</param>
-	public GeneratedOverridingMemberAttribute(
-		[SuppressMessage("Style", IDE0060, Justification = Pending)] GeneratedGetHashCodeBehavior overridingGetHashCodeBehavior,
-		[SuppressMessage("Style", IDE0060, Justification = Pending)] params object?[]? arguments
-	)
+	public GeneratedOverridingMemberAttribute(GeneratedGetHashCodeBehavior overridingGetHashCodeBehavior, params object?[]? arguments)
 	{
 	}
 
@@ -47,10 +43,7 @@ public sealed class GeneratedOverridingMemberAttribute : Attribute
 	/// </summary>
 	/// <param name="overridingToStringBehavior">The behavior.</param>
 	/// <param name="arguments">Extra arguments.</param>
-	public GeneratedOverridingMemberAttribute(
-		[SuppressMessage("Style", IDE0060, Justification = Pending)] GeneratedToStringBehavior overridingToStringBehavior,
-		[SuppressMessage("Style", IDE0060, Justification = Pending)] params object?[]? arguments
-	)
+	public GeneratedOverridingMemberAttribute(GeneratedToStringBehavior overridingToStringBehavior, params object?[]? arguments)
 	{
 	}
 }

@@ -1720,16 +1720,6 @@
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.DiagnosticResults">
-            <summary>
-            Represents diagnostic results.
-            </summary>
-        </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.Justification">
-            <summary>
-            Represents justification.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.StringSyntax">
             <summary>
             Represents a list of <see cref="T:System.String"/> constants being used by <see cref="T:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute"/>.
