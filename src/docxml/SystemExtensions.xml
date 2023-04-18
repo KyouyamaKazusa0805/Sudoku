@@ -1767,55 +1767,6 @@
             Defines an attribute that specifies a deconstrution method.
             </summary>
         </member>
-        <member name="T:System.Diagnostics.CodeGen.EqualityComparisonMode">
-            <summary>
-            Defines a mode to compare two instances of equality.
-            </summary>
-        </member>
-        <member name="F:System.Diagnostics.CodeGen.EqualityComparisonMode.Disable">
-            <summary>
-            Indicates the source generator will disable the equality comparison.
-            </summary>
-        </member>
-        <member name="F:System.Diagnostics.CodeGen.EqualityComparisonMode.Intelligent">
-            <summary>
-            Indicates the source generator will decide the suitable comparison mode.
-            </summary>
-        </member>
-        <member name="F:System.Diagnostics.CodeGen.EqualityComparisonMode.EqualityOperator">
-            <summary>
-            Indicates the comparison mode is to call <see cref="T:System.Object"/>.<see langword="operator"/> ==(<see cref="T:System.Object"/>, <see cref="T:System.Object"/>)
-            to check whether two instances are considered equal.
-            </summary>
-        </member>
-        <member name="F:System.Diagnostics.CodeGen.EqualityComparisonMode.InstanceEqualsMethod">
-            <summary>
-            Indicates the comparison mode is to call <c><see cref="M:System.IEquatable`1.Equals(`0)"/></c>
-            to check whether two instances are considered equal.
-            </summary>
-            <seealso cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="F:System.Diagnostics.CodeGen.EqualityComparisonMode.InstanceCompareToMethod">
-            <summary>
-            Indicates the comparison mode is to call <c><see cref="M:System.IComparable`1.CompareTo(`0)"/></c>
-            to check whether two instances are considered equal.
-            </summary>
-            <seealso cref="M:System.IComparable`1.CompareTo(`0)"/>
-        </member>
-        <member name="F:System.Diagnostics.CodeGen.EqualityComparisonMode.EqualityComparerDefaultInstance">
-            <summary>
-            Indicates the comparison mode is to call <c><see cref="M:System.Collections.Generic.EqualityComparer`1.Equals(`0,`0)"/></c>
-            via instance <see cref="P:System.Collections.Generic.EqualityComparer`1.Default"/> to check whether two instances are considered equal.
-            </summary>
-            <seealso cref="P:System.Collections.Generic.EqualityComparer`1.Default"/>
-            <seealso cref="M:System.Collections.Generic.EqualityComparer`1.Equals(`0,`0)"/>
-        </member>
-        <member name="F:System.Diagnostics.CodeGen.EqualityComparisonMode.ObjectReference">
-            <summary>
-            Indicates the comparison mode is to compare two objects' reference, via calling <see cref="M:System.Object.ReferenceEquals(System.Object,System.Object)"/>.
-            </summary>
-            <seealso cref="M:System.Object.ReferenceEquals(System.Object,System.Object)"/>
-        </member>
         <member name="T:System.Diagnostics.CodeGen.GeneralizedAccessibility">
             <summary>
             Defines a kind of accessibility that is defined in C#.
