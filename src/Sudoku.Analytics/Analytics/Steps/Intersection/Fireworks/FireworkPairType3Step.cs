@@ -3,29 +3,24 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Firework Pair Type 3</b> technique.
 /// </summary>
-public sealed class FireworkPairType3Step(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, Mask digitsMask, int emptyRectangleBlock) :
-	FireworkStep(conclusions, views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="cells">Indicates the cells used.</param>
+/// <param name="digitsMask">Indicates the mask of digits used.</param>
+/// <param name="emptyRectangleBlock">Indicates the block index that empty rectangle forms.</param>
+public sealed partial class FireworkPairType3Step(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] scoped in CellMap cells,
+	[PrimaryConstructorParameter] Mask digitsMask,
+	[PrimaryConstructorParameter] int emptyRectangleBlock
+) : FireworkStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
 
-	/// <summary>
-	/// Indicates the block index that empty rectangle forms.
-	/// </summary>
-	public int EmptyRectangleBlock { get; } = emptyRectangleBlock;
-
-	/// <summary>
-	/// Indicates the mask of digits used.
-	/// </summary>
-	public Mask DigitsMask { get; } = digitsMask;
-
 	/// <inheritdoc/>
 	public override Technique Code => Technique.FireworkPairType3;
-
-	/// <summary>
-	/// Indicates the cells used.
-	/// </summary>
-	public CellMap Cells { get; } = cells;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

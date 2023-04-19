@@ -3,20 +3,21 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is an <b>Almost Locked Candidates</b> technique.
 /// </summary>
-public sealed class AlmostLockedCandidatesStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digitsMask">Indicates the mask that contains the digits used.</param>
+/// <param name="baseCells">Indicates the base cells.</param>
+/// <param name="targetCells">Indicates the target cells.</param>
+/// <param name="hasValueCell">Indicates whether the step contains value cells.</param>
+public sealed partial class AlmostLockedCandidatesStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	Mask digitsMask,
-	scoped in CellMap baseCells,
-	scoped in CellMap targetCells,
-	bool hasValueCell
+	[PrimaryConstructorParameter] Mask digitsMask,
+	[PrimaryConstructorParameter] scoped in CellMap baseCells,
+	[PrimaryConstructorParameter] scoped in CellMap targetCells,
+	[PrimaryConstructorParameter] bool hasValueCell
 ) : IntersectionStep(conclusions, views)
 {
-	/// <summary>
-	/// Indicates whether the step contains value cells.
-	/// </summary>
-	public bool HasValueCell { get; } = hasValueCell;
-
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.5M;
 
@@ -25,26 +26,11 @@ public sealed class AlmostLockedCandidatesStep(
 	/// </summary>
 	public int Size => PopCount((uint)DigitsMask);
 
-	/// <summary>
-	/// Indicates the mask that contains the digits used.
-	/// </summary>
-	public Mask DigitsMask { get; } = digitsMask;
-
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>
 	public override Technique Code => (Technique)((int)Technique.AlmostLockedPair + Size - 2);
-
-	/// <summary>
-	/// Indicates the base cells.
-	/// </summary>
-	public CellMap BaseCells { get; } = baseCells;
-
-	/// <summary>
-	/// Indicates the target cells.
-	/// </summary>
-	public CellMap TargetCells { get; } = targetCells;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases

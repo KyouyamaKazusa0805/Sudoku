@@ -1,48 +1,28 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Firework Pair Type 2</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
-/// <param name="digitsMask">The digits used.</param>
-/// <param name="pattern1">The first pattern used.</param>
-/// <param name="pattern2">The second pattern used.</param>
-/// <param name="extraCell">The extra cell used.</param>
-public sealed class FireworkPairType2Step(
+/// <param name="digitsMask">Indicates the mask of digits used.</param>
+/// <param name="pattern1">Indicates the first firework pattern used.</param>
+/// <param name="pattern2">Indicates the second firework pattern used.</param>
+/// <param name="extraCell">Indicates the extra cell used.</param>
+public sealed partial class FireworkPairType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	Mask digitsMask,
-	scoped in Firework pattern1,
-	scoped in Firework pattern2,
-	int extraCell
+	[PrimaryConstructorParameter] Mask digitsMask,
+	[PrimaryConstructorParameter] scoped in Firework pattern1,
+	[PrimaryConstructorParameter] scoped in Firework pattern2,
+	[PrimaryConstructorParameter] int extraCell
 ) : FireworkStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .3M;
 
-	/// <summary>
-	/// Indicates the extra cell used.
-	/// </summary>
-	public int ExtraCell { get; } = extraCell;
-
-	/// <summary>
-	/// Indicates the mask of digits used.
-	/// </summary>
-	public Mask DigitsMask { get; } = digitsMask;
-
 	/// <inheritdoc/>
 	public override Technique Code => Technique.FireworkPairType2;
-
-	/// <summary>
-	/// Indicates the first firework pattern used.
-	/// </summary>
-	public Firework Pattern1 { get; } = pattern1;
-
-	/// <summary>
-	/// Indicates the second firework pattern used.
-	/// </summary>
-	public Firework Pattern2 { get; } = pattern2;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

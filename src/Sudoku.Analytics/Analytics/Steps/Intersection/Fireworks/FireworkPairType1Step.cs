@@ -1,39 +1,25 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Firework Pair Type 1</b> technique.
 /// </summary>
-public sealed class FireworkPairType1Step(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="cells">Indicates the cells used.</param>
+/// <param name="digitsMask">Indicates the digits used.</param>
+/// <param name="extraCell1">Indicates the first extra digit used.</param>
+/// <param name="extraCell2">Indicates the second extra digit used.</param>
+public sealed partial class FireworkPairType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	scoped in CellMap cells,
-	Mask digitsMask,
-	int extraCell1,
-	int extraCell2
+	[PrimaryConstructorParameter] scoped in CellMap cells,
+	[PrimaryConstructorParameter] Mask digitsMask,
+	[PrimaryConstructorParameter] int extraCell1,
+	[PrimaryConstructorParameter] int extraCell2
 ) : FireworkStep(conclusions, views)
 {
-	/// <summary>
-	/// Indicates the first extra digit used.
-	/// </summary>
-	public int ExtraCell1 { get; } = extraCell1;
-
-	/// <summary>
-	/// Indicates the second extra digit used.
-	/// </summary>
-	public int ExtraCell2 { get; } = extraCell2;
-
-	/// <summary>
-	/// Indicates the digits used.
-	/// </summary>
-	public Mask DigitsMask { get; } = digitsMask;
-
 	/// <inheritdoc/>
 	public override Technique Code => Technique.FireworkPairType1;
-
-	/// <summary>
-	/// Indicates the cells used.
-	/// </summary>
-	public CellMap Cells { get; } = cells;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

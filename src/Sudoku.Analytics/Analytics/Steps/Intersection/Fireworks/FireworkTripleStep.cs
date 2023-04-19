@@ -1,26 +1,24 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Firework Triple</b> technique.
 /// </summary>
-public sealed class FireworkTripleStep(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, Mask digitsMask) :
-	FireworkStep(conclusions, views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="cells">Indicates the cells used.</param>
+/// <param name="digitsMask">Indicates the mask of digits used.</param>
+public sealed partial class FireworkTripleStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] scoped in CellMap cells,
+	[PrimaryConstructorParameter] Mask digitsMask
+) : FireworkStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
-	/// <summary>
-	/// Indicates the mask of digits used.
-	/// </summary>
-	public Mask DigitsMask { get; } = digitsMask;
-
 	/// <inheritdoc/>
 	public override Technique Code => Technique.FireworkTriple;
-
-	/// <summary>
-	/// Indicates the cells used.
-	/// </summary>
-	public CellMap Cells { get; } = cells;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

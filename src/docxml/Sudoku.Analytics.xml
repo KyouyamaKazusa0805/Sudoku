@@ -10837,16 +10837,23 @@ result ^= expression;
             <summary>
             Provides with a step that is an <b>Almost Locked Candidates</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digitsMask">Indicates the mask that contains the digits used.</param>
+            <param name="baseCells">Indicates the base cells.</param>
+            <param name="targetCells">Indicates the target cells.</param>
+            <param name="hasValueCell">Indicates whether the step contains value cells.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Provides with a step that is an <b>Almost Locked Candidates</b> technique.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.HasValueCell">
-            <summary>
-            Indicates whether the step contains value cells.
-            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digitsMask">Indicates the mask that contains the digits used.</param>
+            <param name="baseCells">Indicates the base cells.</param>
+            <param name="targetCells">Indicates the target cells.</param>
+            <param name="hasValueCell">Indicates whether the step contains value cells.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.BaseDifficulty">
             <inheritdoc/>
@@ -10856,26 +10863,11 @@ result ^= expression;
             Indicates the number of digits used.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.DigitsMask">
-            <summary>
-            Indicates the mask that contains the digits used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.DifficultyLevel">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.Code">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.BaseCells">
-            <summary>
-            Indicates the base cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.TargetCells">
-            <summary>
-            Indicates the target cells.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.ExtraDifficultyCases">
             <inheritdoc/>
@@ -10883,41 +10875,73 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.BaseCells">
+            <summary>
+            The generated property declaration for parameter <c>baseCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.TargetCells">
+            <summary>
+            The generated property declaration for parameter <c>targetCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.HasValueCell">
+            <summary>
+            The generated property declaration for parameter <c>hasValueCell</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.FireworkPairType1Step">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 1</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
+            <param name="extraCell1">Indicates the first extra digit used.</param>
+            <param name="extraCell2">Indicates the second extra digit used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.FireworkPairType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 1</b> technique.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.ExtraCell1">
-            <summary>
-            Indicates the first extra digit used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.ExtraCell2">
-            <summary>
-            Indicates the second extra digit used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.DigitsMask">
-            <summary>
-            Indicates the digits used.
-            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
+            <param name="extraCell1">Indicates the first extra digit used.</param>
+            <param name="extraCell2">Indicates the second extra digit used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.Cells">
-            <summary>
-            Indicates the cells used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.ExtraCell1">
+            <summary>
+            The generated property declaration for parameter <c>extraCell1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.ExtraCell2">
+            <summary>
+            The generated property declaration for parameter <c>extraCell2</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.FireworkPairType2Step">
             <summary>
@@ -10925,10 +10949,10 @@ result ^= expression;
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="digitsMask">The digits used.</param>
-            <param name="pattern1">The first pattern used.</param>
-            <param name="pattern2">The second pattern used.</param>
-            <param name="extraCell">The extra cell used.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
+            <param name="pattern1">Indicates the first firework pattern used.</param>
+            <param name="pattern2">Indicates the second firework pattern used.</param>
+            <param name="extraCell">Indicates the extra cell used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.FireworkPairType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int16,Sudoku.Analytics.Patterns.Firework@,Sudoku.Analytics.Patterns.Firework@,System.Int32)">
             <summary>
@@ -10936,112 +10960,134 @@ result ^= expression;
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="digitsMask">The digits used.</param>
-            <param name="pattern1">The first pattern used.</param>
-            <param name="pattern2">The second pattern used.</param>
-            <param name="extraCell">The extra cell used.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
+            <param name="pattern1">Indicates the first firework pattern used.</param>
+            <param name="pattern2">Indicates the second firework pattern used.</param>
+            <param name="extraCell">Indicates the extra cell used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.ExtraCell">
-            <summary>
-            Indicates the extra cell used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.DigitsMask">
-            <summary>
-            Indicates the mask of digits used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.Pattern1">
             <summary>
-            Indicates the first firework pattern used.
+            The generated property declaration for parameter <c>pattern1</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.Pattern2">
             <summary>
-            Indicates the second firework pattern used.
+            The generated property declaration for parameter <c>pattern2</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.FormatInterpolatedParts">
-            <inheritdoc/>
+        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.ExtraCell">
+            <summary>
+            The generated property declaration for parameter <c>extraCell</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.FireworkPairType3Step">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 3</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
+            <param name="emptyRectangleBlock">Indicates the block index that empty rectangle forms.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.FireworkPairType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 3</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
+            <param name="emptyRectangleBlock">Indicates the block index that empty rectangle forms.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.EmptyRectangleBlock">
-            <summary>
-            Indicates the block index that empty rectangle forms.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.DigitsMask">
-            <summary>
-            Indicates the mask of digits used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.Cells">
             <summary>
-            Indicates the cells used.
+            The generated property declaration for parameter <c>cells</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.FormatInterpolatedParts">
-            <inheritdoc/>
+        <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.EmptyRectangleBlock">
+            <summary>
+            The generated property declaration for parameter <c>emptyRectangleBlock</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.FireworkQuadrupleStep">
             <summary>
             Provides with a step that is a <b>Firework Quadruple</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.FireworkQuadrupleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Firework Quadruple</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkQuadrupleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkQuadrupleStep.DigitsMask">
-            <summary>
-            Indicates the mask of digits used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkQuadrupleStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkQuadrupleStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkQuadrupleStep.Cells">
             <summary>
-            Indicates the cells used.
+            The generated property declaration for parameter <c>cells</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkQuadrupleStep.FormatInterpolatedParts">
-            <inheritdoc/>
+        <member name="P:Sudoku.Analytics.Steps.FireworkQuadrupleStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.FireworkStep">
             <summary>
             Provides with a step that is a <b>Firework</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.FireworkStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Firework</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkStep.BaseDifficulty">
             <inheritdoc/>
@@ -11053,40 +11099,52 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Firework Triple</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.FireworkTripleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Firework Triple</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkTripleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkTripleStep.DigitsMask">
-            <summary>
-            Indicates the mask of digits used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkTripleStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkTripleStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkTripleStep.Cells">
             <summary>
-            Indicates the cells used.
+            The generated property declaration for parameter <c>cells</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkTripleStep.FormatInterpolatedParts">
-            <inheritdoc/>
+        <member name="P:Sudoku.Analytics.Steps.FireworkTripleStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.IntersectionStep">
             <summary>
             Provides with a step that is an <b>Intersection</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.IntersectionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is an <b>Intersection</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.IntersectionStep.Name">
             <inheritdoc/>
@@ -11098,26 +11156,21 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Locked Candidates</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="baseSet">Indicates the house that the current locked candidates forms.</param>
+            <param name="coverSet">Indicates the house that the current locked candidates influences.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.LockedCandidatesStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Locked Candidates</b> technique.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.Digit">
-            <summary>
-            Indicates the digit used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.BaseSet">
-            <summary>
-            Indicates the house that the current locked candidates forms.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.CoverSet">
-            <summary>
-            Indicates the house that the current locked candidates influences.
-            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="baseSet">Indicates the house that the current locked candidates forms.</param>
+            <param name="coverSet">Indicates the house that the current locked candidates influences.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.BaseDifficulty">
             <inheritdoc/>
@@ -11130,6 +11183,21 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.Digit">
+            <summary>
+            The generated property declaration for parameter <c>digit</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.BaseSet">
+            <summary>
+            The generated property declaration for parameter <c>baseSet</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.CoverSet">
+            <summary>
+            The generated property declaration for parameter <c>coverSet</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BowmanBingoStep">
             <summary>
