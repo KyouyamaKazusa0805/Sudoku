@@ -3,13 +3,12 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Single Digit Pattern</b> technique.
 /// </summary>
-public abstract class SingleDigitPatternStep(Conclusion[] conclusions, View[]? views, int digit) : Step(conclusions, views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digit">Indicates the digit used in this pattern.</param>
+public abstract partial class SingleDigitPatternStep(Conclusion[] conclusions, View[]? views, [PrimaryConstructorParameter] int digit) :
+	Step(conclusions, views)
 {
-	/// <summary>
-	/// Indicates the digit used in this pattern.
-	/// </summary>
-	public int Digit { get; } = digit;
-
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
 
