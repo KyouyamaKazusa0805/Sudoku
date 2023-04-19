@@ -191,7 +191,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 			=> namedArgs.TryGetValueOrDefault<string?>("Accessibility", out var a) && a is not null ? $"{a.Trim().ToLower()} " : @default;
 
 		static string getRefModifiers(NamedArgs namedArgs, ScopedKind scopedKind, RefKind refKind, TypeKind typeKind, bool isReadOnly)
-			=> (namedArgs.TryGetValueOrDefault<string?>("RefKind", out var l) ? l : null)
+			=> (namedArgs.TryGetValueOrDefault<string?>("RefKind", out var l) && l is not null ? $"{l} " : null)
 			?? (scopedKind, refKind, typeKind, isReadOnly) switch
 			{
 				(0, RefKind.In, TypeKind.Struct, false) => "readonly ref readonly ",
