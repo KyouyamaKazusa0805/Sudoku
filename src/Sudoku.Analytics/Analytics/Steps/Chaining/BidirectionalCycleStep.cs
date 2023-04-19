@@ -3,8 +3,18 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Bidirectional Cycle</b> technique that is compatible with program <b>Sudoku Explainer</b>.
 /// </summary>
-public sealed class BidirectionalCycleStep(Conclusion[] conclusions, View[]? views, ChainNode destinationOn, bool isX, bool isY) :
-	ChainingStep(conclusions, views, isX, isY)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="destinationOn">Indicates the destination node that is "on" status.</param>
+/// <param name="isX"><inheritdoc/></param>
+/// <param name="isY"><inheritdoc/></param>
+public sealed partial class BidirectionalCycleStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] ChainNode destinationOn,
+	bool isX,
+	bool isY
+) : ChainingStep(conclusions, views, isX, isY)
 {
 	internal BidirectionalCycleStep(Conclusion[] conclusions, ChainNode destinationOn, bool isX, bool isY) :
 		this(conclusions, null!, destinationOn, isX, isY)
@@ -16,11 +26,6 @@ public sealed class BidirectionalCycleStep(Conclusion[] conclusions, View[]? vie
 	{
 	}
 
-
-	/// <summary>
-	/// Indicates the destination node that is "on" status.
-	/// </summary>
-	public ChainNode DestinationOn { get; } = destinationOn;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

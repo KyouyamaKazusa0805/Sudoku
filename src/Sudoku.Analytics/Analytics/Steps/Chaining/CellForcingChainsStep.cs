@@ -3,11 +3,17 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is an <b>Cell Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
 /// </summary>
-public sealed class CellForcingChainsStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="sourceCell">Indicates the source cell that all branches start.</param>
+/// <param name="chains">Indicates all possible branches in this technique.</param>
+/// <param name="isDynamic"><inheritdoc/></param>
+/// <param name="dynamicNestingLevel"><inheritdoc/></param>
+public sealed partial class CellForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	byte sourceCell,
-	MultipleForcingChains chains,
+	[PrimaryConstructorParameter] byte sourceCell,
+	[PrimaryConstructorParameter] MultipleForcingChains chains,
 	bool isDynamic,
 	int dynamicNestingLevel = 0
 ) : ChainingStep(conclusions, views, isMultiple: true, isDynamic: isDynamic, dynamicNestingLevel: dynamicNestingLevel)
@@ -27,16 +33,6 @@ public sealed class CellForcingChainsStep(
 	{
 	}
 
-
-	/// <summary>
-	/// Indicates the source cell that all branches start.
-	/// </summary>
-	public byte SourceCell { get; } = sourceCell;
-
-	/// <summary>
-	/// Indicates all possible branches in this technique.
-	/// </summary>
-	public MultipleForcingChains Chains { get; } = chains;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

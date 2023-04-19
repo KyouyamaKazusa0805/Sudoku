@@ -3,12 +3,19 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is an <b>Region (House) Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
 /// </summary>
-public sealed class RegionForcingChainsStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="houseIndex">Indicates the index of the house represented.</param>
+/// <param name="digit">Indicates the digit of the chain bound with.</param>
+/// <param name="chains">Indicates all possible branches in this technique.</param>
+/// <param name="isDynamic"><inheritdoc/></param>
+/// <param name="dynamicNestingLevel"><inheritdoc/></param>
+public sealed partial class RegionForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int houseIndex,
-	byte digit,
-	MultipleForcingChains chains,
+	[PrimaryConstructorParameter] int houseIndex,
+	[PrimaryConstructorParameter] byte digit,
+	[PrimaryConstructorParameter] MultipleForcingChains chains,
 	bool isDynamic,
 	int dynamicNestingLevel = 0
 ) : ChainingStep(conclusions, views, isMultiple: true, isDynamic: isDynamic, dynamicNestingLevel: dynamicNestingLevel)
@@ -29,21 +36,6 @@ public sealed class RegionForcingChainsStep(
 	{
 	}
 
-
-	/// <summary>
-	/// Indicates the digit of the chain bound with.
-	/// </summary>
-	public byte Digit { get; } = digit;
-
-	/// <summary>
-	/// Indicates the index of the house represented.
-	/// </summary>
-	public int HouseIndex { get; } = houseIndex;
-
-	/// <summary>
-	/// Indicates all possible branches in this technique.
-	/// </summary>
-	public MultipleForcingChains Chains { get; } = chains;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

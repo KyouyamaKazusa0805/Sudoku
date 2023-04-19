@@ -7921,11 +7921,15 @@ result ^= expression;
             <summary>
             Provides with a step that is an <b>Almost Locked Sets</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsStep.Name">
             <inheritdoc/>
@@ -7934,24 +7938,28 @@ result ^= expression;
             <summary>
             Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="als1">Indicates the first ALS used.</param>
+            <param name="als2">Indicates the second ALS used.</param>
+            <param name="conjugatePair">Indicates the conjugate pair used as a bridge.</param>
+            <param name="wDigitsMask">Indicates the mask of W digits used.</param>
+            <param name="xDigit">Indicates the digit X.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Concepts.Conjugate,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="als1">Indicates the first ALS used.</param>
+            <param name="als2">Indicates the second ALS used.</param>
+            <param name="conjugatePair">Indicates the conjugate pair used as a bridge.</param>
+            <param name="wDigitsMask">Indicates the mask of W digits used.</param>
+            <param name="xDigit">Indicates the digit X.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.BaseDifficulty">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.XDigit">
-            <summary>
-            Indicates the digit X.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.WDigitsMask">
-            <summary>
-            Indicates the mask of W digits used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.DifficultyLevel">
             <inheritdoc/>
@@ -7959,51 +7967,62 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.ConjugatePair">
-            <summary>
-            Indicates the conjugate pair used as a bridge.
-            </summary>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.FormatInterpolatedParts">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.FirstAls">
             <summary>
-            Indicates the first ALS used.
+            The generated property declaration for parameter <c>als1</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.SecondAls">
             <summary>
-            Indicates the second ALS used.
+            The generated property declaration for parameter <c>als2</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.FormatInterpolatedParts">
-            <inheritdoc/>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.ConjugatePair">
+            <summary>
+            The generated property declaration for parameter <c>conjugatePair</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.WDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>wDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.XDigit">
+            <summary>
+            The generated property declaration for parameter <c>xDigit</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="als1">Indicates the first ALS used in this pattern.</param>
+            <param name="als2">Indicates the second ALS used in this pattern.</param>
+            <param name="bridge">Indicates the ALS that is as a bridge.</param>
+            <param name="xDigitsMask">Indicates the mask that holds the digits for the X value.</param>
+            <param name="yDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
+            <param name="zDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,System.Int16,System.Int16,System.Int16)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="als1">Indicates the first ALS used in this pattern.</param>
+            <param name="als2">Indicates the second ALS used in this pattern.</param>
+            <param name="bridge">Indicates the ALS that is as a bridge.</param>
+            <param name="xDigitsMask">Indicates the mask that holds the digits for the X value.</param>
+            <param name="yDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
+            <param name="zDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.BaseDifficulty">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.XDigitsMask">
-            <summary>
-            Indicates the mask that holds the digits for the X value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.YDigitsMask">
-            <summary>
-            Indicates the mask that holds the digits for the Y value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.ZDigitsMask">
-            <summary>
-            Indicates the mask that holds the digits for the Z value.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.DifficultyLevel">
             <inheritdoc/>
@@ -8011,56 +8030,79 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.FirstAls">
             <summary>
-            Indicates the first ALS used in this pattern.
+            The generated property declaration for parameter <c>als1</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.SecondAls">
             <summary>
-            Indicates the second ALS used in this pattern.
+            The generated property declaration for parameter <c>als2</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.BridgeAls">
             <summary>
-            Indicates the ALS that is as a bridge.
+            The generated property declaration for parameter <c>bridge</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.FormatInterpolatedParts">
-            <inheritdoc/>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.XDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>xDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.YDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>yDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.ZDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>zDigitsMask</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XZ</b> or <b>Extended Subset Principle</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="als1">Indicates the first ALS used.</param>
+            <param name="als2">Indicates the second ALS used.</param>
+            <param name="xDigitsMask">Indicates the mask of X digits used.</param>
+            <param name="zDigitsMask">Indicates the mask of Z digits used.</param>
+            <param name="isDoublyLinked">
+            <para>Indicates whether ALS-XZ is doubly-linked.</para>
+            <para>
+            All possible values are <see langword="true"/>, <see langword="false"/> and <see langword="null"/>.
+            If the value is <see langword="true"/> or <see langword="false"/>, the ALS-XZ is a Doubly- or Singly- Linked ALS-XZ;
+            otherwise, an Extended Subset Principle technique.
+            </para>
+            </param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.AlmostLockedSet,Sudoku.Analytics.Patterns.AlmostLockedSet,System.Int16,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XZ</b> or <b>Extended Subset Principle</b> technique.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.IsDoublyLinked">
-            <summary>
-            Indicates whether ALS-XZ is doubly-linked.
-            </summary>
-            <remarks>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="als1">Indicates the first ALS used.</param>
+            <param name="als2">Indicates the second ALS used.</param>
+            <param name="xDigitsMask">Indicates the mask of X digits used.</param>
+            <param name="zDigitsMask">Indicates the mask of Z digits used.</param>
+            <param name="isDoublyLinked">
+            <para>Indicates whether ALS-XZ is doubly-linked.</para>
+            <para>
             All possible values are <see langword="true"/>, <see langword="false"/> and <see langword="null"/>.
             If the value is <see langword="true"/> or <see langword="false"/>, the ALS-XZ is a Doubly- or Singly- Linked ALS-XZ;
             otherwise, an Extended Subset Principle technique.
-            </remarks>
+            </para>
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.BaseDifficulty">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.XDigitsMask">
-            <summary>
-            Indicates the mask of X digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.ZDigitsMask">
-            <summary>
-            Indicates the mask of Z digits used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.Format">
             <inheritdoc/>
@@ -8071,56 +8113,60 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.FirstAls">
             <summary>
-            Indicates the first ALS used.
+            The generated property declaration for parameter <c>als1</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.SecondAls">
             <summary>
-            Indicates the second ALS used.
+            The generated property declaration for parameter <c>als2</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.FormatInterpolatedParts">
-            <inheritdoc/>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.XDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>xDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.ZDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>zDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.IsDoublyLinked">
+            <summary>
+            The generated property declaration for parameter <c>isDoublyLinked</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep">
             <summary>
             Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="startCell">Indicates the start cell to be calculated.</param>
+            <param name="endCell">Indicates the end cell to be calculated.</param>
+            <param name="house">Indicates the house index that the empty rectangle forms.</param>
+            <param name="digit1">Indicates the first digit used.</param>
+            <param name="digit2">Indicates the second digit used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="startCell">Indicates the start cell to be calculated.</param>
+            <param name="endCell">Indicates the end cell to be calculated.</param>
+            <param name="house">Indicates the house index that the empty rectangle forms.</param>
+            <param name="digit1">Indicates the first digit used.</param>
+            <param name="digit2">Indicates the second digit used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.BaseDifficulty">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.StartCell">
-            <summary>
-            Indicates the start cell to be calculated.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.EndCell">
-            <summary>
-            Indicates the end cell to be calculated.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.House">
-            <summary>
-            Indicates the house index that the empty rectangle forms.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Digit1">
-            <summary>
-            Indicates the first digit used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Digit2">
-            <summary>
-            Indicates the second digit used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.DifficultyLevel">
             <inheritdoc/>
@@ -8131,20 +8177,50 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.StartCell">
+            <summary>
+            The generated property declaration for parameter <c>startCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.EndCell">
+            <summary>
+            The generated property declaration for parameter <c>endCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.House">
+            <summary>
+            The generated property declaration for parameter <c>house</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Digit1">
+            <summary>
+            The generated property declaration for parameter <c>digit1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Digit2">
+            <summary>
+            The generated property declaration for parameter <c>digit2</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.BidirectionalCycleStep">
             <summary>
             Provides with a step that is a <b>Bidirectional Cycle</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="destinationOn">Indicates the destination node that is "on" status.</param>
+            <param name="isX"><inheritdoc/></param>
+            <param name="isY"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BidirectionalCycleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Bidirectional Cycle</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.BidirectionalCycleStep.DestinationOn">
-            <summary>
-            Indicates the destination node that is "on" status.
-            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="destinationOn">Indicates the destination node that is "on" status.</param>
+            <param name="isX"><inheritdoc/></param>
+            <param name="isY"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BidirectionalCycleStep.FormatInterpolatedParts">
             <inheritdoc/>
@@ -8158,6 +8234,11 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.Steps.BidirectionalCycleStep.GetLinks(System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.BidirectionalCycleStep.DestinationOn">
+            <summary>
+            The generated property declaration for parameter <c>destinationOn</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.BinaryForcingChainsStep">
             <summary>
             Provides with a step that is a <b>Binary Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
@@ -8167,6 +8248,14 @@ result ^= expression;
             <item>Dynamic Double Forcing Chains</item>
             </list>
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="sourcePotential">Indicates the source potential of the chain.</param>
+            <param name="fromOnPotential">Indicates the "on" branch.</param>
+            <param name="fromOffPotential">Indicates the "off" branch.</param>
+            <param name="isAbsurd">Indicates whether the forcing chains kind is contradiction.</param>
+            <param name="isNishio"><inheritdoc/></param>
+            <param name="dynamicNestingLevel"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BinaryForcingChainsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean,System.Int32)">
             <summary>
@@ -8177,29 +8266,17 @@ result ^= expression;
             <item>Dynamic Double Forcing Chains</item>
             </list>
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.IsAbsurd">
-            <summary>
-            Indicates whether the forcing chains kind is contradiction.
-            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="sourcePotential">Indicates the source potential of the chain.</param>
+            <param name="fromOnPotential">Indicates the "on" branch.</param>
+            <param name="fromOffPotential">Indicates the "off" branch.</param>
+            <param name="isAbsurd">Indicates whether the forcing chains kind is contradiction.</param>
+            <param name="isNishio"><inheritdoc/></param>
+            <param name="dynamicNestingLevel"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.Format">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.SourcePotential">
-            <summary>
-            Indicates the source potential of the chain.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.FromOnPotential">
-            <summary>
-            Indicates the "on" branch.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.FromOffPotential">
-            <summary>
-            Indicates the "off" branch.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.FormatInterpolatedParts">
             <inheritdoc/>
@@ -8221,25 +8298,47 @@ result ^= expression;
             <param name="state">The state of the candidate you want to color.</param>
             <returns>All colored candidates with a same state.</returns>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.SourcePotential">
+            <summary>
+            The generated property declaration for parameter <c>sourcePotential</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.FromOnPotential">
+            <summary>
+            The generated property declaration for parameter <c>fromOnPotential</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.FromOffPotential">
+            <summary>
+            The generated property declaration for parameter <c>fromOffPotential</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BinaryForcingChainsStep.IsAbsurd">
+            <summary>
+            The generated property declaration for parameter <c>isAbsurd</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.CellForcingChainsStep">
             <summary>
             Provides with a step that is an <b>Cell Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="sourceCell">Indicates the source cell that all branches start.</param>
+            <param name="chains">Indicates all possible branches in this technique.</param>
+            <param name="isDynamic"><inheritdoc/></param>
+            <param name="dynamicNestingLevel"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.CellForcingChainsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Byte,Sudoku.Analytics.Patterns.MultipleForcingChains,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is an <b>Cell Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.CellForcingChainsStep.SourceCell">
-            <summary>
-            Indicates the source cell that all branches start.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.CellForcingChainsStep.Chains">
-            <summary>
-            Indicates all possible branches in this technique.
-            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="sourceCell">Indicates the source cell that all branches start.</param>
+            <param name="chains">Indicates all possible branches in this technique.</param>
+            <param name="isDynamic"><inheritdoc/></param>
+            <param name="dynamicNestingLevel"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.CellForcingChainsStep.FormatInterpolatedParts">
             <inheritdoc/>
@@ -8260,48 +8359,44 @@ result ^= expression;
             <param name="viewIndex">The view index.</param>
             <returns>The view index.</returns>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.CellForcingChainsStep.SourceCell">
+            <summary>
+            The generated property declaration for parameter <c>sourceCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.CellForcingChainsStep.Chains">
+            <summary>
+            The generated property declaration for parameter <c>chains</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ChainingStep">
             <summary>
             Provides with a step that is a <b>Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="isX">Indicates whether the chain supports for X chaining rule. "X chaining rule" aims to same-digit strong inferences.</param>
+            <param name="isY">Indicates whether the chain supports for Y chaining rule. "Y chaining rule" aims to same-cell inferences.</param>
+            <param name="isMultiple">Indicates whether the chain is a multiple forcing chains.</param>
+            <param name="isDynamic">Indicates whether the chain is a dynamic forcing chains.</param>
+            <param name="isNishio">Indicates whether the chain is a nishio forcing chains.</param>
+            <param name="dynamicNestingLevel">Indicates the dynamic nesting level.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsX">
-            <summary>
-            Indicates whether the chain supports for X chaining rule. "X chaining rule" aims to same-digit strong inferences.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsY">
-            <summary>
-            Indicates whether the chain supports for Y chaining rule. "Y chaining rule" aims to same-cell inferences.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsMultiple">
-            <summary>
-            Indicates whether the chain is a multiple forcing chains.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsDynamic">
-            <summary>
-            Indicates whether the chain is a dynamic forcing chains.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsNishio">
-            <summary>
-            Indicates whether the chain is a nishio forcing chains.
-            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="isX">Indicates whether the chain supports for X chaining rule. "X chaining rule" aims to same-digit strong inferences.</param>
+            <param name="isY">Indicates whether the chain supports for Y chaining rule. "Y chaining rule" aims to same-cell inferences.</param>
+            <param name="isMultiple">Indicates whether the chain is a multiple forcing chains.</param>
+            <param name="isDynamic">Indicates whether the chain is a dynamic forcing chains.</param>
+            <param name="isNishio">Indicates whether the chain is a nishio forcing chains.</param>
+            <param name="dynamicNestingLevel">Indicates the dynamic nesting level.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.BaseDifficulty">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ChainingStep.DynamicNestingLevel">
-            <summary>
-            Indicates the dynamic nesting level.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.Name">
             <inheritdoc/>
@@ -8514,6 +8609,36 @@ result ^= expression;
             <returns>An <see cref="T:System.Int32"/> value indicating which is greater.</returns>
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsX">
+            <summary>
+            The generated property declaration for parameter <c>isX</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsY">
+            <summary>
+            The generated property declaration for parameter <c>isY</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsMultiple">
+            <summary>
+            The generated property declaration for parameter <c>isMultiple</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsDynamic">
+            <summary>
+            The generated property declaration for parameter <c>isDynamic</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsNishio">
+            <summary>
+            The generated property declaration for parameter <c>isNishio</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.DynamicNestingLevel">
+            <summary>
+            The generated property declaration for parameter <c>dynamicNestingLevel</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.Comparer">
             <summary>
             Defines a equality comparer used for comparison with two <see cref="T:Sudoku.Analytics.Steps.ChainingStep"/> instances.
@@ -8540,16 +8665,21 @@ result ^= expression;
             <summary>
             Provides with a step that is an <b>Alternating Inference Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="target">Indicates the target of the chain. This value can be used for constructing a whole chain.</param>
+            <param name="isX"><inheritdoc/></param>
+            <param name="isY"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ForcingChainStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean)">
             <summary>
             Provides with a step that is an <b>Alternating Inference Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ForcingChainStep.Target">
-            <summary>
-            Indicates the target of the chain. This value can be used for constructing a whole chain.
-            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="target">Indicates the target of the chain. This value can be used for constructing a whole chain.</param>
+            <param name="isX"><inheritdoc/></param>
+            <param name="isY"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ForcingChainStep.FormatInterpolatedParts">
             <inheritdoc/>
@@ -8570,30 +8700,34 @@ result ^= expression;
             <param name="state">The state of the candidate you want to color.</param>
             <returns>All colored candidates with a same state.</returns>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ForcingChainStep.Target">
+            <summary>
+            The generated property declaration for parameter <c>target</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.RegionForcingChainsStep">
             <summary>
             Provides with a step that is an <b>Region (House) Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="houseIndex">Indicates the index of the house represented.</param>
+            <param name="digit">Indicates the digit of the chain bound with.</param>
+            <param name="chains">Indicates all possible branches in this technique.</param>
+            <param name="isDynamic"><inheritdoc/></param>
+            <param name="dynamicNestingLevel"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.RegionForcingChainsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Byte,Sudoku.Analytics.Patterns.MultipleForcingChains,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is an <b>Region (House) Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RegionForcingChainsStep.Digit">
-            <summary>
-            Indicates the digit of the chain bound with.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RegionForcingChainsStep.HouseIndex">
-            <summary>
-            Indicates the index of the house represented.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RegionForcingChainsStep.Chains">
-            <summary>
-            Indicates all possible branches in this technique.
-            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="houseIndex">Indicates the index of the house represented.</param>
+            <param name="digit">Indicates the digit of the chain bound with.</param>
+            <param name="chains">Indicates all possible branches in this technique.</param>
+            <param name="isDynamic"><inheritdoc/></param>
+            <param name="dynamicNestingLevel"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegionForcingChainsStep.FormatInterpolatedParts">
             <inheritdoc/>
@@ -8613,6 +8747,21 @@ result ^= expression;
             </summary>
             <param name="viewIndex">The view index.</param>
             <returns>The view index.</returns>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegionForcingChainsStep.HouseIndex">
+            <summary>
+            The generated property declaration for parameter <c>houseIndex</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegionForcingChainsStep.Digit">
+            <summary>
+            The generated property declaration for parameter <c>digit</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegionForcingChainsStep.Chains">
+            <summary>
+            The generated property declaration for parameter <c>chains</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
             <summary>

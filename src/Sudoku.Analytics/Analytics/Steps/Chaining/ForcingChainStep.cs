@@ -3,8 +3,18 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is an <b>Alternating Inference Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
 /// </summary>
-public sealed class ForcingChainStep(Conclusion[] conclusions, View[]? views, ChainNode target, bool isX, bool isY) :
-	ChainingStep(conclusions, views, isX, isY)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="target">Indicates the target of the chain. This value can be used for constructing a whole chain.</param>
+/// <param name="isX"><inheritdoc/></param>
+/// <param name="isY"><inheritdoc/></param>
+public sealed partial class ForcingChainStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] ChainNode target,
+	bool isX,
+	bool isY
+) : ChainingStep(conclusions, views, isX, isY)
 {
 	internal ForcingChainStep(Conclusion[] conclusions, ChainNode target, bool isX, bool isY) :
 		this(conclusions, null!, target, isX, isY)
@@ -15,11 +25,6 @@ public sealed class ForcingChainStep(Conclusion[] conclusions, View[]? views, Ch
 	{
 	}
 
-
-	/// <summary>
-	/// Indicates the target of the chain. This value can be used for constructing a whole chain.
-	/// </summary>
-	public ChainNode Target { get; } = target;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
@@ -67,8 +72,7 @@ public sealed class ForcingChainStep(Conclusion[] conclusions, View[]? views, Ch
 	}
 
 	/// <inheritdoc/>
-	protected override List<LinkViewNode> GetLinks(int viewIndex)
-		=> viewIndex >= FlatViewsCount ? GetNestedLinks(viewIndex) : GetLinks(Target);
+	protected override List<LinkViewNode> GetLinks(int viewIndex) => viewIndex >= FlatViewsCount ? GetNestedLinks(viewIndex) : GetLinks(Target);
 
 	/// <summary>
 	/// Gets all colored candidates with the specified state.

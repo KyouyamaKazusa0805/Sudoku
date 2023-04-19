@@ -8,13 +8,21 @@ namespace Sudoku.Analytics.Steps;
 /// <item>Dynamic Double Forcing Chains</item>
 /// </list>
 /// </summary>
-public sealed class BinaryForcingChainsStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="sourcePotential">Indicates the source potential of the chain.</param>
+/// <param name="fromOnPotential">Indicates the "on" branch.</param>
+/// <param name="fromOffPotential">Indicates the "off" branch.</param>
+/// <param name="isAbsurd">Indicates whether the forcing chains kind is contradiction.</param>
+/// <param name="isNishio"><inheritdoc/></param>
+/// <param name="dynamicNestingLevel"><inheritdoc/></param>
+public sealed partial class BinaryForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	ChainNode sourcePotential,
-	ChainNode fromOnPotential,
-	ChainNode fromOffPotential,
-	bool isAbsurd,
+	[PrimaryConstructorParameter] ChainNode sourcePotential,
+	[PrimaryConstructorParameter] ChainNode fromOnPotential,
+	[PrimaryConstructorParameter] ChainNode fromOffPotential,
+	[PrimaryConstructorParameter] bool isAbsurd,
 	bool isNishio,
 	int dynamicNestingLevel = 0
 ) : ChainingStep(conclusions, views, isMultiple: true, isDynamic: true, isNishio: isNishio, dynamicNestingLevel: dynamicNestingLevel)
@@ -46,29 +54,9 @@ public sealed class BinaryForcingChainsStep(
 	}
 
 
-	/// <summary>
-	/// Indicates whether the forcing chains kind is contradiction.
-	/// </summary>
-	public bool IsAbsurd { get; } = isAbsurd;
-
 	/// <inheritdoc/>
 	public override string Format
 		=> (IsAbsurd ? R["TechniqueFormat_ContradictionForcingChainsStep"] : R["TechniqueFormat_DoubleForcingChainsStep"])!;
-
-	/// <summary>
-	/// Indicates the source potential of the chain.
-	/// </summary>
-	public ChainNode SourcePotential { get; } = sourcePotential;
-
-	/// <summary>
-	/// Indicates the "on" branch.
-	/// </summary>
-	public ChainNode FromOnPotential { get; } = fromOnPotential;
-
-	/// <summary>
-	/// Indicates the "off" branch.
-	/// </summary>
-	public ChainNode FromOffPotential { get; } = fromOffPotential;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

@@ -3,49 +3,31 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
 /// </summary>
-public sealed class AlmostLockedSetsWWingStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="als1">Indicates the first ALS used.</param>
+/// <param name="als2">Indicates the second ALS used.</param>
+/// <param name="conjugatePair">Indicates the conjugate pair used as a bridge.</param>
+/// <param name="wDigitsMask">Indicates the mask of W digits used.</param>
+/// <param name="xDigit">Indicates the digit X.</param>
+public sealed partial class AlmostLockedSetsWWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	AlmostLockedSet als1,
-	AlmostLockedSet als2,
-	Conjugate conjugatePair,
-	Mask wDigitsMask,
-	int xDigit
+	[PrimaryConstructorParameter(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
+	[PrimaryConstructorParameter(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
+	[PrimaryConstructorParameter] Conjugate conjugatePair,
+	[PrimaryConstructorParameter] Mask wDigitsMask,
+	[PrimaryConstructorParameter] int xDigit
 ) : AlmostLockedSetsStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 6.2M;
-
-	/// <summary>
-	/// Indicates the digit X.
-	/// </summary>
-	public int XDigit { get; } = xDigit;
-
-	/// <summary>
-	/// Indicates the mask of W digits used.
-	/// </summary>
-	public Mask WDigitsMask { get; } = wDigitsMask;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.AlmostLockedSetsWWing;
-
-	/// <summary>
-	/// Indicates the conjugate pair used as a bridge.
-	/// </summary>
-	public Conjugate ConjugatePair { get; } = conjugatePair;
-
-	/// <summary>
-	/// Indicates the first ALS used.
-	/// </summary>
-	public AlmostLockedSet FirstAls { get; } = als1;
-
-	/// <summary>
-	/// Indicates the second ALS used.
-	/// </summary>
-	public AlmostLockedSet SecondAls { get; } = als2;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

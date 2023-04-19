@@ -3,43 +3,25 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.
 /// </summary>
-public sealed class EmptyRectangleIntersectionPairStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="startCell">Indicates the start cell to be calculated.</param>
+/// <param name="endCell">Indicates the end cell to be calculated.</param>
+/// <param name="house">Indicates the house index that the empty rectangle forms.</param>
+/// <param name="digit1">Indicates the first digit used.</param>
+/// <param name="digit2">Indicates the second digit used.</param>
+public sealed partial class EmptyRectangleIntersectionPairStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int startCell,
-	int endCell,
-	int house,
-	int digit1,
-	int digit2
+	[PrimaryConstructorParameter] int startCell,
+	[PrimaryConstructorParameter] int endCell,
+	[PrimaryConstructorParameter] int house,
+	[PrimaryConstructorParameter] int digit1,
+	[PrimaryConstructorParameter] int digit2
 ) : AlmostLockedSetsStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 6.0M;
-
-	/// <summary>
-	/// Indicates the start cell to be calculated.
-	/// </summary>
-	public int StartCell { get; } = startCell;
-
-	/// <summary>
-	/// Indicates the end cell to be calculated.
-	/// </summary>
-	public int EndCell { get; } = endCell;
-
-	/// <summary>
-	/// Indicates the house index that the empty rectangle forms.
-	/// </summary>
-	public int House { get; } = house;
-
-	/// <summary>
-	/// Indicates the first digit used.
-	/// </summary>
-	public int Digit1 { get; } = digit1;
-
-	/// <summary>
-	/// Indicates the second digit used.
-	/// </summary>
-	public int Digit2 { get; } = digit2;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

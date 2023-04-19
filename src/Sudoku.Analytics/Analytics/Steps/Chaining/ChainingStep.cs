@@ -3,42 +3,25 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
 /// </summary>
-public abstract class ChainingStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="isX">Indicates whether the chain supports for X chaining rule. "X chaining rule" aims to same-digit strong inferences.</param>
+/// <param name="isY">Indicates whether the chain supports for Y chaining rule. "Y chaining rule" aims to same-cell inferences.</param>
+/// <param name="isMultiple">Indicates whether the chain is a multiple forcing chains.</param>
+/// <param name="isDynamic">Indicates whether the chain is a dynamic forcing chains.</param>
+/// <param name="isNishio">Indicates whether the chain is a nishio forcing chains.</param>
+/// <param name="dynamicNestingLevel">Indicates the dynamic nesting level.</param>
+public abstract partial class ChainingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	bool isX = true,
-	bool isY = true,
-	bool isMultiple = false,
-	bool isDynamic = false,
-	bool isNishio = false,
-	int dynamicNestingLevel = 0
+	[PrimaryConstructorParameter] bool isX = true,
+	[PrimaryConstructorParameter] bool isY = true,
+	[PrimaryConstructorParameter] bool isMultiple = false,
+	[PrimaryConstructorParameter] bool isDynamic = false,
+	[PrimaryConstructorParameter] bool isNishio = false,
+	[PrimaryConstructorParameter] int dynamicNestingLevel = 0
 ) : Step(conclusions, views)
 {
-	/// <summary>
-	/// Indicates whether the chain supports for X chaining rule. "X chaining rule" aims to same-digit strong inferences.
-	/// </summary>
-	public bool IsX { get; } = isX;
-
-	/// <summary>
-	/// Indicates whether the chain supports for Y chaining rule. "Y chaining rule" aims to same-cell inferences.
-	/// </summary>
-	public bool IsY { get; } = isY;
-
-	/// <summary>
-	/// Indicates whether the chain is a multiple forcing chains.
-	/// </summary>
-	public bool IsMultiple { get; } = isMultiple;
-
-	/// <summary>
-	/// Indicates whether the chain is a dynamic forcing chains.
-	/// </summary>
-	public bool IsDynamic { get; } = isDynamic;
-
-	/// <summary>
-	/// Indicates whether the chain is a nishio forcing chains.
-	/// </summary>
-	public bool IsNishio { get; } = isNishio;
-
 	/// <inheritdoc/>
 	public sealed override decimal BaseDifficulty
 		=> this switch
@@ -53,11 +36,6 @@ public abstract class ChainingStep(
 			BidirectionalCycleStep => 4.5M,
 			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
 		};
-
-	/// <summary>
-	/// Indicates the dynamic nesting level.
-	/// </summary>
-	public int DynamicNestingLevel { get; } = dynamicNestingLevel;
 
 	/// <inheritdoc/>
 	public override string Name
