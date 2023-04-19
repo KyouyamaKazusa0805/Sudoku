@@ -3,31 +3,28 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Bivalue Oddagon Type 3</b> technique.
 /// </summary>
-public sealed class BivalueOddagonType3Step(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="loopCells"><inheritdoc/></param>
+/// <param name="digit1"><inheritdoc/></param>
+/// <param name="digit2"><inheritdoc/></param>
+/// <param name="extraCells">Indicates the extra cells used.</param>
+/// <param name="extraDigitsMask">Indicates the mask that contains all extra digits used.</param>
+public sealed partial class BivalueOddagonType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in CellMap loopCells,
 	int digit1,
 	int digit2,
-	scoped in CellMap extraCells,
-	Mask extraDigitsMask
+	[PrimaryConstructorParameter] scoped in CellMap extraCells,
+	[PrimaryConstructorParameter] Mask extraDigitsMask
 ) : BivalueOddagonStep(conclusions, views, loopCells, digit1, digit2)
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
 
-	/// <summary>
-	/// Indicates the mask that contains all extra digits used.
-	/// </summary>
-	public Mask ExtraDigitsMask { get; } = extraDigitsMask;
-
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <summary>
-	/// Indicates the extra cells used.
-	/// </summary>
-	public CellMap ExtraCells { get; } = extraCells;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Size, (ExtraCells.Count >> 1) * .1M) };

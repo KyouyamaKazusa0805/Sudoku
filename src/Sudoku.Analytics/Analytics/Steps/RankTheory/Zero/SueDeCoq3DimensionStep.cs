@@ -3,55 +3,33 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
 /// </summary>
-public sealed class SueDeCoq3DimensionStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="rowDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a row.</param>
+/// <param name="columnDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a column.</param>
+/// <param name="blockDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a block.</param>
+/// <param name="rowCells">Indicates the cells used in this pattern in a row.</param>
+/// <param name="columnCells">Indicates the cells used in this pattern in a column.</param>
+/// <param name="blockCells">Indicates the cells used in this pattern in a block.</param>
+public sealed partial class SueDeCoq3DimensionStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	Mask rowDigitsMask,
-	Mask columnDigitsMask,
-	Mask blockDigitsMask,
-	scoped in CellMap rowCells,
-	scoped in CellMap columnCells,
-	scoped in CellMap blockCells
+	[PrimaryConstructorParameter] Mask rowDigitsMask,
+	[PrimaryConstructorParameter] Mask columnDigitsMask,
+	[PrimaryConstructorParameter] Mask blockDigitsMask,
+	[PrimaryConstructorParameter] scoped in CellMap rowCells,
+	[PrimaryConstructorParameter] scoped in CellMap columnCells,
+	[PrimaryConstructorParameter] scoped in CellMap blockCells
 ) : ZeroRankStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.5M;
-
-	/// <summary>
-	/// Indicates the digits mask that describes which digits are used in this pattern in a row.
-	/// </summary>
-	public Mask RowDigitsMask { get; } = rowDigitsMask;
-
-	/// <summary>
-	/// Indicates the digits mask that describes which digits are used in this pattern in a column.
-	/// </summary>
-	public Mask ColumnDigitsMask { get; } = columnDigitsMask;
-
-	/// <summary>
-	/// Indicates the digits mask that describes which digits are used in this pattern in a block.
-	/// </summary>
-	public Mask BlockDigitsMask { get; } = blockDigitsMask;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.SueDeCoq3Dimension;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <summary>
-	/// Indicates the cells used in this pattern in a row.
-	/// </summary>
-	public CellMap RowCells { get; } = rowCells;
-
-	/// <summary>
-	/// Indicates the cells used in this pattern in a column.
-	/// </summary>
-	public CellMap ColumnCells { get; } = columnCells;
-
-	/// <summary>
-	/// Indicates the cells used in this pattern in a block.
-	/// </summary>
-	public CellMap BlockCells { get; } = blockCells;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

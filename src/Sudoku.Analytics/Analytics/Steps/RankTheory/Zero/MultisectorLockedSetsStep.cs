@@ -3,7 +3,14 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
 /// </summary>
-public sealed class MultisectorLockedSetsStep(Conclusion[] conclusions, View[]? views, scoped in CellMap cells) : ZeroRankStep(conclusions, views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="cells">Indicates the cells used in this pattern.</param>
+public sealed partial class MultisectorLockedSetsStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] scoped in CellMap cells
+) : ZeroRankStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 9.4M;
@@ -13,11 +20,6 @@ public sealed class MultisectorLockedSetsStep(Conclusion[] conclusions, View[]? 
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
-
-	/// <summary>
-	/// Indicates the cells used in this pattern.
-	/// </summary>
-	public CellMap Cells { get; } = cells;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Size, A002024(Cells.Count) * .1M) };

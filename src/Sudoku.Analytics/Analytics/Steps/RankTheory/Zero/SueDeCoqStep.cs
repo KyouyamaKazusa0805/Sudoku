@@ -3,81 +3,43 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Sue de Coq</b> technique.
 /// </summary>
-public sealed class SueDeCoqStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="block">Indicates the block index that the current pattern used.</param>
+/// <param name="line">Indicates the line (row or column) index that the current pattern used.</param>
+/// <param name="blockMask">Indicates the block mask.</param>
+/// <param name="lineMask">Indicates the line mask.</param>
+/// <param name="intersectionMask">Indicates the intersection mask.</param>
+/// <param name="isCannibalistic">Indicates whether the SdC is cannibalistic.</param>
+/// <param name="isolatedDigitsMask">The isolated digits mask.</param>
+/// <param name="blockCells">Indicates the cells that the current pattern used in a block.</param>
+/// <param name="lineCells">Indicates the cells that the current pattern used in a line (row or column).</param>
+/// <param name="intersectionCells">
+/// Indicates the cells that the current pattern used in an intersection of <see cref="BlockCells"/> and <see cref="LineCells"/>.
+/// </param>
+public sealed partial class SueDeCoqStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int block,
-	int line,
-	Mask blockMask,
-	Mask lineMask,
-	Mask intersectionMask,
-	bool isCannibalistic,
-	Mask isolatedDigitsMask,
-	scoped in CellMap blockCells,
-	scoped in CellMap lineCells,
-	scoped in CellMap intersectionCells
+	[PrimaryConstructorParameter] int block,
+	[PrimaryConstructorParameter] int line,
+	[PrimaryConstructorParameter] Mask blockMask,
+	[PrimaryConstructorParameter] Mask lineMask,
+	[PrimaryConstructorParameter] Mask intersectionMask,
+	[PrimaryConstructorParameter] bool isCannibalistic,
+	[PrimaryConstructorParameter] Mask isolatedDigitsMask,
+	[PrimaryConstructorParameter] scoped in CellMap blockCells,
+	[PrimaryConstructorParameter] scoped in CellMap lineCells,
+	[PrimaryConstructorParameter] scoped in CellMap intersectionCells
 ) : ZeroRankStep(conclusions, views)
 {
-	/// <summary>
-	/// Indicates whether the SdC is cannibalistic.
-	/// </summary>
-	public bool IsCannibalistic { get; } = isCannibalistic;
-
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.0M;
-
-	/// <summary>
-	/// Indicates the block index that the current pattern used.
-	/// </summary>
-	public int Block { get; } = block;
-
-	/// <summary>
-	/// Indicates the line (row or column) index that the current pattern used.
-	/// </summary>
-	public int Line { get; } = line;
-
-	/// <summary>
-	/// Indicates the block mask.
-	/// </summary>
-	public Mask BlockMask { get; } = blockMask;
-
-	/// <summary>
-	/// Indicates the line mask.
-	/// </summary>
-	public Mask LineMask { get; } = lineMask;
-
-	/// <summary>
-	/// Indicates the intersection mask.
-	/// </summary>
-	public Mask IntersectionMask { get; } = intersectionMask;
-
-	/// <summary>
-	/// The isolated digits mask.
-	/// </summary>
-	public Mask IsolatedDigitsMask { get; } = isolatedDigitsMask;
 
 	/// <inheritdoc/>
 	public override Technique Code => IsCannibalistic ? Technique.SueDeCoqCannibalism : Technique.SueDeCoq;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <summary>
-	/// Indicates the cells that the current pattern used in a block.
-	/// </summary>
-	public CellMap BlockCells { get; } = blockCells;
-
-	/// <summary>
-	/// Indicates the cells that the current pattern used in a line (row or column).
-	/// </summary>
-	public CellMap LineCells { get; } = lineCells;
-
-	/// <summary>
-	/// Indicates the cells that the current pattern used in an intersection of <see cref="BlockCells"/> and <see cref="LineCells"/>.
-	/// </summary>
-	/// <seealso cref="BlockCells"/>
-	/// <seealso cref="LineCells"/>
-	public CellMap IntersectionCells { get; } = intersectionCells;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases

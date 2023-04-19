@@ -6,8 +6,11 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="trueCandidates">Indicates the true candidates.</param>
-public sealed class BivalueUniversalGraveMultipleStep(Conclusion[] conclusions, View[]? views, IReadOnlyList<int> trueCandidates) :
-	BivalueUniversalGraveStep(conclusions, views)
+public sealed partial class BivalueUniversalGraveMultipleStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] IReadOnlyList<int> trueCandidates
+) : BivalueUniversalGraveStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public override string Name => $"{base.Name} + {TrueCandidates.Count}";
@@ -20,11 +23,6 @@ public sealed class BivalueUniversalGraveMultipleStep(Conclusion[] conclusions, 
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Size, A002024(TrueCandidates.Count) * .1M) };
-
-	/// <summary>
-	/// Indicates the true candidates.
-	/// </summary>
-	public IReadOnlyList<int> TrueCandidates { get; } = trueCandidates;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

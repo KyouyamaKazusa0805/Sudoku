@@ -3,14 +3,15 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Bi-value Universal Grave False Candidate Type</b> technique.
 /// </summary>
-public sealed class BivalueUniversalGraveFalseCandidateTypeStep(Conclusion[] conclusions, View[]? views, int falseCandidate) :
-	BivalueUniversalGraveStep(conclusions, views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="falseCandidate">Indicates the false candidate that will cause a BUG deadly pattern if it is true.</param>
+public sealed partial class BivalueUniversalGraveFalseCandidateTypeStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] int falseCandidate
+) : BivalueUniversalGraveStep(conclusions, views)
 {
-	/// <summary>
-	/// Indicates the false candidate that will cause a BUG deadly pattern if it is true.
-	/// </summary>
-	public int FalseCandidate { get; } = falseCandidate;
-
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 

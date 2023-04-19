@@ -3,31 +3,21 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Bi-value Universal Grave Type 4</b> technique.
 /// </summary>
-public sealed class BivalueUniversalGraveType4Step(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digitsMask">Indicates the mask of digits used.</param>
+/// <param name="cells">Indicates the cells used.</param>
+/// <param name="conjugatePair">Indicates the conjugate pair used.</param>
+public sealed partial class BivalueUniversalGraveType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	Mask digitsMask,
-	scoped in CellMap cells,
-	scoped in Conjugate conjugatePair
+	[PrimaryConstructorParameter] Mask digitsMask,
+	[PrimaryConstructorParameter] scoped in CellMap cells,
+	[PrimaryConstructorParameter] scoped in Conjugate conjugatePair
 ) : BivalueUniversalGraveStep(conclusions, views)
 {
-	/// <summary>
-	/// Indicates the mask of digits used.
-	/// </summary>
-	public Mask DigitsMask { get; } = digitsMask;
-
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveType4;
-
-	/// <summary>
-	/// Indicates the cells used.
-	/// </summary>
-	public CellMap Cells { get; } = cells;
-
-	/// <summary>
-	/// Indicates the conjugate pair used.
-	/// </summary>
-	public Conjugate ConjugatePair { get; } = conjugatePair;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.ConjugatePair, .1M) };

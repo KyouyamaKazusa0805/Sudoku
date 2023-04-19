@@ -3,41 +3,27 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Bi-value Universal Grave Type 3</b> technique.
 /// </summary>
-public sealed class BivalueUniversalGraveType3Step(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="trueCandidates">Indicates the true candidates used.</param>
+/// <param name="subsetDigitsMask">Indicates the mask of subset digits.</param>
+/// <param name="cells">Indicates the subset cells used.</param>
+/// <param name="isNaked">Indicates whether the subset is naked.</param>
+public sealed partial class BivalueUniversalGraveType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	IReadOnlyList<int> trueCandidates,
-	Mask subsetDigitsMask,
-	scoped in CellMap cells,
-	bool isNaked
+	[PrimaryConstructorParameter] IReadOnlyList<int> trueCandidates,
+	[PrimaryConstructorParameter] Mask subsetDigitsMask,
+	[PrimaryConstructorParameter] scoped in CellMap cells,
+	[PrimaryConstructorParameter] bool isNaked
 ) : BivalueUniversalGraveStep(conclusions, views)
 {
-	/// <summary>
-	/// Indicates whether the subset is naked.
-	/// </summary>
-	public bool IsNaked { get; } = isNaked;
-
-	/// <summary>
-	/// Indicates the mask of subset digits.
-	/// </summary>
-	public Mask SubsetDigitsMask { get; } = subsetDigitsMask;
-
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveType3;
-
-	/// <summary>
-	/// Indicates the subset cells used.
-	/// </summary>
-	public CellMap Cells { get; } = cells;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new[] { (ExtraDifficultyCaseNames.Size, Size * .1M), (ExtraDifficultyCaseNames.Hidden, isNaked ? 0 : .1M) };
-
-	/// <summary>
-	/// Indicates the true candidates used.
-	/// </summary>
-	public IReadOnlyList<int> TrueCandidates { get; } = trueCandidates;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

@@ -3,20 +3,19 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Bi-value Oddagon</b> technique.
 /// </summary>
-public abstract class BivalueOddagonStep(Conclusion[] conclusions, View[]? views, scoped in CellMap loopCells, int digit1, int digit2) :
-	NegativeRankStep(conclusions, views),
-	IEquatableStep<BivalueOddagonStep>
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="loopCells">Indicates the loop of cells used.</param>
+/// <param name="digit1">Indicates the first digit used.</param>
+/// <param name="digit2">Indicates the second digit used.</param>
+public abstract partial class BivalueOddagonStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] scoped in CellMap loopCells,
+	[PrimaryConstructorParameter] int digit1,
+	[PrimaryConstructorParameter] int digit2
+) : NegativeRankStep(conclusions, views), IEquatableStep<BivalueOddagonStep>
 {
-	/// <summary>
-	/// Indicates the first digit used.
-	/// </summary>
-	public int Digit1 { get; } = digit1;
-
-	/// <summary>
-	/// Indicates the second digit used.
-	/// </summary>
-	public int Digit2 { get; } = digit2;
-
 	/// <summary>
 	/// Indicates the type of the technique.
 	/// </summary>
@@ -27,11 +26,6 @@ public abstract class BivalueOddagonStep(Conclusion[] conclusions, View[]? views
 
 	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"BivalueOddagonType{Type}");
-
-	/// <summary>
-	/// Indicates the loop of cells used.
-	/// </summary>
-	public CellMap LoopCells { get; } = loopCells;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Size, (LoopCells.Count >> 1) * .1M) };

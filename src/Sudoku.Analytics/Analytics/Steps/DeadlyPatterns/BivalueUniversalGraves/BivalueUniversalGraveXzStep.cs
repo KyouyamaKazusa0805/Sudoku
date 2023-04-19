@@ -3,31 +3,21 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Bi-value Universal Grave XZ</b> technique.
 /// </summary>
-public sealed class BivalueUniversalGraveXzStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digitsMask">Indicates the mask of digits used.</param>
+/// <param name="cells">Indicates the cells used.</param>
+/// <param name="xzCell">Indicates the extra cell used. This cell is a bivalue cell that only contains digit X and Z.</param>
+public sealed partial class BivalueUniversalGraveXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	Mask digitsMask,
-	scoped in CellMap cells,
-	int xzCell
+	[PrimaryConstructorParameter] Mask digitsMask,
+	[PrimaryConstructorParameter] scoped in CellMap cells,
+	[PrimaryConstructorParameter] int xzCell
 ) : BivalueUniversalGraveStep(conclusions, views)
 {
-	/// <summary>
-	/// Indicates the extra cell used. This cell is a bivalue cell that only contains digit X and Z.
-	/// </summary>
-	public int XzCell { get; } = xzCell;
-
-	/// <summary>
-	/// Indicates the mask of digits used.
-	/// </summary>
-	public Mask DigitsMask { get; } = digitsMask;
-
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveXzRule;
-
-	/// <summary>
-	/// Indicates the cells used.
-	/// </summary>
-	public CellMap Cells { get; } = cells;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.ExtraDigit, .2M) };

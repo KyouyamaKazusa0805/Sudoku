@@ -3,7 +3,14 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Domino Loop</b> technique.
 /// </summary>
-public sealed class DominoLoopStep(Conclusion[] conclusions, View[]? views, scoped in CellMap cells) : ZeroRankStep(conclusions, views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="cells">Indicates the cells used.</param>
+public sealed partial class DominoLoopStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] scoped in CellMap cells
+) : ZeroRankStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 9.6M;
@@ -13,11 +20,6 @@ public sealed class DominoLoopStep(Conclusion[] conclusions, View[]? views, scop
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.DominoLoop;
-
-	/// <summary>
-	/// Indicates the cells used.
-	/// </summary>
-	public CellMap Cells { get; } = cells;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

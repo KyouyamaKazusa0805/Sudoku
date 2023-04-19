@@ -3,33 +3,27 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Guardian</b> technique.
 /// </summary>
-public sealed class GuardianStep(Conclusion[] conclusions, View[]? views, int digit, scoped in CellMap loopCells, scoped in CellMap guardians) :
-	NegativeRankStep(conclusions, views),
-	IEquatableStep<GuardianStep>
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digit">Indicates the digit used.</param>
+/// <param name="loopCells">Indicates the cells of the loop used.</param>
+/// <param name="guardians">Indicates the guardian cells.</param>
+public sealed partial class GuardianStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] int digit,
+	[PrimaryConstructorParameter] scoped in CellMap loopCells,
+	[PrimaryConstructorParameter] scoped in CellMap guardians
+) : NegativeRankStep(conclusions, views), IEquatableStep<GuardianStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.5M;
-
-	/// <summary>
-	/// Indicates the digit used.
-	/// </summary>
-	public int Digit { get; } = digit;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BrokenWing;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <summary>
-	/// Indicates the cells of the loop used.
-	/// </summary>
-	public CellMap LoopCells { get; } = loopCells;
-
-	/// <summary>
-	/// Indicates the guardian cells.
-	/// </summary>
-	public CellMap Guardians { get; } = guardians;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases

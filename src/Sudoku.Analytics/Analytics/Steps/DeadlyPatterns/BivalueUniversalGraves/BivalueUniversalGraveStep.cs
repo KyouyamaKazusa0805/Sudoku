@@ -3,6 +3,8 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Bivalue Universal Grave</b> technique.
 /// </summary>
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
 public abstract class BivalueUniversalGraveStep(Conclusion[] conclusions, View[]? views) : DeadlyPatternStep(conclusions, views)
 {
 	/// <inheritdoc/>
