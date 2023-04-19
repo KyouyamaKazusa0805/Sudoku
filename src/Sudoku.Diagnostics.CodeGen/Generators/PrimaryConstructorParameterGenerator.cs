@@ -99,6 +99,18 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 							var docComments = getDocComments(comment);
 							var parameterTypeName = getParameterType(parameterType, nullableAnnotation);
 							var assigning = getAssigningExpression(refModifiers, parameterName);
+							var pragmaWarningDisable = assigning.StartsWith("ref")
+								? """
+								#pragma warning disable CS9094
+									
+								"""
+								: "\t";
+							var pragmaWarningRestor = assigning.StartsWith("ref")
+								? """
+
+								#pragma warning disable CS9094
+								"""
+								: string.Empty;
 							fieldDeclarations.Add(
 								$"""
 								/// <summary>
@@ -106,9 +118,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 									/// </summary>
 									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{VersionValue}")]
 									[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-								#pragma warning disable CS9094
-									{accessibilityModifiers}{refModifiers}{parameterTypeName}{targetMemberName} = {assigning};
-								#pragma warning disable CS9094
+								{pragmaWarningDisable}{accessibilityModifiers}{refModifiers}{parameterTypeName}{targetMemberName} = {assigning};{pragmaWarningRestor}
 								"""
 							);
 
@@ -213,7 +223,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 					select $"/// {line.Trim()}"
 				);
 
-		static string? getParameterType(ITypeSymbol parameterType, NullableAnnotation nullableAnnotation)
+		static string getParameterType(ITypeSymbol parameterType, NullableAnnotation nullableAnnotation)
 		{
 			var r = parameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 			return parameterType.TypeKind != TypeKind.Struct && nullableAnnotation == NullableAnnotation.Annotated
@@ -221,7 +231,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 				: $"{r} ";
 		}
 
-		static string? getAssigningExpression(string refModifiers, string parameterName)
+		static string getAssigningExpression(string refModifiers, string parameterName)
 			=> refModifiers switch { not ("" or "readonly ") => $"ref {parameterName}", _ => parameterName };
 	}
 }
