@@ -3,13 +3,15 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Template</b> technique.
 /// </summary>
-public sealed class TemplateStep(Conclusion[] conclusions, View[]? views, bool isTemplateDeletion) : LastResortStep(conclusions, views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="isTemplateDeletion">Indicates the current template step is a template deletion.</param>
+public sealed partial class TemplateStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] bool isTemplateDeletion
+) : LastResortStep(conclusions, views)
 {
-	/// <summary>
-	/// Indicates the current template step is a template deletion.
-	/// </summary>
-	public bool IsTemplateDeletion { get; } = isTemplateDeletion;
-
 	/// <summary>
 	/// Indicates the digit.
 	/// </summary>

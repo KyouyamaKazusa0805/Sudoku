@@ -3,6 +3,7 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Pattern Overlay</b> technique.
 /// </summary>
+/// <param name="conclusions"><inheritdoc/></param>
 public sealed class PatternOverlayStep(Conclusion[] conclusions) : LastResortStep(conclusions, null)
 {
 	/// <summary>

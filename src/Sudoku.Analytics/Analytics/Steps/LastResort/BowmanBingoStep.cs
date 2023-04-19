@@ -3,7 +3,14 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Bowman's Bingo</b> technique.
 /// </summary>
-public sealed class BowmanBingoStep(Conclusion[] conclusions, View[]? views, Conclusion[] contradictionLinks) : LastResortStep(conclusions, views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="contradictionLinks">Indicates the list of contradiction links.</param>
+public sealed partial class BowmanBingoStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] Conclusion[] contradictionLinks
+) : LastResortStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 8.0M;
@@ -17,11 +24,6 @@ public sealed class BowmanBingoStep(Conclusion[] conclusions, View[]? views, Con
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BowmanBingo;
-
-	/// <summary>
-	/// Indicates the list of contradiction links.
-	/// </summary>
-	public Conclusion[] ContradictionLinks { get; } = contradictionLinks;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

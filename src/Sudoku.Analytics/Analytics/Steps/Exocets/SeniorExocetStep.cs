@@ -3,12 +3,18 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Senior Exocet</b> technique.
 /// </summary>
-public sealed class SeniorExocetStep(
+/// <param name="views"><inheritdoc/></param>
+/// <param name="exocet"><inheritdoc/></param>
+/// <param name="digitsMask"><inheritdoc/></param>
+/// <param name="endoTargetCell">Indicates the target cell in the cross-line cells' houses.</param>
+/// <param name="extraHouses">Indicates the extra houses used.</param>
+/// <param name="eliminations"><inheritdoc/></param>
+public sealed partial class SeniorExocetStep(
 	View[]? views,
 	Exocet exocet,
 	Mask digitsMask,
-	int endoTargetCell,
-	int[]? extraHouses,
+	[PrimaryConstructorParameter] int endoTargetCell,
+	[PrimaryConstructorParameter] int[]? extraHouses,
 	ExocetElimination[] eliminations
 ) : ExocetStep(views, exocet, digitsMask, eliminations)
 {
@@ -16,16 +22,6 @@ public sealed class SeniorExocetStep(
 	/// Indicates whether the specified instance contains any extra houses.
 	/// </summary>
 	public bool ContainsExtraHouses => ExtraHouses is not null && Array.Exists(ExtraHouses, static m => m != 0);
-
-	/// <summary>
-	/// Indicates the target cell in the cross-line cells' houses.
-	/// </summary>
-	public int EndoTargetCell { get; } = endoTargetCell;
-
-	/// <summary>
-	/// Indicates the extra houses used.
-	/// </summary>
-	public int[]? ExtraHouses { get; } = extraHouses;
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;

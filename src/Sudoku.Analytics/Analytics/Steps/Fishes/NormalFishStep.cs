@@ -3,35 +3,39 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is an <b>Normal Fish</b> technique.
 /// </summary>
-public sealed class NormalFishStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digit"><inheritdoc/></param>
+/// <param name="baseSetsMask"><inheritdoc/></param>
+/// <param name="coverSetsMask"><inheritdoc/></param>
+/// <param name="fins">Indicates the fins.</param>
+/// <param name="isSashimi">
+/// Indicates whether the fish instance is a sashimi fish. All possible values are as below:
+/// <list type="table">
+/// <item>
+/// <term><see langword="true"/></term>
+/// <description>The fish is a sashimi fish.</description>
+/// </item>
+/// <item>
+/// <term><see langword="false"/></term>
+/// <description>The fish is a finned fish.</description>
+/// </item>
+/// <item>
+/// <term><see langword="null"/></term>
+/// <description>The fish is a normal fish without any fins.</description>
+/// </item>
+/// </list>
+/// </param>
+public sealed partial class NormalFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	int digit,
 	int baseSetsMask,
 	int coverSetsMask,
-	scoped in CellMap fins,
-	bool? isSashimi
+	[PrimaryConstructorParameter] scoped in CellMap fins,
+	[PrimaryConstructorParameter] bool? isSashimi
 ) : FishStep(conclusions, views, digit, baseSetsMask, coverSetsMask)
 {
-	/// <summary>
-	/// Indicates whether the fish instance is a sashimi fish. All possible values are as below:
-	/// <list type="table">
-	/// <item>
-	/// <term><see langword="true"/></term>
-	/// <description>The fish is a sashimi fish.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="false"/></term>
-	/// <description>The fish is a finned fish.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="null"/></term>
-	/// <description>The fish is a normal fish without any fins.</description>
-	/// </item>
-	/// </list>
-	/// </summary>
-	public bool? IsSashimi { get; } = isSashimi;
-
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 3.2M;
 
@@ -42,11 +46,6 @@ public sealed class NormalFishStep(
 			(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => 0.6M, 4 => 2.0M }),
 			(ExtraDifficultyCaseNames.Sashimi, IsSashimi switch { true => Size switch { 2 or 3 => .3M, 4 => .4M, }, false => .2M, _ => 0 })
 		};
-
-	/// <summary>
-	/// Indicates the fins.
-	/// </summary>
-	public CellMap Fins { get; } = fins;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

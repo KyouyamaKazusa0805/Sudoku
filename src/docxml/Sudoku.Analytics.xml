@@ -10397,19 +10397,22 @@ result ^= expression;
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
+            <param name="views"><inheritdoc/></param>
+            <param name="exocet">Indicates the exocet pattern used.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
+            <param name="eliminations">Indicates the eliminations, grouped by the type.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.Exocet,System.Int16,Sudoku.Analytics.Eliminations.ExocetElimination[])">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
+            <param name="views"><inheritdoc/></param>
+            <param name="exocet">Indicates the exocet pattern used.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
+            <param name="eliminations">Indicates the eliminations, grouped by the type.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetStep.BaseDifficulty">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetStep.DigitsMask">
-            <summary>
-            Indicates the mask of digits used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetStep.Name">
             <inheritdoc/>
@@ -10419,11 +10422,6 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetStep.DifficultyLevel">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetStep.Exocet">
-            <summary>
-            Indicates the exocet pattern used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetStep.BaseMap">
             <summary>
@@ -10435,15 +10433,37 @@ result ^= expression;
             Indicates the map of the target cells.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.Exocet">
+            <summary>
+            The generated property declaration for parameter <c>exocet</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.JuniorExocetStep">
             <summary>
             Provides with a step that is a <b>Junior Exocet</b> technique.
             </summary>
+            <param name="views"><inheritdoc/></param>
+            <param name="exocet"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="lockedMemberQ">Indicates the locked member bound with Q cells.</param>
+            <param name="lockedMemberR">Indicates the locked member bound with R cells.</param>
+            <param name="eliminations"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.JuniorExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.Exocet,System.Int16,Sudoku.Analytics.Eliminations.ExocetElimination[])">
             <summary>
             Provides with a step that is a <b>Junior Exocet</b> technique.
             </summary>
+            <param name="views"><inheritdoc/></param>
+            <param name="exocet"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="lockedMemberQ">Indicates the locked member bound with Q cells.</param>
+            <param name="lockedMemberR">Indicates the locked member bound with R cells.</param>
+            <param name="eliminations"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetStep.Code">
             <inheritdoc/>
@@ -10460,25 +10480,27 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Senior Exocet</b> technique.
             </summary>
+            <param name="views"><inheritdoc/></param>
+            <param name="exocet"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="endoTargetCell">Indicates the target cell in the cross-line cells' houses.</param>
+            <param name="extraHouses">Indicates the extra houses used.</param>
+            <param name="eliminations"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.SeniorExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.Exocet,System.Int16,System.Int32,System.Int32[],Sudoku.Analytics.Eliminations.ExocetElimination[])">
             <summary>
             Provides with a step that is a <b>Senior Exocet</b> technique.
             </summary>
+            <param name="views"><inheritdoc/></param>
+            <param name="exocet"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="endoTargetCell">Indicates the target cell in the cross-line cells' houses.</param>
+            <param name="extraHouses">Indicates the extra houses used.</param>
+            <param name="eliminations"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.ContainsExtraHouses">
             <summary>
             Indicates whether the specified instance contains any extra houses.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.EndoTargetCell">
-            <summary>
-            Indicates the target cell in the cross-line cells' houses.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.ExtraHouses">
-            <summary>
-            Indicates the extra houses used.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.BaseDifficulty">
@@ -10490,26 +10512,38 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.EndoTargetCell">
+            <summary>
+            The generated property declaration for parameter <c>endoTargetCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.ExtraHouses">
+            <summary>
+            The generated property declaration for parameter <c>extraHouses</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ComplexFishStep">
             <summary>
             Provides with a step that is a <b>Complex Fish</b> technique.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean})">
-            <summary>
-            Provides with a step that is a <b>Complex Fish</b> technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.IsFranken">
-            <summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="baseSetsMask"><inheritdoc/></param>
+            <param name="coverSetsMask"><inheritdoc/></param>
+            <param name="exofins">
+            Indicates the fins, positioned outside the fish.
+            They will be defined if cover sets cannot be fully covered, with the number of cover sets being equal to the number of base sets.
+            </param>
+            <param name="endofins">
+            Indicates the fins, positioned inside the fish. Generally speaking, they will be defined if they are in multiple base sets.
+            </param>
+            <param name="isFranken">
             Indicates whether the fish is a Franken fish. If <see langword="true"/>, a Franken fish; otherwise, a Mutant fish.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.IsSashimi">
-            <summary>
-            Indicates whether the fish is a Sashimi fish.
-            </summary>
-            <remarks>
+            </param>
+            <param name="isSashimi">
+            <para>Indicates whether the fish is a Sashimi fish.</para>
+            <para>
             All cases are as below:
             <list type="table">
             <item>
@@ -10525,7 +10559,48 @@ result ^= expression;
             <description>The fish doesn't contain any fin.</description>
             </item>
             </list>
-            </remarks>
+            </para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean})">
+            <summary>
+            Provides with a step that is a <b>Complex Fish</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="baseSetsMask"><inheritdoc/></param>
+            <param name="coverSetsMask"><inheritdoc/></param>
+            <param name="exofins">
+            Indicates the fins, positioned outside the fish.
+            They will be defined if cover sets cannot be fully covered, with the number of cover sets being equal to the number of base sets.
+            </param>
+            <param name="endofins">
+            Indicates the fins, positioned inside the fish. Generally speaking, they will be defined if they are in multiple base sets.
+            </param>
+            <param name="isFranken">
+            Indicates whether the fish is a Franken fish. If <see langword="true"/>, a Franken fish; otherwise, a Mutant fish.
+            </param>
+            <param name="isSashimi">
+            <para>Indicates whether the fish is a Sashimi fish.</para>
+            <para>
+            All cases are as below:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The fish is a sashimi finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The fish is a normal finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The fish doesn't contain any fin.</description>
+            </item>
+            </list>
+            </para>
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.BaseDifficulty">
             <inheritdoc/>
@@ -10535,17 +10610,6 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Code">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Exofins">
-            <summary>
-            Indicates the fins, positioned outside the fish.
-            They will be defined if cover sets cannot be fully covered, with the number of cover sets being equal to the number of base sets.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Endofins">
-            <summary>
-            Indicates the fins, positioned inside the fish. Generally speaking, they will be defined if they are in multiple base sets.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.ExtraDifficultyCases">
             <inheritdoc/>
@@ -10584,30 +10648,45 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.op_Inequality(Sudoku.Analytics.Steps.ComplexFishStep,Sudoku.Analytics.Steps.ComplexFishStep)">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Exofins">
+            <summary>
+            The generated property declaration for parameter <c>exofins</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Endofins">
+            <summary>
+            The generated property declaration for parameter <c>endofins</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.IsFranken">
+            <summary>
+            The generated property declaration for parameter <c>isFranken</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.IsSashimi">
+            <summary>
+            The generated property declaration for parameter <c>isSashimi</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.FishStep">
             <summary>
             Provides with a step that is a <b>Fish</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="baseSetsMask">Indicates the mask that contains the base sets.</param>
+            <param name="coverSetsMask">Indicates the mask that contains the cover sets.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.FishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Fish</b> technique.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FishStep.Digit">
-            <summary>
-            Indicates the digit used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FishStep.BaseSetsMask">
-            <summary>
-            Indicates the mask that contains the base sets.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FishStep.CoverSetsMask">
-            <summary>
-            Indicates the mask that contains the cover sets.
-            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="baseSetsMask">Indicates the mask that contains the base sets.</param>
+            <param name="coverSetsMask">Indicates the mask that contains the cover sets.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Name">
             <inheritdoc/>
@@ -10630,18 +10709,32 @@ result ^= expression;
             Other fishes of sizes not appearing in above don't have well-known names.
             </remarks>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.Digit">
+            <summary>
+            The generated property declaration for parameter <c>digit</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.BaseSetsMask">
+            <summary>
+            The generated property declaration for parameter <c>baseSetsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.CoverSetsMask">
+            <summary>
+            The generated property declaration for parameter <c>coverSetsMask</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.NormalFishStep">
             <summary>
             Provides with a step that is an <b>Normal Fish</b> technique.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.NormalFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean})">
-            <summary>
-            Provides with a step that is an <b>Normal Fish</b> technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.IsSashimi">
-            <summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="baseSetsMask"><inheritdoc/></param>
+            <param name="coverSetsMask"><inheritdoc/></param>
+            <param name="fins">Indicates the fins.</param>
+            <param name="isSashimi">
             Indicates whether the fish instance is a sashimi fish. All possible values are as below:
             <list type="table">
             <item>
@@ -10657,18 +10750,41 @@ result ^= expression;
             <description>The fish is a normal fish without any fins.</description>
             </item>
             </list>
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NormalFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean})">
+            <summary>
+            Provides with a step that is an <b>Normal Fish</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="baseSetsMask"><inheritdoc/></param>
+            <param name="coverSetsMask"><inheritdoc/></param>
+            <param name="fins">Indicates the fins.</param>
+            <param name="isSashimi">
+            Indicates whether the fish instance is a sashimi fish. All possible values are as below:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The fish is a sashimi fish.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The fish is a finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The fish is a normal fish without any fins.</description>
+            </item>
+            </list>
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.ExtraDifficultyCases">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.Fins">
-            <summary>
-            Indicates the fins.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.DifficultyLevel">
             <inheritdoc/>
@@ -10682,6 +10798,16 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.InternalName">
             <summary>
             Indicates the internal name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.Fins">
+            <summary>
+            The generated property declaration for parameter <c>fins</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.IsSashimi">
+            <summary>
+            The generated property declaration for parameter <c>isSashimi</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.IEquatableStep`1">
@@ -11009,11 +11135,17 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Bowman's Bingo</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="contradictionLinks">Indicates the list of contradiction links.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BowmanBingoStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Conclusion[])">
             <summary>
             Provides with a step that is a <b>Bowman's Bingo</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="contradictionLinks">Indicates the list of contradiction links.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.BaseDifficulty">
             <inheritdoc/>
@@ -11027,23 +11159,27 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.ContradictionLinks">
-            <summary>
-            Indicates the list of contradiction links.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.ContradictionLinks">
+            <summary>
+            The generated property declaration for parameter <c>contradictionLinks</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BruteForceStep">
             <summary>
             Provides with a step that is a <b>Brute Force</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BruteForceStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Brute Force</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BruteForceStep.BaseDifficulty">
             <inheritdoc/>
@@ -11061,21 +11197,27 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Last Resort</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.LastResortStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Last Resort</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="T:Sudoku.Analytics.Steps.PatternOverlayStep">
             <summary>
             Provides with a step that is a <b>Pattern Overlay</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.PatternOverlayStep.#ctor(Sudoku.Analytics.Conclusion[])">
             <summary>
             Provides with a step that is a <b>Pattern Overlay</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.PatternOverlayStep.Digit">
             <summary>
@@ -11098,16 +11240,17 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Template</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="isTemplateDeletion">Indicates the current template step is a template deletion.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.TemplateStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Boolean)">
             <summary>
             Provides with a step that is a <b>Template</b> technique.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.TemplateStep.IsTemplateDeletion">
-            <summary>
-            Indicates the current template step is a template deletion.
-            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="isTemplateDeletion">Indicates the current template step is a template deletion.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.TemplateStep.Digit">
             <summary>
@@ -11125,6 +11268,11 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Steps.TemplateStep.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TemplateStep.IsTemplateDeletion">
+            <summary>
+            The generated property declaration for parameter <c>isTemplateDeletion</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueOddagonStep">
             <summary>

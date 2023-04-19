@@ -3,45 +3,53 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Complex Fish</b> technique.
 /// </summary>
-public sealed class ComplexFishStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digit"><inheritdoc/></param>
+/// <param name="baseSetsMask"><inheritdoc/></param>
+/// <param name="coverSetsMask"><inheritdoc/></param>
+/// <param name="exofins">
+/// Indicates the fins, positioned outside the fish.
+/// They will be defined if cover sets cannot be fully covered, with the number of cover sets being equal to the number of base sets.
+/// </param>
+/// <param name="endofins">
+/// Indicates the fins, positioned inside the fish. Generally speaking, they will be defined if they are in multiple base sets.
+/// </param>
+/// <param name="isFranken">
+/// Indicates whether the fish is a Franken fish. If <see langword="true"/>, a Franken fish; otherwise, a Mutant fish.
+/// </param>
+/// <param name="isSashimi">
+/// <para>Indicates whether the fish is a Sashimi fish.</para>
+/// <para>
+/// All cases are as below:
+/// <list type="table">
+/// <item>
+/// <term><see langword="true"/></term>
+/// <description>The fish is a sashimi finned fish.</description>
+/// </item>
+/// <item>
+/// <term><see langword="false"/></term>
+/// <description>The fish is a normal finned fish.</description>
+/// </item>
+/// <item>
+/// <term><see langword="null"/></term>
+/// <description>The fish doesn't contain any fin.</description>
+/// </item>
+/// </list>
+/// </para>
+/// </param>
+public sealed partial class ComplexFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	int digit,
 	int baseSetsMask,
 	int coverSetsMask,
-	scoped in CellMap exofins,
-	scoped in CellMap endofins,
-	bool isFranken,
-	bool? isSashimi
+	[PrimaryConstructorParameter] scoped in CellMap exofins,
+	[PrimaryConstructorParameter] scoped in CellMap endofins,
+	[PrimaryConstructorParameter] bool isFranken,
+	[PrimaryConstructorParameter] bool? isSashimi
 ) : FishStep(conclusions, views, digit, baseSetsMask, coverSetsMask), IEquatableStep<ComplexFishStep>
 {
-	/// <summary>
-	/// Indicates whether the fish is a Franken fish. If <see langword="true"/>, a Franken fish; otherwise, a Mutant fish.
-	/// </summary>
-	public bool IsFranken { get; } = isFranken;
-
-	/// <summary>
-	/// Indicates whether the fish is a Sashimi fish.
-	/// </summary>
-	/// <remarks>
-	/// All cases are as below:
-	/// <list type="table">
-	/// <item>
-	/// <term><see langword="true"/></term>
-	/// <description>The fish is a sashimi finned fish.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="false"/></term>
-	/// <description>The fish is a normal finned fish.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="null"/></term>
-	/// <description>The fish doesn't contain any fin.</description>
-	/// </item>
-	/// </list>
-	/// </remarks>
-	public bool? IsSashimi { get; } = isSashimi;
-
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 3.2M;
 
@@ -51,17 +59,6 @@ public sealed class ComplexFishStep(
 
 	/// <inheritdoc/>
 	public override Technique Code => FishStepSearcherHelper.GetComplexFishTechniqueCodeFromName(InternalName);
-
-	/// <summary>
-	/// Indicates the fins, positioned outside the fish.
-	/// They will be defined if cover sets cannot be fully covered, with the number of cover sets being equal to the number of base sets.
-	/// </summary>
-	public CellMap Exofins { get; } = exofins;
-
-	/// <summary>
-	/// Indicates the fins, positioned inside the fish. Generally speaking, they will be defined if they are in multiple base sets.
-	/// </summary>
-	public CellMap Endofins { get; } = endofins;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases

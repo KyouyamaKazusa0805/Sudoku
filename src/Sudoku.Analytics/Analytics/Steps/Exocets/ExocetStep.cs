@@ -3,16 +3,19 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is an <b>Exocet</b> technique.
 /// </summary>
-public abstract class ExocetStep(View[]? views, Exocet exocet, Mask digitsMask, ExocetElimination[] eliminations) :
-	Step((from e in eliminations from c in e.Conclusions select c).ToArray(), views)
+/// <param name="views"><inheritdoc/></param>
+/// <param name="exocet">Indicates the exocet pattern used.</param>
+/// <param name="digitsMask">Indicates the mask of digits used.</param>
+/// <param name="eliminations">Indicates the eliminations, grouped by the type.</param>
+public abstract partial class ExocetStep(
+	View[]? views,
+	[PrimaryConstructorParameter] Exocet exocet,
+	[PrimaryConstructorParameter] Mask digitsMask,
+	ExocetElimination[] eliminations
+) : Step((from e in eliminations from c in e.Conclusions select c).ToArray(), views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 9.4M;
-
-	/// <summary>
-	/// Indicates the mask of digits used.
-	/// </summary>
-	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
@@ -22,11 +25,6 @@ public abstract class ExocetStep(View[]? views, Exocet exocet, Mask digitsMask, 
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
-
-	/// <summary>
-	/// Indicates the exocet pattern used.
-	/// </summary>
-	public Exocet Exocet { get; } = exocet;
 
 	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 

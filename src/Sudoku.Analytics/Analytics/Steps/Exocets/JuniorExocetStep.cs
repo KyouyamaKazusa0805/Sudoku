@@ -1,31 +1,27 @@
 namespace Sudoku.Analytics.Steps;
 
+#pragma warning disable CS1572
 /// <summary>
 /// Provides with a step that is a <b>Junior Exocet</b> technique.
 /// </summary>
-public sealed class JuniorExocetStep(
+/// <param name="views"><inheritdoc/></param>
+/// <param name="exocet"><inheritdoc/></param>
+/// <param name="digitsMask"><inheritdoc/></param>
+/// <param name="lockedMemberQ">Indicates the locked member bound with Q cells.</param>
+/// <param name="lockedMemberR">Indicates the locked member bound with R cells.</param>
+/// <param name="eliminations"><inheritdoc/></param>
+#pragma warning restore CS1572
+public sealed partial class JuniorExocetStep(
 	View[]? views,
 	Exocet exocet,
 	Mask digitsMask,
 #if false
-	Mask lockedMemberQ,
-	Mask lockedMemberR,
+	[PrimaryConstructorParameter] Mask lockedMemberQ,
+	[PrimaryConstructorParameter] Mask lockedMemberR,
 #endif
 	ExocetElimination[] eliminations
 ) : ExocetStep(views, exocet, digitsMask, eliminations)
 {
-#if false
-	/// <summary>
-	/// Indicates the locked member bound with Q cells.
-	/// </summary>
-	public Mask LockedMemberQ { get; } = lockedMemberQ;
-
-	/// <summary>
-	/// Indicates the locked member bound with R cells.
-	/// </summary>
-	public Mask LockedMemberR { get; } = lockedMemberR;
-#endif
-
 	/// <inheritdoc/>
 	public override Technique Code => Technique.JuniorExocet;
 

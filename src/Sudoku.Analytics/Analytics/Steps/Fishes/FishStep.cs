@@ -1,26 +1,21 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Fish</b> technique.
 /// </summary>
-public abstract class FishStep(Conclusion[] conclusions, View[]? views, int digit, int baseSetsMask, int coverSetsMask) :
-	Step(conclusions, views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digit">Indicates the digit used.</param>
+/// <param name="baseSetsMask">Indicates the mask that contains the base sets.</param>
+/// <param name="coverSetsMask">Indicates the mask that contains the cover sets.</param>
+public abstract partial class FishStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] int digit,
+	[PrimaryConstructorParameter] int baseSetsMask,
+	[PrimaryConstructorParameter] int coverSetsMask
+) : Step(conclusions, views)
 {
-	/// <summary>
-	/// Indicates the digit used.
-	/// </summary>
-	public int Digit { get; } = digit;
-
-	/// <summary>
-	/// Indicates the mask that contains the base sets.
-	/// </summary>
-	public int BaseSetsMask { get; } = baseSetsMask;
-
-	/// <summary>
-	/// Indicates the mask that contains the cover sets.
-	/// </summary>
-	public int CoverSetsMask { get; } = coverSetsMask;
-
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
 
