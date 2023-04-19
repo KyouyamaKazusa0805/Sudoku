@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen;
+namespace Sudoku.Diagnostics.CodeGen;
 
 /// <summary>
 /// Defines the shortcuts of the source generators.
@@ -26,4 +26,5 @@ internal static class Shortcuts
 	public const string PropertyBinding = "pb";
 	public const string DependencyProperty = "dp";
 	public const string AttachedProperty = "ap";
+	public const string PrimaryConstructorParameter = "pcp";
 }

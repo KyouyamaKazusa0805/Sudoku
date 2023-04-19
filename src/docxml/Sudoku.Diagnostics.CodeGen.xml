@@ -43,6 +43,50 @@
             </param>
             <returns>The reference same as <paramref name="this"/>.</returns>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PrimaryConstructorParameterGenerator">
+            <summary>
+            Represents a source generator that generates the source code for auto-binding logic for data members with primary constructor parameters
+            in non-<see langword="record"/> types.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrimaryConstructorParameterGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Extensions.InternalHandle(System.String,System.String)">
+            <summary>
+            Internal handle the naming rule, converting it into a valid identifier via specified parameter name.
+            </summary>
+            <param name="this">The naming rule.</param>
+            <param name="parameterName">The parameter name.</param>
+            <returns>The final identifier.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Extensions.ToPascalCasing(System.String)">
+            <summary>
+            Try to convert the specified identifier into pascal casing.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Extensions.ToCamelCasing(System.String)">
+            <summary>
+            Try to convert the specified identifier into camel casing.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Extensions.TryGetValueOrDefault``1(System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}},System.String,``0@)">
+            <summary>
+            Try to get the target value of the named argument collection, whose key is equal to the specified one.
+            </summary>
+            <typeparam name="T">The type of the target value.</typeparam>
+            <param name="this">The collection of named arguments.</param>
+            <param name="name">The name to be compared.</param>
+            <param name="resultValue">The final found result value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether we can use the argument <paramref name="resultValue"/>.</returns>
+        </member>
         <member name="F:CodeGen.Constants.VersionValue">
             <summary>
             Indicates the version of this project.
