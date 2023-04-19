@@ -3,18 +3,17 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Single</b> technique.
 /// </summary>
-public abstract class SingleStep(Conclusion[] conclusions, View[]? views, int cell, int digit) : Step(conclusions, views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="cell">Indicates the cell used.</param>
+/// <param name="digit">Indicates the digit used.</param>
+public abstract partial class SingleStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] int cell,
+	[PrimaryConstructorParameter] int digit
+) : Step(conclusions, views)
 {
-	/// <summary>
-	/// Indicates the cell used.
-	/// </summary>
-	public int Cell { get; } = cell;
-
-	/// <summary>
-	/// Indicates the digit used.
-	/// </summary>
-	public int Digit { get; } = digit;
-
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
 

@@ -8,27 +8,23 @@ namespace Sudoku.Analytics;
 /// (i.e. holds the value <see cref="Elimination"/> as the type), the instance will be greater;
 /// if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
 /// </remarks>
-/// <param name="mask"><inheritdoc cref="_mask" path="/summary"/></param>
-public readonly partial struct Conclusion(int mask) :
+/// <param name="mask">
+/// Indicates the mask that holds the information for the cell, digit and the conclusion type.
+/// The bits distribution is like:
+/// <code><![CDATA[
+/// 16       8       0
+///  |-------|-------|
+///  |     |---------|
+/// 16    10         0
+///        |   used  |
+/// ]]></code>
+/// </param>
+public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field)] int mask) :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion, bool>,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
 	IEquatable<Conclusion>
 {
-	/// <summary>
-	/// Indicates the mask that holds the information for the cell, digit and the conclusion type.
-	/// The bits distribution is like:
-	/// <code><![CDATA[
-	/// 16       8       0
-	///  |-------|-------|
-	///  |     |---------|
-	/// 16    10         0
-	///        |   used  |
-	/// ]]></code>
-	/// </summary>
-	private readonly int _mask = mask;
-
-
 	/// <summary>
 	/// Initializes an instance with a conclusion type and a candidate offset.
 	/// </summary>
@@ -131,7 +127,7 @@ public readonly partial struct Conclusion(int mask) :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(Conclusion other) => _mask.CompareTo(_mask);
 
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_mask))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, "_mask")]
 	public override partial int GetHashCode();
 
 	[GeneratedOverridingMember(GeneratedToStringBehavior.SimpleMember, nameof(OutputString))]

@@ -3,34 +3,37 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Naked Subset</b> technique.
 /// </summary>
-public sealed class NakedSubsetStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="house"><inheritdoc/></param>
+/// <param name="cells"><inheritdoc/></param>
+/// <param name="digitsMask"><inheritdoc/></param>
+/// <param name="isLocked">
+/// Indicates which locked type this subset is. The cases are as belows:
+/// <list type="table">
+/// <item>
+/// <term><see langword="true"/></term>
+/// <description>The subset is a locked subset.</description>
+/// </item>
+/// <item>
+/// <term><see langword="true"/></term>
+/// <description>The subset is a naked subset with at least one extra locked candidate.</description>
+/// </item>
+/// <item>
+/// <term><see langword="null"/></term>
+/// <description>The subset is a normal naked subset without any extra locked candidates.</description>
+/// </item>
+/// </list>
+/// </param>
+public sealed partial class NakedSubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	int house,
 	scoped in CellMap cells,
 	Mask digitsMask,
-	bool? isLocked
+	[PrimaryConstructorParameter] bool? isLocked
 ) : SubsetStep(conclusions, views, house, cells, digitsMask)
 {
-	/// <summary>
-	/// Indicates which locked type this subset is. The cases are as belows:
-	/// <list type="table">
-	/// <item>
-	/// <term><see langword="true"/></term>
-	/// <description>The subset is a locked subset.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="true"/></term>
-	/// <description>The subset is a naked subset with at least one extra locked candidate.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="null"/></term>
-	/// <description>The subset is a normal naked subset without any extra locked candidates.</description>
-	/// </item>
-	/// </list>
-	/// </summary>
-	public bool? IsLocked { get; } = isLocked;
-
 	/// <inheritdoc/>
 	public override Technique Code
 		=> (IsLocked, Size) switch

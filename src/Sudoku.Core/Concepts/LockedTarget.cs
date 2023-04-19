@@ -9,7 +9,8 @@ namespace Sudoku.Concepts;
 /// <remarks>
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
 /// </remarks>
-public readonly partial struct LockedTarget(int digit, scoped in CellMap cells) :
+[StructLayout(LayoutKind.Auto)]
+public readonly partial struct LockedTarget([PrimaryConstructorParameter] int digit, [PrimaryConstructorParameter] scoped in CellMap cells) :
 	IEquatable<LockedTarget>,
 	IEqualityOperators<LockedTarget, LockedTarget, bool>
 {
@@ -31,16 +32,6 @@ public readonly partial struct LockedTarget(int digit, scoped in CellMap cells) 
 	public bool IsSole => Cells.Count == 1;
 
 	/// <summary>
-	/// Indicates the digit used.
-	/// </summary>
-	public int Digit { get; init; } = digit;
-
-	/// <summary>
-	/// Indicates the cells used.
-	/// </summary>
-	public CellMap Cells { get; init; } = cells;
-
-	/// <summary>
 	/// The digit string value.
 	/// </summary>
 	[GeneratedDisplayName(nameof(Digit))]
@@ -57,10 +48,10 @@ public readonly partial struct LockedTarget(int digit, scoped in CellMap cells) 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(scoped in LockedTarget other) => Digit == other.Digit && Cells == other.Cells;
 
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Cells), nameof(Digit))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, "Cells", "Digit")]
 	public override partial int GetHashCode();
 
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(DigitString), nameof(Cells))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(DigitString), "Cells")]
 	public override partial string ToString();
 
 	/// <inheritdoc/>

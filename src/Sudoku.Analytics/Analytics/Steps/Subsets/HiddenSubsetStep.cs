@@ -3,15 +3,24 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Hidden Subset</b> technique.
 /// </summary>
-public sealed class HiddenSubsetStep(Conclusion[] conclusions, View[]? views, int house, scoped in CellMap cells, Mask digitsMask) :
-	SubsetStep(conclusions, views, house, cells, digitsMask)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="house"><inheritdoc/></param>
+/// <param name="cells"><inheritdoc/></param>
+/// <param name="digitsMask"><inheritdoc/></param>
+public sealed class HiddenSubsetStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	int house,
+	scoped in CellMap cells,
+	Mask digitsMask
+) : SubsetStep(conclusions, views, house, cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .4M;
 
 	/// <inheritdoc/>
-	public override Technique Code
-		=> Size switch { 2 => Technique.HiddenPair, 3 => Technique.HiddenTriple, 4 => Technique.HiddenQuadruple };
+	public override Technique Code => Size switch { 2 => Technique.HiddenPair, 3 => Technique.HiddenTriple, 4 => Technique.HiddenQuadruple };
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases

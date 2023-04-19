@@ -1035,7 +1035,7 @@ file sealed class Converter : JsonConverter<CandidateMap>
 	public override CandidateMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		var result = CandidateMap.Empty;
-		var parts = JsonSerializer.Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
+		var parts = Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
 		foreach (var part in parts)
 		{
 			result |= RxCyNotation.ParseCandidates(part);

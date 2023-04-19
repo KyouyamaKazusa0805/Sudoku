@@ -95,7 +95,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 						{
 							var targetMemberName = getTargetMemberName(namedArgs, parameterName, "_<@");
 							var accessibilityModifiers = getAccessibilityModifiers(namedArgs, "private ");
-							var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, isReadOnly);
+							var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, isReadOnly, true);
 							var docComments = getDocComments(comment);
 							var parameterTypeName = getParameterType(parameterType, nullableAnnotation);
 							var assigning = getAssigningExpression(refModifiers, parameterName);
@@ -118,7 +118,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 						{
 							var targetMemberName = getTargetMemberName(namedArgs, parameterName, ">@");
 							var accessibilityModifiers = getAccessibilityModifiers(namedArgs, "public ");
-							var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, isReadOnly);
+							var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, isReadOnly, false);
 							var docComments = getDocComments(comment);
 							var parameterTypeString = parameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 							var parameterTypeName = getParameterType(parameterType, nullableAnnotation);
@@ -190,15 +190,16 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 		static string getAccessibilityModifiers(NamedArgs namedArgs, string @default)
 			=> namedArgs.TryGetValueOrDefault<string?>("Accessibility", out var a) && a is not null ? $"{a.Trim().ToLower()} " : @default;
 
-		static string getRefModifiers(NamedArgs namedArgs, ScopedKind scopedKind, RefKind refKind, TypeKind typeKind, bool isReadOnly)
+		static string getRefModifiers(NamedArgs namedArgs, ScopedKind scopedKind, RefKind refKind, TypeKind typeKind, bool isReadOnly, bool isField)
 			=> (namedArgs.TryGetValueOrDefault<string?>("RefKind", out var l) && l is not null ? $"{l} " : null)
-			?? (scopedKind, refKind, typeKind, isReadOnly) switch
+			?? (scopedKind, refKind, typeKind, isReadOnly, isField) switch
 			{
-				(0, RefKind.In, TypeKind.Struct, false) => "readonly ref readonly ",
-				(0, RefKind.In, TypeKind.Struct, true) => "ref readonly ",
-				(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false) => "readonly ref ",
-				(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, true) => "ref ",
-				(_, _, TypeKind.Struct, false) => "readonly ",
+				(0, RefKind.In, TypeKind.Struct, false, _) => "readonly ref readonly ",
+				(0, RefKind.In, TypeKind.Struct, true, _) => "ref readonly ",
+				(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false, _) => "readonly ref ",
+				(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, true, _) => "ref ",
+				(_, _, TypeKind.Struct, false, _) => "readonly ",
+				(_, _, TypeKind.Struct, _, true) => "readonly ",
 				_ => null
 			}
 			?? string.Empty;
@@ -213,9 +214,12 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 				);
 
 		static string? getParameterType(ITypeSymbol parameterType, NullableAnnotation nullableAnnotation)
-			=> parameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) is var r && nullableAnnotation == NullableAnnotation.Annotated
+		{
+			var r = parameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+			return parameterType.TypeKind != TypeKind.Struct && nullableAnnotation == NullableAnnotation.Annotated
 				? $"{r}? "
 				: $"{r} ";
+		}
 
 		static string? getAssigningExpression(string refModifiers, string parameterName)
 			=> refModifiers switch { not ("" or "readonly ") => $"ref {parameterName}", _ => parameterName };

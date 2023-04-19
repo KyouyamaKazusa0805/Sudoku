@@ -1,34 +1,29 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Grouped W-Wing</b> technique.
 /// </summary>
-public sealed class GroupedWWingStep(Conclusion[] Conclusions, View[]? Views, int startCell, int endCell, scoped in CellMap bridge) :
-	IrregularWingStep(Conclusions, Views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="startCell">Indicates the start cell.</param>
+/// <param name="endCell">Indicates the end cell.</param>
+/// <param name="bridge">Indicates the bridge cells connecting with cells <see cref="StartCell"/> and <see cref="EndCell"/>.</param>
+public sealed partial class GroupedWWingStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] int startCell,
+	[PrimaryConstructorParameter] int endCell,
+	[PrimaryConstructorParameter] scoped in CellMap bridge
+) : IrregularWingStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.5M;
-
-	/// <summary>
-	/// Indicates the start cell.
-	/// </summary>
-	public int StartCell { get; } = startCell;
-
-	/// <summary>
-	/// Indicates the end cell.
-	/// </summary>
-	public int EndCell { get; } = endCell;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.GroupedWWing;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <summary>
-	/// Indicates the bridge cells connecting with cells <see cref="StartCell"/> and <see cref="EndCell"/>.
-	/// </summary>
-	public CellMap Bridge { get; } = bridge;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

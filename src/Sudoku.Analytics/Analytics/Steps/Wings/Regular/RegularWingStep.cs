@@ -3,13 +3,19 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Regular Wing</b> technique.
 /// </summary>
-public sealed class RegularWingStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="pivot">Indicates the cell that blossomed its petals.</param>
+/// <param name="pivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
+/// <param name="digitsMask">Indicates a mask that contains all digits used.</param>
+/// <param name="petals">Indicates the petals used.</param>
+public sealed partial class RegularWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int pivot,
-	int pivotCandidatesCount,
-	Mask digitsMask,
-	scoped in CellMap petals
+	[PrimaryConstructorParameter] int pivot,
+	[PrimaryConstructorParameter] int pivotCandidatesCount,
+	[PrimaryConstructorParameter] Mask digitsMask,
+	[PrimaryConstructorParameter] scoped in CellMap petals
 ) : WingStep(conclusions, views)
 {
 	/// <summary>
@@ -60,21 +66,6 @@ public sealed class RegularWingStep(
 	/// </remarks>
 	public int Size => PopCount((uint)DigitsMask);
 
-	/// <summary>
-	/// Indicates the cell that blossomed its petals.
-	/// </summary>
-	public int Pivot { get; } = pivot;
-
-	/// <summary>
-	/// Indicates the number of digits in the pivot cell.
-	/// </summary>
-	public int PivotCandidatesCount { get; } = pivotCandidatesCount;
-
-	/// <summary>
-	/// Indicates a mask that contains all digits used.
-	/// </summary>
-	public Mask DigitsMask { get; } = digitsMask;
-
 	/// <inheritdoc/>
 	public override Technique Code
 		=> InternalName switch
@@ -97,11 +88,6 @@ public sealed class RegularWingStep(
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => Size switch { 3 or 4 => DifficultyLevel.Hard, >= 5 => DifficultyLevel.Fiendish };
-
-	/// <summary>
-	/// Indicates the petals used.
-	/// </summary>
-	public CellMap Petals { get; } = petals;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases

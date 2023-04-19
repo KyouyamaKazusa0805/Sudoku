@@ -3,18 +3,23 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
 /// </summary>
-public sealed class MultiBranchWWingStep(Conclusion[] conclusions, View[]? views, scoped in CellMap leaves, scoped in CellMap root, int house) :
-	IrregularWingStep(conclusions, views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="leaves">The leaves of the pattern.</param>
+/// <param name="root">The root cells that corresponds to each leaf.</param>
+/// <param name="house">Indicates the house that all cells in <see cref="Root"/> lie in.</param>
+public sealed partial class MultiBranchWWingStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] scoped in CellMap leaves,
+	[PrimaryConstructorParameter] scoped in CellMap root,
+	[PrimaryConstructorParameter] int house
+) : IrregularWingStep(conclusions, views)
 {
 	/// <summary>
 	/// Indicates the number of branches of the technique.
 	/// </summary>
 	public int Size => Leaves.Count;
-
-	/// <summary>
-	/// Indicates the house that all cells in <see cref="Root"/> lie in.
-	/// </summary>
-	public int House { get; } = house;
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.4M;
@@ -28,16 +33,6 @@ public sealed class MultiBranchWWingStep(Conclusion[] conclusions, View[]? views
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new[] { (ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .3M, 4 => .6M, 5 => 1.0M, _ => 1.4M }) };
-
-	/// <summary>
-	/// The leaves of the pattern.
-	/// </summary>
-	public CellMap Leaves { get; } = leaves;
-
-	/// <summary>
-	/// The root cells that corresponds to each leaf.
-	/// </summary>
-	public CellMap Root { get; } = root;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

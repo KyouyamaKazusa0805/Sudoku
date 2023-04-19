@@ -5,7 +5,8 @@ namespace Sudoku.Analytics;
 /// </summary>
 /// <param name="conclusions"><inheritdoc cref="IRenderable.Conclusions" path="/summary"/></param>
 /// <param name="views"><inheritdoc cref="IRenderable.Views" path="/summary"/></param>
-public abstract class Step(Conclusion[] conclusions, View[]? views) : IRenderable
+public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] conclusions, [PrimaryConstructorParameter] View[]? views) :
+	IRenderable
 {
 	/// <summary>
 	/// Indicates the technique name. The technique name are all stored in the resource dictionary,
@@ -103,12 +104,6 @@ public abstract class Step(Conclusion[] conclusions, View[]? views) : IRenderabl
 	/// this property will keep <see langword="null"/> value.
 	/// </summary>
 	public virtual ExtraDifficultyCase[]? ExtraDifficultyCases => null;
-
-	/// <inheritdoc/>
-	public Conclusion[] Conclusions { get; } = conclusions;
-
-	/// <inheritdoc/>
-	public View[]? Views { get; } = views;
 
 	/// <summary>
 	/// Indicates the interpolated parts that is used for the format.

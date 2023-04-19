@@ -4767,12 +4767,6 @@ result ^= expression;
             this property will keep <see langword="null"/> value.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Step.Conclusions">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Step.Views">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Step.FormatInterpolatedParts">
             <summary>
             Indicates the interpolated parts that is used for the format.
@@ -4812,6 +4806,16 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Analytics.Step.ToSimpleString">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.Conclusions">
+            <summary>
+            The generated property declaration for parameter <c>conclusions</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.Views">
+            <summary>
+            The generated property declaration for parameter <c>views</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcher">
             <summary>
@@ -11530,11 +11534,19 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Full House</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Full House</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.BaseDifficulty">
             <inheritdoc/>
@@ -11546,24 +11558,30 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
+            <param name="enableAndIsLastDigit">
+            Indicates whether currently options enable "Last Digit" technqiue, and the current instance is a real Last Digit.
+            </param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EnableAndIsLastDigit">
-            <summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
+            <param name="enableAndIsLastDigit">
             Indicates whether currently options enable "Last Digit" technqiue, and the current instance is a real Last Digit.
-            </summary>
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseDifficulty">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.House">
-            <summary>
-            Indicates the house where the current Hidden Single technique forms.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.Format">
             <inheritdoc/>
@@ -11574,15 +11592,33 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.House">
+            <summary>
+            The generated property declaration for parameter <c>house</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EnableAndIsLastDigit">
+            <summary>
+            The generated property declaration for parameter <c>enableAndIsLastDigit</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.NakedSingleStep">
             <summary>
             Provides with a step that is a <b>Naked Single</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Naked Single</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.BaseDifficulty">
             <inheritdoc/>
@@ -11594,21 +11630,19 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Single</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cell">Indicates the cell used.</param>
+            <param name="digit">Indicates the digit used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Single</b> technique.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SingleStep.Cell">
-            <summary>
-            Indicates the cell used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SingleStep.Digit">
-            <summary>
-            Indicates the digit used.
-            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cell">Indicates the cell used.</param>
+            <param name="digit">Indicates the digit used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SingleStep.Name">
             <inheritdoc/>
@@ -11616,15 +11650,35 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.SingleStep.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.SingleStep.Cell">
+            <summary>
+            The generated property declaration for parameter <c>cell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SingleStep.Digit">
+            <summary>
+            The generated property declaration for parameter <c>digit</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenSubsetStep">
             <summary>
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="house"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="house"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.BaseDifficulty">
             <inheritdoc/>
@@ -11642,14 +11696,12 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Naked Subset</b> technique.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
-            <summary>
-            Provides with a step that is a <b>Naked Subset</b> technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.IsLocked">
-            <summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="house"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="isLocked">
             Indicates which locked type this subset is. The cases are as belows:
             <list type="table">
             <item>
@@ -11665,7 +11717,34 @@ result ^= expression;
             <description>The subset is a normal naked subset without any extra locked candidates.</description>
             </item>
             </list>
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
+            <summary>
+            Provides with a step that is a <b>Naked Subset</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="house"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="isLocked">
+            Indicates which locked type this subset is. The cases are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The subset is a locked subset.</description>
+            </item>
+            <item>
+            <term><see langword="true"/></term>
+            <description>The subset is a naked subset with at least one extra locked candidate.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The subset is a normal naked subset without any extra locked candidates.</description>
+            </item>
+            </list>
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.Code">
             <inheritdoc/>
@@ -11676,33 +11755,38 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.IsLocked">
+            <summary>
+            The generated property declaration for parameter <c>isLocked</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.SubsetStep">
             <summary>
             Provides with a step that is a <b>Subset</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="house">The house that structure lies in.</param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the mask that contains all digits used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.SubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Subset</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="house">The house that structure lies in.</param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the mask that contains all digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.BaseDifficulty">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.House">
-            <summary>
-            The house that structure lies in.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.Size">
             <summary>
             Indicates the number of cells used.
             Due to the technique logic, you can also treat the result value of this property as the number of digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.DigitsMask">
-            <summary>
-            Indicates the mask that contains all digits used.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.Name">
@@ -11711,57 +11795,92 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.Format">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Cells">
-            <summary>
-            Indicates all cells used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.DifficultyLevel">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.House">
+            <summary>
+            The generated property declaration for parameter <c>house</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SubsetStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep">
             <summary>
             Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.SymmetryType,System.Nullable{System.Int32}[])">
-            <summary>
-            Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.Mapping">
-            <summary>
-            Indicates the mapping relations; in other words, this table shows what digits has symmetrical placement relation to what digits.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.SymmetryType">
-            <summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="symmetryType">
             Indicates the symmetry type used. The supported value can only be:
             <list type="bullet">
             <item><see cref="F:Sudoku.Concepts.SymmetryType.Central"/></item>
             <item><see cref="F:Sudoku.Concepts.SymmetryType.Diagonal"/></item>
             <item><see cref="F:Sudoku.Concepts.SymmetryType.AntiDiagonal"/></item>
             </list>
+            </param>
+            <param name="mapping">
+            Indicates the mapping relations; in other words, this table shows what digits has symmetrical placement relation to what digits.
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.SymmetryType,System.Nullable{System.Int32}[])">
+            <summary>
+            Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="symmetryType">
+            Indicates the symmetry type used. The supported value can only be:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.Central"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.Diagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetryType.AntiDiagonal"/></item>
+            </list>
+            </param>
+            <param name="mapping">
+            Indicates the mapping relations; in other words, this table shows what digits has symmetrical placement relation to what digits.
+            </param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.Code">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.SymmetryType">
+            <summary>
+            The generated property declaration for parameter <c>symmetryType</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.Mapping">
+            <summary>
+            The generated property declaration for parameter <c>mapping</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SymmetryStep">
             <summary>
             Provides with a step that is a <b>Symmetrical</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.SymmetryStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Symmetrical</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SymmetryStep.DifficultyLevel">
             <inheritdoc/>
@@ -11770,24 +11889,24 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Grouped W-Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="startCell">Indicates the start cell.</param>
+            <param name="endCell">Indicates the end cell.</param>
+            <param name="bridge">Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.GroupedWWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.GroupedWWingStep.EndCell"/>.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.GroupedWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Grouped W-Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="startCell">Indicates the start cell.</param>
+            <param name="endCell">Indicates the end cell.</param>
+            <param name="bridge">Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.GroupedWWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.GroupedWWingStep.EndCell"/>.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.BaseDifficulty">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.StartCell">
-            <summary>
-            Indicates the start cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.EndCell">
-            <summary>
-            Indicates the end cell.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.Code">
             <inheritdoc/>
@@ -11795,42 +11914,61 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.Bridge">
-            <summary>
-            Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.GroupedWWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.GroupedWWingStep.EndCell"/>.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.StartCell">
+            <summary>
+            The generated property declaration for parameter <c>startCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.EndCell">
+            <summary>
+            The generated property declaration for parameter <c>endCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.Bridge">
+            <summary>
+            The generated property declaration for parameter <c>bridge</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.IrregularWingStep">
             <summary>
             Provides with a step that is a <b>Irregular Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.IrregularWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Irregular Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="T:Sudoku.Analytics.Steps.MultiBranchWWingStep">
             <summary>
             Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="leaves">The leaves of the pattern.</param>
+            <param name="root">The root cells that corresponds to each leaf.</param>
+            <param name="house">Indicates the house that all cells in <see cref="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Root"/> lie in.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.MultiBranchWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="leaves">The leaves of the pattern.</param>
+            <param name="root">The root cells that corresponds to each leaf.</param>
+            <param name="house">Indicates the house that all cells in <see cref="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Root"/> lie in.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Size">
             <summary>
             Indicates the number of branches of the technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.House">
-            <summary>
-            Indicates the house that all cells in <see cref="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Root"/> lie in.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.BaseDifficulty">
@@ -11845,38 +11983,43 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Leaves">
             <summary>
-            The leaves of the pattern.
+            The generated property declaration for parameter <c>leaves</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Root">
             <summary>
-            The root cells that corresponds to each leaf.
+            The generated property declaration for parameter <c>root</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.FormatInterpolatedParts">
-            <inheritdoc/>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.House">
+            <summary>
+            The generated property declaration for parameter <c>house</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.WWingStep">
             <summary>
             Provides with a step that is a <b>W-Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="startCell">Indicates the start cell.</param>
+            <param name="endCell">Indicates the end cell.</param>
+            <param name="conjugatePair">Indicates the conjugate pair connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.WWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>W-Wing</b> technique.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.StartCell">
-            <summary>
-            Indicates the start cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.EndCell">
-            <summary>
-            Indicates the end cell.
-            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="startCell">Indicates the start cell.</param>
+            <param name="endCell">Indicates the end cell.</param>
+            <param name="conjugatePair">Indicates the conjugate pair connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WWingStep.BaseDifficulty">
             <inheritdoc/>
@@ -11887,23 +12030,45 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.WWingStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.ConjugatePair">
-            <summary>
-            Indicates the conjugate pair connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.WWingStep.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.StartCell">
+            <summary>
+            The generated property declaration for parameter <c>startCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.EndCell">
+            <summary>
+            The generated property declaration for parameter <c>endCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.ConjugatePair">
+            <summary>
+            The generated property declaration for parameter <c>conjugatePair</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.RegularWingStep">
             <summary>
             Provides with a step that is a <b>Regular Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="pivot">Indicates the cell that blossomed its petals.</param>
+            <param name="pivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
+            <param name="digitsMask">Indicates a mask that contains all digits used.</param>
+            <param name="petals">Indicates the petals used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.RegularWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Regular Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="pivot">Indicates the cell that blossomed its petals.</param>
+            <param name="pivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
+            <param name="digitsMask">Indicates a mask that contains all digits used.</param>
+            <param name="petals">Indicates the petals used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.IsIncomplete">
             <summary>
@@ -11953,31 +12118,11 @@ result ^= expression;
             </list>
             </remarks>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Pivot">
-            <summary>
-            Indicates the cell that blossomed its petals.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.PivotCandidatesCount">
-            <summary>
-            Indicates the number of digits in the pivot cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.DigitsMask">
-            <summary>
-            Indicates a mask that contains all digits used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.DifficultyLevel">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Petals">
-            <summary>
-            Indicates the petals used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.ExtraDifficultyCases">
             <inheritdoc/>
@@ -11990,15 +12135,39 @@ result ^= expression;
             Indicates the internal name.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Pivot">
+            <summary>
+            The generated property declaration for parameter <c>pivot</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.PivotCandidatesCount">
+            <summary>
+            The generated property declaration for parameter <c>pivotCandidatesCount</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Petals">
+            <summary>
+            The generated property declaration for parameter <c>petals</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.WingStep">
             <summary>
             Provides with a step that is a <b>Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.WingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Provides with a step that is a <b>Wing</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WingStep.Name">
             <inheritdoc/>
