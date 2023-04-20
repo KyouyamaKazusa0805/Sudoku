@@ -3,18 +3,31 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
 /// </summary>
-public sealed class UniqueRectangleType3Step(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digit1"><inheritdoc/></param>
+/// <param name="digit2"><inheritdoc/></param>
+/// <param name="cells"><inheritdoc/></param>
+/// <param name="extraCells">Indicates the extra cells used, forming the subset.</param>
+/// <param name="extraDigitsMask">Indicates the mask that contains all extra digits used.</param>
+/// <param name="house">Indicates the house used.</param>
+/// <param name="isAvoidable"><inheritdoc/></param>
+/// <param name="absoluteOffset"><inheritdoc/></param>
+/// <param name="isNaked">
+/// Indicates whether the subset is naked subset. If <see langword="true"/>, a naked subset; otherwise, a hidden subset.
+/// </param>
+public sealed partial class UniqueRectangleType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	int digit1,
 	int digit2,
 	scoped in CellMap cells,
-	scoped in CellMap extraCells,
-	Mask extraDigitsMask,
-	int house,
+	[PrimaryConstructorParameter] scoped in CellMap extraCells,
+	[PrimaryConstructorParameter] Mask extraDigitsMask,
+	[PrimaryConstructorParameter] int house,
 	bool isAvoidable,
 	int absoluteOffset,
-	bool isNaked = true
+	[PrimaryConstructorParameter] bool isNaked = true
 ) : UniqueRectangleStep(
 	conclusions,
 	views,
@@ -26,28 +39,8 @@ public sealed class UniqueRectangleType3Step(
 	absoluteOffset
 )
 {
-	/// <summary>
-	/// Indicates whether the subset is naked subset. If <see langword="true"/>, a naked subset; otherwise, a hidden subset.
-	/// </summary>
-	public bool IsNaked { get; } = isNaked;
-
-	/// <summary>
-	/// Indicates the house used.
-	/// </summary>
-	public int House { get; } = house;
-
-	/// <summary>
-	/// Indicates the mask that contains all extra digits used.
-	/// </summary>
-	public Mask ExtraDigitsMask { get; } = extraDigitsMask;
-
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <summary>
-	/// Indicates the extra cells used, forming the subset.
-	/// </summary>
-	public CellMap ExtraCells { get; } = extraCells;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases

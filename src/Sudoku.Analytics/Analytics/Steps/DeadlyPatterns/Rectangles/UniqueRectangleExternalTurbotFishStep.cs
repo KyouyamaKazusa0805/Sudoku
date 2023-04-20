@@ -3,18 +3,31 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle External Turbot Fish</b> technique.
 /// </summary>
-public sealed class UniqueRectangleExternalTurbotFishStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digit1"><inheritdoc/></param>
+/// <param name="digit2"><inheritdoc/></param>
+/// <param name="cells"><inheritdoc/></param>
+/// <param name="guardianCells">Indicates the cells that the guardians lie in.</param>
+/// <param name="cellPair">Indicates the cell pair.</param>
+/// <param name="turbotFishDigit">Indicates the digit that the turbot fish used.</param>
+/// <param name="baseHouse">Indicates the base house used.</param>
+/// <param name="targetHouse">Indicates the target house used.</param>
+/// <param name="isIncomplete">Indicates whether the rectangle is incomplete.</param>
+/// <param name="isAvoidable"><inheritdoc/></param>
+/// <param name="absoluteOffset"><inheritdoc/></param>
+public sealed partial class UniqueRectangleExternalTurbotFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	int digit1,
 	int digit2,
 	scoped in CellMap cells,
-	scoped in CellMap guardianCells,
-	scoped in CellMap cellPair,
-	int turbotFishDigit,
-	int baseHouse,
-	int targetHouse,
-	bool isIncomplete,
+	[PrimaryConstructorParameter] scoped in CellMap guardianCells,
+	[PrimaryConstructorParameter] scoped in CellMap cellPair,
+	[PrimaryConstructorParameter] int turbotFishDigit,
+	[PrimaryConstructorParameter] int baseHouse,
+	[PrimaryConstructorParameter] int targetHouse,
+	[PrimaryConstructorParameter] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
 ) : UniqueRectangleStep(
@@ -36,44 +49,14 @@ public sealed class UniqueRectangleExternalTurbotFishStep(
 	absoluteOffset
 )
 {
-	/// <summary>
-	/// Indicates whether the rectangle is incomplete.
-	/// </summary>
-	public bool IsIncomplete { get; } = isIncomplete;
-
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
-
-	/// <summary>
-	/// Indicates the digit that the turbot fish used.
-	/// </summary>
-	public int TurbotFishDigit { get; } = turbotFishDigit;
-
-	/// <summary>
-	/// Indicates the base house used.
-	/// </summary>
-	public int BaseHouse { get; } = baseHouse;
-
-	/// <summary>
-	/// Indicates the target house used.
-	/// </summary>
-	public int TargetHouse { get; } = targetHouse;
 
 	/// <inheritdoc/>
 	public override string Format => R["TechniqueFormat_UniqueRectangleStep"]!;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <summary>
-	/// Indicates the cells that the guardians lie in.
-	/// </summary>
-	public CellMap GuardianCells { get; } = guardianCells;
-
-	/// <summary>
-	/// Indicates the cell pair.
-	/// </summary>
-	public CellMap CellPair { get; } = cellPair;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases

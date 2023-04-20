@@ -3,15 +3,25 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
 /// </summary>
-public sealed class UniqueRectangleExternalAlmostLockedSetsXzStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digit1"><inheritdoc/></param>
+/// <param name="digit2"><inheritdoc/></param>
+/// <param name="cells"><inheritdoc/></param>
+/// <param name="guardianCells">Indicates the cells that the guardians lie in.</param>
+/// <param name="almostLockedSet">Indicates the almost locked set pattern used.</param>
+/// <param name="isIncomplete">Indicates whether the rectangle is incomplete.</param>
+/// <param name="isAvoidable"><inheritdoc/></param>
+/// <param name="absoluteOffset"><inheritdoc/></param>
+public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	int digit1,
 	int digit2,
 	scoped in CellMap cells,
-	scoped in CellMap guardianCells,
-	AlmostLockedSet almostLockedSet,
-	bool isIncomplete,
+	[PrimaryConstructorParameter] scoped in CellMap guardianCells,
+	[PrimaryConstructorParameter] AlmostLockedSet almostLockedSet,
+	[PrimaryConstructorParameter] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
 ) : UniqueRectangleStep(
@@ -25,18 +35,8 @@ public sealed class UniqueRectangleExternalAlmostLockedSetsXzStep(
 	absoluteOffset
 )
 {
-	/// <summary>
-	/// Indicates whether the rectangle is incomplete.
-	/// </summary>
-	public bool IsIncomplete { get; } = isIncomplete;
-
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <summary>
-	/// Indicates the cells that the guardians lie in.
-	/// </summary>
-	public CellMap GuardianCells { get; } = guardianCells;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
@@ -46,11 +46,6 @@ public sealed class UniqueRectangleExternalAlmostLockedSetsXzStep(
 			(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
 			(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
 		};
-
-	/// <summary>
-	/// The almost locked sets used.
-	/// </summary>
-	public AlmostLockedSet AlmostLockedSet { get; } = almostLockedSet;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

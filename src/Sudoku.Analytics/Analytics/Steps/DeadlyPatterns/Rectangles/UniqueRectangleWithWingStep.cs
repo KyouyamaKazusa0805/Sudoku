@@ -3,7 +3,18 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
 /// </summary>
-public sealed class UniqueRectangleWithWingStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="code"><inheritdoc/></param>
+/// <param name="digit1"><inheritdoc/></param>
+/// <param name="digit2"><inheritdoc/></param>
+/// <param name="cells"><inheritdoc/></param>
+/// <param name="isAvoidable"><inheritdoc/></param>
+/// <param name="branches">Indicates the branches used.</param>
+/// <param name="petals">Indicates the petals used.</param>
+/// <param name="extraDigitsMask">Indicates the mask that contains all extra digits.</param>
+/// <param name="absoluteOffset"><inheritdoc/></param>
+public sealed partial class UniqueRectangleWithWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	Technique code,
@@ -11,9 +22,9 @@ public sealed class UniqueRectangleWithWingStep(
 	int digit2,
 	scoped in CellMap cells,
 	bool isAvoidable,
-	scoped in CellMap branches,
-	scoped in CellMap petals,
-	Mask extraDigitsMask,
+	[PrimaryConstructorParameter] scoped in CellMap branches,
+	[PrimaryConstructorParameter] scoped in CellMap petals,
+	[PrimaryConstructorParameter] Mask extraDigitsMask,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
@@ -26,23 +37,8 @@ public sealed class UniqueRectangleWithWingStep(
 	absoluteOffset
 )
 {
-	/// <summary>
-	/// Indicates the mask that contains all extra digits.
-	/// </summary>
-	public Mask ExtraDigitsMask { get; } = extraDigitsMask;
-
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <summary>
-	/// Indicates the branches used.
-	/// </summary>
-	public CellMap Branches { get; } = branches;
-
-	/// <summary>
-	/// Indicates the petals used.
-	/// </summary>
-	public CellMap Petals { get; } = petals;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases

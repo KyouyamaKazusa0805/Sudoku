@@ -1,9 +1,18 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
 /// </summary>
-public sealed class UniqueRectangleType2Step(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digit1"><inheritdoc/></param>
+/// <param name="digit2"><inheritdoc/></param>
+/// <param name="code"><inheritdoc/></param>
+/// <param name="cells"><inheritdoc/></param>
+/// <param name="isAvoidable"><inheritdoc/></param>
+/// <param name="extraDigit">Indicates the extra digit used.</param>
+/// <param name="absoluteOffset"><inheritdoc/></param>
+public sealed partial class UniqueRectangleType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	int digit1,
@@ -11,7 +20,7 @@ public sealed class UniqueRectangleType2Step(
 	Technique code,
 	scoped in CellMap cells,
 	bool isAvoidable,
-	int extraDigit,
+	[PrimaryConstructorParameter] int extraDigit,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
@@ -26,11 +35,6 @@ public sealed class UniqueRectangleType2Step(
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
-
-	/// <summary>
-	/// Indicates the extra digit used.
-	/// </summary>
-	public int ExtraDigit { get; } = extraDigit;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
