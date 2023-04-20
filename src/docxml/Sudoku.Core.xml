@@ -8748,6 +8748,56 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Y-Chain.
             </summary>
         </member>
+        <member name="T:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator">
+            <summary>
+            Represents a combination generator that iterations each combination of bits for the specified number of bits, and how many 1's in it.
+            </summary>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Represents a combination generator that iterations each combination of bits for the specified number of bits, and how many 1's in it.
+            </summary>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
+        <member name="T:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.Enumerator">
+            <summary>
+            Indicates the enumerator of the current instance.
+            </summary>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.Enumerator.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Indicates the enumerator of the current instance.
+            </summary>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="F:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.Enumerator._mask">
+            <summary>
+            The mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.Enumerator._isLast">
+            <summary>
+            Indicates whether that the value is the last one.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.Enumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.Enumerator.MoveNext">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Runtime.MaskServices.MaskOperations">
             <summary>
             Provides with a set of methods that operates with mask defined in basic sudoku concepts, as data structures.

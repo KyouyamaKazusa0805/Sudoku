@@ -5942,61 +5942,6 @@ result ^= expression;
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.BitSubsetsGenerator">
-            <summary>
-            Represents a bit combination generator.
-            </summary>
-            <param name="bitCount">The number of bits.</param>
-            <param name="oneCount">The number of <see langword="true"/> bits.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BitSubsetsGenerator.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Represents a bit combination generator.
-            </summary>
-            <param name="bitCount">The number of bits.</param>
-            <param name="oneCount">The number of <see langword="true"/> bits.</param>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.BitSubsetsGenerator._enumerator">
-            <summary>
-            The inner enumerator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BitSubsetsGenerator.GetEnumerator">
-            <summary>
-            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-            </summary>
-            <returns>The enumerator instance.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.Enumerator">
-            <summary>
-            Indicates the enumerator of the current instance.
-            </summary>
-            <param name="bitCount">The number of bits.</param>
-            <param name="oneCount">The number of <see langword="true"/> bits.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Enumerator.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Indicates the enumerator of the current instance.
-            </summary>
-            <param name="bitCount">The number of bits.</param>
-            <param name="oneCount">The number of <see langword="true"/> bits.</param>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.Enumerator._mask">
-            <summary>
-            The mask.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.Enumerator._isLast">
-            <summary>
-            Indicates whether that the value is the last one.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.Enumerator.Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Enumerator.MoveNext">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher">
             <summary>
             Provides with a <b>Qiu's Deadly Pattern</b> step searcher.

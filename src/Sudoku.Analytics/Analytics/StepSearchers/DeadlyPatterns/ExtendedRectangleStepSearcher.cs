@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with an <b>Extended Rectangle</b> step searcher.
@@ -105,7 +105,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			{
 				var house1 = houses[i, 0];
 				var house2 = houses[i, 1];
-				foreach (Mask mask in new BitSubsetsGenerator(9, size))
+				foreach (Mask mask in new MaskCombinationsGenerator(9, size))
 				{
 					// Check whether all cells are in same house. If so, continue the loop immediately.
 					if (size == 3 && (mask >> 6 == 7 || (mask >> 3 & 7) == 7 || (mask & 7) == 7))
@@ -542,7 +542,8 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			case [var extraCell1, var extraCell2]:
 			{
 				// Type 4.
-				Mask m1 = grid.GetCandidates(extraCell1), m2 = grid.GetCandidates(extraCell2);
+				var m1 = grid.GetCandidates(extraCell1);
+				var m2 = grid.GetCandidates(extraCell2);
 				var conjugateMask = (Mask)(m1 & m2 & normalDigits);
 				if (conjugateMask == 0)
 				{
@@ -609,74 +610,5 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 	ReturnNull:
 		return null;
-	}
-}
-
-/// <summary>
-/// Represents a bit combination generator.
-/// </summary>
-/// <param name="bitCount">The number of bits.</param>
-/// <param name="oneCount">The number of <see langword="true"/> bits.</param>
-file readonly ref struct BitSubsetsGenerator(int bitCount, int oneCount)
-{
-	/// <summary>
-	/// The inner enumerator.
-	/// </summary>
-	private readonly Enumerator _enumerator = new(bitCount, oneCount);
-
-
-	/// <summary>
-	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-	/// </summary>
-	/// <returns>The enumerator instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Enumerator GetEnumerator() => _enumerator;
-}
-
-/// <summary>
-/// Indicates the enumerator of the current instance.
-/// </summary>
-/// <param name="bitCount">The number of bits.</param>
-/// <param name="oneCount">The number of <see langword="true"/> bits.</param>
-file ref struct Enumerator(int bitCount, int oneCount)
-{
-	/// <summary>
-	/// The mask.
-	/// </summary>
-	private readonly long _mask = (1 << bitCount - oneCount) - 1;
-
-	/// <summary>
-	/// Indicates whether that the value is the last one.
-	/// </summary>
-	private bool _isLast = bitCount == 0;
-
-
-	/// <inheritdoc/>
-	public long Current { get; private set; } = (1 << oneCount) - 1;
-
-
-	/// <inheritdoc/>
-	public bool MoveNext()
-	{
-		var result = hasNext(ref this);
-		if (result && !_isLast)
-		{
-			var smallest = Current & -Current;
-			var ripple = Current + smallest;
-			var ones = Current ^ ripple;
-			ones = (ones >> 2) / smallest;
-			Current = ripple | ones;
-		}
-
-		return result;
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool hasNext(scoped ref Enumerator @this)
-		{
-			var result = !@this._isLast;
-			@this._isLast = (@this.Current & -@this.Current & @this._mask) == 0;
-			return result;
-		}
 	}
 }
