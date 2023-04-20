@@ -1,17 +1,21 @@
-﻿namespace Sudoku.Analytics.Patterns;
+namespace Sudoku.Analytics.Patterns;
 
 /// <summary>
 /// Defines a data structure that describes an ALS.
 /// </summary>
-/// <param name="digitMask">The digit mask.</param>
-/// <param name="map">The map.</param>
-/// <param name="possibleEliminationMap">Indicates the possible cells that can be as the elimination.</param>
+/// <param name="digitsMask">Indicates the mask of digits used.</param>
+/// <param name="cells">Indicates the cells used.</param>
+/// <param name="possibleEliminationMap">Gets the possible cells that can store eliminations for the ALS.</param>
 /// <remarks>
 /// An <b>Almost Locked Set</b> is a sudoku concept, which describes a case that
 /// <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
 /// The special case is a bi-value cell.
 /// </remarks>
-public sealed class AlmostLockedSet(Mask digitMask, scoped in CellMap map, scoped in CellMap possibleEliminationMap)
+public sealed partial class AlmostLockedSet(
+	[PrimaryConstructorParameter] Mask digitsMask,
+	[PrimaryConstructorParameter] scoped in CellMap cells,
+	[PrimaryConstructorParameter] scoped in CellMap possibleEliminationMap
+)
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
@@ -29,7 +33,7 @@ public sealed class AlmostLockedSet(Mask digitMask, scoped in CellMap map, scope
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			_ = Map.AllSetsAreInOneHouse(out var houseIndex);
+			_ = Cells.AllSetsAreInOneHouse(out var houseIndex);
 			return houseIndex;
 		}
 	}
@@ -40,13 +44,8 @@ public sealed class AlmostLockedSet(Mask digitMask, scoped in CellMap map, scope
 	public bool IsBivalueCell
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Map.Count == 1;
+		get => Cells.Count == 1;
 	}
-
-	/// <summary>
-	/// Indicates the mask of digits used.
-	/// </summary>
-	public Mask DigitsMask { get; } = digitMask;
 
 	/// <summary>
 	/// Indicates all strong links in this ALS.
@@ -70,14 +69,6 @@ public sealed class AlmostLockedSet(Mask digitMask, scoped in CellMap map, scope
 		}
 	}
 
-	/// <inheritdoc/>
-	public CellMap Map { get; } = map;
-
-	/// <summary>
-	/// Gets the possible cells that can store eliminations for the ALS.
-	/// </summary>
-	public CellMap PossibleEliminationMap { get; } = possibleEliminationMap;
-
 
 	/// <summary>
 	/// Indicates whether the specified grid contains the digit.
@@ -89,7 +80,7 @@ public sealed class AlmostLockedSet(Mask digitMask, scoped in CellMap map, scope
 	public bool ContainsDigit(scoped in Grid grid, int digit, out CellMap result)
 	{
 		result = CellMap.Empty;
-		foreach (var cell in Map)
+		foreach (var cell in Cells)
 		{
 			if ((grid.GetCandidates(cell) >> digit & 1) != 0)
 			{
@@ -106,7 +97,7 @@ public sealed class AlmostLockedSet(Mask digitMask, scoped in CellMap map, scope
 	{
 		var digitsStr = DigitMaskFormatter.Format(DigitsMask);
 		var houseStr = HouseFormatter.Format(1 << House);
-		return IsBivalueCell ? $"{digitsStr}/{Map}" : $"{digitsStr}/{Map} {R["KeywordIn"]} {houseStr}";
+		return IsBivalueCell ? $"{digitsStr}/{Cells}" : $"{digitsStr}/{Cells} {R["KeywordIn"]} {houseStr}";
 	}
 
 

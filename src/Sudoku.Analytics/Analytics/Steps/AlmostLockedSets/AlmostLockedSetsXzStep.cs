@@ -70,7 +70,7 @@ public sealed partial class AlmostLockedSetsXzStep(
 			}
 		};
 
-	private string CellsStr => (FirstAls.Map | SecondAls.Map).ToString();
+	private string CellsStr => (FirstAls.Cells | SecondAls.Cells).ToString();
 
 	private string EspDigitStr => (TrailingZeroCount(ZDigitsMask) + 1).ToString();
 

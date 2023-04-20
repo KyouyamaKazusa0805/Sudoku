@@ -5,10 +5,4 @@ namespace Sudoku.Workflow.Bot.Oicq.Annotations;
 /// </summary>
 /// <param name="requiredUserLevel">表示用户的级别。</param>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed class RequiredUserLevelAttribute(int requiredUserLevel) : CommandAnnotationAttribute
-{
-	/// <summary>
-	/// 表示用户的级别。
-	/// </summary>
-	public int RequiredUserLevel { get; } = requiredUserLevel;
-}
+public sealed partial class RequiredUserLevelAttribute([PrimaryConstructorParameter] int requiredUserLevel) : CommandAnnotationAttribute;

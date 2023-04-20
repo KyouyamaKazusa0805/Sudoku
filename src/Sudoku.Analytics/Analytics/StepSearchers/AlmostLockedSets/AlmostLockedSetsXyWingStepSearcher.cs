@@ -27,12 +27,12 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 		for (int i = 0, length = alses.Length; i < length - 1; i++)
 		{
 			var als1 = alses[i];
-			var map1 = als1.Map;
+			var map1 = als1.Cells;
 			var mask1 = als1.DigitsMask;
 			for (var j = i + 1; j < length; j++)
 			{
 				var als2 = alses[j];
-				var map2 = als2.Map;
+				var map2 = als2.Cells;
 				var mask2 = als2.DigitsMask;
 				var map = map1 | map2;
 				if (map.InOneHouse || (map1 & map2) is not [])
@@ -92,9 +92,9 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 				var cHouse = c.House;
 				var aMask = a.DigitsMask;
 				var bMask = b.DigitsMask;
-				var aMap = a.Map;
-				var bMap = b.Map;
-				var cMap = c.Map;
+				var aMap = a.Cells;
+				var bMap = b.Cells;
+				var cMap = c.Cells;
 				var map = aMap | bMap;
 				if (map == aMap || map == bMap)
 				{

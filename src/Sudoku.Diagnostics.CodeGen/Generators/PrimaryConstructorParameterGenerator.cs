@@ -1,6 +1,6 @@
 namespace Sudoku.Diagnostics.CodeGen.Generators;
 
-using GatheredData = (string, TypeKind TypeKind, RefKind, ScopedKind, NullableAnnotation, ITypeSymbol, bool, string Namesapce, string Type, bool IsRecord, AttributeData[], string?);
+using GatheredData = (string, TypeKind TypeKind, RefKind, ScopedKind, NullableAnnotation, ITypeSymbol, INamedTypeSymbol TypeSymbol, bool, string Namesapce, string Type, bool IsRecord, AttributeData[], string?);
 using NamedArgs = ImmutableArray<KeyValuePair<string, TypedConstant>>;
 
 /// <summary>
@@ -67,7 +67,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 			// Please note that Roslyn may contain a bug that primary constructor parameters don't contain any documentation comments,
 			// so the result value of this variable may be string.Empty ("").
 			var comment = parameterSymbol.GetDocumentationCommentXml(cancellationToken: ct);
-			return (parameterName, typeKind, refKind, scopedKind, nullableAnnotation, parameterType, isReadOnly, namespaceString, typeName, isRecord, attributesData.ToArray(), comment);
+			return (parameterName, typeKind, refKind, scopedKind, nullableAnnotation, parameterType, typeSymbol, isReadOnly, namespaceString, typeName, isRecord, attributesData.ToArray(), comment);
 		}
 
 		void output(SourceProductionContext spc, ImmutableArray<GatheredData?> data)
@@ -84,7 +84,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 				var (fieldDeclarations, propertyDeclarations) = (new List<string>(), new List<string>());
 				foreach (
 					var (
-						parameterName, typeKind, refKind, scopedKind, nullableAnnotation, parameterType, isReadOnly,
+						parameterName, typeKind, refKind, scopedKind, nullableAnnotation, parameterType, typeSymbol, isReadOnly,
 						namespaceString, typeName, isRecord, attributesData, comment
 					) in values
 				)
@@ -169,6 +169,12 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 					{ TypeKind: TypeKind.Struct } => "struct",
 					{ TypeKind: TypeKind.Interface } => "interface"
 				};
+				var genericTypeParameters = values[0].TypeSymbol switch
+				{
+					{ IsGenericType: true, TypeParameters: var typeParameters }
+						=> $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>",
+					_ => string.Empty
+				};
 				spc.AddSource(
 					fileName,
 					$$"""
@@ -177,7 +183,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 					#nullable enable
 					namespace {{values[0].Namesapce}};
 
-					partial {{typeKindString}} {{values[0].Type}}
+					partial {{typeKindString}} {{values[0].Type}}{{genericTypeParameters}}
 					{
 						{{(fieldDeclarations.Count == 0 ? "// No field members." : string.Join("\r\n\r\n\t", fieldDeclarations))}}
 

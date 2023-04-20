@@ -4208,7 +4208,7 @@ partial class UniqueRectangleStepSearcher
 					{
 						var alsHouse = als.House;
 						var alsMask = als.DigitsMask;
-						var alsMap = als.Map;
+						var alsMap = als.Cells;
 						if ((cells.Houses >> alsHouse & 1) != 0)
 						{
 							// The current ALS cannot lie in the house that UR cells covered.

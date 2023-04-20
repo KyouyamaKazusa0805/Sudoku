@@ -1,5 +1,6 @@
 global using System;
 global using System.Diagnostics.CodeAnalysis;
+global using System.Diagnostics.CodeGen;
 global using System.Drawing;
 global using System.Drawing.Imaging;
 global using System.IO;

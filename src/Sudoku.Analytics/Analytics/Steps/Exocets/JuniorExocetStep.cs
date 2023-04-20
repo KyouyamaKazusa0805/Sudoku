@@ -19,16 +19,11 @@ public sealed partial class JuniorExocetStep(
 	[PrimaryConstructorParameter] Mask lockedMemberQ,
 	[PrimaryConstructorParameter] Mask lockedMemberR,
 #endif
-	ExocetElimination[] eliminations
+	[PrimaryConstructorParameter] ExocetElimination[] eliminations
 ) : ExocetStep(views, exocet, digitsMask, eliminations)
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.JuniorExocet;
-
-	/// <summary>
-	/// Indicates the eliminations for raw usages.
-	/// </summary>
-	public ExocetElimination[] Eliminations { get; } = eliminations;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases

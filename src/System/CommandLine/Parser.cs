@@ -1,4 +1,4 @@
-﻿namespace System.CommandLine;
+namespace System.CommandLine;
 
 /// <summary>
 /// Defines a command line parser that can parse the command line arguments as real instances.

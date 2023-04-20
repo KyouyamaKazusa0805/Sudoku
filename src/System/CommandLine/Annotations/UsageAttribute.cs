@@ -1,11 +1,11 @@
-﻿namespace System.CommandLine.Annotations;
+namespace System.CommandLine.Annotations;
 
 /// <summary>
 /// Represents an attribute that is applied to a command type, indicating the usage of the current root command.
 /// </summary>
-/// <param name="example">The example command.</param>
+/// <param name="example">Indicates the example command.</param>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
-public sealed class UsageAttribute(string example) : Attribute
+public sealed partial class UsageAttribute([PrimaryConstructorParameter] string example) : Attribute
 {
 	/// <summary>
 	/// <para>
@@ -62,11 +62,6 @@ public sealed class UsageAttribute(string example) : Attribute
 	/// </list>
 	/// </remarks>
 	public bool IsPattern { get; init; } = false;
-
-	/// <summary>
-	/// Indicates the example command.
-	/// </summary>
-	public string ExampleCommand { get; } = example;
 
 	/// <summary>
 	/// Indicates the description of the example command.

@@ -44,14 +44,14 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 			var als1 = alses[i];
 			var house1 = als1.House;
 			var mask1 = als1.DigitsMask;
-			var map1 = als1.Map;
+			var map1 = als1.Cells;
 			var possibleElimMap1 = als1.PossibleEliminationMap;
 			for (var j = i + 1; j < length; j++)
 			{
 				var als2 = alses[j];
 				var house2 = als2.House;
 				var mask2 = als2.DigitsMask;
-				var map2 = als2.Map;
+				var map2 = als2.Cells;
 				var possibleElimMap2 = als2.PossibleEliminationMap;
 				var xzMask = (Mask)(mask1 & mask2);
 				var map = map1 | map2;

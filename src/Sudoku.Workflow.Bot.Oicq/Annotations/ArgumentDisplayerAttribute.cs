@@ -6,10 +6,4 @@ namespace Sudoku.Workflow.Bot.Oicq.Annotations;
 /// </summary>
 /// <param name="argumentDisplayer">表示显示的参数内容。</param>
 [AttributeUsage(AttributeTargets.Property, Inherited = false)]
-public sealed class ArgumentDisplayerAttribute(string argumentDisplayer) : CommandAnnotationAttribute
-{
-	/// <summary>
-	/// 表示显示的参数内容。
-	/// </summary>
-	public string ArgumentDisplayer { get; } = argumentDisplayer;
-}
+public sealed partial class ArgumentDisplayerAttribute([PrimaryConstructorParameter] string argumentDisplayer) : CommandAnnotationAttribute;

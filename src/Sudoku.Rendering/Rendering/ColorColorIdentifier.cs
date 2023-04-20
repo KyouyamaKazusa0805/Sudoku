@@ -3,32 +3,17 @@ namespace Sudoku.Rendering;
 /// <summary>
 /// Defines a <see cref="ColorIdentifier"/> derived type that uses color value (like type <c>System.Drawing.Color</c>) to distinct with colors.
 /// </summary>
-/// <param name="a">The color alpha raw values to be assigned.</param>
-/// <param name="r">The color red raw values to be assigned.</param>
-/// <param name="g">The color green raw values to be assigned.</param>
-/// <param name="b">The color blue raw values to be assigned.</param>
-public sealed partial class ColorColorIdentifier(byte a, byte r, byte g, byte b) : ColorIdentifier
+/// <param name="a">Indicates the color alpha raw values to be assigned.</param>
+/// <param name="r">Indicates the color red raw values to be assigned.</param>
+/// <param name="g">Indicates the color green raw values to be assigned.</param>
+/// <param name="b">Indicates the color blue raw values to be assigned.</param>
+public sealed partial class ColorColorIdentifier(
+	[PrimaryConstructorParameter] byte a,
+	[PrimaryConstructorParameter] byte r,
+	[PrimaryConstructorParameter] byte g,
+	[PrimaryConstructorParameter] byte b
+) : ColorIdentifier
 {
-	/// <summary>
-	/// Indicates the alpha value of the color.
-	/// </summary>
-	public byte A { get; } = a;
-
-	/// <summary>
-	/// Indicates the red value of the color.
-	/// </summary>
-	public byte R { get; } = r;
-
-	/// <summary>
-	/// Indicates the green value of the color.
-	/// </summary>
-	public byte G { get; } = g;
-
-	/// <summary>
-	/// Indicates the blue value of the color.
-	/// </summary>
-	public byte B { get; } = b;
-
 	/// <summary>
 	/// Indicates the raw value.
 	/// </summary>
@@ -49,6 +34,6 @@ public sealed partial class ColorColorIdentifier(byte a, byte r, byte g, byte b)
 	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(RawValue))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(A), nameof(R), nameof(G), nameof(B))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, "A", "R", "G", "B")]
 	public override partial string ToString();
 }

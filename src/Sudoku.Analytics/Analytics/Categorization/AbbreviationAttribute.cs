@@ -1,14 +1,8 @@
-﻿namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
 /// Represents an attribute type that describes its abbreviation of a technique group.
 /// </summary>
-/// <param name="abbr"><inheritdoc cref="Abbreviation" path="/summary"/></param>
+/// <param name="abbr">Indicates the abbreviation.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed class AbbreviationAttribute(string abbr) : Attribute
-{
-	/// <summary>
-	/// Indicates the abbreviation.
-	/// </summary>
-	public string Abbreviation { get; } = abbr;
-}
+public sealed partial class AbbreviationAttribute([PrimaryConstructorParameter(GeneratedMemberName = "Abbreviation")] string abbr) : Attribute;

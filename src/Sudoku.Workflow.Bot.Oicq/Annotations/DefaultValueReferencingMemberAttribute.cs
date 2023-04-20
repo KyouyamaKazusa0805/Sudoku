@@ -1,11 +1,14 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.Annotations;
+namespace Sudoku.Workflow.Bot.Oicq.Annotations;
 
 /// <summary>
 /// 提供一个特性，用于标记到一个命令模块的属性上，表示该属性的默认数值是由哪一个同类型里的成员产生而赋值得到。
 /// </summary>
 /// <param name="defaultValueInvokerName">
 /// <para>表示成员的名称。</para>
-/// <para><inheritdoc cref="DefaultValueInvokerName" path="/remarks"/></para>
+/// <para><b><i>
+/// 该成员必须得是一个静态的成员，要么它是字段，要么它是属性，要么它就必须得是无参的方法。如果是无参的方法，还必须保证它的名字和反射时候得到的名称一致。
+/// 比如，本地函数的名字本身，和本地函数在程序里使用的实际名称是不同的。所以，这里传入的必须得是反射使用的实际名称。
+/// </i></b></para>
 /// </param>
 /// <remarks>
 /// 这个特性区别于 <see cref="DefaultValueAttribute{T}"/>，这个特性专门用于 <see cref="DefaultValueAttribute{T}"/> 不支持的情况。
@@ -14,14 +17,5 @@
 /// </remarks>
 /// <seealso cref="DefaultValueAttribute{T}"/>
 [AttributeUsage(AttributeTargets.Property, Inherited = false)]
-public sealed class DefaultValueReferencingMemberAttribute(string defaultValueInvokerName) : CommandAnnotationAttribute
-{
-	/// <summary>
-	/// 表示成员的名称。
-	/// </summary>
-	/// <remarks><b><i>
-	/// 该成员必须得是一个静态的成员，要么它是字段，要么它是属性，要么它就必须得是无参的方法。如果是无参的方法，还必须保证它的名字和反射时候得到的名称一致。
-	/// 比如，本地函数的名字本身，和本地函数在程序里使用的实际名称是不同的。所以，这里传入的必须得是反射使用的实际名称。
-	/// </i></b></remarks>
-	public string DefaultValueInvokerName { get; } = defaultValueInvokerName;
-}
+public sealed partial class DefaultValueReferencingMemberAttribute([PrimaryConstructorParameter] string defaultValueInvokerName) :
+	CommandAnnotationAttribute;

@@ -6,11 +6,17 @@ namespace Sudoku.Text.Parsing;
 /// </summary>
 /// <param name="parsingValue">The string to be parsed.</param>
 /// <param name="compatibleFirst">
-/// Indicates whether the parsing operation should use compatible mode to check
-/// PM grid. See <see cref="CompatibleFirst"/> to learn more.
+/// Indicates whether the parser will change the execution order of PM grid.
+/// If the value is <see langword="true"/>, the parser will check compatible one
+/// first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
 /// </param>
 /// <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
-public unsafe ref partial struct GridParser(string parsingValue, bool compatibleFirst, bool shortenSusser)
+[StructLayout(LayoutKind.Auto)]
+public unsafe ref partial struct GridParser(
+	string parsingValue,
+	[PrimaryConstructorParameter] bool compatibleFirst,
+	bool shortenSusser
+)
 {
 	/// <summary>
 	/// The list of all methods to parse.
@@ -80,13 +86,6 @@ public unsafe ref partial struct GridParser(string parsingValue, bool compatible
 	/// The string value to parse.
 	/// </summary>
 	public string ParsingValue { get; private set; } = parsingValue;
-
-	/// <summary>
-	/// Indicates whether the parser will change the execution order of PM grid.
-	/// If the value is <see langword="true"/>, the parser will check compatible one
-	/// first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
-	/// </summary>
-	public bool CompatibleFirst { get; } = compatibleFirst;
 
 	/// <summary>
 	/// Indicates whether the parser will use shorten mode to parse a susser format grid.

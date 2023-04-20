@@ -995,16 +995,6 @@
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.ShortName">
-            <summary>
-            Indicates the short name.
-            </summary>
-        </member>
-        <member name="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.FullName">
-            <summary>
-            Indicates the full name.
-            </summary>
-        </member>
         <member name="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.Description">
             <summary>
             Indicates the description of the argument.
@@ -1025,6 +1015,16 @@
             </remarks>
             <seealso cref="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.Description"/>
             <seealso cref="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.DescriptionResourceKey"/>
+        </member>
+        <member name="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.ShortName">
+            <summary>
+            The generated property declaration for parameter <c>shortName</c>.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.FullName">
+            <summary>
+            The generated property declaration for parameter <c>fullName</c>.
+            </summary>
         </member>
         <member name="T:System.CommandLine.Annotations.GlobalConfigurationAttribute">
             <summary>
@@ -1059,40 +1059,35 @@
             <summary>
             Defines an attribute that is applied to an enumeration field, indicating the name of the field.
             </summary>
-            <param name="name">The name of the field.</param>
+            <param name="name">Indicates the name of the enumeration field.</param>
         </member>
         <member name="M:System.CommandLine.Annotations.NameAttribute.#ctor(System.String)">
             <summary>
             Defines an attribute that is applied to an enumeration field, indicating the name of the field.
             </summary>
-            <param name="name">The name of the field.</param>
+            <param name="name">Indicates the name of the enumeration field.</param>
         </member>
         <member name="P:System.CommandLine.Annotations.NameAttribute.Name">
             <summary>
-            Indicates the name of the enumeration field.
+            The generated property declaration for parameter <c>name</c>.
             </summary>
         </member>
         <member name="T:System.CommandLine.Annotations.RootCommandAttribute">
             <summary>
             Represents a root command description.
             </summary>
-            <param name="name">The name of the command.</param>
+            <param name="name">Indicates the name of the command.</param>
         </member>
         <member name="M:System.CommandLine.Annotations.RootCommandAttribute.#ctor(System.String)">
             <summary>
             Represents a root command description.
             </summary>
-            <param name="name">The name of the command.</param>
+            <param name="name">Indicates the name of the command.</param>
         </member>
         <member name="P:System.CommandLine.Annotations.RootCommandAttribute.IsSpecial">
             <summary>
             <para>Indicates whether the command is special.</para>
             <para>The default value is <see langword="false"/>.</para>
-            </summary>
-        </member>
-        <member name="P:System.CommandLine.Annotations.RootCommandAttribute.Name">
-            <summary>
-            Indicates the name of the command.
             </summary>
         </member>
         <member name="P:System.CommandLine.Annotations.RootCommandAttribute.Description">
@@ -1116,36 +1111,41 @@
             <seealso cref="P:System.CommandLine.Annotations.RootCommandAttribute.Description"/>
             <seealso cref="P:System.CommandLine.Annotations.RootCommandAttribute.DescriptionResourceKey"/>
         </member>
+        <member name="P:System.CommandLine.Annotations.RootCommandAttribute.Name">
+            <summary>
+            The generated property declaration for parameter <c>name</c>.
+            </summary>
+        </member>
         <member name="T:System.CommandLine.Annotations.RouteToTypeAttribute">
             <summary>
             Represents an attribute type that is applied to an enumeration field,
             indicating the routed type.
             </summary>
-            <param name="typeToRoute">The type to route.</param>
+            <param name="typeToRoute">Indicates the type to be routed.</param>
         </member>
         <member name="M:System.CommandLine.Annotations.RouteToTypeAttribute.#ctor(System.Type)">
             <summary>
             Represents an attribute type that is applied to an enumeration field,
             indicating the routed type.
             </summary>
-            <param name="typeToRoute">The type to route.</param>
+            <param name="typeToRoute">Indicates the type to be routed.</param>
         </member>
         <member name="P:System.CommandLine.Annotations.RouteToTypeAttribute.TypeToRoute">
             <summary>
-            Indicates the type to be routed.
+            The generated property declaration for parameter <c>typeToRoute</c>.
             </summary>
         </member>
         <member name="T:System.CommandLine.Annotations.SingleArgumentCommandAttribute">
             <summary>
             Represents a single-argument command. The command don't require any argument name such as "<c>-f</c>".
             </summary>
-            <param name="notation">The notation of the command.</param>
+            <param name="notation">Indicates the fast notation to introduce the command, which is used for the displaying the help text.</param>
         </member>
         <member name="M:System.CommandLine.Annotations.SingleArgumentCommandAttribute.#ctor(System.String)">
             <summary>
             Represents a single-argument command. The command don't require any argument name such as "<c>-f</c>".
             </summary>
-            <param name="notation">The notation of the command.</param>
+            <param name="notation">Indicates the fast notation to introduce the command, which is used for the displaying the help text.</param>
         </member>
         <member name="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.IgnoreCase">
             <summary>
@@ -1157,11 +1157,6 @@
             <summary>
             <para>Indicates whether the command is required.</para>
             <para>The default value is <see langword="false"/>.</para>
-            </summary>
-        </member>
-        <member name="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.Notation">
-            <summary>
-            Indicates the fast notation to introduce the command, which is used for the displaying the help text.
             </summary>
         </member>
         <member name="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.Description">
@@ -1185,24 +1180,24 @@
             <seealso cref="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.Description"/>
             <seealso cref="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.DescriptionResourceKey"/>
         </member>
+        <member name="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.Notation">
+            <summary>
+            The generated property declaration for parameter <c>notation</c>.
+            </summary>
+        </member>
         <member name="T:System.CommandLine.Annotations.SupportedArgumentsAttribute">
             <summary>
             Represents an attribute that is applied to an enumeration typed field, indicating all specified commands
             are supported to be used as a part of the command line arguments when introducing the enumeration instance.
             </summary>
-            <param name="supportedNames">The supported names corresponding to the current enumeration field.</param>
+            <param name="supportedNames">Indicates the supported names corresponding to the current enumeration field.</param>
         </member>
         <member name="M:System.CommandLine.Annotations.SupportedArgumentsAttribute.#ctor(System.String[])">
             <summary>
             Represents an attribute that is applied to an enumeration typed field, indicating all specified commands
             are supported to be used as a part of the command line arguments when introducing the enumeration instance.
             </summary>
-            <param name="supportedNames">The supported names corresponding to the current enumeration field.</param>
-        </member>
-        <member name="P:System.CommandLine.Annotations.SupportedArgumentsAttribute.SupportedArguments">
-            <summary>
-            Indicates the supported names corresponding to the current enumeration field.
-            </summary>
+            <param name="supportedNames">Indicates the supported names corresponding to the current enumeration field.</param>
         </member>
         <member name="P:System.CommandLine.Annotations.SupportedArgumentsAttribute.IgnoreCase">
             <summary>
@@ -1212,17 +1207,22 @@
             <para>The default value is <see langword="true"/>.</para>
             </summary>
         </member>
+        <member name="P:System.CommandLine.Annotations.SupportedArgumentsAttribute.SupportedArguments">
+            <summary>
+            The generated property declaration for parameter <c>supportedNames</c>.
+            </summary>
+        </member>
         <member name="T:System.CommandLine.Annotations.UsageAttribute">
             <summary>
             Represents an attribute that is applied to a command type, indicating the usage of the current root command.
             </summary>
-            <param name="example">The example command.</param>
+            <param name="example">Indicates the example command.</param>
         </member>
         <member name="M:System.CommandLine.Annotations.UsageAttribute.#ctor(System.String)">
             <summary>
             Represents an attribute that is applied to a command type, indicating the usage of the current root command.
             </summary>
-            <param name="example">The example command.</param>
+            <param name="example">Indicates the example command.</param>
         </member>
         <member name="P:System.CommandLine.Annotations.UsageAttribute.IsPattern">
             <summary>
@@ -1280,11 +1280,6 @@
             </list>
             </remarks>
         </member>
-        <member name="P:System.CommandLine.Annotations.UsageAttribute.ExampleCommand">
-            <summary>
-            Indicates the example command.
-            </summary>
-        </member>
         <member name="P:System.CommandLine.Annotations.UsageAttribute.Description">
             <summary>
             Indicates the description of the example command.
@@ -1305,6 +1300,11 @@
             </remarks>
             <seealso cref="P:System.CommandLine.Annotations.UsageAttribute.Description"/>
             <seealso cref="P:System.CommandLine.Annotations.UsageAttribute.DescriptionResourceKey"/>
+        </member>
+        <member name="P:System.CommandLine.Annotations.UsageAttribute.Example">
+            <summary>
+            The generated property declaration for parameter <c>example</c>.
+            </summary>
         </member>
         <member name="T:System.CommandLine.Annotations.WebsiteAttribute">
             <summary>

@@ -23,13 +23,13 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 		for (int i = 0, length = alses.Length; i < length - 1; i++)
 		{
 			var als1 = alses[i];
-			var map1 = als1.Map;
+			var map1 = als1.Cells;
 			var house1 = als1.House;
 			var mask1 = als1.DigitsMask;
 			for (var j = i + 1; j < length; j++)
 			{
 				var als2 = alses[j];
-				var map2 = als2.Map;
+				var map2 = als2.Cells;
 				var house2 = als2.House;
 				var mask2 = als2.DigitsMask;
 

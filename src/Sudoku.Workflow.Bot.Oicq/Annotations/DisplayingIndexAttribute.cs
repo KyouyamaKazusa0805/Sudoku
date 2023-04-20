@@ -6,10 +6,4 @@ namespace Sudoku.Workflow.Bot.Oicq.Annotations;
 /// </summary>
 /// <param name="index">表示该指令的显示位置。</param>
 [AttributeUsage(AttributeTargets.Property, Inherited = false)]
-public sealed class DisplayingIndexAttribute(int index) : CommandAnnotationAttribute
-{
-	/// <summary>
-	/// 表示该指令的显示位置。
-	/// </summary>
-	public int Index { get; } = index;
-}
+public sealed partial class DisplayingIndexAttribute([PrimaryConstructorParameter] int index) : CommandAnnotationAttribute;
