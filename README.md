@@ -111,7 +111,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Negative Rank Logics
       * Guardian
       * Bi-value Oddagon
-      * Tri-value Oddagon
+      * Chromatic Pattern (i.e. Tri-value Oddagon)
   * Symmetrical Placements
     * Gurth's Symmetrical Placements
   * Last Resorts
