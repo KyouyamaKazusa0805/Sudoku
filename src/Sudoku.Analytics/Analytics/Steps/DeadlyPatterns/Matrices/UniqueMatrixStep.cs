@@ -3,8 +3,16 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Unique Matrix</b> technique.
 /// </summary>
-public abstract class UniqueMatrixStep(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, Mask digitsMask) :
-	DeadlyPatternStep(conclusions, views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="cells">Indicates the cells used in this pattern.</param>
+/// <param name="digitsMask">Indicates the mask that describes all digits used in this pattern.</param>
+public abstract partial class UniqueMatrixStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] scoped in CellMap cells,
+	[PrimaryConstructorParameter] Mask digitsMask
+) : DeadlyPatternStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public sealed override decimal BaseDifficulty => 5.3M;
@@ -17,21 +25,11 @@ public abstract class UniqueMatrixStep(Conclusion[] conclusions, View[]? views, 
 	/// <inheritdoc/>
 	public sealed override string? Format => base.Format;
 
-	/// <summary>
-	/// Indicates the mask that describes all digits used in this pattern.
-	/// </summary>
-	public Mask DigitsMask { get; } = digitsMask;
-
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"UniqueMatrixType{Type}");
-
-	/// <summary>
-	/// Indicates the cells used in this pattern.
-	/// </summary>
-	public CellMap Cells { get; } = cells;
 
 	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 

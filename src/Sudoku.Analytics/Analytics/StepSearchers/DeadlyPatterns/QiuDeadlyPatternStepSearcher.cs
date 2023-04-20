@@ -473,8 +473,8 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 								| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifierKind.Normal, pos + offset)
 						},
 						pattern,
-						mask,
 						cells,
+						mask,
 						true
 					);
 					if (onlyFindOne)

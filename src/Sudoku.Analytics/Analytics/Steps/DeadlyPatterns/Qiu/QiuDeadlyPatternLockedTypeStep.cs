@@ -3,20 +3,19 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Qiu's Deadly Pattern Locked Type</b> technique.
 /// </summary>
-public sealed class QiuDeadlyPatternLockedTypeStep(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="pattern"><inheritdoc/></param>
+/// <param name="candidates">Indicates the candidates used as locked one.</param>
+public sealed partial class QiuDeadlyPatternLockedTypeStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in QiuDeadlyPattern pattern,
-	scoped in CandidateMap candidates
+	[PrimaryConstructorParameter(NamingRule = ">@Locked")] scoped in CandidateMap candidates
 ) : QiuDeadlyPatternStep(conclusions, views, pattern)
 {
 	/// <inheritdoc/>
 	public override int Type => 5;
-
-	/// <summary>
-	/// Indicates the candidates used.
-	/// </summary>
-	public CandidateMap Candidates { get; } = candidates;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.LockedDigit, .2M) };
@@ -29,13 +28,13 @@ public sealed class QiuDeadlyPatternLockedTypeStep(
 			{ "zh", new[] { Number, PatternStr } }
 		};
 
-	private string CandidateStr => (CandidateMap.Empty + Candidates).ToString();
+	private string CandidateStr => (CandidateMap.Empty + CandidatesLocked).ToString();
 
-	private string Quantifier => Candidates.Count switch { 1 => string.Empty, 2 => " both", _ => " all" };
+	private string Quantifier => CandidatesLocked.Count switch { 1 => string.Empty, 2 => " both", _ => " all" };
 
-	private string Number => Candidates.Count == 1 ? " the" : $" {Candidates.Count}";
+	private string Number => CandidatesLocked.Count == 1 ? " the" : $" {CandidatesLocked.Count}";
 
-	private string SingularOrPlural => Candidates.Count == 1 ? "candidate" : "candidates";
+	private string SingularOrPlural => CandidatesLocked.Count == 1 ? "candidate" : "candidates";
 
-	private string BeVerb => Candidates.Count == 1 ? "is" : "are";
+	private string BeVerb => CandidatesLocked.Count == 1 ? "is" : "are";
 }

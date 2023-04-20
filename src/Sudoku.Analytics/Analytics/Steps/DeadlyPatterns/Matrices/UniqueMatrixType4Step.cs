@@ -1,35 +1,27 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Square Type 4</b> technique.
 /// </summary>
-public sealed class UniqueMatrixType4Step(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="cells"><inheritdoc/></param>
+/// <param name="digitsMask"><inheritdoc/></param>
+/// <param name="digit1">Indicates the first digit used in the conjugate.</param>
+/// <param name="digit2">Indicates the second digit used in the conjugate.</param>
+/// <param name="conjugateHouse">Indicates the cells that describes the generalized conjugate pair.</param>
+public sealed partial class UniqueMatrixType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in CellMap cells,
 	Mask digitsMask,
-	int digit1,
-	int digit2,
-	scoped in CellMap conjugateHouse
+	[PrimaryConstructorParameter] int digit1,
+	[PrimaryConstructorParameter] int digit2,
+	[PrimaryConstructorParameter] scoped in CellMap conjugateHouse
 ) : UniqueMatrixStep(conclusions, views, cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 4;
-
-	/// <summary>
-	/// Indicates the first digit used in the conjugate.
-	/// </summary>
-	public int Digit1 { get; } = digit1;
-
-	/// <summary>
-	/// Indicates the second digit used in the conjugate.
-	/// </summary>
-	public int Digit2 { get; } = digit2;
-
-	/// <summary>
-	/// Indicates the cells that describes the generalized conjugate pair.
-	/// </summary>
-	public CellMap ConjugateHouse { get; } = conjugateHouse;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

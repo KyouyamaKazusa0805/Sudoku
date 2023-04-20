@@ -3,8 +3,14 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Qiu's Deadly Pattern</b> technique.
 /// </summary>
-public abstract class QiuDeadlyPatternStep(Conclusion[] conclusions, View[]? views, scoped in QiuDeadlyPattern pattern) :
-	DeadlyPatternStep(conclusions, views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="pattern">Indicates the pattern.</param>
+public abstract partial class QiuDeadlyPatternStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] scoped in QiuDeadlyPattern pattern
+) : DeadlyPatternStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public sealed override decimal BaseDifficulty => 5.8M;
@@ -25,11 +31,6 @@ public abstract class QiuDeadlyPatternStep(Conclusion[] conclusions, View[]? vie
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <summary>
-	/// Indicates the pattern.
-	/// </summary>
-	public QiuDeadlyPattern Pattern { get; } = pattern;
 
 	private protected string PatternStr => Pattern.Map.ToString();
 }

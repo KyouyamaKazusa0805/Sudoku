@@ -288,8 +288,8 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 							new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifierKind.Normal, house) },
 							pattern,
 							digitsMask,
-							extraDigitsMask,
-							cells
+							cells,
+							extraDigitsMask
 						);
 						if (onlyFindOne)
 						{

@@ -9646,11 +9646,19 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Unique Matrix</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used in this pattern.</param>
+            <param name="digitsMask">Indicates the mask that describes all digits used in this pattern.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueMatrixStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Matrix</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used in this pattern.</param>
+            <param name="digitsMask">Indicates the mask that describes all digits used in this pattern.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.BaseDifficulty">
             <inheritdoc/>
@@ -9663,11 +9671,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Format">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.DigitsMask">
-            <summary>
-            Indicates the mask that describes all digits used in this pattern.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -9676,47 +9679,67 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Cells">
             <summary>
-            Indicates the cells used in this pattern.
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueMatrixType1Step">
             <summary>
             Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="candidate">Indicates the true candidate.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="candidate">Indicates the true candidate.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType1Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType1Step.Candidate">
-            <summary>
-            Indicates the true candidate.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType1Step.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType1Step.Candidate">
+            <summary>
+            The generated property declaration for parameter <c>candidate</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueMatrixType2Step">
             <summary>
             Provides with a step that is a <b>Unique Square Type 2</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 2</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.Type">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.ExtraDigit">
-            <summary>
-            Indicates the extra digit used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.ExtraDifficultyCases">
             <inheritdoc/>
@@ -9724,28 +9747,35 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.ExtraDigit">
+            <summary>
+            The generated property declaration for parameter <c>extraDigit</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueMatrixType3Step">
             <summary>
             Provides with a step that is a <b>Unique Square Type 3</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="subsetDigitsMask">Indicates the mask that describes the extra digits used in the subset.</param>
+            <param name="subsetCells">Indicates the cells that the subset used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 3</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="subsetDigitsMask">Indicates the mask that describes the extra digits used in the subset.</param>
+            <param name="subsetCells">Indicates the cells that the subset used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.Type">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.SubsetDigitsMask">
-            <summary>
-            Indicates the mask that describes the extra digits used in the subset.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.SubsetCells">
-            <summary>
-            Indicates the cells that the subset used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.ExtraDifficultyCases">
             <inheritdoc/>
@@ -9753,54 +9783,81 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.SubsetCells">
+            <summary>
+            The generated property declaration for parameter <c>subsetCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.SubsetDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>subsetDigitsMask</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueMatrixType4Step">
             <summary>
             Provides with a step that is a <b>Unique Square Type 4</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="digit1">Indicates the first digit used in the conjugate.</param>
+            <param name="digit2">Indicates the second digit used in the conjugate.</param>
+            <param name="conjugateHouse">Indicates the cells that describes the generalized conjugate pair.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 4</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="digit1">Indicates the first digit used in the conjugate.</param>
+            <param name="digit2">Indicates the second digit used in the conjugate.</param>
+            <param name="conjugateHouse">Indicates the cells that describes the generalized conjugate pair.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType4Step.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType4Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType4Step.Digit1">
             <summary>
-            Indicates the first digit used in the conjugate.
+            The generated property declaration for parameter <c>digit1</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType4Step.Digit2">
             <summary>
-            Indicates the second digit used in the conjugate.
+            The generated property declaration for parameter <c>digit2</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType4Step.ConjugateHouse">
             <summary>
-            Indicates the cells that describes the generalized conjugate pair.
+            The generated property declaration for parameter <c>conjugateHouse</c>.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType4Step.FormatInterpolatedParts">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Locked Type</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="candidates">Indicates the candidates used as locked one.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,Sudoku.Concepts.CandidateMap@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Locked Type</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="candidates">Indicates the candidates used as locked one.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.Type">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.Candidates">
-            <summary>
-            Indicates the candidates used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.ExtraDifficultyCases">
             <inheritdoc/>
@@ -9808,15 +9865,26 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.CandidatesLocked">
+            <summary>
+            The generated property declaration for parameter <c>candidates</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.QiuDeadlyPatternStep">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="pattern">Indicates the pattern.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="pattern">Indicates the pattern.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.BaseDifficulty">
             <inheritdoc/>
@@ -9840,47 +9908,58 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.Pattern">
             <summary>
-            Indicates the pattern.
+            The generated property declaration for parameter <c>pattern</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 1</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="candidate">Indicates the target candidate.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 1</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="candidate">Indicates the target candidate.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.Candidate">
-            <summary>
-            Indicates the target candidate.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.Candidate">
+            <summary>
+            The generated property declaration for parameter <c>candidate</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 2</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 2</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.Type">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.ExtraDigit">
-            <summary>
-            Indicates the extra digit used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.ExtraDifficultyCases">
             <inheritdoc/>
@@ -9888,33 +9967,35 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.ExtraDigit">
+            <summary>
+            The generated property declaration for parameter <c>extraDigit</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
+            <param name="subsetCells">Indicates the subset cells used.</param>
+            <param name="isNaked">Indicates whether the subset is naked one.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.IsNaked">
-            <summary>
-            Indicates whether the subset is naked one.
-            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
+            <param name="subsetCells">Indicates the subset cells used.</param>
+            <param name="isNaked">Indicates whether the subset is naked one.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.Type">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.SubsetDigitsMask">
-            <summary>
-            Indicates the mask of subset digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.SubsetCells">
-            <summary>
-            Indicates the subset cells used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.ExtraDifficultyCases">
             <inheritdoc/>
@@ -9922,29 +10003,52 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.SubsetCells">
+            <summary>
+            The generated property declaration for parameter <c>subsetCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.SubsetDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>subsetDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.IsNaked">
+            <summary>
+            The generated property declaration for parameter <c>isNaked</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 4</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Patterns.QiuDeadlyPattern@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 4</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.Type">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.ConjugatePair">
-            <summary>
-            Indicates the conjugate pair used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.ConjugatePair">
+            <summary>
+            The generated property declaration for parameter <c>conjugatePair</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep">
             <summary>

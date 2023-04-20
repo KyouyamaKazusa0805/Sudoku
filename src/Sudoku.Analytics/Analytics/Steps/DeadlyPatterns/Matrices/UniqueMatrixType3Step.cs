@@ -3,27 +3,23 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Unique Square Type 3</b> technique.
 /// </summary>
-public sealed class UniqueMatrixType3Step(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="cells"><inheritdoc/></param>
+/// <param name="digitsMask"><inheritdoc/></param>
+/// <param name="subsetDigitsMask">Indicates the mask that describes the extra digits used in the subset.</param>
+/// <param name="subsetCells">Indicates the cells that the subset used.</param>
+public sealed partial class UniqueMatrixType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in CellMap cells,
 	Mask digitsMask,
-	Mask subsetDigitsMask,
-	scoped in CellMap subsetCells
+	[PrimaryConstructorParameter] scoped in CellMap subsetCells,
+	[PrimaryConstructorParameter] Mask subsetDigitsMask
 ) : UniqueMatrixStep(conclusions, views, cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
-
-	/// <summary>
-	/// Indicates the mask that describes the extra digits used in the subset.
-	/// </summary>
-	public Mask SubsetDigitsMask { get; } = subsetDigitsMask;
-
-	/// <summary>
-	/// Indicates the cells that the subset used.
-	/// </summary>
-	public CellMap SubsetCells { get; } = subsetCells;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases

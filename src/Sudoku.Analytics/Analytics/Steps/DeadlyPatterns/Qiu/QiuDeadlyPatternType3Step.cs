@@ -3,32 +3,23 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
 /// </summary>
-public sealed class QiuDeadlyPatternType3Step(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="pattern"><inheritdoc/></param>
+/// <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
+/// <param name="subsetCells">Indicates the subset cells used.</param>
+/// <param name="isNaked">Indicates whether the subset is naked one.</param>
+public sealed partial class QiuDeadlyPatternType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in QiuDeadlyPattern pattern,
-	Mask subsetDigitsMask,
-	scoped in CellMap subsetCells,
-	bool isNaked
+	[PrimaryConstructorParameter] scoped in CellMap subsetCells,
+	[PrimaryConstructorParameter] Mask subsetDigitsMask,
+	[PrimaryConstructorParameter] bool isNaked
 ) : QiuDeadlyPatternStep(conclusions, views, pattern)
 {
-	/// <summary>
-	/// Indicates whether the subset is naked one.
-	/// </summary>
-	public bool IsNaked { get; } = isNaked;
-
 	/// <inheritdoc/>
 	public override int Type => 3;
-
-	/// <summary>
-	/// Indicates the mask of subset digits used.
-	/// </summary>
-	public Mask SubsetDigitsMask { get; } = subsetDigitsMask;
-
-	/// <summary>
-	/// Indicates the subset cells used.
-	/// </summary>
-	public CellMap SubsetCells { get; } = subsetCells;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
