@@ -1,10 +1,14 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Borescoper's Deadly Pattern Type 1</b> technique.
 /// </summary>
-public sealed class BorescoperDeadlyPatternType1Step(Conclusion[] conclusions, View[]? views, scoped in CellMap map, Mask digitsMask) :
-	BorescoperDeadlyPatternStep(conclusions, views, map, digitsMask)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="cells"><inheritdoc/></param>
+/// <param name="digitsMask"><inheritdoc/></param>
+public sealed class BorescoperDeadlyPatternType1Step(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, Mask digitsMask) :
+	BorescoperDeadlyPatternStep(conclusions, views, cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

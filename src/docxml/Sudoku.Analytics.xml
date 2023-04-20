@@ -9057,11 +9057,19 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">The map that contains the cells used for this technique.</param>
+            <param name="digitsMask">Indicates the mask of used digits.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">The map that contains the cells used for this technique.</param>
+            <param name="digitsMask">Indicates the mask of used digits.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.BaseDifficulty">
             <inheritdoc/>
@@ -9069,11 +9077,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Type">
             <summary>
             Indicates the type of the technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.DigitsMask">
-            <summary>
-            Indicates the mask of used digits.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Format">
@@ -9085,20 +9088,33 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Map">
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Cells">
             <summary>
-            The map that contains the cells used for this technique.
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType1Step">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 1</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 1</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType1Step.Type">
             <inheritdoc/>
@@ -9110,11 +9126,21 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 2</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 2</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.BaseDifficulty">
             <inheritdoc/>
@@ -9122,36 +9148,38 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.ExtraDigit">
-            <summary>
-            Indicates the extra digit used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.ExtraDigit">
+            <summary>
+            The generated property declaration for parameter <c>extraDigit</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 3</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="subsetCells">Indicates the cells that the subset used.</param>
+            <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 3</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="subsetCells">Indicates the cells that the subset used.</param>
+            <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.Type">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.SubsetDigitsMask">
-            <summary>
-            Indicates the mask of subset digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.SubsetCells">
-            <summary>
-            Indicates the cells that the subset used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.ExtraDifficultyCases">
             <inheritdoc/>
@@ -9159,15 +9187,37 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.SubsetCells">
+            <summary>
+            The generated property declaration for parameter <c>subsetCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.SubsetDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>subsetDigitsMask</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 4</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="conjugateHouse">Indicates the cells used as generialized conjugate.</param>
+            <param name="extraDigitsMask">Indicates the mask of extra digits used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 4</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="conjugateHouse">Indicates the cells used as generialized conjugate.</param>
+            <param name="extraDigitsMask">Indicates the mask of extra digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.BaseDifficulty">
             <inheritdoc/>
@@ -9175,18 +9225,18 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.ExtraDigitsMask">
-            <summary>
-            Indicates the mask of extra digits used.
-            </summary>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.FormatInterpolatedParts">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.ConjugateHouse">
             <summary>
-            Indicates the cells used as generialized conjugate.
+            The generated property declaration for parameter <c>conjugateHouse</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.FormatInterpolatedParts">
-            <inheritdoc/>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.ExtraDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>extraDigitsMask</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.DeadlyPatternStep">
             <summary>
