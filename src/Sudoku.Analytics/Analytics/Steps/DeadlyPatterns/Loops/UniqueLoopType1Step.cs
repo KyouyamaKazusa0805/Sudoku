@@ -1,8 +1,13 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Loop Type 1</b> technique.
 /// </summary>
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digit1"><inheritdoc/></param>
+/// <param name="digit2"><inheritdoc/></param>
+/// <param name="loop"><inheritdoc/></param>
 public sealed class UniqueLoopType1Step(Conclusion[] conclusions, View[]? views, int digit1, int digit2, scoped in CellMap loop) :
 	UniqueLoopStep(conclusions, views, digit1, digit2, loop)
 {

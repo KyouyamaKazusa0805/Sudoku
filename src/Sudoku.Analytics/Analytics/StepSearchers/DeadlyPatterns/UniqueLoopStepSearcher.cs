@@ -337,8 +337,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 							d1,
 							d2,
 							loop,
-							mask,
-							cells
+							cells,
+							mask
 						);
 
 						if (onlyFindOne)
@@ -411,7 +411,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						}
 					}
 
-					var step = new UniqueLoopType3Step(conclusions.ToArray(), new[] { View.Empty | candidateOffsets }, d1, d2, loop, mask, cells);
+					var step = new UniqueLoopType3Step(conclusions.ToArray(), new[] { View.Empty | candidateOffsets }, d1, d2, loop, cells, mask);
 					if (onlyFindOne)
 					{
 						return step;

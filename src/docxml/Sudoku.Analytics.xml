@@ -9256,11 +9256,19 @@ result ^= expression;
             <summary>
             Provides with a step that is an <b>Extended Rectangle</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used in this pattern.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used in this pattern.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.BaseDifficulty">
             <inheritdoc/>
@@ -9268,11 +9276,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Type">
             <summary>
             Indicates the type of the step. The value must be between 1 and 4.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.DigitsMask">
-            <summary>
-            Indicates the mask of digits used.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Format">
@@ -9284,23 +9287,36 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Cells">
-            <summary>
-            Indicates the cells used in this pattern.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.ExtraDifficultyCases">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ExtendedRectangleType1Step">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType1Step.Type">
             <inheritdoc/>
@@ -9312,19 +9328,24 @@ result ^= expression;
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.Type">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.ExtraDigit">
-            <summary>
-            Indicates the extra digit used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.ExtraDifficultyCases">
             <inheritdoc/>
@@ -9332,33 +9353,37 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.ExtraDigit">
+            <summary>
+            The generated property declaration for parameter <c>extraDigit</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ExtendedRectangleType3Step">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="subsetCells">Indicates the extra cells used that can form the subset.</param>
+            <param name="subsetDigitsMask">Indicates the subset digits used.</param>
+            <param name="house">Indicates the house that subset formed.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="subsetCells">Indicates the extra cells used that can form the subset.</param>
+            <param name="subsetDigitsMask">Indicates the subset digits used.</param>
+            <param name="house">Indicates the house that subset formed.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Type">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.House">
-            <summary>
-            Indicates the house that subset formed.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.SubsetDigitsMask">
-            <summary>
-            Indicates the subset digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.SubsetCells">
-            <summary>
-            Indicates the extra cells used that can form the subset.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.ExtraDifficultyCases">
             <inheritdoc/>
@@ -9366,23 +9391,43 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.SubsetCells">
+            <summary>
+            The generated property declaration for parameter <c>subsetCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.SubsetDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>subsetDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.House">
+            <summary>
+            The generated property declaration for parameter <c>house</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ExtendedRectangleType4Step">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.Type">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.ConjugatePair">
-            <summary>
-            Indicates the conjugate pair used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.ExtraDifficultyCases">
             <inheritdoc/>
@@ -9390,28 +9435,33 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.ConjugatePair">
+            <summary>
+            The generated property declaration for parameter <c>conjugatePair</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueLoopStep">
             <summary>
             Provides with a step that is a <b>Unique Loop</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1">Indicates the first digit used.</param>
+            <param name="digit2">Indicates the second digit used.</param>
+            <param name="loop">Indicates the whole loop of cells used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Loop</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1">Indicates the first digit used.</param>
+            <param name="digit2">Indicates the second digit used.</param>
+            <param name="loop">Indicates the whole loop of cells used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.BaseDifficulty">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Digit1">
-            <summary>
-            Indicates the first digit used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Digit2">
-            <summary>
-            Indicates the second digit used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Type">
             <summary>
@@ -9427,11 +9477,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Loop">
-            <summary>
-            Indicates the whole loop of cells used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
@@ -9441,15 +9486,40 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.op_Inequality(Sudoku.Analytics.Steps.UniqueLoopStep,Sudoku.Analytics.Steps.UniqueLoopStep)">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Digit1">
+            <summary>
+            The generated property declaration for parameter <c>digit1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Digit2">
+            <summary>
+            The generated property declaration for parameter <c>digit2</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Loop">
+            <summary>
+            The generated property declaration for parameter <c>loop</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueLoopType1Step">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 1</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="loop"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueLoopType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 1</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="loop"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType1Step.Type">
             <inheritdoc/>
@@ -9461,19 +9531,26 @@ result ^= expression;
             <summary>
             Provides with a step that is a <b>Unique Loop Type 2</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="loop"><inheritdoc/></param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueLoopType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 2</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="loop"><inheritdoc/></param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.Type">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.ExtraDigit">
-            <summary>
-            Indicates the extra digit used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.BaseDifficulty">
             <inheritdoc/>
@@ -9481,28 +9558,37 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.ExtraDigit">
+            <summary>
+            The generated property declaration for parameter <c>extraDigit</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueLoopType3Step">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 3</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="loop"><inheritdoc/></param>
+            <param name="subsetCells">Indicates the cells that are subset cells.</param>
+            <param name="subsetDigitsMask">Indicates the mask that contains the subset digits used in this instance.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 3</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="loop"><inheritdoc/></param>
+            <param name="subsetCells">Indicates the cells that are subset cells.</param>
+            <param name="subsetDigitsMask">Indicates the mask that contains the subset digits used in this instance.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.Type">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.SubsetDigitsMask">
-            <summary>
-            Indicates the mask that contains the subset digits used in this instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.SubsetCells">
-            <summary>
-            Indicates the cells that are subset cells.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.ExtraDifficultyCases">
             <inheritdoc/>
@@ -9510,15 +9596,37 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.SubsetCells">
+            <summary>
+            The generated property declaration for parameter <c>subsetCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.SubsetDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>subsetDigitsMask</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueLoopType4Step">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 4</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="loop"><inheritdoc/></param>
+            <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueLoopType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 4</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="loop"><inheritdoc/></param>
+            <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType4Step.Type">
             <inheritdoc/>
@@ -9526,13 +9634,13 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType4Step.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType4Step.ConjugatePair">
-            <summary>
-            Indicates the conjugate pair used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType4Step.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType4Step.ConjugatePair">
+            <summary>
+            The generated property declaration for parameter <c>conjugatePair</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueMatrixStep">
             <summary>

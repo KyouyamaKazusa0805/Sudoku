@@ -3,8 +3,16 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is an <b>Extended Rectangle</b> technique.
 /// </summary>
-public abstract class ExtendedRectangleStep(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, Mask digitsMask) :
-	DeadlyPatternStep(conclusions, views)
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="cells">Indicates the cells used in this pattern.</param>
+/// <param name="digitsMask">Indicates the mask of digits used.</param>
+public abstract partial class ExtendedRectangleStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] scoped in CellMap cells,
+	[PrimaryConstructorParameter] Mask digitsMask
+) : DeadlyPatternStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public sealed override decimal BaseDifficulty => 4.5M;
@@ -14,11 +22,6 @@ public abstract class ExtendedRectangleStep(Conclusion[] conclusions, View[]? vi
 	/// </summary>
 	public abstract int Type { get; }
 
-	/// <summary>
-	/// Indicates the mask of digits used.
-	/// </summary>
-	public Mask DigitsMask { get; } = digitsMask;
-
 	/// <inheritdoc/>
 	public sealed override string? Format => base.Format;
 
@@ -27,11 +30,6 @@ public abstract class ExtendedRectangleStep(Conclusion[] conclusions, View[]? vi
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <summary>
-	/// Indicates the cells used in this pattern.
-	/// </summary>
-	public CellMap Cells { get; } = cells;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Size, (A004526(Cells.Count) - 2) * .1M) };

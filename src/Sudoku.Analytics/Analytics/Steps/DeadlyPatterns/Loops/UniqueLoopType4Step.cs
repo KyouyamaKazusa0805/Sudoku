@@ -1,15 +1,21 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Loop Type 4</b> technique.
 /// </summary>
-public sealed class UniqueLoopType4Step(
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digit1"><inheritdoc/></param>
+/// <param name="digit2"><inheritdoc/></param>
+/// <param name="loop"><inheritdoc/></param>
+/// <param name="conjugatePair">Indicates the conjugate pair used.</param>
+public sealed partial class UniqueLoopType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	int digit1,
 	int digit2,
 	scoped in CellMap loop,
-	scoped in Conjugate conjugatePair
+	[PrimaryConstructorParameter] scoped in Conjugate conjugatePair
 ) : UniqueLoopStep(conclusions, views, digit1, digit2, loop)
 {
 	/// <inheritdoc/>
@@ -17,11 +23,6 @@ public sealed class UniqueLoopType4Step(
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
-
-	/// <summary>
-	/// Indicates the conjugate pair used.
-	/// </summary>
-	public Conjugate ConjugatePair { get; } = conjugatePair;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

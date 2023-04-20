@@ -3,22 +3,21 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Provides with a step that is a <b>Unique Loop</b> technique.
 /// </summary>
-public abstract class UniqueLoopStep(Conclusion[] conclusions, View[]? views, int digit1, int digit2, scoped in CellMap loop) :
-	DeadlyPatternStep(conclusions, views),
-	IEquatableStep<UniqueLoopStep>
+/// <param name="conclusions"><inheritdoc/></param>
+/// <param name="views"><inheritdoc/></param>
+/// <param name="digit1">Indicates the first digit used.</param>
+/// <param name="digit2">Indicates the second digit used.</param>
+/// <param name="loop">Indicates the whole loop of cells used.</param>
+public abstract partial class UniqueLoopStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	[PrimaryConstructorParameter] int digit1,
+	[PrimaryConstructorParameter] int digit2,
+	[PrimaryConstructorParameter] scoped in CellMap loop
+) : DeadlyPatternStep(conclusions, views), IEquatableStep<UniqueLoopStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.5M;
-
-	/// <summary>
-	/// Indicates the first digit used.
-	/// </summary>
-	public int Digit1 { get; } = digit1;
-
-	/// <summary>
-	/// Indicates the second digit used.
-	/// </summary>
-	public int Digit2 { get; } = digit2;
 
 	/// <summary>
 	/// Indicates the type.
@@ -33,11 +32,6 @@ public abstract class UniqueLoopStep(Conclusion[] conclusions, View[]? views, in
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <summary>
-	/// Indicates the whole loop of cells used.
-	/// </summary>
-	public CellMap Loop { get; } = loop;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Length, (A004526(Loop.Count) - 3) * .1M) };
