@@ -25,8 +25,10 @@ namespace Sudoku.Algorithm.Generating;
 /// </item>
 /// </list>
 /// </remarks>
-public sealed class PatternBasedPuzzleGenerator([DisallowNull, NotNull] scoped in CellMap? pattern = null!, int[]? baseCandidates = null) :
-	IPuzzleGenerator
+public sealed partial class PatternBasedPuzzleGenerator(
+	[DisallowNull][PrimaryConstructorParameter(MemberKinds.Field)] scoped in CellMap? pattern,
+	[PrimaryConstructorParameter(MemberKinds.Field)] int[]? baseCandidates
+) : IPuzzleGenerator
 {
 	/// <summary>
 	/// Indicates the times that can retry a new pattern without updating sudoku solution template.
@@ -62,16 +64,6 @@ public sealed class PatternBasedPuzzleGenerator([DisallowNull, NotNull] scoped i
 	/// </summary>
 	private static readonly BacktrackingSolver SolverWithSolution = new();
 
-
-	/// <summary>
-	/// Indicates the base candidates.
-	/// </summary>
-	private readonly int[]? _baseCandidates = baseCandidates;
-
-	/// <summary>
-	/// Indicates the pattern.
-	/// </summary>
-	private readonly CellMap? _pattern = pattern;
 
 	/// <inheritdoc cref="HardPatternPuzzleGenerator._random"/>
 	private readonly Random _random = new();

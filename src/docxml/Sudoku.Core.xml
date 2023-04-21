@@ -233,16 +233,6 @@
             Indicates the solver with solution grid can be used.
             </summary>
         </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._baseCandidates">
-            <summary>
-            Indicates the base candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._pattern">
-            <summary>
-            Indicates the pattern.
-            </summary>
-        </member>
         <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._random">
             <inheritdoc cref="F:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator._random"/>
         </member>
@@ -316,6 +306,16 @@
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
             <seealso cref="F:Sudoku.Concepts.SymmetryType.Central"/>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._pattern">
+            <summary>
+            The generated field declaration for parameter <c>pattern</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._baseCandidates">
+            <summary>
+            The generated field declaration for parameter <c>baseCandidates</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator">
             <summary>

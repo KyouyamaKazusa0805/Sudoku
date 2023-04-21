@@ -95,7 +95,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 						{
 							var targetMemberName = getTargetMemberName(namedArgs, parameterName, "_<@");
 							var accessibilityModifiers = getAccessibilityModifiers(namedArgs, "private ");
-							var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, isReadOnly, true);
+							var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, true);
 							var docComments = getDocComments(comment);
 							var parameterTypeName = getParameterType(parameterType, nullableAnnotation);
 							var assigning = getAssigningExpression(refModifiers, parameterName);
@@ -128,7 +128,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 						{
 							var targetMemberName = getTargetMemberName(namedArgs, parameterName, ">@");
 							var accessibilityModifiers = getAccessibilityModifiers(namedArgs, "public ");
-							var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, isReadOnly, false);
+							var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, false);
 							var docComments = getDocComments(comment);
 							var parameterTypeString = parameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 							var parameterTypeName = getParameterType(parameterType, nullableAnnotation);
@@ -206,16 +206,24 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 		static string getAccessibilityModifiers(NamedArgs namedArgs, string @default)
 			=> namedArgs.TryGetValueOrDefault<string?>("Accessibility", out var a) && a is not null ? $"{a.Trim().ToLower()} " : @default;
 
-		static string getRefModifiers(NamedArgs namedArgs, ScopedKind scopedKind, RefKind refKind, TypeKind typeKind, bool isReadOnly, bool isField)
+		static string getRefModifiers(
+			NamedArgs namedArgs,
+			ScopedKind scopedKind,
+			RefKind refKind,
+			TypeKind typeKind,
+			bool isRefStruct,
+			bool isReadOnly,
+			bool isField
+		)
 			=> (namedArgs.TryGetValueOrDefault<string?>("RefKind", out var l) && l is not null ? $"{l} " : null)
-			?? (scopedKind, refKind, typeKind, isReadOnly, isField) switch
+			?? (scopedKind, refKind, typeKind, isReadOnly, isRefStruct, isField) switch
 			{
-				(0, RefKind.In, TypeKind.Struct, false, _) => "readonly ref readonly ",
-				(0, RefKind.In, TypeKind.Struct, true, _) => "ref readonly ",
-				(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false, _) => "readonly ref ",
-				(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, true, _) => "ref ",
-				(_, _, TypeKind.Struct, false, _) => "readonly ",
-				(_, _, TypeKind.Struct, _, true) => "readonly ",
+				(0, RefKind.In, TypeKind.Struct, false, true, _) => "readonly ref readonly ",
+				(0, RefKind.In, TypeKind.Struct, true, true, _) => "ref readonly ",
+				(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false, true, _) => "readonly ref ",
+				(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, true, true, _) => "ref ",
+				(_, _, TypeKind.Struct, _, _, true) => "readonly ",
+				(_, _, TypeKind.Struct, false, _, _) => "readonly ",
 				_ => null
 			}
 			?? string.Empty;
