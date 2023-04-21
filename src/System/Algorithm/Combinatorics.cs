@@ -1,4 +1,4 @@
-﻿namespace System.Algorithm;
+namespace System.Algorithm;
 
 /// <summary>
 /// Provides operations on Combinatorics.
@@ -23,7 +23,7 @@ public static class Combinatorics
 		return result;
 
 
-		static void g(int last, int count, int index, scoped Span<int> tempArray, scoped Span<T> @this, in IList<T[]> resultList)
+		static void g(int last, int count, int index, scoped Span<int> tempArray, scoped Span<T> @this, in List<T[]> resultList)
 		{
 			for (var i = last; i >= index; i--)
 			{
@@ -64,7 +64,7 @@ public static class Combinatorics
 		return result;
 
 
-		static void g(int last, int count, int index, scoped Span<int> tempArray, scoped ReadOnlySpan<T> @this, in IList<T[]> resultList)
+		static void g(int last, int count, int index, scoped Span<int> tempArray, scoped ReadOnlySpan<T> @this, in List<T[]> resultList)
 		{
 			for (var i = last; i >= index; i--)
 			{
@@ -145,7 +145,7 @@ public static class Combinatorics
 		return result;
 
 
-		static void g(int last, int count, int index, scoped Span<int> tempArray, IReadOnlyList<T> @this, in IList<T[]> resultList)
+		static void g(int last, int count, int index, scoped Span<int> tempArray, IReadOnlyList<T> @this, in List<T[]> resultList)
 		{
 			for (var i = last; i >= index; i--)
 			{

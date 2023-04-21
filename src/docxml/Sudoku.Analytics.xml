@@ -2915,6 +2915,19 @@
             <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> code instance.</returns>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
+        <member name="T:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper">
+            <summary>
+            Used by <see cref="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.IsUniqueLoopOrSeparated(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a templating method that can determine whether a loop is a valid unique loop.
+            </summary>
+            <param name="loop">The loop to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper">
             <summary>
             Used by <see cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>.
@@ -6001,6 +6014,20 @@ result ^= expression;
             Check for locked type.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher">
+            <summary>
+            Provides with a <b>Reverse Bi-value Universal Grave</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Reverse Unique Rectangle</item>
+            <item>Reverse Unique Loop</item>
+            <item>Reverse Bivalue Universal Grave (Separated Type)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
             <summary>
             Provides with a <b>Unique Loop</b> step searcher.
@@ -6089,13 +6116,6 @@ result ^= expression;
             <summary>
             Checks for unique loops using recursion.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.UniqueLoopSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Defines a templating method that can determine whether a loop is a valid unique loop.
-            </summary>
-            <param name="loop">The loop to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher">
             <summary>
