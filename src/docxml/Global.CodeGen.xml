@@ -320,6 +320,16 @@
             </summary>
             <seealso cref="T:System.Collections.Immutable.ImmutableArray`1"/>
         </member>
+        <member name="M:System.Collections.Immutable.ImmutableArrayExtensions.TryGetValueOrDefault``1(System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}},System.String,``0@)">
+            <summary>
+            Try to get the target value of the named argument collection, whose key is equal to the specified one.
+            </summary>
+            <typeparam name="T">The type of the target value.</typeparam>
+            <param name="this">The collection of named arguments.</param>
+            <param name="name">The name to be compared.</param>
+            <param name="resultValue">The final found result value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether we can use the argument <paramref name="resultValue"/>.</returns>
+        </member>
         <member name="M:System.Collections.Immutable.ImmutableArrayExtensions.CastToNotNull``1(System.Collections.Immutable.ImmutableArray{System.Nullable{``0}})">
             <summary>
             Casts the current array elements into target typed values.

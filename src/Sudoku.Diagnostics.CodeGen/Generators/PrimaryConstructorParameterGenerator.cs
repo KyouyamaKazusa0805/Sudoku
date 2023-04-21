@@ -4,8 +4,8 @@ using GatheredData = (string, TypeKind TypeKind, RefKind, ScopedKind, NullableAn
 using NamedArgs = ImmutableArray<KeyValuePair<string, TypedConstant>>;
 
 /// <summary>
-/// Represents a source generator that generates the source code for auto-binding logic for data members with primary constructor parameters
-/// in non-<see langword="record"/> types.
+/// Represents a source generator that generates the source code for auto-binding logic for data members
+/// with primary constructor parameters in non-<see langword="record"/> types.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
 public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
@@ -91,10 +91,11 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 				{
 					switch (attributesData)
 					{
-						case [{ ConstructorArguments: [{ Value: "Field" or "field" }], NamedArguments: var namedArgs }]:
+						case [{ ConstructorArguments: [{ Value: LocalMemberKinds.Field }], NamedArguments: var namedArgs }]:
 						{
 							var targetMemberName = getTargetMemberName(namedArgs, parameterName, "_<@");
 							var accessibilityModifiers = getAccessibilityModifiers(namedArgs, "private ");
+							var readonlyModifier = getReadOnlyModifier(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, true);
 							var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, true);
 							var docComments = getDocComments(comment);
 							var parameterTypeName = getParameterType(parameterType, nullableAnnotation);
@@ -118,29 +119,31 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 									/// </summary>
 									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{VersionValue}")]
 									[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-								{pragmaWarningDisable}{accessibilityModifiers}{refModifiers}{parameterTypeName}{targetMemberName} = {assigning};{pragmaWarningRestor}
+								{pragmaWarningDisable}{accessibilityModifiers}{readonlyModifier}{refModifiers}{parameterTypeName}{targetMemberName} = {assigning};{pragmaWarningRestor}
 								"""
 							);
 
 							break;
 						}
-						case [{ ConstructorArguments: [{ Value: "Property" or "property" }], NamedArguments: var namedArgs }]:
+						case [{ ConstructorArguments: [{ Value: LocalMemberKinds.Property }], NamedArguments: var namedArgs }]:
 						{
 							var targetMemberName = getTargetMemberName(namedArgs, parameterName, ">@");
 							var accessibilityModifiers = getAccessibilityModifiers(namedArgs, "public ");
+							var readonlyModifier = getReadOnlyModifier(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, false);
 							var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, false);
 							var docComments = getDocComments(comment);
 							var parameterTypeString = parameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 							var parameterTypeName = getParameterType(parameterType, nullableAnnotation);
 							var assigning = getAssigningExpression(refModifiers, parameterName);
-							var memberNotNullAttribute = namedArgs.TryGetValueOrDefault<string?>("MembersNotNull", out var memberNotNullExpr)
+							var memberNotNullAttribute = namedArgs.TryGetValueOrDefault<string>("MembersNotNull", out var memberNotNullExpr)
 								&& (memberNotNullExpr?.Contains(':') ?? false)
 								&& memberNotNullExpr.Split(':') is [var booleanExpr, var memberNamesExpr]
 								&& booleanExpr.Trim().ToCamelCasing() is var finalBooleanStringValue and ("true" or "false")
 								&& (from memberName in memberNamesExpr.Split(',') select memberName.Trim()).ToArray() is var memberNamesArray and not []
-								&& string.Join(", ", from memberName in memberNamesArray select $"nameof({memberName})") is var nameofExpressions
+								&& (from memberName in memberNamesArray select $"nameof({memberName})") is var nameOfExpressionList
+								&& string.Join(", ", nameOfExpressionList) is var nameOfExpressions
 								? $"""
-								[global::System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute({finalBooleanStringValue}, {nameofExpressions})]
+								[global::System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute({finalBooleanStringValue}, {nameOfExpressions})]
 									
 								"""
 								: string.Empty;
@@ -152,7 +155,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 									/// </summary>
 									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
 									[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-									{{memberNotNullAttribute}}{{accessibilityModifiers}}{{refModifiers}}{{parameterTypeName}}{{targetMemberName}} { get; } = {{assigning}};
+									{{memberNotNullAttribute}}{{accessibilityModifiers}}{{readonlyModifier}}{{refModifiers}}{{parameterTypeName}}{{targetMemberName}} { get; } = {{assigning}};
 								"""
 							);
 
@@ -161,14 +164,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 					}
 				}
 
-				var typeKindString = values[0] switch
-				{
-					{ IsRecord: true, TypeKind: TypeKind.Class } => "record",
-					{ IsRecord: true, TypeKind: TypeKind.Struct } => "record struct",
-					{ TypeKind: TypeKind.Class } => "class",
-					{ TypeKind: TypeKind.Struct } => "struct",
-					{ TypeKind: TypeKind.Interface } => "interface"
-				};
+				var typeKindString = values[0].TypeSymbol.GetTypeKindModifier();
 				var genericTypeParameters = values[0].TypeSymbol switch
 				{
 					{ IsGenericType: true, TypeParameters: var typeParameters }
@@ -196,26 +192,34 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 		}
 
 		static string getTargetMemberName(NamedArgs namedArgs, string parameterName, string defaultPattern)
-			=> namedArgs.TryGetValueOrDefault<string?>("GeneratedMemberName", out var customizedFieldName)
+			=> namedArgs.TryGetValueOrDefault<string>("GeneratedMemberName", out var customizedFieldName)
 			&& customizedFieldName is not null
 				? customizedFieldName
-				: namedArgs.TryGetValueOrDefault<string?>("NamingRule", out var namingRule) && namingRule is not null
+				: namedArgs.TryGetValueOrDefault<string>("NamingRule", out var namingRule) && namingRule is not null
 					? namingRule.InternalHandle(parameterName)
 					: defaultPattern.InternalHandle(parameterName);
 
 		static string getAccessibilityModifiers(NamedArgs namedArgs, string @default)
-			=> namedArgs.TryGetValueOrDefault<string?>("Accessibility", out var a) && a is not null ? $"{a.Trim().ToLower()} " : @default;
+			=> namedArgs.TryGetValueOrDefault<string>("Accessibility", out var a) && a is not null ? $"{a.Trim().ToLower()} " : @default;
 
-		static string getRefModifiers(NamedArgs namedArgs, ScopedKind scopedKind, RefKind refKind, TypeKind typeKind, bool isRefStruct, bool isReadOnly, bool isField)
-			=> (namedArgs.TryGetValueOrDefault<string?>("RefKind", out var l) && l is not null ? $"{l} " : null)
-			?? (scopedKind, refKind, typeKind, isReadOnly, isRefStruct, isField) switch
+		static string getReadOnlyModifier(NamedArgs namedArgs, ScopedKind scopedKind, RefKind refKind, TypeKind typeKind, bool isRefStruct, bool isReadOnly, bool isField)
+			=> (scopedKind, refKind, typeKind, isReadOnly, isRefStruct, isField) switch
 			{
-				(0, RefKind.In, TypeKind.Struct, false, true, _) => "readonly ref readonly ",
-				(0, RefKind.In, TypeKind.Struct, true, true, _) => "ref readonly ",
-				(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false, true, _) => "readonly ref ",
-				(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, true, true, _) => "ref ",
+				(0, RefKind.In, TypeKind.Struct, false, true, _) => "readonly ",
+				(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false, true, _) => "readonly ",
 				(_, _, TypeKind.Struct, _, _, true) => "readonly ",
 				(_, _, TypeKind.Struct, false, _, _) => "readonly ",
+				_ => string.Empty
+			};
+
+		static string getRefModifiers(NamedArgs namedArgs, ScopedKind scopedKind, RefKind refKind, TypeKind typeKind, bool isRefStruct, bool isReadOnly, bool isField)
+			=> (namedArgs.TryGetValueOrDefault<string>("RefKind", out var l) && l is not null ? $"{l} " : null)
+			?? (scopedKind, refKind, typeKind, isReadOnly, isRefStruct, isField) switch
+			{
+				(0, RefKind.In, TypeKind.Struct, false, true, _) => "ref readonly ",
+				(0, RefKind.In, TypeKind.Struct, true, true, _) => "ref readonly ",
+				(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false, true, _) => "ref ",
+				(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, true, true, _) => "ref ",
 				_ => null
 			}
 			?? string.Empty;
@@ -229,7 +233,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 		}
 
 		static string getAssigningExpression(string refModifiers, string parameterName)
-			=> refModifiers switch { not ("" or "readonly ") => $"ref {parameterName}", _ => parameterName };
+			=> refModifiers switch { not "" => $"ref {parameterName}", _ => parameterName };
 
 		static string? getDocComments(string? comment)
 			=> comment switch
@@ -267,27 +271,20 @@ file static class Extensions
 	/// Try to convert the specified identifier into camel casing.
 	/// </summary>
 	public static string ToCamelCasing(this string @this) => $"{char.ToLower(@this[0])}{@this[1..]}";
+}
+
+/// <summary>
+/// The member kind names.
+/// </summary>
+file static class LocalMemberKinds
+{
+	/// <summary>
+	/// Indicates the generated member kind is fields.
+	/// </summary>
+	public const string Field = nameof(Field);
 
 	/// <summary>
-	/// Try to get the target value of the named argument collection, whose key is equal to the specified one.
+	/// Indicates the generated member kind is properties.
 	/// </summary>
-	/// <typeparam name="T">The type of the target value.</typeparam>
-	/// <param name="this">The collection of named arguments.</param>
-	/// <param name="name">The name to be compared.</param>
-	/// <param name="resultValue">The final found result value.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether we can use the argument <paramref name="resultValue"/>.</returns>
-	public static bool TryGetValueOrDefault<T>(this NamedArgs @this, string name, out T? resultValue)
-	{
-		foreach (var (key, value) in @this)
-		{
-			if (key == name)
-			{
-				resultValue = (T?)value.Value;
-				return true;
-			}
-		}
-
-		resultValue = default;
-		return false;
-	}
+	public const string Property = nameof(Property);
 }
