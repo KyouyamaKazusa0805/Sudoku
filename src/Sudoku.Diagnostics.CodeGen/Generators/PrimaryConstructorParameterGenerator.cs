@@ -108,7 +108,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 							var pragmaWarningRestor = assigning.StartsWith("ref")
 								? """
 
-								#pragma warning disable CS9094
+								#pragma warning restore CS9094
 								"""
 								: string.Empty;
 							fieldDeclarations.Add(
@@ -206,15 +206,7 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 		static string getAccessibilityModifiers(NamedArgs namedArgs, string @default)
 			=> namedArgs.TryGetValueOrDefault<string?>("Accessibility", out var a) && a is not null ? $"{a.Trim().ToLower()} " : @default;
 
-		static string getRefModifiers(
-			NamedArgs namedArgs,
-			ScopedKind scopedKind,
-			RefKind refKind,
-			TypeKind typeKind,
-			bool isRefStruct,
-			bool isReadOnly,
-			bool isField
-		)
+		static string getRefModifiers(NamedArgs namedArgs, ScopedKind scopedKind, RefKind refKind, TypeKind typeKind, bool isRefStruct, bool isReadOnly, bool isField)
 			=> (namedArgs.TryGetValueOrDefault<string?>("RefKind", out var l) && l is not null ? $"{l} " : null)
 			?? (scopedKind, refKind, typeKind, isReadOnly, isRefStruct, isField) switch
 			{
@@ -228,15 +220,6 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 			}
 			?? string.Empty;
 
-		static string? getDocComments(string? comment)
-			=> comment is null or ""
-				? null
-				: string.Join(
-					Environment.NewLine,
-					from line in comment.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
-					select $"/// {line.Trim()}"
-				);
-
 		static string getParameterType(ITypeSymbol parameterType, NullableAnnotation nullableAnnotation)
 		{
 			var r = parameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
@@ -247,6 +230,16 @@ public sealed class PrimaryConstructorParameterGenerator : IIncrementalGenerator
 
 		static string getAssigningExpression(string refModifiers, string parameterName)
 			=> refModifiers switch { not ("" or "readonly ") => $"ref {parameterName}", _ => parameterName };
+
+		static string? getDocComments(string? comment)
+			=> comment switch
+			{
+				null or "" => null,
+				_ => string.Join(
+					Environment.NewLine,
+					from line in comment.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries) select $"/// {line.Trim()}"
+				)
+			};
 	}
 }
 
