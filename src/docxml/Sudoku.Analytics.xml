@@ -2959,6 +2959,13 @@
             <param name="loop">The loop to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.GetLoopLinks(System.Int32[])">
+            <summary>
+            Gets all possible links of the loop.
+            </summary>
+            <param name="path">The loop, specified as its path.</param>
+            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instances.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper">
             <summary>
             Used by <see cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>.
@@ -4520,17 +4527,22 @@ result ^= expression;
             Represents for a data set that describes the complete information about a unique loop technique.
             </summary>
             <param name="Loop">Indicates the cells used in this whole unique loop.</param>
+            <param name="Path">Indicates the detail path of the loop.</param>
             <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Patterns.UniqueLoop.#ctor(Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Patterns.UniqueLoop.#ctor(Sudoku.Concepts.CellMap@,System.Int32[],System.Int16)">
             <summary>
             Represents for a data set that describes the complete information about a unique loop technique.
             </summary>
             <param name="Loop">Indicates the cells used in this whole unique loop.</param>
+            <param name="Path">Indicates the detail path of the loop.</param>
             <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
         </member>
         <member name="P:Sudoku.Analytics.Patterns.UniqueLoop.Loop">
             <summary>Indicates the cells used in this whole unique loop.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterns.UniqueLoop.Path">
+            <summary>Indicates the detail path of the loop.</summary>
         </member>
         <member name="P:Sudoku.Analytics.Patterns.UniqueLoop.DigitsMask">
             <summary>Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</summary>
@@ -6080,7 +6092,7 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32[])">
             <summary>
             Check type 1.
             </summary>
@@ -6090,9 +6102,10 @@ result ^= expression;
             <param name="loop">The loop.</param>
             <param name="extraCellsMap">The extra cells map.</param>
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <param name="path">The path of the loop.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Int32[])">
             <summary>
             Check type 2.
             </summary>
@@ -6104,9 +6117,10 @@ result ^= expression;
             <param name="extraCellsMap">The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <param name="path">The path of the loop.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Int32[])">
             <summary>
             Check type 3.
             </summary>
@@ -6118,9 +6132,10 @@ result ^= expression;
             <param name="extraCellsMap">The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <param name="path">The path of the loop.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Int32[])">
             <summary>
             Check type 4.
             </summary>
@@ -6132,6 +6147,7 @@ result ^= expression;
             <param name="extraCellsMap">The extra cells map.</param>
             <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+            <param name="path">The path of the loop.</param>
             <returns>The step is worth.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CollectUniqueLoops(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,System.Collections.Generic.ValueList{System.Int32},Sudoku.Concepts.CellMap@,System.Collections.Generic.HashSet{Sudoku.Analytics.Patterns.UniqueLoop},System.Int16,System.Int32,Sudoku.Concepts.HouseType)">

@@ -77,4 +77,28 @@ internal static class UniqueLoopStepSearcherHelper
 
 		return true;
 	}
+
+	/// <summary>
+	/// Gets all possible links of the loop.
+	/// </summary>
+	/// <param name="path">The loop, specified as its path.</param>
+	/// <returns>A list of <see cref="LinkViewNode"/> instances.</returns>
+	public static List<LinkViewNode> GetLoopLinks(int[] path)
+	{
+		const int digit = 4;
+		var result = new List<LinkViewNode>();
+		for (var i = 0; i < path.Length; i++)
+		{
+			result.Add(
+				new(
+					WellKnownColorIdentifierKind.Normal,
+					new(digit, CellsMap[path[i]]),
+					new(digit, CellsMap[path[i + 1 == path.Length ? 0 : i + 1]]),
+					Inference.ConjugatePair
+				)
+			);
+		}
+
+		return result;
+	}
 }

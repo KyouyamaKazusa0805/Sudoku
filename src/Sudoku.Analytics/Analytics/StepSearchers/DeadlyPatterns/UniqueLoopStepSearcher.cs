@@ -44,9 +44,9 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			}
 
 			var comparer = (Mask)(1 << d1 | 1 << d2);
-			foreach (var (currentLoop, digitsMask) in patterns)
+			foreach (var (loop, path, digitsMask) in patterns)
 			{
-				var extraCellsMap = currentLoop - BivalueCells;
+				var extraCellsMap = loop - BivalueCells;
 				switch (extraCellsMap.Count)
 				{
 					case 0:
@@ -56,7 +56,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					}
 					case 1:
 					{
-						if (CheckType1(resultAccumulator, d1, d2, currentLoop, extraCellsMap, onlyFindOne) is { } step1)
+						if (CheckType1(resultAccumulator, d1, d2, loop, extraCellsMap, onlyFindOne, path) is { } step1)
 						{
 							return step1;
 						}
@@ -66,15 +66,15 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					default:
 					{
 						// Type 2, 3, 4.
-						if (CheckType2(resultAccumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer, onlyFindOne) is { } step2)
+						if (CheckType2(resultAccumulator, grid, d1, d2, loop, extraCellsMap, comparer, onlyFindOne, path) is { } step2)
 						{
 							return step2;
 						}
-						if (CheckType3(resultAccumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer, onlyFindOne) is { } step3)
+						if (CheckType3(resultAccumulator, grid, d1, d2, loop, extraCellsMap, comparer, onlyFindOne, path) is { } step3)
 						{
 							return step3;
 						}
-						if (CheckType4(resultAccumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer, onlyFindOne) is { } step4)
+						if (CheckType4(resultAccumulator, grid, d1, d2, loop, extraCellsMap, comparer, onlyFindOne, path) is { } step4)
 						{
 							return step4;
 						}
@@ -110,6 +110,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <param name="loop">The loop.</param>
 	/// <param name="extraCellsMap">The extra cells map.</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+	/// <param name="path">The path of the loop.</param>
 	/// <returns>The step is worth.</returns>
 	private Step? CheckType1(
 		ICollection<UniqueLoopStep> accumulator,
@@ -117,7 +118,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		int d2,
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
-		bool onlyFindOne
+		bool onlyFindOne,
+		int[] path
 	)
 	{
 		var extraCell = extraCellsMap[0];
@@ -142,7 +144,13 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + d2));
 		}
 
-		var step = new UniqueLoopType1Step(conclusions.ToArray(), new[] { View.Empty | candidateOffsets }, d1, d2, loop);
+		var step = new UniqueLoopType1Step(
+			conclusions.ToArray(),
+			new[] { View.Empty | candidateOffsets | UniqueLoopStepSearcherHelper.GetLoopLinks(path) },
+			d1,
+			d2,
+			loop
+		);
 		if (onlyFindOne)
 		{
 			return step;
@@ -165,6 +173,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <param name="extraCellsMap">The extra cells map.</param>
 	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+	/// <param name="path">The path of the loop.</param>
 	/// <returns>The step is worth.</returns>
 	private Step? CheckType2(
 		ICollection<UniqueLoopStep> accumulator,
@@ -174,7 +183,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
 		Mask comparer,
-		bool onlyFindOne
+		bool onlyFindOne,
+		int[] path
 	)
 	{
 		var mask = (Mask)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
@@ -201,7 +211,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 		var step = new UniqueLoopType2Step(
 			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-			new[] { View.Empty | candidateOffsets },
+			new[] { View.Empty | candidateOffsets | UniqueLoopStepSearcherHelper.GetLoopLinks(path) },
 			d1,
 			d2,
 			loop,
@@ -230,6 +240,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <param name="extraCellsMap">The extra cells map.</param>
 	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+	/// <param name="path">The path of the loop.</param>
 	/// <returns>The step is worth.</returns>
 	private Step? CheckType3(
 		ICollection<UniqueLoopStep> accumulator,
@@ -239,7 +250,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
 		Mask comparer,
-		bool onlyFindOne
+		bool onlyFindOne,
+		int[] path
 	)
 	{
 		// Check whether the extra cells contain at least one digit of digit 1 and 2,
@@ -335,7 +347,13 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 						var step = new UniqueLoopType3Step(
 							conclusions.ToArray(),
-							new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifierKind.Normal, houseIndex) },
+							new[]
+							{
+								View.Empty
+									| candidateOffsets
+									| new HouseViewNode(WellKnownColorIdentifierKind.Normal, houseIndex)
+									| UniqueLoopStepSearcherHelper.GetLoopLinks(path)
+							},
 							d1,
 							d2,
 							loop,
@@ -413,7 +431,15 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						}
 					}
 
-					var step = new UniqueLoopType3Step(conclusions.ToArray(), new[] { View.Empty | candidateOffsets }, d1, d2, loop, cells, mask);
+					var step = new UniqueLoopType3Step(
+						conclusions.ToArray(),
+						new[] { View.Empty | candidateOffsets | UniqueLoopStepSearcherHelper.GetLoopLinks(path) },
+						d1,
+						d2,
+						loop,
+						cells,
+						mask
+					);
 					if (onlyFindOne)
 					{
 						return step;
@@ -438,6 +464,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <param name="extraCellsMap">The extra cells map.</param>
 	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+	/// <param name="path">The path of the loop.</param>
 	/// <returns>The step is worth.</returns>
 	private unsafe Step? CheckType4(
 		ICollection<UniqueLoopStep> accumulator,
@@ -447,7 +474,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
 		Mask comparer,
-		bool onlyFindOne
+		bool onlyFindOne,
+		int[] path
 	)
 	{
 		if (extraCellsMap is not { InOneHouse: true, Count: 2 })
@@ -496,7 +524,13 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 				var step = new UniqueLoopType4Step(
 					conclusions.ToArray(),
-					new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifierKind.Normal, houseIndex) },
+					new[]
+					{
+						View.Empty
+							| candidateOffsets
+							| new HouseViewNode(WellKnownColorIdentifierKind.Normal, houseIndex)
+							| UniqueLoopStepSearcherHelper.GetLoopLinks(path)
+					},
 					d1,
 					d2,
 					loop,
@@ -514,6 +548,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 		return null;
 	}
+
 
 	/// <summary>
 	/// To collect all possible unique loop patterns in the current grid.
@@ -558,7 +593,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				if (loopPath[0] == next && loopPath.Count >= 6 && UniqueLoopStepSearcherHelper.IsValidLoop(loopPath))
 				{
 					// Yeah. The loop is closed.
-					result.Add(new(loopMap, (Mask)(1 << d1 | 1 << d2)));
+					result.Add(new(loopMap, loopPath.ToArray(), (Mask)(1 << d1 | 1 << d2)));
 				}
 				else if (!loopMap.Contains(next))
 				{
