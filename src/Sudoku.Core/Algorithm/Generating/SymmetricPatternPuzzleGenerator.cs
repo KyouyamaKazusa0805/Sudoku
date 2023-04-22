@@ -173,7 +173,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 	private static bool CheckDuplicate(char* ptrGrid, int cell)
 	{
 		var value = ptrGrid[cell];
-		foreach (var c in PeersMap[cell])
+		foreach (var c in Peers[cell])
 		{
 			if (value != '0' && ptrGrid[c] == value)
 			{

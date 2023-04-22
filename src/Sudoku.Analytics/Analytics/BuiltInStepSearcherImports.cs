@@ -27,6 +27,7 @@
 [assembly: StepSearcherImport<NonMultipleChainingStepSearcher>(StepSearcherLevel.Hard)]
 [assembly: StepSearcherImport<AlmostLockedSetsXzStepSearcher>(StepSearcherLevel.Moderate)]
 [assembly: StepSearcherImport<AlmostLockedSetsXyWingStepSearcher>(StepSearcherLevel.Moderate)]
+[assembly: StepSearcherImport<AlignedExclusionStepSearcher>(StepSearcherLevel.Hard)]
 [assembly: StepSearcherImport<AlmostLockedSetsWWingStepSearcher>(StepSearcherLevel.Moderate)]
 [assembly: StepSearcherImport<GuardianStepSearcher>(StepSearcherLevel.Hard)]
 [assembly: StepSearcherImport<ComplexFishStepSearcher>(StepSearcherLevel.Hard)]

@@ -70,6 +70,42 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aligned Pair Exclusion.
+        /// </summary>
+        public static string AlignedPairExclusion {
+            get {
+                return ResourceManager.GetString("AlignedPairExclusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aligned Quadruple Exclusion.
+        /// </summary>
+        public static string AlignedQuadrupleExclusion {
+            get {
+                return ResourceManager.GetString("AlignedQuadrupleExclusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aligned Quintuple Exclusion.
+        /// </summary>
+        public static string AlignedQuintupleExclusion {
+            get {
+                return ResourceManager.GetString("AlignedQuintupleExclusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aligned Triple Exclusion.
+        /// </summary>
+        public static string AlignedTripleExclusion {
+            get {
+                return ResourceManager.GetString("AlignedTripleExclusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Almost Hidden Sets Chain.
         /// </summary>
         public static string AlmostHiddenSetsChain {
@@ -3022,6 +3058,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aligned Exclusion.
+        /// </summary>
+        public static string StepSearcherName_AlignedExclusionStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_AlignedExclusionStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Almost Locked Candidates.
         /// </summary>
         public static string StepSearcherName_AlmostLockedCandidatesStepSearcher {
@@ -4575,6 +4620,15 @@ namespace Sudoku.Resources {
         public static string TechniqueAlias_Whale {
             get {
                 return ResourceManager.GetString("TechniqueAlias_Whale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enumerate possible combinations of cells {0}.
+        /// </summary>
+        public static string TechniqueFormat_AlignedExclusionStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_AlignedExclusionStep", resourceCulture);
             }
         }
         

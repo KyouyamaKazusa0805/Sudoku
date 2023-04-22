@@ -19,7 +19,8 @@ public static class PredefinedAnalyzers
 			.WithAlgorithmLimits(false, false)
 			.WithStepSearcherSetters<RegularWingStepSearcher>(static s => s.MaxSearchingPivotsCount = 9)
 			.WithStepSearcherSetters<ComplexFishStepSearcher>(static s => s.MaxSize = 7)
-			.WithStepSearcherSetters<BowmanBingoStepSearcher>(static s => s.MaxLength = 64);
+			.WithStepSearcherSetters<BowmanBingoStepSearcher>(static s => s.MaxLength = 64)
+			.WithStepSearcherSetters<AlignedExclusionStepSearcher>(static s => s.MaxSearchingSize = 5);
 
 	/// <summary>
 	/// Indicates an <see cref="Analyzer"/> instance that has some extra configuration which are suitable for a whole analysis lifecycle.
@@ -36,7 +37,8 @@ public static class PredefinedAnalyzers
 			.WithStepSearcherSetters<TemplateStepSearcher>(static s => s.TemplateDeleteOnly = false)
 			.WithStepSearcherSetters<ComplexFishStepSearcher>(static s => s.MaxSize = 5)
 			.WithStepSearcherSetters<BowmanBingoStepSearcher>(static s => s.MaxLength = 64)
-			.WithStepSearcherSetters<AlmostLockedCandidatesStepSearcher>(static s => s.CheckAlmostLockedQuadruple = false);
+			.WithStepSearcherSetters<AlmostLockedCandidatesStepSearcher>(static s => s.CheckAlmostLockedQuadruple = false)
+			.WithStepSearcherSetters<AlignedExclusionStepSearcher>(static s => s.MaxSearchingSize = 3);
 
 	/// <summary>
 	/// Indicates an <see cref="Analyzer"/> instance that only contains SSTS techniques:

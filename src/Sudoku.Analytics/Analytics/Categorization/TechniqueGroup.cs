@@ -181,6 +181,11 @@ public enum TechniqueGroup : byte
 	ExtendedSubsetPrinciple,
 
 	/// <summary>
+	/// Indicates the aligned exclusion technique.
+	/// </summary>
+	AlignedExclusion,
+
+	/// <summary>
 	/// Indicates the death blossom technique.
 	/// </summary>
 	DeathBlossom,

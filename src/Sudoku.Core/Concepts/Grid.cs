@@ -214,7 +214,7 @@ public unsafe partial struct Grid :
 				{
 					// Remove all appeared digits.
 					var mask = MaxCandidatesMask;
-					foreach (var cell in PeersMap[i])
+					foreach (var cell in Peers[i])
 					{
 						if (@this[cell] is var digit and not -1)
 						{
@@ -231,7 +231,7 @@ public unsafe partial struct Grid :
 		{
 			if (setValue != -1)
 			{
-				foreach (var peerCell in PeersMap[cell])
+				foreach (var peerCell in Peers[cell])
 				{
 					if (@this.GetStatus(peerCell) == CellStatus.Empty)
 					{
@@ -269,7 +269,7 @@ public unsafe partial struct Grid :
 					case CellStatus.Given or CellStatus.Modifiable:
 					{
 						var curDigit = this[i];
-						foreach (var cell in PeersMap[i])
+						foreach (var cell in Peers[i])
 						{
 							if (curDigit == this[cell])
 							{
@@ -988,7 +988,7 @@ public unsafe partial struct Grid :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	public readonly bool DuplicateWith(int cell, int digit)
 	{
-		foreach (var tempCell in PeersMap[cell])
+		foreach (var tempCell in Peers[cell])
 		{
 			if (this[tempCell] == digit)
 			{

@@ -2121,6 +2121,26 @@
             Indicates extended subset principle.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AlignedPairExclusion">
+            <summary>
+            Indicates aligned pair exclusion.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AlignedTripleExclusion">
+            <summary>
+            Indicates aligned triple exclusion.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AlignedQuadrupleExclusion">
+            <summary>
+            Indicates aligned quadruple exclusion.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AlignedQuintupleExclusion">
+            <summary>
+            Indicates aligned quintuple exclusion.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SinglyLinkedAlmostLockedSetsXzRule">
             <summary>
             Indicates singly linked ALS-XZ.
@@ -2451,6 +2471,11 @@
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ExtendedSubsetPrinciple">
             <summary>
             Indicates the extended subset principle technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.AlignedExclusion">
+            <summary>
+            Indicates the aligned exclusion technique.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.DeathBlossom">
@@ -5002,7 +5027,7 @@ result ^= expression;
             </para>
             </param>
             <returns>
-            Returns the first found step. The nullability of the return value are as below:
+            Returns the first found step. The nullability of the return value is described as follow:
             <list type="bullet">
             <item>
             <see langword="null"/>:
@@ -7407,6 +7432,42 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher">
+            <summary>
+            Provides with an <b>Aligned Exclusion</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Aligned Exclusion</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.MaxSearchingSize">
+            <summary>
+            Indicates the maximum searching size. This value must be greater than 2 and less than 5.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.IsRelavent(System.Int32[],System.Collections.Generic.List{Sudoku.Analytics.Conclusion},System.Int32[])">
+            <summary>
+            Test if the given combination of digits for the cells are relavent for this rule.
+            A combination is relavent if it includes one of the conclusion.
+            </summary>
+            <param name="combination">The combination of digits.</param>
+            <param name="conclusions">All conclusions.</param>
+            <param name="cells">The cells used.</param>
+            <returns>Whether this combination is relavent.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.GetRelaventCombinationValues(System.Collections.Generic.Dictionary{System.Int32[],System.Int32},System.Collections.Generic.List{Sudoku.Analytics.Conclusion},System.Int32[])">
+            <summary>
+            Get all possible relavent combination digits.
+            </summary>
+            <param name="lockedCombinations">The all locked combinations.</param>
+            <param name="conclusions">All conclusions.</param>
+            <param name="cells">The cells used.</param>
+            <returns>A mask of digits for relavent ones.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher">
             <summary>
@@ -12009,6 +12070,48 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.TemplateStep.IsTemplateDeletion">
             <summary>
             The generated property declaration for parameter <c>isTemplateDeletion</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.AlignedExclusionStep">
+            <summary>
+            Provides with a step that is an <b>Aligned Exclusion</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">Indicates the target cells used in the pattern.</param>
+            <param name="lockedCombinations">Indicates all locked combinations.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.AlignedExclusionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Collections.Generic.IReadOnlyDictionary{System.Int32[],System.Int32})">
+            <summary>
+            Provides with a step that is an <b>Aligned Exclusion</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="cells">Indicates the target cells used in the pattern.</param>
+            <param name="lockedCombinations">Indicates all locked combinations.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Size">
+            <summary>
+            Indicates the size of the permutation.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.LockedCombinations">
+            <summary>
+            The generated property declaration for parameter <c>lockedCombinations</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueOddagonStep">

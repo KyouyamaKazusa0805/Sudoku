@@ -5428,6 +5428,26 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Dynamic Contradiction Forcing Chains.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.AlignedPairExclusion">
+            <summary>
+              Looks up a localized string similar to Aligned Pair Exclusion.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.AlignedQuadrupleExclusion">
+            <summary>
+              Looks up a localized string similar to Aligned Quadruple Exclusion.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.AlignedQuintupleExclusion">
+            <summary>
+              Looks up a localized string similar to Aligned Quintuple Exclusion.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.AlignedTripleExclusion">
+            <summary>
+              Looks up a localized string similar to Aligned Triple Exclusion.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.AlmostHiddenSetsChain">
             <summary>
               Looks up a localized string similar to Almost Hidden Sets Chain.
@@ -7068,6 +7088,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Multiple Forcing Chains (Advanced).
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_AlignedExclusionStepSearcher">
+            <summary>
+              Looks up a localized string similar to Aligned Exclusion.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_AlmostLockedCandidatesStepSearcher">
             <summary>
               Looks up a localized string similar to Almost Locked Candidates.
@@ -7931,6 +7956,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.Resources.TechniqueAlias_Whale">
             <summary>
               Looks up a localized string similar to 6-Fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_AlignedExclusionStep">
+            <summary>
+              Looks up a localized string similar to Enumerate possible combinations of cells {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_AlmostLockedCandidatesStep">

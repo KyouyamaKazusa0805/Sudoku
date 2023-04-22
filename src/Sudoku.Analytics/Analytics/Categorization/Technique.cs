@@ -2218,6 +2218,39 @@ public enum Technique : short
 	#endregion
 
 	//
+	// Aligned Exclusion
+	//
+	#region Aligned Exclusion
+	/// <summary>
+	/// Indicates aligned pair exclusion.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
+	[Abbreviation("APE")]
+	[SudokuExplainerDifficultyRating(6.2)]
+	AlignedPairExclusion,
+
+	/// <summary>
+	/// Indicates aligned triple exclusion.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
+	[Abbreviation("ATE")]
+	[SudokuExplainerDifficultyRating(7.5)]
+	AlignedTripleExclusion,
+
+	/// <summary>
+	/// Indicates aligned quadruple exclusion.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
+	AlignedQuadrupleExclusion,
+
+	/// <summary>
+	/// Indicates aligned quintuple exclusion.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
+	AlignedQuintupleExclusion,
+	#endregion
+
+	//
 	// Almost Locked Sets
 	//
 	#region Almost Locked Sets

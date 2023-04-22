@@ -2112,4 +2112,22 @@
   <data name="TechniqueAlias_Whale" xml:space="preserve">
     <value>6-Fish</value>
   </data>
+  <data name="AlignedPairExclusion" xml:space="preserve">
+    <value>Aligned Pair Exclusion</value>
+  </data>
+  <data name="AlignedQuadrupleExclusion" xml:space="preserve">
+    <value>Aligned Quadruple Exclusion</value>
+  </data>
+  <data name="AlignedQuintupleExclusion" xml:space="preserve">
+    <value>Aligned Quintuple Exclusion</value>
+  </data>
+  <data name="AlignedTripleExclusion" xml:space="preserve">
+    <value>Aligned Triple Exclusion</value>
+  </data>
+  <data name="TechniqueFormat_AlignedExclusionStep" xml:space="preserve">
+    <value>Enumerate possible combinations of cells {0}</value>
+  </data>
+  <data name="StepSearcherName_AlignedExclusionStepSearcher" xml:space="preserve">
+    <value>Aligned Exclusion</value>
+  </data>
 </root>
