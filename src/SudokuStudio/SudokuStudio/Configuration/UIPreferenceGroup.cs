@@ -22,6 +22,7 @@ using M = CoordinateLabelDisplayMode;
 [DependencyProperty<double>("ChainStrokeThickness", DefaultValue = 1.5, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness")]
 [DependencyProperty<int>("CoordinateLabelDisplayKind", DefaultValue = (int)K.RxCy, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind")]
 [DependencyProperty<int>("CoordinateLabelDisplayMode", DefaultValue = (int)M.FourDirection, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode")]
+[DependencyProperty<BackdropKind>("Backdrop", DefaultValue = BackdropKind.Acrylic)]
 [DependencyProperty<Color>("DeltaValueColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor")]
 [DependencyProperty<Color>("DeltaPencilmarkColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor")]
 [DependencyProperty<Color>("SudokuPaneBorderColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.BorderColor")]
@@ -197,4 +198,19 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 		FontScale = .4,
 		FontColor = Color.FromArgb(255, 100, 100, 100)
 	};
+
+
+	[Callback]
+	private static void BackdropPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if (e.NewValue is not BackdropKind value)
+		{
+			return;
+		}
+
+		foreach (var window in ((App)Application.Current).WindowManager.ActiveWindows)
+		{
+			window.SystemBackdrop = value.GetBackdrop();
+		}
+	}
 }

@@ -22,15 +22,6 @@ public sealed partial class MainWindow : Window
 		InitializeComponent();
 		InitializeField();
 
-#if MICA_BACKDROP && ACRYLIC_BACKDROP
-#warning Both 'MICA_BACKDROP' and 'ACRYLIC_BACKDROP' are set; 'ACRYLIC_BACKDROP' will be ignored.
-		SystemBackdrop = new MicaBackdrop();
-#elif MICA_BACKDROP
-		SystemBackdrop = new MicaBackdrop();
-#elif ACRYLIC_BACKDROP
-		SystemBackdrop = new DesktopAcrylicBackdrop();
-#endif
-
 #if UI_FEATURE_CUSTOMIZED_TITLE_BAR
 		InitializeAppWindow();
 		SetAppTitleBarStatus();

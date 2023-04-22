@@ -696,6 +696,21 @@
   <data name="SettingsPage_BabaGroupFontData" xml:space="preserve">
     <value>代数字母字体</value>
   </data>
+  <data name="SettingsPage_Backdrop" xml:space="preserve">
+    <value>程序背景风格</value>
+  </data>
+  <data name="SettingsPage_Backdrop_Acrylic" xml:space="preserve">
+    <value>磨砂透明</value>
+  </data>
+  <data name="SettingsPage_Backdrop_Default" xml:space="preserve">
+    <value>默认（白色背景）</value>
+  </data>
+  <data name="SettingsPage_Backdrop_Mica" xml:space="preserve">
+    <value>Mica 透色</value>
+  </data>
+  <data name="SettingsPage_Backdrop_MicaDeep" xml:space="preserve">
+    <value>Mica 透色，不过跟深一些</value>
+  </data>
   <data name="SettingsPage_Basic" xml:space="preserve">
     <value>基本设置</value>
   </data>

@@ -1960,6 +1960,51 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Program background style.
+        /// </summary>
+        internal static string SettingsPage_Backdrop {
+            get {
+                return ResourceManager.GetString("SettingsPage_Backdrop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Acrylic.
+        /// </summary>
+        internal static string SettingsPage_Backdrop_Acrylic {
+            get {
+                return ResourceManager.GetString("SettingsPage_Backdrop_Acrylic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default (White background).
+        /// </summary>
+        internal static string SettingsPage_Backdrop_Default {
+            get {
+                return ResourceManager.GetString("SettingsPage_Backdrop_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mica.
+        /// </summary>
+        internal static string SettingsPage_Backdrop_Mica {
+            get {
+                return ResourceManager.GetString("SettingsPage_Backdrop_Mica", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mica deep.
+        /// </summary>
+        internal static string SettingsPage_Backdrop_MicaDeep {
+            get {
+                return ResourceManager.GetString("SettingsPage_Backdrop_MicaDeep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basic preferences.
         /// </summary>
         internal static string SettingsPage_Basic {

@@ -693,6 +693,21 @@
   <data name="SettingsPage_BabaGroupFontData" xml:space="preserve">
     <value>Baba Is Group</value>
   </data>
+  <data name="SettingsPage_Backdrop" xml:space="preserve">
+    <value>Program background style</value>
+  </data>
+  <data name="SettingsPage_Backdrop_Acrylic" xml:space="preserve">
+    <value>Acrylic</value>
+  </data>
+  <data name="SettingsPage_Backdrop_Default" xml:space="preserve">
+    <value>Default (White background)</value>
+  </data>
+  <data name="SettingsPage_Backdrop_Mica" xml:space="preserve">
+    <value>Mica</value>
+  </data>
+  <data name="SettingsPage_Backdrop_MicaDeep" xml:space="preserve">
+    <value>Mica deep</value>
+  </data>
   <data name="SettingsPage_Basic" xml:space="preserve">
     <value>Basic preferences</value>
   </data>
