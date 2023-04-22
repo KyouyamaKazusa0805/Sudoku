@@ -71,13 +71,11 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 			// and we continue the iteration on these remaining cells.
 
 			// First iterate on the first two cells.
-			foreach (Mask bits in new MaskCombinationsGenerator(candidateList.Count, 2))
+			foreach (var cellPair in candidateList & 2)
 			{
 				// Setup the first two cells.
-				var firstBit = TrailingZeroCount(bits);
-				var secondBit = bits.GetNextSet(firstBit);
-				var cell1 = candidateList[firstBit];
-				var cell2 = candidateList[secondBit];
+				var cell1 = cellPair[0];
+				var cell2 = cellPair[1];
 				var cell1Count = PopCount((uint)grid.GetCandidates(cell1));
 				var cell2Count = PopCount((uint)grid.GetCandidates(cell2));
 
