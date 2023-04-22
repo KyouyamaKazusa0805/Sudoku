@@ -21,14 +21,12 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			return null;
 		}
 
-		var resultAccumulator = new List<UniqueLoopStep>();
-
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
 		scoped ref readonly var grid = ref context.Grid;
-		var resultList = default(IOrderedEnumerable<UniqueLoopStep>)!;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
+		var resultAccumulator = new List<UniqueLoopStep>();
 		foreach (var cell in BivalueCells)
 		{
 			var mask = grid.GetCandidates(cell);
@@ -92,7 +90,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			return null;
 		}
 
-		resultList = from step in resultAccumulator.Distinct() orderby step.Loop.Count select step;
+		var resultList = from step in resultAccumulator.Distinct() orderby step.Loop.Count select step;
 		if (onlyFindOne)
 		{
 			return resultList.First();
