@@ -6,10 +6,12 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Analyzer"/>
 public static class PredefinedAnalyzers
 {
+#pragma warning disable CS0618
 	/// <summary>
 	/// Indicates the default <see cref="Analyzer"/> instance that has no extra configuration.
 	/// </summary>
 	public static Analyzer Default => new();
+#pragma warning restore CS0618
 
 	/// <summary>
 	/// Indicates an <see cref="Analyzer"/> instance that all possible <see cref="StepSearcher"/> instances are included.

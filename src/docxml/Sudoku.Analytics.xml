@@ -118,8 +118,7 @@
             </para>
             <para>
             Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
-            however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/>
-            array into it.
+            however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/> array into it.
             </para>
             </summary>
             <seealso cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)"/>

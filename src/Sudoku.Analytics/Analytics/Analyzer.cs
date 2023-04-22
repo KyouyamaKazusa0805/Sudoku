@@ -56,8 +56,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// </para>
 	/// <para>
 	/// Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
-	/// however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/>
-	/// array into it.
+	/// however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/> array into it.
 	/// </para>
 	/// </summary>
 	/// <seealso cref="StepSearcherPool.Default(bool)"/>
@@ -78,7 +77,8 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// <summary>
 	/// Initializes an <see cref="Analyzer"/> instance.
 	/// </summary>
-	internal Analyzer()
+	[Obsolete($"This constructor may not produce some extra options. Please visit type '{nameof(PredefinedAnalyzers)}' to get a suitable instance.", false)]
+	public Analyzer()
 	{
 	}
 
