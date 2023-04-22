@@ -18,8 +18,6 @@ public sealed partial class BasicPreferenceItemsPage : Page
 			return;
 		}
 
-		var app = (App)Application.Current;
-		((MainWindow)app.WindowManager.GetWindowForElement(this)!).SystemBackdrop = value.GetBackdrop();
-		app.Preference.UIPreferences.Backdrop = value;
+		((App)Application.Current).Preference.UIPreferences.Backdrop = value;
 	}
 }
