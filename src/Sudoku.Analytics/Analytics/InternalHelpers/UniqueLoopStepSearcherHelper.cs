@@ -7,11 +7,53 @@ namespace Sudoku.Analytics.InternalHelpers;
 internal static class UniqueLoopStepSearcherHelper
 {
 	/// <summary>
-	/// Defines a templating method that can determine whether a loop is a valid unique loop.
+	/// Determine whether the specified loop is a valid unique loop or unique rectangle pattern.
+	/// </summary>
+	/// <param name="loopPath">The path of the loop.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public static bool IsValidLoop(scoped in ValueList<int> loopPath)
+	{
+		var visitedOdd = 0;
+		var visitedEven = 0;
+
+		var isOdd = false;
+		foreach (var cell in loopPath)
+		{
+			foreach (var houseType in HouseTypes)
+			{
+				var house = cell.ToHouseIndex(houseType);
+				if (isOdd)
+				{
+					if ((visitedOdd >> house & 1) != 0)
+					{
+						return false;
+					}
+
+					visitedOdd |= 1 << house;
+				}
+				else
+				{
+					if ((visitedEven >> house & 1) != 0)
+					{
+						return false;
+					}
+
+					visitedEven |= 1 << house;
+				}
+			}
+
+			isOdd = !isOdd;
+		}
+
+		return visitedEven == visitedOdd;
+	}
+
+	/// <summary>
+	/// Determine whether a loop is a generalized unique loop.
 	/// </summary>
 	/// <param name="loop">The loop to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public static bool IsUniqueLoopOrSeparated(scoped in CellMap loop)
+	public static bool IsGeneralizedUniqueLoop(scoped in CellMap loop)
 	{
 		_ = loop is { Count: var length, Houses: var houses, RowMask: var r, ColumnMask: var c, BlockMask: var b };
 		if ((length & 1) != 0 || length < 6)

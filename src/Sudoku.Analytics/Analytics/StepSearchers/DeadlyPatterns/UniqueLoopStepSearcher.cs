@@ -34,14 +34,18 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			var mask = grid.GetCandidates(cell);
 			var d1 = TrailingZeroCount(mask);
 			var d2 = mask.GetNextSet(d1);
-			var comparer = (Mask)(1 << d1 | 1 << d2);
 
-			var patterns = Cached.GatherUniqueLoops(comparer);
-			if (patterns.Length == 0)
+			using scoped var tempLoop = new ValueList<int>(14);
+			var loopMap = CellMap.Empty;
+			var patterns = new HashSet<UniqueLoop>();
+			CollectUniqueLoops(grid, cell, d1, d2, tempLoop, ref loopMap, patterns);
+
+			if (patterns.Count == 0)
 			{
 				continue;
 			}
 
+			var comparer = (Mask)(1 << d1 | 1 << d2);
 			foreach (var (currentLoop, digitsMask) in patterns)
 			{
 				var extraCellsMap = currentLoop - BivalueCells;
@@ -512,99 +516,76 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 		return null;
 	}
-}
-
-/// <summary>
-/// Represents a cached gathering operation set.
-/// </summary>
-file static unsafe class Cached
-{
-	/// <summary>
-	/// Try to gather all possible loops being used in technique unique loops,
-	/// which should satisfy the specified condition.
-	/// </summary>
-	/// <param name="digitsMask">The digits used.</param>
-	/// <returns>
-	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
-	/// </returns>
-	public static UniqueLoop[] GatherUniqueLoops(Mask digitsMask)
-	{
-		var condition = (LoopChecker)(&UniqueLoopStepSearcherHelper.IsUniqueLoopOrSeparated);
-		var result = new List<UniqueLoop>();
-		var d1 = TrailingZeroCount(digitsMask);
-		var d2 = digitsMask.GetNextSet(d1);
-
-		// This limitation will miss the incomplete structures, I may modify it later.
-		foreach (var cell in CandidatesMap[d1] & CandidatesMap[d2])
-		{
-			DepthFirstSearching_UniqueLoop(cell, cell, 0, CellsMap[cell], digitsMask, CandidatesMap[d1] & CandidatesMap[d2], condition, result);
-		}
-
-		return result.Distinct().ToArray();
-	}
 
 	/// <summary>
-	/// Checks for unique loops using recursion.
+	/// To collect all possible unique loop patterns in the current grid.
 	/// </summary>
-	private static void DepthFirstSearching_UniqueLoop(
-		int startCell,
-		int lastCell,
-		int lastHouse,
-		scoped in CellMap currentLoop,
-		Mask digitsMask,
-		scoped in CellMap fullCells,
-		LoopChecker condition,
-		List<UniqueLoop> result
+	/// <param name="grid">The grid to be checked.</param>
+	/// <param name="cell">The cell where the loop starts.</param>
+	/// <param name="d1">The first digit to be used.</param>
+	/// <param name="d2">The second digit to be used.</param>
+	/// <param name="loopPath">The path of the loop. This is a temporary variable.</param>
+	/// <param name="loopMap">
+	/// A <see cref="CellMap"/> instance recording which cells are used for the current loop. This is a temporary variable.
+	/// </param>
+	/// <param name="result">The result.</param>
+	/// <param name="extraDigits">The extra digits to be checked.</param>
+	/// <param name="allowedEx">Indicates how many cells the current loop can exist, with extra digits stored.</param>
+	/// <param name="lastHouseType">The last house type. This is a temporary variable.</param>
+	private static void CollectUniqueLoops(
+		scoped in Grid grid,
+		int cell,
+		int d1,
+		int d2,
+		scoped ValueList<int> loopPath,
+		scoped ref CellMap loopMap,
+		HashSet<UniqueLoop> result,
+		Mask extraDigits = Grid.MaxCandidatesMask,
+		int allowedEx = 2,
+		HouseType lastHouseType = unchecked((HouseType)(-1))
 	)
 	{
+		loopPath.Add(cell);
+		loopMap.Add(cell);
+
 		foreach (var houseType in HouseTypes)
 		{
-			var house = lastCell.ToHouseIndex(houseType);
-			if ((lastHouse >> house & 1) != 0)
+			if (houseType == lastHouseType)
 			{
 				continue;
 			}
 
-			var cellsToBeChecked = fullCells & HousesMap[house];
-			if (cellsToBeChecked.Count < 2 || (currentLoop & HousesMap[house]).Count > 2)
+			foreach (var next in HousesMap[cell.ToHouseIndex(houseType)] & EmptyCells)
 			{
-				continue;
-			}
-
-			foreach (var tempCell in cellsToBeChecked)
-			{
-				if (tempCell == lastCell)
+				if (loopPath[0] == next && loopPath.Count >= 6 && UniqueLoopStepSearcherHelper.IsValidLoop(loopPath))
 				{
-					continue;
+					// Yeah. The loop is closed.
+					result.Add(new(loopMap, (Mask)(1 << d1 | 1 << d2)));
 				}
-
-				var housesUsed = 0;
-				foreach (var tempHouseType in HouseTypes)
+				else if (!loopMap.Contains(next))
 				{
-					if (tempCell.ToHouseIndex(tempHouseType) == lastCell.ToHouseIndex(tempHouseType))
+					var mask = grid.GetCandidates(next);
+					if ((mask >> d1 & 1) != 0 && (mask >> d2 & 1) != 0)
 					{
-						housesUsed |= 1 << lastCell.ToHouseIndex(tempHouseType);
+						extraDigits = (Mask)((Mask)(extraDigits | mask) & (Mask)~(1 << d1 | 1 << d2));
+
+						var count = PopCount((uint)mask);
+
+						// We can continue if:
+						//   1. The cell has exactly the 2 values of the loop.
+						//   2. The cell has one extra value, the same as all previous cells with an extra value (for type 2 only).
+						//   3. The cell has extra values and the maximum number of cells with extra values 2 is not reached.
+						if (count == 2 || IsPow2(extraDigits) || allowedEx != 0)
+						{
+							var newAllowedEx = count > 2 ? allowedEx - 1 : allowedEx;
+							CollectUniqueLoops(grid, cell, d1, d2, loopPath, ref loopMap, result, extraDigits, newAllowedEx, houseType);
+						}
 					}
 				}
-
-				if (tempCell == startCell && condition(currentLoop))
-				{
-					result.Add(new(currentLoop, digitsMask));
-
-					// Exit the current of this recursion frame.
-					return;
-				}
-
-				if ((HousesMap[house] & currentLoop).Count > 1)
-				{
-					continue;
-				}
-
-				DepthFirstSearching_UniqueLoop(
-					startCell, tempCell, lastHouse | housesUsed, currentLoop + tempCell,
-					digitsMask, fullCells, condition, result
-				);
 			}
 		}
+
+		loopPath.Remove();
+		loopMap.Remove(cell);
 	}
 }

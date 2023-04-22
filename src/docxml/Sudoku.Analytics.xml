@@ -2945,9 +2945,16 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher"/>
         </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.IsUniqueLoopOrSeparated(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)">
             <summary>
-            Defines a templating method that can determine whether a loop is a valid unique loop.
+            Determine whether the specified loop is a valid unique loop or unique rectangle pattern.
+            </summary>
+            <param name="loopPath">The path of the loop.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.IsGeneralizedUniqueLoop(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Determine whether a loop is a generalized unique loop.
             </summary>
             <param name="loop">The loop to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
@@ -4527,6 +4534,12 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Patterns.UniqueLoop.DigitsMask">
             <summary>Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.UniqueLoop.Equals(Sudoku.Analytics.Patterns.UniqueLoop)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.UniqueLoop.GetHashCode">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.PredefinedAnalyzers">
             <summary>
@@ -6121,25 +6134,22 @@ result ^= expression;
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.Cached">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CollectUniqueLoops(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,System.Collections.Generic.ValueList{System.Int32},Sudoku.Concepts.CellMap@,System.Collections.Generic.HashSet{Sudoku.Analytics.Patterns.UniqueLoop},System.Int16,System.Int32,Sudoku.Concepts.HouseType)">
             <summary>
-            Represents a cached gathering operation set.
+            To collect all possible unique loop patterns in the current grid.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.GatherUniqueLoops(System.Int16)">
-            <summary>
-            Try to gather all possible loops being used in technique unique loops,
-            which should satisfy the specified condition.
-            </summary>
-            <param name="digitsMask">The digits used.</param>
-            <returns>
-            Returns a list of array of candidates used in the loop, as the data of possible found loops.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.DepthFirstSearching_UniqueLoop(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.Analytics.Patterns.UniqueLoop})">
-            <summary>
-            Checks for unique loops using recursion.
-            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="cell">The cell where the loop starts.</param>
+            <param name="d1">The first digit to be used.</param>
+            <param name="d2">The second digit to be used.</param>
+            <param name="loopPath">The path of the loop. This is a temporary variable.</param>
+            <param name="loopMap">
+            A <see cref="T:Sudoku.Concepts.CellMap"/> instance recording which cells are used for the current loop. This is a temporary variable.
+            </param>
+            <param name="result">The result.</param>
+            <param name="extraDigits">The extra digits to be checked.</param>
+            <param name="allowedEx">Indicates how many cells the current loop can exist, with extra digits stored.</param>
+            <param name="lastHouseType">The last house type. This is a temporary variable.</param>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher">
             <summary>
