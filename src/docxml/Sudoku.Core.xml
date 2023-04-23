@@ -2397,7 +2397,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Initializes an instance with an <see cref="T:System.Int128"/> integer.
             </summary>
-            <param name="int128">The <see cref="T:System.Int128"/> integer.</param>
+            <param name="llong">The <see cref="T:System.Int128"/> integer.</param>
             <returns>The result instance created.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Parse(System.String)">
@@ -2598,7 +2598,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Explicit cast from <see cref="T:System.Int128"/> to <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
-            <param name="int128">The <see cref="T:System.Int128"/> integer.</param>
+            <param name="llong">The <see cref="T:System.Int128"/> integer.</param>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_CheckedExplicit(System.Int128@)~Sudoku.Concepts.CellMap">
             <summary>

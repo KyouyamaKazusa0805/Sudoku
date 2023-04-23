@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Compatibility.SudokuExplainer;
+namespace Sudoku.Compatibility.SudokuExplainer;
 
 /// <summary>
 /// Defines an attribute that is applied to a field in technique, indicating difficulty rating value defined by Sudoku Explainer.
@@ -12,7 +12,7 @@ public sealed partial class SudokuExplainerDifficultyRatingAttribute : Attribute
 	/// <param name="difficultyRating">
 	/// The difficulty rating value. Assign <see cref="double.NaN"/> if you don't know the real value.
 	/// </param>
-	public SudokuExplainerDifficultyRatingAttribute(double difficultyRating) => DifficultyRating = (Half)difficultyRating;
+	public SudokuExplainerDifficultyRatingAttribute(double difficultyRating) => DifficultyRating = (@half)difficultyRating;
 
 	/// <summary>
 	/// Initializes a <see cref="SudokuExplainerDifficultyRatingAttribute"/> via the specified difficulty rating values
@@ -27,7 +27,7 @@ public sealed partial class SudokuExplainerDifficultyRatingAttribute : Attribute
 	/// Assign <see cref="double.NaN"/> if you don't know the real value.
 	/// </param>
 	public SudokuExplainerDifficultyRatingAttribute(double minDifficultyRating, double maxDifficultyRating)
-		=> (DifficultyRating, DifficultyRatingMaximumThreshold, IsRange) = ((Half)minDifficultyRating, (Half)maxDifficultyRating, true);
+		=> (DifficultyRating, DifficultyRatingMaximumThreshold, IsRange) = ((@half)minDifficultyRating, (@half)maxDifficultyRating, true);
 
 
 	/// <summary>
@@ -51,7 +51,7 @@ public sealed partial class SudokuExplainerDifficultyRatingAttribute : Attribute
 	/// <summary>
 	/// Indicates the difficulty rating.
 	/// </summary>
-	public Half DifficultyRating { get; }
+	public @half DifficultyRating { get; }
 
 	/// <summary>
 	/// <para>Indicates the maximum possible difficulty rating value that a technique can be reached.</para>
@@ -60,13 +60,13 @@ public sealed partial class SudokuExplainerDifficultyRatingAttribute : Attribute
 	/// is set to <see langword="true"/>, this value will not be <see langword="null"/>.
 	/// </para>
 	/// </summary>
-	public Half? DifficultyRatingMaximumThreshold { get; }
+	public @half? DifficultyRatingMaximumThreshold { get; }
 
 
 	[DeconstructionMethod]
 	public partial void Deconstruct(
-		[DeconstructionMethodArgument(nameof(DifficultyRating))] out Half min,
-		[DeconstructionMethodArgument(nameof(DifficultyRatingMaximumThreshold))] out Half? max,
+		[DeconstructionMethodArgument(nameof(DifficultyRating))] out @half min,
+		[DeconstructionMethodArgument(nameof(DifficultyRatingMaximumThreshold))] out @half? max,
 		[DeconstructionMethodArgument(nameof(IsAdvancedDefined))] out bool isAdvanced
 	);
 }

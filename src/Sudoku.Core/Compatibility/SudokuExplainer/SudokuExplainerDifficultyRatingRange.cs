@@ -5,7 +5,10 @@ namespace Sudoku.Compatibility.SudokuExplainer;
 /// </summary>
 /// <param name="min">Indicates the minimum possible value.</param>
 /// <param name="max">Indicates the maximum possible value.</param>
-public readonly partial struct SudokuExplainerDifficultyRatingRange([PrimaryConstructorParameter] Half min, [PrimaryConstructorParameter] Half max)
+public readonly partial struct SudokuExplainerDifficultyRatingRange(
+	[PrimaryConstructorParameter] @half min,
+	[PrimaryConstructorParameter] @half max
+)
 {
 	/// <summary>
 	/// Initializes a <see cref="SudokuExplainerDifficultyRatingRange"/> instance
@@ -13,7 +16,7 @@ public readonly partial struct SudokuExplainerDifficultyRatingRange([PrimaryCons
 	/// </summary>
 	/// <param name="min">The difficulty rating value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SudokuExplainerDifficultyRatingRange(Half min) : this(min, min)
+	public SudokuExplainerDifficultyRatingRange(@half min) : this(min, min)
 	{
 	}
 

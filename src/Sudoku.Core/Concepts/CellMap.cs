@@ -866,13 +866,12 @@ public unsafe partial struct CellMap :
 		=> CreateByBits((high & 0x7FFFFFFL) << 13 | mid >> 14 & 0x1FFFL, (mid & 0x3FFFL) << 27 | low & 0x7FFFFFFL);
 
 	/// <summary>
-	/// Initializes an instance with an <see cref="Int128"/> integer.
+	/// Initializes an instance with an <see cref="@llong"/> integer.
 	/// </summary>
-	/// <param name="int128">The <see cref="Int128"/> integer.</param>
+	/// <param name="llong">The <see cref="@llong"/> integer.</param>
 	/// <returns>The result instance created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap CreateByInt128(scoped in Int128 int128)
-		=> CreateByBits((long)(ulong)(int128 >> 64), (long)(ulong)(int128 & ulong.MaxValue));
+	public static CellMap CreateByInt128(scoped in @llong llong) => CreateByBits((long)(ulong)(llong >> 64), (long)(ulong)(llong & ulong.MaxValue));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1372,32 +1371,32 @@ public unsafe partial struct CellMap :
 	}
 
 	/// <summary>
-	/// Implicit cast from <see cref="CellMap"/> to <see cref="Int128"/>.
+	/// Implicit cast from <see cref="CellMap"/> to <see cref="@llong"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Int128(scoped in CellMap offsets) => new((ulong)offsets._high, (ulong)offsets._low);
+	public static explicit operator @llong(scoped in CellMap offsets) => new((ulong)offsets._high, (ulong)offsets._low);
 
 	/// <summary>
-	/// Explicit cast from <see cref="Int128"/> to <see cref="CellMap"/>.
+	/// Explicit cast from <see cref="@llong"/> to <see cref="CellMap"/>.
 	/// </summary>
-	/// <param name="int128">The <see cref="Int128"/> integer.</param>
+	/// <param name="llong">The <see cref="@llong"/> integer.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator CellMap(scoped in Int128 int128) => CreateByInt128(int128);
+	public static explicit operator CellMap(scoped in @llong llong) => CreateByInt128(llong);
 
 	/// <summary>
-	/// Explicit cast from <see cref="Int128"/> to <see cref="CellMap"/>.
+	/// Explicit cast from <see cref="@llong"/> to <see cref="CellMap"/>.
 	/// </summary>
-	/// <param name="int128">The <see cref="Int128"/> integer.</param>
+	/// <param name="int128">The <see cref="@llong"/> integer.</param>
 	/// <exception cref="OverflowException">
 	/// Throws when the base argument <paramref name="int128"/> is greater than the maximum value
 	/// corresponding to <see cref="MaxValue"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator checked CellMap(scoped in Int128 int128)
+	public static explicit operator checked CellMap(scoped in @llong int128)
 		=> int128 >> 81 == 0
 			? CreateByInt128(int128)
-			: throw new OverflowException($"The base {nameof(Int128)} integer is greater than '{nameof(MaxValue)}'.");
+			: throw new OverflowException($"The base {nameof(@llong)} integer is greater than '{nameof(MaxValue)}'.");
 
 	/// <inheritdoc/>
 	static explicit IBitStatusMap<CellMap>.operator checked CellMap(Cell[] offsets)
