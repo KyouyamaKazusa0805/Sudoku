@@ -611,7 +611,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						if (count == 2 || IsPow2(extraDigits) || allowedEx != 0)
 						{
 							var newAllowedEx = count > 2 ? allowedEx - 1 : allowedEx;
-							CollectUniqueLoops(grid, cell, d1, d2, loopPath, ref loopMap, result, extraDigits, newAllowedEx, houseType);
+							CollectUniqueLoops(grid, next, d1, d2, loopPath, ref loopMap, result, extraDigits, newAllowedEx, houseType);
 						}
 					}
 				}

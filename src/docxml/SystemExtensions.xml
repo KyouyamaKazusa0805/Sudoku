@@ -641,7 +641,7 @@
         </member>
         <member name="M:System.Collections.Generic.ValueList`1.#ctor">
             <summary>
-            Initializes a <see cref="T:System.Collections.Generic.ValueList`1"/> instance via the default capacity 256.
+            Initializes a <see cref="T:System.Collections.Generic.ValueList`1"/> instance via the default capacity 255.
             </summary>
         </member>
         <member name="M:System.Collections.Generic.ValueList`1.#ctor(System.Byte)">

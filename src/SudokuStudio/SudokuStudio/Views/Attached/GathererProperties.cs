@@ -1,10 +1,10 @@
 namespace SudokuStudio.Views.Attached;
 
 /// <summary>
-/// Defines a bind behaviors on <see cref="SudokuPane"/> instances, for <see cref="Gatherer"/> instance's interaction.
+/// Defines a bind behaviors on <see cref="SudokuPane"/> instances, for <see cref="StepCollector"/> instance's interaction.
 /// </summary>
 /// <seealso cref="SudokuPane"/>
-/// <seealso cref="Gatherer"/>
+/// <seealso cref="StepCollector"/>
 [AttachedProperty<bool>("StepGathererOnlySearchSameLevelTechniquesInFindAllSteps", DefaultValue = true)]
 [AttachedProperty<int>("StepGathererMaxStepsGathered", DefaultValue = 1000)]
 public static partial class GathererProperties

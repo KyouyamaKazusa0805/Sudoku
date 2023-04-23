@@ -1,10 +1,10 @@
 namespace SudokuStudio.Configuration;
 
 /// <summary>
-/// Represents with preference items that is used by <see cref="Analyzer"/> or <see cref="Gatherer"/>.
+/// Represents with preference items that is used by <see cref="Analyzer"/> or <see cref="StepCollector"/>.
 /// </summary>
 /// <seealso cref="Analyzer"/>
-/// <seealso cref="Gatherer"/>
+/// <seealso cref="StepCollector"/>
 [DependencyProperty<bool>("EnableFullHouse", DefaultValue = true, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(SingleStepSearcher)}.{nameof(SingleStepSearcher.EnableFullHouse)}")]
 [DependencyProperty<bool>("EnableLastDigit", DefaultValue = true, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(SingleStepSearcher)}.{nameof(SingleStepSearcher.EnableLastDigit)}")]
 [DependencyProperty<bool>("HiddenSinglesInBlockFirst", DefaultValue = true, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(SingleStepSearcher)}.{nameof(SingleStepSearcher.HiddenSinglesInBlockFirst)}")]
@@ -18,8 +18,8 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<bool>("LogicalSolverIsFullApplying", DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(Analyzer)}.{nameof(Analyzer.IsFullApplying)}")]
 [DependencyProperty<bool>("LogicalSolverIgnoresSlowAlgorithms", DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(Analyzer)}.{nameof(Analyzer.IgnoreSlowAlgorithms)}")]
 [DependencyProperty<bool>("LogicalSolverIgnoresHighAllocationAlgorithms", DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(Analyzer)}.{nameof(Analyzer.IgnoreHighAllocationAlgorithms)}")]
-[DependencyProperty<bool>("StepGathererOnlySearchSameLevelTechniquesInFindAllSteps", DefaultValue = true, DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(Gatherer)}.{nameof(Gatherer.OnlyShowSameLevelTechniquesInFindAllSteps)}")]
+[DependencyProperty<bool>("StepGathererOnlySearchSameLevelTechniquesInFindAllSteps", DefaultValue = true, DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(StepCollector)}.{nameof(StepCollector.OnlyShowSameLevelTechniquesInFindAllSteps)}")]
 [DependencyProperty<int>("MaxSizeOfRegularWing", DefaultValue = 5, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(RegularWingStepSearcher)}.{nameof(RegularWingStepSearcher.MaxSearchingPivotsCount)}")]
 [DependencyProperty<int>("MaxSizeOfComplexFish", DefaultValue = 5, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(ComplexFishStepSearcher)}.{nameof(ComplexFishStepSearcher.MaxSize)}")]
-[DependencyProperty<int>("StepGathererMaxStepsGathered", DefaultValue = 1000, DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(Gatherer)}.{nameof(Gatherer.MaxStepsGathered)}")]
+[DependencyProperty<int>("StepGathererMaxStepsGathered", DefaultValue = 1000, DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(StepCollector)}.{nameof(StepCollector.MaxStepsGathered)}")]
 public sealed partial class AnalysisPreferenceGroup : PreferenceGroup;

@@ -56,8 +56,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	}
 
 
-	private void TechniqueGroupView_StepChosen(object sender, TechniqueGroupViewStepChosenEventArgs e)
-		=> BasePage.VisualUnit = e.ChosenStep;
+	private void TechniqueGroupView_StepChosen(object sender, TechniqueGroupViewStepChosenEventArgs e) => BasePage.VisualUnit = e.ChosenStep;
 
 	private void FilterGatheredStepsButton_Click(object sender, RoutedEventArgs e)
 	{
@@ -96,7 +95,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
 
 		var gatherer = ((App)Application.Current).ProgramGatherer;
-		var result = await Task.Run(gather);
+		var result = await Task.Run(collect);
 
 		_currentFountSteps = result;
 		TechniqueGroupView.TechniqueGroups.Source = GetTechniqueGroups(result);
@@ -104,7 +103,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		BasePage.IsGathererLaunched = false;
 
 
-		IEnumerable<Step> gather()
+		IEnumerable<Step> collect()
 		{
 			lock (StepSearchingOrGatheringSyncRoot)
 			{

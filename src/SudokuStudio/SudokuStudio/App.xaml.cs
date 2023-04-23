@@ -33,7 +33,7 @@ public partial class App : Application
 	/// <summary>
 	/// Indicates the program step gatherer.
 	/// </summary>
-	public Gatherer ProgramGatherer { get; } = new();
+	public StepCollector ProgramGatherer { get; } = new();
 
 	/// <summary>
 	/// Indicates the first-opened grid.

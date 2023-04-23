@@ -5,12 +5,12 @@ namespace SudokuStudio.Views.Attached;
 /// </summary>
 /// <seealso cref="SudokuPane"/>
 [AttachedProperty<Analyzer>("ProgramSolver")]
-[AttachedProperty<Gatherer>("ProgramStepGatherer")]
+[AttachedProperty<StepCollector>("ProgramStepGatherer")]
 public static partial class SudokuPaneBindable
 {
 	[DefaultValue]
 	private static readonly Analyzer ProgramSolverDefaultValue = PredefinedAnalyzers.Balanced;
 
 	[DefaultValue]
-	private static readonly Gatherer ProgramStepGathererDefaultValue = new();
+	private static readonly StepCollector ProgramStepGathererDefaultValue = new();
 }

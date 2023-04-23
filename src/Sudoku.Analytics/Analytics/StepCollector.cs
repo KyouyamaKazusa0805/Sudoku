@@ -1,9 +1,9 @@
 namespace Sudoku.Analytics;
 
 /// <summary>
-/// Represents a gatherer instance that can gather all possible <see cref="Step"/>s in one grid status.
+/// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one status.
 /// </summary>
-public sealed class Gatherer
+public sealed class StepCollector
 {
 	/// <summary>
 	/// Indicates whether the solver only displays the techniques with the same displaying level.

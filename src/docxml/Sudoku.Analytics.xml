@@ -2849,37 +2849,6 @@
             Indicates the analysis result will show elapsed time on solving the puzzle.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Gatherer">
-            <summary>
-            Represents a gatherer instance that can gather all possible <see cref="T:Sudoku.Analytics.Step"/>s in one grid status.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Gatherer.OnlyShowSameLevelTechniquesInFindAllSteps">
-            <summary>
-            Indicates whether the solver only displays the techniques with the same displaying level.
-            </summary>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Analytics.Gatherer.MaxStepsGathered">
-            <summary>
-            Indicates the maximum steps can be gathered.
-            </summary>
-            <remarks>
-            The default value is 1000.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.Gatherer.Search(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
-            <summary>
-            Search for all possible steps in a grid.
-            </summary>
-            <param name="puzzle">The puzzle grid.</param>
-            <param name="progress">The progress instance that is used for reporting the status.</param>
-            <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
-            <returns>The result.</returns>
-            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
-        </member>
         <member name="T:Sudoku.Analytics.InternalHelpers.AlmostLockedSetHelper">
             <summary>
             Represents a helper type that operates with <see cref="T:Sudoku.Analytics.Patterns.AlmostLockedSet"/> instances.
@@ -4880,6 +4849,37 @@ result ^= expression;
             <summary>
             The generated property declaration for parameter <c>views</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.StepCollector">
+            <summary>
+            Represents an instance that can collect all possible <see cref="T:Sudoku.Analytics.Step"/>s in a grid for one status.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepCollector.OnlyShowSameLevelTechniquesInFindAllSteps">
+            <summary>
+            Indicates whether the solver only displays the techniques with the same displaying level.
+            </summary>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.StepCollector.MaxStepsGathered">
+            <summary>
+            Indicates the maximum steps can be gathered.
+            </summary>
+            <remarks>
+            The default value is 1000.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepCollector.Search(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
+            <summary>
+            Search for all possible steps in a grid.
+            </summary>
+            <param name="puzzle">The puzzle grid.</param>
+            <param name="progress">The progress instance that is used for reporting the status.</param>
+            <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcher">
             <summary>

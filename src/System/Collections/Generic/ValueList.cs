@@ -36,7 +36,7 @@ public unsafe ref partial struct ValueList<T> where T : notnull
 
 
 	/// <summary>
-	/// Initializes a <see cref="ValueList{T}"/> instance via the default capacity 256.
+	/// Initializes a <see cref="ValueList{T}"/> instance via the default capacity 255.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ValueList() : this(byte.MaxValue)

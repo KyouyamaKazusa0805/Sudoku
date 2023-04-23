@@ -530,10 +530,10 @@
         </member>
         <member name="T:SudokuStudio.Configuration.AnalysisPreferenceGroup">
             <summary>
-            Represents with preference items that is used by <see cref="T:Sudoku.Analytics.Analyzer"/> or <see cref="T:Sudoku.Analytics.Gatherer"/>.
+            Represents with preference items that is used by <see cref="T:Sudoku.Analytics.Analyzer"/> or <see cref="T:Sudoku.Analytics.StepCollector"/>.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-            <seealso cref="T:Sudoku.Analytics.Gatherer"/>
+            <seealso cref="T:Sudoku.Analytics.StepCollector"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableFullHouseProperty">
             <summary>
@@ -677,7 +677,7 @@
             <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps">
-            <inheritdoc cref="P:Sudoku.Analytics.Gatherer.OnlyShowSameLevelTechniquesInFindAllSteps"/>
+            <inheritdoc cref="P:Sudoku.Analytics.StepCollector.OnlyShowSameLevelTechniquesInFindAllSteps"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.MaxSearchingPivotsCount"/>
@@ -686,7 +686,7 @@
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.MaxSize"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererMaxStepsGathered">
-            <inheritdoc cref="P:Sudoku.Analytics.Gatherer.MaxStepsGathered"/>
+            <inheritdoc cref="P:Sudoku.Analytics.StepCollector.MaxStepsGathered"/>
         </member>
         <member name="T:SudokuStudio.Configuration.BackdropKind">
             <summary>
@@ -5259,10 +5259,10 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Views.Attached.GathererProperties">
             <summary>
-            Defines a bind behaviors on <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instances, for <see cref="T:Sudoku.Analytics.Gatherer"/> instance's interaction.
+            Defines a bind behaviors on <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instances, for <see cref="T:Sudoku.Analytics.StepCollector"/> instance's interaction.
             </summary>
             <seealso cref="T:SudokuStudio.Views.Controls.SudokuPane"/>
-            <seealso cref="T:Sudoku.Analytics.Gatherer"/>
+            <seealso cref="T:Sudoku.Analytics.StepCollector"/>
         </member>
         <member name="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty">
             <summary>
@@ -5326,7 +5326,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.SudokuPaneBindable.ProgramSolverProperty" />
         </member>
-        <member name="M:SudokuStudio.Views.Attached.SudokuPaneBindable.SetProgramStepGatherer(Microsoft.UI.Xaml.DependencyObject,Sudoku.Analytics.Gatherer)">
+        <member name="M:SudokuStudio.Views.Attached.SudokuPaneBindable.SetProgramStepGatherer(Microsoft.UI.Xaml.DependencyObject,Sudoku.Analytics.StepCollector)">
             <summary>
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.SudokuPaneBindable.ProgramStepGathererProperty"/> to get or set value.
             </summary>
