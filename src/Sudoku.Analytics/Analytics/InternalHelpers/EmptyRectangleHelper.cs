@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.InternalHelpers;
+namespace Sudoku.Analytics.InternalHelpers;
 
 /// <summary>
 /// Represents a helper type that operates with empty rectangles.
@@ -17,10 +17,11 @@ internal static class EmptyRectangleHelper
 	/// both arguments <paramref name="row"/> and <paramref name="column"/> can be used;
 	/// otherwise, both arguments should be discards.
 	/// </returns>
-	public static bool IsEmptyRectangle(scoped in CellMap cells, int block, out int row, out int column)
+	public static bool IsEmptyRectangle(scoped in CellMap cells, House block, out House row, out House column)
 	{
-		int r = block / 3 * 3 + 9, c = block % 3 * 3 + 18;
-		for (int i = r, count = 0; i < r + 3; i++)
+		var r = block / 3 * 3 + 9;
+		var c = block % 3 * 3 + 18;
+		for (var (i, count) = (r, 0); i < r + 3; i++)
 		{
 			if ((cells & HousesMap[i]) is not [] || ++count <= 1)
 			{
@@ -31,7 +32,7 @@ internal static class EmptyRectangleHelper
 			return false;
 		}
 
-		for (int i = c, count = 0; i < c + 3; i++)
+		for (var (i, count) = (c, 0); i < c + 3; i++)
 		{
 			if ((cells & HousesMap[i]) is not [] || ++count <= 1)
 			{

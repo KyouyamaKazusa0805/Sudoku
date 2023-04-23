@@ -14,8 +14,8 @@ namespace Sudoku.Analytics.Steps;
 public sealed class HiddenUniqueRectangleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int digit1,
-	int digit2,
+	Digit digit1,
+	Digit digit2,
 	scoped in CellMap cells,
 	bool isAvoidable,
 	Conjugate[] conjugatePairs,

@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class RegionForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] int houseIndex,
+	[PrimaryConstructorParameter] House houseIndex,
 	[PrimaryConstructorParameter] byte digit,
 	[PrimaryConstructorParameter] MultipleForcingChains chains,
 	bool isDynamic,
@@ -22,7 +22,7 @@ public sealed partial class RegionForcingChainsStep(
 {
 	internal RegionForcingChainsStep(
 		Conclusion[] conclusions,
-		int houseIndex,
+		House houseIndex,
 		byte digit,
 		MultipleForcingChains chains,
 		bool isDynamic,

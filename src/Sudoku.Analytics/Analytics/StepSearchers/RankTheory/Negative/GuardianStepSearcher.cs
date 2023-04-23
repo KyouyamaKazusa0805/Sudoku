@@ -115,7 +115,7 @@ file static unsafe class Cached
 	/// <returns>
 	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
 	/// </returns>
-	public static Guardian[] GatherGuardianLoops(int digit)
+	public static Guardian[] GatherGuardianLoops(Digit digit)
 	{
 		LoopChecker condition = &GuardianOrBivalueOddagonSatisfyingPredicate;
 
@@ -132,12 +132,12 @@ file static unsafe class Cached
 	/// Checks for guardian loops using recursion.
 	/// </summary>
 	private static void DepthFirstSearching_Guardian(
-		int startCell,
-		int lastCell,
-		int lastHouse,
+		Cell startCell,
+		Cell lastCell,
+		House lastHouse,
 		scoped in CellMap currentLoop,
 		scoped in CellMap currentGuardians,
-		int digit,
+		Digit digit,
 		LoopChecker condition,
 		List<Guardian> result
 	)

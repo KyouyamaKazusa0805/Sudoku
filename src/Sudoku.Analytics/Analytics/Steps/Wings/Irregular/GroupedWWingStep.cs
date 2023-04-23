@@ -11,8 +11,8 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class GroupedWWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] int startCell,
-	[PrimaryConstructorParameter] int endCell,
+	[PrimaryConstructorParameter] Cell startCell,
+	[PrimaryConstructorParameter] Cell endCell,
 	[PrimaryConstructorParameter] scoped in CellMap bridge
 ) : IrregularWingStep(conclusions, views)
 {

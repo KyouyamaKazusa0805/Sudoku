@@ -14,11 +14,11 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueRectangleWithBabaGroupingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int digit1,
-	int digit2,
+	Digit digit1,
+	Digit digit2,
 	scoped in CellMap cells,
-	[PrimaryConstructorParameter] int targetCell,
-	[PrimaryConstructorParameter] int extraDigit,
+	[PrimaryConstructorParameter] Cell targetCell,
+	[PrimaryConstructorParameter] Digit extraDigit,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,

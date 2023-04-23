@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="digit">Indicates the digit used in this pattern.</param>
-public abstract partial class SingleDigitPatternStep(Conclusion[] conclusions, View[]? views, [PrimaryConstructorParameter] int digit) :
+public abstract partial class SingleDigitPatternStep(Conclusion[] conclusions, View[]? views, [PrimaryConstructorParameter] Digit digit) :
 	Step(conclusions, views)
 {
 	/// <inheritdoc/>

@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class FishStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] int digit,
+	[PrimaryConstructorParameter] Digit digit,
 	[PrimaryConstructorParameter] int baseSetsMask,
 	[PrimaryConstructorParameter] int coverSetsMask
 ) : Step(conclusions, views)

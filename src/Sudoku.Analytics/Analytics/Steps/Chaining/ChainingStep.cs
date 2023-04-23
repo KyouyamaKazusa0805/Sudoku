@@ -506,14 +506,14 @@ public abstract partial class ChainingStep(
 	/// <summary>
 	/// Try to fetch all nested <see cref="LinkViewNode"/> instances of the specified view.
 	/// </summary>
-	/// <param name="nestedViewNum">The specified index of the view.</param>
+	/// <param name="nestedViewIndex">The specified index of the view.</param>
 	/// <returns>All <see cref="LinkViewNode"/> instance in this view.</returns>
-	protected List<LinkViewNode> GetNestedLinks(int nestedViewNum)
+	protected List<LinkViewNode> GetNestedLinks(int nestedViewIndex)
 	{
-		nestedViewNum -= FlatViewsCount;
+		nestedViewIndex -= FlatViewsCount;
 
-		var (step, nestedViewIndex) = GetNestedChain(nestedViewNum);
-		return step.GetLinks(nestedViewIndex);
+		var (step, viewIndex) = GetNestedChain(nestedViewIndex);
+		return step.GetLinks(viewIndex);
 	}
 
 	/// <summary>

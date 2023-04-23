@@ -13,7 +13,7 @@ public sealed partial class BorescoperDeadlyPatternType2Step(
 	View[]? views,
 	scoped in CellMap cells,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] int extraDigit
+	[PrimaryConstructorParameter] Digit extraDigit
 ) : BorescoperDeadlyPatternStep(conclusions, views, cells, digitsMask)
 {
 	/// <inheritdoc/>

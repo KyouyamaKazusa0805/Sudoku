@@ -443,7 +443,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	/// </summary>
 	private RegionForcingChainsStep CreateHouseForcingStep(
 		scoped in Grid grid,
-		int houseIndex,
+		House houseIndex,
 		byte digit,
 		ChainNode target,
 		ChainBranch outcomes

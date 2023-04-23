@@ -15,12 +15,12 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class AvoidableRectangleWithHiddenSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int digit1,
-	int digit2,
+	Digit digit1,
+	Digit digit2,
 	scoped in CellMap cells,
-	[PrimaryConstructorParameter] int baseCell,
-	[PrimaryConstructorParameter] int targetCell,
-	[PrimaryConstructorParameter] int house,
+	[PrimaryConstructorParameter] Cell baseCell,
+	[PrimaryConstructorParameter] Cell targetCell,
+	[PrimaryConstructorParameter] House house,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,

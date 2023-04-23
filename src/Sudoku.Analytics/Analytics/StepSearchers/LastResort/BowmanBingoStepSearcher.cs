@@ -94,7 +94,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="startCand">The start candidate to be assumed.</param>
 	/// <param name="length">The whole length to be searched.</param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private Step? GetAll(ICollection<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, int startCand, int length)
+	private Step? GetAll(ICollection<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, Candidate startCand, int length)
 	{
 		scoped var context = new AnalysisContext(null, grid, true);
 		if (length == 0 || SinglesSearcher.Collect(ref context) is not SingleStep singleInfo)
@@ -175,9 +175,9 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result.</returns>
-	private static (List<int> CandidateList, Mask Mask) RecordUndoInfo(scoped in Grid grid, int cell, int digit)
+	private static (List<Candidate> CandidateList, Mask Mask) RecordUndoInfo(scoped in Grid grid, Cell cell, Digit digit)
 	{
-		var list = new List<int>();
+		var list = new List<Candidate>();
 		foreach (var c in PeersMap[cell] & CandidatesMap[digit])
 		{
 			list.Add(c * 9 + digit);
@@ -210,7 +210,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>The result.</returns>
-	private static bool IsValidGrid(scoped in Grid grid, int cell)
+	private static bool IsValidGrid(scoped in Grid grid, Cell cell)
 	{
 		var result = true;
 		foreach (var peerCell in Peers[cell])

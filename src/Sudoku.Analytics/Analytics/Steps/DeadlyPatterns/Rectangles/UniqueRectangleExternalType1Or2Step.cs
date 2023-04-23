@@ -16,11 +16,11 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueRectangleExternalType1Or2Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	int digit1,
-	int digit2,
+	Digit digit1,
+	Digit digit2,
 	scoped in CellMap cells,
 	[PrimaryConstructorParameter] scoped in CellMap guardianCells,
-	[PrimaryConstructorParameter] int guardianDigit,
+	[PrimaryConstructorParameter] Digit guardianDigit,
 	[PrimaryConstructorParameter] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset

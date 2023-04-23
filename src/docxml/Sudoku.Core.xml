@@ -295,12 +295,11 @@
             <summary>
             Randomize to generate three candidates at different places.
             </summary>
-            <returns>A triplet of cells.</returns>
+            <returns>A triplet of candidates.</returns>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.GetCells(System.Int32,System.Int32)">
             <summary>
-            Get the cells that is used for swapping via <see cref="F:Sudoku.Concepts.SymmetryType.Central"/>,
-            and the specified row and column value.
+            Get the cells that is used for swapping via <see cref="F:Sudoku.Concepts.SymmetryType.Central"/>, and the specified row and column value.
             </summary>
             <param name="row">The row value.</param>
             <param name="column">The column value.</param>
@@ -2858,7 +2857,17 @@ if (student is (name: var name, age: >= 18))
             (or some cells), and eliminates candidates in some cells. The concept is commonly used
             by logical technique "Hidden Single".
             </summary>
-            <param name="mask">The mask value to be set.</param>
+            <param name="mask">
+            <para>Indicates the inner mask.</para>
+            <para>
+            The mask uses 46 bits to describe two intersections and a digit information.
+            The higher 4 bits is the digit, and last 42 bits are two intersections representing the start
+            and end intersection. For example, <c>r5c5(3)</c> can eliminate <c>r789c5(3)</c> in block 8,
+            then we can construct two intersections to describe <c>r5c5</c> and <c>r789c5</c>,
+            putting them into the last 42 bits. A single candidate will use 7 bits to describe
+            (for cell indices from 0 to 80, i.e. <c>r1c1</c> to <c>r9c9</c>).
+            </para>
+            </param>
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.#ctor(System.UInt64)">
             <summary>
@@ -2866,7 +2875,17 @@ if (student is (name: var name, age: >= 18))
             (or some cells), and eliminates candidates in some cells. The concept is commonly used
             by logical technique "Hidden Single".
             </summary>
-            <param name="mask">The mask value to be set.</param>
+            <param name="mask">
+            <para>Indicates the inner mask.</para>
+            <para>
+            The mask uses 46 bits to describe two intersections and a digit information.
+            The higher 4 bits is the digit, and last 42 bits are two intersections representing the start
+            and end intersection. For example, <c>r5c5(3)</c> can eliminate <c>r789c5(3)</c> in block 8,
+            then we can construct two intersections to describe <c>r5c5</c> and <c>r789c5</c>,
+            putting them into the last 42 bits. A single candidate will use 7 bits to describe
+            (for cell indices from 0 to 80, i.e. <c>r1c1</c> to <c>r9c9</c>).
+            </para>
+            </param>
         </member>
         <member name="F:Sudoku.Concepts.Crosshatch.CellsGroupMask">
             <summary>
@@ -2882,19 +2901,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Concepts.Crosshatch.CrosshatchingHousesList">
             <summary>
             Indicates the houses list that represents the possible houses that a crosshatch will be used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Crosshatch._mask">
-            <summary>
-            <para>Indicates the inner mask.</para>
-            <para>
-            The mask uses 46 bits to describe two intersections and a digit information.
-            The higher 4 bits is the digit, and last 42 bits are two intersections representing the start
-            and end intersection. For example, <c>r5c5(3)</c> can eliminate <c>r789c5(3)</c> in block 8,
-            then we can construct two intersections to describe <c>r5c5</c> and <c>r789c5</c>,
-            putting them into the last 42 bits. A single candidate will use 7 bits to describe
-            (for cell indices from 0 to 80, i.e. <c>r1c1</c> to <c>r9c9</c>).
-            </para>
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.#ctor(System.Int32,Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
@@ -2994,6 +3000,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Crosshatch.op_Inequality(Sudoku.Concepts.Crosshatch,Sudoku.Concepts.Crosshatch)">
             <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Concepts.Crosshatch._mask">
+            <summary>
+            The generated field declaration for parameter <c>mask</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Concepts.Grid">
             <summary>
@@ -3597,7 +3608,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Get a mask at the specified cell.
             </summary>
-            <param name="offset">The cell offset you want to get.</param>
+            <param name="cell">The cell you want to get.</param>
             <returns>The mask.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetCandidates(System.Int32)">
@@ -3858,9 +3869,9 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMaskRef(System.Int32)">
             <summary>
-            Gets the mask at the specified position. This method returns the reference of the mask.
+            Gets the mask at the specified cell. This method returns the reference of the mask.
             </summary>
-            <param name="index">The desired index.</param>
+            <param name="cell">The desired cell.</param>
             <returns>The reference to the mask that you want to get.</returns>
             <remarks>
             This method returns the reference, which means you can use this method as an l-value.

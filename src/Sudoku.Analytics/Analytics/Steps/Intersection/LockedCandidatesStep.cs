@@ -11,9 +11,9 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class LockedCandidatesStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] int digit,
-	[PrimaryConstructorParameter] int baseSet,
-	[PrimaryConstructorParameter] int coverSet
+	[PrimaryConstructorParameter] Digit digit,
+	[PrimaryConstructorParameter] House baseSet,
+	[PrimaryConstructorParameter] House coverSet
 ) : IntersectionStep(conclusions, views)
 {
 	/// <inheritdoc/>

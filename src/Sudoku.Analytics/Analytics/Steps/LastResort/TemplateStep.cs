@@ -15,7 +15,7 @@ public sealed partial class TemplateStep(
 	/// <summary>
 	/// Indicates the digit.
 	/// </summary>
-	public int Digit => Conclusions[0].Digit;
+	public Digit Digit => Conclusions[0].Digit;
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 9.0M;

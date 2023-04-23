@@ -11,8 +11,8 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class UniqueLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] int digit1,
-	[PrimaryConstructorParameter] int digit2,
+	[PrimaryConstructorParameter] Digit digit1,
+	[PrimaryConstructorParameter] Digit digit2,
 	[PrimaryConstructorParameter] scoped in CellMap loop
 ) : DeadlyPatternStep(conclusions, views), IEquatableStep<UniqueLoopStep>
 {

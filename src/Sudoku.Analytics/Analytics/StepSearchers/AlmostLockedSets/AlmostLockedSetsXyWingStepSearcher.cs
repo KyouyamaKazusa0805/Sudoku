@@ -24,7 +24,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 		var alses = grid.GatherAlmostLockedSets();
 
 		// Gather all RCCs.
-		for (int i = 0, length = alses.Length; i < length - 1; i++)
+		for (var (i, length) = (0, alses.Length); i < length - 1; i++)
 		{
 			var als1 = alses[i];
 			var map1 = als1.Cells;
@@ -61,7 +61,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 		}
 
 		// Now check them.
-		for (int i = 0, count = rccList.Count; i < count - 1; i++)
+		for (var (i, count) = (0, rccList.Count); i < count - 1; i++)
 		{
 			var (als11, als12, mask1) = rccList[i];
 			for (var j = i + 1; j < count; j++)

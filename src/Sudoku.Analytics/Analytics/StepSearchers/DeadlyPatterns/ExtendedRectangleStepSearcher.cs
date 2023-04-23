@@ -34,7 +34,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	private static readonly List<(CellMap Cells, List<(int Left, int Right)> PairCells, int Size)> PatternInfos;
+	private static readonly List<(CellMap Cells, List<(Cell Left, Cell Right)> PairCells, int Size)> PatternInfos;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -114,10 +114,11 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					}
 
 					var map = CellMap.Empty;
-					var pairs = new List<(int, int)>();
+					var pairs = new List<(Cell, Cell)>();
 					foreach (var pos in mask)
 					{
-						int cell1 = HouseCells[house1][pos], cell2 = HouseCells[house2][pos];
+						var cell1 = HouseCells[house1][pos];
+						var cell2 = HouseCells[house2][pos];
 						map.Add(cell1);
 						map.Add(cell2);
 						pairs.Add((cell1, cell2));
@@ -271,7 +272,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		scoped in CellMap allCellsMap,
 		scoped in CellMap extraCells,
 		Mask normalDigits,
-		int extraDigit,
+		Digit extraDigit,
 		bool onlyFindOne
 	)
 	{
@@ -331,7 +332,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		scoped in CellMap allCellsMap,
 		scoped in CellMap extraCells,
 		Mask normalDigits,
-		int extraDigit,
+		Digit extraDigit,
 		bool onlyFindOne
 	)
 	{
@@ -475,7 +476,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 	/// <summary>
 	/// Check type 4 and a part of type 1 that the method
-	/// <see cref="CheckType1(List{Step}, in Grid, in CellMap, in CellMap, Mask, int, bool)"/>
+	/// <see cref="CheckType1(List{Step}, in Grid, in CellMap, in CellMap, Mask, Digit, bool)"/>
 	/// cannot be found.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>

@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class GuardianStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] int digit,
+	[PrimaryConstructorParameter] Digit digit,
 	[PrimaryConstructorParameter] scoped in CellMap loopCells,
 	[PrimaryConstructorParameter] scoped in CellMap guardians
 ) : NegativeRankStep(conclusions, views), IEquatableStep<GuardianStep>

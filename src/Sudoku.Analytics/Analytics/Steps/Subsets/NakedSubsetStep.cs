@@ -28,7 +28,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class NakedSubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int house,
+	House house,
 	scoped in CellMap cells,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] bool? isLocked

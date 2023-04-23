@@ -15,12 +15,12 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueRectangleType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	int digit1,
-	int digit2,
+	Digit digit1,
+	Digit digit2,
 	Technique code,
 	scoped in CellMap cells,
 	bool isAvoidable,
-	[PrimaryConstructorParameter] int extraDigit,
+	[PrimaryConstructorParameter] Digit extraDigit,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,

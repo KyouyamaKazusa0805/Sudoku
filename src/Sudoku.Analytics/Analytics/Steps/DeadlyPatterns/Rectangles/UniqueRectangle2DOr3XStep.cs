@@ -18,13 +18,13 @@ public sealed partial class UniqueRectangle2DOr3XStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	Technique code,
-	int digit1,
-	int digit2,
+	Digit digit1,
+	Digit digit2,
 	scoped in CellMap cells,
 	bool isAvoidable,
-	[PrimaryConstructorParameter] int xDigit,
-	[PrimaryConstructorParameter] int yDigit,
-	[PrimaryConstructorParameter] int xyCell,
+	[PrimaryConstructorParameter] Digit xDigit,
+	[PrimaryConstructorParameter] Digit yDigit,
+	[PrimaryConstructorParameter] Cell xyCell,
 	int absoluteOffset
 ) : UniqueRectangleStep(conclusions, views, code, digit1, digit2, cells, isAvoidable, absoluteOffset)
 {

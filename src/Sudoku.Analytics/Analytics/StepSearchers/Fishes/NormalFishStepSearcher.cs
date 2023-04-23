@@ -142,7 +142,8 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		for (var digit = 0; digit < 9; digit++)
 		{
 			// Check the validity of the distribution for the current digit.
-			int* pBase = searchRow ? r[digit] : c[digit], pCover = searchRow ? c[digit] : r[digit];
+			var pBase = searchRow ? r[digit] : c[digit];
+			var pCover = searchRow ? c[digit] : r[digit];
 			if (pBase == null || pBase[0] <= size)
 			{
 				continue;
@@ -238,7 +239,8 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 						houseOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, coverSet));
 					}
 
-					int baseSetsMask = 0, coverSetsMask = 0;
+					var baseSetsMask = 0;
+					var coverSetsMask = 0;
 					foreach (var baseSet in bs)
 					{
 						baseSetsMask |= 1 << baseSet;
@@ -281,7 +283,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// <param name="fins">The cells of the fin in the current fish.</param>
 	/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 	/// <returns>The view.</returns>
-	private static View GetDirectView(int digit, int[] baseSets, int[] coverSets, scoped in CellMap fins, bool searchRow)
+	private static View GetDirectView(Digit digit, House[] baseSets, House[] coverSets, scoped in CellMap fins, bool searchRow)
 	{
 		// Get the highlighted cells (necessary).
 		var cellOffsets = new List<CellViewNode>();

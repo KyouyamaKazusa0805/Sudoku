@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.InternalHelpers;
+namespace Sudoku.Analytics.InternalHelpers;
 
 /// <summary>
 /// Used by <see cref="NormalFishStepSearcher"/> and <see cref="ComplexFishStepSearcher"/>.
@@ -19,7 +19,7 @@ internal static class FishStepSearcherHelper
 	/// <inheritdoc cref="ComplexFishStep.IsSashimi" path="/remarks"/>
 	/// </para>
 	/// </returns>
-	public static bool? IsSashimi(int[] baseSets, scoped in CellMap fins, int digit)
+	public static bool? IsSashimi(House[] baseSets, scoped in CellMap fins, Digit digit)
 	{
 		if (!fins)
 		{

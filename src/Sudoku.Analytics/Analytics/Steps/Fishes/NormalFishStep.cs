@@ -29,7 +29,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class NormalFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int digit,
+	Digit digit,
 	int baseSetsMask,
 	int coverSetsMask,
 	[PrimaryConstructorParameter] scoped in CellMap fins,

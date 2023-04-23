@@ -25,8 +25,8 @@ public abstract partial class UniqueRectangleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	Technique code,
-	[PrimaryConstructorParameter] int digit1,
-	[PrimaryConstructorParameter] int digit2,
+	[PrimaryConstructorParameter] Digit digit1,
+	[PrimaryConstructorParameter] Digit digit2,
 	[PrimaryConstructorParameter] scoped in CellMap cells,
 	[PrimaryConstructorParameter] bool isAvoidable,
 	[PrimaryConstructorParameter] int absoluteOffset

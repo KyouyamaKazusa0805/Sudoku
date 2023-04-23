@@ -181,9 +181,9 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 2.
 	/// </summary>
-	private Step? CheckType2(List<Step> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	private Step? CheckType2(List<Step> accumulator, IReadOnlyList<Candidate> trueCandidates, bool onlyFindOne)
 	{
-		scoped var cells = (stackalloc int[trueCandidates.Count]);
+		scoped var cells = (stackalloc Cell[trueCandidates.Count]);
 		var i = 0;
 		foreach (var candidate in trueCandidates)
 		{
@@ -227,7 +227,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 3 with naked subsets.
 	/// </summary>
-	private Step? CheckType3Naked(List<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	private Step? CheckType3Naked(List<Step> accumulator, scoped in Grid grid, IReadOnlyList<Candidate> trueCandidates, bool onlyFindOne)
 	{
 		// Check whether all true candidates lie in a same house.
 		var map = CellMap.Empty + from c in trueCandidates group c by c / 9 into z select z.Key;
@@ -321,7 +321,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 4.
 	/// </summary>
-	private Step? CheckType4(List<Step> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	private Step? CheckType4(List<Step> accumulator, IReadOnlyList<Candidate> trueCandidates, bool onlyFindOne)
 	{
 		// Conjugate pairs should lie in two cells.
 		var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
@@ -331,7 +331,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		}
 
 		// Check two cell has same house.
-		var cells = new List<int>();
+		var cells = new List<Cell>();
 		foreach (var candGroupByCell in candsGroupByCell)
 		{
 			cells.Add(candGroupByCell.Key);
@@ -347,7 +347,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		foreach (var house in houses)
 		{
 			// Add up all digits.
-			var digits = new HashSet<int>();
+			var digits = new HashSet<Digit>();
 			foreach (var candGroupByCell in candsGroupByCell)
 			{
 				foreach (var cand in candGroupByCell)
@@ -450,7 +450,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for BUG + n.
 	/// </summary>
-	private Step? CheckMultiple(List<Step> accumulator, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	private Step? CheckMultiple(List<Step> accumulator, IReadOnlyList<Candidate> trueCandidates, bool onlyFindOne)
 	{
 		if (trueCandidates.Count > 18)
 		{
@@ -499,7 +499,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for BUG-XZ.
 	/// </summary>
-	private Step? CheckXz(List<Step> accumulator, scoped in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
+	private Step? CheckXz(List<Step> accumulator, scoped in Grid grid, IReadOnlyList<Candidate> trueCandidates, bool onlyFindOne)
 	{
 		if (trueCandidates is not [var cand1, var cand2])
 		{
@@ -565,10 +565,10 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="list">The list of all true candidates.</param>
 	/// <returns>A <see cref="bool"/> indicating that.</returns>
-	private static bool CheckSingleDigit(IReadOnlyList<int> list)
+	private static bool CheckSingleDigit(IReadOnlyList<Candidate> list)
 	{
 		var i = 0;
-		SkipInit(out int comparer);
+		SkipInit(out Digit comparer);
 		foreach (var cand in list)
 		{
 			if (i++ == 0)
@@ -612,7 +612,7 @@ file static class Cached
 	/// </exception>
 	public static bool FindTrueCandidates(
 		scoped in Grid grid,
-		[NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates,
+		[NotNullWhen(true)] out IReadOnlyList<Candidate>? trueCandidates,
 		int maximumCellsToCheck = 20
 	)
 	{
@@ -635,7 +635,7 @@ file static class Cached
 		}
 
 		// Store all bi-value cells and construct the relations.
-		scoped var span = (stackalloc int[3]);
+		scoped var span = (stackalloc House[3]);
 		var stack = new CellMap[multivalueCellsCount + 1, 9];
 		foreach (var cell in BivalueCells)
 		{
@@ -682,11 +682,11 @@ file static class Cached
 		// Now check the pattern.
 		// If the pattern is a valid BUG + n, the processing here will give you one plan of all possible
 		// combinations; otherwise, none will be found.
-		scoped var playground = (stackalloc int[3]);
+		scoped var playground = (stackalloc House[3]);
 		var currentIndex = 1;
-		var chosen = new int[multivalueCellsCount + 1];
+		var chosen = new Candidate[multivalueCellsCount + 1];
 		var resultMap = new CellMap[9];
-		var result = new List<int>();
+		var result = new List<Candidate>();
 		do
 		{
 			int i;

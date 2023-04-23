@@ -13,7 +13,7 @@ internal static class UniqueRectangleStepSearcherHelper
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
 	/// <returns>Indicates whether the UR is passed to check.</returns>
-	public static bool CheckPreconditions(scoped in Grid grid, int[] urCells, bool arMode)
+	public static bool CheckPreconditions(scoped in Grid grid, Cell[] urCells, bool arMode)
 	{
 		var emptyCountWhenArMode = (byte)0;
 		var modifiableCount = (byte)0;
@@ -50,7 +50,7 @@ internal static class UniqueRectangleStepSearcherHelper
 	/// <param name="d1">The first digit used.</param>
 	/// <param name="d2">The second digit used.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public static bool CheckPreconditionsOnIncomplete(scoped in Grid grid, int[] urCells, int d1, int d2)
+	public static bool CheckPreconditionsOnIncomplete(scoped in Grid grid, Cell[] urCells, Digit d1, Digit d2)
 	{
 		// Same-sided cells cannot contain only one digit of two digits 'd1' and 'd2'.
 		foreach (var (a, b) in stackalloc[] { (0, 1), (2, 3), (0, 2), (1, 3) })
@@ -88,7 +88,7 @@ internal static class UniqueRectangleStepSearcherHelper
 	/// <param name="houseIndex">The house index.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsConjugatePair(int digit, scoped in CellMap map, int houseIndex)
+	public static bool IsConjugatePair(Digit digit, scoped in CellMap map, House houseIndex)
 		=> (HousesMap[houseIndex] & CandidatesMap[digit]) == map;
 
 	/// <summary>
@@ -103,7 +103,7 @@ internal static class UniqueRectangleStepSearcherHelper
 	/// The <see cref="bool"/> value indicating whether the another cell is same house as the current one.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsSameHouseCell(int cell1, int cell2, out int houses)
+	public static bool IsSameHouseCell(Cell cell1, Cell cell2, out House houses)
 	{
 		var v = (CellsMap[cell1] + cell2).CoveredHouses;
 		(var r, houses) = v != 0 ? (true, v) : (false, 0);
@@ -136,7 +136,7 @@ internal static class UniqueRectangleStepSearcherHelper
 	/// Throws when the specified argument <paramref name="cell"/> is invalid.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetDiagonalCell(int[] urCells, int cell)
+	public static Cell GetDiagonalCell(Cell[] urCells, Cell cell)
 		=> cell == urCells[0] ? urCells[3] : cell == urCells[1] ? urCells[2] : cell == urCells[2] ? urCells[1] : urCells[0];
 
 	/// <summary>
@@ -145,7 +145,7 @@ internal static class UniqueRectangleStepSearcherHelper
 	/// <param name="urCells">The all UR cells used.</param>
 	/// <returns>The list of highlight cells.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellViewNode[] GetHighlightCells(int[] urCells)
+	public static CellViewNode[] GetHighlightCells(Cell[] urCells)
 		=> new CellViewNode[]
 		{
 			new(WellKnownColorIdentifierKind.Normal, urCells[0]),

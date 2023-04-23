@@ -117,13 +117,13 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		ICollection<ComplexFishStep> accumulator,
 		scoped in Grid grid,
 		scoped in CellMap pomElimsOfThisDigit,
-		int digit,
+		Digit digit,
 		bool onlyFindOne
 	)
 	{
 		const HouseType bothLines = (HouseType)3;
 
-		var currentCoverSets = stackalloc int[MaxSize];
+		var currentCoverSets = stackalloc House[MaxSize];
 		var searchForMutantCases = stackalloc[] { false, true };
 
 		// Iterate on each size.
@@ -407,7 +407,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 
 								// Don't forget the extra cover set.
 								// Add it into the list now.
-								var actualCoverSets = new int[size];
+								var actualCoverSets = new House[size];
 								for (var p = 0; p < size - 1; p++)
 								{
 									actualCoverSets[p] = coverSets[p];

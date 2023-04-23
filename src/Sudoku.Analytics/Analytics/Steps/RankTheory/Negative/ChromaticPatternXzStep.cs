@@ -14,10 +14,10 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ChromaticPatternXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int[] blocks,
+	House[] blocks,
 	scoped in CellMap pattern,
 	[PrimaryConstructorParameter] scoped in CellMap cells,
-	[PrimaryConstructorParameter] int extraCell,
+	[PrimaryConstructorParameter] Cell extraCell,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] Mask extraDigitsMask
 ) : ChromaticPatternStep(conclusions, views, blocks, pattern, digitsMask)

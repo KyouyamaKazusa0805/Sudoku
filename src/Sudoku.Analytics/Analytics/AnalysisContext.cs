@@ -29,5 +29,5 @@ public unsafe ref partial struct AnalysisContext(
 	/// <summary>
 	/// Indicates the previously set digit.
 	/// </summary>
-	public int PreviousSetDigit { get; internal set; }
+	public Digit PreviousSetDigit { get; internal set; }
 }

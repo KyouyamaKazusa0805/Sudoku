@@ -2677,7 +2677,7 @@
             <param name="this">The technique.</param>
             <returns>
             <para>
-            An <see cref="T:System.Int32"/> value defined by the project Sudoku Explainer.
+            A <see cref="T:System.ValueTuple`2"/> value defined by the project Sudoku Explainer.
             </para>
             <para>
             If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.
@@ -3480,9 +3480,22 @@
             </list>
             </summary>
             <param name="mask">
-            <para><inheritdoc cref="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask" path="/summary"/></para>
-            <para><inheritdoc cref="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask" path="//remarks/para[1]"/></para>
-            <para><inheritdoc cref="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask" path="//remarks/para[2]"/></para>
+            <para>Indicates the internal mask.</para>
+            <para>
+            This mask is of type <see cref="T:System.Int64"/>, where the distribution of each bit is as follows:
+            <code><![CDATA[
+            0      7     14     21     28     35     42     49     56
+            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
+            |-------|-------|-------|-------|-------|-------|-------|-------|
+            ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑
+            0       8      16      24      32      40      48      56      64
+            ]]></code>
+            where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
+            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
+            </para>
+            <para>
+            Due to the rendering engine, you have to check this file rather than the tip window.
+            </para>
             </param>
         </member>
         <member name="M:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern.#ctor(System.Int64)">
@@ -3517,16 +3530,7 @@
             </list>
             </summary>
             <param name="mask">
-            <para><inheritdoc cref="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask" path="/summary"/></para>
-            <para><inheritdoc cref="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask" path="//remarks/para[1]"/></para>
-            <para><inheritdoc cref="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask" path="//remarks/para[2]"/></para>
-            </param>
-        </member>
-        <member name="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask">
-            <summary>
-            Indicates the internal mask.
-            </summary>
-            <remarks>
+            <para>Indicates the internal mask.</para>
             <para>
             This mask is of type <see cref="T:System.Int64"/>, where the distribution of each bit is as follows:
             <code><![CDATA[
@@ -3542,7 +3546,7 @@
             <para>
             Due to the rendering engine, you have to check this file rather than the tip window.
             </para>
-            </remarks>
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern.IsHeptagon">
             <summary>
@@ -3634,6 +3638,11 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
+        <member name="F:Sudoku.Analytics.Patterns.BorescoperDeadlyPattern._mask">
+            <summary>
+            The generated field declaration for parameter <c>mask</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Patterns.ChainBranch">
             <summary>
             Represents a chain branch.
@@ -3643,7 +3652,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a node used in chaining.
             </summary>
-            <param name="mask"><inheritdoc cref="F:Sudoku.Analytics.Patterns.ChainNode._mask" path="/summary"/></param>
+            <param name="mask">The internal mask.</param>
             <remarks>
             This type corresponds to the concept of Sudoku Explainer's logic
             "<see href="https://sunnieshine.github.io/Sudoku/terms/node">Potential</see>".
@@ -3653,16 +3662,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a node used in chaining.
             </summary>
-            <param name="mask"><inheritdoc cref="F:Sudoku.Analytics.Patterns.ChainNode._mask" path="/summary"/></param>
+            <param name="mask">The internal mask.</param>
             <remarks>
             This type corresponds to the concept of Sudoku Explainer's logic
             "<see href="https://sunnieshine.github.io/Sudoku/terms/node">Potential</see>".
             </remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.Patterns.ChainNode._mask">
-            <summary>
-            The internal mask.
-            </summary>
         </member>
         <member name="M:Sudoku.Analytics.Patterns.ChainNode.#ctor(System.Int32,System.Boolean)">
             <summary>
@@ -3861,6 +3865,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.Patterns.ChainNode.op_Inequality(Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode)">
             <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Analytics.Patterns.ChainNode._mask">
+            <summary>
+            The generated field declaration for parameter <c>mask</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Patterns.ComplexFishFinKind">
             <summary>
@@ -8636,7 +8645,7 @@ result ^= expression;
             <summary>
             Try to fetch all nested <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instances of the specified view.
             </summary>
-            <param name="nestedViewNum">The specified index of the view.</param>
+            <param name="nestedViewIndex">The specified index of the view.</param>
             <returns>All <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instance in this view.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetChainTargetAt(System.Int32)">

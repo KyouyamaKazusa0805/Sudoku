@@ -20,7 +20,7 @@ public sealed partial class GurthSymmetricalPlacementStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	[PrimaryConstructorParameter] SymmetryType symmetryType,
-	[PrimaryConstructorParameter] int?[]? mapping
+	[PrimaryConstructorParameter] Digit?[]? mapping
 ) : SymmetryStep(conclusions, views)
 {
 	/// <inheritdoc/>

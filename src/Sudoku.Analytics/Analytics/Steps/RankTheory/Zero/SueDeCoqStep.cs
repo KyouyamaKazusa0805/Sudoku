@@ -20,8 +20,8 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class SueDeCoqStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] int block,
-	[PrimaryConstructorParameter] int line,
+	[PrimaryConstructorParameter] House block,
+	[PrimaryConstructorParameter] House line,
 	[PrimaryConstructorParameter] Mask blockMask,
 	[PrimaryConstructorParameter] Mask lineMask,
 	[PrimaryConstructorParameter] Mask intersectionMask,

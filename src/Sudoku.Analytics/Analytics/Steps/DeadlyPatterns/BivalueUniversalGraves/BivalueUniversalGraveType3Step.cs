@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BivalueUniversalGraveType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] IReadOnlyList<int> trueCandidates,
+	[PrimaryConstructorParameter] IReadOnlyList<Candidate> trueCandidates,
 	[PrimaryConstructorParameter] Mask subsetDigitsMask,
 	[PrimaryConstructorParameter] scoped in CellMap cells,
 	[PrimaryConstructorParameter] bool isNaked

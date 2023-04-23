@@ -10,8 +10,8 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class SingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] int cell,
-	[PrimaryConstructorParameter] int digit
+	[PrimaryConstructorParameter] Cell cell,
+	[PrimaryConstructorParameter] Digit digit
 ) : Step(conclusions, views)
 {
 	/// <inheritdoc/>

@@ -17,7 +17,7 @@ public sealed partial class AlmostLockedSetsWWingStep(
 	[PrimaryConstructorParameter(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
 	[PrimaryConstructorParameter] Conjugate conjugatePair,
 	[PrimaryConstructorParameter] Mask wDigitsMask,
-	[PrimaryConstructorParameter] int xDigit
+	[PrimaryConstructorParameter] Digit xDigit
 ) : AlmostLockedSetsStep(conclusions, views)
 {
 	/// <inheritdoc/>

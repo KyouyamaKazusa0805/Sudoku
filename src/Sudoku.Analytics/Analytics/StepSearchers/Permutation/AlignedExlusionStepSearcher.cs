@@ -33,7 +33,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 		{
 			// Search for "base" cells that can participate to an exclusion set. For each candidate, collect the potentially excluding cells.
 			var candidateList = CellMap.Empty;
-			var cellExcluders = new Dictionary<int, CellMap>();
+			var cellExcluders = new Dictionary<Cell, CellMap>();
 			foreach (var cell in EmptyCells)
 			{
 				if (PopCount((uint)grid.GetCandidates(cell)) < 2)
@@ -93,7 +93,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 				// Iterate on remaining cells using the twinArea.
 				foreach (Mask tailCombinationMask in new MaskCombinationsGenerator(tailCells.Count, size - 2))
 				{
-					var cells = new int[size];
+					var cells = new Cell[size];
 					var cadinalities = new int[size];
 
 					// Copy the first two cells.
@@ -133,8 +133,8 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 					var potentialIndices = new int[size];
 
 					// Iterate on combinations of candidates across the base cells.
-					var allowedCombinations = new List<int[]>();
-					var lockedCombinations = new Dictionary<int[], int>();
+					var allowedCombinations = new List<Digit[]>();
+					var lockedCombinations = new Dictionary<Digit[], Cell>();
 					bool isFinished;
 					do
 					{
@@ -156,8 +156,8 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 							}
 						} while (z < size && rollOver);
 
-						// Build the combination of candidates.
-						var potentials = new int[size];
+						// Build the combination of potentials.
+						var potentials = new Digit[size];
 						for (var i = 0; i < size; i++)
 						{
 							var values = grid.GetCandidates(cells[i]);
@@ -321,7 +321,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 	/// <param name="conclusions">All conclusions.</param>
 	/// <param name="cells">The cells used.</param>
 	/// <returns>Whether this combination is relavent.</returns>
-	private bool IsRelavent(int[] combination, List<Conclusion> conclusions, int[] cells)
+	private bool IsRelavent(Digit[] combination, List<Conclusion> conclusions, Cell[] cells)
 	{
 		Debug.Assert(combination.Length == cells.Length);
 		for (var i = 0; i < combination.Length; i++)
@@ -354,7 +354,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 	/// <param name="conclusions">All conclusions.</param>
 	/// <param name="cells">The cells used.</param>
 	/// <returns>A mask of digits for relavent ones.</returns>
-	private Mask GetRelaventCombinationValues(Dictionary<int[], int> lockedCombinations, List<Conclusion> conclusions, int[] cells)
+	private Mask GetRelaventCombinationValues(Dictionary<Digit[], Cell> lockedCombinations, List<Conclusion> conclusions, Cell[] cells)
 	{
 		var result = (Mask)0;
 		foreach (var (combination, _) in lockedCombinations)

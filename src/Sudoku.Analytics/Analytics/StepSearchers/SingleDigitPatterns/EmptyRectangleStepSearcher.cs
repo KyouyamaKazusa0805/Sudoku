@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with an <b>Empty Rectangle</b> step searcher.
@@ -55,7 +55,7 @@ public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 
 					// Gather all highlight candidates.
 					var candidateOffsets = new List<CandidateViewNode>();
-					using scoped var cpCells = new ValueList<int>(2);
+					using scoped var cpCells = new ValueList<Cell>(2);
 					foreach (var cell in HousesMap[block] & CandidatesMap[digit])
 					{
 						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));

@@ -13,8 +13,8 @@ public sealed partial class SeniorExocetStep(
 	View[]? views,
 	Exocet exocet,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] int endoTargetCell,
-	[PrimaryConstructorParameter] int[]? extraHouses,
+	[PrimaryConstructorParameter] Cell endoTargetCell,
+	[PrimaryConstructorParameter] House[]? extraHouses,
 	ExocetElimination[] eliminations
 ) : ExocetStep(views, exocet, digitsMask, eliminations)
 {

@@ -37,9 +37,9 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		var house = (stackalloc int[2]);
+		var house = (stackalloc House[2]);
 		var alses = grid.GatherAlmostLockedSets();
-		for (int i = 0, length = alses.Length; i < length - 1; i++)
+		for (var (i, length) = (0, alses.Length); i < length - 1; i++)
 		{
 			var als1 = alses[i];
 			var house1 = als1.House;

@@ -12,8 +12,8 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueLoopType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	int digit1,
-	int digit2,
+	Digit digit1,
+	Digit digit2,
 	scoped in CellMap loop,
 	[PrimaryConstructorParameter] scoped in Conjugate conjugatePair
 ) : UniqueLoopStep(conclusions, views, digit1, digit2, loop)

@@ -15,7 +15,7 @@ public sealed partial class FireworkPairType2Step(
 	[PrimaryConstructorParameter] Mask digitsMask,
 	[PrimaryConstructorParameter] scoped in Firework pattern1,
 	[PrimaryConstructorParameter] scoped in Firework pattern2,
-	[PrimaryConstructorParameter] int extraCell
+	[PrimaryConstructorParameter] Cell extraCell
 ) : FireworkStep(conclusions, views)
 {
 	/// <inheritdoc/>

@@ -19,12 +19,12 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueRectangleType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	int digit1,
-	int digit2,
+	Digit digit1,
+	Digit digit2,
 	scoped in CellMap cells,
 	[PrimaryConstructorParameter] scoped in CellMap extraCells,
 	[PrimaryConstructorParameter] Mask extraDigitsMask,
-	[PrimaryConstructorParameter] int house,
+	[PrimaryConstructorParameter] House house,
 	bool isAvoidable,
 	int absoluteOffset,
 	[PrimaryConstructorParameter] bool isNaked = true

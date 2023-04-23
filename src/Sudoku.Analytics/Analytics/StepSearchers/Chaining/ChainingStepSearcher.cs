@@ -178,7 +178,7 @@ public abstract class ChainingStepSearcher(
 			}
 
 
-			static Mask g(scoped in Grid grid, int houseIndex, int digit)
+			static Mask g(scoped in Grid grid, House houseIndex, Digit digit)
 			{
 				var result = (Mask)0;
 

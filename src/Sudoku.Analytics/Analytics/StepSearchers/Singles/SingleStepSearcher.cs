@@ -311,7 +311,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// that only appears once indeed.
 	/// </para>
 	/// </remarks>
-	private Step? CheckForHiddenSingleAndLastDigit(scoped in Grid grid, int digit, int house)
+	private Step? CheckForHiddenSingleAndLastDigit(scoped in Grid grid, Digit digit, House house)
 	{
 		var count = 0;
 		var resultCell = -1;

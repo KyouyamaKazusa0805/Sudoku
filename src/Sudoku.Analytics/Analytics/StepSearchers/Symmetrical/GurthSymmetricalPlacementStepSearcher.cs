@@ -46,9 +46,9 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 	/// <param name="grid">The grid as reference.</param>
 	/// <param name="cellOffsets">The target collection.</param>
 	/// <param name="mapping">The mapping relation.</param>
-	private static void RecordHighlightCells(scoped in Grid grid, List<CellViewNode> cellOffsets, int?[] mapping)
+	private static void RecordHighlightCells(scoped in Grid grid, List<CellViewNode> cellOffsets, Digit?[] mapping)
 	{
-		scoped var colorIndices = (stackalloc int[9]);
+		scoped var colorIndices = (stackalloc Digit[9]);
 		for (var (digit, colorIndexCurrent, digitsMaskBucket) = (0, 0, (Mask)0); digit < 9; digit++)
 		{
 			if ((digitsMaskBucket >> digit & 1) != 0)
@@ -97,7 +97,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			return null;
 		}
 
-		var mapping = new int?[9];
+		var mapping = new Digit?[9];
 		for (var i = 0; i < 9; i++)
 		{
 			for (var j = 0; j < i; j++)
@@ -157,7 +157,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			}
 		}
 
-		var singleDigitList = new List<int>();
+		var singleDigitList = new List<Digit>();
 		for (var digit = 0; digit < 9; digit++)
 		{
 			var mappingDigit = mapping[digit];
@@ -223,7 +223,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			return null;
 		}
 
-		var mapping = new int?[9];
+		var mapping = new Digit?[9];
 		for (var i = 0; i < 9; i++)
 		{
 			for (var j = 0; j < 8 - i; j++)
@@ -283,7 +283,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			}
 		}
 
-		var singleDigitList = new List<int>();
+		var singleDigitList = new List<Digit>();
 		for (var digit = 0; digit < 9; digit++)
 		{
 			var mappingDigit = mapping[digit];
@@ -335,7 +335,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			return null;
 		}
 
-		var mapping = new int?[9];
+		var mapping = new Digit?[9];
 		for (var cell = 0; cell < 40; cell++)
 		{
 			var anotherCell = 80 - cell;

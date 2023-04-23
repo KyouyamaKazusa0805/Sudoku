@@ -14,8 +14,8 @@ public sealed partial class FireworkPairType1Step(
 	View[]? views,
 	[PrimaryConstructorParameter] scoped in CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] int extraCell1,
-	[PrimaryConstructorParameter] int extraCell2
+	[PrimaryConstructorParameter] Cell extraCell1,
+	[PrimaryConstructorParameter] Cell extraCell2
 ) : FireworkStep(conclusions, views)
 {
 	/// <inheritdoc/>

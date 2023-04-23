@@ -14,9 +14,9 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class HiddenSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int cell,
-	int digit,
-	[PrimaryConstructorParameter] int house,
+	Cell cell,
+	Digit digit,
+	[PrimaryConstructorParameter] House house,
 	[PrimaryConstructorParameter] bool enableAndIsLastDigit
 ) : SingleStep(conclusions, views, cell, digit)
 {

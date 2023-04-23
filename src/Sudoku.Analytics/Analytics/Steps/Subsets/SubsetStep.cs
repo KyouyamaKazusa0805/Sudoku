@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class SubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] int house,
+	[PrimaryConstructorParameter] House house,
 	[PrimaryConstructorParameter] scoped in CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask
 ) : Step(conclusions, views)

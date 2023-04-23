@@ -45,12 +45,12 @@ namespace Sudoku.Analytics.Patterns;
 /// <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
 /// <param name="CrossLine">Indicates the cross-line cells.</param>
 public sealed record Exocet(
-	int Base1,
-	int Base2,
-	int TargetQ1,
-	int TargetQ2,
-	int TargetR1,
-	int TargetR2,
+	Cell Base1,
+	Cell Base2,
+	Cell TargetQ1,
+	Cell TargetQ2,
+	Cell TargetR1,
+	Cell TargetR2,
 	scoped in CellMap CrossLine,
 	scoped in CellMap MirrorQ1,
 	scoped in CellMap MirrorQ2,

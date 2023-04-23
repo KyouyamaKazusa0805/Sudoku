@@ -20,4 +20,4 @@ namespace Sudoku.Analytics.Patterns;
 /// </summary>
 /// <param name="Map">Indicates the full map of all cells used.</param>
 /// <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
-public readonly record struct Firework(scoped in CellMap Map, int? Pivot);
+public readonly record struct Firework(scoped in CellMap Map, Cell? Pivot);

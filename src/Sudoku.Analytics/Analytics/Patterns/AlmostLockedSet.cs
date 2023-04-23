@@ -28,7 +28,7 @@ public sealed partial class AlmostLockedSet(
 	/// <summary>
 	/// Indicates the house used.
 	/// </summary>
-	public int House
+	public House House
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -57,7 +57,7 @@ public sealed partial class AlmostLockedSet(
 		{
 			scoped var digits = DigitsMask.GetAllSets();
 			var result = new Mask[StrongRelationsCount[digits.Length - 1]];
-			for (int i = 0, x = 0, l = digits.Length; i < l - 1; i++)
+			for (var (i, x, l) = (0, 0, digits.Length); i < l - 1; i++)
 			{
 				for (var j = i + 1; j < l; j++)
 				{
@@ -77,7 +77,7 @@ public sealed partial class AlmostLockedSet(
 	/// <param name="digit">The digit.</param>
 	/// <param name="result">The result.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
-	public bool ContainsDigit(scoped in Grid grid, int digit, out CellMap result)
+	public bool ContainsDigit(scoped in Grid grid, Digit digit, out CellMap result)
 	{
 		result = CellMap.Empty;
 		foreach (var cell in Cells)

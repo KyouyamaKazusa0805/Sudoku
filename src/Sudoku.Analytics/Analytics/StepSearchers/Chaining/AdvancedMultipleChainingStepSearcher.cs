@@ -183,7 +183,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	/// Try to create a region (house) forcing chain hint.
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private RegionForcingChainsStep CreateHouseForcingStep(scoped in Grid grid, int houseIndex, byte digit, ChainNode target, ChainBranch outcomes)
+	private RegionForcingChainsStep CreateHouseForcingStep(scoped in Grid grid, House houseIndex, byte digit, ChainNode target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
 		var conclusions = new[] { new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit) };

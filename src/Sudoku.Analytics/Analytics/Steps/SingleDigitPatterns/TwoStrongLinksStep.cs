@@ -11,9 +11,9 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class TwoStrongLinksStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int digit,
-	[PrimaryConstructorParameter] int baseHouse,
-	[PrimaryConstructorParameter] int targetHouse
+	Digit digit,
+	[PrimaryConstructorParameter] House baseHouse,
+	[PrimaryConstructorParameter] House targetHouse
 ) : SingleDigitPatternStep(conclusions, views, digit)
 {
 	/// <inheritdoc/>

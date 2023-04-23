@@ -9,7 +9,7 @@ public sealed class PatternOverlayStep(Conclusion[] conclusions) : LastResortSte
 	/// <summary>
 	/// Indicates the digit.
 	/// </summary>
-	public int Digit => Conclusions[0].Digit;
+	public Digit Digit => Conclusions[0].Digit;
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 8.5M;

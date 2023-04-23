@@ -102,8 +102,8 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	private Step? CheckType2(
 		List<BivalueOddagonStep> accumulator,
 		scoped in Grid grid,
-		int d1,
-		int d2,
+		Digit d1,
+		Digit d2,
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
 		Mask comparer,
@@ -157,8 +157,8 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	private Step? CheckType3(
 		List<BivalueOddagonStep> accumulator,
 		scoped in Grid grid,
-		int d1,
-		int d2,
+		Digit d1,
+		Digit d2,
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
 		Mask comparer,
@@ -304,9 +304,9 @@ file static unsafe class Cached
 	/// Checks for bi-value oddagon loops using recursion.
 	/// </summary>
 	private static void DepthFirstSearching_BivalueOddagon(
-		int startCell,
-		int lastCell,
-		int lastHouse,
+		Cell startCell,
+		Cell lastCell,
+		House lastHouse,
 		scoped in CellMap currentLoop,
 		Mask digitsMask,
 		scoped in CellMap fullCells,

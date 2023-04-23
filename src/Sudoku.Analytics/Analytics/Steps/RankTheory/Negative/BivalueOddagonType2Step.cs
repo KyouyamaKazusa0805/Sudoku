@@ -13,9 +13,9 @@ public sealed partial class BivalueOddagonType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in CellMap loopCells,
-	int digit1,
-	int digit2,
-	[PrimaryConstructorParameter] int extraDigit
+	Digit digit1,
+	Digit digit2,
+	[PrimaryConstructorParameter] Digit extraDigit
 ) : BivalueOddagonStep(conclusions, views, loopCells, digit1, digit2)
 {
 	/// <inheritdoc/>

@@ -150,7 +150,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		scoped in Grid grid,
 		bool onlyFindOne,
 		scoped in Firework pattern,
-		int pivot
+		Cell pivot
 	)
 	{
 		var map = pattern.Map;
@@ -266,7 +266,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		bool onlyFindOne,
 		scoped in Firework pattern,
 		Mask digitsMask,
-		int pivot
+		Cell pivot
 	)
 	{
 		var nonPivotCells = pattern.Map - pivot;
@@ -574,9 +574,9 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// </param>
 	/// <returns>All digits that satisfied the firework rule. If none found, 0.</returns>
 	private static Mask GetFireworkDigits(
-		int c1,
-		int c2,
-		int pivot,
+		Cell c1,
+		Cell c2,
+		Cell pivot,
 		scoped in Grid grid,
 		scoped out CellMap house1CellsExcluded,
 		scoped out CellMap house2CellsExcluded
@@ -598,7 +598,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		return finalMask;
 
 
-		static bool isFireworkFor(int digit, scoped in CellMap houseCellsExcluded, scoped in Grid grid)
+		static bool isFireworkFor(Digit digit, scoped in CellMap houseCellsExcluded, scoped in Grid grid)
 		{
 			foreach (var cell in houseCellsExcluded)
 			{

@@ -16,8 +16,8 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueRectangleExternalXyWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int digit1,
-	int digit2,
+	Digit digit1,
+	Digit digit2,
 	scoped in CellMap cells,
 	[PrimaryConstructorParameter] scoped in CellMap guardianCells,
 	[PrimaryConstructorParameter] scoped in CellMap cellPair,

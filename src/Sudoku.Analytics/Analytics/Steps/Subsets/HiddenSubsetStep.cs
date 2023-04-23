@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed class HiddenSubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int house,
+	House house,
 	scoped in CellMap cells,
 	Mask digitsMask
 ) : SubsetStep(conclusions, views, house, cells, digitsMask)

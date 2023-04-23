@@ -14,7 +14,7 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		for (int i = 0, length = BivalueCells.Count; i < length - 1; i++)
+		for (var (i, length) = (0, BivalueCells.Count); i < length - 1; i++)
 		{
 			var c1 = BivalueCells[i];
 			var mask = grid.GetCandidates(c1);

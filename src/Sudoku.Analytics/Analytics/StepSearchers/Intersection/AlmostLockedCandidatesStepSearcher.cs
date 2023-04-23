@@ -79,8 +79,8 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	private static Step? GetAll(
 		scoped ref AnalysisContext context,
 		int size,
-		int baseSet,
-		int coverSet,
+		House baseSet,
+		House coverSet,
 		scoped in CellMap a,
 		scoped in CellMap b,
 		scoped in CellMap c

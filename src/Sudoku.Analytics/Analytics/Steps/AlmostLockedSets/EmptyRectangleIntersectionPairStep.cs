@@ -13,11 +13,11 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class EmptyRectangleIntersectionPairStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] int startCell,
-	[PrimaryConstructorParameter] int endCell,
-	[PrimaryConstructorParameter] int house,
-	[PrimaryConstructorParameter] int digit1,
-	[PrimaryConstructorParameter] int digit2
+	[PrimaryConstructorParameter] Cell startCell,
+	[PrimaryConstructorParameter] Cell endCell,
+	[PrimaryConstructorParameter] House house,
+	[PrimaryConstructorParameter] Digit digit1,
+	[PrimaryConstructorParameter] Digit digit2
 ) : AlmostLockedSetsStep(conclusions, views)
 {
 	/// <inheritdoc/>

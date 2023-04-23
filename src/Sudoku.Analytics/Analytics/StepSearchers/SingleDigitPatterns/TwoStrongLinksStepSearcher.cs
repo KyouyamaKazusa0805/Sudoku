@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Two-strong Links</b> step searcher.
@@ -32,8 +32,8 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 					// Get all cells.
 					var cells1 = CellMap.Empty;
 					var cells2 = CellMap.Empty;
-					var cellsList1 = new List<int>(PopCount((uint)mask1));
-					var cellsList2 = new List<int>(PopCount((uint)mask2));
+					var cellsList1 = new List<Cell>(PopCount((uint)mask1));
+					var cellsList2 = new List<Cell>(PopCount((uint)mask2));
 					foreach (var pos1 in mask1)
 					{
 						var cell1 = HouseCells[h1][pos1];
@@ -53,7 +53,8 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 					}
 
 					// Check two cells share a same house.
-					int sameHouse, headIndex, tailIndex, c1Index, c2Index;
+					House sameHouse;
+					int headIndex, tailIndex, c1Index, c2Index;
 					for (var i = 0; i < 2; i++)
 					{
 						var cell1 = cellsList1[i];

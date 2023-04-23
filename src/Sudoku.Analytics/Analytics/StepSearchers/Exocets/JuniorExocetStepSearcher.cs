@@ -47,7 +47,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 		};
 
 		scoped var t = (stackalloc int[3]);
-		scoped var crossline = (stackalloc int[25]); // Only use [7..24].
+		scoped var crossline = (stackalloc Cell[25]); // Only use [7..24].
 		var n = 0;
 		for (var i = 0; i < 18; i++)
 		{
@@ -194,7 +194,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 			context.Accumulator.Add(step);
 
 
-			void gatherEliminations(int targetCell, Mask baseCellsDigits, Mask otherDigits, scoped in Grid grid)
+			void gatherEliminations(Cell targetCell, Mask baseCellsDigits, Mask otherDigits, scoped in Grid grid)
 			{
 				var elimDigitsMask = (Mask)(grid.GetCandidates(targetCell) & ~(baseCellsDigits | otherDigits));
 
@@ -239,8 +239,8 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	private unsafe bool CheckTargetCells(
-		int targetCell1,
-		int targetCell2,
+		Cell targetCell1,
+		Cell targetCell2,
 		Mask baseCellsDigitsMask,
 		scoped in Grid grid,
 		out Mask resultOtherDigitsMask

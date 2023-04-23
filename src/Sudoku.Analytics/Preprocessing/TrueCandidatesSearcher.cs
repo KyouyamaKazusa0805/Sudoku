@@ -40,7 +40,7 @@ public static class TrueCandidatesSearcher
 		}
 
 		// Store all bi-value cells and construct the relations.
-		scoped var peerHouses = (stackalloc int[3]);
+		scoped var peerHouses = (stackalloc House[3]);
 		var stack = new CellMap[multivalueCellsCount + 1, 9];
 		foreach (var cell in grid.BivalueCells)
 		{
@@ -87,7 +87,7 @@ public static class TrueCandidatesSearcher
 		// Now check the pattern.
 		// If the pattern is a valid BUG + n, the processing here will give you one plan of all possible
 		// combinations; otherwise, none will be found.
-		scoped var playground = (stackalloc int[3]);
+		scoped var playground = (stackalloc House[3]);
 		scoped var chosen = (stackalloc int[multivalueCellsCount + 1]);
 		scoped var resultMap = (stackalloc CellMap[9]);
 		var currentIndex = 1;

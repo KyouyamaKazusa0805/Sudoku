@@ -41,7 +41,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ComplexFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int digit,
+	Digit digit,
 	int baseSetsMask,
 	int coverSetsMask,
 	[PrimaryConstructorParameter] scoped in CellMap exofins,
@@ -93,11 +93,11 @@ public sealed partial class ComplexFishStep(
 	/// <summary>
 	/// Indicates the base houses.
 	/// </summary>
-	private int[] BaseHouses
+	private House[] BaseHouses
 	{
 		get
 		{
-			var result = new int[PopCount((uint)BaseSetsMask)];
+			var result = new House[PopCount((uint)BaseSetsMask)];
 			var i = 0;
 			foreach (var house in BaseSetsMask)
 			{
@@ -111,11 +111,11 @@ public sealed partial class ComplexFishStep(
 	/// <summary>
 	/// Indicates the cover houses.
 	/// </summary>
-	private int[] CoverHouses
+	private House[] CoverHouses
 	{
 		get
 		{
-			var result = new int[PopCount((uint)CoverSetsMask)];
+			var result = new House[PopCount((uint)CoverSetsMask)];
 			var i = 0;
 			foreach (var house in CoverSetsMask)
 			{

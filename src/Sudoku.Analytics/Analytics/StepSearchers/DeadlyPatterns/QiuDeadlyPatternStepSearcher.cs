@@ -74,7 +74,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
-		for (int i = 0, length = Patterns.Length; i < length; i++)
+		for (var (i, length) = (0, Patterns.Length); i < length; i++)
 		{
 			var isRow = i < length >> 1;
 			if (Patterns[i] is not { Pair: [var pairFirst, var pairSecond] pair, Square: var square, BaseLine: var baseLine } pattern)
@@ -92,7 +92,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			var appearedDigitsMask = (Mask)0;
 			var distinctionMask = (Mask)0;
 			var appearedParts = 0;
-			for (int j = 0, house = isRow ? 18 : 9; j < 9; j++, house++)
+			for (var (j, house) = (0, isRow ? 18 : 9); j < 9; j++, house++)
 			{
 				var houseMap = HousesMap[house];
 				if ((baseLine & houseMap) is var tempMap and not [])

@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BivalueUniversalGraveMultipleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] IReadOnlyList<int> trueCandidates
+	[PrimaryConstructorParameter] IReadOnlyList<Candidate> trueCandidates
 ) : BivalueUniversalGraveStep(conclusions, views)
 {
 	/// <inheritdoc/>

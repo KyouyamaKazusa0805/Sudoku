@@ -11,8 +11,8 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class EmptyRectangleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	int digit,
-	[PrimaryConstructorParameter] int block,
+	Digit digit,
+	[PrimaryConstructorParameter] House block,
 	[PrimaryConstructorParameter] scoped in Conjugate conjugatePair
 ) : SingleDigitPatternStep(conclusions, views, digit)
 {

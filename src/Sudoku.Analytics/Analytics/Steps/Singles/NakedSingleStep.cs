@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc/></param>
 /// <param name="cell"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
-public sealed class NakedSingleStep(Conclusion[] conclusions, View[]? views, int cell, int digit) : SingleStep(conclusions, views, cell, digit)
+public sealed class NakedSingleStep(Conclusion[] conclusions, View[]? views, Cell cell, Digit digit) : SingleStep(conclusions, views, cell, digit)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 2.3M;

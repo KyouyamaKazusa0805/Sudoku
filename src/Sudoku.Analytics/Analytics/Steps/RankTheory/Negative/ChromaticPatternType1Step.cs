@@ -12,9 +12,9 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ChromaticPatternType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	int[] blocks,
+	House[] blocks,
 	scoped in CellMap pattern,
-	[PrimaryConstructorParameter] int extraCell,
+	[PrimaryConstructorParameter] Cell extraCell,
 	Mask digitsMask
 ) : ChromaticPatternStep(conclusions, views, blocks, pattern, digitsMask)
 {

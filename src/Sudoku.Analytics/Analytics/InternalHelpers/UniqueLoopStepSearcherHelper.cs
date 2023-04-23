@@ -83,9 +83,9 @@ internal static class UniqueLoopStepSearcherHelper
 	/// </summary>
 	/// <param name="path">The loop, specified as its path.</param>
 	/// <returns>A list of <see cref="LinkViewNode"/> instances.</returns>
-	public static List<LinkViewNode> GetLoopLinks(int[] path)
+	public static List<LinkViewNode> GetLoopLinks(Cell[] path)
 	{
-		const int digit = 4;
+		const Digit digit = 4;
 		var result = new List<LinkViewNode>();
 		for (var i = 0; i < path.Length; i++)
 		{

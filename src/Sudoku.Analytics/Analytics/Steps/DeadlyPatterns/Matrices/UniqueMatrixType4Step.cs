@@ -15,8 +15,8 @@ public sealed partial class UniqueMatrixType4Step(
 	View[]? views,
 	scoped in CellMap cells,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] int digit1,
-	[PrimaryConstructorParameter] int digit2,
+	[PrimaryConstructorParameter] Digit digit1,
+	[PrimaryConstructorParameter] Digit digit2,
 	[PrimaryConstructorParameter] scoped in CellMap conjugateHouse
 ) : UniqueMatrixStep(conclusions, views, cells, digitsMask)
 {

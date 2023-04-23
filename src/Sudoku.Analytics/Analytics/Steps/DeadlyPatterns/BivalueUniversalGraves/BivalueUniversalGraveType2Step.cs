@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BivalueUniversalGraveType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter(GeneratedMemberName = "ExtraDigit")] int digit,
+	[PrimaryConstructorParameter(GeneratedMemberName = "ExtraDigit")] Digit digit,
 	[PrimaryConstructorParameter] scoped in CellMap cells
 ) : BivalueUniversalGraveStep(conclusions, views)
 {

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Domino Loop</b> (i.e. SK Loop) step searcher.
@@ -13,7 +13,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 	/// <summary>
 	/// The position table of all SK-loops.
 	/// </summary>
-	private static readonly int[][] SkLoopTable = new int[729][];
+	private static readonly Cell[][] SkLoopTable = new Cell[729][];
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -21,7 +21,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 	{
 		// Initialize for SK-loop table.
 		scoped var s = (stackalloc int[4]);
-		for (int a = 9, n = 0; a < 18; a++)
+		for (var (a, n) = (9, 0); a < 18; a++)
 		{
 			for (var b = 9; b < 18; b++)
 			{
@@ -42,7 +42,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 						var all = HousesMap[a] | HousesMap[b] | HousesMap[c] | HousesMap[d];
 						var overlap = (HousesMap[a] | HousesMap[b]) & (HousesMap[c] | HousesMap[d]);
 						var blockMask = overlap.BlockMask;
-						for (int i = 0, count = 0; count < 4 && i < 16; i++)
+						for (var (i, count) = (0, 0); count < 4 && i < 16; i++)
 						{
 							if ((blockMask >> i & 1) != 0)
 							{
@@ -53,7 +53,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 						all &= HousesMap[s[0]] | HousesMap[s[1]] | HousesMap[s[2]] | HousesMap[s[3]];
 						all -= overlap;
 
-						SkLoopTable[n] = new int[16];
+						SkLoopTable[n] = new Cell[16];
 						var pos = 0;
 						foreach (var cell in all & HousesMap[a])
 						{
@@ -85,7 +85,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 	{
 		var pairs = stackalloc Mask[8];
 		var tempLink = stackalloc Mask[8];
-		var linkHouse = stackalloc int[8];
+		var linkHouse = stackalloc House[8];
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var cells in SkLoopTable)
 		{

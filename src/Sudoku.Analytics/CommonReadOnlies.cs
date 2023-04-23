@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Represents a type holding some common read-only fields used by runtime or compiling-time.
@@ -48,7 +48,7 @@ public static class CommonReadOnlies
 	/// <summary>
 	/// The table of all <b>Unique Rectangle</b> cells.
 	/// </summary>
-	public static readonly int[][] UniqueRectanglePatterns =
+	public static readonly Cell[][] UniqueRectanglePatterns =
 	{
 		new[] {  0,  3,  9, 12 }, new[] {  0,  4,  9, 13 }, new[] {  0,  5,  9, 14 }, new[] {  0,  6,  9, 15 }, new[] {  0,  7,  9, 16 }, new[] {  0,  8,  9, 17 }, new[] {  1,  3, 10, 12 }, new[] {  1,  4, 10, 13 }, new[] {  1,  5, 10, 14 },
 		new[] {  1,  6, 10, 15 }, new[] {  1,  7, 10, 16 }, new[] {  1,  8, 10, 17 }, new[] {  2,  3, 11, 12 }, new[] {  2,  4, 11, 13 }, new[] {  2,  5, 11, 14 }, new[] {  2,  6, 11, 15 }, new[] {  2,  7, 11, 16 }, new[] {  2,  8, 11, 17 },
@@ -109,7 +109,7 @@ public static class CommonReadOnlies
 	/// <summary>
 	/// Indicates all houses iterating on the specified block forming an empty rectangle.
 	/// </summary>
-	public static readonly int[,] EmptyRectangleLinkIds =
+	public static readonly House[,] EmptyRectangleLinkIds =
 	{
 		{ 12, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26 },
 		{ 12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 25, 26 },
@@ -139,7 +139,7 @@ public static class CommonReadOnlies
 	/// For example, the first value is 40, which means the first cell to be tried to be filled
 	/// is the 40th cell in the grid (i.e. the cell <c>r5c5</c>).
 	/// </remarks>
-	public static readonly int[] BruteForceTryAndErrorOrder =
+	public static readonly Cell[] BruteForceTryAndErrorOrder =
 	{
 		40, 41, 32, 31, 30, 39, 48, 49, 50,
 		51, 42, 33, 24, 23, 22, 21, 20, 29,

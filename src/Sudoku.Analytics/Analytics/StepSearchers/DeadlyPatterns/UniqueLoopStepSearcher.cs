@@ -33,7 +33,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			var d1 = TrailingZeroCount(mask);
 			var d2 = mask.GetNextSet(d1);
 
-			using scoped var tempLoop = new ValueList<int>(14);
+			using scoped var tempLoop = new ValueList<Cell>(14);
 			var loopMap = CellMap.Empty;
 			var patterns = new HashSet<UniqueLoop>();
 			CollectUniqueLoops(grid, cell, d1, d2, tempLoop, ref loopMap, patterns);
@@ -114,12 +114,12 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <returns>The step is worth.</returns>
 	private Step? CheckType1(
 		ICollection<UniqueLoopStep> accumulator,
-		int d1,
-		int d2,
+		Digit d1,
+		Digit d2,
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
 		bool onlyFindOne,
-		int[] path
+		Cell[] path
 	)
 	{
 		var extraCell = extraCellsMap[0];
@@ -178,13 +178,13 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	private Step? CheckType2(
 		ICollection<UniqueLoopStep> accumulator,
 		scoped in Grid grid,
-		int d1,
-		int d2,
+		Digit d1,
+		Digit d2,
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
 		Mask comparer,
 		bool onlyFindOne,
-		int[] path
+		Cell[] path
 	)
 	{
 		var mask = (Mask)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
@@ -245,13 +245,13 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	private Step? CheckType3(
 		ICollection<UniqueLoopStep> accumulator,
 		scoped in Grid grid,
-		int d1,
-		int d2,
+		Digit d1,
+		Digit d2,
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
 		Mask comparer,
 		bool onlyFindOne,
-		int[] path
+		Cell[] path
 	)
 	{
 		// Check whether the extra cells contain at least one digit of digit 1 and 2,
@@ -469,13 +469,13 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	private unsafe Step? CheckType4(
 		ICollection<UniqueLoopStep> accumulator,
 		scoped in Grid grid,
-		int d1,
-		int d2,
+		Digit d1,
+		Digit d2,
 		scoped in CellMap loop,
 		scoped in CellMap extraCellsMap,
 		Mask comparer,
 		bool onlyFindOne,
-		int[] path
+		Cell[] path
 	)
 	{
 		if (extraCellsMap is not { InOneHouse: true, Count: 2 })
@@ -567,10 +567,10 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <param name="lastHouseType">The last house type. This is a temporary variable.</param>
 	private static void CollectUniqueLoops(
 		scoped in Grid grid,
-		int cell,
-		int d1,
-		int d2,
-		scoped ValueList<int> loopPath,
+		Cell cell,
+		Digit d1,
+		Digit d2,
+		scoped ValueList<Cell> loopPath,
 		scoped ref CellMap loopMap,
 		HashSet<UniqueLoop> result,
 		Mask extraDigits = Grid.MaxCandidatesMask,

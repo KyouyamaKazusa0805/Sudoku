@@ -121,7 +121,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 			// Iterate on each possible digit combination.
 			scoped var allDigitsInThem = mask.GetAllSets();
-			for (int i = 0, length = allDigitsInThem.Length; i < length - 1; i++)
+			for (var (i, length) = (0, allDigitsInThem.Length); i < length - 1; i++)
 			{
 				var d1 = allDigitsInThem[i];
 				for (var j = i + 1; j < length; j++)
@@ -260,31 +260,31 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 	}
 
-	partial void CheckType1(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int cornerCell, scoped in CellMap otherCellsMap, int index);
-	partial void CheckType2(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
-	partial void CheckType3(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
-	partial void CheckType4(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
-	partial void CheckType5(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int cornerCell, scoped in CellMap otherCellsMap, int index);
-	partial void CheckType6(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
-	partial void CheckHidden(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int cornerCell, scoped in CellMap otherCellsMap, int index);
-	partial void Check2D(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
-	partial void Check2B1SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
-	partial void Check2D1SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
-	partial void Check3X(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int cornerCell, scoped in CellMap otherCellsMap, int index);
-	partial void Check3X2SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int cornerCell, scoped in CellMap otherCellsMap, int index);
-	partial void Check3N2SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int cornerCell, scoped in CellMap otherCellsMap, int index);
-	partial void Check3U2SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int cornerCell, scoped in CellMap otherCellsMap, int index);
-	partial void Check3E2SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int cornerCell, scoped in CellMap otherCellsMap, int index);
-	partial void Check4X3SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
-	partial void Check4C3SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
-	partial void CheckRegularWing(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int size, int index);
-	partial void CheckSueDeCoq(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, bool arMode, Mask comparer, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
-	partial void CheckBabaGroupingUnique(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, Mask comparer, int d1, int d2, int index);
-	partial void CheckExternalType1Or2(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int index, bool arMode);
-	partial void CheckExternalType3(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, Mask comparer, int d1, int d2, int index, bool arMode);
-	partial void CheckExternalType4(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, Mask comparer, int d1, int d2, int index, bool arMode);
-	partial void CheckExternalTurbotFish(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, Mask comparer, int d1, int d2, int index, bool arMode);
-	partial void CheckExternalXyWing(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, Mask comparer, int d1, int d2, int index, bool arMode);
-	partial void CheckExternalAlmostLockedSetsXz(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, AlmostLockedSet[] alses, Mask comparer, int d1, int d2, int index, bool arMode);
-	partial void CheckHiddenSingleAvoidable(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, int[] urCells, int d1, int d2, int corner1, int corner2, scoped in CellMap otherCellsMap, int index);
+	partial void CheckType1(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped in CellMap otherCellsMap, int index);
+	partial void CheckType2(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped in CellMap otherCellsMap, int index);
+	partial void CheckType3(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped in CellMap otherCellsMap, int index);
+	partial void CheckType4(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped in CellMap otherCellsMap, int index);
+	partial void CheckType5(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped in CellMap otherCellsMap, int index);
+	partial void CheckType6(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped in CellMap otherCellsMap, int index);
+	partial void CheckHidden(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped in CellMap otherCellsMap, int index);
+	partial void Check2D(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped in CellMap otherCellsMap, int index);
+	partial void Check2B1SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped in CellMap otherCellsMap, int index);
+	partial void Check2D1SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped in CellMap otherCellsMap, int index);
+	partial void Check3X(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped in CellMap otherCellsMap, int index);
+	partial void Check3X2SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped in CellMap otherCellsMap, int index);
+	partial void Check3N2SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped in CellMap otherCellsMap, int index);
+	partial void Check3U2SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped in CellMap otherCellsMap, int index);
+	partial void Check3E2SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped in CellMap otherCellsMap, int index);
+	partial void Check4X3SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped in CellMap otherCellsMap, int index);
+	partial void Check4C3SL(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped in CellMap otherCellsMap, int index);
+	partial void CheckRegularWing(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped in CellMap otherCellsMap, int size, int index);
+	partial void CheckSueDeCoq(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped in CellMap otherCellsMap, int index);
+	partial void CheckBabaGroupingUnique(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index);
+	partial void CheckExternalType1Or2(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, Digit d1, Digit d2, int index, bool arMode);
+	partial void CheckExternalType3(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
+	partial void CheckExternalType4(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
+	partial void CheckExternalTurbotFish(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
+	partial void CheckExternalXyWing(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
+	partial void CheckExternalAlmostLockedSetsXz(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, AlmostLockedSet[] alses, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
+	partial void CheckHiddenSingleAvoidable(ICollection<UniqueRectangleStep> accumulator, scoped in Grid grid, Cell[] urCells, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped in CellMap otherCellsMap, int index);
 }

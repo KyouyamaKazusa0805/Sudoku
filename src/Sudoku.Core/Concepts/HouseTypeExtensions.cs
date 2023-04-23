@@ -20,7 +20,7 @@ public static class HouseTypeExtensions
 	/// Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void CopyHouseInfo(this Cell cell, ref Cell reference)
+	public static void CopyHouseInfo(this Cell cell, ref House reference)
 	{
 		ArgumentNullRefException.ThrowIfNullRef(ref reference);
 

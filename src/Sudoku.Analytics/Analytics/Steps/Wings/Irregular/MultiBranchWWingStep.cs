@@ -13,7 +13,7 @@ public sealed partial class MultiBranchWWingStep(
 	View[]? views,
 	[PrimaryConstructorParameter] scoped in CellMap leaves,
 	[PrimaryConstructorParameter] scoped in CellMap root,
-	[PrimaryConstructorParameter] int house
+	[PrimaryConstructorParameter] House house
 ) : IrregularWingStep(conclusions, views)
 {
 	/// <summary>

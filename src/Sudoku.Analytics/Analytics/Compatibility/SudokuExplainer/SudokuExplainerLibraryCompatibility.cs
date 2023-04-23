@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.Compatibility;
 
-using DifficultyRange = ValueTuple</*Original*/ SudokuExplainerDifficultyRatingRange?, /*Advanced*/ SudokuExplainerDifficultyRatingRange?>;
+using DifficultyRange = (SudokuExplainerDifficultyRatingRange? Original, SudokuExplainerDifficultyRatingRange? Advanced);
 
 /// <summary>
 /// Represents some methods that are used for get the details supported and defined
@@ -38,7 +38,7 @@ public static class SudokuExplainerLibraryCompatibility// : ICompatibilityProvid
 	/// <param name="this">The technique.</param>
 	/// <returns>
 	/// <para>
-	/// An <see cref="int"/> value defined by the project Sudoku Explainer.
+	/// A <see cref="DifficultyRange"/> value defined by the project Sudoku Explainer.
 	/// </para>
 	/// <para>
 	/// If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.

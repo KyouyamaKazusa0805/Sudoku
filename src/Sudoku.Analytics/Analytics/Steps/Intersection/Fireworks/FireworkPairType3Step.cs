@@ -13,7 +13,7 @@ public sealed partial class FireworkPairType3Step(
 	View[]? views,
 	[PrimaryConstructorParameter] scoped in CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] int emptyRectangleBlock
+	[PrimaryConstructorParameter] House emptyRectangleBlock
 ) : FireworkStep(conclusions, views)
 {
 	/// <inheritdoc/>

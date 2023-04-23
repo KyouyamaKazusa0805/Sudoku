@@ -38,7 +38,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			for (var i = 0; i < 9; i++) // 9 cases.
 			{
 				var quad = quads[i];
-				var tempQuad = new int[4];
+				var tempQuad = new Cell[4];
 				for (var j = 0; j < 4; j++)
 				{
 					// Set all indices to cell offsets.
@@ -51,7 +51,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		}
 
 
-		static void gatherHeptagons(int block, int i, int[] quad, scoped ref int count)
+		static void gatherHeptagons(House block, int i, Cell[] quad, scoped ref int count)
 		{
 			if (quad is not [var q1, var q2, var q3, var q4])
 			{
@@ -75,8 +75,8 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 
 				var house1 = (CellsMap[t1] + t2).CoveredLine;
 				var house2 = (CellsMap[t1] + t3).CoveredLine;
-				var pair1 = new int[6, 2];
-				var pair2 = new int[6, 2];
+				var pair1 = new Cell[6, 2];
+				var pair2 = new Cell[6, 2];
 				var (o1, o2) = i switch { >= 0 and <= 3 => (9, 1), 4 or 5 => (9, 2), 6 or 7 => (18, 1), 8 => (18, 2) };
 				if (house1 is >= 9 and < 18)
 				{
@@ -96,7 +96,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 					for (var i2 = 0; i2 < 6; i2++)
 					{
 						// Now check extra digits.
-						var allCells = new List<int>(triplet) { pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1] };
+						var allCells = new List<Cell>(triplet) { pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1] };
 						var v = 0L;
 						for (var z = 0; z < allCells.Count; z++)
 						{
@@ -120,7 +120,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			}
 		}
 
-		static void gatherOctagons(int block, int i, int[] quad, scoped ref int count)
+		static void gatherOctagons(House block, int i, Cell[] quad, scoped ref int count)
 		{
 			if (quad is not [var t1, var t2, var t3, _])
 			{
@@ -129,8 +129,8 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 
 			var house1 = (CellsMap[t1] + t2).CoveredLine;
 			var house2 = (CellsMap[t1] + t3).CoveredLine;
-			var pair1 = new int[6, 2];
-			var pair2 = new int[6, 2];
+			var pair1 = new Cell[6, 2];
+			var pair2 = new Cell[6, 2];
 			var (o1, o2) = i switch { >= 0 and <= 3 => (9, 1), 4 or 5 => (9, 2), 6 or 7 => (18, 1), 8 => (18, 2) };
 			if (house1 is >= 9 and < 18)
 			{
@@ -150,7 +150,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				for (var i2 = 0; i2 < 6; i2++)
 				{
 					// Now check extra digits.
-					var allCells = new List<int>(quad) { pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1] };
+					var allCells = new List<Cell>(quad) { pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1] };
 
 					var v = 0L;
 					for (var z = 0; z < allCells.Count; z++)
@@ -168,9 +168,9 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			}
 		}
 
-		static void r(int block, int houseIndex, int[,] pair, int increment, int index)
+		static void r(House block, House houseIndex, Cell[,] pair, int increment, int index)
 		{
-			for (int i = 0, cur = 0; i < 9; i++)
+			for (var (i, cur) = (0, 0); i < 9; i++)
 			{
 				var cell = HouseCells[houseIndex][i];
 				if (block == cell.ToHouseIndex(HouseType.Block))

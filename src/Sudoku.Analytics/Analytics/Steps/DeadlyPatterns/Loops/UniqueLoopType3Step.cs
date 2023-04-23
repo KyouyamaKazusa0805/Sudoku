@@ -13,8 +13,8 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueLoopType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	int digit1,
-	int digit2,
+	Digit digit1,
+	Digit digit2,
 	scoped in CellMap loop,
 	[PrimaryConstructorParameter] scoped in CellMap subsetCells,
 	[PrimaryConstructorParameter] Mask subsetDigitsMask

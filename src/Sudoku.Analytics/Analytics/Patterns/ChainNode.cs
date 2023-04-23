@@ -3,27 +3,24 @@ namespace Sudoku.Analytics.Patterns;
 /// <summary>
 /// Defines a node used in chaining.
 /// </summary>
-/// <param name="mask"><inheritdoc cref="_mask" path="/summary"/></param>
+/// <param name="mask">The internal mask.</param>
 /// <remarks>
 /// This type corresponds to the concept of Sudoku Explainer's logic
 /// "<see href="https://sunnieshine.github.io/Sudoku/terms/node">Potential</see>".
 /// </remarks>
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayString)}},nq}""")]
-public readonly partial struct ChainNode(Mask mask) : IEquatable<ChainNode>, IEqualityOperators<ChainNode, ChainNode, bool>
+[StructLayout(LayoutKind.Auto)]
+public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKinds.Field)] Mask mask) :
+	IEquatable<ChainNode>,
+	IEqualityOperators<ChainNode, ChainNode, bool>
 {
-	/// <summary>
-	/// The internal mask.
-	/// </summary>
-	private readonly Mask _mask = mask;
-
-
 	/// <summary>
 	/// Initializes a <see cref="ChainNode"/> instance via the specified data.
 	/// </summary>
 	/// <param name="candidate">The candidate.</param>
 	/// <param name="isOn">Indicates whether the node is on.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ChainNode(int candidate, bool isOn) : this((byte)(candidate / 9), (byte)(candidate % 9), isOn)
+	public ChainNode(Candidate candidate, bool isOn) : this((byte)(candidate / 9), (byte)(candidate % 9), isOn)
 	{
 	}
 
@@ -67,7 +64,7 @@ public readonly partial struct ChainNode(Mask mask) : IEquatable<ChainNode>, IEq
 	/// <summary>
 	/// Indicates the candidate.
 	/// </summary>
-	public int Candidate => _mask & (1 << 10) - 1;
+	public Candidate Candidate => _mask & (1 << 10) - 1;
 
 	/// <summary>
 	/// Defines an accessor that allows user assigning a singleton parent node into the current data structure on instantiation phase.
@@ -157,7 +154,7 @@ public readonly partial struct ChainNode(Mask mask) : IEquatable<ChainNode>, IEq
 
 
 	[DeconstructionMethod]
-	public partial void Deconstruct(out int candidate, out bool isOn);
+	public partial void Deconstruct(out Candidate candidate, out bool isOn);
 
 	[DeconstructionMethod]
 	public partial void Deconstruct(out byte cell, out byte digit, out bool isOn);
@@ -169,7 +166,7 @@ public readonly partial struct ChainNode(Mask mask) : IEquatable<ChainNode>, IEq
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(ChainNode other) => _mask == other._mask;
 
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_mask))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, "_mask")]
 	public override partial int GetHashCode();
 
 	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(CandidateString), nameof(IsOn))]

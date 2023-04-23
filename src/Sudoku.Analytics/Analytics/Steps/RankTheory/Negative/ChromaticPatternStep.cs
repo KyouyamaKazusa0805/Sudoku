@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class ChromaticPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] int[] blocks,
+	[PrimaryConstructorParameter] House[] blocks,
 	[PrimaryConstructorParameter] scoped in CellMap pattern,
 	[PrimaryConstructorParameter] Mask digitsMask
 ) : NegativeRankStep(conclusions, views)
