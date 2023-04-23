@@ -8,7 +8,7 @@ internal sealed class AnsweringContext
 	/// <summary>
 	/// 表示本局游戏已经有哪些人回答了题目。
 	/// </summary>
-	public ConcurrentDictionary<string, int> AnsweredUsers { get; set; } = new();
+	public ConcurrentDictionary<string, Digit> AnsweredUsers { get; set; } = new();
 
 	/// <summary>
 	/// 表示在判别结果的循环过程的单位量（250 毫秒为单位的时间片）下，用户回答的信息列表。

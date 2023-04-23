@@ -35,7 +35,7 @@ public readonly partial struct Crosshatch([PrimaryConstructorParameter(MemberKin
 	/// <summary>
 	/// Indicates the houses list that represents the possible houses that a crosshatch will be used.
 	/// </summary>
-	private static readonly int[][] CrosshatchingHousesList =
+	private static readonly House[][] CrosshatchingHousesList =
 	{
 		new[] { 1, 2, 3, 6 }, new[] { 0, 2, 4, 7 }, new[] { 1, 2, 5, 8 },
 		new[] { 0, 4, 5, 6 }, new[] { 1, 3, 5, 7 }, new[] { 2, 3, 4, 8 },
@@ -43,7 +43,7 @@ public readonly partial struct Crosshatch([PrimaryConstructorParameter(MemberKin
 	};
 
 
-	/// <inheritdoc cref="Create(int, in CellMap, in CellMap)"/>
+	/// <inheritdoc cref="Create(Digit, in CellMap, in CellMap)"/>
 	[DebuggerHidden]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[JsonConstructor]

@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines an average bar view node.
 /// </summary>
-public sealed partial class AverageBarViewNode(ColorIdentifier identifier, int cell, bool isHorizontal) :
+public sealed partial class AverageBarViewNode(ColorIdentifier identifier, Cell cell, bool isHorizontal) :
 	SingleCellMarkViewNode(identifier, cell, Direction.None)
 {
 	/// <summary>

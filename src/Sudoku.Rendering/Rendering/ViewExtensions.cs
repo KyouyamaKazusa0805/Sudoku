@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Rendering;
+namespace Sudoku.Rendering;
 
 /// <summary>
 /// Provides with extension methods on <see cref="View"/>.
@@ -13,7 +13,7 @@ public static class ViewExtensions
 	/// <param name="this">The view instance.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>A <see cref="bool"/> value indicating whether being overlapped.</returns>
-	public static bool UnknownOverlaps(this View? @this, int cell)
+	public static bool UnknownOverlaps(this View? @this, Cell cell)
 	{
 		if (@this is null)
 		{

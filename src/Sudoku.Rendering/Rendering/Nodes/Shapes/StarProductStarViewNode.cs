@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a star view node used by star product.
 /// </summary>
-public sealed partial class StarProductStarViewNode(ColorIdentifier identifier, int cell, Direction directions) :
+public sealed partial class StarProductStarViewNode(ColorIdentifier identifier, Cell cell, Direction directions) :
 	SingleCellMarkViewNode(identifier, cell, directions)
 {
 	/// <inheritdoc/>

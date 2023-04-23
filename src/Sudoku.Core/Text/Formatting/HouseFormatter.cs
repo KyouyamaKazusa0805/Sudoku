@@ -44,7 +44,7 @@ public abstract class HouseFormatter : ICollectionFormatter<House>
 		static string formatSimple(int housesMask)
 		{
 			scoped var sb = new StringHandler(27);
-			for (int houseIndex = 9, i = 0; i < 27; i++, houseIndex = (houseIndex + 1) % 27)
+			for (House houseIndex = 9, i = 0; i < 27; i++, houseIndex = (houseIndex + 1) % 27)
 			{
 				if ((housesMask >> houseIndex & 1) != 0)
 				{

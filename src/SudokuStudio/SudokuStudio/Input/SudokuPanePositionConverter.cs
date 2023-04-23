@@ -106,7 +106,7 @@ internal readonly partial record struct SudokuPanePositionConverter(GridLayout G
 	/// </exception>
 	/// <seealso cref="Point"/>
 	/// <seealso cref="Position"/>
-	public Point GetPosition(int candidate, Position position = Position.Center)
+	public Point GetPosition(Candidate candidate, Position position = Position.Center)
 	{
 		var (cw, ch) = CandidateSize;
 		var (cell, digit) = (candidate / 9, candidate % 9);

@@ -5,7 +5,7 @@ namespace SudokuStudio.Interaction.Conversions;
 /// </summary>
 internal static class ValueTextConversion
 {
-	public static string GetText(CellStatus cellStatus, short candidatesMask)
+	public static string GetText(CellStatus cellStatus, Mask candidatesMask)
 		=> cellStatus == CellStatus.Empty || candidatesMask is not (>= 0 and < 511)
 			? string.Empty
 			: (TrailingZeroCount((uint)candidatesMask) + 1).ToString();
@@ -13,8 +13,8 @@ internal static class ValueTextConversion
 	public static Brush GetValueFontColor(
 		Grid grid,
 		Grid solution,
-		int cell,
-		short candidatesMask,
+		Cell cell,
+		Mask candidatesMask,
 		Color modifiableColor,
 		Color givenColor,
 		Color deltaColor,

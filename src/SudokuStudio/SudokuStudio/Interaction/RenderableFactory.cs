@@ -235,7 +235,7 @@ internal static class RenderableFactory
 	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResults)" path="/param[@name='animatedResults']"/>
 	/// </param>
 	/// <seealso cref="ForCandidateNode(SudokuPane, CandidateViewNode, Conclusion[], out Conclusion?, AnimatedResults)"/>
-	private static void ForCandidateNodeCore(Color color, int candidate, SudokuPaneCell paneCellControl, AnimatedResults animatedResults)
+	private static void ForCandidateNodeCore(Color color, Candidate candidate, SudokuPaneCell paneCellControl, AnimatedResults animatedResults)
 	{
 		var (width, height) = paneCellControl.ActualSize / 3F * (float)paneCellControl.BasePane.HighlightCandidateCircleScale;
 		var control = new Ellipse
@@ -881,7 +881,7 @@ file static class Extensions
 	/// <param name="candidate">The candidate to be determined.</param>
 	/// <param name="conclusion">The overlapped result.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool ConflictWith(this Conclusion[] conclusions, int candidate, [NotNullWhen(true)] out Conclusion? conclusion)
+	public static bool ConflictWith(this Conclusion[] conclusions, Candidate candidate, [NotNullWhen(true)] out Conclusion? conclusion)
 	{
 		foreach (var current in conclusions)
 		{

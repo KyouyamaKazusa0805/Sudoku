@@ -33,7 +33,7 @@ partial struct Grid
 		/// <summary>
 		/// Gets the element in the collection at the current position of the enumerator.
 		/// </summary>
-		public readonly int Current
+		public readonly Candidate Current
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => _currentIndex * 9 + TrailingZeroCount(_currentMask);

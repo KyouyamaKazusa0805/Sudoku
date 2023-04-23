@@ -3,7 +3,8 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a view node that displays as a bar on shared border line of two adjacent cells.
 /// </summary>
-public sealed partial class BorderBarViewNode(ColorIdentifier identifier, int cell1, int cell2) : AdjacentCellMarkViewNode(identifier, cell1, cell2)
+public sealed partial class BorderBarViewNode(ColorIdentifier identifier, Cell cell1, Cell cell2) :
+	AdjacentCellMarkViewNode(identifier, cell1, cell2)
 {
 	/// <summary>
 	/// Indicates the cell 1 string.

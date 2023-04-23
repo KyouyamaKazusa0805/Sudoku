@@ -99,7 +99,7 @@ public sealed class DictionaryQuerySolver : ISolver
 		}
 
 		Debug.Assert(rawResult.Count == 81);
-		var gridArray = new int[81];
+		var gridArray = new Digit[81];
 		foreach (var (rawCell, rawDigit) in rawResult)
 		{
 			if (rawDigit is not [var digitChar and >= '1' and <= '9']

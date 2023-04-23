@@ -6,8 +6,8 @@ namespace Sudoku.Recognition;
 /// <param name="cell">Indicates the wrong cell.</param>
 /// <param name="digit">Indicates the wrong digit.</param>
 public sealed partial class FailedToFillValueException(
-	[PrimaryConstructorParameter] int cell,
-	[PrimaryConstructorParameter] int digit
+	[PrimaryConstructorParameter] Cell cell,
+	[PrimaryConstructorParameter] Digit digit
 ) : Exception
 {
 	/// <inheritdoc/>

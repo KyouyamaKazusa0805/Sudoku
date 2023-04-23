@@ -5,7 +5,7 @@ partial class DrawingOperations
 	/// <summary>
 	/// 添加一个单元格图标。
 	/// </summary>
-	public static async partial Task AddIconViewNodeAsync<T>(GroupMessageReceiver receiver, DrawingContext context, string raw, string colorString, Func<ColorIdentifier, int, T> nodeCreator)
+	public static async partial Task AddIconViewNodeAsync<T>(GroupMessageReceiver receiver, DrawingContext context, string raw, string colorString, Func<ColorIdentifier, Cell, T> nodeCreator)
 		where T : IconViewNode
 	{
 		if (colorString.GetIdentifier() is not { } identifier)
@@ -31,7 +31,7 @@ partial class DrawingOperations
 	/// <summary>
 	/// 删除一个单元格图标。
 	/// </summary>
-	public static async partial Task RemoveIconViewNodeAsync<T>(GroupMessageReceiver receiver, DrawingContext context, string raw, Func<int, T> nodeCreator)
+	public static async partial Task RemoveIconViewNodeAsync<T>(GroupMessageReceiver receiver, DrawingContext context, string raw, Func<Cell, T> nodeCreator)
 		where T : IconViewNode
 	{
 		var nodes = new HashSet<IconViewNode>();

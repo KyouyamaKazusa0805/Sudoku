@@ -3,7 +3,8 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a cell arrow view node.
 /// </summary>
-public sealed partial class CellArrowViewNode(ColorIdentifier identifier, int cell, Direction directions) : SingleCellMarkViewNode(identifier, cell, directions)
+public sealed partial class CellArrowViewNode(ColorIdentifier identifier, Cell cell, Direction directions) :
+	SingleCellMarkViewNode(identifier, cell, directions)
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

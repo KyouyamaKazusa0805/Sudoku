@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines an embedded skyscraper arrow view node.
 /// </summary>
-public sealed class EmbeddedSkyscraperArrowViewNode(ColorIdentifier identifier, int cell, Direction directions) :
+public sealed class EmbeddedSkyscraperArrowViewNode(ColorIdentifier identifier, Cell cell, Direction directions) :
 	SingleCellMarkViewNode(identifier, cell, directions)
 {
 	/// <inheritdoc/>

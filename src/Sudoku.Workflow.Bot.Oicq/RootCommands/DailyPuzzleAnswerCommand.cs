@@ -12,9 +12,9 @@ internal sealed class DailyPuzzleAnswerCommand : Command
 	/// </summary>
 	[DoubleArgument("答案")]
 	[Hint("表示你需要回答的问题的答案。")]
-	[ValueConverter<NumericArrayWithoutSeparatorConverter<int>>]
+	[ValueConverter<NumericArrayWithoutSeparatorConverter<Digit>>]
 	[DisplayingIndex(0)]
-	public int[]? Answer { get; set; }
+	public Digit[]? Answer { get; set; }
 
 
 	/// <inheritdoc/>
@@ -87,7 +87,7 @@ internal sealed class DailyPuzzleAnswerCommand : Command
 		UserOperations.Write(user);
 
 
-		static bool sequenceEquals(int[] realAnswer, int[]? userAnswered)
+		static bool sequenceEquals(Digit[] realAnswer, Digit[]? userAnswered)
 		{
 			if ((realAnswer, userAnswered) is not ({ Length: 9 }, { Length: 9 }))
 			{

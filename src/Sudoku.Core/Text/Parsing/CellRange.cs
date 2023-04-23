@@ -46,7 +46,7 @@ public readonly partial struct CellRange(Mask mask) :
 	/// <summary>
 	/// Indicates the minimum value.
 	/// </summary>
-	public int MinValue
+	public Cell MinValue
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _mask >> 7 & 127;
@@ -55,7 +55,7 @@ public readonly partial struct CellRange(Mask mask) :
 	/// <summary>
 	/// Indicates the maximum value.
 	/// </summary>
-	public int MaxValue
+	public Cell MaxValue
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _mask & 127;

@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a pencil-mark view node.
 /// </summary>
-public sealed partial class PencilMarkViewNode(int cell, string notation) :
+public sealed partial class PencilMarkViewNode(Cell cell, string notation) :
 	SingleCellMarkViewNode(WellKnownColorIdentifier.Normal, cell, Direction.None)
 {
 	/// <summary>

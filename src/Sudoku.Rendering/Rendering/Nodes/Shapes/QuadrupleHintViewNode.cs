@@ -13,7 +13,7 @@ public sealed partial class QuadrupleHintViewNode(ColorIdentifier identifier, sc
 	/// <param name="topLeftCell">The top-left cell.</param>
 	/// <param name="s">The string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public QuadrupleHintViewNode(ColorIdentifier identifier, int topLeftCell, string s) :
+	public QuadrupleHintViewNode(ColorIdentifier identifier, Cell topLeftCell, string s) :
 		this(identifier, CellsMap[topLeftCell] + (topLeftCell + 1) + (topLeftCell + 9) + (topLeftCell + 10), s)
 	{
 	}

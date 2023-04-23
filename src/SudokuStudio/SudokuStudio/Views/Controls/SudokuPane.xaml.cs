@@ -21,7 +21,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<double>("HighlightCandidateCircleScale", DefaultValue = .9, DocSummary = "Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.")]
 [DependencyProperty<double>("HighlightBackgroundOpacity", DefaultValue = .15, DocSummary = "Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.")]
 [DependencyProperty<double>("ChainStrokeThickness", DefaultValue = 2.0, DocSummary = "Indicates the chain stroke thickness.")]
-[DependencyProperty<int>("SelectedCell", DocSummary = "Indicates the currently selected cell.")]
+[DependencyProperty<Cell>("SelectedCell", DocSummary = "Indicates the currently selected cell.")]
 [DependencyProperty<CoordinateLabelDisplayKind>("CoordinateLabelDisplayKind", DefaultValue = CoordinateLabelDisplayKind.RxCy, DocSummary = "Indicates the displaying kind of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Interaction.CoordinateLabelDisplayKind\"/>.")]
 [DependencyProperty<CoordinateLabelDisplayMode>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplayMode.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Interaction.CoordinateLabelDisplayMode\"/>.")]
 [DependencyProperty<Color>("GivenColor", DocSummary = "Indicates the given color.")]
@@ -366,7 +366,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <param name="mouseButton">Indicates the mouse button clicked.</param>
 	/// <param name="candidate">The candidate.</param>
-	internal void TriggerClicked(MouseButton mouseButton, int candidate) => Clicked?.Invoke(this, new(mouseButton, candidate));
+	internal void TriggerClicked(MouseButton mouseButton, Candidate candidate) => Clicked?.Invoke(this, new(mouseButton, candidate));
 
 	/// <summary>
 	/// <para>Try to set puzzle, with a <see cref="bool"/> value indicating whether undoing and redoing stacks should be cleared.</para>

@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interaction.Conversions;
+namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>
 /// Provides with conversion methods used by XAML designer, about pencilmark text.
@@ -15,9 +15,9 @@ internal static class PencilmarkTextConversion
 		Color deltaColor,
 		CellStatus cellStatus,
 		Grid solution,
-		int cell,
-		short candidatesMask,
-		int digit,
+		Cell cell,
+		Mask candidatesMask,
+		Digit digit,
 		bool displayCandidates,
 		bool useDifferentColorToDisplayDeltaDigits
 	)

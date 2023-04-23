@@ -60,13 +60,14 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 				var totalMap = CellMap.Empty;
 				do
 				{
-					int cell;
+					Cell cell;
 					do
 					{
 						cell = _random.Next(81);
 					} while (totalMap.Contains(cell));
 
-					int r = cell / 9, c = cell % 9;
+					var r = cell / 9;
+					var c = cell % 9;
 
 					// Get new value of 'last'.
 					var tempMap = CellMap.Empty;
@@ -138,7 +139,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 	/// <param name="column">The column value.</param>
 	/// <returns>The cells.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static int[] GetCells(SymmetryType symmetryType, int row, int column)
+	private static Cell[] GetCells(SymmetryType symmetryType, int row, int column)
 		=> symmetryType switch
 		{
 			SymmetryType.Central => new[] { row * 9 + column, (8 - row) * 9 + 8 - column },
@@ -161,7 +162,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 					(8 - column) * 9 + (8 - row)
 				},
 			SymmetryType.None => new[] { row * 9 + column },
-			_ => Array.Empty<int>()
+			_ => Array.Empty<Cell>()
 		};
 
 	/// <summary>
@@ -170,7 +171,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 	/// <param name="ptrGrid">The pointer that points to a grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private static bool CheckDuplicate(char* ptrGrid, int cell)
+	private static bool CheckDuplicate(char* ptrGrid, Cell cell)
 	{
 		var value = ptrGrid[cell];
 		foreach (var c in Peers[cell])

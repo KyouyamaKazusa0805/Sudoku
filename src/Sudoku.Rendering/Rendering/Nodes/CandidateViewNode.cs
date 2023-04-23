@@ -3,13 +3,13 @@ namespace Sudoku.Rendering.Nodes;
 /// <summary>
 /// Defines a view node that highlights for a candidate.
 /// </summary>
-public sealed partial class CandidateViewNode(ColorIdentifier identifier, int candidate) : BasicViewNode(identifier)
+public sealed partial class CandidateViewNode(ColorIdentifier identifier, Candidate candidate) : BasicViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates the candidate highlighted.
 	/// </summary>
 	[JsonInclude]
-	public int Candidate { get; } = candidate;
+	public Candidate Candidate { get; } = candidate;
 
 	/// <summary>
 	/// Indicates the candidate string.
@@ -19,7 +19,7 @@ public sealed partial class CandidateViewNode(ColorIdentifier identifier, int ca
 
 
 	[DeconstructionMethod]
-	public partial void Deconstruct(out ColorIdentifier identifier, out int candidate);
+	public partial void Deconstruct(out ColorIdentifier identifier, out Candidate candidate);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

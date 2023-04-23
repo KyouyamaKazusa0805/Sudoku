@@ -23,7 +23,7 @@ public sealed partial class DrawingPage : Page
 	/// <summary>
 	/// Indicates the previously selected candidate.
 	/// </summary>
-	private int? _previousSelectedCandidate;
+	private Candidate? _previousSelectedCandidate;
 
 
 	/// <summary>

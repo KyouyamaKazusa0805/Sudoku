@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a triangle-sum view node.
 /// </summary>
-public sealed partial class TriangleSumViewNode(ColorIdentifier identifier, int cell, Direction directions) :
+public sealed partial class TriangleSumViewNode(ColorIdentifier identifier, Cell cell, Direction directions) :
 	SingleCellMarkViewNode(identifier, cell, directions)
 {
 	/// <summary>

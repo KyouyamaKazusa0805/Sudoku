@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Represents with a Kropki dot view node.
 /// </summary>
-public sealed partial class KropkiDotViewNode(ColorIdentifier identifier, int cell1, int cell2, bool isSolid) :
+public sealed partial class KropkiDotViewNode(ColorIdentifier identifier, Cell cell1, Cell cell2, bool isSolid) :
 	AdjacentCellMarkViewNode(identifier, cell1, cell2)
 {
 	/// <summary>

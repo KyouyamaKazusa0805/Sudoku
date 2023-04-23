@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Grouped;
 /// <summary>
 /// Defines a windoku view node.
 /// </summary>
-public sealed partial class WindokuViewNode(ColorIdentifier identifier) : GroupedViewNode(identifier, -1, ImmutableArray<int>.Empty)
+public sealed partial class WindokuViewNode(ColorIdentifier identifier) : GroupedViewNode(identifier, -1, ImmutableArray<Cell>.Empty)
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

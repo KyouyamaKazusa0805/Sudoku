@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a cell corner arrow view node.
 /// </summary>
-public sealed partial class CellCornerArrowViewNode(ColorIdentifier identifier, int cell, Direction directions) :
+public sealed partial class CellCornerArrowViewNode(ColorIdentifier identifier, Cell cell, Direction directions) :
 	SingleCellMarkViewNode(identifier, cell, directions)
 {
 	/// <inheritdoc/>

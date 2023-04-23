@@ -8,8 +8,8 @@ namespace Sudoku.Concepts;
 /// <para>
 /// This type holds a <see langword="static readonly"/> field called <see cref="Empty"/>,
 /// it is the only field provided to be used as the entry to create or update collection.
-/// If you want to add elements into it, you can use <see cref="Add(int)"/>, <see cref="AddRange(IEnumerable{int})"/>
-/// or just <see cref="op_Addition(in CandidateMap, int)"/> or <see cref="op_Addition(in CandidateMap, IEnumerable{int})"/>:
+/// If you want to add elements into it, you can use <see cref="Add(Candidate)"/>, <see cref="AddRange(IEnumerable{Candidate})"/>
+/// or just <see cref="op_Addition(in CandidateMap, Candidate)"/> or <see cref="op_Addition(in CandidateMap, IEnumerable{Candidate})"/>:
 /// <code><![CDATA[
 /// var candidateMap = CandidateMap.Empty;
 /// candidateMap += 0; // Adds 'r1c1(1)' into the collection.
@@ -124,7 +124,7 @@ public unsafe partial struct CandidateMap :
 			};
 
 
-			static string[] f(int[] offsets)
+			static string[] f(Candidate[] offsets)
 			{
 				var list = new List<string>();
 				foreach (var digitGroup in

@@ -13,7 +13,7 @@ public sealed partial class ClockfaceDotViewNode(ColorIdentifier identifier, sco
 	/// <param name="topLeftCell">The top-left cell.</param>
 	/// <param name="isClockwise">Indicates whether the dot is marked as clockwise.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ClockfaceDotViewNode(ColorIdentifier identifier, int topLeftCell, bool isClockwise) :
+	public ClockfaceDotViewNode(ColorIdentifier identifier, Cell topLeftCell, bool isClockwise) :
 		this(identifier, CellsMap[topLeftCell] + (topLeftCell + 1) + (topLeftCell + 9) + (topLeftCell + 10), isClockwise)
 	{
 	}

@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Input;
+namespace SudokuStudio.Input;
 
 /// <summary>
 /// Provides with a easier way to visit key-down status.
@@ -59,7 +59,7 @@ public static class Keyboard
 	/// </item>
 	/// </list>
 	/// </returns>
-	public static int GetInputDigit(VirtualKey virtualKey)
+	public static Digit GetInputDigit(VirtualKey virtualKey)
 		=> virtualKey switch
 		{
 			VirtualKey.Number0 or VirtualKey.NumberPad0 => -1,

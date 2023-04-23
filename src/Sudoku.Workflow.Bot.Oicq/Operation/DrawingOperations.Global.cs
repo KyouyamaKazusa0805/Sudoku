@@ -79,7 +79,7 @@ partial class DrawingOperations
 	/// <param name="c">一个字符，表示一个所在列的数据。</param>
 	/// <returns>单元格的索引。范围为 0 到 80。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static int GetCellIndex(char r, char c) => (r - '1') * 9 + (c - '1');
+	private static Cell GetCellIndex(char r, char c) => (r - '1') * 9 + (c - '1');
 
 	/// <summary>
 	/// 将前文传入的三个字符信息直接转为“行”、“列”和“数”三个数值，然后将其解析成合适的单元格坐标和数，以二元组（数对）的形式返回。
@@ -89,7 +89,7 @@ partial class DrawingOperations
 	/// <param name="d">一个字符，表示一个数值数据。</param>
 	/// <returns>一个二元组（数对），其中一个元素是单元格，第二个元素是数值。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static (int Cell, int Digit) GetCandidateIndex(char r, char c, char d) => (GetCellIndex(r, c), d - '1');
+	private static (Cell Cell, Digit Digit) GetCandidateIndex(char r, char c, char d) => (GetCellIndex(r, c), d - '1');
 
 	/// <summary>
 	/// 将前文传入的两个字符信息直接转为“区域类型名称”和“索引”两个数值，并表达成区域绝对索引值。区域从 0 到 26 编号，分别表示 27 个不同的区域类型
@@ -103,7 +103,7 @@ partial class DrawingOperations
 	/// 这也是为什么我把这个方法定义为 <see langword="private"/> 的原因。
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static int GetHouseIndex(char r, char i)
+	private static House GetHouseIndex(char r, char i)
 		=> r switch
 		{
 			'行' or 'R' or 'r' => 9,
@@ -167,8 +167,8 @@ partial class DrawingOperations
 		DrawingContext context,
 		string raw,
 		bool isAdding,
-		Func<int, ViewNode> nodeCreator,
-		Func<int, bool>? cellPredicate
+		Func<Cell, ViewNode> nodeCreator,
+		Func<Cell, bool>? cellPredicate
 	)
 	{
 		var nodes = new HashSet<ViewNode>();

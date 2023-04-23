@@ -34,7 +34,8 @@ internal sealed class InternalServiceProvider : IDisposable
 	public Grid RecognizeDigits(Field field)
 	{
 		var result = Grid.Empty;
-		int w = field.Width / 9, o = w / 6;
+		var w = field.Width / 9;
+		var o = w / 6;
 		for (var x = 0; x < 9; x++)
 		{
 			for (var y = 0; y < 9; y++)
@@ -43,7 +44,8 @@ internal sealed class InternalServiceProvider : IDisposable
 				var recognizedResult = RecognizeCellNumber(field.GetSubRect(new(o + w * x, o + w * y, w - o * 2, w - o * 2)));
 				if (recognizedResult != -1)
 				{
-					int cell = x * 9 + y, digit = recognizedResult - 1;
+					var cell = x * 9 + y;
+					var digit = recognizedResult - 1;
 					if (!result[cell, digit])
 					{
 						throw new FailedToFillValueException(cell, digit);
@@ -68,7 +70,7 @@ internal sealed class InternalServiceProvider : IDisposable
 	/// </returns>
 	/// <exception cref="ArgumentNullException">Throws when the inner tool isn't been initialized.</exception>
 	/// <exception cref="TesseractException">Throws when the OCR engine error.</exception>
-	private int RecognizeCellNumber(Field cellImg)
+	private Digit RecognizeCellNumber(Field cellImg)
 	{
 		ArgumentNullException.ThrowIfNull(_ocr);
 
@@ -95,7 +97,7 @@ internal sealed class InternalServiceProvider : IDisposable
 			}
 		}
 
-		return numberText.Length > 1 ? -1 : int.TryParse(numberText, out var resultValue) ? resultValue : -1;
+		return numberText.Length > 1 ? -1 : Digit.TryParse(numberText, out var resultValue) ? resultValue : -1;
 	}
 
 	/// <summary>

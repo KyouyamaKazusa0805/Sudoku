@@ -3,16 +3,16 @@ namespace Sudoku.Rendering.Nodes;
 /// <summary>
 /// Defines a view node that highlights for a house.
 /// </summary>
-public sealed partial class HouseViewNode(ColorIdentifier identifier, int houseIndex) : BasicViewNode(identifier)
+public sealed partial class HouseViewNode(ColorIdentifier identifier, House houseIndex) : BasicViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates the house highlighted.
 	/// </summary>
-	public int House { get; } = houseIndex;
+	public House House { get; } = houseIndex;
 
 
 	[DeconstructionMethod]
-	public partial void Deconstruct(out ColorIdentifier identifier, out int house);
+	public partial void Deconstruct(out ColorIdentifier identifier, out House house);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

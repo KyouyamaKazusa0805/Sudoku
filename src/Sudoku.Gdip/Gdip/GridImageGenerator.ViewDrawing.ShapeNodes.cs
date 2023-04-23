@@ -6,8 +6,8 @@ partial class GridImageGenerator
 		ColorIdentifier identifier,
 		float barWidth,
 		PointCalculator calc,
-		int c1,
-		int c2,
+		Cell c1,
+		Cell c2,
 		bool fullyOverlapping,
 		Graphics g
 	)
@@ -27,8 +27,8 @@ partial class GridImageGenerator
 		Color backColor,
 		float borderWidth,
 		PointCalculator calc,
-		int c1,
-		int c2,
+		Cell c1,
+		Cell c2,
 		float dotSize,
 		bool isSolid,
 		Graphics g
@@ -56,8 +56,8 @@ partial class GridImageGenerator
 		ColorIdentifier identifier,
 		bool isGreaterThan,
 		PointCalculator calc,
-		int c1,
-		int c2,
+		Cell c1,
+		Cell c2,
 		bool isRow,
 		Graphics g
 	)
@@ -109,8 +109,8 @@ partial class GridImageGenerator
 		ColorIdentifier identifier,
 		bool isX,
 		PointCalculator calc,
-		int c1,
-		int c2,
+		Cell c1,
+		Cell c2,
 		Graphics g
 	)
 	{
@@ -135,8 +135,8 @@ partial class GridImageGenerator
 		Color backColor,
 		ColorIdentifier identifier,
 		PointCalculator calc,
-		int c1,
-		int c2,
+		Cell c1,
+		Cell c2,
 		Graphics g,
 		string label
 	)
@@ -159,7 +159,7 @@ partial class GridImageGenerator
 	private bool DrawBattenburg(
 		ColorIdentifier identifier,
 		PointCalculator calc,
-		int lastCell,
+		Cell lastCell,
 		SizeF cellSize,
 		float battenburgSize,
 		Graphics g
@@ -198,7 +198,7 @@ partial class GridImageGenerator
 		Graphics g,
 		string hint,
 		PointCalculator calc,
-		int lastCell,
+		Cell lastCell,
 		float cw,
 		float ch
 	)
@@ -220,7 +220,7 @@ partial class GridImageGenerator
 		float borderWidth,
 		Color backColor,
 		PointCalculator calc,
-		int lastCell,
+		Cell lastCell,
 		bool isClockwise,
 		Graphics g,
 		float cw,
@@ -251,7 +251,7 @@ partial class GridImageGenerator
 		ColorIdentifier identifier,
 		float width,
 		PointCalculator calc,
-		int cell,
+		Cell cell,
 		float cw,
 		float ch,
 		float padding,
@@ -279,7 +279,7 @@ partial class GridImageGenerator
 		ColorIdentifier identifier,
 		float width,
 		PointCalculator calc,
-		int cell,
+		Cell cell,
 		float cw,
 		float ch,
 		string digitString,
@@ -326,7 +326,7 @@ partial class GridImageGenerator
 		Graphics g,
 		string notation,
 		PointCalculator calc,
-		int cell,
+		Cell cell,
 		float ch
 	)
 	{
@@ -346,7 +346,7 @@ partial class GridImageGenerator
 	private bool DrawTriangleSum(
 		ColorIdentifier identifier,
 		float padding,
-		int cell,
+		Cell cell,
 		Direction directions,
 		bool isComplement,
 		Graphics g,
@@ -362,7 +362,7 @@ partial class GridImageGenerator
 		return true;
 
 
-		GraphicsPath createPath(float padding, int cell, Direction directions, bool isComplement)
+		GraphicsPath createPath(float padding, Cell cell, Direction directions, bool isComplement)
 		{
 			var (cw, ch) = calc.CellSize;
 			var (x, y) = calc.GetMousePointInCenter(cell);
@@ -397,7 +397,7 @@ partial class GridImageGenerator
 		ColorIdentifier identifier,
 		Graphics g,
 		PointCalculator calc,
-		int cell,
+		Cell cell,
 		Direction direction,
 		float cw,
 		float ch
@@ -430,7 +430,7 @@ partial class GridImageGenerator
 	private bool DrawCellArrow(
 		ColorIdentifier identifier,
 		PointCalculator calc,
-		int cell,
+		Cell cell,
 		Direction direction,
 		float cw,
 		float ch,
@@ -450,7 +450,7 @@ partial class GridImageGenerator
 	private bool DrawQuadrupleMaxArrow(
 		ColorIdentifier identifier,
 		PointCalculator calc,
-		int lastCell,
+		Cell lastCell,
 		float cw,
 		float ch,
 		Direction direction,
@@ -471,7 +471,7 @@ partial class GridImageGenerator
 	private bool DrawCellCornerTriangle(
 		ColorIdentifier identifier,
 		PointCalculator calc,
-		int cell,
+		Cell cell,
 		Direction directions,
 		float cw,
 		float ch,
@@ -527,7 +527,7 @@ partial class GridImageGenerator
 		ColorIdentifier identifier,
 		float width,
 		PointCalculator calc,
-		int cell,
+		Cell cell,
 		bool isHorizontal,
 		float cw,
 		float ch,
@@ -547,7 +547,7 @@ partial class GridImageGenerator
 	private bool DrawCellCornerArrow(
 		ColorIdentifier identifier,
 		PointCalculator calc,
-		int cell,
+		Cell cell,
 		float ch,
 		float width,
 		Direction directions,
@@ -587,7 +587,7 @@ partial class GridImageGenerator
 		FontData fontData,
 		ColorIdentifier identifier,
 		PointCalculator calc,
-		int cell,
+		Cell cell,
 		Direction directions,
 		Graphics g,
 		float cw,

@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a number label view node.
 /// </summary>
-public sealed partial class NumberLabelViewNode(ColorIdentifier identifier, int cell1, int cell2, string label) :
+public sealed partial class NumberLabelViewNode(ColorIdentifier identifier, Cell cell1, Cell cell2, string label) :
 	AdjacentCellMarkViewNode(identifier, cell1, cell2)
 {
 	/// <summary>

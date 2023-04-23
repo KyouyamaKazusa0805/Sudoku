@@ -3,13 +3,13 @@ namespace Sudoku.Rendering.Nodes.Grouped;
 /// <summary>
 /// Defines an oblique line view node.
 /// </summary>
-public sealed partial class ObliqueLineViewNode(ColorIdentifier identifier, int firstCell, int lastCell) :
-	GroupedViewNode(identifier, firstCell, ImmutableArray<int>.Empty)
+public sealed partial class ObliqueLineViewNode(ColorIdentifier identifier, Cell firstCell, Cell lastCell) :
+	GroupedViewNode(identifier, firstCell, ImmutableArray<Cell>.Empty)
 {
 	/// <summary>
 	/// Indicates the last cell.
 	/// </summary>
-	public int TailCell { get; } = lastCell;
+	public Cell TailCell { get; } = lastCell;
 
 
 	/// <inheritdoc/>

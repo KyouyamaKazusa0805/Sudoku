@@ -3,12 +3,12 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a single-cell mark view node.
 /// </summary>
-public abstract partial class SingleCellMarkViewNode(ColorIdentifier identifier, int cell, Direction directions) : ShapeViewNode(identifier)
+public abstract partial class SingleCellMarkViewNode(ColorIdentifier identifier, Cell cell, Direction directions) : ShapeViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates the cell used.
 	/// </summary>
-	public int Cell { get; } = cell is >= 0 and < 81 ? cell : throw new ArgumentOutOfRangeException(nameof(cell));
+	public Cell Cell { get; } = cell is >= 0 and < 81 ? cell : throw new ArgumentOutOfRangeException(nameof(cell));
 
 	/// <summary>
 	/// Indicates the directions that the current mark points to. <see cref="Direction.None"/> is for default case.
@@ -26,7 +26,7 @@ public abstract partial class SingleCellMarkViewNode(ColorIdentifier identifier,
 
 
 	[DeconstructionMethod]
-	public partial void Deconstruct(out int cell, out Direction directions);
+	public partial void Deconstruct(out Cell cell, out Direction directions);
 
 	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell))]
 	public override partial int GetHashCode();

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Gdip;
+namespace Sudoku.Gdip;
 
 /// <summary>
 /// Provides a serial of methods for a point calculator that interacts with the UI projects.
@@ -105,7 +105,7 @@ public sealed class PointCalculator
 	/// <param name="point">The mouse point.</param>
 	/// <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int GetCell(PointF point)
+	public Cell GetCell(PointF point)
 	{
 		var (x, y) = point with { X = point.X - Offset, Y = point.Y - Offset };
 		if (x < 0 || x > GridSize.Width || y < 0 || y > GridSize.Height)
@@ -129,7 +129,7 @@ public sealed class PointCalculator
 	/// <param name="point">The mouse point.</param>
 	/// <returns>The candidate offset.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int GetCandidate(PointF point)
+	public Candidate GetCandidate(PointF point)
 	{
 		var ((x, y), (cw, ch)) = (point, CandidateSize);
 		var (a, b) = ((int)((y - Offset) / ch), (int)((x - Offset) / cw));
@@ -224,7 +224,7 @@ public sealed class PointCalculator
 	/// <param name="cell">The cell.</param>
 	/// <returns>The rectangle.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public RectangleF GetMouseRectangleViaCell(int cell)
+	public RectangleF GetMouseRectangleViaCell(Cell cell)
 	{
 		var ((cw, ch), (x, y)) = (CellSize, GetMousePointInCenter(cell));
 		return new(x - cw / 2, y - ch / 2, cw, ch);
@@ -237,7 +237,7 @@ public sealed class PointCalculator
 	/// <param name="digit">The digit.</param>
 	/// <returns>The rectangle.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public RectangleF GetMouseRectangle(int cell, int digit)
+	public RectangleF GetMouseRectangle(Cell cell, Digit digit)
 	{
 		var ((cw, ch), (x, y)) = (CandidateSize, GetMousePointInCenter(cell, digit));
 		return new(x - cw / 2, y - ch / 2, cw, ch);
@@ -249,7 +249,7 @@ public sealed class PointCalculator
 	/// <param name="house">The house.</param>
 	/// <returns>The rectangle.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public RectangleF GetMouseRectangleViaHouse(int house)
+	public RectangleF GetMouseRectangleViaHouse(House house)
 	{
 		var (l, r) = GetAnchorsViaHouse(house);
 		return RectangleCreator.Create(l, r);
@@ -261,7 +261,7 @@ public sealed class PointCalculator
 	/// <param name="house">The house.</param>
 	/// <returns>The anchor points.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public (PointF TopLeft, PointF BottomRight) GetAnchorsViaHouse(int house)
+	public (PointF TopLeft, PointF BottomRight) GetAnchorsViaHouse(House house)
 		=> house switch
 		{
 			>= 0 and < 9 when (house % 3, house / 3) is var (v1, v2) => (GridPoints[v1 * 9, v2 * 9], GridPoints[v1 * 9 + 9, v2 * 9 + 9]),
@@ -277,7 +277,7 @@ public sealed class PointCalculator
 	/// <param name="cell2">The second cell that is adjacent with <paramref name="cell1"/> by row or column.</param>
 	/// <returns>The two points representing with a line.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public (PointF Start, PointF End) GetSharedLinePosition(int cell1, int cell2) => GetSharedLinePosition(cell1, cell2, false);
+	public (PointF Start, PointF End) GetSharedLinePosition(Cell cell1, Cell cell2) => GetSharedLinePosition(cell1, cell2, false);
 
 	/// <summary>
 	/// Get the mouse point of the center of a cell via its offset.
@@ -285,7 +285,7 @@ public sealed class PointCalculator
 	/// <param name="cell">The cell offset.</param>
 	/// <returns>The mouse point.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PointF GetMousePointInCenter(int cell)
+	public PointF GetMousePointInCenter(Cell cell)
 	{
 		var ((cw, ch), (x, y)) = (CellSize, GridPoints[cell % 9 * 3, cell / 9 * 3]);
 		return new(x + cw / 2, y + ch / 2);
@@ -298,13 +298,13 @@ public sealed class PointCalculator
 	/// <param name="digit">The digit.</param>
 	/// <returns>The mouse point.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PointF GetMousePointInCenter(int cell, int digit)
+	public PointF GetMousePointInCenter(Cell cell, Cell digit)
 	{
 		var ((cw, ch), (x, y)) = (CandidateSize, GridPoints[cell % 9 * 3 + digit % 3, cell / 9 * 3 + digit / 3]);
 		return new(x + cw / 2, y + ch / 2);
 	}
 
-	/// <inheritdoc cref="GetSharedLinePosition(int, int)"/>
+	/// <inheritdoc cref="GetSharedLinePosition(Cell, Cell)"/>
 	/// <summary>
 	/// <inheritdoc path="/summary"/>
 	/// </summary>
@@ -315,7 +315,7 @@ public sealed class PointCalculator
 	/// </param>
 	/// <returns><inheritdoc path="/returns"/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal (PointF Start, PointF End) GetSharedLinePosition(int cell1, int cell2, bool borderBarFullyOverlapsGridLine)
+	internal (PointF Start, PointF End) GetSharedLinePosition(Cell cell1, Cell cell2, bool borderBarFullyOverlapsGridLine)
 	{
 		var ((x, y), (cw, ch)) = GetMouseRectangleViaCell(cell2);
 		return (cell2 - cell1 == 1, borderBarFullyOverlapsGridLine) switch

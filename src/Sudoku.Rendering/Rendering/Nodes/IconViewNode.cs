@@ -5,16 +5,16 @@ namespace Sudoku.Rendering.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc cref="ViewNode(ColorIdentifier)"/></param>
 /// <param name="cell">The cell.</param>
-public abstract partial class IconViewNode(ColorIdentifier identifier, int cell) : ViewNode(identifier)
+public abstract partial class IconViewNode(ColorIdentifier identifier, Cell cell) : ViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates the cell used.
 	/// </summary>
-	public int Cell { get; } = cell;
+	public Cell Cell { get; } = cell;
 
 
 	[DeconstructionMethod]
-	public partial void Deconstruct(out int cell);
+	public partial void Deconstruct(out Cell cell);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

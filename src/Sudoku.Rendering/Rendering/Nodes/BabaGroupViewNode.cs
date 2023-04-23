@@ -3,13 +3,13 @@ namespace Sudoku.Rendering.Nodes;
 /// <summary>
 /// Defines a view node that highlights for a Baba group.
 /// </summary>
-public sealed partial class BabaGroupViewNode(ColorIdentifier identifier, int cell, Utf8Char unknownValueChar, Mask digitsMask) :
+public sealed partial class BabaGroupViewNode(ColorIdentifier identifier, Cell cell, Utf8Char unknownValueChar, Mask digitsMask) :
 	BasicViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates the cell used.
 	/// </summary>
-	public int Cell { get; } = cell;
+	public Cell Cell { get; } = cell;
 
 	/// <summary>
 	/// Indicates the digits used.
@@ -35,10 +35,10 @@ public sealed partial class BabaGroupViewNode(ColorIdentifier identifier, int ce
 
 
 	[DeconstructionMethod]
-	public partial void Deconstruct(out ColorIdentifier identifier, out int cell, out Utf8Char unknownValueChar);
+	public partial void Deconstruct(out ColorIdentifier identifier, out Cell cell, out Utf8Char unknownValueChar);
 
 	[DeconstructionMethod]
-	public partial void Deconstruct(out ColorIdentifier identifier, out int cell, out Mask digitsMask, out Utf8Char unknownValueChar);
+	public partial void Deconstruct(out ColorIdentifier identifier, out Cell cell, out Mask digitsMask, out Utf8Char unknownValueChar);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

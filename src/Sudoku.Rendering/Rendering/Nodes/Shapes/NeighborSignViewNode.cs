@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a neighbor sign view node.
 /// </summary>
-public sealed partial class NeighborSignViewNode(ColorIdentifier identifier, int cell, bool isFourDirections) :
+public sealed partial class NeighborSignViewNode(ColorIdentifier identifier, Cell cell, bool isFourDirections) :
 	SingleCellMarkViewNode(identifier, cell, Direction.None)
 {
 	/// <summary>

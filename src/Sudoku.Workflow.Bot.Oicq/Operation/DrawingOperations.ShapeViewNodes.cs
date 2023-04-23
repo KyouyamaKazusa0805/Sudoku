@@ -543,7 +543,7 @@ file static class Extensions
 	/// <param name="this">单元格索引。</param>
 	/// <returns>一个 <see cref="bool"/> 结果表示是否满足。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsValidCellForWheel(this int @this)
+	public static bool IsValidCellForWheel(this Cell @this)
 		=> !Array.Exists(new[] { HousesMap[9], HousesMap[17], HousesMap[18], HousesMap[26] }, c => c.Contains(@this));
 
 	/// <summary>
@@ -553,7 +553,7 @@ file static class Extensions
 	/// <param name="isHorizontal">表示标记是否用于横向。如果不是，该参数传 <see langword="false"/>。</param>
 	/// <returns>一个 <see cref="bool"/> 结果表示是否满足。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsValidCellForAdjacentCell(this int @this, bool isHorizontal) => !HousesMap[isHorizontal ? 26 : 17].Contains(@this);
+	public static bool IsValidCellForAdjacentCell(this Cell @this, bool isHorizontal) => !HousesMap[isHorizontal ? 26 : 17].Contains(@this);
 
 	/// <summary>
 	/// 判别当前输入的数值（对应的单元格索引）是否为绘图支持的、2x2 的四个单元格之间的标记的指定单元格数值。
@@ -561,7 +561,7 @@ file static class Extensions
 	/// <param name="this">单元格索引。</param>
 	/// <returns>一个 <see cref="bool"/> 结果表示是否满足。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsValidCellFor2x2Cells(this int @this) => !Array.Exists(new[] { HousesMap[17], HousesMap[26] }, c => c.Contains(@this));
+	public static bool IsValidCellFor2x2Cells(this Cell @this) => !Array.Exists(new[] { HousesMap[17], HousesMap[26] }, c => c.Contains(@this));
 
 	/// <summary>
 	/// 判别当前输入的数值（对应的单元格索引）是否为绘图支持的、平均数独线条的指定单元格数值。
@@ -570,7 +570,7 @@ file static class Extensions
 	/// <param name="isHorizontal">表示标记是否用于横向。如果不是，该参数传 <see langword="false"/>。</param>
 	/// <returns>一个 <see cref="bool"/> 结果表示是否满足。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsValidCellForAverage(this int @this, bool isHorizontal)
+	public static bool IsValidCellForAverage(this Cell @this, bool isHorizontal)
 		=> !Array.Exists(isHorizontal ? new[] { HousesMap[18], HousesMap[26] } : new[] { HousesMap[9], HousesMap[17] }, c => c.Contains(@this));
 
 	/// <summary>

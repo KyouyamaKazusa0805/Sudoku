@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a XV sign view node.
 /// </summary>
-public sealed partial class XvSignViewNode(ColorIdentifier identifier, int cell1, int cell2, bool isX) :
+public sealed partial class XvSignViewNode(ColorIdentifier identifier, Cell cell1, Cell cell2, bool isX) :
 	AdjacentCellMarkViewNode(identifier, cell1, cell2)
 {
 	/// <summary>

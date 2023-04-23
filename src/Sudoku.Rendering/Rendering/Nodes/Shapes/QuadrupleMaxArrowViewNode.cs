@@ -13,7 +13,7 @@ public sealed partial class QuadrupleMaxArrowViewNode(ColorIdentifier identifier
 	/// <param name="topLeftCell">The top-left cell.</param>
 	/// <param name="arrowDirection">The arrow direction.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public QuadrupleMaxArrowViewNode(ColorIdentifier identifier, int topLeftCell, Direction arrowDirection) :
+	public QuadrupleMaxArrowViewNode(ColorIdentifier identifier, Cell topLeftCell, Direction arrowDirection) :
 		this(identifier, CellsMap[topLeftCell] + (topLeftCell + 1) + (topLeftCell + 9) + (topLeftCell + 10), arrowDirection)
 	{
 	}

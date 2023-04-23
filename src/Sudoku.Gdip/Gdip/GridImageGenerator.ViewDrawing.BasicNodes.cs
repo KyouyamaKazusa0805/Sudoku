@@ -106,7 +106,7 @@ partial class GridImageGenerator
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		void d(int cell, int digit, float vOffsetCandidate, Brush brush)
+		void d(Cell cell, Digit digit, float vOffsetCandidate, Brush brush)
 		{
 			var originalPoint = calc.GetMousePointInCenter(cell, digit);
 			var point = originalPoint with { Y = originalPoint.Y + vOffsetCandidate };

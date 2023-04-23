@@ -20,7 +20,7 @@ partial class GridImageGenerator
 	}
 
 	private bool DrawCapsule(
-		int head,
+		Cell head,
 		bool isHorizontal,
 		float padding,
 		PointCalculator calc,
@@ -44,8 +44,8 @@ partial class GridImageGenerator
 
 	private bool DrawObliqueLine(
 		PointCalculator calc,
-		int head,
-		int tail,
+		Cell head,
+		Cell tail,
 		ColorIdentifier identifier,
 		float width,
 		float cw,
@@ -130,9 +130,9 @@ partial class GridImageGenerator
 		float ch,
 		float padding,
 		ColorIdentifier identifier,
-		int left,
-		int right,
-		int center,
+		Cell left,
+		Cell right,
+		Cell center,
 		float barWidth,
 		float pivotWidth,
 		Graphics g

@@ -146,7 +146,8 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 		}
 
 		// Declare the buffer.
-		int* bufferRows = stackalloc int[9], bufferColumns = stackalloc int[9];
+		var bufferRows = stackalloc int[9];
+		var bufferColumns = stackalloc int[9];
 
 		// Declare the result variable.
 		var result = CellMap.Empty;

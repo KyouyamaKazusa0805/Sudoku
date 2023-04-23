@@ -208,7 +208,7 @@ file static class Generator
 	/// <param name="mode">The mode.</param>
 	/// <param name="targetCandidate">Indicates the target candidate as the result.</param>
 	/// <returns>The result.</returns>
-	public static Grid Generate(GeneratingMode mode, out int targetCandidate)
+	public static Grid Generate(GeneratingMode mode, out Candidate targetCandidate)
 	{
 		if (mode == GeneratingMode.Both)
 		{
@@ -246,7 +246,7 @@ file static class Generator
 			case GeneratingMode.NakedSingle:
 			{
 				var cell = Rng.Next(0, 81);
-				scoped var peers = new Span<int>(Peers[cell]);
+				scoped var peers = new Span<Cell>(Peers[cell]);
 
 				for (var currentShuffleRound = 0; currentShuffleRound < 15; currentShuffleRound++)
 				{

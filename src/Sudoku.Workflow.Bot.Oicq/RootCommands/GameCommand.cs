@@ -1,6 +1,6 @@
 namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
-using GeneratedGridData = (Grid Puzzle, int[] ChosenCells, int FinalIndex, TimeSpan TimeLimit, int ExperiencePoint);
+using GeneratedGridData = (Grid Puzzle, Cell[] ChosenCells, Digit FinalIndex, TimeSpan TimeLimit, int ExperiencePoint);
 using ResultInfo = (string UserName, string Id, int ExperiencePoint, int Coin, Item? EarnedItem, int Times, bool IsCorrectedUser);
 
 /// <summary>
@@ -242,7 +242,7 @@ internal sealed class GameCommand : Command
 
 		static GeneratedGridData generatePuzzle()
 		{
-			scoped var finalCellsChosen = (stackalloc int[9]);
+			scoped var finalCellsChosen = (stackalloc Cell[9]);
 			while (true)
 			{
 				var grid = Generator.Generate();

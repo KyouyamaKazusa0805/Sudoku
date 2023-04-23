@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Grouped;
 /// <summary>
 /// Defines a capsule view node.
 /// </summary>
-public sealed partial class CapsuleViewNode(ColorIdentifier identifier, int headCell, bool isHorizontal) :
+public sealed partial class CapsuleViewNode(ColorIdentifier identifier, Cell headCell, bool isHorizontal) :
 	GroupedViewNode(identifier, headCell, ImmutableArray.Create(headCell + (isHorizontal ? 1 : 9)))
 {
 	/// <summary>

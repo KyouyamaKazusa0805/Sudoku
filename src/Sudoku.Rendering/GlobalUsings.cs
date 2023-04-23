@@ -14,4 +14,7 @@ global using Sudoku.Rendering.Nodes;
 global using Sudoku.Rendering.Nodes.Grouped;
 global using Sudoku.Rendering.Nodes.Shapes;
 global using static Sudoku.SolutionWideReadOnlyFields;
+global using Candidate = int;
+global using Cell = int;
+global using House = int;
 global using Mask = short;

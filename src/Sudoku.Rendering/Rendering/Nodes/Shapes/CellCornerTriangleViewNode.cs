@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a triangle view node that is used in a cell.
 /// </summary>
-public sealed class CellCornerTriangleViewNode(ColorIdentifier identifier, int cell, Direction directions) :
+public sealed class CellCornerTriangleViewNode(ColorIdentifier identifier, Cell cell, Direction directions) :
 	SingleCellMarkViewNode(identifier, cell, directions)
 {
 	/// <inheritdoc/>

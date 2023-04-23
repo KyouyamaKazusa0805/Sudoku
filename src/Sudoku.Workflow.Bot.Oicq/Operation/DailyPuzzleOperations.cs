@@ -17,7 +17,7 @@ public static class DailyPuzzleOperations
 	[MethodImpl(MethodImplOptions.Synchronized)]
 	public static void WriteDailyPuzzleAnswer(scoped in Grid grid)
 	{
-		var answerList = new int[9];
+		var answerList = new Digit[9];
 		for (var i = 0; i < 9; i++)
 		{
 			answerList[i] = grid[HouseCells[17][i]];
@@ -50,7 +50,7 @@ public static class DailyPuzzleOperations
 	/// </summary>
 	/// <returns>每日一题的答案。如果当天没有记录（比如机器人临时维护）导致题目尚未生成，本地没有数据的时候，会返回 <see langword="null"/>。</returns>
 	[MethodImpl(MethodImplOptions.Synchronized)]
-	public static int[]? ReadDailyPuzzleAnswer()
+	public static Digit[]? ReadDailyPuzzleAnswer()
 	{
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 		if (!Directory.Exists(folder))
@@ -77,6 +77,6 @@ public static class DailyPuzzleOperations
 		}
 
 		var json = File.ReadAllText(fileName);
-		return Deserialize<int[]>(json);
+		return Deserialize<Digit[]>(json);
 	}
 }

@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a wheel view node.
 /// </summary>
-public sealed partial class WheelViewNode(ColorIdentifier identifier, int cell, string digits) :
+public sealed partial class WheelViewNode(ColorIdentifier identifier, Cell cell, string digits) :
 	SingleCellMarkViewNode(identifier, cell, Direction.None)
 {
 	/// <summary>

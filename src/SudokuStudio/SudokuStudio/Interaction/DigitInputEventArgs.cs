@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interaction;
+namespace SudokuStudio.Interaction;
 
 /// <summary>
 /// Provides event data used by delegate type <see cref="DigitInputEventHandler"/>.
@@ -11,21 +11,21 @@ public sealed class DigitInputEventArgs : EventArgs
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="newDigitInput">The digit input.</param>
-	public DigitInputEventArgs(int cell, int newDigitInput) => (Cell, DigitInput) = (cell, newDigitInput);
+	public DigitInputEventArgs(Cell cell, Digit newDigitInput) => (Cell, DigitInput) = (cell, newDigitInput);
 
 
 	/// <summary>
 	/// Indicates the cell that raises the event triggered.
 	/// </summary>
-	public int Cell { get; }
+	public Cell Cell { get; }
 
 	/// <summary>
 	/// Indicates the digit input that raises the event triggered. -1 is for clear the cell.
 	/// </summary>
-	public int DigitInput { get; }
+	public Digit DigitInput { get; }
 
 	/// <summary>
 	/// Indicates the candidate constructed. -1 is for the case that <see cref="DigitInput"/> is -1.
 	/// </summary>
-	public int Candidate => DigitInput != -1 ? Cell * 9 + DigitInput : -1;
+	public Candidate Candidate => DigitInput != -1 ? Cell * 9 + DigitInput : -1;
 }

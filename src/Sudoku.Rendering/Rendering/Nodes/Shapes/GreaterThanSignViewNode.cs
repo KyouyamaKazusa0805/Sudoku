@@ -3,7 +3,7 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Represents with a greater-than sign view node.
 /// </summary>
-public sealed partial class GreaterThanSignViewNode(ColorIdentifier identifier, int cell1, int cell2, bool isGreaterThan) :
+public sealed partial class GreaterThanSignViewNode(ColorIdentifier identifier, Cell cell1, Cell cell2, bool isGreaterThan) :
 	AdjacentCellMarkViewNode(identifier, cell1, cell2)
 {
 	/// <summary>

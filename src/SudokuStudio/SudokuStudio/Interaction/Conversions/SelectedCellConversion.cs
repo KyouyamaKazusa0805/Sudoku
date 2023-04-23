@@ -1,11 +1,11 @@
-﻿namespace SudokuStudio.Interaction.Conversions;
+namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>
 /// Provides with conversion methods used by XAML designer, about selected cells.
 /// </summary>
 internal static class SelectedCellConversion
 {
-	public static int SelectedCellToGridRow_Block(int selectedCell)
+	public static int SelectedCellToGridRow_Block(Cell selectedCell)
 		=> selectedCell switch
 		{
 			-1 => 2,
@@ -17,7 +17,7 @@ internal static class SelectedCellConversion
 			}
 		};
 
-	public static int SelectedCellToGridColumn_Block(int selectedCell)
+	public static int SelectedCellToGridColumn_Block(Cell selectedCell)
 		=> selectedCell switch
 		{
 			-1 => 2,
@@ -29,13 +29,13 @@ internal static class SelectedCellConversion
 			}
 		};
 
-	public static int SelectedCellToGridRow_Row(int selectedCell)
+	public static int SelectedCellToGridRow_Row(Cell selectedCell)
 		=> selectedCell == -1 ? 2 : selectedCell.ToHouseIndex(HouseType.Row) - 9 + 2;
 
-	public static int SelectedCellToGridColumn_Column(int selectedCell)
+	public static int SelectedCellToGridColumn_Column(Cell selectedCell)
 		=> selectedCell == -1 ? 2 : selectedCell.ToHouseIndex(HouseType.Column) - 18 + 2;
 
-	public static Visibility SelectedCellToVisibility(int selectedCell, bool displayCursors)
+	public static Visibility SelectedCellToVisibility(Cell selectedCell, bool displayCursors)
 		=> (displayCursors, selectedCell) switch
 		{
 			(false, _) => Visibility.Collapsed,

@@ -4,7 +4,7 @@ namespace SudokuStudio.Views.Controls;
 /// Defines a cell displayed in a <see cref="SudokuPane"/>.
 /// </summary>
 /// <seealso cref="SudokuPane"/>
-[DependencyProperty<short>("CandidatesMask", DefaultValue = 511)]
+[DependencyProperty<Mask>("CandidatesMask", DefaultValue = Grid.MaxCandidatesMask)]
 [DependencyProperty<CellStatus>("Status", DefaultValue = CellStatus.Empty)]
 internal sealed partial class SudokuPaneCell : UserControl
 {
@@ -20,7 +20,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 	/// </remarks>
 	/// <seealso cref="BasePane"/>
 	/// <seealso cref="Flyout_Opening(object, object)"/>
-	private int _temporarySelectedCell = -1;
+	private Cell _temporarySelectedCell = -1;
 
 
 	/// <summary>
@@ -39,7 +39,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 	/// <summary>
 	/// Indicates the cell index.
 	/// </summary>
-	internal int CellIndex { get; init; }
+	internal Cell CellIndex { get; init; }
 
 
 	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e) => BasePane.SelectedCell = CellIndex;
@@ -62,7 +62,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 			return;
 		}
 
-		if (!int.TryParse(text, out var originalDigit)
+		if (!Digit.TryParse(text, out var originalDigit)
 			|| originalDigit - 1 is not (var digit and >= 0 and < 9)
 			|| modified.GetStatus(cell) != CellStatus.Empty
 			|| (modified.GetCandidates(cell) >> digit & 1) == 0)
@@ -83,7 +83,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 			return;
 		}
 
-		if (!int.TryParse(text, out var originalDigit)
+		if (!Digit.TryParse(text, out var originalDigit)
 			|| originalDigit - 1 is not (var digit and >= 0 and < 9)
 			|| modified.GetStatus(cell) != CellStatus.Empty
 			|| (modified.GetCandidates(cell) >> digit & 1) == 0)
@@ -111,7 +111,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 			return;
 		}
 
-		if (!int.TryParse(text, out var originalDigit) || originalDigit - 1 is not (var digit and >= 0 and < 9))
+		if (!Digit.TryParse(text, out var originalDigit) || originalDigit - 1 is not (var digit and >= 0 and < 9))
 		{
 			return;
 		}
