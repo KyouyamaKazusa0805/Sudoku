@@ -13,7 +13,7 @@
 public sealed partial class SueDeCoqStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override unsafe Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
 	{
 		// A valid SdC needs at least 4 cells like:
 		//

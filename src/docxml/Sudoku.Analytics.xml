@@ -80,14 +80,14 @@
             <summary>
             Indicates whether the solver will apply all found steps in a step searcher,
             in order to solve a puzzle faster. If the value is <see langword="true"/>,
-            the third argument of <see cref="M:Sudoku.Analytics.StepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)"/>
+            the third argument of <see cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)"/>
             will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
             and all steps will be applied at the same time.
             </summary>
             <remarks>
             The default value is <see langword="false"/>.
             </remarks>
-            <seealso cref="M:Sudoku.Analytics.StepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)"/>
+            <seealso cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)"/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.IgnoreSlowAlgorithms">
             <summary>
@@ -3191,13 +3191,13 @@
             <summary>
             <para>
             Indicates the technique searcher can or can't be used in some scenarios
-            where they aren't in traversing mode to call <see cref="M:Sudoku.Analytics.StepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)"/>
+            where they aren't in traversing mode to call <see cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)"/>
             in <see cref="T:Sudoku.Analytics.StepSearcher"/>s one by one.
             </para>
             <para>
             If <see langword="true"/>, the searcher can't use those <see langword="static"/>
             fields such as <see cref="F:Sudoku.Analytics.Buffers.CachedFields.CandidatesMap"/> in its method
-            <see cref="M:Sudoku.Analytics.StepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)"/>.
+            <see cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)"/>.
             </para>
             </summary>
             <remarks>
@@ -5036,9 +5036,9 @@ result ^= expression;
             </summary>
             <returns>Real name of this instance.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <summary>
-            Try to search for <see cref="T:Sudoku.Analytics.Step"/> results for the current technique rule.
+            Try to collect all available <see cref="T:Sudoku.Analytics.Step"/>s using the current technique rule.
             </summary>
             <param name="context">
             <para>
@@ -5150,7 +5150,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.Cached">
@@ -5178,7 +5178,7 @@ result ^= expression;
             Indicates whether two ALSes make an collision, which means they share the some same cells. 
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXyWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXyWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher">
@@ -5203,7 +5203,7 @@ result ^= expression;
             for looped-ALS eliminations.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc />
             <remarks>
             <developer-notes>
@@ -5228,7 +5228,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher">
@@ -5503,7 +5503,7 @@ result ^= expression;
             or even branches over branches (recursively). It will be very useful on complex inferences.
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.GetAll(Sudoku.Concepts.Grid@)">
@@ -5638,7 +5638,7 @@ result ^= expression;
             One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.IsParent(Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode)">
@@ -5763,22 +5763,22 @@ result ^= expression;
             to search for all true candidates no matter how difficult searching.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckForTrueCandidateTypes(Sudoku.Analytics.AnalysisContext@)">
             <summary>
             Check for types that uses true candidates.
             </summary>
-            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
-            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckForFalseCandidateTypes(Sudoku.Analytics.AnalysisContext@)">
             <summary>
             Check for types that uses false candidates.
             </summary>
-            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
-            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
             <summary>
@@ -5877,7 +5877,7 @@ result ^= expression;
 		</summary>
 	</static-constructor>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.BorescoperDeadlyPattern,System.Boolean,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
@@ -5948,7 +5948,7 @@ result ^= expression;
 		</summary>
 	</static-constructor>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean)">
@@ -6035,7 +6035,7 @@ result ^= expression;
 		</summary>
 	</static-constructor>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Patterns.QiuDeadlyPattern@,System.Int16,System.Int16,System.Boolean)">
@@ -6074,7 +6074,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
@@ -6089,7 +6089,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32[])">
@@ -6197,7 +6197,7 @@ result ^= expression;
 		</summary>
 	</static-constructor>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,System.Int16)">
@@ -6285,7 +6285,7 @@ result ^= expression;
             The basic types are type 1 to type 6, all other types are extended ones.
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Boolean)">
@@ -6987,7 +6987,7 @@ result ^= expression;
             Indicates whether the searcher will find advanced eliminations.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.CheckTargetCells(System.Int32,System.Int32,System.Int16,Sudoku.Concepts.Grid@,System.Int16@)">
@@ -7027,7 +7027,7 @@ result ^= expression;
             Indicates whether the searcher will find advanced eliminations.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SeniorExocetStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SeniorExocetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher">
@@ -7063,7 +7063,7 @@ result ^= expression;
             The default value is 3.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.ComplexFishStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean)">
@@ -7119,7 +7119,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Int32,System.Int32**,System.Int32**,System.Boolean,System.Boolean,System.Boolean)">
@@ -7165,14 +7165,14 @@ result ^= expression;
             Indicates whether the user checks the almost locked quadruple.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
              <summary>
-             <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/summary"/>
+             <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/summary"/>
              </summary>
-             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
              <param name="size">The size.</param>
              <param name="baseSet">The base set.</param>
              <param name="coverSet">The cover set.</param>
@@ -7239,7 +7239,7 @@ result ^= expression;
 		</summary>
 	</static-constructor>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.CheckPairType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.Patterns.Firework@,System.Int32)">
@@ -7287,7 +7287,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc />
             <remarks>
             <developer-notes>
@@ -7351,19 +7351,19 @@ result ^= expression;
             The default value is 32.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.BowmanBingoStep},Sudoku.Concepts.Grid@,System.Boolean,System.Int32,System.Int32)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/summary"/>
             </summary>
             <param name="result">The accumulator instance to gather the result.</param>
             <param name="grid">The sudoku grid to be checked.</param>
             <param name="onlyFindOne"><inheritdoc cref="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne"/></param>
             <param name="startCand">The start candidate to be assumed.</param>
             <param name="length">The whole length to be searched.</param>
-            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.GetLinks">
             <summary>
@@ -7407,7 +7407,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.PatternOverlayStepSearcher">
@@ -7424,7 +7424,7 @@ result ^= expression;
             The pre-defined template cell maps.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.PatternOverlayStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.PatternOverlayStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.PatternOverlayStepSearcher.GetInvalidPos(Sudoku.Concepts.Grid@)">
@@ -7455,7 +7455,7 @@ result ^= expression;
             Indicates whether the technique searcher only checks template deletes.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher">
@@ -7472,7 +7472,7 @@ result ^= expression;
             Indicates the maximum searching size. This value must be greater than 2 and less than 5.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.IsRelavent(System.Int32[],System.Collections.Generic.List{Sudoku.Analytics.Conclusion},System.Int32[])">
@@ -7513,7 +7513,7 @@ result ^= expression;
             <para><i>A Remote Pair is a XY-Chain that only uses two digits.</i></para>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Steps.BivalueOddagonStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
@@ -7600,7 +7600,7 @@ result ^= expression;
 		</summary>
 	</static-constructor>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.CheckType1(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.CellMap@,System.Int32[])">
@@ -7644,7 +7644,7 @@ result ^= expression;
             Indicates the base searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.Cached">
@@ -7700,7 +7700,7 @@ result ^= expression;
 		</summary>
 	</static-constructor>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher">
@@ -7730,7 +7730,7 @@ result ^= expression;
 		</summary>
 	</static-constructor>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.SueDeCoq3DimensionStepSearcher">
@@ -7742,7 +7742,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SueDeCoq3DimensionStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SueDeCoq3DimensionStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.SueDeCoqStepSearcher">
@@ -7756,7 +7756,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SueDeCoqStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SueDeCoqStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.EmptyRectangleStepSearcher">
@@ -7768,7 +7768,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher">
@@ -7782,7 +7782,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher">
@@ -7820,22 +7820,22 @@ result ^= expression;
             <see href="https://sunnieshine.github.io/Sudoku/terms/ittouryu-puzzle">this link</see>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll_IttoryuMode(Sudoku.Analytics.AnalysisContext@)">
             <summary>
             Checks for single steps using ittoryu mode.
             </summary>
-            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
-            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll_NonIttoryuMode(Sudoku.Analytics.AnalysisContext@)">
             <summary>
             Checks for single steps using non-ittoryu mode.
             </summary>
-            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
-            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckForHiddenSingleAndLastDigit(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
             <summary>
@@ -7896,7 +7896,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher">
@@ -7914,7 +7914,7 @@ result ^= expression;
             The methods.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.RecordHighlightCells(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Nullable{System.Int32}[])">
@@ -7955,7 +7955,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultiBranchWWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultiBranchWWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.WWingStepSearcher">
@@ -7967,7 +7967,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.WWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.WWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher">
@@ -7991,7 +7991,7 @@ result ^= expression;
             Indicates the maximum number of pivots to be searched for. The default value is 3.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.GetAll(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AlmostLockedSetsStep">

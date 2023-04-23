@@ -107,7 +107,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var currentJe in Patterns)

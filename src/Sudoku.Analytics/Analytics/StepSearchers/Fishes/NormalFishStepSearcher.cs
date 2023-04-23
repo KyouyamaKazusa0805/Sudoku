@@ -38,7 +38,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class NormalFishStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override unsafe Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
 	{
 		var r = stackalloc int*[9];
 		var c = stackalloc int*[9];

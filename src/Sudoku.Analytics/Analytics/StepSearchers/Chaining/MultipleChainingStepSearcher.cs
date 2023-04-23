@@ -75,7 +75,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal sealed override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal sealed override Step? Collect(scoped ref AnalysisContext context)
 	{
 		// TODO: Implement an implications cache.
 

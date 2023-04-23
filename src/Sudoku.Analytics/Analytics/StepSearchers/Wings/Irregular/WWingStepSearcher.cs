@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class WWingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		// The grid with possible W-Wing structure should contain at least two empty cells (start and end cell).
 		if (BivalueCells.Count < 2)

@@ -192,7 +192,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		if (EmptyCells.Count < 7)
 		{

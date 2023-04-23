@@ -68,7 +68,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		var list = new List<UniqueRectangleStep>();
 

@@ -18,7 +18,7 @@ public sealed partial class TemplateStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		// Iterate on each digit.
 		var distributedMapsByDigit = Solution.ValuesMap;

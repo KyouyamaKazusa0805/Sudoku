@@ -19,7 +19,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		for (var size = 2; size <= (CheckAlmostLockedQuadruple ? 4 : 3); size++)
 		{
@@ -43,9 +43,9 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// <inheritdoc cref="GetAll(ref AnalysisContext)" path="/summary"/>
+	/// <inheritdoc cref="Collect(ref AnalysisContext)" path="/summary"/>
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="GetAll(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="size">The size.</param>
 	/// <param name="baseSet">The base set.</param>
 	/// <param name="coverSet">The cover set.</param>

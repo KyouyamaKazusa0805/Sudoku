@@ -17,7 +17,7 @@ public sealed partial class SeniorExocetStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		// TODO: Re-implement SE.
 		return null;

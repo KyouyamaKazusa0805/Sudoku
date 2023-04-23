@@ -11,7 +11,7 @@
 public sealed partial class BruteForceStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		if (Solution.IsUndefined)
 		{

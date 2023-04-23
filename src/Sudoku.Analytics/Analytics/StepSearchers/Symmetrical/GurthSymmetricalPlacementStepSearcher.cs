@@ -18,7 +18,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		for (var i = 0; i < 3; i++)

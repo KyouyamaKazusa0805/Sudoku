@@ -44,7 +44,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 	/// all possible location where may form a locked candidate.
 	/// </para>
 	/// </remarks>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		var housesMask = (Mask)0;
 		scoped ref readonly var grid = ref context.Grid;

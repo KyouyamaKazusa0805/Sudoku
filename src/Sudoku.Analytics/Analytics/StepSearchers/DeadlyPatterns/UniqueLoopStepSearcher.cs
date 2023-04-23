@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class UniqueLoopStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		if (BivalueCells.Count < 5)
 		{

@@ -86,7 +86,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		if (EmptyCells.Count < 12)
 		{

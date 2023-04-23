@@ -81,7 +81,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override unsafe Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
 	{
 		var pairs = stackalloc Mask[8];
 		var tempLink = stackalloc Mask[8];

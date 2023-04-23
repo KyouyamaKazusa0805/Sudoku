@@ -11,7 +11,7 @@
 public sealed partial class MultiBranchWWingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		// Iterates on each digit.
 		scoped ref readonly var grid = ref context.Grid;

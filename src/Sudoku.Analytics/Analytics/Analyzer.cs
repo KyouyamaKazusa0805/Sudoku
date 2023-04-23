@@ -18,14 +18,14 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher,
 	/// in order to solve a puzzle faster. If the value is <see langword="true"/>,
-	/// the third argument of <see cref="StepSearcher.GetAll(ref AnalysisContext)"/>
+	/// the third argument of <see cref="StepSearcher.Collect(ref AnalysisContext)"/>
 	/// will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
 	/// and all steps will be applied at the same time.
 	/// </summary>
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
-	/// <seealso cref="StepSearcher.GetAll(ref AnalysisContext)"/>
+	/// <seealso cref="StepSearcher.Collect(ref AnalysisContext)"/>
 	public bool IsFullApplying { get; set; }
 
 	/// <summary>
@@ -155,7 +155,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 					{
 						var accumulator = new List<Step>();
 						scoped var context = new AnalysisContext(accumulator, playground, false);
-						searcher.GetAll(ref context);
+						searcher.Collect(ref context);
 						if (accumulator.Count == 0)
 						{
 							continue;
@@ -185,7 +185,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 					default:
 					{
 						scoped var context = new AnalysisContext(null, playground, true);
-						switch (searcher.GetAll(ref context))
+						switch (searcher.Collect(ref context))
 						{
 							case null:
 							{

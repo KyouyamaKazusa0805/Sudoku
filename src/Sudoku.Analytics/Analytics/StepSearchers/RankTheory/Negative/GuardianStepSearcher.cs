@@ -17,7 +17,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		// Check POM eliminations first.
 		scoped ref readonly var grid = ref context.Grid;
@@ -26,7 +26,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 
 		var pomSteps = new List<Step>();
 		scoped var pomContext = new AnalysisContext(pomSteps, grid, false);
-		ElimsSearcher.GetAll(ref pomContext);
+		ElimsSearcher.Collect(ref pomContext);
 
 		foreach (var step in pomSteps.Cast<PatternOverlayStep>())
 		{

@@ -157,7 +157,7 @@ public abstract partial class StepSearcher(
 	public sealed override string ToString() => R[$"StepSearcherName_{TypeName}"] ?? TypeName;
 
 	/// <summary>
-	/// Try to search for <see cref="Step"/> results for the current technique rule.
+	/// Try to collect all available <see cref="Step"/>s using the current technique rule.
 	/// </summary>
 	/// <param name="context">
 	/// <para>
@@ -192,7 +192,7 @@ public abstract partial class StepSearcher(
 	/// </returns>
 	/// <seealso cref="Step"/>
 	/// <seealso cref="AnalysisContext"/>
-	protected internal abstract Step? GetAll(scoped ref AnalysisContext context);
+	protected internal abstract Step? Collect(scoped ref AnalysisContext context);
 
 
 	/// <inheritdoc/>

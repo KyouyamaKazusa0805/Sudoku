@@ -11,7 +11,7 @@
 public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		for (var digit = 0; digit < 9; digit++)

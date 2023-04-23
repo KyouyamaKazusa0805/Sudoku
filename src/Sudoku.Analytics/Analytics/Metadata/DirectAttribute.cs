@@ -3,13 +3,13 @@
 /// <summary>
 /// <para>
 /// Indicates the technique searcher can or can't be used in some scenarios
-/// where they aren't in traversing mode to call <see cref="StepSearcher.GetAll(ref AnalysisContext)"/>
+/// where they aren't in traversing mode to call <see cref="StepSearcher.Collect(ref AnalysisContext)"/>
 /// in <see cref="StepSearcher"/>s one by one.
 /// </para>
 /// <para>
 /// If <see langword="true"/>, the searcher can't use those <see langword="static"/>
 /// fields such as <see cref="CandidatesMap"/> in its method
-/// <see cref="StepSearcher.GetAll(ref AnalysisContext)"/>.
+/// <see cref="StepSearcher.Collect(ref AnalysisContext)"/>.
 /// </para>
 /// </summary>
 /// <remarks>

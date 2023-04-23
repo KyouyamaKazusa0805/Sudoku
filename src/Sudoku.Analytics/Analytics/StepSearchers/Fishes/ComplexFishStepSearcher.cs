@@ -37,7 +37,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 
@@ -468,7 +468,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	{
 		var tempList = new List<Step>();
 		scoped var context = new AnalysisContext(tempList, grid, false);
-		ElimsSearcher.GetAll(ref context);
+		ElimsSearcher.Collect(ref context);
 
 		var result = new CellMap[9];
 		foreach (PatternOverlayStep step in tempList)

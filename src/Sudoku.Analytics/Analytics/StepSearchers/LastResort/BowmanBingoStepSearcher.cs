@@ -30,7 +30,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		var tempAccumulator = new List<BowmanBingoStep>();
 		scoped ref readonly var grid = ref context.Grid;
@@ -86,18 +86,18 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// <inheritdoc cref="GetAll(ref AnalysisContext)" path="/summary"/>
+	/// <inheritdoc cref="Collect(ref AnalysisContext)" path="/summary"/>
 	/// </summary>
 	/// <param name="result">The accumulator instance to gather the result.</param>
 	/// <param name="grid">The sudoku grid to be checked.</param>
 	/// <param name="onlyFindOne"><inheritdoc cref="AnalysisContext.OnlyFindOne"/></param>
 	/// <param name="startCand">The start candidate to be assumed.</param>
 	/// <param name="length">The whole length to be searched.</param>
-	/// <returns><inheritdoc cref="GetAll(ref AnalysisContext)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private Step? GetAll(ICollection<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, int startCand, int length)
 	{
 		scoped var context = new AnalysisContext(null, grid, true);
-		if (length == 0 || SinglesSearcher.GetAll(ref context) is not SingleStep singleInfo)
+		if (length == 0 || SinglesSearcher.Collect(ref context) is not SingleStep singleInfo)
 		{
 			// Two cases we don't need to go on.
 			// Case 1: The variable 'length' is 0.

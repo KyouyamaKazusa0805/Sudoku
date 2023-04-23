@@ -38,14 +38,14 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 		=> UseIttoryuMode ? GetAll_IttoryuMode(ref context) : GetAll_NonIttoryuMode(ref context);
 
 	/// <summary>
 	/// Checks for single steps using ittoryu mode.
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="GetAll(ref AnalysisContext)" path="/param[@name='context']"/></param>
-	/// <returns><inheritdoc cref="GetAll(ref AnalysisContext)" path="/returns"/></returns>
+	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private Step? GetAll_IttoryuMode(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
@@ -156,8 +156,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Checks for single steps using non-ittoryu mode.
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="GetAll(ref AnalysisContext)" path="/param[@name='context']"/></param>
-	/// <returns><inheritdoc cref="GetAll(ref AnalysisContext)" path="/returns"/></returns>
+	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private Step? GetAll_NonIttoryuMode(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;

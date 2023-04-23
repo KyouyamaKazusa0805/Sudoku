@@ -34,7 +34,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		if (CheckForTrueCandidateTypes(ref context) is { } trueCandidateTypeFirstFoundStep)
 		{
@@ -51,8 +51,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for types that uses true candidates.
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="GetAll(ref AnalysisContext)" path="/param[@name='context']"/></param>
-	/// <returns><inheritdoc cref="GetAll(ref AnalysisContext)" path="/returns"/></returns>
+	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private Step? CheckForTrueCandidateTypes(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
@@ -129,8 +129,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for types that uses false candidates.
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="GetAll(ref AnalysisContext)" path="/param[@name='context']"/></param>
-	/// <returns><inheritdoc cref="GetAll(ref AnalysisContext)" path="/returns"/></returns>
+	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private Step? CheckForFalseCandidateTypes(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;

@@ -34,7 +34,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 	/// will tell you what is it.
 	/// </para>
 	/// </remarks>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var house = (stackalloc int[2]);

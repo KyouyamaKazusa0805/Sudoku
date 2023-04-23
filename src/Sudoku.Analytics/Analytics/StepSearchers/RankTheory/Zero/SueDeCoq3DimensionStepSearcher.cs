@@ -11,7 +11,7 @@
 public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override unsafe Step? GetAll(ref AnalysisContext context)
+	protected internal override unsafe Step? Collect(ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		using scoped var rbList = new ValueList<CellMap>(3);

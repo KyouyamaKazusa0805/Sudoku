@@ -67,7 +67,7 @@ public sealed class Gatherer
 					// Searching.
 					var accumulator = new List<Step>();
 					scoped var context = new AnalysisContext(accumulator, puzzle, false);
-					searcher.GetAll(ref context);
+					searcher.Collect(ref context);
 
 					switch (accumulator.Count)
 					{

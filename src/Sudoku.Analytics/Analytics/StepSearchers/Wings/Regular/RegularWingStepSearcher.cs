@@ -24,7 +24,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		// Iterate on the size.
 		// Note that the greatest size is determined by two factors: the size that you specified

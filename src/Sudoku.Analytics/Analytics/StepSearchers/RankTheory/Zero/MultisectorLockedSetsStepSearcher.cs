@@ -68,7 +68,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override unsafe Step? GetAll(scoped ref AnalysisContext context)
+	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped var linkForEachHouse = (stackalloc Mask[27]);
 		scoped var linkForEachDigit = (stackalloc CellMap[9]);
