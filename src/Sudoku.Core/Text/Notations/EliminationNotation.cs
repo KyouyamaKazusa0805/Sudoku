@@ -43,7 +43,8 @@ public sealed class EliminationNotation : ICandidateNotation<EliminationNotation
 		scoped var sb = new StringHandler();
 		foreach (var candidate in candidates)
 		{
-			int cell = candidate / 9, digit = candidate % 9;
+			var cell = candidate / 9;
+			var digit = candidate % 9;
 			sb.Append(digitFirst ? $"{digit + 1}{cell / 9 + 1}{cell % 9 + 1}" : $"{cell / 9 + 1}{cell % 9 + 1}{digit + 1}");
 			sb.Append(separator);
 		}

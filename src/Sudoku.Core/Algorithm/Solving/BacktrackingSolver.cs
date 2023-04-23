@@ -55,7 +55,7 @@ public sealed class BacktrackingSolver : ISolver
 	/// </returns>
 	public bool? Solve(scoped in Grid grid, out Grid result)
 	{
-		var resultArray = default(int[]?);
+		var resultArray = default(Digit[]?);
 		try
 		{
 			var solutionsCount = 0;
@@ -77,7 +77,7 @@ public sealed class BacktrackingSolver : ISolver
 		}
 
 
-		static void solve(scoped ref int solutionsCount, scoped ref int[]? result, int[] gridValues, int finishedCellsCount)
+		static void solve(scoped ref int solutionsCount, scoped ref Digit[]? result, Digit[] gridValues, int finishedCellsCount)
 		{
 			if (finishedCellsCount == 81)
 			{
@@ -90,7 +90,7 @@ public sealed class BacktrackingSolver : ISolver
 				// We should catch the result.
 				// If we use normal assignment, we well get the initial grid rather a solution,
 				// because this is a recursive function.
-				result = (int[])gridValues.Clone();
+				result = (Digit[])gridValues.Clone();
 				return; // Exit the recursion.
 			}
 
@@ -119,7 +119,7 @@ public sealed class BacktrackingSolver : ISolver
 			}
 
 
-			static bool isValid(int[] gridValues, int r, int c)
+			static bool isValid(Digit[] gridValues, int r, int c)
 			{
 				var number = gridValues[r * 9 + c];
 

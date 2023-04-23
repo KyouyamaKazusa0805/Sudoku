@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Defines a formatter that formats a <see cref="CellMap"/>, converting into a <see cref="string"/> of a list of binary value
@@ -26,7 +26,7 @@ public sealed record CellMapBinaryFormat(bool WithSeparator = true) : ICellMapFo
 		var high = cellMap._high;
 
 		var value = low;
-		int i;
+		Cell i;
 		for (i = 0; i < 27; i++, value >>= 1)
 		{
 			sb.Append(value & 1);

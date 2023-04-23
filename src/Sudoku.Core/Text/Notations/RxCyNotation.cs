@@ -33,16 +33,16 @@ public sealed partial class RxCyNotation :
 
 
 	/// <summary>
-	/// Try to parse the specified <see cref="string"/> value, and convert it into the <see cref="int"/>
+	/// Try to parse the specified <see cref="string"/> value, and convert it into the <see cref="Cell"/>
 	/// instance, as the cell value.
 	/// </summary>
 	/// <param name="str">The <see cref="string"/> value.</param>
 	/// <param name="result">
-	/// The <see cref="int"/> result. If the return value is <see langword="false"/>,
+	/// The <see cref="Cell"/> result. If the return value is <see langword="false"/>,
 	/// this argument will be a discard and cannot be used.
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating whether the parsing operation is successful.</returns>
-	public static bool TryParseCell(string str, out int result)
+	public static bool TryParseCell(string str, out Cell result)
 	{
 		(result, var @return) = str.Trim() switch
 		{
@@ -74,7 +74,7 @@ public sealed partial class RxCyNotation :
 	/// <param name="cell">The cell.</param>
 	/// <returns>The <see cref="string"/> representation of a cell.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCellString(int cell) => ToCellsString(CellsMap[cell]);
+	public static string ToCellString(Cell cell) => ToCellsString(CellsMap[cell]);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -98,7 +98,7 @@ public sealed partial class RxCyNotation :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static char columnLabel(bool upperCasing) => upperCasing ? 'C' : 'c';
 
-		static string i(int v) => (v + 1).ToString();
+		static string i(Digit v) => (v + 1).ToString();
 
 		static unsafe string r(scoped in CellMap cells, scoped in RxCyNotationOptions options)
 		{
@@ -201,7 +201,8 @@ public sealed partial class RxCyNotation :
 				}
 
 				// Stores the possible values into the buffer.
-				int rIndex = 0, cIndex = 0;
+				var rIndex = 0;
+				var cIndex = 0;
 				for (var p = anchorR + 1; *p is not ('C' or 'c'); p++, rIndex++)
 				{
 					bufferRows[rIndex] = *p - '1';
@@ -275,7 +276,7 @@ public sealed partial class RxCyNotation :
 	/// <param name="candidate">The candidate.</param>
 	/// <returns>The <see cref="string"/> representation of a candidate.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCandidateString(int candidate) => $"{ToCellString(candidate / 9)}({candidate % 9 + 1})";
+	public static string ToCandidateString(Candidate candidate) => $"{ToCellString(candidate / 9)}({candidate % 9 + 1})";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -292,7 +293,7 @@ public sealed partial class RxCyNotation :
 		};
 
 
-		static string f(int[] offsets, scoped in RxCyNotationOptions options)
+		static string f(Candidate[] offsets, scoped in RxCyNotationOptions options)
 		{
 			scoped var sb = new StringHandler(50);
 

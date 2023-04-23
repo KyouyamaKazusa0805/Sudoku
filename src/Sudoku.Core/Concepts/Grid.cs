@@ -10,13 +10,13 @@ namespace Sudoku.Concepts;
 [JsonConverter(typeof(Converter))]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 public unsafe partial struct Grid :
-	IEnumerable<int>,
+	IEnumerable<Candidate>,
 	IEqualityOperators<Grid, Grid, bool>,
 	IFormattable,
 	IMinMaxValue<Grid>,
 	IParsable<Grid>,
-	IReadOnlyCollection<int>,
-	IReadOnlyList<int>,
+	IReadOnlyCollection<Digit>,
+	IReadOnlyList<Digit>,
 	ISimpleFormattable,
 	ISimpleParsable<Grid>
 {
@@ -161,7 +161,7 @@ public unsafe partial struct Grid :
 	/// <exception cref="ArgumentNullRefException">
 	/// Throws when the argument <paramref name="firstElement"/> is <see langword="null"/> reference.
 	/// </exception>
-	private Grid(scoped in int firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
+	private Grid(scoped in Digit firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
 		ArgumentNullRefException.ThrowIfNullRef(ref AsRef(firstElement));
 
@@ -172,7 +172,7 @@ public unsafe partial struct Grid :
 		var minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
 		for (var i = 0; i < 81; i++)
 		{
-			var value = AddByteOffset(ref AsRef(firstElement), (nuint)(i * sizeof(int)));
+			var value = AddByteOffset(ref AsRef(firstElement), (nuint)(i * sizeof(Digit)));
 			if ((minusOneEnabled ? value - 1 : value) is var realValue and not -1)
 			{
 				// Calls the indexer to trigger the event (Clear the candidates in peer cells).
@@ -227,7 +227,7 @@ public unsafe partial struct Grid :
 			}
 		}
 
-		static void onValueChanged(ref Grid @this, int cell, Mask oldMask, Mask newMask, int setValue)
+		static void onValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
 		{
 			if (setValue != -1)
 			{
@@ -411,7 +411,7 @@ public unsafe partial struct Grid :
 			return GetMap(&p);
 
 
-			static bool p(in Grid g, int cell) => g.GetStatus(cell) == CellStatus.Given;
+			static bool p(in Grid g, Cell cell) => g.GetStatus(cell) == CellStatus.Given;
 		}
 	}
 
@@ -426,7 +426,7 @@ public unsafe partial struct Grid :
 			return GetMap(&p);
 
 
-			static bool p(in Grid g, int cell) => g.GetStatus(cell) == CellStatus.Modifiable;
+			static bool p(in Grid g, Cell cell) => g.GetStatus(cell) == CellStatus.Modifiable;
 		}
 	}
 
@@ -441,7 +441,7 @@ public unsafe partial struct Grid :
 			return GetMap(&p);
 
 
-			static bool p(in Grid g, int cell) => g.GetStatus(cell) == CellStatus.Empty;
+			static bool p(in Grid g, Cell cell) => g.GetStatus(cell) == CellStatus.Empty;
 		}
 	}
 
@@ -456,7 +456,7 @@ public unsafe partial struct Grid :
 			return GetMap(&p);
 
 
-			static bool p(in Grid g, int cell) => PopCount((uint)g.GetCandidates(cell)) == 2;
+			static bool p(in Grid g, Cell cell) => PopCount((uint)g.GetCandidates(cell)) == 2;
 		}
 	}
 
@@ -472,7 +472,7 @@ public unsafe partial struct Grid :
 			return GetMaps(&p);
 
 
-			static bool p(in Grid g, int cell, int digit) => g.Exists(cell, digit) is true;
+			static bool p(in Grid g, Cell cell, Digit digit) => g.Exists(cell, digit) is true;
 		}
 	}
 
@@ -495,7 +495,7 @@ public unsafe partial struct Grid :
 			return GetMaps(&p);
 
 
-			static bool p(in Grid g, int cell, int digit) => (g.GetCandidates(cell) >> digit & 1) != 0;
+			static bool p(in Grid g, Cell cell, Digit digit) => (g.GetCandidates(cell) >> digit & 1) != 0;
 		}
 	}
 
@@ -518,7 +518,7 @@ public unsafe partial struct Grid :
 			return GetMaps(&p);
 
 
-			static bool p(in Grid g, int cell, int digit) => g[cell] == digit;
+			static bool p(in Grid g, Cell cell, Digit digit) => g[cell] == digit;
 		}
 	}
 
@@ -582,7 +582,7 @@ public unsafe partial struct Grid :
 	}
 
 	/// <inheritdoc/>
-	readonly int IReadOnlyCollection<int>.Count => 81;
+	readonly int IReadOnlyCollection<Digit>.Count => 81;
 
 	/// <inheritdoc/>
 	static Grid IMinMaxValue<Grid>.MinValue => MinValue;
@@ -592,11 +592,11 @@ public unsafe partial struct Grid :
 
 
 	/// <summary>
-	/// Gets a list of <see cref="int"/> values that are created via raw usages from <see cref="this[int]"/>.
+	/// Gets a list of <see cref="Digit"/> values that are created via raw usages from <see cref="this[Cell]"/>.
 	/// </summary>
 	/// <param name="cells">The cell indices.</param>
 	/// <returns>A list of digits selected.</returns>
-	public readonly int[] this[scoped in CellMap cells]
+	public readonly Digit[] this[scoped in CellMap cells]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -637,7 +637,7 @@ public unsafe partial struct Grid :
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the specified cell keeps a wrong cell status value. For example, <see cref="CellStatus.Undefined"/>.
 	/// </exception>
-	public int this[int cell]
+	public Digit this[Cell cell]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		readonly get => GetStatus(cell) switch
@@ -689,7 +689,7 @@ public unsafe partial struct Grid :
 	/// doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
 	/// </value>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public bool this[int cell, int digit]
+	public bool this[Cell cell, Digit digit]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		readonly get => (_values[cell] >> digit & 1) != 0;
@@ -986,7 +986,7 @@ public unsafe partial struct Grid :
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public readonly bool DuplicateWith(int cell, int digit)
+	public readonly bool DuplicateWith(Cell cell, Digit digit)
 	{
 		foreach (var tempCell in Peers[cell])
 		{
@@ -1066,7 +1066,7 @@ public unsafe partial struct Grid :
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
-	public readonly bool CheckMinimal(out int firstCandidateMakePuzzleNotMinimal)
+	public readonly bool CheckMinimal(out Candidate firstCandidateMakePuzzleNotMinimal)
 	{
 		switch (this)
 		{
@@ -1109,10 +1109,10 @@ public unsafe partial struct Grid :
 	/// Indicates whether the current grid contains the specified candidate offset.
 	/// </summary>
 	/// <param name="candidate">The candidate offset.</param>
-	/// <returns><inheritdoc cref="Exists(int, int)" path="/returns"/></returns>
-	/// <remarks><inheritdoc cref="Exists(int, int)" path="/remarks"/></remarks>
+	/// <returns><inheritdoc cref="Exists(Cell, Digit)" path="/returns"/></returns>
+	/// <remarks><inheritdoc cref="Exists(Cell, Digit)" path="/remarks"/></remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool? Exists(int candidate) => Exists(candidate / 9, candidate % 9);
+	public readonly bool? Exists(Candidate candidate) => Exists(candidate / 9, candidate % 9);
 
 	/// <summary>
 	/// Indicates whether the current grid contains the digit in the specified cell.
@@ -1154,13 +1154,13 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// <para>
 	/// In addition, because the type is <see cref="bool"/>? rather than <see cref="bool"/>,
-	/// the result case will be more precisely than the indexer <see cref="this[int, int]"/>,
+	/// the result case will be more precisely than the indexer <see cref="this[Cell, Digit]"/>,
 	/// which is the main difference between this method and that indexer.
 	/// </para>
 	/// </remarks>
-	/// <seealso cref="this[int, int]"/>
+	/// <seealso cref="this[Cell, Digit]"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool? Exists(int cell, int digit) => GetStatus(cell) == CellStatus.Empty ? this[cell, digit] : null;
+	public readonly bool? Exists(Cell cell, Digit digit) => GetStatus(cell) == CellStatus.Empty ? this[cell, digit] : null;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1173,9 +1173,9 @@ public unsafe partial struct Grid :
 	/// <returns>
 	/// This array. All elements are between 0 and 9, where 0 means the cell is <see cref="CellStatus.Empty"/> now.
 	/// </returns>
-	public readonly int[] ToArray()
+	public readonly Digit[] ToArray()
 	{
-		var result = new int[81];
+		var result = new Digit[81];
 		for (var i = 0; i < 81; i++)
 		{
 			// 'this[i]' is always between -1 and 8 (-1 is empty, and 0 to 8 is 1 to 9 for human representation).
@@ -1188,10 +1188,10 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Get a mask at the specified cell.
 	/// </summary>
-	/// <param name="offset">The cell offset you want to get.</param>
+	/// <param name="cell">The cell you want to get.</param>
 	/// <returns>The mask.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Mask GetMask(int offset) => _values[offset];
+	public readonly Mask GetMask(Cell cell) => _values[cell];
 
 	/// <summary>
 	/// Get the candidate mask part of the specified cell.
@@ -1218,10 +1218,10 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Mask GetCandidates(int cell) => (Mask)(_values[cell] & MaxCandidatesMask);
+	public readonly Mask GetCandidates(Cell cell) => (Mask)(_values[cell] & MaxCandidatesMask);
 
 	/// <inheritdoc cref="GetDigitsUnion(in CellMap)"/>
-	public readonly Mask GetDigitsUnion(int[] cells)
+	public readonly Mask GetDigitsUnion(Cell[] cells)
 	{
 		var result = (Mask)0;
 		for (var i = 0; i < cells.Length; i++)
@@ -1362,7 +1362,12 @@ public unsafe partial struct Grid :
 	/// <seealso cref="ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(IGridFormatter gridFormatter)
-		=> this switch { { IsUndefined: true } => $"<{nameof(Undefined)}>", { IsEmpty: true } => $"<{nameof(Empty)}>", _ => gridFormatter.ToString(this) };
+		=> this switch
+		{
+			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
+			{ IsEmpty: true } => $"<{nameof(Empty)}>",
+			_ => gridFormatter.ToString(this)
+		};
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1386,7 +1391,7 @@ public unsafe partial struct Grid :
 	/// <param name="cell">The cell.</param>
 	/// <returns>The cell status.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CellStatus GetStatus(int cell) => MaskToStatus(_values[cell]);
+	public readonly CellStatus GetStatus(Cell cell) => MaskToStatus(_values[cell]);
 
 	/// <summary>
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
@@ -1444,7 +1449,7 @@ public unsafe partial struct Grid :
 	/// <returns>
 	/// An array of <typeparamref name="TResult"/> elements converted.
 	/// </returns>
-	public readonly TResult[] Select<TResult>(Func<int, TResult> selector)
+	public readonly TResult[] Select<TResult>(Func<Candidate, TResult> selector)
 	{
 		var result = new TResult[81];
 		var i = 0;
@@ -1504,7 +1509,7 @@ public unsafe partial struct Grid :
 	/// <param name="cell">The cell.</param>
 	/// <param name="status">The status.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetStatus(int cell, CellStatus status)
+	public void SetStatus(Cell cell, CellStatus status)
 	{
 		scoped ref var mask = ref _values[cell];
 		var copied = mask;
@@ -1519,7 +1524,7 @@ public unsafe partial struct Grid :
 	/// <param name="cell">The cell.</param>
 	/// <param name="mask">The mask to set.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetMask(int cell, Mask mask)
+	public void SetMask(Cell cell, Mask mask)
 	{
 		scoped ref var m = ref _values[cell];
 		var copied = m;
@@ -1529,9 +1534,9 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
-	/// Gets the mask at the specified position. This method returns the reference of the mask.
+	/// Gets the mask at the specified cell. This method returns the reference of the mask.
 	/// </summary>
-	/// <param name="index">The desired index.</param>
+	/// <param name="cell">The desired cell.</param>
 	/// <returns>The reference to the mask that you want to get.</returns>
 	/// <remarks>
 	/// This method returns the reference, which means you can use this method as an l-value.
@@ -1549,7 +1554,7 @@ public unsafe partial struct Grid :
 	/// <seealso cref="GetPinnableReference"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
-	public ref Mask GetMaskRef(int index) => ref _values[index];
+	public ref Mask GetMaskRef(Cell cell) => ref _values[cell];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1557,7 +1562,7 @@ public unsafe partial struct Grid :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)ToArray()).GetEnumerator();
+	readonly IEnumerator<Digit> IEnumerable<Digit>.GetEnumerator() => ((IEnumerable<Digit>)ToArray()).GetEnumerator();
 
 	/// <summary>
 	/// Called by properties <see cref="EmptyCells"/> and <see cref="BivalueCells"/>.
@@ -1566,7 +1571,7 @@ public unsafe partial struct Grid :
 	/// <returns>The map.</returns>
 	/// <seealso cref="EmptyCells"/>
 	/// <seealso cref="BivalueCells"/>
-	private readonly CellMap GetMap(delegate*<in Grid, int, bool> predicate)
+	private readonly CellMap GetMap(delegate*<in Grid, Cell, bool> predicate)
 	{
 		var result = CellMap.Empty;
 		for (var cell = 0; cell < 81; cell++)
@@ -1588,7 +1593,7 @@ public unsafe partial struct Grid :
 	/// <seealso cref="CandidatesMap"/>
 	/// <seealso cref="DigitsMap"/>
 	/// <seealso cref="ValuesMap"/>
-	private readonly CellMap[] GetMaps(delegate*<in Grid, int, int, bool> predicate)
+	private readonly CellMap[] GetMaps(delegate*<in Grid, Cell, Digit, bool> predicate)
 	{
 		var result = new CellMap[9];
 		for (var digit = 0; digit < 9; digit++)
@@ -1629,7 +1634,7 @@ public unsafe partial struct Grid :
 	/// <param name="gridValues">The array of grid values.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Create(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
+	public static Grid Create(Digit[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
 		=> new(gridValues[0], creatingOption);
 
 	/// <summary>
@@ -1655,7 +1660,7 @@ public unsafe partial struct Grid :
 	/// <param name="gridValues">The list of cell digits.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Create(scoped ReadOnlySpan<int> gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
+	public static Grid Create(scoped ReadOnlySpan<Digit> gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
 		=> new(gridValues[0], creatingOption);
 
 	/// <inheritdoc/>

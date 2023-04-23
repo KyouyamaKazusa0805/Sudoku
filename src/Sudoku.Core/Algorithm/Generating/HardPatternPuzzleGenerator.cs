@@ -34,7 +34,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	{
 		var puzzle = stackalloc char[81];
 		var solution = stackalloc char[81];
-		var holeCells = stackalloc int[81];
+		var holeCells = stackalloc Cell[81];
 		while (true)
 		{
 			fixed (char* pEmptyString = Grid.EmptyString)
@@ -45,7 +45,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 
 			GenerateAnswerGrid(puzzle, solution);
 
-			InitBlock(holeCells, 0, 81 * sizeof(int));
+			InitBlock(holeCells, 0, 81 * sizeof(Cell));
 			CreatePattern(holeCells);
 			for (var trial = 0; trial < 1000; trial++)
 			{
@@ -118,7 +118,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// Creates a start pattern based on a base pattern.
 	/// </summary>
 	/// <param name="pattern">The base pattern.</param>
-	private void CreatePattern(int* pattern)
+	private void CreatePattern(Cell* pattern)
 	{
 		var a = 54;
 		var b = 0;
@@ -141,23 +141,23 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// To re-create the pattern.
 	/// </summary>
 	/// <param name="pattern">The pointer that points to an array of the pattern values.</param>
-	private void RecreatePattern(int* pattern)
+	private void RecreatePattern(Cell* pattern)
 	{
 		for (var i = 23; i >= 0; i--)
 		{
-			PointerOperations.Swap(pattern + i, pattern + (int)((i + 1) * _random.NextDouble()));
+			PointerOperations.Swap(pattern + i, pattern + (Cell)((i + 1) * _random.NextDouble()));
 		}
 		for (var i = 47; i >= 24; i--)
 		{
-			PointerOperations.Swap(pattern + i, pattern + 24 + (int)((i - 23) * _random.NextDouble()));
+			PointerOperations.Swap(pattern + i, pattern + 24 + (Cell)((i - 23) * _random.NextDouble()));
 		}
 		for (var i = 53; i >= 48; i--)
 		{
-			PointerOperations.Swap(pattern + i, pattern + 48 + (int)((i - 47) * _random.NextDouble()));
+			PointerOperations.Swap(pattern + i, pattern + 48 + (Cell)((i - 47) * _random.NextDouble()));
 		}
 		for (var i = 80; i >= 54; i--)
 		{
-			PointerOperations.Swap(pattern + i, pattern + 54 + (int)(27 * _random.NextDouble()));
+			PointerOperations.Swap(pattern + i, pattern + 54 + (Cell)(27 * _random.NextDouble()));
 		}
 	}
 
@@ -168,7 +168,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// <param name="ptrGrid">The pointer that points to a grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private static bool CheckDuplicate(char* ptrGrid, int cell)
+	private static bool CheckDuplicate(char* ptrGrid, Cell cell)
 	{
 		var value = ptrGrid[cell];
 		foreach (var c in Peers[cell])

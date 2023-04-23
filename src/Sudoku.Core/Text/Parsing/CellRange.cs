@@ -29,7 +29,7 @@ public readonly partial struct CellRange(Mask mask) :
 	/// </list>
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CellRange(int min, int max) :
+	public CellRange(Cell min, Cell max) :
 		this(
 			min <= max
 				? min is >= 0 and < 81
@@ -63,7 +63,7 @@ public readonly partial struct CellRange(Mask mask) :
 
 
 	[DeconstructionMethod]
-	public partial void Deconstruct(out int minValue, out int maxValue);
+	public partial void Deconstruct(out Cell minValue, out Cell maxValue);
 
 	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
@@ -109,11 +109,11 @@ public readonly partial struct CellRange(Mask mask) :
 		}
 
 		return new(
-			string.IsNullOrWhiteSpace(startStr) ? 0 : int.Parse(startStr),
+			string.IsNullOrWhiteSpace(startStr) ? 0 : Cell.Parse(startStr),
 			string.IsNullOrWhiteSpace(endStr)
 				? 81
 				: endStr.Trim() is ['^', .. var otherChars]
-					? int.Parse(otherChars)
+					? Cell.Parse(otherChars)
 					: throw new FormatException("The potential cell index string cannot be parsed as a real index value.")
 		);
 	}

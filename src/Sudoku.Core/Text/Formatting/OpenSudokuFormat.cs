@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Represents with OpenSudoku formatter.
@@ -56,7 +56,7 @@ public sealed record OpenSudokuFormat : IGridFormatter
 			}
 
 			// Now replace some positions with the specified values.
-			for (int i = 0, pos = 0; i < 81; i++, pos += 6)
+			for (var (i, pos) = (0, 0); i < 81; i++, pos += 6)
 			{
 				switch (grid.GetStatus(i))
 				{

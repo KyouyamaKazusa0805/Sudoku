@@ -27,7 +27,7 @@ namespace Sudoku.Algorithm.Generating;
 /// </remarks>
 public sealed partial class PatternBasedPuzzleGenerator(
 	[DisallowNull][PrimaryConstructorParameter(MemberKinds.Field)] scoped in CellMap? pattern,
-	[PrimaryConstructorParameter(MemberKinds.Field)] int[]? baseCandidates
+	[PrimaryConstructorParameter(MemberKinds.Field)] Candidate[]? baseCandidates
 ) : IPuzzleGenerator
 {
 	/// <summary>
@@ -49,7 +49,7 @@ public sealed partial class PatternBasedPuzzleGenerator(
 	/// <summary>
 	/// Indicates the swapper house starts.
 	/// </summary>
-	private static readonly int[] SwapperHouseStarts = { 9, 12, 15, 18, 21, 24 };
+	private static readonly House[] SwapperHouseStarts = { 9, 12, 15, 18, 21, 24 };
 
 	/// <summary>
 	/// Indicates the swappable factor.
@@ -265,10 +265,10 @@ public sealed partial class PatternBasedPuzzleGenerator(
 	/// <summary>
 	/// Randomize to generate three candidates at different places.
 	/// </summary>
-	/// <returns>A triplet of cells.</returns>
-	private unsafe (int, int, int) RandomizeThreeDigits()
+	/// <returns>A triplet of candidates.</returns>
+	private unsafe (Candidate, Candidate, Candidate) RandomizeThreeDigits()
 	{
-		using scoped var list = new ValueList<int>(3);
+		using scoped var list = new ValueList<Candidate>(3);
 		while (true)
 		{
 			var candidate = _random.Next(729);
@@ -283,15 +283,14 @@ public sealed partial class PatternBasedPuzzleGenerator(
 		}
 
 
-		static bool predicate(int a, int b)
+		static bool predicate(Candidate a, Candidate b)
 			=> a / 9 == b / 9 // Cannot in a same cell.
 			|| PeersMap[a / 9] + b / 9 == PeersMap[a / 9] && a % 9 == b % 9; // Cannot be a same digit in a same house.
 	}
 
 
 	/// <summary>
-	/// Get the cells that is used for swapping via <see cref="SymmetryType.Central"/>,
-	/// and the specified row and column value.
+	/// Get the cells that is used for swapping via <see cref="SymmetryType.Central"/>, and the specified row and column value.
 	/// </summary>
 	/// <param name="row">The row value.</param>
 	/// <param name="column">The column value.</param>

@@ -3,7 +3,7 @@ namespace Sudoku.Text.Formatting;
 /// <summary>
 /// Provides with a formatter that can format a mask that represents for a list of houses.
 /// </summary>
-public abstract class HouseFormatter : ICollectionFormatter<int>
+public abstract class HouseFormatter : ICollectionFormatter<House>
 {
 	/// <exception cref="NotSupportedException"/>
 	[Obsolete("Do not use this constructor", true)]
@@ -101,16 +101,16 @@ public abstract class HouseFormatter : ICollectionFormatter<int>
 	/// <summary>
 	/// <para>
 	/// Gets a <see cref="string"/> value that can describes for a list of houses that is represented
-	/// as a <see cref="ReadOnlySpan{T}"/> of <see cref="int"/> elements.
+	/// as a <see cref="ReadOnlySpan{T}"/> of <see cref="House"/> elements.
 	/// </para>
 	/// <para>
 	/// Although the argument <paramref name="houses"/> is of type <see cref="ReadOnlySpan{T}"/>, you can still
-	/// pass an array of <see cref="int"/> elements as the value.
+	/// pass an array of <see cref="House"/> elements as the value.
 	/// </para>
 	/// </summary>
 	/// <param name="houses">The houses.</param>
 	/// <returns>The <see cref="string"/> result.</returns>
-	public static string Format(scoped ReadOnlySpan<int> houses)
+	public static string Format(scoped ReadOnlySpan<House> houses)
 	{
 		var targetMask = (Mask)0;
 		foreach (var house in houses)
@@ -122,7 +122,7 @@ public abstract class HouseFormatter : ICollectionFormatter<int>
 	}
 
 	/// <inheritdoc/>
-	static string ICollectionFormatter<int>.Format(IEnumerable<int> elements, string separator)
+	static string ICollectionFormatter<House>.Format(IEnumerable<House> elements, string separator)
 	{
 		var targetMask = (Mask)0;
 		foreach (var element in elements)
@@ -134,7 +134,7 @@ public abstract class HouseFormatter : ICollectionFormatter<int>
 	}
 
 	/// <inheritdoc/>
-	static string ICollectionFormatter<int>.Format(IEnumerable<int> elements, FormattingMode formattingMode)
+	static string ICollectionFormatter<House>.Format(IEnumerable<House> elements, FormattingMode formattingMode)
 	{
 		var targetMask = (Mask)0;
 		foreach (var element in elements)
@@ -151,5 +151,5 @@ public abstract class HouseFormatter : ICollectionFormatter<int>
 	/// <param name="houseIndex">The house index.</param>
 	/// <returns>The label.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static char GetLabel(int houseIndex) => houseIndex switch { 0 => 'b', 1 => 'r', 2 => 'c' };
+	private static char GetLabel(House houseIndex) => houseIndex switch { 0 => 'b', 1 => 'r', 2 => 'c' };
 }

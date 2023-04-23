@@ -11,7 +11,7 @@ internal static class UniqueLoopStepSearcherHelper
 	/// </summary>
 	/// <param name="loopPath">The path of the loop.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool IsValidLoop(scoped in ValueList<int> loopPath)
+	public static bool IsValidLoop(scoped in ValueList<Cell> loopPath)
 	{
 		var visitedOdd = 0;
 		var visitedEven = 0;

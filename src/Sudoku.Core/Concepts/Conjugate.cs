@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a <see href="https://sunnieshine.github.io/Sudoku/terms/conjugate-pair">conjugate pair</see>.
@@ -23,7 +23,7 @@ public readonly partial struct Conjugate(int mask) : IEquatable<Conjugate>, IEqu
 	/// <param name="to">The to cell.</param>
 	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conjugate(int from, int to, int digit) : this(digit << 20 | from << 10 | to)
+	public Conjugate(Cell from, Cell to, Digit digit) : this(digit << 20 | from << 10 | to)
 	{
 	}
 
@@ -34,7 +34,7 @@ public readonly partial struct Conjugate(int mask) : IEquatable<Conjugate>, IEqu
 	/// <param name="map">The map.</param>
 	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conjugate(scoped in CellMap map, int digit) : this(map[0], map[1], digit)
+	public Conjugate(scoped in CellMap map, Digit digit) : this(map[0], map[1], digit)
 	{
 	}
 
@@ -42,7 +42,7 @@ public readonly partial struct Conjugate(int mask) : IEquatable<Conjugate>, IEqu
 	/// <summary>
 	/// Indicates the cell that starts with the conjugate pair.
 	/// </summary>
-	public int From
+	public Cell From
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _mask & 1023;
@@ -51,7 +51,7 @@ public readonly partial struct Conjugate(int mask) : IEquatable<Conjugate>, IEqu
 	/// <summary>
 	/// Indicates the cell that ends with the conjugate pair.
 	/// </summary>
-	public int To
+	public Cell To
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _mask >> 10 & 1023;
@@ -60,7 +60,7 @@ public readonly partial struct Conjugate(int mask) : IEquatable<Conjugate>, IEqu
 	/// <summary>
 	/// Indicates the digit used.
 	/// </summary>
-	public int Digit
+	public Digit Digit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _mask >> 20 & 15;
@@ -69,7 +69,7 @@ public readonly partial struct Conjugate(int mask) : IEquatable<Conjugate>, IEqu
 	/// <summary>
 	/// Indicates the line that two cells lie in.
 	/// </summary>
-	public int Line
+	public House Line
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Map.CoveredLine;
@@ -94,13 +94,13 @@ public readonly partial struct Conjugate(int mask) : IEquatable<Conjugate>, IEqu
 		get => CellsMap[From] + To;
 	}
 
-	private int FromCandidate => From * 9 + Digit;
+	private Candidate FromCandidate => From * 9 + Digit;
 
-	private int ToCandidate => To * 9 + Digit;
+	private Candidate ToCandidate => To * 9 + Digit;
 
 
 	[DeconstructionMethod]
-	public partial void Deconstruct([DeconstructionMethodArgument(nameof(FromCandidate))] out int fromCand, [DeconstructionMethodArgument(nameof(ToCandidate))] out int toCand);
+	public partial void Deconstruct([DeconstructionMethodArgument(nameof(FromCandidate))] out Candidate fromCand, [DeconstructionMethodArgument(nameof(ToCandidate))] out Candidate toCand);
 
 	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);

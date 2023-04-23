@@ -31,7 +31,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <param name="type">The conclusion type.</param>
 	/// <param name="candidate">The candidate offset.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conclusion(ConclusionType type, int candidate) : this(((int)type << 10) + candidate)
+	public Conclusion(ConclusionType type, Candidate candidate) : this(((int)type << 10) + candidate)
 	{
 	}
 
@@ -42,7 +42,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conclusion(ConclusionType type, int cell, int digit) : this(((int)type << 10) + cell * 9 + digit)
+	public Conclusion(ConclusionType type, Cell cell, Digit digit) : this(((int)type << 10) + cell * 9 + digit)
 	{
 	}
 
@@ -50,7 +50,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <summary>
 	/// Indicates the cell.
 	/// </summary>
-	public int Cell
+	public Cell Cell
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Candidate / 9;
@@ -59,7 +59,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <summary>
 	/// Indicates the digit.
 	/// </summary>
-	public int Digit
+	public Digit Digit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Candidate % 9;
@@ -68,7 +68,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <summary>
 	/// Indicates the candidate.
 	/// </summary>
-	public int Candidate
+	public Candidate Candidate
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _mask & (1 << 10) - 1;
@@ -89,10 +89,10 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 
 
 	[DeconstructionMethod]
-	public partial void Deconstruct(out ConclusionType conclusionType, out int candidate);
+	public partial void Deconstruct(out ConclusionType conclusionType, out Candidate candidate);
 
 	[DeconstructionMethod]
-	public partial void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit);
+	public partial void Deconstruct(out ConclusionType conclusionType, out Cell cell, out Digit digit);
 
 	/// <summary>
 	/// Put this instance into the specified grid.

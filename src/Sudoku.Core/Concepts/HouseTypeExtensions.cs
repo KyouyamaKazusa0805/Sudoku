@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Provides extension methods on <see cref="HouseType"/>.
@@ -20,13 +20,13 @@ public static class HouseTypeExtensions
 	/// Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void CopyHouseInfo(this int cell, ref int reference)
+	public static void CopyHouseInfo(this Cell cell, ref Cell reference)
 	{
 		ArgumentNullRefException.ThrowIfNullRef(ref reference);
 
 		reference = BlockTable[cell];
-		AddByteOffset(ref reference, sizeof(int)) = RowTable[cell];
-		AddByteOffset(ref reference, 2 * sizeof(int)) = ColumnTable[cell];
+		AddByteOffset(ref reference, sizeof(Cell)) = RowTable[cell];
+		AddByteOffset(ref reference, 2 * sizeof(Cell)) = ColumnTable[cell];
 	}
 
 	/// <summary>
@@ -40,7 +40,7 @@ public static class HouseTypeExtensions
 	/// Throws when the argument <paramref name="houseType"/> is not defined.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int ToHouseIndex(this byte cell, HouseType houseType)
+	public static House ToHouseIndex(this byte cell, HouseType houseType)
 		=> houseType switch
 		{
 			HouseType.Block => BlockTable[cell],
@@ -51,7 +51,7 @@ public static class HouseTypeExtensions
 
 	/// <inheritdoc cref="ToHouseIndex(byte, HouseType)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int ToHouseIndex(this int cell, HouseType houseType)
+	public static House ToHouseIndex(this Cell cell, HouseType houseType)
 		=> houseType switch
 		{
 			HouseType.Block => BlockTable[cell],
@@ -86,5 +86,5 @@ public static class HouseTypeExtensions
 	/// </list>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static HouseType ToHouseType(this int houseIndex) => (HouseType)(houseIndex / 9);
+	public static HouseType ToHouseType(this House houseIndex) => (HouseType)(houseIndex / 9);
 }

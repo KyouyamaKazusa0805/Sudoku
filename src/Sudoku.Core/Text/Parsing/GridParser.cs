@@ -312,7 +312,7 @@ public unsafe ref partial struct GridParser(
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool whenClause(int i, string match, string pattern1, string pattern2)
+		static bool whenClause(Cell i, string match, string pattern1, string pattern2)
 			=> i == 80 * 6 ? match[(i + 1)..(i + 5)] == pattern1 : match[(i + 1)..(i + 6)] == pattern2;
 	}
 
@@ -466,7 +466,8 @@ public unsafe ref partial struct GridParser(
 
 		// Step 1: fills all digits.
 		var result = Grid.Empty;
-		int i = 0, length = match.Length;
+		var i = 0;
+		var length = match.Length;
 		for (var realPos = 0; i < length && match[i] != ':'; realPos++)
 		{
 			var c = match[i];

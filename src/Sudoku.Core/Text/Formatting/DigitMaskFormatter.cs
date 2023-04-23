@@ -3,7 +3,7 @@ namespace Sudoku.Text.Formatting;
 /// <summary>
 /// Provides with a formatter that can format a mask that represents for a list of digits.
 /// </summary>
-public abstract class DigitMaskFormatter : ICollectionFormatter<int>
+public abstract class DigitMaskFormatter : ICollectionFormatter<Digit>
 {
 	/// <exception cref="NotSupportedException"/>
 	[Obsolete("Do not use this constructor", true)]
@@ -61,7 +61,7 @@ public abstract class DigitMaskFormatter : ICollectionFormatter<int>
 		};
 
 	/// <inheritdoc/>
-	static string ICollectionFormatter<int>.Format(IEnumerable<int> elements, string separator)
+	static string ICollectionFormatter<Digit>.Format(IEnumerable<Digit> elements, string separator)
 	{
 		var targetMask = (Mask)0;
 		foreach (var element in elements)
@@ -73,7 +73,7 @@ public abstract class DigitMaskFormatter : ICollectionFormatter<int>
 	}
 
 	/// <inheritdoc/>
-	static string ICollectionFormatter<int>.Format(IEnumerable<int> elements, FormattingMode formattingMode)
+	static string ICollectionFormatter<Digit>.Format(IEnumerable<Digit> elements, FormattingMode formattingMode)
 	{
 		var targetMask = (Mask)0;
 		foreach (var element in elements)

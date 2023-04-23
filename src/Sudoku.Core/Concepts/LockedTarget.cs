@@ -10,7 +10,7 @@ namespace Sudoku.Concepts;
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
 /// </remarks>
 [StructLayout(LayoutKind.Auto)]
-public readonly partial struct LockedTarget([PrimaryConstructorParameter] int digit, [PrimaryConstructorParameter] scoped in CellMap cells) :
+public readonly partial struct LockedTarget([PrimaryConstructorParameter] Digit digit, [PrimaryConstructorParameter] scoped in CellMap cells) :
 	IEquatable<LockedTarget>,
 	IEqualityOperators<LockedTarget, LockedTarget, bool>
 {
@@ -20,7 +20,7 @@ public readonly partial struct LockedTarget([PrimaryConstructorParameter] int di
 	/// <param name="digit">Indicates the digit used.</param>
 	/// <param name="cell">Indicates the cell used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LockedTarget(int digit, int cell) : this(digit, CellsMap[cell])
+	public LockedTarget(Digit digit, Cell cell) : this(digit, CellsMap[cell])
 	{
 	}
 
@@ -35,11 +35,11 @@ public readonly partial struct LockedTarget([PrimaryConstructorParameter] int di
 	/// The digit string value.
 	/// </summary>
 	[GeneratedDisplayName(nameof(Digit))]
-	private int DigitString => Digit + 1;
+	private string DigitString => (Digit + 1).ToString();
 
 
 	[DeconstructionMethod]
-	public partial void Deconstruct(out CellMap cells, out int digit);
+	public partial void Deconstruct(out CellMap cells, out Digit digit);
 
 	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);

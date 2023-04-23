@@ -21,7 +21,7 @@ public readonly partial struct DigitRange : IEquatable<DigitRange>, IEqualityOpe
 	/// </summary>
 	/// <param name="digit">The digit to be assigned.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private DigitRange(int digit) : this((Mask)(1 << digit), Assignment)
+	private DigitRange(Digit digit) : this((Mask)(1 << digit), Assignment)
 	{
 	}
 
@@ -74,7 +74,7 @@ public readonly partial struct DigitRange : IEquatable<DigitRange>, IEqualityOpe
 			return "!-";
 		}
 
-		var listOfDigits = new List<int>(9);
+		var listOfDigits = new List<Digit>(9);
 		foreach (var digit in DigitsMask)
 		{
 			listOfDigits.Add(digit + 1);
@@ -133,7 +133,7 @@ public readonly partial struct DigitRange : IEquatable<DigitRange>, IEqualityOpe
 		};
 
 
-		static Mask maskRange(int d1, int d2)
+		static Mask maskRange(Digit d1, Digit d2)
 		{
 			var result = (Mask)0;
 			for (var temp = d1; temp <= d2; temp++)

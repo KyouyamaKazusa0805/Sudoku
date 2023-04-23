@@ -56,7 +56,7 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 		};
 
 
-		static string i(int v) => (v + 1).ToString();
+		static string i(Digit v) => (v + 1).ToString();
 
 		static unsafe string r(scoped in CellMap cells, scoped in K9NotationOptions options)
 		{
@@ -134,7 +134,7 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 	/// <param name="str">The string.</param>
 	/// <returns>The valid cell index.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int ParseCell(string str) => ParseCells(str)[0];
+	public static Cell ParseCell(string str) => ParseCells(str)[0];
 
 	/// <inheritdoc/>
 	public static unsafe CellMap ParseCells(string str)
@@ -167,7 +167,8 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 			}
 
 			// Stores the possible values into the buffer.
-			int rIndex = 0, cIndex = 0;
+			var rIndex = 0;
+			var cIndex = 0;
 			for (var p = anchorR; !char.IsDigit(*p); p++, rIndex++)
 			{
 				bufferRows[rIndex] = *p switch
@@ -196,8 +197,8 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 		return result;
 	}
 
-	/// <inheritdoc cref="RxCyNotation.TryParseCell(string, out int)"/>
-	public static bool TryParseCell(string str, out int cell)
+	/// <inheritdoc cref="RxCyNotation.TryParseCell(string, out Cell)"/>
+	public static bool TryParseCell(string str, out Cell cell)
 	{
 		try
 		{

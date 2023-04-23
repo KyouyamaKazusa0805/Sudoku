@@ -9,7 +9,7 @@ public static unsafe class GridTransformations
 	/// <summary>
 	/// The table of clockwise rotation.
 	/// </summary>
-	private static readonly int[] ClockwiseTable =
+	private static readonly Cell[] ClockwiseTable =
 	{
 		72, 63, 54, 45, 36, 27, 18,  9, 0,
 		73, 64, 55, 46, 37, 28, 19, 10, 1,
@@ -25,7 +25,7 @@ public static unsafe class GridTransformations
 	/// <summary>
 	/// The table of counter-clockwise rotation.
 	/// </summary>
-	private static readonly int[] CounterclockwiseTable =
+	private static readonly Cell[] CounterclockwiseTable =
 	{
 		8, 17, 26, 35, 44, 53, 62, 71, 80,
 		7, 16, 25, 34, 43, 52, 61, 70, 79,
@@ -41,7 +41,7 @@ public static unsafe class GridTransformations
 	/// <summary>
 	/// The table of pi-rotation.
 	/// </summary>
-	private static readonly int[] PiRotateTable =
+	private static readonly Cell[] PiRotateTable =
 	{
 		80, 79, 78, 77, 76, 75, 74, 73, 72,
 		71, 70, 69, 68, 67, 66, 65, 64, 63,
@@ -57,7 +57,7 @@ public static unsafe class GridTransformations
 	/// <summary>
 	/// Indicates the swappable pairs, which means the swappable houses.
 	/// </summary>
-	private static readonly (int, int)[] SwappableHouses =
+	private static readonly (House, House)[] SwappableHouses =
 	{
 		(9, 10), (9, 11), (10, 11), (12, 13), (12, 14), (13, 14), (15, 16), (15, 17), (16, 17),
 		(18, 19), (18, 20), (19, 20), (21, 22), (21, 23), (22, 23), (24, 25), (24, 26), (25, 26)
@@ -263,7 +263,7 @@ public static unsafe class GridTransformations
 	/// This method will return the reference that is same as the argument <paramref name="this"/>,
 	/// in order to inline multiple transformation operations.
 	/// </remarks>
-	public static ref Grid SwapTwoHouses(this ref Grid @this, int houseIndex1, int houseIndex2)
+	public static ref Grid SwapTwoHouses(this ref Grid @this, House houseIndex1, House houseIndex2)
 	{
 		Argument.ThrowIfFalse(houseIndex1 is >= 9 and < 27, "The specified argument is out of valid range.");
 		Argument.ThrowIfFalse(houseIndex2 is >= 9 and < 27, "The specified argument is out of valid range.");
@@ -281,6 +281,6 @@ public static unsafe class GridTransformations
 		return ref @this;
 
 
-		bool predicate((int, int) pair) => pair == (houseIndex1, houseIndex2) || pair == (houseIndex2, houseIndex1);
+		bool predicate((House, House) pair) => pair == (houseIndex1, houseIndex2) || pair == (houseIndex2, houseIndex1);
 	}
 }
