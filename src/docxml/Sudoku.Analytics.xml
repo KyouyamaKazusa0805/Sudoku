@@ -3643,11 +3643,6 @@ if (student is (name: var name, age: >= 18))
             The generated field declaration for parameter <c>mask</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Patterns.ChainBranch">
-            <summary>
-            Represents a chain branch.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Patterns.ChainNode">
             <summary>
             Defines a node used in chaining.
@@ -5345,12 +5340,12 @@ result ^= expression;
             Try to create a binary forcing chain hint on "off" state.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainBranch)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Analytics.Patterns.ChainNode,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Analytics.Patterns.NodeSet})">
             <summary>
             Try to create a cell forcing chain hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainBranch)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Analytics.Patterns.ChainNode,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Analytics.Patterns.NodeSet})">
             <summary>
             Try to create a region (house) forcing chain hint.
             </summary>
@@ -5606,12 +5601,12 @@ result ^= expression;
             Try to create a binary forcing chain hint on "off" state.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainBranch)">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.Analytics.Patterns.ChainNode,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Analytics.Patterns.NodeSet})">
             <summary>
             Try to create a cell forcing chain hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainBranch)">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Analytics.Patterns.ChainNode,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Analytics.Patterns.NodeSet})">
             <summary>
             Try to create a region (house) forcing chain hint.
             </summary>

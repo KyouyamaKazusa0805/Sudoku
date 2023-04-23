@@ -60,4 +60,5 @@ global using Cell = int;
 global using Digit = int;
 global using House = int;
 global using Mask = short;
+global using ChainBranch = System.Collections.Generic.Dictionary<byte, Sudoku.Analytics.Patterns.NodeSet>;
 global using ExtraDifficultyCase = (string Name, decimal Value);
