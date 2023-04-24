@@ -93,6 +93,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Qiu's Deadly Pattern
     * Unique Square
     * Bivalue Universal Grave
+    * Reverse Bivalue Universal Grave (Type 1, 2, 4)
   * Chains
     * Forcing Chains / Bidirectional Cycles
     * Multiple Forcing Chains
