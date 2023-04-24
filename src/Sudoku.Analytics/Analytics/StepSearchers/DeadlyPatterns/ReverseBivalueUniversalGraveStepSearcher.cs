@@ -38,6 +38,16 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			}
 		}
 
+		// Remove naked singles.
+		var emptyCells = EmptyCells;
+		foreach (var cell in EmptyCells)
+		{
+			if (IsPow2(context.Grid.GetCandidates(cell)))
+			{
+				emptyCells.Remove(cell);
+			}
+		}
+
 		// Iterates on all combinations of digits, with length of each combination 2.
 		foreach (var digitPair in digits.GetAllSets().GetSubsets(2))
 		{
@@ -58,7 +68,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			//                                                               [2, 4]               [1, 3]
 			foreach (var incrementStep in (valuesMap.Count & 1) == 0 ? IncrementStepsEven : IncrementStepsOdd)
 			{
-				foreach (var cellsChosen in EmptyCells & incrementStep)
+				foreach (var cellsChosen in emptyCells & incrementStep)
 				{
 					var completePattern = valuesMap | cellsChosen;
 					if (!UniqueLoopStepSearcherHelper.IsGeneralizedUniqueLoop(completePattern))
@@ -71,7 +81,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 					{
 						return type1Step;
 					}
-					if (CheckType2(ref context) is { } type2Step)
+					if (CheckType2(ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type2Step)
 					{
 						return type2Step;
 					}
@@ -94,12 +104,12 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// Check for type 1.
 	/// </summary>
 	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
-	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	/// <param name="d1">The first digit used.</param>
 	/// <param name="d2">The second digit used.</param>
 	/// <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
 	/// <param name="completePattern">The complete pattern.</param>
 	/// <param name="cellsChosen">The empty cells chosen.</param>
+	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private Step? CheckType1(
 		scoped ref AnalysisContext context,
 		Digit d1,
@@ -121,9 +131,9 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		}
 
 		var elimDigit = TrailingZeroCount(elimDigitsMask);
-		var conclusion = new Conclusion(Elimination, extraCell * 9 + elimDigit);
+		var conclusion = new Conclusion(Elimination, extraCell, elimDigit);
 
-		var cellOffsets = new List<CellViewNode>();
+		var cellOffsets = new List<CellViewNode>(completePattern.Count);
 		foreach (var cell in completePattern)
 		{
 			cellOffsets.Add(new(cellsChosen.Contains(cell) ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cell));
@@ -150,9 +160,63 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// Check for type 2.
 	/// </summary>
 	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="d1">The first digit used.</param>
+	/// <param name="d2">The second digit used.</param>
+	/// <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
+	/// <param name="completePattern">The complete pattern.</param>
+	/// <param name="cellsChosen">The empty cells chosen.</param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private Step? CheckType2(scoped ref AnalysisContext context)
+	private Step? CheckType2(
+		scoped ref AnalysisContext context,
+		Digit d1,
+		Digit d2,
+		Mask comparer,
+		scoped in CellMap completePattern,
+		scoped in CellMap cellsChosen
+	)
 	{
+		var lastDigitsMask = (Mask)(context.Grid.GetDigitsUnion(cellsChosen) & ~comparer);
+		if (!IsPow2(lastDigitsMask))
+		{
+			return null;
+		}
+
+		var extraDigit = TrailingZeroCount(lastDigitsMask);
+		var elimMap = cellsChosen.PeerIntersection & EmptyCells & CandidatesMap[extraDigit];
+		if (!elimMap)
+		{
+			return null;
+		}
+
+		var conclusions = from cell in elimMap select new Conclusion(Elimination, cell, extraDigit);
+		var cellOffsets = new List<CellViewNode>(completePattern.Count);
+		foreach (var cell in completePattern)
+		{
+			cellOffsets.Add(new(cellsChosen.Contains(cell) ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cell));
+		}
+
+		var candidateOffsets = new List<CandidateViewNode>(cellsChosen.Count);
+		foreach (var cell in cellsChosen)
+		{
+			candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + extraDigit));
+		}
+
+		var step = new ReverseBivalueUniversalGraveType2Step(
+			conclusions,
+			new[] { View.Empty | cellOffsets | candidateOffsets },
+			d1,
+			d2,
+			extraDigit,
+			completePattern,
+			cellsChosen
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+
 		return null;
 	}
 
