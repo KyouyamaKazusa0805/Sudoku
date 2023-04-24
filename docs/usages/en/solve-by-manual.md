@@ -2,12 +2,12 @@
 
 Goal: Using APIs to solve a sudoku puzzle
 
-The method is simple. You should firstly get an encapsulated data of type `Grid`, and then pass it into the `LogicalSolver` instance to solve it.
+The method is simple. You should firstly get an encapsulated data of type `Grid`, and then pass it into the `Analyzer` instance to solve it.
 
 ```csharp
 using System;
+using Sudoku.Analytics;
 using Sudoku.Concepts;
-using Sudoku.Solving.Logics;
 
 // This is a string text that represents a sudoku grid.
 // The API supports many kinds of formats to describe a sudoku grid.
@@ -21,15 +21,15 @@ var grid = (Grid)puzzle;
 // You can also use 'Parse' method to get the Grid instance:
 //var grid = Grid.Parse(puzzle);
 
-// Initializes a logical solver instance, in order to solve the puzzle parsed above.
-var solver = new LogicalSolver();
+// Initializes an analyzer instance, in order to solve the puzzle parsed above.
+var analyzer = new Analyzer();
 
 // Solves the puzzle synchronously.
-// The method returns an instance of type 'LogicalSolverResult',
+// The method returns an instance of type 'AnalyzerResult',
 // having encapsulated some data to describe the solving result,
 // such as whether the puzzle has been solved successfully,
 // the number of steps used, etc..
-var analysisResult = solver.Solve(grid);
+var analyzerResult = analyzer.Analyze(grid);
 
 // Output the result.
 // Here we just call the method 'ToString', the type has already overwritten the method.
