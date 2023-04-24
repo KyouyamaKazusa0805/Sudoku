@@ -11,14 +11,14 @@ public interface ISudokuPainterFactory
 	/// </summary>
 	/// <param name="size">The new size of the canvas.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithCanvasSize(int size);
+	ISudokuPainter WithSize(int size);
 
 	/// <summary>
 	/// Sets the offset of the canvas.
 	/// </summary>
-	/// <param name="offset">The new offset of the canvas.</param>
+	/// <param name="padding">The padding of the canvas.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithCanvasOffset(int offset);
+	ISudokuPainter WithPadding(int padding);
 
 	/// <summary>
 	/// Sets the grid of the canvas.

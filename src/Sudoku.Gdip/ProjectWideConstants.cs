@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing;
+namespace Sudoku.Drawing;
 
 /// <summary>
 /// Provides with project-wide constants.
@@ -16,9 +16,9 @@ internal static class ProjectWideConstants
 	public const float RotateAngle = PI / 4;
 
 	/// <summary>
-	/// Indicates the default offset value.
+	/// Indicates the default padding value.
 	/// </summary>
-	public const float DefaultOffset = 10F;
+	public const float DefaultPadding = 10F;
 
 	/// <summary>
 	/// Indicates the number of anchors hold per house.

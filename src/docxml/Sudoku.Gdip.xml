@@ -109,10 +109,10 @@
         <member name="M:Sudoku.Drawing.SudokuPainter.Render">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.WithCanvasSize(System.Int32)">
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithSize(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.WithCanvasOffset(System.Int32)">
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithPadding(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.WithGrid(Sudoku.Concepts.Grid@)">
@@ -145,18 +145,18 @@
             </summary>
             <seealso cref="T:Sudoku.Drawing.ISudokuPainter"/>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithCanvasSize(System.Int32)">
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithSize(System.Int32)">
             <summary>
             Sets the size of the canvas.
             </summary>
             <param name="size">The new size of the canvas.</param>
             <returns>The target painter.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithCanvasOffset(System.Int32)">
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithPadding(System.Int32)">
             <summary>
             Sets the offset of the canvas.
             </summary>
-            <param name="offset">The new offset of the canvas.</param>
+            <param name="padding">The padding of the canvas.</param>
             <returns>The target painter.</returns>
         </member>
         <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithGrid(Sudoku.Concepts.Grid@)">
@@ -334,9 +334,9 @@
             The rotate angle (45 degrees). This field is used for rotate the chains if some of them are overlapped.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.ProjectWideConstants.DefaultOffset">
+        <member name="F:Sudoku.Drawing.ProjectWideConstants.DefaultPadding">
             <summary>
-            Indicates the default offset value.
+            Indicates the default padding value.
             </summary>
         </member>
         <member name="F:Sudoku.Drawing.ProjectWideConstants.AnchorsCount">
@@ -1012,22 +1012,21 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.#ctor(System.Single,System.Single)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Gdip.PointCalculator"/> instance via the specified picture size and offset value.
+            Initializes a <see cref="T:Sudoku.Gdip.PointCalculator"/> instance via the specified picture size and padding value.
             </summary>
             <param name="size">The size of the picture.</param>
-            <param name="offset">The offset.</param>
+            <param name="padding">The padding.</param>
         </member>
         <member name="M:Sudoku.Gdip.PointCalculator.#ctor(System.Drawing.SizeF@,System.Single)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Gdip.PointCalculator"/> instance with the specified picture size instance and offset value.
+            Initializes a <see cref="T:Sudoku.Gdip.PointCalculator"/> instance with the specified picture size instance and padding value.
             </summary>
             <param name="size">The <see cref="T:System.Drawing.SizeF"/> instance.</param>
-            <param name="offset">
-            Indicates the offset to set to allow the output items moving a little bit left or right,
-            in order to correct the position on drawing. The default value is <c>10F</c>, which is specified
-            in <see cref="F:Sudoku.Drawing.ProjectWideConstants.DefaultOffset"/>
+            <param name="padding">
+            Indicates the padding to set to allow the output items moving a little bit left or right,
+            in order to correct the position on drawing. The default value is <c>10F</c>, which is defined by <see cref="F:Sudoku.Drawing.ProjectWideConstants.DefaultPadding"/>
             </param>
-            <seealso cref="F:Sudoku.Drawing.ProjectWideConstants.DefaultOffset"/>
+            <seealso cref="F:Sudoku.Drawing.ProjectWideConstants.DefaultPadding"/>
         </member>
         <member name="P:Sudoku.Gdip.PointCalculator.Width">
             <summary>
@@ -1039,9 +1038,9 @@ if (student is (name: var name, age: >= 18))
             Indicates the height of the picture to draw.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.PointCalculator.Offset">
+        <member name="P:Sudoku.Gdip.PointCalculator.Padding">
             <summary>
-            Indicates the offset of the gap between the picture box outline and the sudoku grid outline.
+            Indicates the padding of the gap between the picture box outline and the sudoku grid outline.
             </summary>
             <remarks>The default value is <c>10</c>.</remarks>
         </member>

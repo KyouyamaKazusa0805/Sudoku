@@ -6,26 +6,25 @@ namespace Sudoku.Gdip;
 public sealed class PointCalculator
 {
 	/// <summary>
-	/// Initializes a <see cref="PointCalculator"/> instance via the specified picture size and offset value.
+	/// Initializes a <see cref="PointCalculator"/> instance via the specified picture size and padding value.
 	/// </summary>
 	/// <param name="size">The size of the picture.</param>
-	/// <param name="offset">The offset.</param>
+	/// <param name="padding">The padding.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PointCalculator(float size, float offset = DefaultOffset) : this(new SizeF(size, size), offset)
+	public PointCalculator(float size, float padding = DefaultPadding) : this(new SizeF(size, size), padding)
 	{
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="PointCalculator"/> instance with the specified picture size instance and offset value.
+	/// Initializes a <see cref="PointCalculator"/> instance with the specified picture size instance and padding value.
 	/// </summary>
 	/// <param name="size">The <see cref="SizeF"/> instance.</param>
-	/// <param name="offset">
-	/// Indicates the offset to set to allow the output items moving a little bit left or right,
-	/// in order to correct the position on drawing. The default value is <c>10F</c>, which is specified
-	/// in <see cref="DefaultOffset"/>
+	/// <param name="padding">
+	/// Indicates the padding to set to allow the output items moving a little bit left or right,
+	/// in order to correct the position on drawing. The default value is <c>10F</c>, which is defined by <see cref="DefaultPadding"/>
 	/// </param>
-	/// <seealso cref="DefaultOffset"/>
-	private PointCalculator(scoped in SizeF size, float offset)
+	/// <seealso cref="DefaultPadding"/>
+	private PointCalculator(scoped in SizeF size, float padding)
 	{
 		// Initialize sizes.
 		ControlSize = size;
@@ -33,10 +32,10 @@ public sealed class PointCalculator
 		var (width, height) = size;
 		Width = width;
 		Height = height;
-		Offset = offset;
+		Padding = padding;
 
-		var gridWidth = width - Offset * 2;
-		var gridHeight = height - Offset * 2;
+		var gridWidth = width - Padding * 2;
+		var gridHeight = height - Padding * 2;
 		GridSize = new(gridWidth, gridHeight);
 		CellSize = new(gridWidth / (AnchorsCount / 3), gridHeight / (AnchorsCount / 3));
 		CandidateSize = new(gridWidth / AnchorsCount, gridHeight / AnchorsCount);
@@ -49,7 +48,7 @@ public sealed class PointCalculator
 		{
 			for (var j = 0; j < length; j++)
 			{
-				GridPoints[i, j] = new(cw * i + Offset, ch * j + Offset);
+				GridPoints[i, j] = new(cw * i + Padding, ch * j + Padding);
 			}
 		}
 	}
@@ -66,10 +65,10 @@ public sealed class PointCalculator
 	public float Height { get; }
 
 	/// <summary>
-	/// Indicates the offset of the gap between the picture box outline and the sudoku grid outline.
+	/// Indicates the padding of the gap between the picture box outline and the sudoku grid outline.
 	/// </summary>
 	/// <remarks>The default value is <c>10</c>.</remarks>
-	public float Offset { get; } = DefaultOffset;
+	public float Padding { get; } = DefaultPadding;
 
 	/// <summary>
 	/// Indicates the control size.
@@ -107,7 +106,7 @@ public sealed class PointCalculator
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Cell GetCell(PointF point)
 	{
-		var (x, y) = point with { X = point.X - Offset, Y = point.Y - Offset };
+		var (x, y) = point with { X = point.X - Padding, Y = point.Y - Padding };
 		if (x < 0 || x > GridSize.Width || y < 0 || y > GridSize.Height)
 		{
 			return -1;
@@ -132,7 +131,7 @@ public sealed class PointCalculator
 	public Candidate GetCandidate(PointF point)
 	{
 		var ((x, y), (cw, ch)) = (point, CandidateSize);
-		var (a, b) = ((int)((y - Offset) / ch), (int)((x - Offset) / cw));
+		var (a, b) = ((int)((y - Padding) / ch), (int)((x - Padding) / cw));
 		return GetCell(point) * 9 + a % 3 * 3 + b % 3;
 	}
 

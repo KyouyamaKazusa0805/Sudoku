@@ -171,7 +171,7 @@ file sealed class SudokuPainter(int defaultSize, int defaultOffset) : ISudokuPai
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ISudokuPainter WithCanvasSize(int size)
+	public ISudokuPainter WithSize(int size)
 	{
 		GridImageGenerator.Calculator = new(size);
 		return this;
@@ -179,9 +179,9 @@ file sealed class SudokuPainter(int defaultSize, int defaultOffset) : ISudokuPai
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ISudokuPainter WithCanvasOffset(int offset)
+	public ISudokuPainter WithPadding(int padding)
 	{
-		GridImageGenerator.Calculator = new(GridImageGenerator.Width, offset);
+		GridImageGenerator.Calculator = new(GridImageGenerator.Width, padding);
 		return this;
 	}
 
