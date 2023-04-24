@@ -55,6 +55,3 @@ global using Group = Mirai.Net.Data.Shared.Group;
 global using SpecialFolder = System.Environment.SpecialFolder;
 global using File = System.IO.File;
 global using UserPuzzleAnswerDetails = (Mirai.Net.Data.Shared.Member User, int Conclusion);
-global using Cell = int;
-global using Digit = int;
-global using House = int;

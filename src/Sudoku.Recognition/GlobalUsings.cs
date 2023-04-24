@@ -18,5 +18,3 @@ global using static Sudoku.Recognition.ProjectWideConstants;
 global using static Sudoku.SolutionWideReadOnlyFields;
 global using Cv = Emgu.CV.CvInvoke;
 global using Field = Emgu.CV.Image<Emgu.CV.Structure.Bgr, byte>;
-global using Cell = int;
-global using Digit = int;

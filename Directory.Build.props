@@ -48,6 +48,15 @@
 		-->
 	</Choose>
 
+	<!--GLOBAL TYPE ALIASES-->
+	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='false'">
+		<Using Include="System.Int32" Alias="Candidate" />
+		<Using Include="System.Int32" Alias="Cell" />
+		<Using Include="System.Int32" Alias="Digit" />
+		<Using Include="System.Int32" Alias="House" />
+		<Using Include="System.Int16" Alias="Mask" />
+	</ItemGroup>
+
 	<!--
 	SOURCE GENEARTOR PROJECTS CONFIGURATION
 	-->
