@@ -55,7 +55,7 @@ public abstract class HouseFormatter : ICollectionFormatter<House>
 			return sb.ToStringAndClear();
 		}
 
-		static string formatNormal(int housesMask)
+		static string formatNormal(HouseMask housesMask)
 		{
 			return PopCount((uint)housesMask) switch
 			{
@@ -65,7 +65,7 @@ public abstract class HouseFormatter : ICollectionFormatter<House>
 			};
 
 
-			static string f(int housesMask)
+			static string f(HouseMask housesMask)
 			{
 				var dic = new Dictionary<int, ICollection<int>>();
 				foreach (var houseIndex in housesMask)

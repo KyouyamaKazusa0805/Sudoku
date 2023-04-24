@@ -239,7 +239,7 @@ public unsafe partial struct CellMap :
 	/// If the covered house can't be found, it'll return <see cref="InvalidValidOfTrailingZeroCountMethodFallback"/>.
 	/// </remarks>
 	/// <seealso cref="InvalidValidOfTrailingZeroCountMethodFallback"/>
-	public readonly int CoveredLine
+	public readonly House CoveredLine
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => TrailingZeroCount(CoveredHouses & ~511);
@@ -260,10 +260,9 @@ public unsafe partial struct CellMap :
 	/// this property won't contain any houses.
 	/// </summary>
 	/// <remarks>
-	/// The return value will be an <see cref="int"/> value indicating each houses.
-	/// Bits set 1 are covered houses.
+	/// The return value will be a <see cref="HouseMask"/> value indicating each houses. Bits set 1 are covered houses.
 	/// </remarks>
-	public readonly int CoveredHouses
+	public readonly HouseMask CoveredHouses
 	{
 		get
 		{
@@ -309,10 +308,10 @@ public unsafe partial struct CellMap :
 	/// <see cref="Houses"/> will return the house index 0 (block 1), 9 (row 1), 18 (column 1)
 	/// and 19 (column 2).
 	/// </summary>
-	public readonly int Houses
+	public readonly HouseMask Houses
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (int)BlockMask | RowMask << 9 | ColumnMask << 18;
+		get => (HouseMask)BlockMask | RowMask << 9 | ColumnMask << 18;
 	}
 
 	/// <inheritdoc/>

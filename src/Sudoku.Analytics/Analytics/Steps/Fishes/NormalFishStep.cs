@@ -30,8 +30,8 @@ public sealed partial class NormalFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	Digit digit,
-	int baseSetsMask,
-	int coverSetsMask,
+	HouseMask baseSetsMask,
+	HouseMask coverSetsMask,
 	[PrimaryConstructorParameter] scoped in CellMap fins,
 	[PrimaryConstructorParameter] bool? isSashimi
 ) : FishStep(conclusions, views, digit, baseSetsMask, coverSetsMask)

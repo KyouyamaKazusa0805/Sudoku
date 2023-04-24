@@ -103,7 +103,7 @@ internal static class UniqueRectangleStepSearcherHelper
 	/// The <see cref="bool"/> value indicating whether the another cell is same house as the current one.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsSameHouseCell(Cell cell1, Cell cell2, out int houses)
+	public static bool IsSameHouseCell(Cell cell1, Cell cell2, out HouseMask houses)
 	{
 		var v = (CellsMap[cell1] + cell2).CoveredHouses;
 		(var r, houses) = v != 0 ? (true, v) : (false, 0);

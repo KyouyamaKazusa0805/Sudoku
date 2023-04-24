@@ -378,12 +378,12 @@ public unsafe partial struct Grid :
 	/// <para>Indicates which houses are null houses.</para>
 	/// <para>A <b>Null House</b> is a house whose hold cells are all empty cells.</para>
 	/// <para>
-	/// The property returns an <see cref="int"/> value as a mask that contains all possible house indices.
+	/// The property returns a <see cref="HouseMask"/> value as a mask that contains all possible house indices.
 	/// For example, if the row 5, column 5 and block 5 (1-9) are null houses, the property will return
-	/// the result <see cref="int"/> value, <c>000010000_000010000_000010000</c> as binary.
+	/// the result <see cref="HouseMask"/> value, <c>000010000_000010000_000010000</c> as binary.
 	/// </para>
 	/// </summary>
-	public readonly int NullHouses
+	public readonly HouseMask NullHouses
 	{
 		get
 		{

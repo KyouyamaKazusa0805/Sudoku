@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.ComponentModel;
+namespace Sudoku.Workflow.Bot.Oicq.ComponentModel;
 
 /// <summary>
 /// 表示一个 QQ 群里用户的所有可能角色情况。
 /// </summary>
 [Flags]
-public enum GroupRoleKind : int
+public enum GroupRoleKind
 {
 	/// <summary>
 	/// 为该枚举的默认数值。这个数据一般不会被用在代码里，主要是用来判断和比较结果是否等于它自身。

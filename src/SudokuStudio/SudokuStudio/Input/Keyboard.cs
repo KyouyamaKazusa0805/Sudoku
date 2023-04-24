@@ -36,7 +36,7 @@ public static class Keyboard
 	/// </summary>
 	/// <param name="virtualKey">The number input key.</param>
 	/// <returns>
-	/// An <see cref="int"/> value corresponding to the key. Cases:
+	/// A <see cref="Digit"/> value corresponding to the key. Cases:
 	/// <list type="table">
 	/// <listheader>
 	/// <term>Return value</term>

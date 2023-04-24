@@ -11,7 +11,7 @@ public sealed partial class AlignedExclusionStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	[PrimaryConstructorParameter] scoped in CellMap cells,
-	[PrimaryConstructorParameter] IReadOnlyDictionary<int[], int> lockedCombinations
+	[PrimaryConstructorParameter] IReadOnlyDictionary<Digit[], Cell> lockedCombinations
 ) : Step(conclusions, views)
 {
 	/// <inheritdoc/>

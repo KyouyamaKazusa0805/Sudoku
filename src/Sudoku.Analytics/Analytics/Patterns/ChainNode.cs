@@ -25,21 +25,21 @@ public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKind
 	}
 
 	/// <summary>
-	/// <inheritdoc cref="ChainNode(int, bool)" path="/summary"/>
+	/// <inheritdoc cref="ChainNode(Candidate, bool)" path="/summary"/>
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
-	/// <param name="isOn"><inheritdoc cref="ChainNode(int, bool)" path="/param[@name='isOn']"/></param>
+	/// <param name="isOn"><inheritdoc cref="ChainNode(Candidate, bool)" path="/param[@name='isOn']"/></param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ChainNode(byte cell, byte digit, bool isOn) : this((Mask)((isOn ? 1 : 0) << 10 | cell * 9 + digit))
 	{
 	}
 
 	/// <summary>
-	/// <inheritdoc cref="ChainNode(int, bool)" path="/summary"/>
+	/// <inheritdoc cref="ChainNode(Candidate, bool)" path="/summary"/>
 	/// </summary>
 	/// <param name="base">The base potential instance.</param>
-	/// <param name="isOn"><inheritdoc cref="ChainNode(int, bool)" path="/param[@name='isOn']"/></param>
+	/// <param name="isOn"><inheritdoc cref="ChainNode(Candidate, bool)" path="/param[@name='isOn']"/></param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ChainNode(ChainNode @base, bool isOn) : this(@base.Cell, @base.Digit, isOn)
 	{

@@ -193,7 +193,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="list">The list.</param>
 	/// <param name="cell">The cell.</param>
 	/// <param name="mask">The mask.</param>
-	private static void UndoGrid(scoped ref Grid grid, List<int> list, int cell, Mask mask)
+	private static void UndoGrid(scoped ref Grid grid, List<Candidate> list, Cell cell, Mask mask)
 	{
 		foreach (var cand in list)
 		{

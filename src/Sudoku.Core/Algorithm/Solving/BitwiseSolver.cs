@@ -383,7 +383,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 						}
 					}
 
-					for (int digit = 0, temp = mask; digit < 9; digit++, temp >>= 1)
+					for (var (digit, temp) = (0, mask); digit < 9; digit++, temp >>= 1)
 					{
 						if ((temp & 1) != 0 && !EliminateDigit(cell, digit))
 						{
@@ -755,7 +755,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 				_singleApplied = true;
 				var bit = r1 & (uint)-(int)r1;     // Process once cell at a time.
 				r1 ^= bit;
-				int digit;
+				Digit digit;
 				for (digit = 0; digit < 9; digit++)
 				{
 					// Requires finding for which digit they are.

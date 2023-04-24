@@ -50,10 +50,22 @@
 
 	<!--GLOBAL TYPE ALIASES-->
 	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='false'">
+		<!--Indicates a candidate index. The value is between 0 and 729 (i.e. [0, 729)).-->
 		<Using Include="System.Int32" Alias="Candidate" />
+
+		<!--Indicates a cell index. The value is between 0 and 81 (i.e. [0, 81)).-->
 		<Using Include="System.Int32" Alias="Cell" />
+
+		<!--Indicates a digit. The value is between -1 and 9 (i.e. [-1, 9)); -1 is for making the cell empty.-->
 		<Using Include="System.Int32" Alias="Digit" />
+
+		<!--Indicates a house index. The house index is between 0 and 27 (i.e. [0, 27)).-->
 		<Using Include="System.Int32" Alias="House" />
+
+		<!--Indicates a type that describes which houses are used. The value is a mask, with 27 (of 32) bits used.-->
+		<Using Include="System.Int32" Alias="HouseMask" />
+
+		<!--Indicates a type that describes for a mask. The mask can be used for describing which digits are used.-->
 		<Using Include="System.Int16" Alias="Mask" />
 	</ItemGroup>
 

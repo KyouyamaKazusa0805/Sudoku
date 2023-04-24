@@ -27,12 +27,12 @@ public sealed partial class SingleCountingPracticingPage : Page
 	/// <summary>
 	/// Indicates the target result data.
 	/// </summary>
-	private List<int> _targetResultData;
+	private List<Candidate> _targetResultData;
 
 	/// <summary>
 	/// Indicates the answered data.
 	/// </summary>
-	private List<(int Candidate, TimeSpan TimeSpan)> _answeredData;
+	private List<(Candidate Candidate, TimeSpan TimeSpan)> _answeredData;
 
 
 	/// <summary>

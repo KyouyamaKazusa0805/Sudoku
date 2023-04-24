@@ -245,9 +245,9 @@ public static class ImageHandler
 			{
 				using var temp = new Image<Bgra, byte>(size);
 				var data = temp.Data;
-				for (int i = 0, width = size.Width; i < width; i++)
+				for (var (i, width) = (0, size.Width); i < width; i++)
 				{
-					for (int j = 0, height = size.Height; j < height; j++)
+					for (var (j, height) = (0, size.Height); j < height; j++)
 					{
 						var color = bitmap.GetPixel(i, j);
 						data[j, i, 0] = color.B;
@@ -288,10 +288,13 @@ public static class ImageHandler
 		gTable = new(256, 1);
 		rTable = new(256, 1);
 		aTable = new(256, 1);
-		byte[,] bData = bTable.Data, gData = gTable.Data, rData = rTable.Data, aData = aTable.Data;
+		var bData = bTable.Data;
+		var gData = gTable.Data;
+		var rData = rTable.Data;
+		var aData = aTable.Data;
 
 		var colors = palette.Entries;
-		for (int i = 0, length = colors.Length; i < length; i++)
+		for (var (i, length) = (0, colors.Length); i < length; i++)
 		{
 			var c = colors[i];
 			bData[i, 0] = c.B;

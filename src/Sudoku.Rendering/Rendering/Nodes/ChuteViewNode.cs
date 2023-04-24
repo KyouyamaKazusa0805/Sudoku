@@ -25,7 +25,7 @@ public sealed partial class ChuteViewNode(ColorIdentifier identifier, int chuteI
 	/// for block houses, but all chutes don't use them.
 	/// </para>
 	/// </summary>
-	public int HousesMask => Chutes[ChuteIndex] switch { var (_, isRow, rawMask) => rawMask << (isRow ? 9 : 18) };
+	public HouseMask HousesMask => Chutes[ChuteIndex] switch { var (_, isRow, rawMask) => rawMask << (isRow ? 9 : 18) };
 
 
 	[DeconstructionMethod]

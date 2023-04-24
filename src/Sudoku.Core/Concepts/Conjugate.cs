@@ -79,7 +79,7 @@ public readonly partial struct Conjugate(int mask) : IEquatable<Conjugate>, IEqu
 	/// Indicates the house that two cells lie in.
 	/// </summary>
 	/// <remarks><inheritdoc cref="CellMap.CoveredHouses"/></remarks>
-	public int Houses
+	public HouseMask Houses
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Map.CoveredHouses;

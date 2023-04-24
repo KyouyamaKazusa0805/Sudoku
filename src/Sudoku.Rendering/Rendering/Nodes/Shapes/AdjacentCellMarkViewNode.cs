@@ -23,8 +23,8 @@ public abstract partial class AdjacentCellMarkViewNode(ColorIdentifier identifie
 
 
 	[DeconstructionMethod]
-	public partial void Deconstruct(out int cell1, out int cell2);
+	public partial void Deconstruct(out Cell cell1, out Cell cell2);
 
 	[DeconstructionMethod]
-	public partial void Deconstruct(out int cell1, out int cell2, out bool isRow);
+	public partial void Deconstruct(out Cell cell1, out Cell cell2, out bool isRow);
 }

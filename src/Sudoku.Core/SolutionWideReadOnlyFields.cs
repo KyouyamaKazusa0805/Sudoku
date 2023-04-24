@@ -38,17 +38,17 @@ public static class SolutionWideReadOnlyFields
 	/// <summary>
 	/// Indicates the mask that means all rows.
 	/// </summary>
-	public const int AllRowsMask = 0b000_000_000__111_111_111__000_000_000;
+	public const HouseMask AllRowsMask = 0b000_000_000__111_111_111__000_000_000;
 
 	/// <summary>
 	/// Indicates the mask that means all columns.
 	/// </summary>
-	public const int AllColumnsMask = 0b111_111_111__000_000_000__000_000_000;
+	public const HouseMask AllColumnsMask = 0b111_111_111__000_000_000__000_000_000;
 
 	/// <summary>
 	/// Indicates the mask that means all houses.
 	/// </summary>
-	public const int AllHousesMask = 0b111_111_111__111_111_111__111_111_111;
+	public const HouseMask AllHousesMask = 0b111_111_111__111_111_111__111_111_111;
 
 	/// <summary>
 	/// Indicates the first cell offset for each house.

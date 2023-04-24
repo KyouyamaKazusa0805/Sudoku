@@ -3,7 +3,7 @@ namespace Sudoku.Workflow.Bot.Oicq.Parsing;
 /// <summary>
 /// 一个本地枚举类型，表示一个在解析期间产生的错误信息。
 /// </summary>
-internal enum ParsingFailedReason : int
+internal enum ParsingFailedReason
 {
 	/// <summary>
 	/// 表示没有错误。

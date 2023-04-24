@@ -12,8 +12,8 @@ public abstract partial class FishStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	[PrimaryConstructorParameter] Digit digit,
-	[PrimaryConstructorParameter] int baseSetsMask,
-	[PrimaryConstructorParameter] int coverSetsMask
+	[PrimaryConstructorParameter] HouseMask baseSetsMask,
+	[PrimaryConstructorParameter] HouseMask coverSetsMask
 ) : Step(conclusions, views)
 {
 	/// <inheritdoc/>
