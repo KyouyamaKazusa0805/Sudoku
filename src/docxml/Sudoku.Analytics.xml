@@ -6100,12 +6100,12 @@ result ^= expression;
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher">
             <summary>
-            Provides with a <b>Reverse Bi-value Universal Grave</b> step searcher.
+            Provides with a <b>Reverse Bivalue Universal Grave</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>Reverse Unique Rectangle</item>
-            <item>Reverse Unique Loop</item>
-            <item>Reverse Bivalue Universal Grave (Separated Type)</item>
+            <item>Reverse Bivalue Universal Grave Type 1</item>
+            <item>Reverse Bivalue Universal Grave Type 2</item>
+            <item>Reverse Bivalue Universal Grave Type 4</item>
             </list>
             </summary>
         </member>
