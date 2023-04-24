@@ -5227,6 +5227,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Conjugate pair: {0}.
+        /// </summary>
+        public static string TechniqueFormat_ReverseBivalueUniversalGraveType4Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_ReverseBivalueUniversalGraveType4Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Only cells {0} gives the value of digits {1}, meaning digits will be a deadly pattern if the target cell {2} is filled with {3}.
         /// </summary>
         public static string TechniqueFormat_ReverseUniqueRectangleType1Step {

@@ -2259,4 +2259,7 @@
   <data name="TechniqueFormat_ReverseBivalueUniversalGraveType2Step" xml:space="preserve">
     <value>额外数字 {0}</value>
   </data>
+  <data name="TechniqueFormat_ReverseBivalueUniversalGraveType4Step" xml:space="preserve">
+    <value>外部共轭对：{0}</value>
+  </data>
 </root>

@@ -85,11 +85,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 					{
 						return type2Step;
 					}
-					if (CheckType3(ref context) is { } type3Step)
-					{
-						return type3Step;
-					}
-					if (CheckType4(ref context) is { } type4Step)
+					if (CheckType4(ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type4Step)
 					{
 						return type4Step;
 					}
@@ -221,23 +217,104 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	}
 
 	/// <summary>
-	/// Check for type 3.
-	/// </summary>
-	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
-	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private Step? CheckType3(scoped ref AnalysisContext context)
-	{
-		return null;
-	}
-
-	/// <summary>
 	/// Check for type 4.
 	/// </summary>
 	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="d1">The first digit used.</param>
+	/// <param name="d2">The second digit used.</param>
+	/// <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
+	/// <param name="completePattern">The complete pattern.</param>
+	/// <param name="cellsChosen">The empty cells chosen.</param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private Step? CheckType4(scoped ref AnalysisContext context)
+	private Step? CheckType4(
+		scoped ref AnalysisContext context,
+		Digit d1,
+		Digit d2,
+		Mask comparer,
+		scoped in CellMap completePattern,
+		scoped in CellMap cellsChosen
+	)
 	{
+		if (cellsChosen is not [var cell1, var cell2])
+		{
+			return null;
+		}
 
+		if (cellsChosen.InOneHouse)
+		{
+			return null;
+		}
+
+		scoped ref readonly var grid = ref context.Grid;
+		var cell1Digit = grid.GetCandidates(cell1) & comparer;
+		var cell2Digit = grid.GetCandidates(cell2) & comparer;
+		var mergedDigitMask = cell1Digit | cell2Digit;
+		if (!IsPow2(mergedDigitMask))
+		{
+			return null;
+		}
+
+		var selectedDigit = TrailingZeroCount(mergedDigitMask);
+		foreach (var house in cellsChosen.Houses)
+		{
+			var possibleConjugatePairCells = CandidatesMap[selectedDigit] & HousesMap[house];
+			if (possibleConjugatePairCells.Count != 2)
+			{
+				continue;
+			}
+
+			var conjugatePairCellOuterPattern = (possibleConjugatePairCells - cellsChosen)[0];
+			var conjugatePairCellInnerPattern = (possibleConjugatePairCells - conjugatePairCellOuterPattern)[0];
+			var anotherCell = (cellsChosen - conjugatePairCellInnerPattern)[0];
+			if (!(CellsMap[anotherCell] + conjugatePairCellOuterPattern).InOneHouse)
+			{
+				continue;
+			}
+
+			var conclusion = new Conclusion(Elimination, anotherCell, selectedDigit);
+			var cellOffsets = new List<CellViewNode>(completePattern.Count);
+			foreach (var cell in completePattern)
+			{
+				cellOffsets.Add(
+					new(cellsChosen.Contains(cell) ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cell)
+				);
+			}
+
+			var step = new ReverseBivalueUniversalGraveType4Step(
+				new[] { conclusion },
+				new[]
+				{
+					View.Empty
+						| cellOffsets
+						| new CandidateViewNode(WellKnownColorIdentifierKind.Auxiliary1, conjugatePairCellInnerPattern * 9 + selectedDigit)
+						| new CandidateViewNode(WellKnownColorIdentifierKind.Auxiliary1, conjugatePairCellOuterPattern * 9 + selectedDigit)
+						| new HouseViewNode(WellKnownColorIdentifierKind.Auxiliary1, house)
+						| new LinkViewNode(
+							WellKnownColorIdentifierKind.Normal,
+							new(selectedDigit, conjugatePairCellInnerPattern),
+							new(selectedDigit, anotherCell),
+							Inference.Weak
+						)
+						| new LinkViewNode(
+							WellKnownColorIdentifierKind.Normal,
+							new(selectedDigit, conjugatePairCellOuterPattern),
+							new(selectedDigit, anotherCell),
+							Inference.Weak
+						)
+				},
+				d1,
+				d2,
+				completePattern,
+				cellsChosen,
+				new(possibleConjugatePairCells, selectedDigit)
+			);
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+
+			context.Accumulator.Add(step);
+		}
 
 		return null;
 	}

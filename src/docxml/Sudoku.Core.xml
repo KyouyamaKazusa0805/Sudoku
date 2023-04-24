@@ -8303,6 +8303,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Extra digit: {0}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ReverseBivalueUniversalGraveType4Step">
+            <summary>
+              Looks up a localized string similar to Conjugate pair: {0}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ReverseUniqueRectangleType1Step">
             <summary>
               Looks up a localized string similar to Only cells {0} gives the value of digits {1}, meaning digits will be a deadly pattern if the target cell {2} is filled with {3}.

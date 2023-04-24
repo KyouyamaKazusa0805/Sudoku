@@ -2136,4 +2136,7 @@
   <data name="TechniqueFormat_ReverseBivalueUniversalGraveType2Step" xml:space="preserve">
     <value>Extra digit: {0}</value>
   </data>
+  <data name="TechniqueFormat_ReverseBivalueUniversalGraveType4Step" xml:space="preserve">
+    <value>Conjugate pair: {0}</value>
+  </data>
 </root>

@@ -6146,18 +6146,16 @@ result ^= expression;
             <param name="cellsChosen">The empty cells chosen.</param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.CheckType3(Sudoku.Analytics.AnalysisContext@)">
-            <summary>
-            Check for type 3.
-            </summary>
-            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
-            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.CheckType4(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.CheckType4(Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Check for type 4.
             </summary>
             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <param name="d1">The first digit used.</param>
+            <param name="d2">The second digit used.</param>
+            <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
+            <param name="completePattern">The complete pattern.</param>
+            <param name="cellsChosen">The empty cells chosen.</param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
@@ -11366,8 +11364,9 @@ result ^= expression;
             <param name="digit2"><inheritdoc/></param>
             <param name="pattern"><inheritdoc/></param>
             <param name="emptyCells"><inheritdoc/></param>
+            <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 4</b> technique.
             </summary>
@@ -11377,9 +11376,24 @@ result ^= expression;
             <param name="digit2"><inheritdoc/></param>
             <param name="pattern"><inheritdoc/></param>
             <param name="emptyCells"><inheritdoc/></param>
+            <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.Type">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.ConjugatePairStr">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.ConjugatePair">
+            <summary>
+            The generated property declaration for parameter <c>conjugatePair</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.EquatableStep">
             <summary>
