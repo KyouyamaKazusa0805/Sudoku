@@ -237,6 +237,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private Step? CheckType4(scoped ref AnalysisContext context)
 	{
+
+
 		return null;
 	}
 }

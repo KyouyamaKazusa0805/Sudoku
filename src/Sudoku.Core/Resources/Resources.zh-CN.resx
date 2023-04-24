@@ -2253,4 +2253,10 @@
   <data name="StepSearcherName_AlignedExclusionStepSearcher" xml:space="preserve">
     <value>均衡数组</value>
   </data>
+  <data name="TechniqueFormat_ReverseBivalueUniversalGraveType1Step" xml:space="preserve">
+    <value>全盘只有 {0} 是 {1} 和 {2} 的话，会造成这两个数字出现致命形式</value>
+  </data>
+  <data name="TechniqueFormat_ReverseBivalueUniversalGraveType2Step" xml:space="preserve">
+    <value>额外数字 {0}</value>
+  </data>
 </root>

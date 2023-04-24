@@ -22,4 +22,15 @@ public sealed partial class ReverseBivalueUniversalGraveType2Step(
 {
 	/// <inheritdoc/>
 	public override int Type => 2;
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new[] { base.ExtraDifficultyCases[0], (ExtraDifficultyCaseNames.ExtraDigit, .1M) };
+
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { "en", new[] { ExtraDigitStr } }, { "zh", new[] { ExtraDigitStr } } };
+
+	/// <inheritdoc/>
+	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 }

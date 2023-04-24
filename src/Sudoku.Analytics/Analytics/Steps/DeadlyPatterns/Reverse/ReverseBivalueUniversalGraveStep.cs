@@ -40,8 +40,18 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new[] { (ExtraDifficultyCaseNames.Length, A002024(CompletePattern.Count) * .1M) };
+
 	/// <summary>
 	/// Indicates the last cells used that are not empty.
 	/// </summary>
 	public CellMap PatternNonEmptyCells => CompletePattern - EmptyCells;
+
+	private protected string Cell1Str => (Digit1 + 1).ToString();
+
+	private protected string Cell2Str => (Digit2 + 1).ToString();
+
+	private protected string PatternStr => CompletePattern.ToString();
 }

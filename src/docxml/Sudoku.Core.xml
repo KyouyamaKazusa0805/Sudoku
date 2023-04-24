@@ -8293,6 +8293,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to {0} in {1} with {2}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ReverseBivalueUniversalGraveType1Step">
+            <summary>
+              Looks up a localized string similar to Digits {0} and {1} will lead to a deadly pattern if the grid only contains cells {2} hold that digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ReverseBivalueUniversalGraveType2Step">
+            <summary>
+              Looks up a localized string similar to Extra digit: {0}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_ReverseUniqueRectangleType1Step">
             <summary>
               Looks up a localized string similar to Only cells {0} gives the value of digits {1}, meaning digits will be a deadly pattern if the target cell {2} is filled with {3}.

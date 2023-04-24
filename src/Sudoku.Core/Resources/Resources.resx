@@ -2130,4 +2130,10 @@
   <data name="StepSearcherName_AlignedExclusionStepSearcher" xml:space="preserve">
     <value>Aligned Exclusion</value>
   </data>
+  <data name="TechniqueFormat_ReverseBivalueUniversalGraveType1Step" xml:space="preserve">
+    <value>Digits {0} and {1} will lead to a deadly pattern if the grid only contains cells {2} hold that digits</value>
+  </data>
+  <data name="TechniqueFormat_ReverseBivalueUniversalGraveType2Step" xml:space="preserve">
+    <value>Extra digit: {0}</value>
+  </data>
 </root>

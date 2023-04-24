@@ -11234,6 +11234,9 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.DifficultyLevel">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.PatternNonEmptyCells">
             <summary>
             Indicates the last cells used that are not empty.
@@ -11284,6 +11287,9 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType1Step.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType1Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step">
             <summary>
             Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 2</b> technique.
@@ -11309,6 +11315,15 @@ result ^= expression;
             <param name="emptyCells"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.ExtraDigitStr">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.ExtraDigit">
