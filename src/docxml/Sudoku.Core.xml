@@ -6758,24 +6758,24 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Remote Pair.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.Resources.ReverseUniqueRectangleType1">
+        <member name="P:Sudoku.Resources.Resources.ReverseBivalueUniversalGraveType1">
             <summary>
-              Looks up a localized string similar to Reverse Unique Rectangle Type 1.
+              Looks up a localized string similar to Reverse Bivalue Universal Grave Type 1.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.Resources.ReverseUniqueRectangleType2">
+        <member name="P:Sudoku.Resources.Resources.ReverseBivalueUniversalGraveType2">
             <summary>
-              Looks up a localized string similar to Reverse Unique Rectangle Type 2.
+              Looks up a localized string similar to Reverse Bivalue Universal Grave Type 2.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.Resources.ReverseUniqueRectangleType3">
+        <member name="P:Sudoku.Resources.Resources.ReverseBivalueUniversalGraveType3">
             <summary>
-              Looks up a localized string similar to Reverse Unique Rectangle Type 3.
+              Looks up a localized string similar to Reverse Bivalue Universal Grave Type 3.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.Resources.ReverseUniqueRectangleType4">
+        <member name="P:Sudoku.Resources.Resources.ReverseBivalueUniversalGraveType4">
             <summary>
-              Looks up a localized string similar to Reverse Unique Rectangle Type 4.
+              Looks up a localized string similar to Reverse Bivalue Universal Grave Type 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.RstuvwxyzWing">
@@ -7125,12 +7125,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_BivalueOddagonStepSearcher">
             <summary>
-              Looks up a localized string similar to Bi-value Oddagon.
+              Looks up a localized string similar to Bivalue Oddagon.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_BivalueUniversalGraveStepSearcher">
             <summary>
-              Looks up a localized string similar to Bi-value Universal Grave.
+              Looks up a localized string similar to Bivalue Universal Grave.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_BorescoperDeadlyPatternStepSearcher">
@@ -7250,7 +7250,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_ReverseBivalueUniversalGraveStepSearcher">
             <summary>
-              Looks up a localized string similar to Reverse Bi-value Universal Grave.
+              Looks up a localized string similar to Reverse Bivalue Universal Grave.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_RwDeadlyPatternStepSearcher">

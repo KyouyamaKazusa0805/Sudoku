@@ -1647,52 +1647,28 @@ public enum Technique : short
 	//
 	#region Reverse Bivalue Universal Grave
 	/// <summary>
-	/// Indicates reverse unique rectangle type 1.
+	/// Indicates reverse bi-value universal grave type 1.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
-	ReverseUniqueRectangleType1,
+	ReverseBivalueUniversalGraveType1,
 
 	/// <summary>
-	/// Indicates reverse unique rectangle type 2.
+	/// Indicates reverse bi-value universal grave type 2.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
-	ReverseUniqueRectangleType2,
+	ReverseBivalueUniversalGraveType2,
 
 	/// <summary>
-	/// Indicates reverse unique rectangle type 3.
+	/// Indicates reverse bi-value universal grave type 3.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
-	ReverseUniqueRectangleType3,
+	ReverseBivalueUniversalGraveType3,
 
 	/// <summary>
-	/// Indicates reverse unique rectangle type 4.
+	/// Indicates reverse bi-value universal grave type 4.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
-	ReverseUniqueRectangleType4,
-
-	/// <summary>
-	/// Indicates reverse unique loop type 1.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
-	ReverseUniqueLoopType1,
-
-	/// <summary>
-	/// Indicates reverse unique loop type 2.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
-	ReverseUniqueLoopType2,
-
-	/// <summary>
-	/// Indicates reverse unique loop type 3.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
-	ReverseUniqueLoopType3,
-
-	/// <summary>
-	/// Indicates reverse unique loop type 4.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
-	ReverseUniqueLoopType4,
+	ReverseBivalueUniversalGraveType4,
 	#endregion
 
 	//

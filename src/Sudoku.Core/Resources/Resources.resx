@@ -1401,17 +1401,17 @@
   <data name="UniquenessClueCoverType2" xml:space="preserve">
     <value>Uniqueness Clue Cover Type 2</value>
   </data>
-  <data name="ReverseUniqueRectangleType1" xml:space="preserve">
-    <value>Reverse Unique Rectangle Type 1</value>
+  <data name="ReverseBivalueUniversalGraveType1" xml:space="preserve">
+    <value>Reverse Bivalue Universal Grave Type 1</value>
   </data>
-  <data name="ReverseUniqueRectangleType2" xml:space="preserve">
-    <value>Reverse Unique Rectangle Type 2</value>
+  <data name="ReverseBivalueUniversalGraveType2" xml:space="preserve">
+    <value>Reverse Bivalue Universal Grave Type 2</value>
   </data>
-  <data name="ReverseUniqueRectangleType3" xml:space="preserve">
-    <value>Reverse Unique Rectangle Type 3</value>
+  <data name="ReverseBivalueUniversalGraveType3" xml:space="preserve">
+    <value>Reverse Bivalue Universal Grave Type 3</value>
   </data>
-  <data name="ReverseUniqueRectangleType4" xml:space="preserve">
-    <value>Reverse Unique Rectangle Type 4</value>
+  <data name="ReverseBivalueUniversalGraveType4" xml:space="preserve">
+    <value>Reverse Bivalue Universal Grave Type 4</value>
   </data>
   <data name="TechniqueFormat_ReverseUniqueRectangleType1Step" xml:space="preserve">
     <value>Only cells {0} gives the value of digits {1}, meaning digits will be a deadly pattern if the target cell {2} is filled with {3}</value>
@@ -1576,10 +1576,10 @@
     <value>Almost Locked Sets XZ</value>
   </data>
   <data name="StepSearcherName_BivalueOddagonStepSearcher" xml:space="preserve">
-    <value>Bi-value Oddagon</value>
+    <value>Bivalue Oddagon</value>
   </data>
   <data name="StepSearcherName_BivalueUniversalGraveStepSearcher" xml:space="preserve">
-    <value>Bi-value Universal Grave</value>
+    <value>Bivalue Universal Grave</value>
   </data>
   <data name="StepSearcherName_BowmanBingoStepSearcher" xml:space="preserve">
     <value>Bowman's Bingo</value>
@@ -1648,7 +1648,7 @@
     <value>Regular Wings</value>
   </data>
   <data name="StepSearcherName_ReverseBivalueUniversalGraveStepSearcher" xml:space="preserve">
-    <value>Reverse Bi-value Universal Grave</value>
+    <value>Reverse Bivalue Universal Grave</value>
   </data>
   <data name="StepSearcherName_RwDeadlyPatternStepSearcher" xml:space="preserve">
     <value>RW's Deadly Pattern</value>

@@ -20,7 +20,7 @@
 [assembly: StepSearcherImport<BorescoperDeadlyPatternStepSearcher>(StepSearcherLevel.Moderate)]
 [assembly: StepSearcherImport<QiuDeadlyPatternStepSearcher>(StepSearcherLevel.Moderate)]
 [assembly: StepSearcherImport<BivalueUniversalGraveStepSearcher>(StepSearcherLevel.Moderate)]
-[assembly: StepSearcherImport<ReverseBivalueUniversalGraveStepSearcher>(StepSearcherLevel.Hard, Areas = 0)]
+[assembly: StepSearcherImport<ReverseBivalueUniversalGraveStepSearcher>(StepSearcherLevel.Hard)]
 [assembly: StepSearcherImport<EmptyRectangleIntersectionPairStepSearcher>(StepSearcherLevel.Moderate)]
 [assembly: StepSearcherImport<FireworkStepSearcher>(StepSearcherLevel.Moderate)]
 [assembly: StepSearcherImport<GurthSymmetricalPlacementStepSearcher>(StepSearcherLevel.Elementary)]

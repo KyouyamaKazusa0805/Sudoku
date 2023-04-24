@@ -2446,38 +2446,38 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reverse Unique Rectangle Type 1.
+        ///   Looks up a localized string similar to Reverse Bivalue Universal Grave Type 1.
         /// </summary>
-        public static string ReverseUniqueRectangleType1 {
+        public static string ReverseBivalueUniversalGraveType1 {
             get {
-                return ResourceManager.GetString("ReverseUniqueRectangleType1", resourceCulture);
+                return ResourceManager.GetString("ReverseBivalueUniversalGraveType1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reverse Unique Rectangle Type 2.
+        ///   Looks up a localized string similar to Reverse Bivalue Universal Grave Type 2.
         /// </summary>
-        public static string ReverseUniqueRectangleType2 {
+        public static string ReverseBivalueUniversalGraveType2 {
             get {
-                return ResourceManager.GetString("ReverseUniqueRectangleType2", resourceCulture);
+                return ResourceManager.GetString("ReverseBivalueUniversalGraveType2", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reverse Unique Rectangle Type 3.
+        ///   Looks up a localized string similar to Reverse Bivalue Universal Grave Type 3.
         /// </summary>
-        public static string ReverseUniqueRectangleType3 {
+        public static string ReverseBivalueUniversalGraveType3 {
             get {
-                return ResourceManager.GetString("ReverseUniqueRectangleType3", resourceCulture);
+                return ResourceManager.GetString("ReverseBivalueUniversalGraveType3", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reverse Unique Rectangle Type 4.
+        ///   Looks up a localized string similar to Reverse Bivalue Universal Grave Type 4.
         /// </summary>
-        public static string ReverseUniqueRectangleType4 {
+        public static string ReverseBivalueUniversalGraveType4 {
             get {
-                return ResourceManager.GetString("ReverseUniqueRectangleType4", resourceCulture);
+                return ResourceManager.GetString("ReverseBivalueUniversalGraveType4", resourceCulture);
             }
         }
         
@@ -3103,7 +3103,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Oddagon.
+        ///   Looks up a localized string similar to Bivalue Oddagon.
         /// </summary>
         public static string StepSearcherName_BivalueOddagonStepSearcher {
             get {
@@ -3112,7 +3112,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Universal Grave.
+        ///   Looks up a localized string similar to Bivalue Universal Grave.
         /// </summary>
         public static string StepSearcherName_BivalueUniversalGraveStepSearcher {
             get {
@@ -3328,7 +3328,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reverse Bi-value Universal Grave.
+        ///   Looks up a localized string similar to Reverse Bivalue Universal Grave.
         /// </summary>
         public static string StepSearcherName_ReverseBivalueUniversalGraveStepSearcher {
             get {

@@ -1696,20 +1696,20 @@
     <value>唯一性确定值覆盖类型 2</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="ReverseUniqueRectangleType1" xml:space="preserve">
-    <value>反转唯一矩形类型 1</value>
+  <data name="ReverseBivalueUniversalGraveType1" xml:space="preserve">
+    <value>反双数致命结构类型 1</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="ReverseUniqueRectangleType2" xml:space="preserve">
-    <value>反转唯一矩形类型 2</value>
+  <data name="ReverseBivalueUniversalGraveType2" xml:space="preserve">
+    <value>反双数致命结构类型 2</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="ReverseUniqueRectangleType3" xml:space="preserve">
-    <value>反转唯一矩形类型 3</value>
+  <data name="ReverseBivalueUniversalGraveType3" xml:space="preserve">
+    <value>反双数致命结构类型 3</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="ReverseUniqueRectangleType4" xml:space="preserve">
-    <value>反转唯一矩形类型 4</value>
+  <data name="ReverseBivalueUniversalGraveType4" xml:space="preserve">
+    <value>反双数致命结构类型 4</value>
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_ReverseUniqueRectangleType1Step" xml:space="preserve">
@@ -1992,7 +1992,7 @@
     <comment>Step Searcher Name</comment>
   </data>
   <data name="StepSearcherName_ReverseBivalueUniversalGraveStepSearcher" xml:space="preserve">
-    <value>反转双数致命结构</value>
+    <value>反双数致命结构</value>
     <comment>Step Searcher Name</comment>
   </data>
   <data name="StepSearcherName_RwDeadlyPatternStepSearcher" xml:space="preserve">

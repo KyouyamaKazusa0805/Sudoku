@@ -1770,44 +1770,24 @@
             Indicates bi-value universal grave XY-Wing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueRectangleType1">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseBivalueUniversalGraveType1">
             <summary>
-            Indicates reverse unique rectangle type 1.
+            Indicates reverse bi-value universal grave type 1.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueRectangleType2">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseBivalueUniversalGraveType2">
             <summary>
-            Indicates reverse unique rectangle type 2.
+            Indicates reverse bi-value universal grave type 2.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueRectangleType3">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseBivalueUniversalGraveType3">
             <summary>
-            Indicates reverse unique rectangle type 3.
+            Indicates reverse bi-value universal grave type 3.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueRectangleType4">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseBivalueUniversalGraveType4">
             <summary>
-            Indicates reverse unique rectangle type 4.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueLoopType1">
-            <summary>
-            Indicates reverse unique loop type 1.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueLoopType2">
-            <summary>
-            Indicates reverse unique loop type 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueLoopType3">
-            <summary>
-            Indicates reverse unique loop type 3.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseUniqueLoopType4">
-            <summary>
-            Indicates reverse unique loop type 4.
+            Indicates reverse bi-value universal grave type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.UniquenessClueCoverType2">
@@ -2920,6 +2900,22 @@
             </summary>
             <param name="loopPath">The path of the loop.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <remarks>
+            <para>
+            This method uses a trick way (node-coloring) to check whether a loop is a unique loop.
+            The parameter <paramref name="loopPath"/> holds a list of cells, which are nodes of the loop.
+            Then we begin to colorize each node with 2 different colors <b><i>A</i></b> and <b><i>B</i></b>.
+            The only point we should notice is that the color between 2 adjacent nodes should be different
+            (i.e. one is colored with <b><i>A</i></b> and the other should be colored with <b><i>B</i></b>).
+            If at least one pair of cells in a same house are colored with a same color, it won't be a valid unique loop.
+            Those colors stands for the final filling digits. Therefore, "Two cells in a same house are colored same"
+            means "Two cells in a same house are filled with a same digit", which disobeys the basic sudoku rule.
+            </para>
+            <para>
+            This method won't check for whether the loop is a unique rectangle (of length 4). It means, a valid unique rectangle
+            can also make this method return <see langword="true"/>.
+            </para>
+            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.IsGeneralizedUniqueLoop(Sudoku.Concepts.CellMap@)">
             <summary>
@@ -2927,6 +2923,41 @@
             </summary>
             <param name="loop">The loop to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <remarks>
+            <para>This method uses another way to check for unique loops.</para>
+            <para>
+            <i>
+            However, this method contains a little bug for checking loops, leading to returning <see langword="true"/> for this method,
+            and returning <see langword="false"/> for the method <see cref="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)"/> above this. If a pattern is like:
+            </i>
+            <code><![CDATA[
+            .-----.-----.
+            | x   | x   |
+            |   x |   x |
+            |-----+-----|
+            | x   |   x |
+            |   x | x   |
+            '-----'-----'
+            ]]></code>
+            <i>This pattern isn't a valid unique loop, because the pattern has no suitable way to filling digits, without confliction.</i>
+            </para>
+            <para>
+            This method can also check for separated ones, e.g.:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | x     | x     |       |
+            | x     | x     |       |
+            |       |       |       |
+            |-------+-------+-------|
+            |       |       |       |
+            |       |     x |     x |
+            |       |     x |     x |
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+            ]]></code>
+            </para>
+            <para><inheritdoc cref="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)" path="//remarks/para[2]"/></para>
+            </remarks>
+            <seealso cref="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)"/>
         </member>
         <member name="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.GetLoopLinks(System.Int32[])">
             <summary>
@@ -6078,8 +6109,51 @@ result ^= expression;
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.IncrementStepsEven">
+            <summary>
+            Indicates an array to be used as steps for a loop, for the cases when the number of values of the digits chosen are an even.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.IncrementStepsOdd">
+            <summary>
+            Indicates an array to be used as steps for a loop, for the cases when the number of values of the digits chosen are an odd.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.CheckType1(Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Check for type 1.
+            </summary>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+            <param name="d1">The first digit used.</param>
+            <param name="d2">The second digit used.</param>
+            <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
+            <param name="completePattern">The complete pattern.</param>
+            <param name="cellsChosen">The empty cells chosen.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.CheckType2(Sudoku.Analytics.AnalysisContext@)">
+            <summary>
+            Check for type 2.
+            </summary>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.CheckType3(Sudoku.Analytics.AnalysisContext@)">
+            <summary>
+            Check for type 3.
+            </summary>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.CheckType4(Sudoku.Analytics.AnalysisContext@)">
+            <summary>
+            Check for type 4.
+            </summary>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
             <summary>
@@ -8955,7 +9029,7 @@ result ^= expression;
         </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step">
             <summary>
-            Provides with a step that is a <b>Bi-value Universal Grave Type 2</b> technique.
+            Provides with a step that is a <b>Bivalue Universal Grave Type 2</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -8964,7 +9038,7 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
-            Provides with a step that is a <b>Bi-value Universal Grave Type 2</b> technique.
+            Provides with a step that is a <b>Bivalue Universal Grave Type 2</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -11110,6 +11184,175 @@ result ^= expression;
             <summary>
             The generated property declaration for parameter <c>extraDigitsMask</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep">
+            <summary>
+            Provides with a step that is a <b>Reverse Bi-value Universal Grave</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1">Indicates the first digit used.</param>
+            <param name="digit2">Indicates the second digit used.</param>
+            <param name="pattern">Indicates the pattern, all possible cells included.</param>
+            <param name="emptyCells">Indicates the empty cells used. This cells have already included in <paramref name="pattern"/>.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Reverse Bi-value Universal Grave</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1">Indicates the first digit used.</param>
+            <param name="digit2">Indicates the second digit used.</param>
+            <param name="pattern">Indicates the pattern, all possible cells included.</param>
+            <param name="emptyCells">Indicates the empty cells used. This cells have already included in <paramref name="pattern"/>.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.IsRectangle">
+            <summary>
+            Indicates whether the pattern is a reverse UR.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Type">
+            <summary>
+            Indicates the type of the technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.PatternNonEmptyCells">
+            <summary>
+            Indicates the last cells used that are not empty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Digit1">
+            <summary>
+            The generated property declaration for parameter <c>digit1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Digit2">
+            <summary>
+            The generated property declaration for parameter <c>digit2</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.CompletePattern">
+            <summary>
+            The generated property declaration for parameter <c>pattern</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.EmptyCells">
+            <summary>
+            The generated property declaration for parameter <c>emptyCells</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType1Step">
+            <summary>
+            Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 1</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="emptyCells"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 1</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="emptyCells"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType1Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step">
+            <summary>
+            Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 2</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="emptyCells"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 2</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="emptyCells"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step">
+            <summary>
+            Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 3</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="emptyCells"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 3</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="emptyCells"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step">
+            <summary>
+            Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 4</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="emptyCells"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 4</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="emptyCells"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.Type">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.EquatableStep">
             <summary>
