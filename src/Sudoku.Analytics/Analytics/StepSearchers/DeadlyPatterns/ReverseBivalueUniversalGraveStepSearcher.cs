@@ -14,15 +14,16 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// Indicates the global maps.
+	/// Indicates the global maps. The length of this field is always 7.
 	/// </summary>
-	private static readonly CellMap[] GlobalMaps =
-	{
-		~CellMap.Empty,
-		Chutes[0].Cells, Chutes[1].Cells, Chutes[2].Cells,
-		Chutes[3].Cells, Chutes[4].Cells, Chutes[5].Cells,
-	};
+	private static readonly CellMap[] GlobalMaps = { ~CellMap.Empty, Chutes[0].Cells, Chutes[1].Cells, Chutes[2].Cells, Chutes[3].Cells, Chutes[4].Cells, Chutes[5].Cells };
 
+
+	/// <summary>
+	/// Indicates whether the searcher can search for partially-used types, meaning the formed reverse BUG pattern may <b>not</b> be required
+	/// occupying <b>all</b> value cells of two digits. The default value is <see langword="true"/>.
+	/// </summary>
+	public bool AllowPartiallyUsedTypes { get; set; } = true;
 
 	/// <summary>
 	/// Indicates the maximum number of cells the step searcher will be searched for. This value controls the complexity of the technique.
@@ -35,14 +36,22 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		// Collect all possible digits can be used for the final construction of reverse BUGs.
-		var digits = (Mask)0;
-		for (var digit = 0; digit < 9; digit++)
+		Mask digits;
+		if (AllowPartiallyUsedTypes)
 		{
-			// Check whether the digit can be used.
-			// If the number of values for the current digit is 8 or 9, it may not be used for searching for reverse BUGs.
-			if (ValuesMap[digit].Count <= 7)
+			digits = Grid.MaxCandidatesMask;
+		}
+		else
+		{
+			digits = 0;
+			for (var digit = 0; digit < 9; digit++)
 			{
-				digits |= (Mask)(1 << digit);
+				// Check whether the digit can be used.
+				// If the number of values for the current digit is 8 or 9, it may not be used for searching for reverse BUGs.
+				if (ValuesMap[digit].Count <= 7)
+				{
+					digits |= (Mask)(1 << digit);
+				}
 			}
 		}
 
@@ -56,15 +65,31 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			}
 		}
 
+		var globalMapUpperBound = AllowPartiallyUsedTypes ? GlobalMaps.Length : 1;
+
 		// Iterates on all combinations of digits, with length of each combination 2.
 		foreach (var digitPair in digits.GetAllSets().GetSubsets(2))
 		{
-			foreach (var globalMap in GlobalMaps)
+			var d1 = digitPair[0];
+			var d2 = digitPair[1];
+			var comparer = (Mask)(1 << d1 | 1 << d2);
+
+			for (var i = 0; i < globalMapUpperBound; i++)
 			{
-				var d1 = digitPair[0];
-				var d2 = digitPair[1];
-				var comparer = (Mask)(1 << d1 | 1 << d2);
-				var valuesMap = globalMap & (ValuesMap[d1] | ValuesMap[d2]);
+				scoped ref readonly var globalMap = ref GlobalMaps[i];
+				var valuesMap = i == 0 ? ValuesMap[d1] | ValuesMap[d2] : globalMap & (ValuesMap[d1] | ValuesMap[d2]);
+
+				// Extra check: If the global map doesn't use all cells of a grid, we should check the other 2 floors/towers.
+				// If those floors/towers are not filled one of two digits, the pattern won't be formed, neither.
+				if (i != 0
+					&& ValuesMap[d1] - globalMap is { Count: var d1Counter }
+					&& ValuesMap[d2] - globalMap is { Count: var d2Counter }
+					&& (d1Counter, d2Counter) is not ((6, 0) or (0, 6)))
+				{
+					// Either 6 houses hold 6 'd1's and 0 'd2', or 6 'd2's and 0 'd1'.
+					// Otherwise, this will be handled in 'i == 0' (first case) or invalid cases.
+					continue;
+				}
 
 				// The following loop is used for appending new empty cells into the varible 'valuesMap'.
 				// Reverse BUGs can be split into two parts: Reverse URs and Reverse ULs.
@@ -264,6 +289,12 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		}
 
 		var selectedDigit = TrailingZeroCount(mergedDigitMask);
+		if (!((grid.Exists(cell1, selectedDigit) ?? false) && (grid.Exists(cell2, selectedDigit) ?? false)))
+		{
+			// We should ensure all chosen cells (empty cells) contain the selected digit.
+			return null;
+		}
+
 		foreach (var house in cellsChosen.Houses)
 		{
 			var possibleConjugatePairCells = CandidatesMap[selectedDigit] & HousesMap[house];

@@ -6117,7 +6117,13 @@ result ^= expression;
         </member>
         <member name="F:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.GlobalMaps">
             <summary>
-            Indicates the global maps.
+            Indicates the global maps. The length of this field is always 7.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes">
+            <summary>
+            Indicates whether the searcher can search for partially-used types, meaning the formed reverse BUG pattern may <b>not</b> be required
+            occupying <b>all</b> value cells of two digits. The default value is <see langword="true"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.MaxSearchingEmptyCellsCount">
