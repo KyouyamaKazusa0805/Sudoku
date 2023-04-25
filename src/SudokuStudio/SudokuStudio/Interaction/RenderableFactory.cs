@@ -169,7 +169,10 @@ internal static class RenderableFactory
 		GridLayout.SetColumnSpan(control, 3);
 		Canvas.SetZIndex(control, -1);
 
-		control.SetTransition(static control => control.BackgroundTransition = new());
+		if (sudokuPane.EnableAnimationFeedback)
+		{
+			control.OpacityTransition = new();
+		}
 
 		animatedResults.Add(
 			(
@@ -246,7 +249,7 @@ internal static class RenderableFactory
 			VerticalAlignment = VerticalAlignment.Center,
 			Fill = new SolidColorBrush(color),
 			Tag = nameof(RenderableFactory),
-			Opacity = 0
+			Opacity = paneCellControl.BasePane.EnableAnimationFeedback ? 0 : 1
 		};
 
 		var digit = candidate % 9;
@@ -254,7 +257,10 @@ internal static class RenderableFactory
 		GridLayout.SetColumn(control, digit % 3);
 		Canvas.SetZIndex(control, -1);
 
-		control.SetTransition(static control => control.OpacityTransition = new());
+		if (paneCellControl.BasePane.EnableAnimationFeedback)
+		{
+			control.OpacityTransition = new();
+		}
 
 		animatedResults.Add((() => paneCellControl.MainGrid.Children.Add(control), () => control.Opacity = 1));
 	}
@@ -289,7 +295,7 @@ internal static class RenderableFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = nameof(RenderableFactory),
-			Opacity = 0
+			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : sudokuPane.HighlightBackgroundOpacity
 		};
 
 		var (row, column, rowSpan, columnSpan) = house switch
@@ -309,7 +315,10 @@ internal static class RenderableFactory
 		GridLayout.SetRowSpan(control, rowSpan);
 		GridLayout.SetColumnSpan(control, columnSpan);
 
-		control.SetTransition(static control => control.BackgroundTransition = new());
+		if (sudokuPane.EnableAnimationFeedback)
+		{
+			control.OpacityTransition = new();
+		}
 
 		animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = sudokuPane.HighlightBackgroundOpacity));
 	}
@@ -344,7 +353,7 @@ internal static class RenderableFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = nameof(RenderableFactory),
-			Opacity = 0
+			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : sudokuPane.HighlightBackgroundOpacity
 		};
 
 		var (row, column, rowSpan, columnSpan) = chute switch
@@ -363,7 +372,10 @@ internal static class RenderableFactory
 		GridLayout.SetRowSpan(control, rowSpan);
 		GridLayout.SetColumnSpan(control, columnSpan);
 
-		control.SetTransition(static control => control.BackgroundTransition = new());
+		if (sudokuPane.EnableAnimationFeedback)
+		{
+			control.OpacityTransition = new();
+		}
 
 		animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = sudokuPane.HighlightBackgroundOpacity));
 	}
@@ -395,7 +407,7 @@ internal static class RenderableFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = nameof(RenderableFactory),
-			Opacity = 0,
+			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : sudokuPane.HighlightBackgroundOpacity,
 			Child = new TextBlock
 			{
 				Text = @char.ToString(),
@@ -415,7 +427,10 @@ internal static class RenderableFactory
 		GridLayout.SetColumnSpan(control, 3);
 		Canvas.SetZIndex(control, -1);
 
-		control.SetTransition(static control => control.BackgroundTransition = new());
+		if (sudokuPane.EnableAnimationFeedback)
+		{
+			control.OpacityTransition = new();
+		}
 
 		animatedResults.Add(
 			(
@@ -458,7 +473,10 @@ internal static class RenderableFactory
 			GridLayout.SetColumnSpan(link, 9);
 			Canvas.SetZIndex(link, -1);
 
-			link.SetTransition(static control => control.OpacityTransition = new());
+			if (sudokuPane.EnableAnimationFeedback)
+			{
+				link.OpacityTransition = new();
+			}
 
 			animatedResults.Add((() => gridControl.Children.Add(link), () => link.Opacity = 1));
 		}
@@ -529,7 +547,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup { Children = new() { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
 						Tag = nameof(RenderableFactory),
-						Opacity = 0
+						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 					};
 
 					break;
@@ -632,7 +650,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 								}
 							},
 							Tag = nameof(RenderableFactory),
-							Opacity = 0
+							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						};
 						yield return new()
 						{
@@ -661,7 +679,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 								}
 							},
 							Tag = nameof(RenderableFactory),
-							Opacity = 0
+							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						};
 						yield return new()
 						{
@@ -669,7 +687,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							StrokeThickness = Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
 							Tag = nameof(RenderableFactory),
-							Opacity = 0
+							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						};
 					}
 
@@ -847,29 +865,6 @@ file static class Extensions
 		foreach (var element in gathered)
 		{
 			@this.Remove(element);
-		}
-	}
-
-	/// <summary>
-	/// Try to set a <see cref="Transition"/> property if animation feedback is enabled.
-	/// </summary>
-	/// <typeparam name="T">The type of the control.</typeparam>
-	/// <param name="this">The control.</param>
-	/// <param name="transitionSettingAction">
-	/// The transition setting action. Generally the argument should be like:
-	/// <code><![CDATA[
-	/// static (Border border) => border.BackgroundTransition = new();
-	/// ]]></code>
-	/// If the type argument <typeparamref name="T"/> can be inferred by compiler, you can omit lambda parameter type:
-	/// <code><![CDATA[
-	/// static border => border.BackgroundTransition = new();
-	/// ]]></code>
-	/// </param>
-	public static void SetTransition<T>(this T @this, Action<T> transitionSettingAction) where T : FrameworkElement
-	{
-		if (((App)Application.Current).Preference.UIPreferences.EnableAnimationFeedback)
-		{
-			transitionSettingAction(@this);
 		}
 	}
 

@@ -44,15 +44,6 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc cref="IBitStatusMap{TSelf}.Empty"/>
 	public static readonly CellMap Empty;
 
-	/// <inheritdoc cref="IMinMaxValue{TSelf}.MaxValue"/>
-	public static readonly CellMap MaxValue = ~default(CellMap);
-
-	/// <inheritdoc cref="IMinMaxValue{TSelf}.MinValue"/>
-	/// <remarks>
-	/// This value is equivalent to <see cref="Empty"/>.
-	/// </remarks>
-	public static readonly CellMap MinValue;
-
 
 	/// <summary>
 	/// Indicates the internal two <see cref="long"/> values,
@@ -428,10 +419,10 @@ public unsafe partial struct CellMap :
 	static CellMap IBitStatusMap<CellMap>.Empty => Empty;
 
 	/// <inheritdoc/>
-	static CellMap IMinMaxValue<CellMap>.MaxValue => MaxValue;
+	static CellMap IMinMaxValue<CellMap>.MaxValue => ~Empty;
 
 	/// <inheritdoc/>
-	static CellMap IMinMaxValue<CellMap>.MinValue => MinValue;
+	static CellMap IMinMaxValue<CellMap>.MinValue => Empty;
 
 
 	/// <inheritdoc/>
@@ -1386,16 +1377,16 @@ public unsafe partial struct CellMap :
 	/// <summary>
 	/// Explicit cast from <see cref="@llong"/> to <see cref="CellMap"/>.
 	/// </summary>
-	/// <param name="int128">The <see cref="@llong"/> integer.</param>
+	/// <param name="llong">The <see cref="@llong"/> integer.</param>
 	/// <exception cref="OverflowException">
-	/// Throws when the base argument <paramref name="int128"/> is greater than the maximum value
-	/// corresponding to <see cref="MaxValue"/>.
+	/// Throws when the base argument <paramref name="llong"/> is greater than the maximum value
+	/// corresponding to <see cref="IMinMaxValue{TSelf}.MaxValue"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator checked CellMap(scoped in @llong int128)
-		=> int128 >> 81 == 0
-			? CreateByInt128(int128)
-			: throw new OverflowException($"The base {nameof(@llong)} integer is greater than '{nameof(MaxValue)}'.");
+	public static explicit operator checked CellMap(scoped in @llong llong)
+		=> llong >> 81 == 0
+			? CreateByInt128(llong)
+			: throw new OverflowException($"The base {nameof(@llong)} integer is greater than '{nameof(IBitStatusMap<CellMap>.MaxValue)}'.");
 
 	/// <inheritdoc/>
 	static explicit IBitStatusMap<CellMap>.operator checked CellMap(Cell[] offsets)

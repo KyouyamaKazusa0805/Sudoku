@@ -2015,15 +2015,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Concepts.CellMap.Empty">
             <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`1.Empty"/>
         </member>
-        <member name="F:Sudoku.Concepts.CellMap.MaxValue">
-            <inheritdoc cref="P:System.Numerics.IMinMaxValue`1.MaxValue"/>
-        </member>
-        <member name="F:Sudoku.Concepts.CellMap.MinValue">
-            <inheritdoc cref="P:System.Numerics.IMinMaxValue`1.MinValue"/>
-            <remarks>
-            This value is equivalent to <see cref="F:Sudoku.Concepts.CellMap.Empty"/>.
-            </remarks>
-        </member>
         <member name="F:Sudoku.Concepts.CellMap._high">
             <summary>
             Indicates the internal two <see cref="T:System.Int64"/> values,
@@ -2603,10 +2594,10 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Explicit cast from <see cref="T:System.Int128"/> to <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
-            <param name="int128">The <see cref="T:System.Int128"/> integer.</param>
+            <param name="llong">The <see cref="T:System.Int128"/> integer.</param>
             <exception cref="T:System.OverflowException">
-            Throws when the base argument <paramref name="int128"/> is greater than the maximum value
-            corresponding to <see cref="F:Sudoku.Concepts.CellMap.MaxValue"/>.
+            Throws when the base argument <paramref name="llong"/> is greater than the maximum value
+            corresponding to <see cref="P:System.Numerics.IMinMaxValue`1.MaxValue"/>.
             </exception>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_CheckedExplicit(System.Int32[])">
@@ -2665,53 +2656,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the current cell has been filled a value that cannot be modified because it exists in initial grid.
             </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Chute">
-            <summary>
-            Represents a data structure whose equivalent concept to a <see href="https://sunnieshine.github.io/Sudoku/terms/chute">Chute</see>.
-            </summary>
-            <param name="Cells">Indicates the cells used in this chute.</param>
-            <param name="IsRow">Indicates whether the current chute is for a row.</param>
-            <param name="HousesMask">Indicates the houses used. The target value is a <see cref="T:System.Int16" /> value of 9 bits used.</param>
-            <remarks>
-            <large-structure>
-		<b>
-			<i>
-				This is a large structure, which means it may cost more time to copy instance than normal structures.
-				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
-				to tell runtime that it should be copied by its reference instead of internal value.
-			</i>
-		</b>
-	</large-structure>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Chute.#ctor(Sudoku.Concepts.CellMap@,System.Boolean,System.Int16)">
-            <summary>
-            Represents a data structure whose equivalent concept to a <see href="https://sunnieshine.github.io/Sudoku/terms/chute">Chute</see>.
-            </summary>
-            <param name="Cells">Indicates the cells used in this chute.</param>
-            <param name="IsRow">Indicates whether the current chute is for a row.</param>
-            <param name="HousesMask">Indicates the houses used. The target value is a <see cref="T:System.Int16" /> value of 9 bits used.</param>
-            <remarks>
-            <large-structure>
-		<b>
-			<i>
-				This is a large structure, which means it may cost more time to copy instance than normal structures.
-				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
-				to tell runtime that it should be copied by its reference instead of internal value.
-			</i>
-		</b>
-	</large-structure>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Concepts.Chute.Cells">
-            <summary>Indicates the cells used in this chute.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Chute.IsRow">
-            <summary>Indicates whether the current chute is for a row.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Chute.HousesMask">
-            <summary>Indicates the houses used. The target value is a <see cref="T:System.Int16"/> value of 9 bits used.</summary>
         </member>
         <member name="T:Sudoku.Concepts.Conjugate">
             <summary>

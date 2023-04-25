@@ -832,7 +832,7 @@ public sealed partial class AnalyzePage : Page
 			}
 			case
 			{
-				WrongStep: { } wrongStep,
+				WrongStep: { Views: var views, Conclusions: var conclusions } wrongStep,
 				FailedReason: AnalyzerFailedReason.WrongStep,
 				UnhandledException: WrongStepException { CurrentInvalidGrid: var invalidGrid }
 			}:
@@ -848,6 +848,7 @@ public sealed partial class AnalyzePage : Page
 					{
 						ErrorStepGrid = invalidGrid,
 						ErrorStepText = string.Format(GetString("AnalyzePage_ErrorStepDescription"), wrongStep),
+						ViewUnit = new() { View = views?[0] ?? View.Empty, Conclusions = conclusions }
 					}
 				}.ShowAsync();
 

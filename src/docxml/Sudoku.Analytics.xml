@@ -6115,6 +6115,11 @@ result ^= expression;
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.GlobalMaps">
+            <summary>
+            Indicates the global maps.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.MaxSearchingEmptyCellsCount">
             <summary>
             Indicates the maximum number of cells the step searcher will be searched for. This value controls the complexity of the technique.

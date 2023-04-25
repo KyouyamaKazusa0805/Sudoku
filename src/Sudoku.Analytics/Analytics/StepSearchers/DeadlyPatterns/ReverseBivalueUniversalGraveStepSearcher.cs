@@ -14,6 +14,17 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearcher
 {
 	/// <summary>
+	/// Indicates the global maps.
+	/// </summary>
+	private static readonly CellMap[] GlobalMaps =
+	{
+		~CellMap.Empty,
+		Chutes[0].Cells, Chutes[1].Cells, Chutes[2].Cells,
+		Chutes[3].Cells, Chutes[4].Cells, Chutes[5].Cells,
+	};
+
+
+	/// <summary>
 	/// Indicates the maximum number of cells the step searcher will be searched for. This value controls the complexity of the technique.
 	/// The maximum value is 4, and recommend value is 2. This value cannot be negative. The default value is 4.
 	/// </summary>
@@ -48,41 +59,44 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		// Iterates on all combinations of digits, with length of each combination 2.
 		foreach (var digitPair in digits.GetAllSets().GetSubsets(2))
 		{
-			var d1 = digitPair[0];
-			var d2 = digitPair[1];
-			var comparer = (Mask)(1 << d1 | 1 << d2);
-			var valuesMap = ValuesMap[d1] | ValuesMap[d2];
-
-			// This loop is used for appending new empty cells into the varible 'valuesMap'.
-			// Reverse BUGs can be split into two parts: Reverse URs and Reverse ULs.
-			// Both of them are used cells, of length being a even number.
-			// If the variable 'valuesMap' holds an odd number of cells,
-			// we should append 2 or 4 cells; otherwise, 1 or 3 cells, to achieve this.
-			// The total number of empty cells chosen may not be greater than 4,
-			// because eliminations in such constructed pattern may not exist. In addition, only type 2 will use at most 4 empty cells;
-			// other types will only use 1 or 2 empty cells.
-			for (var incrementStep = (valuesMap.Count & 1) == 0 ? 2 : 1; incrementStep < MaxSearchingEmptyCellsCount; incrementStep += 2)
+			foreach (var globalMap in GlobalMaps)
 			{
-				foreach (var cellsChosen in emptyCells & incrementStep)
-				{
-					var completePattern = valuesMap | cellsChosen;
-					if (!UniqueLoopStepSearcherHelper.IsGeneralizedUniqueLoop(completePattern))
-					{
-						// This pattern is invalid.
-						continue;
-					}
+				var d1 = digitPair[0];
+				var d2 = digitPair[1];
+				var comparer = (Mask)(1 << d1 | 1 << d2);
+				var valuesMap = globalMap & (ValuesMap[d1] | ValuesMap[d2]);
 
-					if (CheckType1(ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type1Step)
+				// The following loop is used for appending new empty cells into the varible 'valuesMap'.
+				// Reverse BUGs can be split into two parts: Reverse URs and Reverse ULs.
+				// Both of them are used cells, of length being a even number.
+				// If the variable 'valuesMap' holds an odd number of cells,
+				// we should append 2 or 4 cells; otherwise, 1 or 3 cells, to achieve this.
+				// The total number of empty cells chosen may not be greater than 4,
+				// because eliminations in such constructed pattern may not exist. In addition, only type 2 will use at most 4 empty cells;
+				// other types will only use 1 or 2 empty cells.
+				for (var incrementStep = (valuesMap.Count & 1) == 0 ? 2 : 1; incrementStep < MaxSearchingEmptyCellsCount; incrementStep += 2)
+				{
+					foreach (var cellsChosen in emptyCells & incrementStep)
 					{
-						return type1Step;
-					}
-					if (CheckType2(ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type2Step)
-					{
-						return type2Step;
-					}
-					if (CheckType4(ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type4Step)
-					{
-						return type4Step;
+						var completePattern = valuesMap | cellsChosen;
+						if (!UniqueLoopStepSearcherHelper.IsGeneralizedUniqueLoop(completePattern))
+						{
+							// This pattern is invalid.
+							continue;
+						}
+
+						if (CheckType1(ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type1Step)
+						{
+							return type1Step;
+						}
+						if (CheckType2(ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type2Step)
+						{
+							return type2Step;
+						}
+						if (CheckType4(ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type4Step)
+						{
+							return type4Step;
+						}
 					}
 				}
 			}

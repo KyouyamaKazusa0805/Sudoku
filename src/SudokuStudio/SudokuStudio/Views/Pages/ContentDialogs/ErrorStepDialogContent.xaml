@@ -10,27 +10,49 @@
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pd:ErrorStepDialogContent}">
-	<StackPanel Orientation="Vertical" Spacing="6">
-		<TextBlock Text="{m:R Key=AnalyzePage_ErrorStepEncountered}" />
+	<StackPanel Orientation="Vertical" Spacing="12">
+		<TextBlock Text="{m:R Key=AnalyzePage_ErrorStepEncountered}" TextWrapping="WrapWholeWords" LineHeight=".5" />
+		<TextBlock x:Name="ErrorStepDetailsDisplayer" TextWrapping="WrapWholeWords" />
 		<c:SudokuPane
-			x:Name="ErrorStepDisplayer" x:FieldModifier="internal" Width="610" Height="610"
-			HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1" DisplayCursors="True" DisplayCandidates="True"
+			x:Name="ErrorStepDisplayer" x:FieldModifier="internal" Width="480" Height="480"
+			HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1" DisplayCursors="False" DisplayCandidates="True"
 			DisableFlyout="True" EnableUndoRedoStacking="False" EnableDoubleTapFilling="False" EnableRightTapRemoving="False"
-			CursorBackgroundColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CursorBackgroundColor,Mode=OneWay}"
+			EnableAnimationFeedback="False" TransparentBackground="False"
 			GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontData.FontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
 			ModifiableFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontData.FontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
 			PencilmarkFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontData.FontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+			CoordinateLabelFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontData.FontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
 			GivenFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontData.FontScale,Mode=OneWay}"
 			ModifiableFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontData.FontScale,Mode=OneWay}"
+			PencilmarkFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontData.FontScale,Mode=OneWay}"
+			CoordinateLabelFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontData.FontScale,Mode=OneWay}"
+			BabaGroupLabelFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontData.FontScale,Mode=OneWay}"
+			HighlightCandidateCircleScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedPencilmarkBackgroundEllipseScale,Mode=OneWay}"
+			HighlightBackgroundOpacity="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedBackgroundOpacity,Mode=OneWay}"
+			ChainStrokeThickness="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainStrokeThickness,Mode=OneWay}"
+			StrongLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StrongLinkDashStyle,Mode=OneWay}"
+			WeakLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.WeakLinkDashStyle,Mode=OneWay}"
+			CycleLikeLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CyclingCellLinkDashStyle,Mode=OneWay}"
+			OtherLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.OtherLinkDashStyle,Mode=OneWay}"
 			GivenColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontData.FontColor,Mode=OneWay}"
 			ModifiableColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontData.FontColor,Mode=OneWay}"
 			PencilmarkColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontData.FontColor,Mode=OneWay}"
-			BorderColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,Mode=OneWay}"
-			CoordinateLabelFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontData.FontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
-			CoordinateLabelFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontData.FontScale,Mode=OneWay}"
 			CoordinateLabelColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontData.FontColor,Mode=OneWay}"
+			BabaGroupLabelColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontData.FontColor,Mode=OneWay}"
+			BorderColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,Mode=OneWay}"
+			LinkColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainColor,Mode=OneWay}"
+			NormalColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.NormalColor,Mode=OneWay}"
+			DeltaCellColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaValueColor,Mode=OneWay}"
+			DeltaCandidateColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaPencilmarkColor,Mode=OneWay}"
+			ExofinColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ExofinColor,Mode=OneWay}"
+			EndofinColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EndofinColor,Mode=OneWay}"
+			AssignmentColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentColor,Mode=OneWay}"
+			OverlappedAssignmentColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.OverlappedAssignmentColor,Mode=OneWay}"
+			EliminationColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationColor,Mode=OneWay}"
+			CannibalismColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CannibalismColor,Mode=OneWay}"
+			AuxiliaryColors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors,Mode=OneWay}"
+			AlmostLockedSetsColors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,Mode=OneWay}"
 			CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
 			CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}" />
-		<TextBlock x:Name="ErrorStepDetailsDisplayer" />
 	</StackPanel>
 </Page>

@@ -16,8 +16,5 @@ public sealed partial class ExceptionThrownOnAnalyzingContent : Page
 	/// <para><inheritdoc cref="ErrorStepDialogContent.ErrorStepText" path="//summary/para[2]"/></para>
 	/// </summary>
 	/// <value><inheritdoc cref="ThrownException" path="//summary/para[1]"/></value>
-	public Exception ThrownException
-	{
-		set => ExceptionDisplayer.Text = value.ToString();
-	}
+	public Exception ThrownException { set => ExceptionDisplayer.Text = value.ToString(); }
 }

@@ -298,7 +298,7 @@
     <value>Okay!</value>
   </data>
   <data name="AnalyzePage_ErrorStepEncountered" xml:space="preserve">
-    <value>An error step has been encountered, which causes the analyzer module shut down. The error step is:</value>
+    <value>An error step has been encountered, which causes the analyzer module shut down. Please contact author to fix this issue.</value>
   </data>
   <data name="AnalyzePage_ErrorStepEncounteredTitle" xml:space="preserve">
     <value>Info</value>

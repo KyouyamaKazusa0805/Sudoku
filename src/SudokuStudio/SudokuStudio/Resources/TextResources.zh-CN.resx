@@ -301,7 +301,7 @@
     <value>好嘞！</value>
   </data>
   <data name="AnalyzePage_ErrorStepEncountered" xml:space="preserve">
-    <value>程序遇到一个错误步骤，导致程序无法继续分析该题目。该错误步骤为：</value>
+    <value>程序遇到一个错误步骤，导致程序无法继续分析该题目。请联系作者以修复此错误。</value>
   </data>
   <data name="AnalyzePage_ErrorStepEncounteredTitle" xml:space="preserve">
     <value>信息</value>

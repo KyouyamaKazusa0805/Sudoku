@@ -2351,23 +2351,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The collection.</param>
         </member>
-        <member name="M:SudokuStudio.Interaction.Extensions.SetTransition``1(``0,System.Action{``0})">
-            <summary>
-            Try to set a <see cref="T:Microsoft.UI.Xaml.Media.Animation.Transition"/> property if animation feedback is enabled.
-            </summary>
-            <typeparam name="T">The type of the control.</typeparam>
-            <param name="this">The control.</param>
-            <param name="transitionSettingAction">
-            The transition setting action. Generally the argument should be like:
-            <code><![CDATA[
-            static (Border border) => border.BackgroundTransition = new();
-            ]]></code>
-            If the type argument <typeparamref name="T"/> can be inferred by compiler, you can omit lambda parameter type:
-            <code><![CDATA[
-            static border => border.BackgroundTransition = new();
-            ]]></code>
-            </param>
-        </member>
         <member name="M:SudokuStudio.Interaction.Extensions.ConflictWith(Sudoku.Analytics.Conclusion[],System.Int32,System.Nullable{Sudoku.Analytics.Conclusion}@)">
             <summary>
             <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
@@ -3532,7 +3515,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ErrorStepEncountered">
             <summary>
-              Looks up a localized string similar to An error step has been encountered, which causes the analyzer module shut down. The error step is:.
+              Looks up a localized string similar to An error step has been encountered, which causes the analyzer module shut down. Please contact author to fix this issue..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ErrorStepEncounteredTitle">
@@ -6972,6 +6955,13 @@ if (student is (name: var name, age: >= 18))
             <para><inheritdoc cref="P:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.ErrorStepText" path="//summary/para[2]"/></para>
             </summary>
             <value><inheritdoc cref="P:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.ErrorStepGrid" path="//summary/para[1]"/></value>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.ViewUnit">
+            <summary>
+            <para>Indicates the <see cref="T:Sudoku.Rendering.ViewNode"/>s displayed for the current wrong step.</para>
+            <para><inheritdoc cref="P:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.ErrorStepText" path="//summary/para[2]"/></para>
+            </summary>
+            <value>The value of the view.</value>
         </member>
         <member name="M:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.InitializeComponent">
             <summary>

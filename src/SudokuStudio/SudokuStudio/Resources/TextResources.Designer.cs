@@ -772,7 +772,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error step has been encountered, which causes the analyzer module shut down. The error step is:.
+        ///   Looks up a localized string similar to An error step has been encountered, which causes the analyzer module shut down. Please contact author to fix this issue..
         /// </summary>
         internal static string AnalyzePage_ErrorStepEncountered {
             get {
