@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Brute Force</b> step searcher.
@@ -7,7 +7,9 @@
 /// <item>Brute Force</item>
 /// </list>
 /// </summary>
-[StepSearcher, Fixed, Direct]
+[StepSearcher]
+[Fixed]
+[Direct]
 public sealed partial class BruteForceStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

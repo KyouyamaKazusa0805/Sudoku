@@ -10,7 +10,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Unique Loop Type 4</item>
 /// </list>
 /// </summary>
-[StepSearcher, ConditionalCases(ConditionalCase.Standard | ConditionalCase.UnlimitedTimeComplexity)]
+[StepSearcher]
+[ConditionalCases(ConditionalCase.Standard | ConditionalCase.UnlimitedTimeComplexity)]
 public sealed partial class UniqueLoopStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
