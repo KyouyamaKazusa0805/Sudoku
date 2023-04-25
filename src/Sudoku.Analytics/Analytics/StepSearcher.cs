@@ -1,7 +1,5 @@
 namespace Sudoku.Analytics;
 
-using static StepSearcherRunningArea;
-
 /// <summary>
 /// Represents a searcher that can creates <see cref="Step"/> instances for the specified technique.
 /// </summary>
@@ -27,13 +25,16 @@ using static StepSearcherRunningArea;
 /// </param>
 /// <param name="runningArea">
 /// <para>Indicates the running area which describes a function where the current step searcher can be invoked.</para>
-/// <para>By default, the step searcher will support both <see cref="Searching"/> and <see cref="Gathering"/>.</para>
+/// <para>
+/// By default, the step searcher will support
+/// both <see cref="StepSearcherRunningArea.Searching"/> and <see cref="StepSearcherRunningArea.Gathering"/>.
+/// </para>
 /// </param>
 /// <seealso cref="Step"/>
 public abstract partial class StepSearcher(
 	[PrimaryConstructorParameter] int priority,
 	[PrimaryConstructorParameter] StepSearcherLevel level,
-	[PrimaryConstructorParameter] StepSearcherRunningArea runningArea = Searching | Gathering
+	[PrimaryConstructorParameter] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering
 ) :
 	IComparable<StepSearcher>,
 	IComparisonOperators<StepSearcher, StepSearcher, bool>,

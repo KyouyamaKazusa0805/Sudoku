@@ -4942,7 +4942,10 @@ result ^= expression;
             </param>
             <param name="runningArea">
             <para>Indicates the running area which describes a function where the current step searcher can be invoked.</para>
-            <para>By default, the step searcher will support both <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching"/> and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering"/>.</para>
+            <para>
+            By default, the step searcher will support
+            both <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching"/> and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering"/>.
+            </para>
             </param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
@@ -4972,7 +4975,10 @@ result ^= expression;
             </param>
             <param name="runningArea">
             <para>Indicates the running area which describes a function where the current step searcher can be invoked.</para>
-            <para>By default, the step searcher will support both <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching"/> and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering"/>.</para>
+            <para>
+            By default, the step searcher will support
+            both <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching"/> and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering"/>.
+            </para>
             </param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
