@@ -32,8 +32,8 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage
 			return;
 		}
 
-		pathListView.ItemsSource = value is AnalyzerResult analysisResult
-			? SolvingPathStepCollection.Create(analysisResult, kind)
+		pathListView.ItemsSource = value is AnalyzerResult analyzerResult
+			? SolvingPathStepCollection.Create(analyzerResult, kind)
 			: null;
 	}
 

@@ -302,7 +302,7 @@
             <summary>
             Creates a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance via the specified <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
             </summary>
-            <param name="analysisResult">A <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.</param>
+            <param name="analyzerResult">A <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.</param>
             <param name="displayKind">Indicates all displaying values.</param>
             <returns>An instance of the current type.</returns>
         </member>
@@ -2645,9 +2645,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Models.AnalysisResultTableRow.CreateListFrom(Sudoku.Analytics.AnalyzerResult)">
             <summary>
             Creates the list of <see cref="T:SudokuStudio.Models.AnalysisResultTableRow"/> as the result value,
-            via the specified <paramref name="analysisResult"/> instance of <see cref="T:Sudoku.Analytics.AnalyzerResult"/> type.
+            via the specified <paramref name="analyzerResult"/> instance of <see cref="T:Sudoku.Analytics.AnalyzerResult"/> type.
             </summary>
-            <param name="analysisResult">
+            <param name="analyzerResult">
             The <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance that is used for creating the result value.
             </param>
             <returns>The result list of <see cref="T:SudokuStudio.Models.AnalysisResultTableRow"/>-typed elements.</returns>
@@ -6508,7 +6508,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             To update values via the specified <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
             </summary>
-            <param name="analysisResult">The analysis result instance.</param>
+            <param name="analyzerResult">The analysis result instance.</param>
             <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.CopySudokuGridText">

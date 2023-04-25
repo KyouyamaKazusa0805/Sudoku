@@ -24,12 +24,12 @@ public sealed class SolvingPathStepCollection : List<SolvingPathStep>
 	/// <summary>
 	/// Creates a <see cref="SolvingPathStepCollection"/> instance via the specified <see cref="AnalyzerResult"/> instance.
 	/// </summary>
-	/// <param name="analysisResult">A <see cref="AnalyzerResult"/> instance.</param>
+	/// <param name="analyzerResult">A <see cref="AnalyzerResult"/> instance.</param>
 	/// <param name="displayKind">Indicates all displaying values.</param>
 	/// <returns>An instance of the current type.</returns>
-	public static SolvingPathStepCollection Create(AnalyzerResult analysisResult, StepTooltipDisplayKind displayKind)
+	public static SolvingPathStepCollection Create(AnalyzerResult analyzerResult, StepTooltipDisplayKind displayKind)
 	{
-		if (analysisResult is not { IsSolved: true, SolvingPath: { Length: var pathStepsCount } steps })
+		if (analyzerResult is not { IsSolved: true, SolvingPath: { Length: var pathStepsCount } steps })
 		{
 			return new();
 		}

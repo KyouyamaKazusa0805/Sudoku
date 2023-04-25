@@ -33,16 +33,16 @@ internal sealed class AnalysisResultTableRow
 
 	/// <summary>
 	/// Creates the list of <see cref="AnalysisResultTableRow"/> as the result value,
-	/// via the specified <paramref name="analysisResult"/> instance of <see cref="AnalyzerResult"/> type.
+	/// via the specified <paramref name="analyzerResult"/> instance of <see cref="AnalyzerResult"/> type.
 	/// </summary>
-	/// <param name="analysisResult">
+	/// <param name="analyzerResult">
 	/// The <see cref="AnalyzerResult"/> instance that is used for creating the result value.
 	/// </param>
 	/// <returns>The result list of <see cref="AnalysisResultTableRow"/>-typed elements.</returns>
-	public static IEnumerable<AnalysisResultTableRow> CreateListFrom(AnalyzerResult analysisResult)
+	public static IEnumerable<AnalysisResultTableRow> CreateListFrom(AnalyzerResult analyzerResult)
 	{
 		return
-			from step in analysisResult.Steps
+			from step in analyzerResult.Steps
 			orderby step.DifficultyLevel, step.Code
 			group step by step.Name into stepGroup
 			let stepGroupArray = stepGroup.ToArray()

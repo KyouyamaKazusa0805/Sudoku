@@ -24,7 +24,7 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 
 	private async void PrintAnalysisButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		if (BasePage.AnalysisResultCache is not { } analysisResult)
+		if (BasePage.AnalysisResultCache is not { } analyzerResult)
 		{
 			ErrorDialog_AnalysisResultNotExist.IsOpen = true;
 			return;
@@ -33,7 +33,7 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 		var document = await new AnalysisResultDocumentCreator
 		{
 			Comment = GetString("AnalyzePage_GenerateComment"),
-			AnalysisResult = analysisResult
+			AnalysisResult = analyzerResult
 		}.CreateDocumentAsync();
 
 		if (!BasePage.EnsureUnsnapped(true))

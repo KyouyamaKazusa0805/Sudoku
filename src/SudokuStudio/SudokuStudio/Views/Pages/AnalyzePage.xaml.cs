@@ -72,15 +72,15 @@ public sealed partial class AnalyzePage : Page
 	/// <summary>
 	/// To update values via the specified <see cref="AnalyzerResult"/> instance.
 	/// </summary>
-	/// <param name="analysisResult">The analysis result instance.</param>
+	/// <param name="analyzerResult">The analysis result instance.</param>
 	/// <seealso cref="AnalyzerResult"/>
-	internal void UpdateAnalysisResult(AnalyzerResult analysisResult)
+	internal void UpdateAnalysisResult(AnalyzerResult analyzerResult)
 	{
 		foreach (var pageData in (IEnumerable<AnalyzeTabPageData>)AnalyzeTabs.TabItemsSource)
 		{
 			if (pageData is { TabPage: IAnalyzeTabPage subTabPage })
 			{
-				subTabPage.AnalysisResult = analysisResult;
+				subTabPage.AnalysisResult = analyzerResult;
 			}
 		}
 	}
@@ -795,18 +795,38 @@ public sealed partial class AnalyzePage : Page
 
 		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
 
-		var solver = ((App)Application.Current).ProgramSolver;
-		var analysisResult = await Task.Run(analyze);
+		var disallowHighTimeComplexity = ((App)Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms;
+		var disallowSpaceTimeComplexity = ((App)Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms;
+
+		var solver = ((App)Application.Current)
+			.ProgramSolver
+			.WithStepSearchers(
+				(
+					from data in ((App)Application.Current).Preference.StepSearcherOrdering.StepSearchersOrder
+					where data.IsEnabled
+					select data.CreateStepSearchers() into stepSearchers
+					from s in stepSearchers
+					let highTimeComplexity = s.IsConfiguredSlow
+					let highSpaceComplexity = s.IsConfiguredHighAllocation
+					where !highTimeComplexity
+						|| highTimeComplexity && !disallowHighTimeComplexity
+						|| !highSpaceComplexity
+						|| highSpaceComplexity && !disallowSpaceTimeComplexity
+					select s
+				).ToArray()
+			);
+
+		var analyzerResult = await Task.Run(analyze);
 
 		AnalyzeButton.IsEnabled = true;
 		IsAnalyzerLaunched = false;
 
-		switch (analysisResult)
+		switch (analyzerResult)
 		{
 			case { IsSolved: true }:
 			{
-				UpdateAnalysisResult(analysisResult);
-				AnalysisResultCache = analysisResult;
+				UpdateAnalysisResult(analyzerResult);
+				AnalysisResultCache = analyzerResult;
 
 				break;
 			}

@@ -46,7 +46,7 @@ public static class MaskOperations
 	public static Mask[] GetMaskSubsets(Mask value, int size)
 	{
 		var listToIterate = value.GetAllSets().GetSubsets(size);
-		var result = new Mask[listToIterate.Count];
+		var result = new Mask[listToIterate.Length];
 		var index = 0;
 		foreach (var target in listToIterate)
 		{

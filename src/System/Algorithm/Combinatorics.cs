@@ -11,7 +11,7 @@ public static class Combinatorics
 	/// <param name="this">The array.</param>
 	/// <param name="count">The number of elements you want to take.</param>
 	/// <returns>All subsets.</returns>
-	public static IReadOnlyCollection<T[]> GetSubsets<T>(this scoped Span<T> @this, int count)
+	public static T[][] GetSubsets<T>(this scoped Span<T> @this, int count)
 	{
 		if (count == 0)
 		{
@@ -20,7 +20,7 @@ public static class Combinatorics
 
 		var result = new List<T[]>();
 		g(@this.Length, count, count, stackalloc int[count], @this, result);
-		return result;
+		return result.ToArray();
 
 
 		static void g(int last, int count, int index, scoped Span<int> tempArray, scoped Span<T> @this, List<T[]> resultList)
@@ -52,7 +52,7 @@ public static class Combinatorics
 	/// <param name="this">The array.</param>
 	/// <param name="count">The number of elements you want to take.</param>
 	/// <returns>All subsets.</returns>
-	public static IReadOnlyCollection<T[]> GetSubsets<T>(this scoped ReadOnlySpan<T> @this, int count)
+	public static T[][] GetSubsets<T>(this scoped ReadOnlySpan<T> @this, int count)
 	{
 		if (count == 0)
 		{
@@ -61,7 +61,7 @@ public static class Combinatorics
 
 		var result = new List<T[]>();
 		g(@this.Length, count, count, stackalloc int[count], @this, result);
-		return result;
+		return result.ToArray();
 
 
 		static void g(int last, int count, int index, scoped Span<int> tempArray, scoped ReadOnlySpan<T> @this, List<T[]> resultList)
@@ -87,6 +87,7 @@ public static class Combinatorics
 		}
 	}
 
+#if false
 	/// <summary>
 	/// Get all subsets that each element is chosen at most once.
 	/// Note that the null set <c>{ }</c> doesn't belong to the result.
@@ -118,6 +119,7 @@ public static class Combinatorics
 			}
 		}
 	}
+#endif
 
 	/// <summary>
 	/// Get all subsets from the specified number of the values to take.
@@ -133,7 +135,7 @@ public static class Combinatorics
 	/// </code>
 	/// 3 cases.
 	/// </returns>
-	public static IEnumerable<T[]> GetSubsets<T>(this IReadOnlyList<T> @this, int count)
+	public static T[][] GetSubsets<T>(this T[] @this, int count)
 	{
 		if (count == 0)
 		{
@@ -141,11 +143,11 @@ public static class Combinatorics
 		}
 
 		var result = new List<T[]>();
-		g(@this.Count, count, count, stackalloc int[count], @this, result);
-		return result;
+		g(@this.Length, count, count, stackalloc int[count], @this, result);
+		return result.ToArray();
 
 
-		static void g(int last, int count, int index, scoped Span<int> tempArray, IReadOnlyList<T> @this, List<T[]> resultList)
+		static void g(int last, int count, int index, scoped Span<int> tempArray, T[] @this, List<T[]> resultList)
 		{
 			for (var i = last; i >= index; i--)
 			{
