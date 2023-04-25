@@ -281,6 +281,9 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				);
 			}
 
+			var lockedTargetInner = new LockedTarget(selectedDigit, conjugatePairCellInnerPattern);
+			var lockedTargetOuter = new LockedTarget(selectedDigit, conjugatePairCellOuterPattern);
+			var anotherLockedTarget = new LockedTarget(selectedDigit, anotherCell);
 			var step = new ReverseBivalueUniversalGraveType4Step(
 				new[] { conclusion },
 				new[]
@@ -289,19 +292,9 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 						| cellOffsets
 						| new CandidateViewNode(WellKnownColorIdentifierKind.Auxiliary1, conjugatePairCellInnerPattern * 9 + selectedDigit)
 						| new CandidateViewNode(WellKnownColorIdentifierKind.Auxiliary1, conjugatePairCellOuterPattern * 9 + selectedDigit)
-						| new HouseViewNode(WellKnownColorIdentifierKind.Auxiliary1, house)
-						| new LinkViewNode(
-							WellKnownColorIdentifierKind.Normal,
-							new(selectedDigit, conjugatePairCellInnerPattern),
-							new(selectedDigit, anotherCell),
-							Inference.Weak
-						)
-						| new LinkViewNode(
-							WellKnownColorIdentifierKind.Normal,
-							new(selectedDigit, conjugatePairCellOuterPattern),
-							new(selectedDigit, anotherCell),
-							Inference.Weak
-						)
+						| new HouseViewNode(WellKnownColorIdentifierKind.Normal, house)
+						| new LinkViewNode(WellKnownColorIdentifierKind.Normal, lockedTargetInner, anotherLockedTarget, Inference.Weak)
+						| new LinkViewNode(WellKnownColorIdentifierKind.Normal, lockedTargetOuter, anotherLockedTarget, Inference.Weak)
 				},
 				d1,
 				d2,

@@ -11329,31 +11329,6 @@ result ^= expression;
             The generated property declaration for parameter <c>extraDigit</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step">
-            <summary>
-            Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 3</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="digit1"><inheritdoc/></param>
-            <param name="digit2"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
-            <param name="emptyCells"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 3</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="digit1"><inheritdoc/></param>
-            <param name="digit2"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
-            <param name="emptyCells"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step.Type">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step">
             <summary>
             Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 4</b> technique.
