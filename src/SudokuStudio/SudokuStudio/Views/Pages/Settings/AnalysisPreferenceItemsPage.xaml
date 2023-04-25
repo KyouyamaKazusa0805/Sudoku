@@ -36,15 +36,22 @@
 			<w:SettingsGroup Header="{m:R Key=SettingsPage_DeadlyPatternsGroup}">
 				<w:SettingsCard Header="{m:R Key=SettingsPage_AllowIncompleteUniqueRectangles}">
 					<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowIncompleteUniqueRectangles,Mode=TwoWay}" />
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowIncompleteUniqueRectangles,Mode=TwoWay}" />
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_SearchForExtendedUniqueRectangles}">
 					<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchForExtendedUniqueRectangles,Mode=TwoWay}" />
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchForExtendedUniqueRectangles,Mode=TwoWay}" />
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_SearchExtendedBivalueUniversalGraveTypes}">
 					<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchExtendedBivalueUniversalGraveTypes,Mode=TwoWay}" />
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchExtendedBivalueUniversalGraveTypes,Mode=TwoWay}" />
+				</w:SettingsCard>
+				<w:SettingsCard
+					Header="{m:R Key=SettingsPage_ReverseBugMaxSearchingEmptyCellsCount}"
+					Description="{m:R Key=SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription}">
+					<c:IntegerBox
+						Minimum="1" Maximum="4" LargeChange="1" SmallChange="1" SpinButtonPlacementMode="Inline" Width="150"
+						Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.ReverseBugMaxSearchingEmptyCellsCount,Mode=TwoWay}" />
 				</w:SettingsCard>
 			</w:SettingsGroup>
 			<w:SettingsGroup Header="{m:R Key=SettingsPage_AlmostLockedSetsGroup}">
@@ -64,6 +71,15 @@
 					<c:IntegerBox
 						Minimum="3" Maximum="9" LargeChange="2" SpinButtonPlacementMode="Inline" Width="150"
 						Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfRegularWing,Mode=TwoWay}" />
+				</w:SettingsCard>
+			</w:SettingsGroup>
+			<w:SettingsGroup Header="{m:R Key=SettingsPage_PermutationsGroup}">
+				<w:SettingsCard
+					Header="{m:R Key=SettingsPage_AlignedExclusionMaxSearchingSize}"
+					Description="{m:R Key=SettingsPage_AlignedExclusionMaxSearchingSizeDescription}">
+					<c:IntegerBox
+						Minimum="2" Maximum="5" LargeChange="2" SpinButtonPlacementMode="Inline" Width="150"
+						Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AlignedExclusionMaxSearchingSize,Mode=TwoWay}" />
 				</w:SettingsCard>
 			</w:SettingsGroup>
 			<w:SettingsGroup Header="{m:R Key=SettingsPage_FishesGroup}">

@@ -1852,6 +1852,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum number of cell permutation in aligned exclusion.
+        /// </summary>
+        internal static string SettingsPage_AlignedExclusionMaxSearchingSize {
+            get {
+                return ResourceManager.GetString("SettingsPage_AlignedExclusionMaxSearchingSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A value controlling the complexity of searching operation for Aligned Exclusion technique. The maximum possible value is 5, recommend value is 3, and the minimum value is 2. It cannot be negative..
+        /// </summary>
+        internal static string SettingsPage_AlignedExclusionMaxSearchingSizeDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_AlignedExclusionMaxSearchingSizeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow collision on ALS-XY-Wing.
         /// </summary>
         internal static string SettingsPage_AllowCollisionOnAlmostLockedSetXyWing {
@@ -2556,6 +2574,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Permutation Techniques.
+        /// </summary>
+        internal static string SettingsPage_PermutationsGroup {
+            get {
+                return ResourceManager.GetString("SettingsPage_PermutationsGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prevent conflicting inputs.
         /// </summary>
         internal static string SettingsPage_PreventConflictingInput {
@@ -2570,6 +2597,24 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_PreventConflictingInputDescription {
             get {
                 return ResourceManager.GetString("SettingsPage_PreventConflictingInputDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum number of empty cells searching in Reverse BUG.
+        /// </summary>
+        internal static string SettingsPage_ReverseBugMaxSearchingEmptyCellsCount {
+            get {
+                return ResourceManager.GetString("SettingsPage_ReverseBugMaxSearchingEmptyCellsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A value controlling the complexity of searching operation for Reverse BUG technique. This maximum possible value is 4, recommend value is 2, and the minimum value is 1. It cannot be negative..
+        /// </summary>
+        internal static string SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription", resourceCulture);
             }
         }
         

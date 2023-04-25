@@ -657,6 +657,12 @@
   <data name="MainWindow_TechniqueGalleryPageTitle" xml:space="preserve">
     <value>Technique Gallery</value>
   </data>
+  <data name="SettingsPage_AlignedExclusionMaxSearchingSize" xml:space="preserve">
+    <value>Maximum number of cell permutation in aligned exclusion</value>
+  </data>
+  <data name="SettingsPage_AlignedExclusionMaxSearchingSizeDescription" xml:space="preserve">
+    <value>A value controlling the complexity of searching operation for Aligned Exclusion technique. The maximum possible value is 5, recommend value is 3, and the minimum value is 2. It cannot be negative.</value>
+  </data>
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
     <value>Allow collision on ALS-XY-Wing</value>
   </data>
@@ -893,11 +899,20 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_OverlappedAssignmentColor" xml:space="preserve">
     <value>Assignments (Cannibalism-like)</value>
   </data>
+  <data name="SettingsPage_PermutationsGroup" xml:space="preserve">
+    <value>Permutation Techniques</value>
+  </data>
   <data name="SettingsPage_PreventConflictingInput" xml:space="preserve">
     <value>Prevent conflicting inputs</value>
   </data>
   <data name="SettingsPage_PreventConflictingInputDescription" xml:space="preserve">
     <value>This option limits the case that user wants to input a digit into a cell, whose containing houses has already include the digit as given or modifiable values. If this option is set true, the program won't allow this case, and do nothing after you input a wrong digit.</value>
+  </data>
+  <data name="SettingsPage_ReverseBugMaxSearchingEmptyCellsCount" xml:space="preserve">
+    <value>Maximum number of empty cells searching in Reverse BUG</value>
+  </data>
+  <data name="SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription" xml:space="preserve">
+    <value>A value controlling the complexity of searching operation for Reverse BUG technique. This maximum possible value is 4, recommend value is 2, and the minimum value is 1. It cannot be negative.</value>
   </data>
   <data name="SettingsPage_SavePuzzleGeneratingHistory" xml:space="preserve">
     <value>Save puzzle-generating history</value>

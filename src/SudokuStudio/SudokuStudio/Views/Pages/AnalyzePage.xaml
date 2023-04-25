@@ -163,6 +163,8 @@
 						a:AnalyzerProperties.AllowCollisionOnAlsXyWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXyWing,Mode=OneWay}"
 						a:AnalyzerProperties.MaxSizeOfRegularWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfRegularWing,Mode=OneWay}"
 						a:AnalyzerProperties.MaxSizeOfComplexFish="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=OneWay}"
+						a:AnalyzerProperties.AlignedExclusionMaxSearchingSize="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AlignedExclusionMaxSearchingSize,Mode=OneWay}"
+						a:AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCount="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.ReverseBugMaxSearchingEmptyCellsCount,Mode=OneWay}"
 						a:AnalyzerProperties.TemplateDeleteOnly="False"
 						a:AnalyzerProperties.BowmanBingoMaxLength="64"
 						a:AnalyzerProperties.CheckAlmostLockedQuadruple="False"

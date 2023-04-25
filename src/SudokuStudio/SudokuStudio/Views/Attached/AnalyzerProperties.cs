@@ -15,6 +15,8 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<bool>("AllowCollisionOnAlsXz", DefaultValue = true)]
 [AttachedProperty<bool>("AllowLoopedPatternsOnAlsXz", DefaultValue = true)]
 [AttachedProperty<bool>("AllowCollisionOnAlsXyWing", DefaultValue = true)]
+[AttachedProperty<int>("ReverseBugMaxSearchingEmptyCellsCount", DefaultValue = 2)]
+[AttachedProperty<int>("AlignedExclusionMaxSearchingSize", DefaultValue = 3)]
 [AttachedProperty<int>("MaxSizeOfRegularWing", DefaultValue = 5)]
 [AttachedProperty<int>("MaxSizeOfComplexFish", DefaultValue = 5)]
 [AttachedProperty<bool>("TemplateDeleteOnly")]
@@ -96,6 +98,14 @@ public static partial class AnalyzerProperties
 		=> A<SeniorExocetStepSearcher>(d, s => s.CheckAdvanced = (bool)e.NewValue);
 
 	[Callback]
+	private static void ReverseBugMaxSearchingEmptyCellsCountPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<ReverseBivalueUniversalGraveStepSearcher>(d, s => s.MaxSearchingEmptyCellsCount = (int)e.NewValue);
+
+	[Callback]
+	private static void AlignedExclusionMaxSearchingSizePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<AlignedExclusionStepSearcher>(d, s => s.MaxSearchingSize = (int)e.NewValue);
+
+	[Callback]
 	private static void SolverIsFullApplyingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> SudokuPaneBindable.GetProgramSolver((SudokuPane)d).IsFullApplying = (bool)e.NewValue;
 
@@ -114,5 +124,5 @@ public static partial class AnalyzerProperties
 	}
 
 	private static void A<T>(DependencyObject d, Action<T> action) where T : StepSearcher
-		=> SudokuPaneBindable.GetProgramSolver((SudokuPane)d).WithStepSearcherSetters<T>(action);
+		=> SudokuPaneBindable.GetProgramSolver((SudokuPane)d).WithStepSearcherSetters(action);
 }

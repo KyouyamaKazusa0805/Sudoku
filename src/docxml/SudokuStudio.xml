@@ -625,6 +625,18 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlignedExclusionMaxSearchingSizeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlignedExclusionMaxSearchingSize"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlignedExclusionMaxSearchingSize"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.ReverseBugMaxSearchingEmptyCellsCountProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.ReverseBugMaxSearchingEmptyCellsCount"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.ReverseBugMaxSearchingEmptyCellsCount"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfComplexFishProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfComplexFish"/>.
@@ -681,6 +693,12 @@
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.MaxSearchingPivotsCount"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlignedExclusionMaxSearchingSize">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.MaxSearchingSize"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.ReverseBugMaxSearchingEmptyCellsCount">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.MaxSearchingEmptyCellsCount"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfComplexFish">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.MaxSize"/>
@@ -4112,6 +4130,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Technique Gallery.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AlignedExclusionMaxSearchingSize">
+            <summary>
+              Looks up a localized string similar to Maximum number of cell permutation in aligned exclusion.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AlignedExclusionMaxSearchingSizeDescription">
+            <summary>
+              Looks up a localized string similar to A value controlling the complexity of searching operation for Aligned Exclusion technique. The maximum possible value is 5, recommend value is 3, and the minimum value is 2. It cannot be negative..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_AllowCollisionOnAlmostLockedSetXyWing">
             <summary>
               Looks up a localized string similar to Allow collision on ALS-XY-Wing.
@@ -4504,6 +4532,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Assignments (Cannibalism-like).
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_PermutationsGroup">
+            <summary>
+              Looks up a localized string similar to Permutation Techniques.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_PreventConflictingInput">
             <summary>
               Looks up a localized string similar to Prevent conflicting inputs.
@@ -4512,6 +4545,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_PreventConflictingInputDescription">
             <summary>
               Looks up a localized string similar to This option limits the case that user wants to input a digit into a cell, whose containing houses has already include the digit as given or modifiable values. If this option is set true, the program won&apos;t allow this case, and do nothing after you input a wrong digit..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_ReverseBugMaxSearchingEmptyCellsCount">
+            <summary>
+              Looks up a localized string similar to Maximum number of empty cells searching in Reverse BUG.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription">
+            <summary>
+              Looks up a localized string similar to A value controlling the complexity of searching operation for Reverse BUG technique. This maximum possible value is 4, recommend value is 2, and the minimum value is 1. It cannot be negative..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_SavePuzzleGeneratingHistory">
@@ -4944,6 +4987,16 @@ if (student is (name: var name, age: >= 18))
             Defines a attached property that binds with setter and getter methods <c>AllowCollisionOnAlsXyWing</c>.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCountProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>ReverseBugMaxSearchingEmptyCellsCount</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AlignedExclusionMaxSearchingSizeProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>AlignedExclusionMaxSearchingSize</c>.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.MaxSizeOfRegularWingProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <c>MaxSizeOfRegularWing</c>.
@@ -5113,6 +5166,30 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlsXyWingProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlsXyWingProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetReverseBugMaxSearchingEmptyCellsCount(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCountProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCountProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetReverseBugMaxSearchingEmptyCellsCount(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCountProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCountProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAlignedExclusionMaxSearchingSize(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AlignedExclusionMaxSearchingSizeProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AlignedExclusionMaxSearchingSizeProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAlignedExclusionMaxSearchingSize(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AlignedExclusionMaxSearchingSizeProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AlignedExclusionMaxSearchingSizeProperty" />
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetMaxSizeOfRegularWing(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
             <summary>

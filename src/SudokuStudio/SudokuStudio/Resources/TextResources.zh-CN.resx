@@ -660,6 +660,12 @@
   <data name="MainWindow_TechniqueGalleryPageTitle" xml:space="preserve">
     <value>技巧博物馆</value>
   </data>
+  <data name="SettingsPage_AlignedExclusionMaxSearchingSize" xml:space="preserve">
+    <value>均衡数组的最大枚举空格数量</value>
+  </data>
+  <data name="SettingsPage_AlignedExclusionMaxSearchingSizeDescription" xml:space="preserve">
+    <value>该项控制了技巧搜索的复杂程度（数字越大，搜索复杂程度也就越高）。最大值是 5，建议的值为 3，最小值为 2。不能是负数。</value>
+  </data>
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
     <value>允许 ALS-XY-Wing 技巧里的 ALS 结构重叠</value>
   </data>
@@ -896,11 +902,20 @@
   <data name="SettingsPage_OverlappedAssignmentColor" xml:space="preserve">
     <value>结构内出数</value>
   </data>
+  <data name="SettingsPage_PermutationsGroup" xml:space="preserve">
+    <value>列举/枚举类技巧</value>
+  </data>
   <data name="SettingsPage_PreventConflictingInput" xml:space="preserve">
     <value>阻止显而易见的冲突输入</value>
   </data>
   <data name="SettingsPage_PreventConflictingInputDescription" xml:space="preserve">
     <value>该设置项主要是限制用户输入错误的数值。如果用户往某个单元格里填入一个它所在行、列、宫里本来就包含了的提示数或填入数的数字，那么如果该设置项为“是”的时候，程序将防止用户往其中填值。</value>
+  </data>
+  <data name="SettingsPage_ReverseBugMaxSearchingEmptyCellsCount" xml:space="preserve">
+    <value>反双数致命结构的最大空格搜索数量</value>
+  </data>
+  <data name="SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription" xml:space="preserve">
+    <value>该项控制了技巧搜索的复杂程度（数字越大，搜索复杂程度也就越高）。最大值是 4，建议的值为 2，最小值为 1。不能是负数。</value>
   </data>
   <data name="SettingsPage_SavePuzzleGeneratingHistory" xml:space="preserve">
     <value>保存软件的出题记录</value>
