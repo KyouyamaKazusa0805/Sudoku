@@ -6109,14 +6109,10 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.IncrementStepsEven">
+        <member name="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.MaxSearchingEmptyCellsCount">
             <summary>
-            Indicates an array to be used as steps for a loop, for the cases when the number of values of the digits chosen are an even.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.IncrementStepsOdd">
-            <summary>
-            Indicates an array to be used as steps for a loop, for the cases when the number of values of the digits chosen are an odd.
+            Indicates the maximum number of cells the step searcher will be searched for. This value controls the complexity of the technique.
+            The maximum value is 4, and recommend value is 2. This value cannot be negative. The default value is 4.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">

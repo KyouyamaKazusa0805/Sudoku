@@ -14,14 +14,10 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// Indicates an array to be used as steps for a loop, for the cases when the number of values of the digits chosen are an even.
+	/// Indicates the maximum number of cells the step searcher will be searched for. This value controls the complexity of the technique.
+	/// The maximum value is 4, and recommend value is 2. This value cannot be negative. The default value is 4.
 	/// </summary>
-	private static readonly int[] IncrementStepsEven = { 2, 4 };
-
-	/// <summary>
-	/// Indicates an array to be used as steps for a loop, for the cases when the number of values of the digits chosen are an odd.
-	/// </summary>
-	private static readonly int[] IncrementStepsOdd = { 1, 3 };
+	public int MaxSearchingEmptyCellsCount { get; set; } = 4;
 
 
 	/// <inheritdoc/>
@@ -65,9 +61,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			// The total number of empty cells chosen may not be greater than 4,
 			// because eliminations in such constructed pattern may not exist. In addition, only type 2 will use at most 4 empty cells;
 			// other types will only use 1 or 2 empty cells.
-
-			//                                                               [2, 4]               [1, 3]
-			foreach (var incrementStep in (valuesMap.Count & 1) == 0 ? IncrementStepsEven : IncrementStepsOdd)
+			for (var incrementStep = (valuesMap.Count & 1) == 0 ? 2 : 1; incrementStep < MaxSearchingEmptyCellsCount; incrementStep += 2)
 			{
 				foreach (var cellsChosen in emptyCells & incrementStep)
 				{

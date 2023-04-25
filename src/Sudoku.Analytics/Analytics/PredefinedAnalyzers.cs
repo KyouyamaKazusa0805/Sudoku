@@ -20,6 +20,7 @@ public static class PredefinedAnalyzers
 		=> Balanced
 			.WithAlgorithmLimits(false, false)
 			.WithStepSearcherSetters<RegularWingStepSearcher>(static s => s.MaxSearchingPivotsCount = 9)
+			.WithStepSearcherSetters<ReverseBivalueUniversalGraveStepSearcher>(static s => s.MaxSearchingEmptyCellsCount = 4)
 			.WithStepSearcherSetters<ComplexFishStepSearcher>(static s => s.MaxSize = 7)
 			.WithStepSearcherSetters<BowmanBingoStepSearcher>(static s => s.MaxLength = 64)
 			.WithStepSearcherSetters<AlignedExclusionStepSearcher>(static s => s.MaxSearchingSize = 5);
@@ -36,6 +37,7 @@ public static class PredefinedAnalyzers
 			.WithStepSearcherSetters<AlmostLockedSetsXzStepSearcher>(static s => { s.AllowCollision = true; s.AllowLoopedPatterns = true; })
 			.WithStepSearcherSetters<AlmostLockedSetsXyWingStepSearcher>(static s => s.AllowCollision = true)
 			.WithStepSearcherSetters<RegularWingStepSearcher>(static s => s.MaxSearchingPivotsCount = 5)
+			.WithStepSearcherSetters<ReverseBivalueUniversalGraveStepSearcher>(static s => s.MaxSearchingEmptyCellsCount = 2)
 			.WithStepSearcherSetters<TemplateStepSearcher>(static s => s.TemplateDeleteOnly = false)
 			.WithStepSearcherSetters<ComplexFishStepSearcher>(static s => s.MaxSize = 5)
 			.WithStepSearcherSetters<BowmanBingoStepSearcher>(static s => s.MaxLength = 64)
