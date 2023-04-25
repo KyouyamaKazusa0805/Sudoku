@@ -32,18 +32,20 @@
             </summary>
             <param name="this">The array of elements.</param>
             <returns>
-            The subsets of the list. For example, if the input array is <c>{ 1, 2, 3 }</c>, the output
+            The subsets of the list. For example, if the input array is <c>[1, 2, 3]</c>, the output
             should be as follows:
-            <list type="bullet">
-            <item><c>{ 1 }</c></item>
-            <item><c>{ 2 }</c></item>
-            <item><c>{ 3 }</c></item>
-            <item><c>{ 1, 2 }</c></item>
-            <item><c>{ 1, 3 }</c></item>
-            <item><c>{ 2, 3 }</c></item>
-            <item><c>{ 1, 2, 3 }</c></item>
-            </list>
-            7 cases (without null set) in total.
+            <code>
+            [
+                [1],
+                [2],
+                [3],
+                [1, 2],
+                [1, 3],
+                [2, 3],
+                [1, 2, 3]
+            ]
+            </code>
+            7 cases (without null set).
             </returns>
         </member>
         <member name="M:System.Algorithm.Combinatorics.GetSubsets``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
@@ -54,14 +56,12 @@
             <param name="this">The array.</param>
             <param name="count">The number of elements you want to take.</param>
             <returns>
-            The subsets of the list. For example, if the input array is <c>{ 1, 2, 3 }</c> and
-            the argument <paramref name="count"/> is 2, the output should be as follows:
-            <list type="table">
-            <item><c>{ 1, 2 }</c>,</item>
-            <item><c>{ 1, 3 }</c>,</item>
-            <item><c>{ 2, 3 }</c></item>
-            </list>
-            3 cases in total.
+            The subsets of the list.
+            For example, if the input array is <c>[1, 2, 3]</c> and the argument <paramref name="count"/> is 2, the result will be
+            <code>
+            [[1, 2], [1, 3], [2, 3]]
+            </code>
+            3 cases.
             </returns>
         </member>
         <member name="M:System.Algorithm.Combinatorics.GetExtractedCombinations``1(``0[][])">
@@ -70,22 +70,20 @@
             </summary>
             <param name="this">The jigsaw array.</param>
             <returns>
-            All combinations that each sub-array choose one. For example, if the array is
-            <c>{ { 1, 2, 3 }, { 1, 3 }, { 1, 4, 7, 10 } }</c>, all combinations are:
-            <list type="table">
-            <item><c>{ 1, 1, 1 }</c>, <c>{ 1, 1, 4 }</c>, <c>{ 1, 1, 7 }</c>, <c>{ 1, 1, 10 }</c>,</item>
-            <item><c>{ 1, 3, 1 }</c>, <c>{ 1, 3, 4 }</c>, <c>{ 1, 3, 7 }</c>, <c>{ 1, 3, 10 }</c>,</item>
-            <item><c>{ 2, 1, 1 }</c>, <c>{ 2, 1, 4 }</c>, <c>{ 2, 1, 7 }</c>, <c>{ 2, 1, 10 }</c>,</item>
-            <item><c>{ 2, 3, 1 }</c>, <c>{ 2, 3, 4 }</c>, <c>{ 2, 3, 7 }</c>, <c>{ 2, 3, 10 }</c>,</item>
-            <item><c>{ 3, 1, 1 }</c>, <c>{ 3, 1, 4 }</c>, <c>{ 3, 1, 7 }</c>, <c>{ 3, 1, 10 }</c>,</item>
-            <item><c>{ 3, 3, 1 }</c>, <c>{ 3, 3, 4 }</c>, <c>{ 3, 3, 7 }</c>, <c>{ 3, 3, 10 }</c></item>
-            </list>
-            24 cases in total.
+            All combinations that each sub-array choose one.
+            For example, if one array is <c>[[1, 2, 3], [1, 3], [1, 4, 7, 10]]</c>, the final combinations will be
+            <code>
+            [
+                [1, 1, 1], [1, 1, 4], [1, 1, 7], [1, 1, 10],
+                [1, 3, 1], [1, 3, 4], [1, 3, 7], [1, 3, 10],
+                [2, 1, 1], [2, 1, 4], [2, 1, 7], [2, 1, 10],
+                [2, 3, 1], [2, 3, 4], [2, 3, 7], [2, 3, 10],
+                [3, 1, 1], [3, 1, 4], [3, 1, 7], [3, 1, 10],
+                [3, 3, 1], [3, 3, 4], [3, 3, 7], [3, 3, 10]
+            ]
+            </code>
+            24 cases.
             </returns>
-            <remarks>
-            Please note that each return values unit (an array) contains the same number of elements
-            with the whole array.
-            </remarks>
         </member>
         <member name="T:System.Algorithm.Sequences">
             <summary>
