@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher]
-[ConditionalCases(ConditionalCase.Standard)]
+[ConditionalCases(ConditionalCase.Standard | ConditionalCase.UnlimitedTimeComplexity)]
 public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearcher
 {
 	/// <summary>
