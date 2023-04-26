@@ -8,24 +8,24 @@
             <summary>
             提供一个特性，用来表示属性作为命令行解析的参数信息。
             </summary>
-            <param name="name">表示该参数的名称。</param>
+            <param name="name">表示该参数的名称，即该参数序列最左边这个明确下来的数值。</param>
             <param name="requiredValuesCount">表示该指令模块的参数需要多少个子参数信息。</param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.ArgumentAttribute.#ctor(System.String,System.Int32)">
             <summary>
             提供一个特性，用来表示属性作为命令行解析的参数信息。
             </summary>
-            <param name="name">表示该参数的名称。</param>
+            <param name="name">表示该参数的名称，即该参数序列最左边这个明确下来的数值。</param>
             <param name="requiredValuesCount">表示该指令模块的参数需要多少个子参数信息。</param>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.ArgumentAttribute.Name">
             <summary>
-            表示该参数的名称，即该参数序列最左边这个明确下来的数值。
+            The generated property declaration for parameter <c>name</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.ArgumentAttribute.RequiredValuesCount">
             <summary>
-            表示该指令模块的参数需要多少个子参数信息。
+            The generated property declaration for parameter <c>requiredValuesCount</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.ArgumentDisplayerAttribute">
@@ -44,7 +44,7 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.ArgumentDisplayerAttribute.ArgumentDisplayer">
             <summary>
-            表示显示的参数内容。
+            The generated property declaration for parameter <c>argumentDisplayer</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAnnotationAttribute">
@@ -56,13 +56,13 @@
             <summary>
             提供一个特性，用于标记到指令模块的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
             </summary>
-            <param name="name">触发名称。</param>
+            <param name="name">表示触发该指令的名称。</param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAttribute.#ctor(System.String)">
             <summary>
             提供一个特性，用于标记到指令模块的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
             </summary>
-            <param name="name">触发名称。</param>
+            <param name="name">表示触发该指令的名称。</param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAttribute.#ctor">
             <summary>
@@ -71,16 +71,16 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.CommandAttribute.Name">
             <summary>
-            表示触发该指令的名称。
+            The generated property declaration for parameter <c>name</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1">
             <summary>
             表示一个特性，用于命令模块的某属性，表示该属性作为命令模块的参数使用的时候，它需要被覆盖的默认数值是多少。
             </summary>
-            <param name="defaultValue">默认数值。</param>
+            <param name="defaultValue">表示该属性需要被覆盖掉的默认数值。</param>
             <remarks>
-            它不等同于属性的初始化器，由于项目的设计，所有的命令模块在运行期间都只保有一个实例，而不会产生新的实例。
+            该特性不等同于属性的初始化器，由于项目的设计，所有的命令模块在运行期间都只保有一个实例，而不会产生新的实例。
             如果反复执行同一个指令，那么参数数值就会被保持为上一轮执行该指令期间产生的那个情况。为确保数值重新覆盖为默认数值，该特性专门用于这个处理规则。
             </remarks>
             <typeparam name="T">属性本身的类型。</typeparam>
@@ -89,16 +89,16 @@
             <summary>
             表示一个特性，用于命令模块的某属性，表示该属性作为命令模块的参数使用的时候，它需要被覆盖的默认数值是多少。
             </summary>
-            <param name="defaultValue">默认数值。</param>
+            <param name="defaultValue">表示该属性需要被覆盖掉的默认数值。</param>
             <remarks>
-            它不等同于属性的初始化器，由于项目的设计，所有的命令模块在运行期间都只保有一个实例，而不会产生新的实例。
+            该特性不等同于属性的初始化器，由于项目的设计，所有的命令模块在运行期间都只保有一个实例，而不会产生新的实例。
             如果反复执行同一个指令，那么参数数值就会被保持为上一轮执行该指令期间产生的那个情况。为确保数值重新覆盖为默认数值，该特性专门用于这个处理规则。
             </remarks>
             <typeparam name="T">属性本身的类型。</typeparam>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1.DefaultValue">
             <summary>
-            表示该属性需要被覆盖掉的默认数值。
+            The generated property declaration for parameter <c>defaultValue</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute">
@@ -107,7 +107,10 @@
             </summary>
             <param name="defaultValueInvokerName">
             <para>表示成员的名称。</para>
-            <para><inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute.DefaultValueInvokerName" path="/remarks"/></para>
+            <para><b><i>
+            该成员必须得是一个静态的成员，要么它是字段，要么它是属性，要么它就必须得是无参的方法。如果是无参的方法，还必须保证它的名字和反射时候得到的名称一致。
+            比如，本地函数的名字本身，和本地函数在程序里使用的实际名称是不同的。所以，这里传入的必须得是反射使用的实际名称。
+            </i></b></para>
             </param>
             <remarks>
             这个特性区别于 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/>，这个特性专门用于 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/> 不支持的情况。
@@ -122,7 +125,10 @@
             </summary>
             <param name="defaultValueInvokerName">
             <para>表示成员的名称。</para>
-            <para><inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute.DefaultValueInvokerName" path="/remarks"/></para>
+            <para><b><i>
+            该成员必须得是一个静态的成员，要么它是字段，要么它是属性，要么它就必须得是无参的方法。如果是无参的方法，还必须保证它的名字和反射时候得到的名称一致。
+            比如，本地函数的名字本身，和本地函数在程序里使用的实际名称是不同的。所以，这里传入的必须得是反射使用的实际名称。
+            </i></b></para>
             </param>
             <remarks>
             这个特性区别于 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/>，这个特性专门用于 <see cref="T:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueAttribute`1"/> 不支持的情况。
@@ -133,12 +139,8 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.DefaultValueReferencingMemberAttribute.DefaultValueInvokerName">
             <summary>
-            表示成员的名称。
+            The generated property declaration for parameter <c>defaultValueInvokerName</c>.
             </summary>
-            <remarks><b><i>
-            该成员必须得是一个静态的成员，要么它是字段，要么它是属性，要么它就必须得是无参的方法。如果是无参的方法，还必须保证它的名字和反射时候得到的名称一致。
-            比如，本地函数的名字本身，和本地函数在程序里使用的实际名称是不同的。所以，这里传入的必须得是反射使用的实际名称。
-            </i></b></remarks>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.DependencyCommandAttribute`1">
             <summary>
@@ -160,7 +162,7 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.DescriptionAttribute.Description">
             <summary>
-            表示该字段的描述信息。
+            The generated property declaration for parameter <c>description</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.DisplayingIndexAttribute">
@@ -179,7 +181,7 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.DisplayingIndexAttribute.Index">
             <summary>
-            表示该指令的显示位置。
+            The generated property declaration for parameter <c>index</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.DoubleArgumentAttribute">
@@ -212,34 +214,34 @@
             <summary>
             表示一个特性，用于一个命令模块的属性上，表示该属性对应的命令参数的提示信息。
             </summary>
-            <param name="hint">表示提示文字。</param>
+            <param name="hint">表示该命令参数的提示信息。比如用户在输入了“！查询 内容 ？”的时候，提示“内容”参数的详细信息。</param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.HintAttribute.#ctor(System.String)">
             <summary>
             表示一个特性，用于一个命令模块的属性上，表示该属性对应的命令参数的提示信息。
             </summary>
-            <param name="hint">表示提示文字。</param>
+            <param name="hint">表示该命令参数的提示信息。比如用户在输入了“！查询 内容 ？”的时候，提示“内容”参数的详细信息。</param>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.HintAttribute.Hint">
             <summary>
-            表示该命令参数的提示信息。比如用户在输入了“！查询 内容 ？”的时候，提示“内容”参数的详细信息。
+            The generated property declaration for parameter <c>hint</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.ItemGroupAttribute">
             <summary>
             表示物品的详细分组的注解。用于一个枚举字段，表示该字段对应的物品的分组。
             </summary>
-            <param name="group">字段对应物品的组别。</param>
+            <param name="group">表示该字段对应物品的组别。</param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.ItemGroupAttribute.#ctor(Sudoku.Workflow.Bot.Oicq.ComponentModel.ItemGroup)">
             <summary>
             表示物品的详细分组的注解。用于一个枚举字段，表示该字段对应的物品的分组。
             </summary>
-            <param name="group">字段对应物品的组别。</param>
+            <param name="group">表示该字段对应物品的组别。</param>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.ItemGroupAttribute.Group">
             <summary>
-            表示该字段对应物品的组别。
+            The generated property declaration for parameter <c>group</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.NameAttribute">
@@ -256,20 +258,26 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.NameAttribute.Name">
             <summary>
-            表示该字段的名称。
+            The generated property declaration for parameter <c>name</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute">
             <summary>
             提供一个特性，用于标记到周期性执行的模块（<see cref="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.PeriodicCommand"/> 的派生类型）的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
             </summary>
-            <param name="triggeringTime"><inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.TriggeringTime" path="/summary"/></param>
+            <param name="triggeringTime">
+            表示触发该指令的时间。注意返回值类型为 <see cref="T:System.TimeOnly"/> 是因为，
+            由于模块的底层设计，所有的周期性指令每天都执行一次，所以这个属性指示的是每天的什么时候执行。
+            </param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.#ctor(System.TimeOnly)">
             <summary>
             提供一个特性，用于标记到周期性执行的模块（<see cref="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic.PeriodicCommand"/> 的派生类型）的类型本身上面，表示该模块是启用状态。在运行期间会被反射给识别到。
             </summary>
-            <param name="triggeringTime"><inheritdoc cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.TriggeringTime" path="/summary"/></param>
+            <param name="triggeringTime">
+            表示触发该指令的时间。注意返回值类型为 <see cref="T:System.TimeOnly"/> 是因为，
+            由于模块的底层设计，所有的周期性指令每天都执行一次，所以这个属性指示的是每天的什么时候执行。
+            </param>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.#ctor(System.Int32)">
             <summary>
@@ -294,8 +302,7 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.PeriodicCommandAttribute.TriggeringTime">
             <summary>
-            表示触发该指令的时间。注意返回值类型为 <see cref="T:System.TimeOnly"/> 是因为，
-            由于模块的底层设计，所有的周期性指令每天都执行一次，所以这个属性指示的是每天的什么时候执行。
+            The generated property declaration for parameter <c>triggeringTime</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.PriceAttribute">
@@ -312,7 +319,7 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.PriceAttribute.Price">
             <summary>
-            表示物品的价格。
+            The generated property declaration for parameter <c>price</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.RequiredRoleAttribute">
@@ -358,7 +365,7 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.RequiredUserLevelAttribute.RequiredUserLevel">
             <summary>
-            表示用户的级别。
+            The generated property declaration for parameter <c>requiredUserLevel</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.UsageAttribute">
@@ -377,12 +384,12 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.UsageAttribute.UsageText">
             <summary>
-            表示使用指令的字符串。
+            The generated property declaration for parameter <c>usageText</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.Annotations.UsageAttribute.Description">
             <summary>
-            表示说明文字，为 <see cref="P:Sudoku.Workflow.Bot.Oicq.Annotations.UsageAttribute.UsageText"/> 的解释文字。
+            The generated property declaration for parameter <c>description</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Annotations.ValueConverterAttribute`1">

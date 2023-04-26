@@ -1,4 +1,4 @@
-﻿namespace Sudoku.CommandLine.RootCommands;
+namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
 /// Defines the type that stores the help options.
@@ -131,12 +131,12 @@ public sealed class Help : IExecutable
 				{
 					switch (usageAttribute)
 					{
-						case { ExampleCommand: var pattern, IsPattern: true }:
+						case { Example: var pattern, IsPattern: true }:
 						{
 							helpTextContentBuilder.AppendLine($"{new string(' ', 4)}{pattern}").AppendLine();
 							break;
 						}
-						case { ExampleCommand: var pattern, DescriptionResourceKey: { } key }
+						case { Example: var pattern, DescriptionResourceKey: { } key }
 						when R[key]?.SplitByLength(Console.LargestWindowWidth) is { } parts:
 						{
 							helpTextContentBuilder
@@ -146,7 +146,7 @@ public sealed class Help : IExecutable
 
 							break;
 						}
-						case { ExampleCommand: var pattern, Description: { } description }
+						case { Example: var pattern, Description: { } description }
 						when description.SplitByLength(Console.LargestWindowWidth) is var parts:
 						{
 							helpTextContentBuilder

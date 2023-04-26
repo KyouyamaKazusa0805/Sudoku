@@ -8,31 +8,31 @@
             <summary>
             Indicates the exception that throws when the value is failed to fill into a cell.
             </summary>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
+            <param name="cell">Indicates the wrong cell.</param>
+            <param name="digit">Indicates the wrong digit.</param>
         </member>
         <member name="M:Sudoku.Recognition.FailedToFillValueException.#ctor(System.Int32,System.Int32)">
             <summary>
             Indicates the exception that throws when the value is failed to fill into a cell.
             </summary>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-        </member>
-        <member name="P:Sudoku.Recognition.FailedToFillValueException.Cell">
-            <summary>
-            Indicates the wrong cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Recognition.FailedToFillValueException.Digit">
-            <summary>
-            Indicates the wrong digit.
-            </summary>
+            <param name="cell">Indicates the wrong cell.</param>
+            <param name="digit">Indicates the wrong digit.</param>
         </member>
         <member name="P:Sudoku.Recognition.FailedToFillValueException.Message">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Recognition.FailedToFillValueException.HelpLink">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Recognition.FailedToFillValueException.Cell">
+            <summary>
+            The generated property declaration for parameter <c>cell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Recognition.FailedToFillValueException.Digit">
+            <summary>
+            The generated property declaration for parameter <c>digit</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Recognition.GridRecognizer">
             <summary>
@@ -309,24 +309,24 @@
             <summary>
             Indicates the exception that throws when the tesseract has encountered an error.
             </summary>
-            <param name="detail">The detail.</param>
+            <param name="detail">Indicates the detail.</param>
         </member>
         <member name="M:Sudoku.Recognition.TesseractException.#ctor(System.String)">
             <summary>
             Indicates the exception that throws when the tesseract has encountered an error.
             </summary>
-            <param name="detail">The detail.</param>
-        </member>
-        <member name="P:Sudoku.Recognition.TesseractException.Detail">
-            <summary>
-            Indicates the detail.
-            </summary>
+            <param name="detail">Indicates the detail.</param>
         </member>
         <member name="P:Sudoku.Recognition.TesseractException.Message">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Recognition.TesseractException.HelpLink">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Recognition.TesseractException.Detail">
+            <summary>
+            The generated property declaration for parameter <c>detail</c>.
+            </summary>
         </member>
     </members>
 </doc>
