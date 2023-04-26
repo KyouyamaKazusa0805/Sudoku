@@ -50,7 +50,7 @@
 	</Choose>
 
 	<!--GLOBAL TYPE ALIASES-->
-	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='false'">
+	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
 		<Using Include="System.Int32" Alias="Candidate" />
 		<Using Include="System.Int32" Alias="Cell" />
 		<Using Include="System.Int32" Alias="Digit" />
@@ -77,10 +77,22 @@
 		<Using Include="System.Text.Json.Serialization" />
 		<Using Include="System.Text.RegularExpressions" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='false' and '$(MSBuildProjectFile.Contains(`SystemExtensions`))'=='false'">
+	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0' and '$(MSBuildProjectFile.Contains(`SystemExtensions`))'=='false'">
 		<Using Include="Sudoku.Analytics.ConclusionType" Static="true" />
 		<Using Include="Sudoku.Concepts" />
 		<Using Include="Sudoku.SolutionWideReadOnlyFields" Static="true" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+		<Using Include="System.Collections.Immutable" />
+		<Using Include="System.Runtime.CompilerServices" />
+		<Using Include="System.Reflection" />
+		<Using Include="System.Text" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0' and '$(MSBuildProjectFile).TrimEnd(`.csproj`).EndsWith(`CodeGen`)'!='true'">
+		<Using Include="Microsoft.CodeAnalysis" />
+		<Using Include="Microsoft.CodeAnalysis.CSharp" />
+		<Using Include="Microsoft.CodeAnalysis.CSharp.Syntax" />
+		<Using Include="Microsoft.CodeAnalysis.Text" />
 	</ItemGroup>
 
 	<!--
