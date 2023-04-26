@@ -68,8 +68,7 @@
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_Backdrop}">
 					<ComboBox
-						x:Name="BackdropSelector"
-						SelectedIndex="{x:Bind cvt:BackdropConversion.GetSelectedIndex(BackdropSelector),Mode=OneWay}"
+						x:Name="BackdropSelector" SelectedIndex="{x:Bind cvt:BackdropConversion.GetSelectedIndex(BackdropSelector)}"
 						SelectionChanged="BackdropSelector_SelectionChanged">
 						<ComboBoxItem Content="{m:R Key=SettingsPage_Backdrop_Default}" Tag="Default" />
 						<ComboBoxItem Content="{m:R Key=SettingsPage_Backdrop_Mica}" Tag="Mica" />
