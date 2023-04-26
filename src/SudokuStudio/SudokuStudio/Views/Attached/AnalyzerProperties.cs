@@ -15,6 +15,7 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<bool>("AllowCollisionOnAlsXz", DefaultValue = true)]
 [AttachedProperty<bool>("AllowLoopedPatternsOnAlsXz", DefaultValue = true)]
 [AttachedProperty<bool>("AllowCollisionOnAlsXyWing", DefaultValue = true)]
+[AttachedProperty<bool>("SearchForReverseBugPartiallyUsedTypes", DefaultValue = true)]
 [AttachedProperty<int>("ReverseBugMaxSearchingEmptyCellsCount", DefaultValue = 2)]
 [AttachedProperty<int>("AlignedExclusionMaxSearchingSize", DefaultValue = 3)]
 [AttachedProperty<int>("MaxSizeOfRegularWing", DefaultValue = 5)]
@@ -96,6 +97,10 @@ public static partial class AnalyzerProperties
 	[Callback]
 	private static void CheckAdvancedSeniorExocetPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<SeniorExocetStepSearcher>(d, s => s.CheckAdvanced = (bool)e.NewValue);
+
+	[Callback]
+	private static void SearchForReverseBugPartiallyUsedTypesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<ReverseBivalueUniversalGraveStepSearcher>(d, s => s.AllowPartiallyUsedTypes = (bool)e.NewValue);
 
 	[Callback]
 	private static void ReverseBugMaxSearchingEmptyCellsCountPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

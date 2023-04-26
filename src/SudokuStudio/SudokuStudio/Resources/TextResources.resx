@@ -926,6 +926,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_SearchForExtendedUniqueRectangles" xml:space="preserve">
     <value>Allow searching for extended types of Unique Rectangle</value>
   </data>
+  <data name="SettingsPage_SearchForReverseBugPartiallyUsedTypes" xml:space="preserve">
+    <value>Search for partially-used types for Reverse BUG</value>
+  </data>
+  <data name="SettingsPage_SearchForReverseBugPartiallyUsedTypesDescription" xml:space="preserve">
+    <value>Reverse BUG techniques may not rely on ALL value cells in a grid. If this option is true, the corresponding step searcher will check for non-fully-used cells, but it will cause a slow searching experience.</value>
+  </data>
   <data name="SettingsPage_SinglesGroup" xml:space="preserve">
     <value>Singles</value>
   </data>

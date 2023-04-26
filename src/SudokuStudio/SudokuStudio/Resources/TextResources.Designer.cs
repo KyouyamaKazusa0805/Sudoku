@@ -2655,6 +2655,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search for partially-used types for Reverse BUG.
+        /// </summary>
+        internal static string SettingsPage_SearchForReverseBugPartiallyUsedTypes {
+            get {
+                return ResourceManager.GetString("SettingsPage_SearchForReverseBugPartiallyUsedTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reverse BUG techniques may not rely on ALL value cells in a grid. If this option is true, the corresponding step searcher will check for non-fully-used cells, but it will cause a slow searching experience..
+        /// </summary>
+        internal static string SettingsPage_SearchForReverseBugPartiallyUsedTypesDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_SearchForReverseBugPartiallyUsedTypesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Singles.
         /// </summary>
         internal static string SettingsPage_SinglesGroup {

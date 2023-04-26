@@ -619,6 +619,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForReverseBugPartiallyUsedTypesProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForReverseBugPartiallyUsedTypes"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForReverseBugPartiallyUsedTypes"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWingProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing"/>.
@@ -690,6 +696,9 @@
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps">
             <inheritdoc cref="P:Sudoku.Analytics.StepCollector.OnlyShowSameLevelTechniquesInFindAllSteps"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForReverseBugPartiallyUsedTypes">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.MaxSearchingPivotsCount"/>
@@ -4560,6 +4569,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Allow searching for extended types of Unique Rectangle.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_SearchForReverseBugPartiallyUsedTypes">
+            <summary>
+              Looks up a localized string similar to Search for partially-used types for Reverse BUG.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_SearchForReverseBugPartiallyUsedTypesDescription">
+            <summary>
+              Looks up a localized string similar to Reverse BUG techniques may not rely on ALL value cells in a grid. If this option is true, the corresponding step searcher will check for non-fully-used cells, but it will cause a slow searching experience..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_SinglesGroup">
             <summary>
               Looks up a localized string similar to Singles.
@@ -4970,6 +4989,11 @@ if (student is (name: var name, age: >= 18))
             Defines a attached property that binds with setter and getter methods <c>AllowCollisionOnAlsXyWing</c>.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForReverseBugPartiallyUsedTypesProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>SearchForReverseBugPartiallyUsedTypes</c>.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCountProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <c>ReverseBugMaxSearchingEmptyCellsCount</c>.
@@ -5149,6 +5173,18 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlsXyWingProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlsXyWingProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetSearchForReverseBugPartiallyUsedTypes(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForReverseBugPartiallyUsedTypesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForReverseBugPartiallyUsedTypesProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetSearchForReverseBugPartiallyUsedTypes(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForReverseBugPartiallyUsedTypesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForReverseBugPartiallyUsedTypesProperty" />
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetReverseBugMaxSearchingEmptyCellsCount(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
             <summary>

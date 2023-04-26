@@ -929,6 +929,12 @@
   <data name="SettingsPage_SearchForExtendedUniqueRectangles" xml:space="preserve">
     <value>允许搜索唯一矩形的各种拓展构型</value>
   </data>
+  <data name="SettingsPage_SearchForReverseBugPartiallyUsedTypes" xml:space="preserve">
+    <value>搜索局部的反双数致命结构</value>
+  </data>
+  <data name="SettingsPage_SearchForReverseBugPartiallyUsedTypesDescription" xml:space="preserve">
+    <value>反双数致命结构不一定非要依赖于全局的单元格。如果该设置项为“是”，则会搜索这些非全局的类型，但会导致搜索速度减慢。</value>
+  </data>
   <data name="SettingsPage_SinglesGroup" xml:space="preserve">
     <value>出数类技巧</value>
   </data>

@@ -47,6 +47,12 @@
 						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchExtendedBivalueUniversalGraveTypes,Mode=TwoWay}" />
 				</w:SettingsCard>
 				<w:SettingsCard
+					Header="{m:R Key=SettingsPage_SearchForReverseBugPartiallyUsedTypes}"
+					Description="{m:R Key=SettingsPage_SearchForReverseBugPartiallyUsedTypesDescription}">
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchForReverseBugPartiallyUsedTypes,Mode=TwoWay}" />
+				</w:SettingsCard>
+				<w:SettingsCard
 					Header="{m:R Key=SettingsPage_ReverseBugMaxSearchingEmptyCellsCount}"
 					Description="{m:R Key=SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription}">
 					<c:IntegerBox
