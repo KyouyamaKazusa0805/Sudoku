@@ -98,6 +98,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Forcing Chains / Bidirectional Cycles
     * Multiple Forcing Chains
     * Dynamic Forcing Chains
+    * Blossom Loop
   * Almost Locked Sets
     * Chaining ALSes (Including ALS-XZ, ALS-XY-Wing, ALS-W-Wing)
     * Empty Rectangle Intersection Pair
