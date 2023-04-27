@@ -5702,6 +5702,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Bi-value Universal Grave XZ Rule.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.BlossomLoop">
+            <summary>
+              Looks up a localized string similar to Blossom Loop.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.BorescoperDeadlyPatternType1">
             <summary>
               Looks up a localized string similar to Borescoper&apos;s Deadly Pattern Type 1.
@@ -7077,6 +7082,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Bivalue Universal Grave.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_BlossomLoopStepSearcher">
+            <summary>
+              Looks up a localized string similar to Blossom Loop.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_BorescoperDeadlyPatternStepSearcher">
             <summary>
               Looks up a localized string similar to Borescoper&apos;s Deadly Pattern.
@@ -8000,6 +8010,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_BivalueUniversalGraveXzStep">
             <summary>
               Looks up a localized string similar to {0} with cells {1}, with extra cell {2}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.TechniqueFormat_BlossomLoopStep">
+            <summary>
+              Looks up a localized string similar to There will be a dynamic nice loop, starting with digit {0} in house {1}, and ending with a same cell.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.TechniqueFormat_BowmanBingoStep">

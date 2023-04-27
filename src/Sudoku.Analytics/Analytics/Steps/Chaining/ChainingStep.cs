@@ -114,7 +114,7 @@ public abstract partial class ChainingStep(
 		};
 
 	/// <inheritdoc/>
-	public sealed override ExtraDifficultyCase[]? ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Length, LengthDifficulty) };
+	public sealed override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Length, LengthDifficulty) };
 
 	/// <summary>
 	/// Indicates an <see cref="int"/> value indicating the ordering priority of the chain. Greater is heavier.
@@ -312,33 +312,6 @@ public abstract partial class ChainingStep(
 	}
 
 	/// <summary>
-	/// Try to get all ancestors from the specified node.
-	/// </summary>
-	/// <param name="child">The specified node.</param>
-	/// <returns>The total number of all found ancestors.</returns>
-	protected int AncestorsCountOf(ChainNode child)
-	{
-		var ancestors = new NodeSet();
-		var todo = new List<ChainNode> { child };
-		while (todo.Count > 0)
-		{
-			var next = new List<ChainNode>();
-			foreach (var p in todo)
-			{
-				if (!ancestors.Contains(p))
-				{
-					ancestors.Add(p);
-					next.AddRange(p.Parents);
-				}
-			}
-
-			todo = next;
-		}
-
-		return ancestors.Count;
-	}
-
-	/// <summary>
 	/// Indicates the source potential from the specified target. This method can only be used for finding AICs.
 	/// </summary>
 	/// <param name="target">The target node.</param>
@@ -349,28 +322,6 @@ public abstract partial class ChainingStep(
 		while (result.Parents.Count > 0)
 		{
 			result = result.Parents[0];
-		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Try to fetch all colored candidates with specified state.
-	/// </summary>
-	/// <param name="target">The target node.</param>
-	/// <param name="state">The state of the node to be colored.</param>
-	/// <param name="skipTarget">Indicates whether we should skip the target node.</param>
-	/// <returns>All found candidates.</returns>
-	protected CandidateMap GetColorCandidates(ChainNode target, bool state, bool skipTarget)
-	{
-		var result = CandidateMap.Empty;
-		foreach (var p in target.FullChainPotentials)
-		{
-			var (cell, digit, isOn) = p;
-			if (isOn == state || state && (p != target || !skipTarget))
-			{
-				result.Add(cell * 9 + digit);
-			}
 		}
 
 		return result;
@@ -464,44 +415,6 @@ public abstract partial class ChainingStep(
 	/// <param name="viewIndex">The view index.</param>
 	/// <returns>All <see cref="LinkViewNode"/>.</returns>
 	protected abstract List<LinkViewNode> GetLinks(int viewIndex);
-
-	/// <summary>
-	/// Try to fetch all <see cref="LinkViewNode"/> instances of the branch from the specified target,
-	/// specified as a <see cref="ChainNode"/> instance.
-	/// </summary>
-	/// <param name="target">The target node.</param>
-	/// <returns>All <see cref="LinkViewNode"/> displayed in this branch.</returns>
-	protected List<LinkViewNode> GetLinks(ChainNode target)
-	{
-		var result = new List<LinkViewNode>();
-		foreach (var p in target.FullChainPotentials)
-		{
-			if (p is not (var pCell, var pDigit, var pIsOn) { Parents: { Count: <= 6 } pParents })
-			{
-				continue;
-			}
-
-			foreach (var (prCell, prDigit, prIsOn) in pParents)
-			{
-				result.Add(
-					new(
-						WellKnownColorIdentifierKind.Normal,
-						new(prDigit, prCell),
-						new(pDigit, pCell),
-						(prIsOn, pIsOn) switch
-						{
-							(false, true) => Inference.Strong,
-							(true, false) => Inference.Weak,
-							(true, true) => Inference.StrongGeneralized,
-							_ => Inference.WeakGeneralized
-						}
-					)
-				);
-			}
-		}
-
-		return result;
-	}
 
 	/// <summary>
 	/// Try to fetch all nested <see cref="LinkViewNode"/> instances of the specified view.
@@ -637,6 +550,93 @@ public abstract partial class ChainingStep(
 			: Sign(left.Complexity - right.Complexity) is var c and not 0
 				? c
 				: Sign(left.SortKey - right.SortKey) is var s and not 0 ? s : 0;
+
+	/// <summary>
+	/// Try to get all ancestors from the specified node.
+	/// </summary>
+	/// <param name="child">The specified node.</param>
+	/// <returns>The total number of all found ancestors.</returns>
+	protected internal static int AncestorsCountOf(ChainNode child)
+	{
+		var ancestors = new NodeSet();
+		var todo = new List<ChainNode> { child };
+		while (todo.Count > 0)
+		{
+			var next = new List<ChainNode>();
+			foreach (var p in todo)
+			{
+				if (!ancestors.Contains(p))
+				{
+					ancestors.Add(p);
+					next.AddRange(p.Parents);
+				}
+			}
+
+			todo = next;
+		}
+
+		return ancestors.Count;
+	}
+
+	/// <summary>
+	/// Try to fetch all colored candidates with specified state.
+	/// </summary>
+	/// <param name="target">The target node.</param>
+	/// <param name="state">The state of the node to be colored.</param>
+	/// <param name="skipTarget">Indicates whether we should skip the target node.</param>
+	/// <returns>All found candidates.</returns>
+	protected internal static CandidateMap GetColorCandidates(ChainNode target, bool state, bool skipTarget)
+	{
+		var result = CandidateMap.Empty;
+		foreach (var p in target.FullChainPotentials)
+		{
+			var (cell, digit, isOn) = p;
+			if (isOn == state || state && (p != target || !skipTarget))
+			{
+				result.Add(cell * 9 + digit);
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Try to fetch all <see cref="LinkViewNode"/> instances of the branch from the specified target,
+	/// specified as a <see cref="ChainNode"/> instance.
+	/// </summary>
+	/// <param name="target">The target node.</param>
+	/// <returns>All <see cref="LinkViewNode"/> displayed in this branch.</returns>
+	protected internal static List<LinkViewNode> GetLinks(ChainNode target)
+	{
+		var result = new List<LinkViewNode>();
+		foreach (var p in target.FullChainPotentials)
+		{
+			if (p is not (var pCell, var pDigit, var pIsOn) { Parents: { Count: <= 6 } pParents })
+			{
+				continue;
+			}
+
+			foreach (var (prCell, prDigit, prIsOn) in pParents)
+			{
+				result.Add(
+					new(
+						WellKnownColorIdentifierKind.Normal,
+						new(prDigit, prCell),
+						new(pDigit, pCell),
+						(prIsOn, pIsOn) switch
+						{
+							(false, true) => Inference.Strong,
+							(true, false) => Inference.Weak,
+							(true, true) => Inference.StrongGeneralized,
+							_ => Inference.WeakGeneralized
+						}
+					)
+				);
+			}
+		}
+
+		return result;
+	}
 }
 
 /// <summary>

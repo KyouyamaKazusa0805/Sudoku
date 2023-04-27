@@ -82,6 +82,11 @@ public enum TechniqueGroup : byte
 	ForcingChains,
 
 	/// <summary>
+	/// Indicates the blossom loop technique.
+	/// </summary>
+	BlossomLoop,
+
+	/// <summary>
 	/// Indicates the unique rectangle (UR) technique.
 	/// </summary>
 	[Abbreviation("UR")]

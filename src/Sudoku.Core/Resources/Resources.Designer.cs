@@ -646,6 +646,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blossom Loop.
+        /// </summary>
+        public static string BlossomLoop {
+            get {
+                return ResourceManager.GetString("BlossomLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Borescoper&apos;s Deadly Pattern Type 1.
         /// </summary>
         public static string BorescoperDeadlyPatternType1 {
@@ -3121,6 +3130,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blossom Loop.
+        /// </summary>
+        public static string StepSearcherName_BlossomLoopStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_BlossomLoopStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Borescoper&apos;s Deadly Pattern.
         /// </summary>
         public static string StepSearcherName_BorescoperDeadlyPatternStepSearcher {
@@ -4782,6 +4800,15 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_BivalueUniversalGraveXzStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BivalueUniversalGraveXzStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There will be a dynamic nice loop, starting with digit {0} in house {1}, and ending with a same cell.
+        /// </summary>
+        public static string TechniqueFormat_BlossomLoopStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BlossomLoopStep", resourceCulture);
             }
         }
         

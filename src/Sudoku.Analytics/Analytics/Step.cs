@@ -128,6 +128,27 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	protected string ConclusionText => ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
 
 
+	/// <inheritdoc/>
+	/// <remarks><b><i>
+	/// It's an unexpected use on comparing them, except it having implemented <see cref="IEquatableStep{TSelf}"/> type;
+	/// therefore, I disallow you calling this method.
+	/// </i></b></remarks>
+	/// <exception cref="NotSupportedException">Always throws this exception.</exception>
+	/// <seealso cref="IEquatableStep{TSelf}"/>
+	[DoesNotReturn]
+	[Obsolete("This method cannot be used for this type, because it is an unexpected use on comparing them, except it having implemented 'IEquatableStep<>' type.", true)]
+	public sealed override bool Equals(object? obj) => throw new NotSupportedException();
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// <inheritdoc cref="Equals(object?)" path="/remarks"/>
+	/// </remarks>
+	/// <exception cref="NotSupportedException">Always throws this exception.</exception>
+	/// <seealso cref="IEquatableStep{TSelf}"/>
+	[DoesNotReturn]
+	[Obsolete("This method cannot be used for this type, because it is an unexpected use on comparing them, except it having implemented 'IEquatableStep<>' type.", true)]
+	public sealed override int GetHashCode() => throw new NotSupportedException();
+
 	/// <summary>
 	/// Put this instance into the specified grid.
 	/// </summary>

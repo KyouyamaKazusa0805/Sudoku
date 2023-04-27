@@ -2181,6 +2181,17 @@ public enum Technique : short
 	#endregion
 
 	//
+	// Blossom Loop
+	//
+	#region Blossom Loop
+	/// <summary>
+	/// Indicates blossom loop.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.BlossomLoop)]
+	BlossomLoop,
+	#endregion
+
+	//
 	// Extended Subset Principle
 	//
 	#region Extended Subset Principle

@@ -2139,4 +2139,13 @@
   <data name="TechniqueFormat_ReverseBivalueUniversalGraveType4Step" xml:space="preserve">
     <value>Conjugate pair: {0}</value>
   </data>
+  <data name="BlossomLoop" xml:space="preserve">
+    <value>Blossom Loop</value>
+  </data>
+  <data name="TechniqueFormat_BlossomLoopStep" xml:space="preserve">
+    <value>There will be a dynamic nice loop, starting with digit {0} in house {1}, and ending with a same cell</value>
+  </data>
+  <data name="StepSearcherName_BlossomLoopStepSearcher" xml:space="preserve">
+    <value>Blossom Loop</value>
+  </data>
 </root>

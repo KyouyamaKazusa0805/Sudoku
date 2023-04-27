@@ -8,7 +8,7 @@
 	xmlns:m="using:SudokuStudio.Markup"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pd:ExceptionThrownOnAnalyzingContent}">
 	<StackPanel Orientation="Vertical" Spacing="10">
-		<TextBlock Text="{m:R Key=AnalyzePage_ExceptionThrown}" />
-		<TextBlock x:Name="ExceptionDisplayer" />
+		<TextBlock Text="{m:R Key=AnalyzePage_ExceptionThrown}" TextWrapping="WrapWholeWords" />
+		<TextBlock x:Name="ExceptionDisplayer" TextWrapping="WrapWholeWords" IsTextSelectionEnabled="True" />
 	</StackPanel>
 </Page>

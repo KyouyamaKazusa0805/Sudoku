@@ -2095,6 +2095,11 @@
             Indicates dynamic forcing chains.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.BlossomLoop">
+            <summary>
+            Indicates blossom loop.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.ExtendedSubsetPrinciple">
             <summary>
             Indicates extended subset principle.
@@ -2360,6 +2365,11 @@
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ForcingChains">
             <summary>
             Indicates the forcing chains technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.BlossomLoop">
+            <summary>
+            Indicates the blossom loop technique.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.UniqueRectangle">
@@ -4857,6 +4867,23 @@ result ^= expression;
             Indicates the string representation of the conclusions of the step.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Step.Equals(System.Object)">
+            <inheritdoc/>
+            <remarks><b><i>
+            It's an unexpected use on comparing them, except it having implemented <see cref="T:Sudoku.Analytics.Steps.IEquatableStep`1"/> type;
+            therefore, I disallow you calling this method.
+            </i></b></remarks>
+            <exception cref="T:System.NotSupportedException">Always throws this exception.</exception>
+            <seealso cref="T:Sudoku.Analytics.Steps.IEquatableStep`1"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.GetHashCode">
+            <inheritdoc/>
+            <remarks>
+            <inheritdoc cref="M:Sudoku.Analytics.Step.Equals(System.Object)" path="/remarks"/>
+            </remarks>
+            <exception cref="T:System.NotSupportedException">Always throws this exception.</exception>
+            <seealso cref="T:Sudoku.Analytics.Steps.IEquatableStep`1"/>
+        </member>
         <member name="M:Sudoku.Analytics.Step.ApplyTo(Sudoku.Concepts.Grid@)">
             <summary>
             Put this instance into the specified grid.
@@ -5385,6 +5412,44 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.Analytics.Patterns.ChainNode,System.Collections.Generic.Dictionary{System.Byte,Sudoku.Analytics.Patterns.NodeSet})">
             <summary>
             Try to create a region (house) forcing chain hint.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher">
+            <summary>
+            Provides with a <b>Blossom Loops</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Blossom Loops</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.Collect(Sudoku.Concepts.Grid@)">
+            <summary>
+            Search for hints on the given grid.
+            </summary>
+            <param name="grid">The grid on which to search for hints.</param>
+            <returns>The hints found.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep},System.Byte,System.Byte,Sudoku.Analytics.Patterns.NodeSet)">
+            <summary>
+            Search for region (house) forcing chains.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="result">
+            <inheritdoc
+                cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Boolean,System.Boolean)"
+                path="/param[@name='result']"/>
+            </param>
+            <param name="cell"></param>
+            <param name="digit"></param>
+            <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CreateStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,System.Collections.Generic.Dictionary{Sudoku.Analytics.Patterns.ChainNode,System.Int32})">
+            <summary>
+            Try to create a hint.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ChainingStepSearcher">
@@ -8489,6 +8554,93 @@ result ^= expression;
             The generated property declaration for parameter <c>isAbsurd</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.BlossomLoopStep">
+            <summary>
+            Provides with a step that is a <b>Blossom Loop</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="houseIndex">Indicates the index of the house represented.</param>
+            <param name="digit">Indicates the digit of the chain bound with.</param>
+            <param name="chains">Indicates all possible branches in this loop.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Byte,Sudoku.Analytics.Patterns.MultipleForcingChains)">
+            <summary>
+            Provides with a step that is a <b>Blossom Loop</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="houseIndex">Indicates the index of the house represented.</param>
+            <param name="digit">Indicates the digit of the chain bound with.</param>
+            <param name="chains">Indicates all possible branches in this loop.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.FormatInterpolatedParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.LengthDifficulty">
+            <summary>
+            Indicates the total length difficulty.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.CreateViews">
+            <summary>
+            To create views via the specified values.
+            </summary>
+            <returns>The values.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.GetOnPotentials(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Analytics.Steps.ChainingStep.GetOnPotentials(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.GetOffPotentials(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Analytics.Steps.ChainingStep.GetOffPotentials(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.GetPotentialAt(System.Int32)">
+            <summary>
+            Gets the potential at the specified index.
+            </summary>
+            <param name="viewIndex">The view index.</param>
+            <returns>The view index.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.GetLinks(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Analytics.Steps.ChainingStep.GetLinks(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.Compare(Sudoku.Analytics.Steps.BlossomLoopStep,Sudoku.Analytics.Steps.BlossomLoopStep)">
+            <summary>
+            Compares two <see cref="T:Sudoku.Analytics.Steps.BlossomLoopStep"/> instance, and returns an <see cref="T:System.Int32"/>
+            indicating which value is greater.
+            </summary>
+            <param name="left">The left-side value to be compared.</param>
+            <param name="right">The right-side value to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating which is greater.</returns>
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.HouseIndex">
+            <summary>
+            The generated property declaration for parameter <c>houseIndex</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Digit">
+            <summary>
+            The generated property declaration for parameter <c>digit</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Chains">
+            <summary>
+            The generated property declaration for parameter <c>chains</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.CellForcingChainsStep">
             <summary>
             Provides with a step that is an <b>Cell Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
@@ -8651,28 +8803,12 @@ result ^= expression;
             This method will be implemented later.
             </i></b></summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ChainingStep.AncestorsCountOf(Sudoku.Analytics.Patterns.ChainNode)">
-            <summary>
-            Try to get all ancestors from the specified node.
-            </summary>
-            <param name="child">The specified node.</param>
-            <returns>The total number of all found ancestors.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.SourcePotentialOf(Sudoku.Analytics.Patterns.ChainNode)">
             <summary>
             Indicates the source potential from the specified target. This method can only be used for finding AICs.
             </summary>
             <param name="target">The target node.</param>
             <returns>The source potential.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetColorCandidates(Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean)">
-            <summary>
-            Try to fetch all colored candidates with specified state.
-            </summary>
-            <param name="target">The target node.</param>
-            <param name="state">The state of the node to be colored.</param>
-            <param name="skipTarget">Indicates whether we should skip the target node.</param>
-            <returns>All found candidates.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetNestedOnPotentials(System.Int32)">
             <summary>
@@ -8717,14 +8853,6 @@ result ^= expression;
             </summary>
             <param name="viewIndex">The view index.</param>
             <returns>All <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetLinks(Sudoku.Analytics.Patterns.ChainNode)">
-            <summary>
-            Try to fetch all <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instances of the branch from the specified target,
-            specified as a <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instance.
-            </summary>
-            <param name="target">The target node.</param>
-            <returns>All <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> displayed in this branch.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetNestedLinks(System.Int32)">
             <summary>
@@ -8779,6 +8907,30 @@ result ^= expression;
             <param name="right">The right-side value to be compared.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating which is greater.</returns>
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.AncestorsCountOf(Sudoku.Analytics.Patterns.ChainNode)">
+            <summary>
+            Try to get all ancestors from the specified node.
+            </summary>
+            <param name="child">The specified node.</param>
+            <returns>The total number of all found ancestors.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetColorCandidates(Sudoku.Analytics.Patterns.ChainNode,System.Boolean,System.Boolean)">
+            <summary>
+            Try to fetch all colored candidates with specified state.
+            </summary>
+            <param name="target">The target node.</param>
+            <param name="state">The state of the node to be colored.</param>
+            <param name="skipTarget">Indicates whether we should skip the target node.</param>
+            <returns>All found candidates.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetLinks(Sudoku.Analytics.Patterns.ChainNode)">
+            <summary>
+            Try to fetch all <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instances of the branch from the specified target,
+            specified as a <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instance.
+            </summary>
+            <param name="target">The target node.</param>
+            <returns>All <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> displayed in this branch.</returns>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsX">
             <summary>

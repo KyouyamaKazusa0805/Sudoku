@@ -343,7 +343,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 					var houseToOn = new NodeSet();
 					var houseToOff = new NodeSet();
 
-					// Iterate on potential positions within the region.
+					// Iterate on potential positions within the house.
 					foreach (byte otherCell in potentialPositions)
 					{
 						if (otherCell == cell)
@@ -355,8 +355,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 						}
 						else
 						{
-							var other = new ChainNode(otherCell, digit, true);
-							var otherToOn = new NodeSet { other };
+							var otherToOn = new NodeSet { new(otherCell, digit, true) };
 							var otherToOff = new NodeSet();
 
 							DoChaining(grid, otherToOn, otherToOff, AllowNishio, AllowDynamic);

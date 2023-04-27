@@ -53,51 +53,17 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		var tempGrid = grid;
 
 		// Sum up how many digits exist complex fish.
-		var count = 0;
-		for (var digit = 0; digit < 9; digit++)
-		{
-			if (pomElims[digit] is not [])
-			{
-				count++;
-			}
-		}
-
-		using var cts = new CancellationTokenSource();
-		var firstPossibleStep = default(Step);
 		var tempList = new List<ComplexFishStep>();
-		var searchingTasks = new Task[count];
-		var onlyFindOne = context.OnlyFindOne;
-
-		count = 0;
 		for (var digit = 0; digit < 9; digit++)
 		{
 			if (pomElims[digit] is var pomElimsOfThisDigit and not [])
 			{
 				// Create a background thread to work on searching for fishes of this digit.
-				var digitCopied = digit;
-				searchingTasks[count++] = Task.Run(searchingAction, cts.Token);
-
-
-				void searchingAction()
+				if (Collect(tempList, tempGrid, pomElimsOfThisDigit, digit, context.OnlyFindOne) is { } step)
 				{
-					if (Collect(tempList, tempGrid, pomElimsOfThisDigit, digitCopied, onlyFindOne) is { } step)
-					{
-						firstPossibleStep = step;
-						cts.Cancel();
-					}
+					return step;
 				}
 			}
-		}
-
-		try
-		{
-			// Synchronize tasks.
-			Task.WaitAll(searchingTasks);
-		}
-		catch (AggregateException ex) when (ex.InnerException is OperationCanceledException)
-		{
-			// User has canceled the operation.
-			return firstPossibleStep!;
 		}
 
 		// Remove duplicate items.

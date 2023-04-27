@@ -280,7 +280,7 @@
     <value>七数组</value>
   </data>
   <data name="TechniqueFormat_AlmostLockedCandidatesStep" xml:space="preserve">
-    <value>数字 {0} 从 {1} 往 {2} 推理 =&gt; {3}</value>
+    <value>数字 {0} 从 {1} 往 {2} 推理</value>
   </data>
   <data name="TechniqueFormat_AlmostLockedSetsWWingStep" xml:space="preserve">
     <value>ALS {0} 和 {1} 以共轭对 {2} 关联起来；其中 W = {3}、X = {4}</value>
@@ -2261,5 +2261,16 @@
   </data>
   <data name="TechniqueFormat_ReverseBivalueUniversalGraveType4Step" xml:space="preserve">
     <value>外部共轭对：{0}</value>
+  </data>
+  <data name="BlossomLoop" xml:space="preserve">
+    <value>绽放环</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_BlossomLoopStep" xml:space="preserve">
+    <value>所有位于 {0} 里的数字 {1} 都会归拢合并到同一单元格内，形成动态环结构</value>
+  </data>
+  <data name="StepSearcherName_BlossomLoopStepSearcher" xml:space="preserve">
+    <value>绽放环</value>
+    <comment>Step Searcher Name</comment>
   </data>
 </root>
