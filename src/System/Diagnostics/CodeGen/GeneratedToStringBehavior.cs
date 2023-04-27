@@ -1,4 +1,4 @@
-﻿namespace System.Diagnostics.CodeGen;
+namespace System.Diagnostics.CodeGen;
 
 /// <summary>
 /// Defines a kind of behavior describing source generator's generated source code on overridding <see cref="object.ToString"/>.
@@ -20,7 +20,7 @@ public enum GeneratedToStringBehavior
 	///     /// <inheritdoc cref="object.ToString"/>
 	///     [CompilerGenerated]
 	///     [GeneratedCode("SourceGeneratorName", "1.0.0.0")]
-	///     public override readonly partial string ToString() => ToString(default(string?));
+	///     public override readonly partial string ToString() => ToString(default(string));
 	/// }
 	/// ]]></code>
 	/// </remarks>

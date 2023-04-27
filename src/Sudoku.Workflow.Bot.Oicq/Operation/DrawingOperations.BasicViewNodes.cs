@@ -167,7 +167,7 @@ partial class DrawingOperations
 				['B' or 'b', var r and ('R' or 'r' or 'C' or 'c'), var i and >= '1' and <= '3'] when GetChuteIndex(r, i) is var chute
 					=> new ChuteViewNode(identifier, chute), // 大行列（字母匹配）。
 				_
-					=> default(ViewNode?) // 其他情况。
+					=> default(ViewNode) // 其他情况。
 			};
 
 			if (node is not null)

@@ -78,7 +78,7 @@ public sealed class Help : IExecutable
 		else
 		{
 			// Iterates on each root command type, to validate whether the property points to the type.
-			var instance = default(IExecutable?);
+			var instance = default(IExecutable);
 			foreach (var type in thisType.Assembly.GetDerivedTypes<IExecutable>())
 			{
 				var propertyInfo = thisType.GetProperty(nameof(HelpCommandName))!;

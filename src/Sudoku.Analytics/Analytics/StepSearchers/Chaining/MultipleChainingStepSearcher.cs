@@ -118,8 +118,8 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 				// Prepare storage and accumulator for "Cell Reduction".
 				var digitToOn = new ChainBranch();
 				var digitToOff = new ChainBranch();
-				var cellToOn = default(NodeSet?);
-				var cellToOff = default(NodeSet?);
+				var cellToOn = default(NodeSet);
+				var cellToOff = default(NodeSet);
 
 				// Iterate on all potential values that are not alone.
 				foreach (byte digit in mask)

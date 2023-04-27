@@ -62,14 +62,14 @@ public sealed class DependencyPropertyGenerator : IIncrementalGenerator
 					continue;
 				}
 
-				var docCref = default(string?);
-				var docPath = default(string?);
-				var defaultValueGenerator = default(string?);
-				var defaultValue = default(object?);
-				var callbackMethodName = default(string?);
-				var docSummary = default(string?);
-				var docRemarks = default(string?);
-				var membersNotNullWhenReturnsTrue = (string[]?)null;
+				var docCref = default(string);
+				var docPath = default(string);
+				var defaultValueGenerator = default(string);
+				var defaultValue = default(object);
+				var callbackMethodName = default(string);
+				var docSummary = default(string);
+				var docRemarks = default(string);
+				var membersNotNullWhenReturnsTrue = default(string[]);
 				var isNullable = false;
 				var accessibility = Accessibility.Public;
 				foreach (var pair in namedArgs)

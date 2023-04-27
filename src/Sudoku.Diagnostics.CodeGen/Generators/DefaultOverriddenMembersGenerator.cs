@@ -341,7 +341,7 @@ public sealed class DefaultOverriddenMembersGenerator : IIncrementalGenerator
 
 				var targetExpression = (mode, rawMemberNames.ToArray(), needCast) switch
 				{
-					(0, [], true) => $"\t=> ToString(default(string?));",
+					(0, [], true) => $"\t=> ToString(default(string));",
 					(0, [], _) => $"\t=> ToString(null);",
 					(1, [var memberName], _) => $"\t=> {memberName};",
 					(2, var memberNames, _) when argStr(memberNames) is var a => $$$""""{{{"\t"}}}=> $$"""{{nameof({{{typeName}}})}} { {{{a}}} }""";"""",

@@ -53,13 +53,13 @@ public sealed class AttachedPropertyGenerator : IIncrementalGenerator
 					continue;
 				}
 
-				var docCref = default(string?);
-				var docPath = default(string?);
-				var defaultValueGenerator = default(string?);
-				var defaultValue = default(object?);
-				var callbackMethodName = default(string?);
-				var docSummary = default(string?);
-				var docRemarks = default(string?);
+				var docCref = default(string);
+				var docPath = default(string);
+				var defaultValueGenerator = default(string);
+				var defaultValue = default(object);
+				var callbackMethodName = default(string);
+				var docSummary = default(string);
+				var docRemarks = default(string);
 				var isNullable = false;
 				foreach (var pair in namedArgs)
 				{

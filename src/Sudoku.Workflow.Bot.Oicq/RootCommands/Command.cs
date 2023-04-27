@@ -394,7 +394,7 @@ public abstract class Command : IModule
 				for (var i = 1; i < args.Length; i++)
 				{
 					var arg = args[i];
-					var foundPropertyInfo = default(PropertyInfo?);
+					var foundPropertyInfo = default(PropertyInfo);
 					foreach (var tempPropertyInfo in moduleType.GetProperties())
 					{
 						if (tempPropertyInfo.GetCustomAttribute<DoubleArgumentAttribute>() is { Name: var name } && name == arg)

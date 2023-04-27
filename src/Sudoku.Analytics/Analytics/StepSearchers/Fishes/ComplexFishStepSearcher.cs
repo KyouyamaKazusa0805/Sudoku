@@ -63,7 +63,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		}
 
 		using var cts = new CancellationTokenSource();
-		var firstPossibleStep = default(Step?);
+		var firstPossibleStep = default(Step);
 		var tempList = new List<ComplexFishStep>();
 		var searchingTasks = new Task[count];
 		var onlyFindOne = context.OnlyFindOne;

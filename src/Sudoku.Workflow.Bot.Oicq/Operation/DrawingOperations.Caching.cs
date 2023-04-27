@@ -28,7 +28,7 @@ partial class DrawingOperations
 			Directory.CreateDirectory(cachedPictureFolder);
 		}
 
-		var targetPath = default(string?);
+		var targetPath = default(string);
 		for (var index = 0; index < int.MaxValue; index++)
 		{
 			var picturePath = $"""{cachedPictureFolder}\temp{(index == 0 ? string.Empty : index.ToString())}.png""";
