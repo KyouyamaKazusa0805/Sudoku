@@ -76,8 +76,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 
 		// Iterate on mode (whether use AR or UR mode to search).
-		GetAll(list, grid, false);
-		GetAll(list, grid, true);
+		Collect(list, grid, false);
+		Collect(list, grid, true);
 
 		if (list.Count == 0)
 		{
@@ -101,7 +101,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="gathered"><inheritdoc cref="AnalysisContext.Accumulator" path="/summary"/></param>
 	/// <param name="grid"><inheritdoc cref="AnalysisContext.Grid" path="/summary"/></param>
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
-	private void GetAll(ICollection<UniqueRectangleStep> gathered, scoped in Grid grid, bool arMode)
+	private void Collect(ICollection<UniqueRectangleStep> gathered, scoped in Grid grid, bool arMode)
 	{
 		// Search for ALSes. This result will be used by UR External ALS-XZ structures.
 		var alses = grid.GatherAlmostLockedSets();

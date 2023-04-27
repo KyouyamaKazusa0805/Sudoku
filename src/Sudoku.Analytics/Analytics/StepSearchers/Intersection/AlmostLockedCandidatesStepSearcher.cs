@@ -27,11 +27,11 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			{
 				if (c && EmptyCells)
 				{
-					if (GetAll(ref context, size, baseSet, coverSet, a, b, c) is { } step1)
+					if (Collect(ref context, size, baseSet, coverSet, a, b, c) is { } step1)
 					{
 						return step1;
 					}
-					if (GetAll(ref context, size, coverSet, baseSet, b, a, c) is { } step2)
+					if (Collect(ref context, size, coverSet, baseSet, b, a, c) is { } step2)
 					{
 						return step2;
 					}
@@ -76,7 +76,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	/// and the elimination is <c>z</c> (in ALP) and <c>y</c> and <c>z</c> (in ALT).
 	/// </para>
 	/// </remarks>
-	private static Step? GetAll(
+	private static Step? Collect(
 		scoped ref AnalysisContext context,
 		int size,
 		House baseSet,

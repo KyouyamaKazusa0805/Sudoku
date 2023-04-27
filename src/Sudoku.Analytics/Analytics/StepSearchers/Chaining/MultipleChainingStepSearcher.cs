@@ -81,7 +81,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 		// TODO: Implement an implications cache.
 
 		scoped ref readonly var grid = ref context.Grid;
-		var result = GetAll(grid);
+		var result = Collect(grid);
 		if (result.Count == 0)
 		{
 			return null;
@@ -103,7 +103,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	/// </summary>
 	/// <param name="grid">The grid on which to search for hints.</param>
 	/// <returns>The hints found.</returns>
-	private List<ChainingStep> GetAll(scoped in Grid grid)
+	private List<ChainingStep> Collect(scoped in Grid grid)
 	{
 		var result = new List<ChainingStep>();
 
@@ -230,7 +230,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	/// Note that if a potential belongs to all the four sets, the sudoku has no solution. This is not checked.
 	/// </para>
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.GetAll(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.Collect(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="pOn"></param>
 	/// <param name="pOff"></param>
 	/// <param name="result">
@@ -302,7 +302,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	/// <summary>
 	/// Search for region (house) forcing chains.
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.GetAll(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.Collect(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="result">
 	/// <inheritdoc
 	///     cref="NonMultipleChainingStepSearcher.DoUnaryChaining(in Grid, ChainNode, List{ChainingStep}, bool, bool)"

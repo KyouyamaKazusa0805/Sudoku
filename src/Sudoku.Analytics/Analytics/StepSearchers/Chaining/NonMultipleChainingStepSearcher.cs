@@ -39,9 +39,9 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		List<ChainingStep> getNonMultipleChains(scoped in Grid grid)
 		{
-			var result = GetAll(grid, true, false);
-			result.AddRange(GetAll(grid, false, true));
-			result.AddRange(GetAll(grid, true, true));
+			var result = Collect(grid, true, false);
+			result.AddRange(Collect(grid, false, true));
+			result.AddRange(Collect(grid, true, true));
 
 			return result;
 		}
@@ -74,7 +74,7 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 	/// <param name="isX">Indicates whether the chain allows X element (strong links in a house for a single digit).</param>
 	/// <param name="isY">Indicates whether the chain allows Y element (strong links in a cell).</param>
 	/// <returns>All possible found <see cref="ChainingStep"/>s.</returns>
-	private List<ChainingStep> GetAll(scoped in Grid grid, bool isX, bool isY)
+	private List<ChainingStep> Collect(scoped in Grid grid, bool isX, bool isY)
 	{
 		var result = new List<ChainingStep>();
 
@@ -96,11 +96,11 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 	/// <summary>
 	/// Look for, and add single forcing chains, and bidirectional cycles.
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="Collect(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="pOn">The start potential.</param>
 	/// <param name="result">The result steps found.</param>
-	/// <param name="isX"><inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
-	/// <param name="isY"><inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
+	/// <param name="isX"><inheritdoc cref="Collect(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
+	/// <param name="isY"><inheritdoc cref="Collect(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	private void DoUnaryChaining(scoped in Grid grid, ChainNode pOn, List<ChainingStep> result, bool isX, bool isY)
 	{
 		if (BivalueCells.Contains(pOn.Cell) && !isX)
@@ -150,11 +150,11 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 	/// <summary>
 	/// Construct cycles and return them, by recording them into argument <paramref name="cycles"/>.
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="Collect(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="toOn">The potentials that are assumed to be "on".</param>
 	/// <param name="toOff">The potentials that are assumed to be "off".</param>
-	/// <param name="isX"><inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
-	/// <param name="isY"><inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
+	/// <param name="isX"><inheritdoc cref="Collect(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
+	/// <param name="isY"><inheritdoc cref="Collect(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	/// <param name="cycles">
 	/// <para>All found cycles, represented as their final <see cref="ChainNode"/> node.</para>
 	/// <para>By using <see cref="ChainNode.ChainPotentials"/>, we can get the whole chain.</para>
@@ -217,14 +217,14 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 	/// Construct forcing chains (in Sudoku Explainer, AICs will be treated as forcing chains).
 	/// In other words, this method does find for AICs.
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="Collect(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="toOn">
 	/// <inheritdoc cref="DoCycles(in Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)" path="/param[@name='toOn']"/>
 	/// </param>
 	/// <param name="toOff">
 	/// <inheritdoc cref="DoCycles(in Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)" path="/param[@name='toOff']"/>
 	/// </param>
-	/// <param name="isY"><inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
+	/// <param name="isY"><inheritdoc cref="Collect(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
 	/// <param name="chains">
 	/// <para>All found chains, represented as their final <see cref="ChainNode"/> node.</para>
 	/// <para>
@@ -303,7 +303,7 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 	/// the method will return a <see cref="BidirectionalCycleStep"/> instance with a non-<see langword="null"/> value.
 	/// </summary>
 	/// <param name="grid">
-	/// <inheritdoc cref="GetAll(in Grid, bool, bool)" path="/param[@name='grid']"/>
+	/// <inheritdoc cref="Collect(in Grid, bool, bool)" path="/param[@name='grid']"/>
 	/// </param>
 	/// <param name="dstOn">Indicates the destination node that is at the state "on".</param>
 	/// <param name="isX">

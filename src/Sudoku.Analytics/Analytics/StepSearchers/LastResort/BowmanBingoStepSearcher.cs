@@ -50,7 +50,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 
 				if (IsValidGrid(grid, cell))
 				{
-					GetAll(tempAccumulator, ref tempGrid, onlyFindOne, startCandidate, MaxLength - 1);
+					Collect(tempAccumulator, ref tempGrid, onlyFindOne, startCandidate, MaxLength - 1);
 				}
 				else
 				{
@@ -94,7 +94,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="startCand">The start candidate to be assumed.</param>
 	/// <param name="length">The whole length to be searched.</param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private Step? GetAll(ICollection<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, Candidate startCand, int length)
+	private Step? Collect(ICollection<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, Candidate startCand, int length)
 	{
 		scoped var context = new AnalysisContext(null, grid, true);
 		if (length == 0 || SinglesSearcher.Collect(ref context) is not SingleStep singleInfo)
@@ -115,7 +115,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		if (IsValidGrid(grid, c))
 		{
 			// Sounds good.
-			if (GetAll(result, ref grid, onlyFindOne, startCand, length - 1) is { } nestedStep)
+			if (Collect(result, ref grid, onlyFindOne, startCand, length - 1) is { } nestedStep)
 			{
 				return nestedStep;
 			}

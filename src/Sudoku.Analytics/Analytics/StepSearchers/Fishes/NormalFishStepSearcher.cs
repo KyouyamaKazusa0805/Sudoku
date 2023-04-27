@@ -92,19 +92,19 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 
 		for (var size = 2; size <= 4; size++)
 		{
-			if (GetAll(accumulator, grid, size, r, c, false, true, onlyFindOne) is { } finlessRowFish)
+			if (Collect(accumulator, grid, size, r, c, false, true, onlyFindOne) is { } finlessRowFish)
 			{
 				return finlessRowFish;
 			}
-			if (GetAll(accumulator, grid, size, r, c, false, false, onlyFindOne) is { } finlessColumnFish)
+			if (Collect(accumulator, grid, size, r, c, false, false, onlyFindOne) is { } finlessColumnFish)
 			{
 				return finlessColumnFish;
 			}
-			if (GetAll(accumulator, grid, size, r, c, true, true, onlyFindOne) is { } finnedRowFish)
+			if (Collect(accumulator, grid, size, r, c, true, true, onlyFindOne) is { } finnedRowFish)
 			{
 				return finnedRowFish;
 			}
-			if (GetAll(accumulator, grid, size, r, c, true, false, onlyFindOne) is { } finnedColumnFish)
+			if (Collect(accumulator, grid, size, r, c, true, false, onlyFindOne) is { } finnedColumnFish)
 			{
 				return finnedColumnFish;
 			}
@@ -127,7 +127,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// </param>
 	/// <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
 	/// <returns>The first found step.</returns>
-	private unsafe Step? GetAll(
+	private unsafe Step? Collect(
 		ICollection<Step> accumulator,
 		scoped in Grid grid,
 		int size,
