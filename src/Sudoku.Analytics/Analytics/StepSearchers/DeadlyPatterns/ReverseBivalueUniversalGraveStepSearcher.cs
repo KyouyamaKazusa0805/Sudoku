@@ -86,14 +86,19 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			for (var i = 0; i < globalMapUpperBound; i++)
 			{
 				scoped ref readonly var globalMap = ref GlobalMaps[i];
-				var valuesMap = i == 0 ? ValuesMap[d1] | ValuesMap[d2] : globalMap & (ValuesMap[d1] | ValuesMap[d2]);
+				var baseValuesMap = ValuesMap[d1] | ValuesMap[d2];
+				if (baseValuesMap.Count >= 16)
+				{
+					continue;
+				}
+
+				var valuesMap = i == 0 ? baseValuesMap : globalMap & baseValuesMap;
 
 				// Extra check: If the global map doesn't use all cells of a grid, we should check the other 2 floors/towers.
 				// If those floors/towers are not filled one of two digits, the pattern won't be formed, neither.
-				if (i != 0
-					&& ValuesMap[d1] - globalMap is { Count: var d1Counter }
-					&& ValuesMap[d2] - globalMap is { Count: var d2Counter }
-					&& (d1Counter, d2Counter) is not ((6, 0) or (0, 6)))
+				var d1Counter = (ValuesMap[d1] - globalMap).Count;
+				var d2Counter = (ValuesMap[d2] - globalMap).Count;
+				if ((i, (d1Counter, d2Counter)) is (not 0, not ((6, 0) or (0, 6))) or (0, ( >= 7, _) or (_, >= 7)))
 				{
 					// Either 6 houses hold 6 'd1's and 0 'd2', or 6 'd2's and 0 'd1'.
 					// Otherwise, this will be handled in 'i == 0' (first case) or invalid cases.
@@ -108,7 +113,11 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				// The total number of empty cells chosen may not be greater than 4,
 				// because eliminations in such constructed pattern may not exist. In addition, only type 2 will use at most 4 empty cells;
 				// other types will only use 1 or 2 empty cells.
-				for (var incrementStep = (valuesMap.Count & 1) == 0 ? 2 : 1; incrementStep < MaxSearchingEmptyCellsCount; incrementStep += 2)
+				for (
+					var incrementStep = (valuesMap.Count & 1) == 0 ? 2 : 1;
+					incrementStep < Min(18 - d1Counter - d2Counter, MaxSearchingEmptyCellsCount);
+					incrementStep += 2
+				)
 				{
 					foreach (var cellsChosen in emptyCells & incrementStep)
 					{

@@ -5416,10 +5416,10 @@ result ^= expression;
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher">
             <summary>
-            Provides with a <b>Blossom Loops</b> step searcher.
+            Provides with a <b>Blossom Loop</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>Blossom Loops</item>
+            <item>Blossom Loop</item>
             </list>
             </summary>
         </member>
@@ -5443,9 +5443,29 @@ result ^= expression;
                 cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Boolean,System.Boolean)"
                 path="/param[@name='result']"/>
             </param>
-            <param name="cell"></param>
-            <param name="digit"></param>
+            <param name="cell">Indicates the starting cell.</param>
+            <param name="digit">Indicates the digit that begins the chaining from starting house where <paramref name="cell"/> lies.</param>
             <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForCellTargetType(System.Collections.Generic.Dictionary{System.Byte,Sudoku.Analytics.Patterns.NodeSet},Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
+            <summary>
+            Check for cell-target type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForHouseTargetType(System.Collections.Generic.Dictionary{System.Byte,Sudoku.Analytics.Patterns.NodeSet},Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
+            <summary>
+            Check for house-target type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.IsOneToOneRelationBetweenStartAndEndNodes(System.Collections.Generic.List{Sudoku.Analytics.Patterns.ChainNode},Sudoku.Concepts.CellMap@,System.Byte,System.Collections.Generic.Dictionary{Sudoku.Analytics.Patterns.ChainNode,System.Int32}@)">
+            <summary>
+            Determine whether one target node corresponds to one base node begins the branch, and vice versa.
+            </summary>
+            <param name="selectedPotentials">The target nodes.</param>
+            <param name="potentialPositions">The potential cells.</param>
+            <param name="digit">The digit.</param>
+            <param name="projectedStartNodes">The projected starting nodes, which can be used if return value is <see langword="true"/>.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CreateStepCellType(Sudoku.Concepts.Grid@,System.Int32,System.Byte,System.Collections.Generic.Dictionary{Sudoku.Analytics.Patterns.ChainNode,System.Int32},System.Byte,System.Int16)">
             <summary>
@@ -5457,6 +5477,17 @@ result ^= expression;
             <param name="outcomes">All branches.</param>
             <param name="targetCell">Indicates the target cell which makes all branches end with.</param>
             <param name="elimDigitsMask">Indicates mask of digits can be eliminated in target cell.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CreateStepHouseType(Sudoku.Concepts.Grid@,System.Int32,System.Byte,System.Collections.Generic.Dictionary{Sudoku.Analytics.Patterns.ChainNode,System.Int32},Sudoku.Concepts.CellMap@,System.Byte)">
+            <summary>
+            Try to create a hint, for a house type.
+            </summary>
+            <param name="grid">The grid that is used for checking existence of candidates in order to find eliminations.</param>
+            <param name="houseIndex">Indicates the house where the base digits lies.</param>
+            <param name="digit">Indicates the digit of the base house used.</param>
+            <param name="outcomes">All branches.</param>
+            <param name="elimCells">Indicates cells can be eliminated in the target house.</param>
+            <param name="targetDigit">Indicates the target digit.</param>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ChainingStepSearcher">
             <summary>
@@ -9086,10 +9117,13 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Analytics.Steps.ComparableStep.Order``1(System.Collections.Generic.List{``0})">
             <summary>
-            Try to order the collection via the specified comparison rule.
+            Try to order the <typeparamref name="TSelf"/> collection via the specified comparison rule,
+            if type argument <typeparamref name="TSelf"/> implements <see cref="T:Sudoku.Analytics.Steps.IComparableStep`1"/>.
             </summary>
             <typeparam name="TSelf"><inheritdoc cref="T:Sudoku.Analytics.Steps.IComparableStep`1" path="/typeparam[@name='TSelf']"/></typeparam>
             <param name="this">A collection.</param>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+            <seealso cref="T:Sudoku.Analytics.Steps.IComparableStep`1"/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
             <summary>
