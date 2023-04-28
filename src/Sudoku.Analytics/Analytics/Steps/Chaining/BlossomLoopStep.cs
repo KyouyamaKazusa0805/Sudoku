@@ -16,12 +16,8 @@ public sealed partial class BlossomLoopStep(
 	[PrimaryConstructorParameter] MultipleForcingChains chains
 ) : Step(conclusions, views)
 {
-	internal BlossomLoopStep(
-		Conclusion[] conclusions,
-		House houseIndex,
-		byte digit,
-		MultipleForcingChains chains
-	) : this(conclusions, null!, houseIndex, digit, chains)
+	internal BlossomLoopStep(Conclusion[] conclusions, House houseIndex, byte digit, MultipleForcingChains chains) :
+		this(conclusions, null!, houseIndex, digit, chains)
 	{
 	}
 
