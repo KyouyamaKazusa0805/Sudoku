@@ -1,11 +1,11 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Represents a type that can be used for comparison on two <typeparamref name="TSelf"/> instances.
 /// </summary>
 /// <typeparam name="TSelf">The type of the comparison object. The type must be derived from <see cref="Step"/>.</typeparam>
 /// <seealso cref="Step"/>
-public interface IEquatableStep<TSelf> where TSelf : Step, IEquatableStep<TSelf>
+public interface IEquatableStep<in TSelf> where TSelf : Step, IEquatableStep<TSelf>
 {
 	/// <summary>
 	/// Determines whether two <typeparamref name="TSelf"/> instances are considered equal.

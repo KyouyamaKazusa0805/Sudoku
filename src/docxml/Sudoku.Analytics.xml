@@ -8623,13 +8623,6 @@ result ^= expression;
             <inheritdoc cref="M:Sudoku.Analytics.Steps.ChainingStep.GetLinks(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.Compare(Sudoku.Analytics.Steps.BlossomLoopStep,Sudoku.Analytics.Steps.BlossomLoopStep)">
-            <summary>
-            Compares two <see cref="T:Sudoku.Analytics.Steps.BlossomLoopStep"/> instance, and returns an <see cref="T:System.Int32"/>
-            indicating which value is greater.
-            </summary>
-            <param name="left">The left-side value to be compared.</param>
-            <param name="right">The right-side value to be compared.</param>
-            <returns>An <see cref="T:System.Int32"/> value indicating which is greater.</returns>
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.HouseIndex">
@@ -8905,13 +8898,6 @@ result ^= expression;
             <returns>A pair of values.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.Compare(Sudoku.Analytics.Steps.ChainingStep,Sudoku.Analytics.Steps.ChainingStep)">
-            <summary>
-            Compares two <see cref="T:Sudoku.Analytics.Steps.ChainingStep"/> instance, and returns an <see cref="T:System.Int32"/>
-            indicating which value is greater.
-            </summary>
-            <param name="left">The left-side value to be compared.</param>
-            <param name="right">The right-side value to be compared.</param>
-            <returns>An <see cref="T:System.Int32"/> value indicating which is greater.</returns>
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.AncestorsCountOf(Sudoku.Analytics.Patterns.ChainNode)">
@@ -9091,6 +9077,19 @@ result ^= expression;
             <summary>
             The generated property declaration for parameter <c>chains</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ComparableStep">
+            <summary>
+            Represents a type that operates with <see cref="T:Sudoku.Analytics.Steps.IComparableStep`1"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Steps.IComparableStep`1"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ComparableStep.Order``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Try to order the collection via the specified comparison rule.
+            </summary>
+            <typeparam name="TSelf"><inheritdoc cref="T:Sudoku.Analytics.Steps.IComparableStep`1" path="/typeparam[@name='TSelf']"/></typeparam>
+            <param name="this">A collection.</param>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
             <summary>
@@ -11998,6 +11997,22 @@ result ^= expression;
             <summary>
             The generated property declaration for parameter <c>isSashimi</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.IComparableStep`1">
+            <summary>
+            Represents a type that can be used for comparison on two <typeparamref name="TSelf"/> instances.
+            </summary>
+            <typeparam name="TSelf">The type of the comparison object. The type must be derived from <see cref="T:Sudoku.Analytics.Step"/>.</typeparam>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.IComparableStep`1.Compare(`0,`0)">
+            <summary>
+            Compares two <typeparamref name="TSelf"/> instance, and returns an <see cref="T:System.Int32"/> indicating which value is greater.
+            </summary>
+            <param name="left">The left-side value to be compared.</param>
+            <param name="right">The right-side value to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating which is greater.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.IEquatableStep`1">
             <summary>

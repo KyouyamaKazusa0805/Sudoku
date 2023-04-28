@@ -25,7 +25,7 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 			return null;
 		}
 
-		result.Sort(ChainingStep.Compare);
+		result.Order();
 
 		if (context.OnlyFindOne)
 		{

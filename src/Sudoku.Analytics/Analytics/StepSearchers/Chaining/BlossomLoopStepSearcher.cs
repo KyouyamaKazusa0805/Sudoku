@@ -20,7 +20,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 			return null;
 		}
 
-		result.Sort(BlossomLoopStep.Compare);
+		result.Order();
 
 		if (context.OnlyFindOne)
 		{

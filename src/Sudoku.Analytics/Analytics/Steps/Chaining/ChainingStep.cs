@@ -20,7 +20,7 @@ public abstract partial class ChainingStep(
 	[PrimaryConstructorParameter] bool isDynamic = false,
 	[PrimaryConstructorParameter] bool isNishio = false,
 	[PrimaryConstructorParameter] int dynamicNestingLevel = 0
-) : Step(conclusions, views)
+) : Step(conclusions, views), IComparableStep<ChainingStep>
 {
 	/// <inheritdoc/>
 	public sealed override decimal BaseDifficulty
@@ -535,13 +535,6 @@ public abstract partial class ChainingStep(
 	}
 
 
-	/// <summary>
-	/// Compares two <see cref="ChainingStep"/> instance, and returns an <see cref="int"/>
-	/// indicating which value is greater.
-	/// </summary>
-	/// <param name="left">The left-side value to be compared.</param>
-	/// <param name="right">The right-side value to be compared.</param>
-	/// <returns>An <see cref="int"/> value indicating which is greater.</returns>
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int Compare(ChainingStep left, ChainingStep right)
