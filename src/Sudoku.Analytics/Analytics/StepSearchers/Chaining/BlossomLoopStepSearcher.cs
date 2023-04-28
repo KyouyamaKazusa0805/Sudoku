@@ -50,7 +50,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 				foreach (byte digit in mask)
 				{
 					var onToOn = new NodeSet { new(cell, digit, true) };
-					DoChaining(grid, onToOn, new NodeSet(), false, false);
+					DoChaining(grid, onToOn, new(), false, false);
 
 					// Do house chaining.
 					DoHouseChaining(grid, result, cell, digit, onToOn);
@@ -99,7 +99,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 					{
 						var otherToOn = new NodeSet { new(otherCell, baseDigit, true) };
 
-						DoChaining(grid, otherToOn, new NodeSet(), false, false);
+						DoChaining(grid, otherToOn, new(), false, false);
 
 						posToOn.Add(otherCell, otherToOn);
 					}
