@@ -82,7 +82,11 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 			if (potentialPositions.Count >= 2 && potentialPositions[0] == cell)
 			{
 				// We meet region for the first time.
+
+				// Different with normal forcing chains, here we may not use 'posToOff' to record relations
+				// because this type is not defined by this technique.
 				var posToOn = new ChainBranch();
+				//var posToOff = new ChainBranch();
 
 				// Iterate on potential positions within the house.
 				foreach (byte otherCell in potentialPositions)
@@ -101,107 +105,143 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 					}
 				}
 
-				var cellMap = ~CellMap.Empty;
-				foreach (var (_, nodes) in posToOn)
-				{
-					var map = CellMap.Empty;
-					foreach (var node in nodes)
-					{
-						map.Add(node.Cell);
-					}
-
-					cellMap &= map;
-				}
-
 				// Gather results.
-				foreach (var c in cellMap)
 				{
-					var selectedPotentials = new List<ChainNode>(posToOn.Count);
+					// For cell type.
+
+					// Gets the cells that all branches of 'posToOn' contain. This is used for cell type (into a cell).
+					var cellsAllBranchesContain = ~CellMap.Empty;
 					foreach (var (_, nodes) in posToOn)
 					{
+						var map = CellMap.Empty;
 						foreach (var node in nodes)
 						{
-							if (node.Cell == c)
-							{
-								selectedPotentials.Add(node);
+							map.Add(node.Cell);
+						}
 
+						cellsAllBranchesContain &= map;
+					}
+
+					// Itertes on all possible target cells.
+					foreach (byte targetCell in cellsAllBranchesContain)
+					{
+						// Records chain nodes from each branch, ending with target cell.
+						var selectedPotentials = new List<ChainNode>(posToOn.Count);
+						foreach (var (_, nodes) in posToOn)
+						{
+							foreach (var node in nodes)
+							{
+								if (node.Cell == targetCell)
+								{
+									selectedPotentials.Add(node);
+
+									break;
+								}
+							}
+						}
+
+						// Determine whether the number of ending candidates is equal to the number of branches.
+						// This is a very important rule.
+						if (selectedPotentials.Count != potentialPositions.Count)
+						{
+							continue;
+						}
+
+						var projectedStartNodes = new Dictionary<ChainNode, Candidate>(selectedPotentials.Count);
+
+						// Due to the design of the chaining rule, we cannot determine the connection between each branch
+						// and its corresponding cell from starting house.
+						// We should manually check for this, and determine whether the correspoding relations are "1 to 1".
+						var finalFlag = true;
+						foreach (var potential in selectedPotentials)
+						{
+							if (potential.ChainPotentials is not [.., var (branchStartCell, startDigit, _)] branch)
+							{
+								finalFlag = false;
+								break;
+							}
+
+							var selectedPositions = CandidateMap.Empty;
+							foreach (var position in potentialPositions)
+							{
+								if (startDigit != digit && position == branchStartCell)
+								{
+									selectedPositions.Add(position * 9 + startDigit);
+								}
+								else if (startDigit == digit && PeersMap[position].Contains(branchStartCell))
+								{
+									selectedPositions.Add(position * 9 + digit);
+								}
+							}
+
+							if (selectedPositions is not [var selectedPosition])
+							{
+								finalFlag = false;
+								break;
+							}
+
+							if (!projectedStartNodes.TryAdd(potential, selectedPosition))
+							{
+								finalFlag = false;
 								break;
 							}
 						}
-					}
-
-					if (selectedPotentials.Count != potentialPositions.Count)
-					{
-						continue;
-					}
-
-					var targetDigitsMask = (Mask)0;
-					foreach (var selectedPotential in selectedPotentials)
-					{
-						targetDigitsMask |= (Mask)(1 << selectedPotential.Digit);
-					}
-
-					if (grid.GetCandidates(c) != targetDigitsMask)
-					{
-						continue;
-					}
-
-					var projectedStartNodes = new Dictionary<ChainNode, Candidate>(selectedPotentials.Count);
-					var finalFlag = true;
-					foreach (var potential in selectedPotentials)
-					{
-						if (potential.ChainPotentials is not { Length: not 0 } branch)
+						if (!finalFlag)
 						{
-							finalFlag = false;
-							break;
+							continue;
 						}
 
-						var (branchStartCell, startDigit, _) = branch[^1];
-						var selectedPositions = CandidateMap.Empty;
-						foreach (var position in potentialPositions)
+						// Collect digits that target node used. This variable can be used for finding eliminations in the target cell.
+						var targetDigitsMask = (Mask)0;
+						foreach (var selectedPotential in selectedPotentials)
 						{
-							if (startDigit != digit && position == branchStartCell)
-							{
-								selectedPositions.Add(position * 9 + startDigit);
-							}
-							else if (startDigit == digit && PeersMap[position].Contains(branchStartCell))
-							{
-								selectedPositions.Add(position * 9 + digit);
-							}
+							targetDigitsMask |= (Mask)(1 << selectedPotential.Digit);
 						}
 
-						if (selectedPositions is not [var selectedPosition])
+						var step = CreateStepCellType(
+							grid,
+							houseIndex,
+							digit,
+							projectedStartNodes,
+							targetCell,
+							(Mask)(grid.GetCandidates(targetCell) & ~targetDigitsMask)
+						);
+						if (step is not null)
 						{
-							finalFlag = false;
-							break;
-						}
-
-						if (!projectedStartNodes.TryAdd(potential, selectedPosition))
-						{
-							finalFlag = false;
-							break;
+							result.Add(step);
 						}
 					}
-					if (!finalFlag)
-					{
-						continue;
-					}
+				}
+				{
+					// For house type.
 
-					if (CreateStep(grid, houseIndex, digit, projectedStartNodes) is { } finalStep)
-					{
-						result.Add(finalStep);
-					}
+
 				}
 			}
 		}
 	}
 
 	/// <summary>
-	/// Try to create a hint.
+	/// Try to create a hint, for a cell type.
 	/// </summary>
-	private BlossomLoopStep? CreateStep(scoped in Grid grid, House houseIndex, byte digit, Dictionary<ChainNode, Candidate> outcomes)
+	/// <param name="grid">The grid that is used for checking existence of candidates in order to find eliminations.</param>
+	/// <param name="houseIndex">Indicates the house where the base digits lies.</param>
+	/// <param name="digit">Indicates the digit of the base house used.</param>
+	/// <param name="outcomes">All branches.</param>
+	/// <param name="targetCell">Indicates the target cell which makes all branches end with.</param>
+	/// <param name="elimDigitsMask">Indicates mask of digits can be eliminated in target cell.</param>
+	private BlossomLoopStep? CreateStepCellType(
+		scoped in Grid grid,
+		House houseIndex,
+		byte digit,
+		Dictionary<ChainNode, Candidate> outcomes,
+		byte targetCell,
+		Mask elimDigitsMask
+	)
 	{
 		var conclusions = new List<Conclusion>();
+
+		// Eliminates with all possible weak links in the whole loop.
 		foreach (var (branch, headCandidate) in outcomes)
 		{
 			var nodes = branch.ChainPotentials;
@@ -229,6 +269,13 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 				}
 			}
 		}
+
+		// Eliminates with digits from the target cell.
+		foreach (var elimDigit in elimDigitsMask)
+		{
+			conclusions.Add(new(Elimination, targetCell * 9 + elimDigit));
+		}
+
 		if (conclusions.Count == 0)
 		{
 			return null;

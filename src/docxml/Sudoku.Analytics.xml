@@ -5447,10 +5447,16 @@ result ^= expression;
             <param name="digit"></param>
             <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CreateStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,System.Collections.Generic.Dictionary{Sudoku.Analytics.Patterns.ChainNode,System.Int32})">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CreateStepCellType(Sudoku.Concepts.Grid@,System.Int32,System.Byte,System.Collections.Generic.Dictionary{Sudoku.Analytics.Patterns.ChainNode,System.Int32},System.Byte,System.Int16)">
             <summary>
-            Try to create a hint.
+            Try to create a hint, for a cell type.
             </summary>
+            <param name="grid">The grid that is used for checking existence of candidates in order to find eliminations.</param>
+            <param name="houseIndex">Indicates the house where the base digits lies.</param>
+            <param name="digit">Indicates the digit of the base house used.</param>
+            <param name="outcomes">All branches.</param>
+            <param name="targetCell">Indicates the target cell which makes all branches end with.</param>
+            <param name="elimDigitsMask">Indicates mask of digits can be eliminated in target cell.</param>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ChainingStepSearcher">
             <summary>

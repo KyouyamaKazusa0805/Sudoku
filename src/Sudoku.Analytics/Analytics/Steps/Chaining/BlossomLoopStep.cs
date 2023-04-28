@@ -58,15 +58,31 @@ public sealed partial class BlossomLoopStep(
 	/// <returns>The values.</returns>
 	internal View[]? CreateViews()
 	{
-		var result = View.Empty;
+		var full = View.Empty;
+		var result = new List<View>(Chains.Count + 1) { full };
 		for (var i = 0; i < Chains.Count; i++)
 		{
-			GetOffPotentials(i).ForEach(candidate => result.Add(new CandidateViewNode(WellKnownColorIdentifierKind.Auxiliary1, candidate)));
-			GetOnPotentials(i).ForEach(candidate => result.Add(new CandidateViewNode(WellKnownColorIdentifierKind.Normal, candidate)));
-			result.AddRange(GetLinks(i));
+			var eachBranchView = View.Empty;
+
+			foreach (var candidate in GetOffPotentials(i))
+			{
+				eachBranchView.Add(new CandidateViewNode(WellKnownColorIdentifierKind.Auxiliary1, candidate));
+				full.Add(new CandidateViewNode(WellKnownColorIdentifierKind.Auxiliary1, candidate));
+			}
+
+			foreach (var candidate in GetOnPotentials(i))
+			{
+				eachBranchView.Add(new CandidateViewNode(WellKnownColorIdentifierKind.Normal, candidate));
+				full.Add(new CandidateViewNode(WellKnownColorIdentifierKind.Normal, candidate));
+			}
+
+			eachBranchView.AddRange(GetLinks(i));
+			full.AddRange(GetLinks(i));
+
+			result.Add(eachBranchView);
 		}
 
-		return new[] { result };
+		return result.ToArray();
 	}
 
 	/// <inheritdoc cref="ChainingStep.GetOnPotentials(int)"/>
