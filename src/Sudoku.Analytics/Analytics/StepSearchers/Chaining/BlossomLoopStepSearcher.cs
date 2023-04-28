@@ -245,7 +245,9 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 		foreach (var (branch, headCandidate) in outcomes)
 		{
 			var nodes = branch.ChainPotentials;
-			nodes = nodes.Append(new(headCandidate, true)).ToArray();
+			Array.Resize(ref nodes, nodes.Length + 1);
+			nodes[^1] = new(headCandidate, true);
+
 			for (var i = 1; i < nodes.Length; i += 2)
 			{
 				var (c1, d1, _) = nodes[i];
