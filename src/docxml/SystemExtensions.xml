@@ -553,19 +553,14 @@
             Represents a reverse enumerator.
             </summary>
             <typeparam name="T">The type of the element.</typeparam>
-            <param name="array">The array.</param>
+            <param name="array">The internal array.</param>
         </member>
         <member name="M:System.Collections.Generic.ReverseEnumerator`1.#ctor(`0[])">
             <summary>
             Represents a reverse enumerator.
             </summary>
             <typeparam name="T">The type of the element.</typeparam>
-            <param name="array">The array.</param>
-        </member>
-        <member name="F:System.Collections.Generic.ReverseEnumerator`1._array">
-            <summary>
-            The internal array.
-            </summary>
+            <param name="array">The internal array.</param>
         </member>
         <member name="F:System.Collections.Generic.ReverseEnumerator`1._index">
             <summary>
@@ -580,6 +575,11 @@
         </member>
         <member name="M:System.Collections.Generic.ReverseEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="F:System.Collections.Generic.ReverseEnumerator`1._array">
+            <summary>
+            The generated field declaration for parameter <c>array</c>.
+            </summary>
         </member>
         <member name="T:System.Collections.Generic.ValueList`1">
             <summary>

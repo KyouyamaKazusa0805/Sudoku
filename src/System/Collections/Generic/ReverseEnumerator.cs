@@ -4,14 +4,10 @@ namespace System.Collections.Generic;
 /// Represents a reverse enumerator.
 /// </summary>
 /// <typeparam name="T">The type of the element.</typeparam>
-/// <param name="array">The array.</param>
-public ref struct ReverseEnumerator<T>(T[] array)
+/// <param name="array">The internal array.</param>
+[StructLayout(LayoutKind.Auto)]
+public ref partial struct ReverseEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] T[] array)
 {
-	/// <summary>
-	/// The internal array.
-	/// </summary>
-	private readonly T[] _array = array;
-
 	/// <summary>
 	/// Indicates the current index.
 	/// </summary>
