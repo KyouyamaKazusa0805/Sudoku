@@ -5443,8 +5443,8 @@ result ^= expression;
                 cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.Patterns.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Boolean,System.Boolean)"
                 path="/param[@name='result']"/>
             </param>
-            <param name="cell">Indicates the starting cell.</param>
-            <param name="digit">Indicates the digit that begins the chaining from starting house where <paramref name="cell"/> lies.</param>
+            <param name="baseCell">Indicates the starting cell.</param>
+            <param name="baseDigit">Indicates the digit that begins the chaining from starting house where <paramref name="baseCell"/> lies.</param>
             <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForCellTargetType(System.Collections.Generic.Dictionary{System.Byte,Sudoku.Analytics.Patterns.NodeSet},Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
@@ -5463,9 +5463,18 @@ result ^= expression;
             </summary>
             <param name="selectedPotentials">The target nodes.</param>
             <param name="potentialPositions">The potential cells.</param>
-            <param name="digit">The digit.</param>
+            <param name="baseDigit">The digit.</param>
             <param name="projectedStartNodes">The projected starting nodes, which can be used if return value is <see langword="true"/>.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CollectLoopEliminations(System.Collections.Generic.Dictionary{Sudoku.Analytics.Patterns.ChainNode,System.Int32},Sudoku.Concepts.Grid@,System.Byte)">
+            <summary>
+            Try to collect all possible eliminations for each branch.
+            </summary>
+            <param name="outcomes">Each branch.</param>
+            <param name="grid">The grid.</param>
+            <param name="baseDigit">The base digit.</param>
+            <returns>All possible eliminations. If none found, an empty list.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CreateStepCellType(Sudoku.Concepts.Grid@,System.Int32,System.Byte,System.Collections.Generic.Dictionary{Sudoku.Analytics.Patterns.ChainNode,System.Int32},System.Byte,System.Int16)">
             <summary>
