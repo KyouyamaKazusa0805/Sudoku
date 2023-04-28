@@ -15,4 +15,21 @@ public interface IComparableStep<in TSelf> where TSelf : Step, IComparableStep<T
 	/// <returns>An <see cref="int"/> value indicating which is greater.</returns>
 	/// <inheritdoc/>
 	static abstract int Compare(TSelf left, TSelf right);
+
+
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static virtual bool operator >(TSelf left, TSelf right) => TSelf.Compare(left, right) > 0;
+
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static virtual bool operator >=(TSelf left, TSelf right) => TSelf.Compare(left, right) >= 0;
+
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static virtual bool operator <(TSelf left, TSelf right) => TSelf.Compare(left, right) < 0;
+
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static virtual bool operator <=(TSelf left, TSelf right) => TSelf.Compare(left, right) <= 0;
 }

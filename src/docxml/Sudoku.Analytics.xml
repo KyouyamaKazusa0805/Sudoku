@@ -12014,6 +12014,18 @@ result ^= expression;
             <returns>An <see cref="T:System.Int32"/> value indicating which is greater.</returns>
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.IComparableStep`1.op_GreaterThan(`0,`0)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.IComparableStep`1.op_GreaterThanOrEqual(`0,`0)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.IComparableStep`1.op_LessThan(`0,`0)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.IComparableStep`1.op_LessThanOrEqual(`0,`0)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.IEquatableStep`1">
             <summary>
             Represents a type that can be used for comparison on two <typeparamref name="TSelf"/> instances.
