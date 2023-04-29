@@ -5463,7 +5463,7 @@ result ^= expression;
             Check for house-target type.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.IsOneToOneRelationBetweenStartAndEndNodes(System.Collections.Generic.List{Sudoku.Analytics.Patterns.ChainNode},Sudoku.Concepts.CellMap@,System.Byte,System.Collections.Generic.Dictionary{Sudoku.Analytics.Patterns.ChainNode,System.Int32}@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.IsOneToOneRelationBetweenStartAndEndNodes(Sudoku.Analytics.Patterns.NodeList,Sudoku.Concepts.CellMap@,System.Byte,System.Collections.Generic.Dictionary{Sudoku.Analytics.Patterns.ChainNode,System.Int32}@)">
             <summary>
             Determine whether one target node corresponds to one base node begins the branch, and vice versa.
             </summary>

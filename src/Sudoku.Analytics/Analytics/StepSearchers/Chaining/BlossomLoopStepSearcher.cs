@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics.StepSearchers;
 
+using ChainNodeListWithHeadCandidate = Dictionary<ChainNode, Candidate>;
+
 /// <summary>
 /// Provides with a <b>Blossom Loop</b> step searcher.
 /// The step searcher will include the following techniques:
@@ -147,7 +149,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 		foreach (byte targetCell in cellsAllBranchesContain)
 		{
 			// Records chain nodes from each branch, ending with target cell.
-			var selectedPotentials = new List<ChainNode>(posToOn.Count);
+			var selectedPotentials = new NodeList();
 			var selectedPotentialDigits = (Mask)0;
 			foreach (var (_, nodes) in posToOn)
 			{
@@ -155,7 +157,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 				{
 					if (node.Cell == targetCell)
 					{
-						selectedPotentials.Add(node);
+						selectedPotentials.AddLast(node);
 						selectedPotentialDigits |= (Mask)(1 << node.Digit);
 
 						break;
@@ -223,7 +225,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 		{
 			foreach (var house in housesAllBranchesContain)
 			{
-				var selectedPotentials = new List<ChainNode>(posToOn.Count);
+				var selectedPotentials = new NodeList();
 				var selectedPotentialCells = CellMap.Empty;
 				foreach (var (_, nodes) in posToOn)
 				{
@@ -232,7 +234,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 						var (tempCell, tempDigit, _) = node;
 						if (HousesMap[house].Contains(tempCell) && tempDigit == digit)
 						{
-							selectedPotentials.Add(node);
+							selectedPotentials.AddLast(node);
 							selectedPotentialCells.Add(tempCell);
 
 							break;
@@ -275,10 +277,10 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	/// <param name="projectedStartNodes">The projected starting nodes, which can be used if return value is <see langword="true"/>.</param>
 	/// <returns>A <see cref="bool"/> indicating that.</returns>
 	private bool IsOneToOneRelationBetweenStartAndEndNodes(
-		List<ChainNode> selectedPotentials,
+		NodeList selectedPotentials,
 		scoped in CellMap potentialPositions,
 		byte baseDigit,
-		[NotNullWhen(true)] out Dictionary<ChainNode, Candidate>? projectedStartNodes
+		[NotNullWhen(true)] out ChainNodeListWithHeadCandidate? projectedStartNodes
 	)
 	{
 		projectedStartNodes = new(selectedPotentials.Count);
@@ -327,7 +329,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="baseDigit">The base digit.</param>
 	/// <returns>All possible eliminations. If none found, an empty list.</returns>
-	private List<Conclusion> CollectLoopEliminations(Dictionary<ChainNode, Candidate> outcomes, scoped in Grid grid, byte baseDigit)
+	private List<Conclusion> CollectLoopEliminations(ChainNodeListWithHeadCandidate outcomes, scoped in Grid grid, byte baseDigit)
 	{
 		var conclusions = new List<Conclusion>();
 		foreach (var (branch, headCandidate) in outcomes)
@@ -376,7 +378,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 		scoped in Grid grid,
 		House houseIndex,
 		byte digit,
-		Dictionary<ChainNode, Candidate> outcomes,
+		ChainNodeListWithHeadCandidate outcomes,
 		byte targetCell,
 		Mask elimDigitsMask
 	)
@@ -420,7 +422,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 		scoped in Grid grid,
 		House houseIndex,
 		byte digit,
-		Dictionary<ChainNode, Candidate> outcomes,
+		ChainNodeListWithHeadCandidate outcomes,
 		scoped in CellMap elimCells,
 		byte targetDigit
 	)
