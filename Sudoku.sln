@@ -70,7 +70,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution-wide Code Configur
 		misspelling-exclusion.dic = misspelling-exclusion.dic
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Rendering", "src\Sudoku.Rendering\Sudoku.Rendering.csproj", "{8B2F4BE6-A6CC-4262-B162-05D399244F72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Rendering", "src\Sudoku.Rendering\Sudoku.Rendering.csproj", "{8B2F4BE6-A6CC-4262-B162-05D399244F72}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SudokuTutorial", "..\Sudokus\src\SudokuTutorial\SudokuTutorial.shproj", "{597D5691-2E11-43C7-AE3B-826E979450DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -598,8 +600,11 @@ Global
 		{B33F37B0-E19F-4CD2-993A-94C4571248AD} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\Sudokus\src\SudokuTutorial\SudokuTutorial.projitems*{597d5691-2e11-43c7-ae3b-826e979450da}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
