@@ -4269,6 +4269,16 @@ fixed (short* ptr = instance)
         <member name="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndex(System.Int32,Sudoku.Concepts.HouseType)">
             <inheritdoc cref="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndex(System.Byte,Sudoku.Concepts.HouseType)"/>
         </member>
+        <member name="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndices(System.Byte)">
+            <summary>
+            Get the house indices for the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Int32"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndices(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndices(System.Byte)"/>
+        </member>
         <member name="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseType(System.Int32)">
             <summary>
             Get the house type for the specified house index.

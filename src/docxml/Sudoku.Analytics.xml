@@ -5428,7 +5428,7 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.Collect(Sudoku.Concepts.Grid@)">
             <summary>
-            Search for hints on the given grid.
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/summary"/>
             </summary>
             <param name="grid">The grid on which to search for hints.</param>
             <returns>The hints found.</returns>
@@ -5446,6 +5446,12 @@ result ^= expression;
             <param name="baseCell">Indicates the starting cell.</param>
             <param name="baseDigit">Indicates the digit that begins the chaining from starting house where <paramref name="baseCell"/> lies.</param>
             <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
+            <remarks>
+            This method is nearly same with
+            <see cref="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Byte,System.Byte,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet)"/>,
+            with variables <c>houseToOn</c> and <c>houseToOff</c> removed.
+            </remarks>
+            <seealso cref="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Byte,System.Byte,Sudoku.Analytics.Patterns.NodeSet,Sudoku.Analytics.Patterns.NodeSet)"/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForCellTargetType(System.Collections.Generic.Dictionary{System.Byte,Sudoku.Analytics.Patterns.NodeSet},Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
             <summary>

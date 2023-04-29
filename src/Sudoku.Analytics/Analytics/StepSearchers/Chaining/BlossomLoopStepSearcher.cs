@@ -32,7 +32,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	}
 
 	/// <summary>
-	/// Search for hints on the given grid.
+	/// <inheritdoc cref="Collect(ref AnalysisContext)" path="/summary"/>
 	/// </summary>
 	/// <param name="grid">The grid on which to search for hints.</param>
 	/// <returns>The hints found.</returns>
@@ -73,6 +73,12 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	/// <param name="baseCell">Indicates the starting cell.</param>
 	/// <param name="baseDigit">Indicates the digit that begins the chaining from starting house where <paramref name="baseCell"/> lies.</param>
 	/// <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
+	/// <remarks>
+	/// This method is nearly same with
+	/// <see cref="MultipleChainingStepSearcher.DoHouseChaining(in Grid, List{ChainingStep}, byte, byte, NodeSet, NodeSet)"/>,
+	/// with variables <c>houseToOn</c> and <c>houseToOff</c> removed.
+	/// </remarks>
+	/// <seealso cref="MultipleChainingStepSearcher.DoHouseChaining(in Grid, List{ChainingStep}, byte, byte, NodeSet, NodeSet)"/>
 	private void DoHouseChaining(scoped in Grid grid, List<BlossomLoopStep> result, byte baseCell, byte baseDigit, NodeSet onToOn)
 	{
 		foreach (var houseType in HouseTypes)
@@ -207,10 +213,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 			var tempDigitsMask = (Mask)0;
 			foreach (var (c, d, _) in nodes)
 			{
-				tempHouseMask |= 1 << c.ToHouseIndex(HouseType.Block);
-				tempHouseMask |= 1 << c.ToHouseIndex(HouseType.Row);
-				tempHouseMask |= 1 << c.ToHouseIndex(HouseType.Column);
-
+				tempHouseMask |= c.ToHouseIndices();
 				tempDigitsMask |= (Mask)(1 << d);
 			}
 

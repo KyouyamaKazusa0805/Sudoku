@@ -61,6 +61,34 @@ public static class HouseTypeExtensions
 		};
 
 	/// <summary>
+	/// Get the house indices for the specified cell.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <returns>A <see cref="HouseMask"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static HouseMask ToHouseIndices(this byte cell)
+	{
+		var result = 0;
+		result |= cell.ToHouseIndex(HouseType.Block);
+		result |= cell.ToHouseIndex(HouseType.Row);
+		result |= cell.ToHouseIndex(HouseType.Column);
+
+		return result;
+	}
+
+	/// <inheritdoc cref="ToHouseIndices(byte)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static HouseMask ToHouseIndices(this Cell cell)
+	{
+		var result = 0;
+		result |= cell.ToHouseIndex(HouseType.Block);
+		result |= cell.ToHouseIndex(HouseType.Row);
+		result |= cell.ToHouseIndex(HouseType.Column);
+
+		return result;
+	}
+
+	/// <summary>
 	/// Get the house type for the specified house index.
 	/// </summary>
 	/// <param name="houseIndex">The house index.</param>
