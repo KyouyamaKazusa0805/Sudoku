@@ -205,12 +205,10 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 		List<BlossomLoopStep> result
 	)
 	{
-		var housesAllBranchesContain = AllHousesMask;
-		var digitsAllBranchesContain = Grid.MaxCandidatesMask;
+		var (housesAllBranchesContain, digitsAllBranchesContain) = (AllHousesMask, Grid.MaxCandidatesMask);
 		foreach (var (_, nodes) in posToOn)
 		{
-			var tempHouseMask = 0;
-			var tempDigitsMask = (Mask)0;
+			var (tempHouseMask, tempDigitsMask) = (0, (Mask)0);
 			foreach (var (c, d, _) in nodes)
 			{
 				tempHouseMask |= c.ToHouseIndices();
