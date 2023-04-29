@@ -23,8 +23,7 @@
 
 * [`Global.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Global.CodeGen)：为高阶的源代码生成器。它生成一些东西，专门提供给其它的源代码生成器项目使用，也提供一些 API；
 * [`Sudoku.Analytics.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Analytics.CodeGen)：为 `Sudoku.Analytics` 项目提供源代码生成；
-* [`Sudoku.Diagnostics.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeGen)：为解决方案提供一些基本的、不必手写的源代码的功能性扩展；
-* [`System.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/System.CodeGen)：提供对 [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System) 项目的源代码生成服务。
+* [`Sudoku.Diagnostics.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeGen)：为解决方案提供一些基本的、不必手写的源代码的功能性扩展。
 
 ## 解决方案项目
 
@@ -34,4 +33,5 @@
 
 * [`Sudoku.CommandLine`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine)（控制台）：提供一个关于数独基本运算和操作的控制台实现。
 * [`SudokuStudio`](https://github.com/SunnieShine/Sudoku/tree/main/src/SudokuStudio)（UI）：提供一个关于数独基本运算和操作的 UI 级别实现。
+* `SudokuTutorial`（共享项目）：是数独教程的源文件。这些文件虽然放在 Shared Project 模板内，但大部分文件都不是 C# 源代码。
 
