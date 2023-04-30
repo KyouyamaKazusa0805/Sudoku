@@ -808,10 +808,8 @@ public sealed partial class AnalyzePage : Page
 					from s in stepSearchers
 					let highTimeComplexity = s.IsConfiguredSlow
 					let highSpaceComplexity = s.IsConfiguredHighAllocation
-					where !highTimeComplexity
-						|| highTimeComplexity && !disallowHighTimeComplexity
-						|| !highSpaceComplexity
-						|| highSpaceComplexity && !disallowSpaceTimeComplexity
+					where !highTimeComplexity || highTimeComplexity && !disallowHighTimeComplexity
+						|| !highSpaceComplexity || highSpaceComplexity && !disallowSpaceTimeComplexity
 					select s
 				).ToArray()
 			);
