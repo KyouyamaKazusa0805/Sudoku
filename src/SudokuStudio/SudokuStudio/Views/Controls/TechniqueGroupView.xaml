@@ -5,9 +5,9 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:analytics="using:Sudoku.Analytics"
+	xmlns:bs="using:SudokuStudio.BindableSource"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
-	xmlns:m="using:SudokuStudio.BindableSource"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:TechniqueGroupView}">
 	<UserControl.Resources>
 		<CollectionViewSource x:Name="TechniqueGroups" x:FieldModifier="internal" IsSourceGrouped="True" />
@@ -24,7 +24,7 @@
 		<ListView.GroupStyle>
 			<GroupStyle>
 				<GroupStyle.HeaderTemplate>
-					<DataTemplate x:DataType="m:TechniqueGroupBindableSource">
+					<DataTemplate x:DataType="bs:TechniqueGroupBindableSource">
 						<Border>
 							<TextBlock Text="{x:Bind Key}" FontWeight="Bold" FontSize="14" />
 						</Border>
