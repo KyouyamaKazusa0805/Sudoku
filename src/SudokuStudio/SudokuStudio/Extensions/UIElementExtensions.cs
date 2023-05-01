@@ -70,6 +70,11 @@ public static class UIElementExtensions
 				setPixelData(encoder, rtb, pixelBuffer, dpi);
 
 				// Flushes the encoder.
+				// Please don't move 'FlushAsync' method invocation outside of this block.
+				// Because the using variable 'pictureFileStream' is created and bound with the encoder.
+				// If we flush the encoder instance, this variable will also be handled. If we put this invocation
+				// outside of this block, variable 'pictureFileStream' will be released when executed all code in this block,
+				// and then 'encoder.FlushAsync()' won't find 'pictureFileStream', then a COMException will be thrown.
 				await encoder.FlushAsync();
 
 				break;
