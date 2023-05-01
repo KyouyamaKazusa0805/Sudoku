@@ -3,7 +3,7 @@ namespace SudokuStudio.Models;
 /// <summary>
 /// Defines a row of analysis result table.
 /// </summary>
-internal sealed class AnalysisResultTableRow
+internal sealed class AnalyzerResultTableRow
 {
 	/// <summary>
 	/// Indicates the total difficulty of all steps.
@@ -32,15 +32,15 @@ internal sealed class AnalysisResultTableRow
 
 
 	/// <summary>
-	/// Creates the list of <see cref="AnalysisResultTableRow"/> as the result value,
+	/// Creates the list of <see cref="AnalyzerResultTableRow"/> as the result value,
 	/// via the specified <paramref name="analyzerResult"/> instance of <see cref="AnalyzerResult"/> type.
 	/// </summary>
 	/// <param name="analyzerResult">
 	/// The <see cref="AnalyzerResult"/> instance that is used for creating the result value.
 	/// </param>
-	/// <returns>The result list of <see cref="AnalysisResultTableRow"/>-typed elements.</returns>
+	/// <returns>The result list of <see cref="AnalyzerResultTableRow"/>-typed elements.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
-	public static IEnumerable<AnalysisResultTableRow> CreateListFrom(AnalyzerResult analyzerResult)
+	public static IEnumerable<AnalyzerResultTableRow> CreateListFrom(AnalyzerResult analyzerResult)
 	{
 		if (analyzerResult is not { IsSolved: true, Steps: var steps })
 		{
@@ -58,7 +58,7 @@ internal sealed class AnalysisResultTableRow
 				select stepGroupedByDifficultyLevel.Key into targetDifficultyLevel
 				orderby targetDifficultyLevel
 				select targetDifficultyLevel
-			select new AnalysisResultTableRow
+			select new AnalyzerResultTableRow
 			{
 				TechniqueName = stepGroup.Key,
 				CountOfSteps = stepGroupArray.Length,

@@ -24,6 +24,6 @@ public sealed partial class Summary : Page, IAnalyzeTabPage
 			return;
 		}
 
-		page.SummaryTable.ItemsSource = rawValue is AnalyzerResult value ? AnalysisResultTableRow.CreateListFrom(value) : null;
+		page.SummaryTable.ItemsSource = rawValue is AnalyzerResult value ? AnalyzerResultTableRow.CreateListFrom(value) : null;
 	}
 }

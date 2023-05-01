@@ -2649,45 +2649,46 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Markup.ThicknessExtension.ProvideValue">
             <inheritdoc/>
         </member>
-        <member name="T:SudokuStudio.Models.AnalysisResultTableRow">
+        <member name="T:SudokuStudio.Models.AnalyzerResultTableRow">
             <summary>
             Defines a row of analysis result table.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Models.AnalysisResultTableRow.TotalDifficulty">
+        <member name="P:SudokuStudio.Models.AnalyzerResultTableRow.TotalDifficulty">
             <summary>
             Indicates the total difficulty of all steps.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Models.AnalysisResultTableRow.MaximumDifficulty">
+        <member name="P:SudokuStudio.Models.AnalyzerResultTableRow.MaximumDifficulty">
             <summary>
             Indicates the maximum difficulty in the steps.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Models.AnalysisResultTableRow.CountOfSteps">
+        <member name="P:SudokuStudio.Models.AnalyzerResultTableRow.CountOfSteps">
             <summary>
             Indicates the number of steps that uses logic of the current technique.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Models.AnalysisResultTableRow.TechniqueName">
+        <member name="P:SudokuStudio.Models.AnalyzerResultTableRow.TechniqueName">
             <summary>
             Indicates the technique name.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Models.AnalysisResultTableRow.DifficultyLevel">
+        <member name="P:SudokuStudio.Models.AnalyzerResultTableRow.DifficultyLevel">
             <summary>
             Indicates the difficulty level of the technique belonging to.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Models.AnalysisResultTableRow.CreateListFrom(Sudoku.Analytics.AnalyzerResult)">
+        <member name="M:SudokuStudio.Models.AnalyzerResultTableRow.CreateListFrom(Sudoku.Analytics.AnalyzerResult)">
             <summary>
-            Creates the list of <see cref="T:SudokuStudio.Models.AnalysisResultTableRow"/> as the result value,
+            Creates the list of <see cref="T:SudokuStudio.Models.AnalyzerResultTableRow"/> as the result value,
             via the specified <paramref name="analyzerResult"/> instance of <see cref="T:Sudoku.Analytics.AnalyzerResult"/> type.
             </summary>
             <param name="analyzerResult">
             The <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance that is used for creating the result value.
             </param>
-            <returns>The result list of <see cref="T:SudokuStudio.Models.AnalysisResultTableRow"/>-typed elements.</returns>
+            <returns>The result list of <see cref="T:SudokuStudio.Models.AnalyzerResultTableRow"/>-typed elements.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
         </member>
         <member name="T:SudokuStudio.Models.AnalyzeTabPageData">
             <summary>
