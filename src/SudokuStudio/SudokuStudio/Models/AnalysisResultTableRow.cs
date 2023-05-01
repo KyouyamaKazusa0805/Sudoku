@@ -39,10 +39,16 @@ internal sealed class AnalysisResultTableRow
 	/// The <see cref="AnalyzerResult"/> instance that is used for creating the result value.
 	/// </param>
 	/// <returns>The result list of <see cref="AnalysisResultTableRow"/>-typed elements.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
 	public static IEnumerable<AnalysisResultTableRow> CreateListFrom(AnalyzerResult analyzerResult)
 	{
+		if (analyzerResult is not { IsSolved: true, Steps: var steps })
+		{
+			throw new InvalidOperationException("This method requires the puzzle having been solved, and has a unique solution.");
+		}
+
 		return
-			from step in analyzerResult.Steps
+			from step in steps
 			orderby step.DifficultyLevel, step.Code
 			group step by step.Name into stepGroup
 			let stepGroupArray = stepGroup.ToArray()
@@ -56,14 +62,9 @@ internal sealed class AnalysisResultTableRow
 			{
 				TechniqueName = stepGroup.Key,
 				CountOfSteps = stepGroupArray.Length,
-				DifficultyLevel = difficultyLevels.Aggregate(aggregateFunc),
-				TotalDifficulty = stepGroupArray.Sum(selector),
-				MaximumDifficulty = stepGroupArray.Max(selector)
+				DifficultyLevel = difficultyLevels.Aggregate(static (interim, next) => interim | next),
+				TotalDifficulty = stepGroupArray.Sum(static step => step.Difficulty),
+				MaximumDifficulty = stepGroupArray.Max(static step => step.Difficulty)
 			};
-
-
-		static decimal selector(Step step) => step.Difficulty;
-
-		static DifficultyLevel aggregateFunc(DifficultyLevel interim, DifficultyLevel next) => interim | next;
 	}
 }
