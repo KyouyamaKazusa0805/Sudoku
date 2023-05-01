@@ -652,7 +652,7 @@ public sealed partial class AnalyzePage : Page
 	/// <returns>A <see cref="Task"/> instance that contains details for the current asynchronous operation.</returns>
 	/// <seealso cref="IRandomAccessStream"/>
 	/// <seealso cref="StorageFile"/>
-	private async Task OnSavingOrCopyingSudokuPanePictureAsync<T>(T obj)
+	private async Task OnSavingOrCopyingSudokuPanePictureAsync<T>(T obj) where T : class
 	{
 		Debug.Assert(obj is IRandomAccessStream or StorageFile);
 
@@ -661,13 +661,7 @@ public sealed partial class AnalyzePage : Page
 			SudokuPane.MainGrid.Background = new SolidColorBrush(Colors.White);
 		}
 
-		await (
-			obj switch
-			{
-				IRandomAccessStream stream => SudokuPane.RenderToAsync(stream),
-				StorageFile file => SudokuPane.RenderToAsync(file)
-			}
-		);
+		await SudokuPane.RenderToAsync(obj);
 
 		if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
 		{

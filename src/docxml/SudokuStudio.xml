@@ -7931,28 +7931,29 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.UIElement"/>
         </member>
-        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.RenderToAsync``1(``0,Windows.Storage.StorageFile)">
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.RenderToAsync``2(``0,``1,System.Int32,System.Int32)">
             <summary>
             Renders the specified UI control to the target file as a picture.
             </summary>
             <typeparam name="TUIElement">The type of the UI control.</typeparam>
+            <typeparam name="TStorageFileOrRandomAccessStream">
+            The type of the argument <paramref name="storageFileOrRandomAccessStream"/>.
+            The target type can be <see cref="T:Windows.Storage.StorageFile"/> or <see cref="T:Windows.Storage.Streams.IRandomAccessStream"/>;
+            otherwise, a <see cref="T:System.NotSupportedException"/> will be thrown.
+            </typeparam>
             <param name="this">The control.</param>
-            <param name="file">The target file.</param>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.RenderToAsync``1(``0,Windows.Storage.Streams.IRandomAccessStream)">
-            <summary>
-            Renders the specified UI control to the target stream as a picture.
-            </summary>
-            <typeparam name="TUIElement">The type of the UI control.</typeparam>
-            <param name="this">The control.</param>
-            <param name="stream">The target stream.</param>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.TryGetLogicalDpi(System.Single)">
-            <summary>
-            Try to get the logical DPI value.
-            </summary>
-            <param name="default">The default DPI value. The default value is 96.</param>
-            <returns>The DPI value to get.</returns>
+            <param name="storageFileOrRandomAccessStream">
+            The target instance. This value can be a <see cref="T:Windows.Storage.StorageFile"/> or <see cref="T:Windows.Storage.Streams.IRandomAccessStream"/>.
+            </param>
+            <param name="scaledWidth">
+            <inheritdoc cref="M:Microsoft.UI.Xaml.Media.Imaging.RenderTargetBitmap.RenderAsync(Microsoft.UI.Xaml.UIElement,System.Int32,System.Int32)" path="/param[@name='scaledWidth']"/>
+            </param>
+            <param name="scaledHeight">
+            <inheritdoc cref="M:Microsoft.UI.Xaml.Media.Imaging.RenderTargetBitmap.RenderAsync(Microsoft.UI.Xaml.UIElement,System.Int32,System.Int32)" path="/param[@name='scaledHeight']"/>
+            </param>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the argument <paramref name="storageFileOrRandomAccessStream"/> is not supported.
+            </exception>
         </member>
         <member name="T:System.Numerics.Vector2Extensions">
             <summary>
