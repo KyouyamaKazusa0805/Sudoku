@@ -11,9 +11,9 @@ public static partial class GathererProperties
 {
 	[Callback]
 	private static void StepGathererOnlySearchSameLevelTechniquesInFindAllStepsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> SudokuPaneBindable.GetProgramStepGatherer((SudokuPane)d).OnlyShowSameLevelTechniquesInFindAllSteps = (bool)e.NewValue;
+		=> SudokuPaneBindable.GetStepCollector((SudokuPane)d).OnlyShowSameLevelTechniquesInFindAllSteps = (bool)e.NewValue;
 
 	[Callback]
 	private static void StepGathererMaxStepsGatheredPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> SudokuPaneBindable.GetProgramStepGatherer((SudokuPane)d).MaxStepsGathered = (int)e.NewValue;
+		=> SudokuPaneBindable.GetStepCollector((SudokuPane)d).MaxStepsGathered = (int)e.NewValue;
 }

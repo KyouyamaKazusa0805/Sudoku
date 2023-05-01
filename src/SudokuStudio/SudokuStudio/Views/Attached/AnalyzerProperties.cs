@@ -112,22 +112,22 @@ public static partial class AnalyzerProperties
 
 	[Callback]
 	private static void SolverIsFullApplyingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> SudokuPaneBindable.GetProgramSolver((SudokuPane)d).IsFullApplying = (bool)e.NewValue;
+		=> SudokuPaneBindable.GetAnalyzer((SudokuPane)d).IsFullApplying = (bool)e.NewValue;
 
 	[Callback]
 	private static void SolverIgnoreSlowAlgorithmsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		var analyzer = SudokuPaneBindable.GetProgramSolver((SudokuPane)d);
+		var analyzer = SudokuPaneBindable.GetAnalyzer((SudokuPane)d);
 		analyzer.WithAlgorithmLimits((bool)e.NewValue, analyzer.IgnoreHighAllocationAlgorithms);
 	}
 
 	[Callback]
 	private static void SolverIgnoreHighAllocationAlgorithmsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		var analyzer = SudokuPaneBindable.GetProgramSolver((SudokuPane)d);
+		var analyzer = SudokuPaneBindable.GetAnalyzer((SudokuPane)d);
 		analyzer.WithAlgorithmLimits(analyzer.IgnoreSlowAlgorithms, (bool)e.NewValue);
 	}
 
 	private static void A<T>(DependencyObject d, Action<T> action) where T : StepSearcher
-		=> SudokuPaneBindable.GetProgramSolver((SudokuPane)d).WithStepSearcherSetters(action);
+		=> SudokuPaneBindable.GetAnalyzer((SudokuPane)d).WithStepSearcherSetters(action);
 }

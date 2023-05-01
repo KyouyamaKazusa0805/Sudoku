@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Views.Attached;
+namespace SudokuStudio.Views.Attached;
 
 /// <summary>
 /// Defines a bind behaviors on <see cref="FontPicker"/> instances.
@@ -10,27 +10,13 @@ public static partial class FontPickerBindable
 	[Callback]
 	private static void SelectedFontDataPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if (
-#pragma warning disable format
-			(d, e) is not (
-				FontPicker target,
-				{
-					NewValue: FontSerializationData
-					{
-						FontName: var fontName,
-						FontScale: var fontScale,
-						FontColor: var fontColor
-					}
-				}
-			)
-#pragma warning restore format
-		)
+		if ((d, e) is not (FontPicker target, { NewValue: FontSerializationData { FontName: var n, FontScale: var s, FontColor: var c } }))
 		{
 			return;
 		}
 
-		target.SelectedFontName = fontName;
-		target.SelectedFontScale = fontScale;
-		target.SelectedColor = fontColor;
+		target.SelectedFontName = n;
+		target.SelectedFontScale = s;
+		target.SelectedColor = c;
 	}
 }

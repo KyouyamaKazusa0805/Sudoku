@@ -26,14 +26,16 @@ public partial class App : Application
 	public PuzzleGenertingHistory PuzzleGeneratingHistory { get; } = new();
 
 	/// <summary>
-	/// Indicates the program solver.
+	/// Indicates the project-wide <see cref="Sudoku.Analytics.Analyzer"/> instance.
 	/// </summary>
-	public Analyzer ProgramSolver { get; } = PredefinedAnalyzers.Default;
+	/// <seealso cref="Sudoku.Analytics.Analyzer"/>
+	public Analyzer Analyzer { get; } = PredefinedAnalyzers.Default;
 
 	/// <summary>
-	/// Indicates the program step gatherer.
+	/// Indicates the project-wide <see cref="Sudoku.Analytics.StepCollector"/> instance.
 	/// </summary>
-	public StepCollector ProgramGatherer { get; } = new();
+	/// <seealso cref="Sudoku.Analytics.StepCollector"/>
+	public StepCollector StepCollector { get; } = new();
 
 	/// <summary>
 	/// Indicates the first-opened grid.

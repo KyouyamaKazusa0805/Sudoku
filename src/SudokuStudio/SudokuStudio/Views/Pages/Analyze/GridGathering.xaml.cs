@@ -94,7 +94,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 
 		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
 
-		var gatherer = ((App)Application.Current).ProgramGatherer;
+		var gatherer = ((App)Application.Current).StepCollector;
 		var result = await Task.Run(collect);
 
 		_currentFountSteps = result;

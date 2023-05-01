@@ -797,7 +797,7 @@ public sealed partial class AnalyzePage : Page
 		var disallowSpaceTimeComplexity = ((App)Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms;
 
 		var solver = ((App)Application.Current)
-			.ProgramSolver
+			.Analyzer
 			.WithStepSearchers(
 				(
 					from data in ((App)Application.Current).Preference.StepSearcherOrdering.StepSearchersOrder

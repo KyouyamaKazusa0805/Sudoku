@@ -23,22 +23,16 @@ public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGrou
 	[Callback]
 	private static void StepSearchersOrderPropertyCallback(DependencyObject obj, DependencyPropertyChangedEventArgs e)
 	{
-		if (e is not { NewValue: ObservableCollection<StepSearcherSerializationData> stepSearchersData })
+		if (e is not { NewValue: ObservableCollection<StepSearcherSerializationData> stepSearchers })
 		{
 			return;
 		}
 
-		if (((App)Application.Current).ProgramSolver is not { } programSolver)
+		if (((App)Application.Current).Analyzer is not { } analyzer)
 		{
 			return;
 		}
 
-		programSolver.WithStepSearchers(
-			(
-				from data in stepSearchersData
-				from stepSearcher in data.CreateStepSearchers()
-				select stepSearcher
-			).ToArray()
-		);
+		analyzer.WithStepSearchers((from s in stepSearchers from stepSearcher in s.CreateStepSearchers() select stepSearcher).ToArray());
 	}
 }
