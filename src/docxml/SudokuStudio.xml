@@ -911,6 +911,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayMode"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSavingProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.BackdropProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.Backdrop"/>.
@@ -1123,6 +1129,12 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayMode">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSavingProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSavingProperty" />
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.Backdrop">
             <summary>
@@ -4527,6 +4539,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_PermutationsGroup">
             <summary>
               Looks up a localized string similar to Permutation Techniques.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_PictureSizeOnSaving">
+            <summary>
+              Looks up a localized string similar to Desired picture size on saving.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_PictureSizeOnSavingDescription">
+            <summary>
+              Looks up a localized string similar to A value controlling the result size of the target picture you want to save to local. The greater the value can be, the slower the operation will be executed. The default and recommend value is 1000..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_PreventConflictingInput">

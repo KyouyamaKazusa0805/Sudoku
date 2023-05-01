@@ -902,6 +902,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_PermutationsGroup" xml:space="preserve">
     <value>Permutation Techniques</value>
   </data>
+  <data name="SettingsPage_PictureSizeOnSaving" xml:space="preserve">
+    <value>Desired picture size on saving</value>
+  </data>
+  <data name="SettingsPage_PictureSizeOnSavingDescription" xml:space="preserve">
+    <value>A value controlling the result size of the target picture you want to save to local. The greater the value can be, the slower the operation will be executed. The default and recommend value is 1000.</value>
+  </data>
   <data name="SettingsPage_PreventConflictingInput" xml:space="preserve">
     <value>Prevent conflicting inputs</value>
   </data>

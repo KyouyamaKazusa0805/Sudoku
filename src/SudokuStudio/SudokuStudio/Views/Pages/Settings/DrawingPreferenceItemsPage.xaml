@@ -26,17 +26,6 @@
 		<!--Preference items-->
 		<ScrollViewer>
 			<StackPanel Spacing="4" Margin="0,0,30,0">
-				<w:SettingsGroup Header="{m:R Key=SettingsPage_Coordinates}">
-					<w:SettingsCard Header="{m:R Key=SettingsPage_OutsideCoordinateDisplayDirectionsTitle}">
-						<ComboBox
-							x:Name="ComboBoxCoordinateMode" Width="150"
-							SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Mode=TwoWay}">
-							<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateNone}" />
-							<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateUpperAndLeft}" />
-							<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateFourDirection}" />
-						</ComboBox>
-					</w:SettingsCard>
-				</w:SettingsGroup>
 				<w:SettingsGroup Header="{m:R Key=SettingsPage_Deltas}">
 					<w:SettingsCard Header="{m:R Key=SettingsPage_DeltaCellColor}" Description="{m:R Key=SettingsPage_DeltaCellColorDescription}">
 						<c:ColorSelector
@@ -280,7 +269,7 @@
 		<c:SudokuPane
 			Grid.Column="1" Margin="30,0,0,0" Width="610" Height="610" HorizontalAlignment="Center" VerticalAlignment="Center"
 			DisplayCursors="True" SelectedCell="-1" DisableFlyout="True" EnableUndoRedoStacking="False"
-			EnableRightTapRemoving="False" EnableDoubleTapFilling="False"
+			EnableRightTapRemoving="False" EnableDoubleTapFilling="False" CoordinateLabelDisplayMode="None"
 			Puzzle="{m:Grid Text='000001230123004+5604+5600789078900+1000000000000000+9001230123004+5604+5600789078900000'}"
 			DeltaCellColor="{x:Bind DeltaCellColorSelector.SelectedColor,Mode=OneWay}"
 			DeltaCandidateColor="{x:Bind DeltaCandidateColorSelector.SelectedColor,Mode=OneWay}"
@@ -289,7 +278,6 @@
 			HighlightCandidateCircleScale="{x:Bind SliderEllipseScale.Value,Mode=OneWay}"
 			HighlightBackgroundOpacity="{x:Bind SliderBackgroundOpacity.Value,Mode=OneWay}"
 			ChainStrokeThickness="{x:Bind SliderChainStrokeThickness.Value,Mode=OneWay}"
-			CoordinateLabelDisplayMode="{x:Bind cvt:SettingsPageConversion.GetCoordinateLabelDisplayMode(ComboBoxCoordinateMode.SelectedIndex),Mode=OneWay}"
 			GivenFont="{x:Bind cvt:SettingsPageConversion.GetFont(GivenFontPicker.SelectedFontName),Mode=OneWay}"
 			GivenFontScale="{x:Bind GivenFontPicker.SelectedFontScale,Mode=OneWay}"
 			GivenColor="{x:Bind GivenFontPicker.SelectedColor,Mode=OneWay}"

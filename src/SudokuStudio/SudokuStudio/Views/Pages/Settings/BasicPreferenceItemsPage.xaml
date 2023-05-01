@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:ps="using:SudokuStudio.Views.Pages.Settings"
@@ -33,6 +34,15 @@
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_DisableSudokuPaneLayoutDisplaying}">
 					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisableSudokuPaneLayout,Mode=TwoWay}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=SettingsPage_OutsideCoordinateDisplayDirectionsTitle}">
+					<ComboBox
+						Width="150"
+						SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Mode=TwoWay}">
+						<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateNone}" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateUpperAndLeft}" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateFourDirection}" />
+					</ComboBox>
 				</w:SettingsCard>
 				<w:SettingsCard
 					Header="{m:R Key=SettingsPage_PreventConflictingInput}"
@@ -75,6 +85,13 @@
 						<ComboBoxItem Content="{m:R Key=SettingsPage_Backdrop_MicaDeep}" Tag="MicaDeep" />
 						<ComboBoxItem Content="{m:R Key=SettingsPage_Backdrop_Acrylic}" Tag="Acrylic" />
 					</ComboBox>
+				</w:SettingsCard>
+				<w:SettingsCard
+					Header="{m:R Key=SettingsPage_PictureSizeOnSaving}"
+					Description="{m:R Key=SettingsPage_PictureSizeOnSavingDescription}">
+					<c:IntegerBox
+						Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DesiredPictureSizeOnSaving,Mode=TwoWay}"
+						Minimum="500" Maximum="2000" SmallChange="10" LargeChange="50" SpinButtonPlacementMode="Inline" Width="150" />
 				</w:SettingsCard>
 			</w:SettingsGroup>
 		</StackPanel>

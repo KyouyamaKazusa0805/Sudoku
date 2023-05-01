@@ -661,8 +661,9 @@ public sealed partial class AnalyzePage : Page
 			SudokuPane.MainGrid.Background = new SolidColorBrush(Colors.White);
 		}
 
+		var desiredSize = ((App)Application.Current).Preference.UIPreferences.DesiredPictureSizeOnSaving;
 		var (originalWidth, originalHeight) = (SudokuPaneOutsideViewBox.Width, SudokuPaneOutsideViewBox.Height);
-		(SudokuPaneOutsideViewBox.Width, SudokuPaneOutsideViewBox.Height) = (1000, 1000);
+		(SudokuPaneOutsideViewBox.Width, SudokuPaneOutsideViewBox.Height) = (desiredSize, desiredSize);
 
 		await SudokuPaneOutsideViewBox.RenderToAsync(obj);
 

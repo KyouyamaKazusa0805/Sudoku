@@ -2583,6 +2583,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Desired picture size on saving.
+        /// </summary>
+        internal static string SettingsPage_PictureSizeOnSaving {
+            get {
+                return ResourceManager.GetString("SettingsPage_PictureSizeOnSaving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A value controlling the result size of the target picture you want to save to local. The greater the value can be, the slower the operation will be executed. The default and recommend value is 1000..
+        /// </summary>
+        internal static string SettingsPage_PictureSizeOnSavingDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_PictureSizeOnSavingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prevent conflicting inputs.
         /// </summary>
         internal static string SettingsPage_PreventConflictingInput {
