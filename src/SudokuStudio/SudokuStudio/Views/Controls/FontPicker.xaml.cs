@@ -4,7 +4,7 @@ namespace SudokuStudio.Views.Controls;
 /// Represents a font picker.
 /// </summary>
 [DependencyProperty<string>("SelectedFontName")]
-[DependencyProperty<double>("SelectedFontScale")]
+[DependencyProperty<decimal>("SelectedFontScale")]
 [DependencyProperty<Color>("SelectedColor")]
 public sealed partial class FontPicker : UserControl
 {
@@ -33,4 +33,7 @@ public sealed partial class FontPicker : UserControl
 	/// </summary>
 	public FontSerializationData SelectedFontData
 		=> new() { FontName = SelectedFontName, FontScale = SelectedFontScale, FontColor = SelectedColor };
+
+
+	private void SetSelectedFontScale(double value) => SelectedFontScale = (decimal)Round(value, 2);
 }

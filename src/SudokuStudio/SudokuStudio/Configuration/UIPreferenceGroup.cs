@@ -164,7 +164,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly FontSerializationData GivenFontDataDefaultValue = new()
 	{
 		FontName = "Cascadia Code",
-		FontScale = .85,
+		FontScale = .85M,
 		FontColor = Colors.Black
 	};
 
@@ -172,7 +172,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly FontSerializationData ModifiableFontDataDefaultValue = new()
 	{
 		FontName = "Cascadia Code",
-		FontScale = .85,
+		FontScale = .85M,
 		FontColor = Colors.Blue
 	};
 
@@ -180,7 +180,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly FontSerializationData PencilmarkFontDataDefaultValue = new()
 	{
 		FontName = "Cascadia Code",
-		FontScale = .3,
+		FontScale = .3M,
 		FontColor = Color.FromArgb(255, 100, 100, 100)
 	};
 
@@ -188,7 +188,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly FontSerializationData BabaGroupingFontDataDefaultValue = new()
 	{
 		FontName = "Times New Roman",
-		FontScale = .6,
+		FontScale = .6M,
 		FontColor = Colors.Red
 	};
 
@@ -196,7 +196,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly FontSerializationData CoordinateLabelFontDataDefaultValue = new()
 	{
 		FontName = "Cascadia Code",
-		FontScale = .4,
+		FontScale = .4M,
 		FontColor = Color.FromArgb(255, 100, 100, 100)
 	};
 

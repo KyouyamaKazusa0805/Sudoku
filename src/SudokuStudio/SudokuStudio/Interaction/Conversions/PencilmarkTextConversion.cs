@@ -5,10 +5,10 @@ namespace SudokuStudio.Interaction.Conversions;
 /// </summary>
 internal static class PencilmarkTextConversion
 {
-	public static double GetFontSize(double globalFontSize, double givenFontScale, double modifiableFontScale, CellStatus status)
-		=> globalFontSize * (status == CellStatus.Modifiable ? modifiableFontScale : givenFontScale);
+	public static double GetFontSize(double globalFontSize, decimal givenFontScale, decimal modifiableFontScale, CellStatus status)
+		=> globalFontSize * (double)(status == CellStatus.Modifiable ? modifiableFontScale : givenFontScale);
 
-	public static double GetFontSizeSimple(double globalFontSize, double scale) => globalFontSize * scale;
+	public static double GetFontSizeSimple(double globalFontSize, decimal scale) => globalFontSize * (double)scale;
 
 	public static Brush GetBrush(
 		Color pencilmarkColor,

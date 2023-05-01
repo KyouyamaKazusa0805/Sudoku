@@ -1,11 +1,11 @@
-﻿namespace SudokuStudio.Interaction.Conversions;
+namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>
 /// Provides with conversion methods used by XAML designer, about coordinate labels.
 /// </summary>
 internal static class CoordinateLabelConversion
 {
-	public static double GetFontSize(double globalFontSize, double scale) => globalFontSize * scale;
+	public static double GetFontSize(double globalFontSize, decimal scale) => globalFontSize * (double)scale;
 
 	public static string ToCoordinateLabelText(CoordinateLabelDisplayKind coordinateKind, int index, bool isRow)
 		=> coordinateKind switch

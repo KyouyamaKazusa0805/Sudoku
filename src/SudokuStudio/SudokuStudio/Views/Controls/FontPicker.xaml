@@ -16,11 +16,12 @@
 		<RelativePanel>
 			<Slider
 				x:Name="Slider" TickPlacement="Outside" Minimum="0" Maximum="1" HorizontalAlignment="Left" VerticalAlignment="Center"
-				Style="{StaticResource PreferenceSliderStyle}" Value="{x:Bind SelectedFontScale,Mode=TwoWay}"
+				Style="{StaticResource PreferenceSliderStyle}"
+				Value="{x:Bind cvt:SettingsPageConversion.ToScaleRealValue(SelectedFontScale),Mode=TwoWay,BindBack=SetSelectedFontScale}"
 				TickFrequency="0.05" StepFrequency="0.05" Header="{m:R Key=FontPicker_AdjustFontScale}" />
 			<TextBlock
 				RelativePanel.RightOf="Slider" Margin="24,24,0,0"
-				Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(Slider.Value,'0.0'),Mode=OneWay}" />
+				Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(Slider.Value,'0.00'),Mode=OneWay}" />
 		</RelativePanel>
 		<TextBlock Text="{m:R Key=FontPicker_SelectFontColor}" />
 		<c:ColorSelector x:Name="ColorSelector" SelectedColor="{x:Bind SelectedColor,Mode=TwoWay}" />
