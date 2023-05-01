@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Models;
+namespace SudokuStudio.Configuration;
 
 /// <summary>
 /// Defines a sudoku grid serialization data.

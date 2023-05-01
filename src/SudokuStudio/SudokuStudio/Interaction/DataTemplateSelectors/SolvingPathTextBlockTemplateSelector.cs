@@ -19,5 +19,5 @@ public sealed class SolvingPathTextBlockTemplateSelector : DataTemplateSelector
 
 	/// <inheritdoc/>
 	protected override DataTemplate SelectTemplateCore(object item)
-		=> item switch { SolvingPathStep => StepTemplate, _ => DefaultTemplate } ?? DefaultTemplate;
+		=> item switch { SolvingPathStepBindableSource => StepTemplate, _ => DefaultTemplate } ?? DefaultTemplate;
 }

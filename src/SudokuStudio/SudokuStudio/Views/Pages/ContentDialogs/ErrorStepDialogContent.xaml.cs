@@ -41,5 +41,5 @@ public sealed partial class ErrorStepDialogContent : Page
 	/// <para><inheritdoc cref="ErrorStepText" path="//summary/para[2]"/></para>
 	/// </summary>
 	/// <value>The value of the view.</value>
-	public ViewUnit ViewUnit { set => ErrorStepDisplayer.ViewUnit = value; }
+	public ViewUnitBindableSource ViewUnit { set => ErrorStepDisplayer.ViewUnit = value; }
 }

@@ -50,7 +50,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<FontFamily>("PencilmarkFont", DocSummary = "Indicates the candidate font.")]
 [DependencyProperty<FontFamily>("CoordinateLabelFont", DocSummary = "Indicates the coordinate label font.")]
 [DependencyProperty<FontFamily>("BabaGroupLabelFont", DocSummary = "Indicates the baba group label font.")]
-[DependencyProperty<ViewUnit>("ViewUnit", IsNullable = true, DocSummary = "Indicates the view unit used.")]
+[DependencyProperty<ViewUnitBindableSource>("ViewUnit", IsNullable = true, DocSummary = "Indicates the view unit used.")]
 [DependencyProperty<ColorPalette>("AuxiliaryColors", DocSummary = "Indicates the auxiliary colors.")]
 [DependencyProperty<ColorPalette>("DifficultyLevelForegrounds", DocSummary = "Indicates the foreground colors of all 6 kinds of difficulty levels.")]
 [DependencyProperty<ColorPalette>("DifficultyLevelBackgrounds", DocSummary = "Indicates the background colors of all 6 kinds of difficulty levels.")]
@@ -479,14 +479,14 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[Callback]
 	private static void ViewUnitPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (SudokuPane pane, { NewValue: var rawValue and (null or ViewUnit _) }))
+		if ((d, e) is not (SudokuPane pane, { NewValue: var rawValue and (null or ViewUnitBindableSource) }))
 		{
 			return;
 		}
 
 		RenderableFactory.RemoveViewUnitControls(pane);
 
-		if (rawValue is ViewUnit value)
+		if (rawValue is ViewUnitBindableSource value)
 		{
 			RenderableFactory.AddViewUnitControls(pane, value);
 		}

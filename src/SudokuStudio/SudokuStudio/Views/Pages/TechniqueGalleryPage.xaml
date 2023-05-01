@@ -5,7 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup"
-	xmlns:models="using:SudokuStudio.Models"
+	xmlns:models="using:SudokuStudio.BindableSource"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:TechniqueGalleryPage}">
@@ -14,12 +14,12 @@
 			<TextBlock Text="{m:R Key=TechniqueGalleryPage_Intro}" />
 			<ListView SelectionMode="None" ItemsSource="{x:Bind z:TechniqueGalleryData.RoutingGroups}">
 				<ListView.ItemTemplate>
-					<DataTemplate x:DataType="models:TechniquePageRoutingDataGroup">
+					<DataTemplate x:DataType="models:TechniquePageRoutingBindableSourceGroup">
 						<StackPanel Orientation="Vertical" Spacing="20">
 							<TextBlock Text="{x:Bind Title}" Style="{StaticResource SubtitleTextBlockStyle}" />
 							<GridView ItemsSource="{x:Bind Collection}" ItemClick="GridView_ItemClick">
 								<GridView.ItemTemplate>
-									<DataTemplate x:DataType="models:TechniquePageRoutingData">
+									<DataTemplate x:DataType="models:TechniquePageRoutingBindableSource">
 										<UserControl IsEnabled="{x:Bind IsEnabled}">
 											<Grid
 												x:Name="ControlRoot" Width="360" Height="90" Padding="8" HorizontalAlignment="Stretch"

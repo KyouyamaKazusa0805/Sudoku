@@ -3,7 +3,7 @@ namespace SudokuStudio.Collection;
 /// <summary>
 /// Defines a solving path.
 /// </summary>
-public sealed class SolvingPathStepCollection : List<SolvingPathStep>
+public sealed class SolvingPathStepCollection : List<SolvingPathStepBindableSource>
 {
 	/// <summary>
 	/// Initializes a <see cref="SolvingPathStepCollection"/> instance.
@@ -16,7 +16,7 @@ public sealed class SolvingPathStepCollection : List<SolvingPathStep>
 	/// Initializes a <see cref="SolvingPathStepCollection"/> instance via the specified collection of solving path steps.
 	/// </summary>
 	/// <param name="steps">The solving path steps.</param>
-	public SolvingPathStepCollection(IEnumerable<SolvingPathStep> steps) : base(steps)
+	public SolvingPathStepCollection(IEnumerable<SolvingPathStepBindableSource> steps) : base(steps)
 	{
 	}
 
@@ -34,7 +34,7 @@ public sealed class SolvingPathStepCollection : List<SolvingPathStep>
 			return new();
 		}
 
-		var collection = new List<SolvingPathStep>();
+		var collection = new List<SolvingPathStepBindableSource>();
 		for (var i = 0; i < pathStepsCount; i++)
 		{
 			var (sGrid, s) = steps[i];

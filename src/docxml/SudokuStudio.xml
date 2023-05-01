@@ -100,19 +100,233 @@
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.App.GetXamlType(System.Type)">
+        <member name="T:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource">
             <summary>
-            GetXamlType(Type)
+            Represents a type that can be used for binding as source, for the table-like grid controls to display techniques used,
+            using technique name to distinct them.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource.TotalDifficulty">
+            <summary>
+            Indicates the total difficulty of all steps.
             </summary>
         </member>
-        <member name="M:SudokuStudio.App.GetXamlType(System.String)">
+        <member name="P:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource.MaximumDifficulty">
             <summary>
-            GetXamlType(String)
+            Indicates the maximum difficulty in the steps.
             </summary>
         </member>
-        <member name="M:SudokuStudio.App.GetXmlnsDefinitions">
+        <member name="P:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource.CountOfSteps">
             <summary>
-            GetXmlnsDefinitions()
+            Indicates the number of steps that uses logic of the current technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource.TechniqueName">
+            <summary>
+            Indicates the technique name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level of the technique belonging to.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource.CreateListFrom(Sudoku.Analytics.AnalyzerResult)">
+            <summary>
+            Creates the list of <see cref="T:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource"/> as the result value,
+            via the specified <paramref name="analyzerResult"/> instance of <see cref="T:Sudoku.Analytics.AnalyzerResult"/> type.
+            </summary>
+            <param name="analyzerResult">
+            The <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance that is used for creating the result value.
+            </param>
+            <returns>The result list of <see cref="T:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource"/>-typed elements.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
+        </member>
+        <member name="T:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource">
+            <summary>
+            Represents a type that binds with a analyze tab page type that implements <see cref="T:SudokuStudio.ComponentModel.IAnalyzeTabPage"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.ComponentModel.IAnalyzeTabPage"/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource.Header">
+            <summary>
+            Indicates the header.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource.IconSource">
+            <summary>
+            Indicates the icon source.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource.Page">
+            <summary>
+            Indicates the target page instance.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.BindableSource.RepositoryInfoBindableSource">
+            <summary>
+            Represents a type that can be used for binding as source, for repository information
+            used for displaying the source code referencing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.IsForReference">
+            <summary>
+            Indicates whether the repository code is for reference.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.OpenSourceLicense">
+            <summary>
+            Indicates the open-source license being used for this repository.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.Initials">
+            <summary>
+            Indicates the initials displaying on the <see cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/> control.
+            This property can be <see langword="null"/> if you have set the property <see cref="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.IconPath"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/>
+            <seealso cref="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.IconPath"/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.Name">
+            <summary>
+            Indicates the name of the image.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.IconPath">
+            <summary>
+            Indicates the path of the image to show.
+            This property can be <see langword="null"/> if you have set the property <see cref="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.Initials"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.Initials"/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.Site">
+            <summary>
+            Indicates the website which name is corresponding to.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.BindableSource.SolvingPathStepBindableSource">
+            <summary>
+            Defines a path step in a whole solving path.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.SolvingPathStepBindableSource.Index">
+            <summary>
+            Indicates the index of the step.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.SolvingPathStepBindableSource.StepGrid">
+            <summary>
+            Indicates the step grid used.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.SolvingPathStepBindableSource.DisplayKinds">
+            <summary>
+            Indicates the kinds of items that the step tooltip will be displayed.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.SolvingPathStepBindableSource.Step">
+            <summary>
+            Indicates the step details.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.BindableSource.TechniqueGroupBindableSource">
+            <summary>
+            Indicates a group of technique steps.
+            </summary>
+            <param name="elements">The elements.</param>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.TechniqueGroupBindableSource.#ctor(System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            Indicates a group of technique steps.
+            </summary>
+            <param name="elements">The elements.</param>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueGroupBindableSource.Key">
+            <summary>
+            Indicates the key of the group.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.BindableSource.TechniquePageRoutingBindableSource">
+            <summary>
+            Represents a type that can be used for binding as source, for technique page routing.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.TechniquePageRoutingBindableSource.DefaultCulture">
+            <summary>
+            Indicates the default culture.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniquePageRoutingBindableSource.IsEnabled">
+            <summary>
+            Indicates whether the page is enabled.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniquePageRoutingBindableSource.Name">
+            <summary>
+            Indicates the resource name of this technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniquePageRoutingBindableSource.OriginalName">
+            <summary>
+            Indicates the resource default name (English name) of this technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniquePageRoutingBindableSource.RoutingPageTypeName">
+            <summary>
+            Indicates the routing page type name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniquePageRoutingBindableSource.Technique">
+            <summary>
+            Indicates the technique code that the page related to.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniquePageRoutingBindableSource.Color">
+            <summary>
+            Indicates the color of the current technique.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.BindableSource.TechniquePageRoutingBindableSourceGroup">
+            <summary>
+            Defines a group that stores the data of the techniques and routing information, and its title.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniquePageRoutingBindableSourceGroup.Title">
+            <summary>
+            Indicates the title of the group.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniquePageRoutingBindableSourceGroup.Collection">
+            <summary>
+            Indicates the internal data collection.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.BindableSource.ViewUnitBindableSource">
+            <summary>
+            Represents a type that can be used for binding as source, for a view unit.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.ViewUnitBindableSource.ConclusionsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Conclusions"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Conclusions"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.ViewUnitBindableSource.ViewProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.View"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.View"/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Conclusions">
+            <summary>
+            Indicates the candidates as conclusions in a single <see cref="T:Sudoku.Analytics.Step"/>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSource.View">
+            <summary>
+            Indicates a view of highlight elements.
             </summary>
         </member>
         <member name="T:SudokuStudio.Collection.ColorPalette">
@@ -307,7 +521,7 @@
             Initializes a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.#ctor(System.Collections.Generic.IEnumerable{SudokuStudio.Models.SolvingPathStep})">
+        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.#ctor(System.Collections.Generic.IEnumerable{SudokuStudio.BindableSource.SolvingPathStepBindableSource})">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance via the specified collection of solving path steps.
             </summary>
@@ -779,6 +993,57 @@
             Indicates the colors.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Configuration.FontSerializationData">
+            <summary>
+            Defines the font serialization data.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Configuration.FontSerializationData.FontNameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.FontSerializationData.FontName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.FontSerializationData.FontName"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.FontSerializationData.FontScaleProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.FontSerializationData.FontScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.FontSerializationData.FontScale"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.FontSerializationData.FontColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.FontSerializationData.FontColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.FontSerializationData.FontColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.FontSerializationData.FontName">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.FontSerializationData.FontNameProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.FontSerializationData.FontNameProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.FontSerializationData.FontScale">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.FontSerializationData.FontScaleProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.FontSerializationData.FontScaleProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.FontSerializationData.FontColor">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.FontSerializationData.FontColorProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.FontSerializationData.FontColorProperty" />
+        </member>
+        <member name="T:SudokuStudio.Configuration.GridSerializationData">
+            <summary>
+            Defines a sudoku grid serialization data.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.GridSerializationData.GridString">
+            <summary>
+            Indicates the grid string.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Configuration.PreferenceGroup">
             <summary>
             Defines a preference group that contains a list of preference items that can be serialized and deserialized by JSON.
@@ -811,6 +1076,16 @@
             <param name="new">The newer instance that is used for covering the current instance.</param>
             <exception cref="T:System.NotSupportedException">Throws when the property type is not supported to be serialized, or not found.</exception>
         </member>
+        <member name="T:SudokuStudio.Configuration.PuzzleGenertingHistory">
+            <summary>
+            Indicates the puzzle-generating history.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.PuzzleGenertingHistory.Puzzles">
+            <summary>
+            Indicates the puzzle strings.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup">
             <summary>
             Represents with preference items that is used by <see cref="T:Sudoku.Analytics.Analyzer"/>, for the ordering of <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
@@ -829,6 +1104,50 @@
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty" />
+        </member>
+        <member name="T:SudokuStudio.Configuration.StepSearcherSerializationData">
+            <summary>
+            Defines a serialization data of a step searcher.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Configuration.StepSearcherSerializationData.CreateStepSearchers">
+            <summary>
+            Creates a list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
+            </summary>
+            <returns>A list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.</returns>
+        </member>
+        <member name="F:SudokuStudio.Configuration.StepSearcherSerializationData.IsEnabledProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherSerializationData.IsEnabled"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.StepSearcherSerializationData.IsEnabled"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.StepSearcherSerializationData.NameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherSerializationData.Name"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.StepSearcherSerializationData.Name"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.StepSearcherSerializationData.TypeNameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherSerializationData.TypeName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.StepSearcherSerializationData.TypeName"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.StepSearcherSerializationData.IsEnabled">
+            <summary>
+            Indicates whether the step searcher is enabled.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.StepSearcherSerializationData.Name">
+            <summary>
+            Indicates the name of the step searcher.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.StepSearcherSerializationData.TypeName">
+            <summary>
+            Indicates the type name of the step searcher. This property can be used for creating instances via reflection using method <see cref="M:System.Activator.CreateInstance(System.Type)"/>.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Configuration.UIPreferenceGroup">
             <summary>
@@ -2181,19 +2500,19 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Interaction.RenderableFactory.RemoveViewUnitControls(SudokuStudio.Views.Controls.SudokuPane)">
             <summary>
-            Removes all possible controls that are used for displaying elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
+            Removes all possible controls that are used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
             </summary>
             <param name="sudokuPane">The target pane.</param>
-            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
+            <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.RenderableFactory.AddViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Models.ViewUnit)">
+        <member name="M:SudokuStudio.Interaction.RenderableFactory.AddViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.BindableSource.ViewUnitBindableSource)">
             <summary>
-            Adds a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
+            Adds a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
             </summary>
             <param name="sudokuPane">The target pane.</param>
             <param name="viewUnit">The view unit that you want to display.</param>
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
-            <seealso cref="T:SudokuStudio.Models.ViewUnit"/>
+            <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
         </member>
         <member name="M:SudokuStudio.Interaction.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},System.Collections.Generic.List{System.ValueTuple{System.Action,System.Action}})">
             <summary>
@@ -2383,7 +2702,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Interaction.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
             <summary>
-            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.Models.ViewUnit"/>.
+            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
             </summary>
             <param name="this">The collection.</param>
         </member>
@@ -2466,6 +2785,74 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the extra difficulty cases.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.SudokuFormatFlags">
+            <summary>
+            Represents a format flag.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.SudokuFormatFlags.None">
+            <summary>
+            Indicates the default format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.SudokuFormatFlags.InitialFormat">
+            <summary>
+            Indicates the initial grid format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.SudokuFormatFlags.CurrentFormat">
+            <summary>
+            Indicates the current grid format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.SudokuFormatFlags.CurrentFormatIgnoringValueKind">
+            <summary>
+            Indicates the current grid format , treating all modifiable values as given ones.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.SudokuFormatFlags.HodokuCompatibleFormat">
+            <summary>
+            Indicates the Hodoku grid format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.SudokuFormatFlags.MultipleGridFormat">
+            <summary>
+            Indicates the multiple-line grid format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.SudokuFormatFlags.PencilMarkFormat">
+            <summary>
+            Indicates the pencilmark format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.SudokuFormatFlags.SukakuFormat">
+            <summary>
+            Indicates the sukaku format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.SudokuFormatFlags.ExcelFormat">
+            <summary>
+            Indicates the excel format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.SudokuFormatFlags.OpenSudokuFormat">
+            <summary>
+            Indicates the open-sudoku format.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.SudokuFormatFlagsExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:SudokuStudio.Interaction.SudokuFormatFlags"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Interaction.SudokuFormatFlags"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.SudokuFormatFlagsExtensions.GetFormatter(SudokuStudio.Interaction.SudokuFormatFlags)">
+            <summary>
+            Try to get target <see cref="T:Sudoku.Text.Formatting.IGridFormatter"/> instance.
+            </summary>
+            <param name="this">The flag instance.</param>
+            <returns><see cref="T:Sudoku.Text.Formatting.IGridFormatter"/> instance.</returns>
         </member>
         <member name="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventArgs">
             <summary>
@@ -2648,404 +3035,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Markup.ThicknessExtension.ProvideValue">
             <inheritdoc/>
-        </member>
-        <member name="T:SudokuStudio.Models.AnalyzerResultTableRow">
-            <summary>
-            Defines a row of analysis result table.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.AnalyzerResultTableRow.TotalDifficulty">
-            <summary>
-            Indicates the total difficulty of all steps.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.AnalyzerResultTableRow.MaximumDifficulty">
-            <summary>
-            Indicates the maximum difficulty in the steps.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.AnalyzerResultTableRow.CountOfSteps">
-            <summary>
-            Indicates the number of steps that uses logic of the current technique.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.AnalyzerResultTableRow.TechniqueName">
-            <summary>
-            Indicates the technique name.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.AnalyzerResultTableRow.DifficultyLevel">
-            <summary>
-            Indicates the difficulty level of the technique belonging to.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Models.AnalyzerResultTableRow.CreateListFrom(Sudoku.Analytics.AnalyzerResult)">
-            <summary>
-            Creates the list of <see cref="T:SudokuStudio.Models.AnalyzerResultTableRow"/> as the result value,
-            via the specified <paramref name="analyzerResult"/> instance of <see cref="T:Sudoku.Analytics.AnalyzerResult"/> type.
-            </summary>
-            <param name="analyzerResult">
-            The <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance that is used for creating the result value.
-            </param>
-            <returns>The result list of <see cref="T:SudokuStudio.Models.AnalyzerResultTableRow"/>-typed elements.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
-        </member>
-        <member name="T:SudokuStudio.Models.AnalyzeTabPageData">
-            <summary>
-            Defines a data used for routing in analyzer tabs.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.AnalyzeTabPageData.Header">
-            <summary>
-            Indicates the header.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.AnalyzeTabPageData.IconSource">
-            <summary>
-            Indicates the icon source.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.AnalyzeTabPageData.TabPage">
-            <summary>
-            Indicates the page instance.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Models.FontSerializationData">
-            <summary>
-            Defines the font serialization data.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Models.FontSerializationData.FontNameProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.FontSerializationData.FontName"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Models.FontSerializationData.FontName"/>
-        </member>
-        <member name="F:SudokuStudio.Models.FontSerializationData.FontScaleProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.FontSerializationData.FontScale"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Models.FontSerializationData.FontScale"/>
-        </member>
-        <member name="F:SudokuStudio.Models.FontSerializationData.FontColorProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.FontSerializationData.FontColor"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Models.FontSerializationData.FontColor"/>
-        </member>
-        <member name="P:SudokuStudio.Models.FontSerializationData.FontName">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Models.FontSerializationData.FontNameProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Models.FontSerializationData.FontNameProperty" />
-        </member>
-        <member name="P:SudokuStudio.Models.FontSerializationData.FontScale">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Models.FontSerializationData.FontScaleProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Models.FontSerializationData.FontScaleProperty" />
-        </member>
-        <member name="P:SudokuStudio.Models.FontSerializationData.FontColor">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Models.FontSerializationData.FontColorProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Models.FontSerializationData.FontColorProperty" />
-        </member>
-        <member name="T:SudokuStudio.Models.GridSerializationData">
-            <summary>
-            Defines a sudoku grid serialization data.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.GridSerializationData.GridString">
-            <summary>
-            Indicates the grid string.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Models.PuzzleGenertingHistory">
-            <summary>
-            Indicates the puzzle-generating history.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.PuzzleGenertingHistory.Puzzles">
-            <summary>
-            Indicates the puzzle strings.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Models.RepositoryInfo">
-            <summary>
-            Defines a set of properties to describe an image.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.RepositoryInfo.IsForReference">
-            <summary>
-            Indicates whether the repository code is for reference.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.RepositoryInfo.OpenSourceLicense">
-            <summary>
-            Indicates the open-source license being used for this repository.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.RepositoryInfo.Initials">
-            <summary>
-            Indicates the initials displaying on the <see cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/> control.
-            This property can be <see langword="null"/> if you have set the property <see cref="P:SudokuStudio.Models.RepositoryInfo.IconPath"/>.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/>
-            <seealso cref="P:SudokuStudio.Models.RepositoryInfo.IconPath"/>
-        </member>
-        <member name="P:SudokuStudio.Models.RepositoryInfo.Name">
-            <summary>
-            Indicates the name of the image.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.RepositoryInfo.IconPath">
-            <summary>
-            Indicates the path of the image to show.
-            This property can be <see langword="null"/> if you have set the property <see cref="P:SudokuStudio.Models.RepositoryInfo.Initials"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Models.RepositoryInfo.Initials"/>
-        </member>
-        <member name="P:SudokuStudio.Models.RepositoryInfo.Site">
-            <summary>
-            Indicates the website which name is corresponding to.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Models.SolvingPathStep">
-            <summary>
-            Defines a path step in a whole solving path.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.SolvingPathStep.Index">
-            <summary>
-            Indicates the index of the step.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.SolvingPathStep.StepGrid">
-            <summary>
-            Indicates the step grid used.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.SolvingPathStep.DisplayKinds">
-            <summary>
-            Indicates the kinds of items that the step tooltip will be displayed.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.SolvingPathStep.Step">
-            <summary>
-            Indicates the step details.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Models.StepSearcherSerializationData">
-            <summary>
-            Defines a serialization data of a step searcher.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Models.StepSearcherSerializationData.CreateStepSearchers">
-            <summary>
-            Creates a list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
-            </summary>
-            <returns>A list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.</returns>
-        </member>
-        <member name="F:SudokuStudio.Models.StepSearcherSerializationData.IsEnabledProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.StepSearcherSerializationData.IsEnabled"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Models.StepSearcherSerializationData.IsEnabled"/>
-        </member>
-        <member name="F:SudokuStudio.Models.StepSearcherSerializationData.NameProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.StepSearcherSerializationData.Name"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Models.StepSearcherSerializationData.Name"/>
-        </member>
-        <member name="F:SudokuStudio.Models.StepSearcherSerializationData.TypeNameProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.StepSearcherSerializationData.TypeName"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Models.StepSearcherSerializationData.TypeName"/>
-        </member>
-        <member name="P:SudokuStudio.Models.StepSearcherSerializationData.IsEnabled">
-            <summary>
-            Indicates whether the step searcher is enabled.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.StepSearcherSerializationData.Name">
-            <summary>
-            Indicates the name of the step searcher.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.StepSearcherSerializationData.TypeName">
-            <summary>
-            Indicates the type name of the step searcher. This property can be used for creating instances via reflection using method <see cref="M:System.Activator.CreateInstance(System.Type)"/>.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Models.SudokuFormatFlags">
-            <summary>
-            Represents a format flag.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Models.SudokuFormatFlags.None">
-            <summary>
-            Indicates the default format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Models.SudokuFormatFlags.InitialFormat">
-            <summary>
-            Indicates the initial grid format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Models.SudokuFormatFlags.CurrentFormat">
-            <summary>
-            Indicates the current grid format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Models.SudokuFormatFlags.CurrentFormatIgnoringValueKind">
-            <summary>
-            Indicates the current grid format , treating all modifiable values as given ones.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Models.SudokuFormatFlags.HodokuCompatibleFormat">
-            <summary>
-            Indicates the Hodoku grid format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Models.SudokuFormatFlags.MultipleGridFormat">
-            <summary>
-            Indicates the multiple-line grid format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Models.SudokuFormatFlags.PencilMarkFormat">
-            <summary>
-            Indicates the pencilmark format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Models.SudokuFormatFlags.SukakuFormat">
-            <summary>
-            Indicates the sukaku format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Models.SudokuFormatFlags.ExcelFormat">
-            <summary>
-            Indicates the excel format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Models.SudokuFormatFlags.OpenSudokuFormat">
-            <summary>
-            Indicates the open-sudoku format.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Models.SudokuFormatFlagsExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:SudokuStudio.Models.SudokuFormatFlags"/>.
-            </summary>
-            <seealso cref="T:SudokuStudio.Models.SudokuFormatFlags"/>
-        </member>
-        <member name="M:SudokuStudio.Models.SudokuFormatFlagsExtensions.GetFormatter(SudokuStudio.Models.SudokuFormatFlags)">
-            <summary>
-            Try to get target <see cref="T:Sudoku.Text.Formatting.IGridFormatter"/> instance.
-            </summary>
-            <param name="this">The flag instance.</param>
-            <returns><see cref="T:Sudoku.Text.Formatting.IGridFormatter"/> instance.</returns>
-        </member>
-        <member name="T:SudokuStudio.Models.TechniqueGroup">
-            <summary>
-            Indicates a group of technique steps.
-            </summary>
-            <param name="elements">The elements.</param>
-        </member>
-        <member name="M:SudokuStudio.Models.TechniqueGroup.#ctor(System.Collections.Generic.IEnumerable{System.Object})">
-            <summary>
-            Indicates a group of technique steps.
-            </summary>
-            <param name="elements">The elements.</param>
-        </member>
-        <member name="P:SudokuStudio.Models.TechniqueGroup.Key">
-            <summary>
-            Indicates the key of the group.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Models.TechniquePageRoutingData">
-            <summary>
-            Defines a routing data of technique page.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Models.TechniquePageRoutingData.DefaultCulture">
-            <summary>
-            Indicates the default culture.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.IsEnabled">
-            <summary>
-            Indicates whether the page is enabled.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.Name">
-            <summary>
-            Indicates the resource name of this technique.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.OriginalName">
-            <summary>
-            Indicates the resource default name (English name) of this technique.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.RoutingPageTypeName">
-            <summary>
-            Indicates the routing page type name.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.Technique">
-            <summary>
-            Indicates the technique code that the page related to.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.TechniquePageRoutingData.Color">
-            <summary>
-            Indicates the color of the current technique.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Models.TechniquePageRoutingDataGroup">
-            <summary>
-            Defines a group that stores the data of the techniques and routing information, and its title.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.TechniquePageRoutingDataGroup.Title">
-            <summary>
-            Indicates the title of the group.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.TechniquePageRoutingDataGroup.Collection">
-            <summary>
-            Indicates the internal data collection.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Models.ViewUnit">
-            <summary>
-            Defines a view unit.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Models.ViewUnit.ConclusionsProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.ViewUnit.Conclusions"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Models.ViewUnit.Conclusions"/>
-        </member>
-        <member name="F:SudokuStudio.Models.ViewUnit.ViewProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Models.ViewUnit.View"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Models.ViewUnit.View"/>
-        </member>
-        <member name="P:SudokuStudio.Models.ViewUnit.Conclusions">
-            <summary>
-            Indicates the candidates as conclusions in a single <see cref="T:Sudoku.Analytics.Step"/>.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Models.ViewUnit.View">
-            <summary>
-            Indicates a view of highlight elements.
-            </summary>
         </member>
         <member name="T:SudokuStudio.ProjectWideConstants">
             <summary>
@@ -4926,7 +4915,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Storage.PuzzleGeneratingHistoryFileHandler.Read(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Storage.PuzzleGeneratingHistoryFileHandler.Write(System.String,SudokuStudio.Models.PuzzleGenertingHistory)">
+        <member name="M:SudokuStudio.Storage.PuzzleGeneratingHistoryFileHandler.Write(System.String,SudokuStudio.Configuration.PuzzleGenertingHistory)">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Storage.SudokuFileHandler">
@@ -4941,7 +4930,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Storage.SudokuFileHandler.Read(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Storage.SudokuFileHandler.Write(System.String,SudokuStudio.Models.GridSerializationData[])">
+        <member name="M:SudokuStudio.Storage.SudokuFileHandler.Write(System.String,SudokuStudio.Configuration.GridSerializationData[])">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Storage.SudokuPlainTextFileHandler">
@@ -5379,7 +5368,7 @@ if (student is (name: var name, age: >= 18))
             Defines a attached property that binds with setter and getter methods <c>SelectedFontData</c>.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Attached.FontPickerBindable.SetSelectedFontData(Microsoft.UI.Xaml.DependencyObject,SudokuStudio.Models.FontSerializationData)">
+        <member name="M:SudokuStudio.Views.Attached.FontPickerBindable.SetSelectedFontData(Microsoft.UI.Xaml.DependencyObject,SudokuStudio.Configuration.FontSerializationData)">
             <summary>
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.FontPickerBindable.SelectedFontDataProperty"/> to get or set value.
             </summary>
@@ -5531,16 +5520,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.ColorSelector.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.ColorSelector.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Controls.ColorSelector.SelectedColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor"/>.
@@ -5565,16 +5544,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.DashArrayTextBox.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.DashArrayTextBox.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.DashArrayTextBox.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Controls.DashArrayTextBox.DashArrayProperty">
@@ -5612,16 +5581,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.FontPicker.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.FontPicker.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.FontPicker.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontNameProperty">
@@ -5734,16 +5693,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.StepSearcherListView.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.StepSearcherListView.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.StepSearcherListView.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchersProperty">
@@ -5936,16 +5885,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidatesProperty">
@@ -6577,16 +6516,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>.
@@ -6643,16 +6572,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.AboutPage">
             <summary>
             Represents about page.
@@ -6666,16 +6585,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.AboutPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">
@@ -6885,16 +6794,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunchedProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched"/>.
@@ -7016,16 +6915,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.SolvingPath">
             <summary>
             Defines the solving path page.
@@ -7042,16 +6931,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.SolvingPath.StepTooltipDisplayKindProperty">
@@ -7092,16 +6971,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResultProperty">
@@ -7162,16 +7031,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.ContentDialogs.ExceptionThrownOnAnalyzingContent">
             <summary>
             Indicates the page that is used as a content for content dialog when the exception is thrown during a puzzle is being analyzed.
@@ -7192,16 +7051,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.ContentDialogs.ExceptionThrownOnAnalyzingContent.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.ExceptionThrownOnAnalyzingContent.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.ExceptionThrownOnAnalyzingContent.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.DrawingPage">
@@ -7235,16 +7084,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.DrawingPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.DrawingPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.DrawingPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndexProperty">
@@ -7316,16 +7155,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit">
@@ -7404,16 +7233,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePathProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath"/>.
@@ -7446,16 +7265,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Operation.PrintingOperation.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.PrintingOperation.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.PrintingOperation.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.AnalysisResultDocumentCreator">
@@ -7514,16 +7323,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.ShuffleOperation.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.ShuffleOperation.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.SettingsPage">
             <summary>
             Defines the settings page.
@@ -7546,16 +7345,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage">
             <summary>
             Represents an analysis preference items page.
@@ -7569,16 +7358,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage">
@@ -7596,16 +7375,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage">
             <summary>
             Represents drawing preferences page.
@@ -7619,16 +7388,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.SingleCountingPracticingPage">
@@ -7684,16 +7443,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.SingleCountingPracticingPage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.SingleCountingPracticingPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.SingleCountingPracticingPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunningProperty">
@@ -7826,16 +7575,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage">
             <summary>
             Introduction page of technique <see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>.
@@ -7850,16 +7589,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage.InitializeComponent">
             <summary>
             InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
@@ -7990,39 +7719,9 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Program">
             <summary>
             Program class
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider">
-            <summary>
-            Main class for providing metadata for the app or library
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
-            <summary>
-            GetXamlType(Type)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
-            <summary>
-            GetXamlType(String)
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
-            <summary>
-            GetXmlnsDefinitions()
             </summary>
         </member>
         <member name="T:Windows.UI.ColorExtensions">

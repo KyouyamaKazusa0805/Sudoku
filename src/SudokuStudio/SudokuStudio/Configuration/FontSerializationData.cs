@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Models;
+namespace SudokuStudio.Configuration;
 
 /// <summary>
 /// Defines the font serialization data.

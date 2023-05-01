@@ -8,7 +8,7 @@
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
-	xmlns:models="using:SudokuStudio.Models"
+	xmlns:models="using:SudokuStudio.BindableSource"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
@@ -212,10 +212,8 @@
 						TabItemsSource="{x:Bind _tabsRoutingData}" IsAddTabButtonVisible="False" TabWidthMode="Equal"
 						Visibility="{x:Bind cvt:AnalyzeConversion.GetAnalyzeTabsVisibility(IsAnalyzerLaunched,IsGathererLaunched),Mode=OneWay}">
 						<TabView.TabItemTemplate>
-							<DataTemplate x:DataType="models:AnalyzeTabPageData">
-								<TabViewItem
-									Header="{x:Bind Header}" IsClosable="False"
-									IconSource="{x:Bind IconSource}" Content="{x:Bind TabPage}" />
+							<DataTemplate x:DataType="models:AnalyzeTabPageBindableSource">
+								<TabViewItem Header="{x:Bind Header}" IsClosable="False" IconSource="{x:Bind IconSource}" Content="{x:Bind Page}" />
 							</DataTemplate>
 						</TabView.TabItemTemplate>
 					</TabView>

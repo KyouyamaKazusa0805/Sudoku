@@ -7,7 +7,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
-	xmlns:models="using:SudokuStudio.Models"
+	xmlns:models="using:SudokuStudio.BindableSource"
 	xmlns:w="using:WinUICommunity"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AboutPage}">
 	<ScrollViewer>
@@ -61,7 +61,7 @@
 			<!--Special thanks-->
 			<w:SettingsExpander Header="{m:R Key=AboutPage_SpecialThanks}" Description="{m:R Key=AboutPage_SpecialThanksDescription}">
 				<w:SettingsExpander.ItemTemplate>
-					<DataTemplate x:DataType="models:RepositoryInfo">
+					<DataTemplate x:DataType="models:RepositoryInfoBindableSource">
 						<Grid RowDefinitions="*,*,*" ColumnDefinitions="Auto,Auto,*">
 							<PersonPicture
 								Grid.RowSpan="3" Width="48" Height="48" Margin="46,6,12,6"
@@ -83,28 +83,28 @@
 					</DataTemplate>
 				</w:SettingsExpander.ItemTemplate>
 				<w:SettingsExpander.Items>
-					<models:RepositoryInfo
+					<models:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_DotnetRuntime}" OpenSourceLicense="MIT"
 						IconPath="/Resources/images/repo-dotnet.png" Site="https://github.com/dotnet/runtime" />
-					<models:RepositoryInfo
+					<models:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_LearnWinUI3}" OpenSourceLicense="MIT"
 						Site="https://github.com/PacktPublishing/-Learn-WinUI-3.0" Initials="LW" IsForReference="True" />
-					<models:RepositoryInfo
+					<models:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_WpfSamples}" OpenSourceLicense="MIT"
 						Site="https://github.com/microsoft/WPF-Samples" Initials="WS" IsForReference="True" />
-					<models:RepositoryInfo
+					<models:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_UWPSamples}" OpenSourceLicense="MIT"
 						Site="https://github.com/microsoft/Windows-universal-samples" Initials="US" IsForReference="True" />
-					<models:RepositoryInfo
+					<models:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_WinUI3Gallary}" OpenSourceLicense="MIT"
 						Site="https://github.com/microsoft/WinUI-Gallery" Initials="WG" />
-					<models:RepositoryInfo
+					<models:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_DevToys}" OpenSourceLicense="MIT"
 						Site="https://github.com/veler/DevToys" IconPath="/Resources/images/logo-devtoys.png" IsForReference="True" />
-					<models:RepositoryInfo
+					<models:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_SettingsUI}" OpenSourceLicense="MIT"
 						Site="https://github.com/WinUICommunity/SettingsUI" Initials="LC" />
-					<models:RepositoryInfo
+					<models:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_WindowsCommunityToolkit}" OpenSourceLicense="MIT"
 						Site="https://github.com/CommunityToolkit/WindowsCommunityToolkit" Initials="CT" />
 				</w:SettingsExpander.Items>

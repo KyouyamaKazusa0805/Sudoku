@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Models;
+namespace SudokuStudio.Configuration;
 
 /// <summary>
 /// Indicates the puzzle-generating history.

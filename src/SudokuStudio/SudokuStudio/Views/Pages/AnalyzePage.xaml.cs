@@ -20,7 +20,7 @@ public sealed partial class AnalyzePage : Page
 	/// <summary>
 	/// Indicates the tab routing data.
 	/// </summary>
-	private List<AnalyzeTabPageData> _tabsRoutingData;
+	private List<AnalyzeTabPageBindableSource> _tabsRoutingData;
 
 	/// <summary>
 	/// Defines a key-value pair of functions that is used for routing hotkeys.
@@ -60,9 +60,9 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	internal void ClearAnalyzeTabsData()
 	{
-		foreach (var pageData in (IEnumerable<AnalyzeTabPageData>)AnalyzeTabs.TabItemsSource)
+		foreach (var pageData in (IEnumerable<AnalyzeTabPageBindableSource>)AnalyzeTabs.TabItemsSource)
 		{
-			if (pageData is { TabPage: IAnalyzeTabPage subTabPage })
+			if (pageData is { Page: IAnalyzeTabPage subTabPage })
 			{
 				subTabPage.AnalysisResult = null;
 			}
@@ -76,9 +76,9 @@ public sealed partial class AnalyzePage : Page
 	/// <seealso cref="AnalyzerResult"/>
 	internal void UpdateAnalysisResult(AnalyzerResult analyzerResult)
 	{
-		foreach (var pageData in (IEnumerable<AnalyzeTabPageData>)AnalyzeTabs.TabItemsSource)
+		foreach (var pageData in (IEnumerable<AnalyzeTabPageBindableSource>)AnalyzeTabs.TabItemsSource)
 		{
-			if (pageData is { TabPage: IAnalyzeTabPage subTabPage })
+			if (pageData is { Page: IAnalyzeTabPage subTabPage })
 			{
 				subTabPage.AnalysisResult = analyzerResult;
 			}
@@ -440,19 +440,19 @@ public sealed partial class AnalyzePage : Page
 			{
 				Header = GetString("AnalyzePage_TechniquesTable"),
 				IconSource = createIconSource(Symbol.Flag),
-				TabPage = createPage<Summary>()
+				Page = createPage<Summary>()
 			},
 			new()
 			{
 				Header = GetString("AnalyzePage_StepDetail"),
 				IconSource = createIconSource(Symbol.ShowResults),
-				TabPage = createPage<SolvingPath>()
+				Page = createPage<SolvingPath>()
 			},
 			new()
 			{
 				Header = GetString("AnalyzePage_AllStepsInCurrentGrid"),
 				IconSource = createIconSource(Symbol.Shuffle),
-				TabPage = createPage<GridGathering>()
+				Page = createPage<GridGathering>()
 			}
 		};
 		_hotkeyFunctions = new()
@@ -654,8 +654,6 @@ public sealed partial class AnalyzePage : Page
 	/// <seealso cref="StorageFile"/>
 	private async Task OnSavingOrCopyingSudokuPanePictureAsync<T>(T obj) where T : class
 	{
-		Debug.Assert(obj is IRandomAccessStream or StorageFile);
-
 		if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
 		{
 			SudokuPane.MainGrid.Background = new SolidColorBrush(Colors.White);

@@ -175,7 +175,7 @@ file sealed class AnalysisResultDocumentCreator
 															}
 														);
 
-														foreach (var element in AnalyzerResultTableRow.CreateListFrom(AnalysisResult))
+														foreach (var element in AnalyzerResultTableRowBindableSource.CreateListFrom(AnalysisResult))
 														{
 															table.Cell().Element(cellStyle).Text(element.TechniqueName);
 															table.Cell().Element(cellStyle).AlignRight().Text(element.CountOfSteps.ToString());

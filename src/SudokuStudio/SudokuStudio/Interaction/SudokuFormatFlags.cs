@@ -1,4 +1,4 @@
-namespace SudokuStudio.Models;
+namespace SudokuStudio.Interaction;
 
 /// <summary>
 /// Represents a format flag.

@@ -7,7 +7,7 @@
 	xmlns:analytics="using:Sudoku.Analytics"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
-	xmlns:m="using:SudokuStudio.Models"
+	xmlns:m="using:SudokuStudio.BindableSource"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:TechniqueGroupView}">
 	<UserControl.Resources>
 		<CollectionViewSource x:Name="TechniqueGroups" x:FieldModifier="internal" IsSourceGrouped="True" />
@@ -24,7 +24,7 @@
 		<ListView.GroupStyle>
 			<GroupStyle>
 				<GroupStyle.HeaderTemplate>
-					<DataTemplate x:DataType="m:TechniqueGroup">
+					<DataTemplate x:DataType="m:TechniqueGroupBindableSource">
 						<Border>
 							<TextBlock Text="{x:Bind Key}" FontWeight="Bold" FontSize="14" />
 						</Border>

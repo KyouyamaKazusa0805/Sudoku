@@ -1,9 +1,9 @@
-﻿namespace SudokuStudio.Models;
+namespace SudokuStudio.BindableSource;
 
 /// <summary>
 /// Defines a group that stores the data of the techniques and routing information, and its title.
 /// </summary>
-public sealed class TechniquePageRoutingDataGroup
+public sealed class TechniquePageRoutingBindableSourceGroup
 {
 	/// <summary>
 	/// Indicates the title of the group.
@@ -13,5 +13,5 @@ public sealed class TechniquePageRoutingDataGroup
 	/// <summary>
 	/// Indicates the internal data collection.
 	/// </summary>
-	public required TechniquePageRoutingData[] Collection { get; set; }
+	public required TechniquePageRoutingBindableSource[] Collection { get; set; }
 }

@@ -1,9 +1,10 @@
-﻿namespace SudokuStudio.Models;
+namespace SudokuStudio.BindableSource;
 
 /// <summary>
-/// Defines a set of properties to describe an image.
+/// Represents a type that can be used for binding as source, for repository information
+/// used for displaying the source code referencing.
 /// </summary>
-public sealed class RepositoryInfo
+public sealed class RepositoryInfoBindableSource
 {
 	/// <summary>
 	/// Indicates whether the repository code is for reference.

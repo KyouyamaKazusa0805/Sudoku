@@ -7,7 +7,7 @@
 	xmlns:a="using:SudokuStudio.Views.Attached"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:dts="using:SudokuStudio.Interaction.DataTemplateSelectors"
-	xmlns:model="using:SudokuStudio.Models"
+	xmlns:model="using:SudokuStudio.BindableSource"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:SolvingPath}">
 	<ScrollViewer>
@@ -19,18 +19,18 @@
 				<ListView.ItemTemplateSelector>
 					<dts:SolvingPathTextBlockTemplateSelector>
 						<dts:SolvingPathTextBlockTemplateSelector.StepTemplate>
-							<DataTemplate x:DataType="model:SolvingPathStep">
+							<DataTemplate x:DataType="model:SolvingPathStepBindableSource">
 								<ListViewItem Tag="{x:Bind}" IsRightTapEnabled="True" Tapped="ListViewItem_Tapped">
 									<ToolTipService.ToolTip>
 										<TextBlock
 											TextWrapping="WrapWholeWords" IsTextSelectionEnabled="True"
-											a:TextBlockBindable.Inlines="{x:Bind cvt:AnalyzeConversion.GetInlinesOfTooltip((model:SolvingPathStep))}" />
+											a:TextBlockBindable.Inlines="{x:Bind cvt:AnalyzeConversion.GetInlinesOfTooltip((model:SolvingPathStepBindableSource))}" />
 									</ToolTipService.ToolTip>
 
 									<Grid RowDefinitions="*,*" ColumnDefinitions="20,Auto,*">
 										<TextBlock
 											Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center"
-											Text="{x:Bind cvt:AnalyzeConversion.GetIndexText((model:SolvingPathStep))}" />
+											Text="{x:Bind cvt:AnalyzeConversion.GetIndexText((model:SolvingPathStepBindableSource))}" />
 										<Ellipse
 											Grid.Column="1" Grid.RowSpan="2" Width="32" Height="32" Margin="12,0,0,0"
 											HorizontalAlignment="Center" VerticalAlignment="Center"

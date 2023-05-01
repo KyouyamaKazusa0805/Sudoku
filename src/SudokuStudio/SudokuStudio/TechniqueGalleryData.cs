@@ -9,12 +9,12 @@ internal static class TechniqueGalleryData
 	/// <summary>
 	/// The routing groups.
 	/// </summary>
-	public static readonly ObservableCollection<TechniquePageRoutingDataGroup> RoutingGroups = new()
+	public static readonly ObservableCollection<TechniquePageRoutingBindableSourceGroup> RoutingGroups = new()
 	{
 		new()
 		{
 			Title = GetString("TechniqueGalleryPage_Singles"),
-			Collection = new TechniquePageRoutingData[]
+			Collection = new TechniquePageRoutingBindableSource[]
 			{
 				new() { IsEnabled = false, Color = Colors.Green, Technique = Technique.FullHouse, RoutingPageTypeName = typeof(FullHousePage).Name },
 				new() { IsEnabled = false, Color = Colors.Green, Technique = Technique.LastDigit },
@@ -27,7 +27,7 @@ internal static class TechniqueGalleryData
 		new()
 		{
 			Title = GetString("TechniqueGalleryPage_Intersections"),
-			Collection = new TechniquePageRoutingData[]
+			Collection = new TechniquePageRoutingBindableSource[]
 			{
 				new() { IsEnabled = false, Color = Colors.Aqua, Technique = Technique.Pointing },
 				new() { IsEnabled = false, Color = Colors.Aqua, Technique = Technique.Claiming }
@@ -36,7 +36,7 @@ internal static class TechniqueGalleryData
 		new()
 		{
 			Title = GetString("TechniqueGalleryPage_Subsets"),
-			Collection = new TechniquePageRoutingData[]
+			Collection = new TechniquePageRoutingBindableSource[]
 			{
 				new() { IsEnabled = false, Color = Colors.Yellow, Technique = Technique.LockedPair },
 				new() { IsEnabled = false, Color = Colors.Yellow, Technique = Technique.LockedTriple },
@@ -53,7 +53,7 @@ internal static class TechniqueGalleryData
 		new()
 		{
 			Title = GetString("TechniqueGalleryPage_NormalFishes"),
-			Collection = new TechniquePageRoutingData[]
+			Collection = new TechniquePageRoutingBindableSource[]
 			{
 				new() { IsEnabled = false, Color = Colors.Orange, Technique = Technique.XWing },
 				new() { IsEnabled = false, Color = Colors.Orange, Technique = Technique.FinnedXWing },
@@ -69,7 +69,7 @@ internal static class TechniqueGalleryData
 		new()
 		{
 			Title = GetString("TechniqueGalleryPage_RegularWings"),
-			Collection = new TechniquePageRoutingData[]
+			Collection = new TechniquePageRoutingBindableSource[]
 			{
 				new() { IsEnabled = false, Color = Colors.Pink, Technique = Technique.XyWing },
 				new() { IsEnabled = false, Color = Colors.Pink, Technique = Technique.XyzWing },
@@ -82,7 +82,7 @@ internal static class TechniqueGalleryData
 		new()
 		{
 			Title = GetString("TechniqueGalleryPage_IrregularWings"),
-			Collection = new TechniquePageRoutingData[]
+			Collection = new TechniquePageRoutingBindableSource[]
 			{
 				new() { IsEnabled = false, Color = Colors.DeepPink, Technique = Technique.WWing },
 				new() { IsEnabled = false, Color = Colors.DeepPink, Technique = Technique.WWing },
@@ -101,7 +101,7 @@ internal static class TechniqueGalleryData
 		new()
 		{
 			Title = GetString("TechniqueGalleryPage_UniqueRectangles"),
-			Collection = new TechniquePageRoutingData[]
+			Collection = new TechniquePageRoutingBindableSource[]
 			{
 				new() { IsEnabled = false, Color = Colors.Purple, Technique = Technique.UniqueRectangleType1 },
 				new() { IsEnabled = false, Color = Colors.Purple, Technique = Technique.UniqueRectangleType2 },
@@ -115,7 +115,7 @@ internal static class TechniqueGalleryData
 		new()
 		{
 			Title = GetString("TechniqueGalleryPage_UniqueRectangles2"),
-			Collection = new TechniquePageRoutingData[]
+			Collection = new TechniquePageRoutingBindableSource[]
 			{
 				new() { IsEnabled = false, Color = Colors.Purple, Technique = Technique.UniqueRectangle2D },
 				new() { IsEnabled = false, Color = Colors.Purple, Technique = Technique.UniqueRectangle2B1 },
@@ -138,7 +138,7 @@ internal static class TechniqueGalleryData
 		new()
 		{
 			Title = GetString("TechniqueGalleryPage_UniqueRectangles3"),
-			Collection = new TechniquePageRoutingData[]
+			Collection = new TechniquePageRoutingBindableSource[]
 			{
 				new() { IsEnabled = false, Color = Colors.Purple, Technique = Technique.UniqueRectangleXyWing },
 				new() { IsEnabled = false, Color = Colors.Purple, Technique = Technique.UniqueRectangleXyzWing },

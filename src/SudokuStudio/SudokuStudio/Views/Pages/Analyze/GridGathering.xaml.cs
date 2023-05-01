@@ -38,7 +38,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	/// </summary>
 	/// <param name="collection">The raw collection.</param>
 	/// <returns>The collection that can be used as view source.</returns>
-	internal static ObservableCollection<TechniqueGroupModel> GetTechniqueGroups(IEnumerable<Step> collection)
+	internal static ObservableCollection<TechniqueGroupBindableSource> GetTechniqueGroups(IEnumerable<Step> collection)
 	{
 		return new(
 			from step in collection
@@ -48,7 +48,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 				stepGroupGroupedByName.Average(difficultySelector),
 				stepsDifficultyLevelIntegerGroup.Average(),
 				stepGroupGroupedByName.Key
-			select new TechniqueGroupModel(stepGroupGroupedByName) { Key = stepGroupGroupedByName.Key }
+			select new TechniqueGroupBindableSource(stepGroupGroupedByName) { Key = stepGroupGroupedByName.Key }
 		);
 
 

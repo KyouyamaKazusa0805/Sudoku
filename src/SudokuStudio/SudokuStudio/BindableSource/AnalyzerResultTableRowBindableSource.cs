@@ -1,9 +1,11 @@
-namespace SudokuStudio.Models;
+namespace SudokuStudio.BindableSource;
 
 /// <summary>
-/// Defines a row of analysis result table.
+/// Represents a type that can be used for binding as source, for the table-like grid controls to display techniques used,
+/// using technique name to distinct them.
 /// </summary>
-internal sealed class AnalyzerResultTableRow
+/// <seealso cref="AnalyzerResult"/>
+internal sealed class AnalyzerResultTableRowBindableSource
 {
 	/// <summary>
 	/// Indicates the total difficulty of all steps.
@@ -32,15 +34,15 @@ internal sealed class AnalyzerResultTableRow
 
 
 	/// <summary>
-	/// Creates the list of <see cref="AnalyzerResultTableRow"/> as the result value,
+	/// Creates the list of <see cref="AnalyzerResultTableRowBindableSource"/> as the result value,
 	/// via the specified <paramref name="analyzerResult"/> instance of <see cref="AnalyzerResult"/> type.
 	/// </summary>
 	/// <param name="analyzerResult">
 	/// The <see cref="AnalyzerResult"/> instance that is used for creating the result value.
 	/// </param>
-	/// <returns>The result list of <see cref="AnalyzerResultTableRow"/>-typed elements.</returns>
+	/// <returns>The result list of <see cref="AnalyzerResultTableRowBindableSource"/>-typed elements.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
-	public static IEnumerable<AnalyzerResultTableRow> CreateListFrom(AnalyzerResult analyzerResult)
+	public static IEnumerable<AnalyzerResultTableRowBindableSource> CreateListFrom(AnalyzerResult analyzerResult)
 	{
 		if (analyzerResult is not { IsSolved: true, Steps: var steps })
 		{
@@ -58,7 +60,7 @@ internal sealed class AnalyzerResultTableRow
 				select stepGroupedByDifficultyLevel.Key into targetDifficultyLevel
 				orderby targetDifficultyLevel
 				select targetDifficultyLevel
-			select new AnalyzerResultTableRow
+			select new AnalyzerResultTableRowBindableSource
 			{
 				TechniqueName = stepGroup.Key,
 				CountOfSteps = stepGroupArray.Length,

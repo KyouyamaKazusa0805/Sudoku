@@ -14,10 +14,10 @@ using AnimatedResults = List<(Action Animating, Action Adding)>;
 internal static class RenderableFactory
 {
 	/// <summary>
-	/// Removes all possible controls that are used for displaying elements in a <see cref="ViewUnit"/>.
+	/// Removes all possible controls that are used for displaying elements in a <see cref="ViewUnitBindableSource"/>.
 	/// </summary>
 	/// <param name="sudokuPane">The target pane.</param>
-	/// <seealso cref="ViewUnit"/>
+	/// <seealso cref="ViewUnitBindableSource"/>
 	public static void RemoveViewUnitControls(SudokuPane sudokuPane)
 	{
 		foreach (var targetControl in getParentControls(sudokuPane))
@@ -41,13 +41,13 @@ internal static class RenderableFactory
 	}
 
 	/// <summary>
-	/// Adds a list of <see cref="FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="ViewUnit"/>.
+	/// Adds a list of <see cref="FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="ViewUnitBindableSource"/>.
 	/// </summary>
 	/// <param name="sudokuPane">The target pane.</param>
 	/// <param name="viewUnit">The view unit that you want to display.</param>
 	/// <seealso cref="FrameworkElement"/>
-	/// <seealso cref="ViewUnit"/>
-	public static void AddViewUnitControls(SudokuPane sudokuPane, ViewUnit viewUnit)
+	/// <seealso cref="ViewUnitBindableSource"/>
+	public static void AddViewUnitControls(SudokuPane sudokuPane, ViewUnitBindableSource viewUnit)
 	{
 		if (viewUnit is not { View.BasicNodes: var nodes, Conclusions: var conclusions })
 		{
@@ -848,7 +848,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 file static class Extensions
 {
 	/// <summary>
-	/// Removes all possible <see cref="FrameworkElement"/>s that is used for displaying elements in a <see cref="ViewUnit"/>.
+	/// Removes all possible <see cref="FrameworkElement"/>s that is used for displaying elements in a <see cref="ViewUnitBindableSource"/>.
 	/// </summary>
 	/// <param name="this">The collection.</param>
 	public static void RemoveAllViewUnitControls(this UIElementCollection @this)

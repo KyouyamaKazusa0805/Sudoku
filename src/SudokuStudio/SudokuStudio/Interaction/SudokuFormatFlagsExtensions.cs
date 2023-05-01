@@ -1,4 +1,4 @@
-namespace SudokuStudio.Models;
+namespace SudokuStudio.Interaction;
 
 /// <summary>
 /// Provides with extension methods on <see cref="SudokuFormatFlags"/>.

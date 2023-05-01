@@ -15,7 +15,7 @@ internal static class AnalyzeConversion
 
 	public static string GetDifficultyRatingText(Step step) => step.Difficulty.ToString("0.0");
 
-	public static string GetIndexText(SolvingPathStep step) => (step.Index + 1).ToString();
+	public static string GetIndexText(SolvingPathStepBindableSource step) => (step.Index + 1).ToString();
 
 	public static string GetViewIndexDisplayerString(IRenderable? visualUnit, int currentIndex)
 		=> visualUnit?.Views?.Length is { } length ? $"{currentIndex + 1}/{length}" : "0/0";
@@ -38,7 +38,7 @@ internal static class AnalyzeConversion
 	public static Visibility GetViewPipsPagerVisibility(IRenderable? visualUnit)
 		=> visualUnit switch { { Views.Length: >= 2 } => Visibility.Visible, _ => Visibility.Collapsed };
 
-	public static IEnumerable<Inline> GetInlinesOfTooltip(SolvingPathStep s)
+	public static IEnumerable<Inline> GetInlinesOfTooltip(SolvingPathStepBindableSource s)
 	{
 		if (s is not
 			{

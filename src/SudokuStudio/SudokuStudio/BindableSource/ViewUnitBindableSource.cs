@@ -1,8 +1,8 @@
-namespace SudokuStudio.Models;
+namespace SudokuStudio.BindableSource;
 
 /// <summary>
-/// Defines a view unit.
+/// Represents a type that can be used for binding as source, for a view unit.
 /// </summary>
 [DependencyProperty<Conclusion[]>("Conclusions", DocSummary = "Indicates the candidates as conclusions in a single <see cref=\"Step\"/>.")]
 [DependencyProperty<View>("View", DocSummary = "Indicates a view of highlight elements.")]
-public sealed partial class ViewUnit : DependencyObject;
+public sealed partial class ViewUnitBindableSource : DependencyObject;

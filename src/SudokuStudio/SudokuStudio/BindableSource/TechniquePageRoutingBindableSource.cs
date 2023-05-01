@@ -1,9 +1,9 @@
-﻿namespace SudokuStudio.Models;
+namespace SudokuStudio.BindableSource;
 
 /// <summary>
-/// Defines a routing data of technique page.
+/// Represents a type that can be used for binding as source, for technique page routing.
 /// </summary>
-public sealed class TechniquePageRoutingData
+public sealed class TechniquePageRoutingBindableSource
 {
 	/// <summary>
 	/// Indicates the default culture.
