@@ -661,7 +661,12 @@ public sealed partial class AnalyzePage : Page
 			SudokuPane.MainGrid.Background = new SolidColorBrush(Colors.White);
 		}
 
-		await SudokuPane.RenderToAsync(obj);
+		var (originalWidth, originalHeight) = (SudokuPaneOutsideViewBox.Width, SudokuPaneOutsideViewBox.Height);
+		(SudokuPaneOutsideViewBox.Width, SudokuPaneOutsideViewBox.Height) = (1000, 1000);
+
+		await SudokuPaneOutsideViewBox.RenderToAsync(obj);
+
+		(SudokuPaneOutsideViewBox.Width, SudokuPaneOutsideViewBox.Height) = (originalWidth, originalHeight);
 
 		if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
 		{

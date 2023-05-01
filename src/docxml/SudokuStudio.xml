@@ -7931,28 +7931,22 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.UIElement"/>
         </member>
-        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.RenderToAsync``2(``0,``1,System.Int32,System.Int32)">
+        <member name="M:Microsoft.UI.Xaml.UIElementExtensions.RenderToAsync``2(``0,``1)">
             <summary>
             Renders the specified UI control to the target file as a picture.
             </summary>
             <typeparam name="TUIElement">The type of the UI control.</typeparam>
             <typeparam name="TStorageFileOrRandomAccessStream">
-            The type of the argument <paramref name="storageFileOrRandomAccessStream"/>.
+            The type of the argument <paramref name="fileOrStream"/>.
             The target type can be <see cref="T:Windows.Storage.StorageFile"/> or <see cref="T:Windows.Storage.Streams.IRandomAccessStream"/>;
             otherwise, a <see cref="T:System.NotSupportedException"/> will be thrown.
             </typeparam>
             <param name="this">The control.</param>
-            <param name="storageFileOrRandomAccessStream">
+            <param name="fileOrStream">
             The target instance. This value can be a <see cref="T:Windows.Storage.StorageFile"/> or <see cref="T:Windows.Storage.Streams.IRandomAccessStream"/>.
             </param>
-            <param name="scaledWidth">
-            <inheritdoc cref="M:Microsoft.UI.Xaml.Media.Imaging.RenderTargetBitmap.RenderAsync(Microsoft.UI.Xaml.UIElement,System.Int32,System.Int32)" path="/param[@name='scaledWidth']"/>
-            </param>
-            <param name="scaledHeight">
-            <inheritdoc cref="M:Microsoft.UI.Xaml.Media.Imaging.RenderTargetBitmap.RenderAsync(Microsoft.UI.Xaml.UIElement,System.Int32,System.Int32)" path="/param[@name='scaledHeight']"/>
-            </param>
             <exception cref="T:System.NotSupportedException">
-            Throws when the argument <paramref name="storageFileOrRandomAccessStream"/> is not supported.
+            Throws when the argument <paramref name="fileOrStream"/> is not supported.
             </exception>
         </member>
         <member name="T:System.Numerics.Vector2Extensions">

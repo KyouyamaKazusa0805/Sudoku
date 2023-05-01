@@ -11,35 +11,27 @@ public static class UIElementExtensions
 	/// </summary>
 	/// <typeparam name="TUIElement">The type of the UI control.</typeparam>
 	/// <typeparam name="TStorageFileOrRandomAccessStream">
-	/// The type of the argument <paramref name="storageFileOrRandomAccessStream"/>.
+	/// The type of the argument <paramref name="fileOrStream"/>.
 	/// The target type can be <see cref="StorageFile"/> or <see cref="IRandomAccessStream"/>;
 	/// otherwise, a <see cref="NotSupportedException"/> will be thrown.
 	/// </typeparam>
 	/// <param name="this">The control.</param>
-	/// <param name="storageFileOrRandomAccessStream">
+	/// <param name="fileOrStream">
 	/// The target instance. This value can be a <see cref="StorageFile"/> or <see cref="IRandomAccessStream"/>.
 	/// </param>
-	/// <param name="scaledWidth">
-	/// <inheritdoc cref="RenderTargetBitmap.RenderAsync(UIElement, int, int)" path="/param[@name='scaledWidth']"/>
-	/// </param>
-	/// <param name="scaledHeight">
-	/// <inheritdoc cref="RenderTargetBitmap.RenderAsync(UIElement, int, int)" path="/param[@name='scaledHeight']"/>
-	/// </param>
 	/// <exception cref="NotSupportedException">
-	/// Throws when the argument <paramref name="storageFileOrRandomAccessStream"/> is not supported.
+	/// Throws when the argument <paramref name="fileOrStream"/> is not supported.
 	/// </exception>
 	public static async Task RenderToAsync<TUIElement, TStorageFileOrRandomAccessStream>(
 		this TUIElement @this,
-		TStorageFileOrRandomAccessStream storageFileOrRandomAccessStream,
-		int scaledWidth = 0,
-		int scaledHeight = 0
+		TStorageFileOrRandomAccessStream fileOrStream
 	)
 		where TUIElement : UIElement
 		where TStorageFileOrRandomAccessStream : class
 	{
 		// Gets the snapshot of the control.
 		var rtb = new RenderTargetBitmap();
-		await rtb.RenderAsync(@this, scaledWidth, scaledHeight);
+		await rtb.RenderAsync(@this);
 
 		// Creates the pixel buffer.
 		var pixelBuffer = await rtb.GetPixelsAsync();
@@ -60,12 +52,13 @@ public static class UIElementExtensions
 		}
 #endif
 
-		// Creates an encoder.
-		switch (storageFileOrRandomAccessStream)
+		switch (fileOrStream)
 		{
 			case StorageFile file:
 			{
 				using var pictureFileStream = await file.OpenAsync(FileAccessMode.ReadWrite);
+
+				// Creates an encoder.
 				var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, pictureFileStream);
 				setPixelData(encoder, rtb, pixelBuffer, dpi);
 
@@ -81,6 +74,7 @@ public static class UIElementExtensions
 			}
 			case IRandomAccessStream stream:
 			{
+				// Creates an encoder.
 				var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
 				setPixelData(encoder, rtb, pixelBuffer, dpi);
 
@@ -91,7 +85,7 @@ public static class UIElementExtensions
 			}
 			default:
 			{
-				throw new NotSupportedException($"The target type of argument '{nameof(storageFileOrRandomAccessStream)}' is not supported.");
+				throw new NotSupportedException($"The target type of argument '{nameof(fileOrStream)}' is not supported.");
 			}
 		}
 
