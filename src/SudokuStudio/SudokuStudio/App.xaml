@@ -3,6 +3,7 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:vcvt="using:SudokuStudio.Interaction.ValueConverters"
+	xmlns:c="using:SudokuStudio.Views.Controls"
 	RequestedTheme="Light">
 	<Application.Resources>
 		<ResourceDictionary>
@@ -13,6 +14,10 @@
 
 			<Style x:Key="PreferenceSliderStyle" TargetType="Slider">
 				<Setter Property="Width" Value="300" />
+			</Style>
+			<Style TargetType="c:IntegerBox">
+				<Setter Property="Width" Value="200" />
+				<Setter Property="SpinButtonPlacementMode" Value="Inline" />
 			</Style>
 			<vcvt:StringToFontFamilyConverter x:Key="String2FontConverter" />
 			<vcvt:Int32ToCoordinateLabelKindConverter x:Key="IntToCoordinateKindConverter" />

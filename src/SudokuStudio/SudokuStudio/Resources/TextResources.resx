@@ -885,7 +885,7 @@ In additional, some sudoku panels in some pages may not be related to this optio
     <value>Others</value>
   </data>
   <data name="SettingsPage_OutsideCoordinateDisplayDirectionsTitle" xml:space="preserve">
-    <value>Coordinate display directions</value>
+    <value>Displaying kind of coordinate labels</value>
   </data>
   <data name="SettingsPage_OutsideCoordinateFourDirection" xml:space="preserve">
     <value>Four directions</value>

@@ -888,7 +888,7 @@
     <value>其他</value>
   </data>
   <data name="SettingsPage_OutsideCoordinateDisplayDirectionsTitle" xml:space="preserve">
-    <value>坐标显示</value>
+    <value>参考坐标轴显示方式</value>
   </data>
   <data name="SettingsPage_OutsideCoordinateFourDirection" xml:space="preserve">
     <value>四个方向都有</value>

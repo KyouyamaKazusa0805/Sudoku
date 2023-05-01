@@ -91,7 +91,7 @@
 					Description="{m:R Key=SettingsPage_PictureSizeOnSavingDescription}">
 					<c:IntegerBox
 						Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DesiredPictureSizeOnSaving,Mode=TwoWay}"
-						Minimum="500" Maximum="2000" SmallChange="10" LargeChange="50" SpinButtonPlacementMode="Inline" Width="150" />
+						Minimum="500" Maximum="2000" SmallChange="10" LargeChange="50" />
 				</w:SettingsCard>
 			</w:SettingsGroup>
 		</StackPanel>

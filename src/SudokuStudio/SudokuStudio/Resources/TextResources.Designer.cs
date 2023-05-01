@@ -2529,7 +2529,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Coordinate display directions.
+        ///   Looks up a localized string similar to Displaying kind of coordinate labels.
         /// </summary>
         internal static string SettingsPage_OutsideCoordinateDisplayDirectionsTitle {
             get {

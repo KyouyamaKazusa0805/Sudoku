@@ -61,7 +61,7 @@
 					<Grid ColumnDefinitions="Auto,*">
 						<TextBlock Text="{m:R Key=SingleCountingPracticingPage_InputPuzzlesCount}" VerticalAlignment="Center" />
 						<c:IntegerBox
-							SmallChange="1" LargeChange="5" Minimum="5" Maximum="100" SpinButtonPlacementMode="Inline"
+							SmallChange="1" LargeChange="5" Minimum="5" Maximum="100"
 							Grid.Column="1" Value="{x:Bind TestedPuzzlesCount,Mode=TwoWay}"
 							IsEnabled="{x:Bind cvt:SingleCountingPracticingPageConversion.GetIsEnabled(IsRunning),Mode=OneWay}" />
 					</Grid>
