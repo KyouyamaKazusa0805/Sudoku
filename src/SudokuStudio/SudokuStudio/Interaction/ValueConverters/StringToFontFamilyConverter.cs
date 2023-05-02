@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interaction.ValueConverters;
+namespace SudokuStudio.Interaction.ValueConverters;
 
 /// <summary>
 /// Defines a converter that converts the value between <see cref="string"/> and <see cref="FontFamily"/>.
@@ -11,6 +11,5 @@ public sealed class StringToFontFamilyConverter : IValueConverter
 
 	/// <inheritdoc/>
 	[DoesNotReturn]
-	public object? ConvertBack(object? value, Type? targetType, object? parameter, string? language)
-		=> throw new NotImplementedException();
+	public object? ConvertBack(object? value, Type? targetType, object? parameter, string? language) => throw new NotImplementedException();
 }
