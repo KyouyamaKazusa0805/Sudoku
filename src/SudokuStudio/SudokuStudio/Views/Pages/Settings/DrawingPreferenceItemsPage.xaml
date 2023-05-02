@@ -257,7 +257,7 @@
 							<Slider
 								x:Name="SliderEllipseScale" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
 								Minimum="0" Maximum="1" TickFrequency="0.1" StepFrequency="0.1" HorizontalAlignment="Left"
-								Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedPencilmarkBackgroundEllipseScale,Mode=TwoWay}" />
+								Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedPencilmarkBackgroundEllipseScale,Converter={StaticResource Decimal2DoubleConverter},Mode=TwoWay}" />
 							<TextBlock
 								VerticalAlignment="Center"
 								Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderEllipseScale.Value,'0.0'),Mode=OneWay}" />
@@ -268,7 +268,7 @@
 							<Slider
 								x:Name="SliderBackgroundOpacity" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
 								Minimum="0" Maximum="1" TickFrequency="0.05" StepFrequency="0.05" HorizontalAlignment="Left"
-								Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedBackgroundOpacity,Mode=TwoWay}" />
+								Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedBackgroundOpacity,Converter={StaticResource Decimal2DoubleConverter},Mode=TwoWay}" />
 							<TextBlock
 								VerticalAlignment="Center"
 								Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderBackgroundOpacity.Value,'0.00'),Mode=OneWay}" />
@@ -279,7 +279,7 @@
 							<Slider
 								x:Name="SliderChainStrokeThickness" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
 								Minimum="0" Maximum="5" TickFrequency="0.1" StepFrequency="0.1" HorizontalAlignment="Left"
-								Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainStrokeThickness,Mode=TwoWay}" />
+								Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainStrokeThickness,Converter={StaticResource Decimal2DoubleConverter},Mode=TwoWay}" />
 							<TextBlock
 								VerticalAlignment="Center"
 								Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderChainStrokeThickness.Value,'0.0'),Mode=OneWay}" />
@@ -314,9 +314,9 @@
 			DeltaCandidateColor="{x:Bind DeltaCandidateColorSelector.SelectedColor,Mode=OneWay}"
 			BorderColor="{x:Bind BorderColorSelector.SelectedColor,Mode=OneWay}"
 			CursorBackgroundColor="{x:Bind CursorBackgroundColorSelector.SelectedColor,Mode=OneWay}"
-			HighlightCandidateCircleScale="{x:Bind SliderEllipseScale.Value,Mode=OneWay}"
-			HighlightBackgroundOpacity="{x:Bind SliderBackgroundOpacity.Value,Mode=OneWay}"
-			ChainStrokeThickness="{x:Bind SliderChainStrokeThickness.Value,Mode=OneWay}"
+			HighlightCandidateCircleScale="{x:Bind SliderEllipseScale.Value,Converter={StaticResource Double2DecimalConverter},Mode=OneWay}"
+			HighlightBackgroundOpacity="{x:Bind SliderBackgroundOpacity.Value,Converter={StaticResource Double2DecimalConverter},Mode=OneWay}"
+			ChainStrokeThickness="{x:Bind SliderChainStrokeThickness.Value,Converter={StaticResource Double2DecimalConverter},Mode=OneWay}"
 			LinkColor="{x:Bind ChainColorSelector.SelectedColor,Mode=OneWay}"
 			NormalColor="{x:Bind NormalColorSelector.SelectedColor,Mode=OneWay}"
 			AssignmentColor="{x:Bind AssignmentColorSelector.SelectedColor,Mode=OneWay}"

@@ -163,7 +163,7 @@ internal static class RenderableFactory
 			return;
 		}
 
-		var control = new Border { BorderThickness = new(0), Tag = nameof(RenderableFactory), Opacity = sudokuPane.HighlightBackgroundOpacity };
+		var control = new Border { BorderThickness = new(0), Tag = nameof(RenderableFactory), Opacity = (double)sudokuPane.HighlightBackgroundOpacity };
 
 		GridLayout.SetRowSpan(control, 3);
 		GridLayout.SetColumnSpan(control, 3);
@@ -295,7 +295,7 @@ internal static class RenderableFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = nameof(RenderableFactory),
-			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : sudokuPane.HighlightBackgroundOpacity
+			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity
 		};
 
 		var (row, column, rowSpan, columnSpan) = house switch
@@ -320,7 +320,7 @@ internal static class RenderableFactory
 			control.OpacityTransition = new();
 		}
 
-		animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = sudokuPane.HighlightBackgroundOpacity));
+		animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = (double)sudokuPane.HighlightBackgroundOpacity));
 	}
 
 	/// <summary>
@@ -353,7 +353,7 @@ internal static class RenderableFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = nameof(RenderableFactory),
-			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : sudokuPane.HighlightBackgroundOpacity
+			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity
 		};
 
 		var (row, column, rowSpan, columnSpan) = chute switch
@@ -377,7 +377,7 @@ internal static class RenderableFactory
 			control.OpacityTransition = new();
 		}
 
-		animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = sudokuPane.HighlightBackgroundOpacity));
+		animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = (double)sudokuPane.HighlightBackgroundOpacity));
 	}
 
 	/// <summary>
@@ -407,7 +407,7 @@ internal static class RenderableFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = nameof(RenderableFactory),
-			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : sudokuPane.HighlightBackgroundOpacity,
+			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Child = new TextBlock
 			{
 				Text = @char.ToString(),
@@ -435,7 +435,7 @@ internal static class RenderableFactory
 		animatedResults.Add(
 			(
 				() => paneCellControl.MainGrid.Children.Add(control),
-				() => control.Opacity = sudokuPane.HighlightBackgroundOpacity
+				() => control.Opacity = (double)sudokuPane.HighlightBackgroundOpacity
 			)
 		);
 	}
@@ -543,7 +543,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 					yield return new()
 					{
 						Stroke = new SolidColorBrush(Pane.LinkColor),
-						StrokeThickness = Pane.ChainStrokeThickness,
+						StrokeThickness = (double)Pane.ChainStrokeThickness,
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup { Children = new() { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
 						Tag = nameof(RenderableFactory),
@@ -620,7 +620,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						yield return new()
 						{
 							Stroke = new SolidColorBrush(Pane.LinkColor),
-							StrokeThickness = Pane.ChainStrokeThickness,
+							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							StrokeDashArray = dashArray,
 							Data = new GeometryGroup
 							{
@@ -655,7 +655,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						yield return new()
 						{
 							Stroke = new SolidColorBrush(Pane.LinkColor),
-							StrokeThickness = Pane.ChainStrokeThickness,
+							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
 							Tag = nameof(RenderableFactory)
 						};
@@ -669,7 +669,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						yield return new()
 						{
 							Stroke = new SolidColorBrush(Pane.LinkColor),
-							StrokeThickness = Pane.ChainStrokeThickness,
+							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							StrokeDashArray = dashArray,
 							Data = new GeometryGroup
 							{
@@ -684,7 +684,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						yield return new()
 						{
 							Stroke = new SolidColorBrush(Pane.LinkColor),
-							StrokeThickness = Pane.ChainStrokeThickness,
+							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
 							Tag = nameof(RenderableFactory),
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1

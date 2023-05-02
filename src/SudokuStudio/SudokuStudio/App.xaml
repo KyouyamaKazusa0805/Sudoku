@@ -22,6 +22,8 @@
 			<vcvt:StringToFontFamilyConverter x:Key="String2FontConverter" />
 			<vcvt:Int32ToCoordinateLabelKindConverter x:Key="IntToCoordinateKindConverter" />
 			<vcvt:Int32ToCoordinateLabelModeConverter x:Key="IntToCoordinateModeConverter" />
+			<vcvt:DoubleToDecimalConverter x:Key="Decimal2DoubleConverter" />
+			<vcvt:DoubleToDecimalConverter x:Key="Double2DecimalConverter" IsConvertFromDecimal="False" />
 			<Thickness x:Key="ContentAlignedWithNavigationViewHeaderMargin">56,20</Thickness>
 		</ResourceDictionary>
 	</Application.Resources>

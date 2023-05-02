@@ -13,14 +13,14 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<bool>("EnableRightTapRemoving", DefaultValue = true, DocSummary = "Indicates whether the digit will be removed (eliminated) from the containing cell by tapping a candidate using right mouse button.")]
 [DependencyProperty<bool>("EnableAnimationFeedback", DefaultValue = true, DocSummary = "Indicates whether sudoku pane enables for animation feedback.")]
 [DependencyProperty<bool>("TransparentBackground", DocSummary = "Indicates whether sudoku pane does not use background color to display a sudoku puzzle.")]
+[DependencyProperty<decimal>("HighlightCandidateCircleScale", DocSummary = "Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.")]
+[DependencyProperty<decimal>("HighlightBackgroundOpacity", DocSummary = "Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.")]
+[DependencyProperty<decimal>("ChainStrokeThickness", DocSummary = "Indicates the chain stroke thickness.")]
 [DependencyProperty<decimal>("GivenFontScale", DocSummary = "Indicates the font scale of given digits. The value should generally be below 1.0.")]
 [DependencyProperty<decimal>("ModifiableFontScale", DocSummary = "Indicates the font scale of modifiable digits. The value should generally be below 1.0.")]
 [DependencyProperty<decimal>("PencilmarkFontScale", DocSummary = "Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.")]
 [DependencyProperty<decimal>("BabaGroupLabelFontScale", DocSummary = "Indicates the font scale of baba group characters. The value should generally be below 1.0.")]
 [DependencyProperty<decimal>("CoordinateLabelFontScale", DocSummary = "Indicates the coordinate label font scale. The value should generally be below 1.0.")]
-[DependencyProperty<double>("HighlightCandidateCircleScale", DefaultValue = .9, DocSummary = "Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.")]
-[DependencyProperty<double>("HighlightBackgroundOpacity", DefaultValue = .15, DocSummary = "Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.")]
-[DependencyProperty<double>("ChainStrokeThickness", DefaultValue = 2.0, DocSummary = "Indicates the chain stroke thickness.")]
 [DependencyProperty<Cell>("SelectedCell", DocSummary = "Indicates the currently selected cell.")]
 [DependencyProperty<CoordinateLabelDisplayKind>("CoordinateLabelDisplayKind", DefaultValue = CoordinateLabelDisplayKind.RxCy, DocSummary = "Indicates the displaying kind of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Interaction.CoordinateLabelDisplayKind\"/>.")]
 [DependencyProperty<CoordinateLabelDisplayMode>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplayMode.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Interaction.CoordinateLabelDisplayMode\"/>.")]
@@ -58,6 +58,15 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<ColorPalette>("AlmostLockedSetsColors", DocSummary = "Indicates the colors applied to technique structure Almost Locked Sets.")]
 public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 {
+	[DefaultValue]
+	private static readonly decimal HighlightCandidateCircleScaleDefaultValue = .9M;
+
+	[DefaultValue]
+	private static readonly decimal HighlightBackgroundOpacityDefaultValue = .15M;
+
+	[DefaultValue]
+	private static readonly decimal ChainStrokeThicknessDefaultValue = 2.0M;
+
 	[DefaultValue]
 	private static readonly decimal GivenFontScaleDefaultValue = 1.0M;
 
