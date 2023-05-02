@@ -10,20 +10,19 @@
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:FontPicker}">
 	<StackPanel Spacing="10">
 		<ComboBox
-			x:Name="ComboBox" ItemsSource="{x:Bind _fontsRange}" Header="{m:R Key=FontPicker_SelectFontName}"
-			SelectedValue="{x:Bind SelectedFontName,Mode=TwoWay}" SelectedValuePath="Text"
-			PlaceholderText="{m:R Key=FontPicker_SelectFontPlaceholder}" />
+			ItemsSource="{x:Bind _fontTextBlocks}" SelectedValuePath="Text" Header="{m:R Key=FontPicker_SelectFontName}"
+			SelectedValue="{x:Bind SelectedFont,Mode=TwoWay}" PlaceholderText="{m:R Key=FontPicker_SelectFontPlaceholder}" />
 		<RelativePanel>
 			<Slider
-				x:Name="Slider" TickPlacement="Outside" Minimum="0" Maximum="1" HorizontalAlignment="Left" VerticalAlignment="Center"
-				Style="{StaticResource PreferenceSliderStyle}"
-				Value="{x:Bind cvt:SettingsPageConversion.ToScaleRealValue(SelectedFontScale),Mode=TwoWay,BindBack=SetSelectedFontScale}"
-				TickFrequency="0.05" StepFrequency="0.05" Header="{m:R Key=FontPicker_AdjustFontScale}" />
+				x:Name="Slider" TickPlacement="Outside" Minimum="0" Maximum="1" TickFrequency="0.05" StepFrequency="0.05"
+				HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource PreferenceSliderStyle}"
+				Value="{x:Bind cvt:FontPickerConversion.GetSelectedFontScale(SelectedFontScale),Mode=TwoWay,BindBack=SetSelectedFontScale}"
+				Header="{m:R Key=FontPicker_AdjustFontScale}" />
 			<TextBlock
 				RelativePanel.RightOf="Slider" Margin="24,24,0,0"
 				Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(Slider.Value,'0.00'),Mode=OneWay}" />
 		</RelativePanel>
 		<TextBlock Text="{m:R Key=FontPicker_SelectFontColor}" />
-		<c:ColorSelector x:Name="ColorSelector" SelectedColor="{x:Bind SelectedColor,Mode=TwoWay}" />
+		<c:ColorSelector SelectedColor="{x:Bind SelectedFontColor,Mode=TwoWay}" />
 	</StackPanel>
 </UserControl>

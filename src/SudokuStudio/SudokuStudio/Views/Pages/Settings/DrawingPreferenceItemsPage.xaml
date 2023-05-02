@@ -4,7 +4,6 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:a="using:SudokuStudio.Views.Attached"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
@@ -159,35 +158,60 @@
 						<w:SettingsExpander.Items>
 							<c:FontPicker
 								x:Name="GivenFontPicker" Margin="40,10"
-								a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontData,Mode=TwoWay}" />
+								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName}"
+								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontScale}"
+								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontColor}"
+								SelectedFontChanged="GivenFontPicker_SelectedFontChanged"
+								SelectedFontScaleChanged="GivenFontPicker_SelectedFontScaleChanged"
+								SelectedFontColorChanged="GivenFontPicker_SelectedFontColorChanged" />
 						</w:SettingsExpander.Items>
 					</w:SettingsExpander>
 					<w:SettingsExpander Header="{m:R Key=SettingsPage_ModifiableFontData}">
 						<w:SettingsExpander.Items>
 							<c:FontPicker
 								x:Name="ModifiableFontPicker" Margin="40,10"
-								a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontData,Mode=TwoWay}" />
+								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName}"
+								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontScale}"
+								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontColor}"
+								SelectedFontChanged="ModifiableFontPicker_SelectedFontChanged"
+								SelectedFontScaleChanged="ModifiableFontPicker_SelectedFontScaleChanged"
+								SelectedFontColorChanged="ModifiableFontPicker_SelectedFontColorChanged" />
 						</w:SettingsExpander.Items>
 					</w:SettingsExpander>
 					<w:SettingsExpander Header="{m:R Key=SettingsPage_CandidateFontData}">
 						<w:SettingsExpander.Items>
 							<c:FontPicker
 								x:Name="PencilmarkFontPicker" Margin="40,10"
-								a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontData,Mode=TwoWay}" />
+								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontName}"
+								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontScale}"
+								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontColor}"
+								SelectedFontChanged="PencilmarkFontPicker_SelectedFontChanged"
+								SelectedFontScaleChanged="PencilmarkFontPicker_SelectedFontScaleChanged"
+								SelectedFontColorChanged="PencilmarkFontPicker_SelectedFontColorChanged" />
 						</w:SettingsExpander.Items>
 					</w:SettingsExpander>
 					<w:SettingsExpander Header="{m:R Key=SettingsPage_CoordinateLabelFontData}">
 						<w:SettingsExpander.Items>
 							<c:FontPicker
 								x:Name="CoordinateFontPicker" Margin="40,10"
-								a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontData,Mode=TwoWay}" />
+								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontName}"
+								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontScale}"
+								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontColor}"
+								SelectedFontChanged="CoordinateFontPicker_SelectedFontChanged"
+								SelectedFontScaleChanged="CoordinateFontPicker_SelectedFontScaleChanged"
+								SelectedFontColorChanged="CoordinateFontPicker_SelectedFontColorChanged" />
 						</w:SettingsExpander.Items>
 					</w:SettingsExpander>
 					<w:SettingsExpander Header="{m:R Key=SettingsPage_BabaGroupFontData}">
 						<w:SettingsExpander.Items>
 							<c:FontPicker
 								x:Name="BabaGroupingFontPicker" Margin="40,10"
-								a:FontPickerBindable.SelectedFontData="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontData,Mode=TwoWay}" />
+								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontName}"
+								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontScale}"
+								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontColor}"
+								SelectedFontChanged="BabaGroupingFontPicker_SelectedFontChanged"
+								SelectedFontScaleChanged="BabaGroupingFontPicker_SelectedFontScaleChanged"
+								SelectedFontColorChanged="BabaGroupingFontPicker_SelectedFontColorChanged" />
 						</w:SettingsExpander.Items>
 
 						<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -271,6 +295,21 @@
 			DisplayCursors="True" SelectedCell="-1" DisableFlyout="True" EnableUndoRedoStacking="False"
 			EnableRightTapRemoving="False" EnableDoubleTapFilling="False" CoordinateLabelDisplayMode="None"
 			Puzzle="{m:Grid Text='000001230123004+5604+5600789078900+1000000000000000+9001230123004+5604+5600789078900000'}"
+			GivenFont="{x:Bind GivenFontPicker.SelectedFont,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+			ModifiableFont="{x:Bind ModifiableFontPicker.SelectedFont,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+			PencilmarkFont="{x:Bind PencilmarkFontPicker.SelectedFont,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+			CoordinateLabelFont="{x:Bind CoordinateFontPicker.SelectedFont,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+			BabaGroupLabelFont="{x:Bind BabaGroupingFontPicker.SelectedFont,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+			GivenFontScale="{x:Bind GivenFontPicker.SelectedFontScale,Mode=OneWay}"
+			ModifiableFontScale="{x:Bind ModifiableFontPicker.SelectedFontScale,Mode=OneWay}"
+			PencilmarkFontScale="{x:Bind PencilmarkFontPicker.SelectedFontScale,Mode=OneWay}"
+			CoordinateLabelFontScale="{x:Bind CoordinateFontPicker.SelectedFontScale,Mode=OneWay}"
+			BabaGroupLabelFontScale="{x:Bind BabaGroupingFontPicker.SelectedFontScale,Mode=OneWay}"
+			GivenColor="{x:Bind GivenFontPicker.SelectedFontColor,Mode=OneWay}"
+			ModifiableColor="{x:Bind ModifiableFontPicker.SelectedFontColor,Mode=OneWay}"
+			PencilmarkColor="{x:Bind PencilmarkFontPicker.SelectedFontColor,Mode=OneWay}"
+			CoordinateLabelColor="{x:Bind CoordinateFontPicker.SelectedFontColor,Mode=OneWay}"
+			BabaGroupLabelColor="{x:Bind BabaGroupingFontPicker.SelectedFontColor,Mode=OneWay}"
 			DeltaCellColor="{x:Bind DeltaCellColorSelector.SelectedColor,Mode=OneWay}"
 			DeltaCandidateColor="{x:Bind DeltaCandidateColorSelector.SelectedColor,Mode=OneWay}"
 			BorderColor="{x:Bind BorderColorSelector.SelectedColor,Mode=OneWay}"
@@ -278,21 +317,6 @@
 			HighlightCandidateCircleScale="{x:Bind SliderEllipseScale.Value,Mode=OneWay}"
 			HighlightBackgroundOpacity="{x:Bind SliderBackgroundOpacity.Value,Mode=OneWay}"
 			ChainStrokeThickness="{x:Bind SliderChainStrokeThickness.Value,Mode=OneWay}"
-			GivenFont="{x:Bind cvt:SettingsPageConversion.GetFont(GivenFontPicker.SelectedFontName),Mode=OneWay}"
-			GivenFontScale="{x:Bind GivenFontPicker.SelectedFontScale,Mode=OneWay}"
-			GivenColor="{x:Bind GivenFontPicker.SelectedColor,Mode=OneWay}"
-			ModifiableFont="{x:Bind cvt:SettingsPageConversion.GetFont(ModifiableFontPicker.SelectedFontName),Mode=OneWay}"
-			ModifiableFontScale="{x:Bind ModifiableFontPicker.SelectedFontScale,Mode=OneWay}"
-			ModifiableColor="{x:Bind ModifiableFontPicker.SelectedColor,Mode=OneWay}"
-			PencilmarkFont="{x:Bind cvt:SettingsPageConversion.GetFont(PencilmarkFontPicker.SelectedFontName),Mode=OneWay}"
-			PencilmarkFontScale="{x:Bind PencilmarkFontPicker.SelectedFontScale,Mode=OneWay}"
-			PencilmarkColor="{x:Bind PencilmarkFontPicker.SelectedColor,Mode=OneWay}"
-			CoordinateLabelFont="{x:Bind cvt:SettingsPageConversion.GetFont(CoordinateFontPicker.SelectedFontName),Mode=OneWay}"
-			CoordinateLabelFontScale="{x:Bind CoordinateFontPicker.SelectedFontScale,Mode=OneWay}"
-			CoordinateLabelColor="{x:Bind CoordinateFontPicker.SelectedColor,Mode=OneWay}"
-			BabaGroupLabelFont="{x:Bind cvt:SettingsPageConversion.GetFont(BabaGroupingFontPicker.SelectedFontName),Mode=OneWay}"
-			BabaGroupLabelFontScale="{x:Bind BabaGroupingFontPicker.SelectedFontScale,Mode=OneWay}"
-			BabaGroupLabelColor="{x:Bind BabaGroupingFontPicker.SelectedColor,Mode=OneWay}"
 			LinkColor="{x:Bind ChainColorSelector.SelectedColor,Mode=OneWay}"
 			NormalColor="{x:Bind NormalColorSelector.SelectedColor,Mode=OneWay}"
 			AssignmentColor="{x:Bind AssignmentColorSelector.SelectedColor,Mode=OneWay}"

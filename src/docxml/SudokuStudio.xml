@@ -995,47 +995,6 @@
             Indicates the colors.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Configuration.FontSerializationData">
-            <summary>
-            Defines the font serialization data.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Configuration.FontSerializationData.FontNameProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.FontSerializationData.FontName"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.FontSerializationData.FontName"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.FontSerializationData.FontScaleProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.FontSerializationData.FontScale"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.FontSerializationData.FontScale"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.FontSerializationData.FontColorProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.FontSerializationData.FontColor"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.FontSerializationData.FontColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.FontSerializationData.FontName">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.FontSerializationData.FontNameProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.FontSerializationData.FontNameProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.FontSerializationData.FontScale">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.FontSerializationData.FontScaleProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.FontSerializationData.FontScaleProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.FontSerializationData.FontColor">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.FontSerializationData.FontColorProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.FontSerializationData.FontColorProperty" />
-        </member>
         <member name="T:SudokuStudio.Configuration.GridSerializationData">
             <summary>
             Defines a sudoku grid serialization data.
@@ -1235,6 +1194,36 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainStrokeThickness"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontScaleProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontScale"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontScaleProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontScale"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontScaleProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontScale"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontScaleProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontScale"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScaleProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScale"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayKindProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayKind"/>.
@@ -1253,11 +1242,71 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontNameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontName"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontNameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontName"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontNameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontName"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontNameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontName"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontNameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontName"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.BackdropProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.Backdrop"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.Backdrop"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColorProperty">
             <summary>
@@ -1385,36 +1434,6 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors"/>
         </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontDataProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontData"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontData"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontDataProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontData"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontData"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontDataProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontData"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontData"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontDataProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontData"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontData"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontDataProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontData"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontData"/>
-        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidates">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates"/>
         </member>
@@ -1460,6 +1479,36 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainStrokeThickness">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontScale">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontScaleProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontScaleProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontScale">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontScaleProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontScaleProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontScale">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontScaleProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontScaleProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontScale">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontScaleProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontScaleProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScale">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScaleProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScaleProperty" />
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayKind">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind"/>
         </member>
@@ -1472,11 +1521,71 @@
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSavingProperty" />
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontName">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontNameProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontNameProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontName">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontNameProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontNameProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontName">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontNameProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontNameProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontName">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontNameProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontNameProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontName">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontNameProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontNameProperty" />
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.Backdrop">
             <summary>
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BackdropProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BackdropProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColorProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColorProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColorProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColorProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColorProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColorProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColorProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColorProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColorProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColorProperty" />
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor"/>
@@ -1540,36 +1649,6 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontData">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontDataProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontDataProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontData">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontDataProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontDataProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontData">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontDataProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontDataProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontData">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontDataProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontDataProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontData">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontDataProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontDataProperty" />
         </member>
         <member name="T:SudokuStudio.Input.Hotkey">
             <summary>
@@ -1992,6 +2071,11 @@ if (student is (name: var name, age: >= 18))
         <member name="T:SudokuStudio.Interaction.Conversions.DrawingConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about drawing.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.FontPickerConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about font picker.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.IdentifierConversion">
@@ -5359,29 +5443,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SolverIgnoreHighAllocationAlgorithmsProperty" />
         </member>
-        <member name="T:SudokuStudio.Views.Attached.FontPickerBindable">
-            <summary>
-            Defines a bind behaviors on <see cref="T:SudokuStudio.Views.Controls.FontPicker"/> instances.
-            </summary>
-            <seealso cref="T:SudokuStudio.Views.Controls.FontPicker"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.FontPickerBindable.SelectedFontDataProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>SelectedFontData</c>.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.FontPickerBindable.SetSelectedFontData(Microsoft.UI.Xaml.DependencyObject,SudokuStudio.Configuration.FontSerializationData)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.FontPickerBindable.SelectedFontDataProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.FontPickerBindable.SelectedFontDataProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.FontPickerBindable.GetSelectedFontData(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.FontPickerBindable.SelectedFontDataProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.FontPickerBindable.SelectedFontDataProperty" />
-        </member>
         <member name="T:SudokuStudio.Views.Attached.GathererProperties">
             <summary>
             Defines a bind behaviors on <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instances, for <see cref="T:Sudoku.Analytics.StepCollector"/> instance's interaction.
@@ -5565,9 +5626,9 @@ if (student is (name: var name, age: >= 18))
             Represents a font picker.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.FontPicker._fontsRange">
+        <member name="F:SudokuStudio.Views.Controls.FontPicker._fontTextBlocks">
             <summary>
-            Indicates the fonts.
+            Indicates the <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/> list that represents with fonts.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.FontPicker.#ctor">
@@ -5575,9 +5636,19 @@ if (student is (name: var name, age: >= 18))
             Initializes a <see cref="T:SudokuStudio.Views.Controls.FontPicker"/> instance.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontData">
+        <member name="E:SudokuStudio.Views.Controls.FontPicker.SelectedFontChanged">
             <summary>
-            Indicates the selected font data.
+            Indicates the event that will be triggered when the property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFont"/> has been changed.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.FontPicker.SelectedFontScaleChanged">
+            <summary>
+            Indicates the event that will be triggered when the property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/> has been changed.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.FontPicker.SelectedFontColorChanged">
+            <summary>
+            Indicates the event that will be triggered when the property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontColor"/> has been changed.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.FontPicker.InitializeComponent">
@@ -5585,11 +5656,11 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontNameProperty">
+        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFont"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName"/>
+            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFont"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontScaleProperty">
             <summary>
@@ -5597,17 +5668,17 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedColorProperty">
+        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontColorProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontColor"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor"/>
+            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontColor"/>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontName">
+        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFont">
             <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontNameProperty"/> to get or set value.
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontProperty"/> to get or set value.
             </summary>
-            <seealso cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontNameProperty" />
+            <seealso cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontProperty" />
         </member>
         <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale">
             <summary>
@@ -5615,11 +5686,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontScaleProperty" />
         </member>
-        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedColor">
+        <member name="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontColor">
             <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedColorProperty"/> to get or set value.
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontColorProperty"/> to get or set value.
             </summary>
-            <seealso cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedColorProperty" />
+            <seealso cref="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontColorProperty" />
         </member>
         <member name="T:SudokuStudio.Views.Controls.IntegerBox">
             <summary>

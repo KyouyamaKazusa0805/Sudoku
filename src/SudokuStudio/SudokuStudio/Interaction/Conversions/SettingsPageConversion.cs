@@ -2,8 +2,6 @@ namespace SudokuStudio.Interaction.Conversions;
 
 internal static class SettingsPageConversion
 {
-	public static double ToScaleRealValue(decimal value) => (double)value;
-
 	public static string GetDashArrayString(DashArray value) => value.ToString()[1..^1];
 
 	public static string GetSliderString(double value, string format) => value.ToString(format);

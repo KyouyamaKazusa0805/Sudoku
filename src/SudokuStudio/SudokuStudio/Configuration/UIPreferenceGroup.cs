@@ -20,10 +20,25 @@ using M = CoordinateLabelDisplayMode;
 [DependencyProperty<double>("HighlightedPencilmarkBackgroundEllipseScale", DefaultValue = .9, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale")]
 [DependencyProperty<double>("HighlightedBackgroundOpacity", DefaultValue = .15, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity")]
 [DependencyProperty<double>("ChainStrokeThickness", DefaultValue = 1.5, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness")]
+[DependencyProperty<decimal>("GivenFontScale")]
+[DependencyProperty<decimal>("ModifiableFontScale")]
+[DependencyProperty<decimal>("PencilmarkFontScale")]
+[DependencyProperty<decimal>("BabaGroupingFontScale")]
+[DependencyProperty<decimal>("CoordinateLabelFontScale")]
 [DependencyProperty<int>("CoordinateLabelDisplayKind", DefaultValue = (int)K.RxCy, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind")]
 [DependencyProperty<int>("CoordinateLabelDisplayMode", DefaultValue = (int)M.FourDirection, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode")]
 [DependencyProperty<int>("DesiredPictureSizeOnSaving", DefaultValue = 1000)]
+[DependencyProperty<string>("GivenFontName", DefaultValue = "Cascadia Code")]
+[DependencyProperty<string>("ModifiableFontName", DefaultValue = "Cascadia Code")]
+[DependencyProperty<string>("PencilmarkFontName", DefaultValue = "Cascadia Code")]
+[DependencyProperty<string>("BabaGroupingFontName", DefaultValue = "Times New Roman")]
+[DependencyProperty<string>("CoordinateLabelFontName", DefaultValue = "Cascadia Code")]
 [DependencyProperty<BackdropKind>("Backdrop", DefaultValue = BackdropKind.Acrylic)]
+[DependencyProperty<Color>("GivenFontColor")]
+[DependencyProperty<Color>("ModifiableFontColor")]
+[DependencyProperty<Color>("PencilmarkFontColor")]
+[DependencyProperty<Color>("BabaGroupingFontColor")]
+[DependencyProperty<Color>("CoordinateLabelFontColor")]
 [DependencyProperty<Color>("DeltaValueColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor")]
 [DependencyProperty<Color>("DeltaPencilmarkColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor")]
 [DependencyProperty<Color>("SudokuPaneBorderColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.BorderColor")]
@@ -45,13 +60,38 @@ using M = CoordinateLabelDisplayMode;
 [DependencyProperty<ColorPalette>("DifficultyLevelBackgrounds", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds")]
 [DependencyProperty<ColorPalette>("UserDefinedColorPalette", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette")]
 [DependencyProperty<ColorPalette>("AlmostLockedSetsColors", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors")]
-[DependencyProperty<FontSerializationData>("GivenFontData")]
-[DependencyProperty<FontSerializationData>("ModifiableFontData")]
-[DependencyProperty<FontSerializationData>("PencilmarkFontData")]
-[DependencyProperty<FontSerializationData>("BabaGroupingFontData")]
-[DependencyProperty<FontSerializationData>("CoordinateLabelFontData")]
 public sealed partial class UIPreferenceGroup : PreferenceGroup
 {
+	[DefaultValue]
+	private static readonly decimal GivenFontScaleDefaultValue = .85M;
+
+	[DefaultValue]
+	private static readonly decimal ModifiableFontScaleDefaultValue = .85M;
+
+	[DefaultValue]
+	private static readonly decimal PencilmarkFontScaleDefaultValue = .3M;
+
+	[DefaultValue]
+	private static readonly decimal BabaGroupingFontScaleDefaultValue = .6M;
+
+	[DefaultValue]
+	private static readonly decimal CoordinateLabelFontScaleDefaultValue = .4M;
+
+	[DefaultValue]
+	private static readonly Color GivenFontColorDefaultValue = Colors.Black;
+
+	[DefaultValue]
+	private static readonly Color ModifiableFontColorDefaultValue = Colors.Blue;
+
+	[DefaultValue]
+	private static readonly Color PencilmarkFontColorDefaultValue = Color.FromArgb(255, 100, 100, 100);
+
+	[DefaultValue]
+	private static readonly Color BabaGroupingFontColorDefaultValue = Colors.Red;
+
+	[DefaultValue]
+	private static readonly Color CoordinateLabelFontColorDefaultValue = Color.FromArgb(255, 100, 100, 100);
+
 	[DefaultValue]
 	private static readonly Color DeltaValueColorDefaultValue = Colors.Red;
 
@@ -158,46 +198,6 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 		Color.FromArgb(255, 206, 251, 237),
 		Color.FromArgb(255, 215, 255, 215),
 		Color.FromArgb(255, 192, 192, 192)
-	};
-
-	[DefaultValue]
-	private static readonly FontSerializationData GivenFontDataDefaultValue = new()
-	{
-		FontName = "Cascadia Code",
-		FontScale = .85M,
-		FontColor = Colors.Black
-	};
-
-	[DefaultValue]
-	private static readonly FontSerializationData ModifiableFontDataDefaultValue = new()
-	{
-		FontName = "Cascadia Code",
-		FontScale = .85M,
-		FontColor = Colors.Blue
-	};
-
-	[DefaultValue]
-	private static readonly FontSerializationData PencilmarkFontDataDefaultValue = new()
-	{
-		FontName = "Cascadia Code",
-		FontScale = .3M,
-		FontColor = Color.FromArgb(255, 100, 100, 100)
-	};
-
-	[DefaultValue]
-	private static readonly FontSerializationData BabaGroupingFontDataDefaultValue = new()
-	{
-		FontName = "Times New Roman",
-		FontScale = .6M,
-		FontColor = Colors.Red
-	};
-
-	[DefaultValue]
-	private static readonly FontSerializationData CoordinateLabelFontDataDefaultValue = new()
-	{
-		FontName = "Cascadia Code",
-		FontScale = .4M,
-		FontColor = Color.FromArgb(255, 100, 100, 100)
 	};
 
 
