@@ -24,7 +24,7 @@ internal sealed class UplevelCommand : Command
 	[DoubleArgument("三叶草")]
 	[Hint("表示强化期间，需要的三叶草的级别，支持 1 到 10 级。该参数可以没有，默认情况下表示不带三叶草进行强化。")]
 	[ValueConverter<NumericConverter<int>>]
-	[DefaultValue<int>(-1)]
+	[DefaultValue<int>(0)]
 	[DisplayingIndex(2)]
 	public int CloverLevel { get; set; }
 
@@ -137,7 +137,7 @@ internal sealed class UplevelCommand : Command
 
 							user.Coin -= 3;
 
-							var possibility = ScoringOperation.GetUpLevelingSuccessPossibility(main, cards, level);
+							var possibility = ScoringOperation.GetUpLevelingSuccessPossibility(main, cards, level - 1);
 							var final = Rng.Next(0, 10000);
 							var boundary = possibility * 10000;
 
@@ -343,7 +343,7 @@ internal sealed class UplevelCommand : Command
 
 						void tryUplevel(User user, scoped ref int succeed, scoped ref int failed)
 						{
-							var possibility = ScoringOperation.GetUpLevelingSuccessPossibility(main, cards, level);
+							var possibility = ScoringOperation.GetUpLevelingSuccessPossibility(main, cards, level - 1);
 
 							user.Coin -= 3;
 

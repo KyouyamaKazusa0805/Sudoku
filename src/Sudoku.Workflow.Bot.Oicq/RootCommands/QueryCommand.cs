@@ -26,7 +26,7 @@ internal sealed class QueryCommand : Command
 	[DoubleArgument("三叶草")]
 	[Hint("表示你需要查询的强化期间，三叶草的级别。该参数必须配合“内容”是“强化”的时候使用，否则该参数没有效果。")]
 	[ValueConverter<NumericConverter<int>>]
-	[DefaultValue<int>(-1)]
+	[DefaultValue<int>(0)]
 	[DisplayingIndex(5)]
 	[ArgumentDisplayer("1-10")]
 	public int CloverLevel { get; set; }
@@ -385,7 +385,7 @@ internal sealed class QueryCommand : Command
 										: Array.Exists(auxiliary, card => main - card >= 3)
 											? $"查询失败。主卡级别为 {main}，但填入的辅助卡级别存在至少一张卡的等级和主卡级别差了 3 级甚至以上。不支持这种强化。"
 											: (
-												ScoringOperation.GetUpLevelingSuccessPossibility(main, auxiliary, clover),
+												ScoringOperation.GetUpLevelingSuccessPossibility(main, auxiliary, clover - 1),
 												clover == -1 ? string.Empty : $"，三叶草等级：{clover}"
 											) switch
 											{
