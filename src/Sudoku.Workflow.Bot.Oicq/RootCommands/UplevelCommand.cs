@@ -123,7 +123,7 @@ internal sealed class UplevelCommand : Command
 								return;
 							}
 
-							if (level != -1)
+							if (level != 0)
 							{
 								var targetClover = Item.CloverLevel1 + level - 1;
 								if (!user.Items.ContainsKey(targetClover) || user.Items[targetClover] <= 0)
