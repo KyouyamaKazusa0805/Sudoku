@@ -716,7 +716,7 @@ public sealed partial class AnalyzePage : Page
 	{
 		switch (e)
 		{
-			case { Candidate: var candidate2, MouseButton: MouseButton.Left }:
+			case { Candidate: var candidate2 }:
 			{
 				if (_previousSelectedCandidate is not { } candidate1)
 				{
@@ -732,7 +732,7 @@ public sealed partial class AnalyzePage : Page
 					return true;
 				}
 
-				var house = TrailingZeroCount(coveredHouses);
+				var house = coveredHouses.GetAllSets()[^1];
 				if (view.View.Find(node => node is HouseViewNode { House: var h } && h == house) is { } foundNode)
 				{
 					view.View.Remove(foundNode);
@@ -756,7 +756,7 @@ public sealed partial class AnalyzePage : Page
 	{
 		switch (e)
 		{
-			case { Candidate: var candidate2, MouseButton: MouseButton.Left }:
+			case { Candidate: var candidate2 }:
 			{
 				if (_previousSelectedCandidate is not { } candidate1)
 				{
@@ -811,7 +811,7 @@ public sealed partial class AnalyzePage : Page
 	{
 		switch (e)
 		{
-			case { Candidate: var candidate2, MouseButton: MouseButton.Left }:
+			case { Candidate: var candidate2 }:
 			{
 				if (_previousSelectedCandidate is not { } candidate1)
 				{
