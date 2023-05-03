@@ -3,8 +3,15 @@ namespace Sudoku.Rendering.Nodes;
 /// <summary>
 /// Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
 /// </summary>
-public sealed partial class ChuteViewNode(ColorIdentifier identifier, int chuteIndex) : BasicViewNode(identifier)
+//[method: JsonConstructor]
+public sealed partial class ChuteViewNode : BasicViewNode//(ColorIdentifier identifier, int chuteIndex) : BasicViewNode(identifier)
 {
+#pragma warning disable CS1591
+	[JsonConstructor]
+	public ChuteViewNode(ColorIdentifier identifier, int chuteIndex) : base(identifier) => ChuteIndex = chuteIndex;
+#pragma warning restore CS1591
+
+
 	/// <summary>
 	/// Indicates whether the chute is in a row.
 	/// </summary>
@@ -13,7 +20,7 @@ public sealed partial class ChuteViewNode(ColorIdentifier identifier, int chuteI
 	/// <summary>
 	/// Indicates the chute index. The value can be between 0 and 5.
 	/// </summary>
-	public int ChuteIndex { get; } = chuteIndex;
+	public int ChuteIndex { get; }// = chuteIndex;
 
 	/// <summary>
 	/// <para>

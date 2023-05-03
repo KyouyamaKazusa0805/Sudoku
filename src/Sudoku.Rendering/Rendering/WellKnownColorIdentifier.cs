@@ -4,7 +4,7 @@ namespace Sudoku.Rendering;
 /// Defines a <see cref="ColorIdentifier"/> derived type that uses well-known kinds to distinct with colors.
 /// </summary>
 /// <param name="kind">The well-known identifier kind to be assigned.</param>
-public sealed partial class WellKnownColorIdentifier(WellKnownColorIdentifierKind kind) : ColorIdentifier
+public sealed partial class WellKnownColorIdentifier([PrimaryConstructorParameter] WellKnownColorIdentifierKind kind) : ColorIdentifier
 {
 	/// <inheritdoc cref="WellKnownColorIdentifierKind.Normal"/>
 	public static readonly ColorIdentifier Normal = WellKnownColorIdentifierKind.Normal;
@@ -55,20 +55,14 @@ public sealed partial class WellKnownColorIdentifier(WellKnownColorIdentifierKin
 	public static readonly ColorIdentifier AlmostLockedSet5 = WellKnownColorIdentifierKind.AlmostLockedSet5;
 
 
-	/// <summary>
-	/// Indicates the kind.
-	/// </summary>
-	public WellKnownColorIdentifierKind Kind { get; } = kind;
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ColorIdentifier? other)
 		=> other is WellKnownColorIdentifier comparer && Kind == comparer.Kind;
 
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(Kind))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, "Kind")]
 	public override partial int GetHashCode();
 
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Kind))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, "Kind")]
 	public override partial string ToString();
 }

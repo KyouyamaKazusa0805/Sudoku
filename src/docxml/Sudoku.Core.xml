@@ -1179,6 +1179,17 @@ if (student is (name: var name, age: >= 18))
             The generated field declaration for parameter <c>mask</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.JsonConverter">
+            <summary>
+            The file-local type that provides the basic operation for serialization or deserialization for type <see cref="T:Sudoku.Analytics.Conclusion"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Analytics.Conclusion,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.ConclusionType">
             <summary>
             Provides a conclusion type.

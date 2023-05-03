@@ -9,7 +9,8 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	/// Creates an empty <see cref="View"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private View() : base()
+	[Obsolete($"Please use '{nameof(Empty)}' instead.", false)]
+	public View() : base()
 	{
 	}
 
@@ -18,7 +19,8 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	/// </summary>
 	/// <param name="nodes">The list as the raw value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private View(HashSet<ViewNode> nodes) : base(nodes)
+	[Obsolete($"Please use '{nameof(Empty)}' instead.", false)]
+	public View(HashSet<ViewNode> nodes) : base(nodes)
 	{
 	}
 
@@ -47,7 +49,9 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	/// <summary>
 	/// Indicates the empty instance.
 	/// </summary>
+#pragma warning disable CS0618
 	public static View Empty => new();
+#pragma warning restore CS0618
 
 
 	/// <summary>
@@ -95,7 +99,9 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public View Clone()
 	{
+#pragma warning disable CS0618
 		return Count == 0 ? Empty : new(cloneNodes());
+#pragma warning restore CS0618
 
 
 		HashSet<ViewNode> cloneNodes()

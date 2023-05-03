@@ -3,13 +3,20 @@ namespace Sudoku.Rendering.Nodes;
 /// <summary>
 /// Defines a view node that highlights for a candidate.
 /// </summary>
-public sealed partial class CandidateViewNode(ColorIdentifier identifier, Candidate candidate) : BasicViewNode(identifier)
+//[method: JsonConstructor]
+public sealed partial class CandidateViewNode : BasicViewNode//(ColorIdentifier identifier, Candidate candidate) : BasicViewNode(identifier)
 {
+#pragma warning disable CS1591
+	[JsonConstructor]
+	public CandidateViewNode(ColorIdentifier identifier, Candidate candidate) : base(identifier) => Candidate = candidate;
+#pragma warning restore CS1591
+
+
 	/// <summary>
 	/// Indicates the candidate highlighted.
 	/// </summary>
 	[JsonInclude]
-	public Candidate Candidate { get; } = candidate;
+	public Candidate Candidate { get; }// = candidate;
 
 	/// <summary>
 	/// Indicates the candidate string.

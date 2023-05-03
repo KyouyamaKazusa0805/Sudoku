@@ -3,23 +3,34 @@ namespace Sudoku.Rendering.Nodes;
 /// <summary>
 /// Defines a view node that highlights for a Baba group.
 /// </summary>
-public sealed partial class BabaGroupViewNode(ColorIdentifier identifier, Cell cell, Utf8Char unknownValueChar, Mask digitsMask) :
-	BasicViewNode(identifier)
+//[method: JsonConstructor]
+public sealed partial class BabaGroupViewNode : BasicViewNode//(ColorIdentifier identifier, Cell cell, Utf8Char unknownValueChar, Mask digitsMask) : BasicViewNode(identifier)
 {
+#pragma warning disable CS1591
+	[JsonConstructor]
+	public BabaGroupViewNode(ColorIdentifier identifier, Cell cell, Utf8Char unknownValueChar, Mask digitsMask) : base(identifier)
+	{
+		Cell = cell;
+		DigitsMask = digitsMask;
+		UnknownValueChar = unknownValueChar;
+	}
+#pragma warning restore CS1591
+
+
 	/// <summary>
 	/// Indicates the cell used.
 	/// </summary>
-	public Cell Cell { get; } = cell;
+	public Cell Cell { get; }// = cell;
 
 	/// <summary>
 	/// Indicates the digits used.
 	/// </summary>
-	public Mask DigitsMask { get; } = digitsMask;
+	public Mask DigitsMask { get; }// = digitsMask;
 
 	/// <summary>
 	/// Indicates the character that represents the unknown range.
 	/// </summary>
-	public Utf8Char UnknownValueChar { get; } = unknownValueChar;
+	public Utf8Char UnknownValueChar { get; }// = unknownValueChar;
 
 	/// <summary>
 	/// Indicates the cell string.

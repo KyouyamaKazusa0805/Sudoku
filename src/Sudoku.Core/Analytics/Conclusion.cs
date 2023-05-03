@@ -19,6 +19,7 @@ namespace Sudoku.Analytics;
 ///        |   used  |
 /// ]]></code>
 /// </param>
+[JsonConverter(typeof(JsonConverter))]
 public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field)] int mask) :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion, bool>,
@@ -157,4 +158,23 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <=(Conclusion left, Conclusion right) => left.CompareTo(right) <= 0;
+}
+
+/// <summary>
+/// The file-local type that provides the basic operation for serialization or deserialization for type <see cref="Conclusion"/>.
+/// </summary>
+file sealed class JsonConverter : JsonConverter<Conclusion>
+{
+	/// <inheritdoc/>
+	public override Conclusion Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		=> reader.GetString() switch
+		{
+			[_, var r, _, var c, .. { Length: 3 }, var d] => new(Assignment, (r - '1') * 9 + (c - '1'), d - '1'),
+			[_, var r, _, var c, .. { Length: 4 }, var d] => new(Elimination, (r - '1') * 9 + (c - '1'), d - '1'),
+			_ => throw new JsonException()
+		};
+
+	/// <inheritdoc/>
+	public override void Write(Utf8JsonWriter writer, Conclusion value, JsonSerializerOptions options)
+		=> writer.WriteStringValue(value.ToString());
 }

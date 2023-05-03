@@ -9,4 +9,9 @@ public sealed class GridSerializationData
 	/// Indicates the grid string.
 	/// </summary>
 	public required string GridString { get; set; }
+
+	/// <summary>
+	/// Indicates the data that represents the conclusions and view nodes.
+	/// </summary>
+	public UserDefinedRenderable? RenderableData { get; set; }
 }

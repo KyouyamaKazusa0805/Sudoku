@@ -185,6 +185,48 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="kind">The <see cref="T:Sudoku.Rendering.WellKnownColorIdentifierKind"/> instance.</param>
         </member>
+        <member name="T:Sudoku.Rendering.JsonConverter">
+            <summary>
+            The file-local type that can serialize or deserialize a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Rendering.ColorIdentifier"/>
+        </member>
+        <member name="M:Sudoku.Rendering.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Rendering.ColorIdentifier,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Rendering.ColorColorIdentifier_DeserializationTempType">
+            <summary>
+            The temporary and intermediate type used for deserialization on <see cref="T:Sudoku.Rendering.ColorColorIdentifier"/> instances.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Rendering.ColorColorIdentifier_DeserializationTempType.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            The temporary and intermediate type used for deserialization on <see cref="T:Sudoku.Rendering.ColorColorIdentifier"/> instances.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Rendering.PaletteIdColorIdentifier_DeserializationTempType">
+            <summary>
+            The temporary and intermediate type used for deserialization on <see cref="T:Sudoku.Rendering.PaletteIdColorIdentifier"/> instances.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier_DeserializationTempType.#ctor(System.Int32)">
+            <summary>
+            The temporary and intermediate type used for deserialization on <see cref="T:Sudoku.Rendering.PaletteIdColorIdentifier"/> instances.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Rendering.WellKnownColorIdentifier_DeserializationTempType">
+            <summary>
+            The temporary and intermediate type used for deserialization on <see cref="T:Sudoku.Rendering.WellKnownColorIdentifier"/> instances.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Rendering.WellKnownColorIdentifier_DeserializationTempType.#ctor(Sudoku.Rendering.WellKnownColorIdentifierKind)">
+            <summary>
+            The temporary and intermediate type used for deserialization on <see cref="T:Sudoku.Rendering.WellKnownColorIdentifier"/> instances.
+            </summary>
+        </member>
         <member name="T:Sudoku.Rendering.IRenderable">
             <summary>
             Represents a renderable instance that can be used for rendering, providing with base data structure to be used by drawing APIs.
@@ -201,11 +243,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.BabaGroupViewNode">
-            <summary>
-            Defines a view node that highlights for a Baba group.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Utf8Char,System.Int16)">
             <summary>
             Defines a view node that highlights for a Baba group.
             </summary>
@@ -358,11 +395,6 @@ if (student is (name: var name, age: >= 18))
             Defines a view node that highlights for a candidate.
             </summary>
         </member>
-        <member name="M:Sudoku.Rendering.Nodes.CandidateViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32)">
-            <summary>
-            Defines a view node that highlights for a candidate.
-            </summary>
-        </member>
         <member name="P:Sudoku.Rendering.Nodes.CandidateViewNode.Candidate">
             <summary>
             Indicates the candidate highlighted.
@@ -437,11 +469,6 @@ if (student is (name: var name, age: >= 18))
             Defines a view node that highlights for a cell.
             </summary>
         </member>
-        <member name="M:Sudoku.Rendering.Nodes.CellViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32)">
-            <summary>
-            Defines a view node that highlights for a cell.
-            </summary>
-        </member>
         <member name="P:Sudoku.Rendering.Nodes.CellViewNode.Cell">
             <summary>
             Indicates the cell highlighted.
@@ -512,11 +539,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.ChuteViewNode">
-            <summary>
-            Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.ChuteViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32)">
             <summary>
             Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
             </summary>
@@ -884,11 +906,6 @@ if (student is (name: var name, age: >= 18))
             Defines a view node that highlights for a house.
             </summary>
         </member>
-        <member name="M:Sudoku.Rendering.Nodes.HouseViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32)">
-            <summary>
-            Defines a view node that highlights for a house.
-            </summary>
-        </member>
         <member name="P:Sudoku.Rendering.Nodes.HouseViewNode.House">
             <summary>
             Indicates the house highlighted.
@@ -1029,11 +1046,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.LinkViewNode">
-            <summary>
-            Defines a view node that highlights for a link.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.LinkViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,Sudoku.Concepts.LockedTarget@,Sudoku.Concepts.LockedTarget@,Sudoku.Concepts.Inference)">
             <summary>
             Defines a view node that highlights for a link.
             </summary>
@@ -2064,11 +2076,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="value">The palette color ID value to be assigned. The color palette requires implementation of target projects.</param>
         </member>
-        <member name="P:Sudoku.Rendering.PaletteIdColorIdentifier.Value">
-            <summary>
-            Indicates the ID value.
-            </summary>
-        </member>
         <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier.Equals(Sudoku.Rendering.ColorIdentifier)">
             <inheritdoc/>
         </member>
@@ -2077,6 +2084,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="P:Sudoku.Rendering.PaletteIdColorIdentifier.Value">
+            <summary>
+            The generated property declaration for parameter <c>value</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Rendering.View">
             <summary>
@@ -2341,11 +2353,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet5">
             <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet5"/>
         </member>
-        <member name="P:Sudoku.Rendering.WellKnownColorIdentifier.Kind">
-            <summary>
-            Indicates the kind.
-            </summary>
-        </member>
         <member name="M:Sudoku.Rendering.WellKnownColorIdentifier.Equals(Sudoku.Rendering.ColorIdentifier)">
             <inheritdoc/>
         </member>
@@ -2354,6 +2361,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.WellKnownColorIdentifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="P:Sudoku.Rendering.WellKnownColorIdentifier.Kind">
+            <summary>
+            The generated property declaration for parameter <c>kind</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Rendering.WellKnownColorIdentifierKind">
             <summary>

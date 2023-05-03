@@ -3,13 +3,20 @@ namespace Sudoku.Rendering.Nodes;
 /// <summary>
 /// Defines a view node that highlights for a cell.
 /// </summary>
-public sealed partial class CellViewNode(ColorIdentifier identifier, Cell cell) : BasicViewNode(identifier)
+//[method: JsonConstructor]
+public sealed partial class CellViewNode : BasicViewNode//(ColorIdentifier identifier, Cell cell) : BasicViewNode(identifier)
 {
+#pragma warning disable CS1591
+	[JsonConstructor]
+	public CellViewNode(ColorIdentifier identifier, Cell cell) : base(identifier) => Cell = cell;
+#pragma warning restore CS1591
+
+
 	/// <summary>
 	/// Indicates the cell highlighted.
 	/// </summary>
 	[JsonInclude]
-	public Cell Cell { get; } = cell;
+	public Cell Cell { get; }// = cell;
 
 	/// <summary>
 	/// Indicates the cell string.

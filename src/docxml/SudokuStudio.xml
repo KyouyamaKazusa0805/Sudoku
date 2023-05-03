@@ -1005,6 +1005,11 @@
             Indicates the grid string.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Configuration.GridSerializationData.RenderableData">
+            <summary>
+            Indicates the data that represents the conclusions and view nodes.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Configuration.PreferenceGroup">
             <summary>
             Defines a preference group that contains a list of preference items that can be serialized and deserialized by JSON.
@@ -1649,6 +1654,28 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
+        </member>
+        <member name="T:SudokuStudio.Configuration.UserDefinedRenderable">
+            <summary>
+            Represents a data structure that provides the basic usage in <see cref="T:Sudoku.Rendering.IRenderable"/> members.
+            </summary>
+            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Conclusions" path="/summary"/></param>
+            <param name="Views"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Views" path="/summary"/></param>
+            <seealso cref="T:Sudoku.Rendering.IRenderable"/>
+        </member>
+        <member name="M:SudokuStudio.Configuration.UserDefinedRenderable.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
+            <summary>
+            Represents a data structure that provides the basic usage in <see cref="T:Sudoku.Rendering.IRenderable"/> members.
+            </summary>
+            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Conclusions" path="/summary"/></param>
+            <param name="Views"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Views" path="/summary"/></param>
+            <seealso cref="T:Sudoku.Rendering.IRenderable"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UserDefinedRenderable.Conclusions">
+            <summary><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Conclusions" path="/summary"/></summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UserDefinedRenderable.Views">
+            <summary><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Views" path="/summary"/></summary>
         </member>
         <member name="T:SudokuStudio.Input.Hotkey">
             <summary>

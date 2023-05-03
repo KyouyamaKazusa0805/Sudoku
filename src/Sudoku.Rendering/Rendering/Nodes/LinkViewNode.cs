@@ -3,27 +3,34 @@ namespace Sudoku.Rendering.Nodes;
 /// <summary>
 /// Defines a view node that highlights for a link.
 /// </summary>
-public sealed partial class LinkViewNode(
-	ColorIdentifier identifier,
-	scoped in LockedTarget startPoint,
-	scoped in LockedTarget endPoint,
-	Inference inference
-) : BasicViewNode(identifier)
+//[method: JsonConstructor]
+public sealed partial class LinkViewNode : BasicViewNode //(ColorIdentifier identifier, scoped in LockedTarget startPoint, scoped in LockedTarget endPoint, Inference inference) : BasicViewNode(identifier)
 {
+#pragma warning disable CS1591
+	[JsonConstructor]
+	public LinkViewNode(ColorIdentifier identifier, scoped in LockedTarget startPoint, scoped in LockedTarget endPoint, Inference inference) : base(identifier)
+	{
+		Start = startPoint;
+		End = endPoint;
+		Inference = inference;
+	}
+#pragma warning restore CS1591
+
+
 	/// <summary>
 	/// Indicates the start point.
 	/// </summary>
-	public LockedTarget Start { get; } = startPoint;
+	public LockedTarget Start { get; }// = startPoint;
 
 	/// <summary>
 	/// Indicates the end point.
 	/// </summary>
-	public LockedTarget End { get; } = endPoint;
+	public LockedTarget End { get; }// = endPoint;
 
 	/// <summary>
 	/// Indicates the inference type.
 	/// </summary>
-	public Inference Inference { get; } = inference;
+	public Inference Inference { get; }// = inference;
 
 
 	[DeconstructionMethod]

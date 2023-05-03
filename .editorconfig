@@ -346,6 +346,9 @@ dotnet_diagnostic.CS0078.severity = none
 # CS0184: 'is' expression's given expression is never of the provided type
 dotnet_diagnostic.CS0184.severity = error
 
+# CS0657: Not a valid attribute location for this declaration
+dotnet_diagnostic.CS0657.severity = error
+
 # CS0809: Obsolete member overrides non-obsolete member
 dotnet_diagnostic.CS0809.severity = silent
 

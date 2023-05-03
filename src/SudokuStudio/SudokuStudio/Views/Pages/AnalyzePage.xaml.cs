@@ -266,11 +266,22 @@ public sealed partial class AnalyzePage : Page
 				SudokuPlainTextFileHandler.Write(filePath, SudokuPane.Puzzle);
 				break;
 			}
-			case CommonFileExtensions.Text:
+			case CommonFileExtensions.Text when SudokuPane is { Puzzle: var puzzle, ViewUnit: var viewUnit }:
 			{
 				SudokuFileHandler.Write(
 					filePath,
-					new GridSerializationData[] { new() { GridString = SusserFormat.Full.ToString(SudokuPane.Puzzle) } }
+					new GridSerializationData[]
+					{
+						new()
+						{
+							GridString = puzzle.ToString(SusserFormat.Full),
+							RenderableData = viewUnit switch
+							{
+								{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = new[] { view } },
+								_ => null
+							}
+						}
+					}
 				);
 				break;
 			}
@@ -325,12 +336,18 @@ public sealed partial class AnalyzePage : Page
 			}
 			case CommonFileExtensions.Text:
 			{
+				var renderableData = SudokuPane.ViewUnit switch
+				{
+					{ Conclusions: var conclusions, View: var view } => new UserDefinedRenderable { Conclusions = conclusions, Views = new[] { view } },
+					_ => default(UserDefinedRenderable?)
+				};
+
 				SudokuFileHandler.Write(
 					filePath,
 					(
 						from gridFormatter in gridFormatters
 						select ((IGridFormatter)gridFormatter).ToString(grid) into gridString
-						select new GridSerializationData { GridString = gridString }
+						select new GridSerializationData { GridString = gridString, RenderableData = renderableData }
 					).ToArray()
 				);
 
@@ -368,7 +385,7 @@ public sealed partial class AnalyzePage : Page
 				OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.FileIsEmpty));
 				return;
 			}
-			case > 1024:
+			case > 1024 * 64:
 			{
 				OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.FileIsTooLarge));
 				return;
@@ -399,7 +416,7 @@ public sealed partial class AnalyzePage : Page
 					{
 						switch (SudokuFileHandler.Read(filePath))
 						{
-							case [{ GridString: var str }]:
+							case [{ GridString: var str, RenderableData: var nullableRenderableData }]:
 							{
 								if (!Grid.TryParse(str, out var g))
 								{
@@ -408,6 +425,12 @@ public sealed partial class AnalyzePage : Page
 								}
 
 								SudokuPane.Puzzle = g;
+
+								if (nullableRenderableData is { } renderableData)
+								{
+									VisualUnit = renderableData;
+								}
+
 								break;
 							}
 							default:
@@ -982,7 +1005,7 @@ public sealed partial class AnalyzePage : Page
 		page.ViewsCountDisplayer.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
 	}
 
-	
+
 	private void CommandBarView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
 		=> SwitchingPage(args.InvokedItemContainer);
 

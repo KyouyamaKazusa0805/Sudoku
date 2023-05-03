@@ -573,7 +573,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 					FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsEmpty));
 					return;
 				}
-				case > 1024:
+				case > 1024 * 64:
 				{
 					FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsTooLarge));
 					return;
