@@ -3558,6 +3558,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Clear.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_ClearViewItems">
+            <summary>
+              Looks up a localized string similar to Clear items for current mode.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_CommonCommands">
             <summary>
               Looks up a localized string similar to Common Commands.

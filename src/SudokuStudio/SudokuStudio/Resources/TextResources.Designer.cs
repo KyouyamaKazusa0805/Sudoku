@@ -592,6 +592,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear items for current mode.
+        /// </summary>
+        internal static string AnalyzePage_ClearViewItems {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ClearViewItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Common Commands.
         /// </summary>
         internal static string AnalyzePage_CommonCommands {

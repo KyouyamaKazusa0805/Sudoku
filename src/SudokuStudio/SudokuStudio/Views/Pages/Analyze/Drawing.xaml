@@ -15,7 +15,7 @@
 		</Style>
 	</Page.Resources>
 
-	<StackPanel>
+	<StackPanel Spacing="12">
 		<Grid ColumnDefinitions="Auto,*">
 			<TextBlock VerticalAlignment="Center" Text="{m:R Key=DrawingPage_SelectMode}" />
 			<ComboBox
@@ -34,11 +34,11 @@
 			Visibility="{x:Bind cvt:DrawingConversion.GetColorPaletteSelectorVisibility(BasePage.SelectedMode),Mode=OneWay}">
 			<TextBlock Text="{m:R Key=DrawingPage_SelectColor}" Margin="0,0,0,6" />
 			<Rectangle
-				Grid.Row="0" Grid.Column="1" Width="24" Height="24" Stroke="Gray" StrokeThickness="1" HorizontalAlignment="Left"
+				Grid.Row="0" Grid.Column="1" Width="30" Height="30" Stroke="Gray" StrokeThickness="1" HorizontalAlignment="Left"
 				Fill="{x:Bind cvt:DrawingConversion.GetSelectedBrush(BasePage.SelectedColorIndex),Mode=OneWay}" />
 			<Grid
 				x:Name="ColorPaletteButtonGroup" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top"
-				RowDefinitions="24,24,24" ColumnDefinitions="24,24,24,24,24">
+				RowDefinitions="30,30,30" ColumnDefinitions="30,30,30,30,30">
 				<Grid.Resources>
 					<Style TargetType="Button">
 						<Setter Property="VerticalAlignment" Value="Stretch" />
@@ -84,6 +84,9 @@
 			<TextBlock
 				x:Name="InvalidInputInfoDisplayer" x:FieldModifier="internal" Grid.Column="2" VerticalAlignment="Center"
 				Text="{m:R Key=DrawingPage_InputCharacterIsInvalid}" Foreground="Red" Visibility="Collapsed" />
+		</Grid>
+		<Grid Style="{StaticResource DrawingInfoChangerStyle}">
+			<Button Content="{m:R Key=AnalyzePage_ClearViewItems}" Click="ClearItems_Click" />
 		</Grid>
 	</StackPanel>
 </Page>

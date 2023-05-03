@@ -42,4 +42,27 @@ public sealed partial class Drawing : Page, IAnalyzeTabPage
 			BasePage.SelectedColorIndex = i;
 		}
 	}
+
+	private void ClearItems_Click(object sender, RoutedEventArgs e)
+	{
+		if (BasePage is not { SelectedMode: var mode and not 0, _localView: { View: var view } localViewUnit } || !Enum.IsDefined(mode))
+		{
+			return;
+		}
+
+		view.RemoveWhere(
+			node => mode switch
+			{
+				DrawingMode.Cell => node is CellViewNode,
+				DrawingMode.Candidate => node is CandidateViewNode,
+				DrawingMode.House => node is HouseViewNode,
+				DrawingMode.Chute => node is ChuteViewNode,
+				DrawingMode.BabaGrouping => node is BabaGroupViewNode,
+				DrawingMode.Link => node is LinkViewNode
+			}
+		);
+
+		BasePage.SudokuPane.ViewUnit = null;
+		BasePage.SudokuPane.ViewUnit = localViewUnit;
+	}
 }
