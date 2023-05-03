@@ -237,6 +237,9 @@
   <data name="AnalyzePage_Clear" xml:space="preserve">
     <value>空盘复盘</value>
   </data>
+  <data name="AnalyzePage_ClearAllViewItems" xml:space="preserve">
+    <value>清除全部绘图内容</value>
+  </data>
   <data name="AnalyzePage_ClearViewItems" xml:space="preserve">
     <value>清除当前的绘图内容</value>
   </data>

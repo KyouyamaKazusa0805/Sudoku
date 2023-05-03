@@ -38,10 +38,13 @@
 				Fill="{x:Bind cvt:DrawingConversion.GetSelectedBrush(BasePage.SelectedColorIndex),Mode=OneWay}" />
 			<Grid
 				x:Name="ColorPaletteButtonGroup" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top"
-				RowDefinitions="30,30,30" ColumnDefinitions="30,30,30,30,30">
+				RowDefinitions="36,36,36" ColumnDefinitions="36,36,36,36,36">
 				<Grid.Resources>
 					<Style TargetType="Button">
+						<Setter Property="HorizontalAlignment" Value="Stretch" />
 						<Setter Property="VerticalAlignment" Value="Stretch" />
+						<Setter Property="Margin" Value="3" />
+						<Setter Property="CornerRadius" Value="3" />
 					</Style>
 				</Grid.Resources>
 
@@ -85,8 +88,11 @@
 				x:Name="InvalidInputInfoDisplayer" x:FieldModifier="internal" Grid.Column="2" VerticalAlignment="Center"
 				Text="{m:R Key=DrawingPage_InputCharacterIsInvalid}" Foreground="Red" Visibility="Collapsed" />
 		</Grid>
-		<Grid Style="{StaticResource DrawingInfoChangerStyle}">
+		<Grid RowDefinitions="Auto,*" Style="{StaticResource DrawingInfoChangerStyle}">
 			<Button Content="{m:R Key=AnalyzePage_ClearViewItems}" Click="ClearItems_Click" />
+			<Button
+				Grid.Row="1" Background="Red" Foreground="White" Content="{m:R Key=AnalyzePage_ClearAllViewItems}"
+				Click="ClearAllViewItems_Click" />
 		</Grid>
 	</StackPanel>
 </Page>

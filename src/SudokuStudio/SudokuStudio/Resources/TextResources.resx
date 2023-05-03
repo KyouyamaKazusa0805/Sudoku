@@ -237,6 +237,9 @@
   <data name="AnalyzePage_Clear" xml:space="preserve">
     <value>Clear</value>
   </data>
+  <data name="AnalyzePage_ClearAllViewItems" xml:space="preserve">
+    <value>Clear all view items</value>
+  </data>
   <data name="AnalyzePage_ClearViewItems" xml:space="preserve">
     <value>Clear items for current mode</value>
   </data>

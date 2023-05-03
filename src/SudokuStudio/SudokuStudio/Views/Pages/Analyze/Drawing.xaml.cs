@@ -65,4 +65,17 @@ public sealed partial class Drawing : Page, IAnalyzeTabPage
 		BasePage.SudokuPane.ViewUnit = null;
 		BasePage.SudokuPane.ViewUnit = localViewUnit;
 	}
+
+	private void ClearAllViewItems_Click(object sender, RoutedEventArgs e)
+	{
+		if (BasePage is not { SelectedMode: var mode and not 0, _localView: { View: var view } localViewUnit } || !Enum.IsDefined(mode))
+		{
+			return;
+		}
+
+		view.Clear();
+
+		BasePage.SudokuPane.ViewUnit = null;
+		BasePage.SudokuPane.ViewUnit = localViewUnit;
+	}
 }
