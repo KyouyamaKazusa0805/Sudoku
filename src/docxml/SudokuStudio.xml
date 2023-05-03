@@ -3623,6 +3623,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Total.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Drawing">
+            <summary>
+              Looks up a localized string similar to Drawing.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_EmptyGrid">
             <summary>
               Looks up a localized string similar to &lt;Empty&gt;.
@@ -3988,11 +3993,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Step Description:.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_StartDrawingButton">
-            <summary>
-              Looks up a localized string similar to Switch to drawing mode.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_StepDetail">
             <summary>
               Looks up a localized string similar to Solving Path.
@@ -4181,11 +4181,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.MainWindow_BasicPreferenceItemsPageTitle">
             <summary>
               Looks up a localized string similar to Program Basic Options.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.TextResources.MainWindow_Drawing">
-            <summary>
-              Looks up a localized string similar to Drawing.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.MainWindow_DrawingPageTitle">
@@ -6683,6 +6678,21 @@ if (student is (name: var name, age: >= 18))
             Defines a new page that stores a set of controls to analyze a sudoku grid.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._previousSelectedCandidate">
+            <summary>
+            <para>Indicates the previously selected candidate.</para>
+            <para>
+            This field can record the previous data in a pair of clicking operation.
+            For example, constructing a chain, we should click twice, for the head and tail of the chain.
+            If we click at the second time, this field will be set the candidate having clicked at the first time.
+            </para>
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._localView">
+            <summary>
+            Defines a local view.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._tabsRoutingData">
             <summary>
             Indicates the tab routing data.
@@ -6853,12 +6863,10 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.GetMainWindow">
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.UpdateViewUnit">
             <summary>
-            Gets the main window.
+            Try to update view unit.
             </summary>
-            <returns>The main window.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the base window cannot be found.</exception>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.OnSavingOrCopyingSudokuPanePictureAsync``1(``0)">
             <summary>
@@ -6903,17 +6911,41 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.GeneratorIsNotRunning"/>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercentProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndexProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercentProperty">
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.SelectedColorIndexProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedColorIndex"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedColorIndex"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.BabaGroupNameInputProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.BabaGroupNameInput"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.BabaGroupNameInput"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.SelectedModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedMode"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.LinkKindProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.LinkKind"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.LinkKind"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCacheProperty">
             <summary>
@@ -6948,14 +6980,34 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the generator is not running currently.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent">
+            <summary>
+            Indicates the progress percent value.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex">
             <summary>
             Indicates the current index of the view of property <see cref="P:Sudoku.Rendering.IRenderable.Views"/> displayed.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent">
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedColorIndex">
             <summary>
-            Indicates the progress percent value.
+            Indicates the selected color index.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.BabaGroupNameInput">
+            <summary>
+            Indicates the input character that is used as a baba group variable.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedMode">
+            <summary>
+            Indicates the selected drawing mode.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.LinkKind">
+            <summary>
+            Indicates the link type.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache">
@@ -6971,6 +7023,27 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit">
             <summary>
             Indicates the visual unit.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Analyze.Drawing">
+            <summary>
+            Represents a tab page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.Drawing.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Analyze.Drawing"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.Drawing.BasePage">
+            <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.Drawing.SudokuStudio#ComponentModel#IAnalyzeTabPage#AnalysisResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.Drawing.InitializeComponent">
+            <summary>
+            InitializeComponent()
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.GridGathering">
@@ -7143,92 +7216,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             InitializeComponent()
             </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Pages.DrawingPage">
-            <summary>
-            Defines a drawing page.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.DrawingPage._localView">
-            <summary>
-            Defines a local view.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.DrawingPage._previousSelectedCandidate">
-            <summary>
-            Indicates the previously selected candidate.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.DrawingPage.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.DrawingPage"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.DrawingPage.OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.DrawingPage.UpdateViewUnit">
-            <summary>
-            Try to update view unit.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.DrawingPage.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndexProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndex"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndex"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.DrawingPage.BabaGroupNameInputProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.BabaGroupNameInput"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.BabaGroupNameInput"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.DrawingPage.SelectedModeProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.DrawingPage.LinkKindProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.LinkKind"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.LinkKind"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPaletteProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPalette"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPalette"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.DrawingPage.SelectedColorIndex">
-            <summary>
-            Indicates the selected color index.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.DrawingPage.BabaGroupNameInput">
-            <summary>
-            Indicates the input character that is used as a baba group variable.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.DrawingPage.SelectedMode">
-            <summary>
-            Indicates the selected drawing mode.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.DrawingPage.LinkKind">
-            <summary>
-            Indicates the link type.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.DrawingPage.UserDefinedColorPalette">
-            <inheritdoc cref="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation">
             <summary>

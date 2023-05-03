@@ -285,6 +285,9 @@
   <data name="AnalyzePage_DifficultyTotal" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="AnalyzePage_Drawing" xml:space="preserve">
+    <value>Drawing</value>
+  </data>
   <data name="AnalyzePage_EmptyGrid" xml:space="preserve">
     <value>&lt;Empty&gt;</value>
   </data>
@@ -504,9 +507,6 @@
   <data name="AnalyzePage_SimpleDescription" xml:space="preserve">
     <value>Step Description:</value>
   </data>
-  <data name="AnalyzePage_StartDrawingButton" xml:space="preserve">
-    <value>Switch to drawing mode</value>
-  </data>
   <data name="AnalyzePage_StepDetail" xml:space="preserve">
     <value>Solving Path</value>
   </data>
@@ -620,9 +620,6 @@
   </data>
   <data name="MainWindow_BasicPreferenceItemsPageTitle" xml:space="preserve">
     <value>Program Basic Options</value>
-  </data>
-  <data name="MainWindow_Drawing" xml:space="preserve">
-    <value>Drawing</value>
   </data>
   <data name="MainWindow_DrawingPageTitle" xml:space="preserve">
     <value>Customized Drawing</value>

@@ -736,6 +736,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drawing.
+        /// </summary>
+        internal static string AnalyzePage_Drawing {
+            get {
+                return ResourceManager.GetString("AnalyzePage_Drawing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;Empty&gt;.
         /// </summary>
         internal static string AnalyzePage_EmptyGrid {
@@ -1393,15 +1402,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Switch to drawing mode.
-        /// </summary>
-        internal static string AnalyzePage_StartDrawingButton {
-            get {
-                return ResourceManager.GetString("AnalyzePage_StartDrawingButton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Solving Path.
         /// </summary>
         internal static string AnalyzePage_StepDetail {
@@ -1740,15 +1740,6 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_BasicPreferenceItemsPageTitle {
             get {
                 return ResourceManager.GetString("MainWindow_BasicPreferenceItemsPageTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Drawing.
-        /// </summary>
-        internal static string MainWindow_Drawing {
-            get {
-                return ResourceManager.GetString("MainWindow_Drawing", resourceCulture);
             }
         }
         

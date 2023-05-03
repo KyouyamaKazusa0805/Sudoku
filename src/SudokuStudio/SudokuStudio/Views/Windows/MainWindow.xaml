@@ -60,11 +60,6 @@
 								<FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7FC;" />
 							</NavigationViewItem.Icon>
 						</NavigationViewItem>
-						<NavigationViewItem x:Name="DrawingPageItem" Content="{m:R Key=MainWindow_Drawing}">
-							<NavigationViewItem.Icon>
-								<FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE790;" />
-							</NavigationViewItem.Icon>
-						</NavigationViewItem>
 					</NavigationViewItem.MenuItems>
 				</NavigationViewItem>
 			</NavigationView.MenuItems>

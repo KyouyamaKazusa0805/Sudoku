@@ -285,6 +285,9 @@
   <data name="AnalyzePage_DifficultyTotal" xml:space="preserve">
     <value>总难度分</value>
   </data>
+  <data name="AnalyzePage_Drawing" xml:space="preserve">
+    <value>绘图</value>
+  </data>
   <data name="AnalyzePage_DrawingButton" xml:space="preserve">
     <value>绘图模式</value>
   </data>
@@ -507,9 +510,6 @@
   <data name="AnalyzePage_SimpleDescription" xml:space="preserve">
     <value>步骤信息：</value>
   </data>
-  <data name="AnalyzePage_StartDrawingButton" xml:space="preserve">
-    <value>切换至绘图模式</value>
-  </data>
   <data name="AnalyzePage_StepDetail" xml:space="preserve">
     <value>解题步骤</value>
   </data>
@@ -623,9 +623,6 @@
   </data>
   <data name="MainWindow_BasicPreferenceItemsPageTitle" xml:space="preserve">
     <value>程序基本设置</value>
-  </data>
-  <data name="MainWindow_Drawing" xml:space="preserve">
-    <value>绘图</value>
   </data>
   <data name="MainWindow_DrawingPageTitle" xml:space="preserve">
     <value>自定义绘图</value>

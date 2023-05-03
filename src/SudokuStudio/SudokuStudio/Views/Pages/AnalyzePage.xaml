@@ -80,12 +80,6 @@
 							<AppBarToggleButton
 								Icon="Accept" Label="{m:R Key=AnalyzePage_LogicalSolverIgnoresHighAllocationAlgorithms}"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=TwoWay}" />
-							<AppBarSeparator />
-							<AppBarButton Label="{m:R Key=AnalyzePage_StartDrawingButton}" Click="StartDrawingButton_Click">
-								<AppBarButton.Icon>
-									<FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE790;" />
-								</AppBarButton.Icon>
-							</AppBarButton>
 						</CommandBar>
 					</Border>
 				</Grid>
@@ -100,6 +94,7 @@
 						<c:SudokuPane
 							x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" SelectedCell="-1"
 							HorizontalAlignment="Left" VerticalAlignment="Top" ViewUnit="{x:Null}"
+							Clicked="SudokuPane_Clicked"
 							EnableAnimationFeedback="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableAnimationFeedback,Mode=TwoWay}"
 							TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=TwoWay}"
 							EnableDoubleTapFilling="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableDoubleTapFillingForSudokuPane,Mode=OneWay}"

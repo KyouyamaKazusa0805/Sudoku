@@ -6,8 +6,12 @@ namespace SudokuStudio.Views.Pages;
 [DependencyProperty<bool>("IsAnalyzerLaunched", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the analyzer is launched.")]
 [DependencyProperty<bool>("IsGathererLaunched", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the gatherer is launched.")]
 [DependencyProperty<bool>("GeneratorIsNotRunning", DefaultValue = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the generator is not running currently.")]
-[DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"IRenderable.Views\"/> displayed.")]
 [DependencyProperty<double>("ProgressPercent", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the progress percent value.")]
+[DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"IRenderable.Views\"/> displayed.")]
+[DependencyProperty<int>("SelectedColorIndex", DefaultValue = -1, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the selected color index.")]
+[DependencyProperty<string>("BabaGroupNameInput", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the input character that is used as a baba group variable.")]
+[DependencyProperty<DrawingMode>("SelectedMode", DefaultValue = DrawingMode.Cell, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the selected drawing mode.")]
+[DependencyProperty<Inference>("LinkKind", DefaultValue = Inference.Strong, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the link type.")]
 [DependencyProperty<AnalyzerResult>("AnalysisResultCache", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the analysis result cache.")]
 [DependencyProperty<ColorPalette>("UserDefinedPalette", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the user-defined colors.")]
 [DependencyProperty<IRenderable>("VisualUnit", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the visual unit.")]
@@ -16,6 +20,21 @@ public sealed partial class AnalyzePage : Page
 	[DefaultValue]
 	private static readonly ColorPalette UserDefinedPaletteDefaultValue = ((App)Application.Current).Preference.UIPreferences.UserDefinedColorPalette;
 
+
+	/// <summary>
+	/// <para>Indicates the previously selected candidate.</para>
+	/// <para>
+	/// This field can record the previous data in a pair of clicking operation.
+	/// For example, constructing a chain, we should click twice, for the head and tail of the chain.
+	/// If we click at the second time, this field will be set the candidate having clicked at the first time.
+	/// </para>
+	/// </summary>
+	internal Candidate? _previousSelectedCandidate;
+
+	/// <summary>
+	/// Defines a local view.
+	/// </summary>
+	internal ViewUnitBindableSource? _localView = new() { Conclusions = Array.Empty<Conclusion>(), View = View.Empty };
 
 	/// <summary>
 	/// Indicates the tab routing data.
@@ -434,27 +453,35 @@ public sealed partial class AnalyzePage : Page
 	[MemberNotNull(nameof(_hotkeyFunctions), nameof(_navigatingData), nameof(_tabsRoutingData))]
 	private void InitializeFields()
 	{
+		var thickness = new Thickness(10);
 		_tabsRoutingData = new()
 		{
 			new()
 			{
 				Header = GetString("AnalyzePage_TechniquesTable"),
-				IconSource = createIconSource(Symbol.Flag),
-				Page = createPage<Summary>()
+				IconSource = new SymbolIconSource { Symbol = Symbol.Flag },
+				Page = new Summary { Margin = thickness, BasePage = this }
 			},
 			new()
 			{
 				Header = GetString("AnalyzePage_StepDetail"),
-				IconSource = createIconSource(Symbol.ShowResults),
-				Page = createPage<SolvingPath>()
+				IconSource = new SymbolIconSource { Symbol = Symbol.ShowResults },
+				Page = new SolvingPath { Margin = thickness, BasePage = this }
 			},
 			new()
 			{
 				Header = GetString("AnalyzePage_AllStepsInCurrentGrid"),
-				IconSource = createIconSource(Symbol.Shuffle),
-				Page = createPage<GridGathering>()
+				IconSource = new SymbolIconSource { Symbol = Symbol.Shuffle },
+				Page = new GridGathering { Margin = thickness, BasePage = this }
+			},
+			new()
+			{
+				Header = GetString("AnalyzePage_Drawing"),
+				IconSource = new SymbolIconSource { Symbol = Symbol.Edit },
+				Page = new Drawing { Margin = thickness, BasePage = this }
 			}
 		};
+
 		_hotkeyFunctions = new()
 		{
 			{ new(VirtualKeyModifiers.Control, VirtualKey.Z), SudokuPane.UndoStep },
@@ -473,6 +500,7 @@ public sealed partial class AnalyzePage : Page
 			{ new(VirtualKey.End), SetEndView },
 			{ new(VirtualKey.Escape), ClearView }
 		};
+
 		_navigatingData = new()
 		{
 			{ container => container == BasicOperationBar, typeof(BasicOperation) },
@@ -480,11 +508,6 @@ public sealed partial class AnalyzePage : Page
 			{ container => container == PrintingOperationBar, typeof(PrintingOperation) },
 			{ container => container == ShuffleOperationBar, typeof(ShuffleOperation) }
 		};
-
-
-		static IconSource createIconSource(Symbol symbol) => new SymbolIconSource { Symbol = symbol };
-
-		T createPage<T>() where T : Page, IAnalyzeTabPage, new() => new() { Margin = new(10), BasePage = this };
 	}
 
 	/// <summary>
@@ -631,16 +654,248 @@ public sealed partial class AnalyzePage : Page
 	private bool IsSudokuPaneFocused() => SudokuPane.FocusState != FocusState.Unfocused;
 
 	/// <summary>
-	/// Gets the main window.
+	/// Try to update view unit.
 	/// </summary>
-	/// <returns>The main window.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the base window cannot be found.</exception>
-	private MainWindow GetMainWindow()
-		=> ((App)Application.Current).WindowManager.GetWindowForElement(this) switch
+	private void UpdateViewUnit()
+	{
+		SudokuPane.ViewUnit = null; // Change the reference to update view.
+		SudokuPane.ViewUnit = _localView;
+	}
+
+	private bool CheckCellNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
+	{
+		switch (e)
 		{
-			MainWindow mainWindow => mainWindow,
-			_ => throw new InvalidOperationException("Main window cannot be found.")
-		};
+			case { Cell: var cell, MouseButton: MouseButton.Left }:
+			{
+				if (view.View.Find(node => node is CellViewNode { Cell: var c } && c == cell) is { } foundNode)
+				{
+					view.View.Remove(foundNode);
+				}
+				else
+				{
+					var id = UserDefinedPalette[index].GetIdentifier();
+					view.View.Add(new CellViewNode(id, cell));
+				}
+
+				UpdateViewUnit();
+
+				break;
+			}
+		}
+
+		return true;
+	}
+
+	private bool CheckCandidateNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
+	{
+		switch (e)
+		{
+			case { Candidate: var candidate, MouseButton: MouseButton.Left }:
+			{
+				if (view.View.Find(node => node is CandidateViewNode { Candidate: var c } && c == candidate) is { } foundNode)
+				{
+					view.View.Remove(foundNode);
+				}
+				else
+				{
+					var id = UserDefinedPalette[index].GetIdentifier();
+					view.View.Add(new CandidateViewNode(id, candidate));
+				}
+
+				UpdateViewUnit();
+
+				break;
+			}
+		}
+
+		return true;
+	}
+
+	private bool CheckHouseNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
+	{
+		switch (e)
+		{
+			case { Candidate: var candidate2, MouseButton: MouseButton.Left }:
+			{
+				if (_previousSelectedCandidate is not { } candidate1)
+				{
+					_previousSelectedCandidate = candidate2;
+					return false;
+				}
+
+				var cell1 = candidate1 / 9;
+				var cell2 = candidate2 / 9;
+				if ((CellsMap[cell1] + cell2).CoveredHouses is not (var coveredHouses and not 0))
+				{
+					_previousSelectedCandidate = null;
+					return true;
+				}
+
+				var house = TrailingZeroCount(coveredHouses);
+				if (view.View.Find(node => node is HouseViewNode { House: var h } && h == house) is { } foundNode)
+				{
+					view.View.Remove(foundNode);
+				}
+				else
+				{
+					var id = UserDefinedPalette[index].GetIdentifier();
+					view.View.Add(new HouseViewNode(id, house));
+				}
+
+				UpdateViewUnit();
+
+				break;
+			}
+		}
+
+		return true;
+	}
+
+	private bool CheckChuteNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
+	{
+		switch (e)
+		{
+			case { Candidate: var candidate2, MouseButton: MouseButton.Left }:
+			{
+				if (_previousSelectedCandidate is not { } candidate1)
+				{
+					_previousSelectedCandidate = candidate2;
+					return false;
+				}
+
+				var (mr1, mc1) = GridClickedEventArgs.GetChute(candidate1);
+				var (mr2, mc2) = GridClickedEventArgs.GetChute(candidate2);
+				if (mr1 == mr2)
+				{
+					if (view.View.Find(node => node is ChuteViewNode { ChuteIndex: var c } && c == mr1) is { } foundNode)
+					{
+						view.View.Remove(foundNode);
+					}
+					else
+					{
+						var id = UserDefinedPalette[index].GetIdentifier();
+						view.View.Add(new ChuteViewNode(id, mr1));
+					}
+
+					UpdateViewUnit();
+
+					break;
+				}
+
+				if (mc1 == mc2)
+				{
+					if (view.View.Find(node => node is ChuteViewNode { ChuteIndex: var c } && c - 3 == mc1) is { } foundNode)
+					{
+						view.View.Remove(foundNode);
+					}
+					else
+					{
+						var id = UserDefinedPalette[index].GetIdentifier();
+						view.View.Add(new ChuteViewNode(id, mc1 + 3));
+					}
+
+					UpdateViewUnit();
+
+					break;
+				}
+
+				break;
+			}
+		}
+
+		return true;
+	}
+
+	private bool CheckLinkNode(GridClickedEventArgs e, ViewUnitBindableSource view)
+	{
+		switch (e)
+		{
+			case { Candidate: var candidate2, MouseButton: MouseButton.Left }:
+			{
+				if (_previousSelectedCandidate is not { } candidate1)
+				{
+					_previousSelectedCandidate = candidate2;
+					return false;
+				}
+
+				var cell1 = candidate1 / 9;
+				var cell2 = candidate2 / 9;
+				var digit1 = candidate1 % 9;
+				var digit2 = candidate2 % 9;
+				if (view.View.Find(predicate) is { } foundNode)
+				{
+					view.View.Remove(foundNode);
+				}
+				else
+				{
+					var lt1 = new LockedTarget(candidate1 % 9, CellsMap[candidate1 / 9]);
+					var lt2 = new LockedTarget(candidate2 % 9, CellsMap[candidate2 / 9]);
+					view.View.Add(new LinkViewNode(default!, lt1, lt2, LinkKind)); // Link nodes don't use identifier to display colors.
+				}
+
+				UpdateViewUnit();
+
+				break;
+
+
+				bool predicate(ViewNode element)
+					=> element switch
+					{
+						LinkViewNode { Start.Cells: [var c1], End.Cells: [var c2], Inference: Inference.Default }
+							=> c1 == cell1 && c2 == cell2 || c2 == cell1 && c1 == cell2,
+						LinkViewNode { Start: { Cells: [var c1], Digit: var d1 }, End: { Cells: [var c2], Digit: var d2 } }
+							=> c1 == cell1 && c2 == cell2 && d1 == digit1 && d2 == digit2
+							|| c2 == cell1 && c1 == cell2 && d2 == digit1 && d1 == digit2
+					};
+			}
+		}
+
+		return true;
+	}
+
+	private bool CheckBabaGroupingNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
+	{
+		switch (BabaGroupNameInput)
+		{
+			case null or []:
+			{
+				return true;
+			}
+			case [var character]:
+			{
+				switch (e)
+				{
+					case { Candidate: var candidate }:
+					{
+						var cell = candidate / 9;
+						if (view.View.Find(node => node is BabaGroupViewNode { Cell: var c } && c == cell) is { } foundNode)
+						{
+							view.View.Remove(foundNode);
+						}
+						else
+						{
+							var id = UserDefinedPalette[index].GetIdentifier();
+							view.View.Add(new BabaGroupViewNode(id, cell, (Utf8Char)character, Grid.MaxCandidatesMask));
+						}
+
+						UpdateViewUnit();
+
+						break;
+					}
+				}
+
+				break;
+			}
+			default:
+			{
+				((Drawing)AnalyzeTabs.SelectedItem).InvalidInputInfoDisplayer.Visibility = Visibility.Visible;
+				break;
+			}
+		}
+
+		return true;
+	}
 
 	/// <summary>
 	/// Produces a copying/saving operation for pictures from sudoku pane <see cref="SudokuPane"/>.
@@ -727,7 +982,7 @@ public sealed partial class AnalyzePage : Page
 		page.ViewsCountDisplayer.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
 	}
 
-
+	
 	private void CommandBarView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
 		=> SwitchingPage(args.InvokedItemContainer);
 
@@ -887,6 +1142,31 @@ public sealed partial class AnalyzePage : Page
 		}
 	}
 
-	private void StartDrawingButton_Click(object sender, RoutedEventArgs e)
-		=> GetMainWindow().NavigateToPage(typeof(DrawingPage), SudokuPane.Puzzle);
+	private void SudokuPane_Clicked(SudokuPane sender, GridClickedEventArgs e)
+	{
+		if (e.MouseButton is MouseButton.Right or MouseButton.Middle)
+		{
+			return;
+		}
+
+		if (_localView is null)
+		{
+			return;
+		}
+
+		var shouldClearValue = this switch
+		{
+			{ SelectedMode: DrawingMode.Cell, SelectedColorIndex: var index and not -1 } => CheckCellNode(index, e, _localView),
+			{ SelectedMode: DrawingMode.Candidate, SelectedColorIndex: var index and not -1 } => CheckCandidateNode(index, e, _localView),
+			{ SelectedMode: DrawingMode.House, SelectedColorIndex: var index and not -1 } => CheckHouseNode(index, e, _localView),
+			{ SelectedMode: DrawingMode.Chute, SelectedColorIndex: var index and not -1 } => CheckChuteNode(index, e, _localView),
+			{ SelectedMode: DrawingMode.Link } => CheckLinkNode(e, _localView),
+			{ SelectedMode: DrawingMode.BabaGrouping, SelectedColorIndex: var index and not -1 } => CheckBabaGroupingNode(index, e, _localView),
+			_ => true
+		};
+		if (shouldClearValue)
+		{
+			_previousSelectedCandidate = null;
+		}
+	}
 }

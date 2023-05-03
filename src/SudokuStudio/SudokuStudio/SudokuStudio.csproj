@@ -56,12 +56,12 @@
 		<None Remove="Views\Controls\TechniqueGroupView.xaml" />
 		<None Remove="Views\Pages\AboutPage.xaml" />
 		<None Remove="Views\Pages\AnalyzePage.xaml" />
+		<None Remove="Views\Pages\Analyze\Drawing.xaml" />
 		<None Remove="Views\Pages\Analyze\GridGathering.xaml" />
 		<None Remove="Views\Pages\Analyze\SolvingPath.xaml" />
 		<None Remove="Views\Pages\Analyze\Summary.xaml" />
 		<None Remove="Views\Pages\ContentDialogs\ErrorStepDialogContent.xaml" />
 		<None Remove="Views\Pages\ContentDialogs\ExceptionThrownOnAnalyzingContent.xaml" />
-		<None Remove="Views\Pages\DrawingPage.xaml" />
 		<None Remove="Views\Pages\Operation\AttributeCheckingOperation.xaml" />
 		<None Remove="Views\Pages\Operation\BasicOperation.xaml" />
 		<None Remove="Views\Pages\Operation\PrintingOperation.xaml" />
@@ -112,9 +112,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Page Update="Views\Pages\DrawingPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
+	  <Page Update="Views\Pages\Analyze\Drawing.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+
+	<ItemGroup>
 		<Page Update="Views\Pages\ContentDialogs\ExceptionThrownOnAnalyzingContent.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
