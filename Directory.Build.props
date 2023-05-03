@@ -49,7 +49,9 @@
 		-->
 	</Choose>
 
-	<!--GLOBAL TYPE ALIASES-->
+	<!--
+	GLOBAL TYPE ALIASES
+	-->
 	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0'">
 		<Using Include="System.Int32" Alias="Candidate" />
 		<Using Include="System.Int32" Alias="Cell" />
