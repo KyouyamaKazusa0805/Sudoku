@@ -10,7 +10,7 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 	public override async Task ExecuteAsync()
 	{
 		var analyzer = PuzzleAnalyzer.WithAlgorithmLimits(true, true);
-		for (var trial = 0; trial < 100; trial++)
+		for (var trial = 0; trial < 10000; trial++)
 		{
 			// 出题。
 			var grid = Generator.Generate();
