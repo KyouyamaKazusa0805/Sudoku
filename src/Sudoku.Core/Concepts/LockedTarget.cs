@@ -35,6 +35,7 @@ public readonly partial struct LockedTarget([PrimaryConstructorParameter] Digit 
 	/// The digit string value.
 	/// </summary>
 	[GeneratedDisplayName(nameof(Digit))]
+	[JsonIgnore]
 	private string DigitString => (Digit + 1).ToString();
 
 

@@ -10,6 +10,7 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[Obsolete($"Please use '{nameof(Empty)}' instead.", false)]
+	[RequiresUnreferencedCode("This constructor can only be called by JSON serializer.")]
 	public View() : base()
 	{
 	}
@@ -20,6 +21,7 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	/// <param name="nodes">The list as the raw value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[Obsolete($"Please use '{nameof(Empty)}' instead.", false)]
+	[RequiresUnreferencedCode("This constructor can only be called by JSON serializer.")]
 	public View(HashSet<ViewNode> nodes) : base(nodes)
 	{
 	}

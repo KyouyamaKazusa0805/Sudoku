@@ -22,6 +22,7 @@ public sealed partial class CandidateViewNode : BasicViewNode//(ColorIdentifier 
 	/// Indicates the candidate string.
 	/// </summary>
 	[GeneratedDisplayName(nameof(Candidate))]
+	[JsonIgnore]
 	private string CandidateString => RxCyNotation.ToCandidateString(Candidate);
 
 

@@ -1,11 +1,21 @@
 namespace Sudoku.Rendering;
 
+#pragma warning disable CS1591, CS1572
+
 /// <summary>
 /// Defines a <see cref="ColorIdentifier"/> derived type that uses well-known kinds to distinct with colors.
 /// </summary>
 /// <param name="kind">The well-known identifier kind to be assigned.</param>
-public sealed partial class WellKnownColorIdentifier([PrimaryConstructorParameter] WellKnownColorIdentifierKind kind) : ColorIdentifier
+public sealed partial class WellKnownColorIdentifier : ColorIdentifier//([PrimaryConstructorParameter] WellKnownColorIdentifierKind kind) : ColorIdentifier
 {
+	[JsonConstructor]
+	public WellKnownColorIdentifier(WellKnownColorIdentifierKind kind) => Kind = kind;
+
+
+	[JsonInclude]
+	public WellKnownColorIdentifierKind Kind { get; }
+
+
 	/// <inheritdoc cref="WellKnownColorIdentifierKind.Normal"/>
 	public static readonly ColorIdentifier Normal = WellKnownColorIdentifierKind.Normal;
 

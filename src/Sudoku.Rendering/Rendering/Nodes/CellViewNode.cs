@@ -22,6 +22,7 @@ public sealed partial class CellViewNode : BasicViewNode//(ColorIdentifier ident
 	/// Indicates the cell string.
 	/// </summary>
 	[GeneratedDisplayName(nameof(Cell))]
+	[JsonIgnore]
 	private string CellString => CellsMap[Cell].ToString();
 
 

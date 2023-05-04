@@ -4845,6 +4845,12 @@ fixed (short* ptr = instance)
             </summary>
             <param name="byteValue">The <see cref="T:System.Byte"/> instance.</param>
         </member>
+        <member name="M:System.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,System.Utf8Char,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:System.Utf8String">
             <summary>
             Represents text as a sequence of UTF-8 code units.

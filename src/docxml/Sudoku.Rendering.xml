@@ -13,15 +13,6 @@
             <param name="g">Indicates the color green raw values to be assigned.</param>
             <param name="b">Indicates the color blue raw values to be assigned.</param>
         </member>
-        <member name="M:Sudoku.Rendering.ColorColorIdentifier.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
-            <summary>
-            Defines a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> derived type that uses color value (like type <c>System.Drawing.Color</c>) to distinct with colors.
-            </summary>
-            <param name="a">Indicates the color alpha raw values to be assigned.</param>
-            <param name="r">Indicates the color red raw values to be assigned.</param>
-            <param name="g">Indicates the color green raw values to be assigned.</param>
-            <param name="b">Indicates the color blue raw values to be assigned.</param>
-        </member>
         <member name="P:Sudoku.Rendering.ColorColorIdentifier.RawValue">
             <summary>
             Indicates the raw value.
@@ -130,26 +121,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.ColorColorIdentifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="P:Sudoku.Rendering.ColorColorIdentifier.A">
-            <summary>
-            The generated property declaration for parameter <c>a</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.ColorColorIdentifier.R">
-            <summary>
-            The generated property declaration for parameter <c>r</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.ColorColorIdentifier.G">
-            <summary>
-            The generated property declaration for parameter <c>g</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.ColorColorIdentifier.B">
-            <summary>
-            The generated property declaration for parameter <c>b</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Rendering.ColorIdentifier">
             <summary>
             Represents an identifier that is used for describing target rendering item.
@@ -184,48 +155,6 @@ if (student is (name: var name, age: >= 18))
             Implicit cast from <see cref="T:Sudoku.Rendering.WellKnownColorIdentifierKind"/> to <see cref="T:Sudoku.Rendering.ColorIdentifier"/>.
             </summary>
             <param name="kind">The <see cref="T:Sudoku.Rendering.WellKnownColorIdentifierKind"/> instance.</param>
-        </member>
-        <member name="T:Sudoku.Rendering.JsonConverter">
-            <summary>
-            The file-local type that can serialize or deserialize a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Rendering.ColorIdentifier"/>
-        </member>
-        <member name="M:Sudoku.Rendering.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Rendering.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Rendering.ColorIdentifier,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Rendering.ColorColorIdentifier_DeserializationTempType">
-            <summary>
-            The temporary and intermediate type used for deserialization on <see cref="T:Sudoku.Rendering.ColorColorIdentifier"/> instances.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Rendering.ColorColorIdentifier_DeserializationTempType.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
-            <summary>
-            The temporary and intermediate type used for deserialization on <see cref="T:Sudoku.Rendering.ColorColorIdentifier"/> instances.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Rendering.PaletteIdColorIdentifier_DeserializationTempType">
-            <summary>
-            The temporary and intermediate type used for deserialization on <see cref="T:Sudoku.Rendering.PaletteIdColorIdentifier"/> instances.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier_DeserializationTempType.#ctor(System.Int32)">
-            <summary>
-            The temporary and intermediate type used for deserialization on <see cref="T:Sudoku.Rendering.PaletteIdColorIdentifier"/> instances.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Rendering.WellKnownColorIdentifier_DeserializationTempType">
-            <summary>
-            The temporary and intermediate type used for deserialization on <see cref="T:Sudoku.Rendering.WellKnownColorIdentifier"/> instances.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Rendering.WellKnownColorIdentifier_DeserializationTempType.#ctor(Sudoku.Rendering.WellKnownColorIdentifierKind)">
-            <summary>
-            The temporary and intermediate type used for deserialization on <see cref="T:Sudoku.Rendering.WellKnownColorIdentifier"/> instances.
-            </summary>
         </member>
         <member name="T:Sudoku.Rendering.IRenderable">
             <summary>
@@ -2070,12 +1999,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="value">The palette color ID value to be assigned. The color palette requires implementation of target projects.</param>
         </member>
-        <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier.#ctor(System.Int32)">
-            <summary>
-            Defines a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> derived type that uses palette ID value to distinct with colors.
-            </summary>
-            <param name="value">The palette color ID value to be assigned. The color palette requires implementation of target projects.</param>
-        </member>
         <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier.Equals(Sudoku.Rendering.ColorIdentifier)">
             <inheritdoc/>
         </member>
@@ -2084,11 +2007,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="P:Sudoku.Rendering.PaletteIdColorIdentifier.Value">
-            <summary>
-            The generated property declaration for parameter <c>value</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Rendering.View">
             <summary>
@@ -2299,12 +2217,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="kind">The well-known identifier kind to be assigned.</param>
         </member>
-        <member name="M:Sudoku.Rendering.WellKnownColorIdentifier.#ctor(Sudoku.Rendering.WellKnownColorIdentifierKind)">
-            <summary>
-            Defines a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> derived type that uses well-known kinds to distinct with colors.
-            </summary>
-            <param name="kind">The well-known identifier kind to be assigned.</param>
-        </member>
         <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.Normal">
             <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Normal"/>
         </member>
@@ -2361,11 +2273,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.WellKnownColorIdentifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="P:Sudoku.Rendering.WellKnownColorIdentifier.Kind">
-            <summary>
-            The generated property declaration for parameter <c>kind</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Rendering.WellKnownColorIdentifierKind">
             <summary>

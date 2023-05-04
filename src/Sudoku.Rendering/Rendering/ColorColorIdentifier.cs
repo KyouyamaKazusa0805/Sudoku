@@ -1,5 +1,7 @@
 namespace Sudoku.Rendering;
 
+#pragma warning disable CS1591, CS1572
+
 /// <summary>
 /// Defines a <see cref="ColorIdentifier"/> derived type that uses color value (like type <c>System.Drawing.Color</c>) to distinct with colors.
 /// </summary>
@@ -7,16 +9,40 @@ namespace Sudoku.Rendering;
 /// <param name="r">Indicates the color red raw values to be assigned.</param>
 /// <param name="g">Indicates the color green raw values to be assigned.</param>
 /// <param name="b">Indicates the color blue raw values to be assigned.</param>
-public sealed partial class ColorColorIdentifier(
-	[PrimaryConstructorParameter] byte a,
-	[PrimaryConstructorParameter] byte r,
-	[PrimaryConstructorParameter] byte g,
-	[PrimaryConstructorParameter] byte b
-) : ColorIdentifier
+public sealed partial class ColorColorIdentifier : ColorIdentifier
+//(
+//	[PrimaryConstructorParameter] byte a,
+//	[PrimaryConstructorParameter] byte r,
+//	[PrimaryConstructorParameter] byte g,
+//	[PrimaryConstructorParameter] byte b
+//) : ColorIdentifier
 {
+	[JsonConstructor]
+	public ColorColorIdentifier(byte a, byte r, byte g, byte b)
+	{
+		A = a;
+		R = r;
+		G = g;
+		B = b;
+	}
+
+
+	[JsonInclude]
+	public byte A { get; }
+
+	[JsonInclude]
+	public byte R { get; }
+
+	[JsonInclude]
+	public byte G { get; }
+
+	[JsonInclude]
+	public byte B { get; }
+
 	/// <summary>
 	/// Indicates the raw value.
 	/// </summary>
+	[JsonIgnore]
 	private int RawValue => A << 24 | R << 16 | G << 8 | B;
 
 

@@ -3,6 +3,7 @@ namespace System;
 /// <summary>
 /// Represents a character as a UTF-8 code unit.
 /// </summary>
+[JsonConverter(typeof(JsonConverter))]
 public readonly partial struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,
@@ -219,4 +220,15 @@ public readonly partial struct Utf8Char :
 	/// <param name="byteValue">The <see cref="byte"/> instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Utf8Char(byte byteValue) => new(byteValue);
+}
+
+file sealed class JsonConverter : JsonConverter<Utf8Char>
+{
+	/// <inheritdoc/>
+	public override Utf8Char Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		=> (Utf8Char)(reader.GetString()?[0] ?? throw new JsonException());
+
+	/// <inheritdoc/>
+	public override void Write(Utf8JsonWriter writer, Utf8Char value, JsonSerializerOptions options)
+		=> writer.WriteStringValue(value.ToString());
 }

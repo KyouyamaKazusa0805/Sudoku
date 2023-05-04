@@ -20,16 +20,19 @@ public sealed partial class LinkViewNode : BasicViewNode //(ColorIdentifier iden
 	/// <summary>
 	/// Indicates the start point.
 	/// </summary>
+	[JsonInclude]
 	public LockedTarget Start { get; }// = startPoint;
 
 	/// <summary>
 	/// Indicates the end point.
 	/// </summary>
+	[JsonInclude]
 	public LockedTarget End { get; }// = endPoint;
 
 	/// <summary>
 	/// Indicates the inference type.
 	/// </summary>
+	[JsonInclude]
 	public Inference Inference { get; }// = inference;
 
 

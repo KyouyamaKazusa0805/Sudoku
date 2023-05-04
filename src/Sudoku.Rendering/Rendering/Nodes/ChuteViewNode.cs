@@ -15,11 +15,13 @@ public sealed partial class ChuteViewNode : BasicViewNode//(ColorIdentifier iden
 	/// <summary>
 	/// Indicates whether the chute is in a row.
 	/// </summary>
+	[JsonIgnore]
 	public bool IsRow => ChuteIndex < 3;
 
 	/// <summary>
 	/// Indicates the chute index. The value can be between 0 and 5.
 	/// </summary>
+	[JsonInclude]
 	public int ChuteIndex { get; }// = chuteIndex;
 
 	/// <summary>
@@ -32,6 +34,7 @@ public sealed partial class ChuteViewNode : BasicViewNode//(ColorIdentifier iden
 	/// for block houses, but all chutes don't use them.
 	/// </para>
 	/// </summary>
+	[JsonIgnore]
 	public HouseMask HousesMask => Chutes[ChuteIndex] switch { var (_, isRow, rawMask) => rawMask << (isRow ? 9 : 18) };
 
 

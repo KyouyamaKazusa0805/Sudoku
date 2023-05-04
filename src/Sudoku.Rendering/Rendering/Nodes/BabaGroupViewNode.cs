@@ -20,28 +20,33 @@ public sealed partial class BabaGroupViewNode : BasicViewNode//(ColorIdentifier 
 	/// <summary>
 	/// Indicates the cell used.
 	/// </summary>
+	[JsonInclude]
 	public Cell Cell { get; }// = cell;
 
 	/// <summary>
 	/// Indicates the digits used.
 	/// </summary>
+	[JsonInclude]
 	public Mask DigitsMask { get; }// = digitsMask;
 
 	/// <summary>
 	/// Indicates the character that represents the unknown range.
 	/// </summary>
+	[JsonInclude]
 	public Utf8Char UnknownValueChar { get; }// = unknownValueChar;
 
 	/// <summary>
 	/// Indicates the cell string.
 	/// </summary>
 	[GeneratedDisplayName(nameof(Cell))]
+	[JsonIgnore]
 	private string CellString => CellsMap[Cell].ToString();
 
 	/// <summary>
 	/// Indicates the digits mask string.
 	/// </summary>
 	[GeneratedDisplayName(nameof(DigitsMask))]
+	[JsonIgnore]
 	private string DigitsMaskString => Convert.ToString(DigitsMask, 2).ToString();
 
 
