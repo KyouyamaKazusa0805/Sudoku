@@ -908,23 +908,6 @@
             <param name="this">The array to be casted.</param>
             <returns>The casted array.</returns>
         </member>
-        <member name="T:System.Collections.ObjectModel.CollectionExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.ObjectModel.Collection`1"/>
-        </member>
-        <member name="M:System.Collections.ObjectModel.CollectionExtensions.Prepend``2(System.Collections.ObjectModel.Collection{``0},``1)">
-            <summary>
-            Prepends the specified element into the collection.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <typeparam name="TDerived">
-            The type of the element to be prepended. The type must be derived from <typeparamref name="T"/>.
-            </typeparam>
-            <param name="this">The collection.</param>
-            <param name="element">The element to be prepended.</param>
-        </member>
         <member name="T:System.CommandLine.Annotations.CommandConverterAttribute`1">
             <summary>
             Represents an attribute that is applied to a property, indicating the property value should be converted
