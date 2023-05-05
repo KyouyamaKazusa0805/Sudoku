@@ -40,7 +40,27 @@ public sealed class Generator : IIncrementalGenerator
 		#region Advanced generators
 		// StepSearcher Default Imports
 		{
-			context.Register<StepSearcherDefaultImportingHandler>("Sudoku.Analytics");
+			const string projectName = "Sudoku.Analytics";
+			context.Register<StepSearcherDefaultImportingHandler>(projectName);
+		}
+
+		// SudokuStudio XAML Bindings
+		{
+			const string projectName = "SudokuStudio";
+
+			const string name_Dependency = "SudokuStudio.ComponentModel.DependencyPropertyAttribute`1";
+			context.Register<DependencyPropertyHandler, DependencyPropertyCollectedResult>(name_Dependency, projectName, &predicate_Dependency);
+
+			const string name_Attached = "SudokuStudio.ComponentModel.AttachedPropertyAttribute`1";
+			context.Register<AttachedPropertyHandler, AttachedPropertyCollectedResult>(name_Attached, projectName, &predicate_Attached);
+
+
+			static bool predicate_Dependency(SyntaxNode n, CancellationToken _)
+				=> n is ClassDeclarationSyntax { TypeParameterList: null, Modifiers: var m and not [] } && m.Any(SyntaxKind.PartialKeyword);
+
+			static bool predicate_Attached(SyntaxNode n, CancellationToken _)
+				=> n is ClassDeclarationSyntax { TypeParameterList: null, Modifiers: var m and not [] }
+				&& m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword);
 		}
 		#endregion
 	}

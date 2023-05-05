@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen;
+namespace Sudoku.Diagnostics.CodeGen;
 
 /// <summary>
 /// Provides with some commonly-used methods.

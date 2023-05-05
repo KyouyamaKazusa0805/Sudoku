@@ -51,8 +51,6 @@ Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "SudokuStudio (Package)", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuStudio", "src\SudokuStudio\SudokuStudio\SudokuStudio.csproj", "{5AB39227-B8D8-4AA3-AF2D-899ED7BF3B67}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuStudio.CodeGen", "src\SudokuStudio.CodeGen\SudokuStudio.CodeGen.csproj", "{149EC831-79A1-4F0F-9CD5-CB64A497E36A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Analytics", "src\Sudoku.Analytics\Sudoku.Analytics.csproj", "{D188748E-0794-445F-AAE5-08F3874FDF26}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Workflow.Bot.Oicq", "src\Sudoku.Workflow.Bot.Oicq\Sudoku.Workflow.Bot.Oicq.csproj", "{8139FDAC-48DA-4007-8B3B-50BEC86F9830}"
@@ -404,36 +402,6 @@ Global
 		{5AB39227-B8D8-4AA3-AF2D-899ED7BF3B67}.Release|x64.Build.0 = Release|x64
 		{5AB39227-B8D8-4AA3-AF2D-899ED7BF3B67}.Release|x86.ActiveCfg = Release|x86
 		{5AB39227-B8D8-4AA3-AF2D-899ED7BF3B67}.Release|x86.Build.0 = Release|x86
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Build|Any CPU.ActiveCfg = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Build|Any CPU.Build.0 = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Build|ARM.ActiveCfg = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Build|ARM.Build.0 = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Build|ARM64.ActiveCfg = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Build|ARM64.Build.0 = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Build|x64.ActiveCfg = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Build|x64.Build.0 = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Build|x86.ActiveCfg = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Build|x86.Build.0 = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Debug|ARM.Build.0 = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Debug|x64.Build.0 = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Debug|x86.Build.0 = Debug|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Release|ARM.ActiveCfg = Release|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Release|ARM.Build.0 = Release|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Release|ARM64.Build.0 = Release|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Release|x64.ActiveCfg = Release|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Release|x64.Build.0 = Release|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Release|x86.ActiveCfg = Release|Any CPU
-		{149EC831-79A1-4F0F-9CD5-CB64A497E36A}.Release|x86.Build.0 = Release|Any CPU
 		{D188748E-0794-445F-AAE5-08F3874FDF26}.Build|Any CPU.ActiveCfg = Debug|Any CPU
 		{D188748E-0794-445F-AAE5-08F3874FDF26}.Build|Any CPU.Build.0 = Debug|Any CPU
 		{D188748E-0794-445F-AAE5-08F3874FDF26}.Build|ARM.ActiveCfg = Debug|Any CPU
@@ -536,9 +504,9 @@ Global
 		{B33F37B0-E19F-4CD2-993A-94C4571248AD} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		RESX_ShowErrorsInErrorList = False
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\SudokuTutorial\SudokuTutorial.projitems*{597d5691-2e11-43c7-ae3b-826e979450da}*SharedItemsImports = 13

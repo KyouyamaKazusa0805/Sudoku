@@ -4,6 +4,107 @@
         <name>Sudoku.Diagnostics.CodeGen</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Accessibility">
+            <summary>
+            Defines an accessibility kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Accessibility.File">
+            <summary>
+            Indicates the accessibility is <see langword="file"/>-scoped.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Accessibility.Private">
+            <summary>
+            Indicates the accessibility is <see langword="private"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Accessibility.Protected">
+            <summary>
+            Indicates the accessibility is <see langword="protected"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Accessibility.PrivateProtected">
+            <summary>
+            Indicates the accessibility is <see langword="private protected"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Accessibility.Internal">
+            <summary>
+            Indicates the accessibility is <see langword="internal"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Accessibility.ProtectedInternal">
+            <summary>
+            Indicates the accessibility is <see langword="protected internal"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Accessibility.Public">
+            <summary>
+            Indicates the accessibility is <see langword="public"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.AccessibilityExtensions">
+            <summary>
+            Provides with extension methods for <see cref="T:Sudoku.Diagnostics.CodeGen.Accessibility"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Accessibility"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.AccessibilityExtensions.GetName(Sudoku.Diagnostics.CodeGen.Accessibility)">
+            <summary>
+            Gets the name of the accessibility enumeration field.
+            </summary>
+            <param name="this">The field.</param>
+            <returns>The name of the field.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.AttachedPropertyCollectedResult">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.AttachedPropertyHandler"/>
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.AttachedPropertyHandler"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.AttachedPropertyCollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.Diagnostics.CodeGen.AttachedPropertyData})">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.AttachedPropertyHandler"/>
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.AttachedPropertyHandler"/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.AttachedPropertyData">
+            <summary>
+            The nesting data structure for <see cref="T:Sudoku.Diagnostics.CodeGen.AttachedPropertyCollectedResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.AttachedPropertyCollectedResult"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.AttachedPropertyData.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.Diagnostics.CodeGen.DocumentationCommentData,System.String,System.Nullable{Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean)">
+            <summary>
+            The nesting data structure for <see cref="T:Sudoku.Diagnostics.CodeGen.AttachedPropertyCollectedResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.AttachedPropertyCollectedResult"/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.DependencyPropertyCollectedResult">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.DependencyPropertyHandler"/>
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.DependencyPropertyHandler"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.DependencyPropertyCollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.Diagnostics.CodeGen.DependencyPropertyData})">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.DependencyPropertyHandler"/>
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.DependencyPropertyHandler"/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.DependencyPropertyData">
+            <summary>
+            The nesting data structure for <see cref="T:Sudoku.Diagnostics.CodeGen.DependencyPropertyCollectedResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.DependencyPropertyCollectedResult"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.DependencyPropertyData.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.Diagnostics.CodeGen.DocumentationCommentData,System.String,System.Nullable{Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean,Sudoku.Diagnostics.CodeGen.Accessibility,System.String[])">
+            <summary>
+            The nesting data structure for <see cref="T:Sudoku.Diagnostics.CodeGen.DependencyPropertyCollectedResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.DependencyPropertyCollectedResult"/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.EqualsOverriddenCollectedResult">
             <summary>
             Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.EqualsOverriddenHandler"/>
@@ -125,6 +226,46 @@
             <param name="_"/>
             <returns>The value.</returns>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind">
+            <summary>
+            Defines a kind of default value generating member.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind.Field">
+            <summary>
+            Indicates the member type is a field.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind.Property">
+            <summary>
+            Indicates the member type is a property.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind.ParameterlessMethod">
+            <summary>
+            Indicates the member type is a parameterless method.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind.CannotReference">
+            <summary>
+            Indicates the member cannot be referenced.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.DefaultValueGeneratingMemberKind.Otherwise">
+            <summary>
+            Otherwise.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.DocumentationCommentData">
+            <summary>
+            The documentation comment data used by XAML binding generator functions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.DocumentationCommentData.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            The documentation comment data used by XAML binding generator functions.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Extensions">
             <target name="class" when="extension">
 				<summary>
@@ -147,6 +288,25 @@
             <param name="attributeName">
             The attribute name. The value must be full name of the attribute, including its namespace, beginning with root-level one.
             </param>
+            <param name="nodeFilter">The node filter method.</param>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorAttributeHandler`1"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Extensions.Register``2(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext@,System.String,System.String,)">
+            <summary>
+            Registers for a new generator function via attribute checking.
+            </summary>
+            <typeparam name="THandler">
+            The type of the target handler. The handler type must implement <see cref="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorAttributeHandler`1"/>,
+            and contain a parameterless constructor.
+            </typeparam>
+            <typeparam name="TCollectedResult">
+            The type of the collected result. The type must be as a generic type argument of <typeparamref name="THandler"/>.
+            </typeparam>
+            <param name="this">The context.</param>
+            <param name="attributeName">
+            The attribute name. The value must be full name of the attribute, including its namespace, beginning with root-level one.
+            </param>
+            <param name="projectName">The project name.</param>
             <param name="nodeFilter">The node filter method.</param>
             <seealso cref="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorAttributeHandler`1"/>
         </member>
@@ -189,6 +349,28 @@
             </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.AttachedPropertyHandler">
+            <summary>
+            The generator handler for attached properties.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.AttachedPropertyHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.Diagnostics.CodeGen.AttachedPropertyCollectedResult})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.AttachedPropertyHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.DependencyPropertyHandler">
+            <summary>
+            The generator handler for dependency properties.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.DependencyPropertyHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.Diagnostics.CodeGen.DependencyPropertyCollectedResult})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.DependencyPropertyHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.EqualsOverriddenHandler">
@@ -308,6 +490,28 @@
         <member name="F:Sudoku.Diagnostics.CodeGen.LocalMemberKinds.Property">
             <summary>
             Indicates the generated member kind is properties.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.NameAttribute">
+            <summary>
+            The name attribute that applies to a field in enumeration field, indicating its name.
+            </summary>
+            <param name="name">The name of the field.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.NameAttribute.#ctor(System.String)">
+            <summary>
+            The name attribute that applies to a field in enumeration field, indicating its name.
+            </summary>
+            <param name="name">The name of the field.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.NameAttribute.Name">
+            <summary>
+            Indicates the name of the attribute.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.XamlBinding">
+            <summary>
+            Provides with some commonly-used methods.
             </summary>
         </member>
         <member name="F:CodeGen.Constants.VersionValue">
