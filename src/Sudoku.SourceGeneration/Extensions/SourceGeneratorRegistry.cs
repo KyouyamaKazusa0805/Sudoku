@@ -1,7 +1,9 @@
-namespace Sudoku.Diagnostics.CodeGen;
+namespace Microsoft.CodeAnalysis;
 
-/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
-internal static class Extensions
+/// <summary>
+/// Provides some registering methods for source generator context.
+/// </summary>
+internal static class SourceGeneratorRegistry
 {
 	/// <summary>
 	/// Registers for a new generator function via attribute checking.
@@ -90,37 +92,7 @@ internal static class Extensions
 		var inst = new THandler();
 		@this.RegisterSourceOutput(
 			@this.CompilationProvider,
-			(spc, c) => { if (c.AssemblyName == projectName) { inst.Output(spc, c); } }
+			(spc, c) => { if (c.AssemblyName == projectName) inst.Output(spc, c); }
 		);
 	}
-
-	/// <summary>
-	/// Determines whether all parameters are <see langword="out"/> ones.
-	/// </summary>
-	/// <param name="this">A list of parameters.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	public static bool AllOutParameters(this ImmutableArray<IParameterSymbol> @this)
-		=> @this.All(static parameter => parameter.RefKind == RefKind.Out);
-
-	/// <summary>
-	/// Internal handle the naming rule, converting it into a valid identifier via specified parameter name.
-	/// </summary>
-	/// <param name="this">The naming rule.</param>
-	/// <param name="parameterName">The parameter name.</param>
-	/// <returns>The final identifier.</returns>
-	public static string InternalHandle(this string @this, string parameterName)
-		=> @this
-			.Replace("<@", parameterName.ToCamelCasing())
-			.Replace(">@", parameterName.ToPascalCasing())
-			.Replace("@", parameterName);
-
-	/// <summary>
-	/// Try to convert the specified identifier into pascal casing.
-	/// </summary>
-	public static string ToPascalCasing(this string @this) => $"{char.ToUpper(@this[0])}{@this[1..]}";
-
-	/// <summary>
-	/// Try to convert the specified identifier into camel casing.
-	/// </summary>
-	public static string ToCamelCasing(this string @this) => $"{char.ToLower(@this[0])}{@this[1..]}";
 }

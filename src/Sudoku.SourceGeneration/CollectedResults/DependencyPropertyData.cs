@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen;
+﻿namespace Sudoku.SourceGeneration.CollectedResults;
 
 /// <summary>
 /// The nesting data structure for <see cref="DependencyPropertyCollectedResult"/>.

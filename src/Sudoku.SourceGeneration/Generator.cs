@@ -1,4 +1,4 @@
-namespace Sudoku.Diagnostics.CodeGen;
+namespace Sudoku.SourceGeneration;
 
 /// <summary>
 /// Represents a source generator type that runs multiple different usage of source output services on compiling code.

@@ -1,4 +1,6 @@
-namespace Sudoku.Diagnostics.CodeGen;
+using Sudoku.Diagnostics.CodeGen;
+
+namespace Sudoku.SourceGeneration.Handlers;
 
 /// <summary>
 /// The generator handler for primary constructor parameters.
@@ -225,4 +227,20 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 				),
 			_ => null
 		};
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Internal handle the naming rule, converting it into a valid identifier via specified parameter name.
+	/// </summary>
+	/// <param name="this">The naming rule.</param>
+	/// <param name="parameterName">The parameter name.</param>
+	/// <returns>The final identifier.</returns>
+	public static string InternalHandle(this string @this, string parameterName)
+		=> @this
+			.Replace("<@", parameterName.ToCamelCasing())
+			.Replace(">@", parameterName.ToPascalCasing())
+			.Replace("@", parameterName);
 }

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen;
+﻿namespace Sudoku.SourceGeneration;
 
 /// <summary>
 /// Provides with extension methods for <see cref="Accessibility"/>.

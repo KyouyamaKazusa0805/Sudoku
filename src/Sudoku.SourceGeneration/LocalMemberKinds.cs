@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen;
+﻿namespace Sudoku.SourceGeneration;
 
 /// <summary>
 /// The member kind names.

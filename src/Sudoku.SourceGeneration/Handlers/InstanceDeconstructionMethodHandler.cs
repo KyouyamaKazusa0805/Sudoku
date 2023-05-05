@@ -1,4 +1,6 @@
-namespace Sudoku.Diagnostics.CodeGen;
+using Sudoku.Diagnostics.CodeGen;
+
+namespace Sudoku.SourceGeneration.Handlers;
 
 /// <summary>
 /// The generator handler for instance deconstruction methods.
@@ -135,4 +137,16 @@ internal sealed class InstanceDeconstructionMethodHandler : IIncrementalGenerato
 			},
 			_ => null
 		};
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Determines whether all parameters are <see langword="out"/> ones.
+	/// </summary>
+	/// <param name="this">A list of parameters.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	public static bool AllOutParameters(this ImmutableArray<IParameterSymbol> @this)
+		=> @this.All(static parameter => parameter.RefKind == RefKind.Out);
 }

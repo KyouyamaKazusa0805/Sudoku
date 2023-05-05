@@ -1,4 +1,6 @@
-namespace Sudoku.Diagnostics.CodeGen;
+using Sudoku.Diagnostics.CodeGen;
+
+namespace Sudoku.SourceGeneration.Handlers;
 
 /// <summary>
 /// The generator handler for attached properties.
@@ -29,10 +31,8 @@ internal sealed class AttachedPropertyHandler : IIncrementalGeneratorAttributeHa
 
 					var defaultValueCreatorStr = XamlBinding.GetPropertyMetadataString(defaultValue, propertyType, generatorMemberName, generatorMemberKind, callbackMethodName, propertyTypeStr);
 					if (defaultValueCreatorStr is null)
-					{
 						// Error case has been encountered.
 						continue;
-					}
 
 					var nullableToken = isNullable ? "?" : string.Empty;
 					attachedProperties.Add(
@@ -228,10 +228,8 @@ internal sealed class AttachedPropertyHandler : IIncrementalGeneratorAttributeHa
 			}
 
 			if (defaultValueGeneratorKind is DefaultValueGeneratingMemberKind.CannotReference or DefaultValueGeneratingMemberKind.Otherwise)
-			{
 				// Invalid generator name.
 				continue;
-			}
 
 			propertiesData.Add(
 				new(

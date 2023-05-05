@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen;
+﻿namespace Sudoku.SourceGeneration;
 
 /// <summary>
 /// Defines a kind of default value generating member.

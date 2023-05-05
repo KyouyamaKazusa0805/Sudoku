@@ -1,4 +1,6 @@
-namespace Sudoku.Diagnostics.CodeGen;
+using Sudoku.Diagnostics.CodeGen;
+
+namespace Sudoku.SourceGeneration.Handlers;
 
 /// <summary>
 /// The generator handler for default overridden of <c>ToString</c>.
@@ -12,9 +14,7 @@ internal sealed class ToStringOverriddenHandler : IIncrementalGeneratorAttribute
 		foreach (var (mode, modifiers, type, attributeType, rawMemberNames) in values)
 		{
 			if (type is not { Name: var typeName, ContainingNamespace: var @namespace })
-			{
 				continue;
-			}
 
 			var (_, _, _, _, genericParamList, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
 
@@ -116,15 +116,11 @@ internal sealed class ToStringOverriddenHandler : IIncrementalGeneratorAttribute
 		var currentMethod = method;
 		for (; rootMethod is not null; rootMethod = rootMethod.OverriddenMethod, currentMethod = currentMethod!.OverriddenMethod) ;
 		if (currentMethod!.ContainingType.SpecialType is not (System_Object or System_ValueType))
-		{
 			return null;
-		}
 
 		var attributeType = compilation.GetTypeByMetadataName("System.Diagnostics.CodeGen.GeneratedDisplayNameAttribute");
 		if (attributeType is null)
-		{
 			return null;
-		}
 
 		return new(rawMode, modifiers, type, attributeType, from extraArgument in extraArguments select (string)extraArgument.Value!);
 	}

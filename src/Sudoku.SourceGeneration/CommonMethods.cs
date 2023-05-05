@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen;
+namespace Sudoku.SourceGeneration;
 
 /// <summary>
 /// Represents a set of methods that can be used by the types in this file.

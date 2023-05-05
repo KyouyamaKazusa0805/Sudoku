@@ -1,4 +1,6 @@
-namespace Sudoku.Diagnostics.CodeGen;
+using Sudoku.Diagnostics.CodeGen;
+
+namespace Sudoku.SourceGeneration.Handlers;
 
 /// <summary>
 /// The generator handler for dependency properties.
@@ -29,10 +31,8 @@ internal sealed class DependencyPropertyHandler : IIncrementalGeneratorAttribute
 					var doc = XamlBinding.GetDocumentationComment(propertyName, docData, true);
 					var defaultValueCreatorStr = XamlBinding.GetPropertyMetadataString(defaultValue, propertyType, generatorMemberName, generatorMemberKind, callbackMethodName, propertyTypeStr);
 					if (defaultValueCreatorStr is null)
-					{
 						// Error case has been encountered.
 						continue;
-					}
 
 					var nullableToken = isNullable ? "?" : string.Empty;
 					var accessibilityModifier = accessibility.GetName();
@@ -122,14 +122,10 @@ internal sealed class DependencyPropertyHandler : IIncrementalGeneratorAttribute
 		}
 
 		if (compilation.GetTypeByMetadataName("Microsoft.UI.Xaml.DependencyObject") is not { } dependencyObjectType)
-		{
 			return null;
-		}
 
 		if (!typeSymbol.IsDerivedFrom(dependencyObjectType))
-		{
 			return null;
-		}
 
 		var propertiesData = new List<DependencyPropertyData>();
 		foreach (var attributeData in attributes)
@@ -258,10 +254,8 @@ internal sealed class DependencyPropertyHandler : IIncrementalGeneratorAttribute
 			}
 
 			if (defaultValueGeneratorKind is DefaultValueGeneratingMemberKind.CannotReference or DefaultValueGeneratingMemberKind.Otherwise)
-			{
 				// Invalid generator name.
 				continue;
-			}
 
 			propertiesData.Add(
 				new(

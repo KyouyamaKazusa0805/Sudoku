@@ -1,4 +1,6 @@
-namespace Sudoku.Diagnostics.CodeGen;
+using Sudoku.Diagnostics.CodeGen;
+
+namespace Sudoku.SourceGeneration.Handlers;
 
 /// <summary>
 /// The generator handler for default overridden of <c>Equals</c>.
@@ -12,9 +14,7 @@ internal sealed class EqualsOverriddenHandler : IIncrementalGeneratorAttributeHa
 		foreach (var value in values)
 		{
 			if (value is not (var mode, var modifiers, { Name: var typeName, ContainingNamespace: var @namespace } type, var paramName))
-			{
 				continue;
-			}
 
 			var (_, _, _, _, genericParamList, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
 			var extraAttributeStr = mode switch
@@ -98,9 +98,7 @@ internal sealed class EqualsOverriddenHandler : IIncrementalGeneratorAttributeHa
 		var currentMethod = method;
 		for (; rootMethod is not null; rootMethod = rootMethod.OverriddenMethod, currentMethod = currentMethod!.OverriddenMethod) ;
 		if (currentMethod!.ContainingType.SpecialType is not (System_Object or System_ValueType))
-		{
 			return null;
-		}
 
 		if ((rawMode, type) switch
 		{

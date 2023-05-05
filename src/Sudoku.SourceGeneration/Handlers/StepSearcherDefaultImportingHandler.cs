@@ -1,4 +1,6 @@
-namespace Sudoku.Diagnostics.CodeGen;
+using Sudoku.Diagnostics.CodeGen;
+
+namespace Sudoku.SourceGeneration.Handlers;
 
 /// <summary>
 /// The generator handler for step searcher default importing.
@@ -23,15 +25,11 @@ internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGenerato
 	{
 		// Checks whether the assembly has marked any attributes.
 		if (compilation.Assembly.GetAttributes() is not { IsDefaultOrEmpty: false } attributesData)
-		{
 			return;
-		}
 
 		var stepSearcherBaseType = compilation.GetTypeByMetadataName(StepSearcherTypeName);
 		if (stepSearcherBaseType is null)
-		{
 			return;
-		}
 
 		var runningAreaTypeSymbol = compilation.GetTypeByMetadataName(StepSearcherRunningAreaTypeName)!;
 		var levelTypeSymbol = compilation.GetTypeByMetadataName(StepSearcherLevelTypeName)!;
@@ -40,16 +38,12 @@ internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGenerato
 		foreach (var fieldSymbol in runningAreaTypeSymbol.GetMembers().OfType<IFieldSymbol>())
 		{
 			if (fieldSymbol is { ConstantValue: byte value, Name: var fieldName })
-			{
 				runningAreasFields.Add(value, fieldName);
-			}
 		}
 		foreach (var fieldSymbol in levelTypeSymbol.GetMembers().OfType<IFieldSymbol>())
 		{
 			if (fieldSymbol is { ConstantValue: byte value, Name: var fieldName })
-			{
 				levelFields.Add(value, fieldName);
-			}
 		}
 
 		// Gather the valid attributes data.
@@ -87,9 +81,7 @@ internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGenerato
 			// Checks whether the type is valid.
 			var unboundAttributeTypeSymbol = attributeClassSymbol.ConstructUnboundGenericType();
 			if (unboundAttributeTypeSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) != StepSearcherImportAttributeName)
-			{
 				continue;
-			}
 
 			// Check whether the step searcher can be used for deriving.
 			var polymorphismAttributeType = compilation.GetTypeByMetadataName(PolymorphismAttributeName)!;
@@ -111,9 +103,7 @@ internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGenerato
 				foreach (var (k, v) in namedArguments)
 				{
 					if (k == AreasPropertyName && v is { Value: byte value })
-					{
 						nullableRunningArea = value;
-					}
 				}
 			}
 
@@ -189,17 +179,13 @@ internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGenerato
 		{
 			var l = (int)field;
 			if (l == 0)
-			{
 				return "0";
-			}
 
 			var targetList = new List<string>();
 			for (var (temp, i) = (l, 0); temp != 0; temp >>= 1, i++)
 			{
 				if ((temp & 1) != 0)
-				{
 					targetList.Add($"global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.{runningAreasFields[(byte)(1 << i)]}");
-				}
 			}
 
 			return string.Join(" | ", targetList);
@@ -208,16 +194,12 @@ internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGenerato
 		static string createLevelExpression(byte field, IDictionary<byte, string> levelFields)
 		{
 			if (field == 0)
-			{
 				return "0";
-			}
 
 			foreach (var (v, n) in levelFields)
 			{
 				if (v == field)
-				{
 					return $"global::Sudoku.Analytics.Metadata.StepSearcherLevel.{n}";
-				}
 			}
 
 			return string.Empty;

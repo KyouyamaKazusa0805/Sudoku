@@ -1,4 +1,4 @@
-namespace Sudoku.Diagnostics.CodeGen;
+namespace Sudoku.SourceGeneration.CollectedResults;
 
 /// <summary>
 /// Indicates the data collected via <see cref="AttachedPropertyHandler"/>

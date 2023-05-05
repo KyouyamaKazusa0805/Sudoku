@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen;
+﻿namespace Sudoku.SourceGeneration.Handlers;
 
 /// <summary>
 /// Represents a file-local constraint for generators,
