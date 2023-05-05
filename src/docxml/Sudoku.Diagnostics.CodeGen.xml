@@ -4,130 +4,6 @@
         <name>Sudoku.Diagnostics.CodeGen</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generator">
-            <summary>
-            Represents a source generator type that runs multiple different usage of source output services on compiling code.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorAttributeHandler`1">
-            <summary>
-            Represents a file-local constraint for generators,
-            which can be used for <see cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.SyntaxProvider"/>,
-            with <see cref="M:Microsoft.CodeAnalysis.SyntaxValueProvider.ForAttributeWithMetadataName``1(System.String,System.Func{Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken,System.Boolean},System.Func{Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken,``0})"/>.
-            </summary>
-            <typeparam name="T">The type of the final data structure.</typeparam>
-            <seealso cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.SyntaxProvider"/>
-            <seealso cref="M:Microsoft.CodeAnalysis.SyntaxValueProvider.ForAttributeWithMetadataName``1(System.String,System.Func{Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken,System.Boolean},System.Func{Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken,``0})"/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorAttributeHandler`1.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <summary>
-            Transform the target result from the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> and its semantic values.
-            </summary>
-            <param name="gasc">The context used for getting basic information for a <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>.</param>
-            <param name="cancellationToken">The cancellation token that can cancel generating.</param>
-            <returns>The result. The value can be <see langword="null"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorAttributeHandler`1.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{`0})">
-            <summary>
-            Try to generate the source.
-            </summary>
-            <param name="spc">The context used for generating.</param>
-            <param name="values">The values.</param>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorCompilationHandler">
-            <summary>
-            Represents a file-local constraint for generators,
-            which can be used for <see cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.CompilationProvider"/>.
-            </summary>
-            <seealso cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.CompilationProvider"/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorCompilationHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,Microsoft.CodeAnalysis.Compilation)">
-            <summary>
-            Try to generate the source.
-            </summary>
-            <param name="spc">The context used for generating.</param>
-            <param name="compilation">
-            The <see cref="T:Microsoft.CodeAnalysis.Compilation"/> instance that provides the information for the calling project.
-            </param>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler">
-            <summary>
-            The generator handler for primary constructor parameters.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.Diagnostics.CodeGen.PrimaryConstructorCollectedResult})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.EqualsOverriddenHandler">
-            <summary>
-            The generator handler for default overridden of <c>Equals</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.EqualsOverriddenHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.Diagnostics.CodeGen.EqualsOverriddenCollectedResult})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.EqualsOverriddenHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.GetHashCodeOveriddenHandler">
-            <summary>
-            The generator handler for default overridden of <c>GetHashCode</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.GetHashCodeOveriddenHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.Diagnostics.CodeGen.GetHashCodeCollectedResult})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.GetHashCodeOveriddenHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.ToStringOverriddenHandler">
-            <summary>
-            The generator handler for default overridden of <c>ToString</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.ToStringOverriddenHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.Diagnostics.CodeGen.ToStringCollectedResult})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.ToStringOverriddenHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.InstanceDeconstructionMethodHandler">
-            <summary>
-            The generator handler for instance deconstruction methods.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.InstanceDeconstructionMethodHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.Diagnostics.CodeGen.InstanceDeconstructionMethodCollectedResult})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.InstanceDeconstructionMethodHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.StepSearcherDefaultImportingHandler">
-            <summary>
-            The generator handler for step searcher default importing.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.StepSearcherDefaultImportingHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,Microsoft.CodeAnalysis.Compilation)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.PrimaryConstructorCollectedResult">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler"/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.PrimaryConstructorCollectedResult.#ctor(System.String,Microsoft.CodeAnalysis.TypeKind,Microsoft.CodeAnalysis.RefKind,Microsoft.CodeAnalysis.ScopedKind,Microsoft.CodeAnalysis.NullableAnnotation,Microsoft.CodeAnalysis.ITypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,System.String,System.String,System.Boolean,Microsoft.CodeAnalysis.AttributeData[],System.String)">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler"/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.EqualsOverriddenCollectedResult">
             <summary>
             Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.EqualsOverriddenHandler"/>
@@ -152,18 +28,6 @@
             </summary>
             <seealso cref="T:Sudoku.Diagnostics.CodeGen.GetHashCodeOveriddenHandler"/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.ToStringCollectedResult">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.ToStringOverriddenHandler"/>
-            </summary>
-            <seealso cref="T:Sudoku.Diagnostics.CodeGen.ToStringOverriddenHandler"/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.ToStringCollectedResult.#ctor(System.Int32,Microsoft.CodeAnalysis.SyntaxTokenList,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.ToStringOverriddenHandler"/>
-            </summary>
-            <seealso cref="T:Sudoku.Diagnostics.CodeGen.ToStringOverriddenHandler"/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.InstanceDeconstructionMethodCollectedResult">
             <summary>
             Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.InstanceDeconstructionMethodHandler"/>
@@ -175,6 +39,18 @@
             Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.InstanceDeconstructionMethodHandler"/>
             </summary>
             <seealso cref="T:Sudoku.Diagnostics.CodeGen.InstanceDeconstructionMethodHandler"/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.PrimaryConstructorCollectedResult">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.PrimaryConstructorCollectedResult.#ctor(System.String,Microsoft.CodeAnalysis.TypeKind,Microsoft.CodeAnalysis.RefKind,Microsoft.CodeAnalysis.ScopedKind,Microsoft.CodeAnalysis.NullableAnnotation,Microsoft.CodeAnalysis.ITypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,System.String,System.String,System.Boolean,Microsoft.CodeAnalysis.AttributeData[],System.String)">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler"/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.StepSearcherDefaultImportingCollectedResult">
             <summary>
@@ -188,20 +64,66 @@
             </summary>
             <seealso cref="T:Sudoku.Diagnostics.CodeGen.StepSearcherDefaultImportingHandler"/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.LocalMemberKinds">
+        <member name="T:Sudoku.Diagnostics.CodeGen.ToStringCollectedResult">
             <summary>
-            The member kind names.
+            Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.ToStringOverriddenHandler"/>
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.ToStringOverriddenHandler"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.ToStringCollectedResult.#ctor(System.Int32,Microsoft.CodeAnalysis.SyntaxTokenList,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.ToStringOverriddenHandler"/>
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.ToStringOverriddenHandler"/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.CommonMethods">
+            <summary>
+            Represents a set of methods that can be used by the types in this file.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.LocalMemberKinds.Field">
+        <member name="M:Sudoku.Diagnostics.CodeGen.CommonMethods.SyntaxNodeTypePredicate``1(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
             <summary>
-            Indicates the generated member kind is fields.
+            Determine whether the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> is of type <typeparamref name="T"/>.
             </summary>
+            <typeparam name="T">The possible type of the node.</typeparam>
+            <param name="node">Indicates the target node.</param>
+            <param name="_"/>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.LocalMemberKinds.Property">
+        <member name="M:Sudoku.Diagnostics.CodeGen.CommonMethods.IsPartialMethodPredicate(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
             <summary>
-            Indicates the generated member kind is properties.
+            Determine whether the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> is a <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax"/>,
+            and contains <see langword="partial"/> modifier.
             </summary>
+            <param name="node">The node.</param>
+            <param name="_"/>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.CommonMethods.NotNullPredicate``1(``0)">
+            <summary>
+            Determine whether the value is not <see langword="null"/>.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="value">The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.CommonMethods.NotNullSelector``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            Try to get the internal value without nullability checking.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="value">The value with <c>?</c> token being annotated, but not <see langword="null"/> currently.</param>
+            <param name="_"/>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.CommonMethods.NotNullSelector``1(System.Nullable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Try to get the internal value without nullability checking.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="value">The value with <c>?</c> token being annotated, but not <see langword="null"/> currently.</param>
+            <param name="_"/>
+            <returns>The value.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Extensions">
             <target name="class" when="extension">
@@ -261,54 +183,132 @@
             Try to convert the specified identifier into camel casing.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.CommonMethods">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generator">
             <summary>
-            Represents a set of methods that can be used by the types in this file.
+            Represents a source generator type that runs multiple different usage of source output services on compiling code.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.CommonMethods.SyntaxNodeTypePredicate``1(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
-            <summary>
-            Determine whether the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> is of type <typeparamref name="T"/>.
-            </summary>
-            <typeparam name="T">The possible type of the node.</typeparam>
-            <param name="node">Indicates the target node.</param>
-            <param name="_"/>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.CommonMethods.IsPartialMethodPredicate(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
+        <member name="T:Sudoku.Diagnostics.CodeGen.EqualsOverriddenHandler">
             <summary>
-            Determine whether the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> is a <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax"/>,
-            and contains <see langword="partial"/> modifier.
+            The generator handler for default overridden of <c>Equals</c>.
             </summary>
-            <param name="node">The node.</param>
-            <param name="_"/>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.CommonMethods.NotNullPredicate``1(``0)">
-            <summary>
-            Determine whether the value is not <see langword="null"/>.
-            </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="value">The value.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        <member name="M:Sudoku.Diagnostics.CodeGen.EqualsOverriddenHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.Diagnostics.CodeGen.EqualsOverriddenCollectedResult})">
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.CommonMethods.NotNullSelector``1(``0,System.Threading.CancellationToken)">
-            <summary>
-            Try to get the internal value without nullability checking.
-            </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="value">The value with <c>?</c> token being annotated, but not <see langword="null"/> currently.</param>
-            <param name="_"/>
-            <returns>The value.</returns>
+        <member name="M:Sudoku.Diagnostics.CodeGen.EqualsOverriddenHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.CommonMethods.NotNullSelector``1(System.Nullable{``0},System.Threading.CancellationToken)">
+        <member name="T:Sudoku.Diagnostics.CodeGen.GetHashCodeOveriddenHandler">
             <summary>
-            Try to get the internal value without nullability checking.
+            The generator handler for default overridden of <c>GetHashCode</c>.
             </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="value">The value with <c>?</c> token being annotated, but not <see langword="null"/> currently.</param>
-            <param name="_"/>
-            <returns>The value.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.GetHashCodeOveriddenHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.Diagnostics.CodeGen.GetHashCodeCollectedResult})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.GetHashCodeOveriddenHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorAttributeHandler`1">
+            <summary>
+            Represents a file-local constraint for generators,
+            which can be used for <see cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.SyntaxProvider"/>,
+            with <see cref="M:Microsoft.CodeAnalysis.SyntaxValueProvider.ForAttributeWithMetadataName``1(System.String,System.Func{Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken,System.Boolean},System.Func{Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken,``0})"/>.
+            </summary>
+            <typeparam name="T">The type of the final data structure.</typeparam>
+            <seealso cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.SyntaxProvider"/>
+            <seealso cref="M:Microsoft.CodeAnalysis.SyntaxValueProvider.ForAttributeWithMetadataName``1(System.String,System.Func{Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken,System.Boolean},System.Func{Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken,``0})"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorAttributeHandler`1.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
+            <summary>
+            Transform the target result from the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> and its semantic values.
+            </summary>
+            <param name="gasc">The context used for getting basic information for a <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>.</param>
+            <param name="cancellationToken">The cancellation token that can cancel generating.</param>
+            <returns>The result. The value can be <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorAttributeHandler`1.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{`0})">
+            <summary>
+            Try to generate the source.
+            </summary>
+            <param name="spc">The context used for generating.</param>
+            <param name="values">The values.</param>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorCompilationHandler">
+            <summary>
+            Represents a file-local constraint for generators,
+            which can be used for <see cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.CompilationProvider"/>.
+            </summary>
+            <seealso cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.CompilationProvider"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorCompilationHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,Microsoft.CodeAnalysis.Compilation)">
+            <summary>
+            Try to generate the source.
+            </summary>
+            <param name="spc">The context used for generating.</param>
+            <param name="compilation">
+            The <see cref="T:Microsoft.CodeAnalysis.Compilation"/> instance that provides the information for the calling project.
+            </param>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.InstanceDeconstructionMethodHandler">
+            <summary>
+            The generator handler for instance deconstruction methods.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.InstanceDeconstructionMethodHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.Diagnostics.CodeGen.InstanceDeconstructionMethodCollectedResult})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.InstanceDeconstructionMethodHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler">
+            <summary>
+            The generator handler for primary constructor parameters.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.Diagnostics.CodeGen.PrimaryConstructorCollectedResult})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.StepSearcherDefaultImportingHandler">
+            <summary>
+            The generator handler for step searcher default importing.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.StepSearcherDefaultImportingHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,Microsoft.CodeAnalysis.Compilation)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.ToStringOverriddenHandler">
+            <summary>
+            The generator handler for default overridden of <c>ToString</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.ToStringOverriddenHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.Diagnostics.CodeGen.ToStringCollectedResult})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.ToStringOverriddenHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.LocalMemberKinds">
+            <summary>
+            The member kind names.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.LocalMemberKinds.Field">
+            <summary>
+            Indicates the generated member kind is fields.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.LocalMemberKinds.Property">
+            <summary>
+            Indicates the generated member kind is properties.
+            </summary>
         </member>
         <member name="F:CodeGen.Constants.VersionValue">
             <summary>
