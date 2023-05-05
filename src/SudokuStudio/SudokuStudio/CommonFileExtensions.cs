@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio;
+namespace SudokuStudio;
 
 /// <summary>
 /// Provides a list of file extension names of bound file types used by this project.
@@ -24,11 +24,6 @@ public static class CommonFileExtensions
 	/// Indicates the sudoku text file format (SST - Sudoku Studio Text format).
 	/// </summary>
 	public const string Text = ".sst";
-
-	/// <summary>
-	/// Indicates the sudoku drawing format (SSD - Sudoku Studio Drawing format).
-	/// </summary>
-	public const string Drawing = ".ssd";
 
 	/// <summary>
 	/// Indicates the user preference file format (SSP - Sudoku Studio Preference format).

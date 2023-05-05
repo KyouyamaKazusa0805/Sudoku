@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio;
+namespace SudokuStudio;
 
 /// <summary>
 /// Provides with some paths that is used for the whole program.

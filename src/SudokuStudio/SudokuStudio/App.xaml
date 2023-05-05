@@ -7,11 +7,13 @@
 	RequestedTheme="Light">
 	<Application.Resources>
 		<ResourceDictionary>
+			<!--Theme or style dictionary-->
 			<ResourceDictionary.MergedDictionaries>
 				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
 				<ResourceDictionary Source="ms-appx:///SettingsUI/Themes/Generic.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 
+			<!--Other values-->
 			<Style x:Key="PreferenceSliderStyle" TargetType="Slider">
 				<Setter Property="Width" Value="300" />
 			</Style>

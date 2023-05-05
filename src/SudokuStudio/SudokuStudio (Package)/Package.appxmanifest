@@ -51,16 +51,6 @@
           </uap:FileTypeAssociation>
         </uap:Extension>
         <uap:Extension Category="windows.fileTypeAssociation">
-          <uap:FileTypeAssociation Name=".ssd">
-            <uap:SupportedFileTypes>
-              <uap:FileType>.ssd</uap:FileType>
-            </uap:SupportedFileTypes>
-            <uap:Logo>3.png</uap:Logo>
-            <uap:InfoTip>SudokuStudio Drawing File</uap:InfoTip>
-            <uap:DisplayName>SudokuStudio Drawing File</uap:DisplayName>
-          </uap:FileTypeAssociation>
-        </uap:Extension>
-        <uap:Extension Category="windows.fileTypeAssociation">
           <uap:FileTypeAssociation Name=".ssp">
             <uap:SupportedFileTypes>
               <uap:FileType>.ssp</uap:FileType>
