@@ -6,6 +6,12 @@ namespace SudokuStudio.Storage;
 /// <seealso cref="CommonFileExtensions.UserPreference"/>
 public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<ProgramPreference>
 {
+	/// <summary>
+	/// Indicates the default options to be used by <see cref="JsonSerializer"/>.
+	/// </summary>
+	private static readonly JsonSerializerOptions Options = new(CommonSerializerOptions.PascalCasing) { IncludeFields = true };
+
+
 	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
 	private ProgramPreferenceFileHandler() => throw new NotSupportedException();
 
@@ -15,11 +21,7 @@ public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<
 
 
 	/// <inheritdoc/>
-	public static ProgramPreference? Read(string filePath)
-		=> Deserialize<ProgramPreference>(
-			File.ReadAllText(filePath),
-			new JsonSerializerOptions(CommonSerializerOptions.PascalCasing) { IncludeFields = true }
-		);
+	public static ProgramPreference? Read(string filePath) => Deserialize<ProgramPreference>(File.ReadAllText(filePath), Options);
 
 	/// <inheritdoc/>
 	public static void Write(string filePath, ProgramPreference instance)
@@ -30,6 +32,6 @@ public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<
 			Directory.CreateDirectory(directory);
 		}
 
-		File.WriteAllText(filePath, Serialize(instance, new JsonSerializerOptions(CommonSerializerOptions.PascalCasing) { IncludeFields = true }));
+		File.WriteAllText(filePath, Serialize(instance, Options));
 	}
 }

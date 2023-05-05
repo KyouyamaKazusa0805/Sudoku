@@ -5045,6 +5045,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.CommonFileExtensions.UserPreference"/>
         </member>
+        <member name="F:SudokuStudio.Storage.ProgramPreferenceFileHandler.Options">
+            <summary>
+            Indicates the default options to be used by <see cref="T:System.Text.Json.JsonSerializer"/>.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Storage.ProgramPreferenceFileHandler.SupportedFileExtension">
             <inheritdoc/>
         </member>
