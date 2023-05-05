@@ -1,5 +1,6 @@
 namespace Sudoku.Diagnostics.CodeGen;
 
+using static CommonMethods;
 using static global::CodeGen.Constants;
 using static NullableAnnotation;
 using static SpecialType;
@@ -12,76 +13,27 @@ using NamedArgs = ImmutableArray<KeyValuePair<string, TypedConstant>>;
 public sealed class Generator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
-	public void Initialize(IncrementalGeneratorInitializationContext context)
+	public unsafe void Initialize(IncrementalGeneratorInitializationContext context)
 	{
 		// Primary Constructors
-		const string primaryConstructorParameterAttributeName = "System.Diagnostics.CodeGen.PrimaryConstructorParameterAttribute";
-		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					primaryConstructorParameterAttributeName,
-					CommonMethods.SyntaxNodeTypePredicate<ParameterSyntax>,
-					PrimaryConstructorHandler.I.Transform
-				)
-				.Where(CommonMethods.NotNullPredicate)
-				.Select(CommonMethods.NotNullSelector)
-				.Collect(),
-			PrimaryConstructorHandler.I.Output
-		);
+		{
+			const string name = "System.Diagnostics.CodeGen.PrimaryConstructorParameterAttribute";
+			context.Register<PrimaryConstructorHandler, PrimaryConstructorCollectedResult>(name, &SyntaxNodeTypePredicate<ParameterSyntax>);
+		}
 
 		// Default Overridden
-		const string overriddingMemberAttributeName = "System.Diagnostics.CodeGen.GeneratedOverridingMemberAttribute";
-		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					overriddingMemberAttributeName,
-					CommonMethods.IsPartialMethodPredicate,
-					EqualsOverriddenHandler.I.Transform
-				)
-				.Where(CommonMethods.NotNullPredicate)
-				.Select(CommonMethods.NotNullSelector)
-				.Collect(),
-			EqualsOverriddenHandler.I.Output
-		);
-		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					overriddingMemberAttributeName,
-					CommonMethods.IsPartialMethodPredicate,
-					GetHashCodeOveriddenHandler.I.Transform
-				)
-				.Where(CommonMethods.NotNullPredicate)
-				.Select(CommonMethods.NotNullSelector)
-				.Collect(),
-			GetHashCodeOveriddenHandler.I.Output
-		);
-		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					overriddingMemberAttributeName,
-					CommonMethods.IsPartialMethodPredicate,
-					ToStringOverriddenHandler.I.Transform
-				)
-				.Where(CommonMethods.NotNullPredicate)
-				.Select(CommonMethods.NotNullSelector)
-				.Collect(),
-			ToStringOverriddenHandler.I.Output
-		);
+		{
+			const string name = "System.Diagnostics.CodeGen.GeneratedOverridingMemberAttribute";
+			context.Register<EqualsOverriddenHandler, EqualsOverriddenCollectedResult>(name, &IsPartialMethodPredicate);
+			context.Register<GetHashCodeOveriddenHandler, GetHashCodeCollectedResult>(name, &IsPartialMethodPredicate);
+			context.Register<ToStringOverriddenHandler, ToStringCollectedResult>(name, &IsPartialMethodPredicate);
+		}
 
 		// Instance Deconstruction Methods
-		const string deconstructionMethodAttributeName = "System.Diagnostics.CodeGen.DeconstructionMethodAttribute";
-		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					deconstructionMethodAttributeName,
-					CommonMethods.IsPartialMethodPredicate,
-					InstanceDeconstructionMethodHandler.I.Transform
-				)
-				.Where(CommonMethods.NotNullPredicate)
-				.Select(CommonMethods.NotNullSelector)
-				.Collect(),
-			InstanceDeconstructionMethodHandler.I.Output
-		);
+		{
+			const string name = "System.Diagnostics.CodeGen.DeconstructionMethodAttribute";
+			context.Register<InstanceDeconstructionMethodHandler, InstanceDeconstructionMethodCollectedResult>(name, &IsPartialMethodPredicate);
+		}
 	}
 }
 
@@ -112,9 +64,6 @@ file interface IIncrementalGeneratorHandler<T> where T : notnull
 /// </summary>
 file sealed class PrimaryConstructorHandler : IIncrementalGeneratorHandler<PrimaryConstructorCollectedResult>
 {
-	public static readonly PrimaryConstructorHandler I = new();
-
-
 	/// <inheritdoc/>
 	public void Output(SourceProductionContext spc, ImmutableArray<PrimaryConstructorCollectedResult> values)
 	{
@@ -342,9 +291,6 @@ file sealed class PrimaryConstructorHandler : IIncrementalGeneratorHandler<Prima
 /// </summary>
 file sealed class EqualsOverriddenHandler : IIncrementalGeneratorHandler<EqualsOverriddenCollectedResult>
 {
-	public static readonly EqualsOverriddenHandler I = new();
-
-
 	/// <inheritdoc/>
 	public void Output(SourceProductionContext spc, ImmutableArray<EqualsOverriddenCollectedResult> values)
 	{
@@ -462,9 +408,6 @@ file sealed class EqualsOverriddenHandler : IIncrementalGeneratorHandler<EqualsO
 /// </summary>
 file sealed class GetHashCodeOveriddenHandler : IIncrementalGeneratorHandler<GetHashCodeCollectedResult>
 {
-	public static readonly GetHashCodeOveriddenHandler I = new();
-
-
 	/// <inheritdoc/>
 	public void Output(SourceProductionContext spc, ImmutableArray<GetHashCodeCollectedResult> values)
 	{
@@ -597,9 +540,6 @@ file sealed class GetHashCodeOveriddenHandler : IIncrementalGeneratorHandler<Get
 /// </summary>
 file sealed class ToStringOverriddenHandler : IIncrementalGeneratorHandler<ToStringCollectedResult>
 {
-	public static readonly ToStringOverriddenHandler I = new();
-
-
 	/// <inheritdoc/>
 	public void Output(SourceProductionContext spc, ImmutableArray<ToStringCollectedResult> values)
 	{
@@ -730,8 +670,6 @@ file sealed class ToStringOverriddenHandler : IIncrementalGeneratorHandler<ToStr
 /// </summary>
 file sealed class InstanceDeconstructionMethodHandler : IIncrementalGeneratorHandler<InstanceDeconstructionMethodCollectedResult>
 {
-	public static readonly InstanceDeconstructionMethodHandler I = new();
-
 	private const string DeconstructionMethodArgumentAttributeName = "System.Diagnostics.CodeGen.DeconstructionMethodArgumentAttribute";
 
 
@@ -950,6 +888,41 @@ file static class LocalMemberKinds
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
+	/// <summary>
+	/// Registers for a new generator function via attribute checking.
+	/// </summary>
+	/// <typeparam name="THandler">
+	/// The type of the target handler. The handler type must implement <see cref="IIncrementalGeneratorHandler{T}"/>,
+	/// and contain a parameterless constructor.
+	/// </typeparam>
+	/// <typeparam name="TCollectedResult">
+	/// The type of the collected result. The type must be as a generic type argument of <typeparamref name="THandler"/>.
+	/// </typeparam>
+	/// <param name="this">The context.</param>
+	/// <param name="attributeName">
+	/// The attribute name. The value must be full name of the attribute, including its namespace, beginning with root-level one.
+	/// </param>
+	/// <param name="nodeFilter">The node filter method.</param>
+	/// <seealso cref="IIncrementalGeneratorHandler{T}"/>
+	public static unsafe void Register<THandler, TCollectedResult>(
+		this scoped ref IncrementalGeneratorInitializationContext @this,
+		string attributeName,
+		delegate*<SyntaxNode, CancellationToken, bool> nodeFilter
+	)
+		where THandler : IIncrementalGeneratorHandler<TCollectedResult>, new()
+		where TCollectedResult : class
+	{
+		var inst = new THandler();
+		@this.RegisterSourceOutput(
+			@this.SyntaxProvider
+				.ForAttributeWithMetadataName(attributeName, (node, cancellationToken) => nodeFilter(node, cancellationToken), inst.Transform)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			inst.Output
+		);
+	}
+
 	/// <summary>
 	/// Determines whether all parameters are <see langword="out"/> ones.
 	/// </summary>

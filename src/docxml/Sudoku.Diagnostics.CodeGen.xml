@@ -170,6 +170,24 @@
 				</summary>
 			</target>
         </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Extensions.Register``2(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext@,System.String,)">
+            <summary>
+            Registers for a new generator function via attribute checking.
+            </summary>
+            <typeparam name="THandler">
+            The type of the target handler. The handler type must implement <see cref="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorHandler`1"/>,
+            and contain a parameterless constructor.
+            </typeparam>
+            <typeparam name="TCollectedResult">
+            The type of the collected result. The type must be as a generic type argument of <typeparamref name="THandler"/>.
+            </typeparam>
+            <param name="this">The context.</param>
+            <param name="attributeName">
+            The attribute name. The value must be full name of the attribute, including its namespace, beginning with root-level one.
+            </param>
+            <param name="nodeFilter">The node filter method.</param>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorHandler`1"/>
+        </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Extensions.AllOutParameters(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol})">
             <summary>
             Determines whether all parameters are <see langword="out"/> ones.
