@@ -9,7 +9,7 @@ public sealed class SudokuFileHandler : IProgramSupportedFileHandler<GridInfo[]>
 	/// <summary>
 	/// Indicates the default options to be used by <see cref="JsonSerializer"/>.
 	/// </summary>
-	private static readonly JsonSerializerOptions Options = new(CommonSerializerOptions.CamelCasing) { IgnoreReadOnlyProperties = false };
+	private static readonly JsonSerializerOptions Options = new(CommonSerializerOptions.PascalCasing) { IgnoreReadOnlyProperties = false };
 
 
 	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]

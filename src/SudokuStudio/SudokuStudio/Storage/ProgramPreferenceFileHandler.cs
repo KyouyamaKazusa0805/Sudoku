@@ -16,7 +16,10 @@ public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<
 
 	/// <inheritdoc/>
 	public static ProgramPreference? Read(string filePath)
-		=> Deserialize<ProgramPreference>(File.ReadAllText(filePath), CommonSerializerOptions.CamelCasingSupportsField);
+		=> Deserialize<ProgramPreference>(
+			File.ReadAllText(filePath),
+			new JsonSerializerOptions(CommonSerializerOptions.PascalCasing) { IncludeFields = true }
+		);
 
 	/// <inheritdoc/>
 	public static void Write(string filePath, ProgramPreference instance)
@@ -27,6 +30,6 @@ public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<
 			Directory.CreateDirectory(directory);
 		}
 
-		File.WriteAllText(filePath, Serialize(instance, CommonSerializerOptions.CamelCasingSupportsField));
+		File.WriteAllText(filePath, Serialize(instance, new JsonSerializerOptions(CommonSerializerOptions.PascalCasing) { IncludeFields = true }));
 	}
 }

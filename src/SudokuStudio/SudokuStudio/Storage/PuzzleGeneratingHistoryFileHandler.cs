@@ -16,9 +16,9 @@ public sealed class PuzzleGeneratingHistoryFileHandler : IProgramSupportedFileHa
 
 	/// <inheritdoc/>
 	public static PuzzleGenertingHistory? Read(string filePath)
-		=> Deserialize<PuzzleGenertingHistory>(File.ReadAllText(filePath), CommonSerializerOptions.CamelCasing);
+		=> Deserialize<PuzzleGenertingHistory>(File.ReadAllText(filePath), CommonSerializerOptions.PascalCasing);
 
 	/// <inheritdoc/>
 	public static void Write(string filePath, PuzzleGenertingHistory instance)
-		=> File.WriteAllText(filePath, Serialize(instance, CommonSerializerOptions.CamelCasing));
+		=> File.WriteAllText(filePath, Serialize(instance, CommonSerializerOptions.PascalCasing));
 }

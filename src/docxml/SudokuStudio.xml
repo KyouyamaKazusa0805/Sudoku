@@ -1067,25 +1067,6 @@
             Indicates the puzzle strings.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup">
-            <summary>
-            Represents with preference items that is used by <see cref="T:Sudoku.Analytics.Analyzer"/>, for the ordering of <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty" />
-        </member>
         <member name="T:SudokuStudio.Configuration.StepSearcherInfo">
             <summary>
             Defines a serialization data of a step searcher.
@@ -1129,6 +1110,25 @@
             <summary>
             Indicates the type name of the step searcher. This property can be used for creating instances via reflection using method <see cref="M:System.Activator.CreateInstance(System.Type)"/>.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup">
+            <summary>
+            Represents with preference items that is used by <see cref="T:Sudoku.Analytics.Analyzer"/>, for the ordering of <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty" />
         </member>
         <member name="T:SudokuStudio.Configuration.UIPreferenceGroup">
             <summary>
