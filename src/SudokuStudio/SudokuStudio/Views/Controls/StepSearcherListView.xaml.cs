@@ -4,7 +4,7 @@ namespace SudokuStudio.Views.Controls;
 /// Represents a <see cref="ListView"/> control that displays for <see cref="StepSearcher"/> instances.
 /// </summary>
 /// <seealso cref="StepSearcher"/>
-[DependencyProperty<ObservableCollection<StepSearcherSerializationData>>("StepSearchers", DocSummary = "Indicates the step searchers.")]
+[DependencyProperty<ObservableCollection<StepSearcherInfo>>("StepSearchers", DocSummary = "Indicates the step searchers.")]
 public sealed partial class StepSearcherListView : UserControl
 {
 	/// <summary>
@@ -15,7 +15,7 @@ public sealed partial class StepSearcherListView : UserControl
 
 	private void MainListView_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
 	{
-		if (e is not { Data: var dataPackage, Items: [StepSearcherSerializationData stepSearcherSerializationData] })
+		if (e is not { Data: var dataPackage, Items: [StepSearcherInfo stepSearcherSerializationData] })
 		{
 			return;
 		}
@@ -49,7 +49,7 @@ public sealed partial class StepSearcherListView : UserControl
 			return;
 		}
 
-		var instance = new StepSearcherSerializationData { IsEnabled = bool.Parse(isEnabledRaw), Name = nameRaw, TypeName = typeNameRaw };
+		var instance = new StepSearcherInfo { IsEnabled = bool.Parse(isEnabledRaw), Name = nameRaw, TypeName = typeNameRaw };
 
 		// Important step: Drag & drop behavior cannot get the target element's index.
 		// We should get the target insertion index via cursor point.

@@ -1010,17 +1010,17 @@
             Indicates the colors.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Configuration.GridSerializationData">
+        <member name="T:SudokuStudio.Configuration.GridInfo">
             <summary>
-            Defines a sudoku grid serialization data.
+            Represents a type that defines the details of a grid.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.GridSerializationData.GridString">
+        <member name="P:SudokuStudio.Configuration.GridInfo.GridString">
             <summary>
             Indicates the grid string.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.GridSerializationData.RenderableData">
+        <member name="P:SudokuStudio.Configuration.GridInfo.RenderableData">
             <summary>
             Indicates the data that represents the conclusions and view nodes.
             </summary>
@@ -1086,46 +1086,46 @@
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty" />
         </member>
-        <member name="T:SudokuStudio.Configuration.StepSearcherSerializationData">
+        <member name="T:SudokuStudio.Configuration.StepSearcherInfo">
             <summary>
             Defines a serialization data of a step searcher.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Configuration.StepSearcherSerializationData.CreateStepSearchers">
+        <member name="M:SudokuStudio.Configuration.StepSearcherInfo.CreateStepSearchers">
             <summary>
             Creates a list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
             </summary>
             <returns>A list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.</returns>
         </member>
-        <member name="F:SudokuStudio.Configuration.StepSearcherSerializationData.IsEnabledProperty">
+        <member name="F:SudokuStudio.Configuration.StepSearcherInfo.IsEnabledProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherSerializationData.IsEnabled"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherInfo.IsEnabled"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Configuration.StepSearcherSerializationData.IsEnabled"/>
+            <seealso cref="P:SudokuStudio.Configuration.StepSearcherInfo.IsEnabled"/>
         </member>
-        <member name="F:SudokuStudio.Configuration.StepSearcherSerializationData.NameProperty">
+        <member name="F:SudokuStudio.Configuration.StepSearcherInfo.NameProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherSerializationData.Name"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherInfo.Name"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Configuration.StepSearcherSerializationData.Name"/>
+            <seealso cref="P:SudokuStudio.Configuration.StepSearcherInfo.Name"/>
         </member>
-        <member name="F:SudokuStudio.Configuration.StepSearcherSerializationData.TypeNameProperty">
+        <member name="F:SudokuStudio.Configuration.StepSearcherInfo.TypeNameProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherSerializationData.TypeName"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherInfo.TypeName"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Configuration.StepSearcherSerializationData.TypeName"/>
+            <seealso cref="P:SudokuStudio.Configuration.StepSearcherInfo.TypeName"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.StepSearcherSerializationData.IsEnabled">
+        <member name="P:SudokuStudio.Configuration.StepSearcherInfo.IsEnabled">
             <summary>
             Indicates whether the step searcher is enabled.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.StepSearcherSerializationData.Name">
+        <member name="P:SudokuStudio.Configuration.StepSearcherInfo.Name">
             <summary>
             Indicates the name of the step searcher.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.StepSearcherSerializationData.TypeName">
+        <member name="P:SudokuStudio.Configuration.StepSearcherInfo.TypeName">
             <summary>
             Indicates the type name of the step searcher. This property can be used for creating instances via reflection using method <see cref="M:System.Activator.CreateInstance(System.Type)"/>.
             </summary>
@@ -5086,7 +5086,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Storage.SudokuFileHandler.Read(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Storage.SudokuFileHandler.Write(System.String,SudokuStudio.Configuration.GridSerializationData[])">
+        <member name="M:SudokuStudio.Storage.SudokuFileHandler.Write(System.String,SudokuStudio.Configuration.GridInfo[])">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Storage.SudokuPlainTextFileHandler">

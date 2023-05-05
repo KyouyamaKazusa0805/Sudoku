@@ -13,7 +13,7 @@
 		DragItemsStarting="MainListView_DragItemsStarting" DragOver="MainListView_DragOver" Drop="MainListView_DropAsync"
 		DragEnter="MainListView_DragEnter">
 		<ListView.ItemTemplate>
-			<DataTemplate x:DataType="config:StepSearcherSerializationData">
+			<DataTemplate x:DataType="config:StepSearcherInfo">
 				<CheckBox IsChecked="{x:Bind IsEnabled,Mode=TwoWay}" Content="{x:Bind Name}" CanDrag="True" />
 			</DataTemplate>
 		</ListView.ItemTemplate>

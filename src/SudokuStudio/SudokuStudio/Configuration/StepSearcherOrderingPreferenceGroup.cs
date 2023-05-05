@@ -5,13 +5,13 @@ namespace SudokuStudio.Configuration;
 /// </summary>
 /// <seealso cref="Analyzer"/>
 /// <seealso cref="StepSearcher"/>
-[DependencyProperty<ObservableCollection<StepSearcherSerializationData>>("StepSearchersOrder")]
+[DependencyProperty<ObservableCollection<StepSearcherInfo>>("StepSearchersOrder")]
 public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGroup
 {
 	[DefaultValue]
-	private static readonly ObservableCollection<StepSearcherSerializationData> StepSearchersOrderDefaultValue = new(
+	private static readonly ObservableCollection<StepSearcherInfo> StepSearchersOrderDefaultValue = new(
 		from searcher in StepSearcherPool.Default(false)
-		select new StepSearcherSerializationData
+		select new StepSearcherInfo
 		{
 			IsEnabled = searcher.RunningArea.Flags(StepSearcherRunningArea.Searching),
 			Name = searcher.ToString(),
@@ -23,7 +23,7 @@ public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGrou
 	[Callback]
 	private static void StepSearchersOrderPropertyCallback(DependencyObject obj, DependencyPropertyChangedEventArgs e)
 	{
-		if (e is not { NewValue: ObservableCollection<StepSearcherSerializationData> stepSearchers })
+		if (e is not { NewValue: ObservableCollection<StepSearcherInfo> stepSearchers })
 		{
 			return;
 		}
