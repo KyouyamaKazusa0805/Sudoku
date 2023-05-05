@@ -4,7 +4,7 @@ namespace SudokuStudio.Storage;
 /// Defines a handler that handles the file of file extension <see cref="CommonFileExtensions.Text"/>.
 /// </summary>
 /// <seealso cref="CommonFileExtensions.Text"/>
-public sealed class SudokuFileHandler : IProgramSupportedFileHandler<GridSerializationData[]>
+public sealed class SudokuFileHandler : IProgramSupportedFileHandler<GridInfo[]>
 {
 	/// <summary>
 	/// Indicates the default options to be used by <see cref="JsonSerializer"/>.
@@ -21,8 +21,8 @@ public sealed class SudokuFileHandler : IProgramSupportedFileHandler<GridSeriali
 
 
 	/// <inheritdoc/>
-	public static GridSerializationData[]? Read(string filePath) => Deserialize<GridSerializationData[]>(File.ReadAllText(filePath), Options);
+	public static GridInfo[]? Read(string filePath) => Deserialize<GridInfo[]>(File.ReadAllText(filePath), Options);
 
 	/// <inheritdoc/>
-	public static void Write(string filePath, GridSerializationData[] instance) => File.WriteAllText(filePath, Serialize(instance, Options));
+	public static void Write(string filePath, GridInfo[] instance) => File.WriteAllText(filePath, Serialize(instance, Options));
 }

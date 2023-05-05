@@ -1,9 +1,9 @@
 namespace SudokuStudio.Configuration;
 
 /// <summary>
-/// Defines a sudoku grid serialization data.
+/// Represents a type that defines the details of a grid.
 /// </summary>
-public sealed class GridSerializationData
+public sealed class GridInfo
 {
 	/// <summary>
 	/// Indicates the grid string.

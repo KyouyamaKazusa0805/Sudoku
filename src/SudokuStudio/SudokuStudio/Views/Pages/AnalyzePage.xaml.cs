@@ -270,7 +270,7 @@ public sealed partial class AnalyzePage : Page
 			{
 				SudokuFileHandler.Write(
 					filePath,
-					new GridSerializationData[]
+					new GridInfo[]
 					{
 						new()
 						{
@@ -347,7 +347,7 @@ public sealed partial class AnalyzePage : Page
 					(
 						from gridFormatter in gridFormatters
 						select ((IGridFormatter)gridFormatter).ToString(grid) into gridString
-						select new GridSerializationData { GridString = gridString, RenderableData = renderableData }
+						select new GridInfo { GridString = gridString, RenderableData = renderableData }
 					).ToArray()
 				);
 
