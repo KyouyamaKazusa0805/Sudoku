@@ -21,8 +21,8 @@
 
 属于该类型的项目有：
 
-* [`Global.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Global.CodeGen)：为高阶的源代码生成器。它生成一些东西，专门提供给其它的源代码生成器项目使用，也提供一些 API；
-* [`Sudoku.Diagnostics.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeGen)：为解决方案提供一些基本的、不必手写的源代码的功能性扩展。
+* [`RootLevelSourceGeneration`](https://github.com/SunnieShine/Sudoku/tree/main/src/RootLevelSourceGeneration)：为根级别的源代码生成器。它生成一些东西，专门提供给派生下去的源代码生成器项目使用，也提供一些 API；
+* [`Sudoku.SourceGeneration`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.SourceGeneration)：为解决方案提供一些基本的、不必手写的源代码的功能性扩展。
 
 ## 解决方案项目
 

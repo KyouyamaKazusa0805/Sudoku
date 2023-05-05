@@ -30,9 +30,9 @@ public sealed class VersionValueGenerator : IIncrementalGenerator
 				"Constants.Version.g.cs",
 				$$"""
 				#nullable enable
-				namespace CodeGen;
+				namespace RootLevelSourceGeneration;
 
-				partial class Constants
+				internal static class Constants
 				{
 					/// <summary>
 					/// Indicates the version of this project.

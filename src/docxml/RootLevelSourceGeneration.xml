@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Global.CodeGen</name>
+        <name>RootLevelSourceGeneration</name>
     </assembly>
     <members>
         <member name="T:Microsoft.CodeAnalysis.ExtendedSymbolDisplayFormat">
