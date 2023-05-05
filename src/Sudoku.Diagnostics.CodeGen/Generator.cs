@@ -15,6 +15,10 @@ public sealed class Generator : IIncrementalGenerator
 	/// <inheritdoc/>
 	public unsafe void Initialize(IncrementalGeneratorInitializationContext context)
 	{
+		//
+		// Elementary generators
+		//
+		#region Elementary generators
 		// Primary Constructors
 		{
 			const string name = "System.Diagnostics.CodeGen.PrimaryConstructorParameterAttribute";
@@ -34,14 +38,29 @@ public sealed class Generator : IIncrementalGenerator
 			const string name = "System.Diagnostics.CodeGen.DeconstructionMethodAttribute";
 			context.Register<InstanceDeconstructionMethodHandler, InstanceDeconstructionMethodCollectedResult>(name, &IsPartialMethodPredicate);
 		}
+		#endregion
+
+		//
+		// Advanced generators
+		//
+		#region Advanced generators
+		// StepSearcher Default Imports
+		{
+			context.Register<StepSearcherDefaultImportingHandler>("Sudoku.Analytics");
+		}
+		#endregion
 	}
 }
 
 /// <summary>
-/// Represents a file-local constraint for generators.
+/// Represents a file-local constraint for generators,
+/// which can be used for <see cref="IncrementalGeneratorInitializationContext.SyntaxProvider"/>,
+/// with <see cref="SyntaxValueProvider.ForAttributeWithMetadataName{T}(string, Func{SyntaxNode, CancellationToken, bool}, Func{GeneratorAttributeSyntaxContext, CancellationToken, T})"/>.
 /// </summary>
 /// <typeparam name="T">The type of the final data structure.</typeparam>
-file interface IIncrementalGeneratorHandler<T> where T : notnull
+/// <seealso cref="IncrementalGeneratorInitializationContext.SyntaxProvider"/>
+/// <seealso cref="SyntaxValueProvider.ForAttributeWithMetadataName{T}(string, Func{SyntaxNode, CancellationToken, bool}, Func{GeneratorAttributeSyntaxContext, CancellationToken, T})"/>
+file interface IIncrementalGeneratorAttributeHandler<T> where T : notnull
 {
 	/// <summary>
 	/// Transform the target result from the specified <see cref="SyntaxNode"/> and its semantic values.
@@ -60,9 +79,26 @@ file interface IIncrementalGeneratorHandler<T> where T : notnull
 }
 
 /// <summary>
+/// Represents a file-local constraint for generators,
+/// which can be used for <see cref="IncrementalGeneratorInitializationContext.CompilationProvider"/>.
+/// </summary>
+/// <seealso cref="IncrementalGeneratorInitializationContext.CompilationProvider"/>
+file interface IIncrementalGeneratorCompilationHandler
+{
+	/// <summary>
+	/// Try to generate the source.
+	/// </summary>
+	/// <param name="spc">The context used for generating.</param>
+	/// <param name="compilation">
+	/// The <see cref="Compilation"/> instance that provides the information for the calling project.
+	/// </param>
+	void Output(SourceProductionContext spc, Compilation compilation);
+}
+
+/// <summary>
 /// The generator handler for primary constructor parameters.
 /// </summary>
-file sealed class PrimaryConstructorHandler : IIncrementalGeneratorHandler<PrimaryConstructorCollectedResult>
+file sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttributeHandler<PrimaryConstructorCollectedResult>
 {
 	/// <inheritdoc/>
 	public void Output(SourceProductionContext spc, ImmutableArray<PrimaryConstructorCollectedResult> values)
@@ -289,7 +325,7 @@ file sealed class PrimaryConstructorHandler : IIncrementalGeneratorHandler<Prima
 /// <summary>
 /// The generator handler for default overridden of <c>Equals</c>.
 /// </summary>
-file sealed class EqualsOverriddenHandler : IIncrementalGeneratorHandler<EqualsOverriddenCollectedResult>
+file sealed class EqualsOverriddenHandler : IIncrementalGeneratorAttributeHandler<EqualsOverriddenCollectedResult>
 {
 	/// <inheritdoc/>
 	public void Output(SourceProductionContext spc, ImmutableArray<EqualsOverriddenCollectedResult> values)
@@ -406,7 +442,7 @@ file sealed class EqualsOverriddenHandler : IIncrementalGeneratorHandler<EqualsO
 /// <summary>
 /// The generator handler for default overridden of <c>GetHashCode</c>.
 /// </summary>
-file sealed class GetHashCodeOveriddenHandler : IIncrementalGeneratorHandler<GetHashCodeCollectedResult>
+file sealed class GetHashCodeOveriddenHandler : IIncrementalGeneratorAttributeHandler<GetHashCodeCollectedResult>
 {
 	/// <inheritdoc/>
 	public void Output(SourceProductionContext spc, ImmutableArray<GetHashCodeCollectedResult> values)
@@ -538,7 +574,7 @@ file sealed class GetHashCodeOveriddenHandler : IIncrementalGeneratorHandler<Get
 /// <summary>
 /// The generator handler for default overridden of <c>ToString</c>.
 /// </summary>
-file sealed class ToStringOverriddenHandler : IIncrementalGeneratorHandler<ToStringCollectedResult>
+file sealed class ToStringOverriddenHandler : IIncrementalGeneratorAttributeHandler<ToStringCollectedResult>
 {
 	/// <inheritdoc/>
 	public void Output(SourceProductionContext spc, ImmutableArray<ToStringCollectedResult> values)
@@ -668,7 +704,7 @@ file sealed class ToStringOverriddenHandler : IIncrementalGeneratorHandler<ToStr
 /// <summary>
 /// The generator handler for instance deconstruction methods.
 /// </summary>
-file sealed class InstanceDeconstructionMethodHandler : IIncrementalGeneratorHandler<InstanceDeconstructionMethodCollectedResult>
+file sealed class InstanceDeconstructionMethodHandler : IIncrementalGeneratorAttributeHandler<InstanceDeconstructionMethodCollectedResult>
 {
 	private const string DeconstructionMethodArgumentAttributeName = "System.Diagnostics.CodeGen.DeconstructionMethodArgumentAttribute";
 
@@ -803,6 +839,231 @@ file sealed class InstanceDeconstructionMethodHandler : IIncrementalGeneratorHan
 }
 
 /// <summary>
+/// The generator handler for step searcher default importing.
+/// </summary>
+file sealed class StepSearcherDefaultImportingHandler : IIncrementalGeneratorCompilationHandler
+{
+	private const string AreasPropertyName = "Areas";
+
+	private const string StepSearcherTypeName = "Sudoku.Analytics.StepSearcher";
+
+	private const string StepSearcherRunningAreaTypeName = "Sudoku.Analytics.Metadata.StepSearcherRunningArea";
+
+	private const string StepSearcherLevelTypeName = "Sudoku.Analytics.Metadata.StepSearcherLevel";
+
+	private const string StepSearcherImportAttributeName = "global::Sudoku.Analytics.Metadata.StepSearcherImportAttribute<>";
+
+	private const string PolymorphismAttributeName = "Sudoku.Analytics.Metadata.PolymorphismAttribute";
+
+
+	/// <inheritdoc/>
+	public void Output(SourceProductionContext spc, Compilation compilation)
+	{
+		// Checks whether the assembly has marked any attributes.
+		if (compilation.Assembly.GetAttributes() is not { IsDefaultOrEmpty: false } attributesData)
+		{
+			return;
+		}
+
+		var stepSearcherBaseType = compilation.GetTypeByMetadataName(StepSearcherTypeName);
+		if (stepSearcherBaseType is null)
+		{
+			return;
+		}
+
+		var runningAreaTypeSymbol = compilation.GetTypeByMetadataName(StepSearcherRunningAreaTypeName)!;
+		var levelTypeSymbol = compilation.GetTypeByMetadataName(StepSearcherLevelTypeName)!;
+		var runningAreasFields = new Dictionary<byte, string>();
+		var levelFields = new Dictionary<byte, string>();
+		foreach (var fieldSymbol in runningAreaTypeSymbol.GetMembers().OfType<IFieldSymbol>())
+		{
+			if (fieldSymbol is { ConstantValue: byte value, Name: var fieldName })
+			{
+				runningAreasFields.Add(value, fieldName);
+			}
+		}
+		foreach (var fieldSymbol in levelTypeSymbol.GetMembers().OfType<IFieldSymbol>())
+		{
+			if (fieldSymbol is { ConstantValue: byte value, Name: var fieldName })
+			{
+				levelFields.Add(value, fieldName);
+			}
+		}
+
+		// Gather the valid attributes data.
+		var foundAttributesData = new List<StepSearcherDefaultImportingCollectedResult>();
+		const string comma = ", ";
+		var priorityValue = 0;
+		foreach (var attributeData in attributesData)
+		{
+			// Check validity.
+#pragma warning disable format
+			if (attributeData is not
+				{
+					AttributeClass:
+					{
+						IsGenericType: true,
+						TypeArguments:
+						[
+							INamedTypeSymbol
+							{
+								IsRecord: false,
+								ContainingNamespace: var containingNamespace,
+								Name: var stepSearcherName,
+								BaseType: { } baseType
+							} stepSearcherType
+						]
+					} attributeClassSymbol,
+					ConstructorArguments: [{ Type.TypeKind: TypeKind.Enum, Value: byte dl }],
+					NamedArguments: var namedArguments
+				})
+#pragma warning restore format
+			{
+				continue;
+			}
+
+			// Checks whether the type is valid.
+			var unboundAttributeTypeSymbol = attributeClassSymbol.ConstructUnboundGenericType();
+			if (unboundAttributeTypeSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) != StepSearcherImportAttributeName)
+			{
+				continue;
+			}
+
+			// Check whether the step searcher can be used for deriving.
+			var polymorphismAttributeType = compilation.GetTypeByMetadataName(PolymorphismAttributeName)!;
+			var isPolymorphism = stepSearcherType.GetAttributes().Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, polymorphismAttributeType));
+
+			// Adds the necessary info into the collection.
+			foundAttributesData.Add(new(containingNamespace, baseType, priorityValue++, dl, stepSearcherName, namedArguments, isPolymorphism));
+		}
+
+		// Iterate on each valid attribute data, and checks the inner value to be used by the source generator to output.
+		var generatedCodeSnippets = new List<string>();
+		var namespaceUsed = foundAttributesData[0].Namespace;
+		foreach (var (_, baseType, priority, level, name, namedArguments, isPolymorphism) in foundAttributesData)
+		{
+			// Checks whether the attribute has configured any extra options.
+			var nullableRunningArea = default(byte?);
+			if (namedArguments is not [])
+			{
+				foreach (var (k, v) in namedArguments)
+				{
+					if (k == AreasPropertyName && v is { Value: byte value })
+					{
+						nullableRunningArea = value;
+					}
+				}
+			}
+
+			// Gather the extra options on step searcher.
+			var levelStr = createLevelExpression(level, levelFields);
+			var runningAreaStr = nullableRunningArea switch
+			{
+				{ } runningArea => createRunningAreasExpression(runningArea, runningAreasFields),
+				_ => null
+			};
+
+			var sb = new StringBuilder().Append(levelStr);
+			_ = runningAreaStr is not null ? sb.Append(comma).Append(runningAreaStr) : default;
+
+			// Output the generated code.
+			var baseTypeFullName = baseType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+			generatedCodeSnippets.Add(
+				isPolymorphism
+					? $$"""
+					partial class {{name}} : {{baseTypeFullName}}
+					{
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().Name}}", "{{VersionValue}}")]
+						public {{name}}() : base({{priority}}, {{levelStr}}{{(runningAreaStr is not null ? $", {runningAreaStr}" : string.Empty)}})
+						{
+						}
+
+						/// <param name="priority">
+						/// <inheritdoc
+						///     cref="global::Sudoku.Analytics.StepSearcher(int, global::Sudoku.Analytics.Metadata.StepSearcherLevel, global::Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
+						///     path="/param[@name='priority']"/>
+						/// </param>
+						/// <param name="level">
+						/// <inheritdoc
+						///     cref="global::Sudoku.Analytics.StepSearcher(int, global::Sudoku.Analytics.Metadata.StepSearcherLevel, global::Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
+						///     path="/param[@name='level']"/>
+						/// </param>
+						/// <param name="runningArea">
+						/// <inheritdoc
+						///     cref="global::Sudoku.Analytics.StepSearcher(int, global::Sudoku.Analytics.Metadata.StepSearcherLevel, global::Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
+						///     path="/param[@name='runningArea']"/>
+						/// </param>
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().Name}}", "{{VersionValue}}")]
+						public {{name}}(
+							int priority,
+							global::Sudoku.Analytics.Metadata.StepSearcherLevel level,
+							global::Sudoku.Analytics.Metadata.StepSearcherRunningArea runningArea = global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching | global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering
+						) : base(priority, level, runningArea)
+						{
+						}
+					}
+					"""
+					: $"partial class {name}() : {baseTypeFullName}({priority}, {sb});"
+			);
+		}
+
+		spc.AddSource(
+			$"StepSearcherImports.g.{Shortcuts.StepSearcherImports}.cs",
+			$$"""
+			// <auto-generated/>
+
+			#pragma warning disable CS1591
+			#nullable enable
+			namespace {{namespaceUsed.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..]}};
+			
+			{{string.Join($"{Environment.NewLine}{Environment.NewLine}", generatedCodeSnippets)}}
+			"""
+		);
+
+
+		static string createRunningAreasExpression(byte field, IDictionary<byte, string> runningAreasFields)
+		{
+			var l = (int)field;
+			if (l == 0)
+			{
+				return "0";
+			}
+
+			var targetList = new List<string>();
+			for (var (temp, i) = (l, 0); temp != 0; temp >>= 1, i++)
+			{
+				if ((temp & 1) != 0)
+				{
+					targetList.Add($"global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.{runningAreasFields[(byte)(1 << i)]}");
+				}
+			}
+
+			return string.Join(" | ", targetList);
+		}
+
+		static string createLevelExpression(byte field, IDictionary<byte, string> levelFields)
+		{
+			if (field == 0)
+			{
+				return "0";
+			}
+
+			foreach (var (v, n) in levelFields)
+			{
+				if (v == field)
+				{
+					return $"global::Sudoku.Analytics.Metadata.StepSearcherLevel.{n}";
+				}
+			}
+
+			return string.Empty;
+		}
+	}
+}
+
+/// <summary>
 /// Indicates the data collected via <see cref="PrimaryConstructorHandler"/>.
 /// </summary>
 /// <seealso cref="PrimaryConstructorHandler"/>
@@ -870,6 +1131,20 @@ file sealed record InstanceDeconstructionMethodCollectedResult(
 );
 
 /// <summary>
+/// Indicates the data collected via <see cref="StepSearcherDefaultImportingHandler"/>.
+/// </summary>
+/// <seealso cref="StepSearcherDefaultImportingHandler"/>
+file sealed record StepSearcherDefaultImportingCollectedResult(
+	INamespaceSymbol Namespace,
+	INamedTypeSymbol BaseType,
+	int PriorityValue,
+	byte DifficultyLevel,
+	string TypeName,
+	NamedArgs NamedArguments,
+	bool IsPolymorphism
+);
+
+/// <summary>
 /// The member kind names.
 /// </summary>
 file static class LocalMemberKinds
@@ -892,7 +1167,7 @@ file static class Extensions
 	/// Registers for a new generator function via attribute checking.
 	/// </summary>
 	/// <typeparam name="THandler">
-	/// The type of the target handler. The handler type must implement <see cref="IIncrementalGeneratorHandler{T}"/>,
+	/// The type of the target handler. The handler type must implement <see cref="IIncrementalGeneratorAttributeHandler{T}"/>,
 	/// and contain a parameterless constructor.
 	/// </typeparam>
 	/// <typeparam name="TCollectedResult">
@@ -903,13 +1178,13 @@ file static class Extensions
 	/// The attribute name. The value must be full name of the attribute, including its namespace, beginning with root-level one.
 	/// </param>
 	/// <param name="nodeFilter">The node filter method.</param>
-	/// <seealso cref="IIncrementalGeneratorHandler{T}"/>
+	/// <seealso cref="IIncrementalGeneratorAttributeHandler{T}"/>
 	public static unsafe void Register<THandler, TCollectedResult>(
 		this scoped ref IncrementalGeneratorInitializationContext @this,
 		string attributeName,
 		delegate*<SyntaxNode, CancellationToken, bool> nodeFilter
 	)
-		where THandler : IIncrementalGeneratorHandler<TCollectedResult>, new()
+		where THandler : IIncrementalGeneratorAttributeHandler<TCollectedResult>, new()
 		where TCollectedResult : class
 	{
 		var inst = new THandler();
@@ -920,6 +1195,22 @@ file static class Extensions
 				.Select(NotNullSelector)
 				.Collect(),
 			inst.Output
+		);
+	}
+
+	/// <summary>
+	/// Registers for a new generator function via compilation.
+	/// </summary>
+	/// <typeparam name="THandler">The handler.</typeparam>
+	/// <param name="this">The context.</param>
+	/// <param name="projectName">The full name of the project that can filter compilation projects.</param>
+	public static unsafe void Register<THandler>(this scoped ref IncrementalGeneratorInitializationContext @this, string projectName)
+		where THandler : IIncrementalGeneratorCompilationHandler, new()
+	{
+		var inst = new THandler();
+		@this.RegisterSourceOutput(
+			@this.CompilationProvider,
+			(spc, c) => { if (c.AssemblyName == projectName) { inst.Output(spc, c); } }
 		);
 	}
 

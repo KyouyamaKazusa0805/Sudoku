@@ -12,13 +12,17 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorHandler`1">
+        <member name="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorAttributeHandler`1">
             <summary>
-            Represents a file-local constraint for generators.
+            Represents a file-local constraint for generators,
+            which can be used for <see cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.SyntaxProvider"/>,
+            with <see cref="M:Microsoft.CodeAnalysis.SyntaxValueProvider.ForAttributeWithMetadataName``1(System.String,System.Func{Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken,System.Boolean},System.Func{Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken,``0})"/>.
             </summary>
             <typeparam name="T">The type of the final data structure.</typeparam>
+            <seealso cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.SyntaxProvider"/>
+            <seealso cref="M:Microsoft.CodeAnalysis.SyntaxValueProvider.ForAttributeWithMetadataName``1(System.String,System.Func{Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken,System.Boolean},System.Func{Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken,``0})"/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorHandler`1.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorAttributeHandler`1.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
             <summary>
             Transform the target result from the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> and its semantic values.
             </summary>
@@ -26,12 +30,28 @@
             <param name="cancellationToken">The cancellation token that can cancel generating.</param>
             <returns>The result. The value can be <see langword="null"/>.</returns>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorHandler`1.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{`0})">
+        <member name="M:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorAttributeHandler`1.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{`0})">
             <summary>
             Try to generate the source.
             </summary>
             <param name="spc">The context used for generating.</param>
             <param name="values">The values.</param>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorCompilationHandler">
+            <summary>
+            Represents a file-local constraint for generators,
+            which can be used for <see cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.CompilationProvider"/>.
+            </summary>
+            <seealso cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.CompilationProvider"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorCompilationHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,Microsoft.CodeAnalysis.Compilation)">
+            <summary>
+            Try to generate the source.
+            </summary>
+            <param name="spc">The context used for generating.</param>
+            <param name="compilation">
+            The <see cref="T:Microsoft.CodeAnalysis.Compilation"/> instance that provides the information for the calling project.
+            </param>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.PrimaryConstructorHandler">
             <summary>
@@ -86,6 +106,14 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.InstanceDeconstructionMethodHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.StepSearcherDefaultImportingHandler">
+            <summary>
+            The generator handler for step searcher default importing.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.StepSearcherDefaultImportingHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,Microsoft.CodeAnalysis.Compilation)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.PrimaryConstructorCollectedResult">
@@ -148,6 +176,18 @@
             </summary>
             <seealso cref="T:Sudoku.Diagnostics.CodeGen.InstanceDeconstructionMethodHandler"/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.StepSearcherDefaultImportingCollectedResult">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.StepSearcherDefaultImportingHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.StepSearcherDefaultImportingHandler"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.StepSearcherDefaultImportingCollectedResult.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Int32,System.Byte,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}},System.Boolean)">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.Diagnostics.CodeGen.StepSearcherDefaultImportingHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.StepSearcherDefaultImportingHandler"/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.LocalMemberKinds">
             <summary>
             The member kind names.
@@ -175,7 +215,7 @@
             Registers for a new generator function via attribute checking.
             </summary>
             <typeparam name="THandler">
-            The type of the target handler. The handler type must implement <see cref="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorHandler`1"/>,
+            The type of the target handler. The handler type must implement <see cref="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorAttributeHandler`1"/>,
             and contain a parameterless constructor.
             </typeparam>
             <typeparam name="TCollectedResult">
@@ -186,7 +226,15 @@
             The attribute name. The value must be full name of the attribute, including its namespace, beginning with root-level one.
             </param>
             <param name="nodeFilter">The node filter method.</param>
-            <seealso cref="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorHandler`1"/>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.IIncrementalGeneratorAttributeHandler`1"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Extensions.Register``1(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext@,System.String)">
+            <summary>
+            Registers for a new generator function via compilation.
+            </summary>
+            <typeparam name="THandler">The handler.</typeparam>
+            <param name="this">The context.</param>
+            <param name="projectName">The full name of the project that can filter compilation projects.</param>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Extensions.AllOutParameters(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol})">
             <summary>
