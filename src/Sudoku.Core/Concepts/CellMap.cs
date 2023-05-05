@@ -101,33 +101,140 @@ public unsafe partial struct CellMap :
 		get
 		{
 #pragma warning disable format
-			if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) return true;
-			if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0) return true;
-			if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0) return true;
-			if ((_high & ~        0x70L) == 0 && (_low & ~ 0x7038000000L) == 0) return true;
-			if ((_high & ~       0x381L) == 0 && (_low & ~0x181C0000000L) == 0) return true;
-			if ((_high & ~      0x1C0EL) == 0 && (_low & ~  0xE00000000L) == 0) return true;
-			if ((_high & ~ 0x381C0E000L) == 0 && (_low &             -1L) == 0) return true;
-			if ((_high & ~0x1C0E070000L) == 0 && (_low &             -1L) == 0) return true;
-			if ((_high & ~0xE070380000L) == 0 && (_low &             -1L) == 0) return true;
-			if ((_high &            -1L) == 0 && (_low & ~        0x1FFL) == 0) return true;
-			if ((_high &            -1L) == 0 && (_low & ~      0x3FE00L) == 0) return true;
-			if ((_high &            -1L) == 0 && (_low & ~    0x7FC0000L) == 0) return true;
-			if ((_high &            -1L) == 0 && (_low & ~  0xFF8000000L) == 0) return true;
-			if ((_high & ~         0xFL) == 0 && (_low & ~0x1F000000000L) == 0) return true;
-			if ((_high & ~      0x1FF0L) == 0 && (_low &             -1L) == 0) return true;
-			if ((_high & ~    0x3FE000L) == 0 && (_low &             -1L) == 0) return true;
-			if ((_high & ~  0x7FC00000L) == 0 && (_low &             -1L) == 0) return true;
-			if ((_high & ~0xFF80000000L) == 0 && (_low &             -1L) == 0) return true;
-			if ((_high & ~  0x80402010L) == 0 && (_low & ~ 0x1008040201L) == 0) return true;
-			if ((_high & ~ 0x100804020L) == 0 && (_low & ~ 0x2010080402L) == 0) return true;
-			if ((_high & ~ 0x201008040L) == 0 && (_low & ~ 0x4020100804L) == 0) return true;
-			if ((_high & ~ 0x402010080L) == 0 && (_low & ~ 0x8040201008L) == 0) return true;
-			if ((_high & ~ 0x804020100L) == 0 && (_low & ~0x10080402010L) == 0) return true;
-			if ((_high & ~0x1008040201L) == 0 && (_low & ~  0x100804020L) == 0) return true;
-			if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0) return true;
-			if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0) return true;
-			if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0) return true;
+			if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~        0x70L) == 0 && (_low & ~ 0x7038000000L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~       0x381L) == 0 && (_low & ~0x181C0000000L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~      0x1C0EL) == 0 && (_low & ~  0xE00000000L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~ 0x381C0E000L) == 0 && (_low &             -1L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~0x1C0E070000L) == 0 && (_low &             -1L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~0xE070380000L) == 0 && (_low &             -1L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high &            -1L) == 0 && (_low & ~        0x1FFL) == 0)
+			{
+				return true;
+			}
+
+			if ((_high &            -1L) == 0 && (_low & ~      0x3FE00L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high &            -1L) == 0 && (_low & ~    0x7FC0000L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high &            -1L) == 0 && (_low & ~  0xFF8000000L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~         0xFL) == 0 && (_low & ~0x1F000000000L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~      0x1FF0L) == 0 && (_low &             -1L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~    0x3FE000L) == 0 && (_low &             -1L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~  0x7FC00000L) == 0 && (_low &             -1L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~0xFF80000000L) == 0 && (_low &             -1L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~  0x80402010L) == 0 && (_low & ~ 0x1008040201L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~ 0x100804020L) == 0 && (_low & ~ 0x2010080402L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~ 0x201008040L) == 0 && (_low & ~ 0x4020100804L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~ 0x402010080L) == 0 && (_low & ~ 0x8040201008L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~ 0x804020100L) == 0 && (_low & ~0x10080402010L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~0x1008040201L) == 0 && (_low & ~  0x100804020L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0)
+			{
+				return true;
+			}
+
+			if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0)
+			{
+				return true;
+			}
 #pragma warning restore format
 
 			return false;
@@ -157,15 +264,50 @@ public unsafe partial struct CellMap :
 		get
 		{
 			var result = (Mask)0;
-			if (this && HousesMap[0]) result |= 1;
-			if (this && HousesMap[1]) result |= 2;
-			if (this && HousesMap[2]) result |= 4;
-			if (this && HousesMap[3]) result |= 8;
-			if (this && HousesMap[4]) result |= 16;
-			if (this && HousesMap[5]) result |= 32;
-			if (this && HousesMap[6]) result |= 64;
-			if (this && HousesMap[7]) result |= 128;
-			if (this && HousesMap[8]) result |= 256;
+			if (this && HousesMap[0])
+			{
+				result |= 1;
+			}
+
+			if (this && HousesMap[1])
+			{
+				result |= 2;
+			}
+
+			if (this && HousesMap[2])
+			{
+				result |= 4;
+			}
+
+			if (this && HousesMap[3])
+			{
+				result |= 8;
+			}
+
+			if (this && HousesMap[4])
+			{
+				result |= 16;
+			}
+
+			if (this && HousesMap[5])
+			{
+				result |= 32;
+			}
+
+			if (this && HousesMap[6])
+			{
+				result |= 64;
+			}
+
+			if (this && HousesMap[7])
+			{
+				result |= 128;
+			}
+
+			if (this && HousesMap[8])
+			{
+				result |= 256;
+			}
 
 			return result;
 		}
@@ -183,15 +325,50 @@ public unsafe partial struct CellMap :
 		get
 		{
 			var result = (Mask)0;
-			if (this && HousesMap[9]) result |= 1;
-			if (this && HousesMap[10]) result |= 2;
-			if (this && HousesMap[11]) result |= 4;
-			if (this && HousesMap[12]) result |= 8;
-			if (this && HousesMap[13]) result |= 16;
-			if (this && HousesMap[14]) result |= 32;
-			if (this && HousesMap[15]) result |= 64;
-			if (this && HousesMap[16]) result |= 128;
-			if (this && HousesMap[17]) result |= 256;
+			if (this && HousesMap[9])
+			{
+				result |= 1;
+			}
+
+			if (this && HousesMap[10])
+			{
+				result |= 2;
+			}
+
+			if (this && HousesMap[11])
+			{
+				result |= 4;
+			}
+
+			if (this && HousesMap[12])
+			{
+				result |= 8;
+			}
+
+			if (this && HousesMap[13])
+			{
+				result |= 16;
+			}
+
+			if (this && HousesMap[14])
+			{
+				result |= 32;
+			}
+
+			if (this && HousesMap[15])
+			{
+				result |= 64;
+			}
+
+			if (this && HousesMap[16])
+			{
+				result |= 128;
+			}
+
+			if (this && HousesMap[17])
+			{
+				result |= 256;
+			}
 
 			return result;
 		}
@@ -209,15 +386,50 @@ public unsafe partial struct CellMap :
 		get
 		{
 			var result = (Mask)0;
-			if (this && HousesMap[18]) result |= 1;
-			if (this && HousesMap[19]) result |= 2;
-			if (this && HousesMap[20]) result |= 4;
-			if (this && HousesMap[21]) result |= 8;
-			if (this && HousesMap[22]) result |= 16;
-			if (this && HousesMap[23]) result |= 32;
-			if (this && HousesMap[24]) result |= 64;
-			if (this && HousesMap[25]) result |= 128;
-			if (this && HousesMap[26]) result |= 256;
+			if (this && HousesMap[18])
+			{
+				result |= 1;
+			}
+
+			if (this && HousesMap[19])
+			{
+				result |= 2;
+			}
+
+			if (this && HousesMap[20])
+			{
+				result |= 4;
+			}
+
+			if (this && HousesMap[21])
+			{
+				result |= 8;
+			}
+
+			if (this && HousesMap[22])
+			{
+				result |= 16;
+			}
+
+			if (this && HousesMap[23])
+			{
+				result |= 32;
+			}
+
+			if (this && HousesMap[24])
+			{
+				result |= 64;
+			}
+
+			if (this && HousesMap[25])
+			{
+				result |= 128;
+			}
+
+			if (this && HousesMap[26])
+			{
+				result |= 256;
+			}
 
 			return result;
 		}
@@ -260,33 +472,140 @@ public unsafe partial struct CellMap :
 			var z = 0;
 
 #pragma warning disable format
-			if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) z |=       0x1;
-			if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0) z |=       0x2;
-			if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0) z |=       0x4;
-			if ((_high & ~        0x70L) == 0 && (_low & ~ 0x7038000000L) == 0) z |=       0x8;
-			if ((_high & ~       0x381L) == 0 && (_low & ~0x181C0000000L) == 0) z |=      0x10;
-			if ((_high & ~      0x1C0EL) == 0 && (_low & ~  0xE00000000L) == 0) z |=      0x20;
-			if ((_high & ~ 0x381C0E000L) == 0 && (_low &             -1L) == 0) z |=      0x40;
-			if ((_high & ~0x1C0E070000L) == 0 && (_low &             -1L) == 0) z |=      0x80;
-			if ((_high & ~0xE070380000L) == 0 && (_low &             -1L) == 0) z |=     0x100;
-			if ((_high &            -1L) == 0 && (_low & ~        0x1FFL) == 0) z |=     0x200;
-			if ((_high &            -1L) == 0 && (_low & ~      0x3FE00L) == 0) z |=     0x400;
-			if ((_high &            -1L) == 0 && (_low & ~    0x7FC0000L) == 0) z |=     0x800;
-			if ((_high &            -1L) == 0 && (_low & ~  0xFF8000000L) == 0) z |=    0x1000;
-			if ((_high & ~         0xFL) == 0 && (_low & ~0x1F000000000L) == 0) z |=    0x2000;
-			if ((_high & ~      0x1FF0L) == 0 && (_low &             -1L) == 0) z |=    0x4000;
-			if ((_high & ~    0x3FE000L) == 0 && (_low &             -1L) == 0) z |=    0x8000;
-			if ((_high & ~  0x7FC00000L) == 0 && (_low &             -1L) == 0) z |=   0x10000;
-			if ((_high & ~0xFF80000000L) == 0 && (_low &             -1L) == 0) z |=   0x20000;
-			if ((_high & ~  0x80402010L) == 0 && (_low & ~ 0x1008040201L) == 0) z |=   0x40000;
-			if ((_high & ~ 0x100804020L) == 0 && (_low & ~ 0x2010080402L) == 0) z |=   0x80000;
-			if ((_high & ~ 0x201008040L) == 0 && (_low & ~ 0x4020100804L) == 0) z |=  0x100000;
-			if ((_high & ~ 0x402010080L) == 0 && (_low & ~ 0x8040201008L) == 0) z |=  0x200000;
-			if ((_high & ~ 0x804020100L) == 0 && (_low & ~0x10080402010L) == 0) z |=  0x400000;
-			if ((_high & ~0x1008040201L) == 0 && (_low & ~  0x100804020L) == 0) z |=  0x800000;
-			if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0) z |= 0x1000000;
-			if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0) z |= 0x2000000;
-			if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0) z |= 0x4000000;
+			if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0)
+			{
+				z |=       0x1;
+			}
+
+			if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0)
+			{
+				z |=       0x2;
+			}
+
+			if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0)
+			{
+				z |=       0x4;
+			}
+
+			if ((_high & ~        0x70L) == 0 && (_low & ~ 0x7038000000L) == 0)
+			{
+				z |=       0x8;
+			}
+
+			if ((_high & ~       0x381L) == 0 && (_low & ~0x181C0000000L) == 0)
+			{
+				z |=      0x10;
+			}
+
+			if ((_high & ~      0x1C0EL) == 0 && (_low & ~  0xE00000000L) == 0)
+			{
+				z |=      0x20;
+			}
+
+			if ((_high & ~ 0x381C0E000L) == 0 && (_low &             -1L) == 0)
+			{
+				z |=      0x40;
+			}
+
+			if ((_high & ~0x1C0E070000L) == 0 && (_low &             -1L) == 0)
+			{
+				z |=      0x80;
+			}
+
+			if ((_high & ~0xE070380000L) == 0 && (_low &             -1L) == 0)
+			{
+				z |=     0x100;
+			}
+
+			if ((_high &            -1L) == 0 && (_low & ~        0x1FFL) == 0)
+			{
+				z |=     0x200;
+			}
+
+			if ((_high &            -1L) == 0 && (_low & ~      0x3FE00L) == 0)
+			{
+				z |=     0x400;
+			}
+
+			if ((_high &            -1L) == 0 && (_low & ~    0x7FC0000L) == 0)
+			{
+				z |=     0x800;
+			}
+
+			if ((_high &            -1L) == 0 && (_low & ~  0xFF8000000L) == 0)
+			{
+				z |=    0x1000;
+			}
+
+			if ((_high & ~         0xFL) == 0 && (_low & ~0x1F000000000L) == 0)
+			{
+				z |=    0x2000;
+			}
+
+			if ((_high & ~      0x1FF0L) == 0 && (_low &             -1L) == 0)
+			{
+				z |=    0x4000;
+			}
+
+			if ((_high & ~    0x3FE000L) == 0 && (_low &             -1L) == 0)
+			{
+				z |=    0x8000;
+			}
+
+			if ((_high & ~  0x7FC00000L) == 0 && (_low &             -1L) == 0)
+			{
+				z |=   0x10000;
+			}
+
+			if ((_high & ~0xFF80000000L) == 0 && (_low &             -1L) == 0)
+			{
+				z |=   0x20000;
+			}
+
+			if ((_high & ~  0x80402010L) == 0 && (_low & ~ 0x1008040201L) == 0)
+			{
+				z |=   0x40000;
+			}
+
+			if ((_high & ~ 0x100804020L) == 0 && (_low & ~ 0x2010080402L) == 0)
+			{
+				z |=   0x80000;
+			}
+
+			if ((_high & ~ 0x201008040L) == 0 && (_low & ~ 0x4020100804L) == 0)
+			{
+				z |=  0x100000;
+			}
+
+			if ((_high & ~ 0x402010080L) == 0 && (_low & ~ 0x8040201008L) == 0)
+			{
+				z |=  0x200000;
+			}
+
+			if ((_high & ~ 0x804020100L) == 0 && (_low & ~0x10080402010L) == 0)
+			{
+				z |=  0x400000;
+			}
+
+			if ((_high & ~0x1008040201L) == 0 && (_low & ~  0x100804020L) == 0)
+			{
+				z |=  0x800000;
+			}
+
+			if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0)
+			{
+				z |= 0x1000000;
+			}
+
+			if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0)
+			{
+				z |= 0x2000000;
+			}
+
+			if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0)
+			{
+				z |= 0x4000000;
+			}
 #pragma warning restore format
 
 			return z;

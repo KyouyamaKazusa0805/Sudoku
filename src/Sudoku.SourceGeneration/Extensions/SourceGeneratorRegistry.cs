@@ -92,7 +92,7 @@ internal static class SourceGeneratorRegistry
 		var inst = new THandler();
 		@this.RegisterSourceOutput(
 			@this.CompilationProvider,
-			(spc, c) => { if (c.AssemblyName == projectName) inst.Output(spc, c); }
+			(spc, c) => { if (c.AssemblyName == projectName) { inst.Output(spc, c); } }
 		);
 	}
 }
