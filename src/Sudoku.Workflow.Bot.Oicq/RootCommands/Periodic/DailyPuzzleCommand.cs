@@ -3,42 +3,25 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic;
 /// <summary>
 /// 每日一题模块。
 /// </summary>
-[PeriodicCommand(12)]
+[PeriodicCommand(13, 34)]
 internal sealed class DailyPuzzleCommand : PeriodicCommand
 {
 	/// <inheritdoc/>
 	public override async Task ExecuteAsync()
 	{
-		var analyzer = PuzzleAnalyzer.WithAlgorithmLimits(true, true);
-		for (var trial = 0; trial < 10000; trial++)
+		for (var trial = 0; trial < 100; trial++)
 		{
 			// 出题。
 			var grid = Generator.Generate();
 			if (PuzzleAnalyzer.Analyze(grid) is not
 				{
 					IsSolved: true,
-					DifficultyLevel: var diffLevel and <= DifficultyLevel.Hard and not 0,
-					MaxDifficulty: var diff and >= 2.3M and <= 4.5M,
+					DifficultyLevel: var diffLevel and < DifficultyLevel.Nightmare and not 0,
+					MaxDifficulty: var diff and >= 2.3M,
 					Solution: var solution
 				} analyzerResult)
 			{
 				continue;
-			}
-
-			// 根据题目难度确定是否满足题目发送的条件。
-			switch (diffLevel)
-			{
-				case DifficultyLevel.Easy when analyzerResult[2.3M]!.Length <= 2:
-				case DifficultyLevel.Moderate:
-				case DifficultyLevel.Hard
-				when (
-					from step in analyzerResult[DifficultyLevel.Hard]!
-					where step is WingStep or SingleDigitPatternStep or UniqueRectangleStep or AlmostLockedCandidatesStep
-					select step
-				).Take(2).Count() > 2:
-				{
-					continue;
-				}
 			}
 
 			await MessageManager.SendGroupMessageAsync(
@@ -54,8 +37,18 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 			);
 
 			// 创建图片并发送出去。
-			var diffString = diffLevel switch { DifficultyLevel.Easy => "容易", DifficultyLevel.Moderate => "一般", DifficultyLevel.Hard => "困难" };
-			await sendPictureAsync(SudokuGroupNumber, grid.ToString(), $"#{DateTime.Today:yyyyMMdd} 难度级别：{diffString}，难度系数：{diff:0.0}");
+			await sendPictureAsync(
+				SudokuGroupNumber,
+				grid.ToString(),
+				$"#{DateTime.Today:yyyyMMdd} 难度级别：{diffLevel switch
+				{
+					DifficultyLevel.Easy => "容易",
+					DifficultyLevel.Moderate => "一般",
+					DifficultyLevel.Hard => "困难",
+					DifficultyLevel.Fiendish => "极难"
+				}}，难度系数：{diff:0.0}",
+				diffLevel
+			);
 
 			// 保存答案到本地。
 			DailyPuzzleOperations.WriteDailyPuzzleAnswer(solution);
@@ -64,14 +57,17 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 			return;
 		}
 
+		await MessageManager.SendGroupMessageAsync(SudokuGroupNumber, "抱歉，题目生成失败。如果看到该消息，请联系程序设计者以修复此错误。");
 
-		static async Task sendPictureAsync(string groupId, string grid, string footerText)
+
+		static async Task sendPictureAsync(string groupId, string grid, string footerText, DifficultyLevel diffLevel)
 		{
 			var picturePath = DrawingOperations.GenerateCachedPicturePath(
 				ISudokuPainter.Create(1000)
 					.WithGridCode(grid)
-					.WithRenderingCandidates(false)
+					.WithRenderingCandidates(diffLevel >= DifficultyLevel.Hard)
 					.WithFooterText(footerText)
+					.WithFontScale(1M, .4M)
 			)!;
 
 			await MessageManager.SendGroupMessageAsync(groupId, new ImageMessage { Path = picturePath });
