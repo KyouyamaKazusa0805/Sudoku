@@ -4,18 +4,6 @@
         <name>RootLevelSourceGeneration</name>
     </assembly>
     <members>
-        <member name="T:Microsoft.CodeAnalysis.ExtendedSymbolDisplayFormat">
-            <summary>
-            Provides extended <see cref="T:Microsoft.CodeAnalysis.SymbolDisplayFormat"/>s instance that is for types.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.SymbolDisplayFormat"/>
-        </member>
-        <member name="P:Microsoft.CodeAnalysis.ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints">
-            <summary>
-            Indicates the type format that is the full name of the type,
-            and is with type argument constraints.
-            </summary>
-        </member>
         <member name="T:Microsoft.CodeAnalysis.AttributeDataExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Microsoft.CodeAnalysis.AttributeData"/>.
@@ -31,6 +19,18 @@
             <param name="namedArgumentName">The named argument name.</param>
             <param name="defaultValue">Indicates the default value of the current named argument.</param>
             <returns>The found value.</returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.ExtendedSymbolDisplayFormat">
+            <summary>
+            Provides extended <see cref="T:Microsoft.CodeAnalysis.SymbolDisplayFormat"/>s instance that is for types.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SymbolDisplayFormat"/>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.ExtendedSymbolDisplayFormat.FullyQualifiedFormatWithConstraints">
+            <summary>
+            Indicates the type format that is the full name of the type,
+            and is with type argument constraints.
+            </summary>
         </member>
         <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">
             <summary>
@@ -494,18 +494,18 @@
             We validate the range is inside the length scope though.
             </remarks>
         </member>
-        <member name="T:Global.CodeGen.VersionValueGenerator">
+        <member name="T:RootLevelSourceGeneration.Shortcuts">
+            <summary>
+            Defines the shortcuts of the source generators.
+            </summary>
+        </member>
+        <member name="T:RootLevelSourceGeneration.VersionValueGenerator">
             <summary>
             Defines the incremental source generator that is used for the generation on sync the solution version.
             </summary>
         </member>
-        <member name="M:Global.CodeGen.VersionValueGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+        <member name="M:RootLevelSourceGeneration.VersionValueGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Shortcuts">
-            <summary>
-            Defines the shortcuts of the source generators.
-            </summary>
         </member>
     </members>
 </doc>

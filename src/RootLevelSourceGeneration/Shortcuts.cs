@@ -1,4 +1,4 @@
-namespace Sudoku.Diagnostics.CodeGen;
+namespace RootLevelSourceGeneration;
 
 /// <summary>
 /// Defines the shortcuts of the source generators.

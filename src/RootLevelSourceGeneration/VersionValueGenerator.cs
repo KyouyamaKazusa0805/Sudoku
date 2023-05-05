@@ -1,4 +1,4 @@
-namespace Global.CodeGen;
+namespace RootLevelSourceGeneration;
 
 /// <summary>
 /// Defines the incremental source generator that is used for the generation on sync the solution version.
