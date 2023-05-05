@@ -50,7 +50,7 @@ internal sealed class DependencyPropertyHandler : IIncrementalGeneratorAttribute
 							/// </summary>
 							/// <seealso cref="{propertyName}"/>
 							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{VersionValue}")]
+							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{Value}")]
 							{accessibilityModifier} static readonly global::Microsoft.UI.Xaml.DependencyProperty {propertyName}Property =
 								global::Microsoft.UI.Xaml.DependencyProperty.Register(nameof({propertyName}), typeof({propertyTypeStr}), typeof({containingTypeStr}), {defaultValueCreatorStr});
 						"""
@@ -61,7 +61,7 @@ internal sealed class DependencyPropertyHandler : IIncrementalGeneratorAttribute
 						{{doc}}
 							{{memberNotNullComment}}[global::System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, {{notNullMembersStr}})]
 							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{Value}}")]
 							{{accessibilityModifier}} {{propertyTypeStr}}{{nullableToken}} {{propertyName}}
 							{
 								[global::System.Diagnostics.DebuggerStepThroughAttribute]

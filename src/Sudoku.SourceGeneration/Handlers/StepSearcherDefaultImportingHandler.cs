@@ -126,7 +126,7 @@ internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGenerato
 					partial class {{name}} : {{baseTypeFullName}}
 					{
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().Name}}", "{{VersionValue}}")]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().Name}}", "{{Value}}")]
 						public {{name}}() : base({{priority}}, {{levelStr}}{{(runningAreaStr is not null ? $", {runningAreaStr}" : string.Empty)}})
 						{
 						}
@@ -147,7 +147,7 @@ internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGenerato
 						///     path="/param[@name='runningArea']"/>
 						/// </param>
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().Name}}", "{{VersionValue}}")]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().Name}}", "{{Value}}")]
 						public {{name}}(
 							int priority,
 							global::Sudoku.Analytics.Metadata.StepSearcherLevel level,

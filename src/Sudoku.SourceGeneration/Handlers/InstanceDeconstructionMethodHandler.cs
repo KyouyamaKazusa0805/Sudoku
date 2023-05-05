@@ -77,7 +77,7 @@ internal sealed class InstanceDeconstructionMethodHandler : IIncrementalGenerato
 					$$"""
 					/// <include file="{{includingReferenceLevel}}global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 						[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{Value}}")]
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						{{modifiers}} void Deconstruct({{argsStr}})
 						{

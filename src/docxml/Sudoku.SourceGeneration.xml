@@ -532,7 +532,7 @@
             Try to convert the specified identifier into camel casing.
             </summary>
         </member>
-        <member name="F:RootLevelSourceGeneration.Constants.VersionValue">
+        <member name="F:RootLevelSourceGeneration.SolutionVersion.Value">
             <summary>
             Indicates the version of this project.
             </summary>

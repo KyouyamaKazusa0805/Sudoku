@@ -52,7 +52,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 							/// <summary>
 								{docComments ?? $"/// The generated field declaration for parameter <c>{parameterName}</c>."}
 								/// </summary>
-								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{VersionValue}")]
+								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{Value}")]
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 							{pragmaWarningDisable}{accessibilityModifiers}{readonlyModifier}{refModifiers}{parameterTypeName}{targetMemberName} = {assigning};{pragmaWarningRestor}
 							"""
@@ -88,7 +88,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 							/// <summary>
 								{{docComments ?? $"/// The generated property declaration for parameter <c>{parameterName}</c>."}}
 								/// </summary>
-								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{Value}}")]
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 								{{memberNotNullAttribute}}{{accessibilityModifiers}}{{readonlyModifier}}{{refModifiers}}{{parameterTypeName}}{{targetMemberName}} { get; } = {{assigning}};
 							"""

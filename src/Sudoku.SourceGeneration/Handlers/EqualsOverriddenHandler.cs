@@ -48,7 +48,7 @@ internal sealed class EqualsOverriddenHandler : IIncrementalGeneratorAttributeHa
 					{
 						/// <inheritdoc cref="object.Equals(object?)"/>
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(Generator).FullName}}", "{{VersionValue}}")]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(Generator).FullName}}", "{{Value}}")]
 						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 						{{extraAttributeStr}}{{modifiers}} bool Equals({{attributeStr}}object? {{paramName}})
 							=> {{targetExpression}};

@@ -41,7 +41,7 @@ internal sealed class AttachedPropertyHandler : IIncrementalGeneratorAttributeHa
 							/// Defines a attached property that binds with setter and getter methods <c>{propertyName}</c>.
 							/// </summary>
 							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{VersionValue}")]
+							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{Value}")]
 							public static readonly global::Microsoft.UI.Xaml.DependencyProperty {propertyName}Property =
 								global::Microsoft.UI.Xaml.DependencyProperty.RegisterAttached("{propertyName}", typeof({propertyTypeStr}), typeof({containingTypeStr}), {defaultValueCreatorStr});
 						"""
@@ -51,7 +51,7 @@ internal sealed class AttachedPropertyHandler : IIncrementalGeneratorAttributeHa
 						$$"""
 						{{doc}}
 							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{Value}}")]
 							[global::System.Diagnostics.DebuggerStepThroughAttribute]
 							[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 							public static void Set{{propertyName}}(global::Microsoft.UI.Xaml.DependencyObject obj, {{propertyTypeStr}}{{nullableToken}} value)
@@ -59,7 +59,7 @@ internal sealed class AttachedPropertyHandler : IIncrementalGeneratorAttributeHa
 
 							{{doc}}
 							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{VersionValue}}")]
+							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{Value}}")]
 							[global::System.Diagnostics.DebuggerStepThroughAttribute]
 							[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 							public static {{propertyTypeStr}}{{nullableToken}} Get{{propertyName}}(global::Microsoft.UI.Xaml.DependencyObject obj)
