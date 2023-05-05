@@ -1,5 +1,5 @@
 #pragma warning disable IDE0060
-namespace System.Diagnostics.CodeGen;
+namespace System.SourceGeneration;
 
 /// <summary>
 /// Represents a marker attribute to tell source generators that the member derived from type <see cref="object"/>

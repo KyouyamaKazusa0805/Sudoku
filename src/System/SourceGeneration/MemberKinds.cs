@@ -1,4 +1,4 @@
-﻿namespace System.Diagnostics.CodeGen;
+namespace System.SourceGeneration;
 
 /// <summary>
 /// Indicates a member kind.

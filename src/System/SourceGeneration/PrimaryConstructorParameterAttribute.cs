@@ -1,5 +1,5 @@
 #pragma warning disable CS9113
-namespace System.Diagnostics.CodeGen;
+namespace System.SourceGeneration;
 
 /// <summary>
 /// Indicates the attribute type that can be marked for a parameter, indicating the parameter is a <see langword="record"/>-like one,

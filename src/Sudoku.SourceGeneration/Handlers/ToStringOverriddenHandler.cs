@@ -124,7 +124,7 @@ internal sealed class ToStringOverriddenHandler : IIncrementalGeneratorAttribute
 			return null;
 		}
 
-		var attributeType = compilation.GetTypeByMetadataName("System.Diagnostics.CodeGen.GeneratedDisplayNameAttribute");
+		var attributeType = compilation.GetTypeByMetadataName("System.SourceGeneration.GeneratedDisplayNameAttribute");
 		if (attributeType is null)
 		{
 			return null;

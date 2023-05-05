@@ -661,12 +661,12 @@
         </member>
         <member name="P:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1.Accessibility">
             <summary>
-            Indicates the property accessibility. The default value is <see cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>.
+            Indicates the property accessibility. The default value is <see cref="F:System.SourceGeneration.GeneralizedAccessibility.Public"/>.
             </summary>
             <remarks>
             This property only works with dependency properties.
             </remarks>
-            <seealso cref="F:System.Diagnostics.CodeGen.GeneralizedAccessibility.Public"/>
+            <seealso cref="F:System.SourceGeneration.GeneralizedAccessibility.Public"/>
         </member>
         <member name="T:SudokuStudio.ComponentModel.IAnalyzeTabPage">
             <summary>

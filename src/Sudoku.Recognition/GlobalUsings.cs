@@ -1,7 +1,7 @@
-global using System.Diagnostics.CodeGen;
 global using System.Drawing;
 global using System.Drawing.Imaging;
 global using System.Runtime.Versioning;
+global using System.SourceGeneration;
 global using Emgu.CV;
 global using Emgu.CV.CvEnum;
 global using Emgu.CV.OCR;

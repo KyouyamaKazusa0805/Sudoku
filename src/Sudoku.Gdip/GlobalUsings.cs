@@ -1,9 +1,9 @@
-global using System.Diagnostics.CodeGen;
 global using System.Drawing;
 global using System.Drawing.Drawing2D;
 global using System.Drawing.Imaging;
 global using System.Drawing.Text;
 global using System.Runtime.Versioning;
+global using System.SourceGeneration;
 global using Sudoku.Analytics;
 global using Sudoku.Drawing.TextRendering;
 global using Sudoku.Gdip;

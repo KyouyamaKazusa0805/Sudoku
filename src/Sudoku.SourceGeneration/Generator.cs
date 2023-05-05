@@ -15,13 +15,13 @@ public sealed class Generator : IIncrementalGenerator
 		#region Elementary generators
 		// Primary Constructors
 		{
-			const string name = "System.Diagnostics.CodeGen.PrimaryConstructorParameterAttribute";
+			const string name = "System.SourceGeneration.PrimaryConstructorParameterAttribute";
 			context.Register<PrimaryConstructorHandler, PrimaryConstructorCollectedResult>(name, &SyntaxNodeTypePredicate<ParameterSyntax>);
 		}
 
 		// Default Overridden
 		{
-			const string name = "System.Diagnostics.CodeGen.GeneratedOverridingMemberAttribute";
+			const string name = "System.SourceGeneration.GeneratedOverridingMemberAttribute";
 			context.Register<EqualsOverriddenHandler, EqualsOverriddenCollectedResult>(name, &IsPartialMethodPredicate);
 			context.Register<GetHashCodeOveriddenHandler, GetHashCodeCollectedResult>(name, &IsPartialMethodPredicate);
 			context.Register<ToStringOverriddenHandler, ToStringCollectedResult>(name, &IsPartialMethodPredicate);
@@ -29,7 +29,7 @@ public sealed class Generator : IIncrementalGenerator
 
 		// Instance Deconstruction Methods
 		{
-			const string name = "System.Diagnostics.CodeGen.DeconstructionMethodAttribute";
+			const string name = "System.SourceGeneration.DeconstructionMethodAttribute";
 			context.Register<InstanceDeconstructionMethodHandler, InstanceDeconstructionMethodCollectedResult>(name, &IsPartialMethodPredicate);
 		}
 		#endregion

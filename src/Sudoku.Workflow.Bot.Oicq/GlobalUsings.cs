@@ -1,9 +1,9 @@
 global using System.Collections.Concurrent;
 global using System.CommandLine;
-global using System.Diagnostics.CodeGen;
 global using System.Drawing;
 global using System.Net.NetworkInformation;
 global using System.Runtime.Versioning;
+global using System.SourceGeneration;
 global using Mirai.Net.Data.Messages;
 global using Mirai.Net.Data.Messages.Concretes;
 global using Mirai.Net.Data.Messages.Receivers;
@@ -17,7 +17,6 @@ global using Sudoku.Analytics;
 global using Sudoku.Analytics.Categorization;
 global using Sudoku.Analytics.Formatting;
 global using Sudoku.Analytics.Metadata;
-global using Sudoku.Analytics.Steps;
 global using Sudoku.Drawing;
 global using Sudoku.Rendering;
 global using Sudoku.Rendering.Nodes;

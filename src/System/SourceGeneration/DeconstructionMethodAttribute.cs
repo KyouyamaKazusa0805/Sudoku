@@ -1,4 +1,4 @@
-﻿namespace System.Diagnostics.CodeGen;
+namespace System.SourceGeneration;
 
 /// <summary>
 /// Defines an attribute that specifies a deconstrution method.

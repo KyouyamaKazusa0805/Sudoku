@@ -1,4 +1,4 @@
-namespace System.Diagnostics.CodeGen;
+namespace System.SourceGeneration;
 
 /// <summary>
 /// Defines a kind of behavior describing source generator's generated source code on overridding <see cref="object.GetHashCode"/>.

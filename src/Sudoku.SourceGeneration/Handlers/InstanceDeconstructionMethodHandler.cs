@@ -5,7 +5,7 @@ namespace Sudoku.SourceGeneration.Handlers;
 /// </summary>
 internal sealed class InstanceDeconstructionMethodHandler : IIncrementalGeneratorAttributeHandler<InstanceDeconstructionMethodCollectedResult>
 {
-	private const string DeconstructionMethodArgumentAttributeName = "System.Diagnostics.CodeGen.DeconstructionMethodArgumentAttribute";
+	private const string DeconstructionMethodArgumentAttributeName = "System.SourceGeneration.DeconstructionMethodArgumentAttribute";
 
 
 	/// <inheritdoc/>

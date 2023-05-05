@@ -1,8 +1,8 @@
 global using System.Algorithm;
-global using System.Diagnostics.CodeGen;
 global using System.Globalization;
 global using System.Runtime.Messages;
 global using System.Runtime.Versioning;
+global using System.SourceGeneration;
 global using System.Timers;
 global using Expressive;
 global using Expressive.Exceptions;
