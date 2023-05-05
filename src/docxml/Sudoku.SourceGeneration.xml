@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Sudoku.Diagnostics.CodeGen</name>
+        <name>Sudoku.SourceGeneration</name>
     </assembly>
     <members>
         <member name="T:Sudoku.Diagnostics.CodeGen.Accessibility">

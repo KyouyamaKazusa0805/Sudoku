@@ -22,7 +22,7 @@
 	</PropertyGroup>
 
 	<!--Enables the preview features if the project is not the source generators.-->
-	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='false' And '$(MSBuildProjectFile.StartsWith(`Sudoku.Diagnostics.CodeAnalysis`))'=='false' And '$(LangVersion)'=='preview'">
+	<PropertyGroup Condition="'$(MSBuildProjectFile.EndsWith(`.CodeGen.csproj`))'=='false' And '$(MSBuildProjectFile.EndsWith(`.SourceGeneration.csproj`))'=='false' And '$(LangVersion)'=='preview'">
 		<EnablePreviewFeatures>true</EnablePreviewFeatures>
 		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
 	</PropertyGroup>
@@ -89,8 +89,6 @@
 		<Using Include="System.Runtime.CompilerServices" />
 		<Using Include="System.Reflection" />
 		<Using Include="System.Text" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0' and '$(MSBuildProjectFile).TrimEnd(`.csproj`).EndsWith(`CodeGen`)'!='true'">
 		<Using Include="Microsoft.CodeAnalysis" />
 		<Using Include="Microsoft.CodeAnalysis.CSharp" />
 		<Using Include="Microsoft.CodeAnalysis.CSharp.Syntax" />
@@ -100,15 +98,35 @@
 	<!--
 	SOURCE GENEARTOR PROJECTS CONFIGURATION
 	-->
-	<!--Set the root namespaces.-->
-	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
-		<RootNamespace>Sudoku.Diagnostics.CodeGen</RootNamespace>
+	<!--Set the root namespaces for source generator projects.-->
+	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' Or '$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.SourceGeneration`))'=='true'">
+		<RootNamespace>Sudoku.SourceGeneration</RootNamespace>
 	</PropertyGroup>
 
+	<!--Add packages for source generator projects.-->
+	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.4.0-4.final" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0-4.final" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.4.0-4.final" />
+	</ItemGroup>
+
 	<!--Import 'Global.CodeGen' project into the source generator projects.-->
-	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' And '$(MSBuildProjectFile)'!='Global.CodeGen.csproj'">
+	<ItemGroup Condition="'$(MSBuildProjectFile.EndsWith(`.SourceGeneration.csproj`))'=='true'">
 		<AdditionalFiles Include="..\..\Directory.Build.props" />
 		<ProjectReference Include="..\Global.CodeGen\Global.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
+	<!--Import 'Sudoku.SourceGeneration' project into the non-source generator projects.-->
+	<Choose>
+		<When Condition="'$(MSBuildProjectFile.Contains(`SudokuStudio`))'=='true' And '$(MSBuildProjectFile.EndsWith(`.wapproj`))'=='false'">
+			<ItemGroup>
+				<ProjectReference Include="..\..\Sudoku.SourceGeneration\Sudoku.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+			</ItemGroup>
+		</When>
+		<When Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='false' And '$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.SourceGeneration`))'=='false' And '$(MSBuildProjectFile.EndsWith(`.wapproj`))'=='false'">
+			<ItemGroup>
+				<ProjectReference Include="..\Sudoku.SourceGeneration\Sudoku.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+			</ItemGroup>
+		</When>
+	</Choose>
 </Project>

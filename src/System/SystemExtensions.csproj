@@ -8,8 +8,4 @@
 		<DocumentationFile>..\docxml\SystemExtensions.xml</DocumentationFile>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-	</ItemGroup>
-
 </Project>
