@@ -22,9 +22,29 @@ public sealed class Generator : IIncrementalGenerator
 		// Default Overridden
 		{
 			const string name = "System.SourceGeneration.GeneratedOverridingMemberAttribute";
-			context.Register<EqualsOverriddenHandler, EqualsOverriddenCollectedResult>(name, &IsPartialMethodPredicate);
-			context.Register<GetHashCodeOveriddenHandler, GetHashCodeCollectedResult>(name, &IsPartialMethodPredicate);
-			context.Register<ToStringOverriddenHandler, ToStringCollectedResult>(name, &IsPartialMethodPredicate);
+			context.RegisterSourceOutput(
+				context.SyntaxProvider
+					.ForAttributeWithMetadataName(name, IsPartialMethodPredicate, EqualsOverriddenHandler.Transform)
+					.Where(NotNullPredicate)
+					.Select(NotNullSelector)
+					.Collect()
+					.Combine(
+						context.SyntaxProvider
+							.ForAttributeWithMetadataName(name, IsPartialMethodPredicate, GetHashCodeOveriddenHandler.Transform)
+							.Where(NotNullPredicate)
+							.Select(NotNullSelector)
+							.Collect()
+							.Combine(
+								context.SyntaxProvider
+									.ForAttributeWithMetadataName(name, IsPartialMethodPredicate, ToStringOverriddenHandler.Transform)
+									.Where(NotNullPredicate)
+									.Select(NotNullSelector)
+									.Collect()
+							)
+					)
+					.Select(static (v, _) => new DefaultOverriddenCollectedResult(v.Left.ToArray(), v.Right.Left.ToArray(), v.Right.Right.ToArray())),
+				DefaultOverriddenHandler.Output
+			);
 		}
 
 		// Instance Deconstruction Methods

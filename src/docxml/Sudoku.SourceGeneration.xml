@@ -68,6 +68,18 @@
             </summary>
             <seealso cref="T:Sudoku.SourceGeneration.CollectedResults.AttachedPropertyCollectedResult"/>
         </member>
+        <member name="T:Sudoku.SourceGeneration.CollectedResults.DefaultOverriddenCollectedResult">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.EqualsOverriddenHandler"/>
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.EqualsOverriddenHandler"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CollectedResults.DefaultOverriddenCollectedResult.#ctor(Sudoku.SourceGeneration.CollectedResults.EqualsOverriddenCollectedResult[],Sudoku.SourceGeneration.CollectedResults.GetHashCodeCollectedResult[],Sudoku.SourceGeneration.CollectedResults.ToStringCollectedResult[])">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.EqualsOverriddenHandler"/>
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.EqualsOverriddenHandler"/>
+        </member>
         <member name="T:Sudoku.SourceGeneration.CollectedResults.DependencyPropertyCollectedResult">
             <summary>
             Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
@@ -285,6 +297,38 @@
         <member name="M:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.DefaultOverriddenHandler">
+            <summary>
+            The generator handler for default overridden.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.DefaultOverriddenHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,Sudoku.SourceGeneration.CollectedResults.DefaultOverriddenCollectedResult)">
+            <summary>
+            Output the source.
+            </summary>
+            <param name="spc">The context.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.GenerateMethodKind">
+            <summary>
+            Represents a kind of generated method.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Handlers.GenerateMethodKind.Equals">
+            <summary>
+            Indicates the kind is to generate <c>Equals</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Handlers.GenerateMethodKind.GetHashCode">
+            <summary>
+            Indicates the kind is to generate <c>GetHashCode</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Handlers.GenerateMethodKind.ToString">
+            <summary>
+            Indicates the kind is to generate <c>ToString</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler">
             <summary>
             The generator handler for dependency properties.
@@ -301,22 +345,16 @@
             The generator handler for default overridden of <c>Equals</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.EqualsOverriddenHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.CollectedResults.EqualsOverriddenCollectedResult})">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.SourceGeneration.Handlers.EqualsOverriddenHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <inheritdoc/>
+            <inheritdoc cref="M:Sudoku.SourceGeneration.Handlers.IIncrementalGeneratorAttributeHandler`1.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)"/>
         </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.GetHashCodeOveriddenHandler">
             <summary>
             The generator handler for default overridden of <c>GetHashCode</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.GetHashCodeOveriddenHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.CollectedResults.GetHashCodeCollectedResult})">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.SourceGeneration.Handlers.GetHashCodeOveriddenHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <inheritdoc/>
+            <inheritdoc cref="M:Sudoku.SourceGeneration.Handlers.IIncrementalGeneratorAttributeHandler`1.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)"/>
         </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.IIncrementalGeneratorAttributeHandler`1">
             <summary>
@@ -423,11 +461,8 @@
             The generator handler for default overridden of <c>ToString</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.ToStringOverriddenHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.CollectedResults.ToStringCollectedResult})">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.SourceGeneration.Handlers.ToStringOverriddenHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <inheritdoc/>
+            <inheritdoc cref="M:Sudoku.SourceGeneration.Handlers.IIncrementalGeneratorAttributeHandler`1.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)"/>
         </member>
         <member name="T:Sudoku.SourceGeneration.LocalMemberKinds">
             <summary>
