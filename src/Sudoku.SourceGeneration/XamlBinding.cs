@@ -11,17 +11,17 @@ internal static class XamlBinding
 			(_, ({ } summary, { } remarks, _, _), _)
 				=> $"""
 				/// <summary>
-					/// {summary}
-					/// </summary>
-					/// <remarks>
-					/// {remarks}
-					/// </remarks>
+						/// {summary}
+						/// </summary>
+						/// <remarks>
+						/// {remarks}
+						/// </remarks>
 				""",
 			(_, ({ } summary, _, _, _), _)
 				=> $"""
 				/// <summary>
-					/// {summary}
-					/// </summary>
+						/// {summary}
+						/// </summary>
 				""",
 			(_, (_, _, { } docCref, { } docPath), _)
 				=> $"""
@@ -34,16 +34,16 @@ internal static class XamlBinding
 			(_, _, true)
 				=> $"""
 				/// <summary>
-					/// Indicates the interactive property that uses dependency property <see cref="{propertyName}Property"/> to get or set value.
-					/// </summary>
-					/// <seealso cref="{propertyName}Property" />
+						/// Indicates the interactive property that uses dependency property <see cref="{propertyName}Property"/> to get or set value.
+						/// </summary>
+						/// <seealso cref="{propertyName}Property" />
 				""",
 			(_, _, false)
 				=> $"""
 				/// <summary>
-					/// Indicates the interactive setter or getter methods that uses attached property <see cref="{propertyName}Property"/> to get or set value.
-					/// </summary>
-					/// <seealso cref="{propertyName}Property" />
+						/// Indicates the interactive setter or getter methods that uses attached property <see cref="{propertyName}Property"/> to get or set value.
+						/// </summary>
+						/// <seealso cref="{propertyName}Property" />
 				"""
 		};
 
