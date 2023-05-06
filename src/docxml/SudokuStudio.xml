@@ -166,6 +166,26 @@
             Indicates the target page instance.
             </summary>
         </member>
+        <member name="T:SudokuStudio.BindableSource.GridLibraryBindableSource">
+            <summary>
+            Represents a type that describes for a library of sudoku puzzles and its introduction.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.GridLibraryBindableSource.LibraryName">
+            <summary>
+            Indicates the name of the library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.GridLibraryBindableSource.Author">
+            <summary>
+            Indicates the author of the library. The default value is "<c><![CDATA[<Anonymous>]]></c>".
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.GridLibraryBindableSource.Puzzles">
+            <summary>
+            Indicates the puzzles. The default value is empty list. This property is never <see langword="null"/>.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.BindableSource.RepositoryInfoBindableSource">
             <summary>
             Represents a type that can be used for binding as source, for repository information
@@ -4108,6 +4128,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.AnalyzePage_Uniqueness">
             <summary>
               Looks up a localized string similar to Solution Uniqueness: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.AnonymousAuthor">
+            <summary>
+              Looks up a localized string similar to &lt;Anonymous&gt;.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.DrawingPage_InputCharacter">

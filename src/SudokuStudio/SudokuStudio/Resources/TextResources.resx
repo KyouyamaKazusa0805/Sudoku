@@ -564,6 +564,9 @@
   <data name="AnalyzePage_Uniqueness" xml:space="preserve">
     <value>Solution Uniqueness: </value>
   </data>
+  <data name="AnonymousAuthor" xml:space="preserve">
+    <value>&lt;Anonymous&gt;</value>
+  </data>
   <data name="DrawingPage_InputCharacter" xml:space="preserve">
     <value>Input character as a baba group: </value>
   </data>

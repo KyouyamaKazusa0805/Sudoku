@@ -1573,6 +1573,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;Anonymous&gt;.
+        /// </summary>
+        internal static string AnonymousAuthor {
+            get {
+                return ResourceManager.GetString("AnonymousAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Input character as a baba group: .
         /// </summary>
         internal static string DrawingPage_InputCharacter {

@@ -567,6 +567,9 @@
   <data name="AnalyzePage_Uniqueness" xml:space="preserve">
     <value>盘面唯一性：</value>
   </data>
+  <data name="AnonymousAuthor" xml:space="preserve">
+    <value>&lt;匿名&gt;</value>
+  </data>
   <data name="DrawingPage_InputCharacter" xml:space="preserve">
     <value>输入代数用的字符：</value>
   </data>
