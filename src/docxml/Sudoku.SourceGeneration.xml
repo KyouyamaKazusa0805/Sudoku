@@ -68,18 +68,6 @@
             </summary>
             <seealso cref="T:Sudoku.SourceGeneration.CollectedResults.AttachedPropertyCollectedResult"/>
         </member>
-        <member name="T:Sudoku.SourceGeneration.CollectedResults.DefaultOverriddenCollectedResult">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.EqualsOverriddenHandler"/>
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.EqualsOverriddenHandler"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CollectedResults.DefaultOverriddenCollectedResult.#ctor(Sudoku.SourceGeneration.CollectedResults.EqualsOverriddenCollectedResult[],Sudoku.SourceGeneration.CollectedResults.GetHashCodeCollectedResult[],Sudoku.SourceGeneration.CollectedResults.ToStringCollectedResult[])">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.EqualsOverriddenHandler"/>
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.EqualsOverriddenHandler"/>
-        </member>
         <member name="T:Sudoku.SourceGeneration.CollectedResults.DependencyPropertyCollectedResult">
             <summary>
             Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
@@ -302,7 +290,7 @@
             The generator handler for default overridden.
             </summary>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.DefaultOverriddenHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,Sudoku.SourceGeneration.CollectedResults.DefaultOverriddenCollectedResult)">
+        <member name="M:Sudoku.SourceGeneration.Handlers.DefaultOverriddenHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.ValueTuple{Sudoku.SourceGeneration.CollectedResults.EqualsOverriddenCollectedResult[],Sudoku.SourceGeneration.CollectedResults.GetHashCodeCollectedResult[],Sudoku.SourceGeneration.CollectedResults.ToStringCollectedResult[]})">
             <summary>
             Output the source.
             </summary>
@@ -506,7 +494,7 @@
             Provides some registering methods for source generator context.
             </summary>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.SourceGeneratorRegistry.Register``2(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext@,System.String,)">
+        <member name="M:Microsoft.CodeAnalysis.SourceGeneratorRegistry.Register``2(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext@,System.String,System.Func{Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken,System.Boolean})">
             <summary>
             Registers for a new generator function via attribute checking.
             </summary>
@@ -524,7 +512,7 @@
             <param name="nodeFilter">The node filter method.</param>
             <seealso cref="T:Sudoku.SourceGeneration.Handlers.IIncrementalGeneratorAttributeHandler`1"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.SourceGeneratorRegistry.Register``2(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext@,System.String,System.String,)">
+        <member name="M:Microsoft.CodeAnalysis.SourceGeneratorRegistry.Register``2(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext@,System.String,System.String,System.Func{Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken,System.Boolean})">
             <summary>
             Registers for a new generator function via attribute checking.
             </summary>

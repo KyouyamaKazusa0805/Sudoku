@@ -21,10 +21,10 @@ internal static class SourceGeneratorRegistry
 	/// </param>
 	/// <param name="nodeFilter">The node filter method.</param>
 	/// <seealso cref="IIncrementalGeneratorAttributeHandler{T}"/>
-	public static unsafe void Register<THandler, TCollectedResult>(
+	public static void Register<THandler, TCollectedResult>(
 		this scoped ref IncrementalGeneratorInitializationContext @this,
 		string attributeName,
-		delegate*<SyntaxNode, CancellationToken, bool> nodeFilter
+		Func<SyntaxNode, CancellationToken, bool> nodeFilter
 	)
 		where THandler : IIncrementalGeneratorAttributeHandler<TCollectedResult>, new()
 		where TCollectedResult : class
@@ -37,6 +37,44 @@ internal static class SourceGeneratorRegistry
 				.Select(NotNullSelector)
 				.Collect(),
 			inst.Output
+		);
+	}
+
+	public static void Register<T1, T2, T3>(
+		this scoped ref IncrementalGeneratorInitializationContext @this,
+		string attributeName,
+		Func<SyntaxNode, CancellationToken, bool> nodeFilter,
+		Func<GeneratorAttributeSyntaxContext, CancellationToken, T1?> transform1,
+		Func<GeneratorAttributeSyntaxContext, CancellationToken, T2?> transform2,
+		Func<GeneratorAttributeSyntaxContext, CancellationToken, T3?> transform3,
+		Action<SourceProductionContext, (T1[], T2[], T3[])> output
+	)
+		where T1 : class
+		where T2 : class
+		where T3 : class
+	{
+		@this.RegisterSourceOutput(
+			@this.SyntaxProvider
+				.ForAttributeWithMetadataName(attributeName, (n, c) => nodeFilter(n, c), (c, ct) => transform1(c, ct))
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect()
+				.Combine(
+					@this.SyntaxProvider
+						.ForAttributeWithMetadataName(attributeName, (n, c) => nodeFilter(n, c), (c, ct) => transform2(c, ct))
+						.Where(NotNullPredicate)
+						.Select(NotNullSelector)
+						.Collect()
+						.Combine(
+							@this.SyntaxProvider
+								.ForAttributeWithMetadataName(attributeName, (n, c) => nodeFilter(n, c), (c, ct) => transform3(c, ct))
+								.Where(NotNullPredicate)
+								.Select(NotNullSelector)
+								.Collect()
+						)
+				)
+				.Select(static (v, _) => (v.Left.ToArray(), v.Right.Left.ToArray(), v.Right.Right.ToArray())),
+			(c, d) => output(c, d)
 		);
 	}
 
@@ -57,11 +95,11 @@ internal static class SourceGeneratorRegistry
 	/// <param name="projectName">The project name.</param>
 	/// <param name="nodeFilter">The node filter method.</param>
 	/// <seealso cref="IIncrementalGeneratorAttributeHandler{T}"/>
-	public static unsafe void Register<THandler, TCollectedResult>(
+	public static void Register<THandler, TCollectedResult>(
 		this scoped ref IncrementalGeneratorInitializationContext @this,
 		string attributeName,
 		string projectName,
-		delegate*<SyntaxNode, CancellationToken, bool> nodeFilter
+		Func<SyntaxNode, CancellationToken, bool> nodeFilter
 	)
 		where THandler : IIncrementalGeneratorAttributeHandler<TCollectedResult>, new()
 		where TCollectedResult : class
@@ -86,13 +124,10 @@ internal static class SourceGeneratorRegistry
 	/// <typeparam name="THandler">The handler.</typeparam>
 	/// <param name="this">The context.</param>
 	/// <param name="projectName">The full name of the project that can filter compilation projects.</param>
-	public static unsafe void Register<THandler>(this scoped ref IncrementalGeneratorInitializationContext @this, string projectName)
+	public static void Register<THandler>(this scoped ref IncrementalGeneratorInitializationContext @this, string projectName)
 		where THandler : IIncrementalGeneratorCompilationHandler, new()
 	{
 		var inst = new THandler();
-		@this.RegisterSourceOutput(
-			@this.CompilationProvider,
-			(spc, c) => { if (c.AssemblyName == projectName) { inst.Output(spc, c); } }
-		);
+		@this.RegisterSourceOutput(@this.CompilationProvider, (spc, c) => { if (c.AssemblyName == projectName) { inst.Output(spc, c); } });
 	}
 }

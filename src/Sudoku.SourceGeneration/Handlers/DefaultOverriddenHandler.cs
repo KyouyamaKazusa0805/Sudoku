@@ -10,17 +10,20 @@ internal sealed class DefaultOverriddenHandler
 	/// </summary>
 	/// <param name="spc">The context.</param>
 	/// <param name="value">The value.</param>
-	public static void Output(SourceProductionContext spc, DefaultOverriddenCollectedResult value)
+	public static void Output(
+		SourceProductionContext spc,
+		(EqualsOverriddenCollectedResult[] A, GetHashCodeCollectedResult[] B, ToStringCollectedResult[] C) value
+	)
 	{
 		var codeSnippets = new Dictionary<string, SortedList<GenerateMethodKind, (object Data, string Code)>>();
-		foreach (var v in value.DataForEquals)
+		foreach (var v in value.A)
 		{
 			if (v is not (var mode, var modifiers, { Name: var typeName, ContainingNamespace: var @namespace } type, var paramName))
 			{
 				continue;
 			}
 
-			var (_, _, _, _, genericParamList, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
+			var genericParamList = type.TypeParameters is var typeParams and not [] ? $"<{string.Join(", ", typeParams)}>" : string.Empty;
 			var extraAttributeStr = mode switch
 			{
 				0 => """
@@ -65,14 +68,14 @@ internal sealed class DefaultOverriddenHandler
 			);
 		}
 
-		foreach (var v in value.DataForGetHashCode)
+		foreach (var v in value.B)
 		{
 			if (v is not (var mode, var modifiers, { Name: var typeName, ContainingNamespace: var @namespace } type, var rawMemberNames))
 			{
 				continue;
 			}
 
-			var (_, _, _, _, genericParamList, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
+			var genericParamList = type.TypeParameters is var typeParams and not [] ? $"<{string.Join(", ", typeParams)}>" : string.Empty;
 			var needCast = mode switch
 			{
 				1 when rawMemberNames.First() is var name
@@ -136,15 +139,14 @@ internal sealed class DefaultOverriddenHandler
 			}
 		}
 
-		foreach (var v in value.DataForToString)
+		foreach (var v in value.C)
 		{
 			if (v is not (var mode, var modifiers, { Name: var typeName, ContainingNamespace: var @namespace } type, var attributeType, var rawMemberNames))
 			{
 				continue;
 			}
 
-			var (_, _, _, _, genericParamList, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
-
+			var genericParamList = type.TypeParameters is var typeParams and not [] ? $"<{string.Join(", ", typeParams)}>" : string.Empty;
 			var needCast = mode switch
 			{
 				0 => (
