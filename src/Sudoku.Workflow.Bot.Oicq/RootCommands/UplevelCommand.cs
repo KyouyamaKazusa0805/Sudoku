@@ -323,8 +323,6 @@ internal sealed class UplevelCommand : Command
 							---
 							卡片最终剩余情况：
 							{finalData}
-							---
-							部分情况下，用户输入的批量操作预估数字较大，但由于金币、卡片在批量强化期间可能期间不够使用，导致实际强化次数和预估次数不匹配。这是正常的。
 							"""
 						);
 						break;
