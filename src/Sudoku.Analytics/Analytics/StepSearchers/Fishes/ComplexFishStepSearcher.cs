@@ -67,9 +67,15 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		}
 
 		// Remove duplicate items.
-		context.Accumulator!.AddRange(tempList.Distinct());
-
-		return null;
+		if (context.OnlyFindOne)
+		{
+			return tempList is [var firstFoundStep, ..] ? firstFoundStep : null;
+		}
+		else
+		{
+			context.Accumulator.AddRange(tempList.Distinct());
+			return null;
+		}
 	}
 
 	/// <summary>
