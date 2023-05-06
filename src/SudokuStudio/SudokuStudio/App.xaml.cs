@@ -107,15 +107,10 @@ public partial class App : Application
 			{
 				Kind: ExtendedActivationKind.File,
 				Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: CommonFileExtensions.Text, Path: var filePath }] }
-			}:
+			}
+			when SudokuFileHandler.Read(filePath) is [{ BaseGrid: var grid }, ..]:
 			{
-				if (SudokuFileHandler.Read(filePath) is not [{ GridString: var gridStr }, ..] || !Grid.TryParse(gridStr, out var grid))
-				{
-					return;
-				}
-
 				FirstGrid = grid;
-
 				break;
 			}
 		}

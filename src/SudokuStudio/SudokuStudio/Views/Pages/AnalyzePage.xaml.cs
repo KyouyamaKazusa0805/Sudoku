@@ -274,7 +274,7 @@ public sealed partial class AnalyzePage : Page
 					{
 						new()
 						{
-							GridString = puzzle.ToString(SusserFormat.Full),
+							BaseGrid = puzzle,
 							RenderableData = viewUnit switch
 							{
 								{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = new[] { view } },
@@ -298,6 +298,33 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	/// <param name="gridFormatters">The grid formatters.</param>
 	/// <returns>A task that handles the operation.</returns>
+	/// <remarks>
+	/// <para>
+	/// Due to the design of <see langword="static abstract"/> members in <see langword="interface"/>s,
+	/// we cannot use this type as a type argument, because APIs may not contain any implementation from this type,
+	/// so C# compiler cannot determine which method can be called.
+	/// Therefore, here we cannot use generic type to pass arguments
+	/// because here the type <see cref="IGridFormatter"/> contains <see langword="static abstract"/> members.
+	/// </para>
+	/// <para>
+	/// This topic relates to the content in the following links:
+	/// <list type="bullet">
+	/// <item>
+	/// <see href="https://github.com/dotnet/csharplang/blob/main/proposals/csharp-11.0/static-abstracts-in-interfaces.md#interfaces-as-type-arguments">
+	/// Proposal - "Interfaces as type arguments" part
+	/// </see>
+	/// </item>
+	/// <item>
+	/// <see href="https://github.com/dotnet/csharplang/issues/5955">Discussion page about this</see>
+	/// </item>
+	/// </list>
+	/// </para>
+	/// <para>
+	/// In short, that's why I use <see cref="ArrayList"/> instead of <see cref="List{T}"/> as the type
+	/// of the argument <paramref name="gridFormatters"/>.
+	/// </para>
+	/// </remarks>
+	/// <seealso cref="IGridFormatter"/>
 	internal async Task<bool> SaveFileInternalAsync(ArrayList gridFormatters)
 	{
 		if (!EnsureUnsnapped(true))
@@ -329,7 +356,7 @@ public sealed partial class AnalyzePage : Page
 			{
 				await File.WriteAllTextAsync(
 					filePath,
-					string.Join("\r\n\r\n", from gridFormatter in gridFormatters select ((IGridFormatter)gridFormatter).ToString(grid))
+					string.Join("\r\n\r\n", from formatter in gridFormatters select ((IGridFormatter)formatter).ToString(grid))
 				);
 
 				break;
@@ -338,16 +365,18 @@ public sealed partial class AnalyzePage : Page
 			{
 				var renderableData = SudokuPane.ViewUnit switch
 				{
-					{ Conclusions: var conclusions, View: var view } => new UserDefinedRenderable { Conclusions = conclusions, Views = new[] { view } },
-					_ => default(UserDefinedRenderable?)
+					{ Conclusions: var conclusions, View: var view }
+						=> new UserDefinedRenderable { Conclusions = conclusions, Views = new[] { view } },
+					_
+						=> default(UserDefinedRenderable?)
 				};
 
 				SudokuFileHandler.Write(
 					filePath,
 					(
-						from gridFormatter in gridFormatters
-						select ((IGridFormatter)gridFormatter).ToString(grid) into gridString
-						select new GridInfo { GridString = gridString, RenderableData = renderableData }
+						from formatter in gridFormatters
+						select ((IGridFormatter)formatter).ToString(grid) into gridString
+						select new GridInfo { BaseGrid = grid, GridString = gridString, RenderableData = renderableData }
 					).ToArray()
 				);
 
@@ -416,15 +445,9 @@ public sealed partial class AnalyzePage : Page
 					{
 						switch (SudokuFileHandler.Read(filePath))
 						{
-							case [{ GridString: var str, RenderableData: var nullableRenderableData }]:
+							case [{ BaseGrid: var g, GridString: var gridStr, RenderableData: var nullableRenderableData }]:
 							{
-								if (!Grid.TryParse(str, out var g))
-								{
-									OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.FileCannotBeParsed));
-									return;
-								}
-
-								SudokuPane.Puzzle = g;
+								SudokuPane.Puzzle = gridStr is not null && Grid.TryParse(gridStr, out var g2) ? g2 : g;
 
 								if (nullableRenderableData is { } renderableData)
 								{

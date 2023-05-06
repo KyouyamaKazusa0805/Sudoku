@@ -77,7 +77,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 
 		if (((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
 		{
-			((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { GridString = grid.ToString() });
+			((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = grid });
 		}
 
 		BasePage.SudokuPane.Puzzle = grid;

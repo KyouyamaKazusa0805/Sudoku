@@ -1020,10 +1020,27 @@
             Represents a type that defines the details of a grid.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Configuration.GridInfo.BaseGrid">
+            <summary>
+            Indicates the grid.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.GridInfo.ShowCandidates">
+            <summary>
+            Indicates whether all candidates will be displayed. The default value is <see langword="true"/>.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Configuration.GridInfo.GridString">
             <summary>
-            Indicates the grid string.
+            Indicates the extra string text for representation of <see cref="P:SudokuStudio.Configuration.GridInfo.BaseGrid"/>. This value is <see langword="null"/>
+            unless it won't be serialized as normal way.
             </summary>
+            <remarks>
+            On deserialization, this property has a higher priority value than <see cref="P:SudokuStudio.Configuration.GridInfo.BaseGrid"/>,
+            meaning if this property isn't <see langword="null"/>, this property will be used for deserialization;
+            the property <see cref="P:SudokuStudio.Configuration.GridInfo.BaseGrid"/> won't be used; otherwise, <see cref="P:SudokuStudio.Configuration.GridInfo.BaseGrid"/> will be used.
+            </remarks>
+            <seealso cref="P:SudokuStudio.Configuration.GridInfo.BaseGrid"/>
         </member>
         <member name="P:SudokuStudio.Configuration.GridInfo.RenderableData">
             <summary>
@@ -6858,6 +6875,33 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="gridFormatters">The grid formatters.</param>
             <returns>A task that handles the operation.</returns>
+            <remarks>
+            <para>
+            Due to the design of <see langword="static abstract"/> members in <see langword="interface"/>s,
+            we cannot use this type as a type argument, because APIs may not contain any implementation from this type,
+            so C# compiler cannot determine which method can be called.
+            Therefore, here we cannot use generic type to pass arguments
+            because here the type <see cref="T:Sudoku.Text.Formatting.IGridFormatter"/> contains <see langword="static abstract"/> members.
+            </para>
+            <para>
+            This topic relates to the content in the following links:
+            <list type="bullet">
+            <item>
+            <see href="https://github.com/dotnet/csharplang/blob/main/proposals/csharp-11.0/static-abstracts-in-interfaces.md#interfaces-as-type-arguments">
+            Proposal - "Interfaces as type arguments" part
+            </see>
+            </item>
+            <item>
+            <see href="https://github.com/dotnet/csharplang/issues/5955">Discussion page about this</see>
+            </item>
+            </list>
+            </para>
+            <para>
+            In short, that's why I use <see cref="T:System.Collections.ArrayList"/> instead of <see cref="T:System.Collections.Generic.List`1"/> as the type
+            of the argument <paramref name="gridFormatters"/>.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Text.Formatting.IGridFormatter"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.LoadPuzzleCoreAsync(Windows.Storage.StorageFile)">
             <summary>

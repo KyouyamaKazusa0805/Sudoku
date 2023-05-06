@@ -604,14 +604,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 						{
 							switch (SudokuFileHandler.Read(filePath))
 							{
-								case [{ GridString: var str }]:
+								case [{ BaseGrid: var g }]:
 								{
-									if (!Grid.TryParse(str, out var g))
-									{
-										FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileCannotBeParsed));
-										return;
-									}
-
 									Puzzle = g;
 									break;
 								}
