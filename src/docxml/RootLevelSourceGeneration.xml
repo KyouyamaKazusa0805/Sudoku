@@ -358,11 +358,6 @@
             We validate the range is inside the length scope though.
             </remarks>
         </member>
-        <member name="T:RootLevelSourceGeneration.Shortcuts">
-            <summary>
-            Defines the shortcuts of the source generators.
-            </summary>
-        </member>
         <member name="T:RootLevelSourceGeneration.VersionValueGenerator">
             <summary>
             Defines the incremental source generator that is used for the generation on sync the solution version.
