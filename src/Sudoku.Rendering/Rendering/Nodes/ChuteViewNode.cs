@@ -21,7 +21,6 @@ public sealed partial class ChuteViewNode : BasicViewNode//(ColorIdentifier iden
 	/// <summary>
 	/// Indicates the chute index. The value can be between 0 and 5.
 	/// </summary>
-	[JsonInclude]
 	public int ChuteIndex { get; }// = chuteIndex;
 
 	/// <summary>

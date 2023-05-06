@@ -12,7 +12,6 @@ public sealed partial class WellKnownColorIdentifier : ColorIdentifier//([Primar
 	public WellKnownColorIdentifier(WellKnownColorIdentifierKind kind) => Kind = kind;
 
 
-	[JsonInclude]
 	public WellKnownColorIdentifierKind Kind { get; }
 
 

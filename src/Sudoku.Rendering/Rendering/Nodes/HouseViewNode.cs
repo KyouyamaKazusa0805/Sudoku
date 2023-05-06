@@ -15,7 +15,6 @@ public sealed partial class HouseViewNode : BasicViewNode//(ColorIdentifier iden
 	/// <summary>
 	/// Indicates the house highlighted.
 	/// </summary>
-	[JsonInclude]
 	public House House { get; }// = house;
 
 

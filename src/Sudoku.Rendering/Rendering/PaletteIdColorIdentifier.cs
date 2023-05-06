@@ -12,7 +12,6 @@ public sealed partial class PaletteIdColorIdentifier : ColorIdentifier//([Primar
 	public PaletteIdColorIdentifier(int value) => Value = value;
 
 
-	[JsonInclude]
 	public int Value { get; }
 
 

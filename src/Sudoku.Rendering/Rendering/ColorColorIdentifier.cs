@@ -27,22 +27,17 @@ public sealed partial class ColorColorIdentifier : ColorIdentifier
 	}
 
 
-	[JsonInclude]
 	public byte A { get; }
 
-	[JsonInclude]
 	public byte R { get; }
 
-	[JsonInclude]
 	public byte G { get; }
 
-	[JsonInclude]
 	public byte B { get; }
 
 	/// <summary>
 	/// Indicates the raw value.
 	/// </summary>
-	[JsonIgnore]
 	private int RawValue => A << 24 | R << 16 | G << 8 | B;
 
 

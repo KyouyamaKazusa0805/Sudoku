@@ -15,14 +15,12 @@ public sealed partial class CandidateViewNode : BasicViewNode//(ColorIdentifier 
 	/// <summary>
 	/// Indicates the candidate highlighted.
 	/// </summary>
-	[JsonInclude]
 	public Candidate Candidate { get; }// = candidate;
 
 	/// <summary>
 	/// Indicates the candidate string.
 	/// </summary>
 	[GeneratedDisplayName(nameof(Candidate))]
-	[JsonIgnore]
 	private string CandidateString => RxCyNotation.ToCandidateString(Candidate);
 
 
