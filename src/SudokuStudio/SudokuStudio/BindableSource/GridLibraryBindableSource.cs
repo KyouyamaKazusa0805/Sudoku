@@ -3,7 +3,7 @@ namespace SudokuStudio.BindableSource;
 /// <summary>
 /// Represents a type that describes for a library of sudoku puzzles and its introduction.
 /// </summary>
-public sealed class GridLibraryBindableSource
+public sealed class GridLibraryBindableSource : IBindableSource
 {
 	/// <summary>
 	/// Indicates the name of the library.

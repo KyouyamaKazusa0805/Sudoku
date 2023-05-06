@@ -4,7 +4,7 @@ namespace SudokuStudio.BindableSource;
 /// Represents a type that binds with a analyze tab page type that implements <see cref="IAnalyzeTabPage"/>.
 /// </summary>
 /// <seealso cref="IAnalyzeTabPage"/>
-internal sealed class AnalyzeTabPageBindableSource
+internal sealed class AnalyzeTabPageBindableSource : IBindableSource
 {
 	/// <summary>
 	/// Indicates the header.

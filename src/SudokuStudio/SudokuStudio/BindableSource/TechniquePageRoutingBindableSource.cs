@@ -3,7 +3,7 @@ namespace SudokuStudio.BindableSource;
 /// <summary>
 /// Represents a type that can be used for binding as source, for technique page routing.
 /// </summary>
-public sealed class TechniquePageRoutingBindableSource
+public sealed class TechniquePageRoutingBindableSource : IBindableSource
 {
 	/// <summary>
 	/// Indicates the default culture.

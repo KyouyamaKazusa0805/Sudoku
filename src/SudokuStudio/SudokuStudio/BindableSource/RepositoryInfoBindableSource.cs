@@ -4,7 +4,7 @@ namespace SudokuStudio.BindableSource;
 /// Represents a type that can be used for binding as source, for repository information
 /// used for displaying the source code referencing.
 /// </summary>
-public sealed class RepositoryInfoBindableSource
+public sealed class RepositoryInfoBindableSource : IBindableSource
 {
 	/// <summary>
 	/// Indicates whether the repository code is for reference.
