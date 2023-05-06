@@ -114,11 +114,7 @@ internal sealed class ToStringOverriddenHandler : IIncrementalGeneratorAttribute
 		// Check whether the method is overridden from object.ToString.
 		var rootMethod = overriddenMethod;
 		var currentMethod = method;
-		for (; rootMethod is not null; rootMethod = rootMethod.OverriddenMethod, currentMethod = currentMethod!.OverriddenMethod)
-		{
-			;
-		}
-
+		for (; rootMethod is not null; rootMethod = rootMethod.OverriddenMethod, currentMethod = currentMethod!.OverriddenMethod) ;
 		if (currentMethod!.ContainingType.SpecialType is not (System_Object or System_ValueType))
 		{
 			return null;
