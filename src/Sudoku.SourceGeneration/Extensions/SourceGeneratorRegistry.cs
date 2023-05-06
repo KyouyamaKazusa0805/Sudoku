@@ -32,7 +32,7 @@ internal static class SourceGeneratorRegistry
 		var inst = new THandler();
 		@this.RegisterSourceOutput(
 			@this.SyntaxProvider
-				.ForAttributeWithMetadataName(attributeName, (node, cancellationToken) => nodeFilter(node, cancellationToken), inst.Transform)
+				.ForAttributeWithMetadataName(attributeName, nodeFilter, inst.Transform)
 				.Where(NotNullPredicate)
 				.Select(NotNullSelector)
 				.Collect(),
@@ -40,6 +40,21 @@ internal static class SourceGeneratorRegistry
 		);
 	}
 
+	/// <summary>
+	/// Registers for a new generator function via attribute checking.
+	/// </summary>
+	/// <typeparam name="T1">The first type of the collected result.</typeparam>
+	/// <typeparam name="T2">The second type of the collected result.</typeparam>
+	/// <typeparam name="T3">The third type of the collected result.</typeparam>
+	/// <param name="this">The context.</param>
+	/// <param name="attributeName">
+	/// The attribute name. The value must be full name of the attribute, including its namespace, beginning with root-level one.
+	/// </param>
+	/// <param name="nodeFilter">The node filter method.</param>
+	/// <param name="transform1">The transform method that creates a nullable <typeparamref name="T1"/> instance.</param>
+	/// <param name="transform2">The transform method that creates a nullable <typeparamref name="T2"/> instance.</param>
+	/// <param name="transform3">The transform method that creates a nullable <typeparamref name="T3"/> instance.</param>
+	/// <param name="output">The output method.</param>
 	public static void Register<T1, T2, T3>(
 		this scoped ref IncrementalGeneratorInitializationContext @this,
 		string attributeName,
@@ -52,31 +67,29 @@ internal static class SourceGeneratorRegistry
 		where T1 : class
 		where T2 : class
 		where T3 : class
-	{
-		@this.RegisterSourceOutput(
+		=> @this.RegisterSourceOutput(
 			@this.SyntaxProvider
-				.ForAttributeWithMetadataName(attributeName, (n, c) => nodeFilter(n, c), (c, ct) => transform1(c, ct))
+				.ForAttributeWithMetadataName(attributeName, nodeFilter, transform1)
 				.Where(NotNullPredicate)
 				.Select(NotNullSelector)
 				.Collect()
 				.Combine(
 					@this.SyntaxProvider
-						.ForAttributeWithMetadataName(attributeName, (n, c) => nodeFilter(n, c), (c, ct) => transform2(c, ct))
+						.ForAttributeWithMetadataName(attributeName, nodeFilter, transform2)
 						.Where(NotNullPredicate)
 						.Select(NotNullSelector)
 						.Collect()
 						.Combine(
 							@this.SyntaxProvider
-								.ForAttributeWithMetadataName(attributeName, (n, c) => nodeFilter(n, c), (c, ct) => transform3(c, ct))
+								.ForAttributeWithMetadataName(attributeName, nodeFilter, transform3)
 								.Where(NotNullPredicate)
 								.Select(NotNullSelector)
 								.Collect()
 						)
 				)
 				.Select(static (v, _) => (v.Left.ToArray(), v.Right.Left.ToArray(), v.Right.Right.ToArray())),
-			(c, d) => output(c, d)
+			output
 		);
-	}
 
 	/// <summary>
 	/// Registers for a new generator function via attribute checking.
@@ -107,7 +120,7 @@ internal static class SourceGeneratorRegistry
 		var inst = new THandler();
 		@this.RegisterSourceOutput(
 			@this.SyntaxProvider
-				.ForAttributeWithMetadataName(attributeName, (node, cancellationToken) => nodeFilter(node, cancellationToken), inst.Transform)
+				.ForAttributeWithMetadataName(attributeName, nodeFilter, inst.Transform)
 				.Where(NotNullPredicate)
 				.Select(NotNullSelector)
 				.Combine(@this.CompilationProvider)
