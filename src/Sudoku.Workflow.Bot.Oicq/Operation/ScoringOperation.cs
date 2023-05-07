@@ -119,12 +119,7 @@ public static class ScoringOperation
 		return Clamp(cloverLevel switch { -1 => p, _ => p * CloverLevels[cloverLevel] }, 0, 1);
 	}
 
-	/// <summary>
-	/// 求得群的排名信息。
-	/// </summary>
-	/// <param name="group">所在群。</param>
-	/// <param name="rankingListIsEmptyCallback">一个回调函数。如果本群没有人使用过机器人，该回调函数会触发。</param>
-	/// <returns>一个 <see cref="Task{T}"/> 实例，表示该异步执行的逻辑数据，并带出计算结果。</returns>
+	/// <inheritdoc cref="GetUserRankingListAsync{T}(Group, Func{Task}, Func{User, T}?)"/>
 	public static async Task<(string Name, User Data)[]?> GetUserRankingListAsync(Group @group, Func<Task> rankingListIsEmptyCallback)
 	{
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
@@ -157,6 +152,56 @@ public static class ScoringOperation
 			let numericQQ = int.TryParse(qq, out var result) ? result : 0
 			orderby ud.ExperiencePoint descending, numericQQ
 			select (Name: nickname, Data: ud)
+		).ToArray();
+	}
+
+	/// <summary>
+	/// 求得群的排名信息。
+	/// </summary>
+	/// <typeparam name="T">
+	/// 参与排名的依据。该方法执行后会产生一个 <typeparamref name="T"/> 类型的结果。
+	/// 该类型需要保证具有合理的排序接口（如 <see cref="IComparable{T}"/> 接口类型）的实现。
+	/// </typeparam>
+	/// <param name="group">所在群。</param>
+	/// <param name="rankingListIsEmptyCallback">一个回调函数。如果本群没有人使用过机器人，该回调函数会触发。</param>
+	/// <param name="orderingSelector">表示排序的依据方法。该方法会通过对象实例返回一个数据，该数据将参与降序排序操作。</param>
+	/// <returns>一个 <see cref="Task{T}"/> 实例，表示该异步执行的逻辑数据，并带出计算结果。</returns>
+	public static async Task<(string Name, T Data)[]?> GetUserRankingListAsync<T>(
+		Group @group,
+		Func<Task> rankingListIsEmptyCallback,
+		Func<User, T> orderingSelector
+	)
+	{
+		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
+		if (!Directory.Exists(folder))
+		{
+			return null;
+		}
+
+		var botDataFolder = $"""{folder}\BotData""";
+		if (!Directory.Exists(botDataFolder))
+		{
+			await rankingListIsEmptyCallback();
+			return null;
+		}
+
+		var botUsersDataFolder = $"""{botDataFolder}\Users""";
+		if (!Directory.Exists(botUsersDataFolder))
+		{
+			await rankingListIsEmptyCallback();
+			return null;
+		}
+
+		return (
+			from file in Directory.GetFiles(botUsersDataFolder, "*.json")
+			let ud = Deserialize<User>(File.ReadAllText(file))
+			where ud is not null
+			let qq = ud.Number
+			let nickname = @group.GetMatchedMemberViaIdAsync(qq).Result?.Name
+			where nickname is not null
+			let numericQQ = int.TryParse(qq, out var result) ? result : 0
+			orderby orderingSelector(ud) descending, numericQQ
+			select (Name: nickname, Data: orderingSelector(ud))
 		).ToArray();
 	}
 

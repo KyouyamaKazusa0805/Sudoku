@@ -1630,11 +1630,19 @@
             <exception cref="T:System.ArgumentException">如果辅助卡为空数组，或超过 3 个元素，则产生此异常。</exception>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetUserRankingListAsync(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task})">
+            <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetUserRankingListAsync``1(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task},System.Func{Sudoku.Workflow.Bot.Oicq.ComponentModel.User,``0})"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetUserRankingListAsync``1(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task},System.Func{Sudoku.Workflow.Bot.Oicq.ComponentModel.User,``0})">
             <summary>
             求得群的排名信息。
             </summary>
+            <typeparam name="T">
+            参与排名的依据。该方法执行后会产生一个 <typeparamref name="T"/> 类型的结果。
+            该类型需要保证具有合理的排序接口（如 <see cref="T:System.IComparable`1"/> 接口类型）的实现。
+            </typeparam>
             <param name="group">所在群。</param>
             <param name="rankingListIsEmptyCallback">一个回调函数。如果本群没有人使用过机器人，该回调函数会触发。</param>
+            <param name="orderingSelector">表示排序的依据方法。该方法会通过对象实例返回一个数据，该数据将参与降序排序操作。</param>
             <returns>一个 <see cref="T:System.Threading.Tasks.Task`1"/> 实例，表示该异步执行的逻辑数据，并带出计算结果。</returns>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetEarnedScoringDisplayingString(System.Int32)">
@@ -2413,8 +2421,58 @@
             排名指令。
             </summary>
         </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.RankCommand.Type">
+            <summary>
+            表示你要查看的排名的内容类型。可以查看“基本”、“经验值”、“金币”、“魔塔”、“强化”和“签到”。默认为“基本”，即查看基本的排名数据。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.RankCommand.TopCount">
+            <summary>
+            表示参与排名的所有人里的前多少名会被显示出来。默认为 10。如果数字过大，该数值则无效。最大为 20。
+            </summary>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.RankCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Types">
+            <summary>
+            为参数“类型”提供数据。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Types.Basic">
+            <summary>
+            表示排名的数据为基本数据。该排名依据会使得结果排序将经验值、金币和魔塔数据都显示出来。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Types.ExperiencePoint">
+            <summary>
+            表示排名的数据为经验值。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Types.Coin">
+            <summary>
+            表示排名的数据为金币。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Types.Tower">
+            <summary>
+            表示排名的数据为魔塔。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Types.Grade">
+            <summary>
+            表示排名的数据为级别。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Types.ContinuousCheckIn">
+            <summary>
+            表示排名的数据为签到连续天数。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Types.CardLevel">
+            <summary>
+            表示排名的数据为强化级别。
+            </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.SetTitleCommand">
             <summary>
