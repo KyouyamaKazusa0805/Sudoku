@@ -75,6 +75,16 @@
             <uap:DisplayName>SudokuStudio protocol</uap:DisplayName>
           </uap:Protocol>
         </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name=".ssl">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ssl</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:DisplayName>SudokuStudio Library Format</uap:DisplayName>
+            <uap:Logo>3.png</uap:Logo>
+            <uap:InfoTip>SudokuStudio Library Format</uap:InfoTip>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
       </Extensions>
     </Application>
   </Applications>
