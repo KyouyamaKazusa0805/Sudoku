@@ -1645,6 +1645,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generating history file.
+        /// </summary>
+        internal static string FileExtension_GeneratingHistory {
+            get {
+                return ResourceManager.GetString("FileExtension_GeneratingHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid library file.
+        /// </summary>
+        internal static string FileExtension_GridLibrary {
+            get {
+                return ResourceManager.GetString("FileExtension_GridLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Portable picture format.
         /// </summary>
         internal static string FileExtension_Picture {
@@ -1677,6 +1695,15 @@ namespace SudokuStudio.Resources {
         internal static string FileExtension_TextDescription {
             get {
                 return ResourceManager.GetString("FileExtension_TextDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User preference file.
+        /// </summary>
+        internal static string FileExtension_UserPreference {
+            get {
+                return ResourceManager.GetString("FileExtension_UserPreference", resourceCulture);
             }
         }
         

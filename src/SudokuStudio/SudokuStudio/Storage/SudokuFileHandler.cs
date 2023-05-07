@@ -1,9 +1,9 @@
 namespace SudokuStudio.Storage;
 
 /// <summary>
-/// Defines a handler that handles the file of file extension <see cref="CommonFileExtensions.Text"/>.
+/// Defines a handler that handles the file of file extension <see cref="FileExtensions.Text"/>.
 /// </summary>
-/// <seealso cref="CommonFileExtensions.Text"/>
+/// <seealso cref="FileExtensions.Text"/>
 public sealed class SudokuFileHandler : IProgramSupportedFileHandler<GridInfo[]>
 {
 	/// <summary>
@@ -17,7 +17,7 @@ public sealed class SudokuFileHandler : IProgramSupportedFileHandler<GridInfo[]>
 
 
 	/// <inheritdoc/>
-	public static string SupportedFileExtension => CommonFileExtensions.Text;
+	public static string SupportedFileExtension => FileExtensions.Text;
 
 
 	/// <inheritdoc/>

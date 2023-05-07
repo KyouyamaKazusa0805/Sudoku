@@ -588,6 +588,12 @@
   <data name="DrawingPage_SelectMode" xml:space="preserve">
     <value>Select Mode: </value>
   </data>
+  <data name="FileExtension_GeneratingHistory" xml:space="preserve">
+    <value>Generating history file</value>
+  </data>
+  <data name="FileExtension_GridLibrary" xml:space="preserve">
+    <value>Grid library file</value>
+  </data>
   <data name="FileExtension_Picture" xml:space="preserve">
     <value>Portable picture format</value>
   </data>
@@ -599,6 +605,9 @@
   </data>
   <data name="FileExtension_TextDescription" xml:space="preserve">
     <value>Sudoku puzzle format</value>
+  </data>
+  <data name="FileExtension_UserPreference" xml:space="preserve">
+    <value>User preference file</value>
   </data>
   <data name="FontPicker_AdjustFontScale" xml:space="preserve">
     <value>Adjust font scale (range [0, 1]):</value>

@@ -1,9 +1,11 @@
-namespace SudokuStudio;
+namespace SudokuStudio.Storage;
 
 /// <summary>
-/// Provides a list of file extension names of bound file types used by this project.
+/// Provides a list of file extensions of bound file types used by this project.
+/// This type provides with values that can to be used by <see cref="FileFormat"/> instances.
 /// </summary>
-public static class CommonFileExtensions
+/// <seealso cref="FileFormat"/>
+public static class FileExtensions
 {
 	/// <summary>
 	/// Indicates the plain text format.
@@ -19,6 +21,11 @@ public static class CommonFileExtensions
 	/// Indicates the sudoku generating history file format (SSG - Sudoku Studio Generating format).
 	/// </summary>
 	public const string GeneratingHistory = ".ssg";
+
+	/// <summary>
+	/// Indicates the sudoku grid library file format (SSL - Sudoku Studio Library format).
+	/// </summary>
+	public const string GridLibrary = ".ssl";
 
 	/// <summary>
 	/// Indicates the sudoku text file format (SST - Sudoku Studio Text format).

@@ -1,10 +1,10 @@
 ﻿namespace SudokuStudio.Storage;
 
 /// <summary>
-/// Provides with a handler that can handle a file type defined in type <see cref="CommonFileExtensions"/>.
+/// Provides with a handler that can handle a file type defined in type <see cref="FileExtensions"/>.
 /// </summary>
 /// <typeparam name="T">The type of the handled object.</typeparam>
-/// <seealso cref="CommonFileExtensions"/>
+/// <seealso cref="FileExtensions"/>
 public interface IProgramSupportedFileHandler<T> where T : notnull
 {
 	/// <summary>

@@ -220,8 +220,8 @@ public sealed partial class AnalyzePage : Page
 
 		fop.ViewMode = PickerViewMode.Thumbnail;
 		fop.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-		fop.FileTypeFilter.Add(CommonFileExtensions.Text);
-		fop.FileTypeFilter.Add(CommonFileExtensions.PlainText);
+		fop.AddFileFormat(FileFormats.Text);
+		fop.AddFileFormat(FileFormats.PlainText);
 
 		if (await fop.PickSingleFileAsync() is not { } file)
 		{
@@ -250,9 +250,9 @@ public sealed partial class AnalyzePage : Page
 
 		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
 		fsp.SuggestedFileName = GetString("Sudoku");
-		fsp.FileTypeChoices.Add(GetString("FileExtension_TextDescription"), new[] { CommonFileExtensions.Text });
-		fsp.FileTypeChoices.Add(GetString("FileExtension_PlainTextDescription"), new[] { CommonFileExtensions.PlainText });
-		fsp.FileTypeChoices.Add(GetString("FileExtension_Picture"), new[] { CommonFileExtensions.PortablePicture });
+		fsp.AddFileFormat(FileFormats.Text);
+		fsp.AddFileFormat(FileFormats.PlainText);
+		fsp.AddFileFormat(FileFormats.PortablePicture);
 
 		if (await fsp.PickSaveFileAsync() is not { Path: var filePath } file)
 		{
@@ -261,12 +261,12 @@ public sealed partial class AnalyzePage : Page
 
 		switch (SystemPath.GetExtension(filePath))
 		{
-			case CommonFileExtensions.PlainText:
+			case FileExtensions.PlainText:
 			{
 				SudokuPlainTextFileHandler.Write(filePath, SudokuPane.Puzzle);
 				break;
 			}
-			case CommonFileExtensions.Text when SudokuPane is { Puzzle: var puzzle, ViewUnit: var viewUnit }:
+			case FileExtensions.Text when SudokuPane is { Puzzle: var puzzle, ViewUnit: var viewUnit }:
 			{
 				SudokuFileHandler.Write(
 					filePath,
@@ -285,7 +285,7 @@ public sealed partial class AnalyzePage : Page
 				);
 				break;
 			}
-			case CommonFileExtensions.PortablePicture:
+			case FileExtensions.PortablePicture:
 			{
 				await OnSavingOrCopyingSudokuPanePictureAsync(file);
 				break;
@@ -340,9 +340,9 @@ public sealed partial class AnalyzePage : Page
 
 		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
 		fsp.SuggestedFileName = GetString("Sudoku");
-		fsp.FileTypeChoices.Add(GetString("FileExtension_TextDescription"), new[] { CommonFileExtensions.Text });
-		fsp.FileTypeChoices.Add(GetString("FileExtension_PlainTextDescription"), new[] { CommonFileExtensions.PlainText });
-		fsp.FileTypeChoices.Add(GetString("FileExtension_Picture"), new[] { CommonFileExtensions.PortablePicture });
+		fsp.AddFileFormat(FileFormats.Text);
+		fsp.AddFileFormat(FileFormats.PlainText);
+		fsp.AddFileFormat(FileFormats.PortablePicture);
 
 		if (await fsp.PickSaveFileAsync() is not { Path: var filePath } file)
 		{
@@ -352,7 +352,7 @@ public sealed partial class AnalyzePage : Page
 		var grid = SudokuPane.Puzzle;
 		switch (SystemPath.GetExtension(filePath))
 		{
-			case CommonFileExtensions.PlainText:
+			case FileExtensions.PlainText:
 			{
 				await File.WriteAllTextAsync(
 					filePath,
@@ -361,7 +361,7 @@ public sealed partial class AnalyzePage : Page
 
 				break;
 			}
-			case CommonFileExtensions.Text:
+			case FileExtensions.Text:
 			{
 				var renderableData = SudokuPane.ViewUnit switch
 				{
@@ -382,7 +382,7 @@ public sealed partial class AnalyzePage : Page
 
 				break;
 			}
-			case CommonFileExtensions.PortablePicture:
+			case FileExtensions.PortablePicture:
 			{
 				await OnSavingOrCopyingSudokuPanePictureAsync(file);
 				break;
@@ -423,7 +423,7 @@ public sealed partial class AnalyzePage : Page
 			{
 				switch (SystemPath.GetExtension(filePath))
 				{
-					case CommonFileExtensions.PlainText:
+					case FileExtensions.PlainText:
 					{
 						var content = await FileIO.ReadTextAsync(file);
 						if (string.IsNullOrWhiteSpace(content))
@@ -441,7 +441,7 @@ public sealed partial class AnalyzePage : Page
 						SudokuPane.Puzzle = g;
 						break;
 					}
-					case CommonFileExtensions.Text:
+					case FileExtensions.Text:
 					{
 						switch (SudokuFileHandler.Read(filePath))
 						{

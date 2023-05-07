@@ -562,41 +562,6 @@
             <param name="displayKind">Indicates all displaying values.</param>
             <returns>An instance of the current type.</returns>
         </member>
-        <member name="T:SudokuStudio.CommonFileExtensions">
-            <summary>
-            Provides a list of file extension names of bound file types used by this project.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.CommonFileExtensions.PlainText">
-            <summary>
-            Indicates the plain text format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.CommonFileExtensions.PortablePicture">
-            <summary>
-            Indicates the portable picture format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.CommonFileExtensions.GeneratingHistory">
-            <summary>
-            Indicates the sudoku generating history file format (SSG - Sudoku Studio Generating format).
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.CommonFileExtensions.Text">
-            <summary>
-            Indicates the sudoku text file format (SST - Sudoku Studio Text format).
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.CommonFileExtensions.UserPreference">
-            <summary>
-            Indicates the user preference file format (SSP - Sudoku Studio Preference format).
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.CommonFileExtensions.PortableDocument">
-            <summary>
-            Indicates the portable document format.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.CommonPaths">
             <summary>
             Provides with some paths that is used for the whole program.
@@ -4192,6 +4157,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Select Mode: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.TextResources.FileExtension_GeneratingHistory">
+            <summary>
+              Looks up a localized string similar to Generating history file.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.FileExtension_GridLibrary">
+            <summary>
+              Looks up a localized string similar to Grid library file.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.TextResources.FileExtension_Picture">
             <summary>
               Looks up a localized string similar to Portable picture format.
@@ -4210,6 +4185,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.FileExtension_TextDescription">
             <summary>
               Looks up a localized string similar to Sudoku puzzle format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.FileExtension_UserPreference">
+            <summary>
+              Looks up a localized string similar to User preference file.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.FontPicker_AdjustFontScale">
@@ -5040,12 +5020,131 @@ if (student is (name: var name, age: >= 18))
             The default DPI setting for a monitor is <see cref="F:SudokuStudio.Runtime.InteropServices.MonitorDpiType.MDT_Effective_DPI"/>.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Storage.FileExtensions">
+            <summary>
+            Provides a list of file extensions of bound file types used by this project.
+            This type provides with values that can to be used by <see cref="T:SudokuStudio.Storage.FileFormat"/> instances.
+            </summary>
+            <seealso cref="T:SudokuStudio.Storage.FileFormat"/>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileExtensions.PlainText">
+            <summary>
+            Indicates the plain text format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileExtensions.PortablePicture">
+            <summary>
+            Indicates the portable picture format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileExtensions.GeneratingHistory">
+            <summary>
+            Indicates the sudoku generating history file format (SSG - Sudoku Studio Generating format).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileExtensions.GridLibrary">
+            <summary>
+            Indicates the sudoku grid library file format (SSL - Sudoku Studio Library format).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileExtensions.Text">
+            <summary>
+            Indicates the sudoku text file format (SST - Sudoku Studio Text format).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileExtensions.UserPreference">
+            <summary>
+            Indicates the user preference file format (SSP - Sudoku Studio Preference format).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileExtensions.PortableDocument">
+            <summary>
+            Indicates the portable document format.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Storage.FileFormat">
+            <summary>
+            Represents a file format.
+            </summary>
+            <param name="Description">The description to the format.</param>
+            <param name="Formats">The formats.</param>
+            <completionlist cref="T:SudokuStudio.Storage.FileFormats"/>
+        </member>
+        <member name="M:SudokuStudio.Storage.FileFormat.#ctor(System.String,System.String[])">
+            <summary>
+            Represents a file format.
+            </summary>
+            <param name="Description">The description to the format.</param>
+            <param name="Formats">The formats.</param>
+            <completionlist cref="T:SudokuStudio.Storage.FileFormats"/>
+        </member>
+        <member name="P:SudokuStudio.Storage.FileFormat.Description">
+            <summary>The description to the format.</summary>
+        </member>
+        <member name="P:SudokuStudio.Storage.FileFormat.Formats">
+            <summary>The formats.</summary>
+        </member>
+        <member name="T:SudokuStudio.Storage.FileFormats">
+            <summary>
+            Represents file formats.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileFormats.PlainText">
+            <summary>
+            Indicates the plain text format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileFormats.Text">
+            <summary>
+            Indicates the sudoku text file format (SST - Sudoku Studio Text format).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileFormats.PortablePicture">
+            <summary>
+            Indicates the portable picture format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileFormats.PortableDocument">
+            <summary>
+            Indicates the portable document format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileFormats.GeneratingHistory">
+            <summary>
+            Indicates the sudoku generating history file format (SSG - Sudoku Studio Generating format).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileFormats.GridLibrary">
+            <summary>
+            Indicates the sudoku grid library file format (SSL - Sudoku Studio Library format).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileFormats.UserPreference">
+            <summary>
+            Indicates the user preference file format (SSP - Sudoku Studio Preference format).
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Storage.FileFormats.AddFileFormat(Windows.Storage.Pickers.FileSavePicker,SudokuStudio.Storage.FileFormat)">
+            <summary>
+            Add a new format into the collection of file-type choices for a <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.
+            </summary>
+            <param name="this">The file save picker.</param>
+            <param name="format">The format to be added.</param>
+        </member>
+        <member name="M:SudokuStudio.Storage.FileFormats.AddFileFormat(Windows.Storage.Pickers.FileOpenPicker,SudokuStudio.Storage.FileFormat)">
+            <summary>
+            Add a new format into the filtering collection for a <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.
+            </summary>
+            <param name="this">The file open picker.</param>
+            <param name="format">The format to be added.</param>
+            <exception cref="T:System.InvalidOperationException">Throws when the format value is invalid.</exception>
+        </member>
         <member name="T:SudokuStudio.Storage.IProgramSupportedFileHandler`1">
             <summary>
-            Provides with a handler that can handle a file type defined in type <see cref="T:SudokuStudio.CommonFileExtensions"/>.
+            Provides with a handler that can handle a file type defined in type <see cref="T:SudokuStudio.Storage.FileExtensions"/>.
             </summary>
             <typeparam name="T">The type of the handled object.</typeparam>
-            <seealso cref="T:SudokuStudio.CommonFileExtensions"/>
+            <seealso cref="T:SudokuStudio.Storage.FileExtensions"/>
         </member>
         <member name="P:SudokuStudio.Storage.IProgramSupportedFileHandler`1.SupportedFileExtension">
             <summary>
@@ -5068,9 +5167,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Storage.ProgramPreferenceFileHandler">
             <summary>
-            Defines a handler that handles the file of file extension <see cref="F:SudokuStudio.CommonFileExtensions.UserPreference"/>.
+            Defines a handler that handles the file of file extension <see cref="F:SudokuStudio.Storage.FileExtensions.UserPreference"/>.
             </summary>
-            <seealso cref="F:SudokuStudio.CommonFileExtensions.UserPreference"/>
+            <seealso cref="F:SudokuStudio.Storage.FileExtensions.UserPreference"/>
         </member>
         <member name="F:SudokuStudio.Storage.ProgramPreferenceFileHandler.Options">
             <summary>
@@ -5088,9 +5187,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Storage.PuzzleGeneratingHistoryFileHandler">
             <summary>
-            Defines a handler that handles the file of file extension <see cref="F:SudokuStudio.CommonFileExtensions.GeneratingHistory"/>.
+            Defines a handler that handles the file of file extension <see cref="F:SudokuStudio.Storage.FileExtensions.GeneratingHistory"/>.
             </summary>
-            <seealso cref="F:SudokuStudio.CommonFileExtensions.GeneratingHistory"/>
+            <seealso cref="F:SudokuStudio.Storage.FileExtensions.GeneratingHistory"/>
         </member>
         <member name="P:SudokuStudio.Storage.PuzzleGeneratingHistoryFileHandler.SupportedFileExtension">
             <inheritdoc/>
@@ -5103,9 +5202,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Storage.SudokuFileHandler">
             <summary>
-            Defines a handler that handles the file of file extension <see cref="F:SudokuStudio.CommonFileExtensions.Text"/>.
+            Defines a handler that handles the file of file extension <see cref="F:SudokuStudio.Storage.FileExtensions.Text"/>.
             </summary>
-            <seealso cref="F:SudokuStudio.CommonFileExtensions.Text"/>
+            <seealso cref="F:SudokuStudio.Storage.FileExtensions.Text"/>
         </member>
         <member name="F:SudokuStudio.Storage.SudokuFileHandler.Options">
             <summary>
@@ -5123,9 +5222,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Storage.SudokuPlainTextFileHandler">
             <summary>
-            Defines a handler that handles the file of file extension <see cref="F:SudokuStudio.CommonFileExtensions.PlainText"/>.
+            Defines a handler that handles the file of file extension <see cref="F:SudokuStudio.Storage.FileExtensions.PlainText"/>.
             </summary>
-            <seealso cref="F:SudokuStudio.CommonFileExtensions.PlainText"/>
+            <seealso cref="F:SudokuStudio.Storage.FileExtensions.PlainText"/>
         </member>
         <member name="P:SudokuStudio.Storage.SudokuPlainTextFileHandler.SupportedFileExtension">
             <inheritdoc/>

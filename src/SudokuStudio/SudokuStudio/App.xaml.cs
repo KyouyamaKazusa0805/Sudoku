@@ -106,7 +106,7 @@ public partial class App : Application
 			case
 			{
 				Kind: ExtendedActivationKind.File,
-				Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: CommonFileExtensions.Text, Path: var filePath }] }
+				Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: FileExtensions.Text, Path: var filePath }] }
 			}
 			when SudokuFileHandler.Read(filePath) is [{ BaseGrid: var grid }, ..]:
 			{

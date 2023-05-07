@@ -1,9 +1,9 @@
 namespace SudokuStudio.Storage;
 
 /// <summary>
-/// Defines a handler that handles the file of file extension <see cref="CommonFileExtensions.UserPreference"/>.
+/// Defines a handler that handles the file of file extension <see cref="FileExtensions.UserPreference"/>.
 /// </summary>
-/// <seealso cref="CommonFileExtensions.UserPreference"/>
+/// <seealso cref="FileExtensions.UserPreference"/>
 public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<ProgramPreference>
 {
 	/// <summary>
@@ -17,7 +17,7 @@ public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<
 
 
 	/// <inheritdoc/>
-	public static string SupportedFileExtension => CommonFileExtensions.UserPreference;
+	public static string SupportedFileExtension => FileExtensions.UserPreference;
 
 
 	/// <inheritdoc/>

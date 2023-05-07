@@ -49,7 +49,7 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 
 		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
 		fsp.SuggestedFileName = GetString("SuggestedFileName_Output");
-		fsp.FileTypeChoices.Add(GetString("FileExtension_PortableDocument"), new[] { CommonFileExtensions.PortableDocument });
+		fsp.AddFileFormat(FileFormats.PortableDocument);
 
 		if (await fsp.PickSaveFileAsync() is not { Path: var filePath })
 		{

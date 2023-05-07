@@ -1,9 +1,9 @@
 namespace SudokuStudio.Storage;
 
 /// <summary>
-/// Defines a handler that handles the file of file extension <see cref="CommonFileExtensions.GeneratingHistory"/>.
+/// Defines a handler that handles the file of file extension <see cref="FileExtensions.GeneratingHistory"/>.
 /// </summary>
-/// <seealso cref="CommonFileExtensions.GeneratingHistory"/>
+/// <seealso cref="FileExtensions.GeneratingHistory"/>
 public sealed class PuzzleGeneratingHistoryFileHandler : IProgramSupportedFileHandler<PuzzleGenertingHistory>
 {
 	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
@@ -11,7 +11,7 @@ public sealed class PuzzleGeneratingHistoryFileHandler : IProgramSupportedFileHa
 
 
 	/// <inheritdoc/>
-	public static string SupportedFileExtension => CommonFileExtensions.GeneratingHistory;
+	public static string SupportedFileExtension => FileExtensions.GeneratingHistory;
 
 
 	/// <inheritdoc/>

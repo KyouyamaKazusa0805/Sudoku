@@ -544,7 +544,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			case [StorageFolder folder]:
 			{
 				var files = await folder.GetFilesAsync(CommonFileQuery.DefaultQuery, 0, 2);
-				if (files is not [StorageFile { FileType: CommonFileExtensions.Text or CommonFileExtensions.PlainText } file])
+				if (files is not [StorageFile { FileType: FileExtensions.Text or FileExtensions.PlainText } file])
 				{
 					return;
 				}
@@ -553,7 +553,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 				break;
 			}
-			case [StorageFile { FileType: CommonFileExtensions.Text or CommonFileExtensions.PlainText } file]:
+			case [StorageFile { FileType: FileExtensions.Text or FileExtensions.PlainText } file]:
 			{
 				await handleSudokuFileAsync(file);
 
@@ -582,7 +582,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				{
 					switch (SystemPath.GetExtension(filePath))
 					{
-						case CommonFileExtensions.PlainText:
+						case FileExtensions.PlainText:
 						{
 							var content = await FileIO.ReadTextAsync(file);
 							if (string.IsNullOrWhiteSpace(content))
@@ -600,7 +600,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 							Puzzle = g;
 							break;
 						}
-						case CommonFileExtensions.Text:
+						case FileExtensions.Text:
 						{
 							switch (SudokuFileHandler.Read(filePath))
 							{
