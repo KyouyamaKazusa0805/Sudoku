@@ -3,6 +3,7 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines the gathering page.
 /// </summary>
+[DependencyProperty<StepTooltipDisplayKind>("StepTooltipDisplayKind", DefaultValue = StepTooltipDisplayKind.TechniqueName | StepTooltipDisplayKind.DifficultyRating | StepTooltipDisplayKind.SimpleDescription | StepTooltipDisplayKind.ExtraDifficultyCases, DocSummary = "Indicates the tooltip display kind.")]
 public sealed partial class GridGathering : Page, IAnalyzeTabPage
 {
 	/// <summary>
@@ -37,17 +38,27 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	/// Converts the specified collection into the target view source collection.
 	/// </summary>
 	/// <param name="collection">The raw collection.</param>
+	/// <param name="grid">The puzzle.</param>
 	/// <returns>The collection that can be used as view source.</returns>
-	internal static ObservableCollection<TechniqueGroupBindableSource> GetTechniqueGroups(IEnumerable<Step> collection)
+	internal ObservableCollection<TechniqueGroupBindableSource> GetTechniqueGroups(IEnumerable<Step> collection, Grid grid)
 		=> new(
 			from step in collection
 			group step by step.Name into stepGroupGroupedByName
-			let stepsDifficultyLevelIntegerGroup = from step in stepGroupGroupedByName select (decimal)step.DifficultyLevel
+			let techniqueName = stepGroupGroupedByName.Key
 			orderby
 				stepGroupGroupedByName.Average(static step => step.Difficulty),
-				stepsDifficultyLevelIntegerGroup.Average(),
-				stepGroupGroupedByName.Key
-			select new TechniqueGroupBindableSource(stepGroupGroupedByName) { Key = stepGroupGroupedByName.Key }
+				stepGroupGroupedByName.Average(static step => (byte)step.DifficultyLevel),
+				techniqueName
+			let groupedBindableSource =
+				from step in stepGroupGroupedByName
+				select new SolvingPathStepBindableSource
+				{
+					Index = -1,
+					DisplayKinds = StepTooltipDisplayKind,
+					Step = step,
+					StepGrid = grid
+				}
+			select new TechniqueGroupBindableSource(groupedBindableSource) { Key = techniqueName }
 		);
 
 
@@ -55,8 +66,8 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 
 	private void FilterGatheredStepsButton_Click(object sender, RoutedEventArgs e)
 	{
-		var puzzle = BasePage.SudokuPane.Puzzle;
-		if (_currentFountSteps is null || !puzzle.IsValid)
+		var grid = BasePage.SudokuPane.Puzzle;
+		if (_currentFountSteps is null || !grid.IsValid)
 		{
 			return;
 		}
@@ -64,7 +75,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		try
 		{
 			var filtered = TechniqueFiltering.Filter(_currentFountSteps, StepGatheringTextBox.Text);
-			TechniqueGroupView.TechniqueGroups.Source = GetTechniqueGroups(filtered);
+			TechniqueGroupView.TechniqueGroups.Source = GetTechniqueGroups(filtered, grid);
 		}
 		catch (ExpressiveException)
 		{
@@ -93,7 +104,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		var result = await Task.Run(collect);
 
 		_currentFountSteps = result;
-		TechniqueGroupView.TechniqueGroups.Source = GetTechniqueGroups(result);
+		TechniqueGroupView.TechniqueGroups.Source = GetTechniqueGroups(result, grid);
 		GatherButton.IsEnabled = true;
 		BasePage.IsGathererLaunched = false;
 

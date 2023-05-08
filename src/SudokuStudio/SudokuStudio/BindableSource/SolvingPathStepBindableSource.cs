@@ -8,7 +8,7 @@ public sealed class SolvingPathStepBindableSource : IBindableSource
 	/// <summary>
 	/// Indicates the index of the step.
 	/// </summary>
-	public required int Index { get; set; }
+	public int Index { get; set; }
 
 	/// <summary>
 	/// Indicates the step grid used.

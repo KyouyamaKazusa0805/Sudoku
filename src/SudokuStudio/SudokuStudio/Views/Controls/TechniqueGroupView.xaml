@@ -4,7 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:analytics="using:Sudoku.Analytics"
+	xmlns:a="using:SudokuStudio.Views.Attached"
 	xmlns:bs="using:SudokuStudio.BindableSource"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
@@ -33,11 +33,17 @@
 			</GroupStyle>
 		</ListView.GroupStyle>
 		<ListView.ItemTemplate>
-			<DataTemplate x:DataType="analytics:Step">
-				<ListViewItem Tag="{x:Bind}" Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel)}">
+			<DataTemplate x:DataType="bs:SolvingPathStepBindableSource">
+				<ListViewItem Tag="{x:Bind}" Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(Step.DifficultyLevel)}">
+					<ToolTipService.ToolTip>
+						<TextBlock
+							TextWrapping="WrapWholeWords" IsTextSelectionEnabled="True"
+							a:TextBlockBindable.Inlines="{x:Bind cvt:AnalyzeConversion.GetInlinesOfTooltip((bs:SolvingPathStepBindableSource))}" />
+					</ToolTipService.ToolTip>
+
 					<TextBlock
-						Text="{x:Bind ToSimpleString()}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-						Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(DifficultyLevel)}" />
+						Text="{x:Bind Step.ToSimpleString()}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+						Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(Step.DifficultyLevel)}" />
 				</ListViewItem>
 			</DataTemplate>
 		</ListView.ItemTemplate>

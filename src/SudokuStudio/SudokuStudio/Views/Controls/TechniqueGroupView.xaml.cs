@@ -30,7 +30,7 @@ public sealed partial class TechniqueGroupView : UserControl
 	/// <param name="e">The event arguments provided.</param>
 	private void ListView_ItemClick(object sender, ItemClickEventArgs e)
 	{
-		if (e.ClickedItem is Step step)
+		if (e.ClickedItem is SolvingPathStepBindableSource { Step: var step })
 		{
 			StepChosen?.Invoke(this, new(step));
 		}
