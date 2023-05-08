@@ -78,6 +78,11 @@ internal sealed partial class SudokuPaneCell : UserControl
 
 	private void TextBlock_RightTapped(object sender, RightTappedRoutedEventArgs e)
 	{
+		if (!BasePane.EnableRightTapRemoving)
+		{
+			return;
+		}
+
 		if ((this, sender) is not ({ BasePane: { Puzzle: var modified, SelectedCell: var cell and not -1 } }, TextBlock { Text: var text }))
 		{
 			return;
@@ -92,11 +97,6 @@ internal sealed partial class SudokuPaneCell : UserControl
 		}
 
 		BasePane.TriggerClicked(MouseButton.Right, cell * 9 + digit);
-
-		if (!BasePane.EnableRightTapRemoving)
-		{
-			return;
-		}
 
 		modified[cell, digit] = false;
 		BasePane.SetPuzzleInternal(modified);

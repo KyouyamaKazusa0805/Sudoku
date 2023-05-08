@@ -1190,27 +1190,21 @@ public sealed partial class AnalyzePage : Page
 
 	private void SudokuPane_Clicked(SudokuPane sender, GridClickedEventArgs e)
 	{
-		if (e.MouseButton is MouseButton.Right or MouseButton.Middle)
+		if ((this, e) is not ({ _localView: { } tempView }, { MouseButton: MouseButton.Left }))
 		{
 			return;
 		}
 
-		if (_localView is null)
+		if (this switch
 		{
-			return;
-		}
-
-		var shouldClearValue = this switch
-		{
-			{ SelectedMode: DrawingMode.Cell, SelectedColorIndex: var index and not -1 } => CheckCellNode(index, e, _localView),
-			{ SelectedMode: DrawingMode.Candidate, SelectedColorIndex: var index and not -1 } => CheckCandidateNode(index, e, _localView),
-			{ SelectedMode: DrawingMode.House, SelectedColorIndex: var index and not -1 } => CheckHouseNode(index, e, _localView),
-			{ SelectedMode: DrawingMode.Chute, SelectedColorIndex: var index and not -1 } => CheckChuteNode(index, e, _localView),
-			{ SelectedMode: DrawingMode.Link } => CheckLinkNode(e, _localView),
-			{ SelectedMode: DrawingMode.BabaGrouping, SelectedColorIndex: var index and not -1 } => CheckBabaGroupingNode(index, e, _localView),
+			{ SelectedMode: DrawingMode.Cell, SelectedColorIndex: var index and not -1 } => CheckCellNode(index, e, tempView),
+			{ SelectedMode: DrawingMode.Candidate, SelectedColorIndex: var index and not -1 } => CheckCandidateNode(index, e, tempView),
+			{ SelectedMode: DrawingMode.House, SelectedColorIndex: var index and not -1 } => CheckHouseNode(index, e, tempView),
+			{ SelectedMode: DrawingMode.Chute, SelectedColorIndex: var index and not -1 } => CheckChuteNode(index, e, tempView),
+			{ SelectedMode: DrawingMode.Link } => CheckLinkNode(e, tempView),
+			{ SelectedMode: DrawingMode.BabaGrouping, SelectedColorIndex: var index and not -1 } => CheckBabaGroupingNode(index, e, tempView),
 			_ => true
-		};
-		if (shouldClearValue)
+		})
 		{
 			_previousSelectedCandidate = null;
 		}

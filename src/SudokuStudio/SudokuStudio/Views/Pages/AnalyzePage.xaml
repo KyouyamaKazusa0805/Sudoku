@@ -94,7 +94,6 @@
 						<c:SudokuPane
 							x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" SelectedCell="-1"
 							HorizontalAlignment="Left" VerticalAlignment="Top" ViewUnit="{x:Null}"
-							Clicked="SudokuPane_Clicked"
 							EnableAnimationFeedback="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableAnimationFeedback,Mode=TwoWay}"
 							TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=TwoWay}"
 							EnableDoubleTapFilling="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableDoubleTapFillingForSudokuPane,Mode=OneWay}"
@@ -173,7 +172,7 @@
 							a:AnalyzerProperties.SolverIgnoreHighAllocationAlgorithms="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=OneWay}"
 							a:GathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=OneWay}"
 							a:GathererProperties.StepGathererMaxStepsGathered="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered,Mode=OneWay}"
-							MouseWheelChanged="SudokuPane_MouseWheelChanged" GridUpdated="SudokuPane_GridUpdated"
+							Clicked="SudokuPane_Clicked" MouseWheelChanged="SudokuPane_MouseWheelChanged" GridUpdated="SudokuPane_GridUpdated"
 						/>
 					</Viewbox>
 					<Grid HorizontalAlignment="Center" ColumnDefinitions="Auto,*">
