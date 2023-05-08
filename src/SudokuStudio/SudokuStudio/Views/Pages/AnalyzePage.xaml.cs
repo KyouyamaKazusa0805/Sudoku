@@ -1246,16 +1246,19 @@ public sealed partial class AnalyzePage : Page
 			return;
 		}
 
-		puzzle.Apply(
-			digit switch
-			{
-				> 0 => new(Assignment, cell, digit - 1),
-				< 0 => new(Elimination, cell, Abs(digit) - 1),
-				_ => default(Conclusion)
-			}
-		);
+		var conclusion = digit switch
+		{
+			> 0 => new(Assignment, cell, digit - 1),
+			< 0 => new(Elimination, cell, Abs(digit) - 1),
+			_ => default(Conclusion)
+		};
+		puzzle.Apply(conclusion);
 
-		SudokuPane.Puzzle = puzzle;
+		SudokuPane.SetPuzzleInternal(puzzle);
+		SudokuPane.TriggerGridUpdated(
+			conclusion.ConclusionType == Assignment ? GridUpdatedBehavior.Assignment : GridUpdatedBehavior.Elimination,
+			conclusion.Candidate
+		);
 	}
 
 	private void CopyButton_Click(object sender, RoutedEventArgs e) => CopySudokuGridText(false);
