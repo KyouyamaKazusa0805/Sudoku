@@ -3,7 +3,7 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic;
 /// <summary>
 /// 每日一题模块。
 /// </summary>
-[PeriodicCommand(13, 34)]
+[PeriodicCommand(12)]
 internal sealed class DailyPuzzleCommand : PeriodicCommand
 {
 	/// <inheritdoc/>

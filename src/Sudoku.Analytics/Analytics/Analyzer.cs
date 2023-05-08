@@ -16,6 +16,13 @@ namespace Sudoku.Analytics;
 public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 {
 	/// <summary>
+	/// Indicates the backing field of property <see cref="StepSearchers"/>.
+	/// </summary>
+	/// <seealso cref="StepSearchers"/>
+	private StepSearcher[]? _stepSearchers;
+
+
+	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher,
 	/// in order to solve a puzzle faster. If the value is <see langword="true"/>,
 	/// the third argument of <see cref="StepSearcher.Collect(ref AnalysisContext)"/>
@@ -61,17 +68,31 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	/// </summary>
 	/// <seealso cref="StepSearcherPool.Default(bool)"/>
 	[DisallowNull]
-	public StepSearcher[]? StepSearchers { get; internal set; }
+	public StepSearcher[]? StepSearchers
+	{
+		get => _stepSearchers;
+
+		internal set
+		{
+			_stepSearchers = value;
+
+			ResultStepSearchers = (
+				from searcher in value
+				where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
+				select searcher
+			).ToArray();
+		}
+	}
 
 	/// <summary>
 	/// Indicates the result step searchers used in the current analyzer.
 	/// </summary>
-	public StepSearcher[] ResultStepSearchers
-		=> (
-			from searcher in StepSearchers ?? StepSearcherPool.Default(true)
-			where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
-			select searcher
-		).ToArray();
+	public StepSearcher[] ResultStepSearchers { get; private set; } =
+	(
+		from searcher in StepSearcherPool.Default(true)
+		where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
+		select searcher
+	).ToArray();
 
 
 	/// <summary>

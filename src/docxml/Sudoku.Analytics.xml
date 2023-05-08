@@ -76,6 +76,12 @@
             <seealso cref="T:Sudoku.Analytics.AnalyzerFactory"/>
             <completionlist cref="T:Sudoku.Analytics.PredefinedAnalyzers"/>
         </member>
+        <member name="F:Sudoku.Analytics.Analyzer._stepSearchers">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>
+        </member>
         <member name="P:Sudoku.Analytics.Analyzer.IsFullApplying">
             <summary>
             Indicates whether the solver will apply all found steps in a step searcher,
