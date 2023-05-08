@@ -39,21 +39,16 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	/// <param name="collection">The raw collection.</param>
 	/// <returns>The collection that can be used as view source.</returns>
 	internal static ObservableCollection<TechniqueGroupBindableSource> GetTechniqueGroups(IEnumerable<Step> collection)
-	{
-		return new(
+		=> new(
 			from step in collection
 			group step by step.Name into stepGroupGroupedByName
 			let stepsDifficultyLevelIntegerGroup = from step in stepGroupGroupedByName select (decimal)step.DifficultyLevel
 			orderby
-				stepGroupGroupedByName.Average(difficultySelector),
+				stepGroupGroupedByName.Average(static step => step.Difficulty),
 				stepsDifficultyLevelIntegerGroup.Average(),
 				stepGroupGroupedByName.Key
 			select new TechniqueGroupBindableSource(stepGroupGroupedByName) { Key = stepGroupGroupedByName.Key }
 		);
-
-
-		static decimal difficultySelector(Step step) => step.Difficulty;
-	}
 
 
 	private void TechniqueGroupView_StepChosen(object sender, TechniqueGroupViewStepChosenEventArgs e) => BasePage.VisualUnit = e.ChosenStep;
@@ -107,20 +102,21 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		{
 			lock (StepSearchingOrGatheringSyncRoot)
 			{
-				return gatherer.Search(grid, new Progress<double>(progressReportHandler));
-			}
-
-
-			void progressReportHandler(double percent)
-			{
-				DispatcherQueue.TryEnqueue(updatePercentValueCallback);
-
-
-				void updatePercentValueCallback()
-				{
-					BasePage.ProgressPercent = percent * 100;
-					BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat!, percent);
-				}
+				return gatherer.Search(
+					grid,
+					new Progress<double>(
+						percent =>
+						{
+							DispatcherQueue.TryEnqueue(
+								() =>
+								{
+									BasePage.ProgressPercent = percent * 100;
+									BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat!, percent);
+								}
+							);
+						}
+					)
+				);
 			}
 		}
 	}
