@@ -1,95 +1,118 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <Package
-  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap rescap">
+	xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+	xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+	xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+	xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+	xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
+	xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+	xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+	xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+	IgnorableNamespaces="uap rescap">
 
-  <Identity
-    Name="b551d242-176a-4f7b-8e8d-8483cc883567"
-    Publisher="CN=张齐天"
-    Version="3.0.0.0" />
+	<Identity Name="b551d242-176a-4f7b-8e8d-8483cc883567" Publisher="CN=张齐天" Version="3.0.0.0" />
 
-  <Properties>
-    <DisplayName>SudokuStudio (Package)</DisplayName>
-    <PublisherDisplayName>Sunnie Shine</PublisherDisplayName>
-    <Logo>Images\StoreLogo.png</Logo>
-  </Properties>
+	<Properties>
+		<DisplayName>SudokuStudio (Package)</DisplayName>
+		<PublisherDisplayName>Sunnie Shine</PublisherDisplayName>
+		<Logo>Images\StoreLogo.png</Logo>
+	</Properties>
 
-  <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
-    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
-  </Dependencies>
+	<Dependencies>
+		<TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+		<TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+	</Dependencies>
 
-  <Resources>
-    <Resource Language="x-generate"/>
-  </Resources>
+	<Resources>
+		<Resource Language="x-generate"/>
+	</Resources>
 
-  <Applications>
-    <Application Id="App"
-      Executable="$targetnametoken$.exe"
-      EntryPoint="$targetentrypoint$">
-      <uap:VisualElements
-        DisplayName="Sudoku Studio"
-        Description="The program playing with sudoku."
-        BackgroundColor="transparent"
-        Square150x150Logo="Images\Square150x150Logo.png"
-        Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
-        <uap:SplashScreen Image="Images\SplashScreen.png" />
-      </uap:VisualElements>
-      <Extensions>
-        <uap:Extension Category="windows.fileTypeAssociation">
-          <uap:FileTypeAssociation Name=".ssg">
-            <uap:SupportedFileTypes>
-              <uap:FileType>.ssg</uap:FileType>
-            </uap:SupportedFileTypes>
-            <uap:DisplayName>SudokuStudio Generated Puzzle History File</uap:DisplayName>
-            <uap:Logo>4.png</uap:Logo>
-            <uap:InfoTip>SudokuStudio Generated Puzzle History File</uap:InfoTip>
-          </uap:FileTypeAssociation>
-        </uap:Extension>
-        <uap:Extension Category="windows.fileTypeAssociation">
-          <uap:FileTypeAssociation Name=".ssp">
-            <uap:SupportedFileTypes>
-              <uap:FileType>.ssp</uap:FileType>
-            </uap:SupportedFileTypes>
-            <uap:Logo>2.png</uap:Logo>
-            <uap:InfoTip>SudokuStudio Preferences File</uap:InfoTip>
-            <uap:DisplayName>SudokuStudio Preferences File</uap:DisplayName>
-          </uap:FileTypeAssociation>
-        </uap:Extension>
-        <uap:Extension Category="windows.fileTypeAssociation">
-          <uap:FileTypeAssociation Name=".sst">
-            <uap:SupportedFileTypes>
-              <uap:FileType>.sst</uap:FileType>
-            </uap:SupportedFileTypes>
-            <uap:Logo>1.png</uap:Logo>
-            <uap:InfoTip>SudokuStudio Grid File</uap:InfoTip>
-            <uap:DisplayName>SudokuStudio Grid File</uap:DisplayName>
-          </uap:FileTypeAssociation>
-        </uap:Extension>
-        <uap:Extension Category="windows.protocol">
-          <uap:Protocol Name="sudoku">
-            <uap:DisplayName>SudokuStudio protocol</uap:DisplayName>
-          </uap:Protocol>
-        </uap:Extension>
-        <uap:Extension Category="windows.fileTypeAssociation">
-          <uap:FileTypeAssociation Name=".ssl">
-            <uap:SupportedFileTypes>
-              <uap:FileType>.ssl</uap:FileType>
-            </uap:SupportedFileTypes>
-            <uap:DisplayName>SudokuStudio Library Format</uap:DisplayName>
-            <uap:Logo>3.png</uap:Logo>
-            <uap:InfoTip>SudokuStudio Library Format</uap:InfoTip>
-          </uap:FileTypeAssociation>
-        </uap:Extension>
-      </Extensions>
-    </Application>
-  </Applications>
+	<Applications>
+		<Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
+			<uap:VisualElements
+				DisplayName="Sudoku Studio" Description="The program playing with sudoku."
+				BackgroundColor="transparent" Square150x150Logo="Images\Square150x150Logo.png" Square44x44Logo="Images\Square44x44Logo.png">
+				<uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
+				<uap:SplashScreen Image="Images\SplashScreen.png" />
+			</uap:VisualElements>
+			<Extensions>
+				<uap:Extension Category="windows.fileTypeAssociation">
+					<uap:FileTypeAssociation Name=".ssg">
+						<uap:SupportedFileTypes>
+							<uap:FileType>.ssg</uap:FileType>
+						</uap:SupportedFileTypes>
+						<uap:DisplayName>SudokuStudio Generated Puzzle History File</uap:DisplayName>
+						<uap:Logo>4.png</uap:Logo>
+						<uap:InfoTip>SudokuStudio Generated Puzzle History File</uap:InfoTip>
+					</uap:FileTypeAssociation>
+				</uap:Extension>
+				<uap:Extension Category="windows.fileTypeAssociation">
+					<uap:FileTypeAssociation Name=".ssp">
+						<uap:SupportedFileTypes>
+							<uap:FileType>.ssp</uap:FileType>
+						</uap:SupportedFileTypes>
+						<uap:Logo>2.png</uap:Logo>
+						<uap:InfoTip>SudokuStudio Preferences File</uap:InfoTip>
+						<uap:DisplayName>SudokuStudio Preferences File</uap:DisplayName>
+					</uap:FileTypeAssociation>
+				</uap:Extension>
+				<uap:Extension Category="windows.fileTypeAssociation">
+					<uap:FileTypeAssociation Name=".sst">
+						<uap:SupportedFileTypes>
+							<uap:FileType>.sst</uap:FileType>
+						</uap:SupportedFileTypes>
+						<uap:Logo>1.png</uap:Logo>
+						<uap:InfoTip>SudokuStudio Grid File</uap:InfoTip>
+						<uap:DisplayName>SudokuStudio Grid File</uap:DisplayName>
+					</uap:FileTypeAssociation>
+				</uap:Extension>
+				<uap:Extension Category="windows.protocol">
+					<uap:Protocol Name="sudoku">
+						<uap:DisplayName>SudokuStudio protocol</uap:DisplayName>
+					</uap:Protocol>
+				</uap:Extension>
+				<uap:Extension Category="windows.fileTypeAssociation">
+					<uap:FileTypeAssociation Name=".ssl">
+						<uap:SupportedFileTypes>
+							<uap:FileType>.ssl</uap:FileType>
+						</uap:SupportedFileTypes>
+						<uap:DisplayName>SudokuStudio Library Format</uap:DisplayName>
+						<uap:Logo>3.png</uap:Logo>
+						<uap:InfoTip>SudokuStudio Library Format</uap:InfoTip>
+					</uap:FileTypeAssociation>
+				</uap:Extension>
+				<desktop4:Extension Category="windows.fileExplorerContextMenus">
+					<desktop4:FileExplorerContextMenus>
+						<desktop5:ItemType Type="Directory"  >
+							<desktop5:Verb Id="CustomMenu" Clsid="46F650E5-9959-48D6-AC13-A9637C5B3787" />
+						</desktop5:ItemType>
+						<desktop5:ItemType Type="*"  >
+							<desktop5:Verb Id="CustomMenu" Clsid="46F650E5-9959-48D6-AC13-A9637C5B3787" />
+						</desktop5:ItemType>
+						<desktop5:ItemType Type="Directory\Background">
+							<desktop5:Verb Id="CustomMenu" Clsid="46F650E5-9959-48D6-AC13-A9637C5B3787" />
+						</desktop5:ItemType>
+					</desktop4:FileExplorerContextMenus>
+				</desktop4:Extension>
+				<com:Extension Category="windows.comServer">
+					<com:ComServer>
+						<com:SurrogateServer  DisplayName="Custome Context Menu">
+							<com:Class Id="46F650E5-9959-48D6-AC13-A9637C5B3787" Path="ContextMenuCustomHost.dll" ThreadingModel="STA"/>
+						</com:SurrogateServer>
+					</com:ComServer>
+				</com:Extension>
+				<uap3:Extension Category="windows.appExecutionAlias">
+					<uap3:AppExecutionAlias>
+						<desktop:ExecutionAlias Alias="SudokuStudio.exe"/>
+					</uap3:AppExecutionAlias>
+				</uap3:Extension>
+			</Extensions>
+		</Application>
+	</Applications>
 
-  <Capabilities>
-    <rescap:Capability Name="runFullTrust" />
-  </Capabilities>
+	<Capabilities>
+		<rescap:Capability Name="runFullTrust" />
+	</Capabilities>
+
 </Package>
