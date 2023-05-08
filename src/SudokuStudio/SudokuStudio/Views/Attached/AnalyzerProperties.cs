@@ -3,6 +3,10 @@ namespace SudokuStudio.Views.Attached;
 /// <summary>
 /// Defines a bind behaviors on <see cref="SudokuPane"/> instances, for <see cref="Analyzer"/> instance's interaction.
 /// </summary>
+/// <remarks>
+/// All names of attached properties in this type can be corresponded to the target property in one <see cref="StepSearcher"/>,
+/// via <see cref="RuntimeIdentifierAttribute"/>.
+/// </remarks>
 /// <seealso cref="SudokuPane"/>
 /// <seealso cref="Analyzer"/>
 [AttachedProperty<bool>("EnableFullHouse", DefaultValue = true)]
@@ -30,6 +34,75 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<bool>("SolverIgnoreHighAllocationAlgorithms")]
 public static partial class AnalyzerProperties
 {
+	/// <summary>
+	/// Sets the specified property in a <see cref="StepSearcher"/> with the target value via attached properties
+	/// stored in type <see cref="AnalyzerProperties"/>.
+	/// </summary>
+	/// <param name="this">The analyzer instance.</param>
+	/// <param name="attachedPropertyValue">The attached property.</param>
+	/// <param name="methodName">The name of the property <paramref name="attachedPropertyValue"/>.</param>
+	/// <param name="propertyMatched">
+	/// A <see cref="bool"/> value indicating whether the property in <see cref="StepSearcher"/> collection is found,
+	/// and the target type of that property is same as argument <paramref name="attachedPropertyValue"/>.
+	/// </param>
+	/// <returns>The same reference as <paramref name="this"/>.</returns>
+	/// <seealso cref="AnalyzerProperties"/>
+	public static Analyzer WithRuntimeIdentifierSetter(
+		this Analyzer @this,
+		object attachedPropertyValue,
+		string methodName,
+		out bool propertyMatched
+	)
+	{
+		var targetStepSearcherCollection = @this.ResultStepSearchers;
+		foreach (var searcher in targetStepSearcherCollection)
+		{
+			if (searcher.GetType().GetProperties().FirstOrDefault(methodNameMatcher) is { } propertyInfo)
+			{
+				propertyInfo.SetValue(searcher, attachedPropertyValue);
+				propertyMatched = true;
+				return @this;
+			}
+
+
+			bool methodNameMatcher(PropertyInfo property)
+				=> property.GetCustomAttribute<RuntimeIdentifierAttribute>() is { RuntimeIdentifier: var identifier }
+				&& methodName["Get".Length..] == identifier;
+		}
+
+		propertyMatched = false;
+		return @this;
+	}
+
+	/// <summary>
+	/// Calls the method <see cref="WithRuntimeIdentifierSetter(Analyzer, object, string?, out bool)"/> for all properties
+	/// in type <see cref="AnalyzerProperties"/>.
+	/// </summary>
+	/// <param name="this">The analyzer instance.</param>
+	/// <param name="attachedPane">Indicates the <see cref="SudokuPane"/> instance that all properties in this type attached to.</param>
+	/// <returns>The same reference with argument <paramref name="this"/>.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the matched property is invalid.</exception>
+	/// <seealso cref="WithRuntimeIdentifierSetter(Analyzer, object, string?, out bool)"/>
+	public static Analyzer WithRuntimeIdentifierSetters(this Analyzer @this, SudokuPane attachedPane)
+	{
+		foreach (var methodInfo in typeof(AnalyzerProperties).GetMethods(BindingFlags.Static | BindingFlags.Public))
+		{
+			if (!methodInfo.Name.StartsWith("Get"))
+			{
+				continue;
+			}
+
+			@this.WithRuntimeIdentifierSetter(
+				methodInfo.Invoke(null, new object[] { attachedPane }) ?? throw new InvalidOperationException("The argument cannot be null."),
+				methodInfo.Name,
+				out _
+			);
+		}
+
+		return @this;
+	}
+
+
 	[Callback]
 	private static void EnableFullHousePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<SingleStepSearcher>(d, s => s.EnableFullHouse = (bool)e.NewValue);

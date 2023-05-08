@@ -49,8 +49,8 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 
 	/// <summary>
 	/// <para>
-	/// Indicates the custom <see cref="StepSearcher"/>s you defined to solve a puzzle. By default,
-	/// the solver will use <see cref="StepSearcherPool.Default(bool)"/> to solve a puzzle.
+	/// Indicates the custom <see cref="StepSearcher"/>s you defined to solve a puzzle.
+	/// By default, the solver will use <see cref="StepSearcherPool.Default(bool)"/> to solve a puzzle.
 	/// If you assign a new array of <see cref="StepSearcher"/>s into this property
 	/// the step searchers will use this property instead of <see cref="StepSearcherPool.Default(bool)"/> to solve a puzzle.
 	/// </para>
@@ -64,9 +64,9 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>
 	public StepSearcher[]? StepSearchers { get; internal set; }
 
 	/// <summary>
-	/// Indicates the final found step searchers used in the current analyzer.
+	/// Indicates the result step searchers used in the current analyzer.
 	/// </summary>
-	internal StepSearcher[] ResultStepSearchers
+	public StepSearcher[] ResultStepSearchers
 		=> (
 			from searcher in StepSearchers ?? StepSearcherPool.Default(true)
 			where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)

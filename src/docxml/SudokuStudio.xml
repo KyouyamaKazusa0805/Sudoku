@@ -5326,8 +5326,38 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a bind behaviors on <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instances, for <see cref="T:Sudoku.Analytics.Analyzer"/> instance's interaction.
             </summary>
+            <remarks>
+            All names of attached properties in this type can be corresponded to the target property in one <see cref="T:Sudoku.Analytics.StepSearcher"/>,
+            via <see cref="T:Sudoku.Analytics.Metadata.RuntimeIdentifierAttribute"/>.
+            </remarks>
             <seealso cref="T:SudokuStudio.Views.Controls.SudokuPane"/>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.WithRuntimeIdentifierSetter(Sudoku.Analytics.Analyzer,System.Object,System.String,System.Boolean@)">
+            <summary>
+            Sets the specified property in a <see cref="T:Sudoku.Analytics.StepSearcher"/> with the target value via attached properties
+            stored in type <see cref="T:SudokuStudio.Views.Attached.AnalyzerProperties"/>.
+            </summary>
+            <param name="this">The analyzer instance.</param>
+            <param name="attachedPropertyValue">The attached property.</param>
+            <param name="methodName">The name of the property <paramref name="attachedPropertyValue"/>.</param>
+            <param name="propertyMatched">
+            A <see cref="T:System.Boolean"/> value indicating whether the property in <see cref="T:Sudoku.Analytics.StepSearcher"/> collection is found,
+            and the target type of that property is same as argument <paramref name="attachedPropertyValue"/>.
+            </param>
+            <returns>The same reference as <paramref name="this"/>.</returns>
+            <seealso cref="T:SudokuStudio.Views.Attached.AnalyzerProperties"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.WithRuntimeIdentifierSetters(Sudoku.Analytics.Analyzer,SudokuStudio.Views.Controls.SudokuPane)">
+            <summary>
+            Calls the method <see cref="M:SudokuStudio.Views.Attached.AnalyzerProperties.WithRuntimeIdentifierSetter(Sudoku.Analytics.Analyzer,System.Object,System.String,System.Boolean@)"/> for all properties
+            in type <see cref="T:SudokuStudio.Views.Attached.AnalyzerProperties"/>.
+            </summary>
+            <param name="this">The analyzer instance.</param>
+            <param name="attachedPane">Indicates the <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instance that all properties in this type attached to.</param>
+            <returns>The same reference with argument <paramref name="this"/>.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the matched property is invalid.</exception>
+            <seealso cref="M:SudokuStudio.Views.Attached.AnalyzerProperties.WithRuntimeIdentifierSetter(Sudoku.Analytics.Analyzer,System.Object,System.String,System.Boolean@)"/>
         </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.EnableFullHouseProperty">
             <summary>

@@ -34,6 +34,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	/// Indicates the maximum size of the fish the step searcher instance can search for. The maximum possible value of this property is 7.
 	/// The default value is 3.
 	/// </summary>
+	[RuntimeIdentifier("MaxSizeOfComplexFish")]
 	public int MaxSize { get; set; } = 3;
 
 

@@ -55,6 +55,7 @@ global using SudokuStudio.Interaction;
 global using SudokuStudio.Interaction.Conversions;
 global using SudokuStudio.Runtime.InteropServices;
 global using SudokuStudio.Storage;
+global using SudokuStudio.Views.Attached;
 global using SudokuStudio.Views.Controls;
 global using SudokuStudio.Views.Pages;
 global using SudokuStudio.Views.Pages.Analyze;

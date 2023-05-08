@@ -1112,7 +1112,8 @@ public sealed partial class AnalyzePage : Page
 						|| !highSpaceComplexity || highSpaceComplexity && !disallowSpaceTimeComplexity
 					select s
 				).ToArray()
-			);
+			)
+			.WithRuntimeIdentifierSetters(SudokuPane);
 
 		var analyzerResult = await Task.Run(analyze);
 

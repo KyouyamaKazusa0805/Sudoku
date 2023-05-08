@@ -30,6 +30,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// Indicates whether the searcher should call the extended BUG checker
 	/// to search for all true candidates no matter how difficult searching.
 	/// </summary>
+	[RuntimeIdentifier("SearchExtendedBivalueUniversalGraveTypes")]
 	public bool SearchExtendedTypes { get; set; }
 
 

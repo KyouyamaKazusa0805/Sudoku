@@ -13,6 +13,7 @@ public sealed partial class SeniorExocetStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether the searcher will find advanced eliminations.
 	/// </summary>
+	[RuntimeIdentifier("CheckAdvancedSeniorExocet")]
 	public bool CheckAdvanced { get; set; }
 
 
