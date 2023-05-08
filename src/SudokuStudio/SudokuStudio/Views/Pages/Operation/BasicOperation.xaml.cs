@@ -87,8 +87,6 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 
 	private void CopyButton_Click(object sender, RoutedEventArgs e) => BasePage.CopySudokuGridText();
 
-	private void CopySpecifedFormatsButton_Click(object sender, RoutedEventArgs e) => Dialog_FormatChoosingOnCopying.IsOpen = true;
-
 	private async void CopyPictureButton_ClickAsync(object sender, RoutedEventArgs e) => await BasePage.CopySudokuGridControlAsSnapshotAsync();
 
 	private async void PasteButton_ClickAsync(object sender, RoutedEventArgs e) => await BasePage.PasteCodeToSudokuGridAsync();
@@ -125,48 +123,11 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 			var result = new ArrayList();
 			foreach (var flag in flags.GetAllFlags()!)
 			{
-				result.Add(
-					flag switch
-					{
-						SudokuFormatFlags.InitialFormat => SusserFormat.Default,
-						SudokuFormatFlags.CurrentFormat => SusserFormat.Full,
-						SudokuFormatFlags.CurrentFormatIgnoringValueKind => SusserFormatTreatingValuesAsGivens.Default,
-						SudokuFormatFlags.HodokuCompatibleFormat => HodokuLibraryFormat.Default,
-						SudokuFormatFlags.MultipleGridFormat => MultipleLineFormat.Default,
-						SudokuFormatFlags.PencilMarkFormat => PencilMarkFormat.Default,
-						SudokuFormatFlags.SukakuFormat => SukakuFormat.Default,
-						SudokuFormatFlags.ExcelFormat => ExcelFormat.Default,
-						SudokuFormatFlags.OpenSudokuFormat => OpenSudokuFormat.Default
-					}
-				);
+				result.Add(flag.GetFormatter());
 			}
 
 			return result;
 		}
-	}
-
-	private void Dialog_FormatChoosingOnCopying_ActionButtonClick(TeachingTip sender, object args)
-	{
-		if (GetFormatFlags(FormatGroupPanelOnCopying) is not (var flags and not 0))
-		{
-			return;
-		}
-
-		if (!flags.IsFlag())
-		{
-			return;
-		}
-
-		var puzzle = BasePage.SudokuPane.Puzzle;
-		var targetText = string.Join("\r\n\r\n", from flag in flags let formatter = flag.GetFormatter() select puzzle.ToString(formatter));
-
-		// Copy into clipboard.
-		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-		dataPackage.SetText(targetText);
-
-		Clipboard.SetContent(dataPackage);
-
-		Dialog_FormatChoosingOnCopying.IsOpen = false;
 	}
 
 	private void Dialog_AreYouSureToReturnToEmpty_ActionButtonClick(TeachingTip sender, object args)

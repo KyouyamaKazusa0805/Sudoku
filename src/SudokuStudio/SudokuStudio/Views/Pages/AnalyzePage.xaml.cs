@@ -1262,4 +1262,28 @@ public sealed partial class AnalyzePage : Page
 	}
 
 	private void CopyButton_Click(object sender, RoutedEventArgs e) => CopySudokuGridText(false);
+
+	private void CopyKindButton_Click(object sender, RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem { Tag: int i })
+		{
+			return;
+		}
+
+		var flag = (SudokuFormatFlags)i;
+		if (!Enum.IsDefined(flag))
+		{
+			return;
+		}
+
+		if (SudokuPane.Puzzle is not { IsUndefined: false, IsEmpty: false } puzzle)
+		{
+			return;
+		}
+
+		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+		dataPackage.SetText(puzzle.ToString(flag.GetFormatter()));
+
+		Clipboard.SetContent(dataPackage);
+	}
 }

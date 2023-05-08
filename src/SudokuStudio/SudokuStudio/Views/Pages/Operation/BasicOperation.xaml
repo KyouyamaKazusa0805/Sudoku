@@ -48,22 +48,6 @@
 			</StackPanel>
 		</TeachingTip>
 		<TeachingTip
-			x:Name="Dialog_FormatChoosingOnCopying" IsLightDismissEnabled="False" Target="{x:Bind CopySpecifedFormatsButton}"
-			ActionButtonContent="{m:R Key=AnalyzePage_CopySpecifiedFormatsButtonContent}" CloseButtonContent="{m:R Key=AnalyzePage_Cancel}"
-			ActionButtonClick="Dialog_FormatChoosingOnCopying_ActionButtonClick">
-			<StackPanel x:Name="FormatGroupPanelOnCopying" Margin="0,16,0,0">
-				<CheckBox Content="{m:R Key=AnalyzePage_InitialGridFormat}" Tag="{m:Int32 Value=1}" />
-				<CheckBox Content="{m:R Key=AnalyzePage_CurrentGridFormat}" Tag="{m:Int32 Value=2}" />
-				<CheckBox Content="{m:R Key=AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven}" Tag="{m:Int32 Value=4}" />
-				<CheckBox Content="{m:R Key=AnalyzePage_HodokuFormat}" Tag="{m:Int32 Value=8}" />
-				<CheckBox Content="{m:R Key=AnalyzePage_MultipleLineGridFormat}" Tag="{m:Int32 Value=16}" />
-				<CheckBox Content="{m:R Key=AnalyzePage_PencilmarkFormat}" Tag="{m:Int32 Value=32}" />
-				<CheckBox Content="{m:R Key=AnalyzePage_SukakuFormat}" Tag="{m:Int32 Value=64}" />
-				<CheckBox Content="{m:R Key=AnalyzePage_ExcelFormat}" Tag="{m:Int32 Value=128}" />
-				<CheckBox Content="{m:R Key=AnalyzePage_OpenSudokuFormat}" Tag="{m:Int32 Value=256}" />
-			</StackPanel>
-		</TeachingTip>
-		<TeachingTip
 			x:Name="Dialog_AreYouSureToReturnToEmpty" IsLightDismissEnabled="True" Target="{x:Bind ClearButton}"
 			ActionButtonContent="{m:R Key=AnalyzePage_Sure}" CloseButtonContent="{m:R Key=AnalyzePage_Cancel}"
 			Title="{m:R Key=AnalyzePage_Ensure}" Subtitle="{m:R Key=AnalyzePage_AreYouSureToReturnToEmpty}"
@@ -76,9 +60,6 @@
 		<AppBarButton x:Name="SaveAsButton" Icon="SaveLocal" Label="{m:R Key=AnalyzePage_SaveFileAnother}" Click="SaveAsButton_Click" />
 		<AppBarSeparator />
 		<AppBarButton x:Name="CopyButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyCommandName}" Click="CopyButton_Click" />
-		<AppBarButton
-			x:Name="CopySpecifedFormatsButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopySpecifiedFormats}"
-			Click="CopySpecifedFormatsButton_Click" />
 		<AppBarButton
 			x:Name="CopyPictureButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyPictureCommandName}"
 			Click="CopyPictureButton_ClickAsync" />

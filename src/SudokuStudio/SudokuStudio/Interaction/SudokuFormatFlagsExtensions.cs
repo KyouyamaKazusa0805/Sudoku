@@ -11,6 +11,7 @@ internal static class SudokuFormatFlagsExtensions
 	/// </summary>
 	/// <param name="this">The flag instance.</param>
 	/// <returns><see cref="IGridFormatter"/> instance.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
 	public static IGridFormatter GetFormatter(this SudokuFormatFlags @this)
 		=> @this switch
 		{
@@ -22,6 +23,7 @@ internal static class SudokuFormatFlagsExtensions
 			SudokuFormatFlags.PencilMarkFormat => PencilMarkFormat.Default,
 			SudokuFormatFlags.SukakuFormat => SukakuFormat.Default,
 			SudokuFormatFlags.ExcelFormat => ExcelFormat.Default,
-			SudokuFormatFlags.OpenSudokuFormat => OpenSudokuFormat.Default
+			SudokuFormatFlags.OpenSudokuFormat => OpenSudokuFormat.Default,
+			_ => throw new ArgumentOutOfRangeException(nameof(@this))
 		};
 }

@@ -24,6 +24,42 @@
 			<AppBarButton
 				Label="{m:R Key=SudokuPane_Copy}" Icon="Copy" ToolTipService.ToolTip="{m:R Key=SudokuPane_Copy}"
 				Click="CopyButton_Click" />
+			<AppBarButton Label="{m:R Key=SudokuPane_CopyKind}" ToolTipService.ToolTip="{m:R Key=SudokuPane_CopyKind}">
+				<AppBarButton.Icon>
+					<FontIcon Glyph="&#xF413;" />
+				</AppBarButton.Icon>
+				<AppBarButton.Flyout>
+					<MenuFlyout>
+						<MenuFlyoutItem
+							Text="{m:R Key=AnalyzePage_InitialGridFormat}" Tag="{m:Int32 Value=1}"
+							Click="CopyKindButton_Click" />
+						<MenuFlyoutItem
+							Text="{m:R Key=AnalyzePage_CurrentGridFormat}" Tag="{m:Int32 Value=2}"
+							Click="CopyKindButton_Click" />
+						<MenuFlyoutItem
+							Text="{m:R Key=AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven}" Tag="{m:Int32 Value=4}"
+							Click="CopyKindButton_Click" />
+						<MenuFlyoutItem
+							Text="{m:R Key=AnalyzePage_HodokuFormat}" Tag="{m:Int32 Value=8}"
+							Click="CopyKindButton_Click" />
+						<MenuFlyoutItem
+							Text="{m:R Key=AnalyzePage_MultipleLineGridFormat}" Tag="{m:Int32 Value=16}"
+							Click="CopyKindButton_Click" />
+						<MenuFlyoutItem
+							Text="{m:R Key=AnalyzePage_PencilmarkFormat}" Tag="{m:Int32 Value=32}"
+							Click="CopyKindButton_Click" />
+						<MenuFlyoutItem
+							Text="{m:R Key=AnalyzePage_SukakuFormat}" Tag="{m:Int32 Value=64}"
+							Click="CopyKindButton_Click" />
+						<MenuFlyoutItem
+							Text="{m:R Key=AnalyzePage_ExcelFormat}" Tag="{m:Int32 Value=128}"
+							Click="CopyKindButton_Click" />
+						<MenuFlyoutItem
+							Text="{m:R Key=AnalyzePage_OpenSudokuFormat}" Tag="{m:Int32 Value=256}"
+							Click="CopyKindButton_Click" />
+					</MenuFlyout>
+				</AppBarButton.Flyout>
+			</AppBarButton>
 
 			<CommandBarFlyout.SecondaryCommands>
 				<AppBarButton Tag="{m:Int32 Value=1}" Label="{m:R Key=SudokuPane_Set1}" Click="SetOrDeleteButton_Click" />

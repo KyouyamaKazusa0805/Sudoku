@@ -252,15 +252,6 @@
   <data name="AnalyzePage_CopyPictureCommandName" xml:space="preserve">
     <value>复制图片</value>
   </data>
-  <data name="AnalyzePage_CopySpecifiedFormats" xml:space="preserve">
-    <value>复制……</value>
-  </data>
-  <data name="AnalyzePage_CopySpecifiedFormatsButtonContent" xml:space="preserve">
-    <value>复制！</value>
-  </data>
-  <data name="AnalyzePage_CopySpecifiedFormatsTitle" xml:space="preserve">
-    <value>复制需要的格式！</value>
-  </data>
   <data name="AnalyzePage_CurrentGridFormat" xml:space="preserve">
     <value>当前盘面格式</value>
   </data>
@@ -1030,6 +1021,9 @@
   </data>
   <data name="SudokuPane_Copy" xml:space="preserve">
     <value>复制代码</value>
+  </data>
+  <data name="SudokuPane_CopyKind" xml:space="preserve">
+    <value>复制代码类型……</value>
   </data>
   <data name="SudokuPane_Delete1" xml:space="preserve">
     <value>删 1</value>

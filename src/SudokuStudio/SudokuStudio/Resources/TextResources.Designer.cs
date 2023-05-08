@@ -637,33 +637,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy....
-        /// </summary>
-        internal static string AnalyzePage_CopySpecifiedFormats {
-            get {
-                return ResourceManager.GetString("AnalyzePage_CopySpecifiedFormats", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Copy!.
-        /// </summary>
-        internal static string AnalyzePage_CopySpecifiedFormatsButtonContent {
-            get {
-                return ResourceManager.GetString("AnalyzePage_CopySpecifiedFormatsButtonContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Copy formats!.
-        /// </summary>
-        internal static string AnalyzePage_CopySpecifiedFormatsTitle {
-            get {
-                return ResourceManager.GetString("AnalyzePage_CopySpecifiedFormatsTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Current grid format.
         /// </summary>
         internal static string AnalyzePage_CurrentGridFormat {
@@ -2945,6 +2918,15 @@ namespace SudokuStudio.Resources {
         internal static string SudokuPane_Copy {
             get {
                 return ResourceManager.GetString("SudokuPane_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy code kind ....
+        /// </summary>
+        internal static string SudokuPane_CopyKind {
+            get {
+                return ResourceManager.GetString("SudokuPane_CopyKind", resourceCulture);
             }
         }
         

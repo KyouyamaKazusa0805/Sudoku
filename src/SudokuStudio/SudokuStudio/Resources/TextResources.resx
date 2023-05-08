@@ -252,15 +252,6 @@
   <data name="AnalyzePage_CopyPictureCommandName" xml:space="preserve">
     <value>Copy image</value>
   </data>
-  <data name="AnalyzePage_CopySpecifiedFormats" xml:space="preserve">
-    <value>Copy...</value>
-  </data>
-  <data name="AnalyzePage_CopySpecifiedFormatsButtonContent" xml:space="preserve">
-    <value>Copy!</value>
-  </data>
-  <data name="AnalyzePage_CopySpecifiedFormatsTitle" xml:space="preserve">
-    <value>Copy formats!</value>
-  </data>
   <data name="AnalyzePage_CurrentGridFormat" xml:space="preserve">
     <value>Current grid format</value>
   </data>
@@ -1027,6 +1018,9 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="SudokuPane_Copy" xml:space="preserve">
     <value>Copy code</value>
+  </data>
+  <data name="SudokuPane_CopyKind" xml:space="preserve">
+    <value>Copy code kind ...</value>
   </data>
   <data name="SudokuPane_Delete1" xml:space="preserve">
     <value>Delete 1</value>
