@@ -95,28 +95,6 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	[DeconstructionMethod]
 	public partial void Deconstruct(out ConclusionType conclusionType, out Cell cell, out Digit digit);
 
-	/// <summary>
-	/// Put this instance into the specified grid.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ApplyTo(scoped ref Grid grid)
-	{
-		switch (ConclusionType)
-		{
-			case Assignment:
-			{
-				grid[Cell] = Digit;
-				break;
-			}
-			case Elimination:
-			{
-				grid[Cell, Digit] = false;
-				break;
-			}
-		}
-	}
-
 	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 

@@ -1504,6 +1504,29 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
+	/// Try to apply the specified conclusion.
+	/// </summary>
+	/// <param name="conclusion">The conclusion to be applied.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Apply(Conclusion conclusion)
+	{
+		var (type, cell, digit) = conclusion;
+		switch (type)
+		{
+			case Assignment:
+			{
+				this[cell] = digit;
+				break;
+			}
+			case Elimination:
+			{
+				this[cell, digit] = false;
+				break;
+			}
+		}
+	}
+
+	/// <summary>
 	/// Set the specified cell to the specified status.
 	/// </summary>
 	/// <param name="cell">The cell.</param>

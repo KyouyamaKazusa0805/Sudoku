@@ -157,7 +157,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	{
 		foreach (var conclusion in Conclusions)
 		{
-			conclusion.ApplyTo(ref grid);
+			grid.Apply(conclusion);
 		}
 	}
 

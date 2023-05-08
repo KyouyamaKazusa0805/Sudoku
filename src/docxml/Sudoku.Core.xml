@@ -1135,12 +1135,6 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
-        <member name="M:Sudoku.Analytics.Conclusion.ApplyTo(Sudoku.Concepts.Grid@)">
-            <summary>
-            Put this instance into the specified grid.
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
         <member name="M:Sudoku.Analytics.Conclusion.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -3806,6 +3800,12 @@ fixed (short* ptr = instance)
             <summary>
             To unfix the current grid (all given values will be changed to modifiable ones).
             </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Analytics.Conclusion)">
+            <summary>
+            Try to apply the specified conclusion.
+            </summary>
+            <param name="conclusion">The conclusion to be applied.</param>
         </member>
         <member name="M:Sudoku.Concepts.Grid.SetStatus(System.Int32,Sudoku.Concepts.CellStatus)">
             <summary>
