@@ -20,6 +20,33 @@
 			<Setter Property="BorderThickness" Value="2" />
 			<Setter Property="Margin" Value="0,10" />
 		</Style>
+		<CommandBarFlyout x:Name="MainMenuFlyout" Placement="TopEdgeAlignedLeft" Closed="MainMenuFlyout_Closed">
+			<AppBarButton
+				Label="{m:R Key=SudokuPane_Copy}" Icon="Copy" ToolTipService.ToolTip="{m:R Key=SudokuPane_Copy}"
+				Click="CopyButton_Click" />
+
+			<CommandBarFlyout.SecondaryCommands>
+				<AppBarButton Tag="{m:Int32 Value=1}" Label="{m:R Key=SudokuPane_Set1}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=2}" Label="{m:R Key=SudokuPane_Set2}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=3}" Label="{m:R Key=SudokuPane_Set3}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=4}" Label="{m:R Key=SudokuPane_Set4}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=5}" Label="{m:R Key=SudokuPane_Set5}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=6}" Label="{m:R Key=SudokuPane_Set6}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=7}" Label="{m:R Key=SudokuPane_Set7}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=8}" Label="{m:R Key=SudokuPane_Set8}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=9}" Label="{m:R Key=SudokuPane_Set9}" Click="SetOrDeleteButton_Click" />
+				<AppBarSeparator />
+				<AppBarButton Tag="{m:Int32 Value=-1}" Label="{m:R Key=SudokuPane_Delete1}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=-2}" Label="{m:R Key=SudokuPane_Delete2}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=-3}" Label="{m:R Key=SudokuPane_Delete3}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=-4}" Label="{m:R Key=SudokuPane_Delete4}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=-5}" Label="{m:R Key=SudokuPane_Delete5}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=-6}" Label="{m:R Key=SudokuPane_Delete6}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=-7}" Label="{m:R Key=SudokuPane_Delete7}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=-8}" Label="{m:R Key=SudokuPane_Delete8}" Click="SetOrDeleteButton_Click" />
+				<AppBarButton Tag="{m:Int32 Value=-9}" Label="{m:R Key=SudokuPane_Delete9}" Click="SetOrDeleteButton_Click" />
+			</CommandBarFlyout.SecondaryCommands>
+		</CommandBarFlyout>
 	</Page.Resources>
 
 	<ScrollViewer VerticalScrollBarVisibility="Hidden">

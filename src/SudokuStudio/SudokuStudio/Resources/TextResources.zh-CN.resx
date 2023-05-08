@@ -1028,14 +1028,65 @@
   <data name="Sudoku" xml:space="preserve">
     <value>数独</value>
   </data>
+  <data name="SudokuPane_Copy" xml:space="preserve">
+    <value>复制代码</value>
+  </data>
+  <data name="SudokuPane_Delete1" xml:space="preserve">
+    <value>删 1</value>
+  </data>
+  <data name="SudokuPane_Delete2" xml:space="preserve">
+    <value>删 2</value>
+  </data>
+  <data name="SudokuPane_Delete3" xml:space="preserve">
+    <value>删 3</value>
+  </data>
+  <data name="SudokuPane_Delete4" xml:space="preserve">
+    <value>删 4</value>
+  </data>
+  <data name="SudokuPane_Delete5" xml:space="preserve">
+    <value>删 5</value>
+  </data>
+  <data name="SudokuPane_Delete6" xml:space="preserve">
+    <value>删 6</value>
+  </data>
+  <data name="SudokuPane_Delete7" xml:space="preserve">
+    <value>删 7</value>
+  </data>
+  <data name="SudokuPane_Delete8" xml:space="preserve">
+    <value>删 8</value>
+  </data>
+  <data name="SudokuPane_Delete9" xml:space="preserve">
+    <value>删 9</value>
+  </data>
   <data name="SudokuPane_DropSudokuFileHere" xml:space="preserve">
     <value>请将文件拖到这里</value>
   </data>
-  <data name="SudokuPane_RightClickMenu_InputSetter" xml:space="preserve">
-    <value>输入出数或删数结论：</value>
+  <data name="SudokuPane_Set1" xml:space="preserve">
+    <value>填 1</value>
   </data>
-  <data name="SudokuPane_RightClickMenu_InputSetterPlaceholder" xml:space="preserve">
-    <value>举例：!1-4、!567、!8、9</value>
+  <data name="SudokuPane_Set2" xml:space="preserve">
+    <value>填 2</value>
+  </data>
+  <data name="SudokuPane_Set3" xml:space="preserve">
+    <value>填 3</value>
+  </data>
+  <data name="SudokuPane_Set4" xml:space="preserve">
+    <value>填 4</value>
+  </data>
+  <data name="SudokuPane_Set5" xml:space="preserve">
+    <value>填 5</value>
+  </data>
+  <data name="SudokuPane_Set6" xml:space="preserve">
+    <value>填 6</value>
+  </data>
+  <data name="SudokuPane_Set7" xml:space="preserve">
+    <value>填 7</value>
+  </data>
+  <data name="SudokuPane_Set8" xml:space="preserve">
+    <value>填 8</value>
+  </data>
+  <data name="SudokuPane_Set9" xml:space="preserve">
+    <value>填 9</value>
   </data>
   <data name="SuggestedFileName_Output" xml:space="preserve">
     <value>导出</value>

@@ -1025,14 +1025,65 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="Sudoku" xml:space="preserve">
     <value>Sudoku</value>
   </data>
+  <data name="SudokuPane_Copy" xml:space="preserve">
+    <value>Copy code</value>
+  </data>
+  <data name="SudokuPane_Delete1" xml:space="preserve">
+    <value>Delete 1</value>
+  </data>
+  <data name="SudokuPane_Delete2" xml:space="preserve">
+    <value>Delete 2</value>
+  </data>
+  <data name="SudokuPane_Delete3" xml:space="preserve">
+    <value>Delete 3</value>
+  </data>
+  <data name="SudokuPane_Delete4" xml:space="preserve">
+    <value>Delete 4</value>
+  </data>
+  <data name="SudokuPane_Delete5" xml:space="preserve">
+    <value>Delete 5</value>
+  </data>
+  <data name="SudokuPane_Delete6" xml:space="preserve">
+    <value>Delete 6</value>
+  </data>
+  <data name="SudokuPane_Delete7" xml:space="preserve">
+    <value>Delete 7</value>
+  </data>
+  <data name="SudokuPane_Delete8" xml:space="preserve">
+    <value>Delete 8</value>
+  </data>
+  <data name="SudokuPane_Delete9" xml:space="preserve">
+    <value>Delete 9</value>
+  </data>
   <data name="SudokuPane_DropSudokuFileHere" xml:space="preserve">
     <value>Please drop the file here</value>
   </data>
-  <data name="SudokuPane_RightClickMenu_InputSetter" xml:space="preserve">
-    <value>Input sets or eliminations: </value>
+  <data name="SudokuPane_Set1" xml:space="preserve">
+    <value>Set 1</value>
   </data>
-  <data name="SudokuPane_RightClickMenu_InputSetterPlaceholder" xml:space="preserve">
-    <value>Usage: !1-4、!567、!8、9</value>
+  <data name="SudokuPane_Set2" xml:space="preserve">
+    <value>Set 2</value>
+  </data>
+  <data name="SudokuPane_Set3" xml:space="preserve">
+    <value>Set 3</value>
+  </data>
+  <data name="SudokuPane_Set4" xml:space="preserve">
+    <value>Set 4</value>
+  </data>
+  <data name="SudokuPane_Set5" xml:space="preserve">
+    <value>Set 5</value>
+  </data>
+  <data name="SudokuPane_Set6" xml:space="preserve">
+    <value>Set 6</value>
+  </data>
+  <data name="SudokuPane_Set7" xml:space="preserve">
+    <value>Set 7</value>
+  </data>
+  <data name="SudokuPane_Set8" xml:space="preserve">
+    <value>Set 8</value>
+  </data>
+  <data name="SudokuPane_Set9" xml:space="preserve">
+    <value>Set 9</value>
   </data>
   <data name="SuggestedFileName_Output" xml:space="preserve">
     <value>Output</value>

@@ -107,9 +107,10 @@ public sealed partial class AnalyzePage : Page
 	/// <summary>
 	/// Copies for sudoku puzzle text.
 	/// </summary>
-	internal void CopySudokuGridText()
+	/// <param name="focusRequired">Indicates whether the focus is required. The default value is <see langword="true"/>.</param>
+	internal void CopySudokuGridText(bool focusRequired = true)
 	{
-		if (!IsSudokuPaneFocused())
+		if (focusRequired && !IsSudokuPaneFocused())
 		{
 			return;
 		}
@@ -532,7 +533,7 @@ public sealed partial class AnalyzePage : Page
 		{
 			{ new(VirtualKeyModifiers.Control, VirtualKey.Z), SudokuPane.UndoStep },
 			{ new(VirtualKeyModifiers.Control, VirtualKey.Y), SudokuPane.RedoStep },
-			{ new(VirtualKeyModifiers.Control, VirtualKey.C), CopySudokuGridText },
+			{ new(VirtualKeyModifiers.Control, VirtualKey.C), () => CopySudokuGridText() },
 			{
 				new(VirtualKeyModifiers.Control | VirtualKeyModifiers.Shift, VirtualKey.C),
 				async () => await CopySudokuGridControlAsSnapshotAsync()
@@ -1190,23 +1191,72 @@ public sealed partial class AnalyzePage : Page
 
 	private void SudokuPane_Clicked(SudokuPane sender, GridClickedEventArgs e)
 	{
-		if ((this, e) is not ({ _localView: { } tempView }, { MouseButton: MouseButton.Left }))
+		switch (e)
+		{
+			case { MouseButton: MouseButton.Left } when _localView is { } tempView:
+			{
+				if (this switch
+				{
+					{ SelectedMode: DrawingMode.Cell, SelectedColorIndex: var index and not -1 } => CheckCellNode(index, e, tempView),
+					{ SelectedMode: DrawingMode.Candidate, SelectedColorIndex: var index and not -1 } => CheckCandidateNode(index, e, tempView),
+					{ SelectedMode: DrawingMode.House, SelectedColorIndex: var index and not -1 } => CheckHouseNode(index, e, tempView),
+					{ SelectedMode: DrawingMode.Chute, SelectedColorIndex: var index and not -1 } => CheckChuteNode(index, e, tempView),
+					{ SelectedMode: DrawingMode.Link } => CheckLinkNode(e, tempView),
+					{ SelectedMode: DrawingMode.BabaGrouping, SelectedColorIndex: var index and not -1 } => CheckBabaGroupingNode(index, e, tempView),
+					_ => true
+				})
+				{
+					_previousSelectedCandidate = null;
+				}
+
+				break;
+			}
+			case { MouseButton: MouseButton.Right, Cell: var cell }
+			when SudokuPane is { DisableFlyout: false, Puzzle: var puzzle } && puzzle.GetStatus(cell) == CellStatus.Empty:
+			{
+				SudokuPane._temporarySelectedCell = cell;
+
+				foreach (var element in MainMenuFlyout.SecondaryCommands.OfType<AppBarButton>())
+				{
+					if (element.Tag is int digit && (puzzle.GetCandidates(cell) >> Abs(digit) - 1 & 1) == 0)
+					{
+						element.Visibility = Visibility.Collapsed;
+					}
+				}
+
+				MainMenuFlyout.ShowAt(SudokuPane);
+
+				break;
+			}
+		}
+	}
+
+	private void MainMenuFlyout_Closed(object sender, object e)
+	{
+		foreach (var element in MainMenuFlyout.SecondaryCommands.OfType<AppBarButton>())
+		{
+			element.Visibility = Visibility.Visible;
+		}
+	}
+
+	private void SetOrDeleteButton_Click(object sender, RoutedEventArgs e)
+	{
+		if ((sender, SudokuPane) is not (AppBarButton { Tag: int digit }, { Puzzle: var puzzle, _temporarySelectedCell: var cell and not -1 }))
 		{
 			return;
 		}
 
-		if (this switch
-		{
-			{ SelectedMode: DrawingMode.Cell, SelectedColorIndex: var index and not -1 } => CheckCellNode(index, e, tempView),
-			{ SelectedMode: DrawingMode.Candidate, SelectedColorIndex: var index and not -1 } => CheckCandidateNode(index, e, tempView),
-			{ SelectedMode: DrawingMode.House, SelectedColorIndex: var index and not -1 } => CheckHouseNode(index, e, tempView),
-			{ SelectedMode: DrawingMode.Chute, SelectedColorIndex: var index and not -1 } => CheckChuteNode(index, e, tempView),
-			{ SelectedMode: DrawingMode.Link } => CheckLinkNode(e, tempView),
-			{ SelectedMode: DrawingMode.BabaGrouping, SelectedColorIndex: var index and not -1 } => CheckBabaGroupingNode(index, e, tempView),
-			_ => true
-		})
-		{
-			_previousSelectedCandidate = null;
-		}
+		puzzle.Apply(
+			digit switch
+			{
+				> 0 => new(Assignment, cell, digit - 1),
+				< 0 => new(Elimination, cell, Abs(digit) - 1),
+				_ => default(Conclusion)
+			}
+		);
+
+		SudokuPane.Puzzle = puzzle;
 	}
+
+	private void CopyButton_Click(object sender, RoutedEventArgs e) => CopySudokuGridText(false);
 }

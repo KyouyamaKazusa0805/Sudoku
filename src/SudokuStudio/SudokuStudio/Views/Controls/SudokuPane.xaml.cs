@@ -222,6 +222,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 
 	/// <summary>
+	/// Indicates the temporary selected cell.
+	/// </summary>
+	internal Cell _temporarySelectedCell = -1;
+
+	/// <summary>
 	/// Defines a pair of stacks that stores undo steps.
 	/// This field can be used when <see cref="EnableUndoRedoStacking"/> is <see langword="true"/>.
 	/// </summary>

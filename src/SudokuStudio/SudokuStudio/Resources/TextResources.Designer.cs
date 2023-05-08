@@ -2940,6 +2940,96 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy code.
+        /// </summary>
+        internal static string SudokuPane_Copy {
+            get {
+                return ResourceManager.GetString("SudokuPane_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete 1.
+        /// </summary>
+        internal static string SudokuPane_Delete1 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Delete1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete 2.
+        /// </summary>
+        internal static string SudokuPane_Delete2 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Delete2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete 3.
+        /// </summary>
+        internal static string SudokuPane_Delete3 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Delete3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete 4.
+        /// </summary>
+        internal static string SudokuPane_Delete4 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Delete4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete 5.
+        /// </summary>
+        internal static string SudokuPane_Delete5 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Delete5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete 6.
+        /// </summary>
+        internal static string SudokuPane_Delete6 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Delete6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete 7.
+        /// </summary>
+        internal static string SudokuPane_Delete7 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Delete7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete 8.
+        /// </summary>
+        internal static string SudokuPane_Delete8 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Delete8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete 9.
+        /// </summary>
+        internal static string SudokuPane_Delete9 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Delete9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please drop the file here.
         /// </summary>
         internal static string SudokuPane_DropSudokuFileHere {
@@ -2949,20 +3039,83 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Input sets or eliminations: .
+        ///   Looks up a localized string similar to Set 1.
         /// </summary>
-        internal static string SudokuPane_RightClickMenu_InputSetter {
+        internal static string SudokuPane_Set1 {
             get {
-                return ResourceManager.GetString("SudokuPane_RightClickMenu_InputSetter", resourceCulture);
+                return ResourceManager.GetString("SudokuPane_Set1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Usage: !1-4、!567、!8、9.
+        ///   Looks up a localized string similar to Set 2.
         /// </summary>
-        internal static string SudokuPane_RightClickMenu_InputSetterPlaceholder {
+        internal static string SudokuPane_Set2 {
             get {
-                return ResourceManager.GetString("SudokuPane_RightClickMenu_InputSetterPlaceholder", resourceCulture);
+                return ResourceManager.GetString("SudokuPane_Set2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set 3.
+        /// </summary>
+        internal static string SudokuPane_Set3 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Set3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set 4.
+        /// </summary>
+        internal static string SudokuPane_Set4 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Set4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set 5.
+        /// </summary>
+        internal static string SudokuPane_Set5 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Set5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set 6.
+        /// </summary>
+        internal static string SudokuPane_Set6 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Set6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set 7.
+        /// </summary>
+        internal static string SudokuPane_Set7 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Set7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set 8.
+        /// </summary>
+        internal static string SudokuPane_Set8 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Set8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set 9.
+        /// </summary>
+        internal static string SudokuPane_Set9 {
+            get {
+                return ResourceManager.GetString("SudokuPane_Set9", resourceCulture);
             }
         }
         
