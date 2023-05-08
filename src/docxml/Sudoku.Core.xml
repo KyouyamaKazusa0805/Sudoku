@@ -3807,6 +3807,12 @@ fixed (short* ptr = instance)
             </summary>
             <param name="conclusion">The conclusion to be applied.</param>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Analytics.Conclusion[])">
+            <summary>
+            Try to apply the specified array of conclusions.
+            </summary>
+            <param name="conclusions">The conclusions to be applied.</param>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.SetStatus(System.Int32,Sudoku.Concepts.CellStatus)">
             <summary>
             Set the specified cell to the specified status.
@@ -4074,6 +4080,7 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when the target text is <see langword="null"/>.</exception>
         </member>
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>

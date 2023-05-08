@@ -1527,6 +1527,18 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
+	/// Try to apply the specified array of conclusions.
+	/// </summary>
+	/// <param name="conclusions">The conclusions to be applied.</param>
+	public void Apply(Conclusion[] conclusions)
+	{
+		foreach (var conclusion in conclusions)
+		{
+			Apply(conclusion);
+		}
+	}
+
+	/// <summary>
 	/// Set the specified cell to the specified status.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
@@ -1874,8 +1886,10 @@ file sealed class Converter : JsonConverter<Grid>
 
 
 	/// <inheritdoc/>
+	/// <exception cref="InvalidOperationException">Throws when the target text is <see langword="null"/>.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override Grid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => (Grid)reader.GetString();
+	public override Grid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		=> Grid.Parse(reader.GetString() ?? throw new InvalidOperationException("The target value text cannot be null."));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -153,13 +153,8 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// Put this instance into the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	public void ApplyTo(scoped ref Grid grid)
-	{
-		foreach (var conclusion in Conclusions)
-		{
-			grid.Apply(conclusion);
-		}
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ApplyTo(scoped ref Grid grid) => grid.Apply(Conclusions);
 
 	/// <summary>
 	/// Returns a string that only contains the name and the basic description.
