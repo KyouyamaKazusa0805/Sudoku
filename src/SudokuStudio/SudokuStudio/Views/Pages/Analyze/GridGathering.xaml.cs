@@ -89,34 +89,31 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		collector.MaxStepsGathered = ((App)Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered;
 		collector.OnlyShowSameLevelTechniquesInFindAllSteps = ((App)Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps;
 
-		var result = await Task.Run(collect);
+		var result = await Task.Run(
+			() =>
+			{
+				lock (StepSearchingOrGatheringSyncRoot)
+				{
+					return collector.Search(
+						grid,
+						new Progress<double>(
+							percent =>
+								DispatcherQueue.TryEnqueue(
+									() =>
+									{
+										BasePage.ProgressPercent = percent * 100;
+										BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
+									}
+								)
+						)
+					);
+				}
+			}
+		);
 
 		_currentFountSteps = result;
 		TechniqueGroupView.TechniqueGroups.Source = GetTechniqueGroups(result, grid);
 		GatherButton.IsEnabled = true;
 		BasePage.IsGathererLaunched = false;
-
-
-		IEnumerable<Step> collect()
-		{
-			lock (StepSearchingOrGatheringSyncRoot)
-			{
-				return collector.Search(
-					grid,
-					new Progress<double>(
-						percent =>
-						{
-							DispatcherQueue.TryEnqueue(
-								() =>
-								{
-									BasePage.ProgressPercent = percent * 100;
-									BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat!, percent);
-								}
-							);
-						}
-					)
-				);
-			}
-		}
 	}
 }

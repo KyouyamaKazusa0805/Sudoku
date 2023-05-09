@@ -1097,24 +1097,41 @@ public sealed partial class AnalyzePage : Page
 		var disallowHighTimeComplexity = ((App)Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms;
 		var disallowSpaceTimeComplexity = ((App)Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms;
 
-		var solver = ((App)Application.Current)
+		var analyzer = ((App)Application.Current)
 			.Analyzer
 			.WithStepSearchers(
-				(
-					from data in ((App)Application.Current).Preference.StepSearcherOrdering.StepSearchersOrder
-					where data.IsEnabled
-					select data.CreateStepSearchers() into stepSearchers
-					from s in stepSearchers
-					let highTimeComplexity = s.IsConfiguredSlow
-					let highSpaceComplexity = s.IsConfiguredHighAllocation
-					where !highTimeComplexity || highTimeComplexity && !disallowHighTimeComplexity
-						|| !highSpaceComplexity || highSpaceComplexity && !disallowSpaceTimeComplexity
-					select s
-				).ToArray()
+				from data in ((App)Application.Current).Preference.StepSearcherOrdering.StepSearchersOrder
+				where data.IsEnabled
+				select data.CreateStepSearchers() into stepSearchers
+				from s in stepSearchers
+				let timeFlag = s.IsConfiguredSlow
+				let spaceFlag = s.IsConfiguredHighAllocation
+				where !timeFlag || timeFlag && !disallowHighTimeComplexity || !spaceFlag || spaceFlag && !disallowSpaceTimeComplexity
+				select s
 			)
 			.WithRuntimeIdentifierSetters(SudokuPane);
 
-		var analyzerResult = await Task.Run(analyze);
+		var analyzerResult = await Task.Run(
+			() =>
+			{
+				lock (StepSearchingOrGatheringSyncRoot)
+				{
+					return analyzer.Analyze(
+						puzzle,
+						new Progress<double>(
+							percent =>
+								DispatcherQueue.TryEnqueue(
+									() =>
+									{
+										ProgressPercent = percent * 100;
+										AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
+									}
+								)
+						)
+					);
+				}
+			}
+		);
 
 		AnalyzeButton.IsEnabled = true;
 		IsAnalyzerLaunched = false;
@@ -1165,26 +1182,6 @@ public sealed partial class AnalyzePage : Page
 				}.ShowAsync();
 
 				break;
-			}
-		}
-
-
-		AnalyzerResult analyze()
-		{
-			lock (StepSearchingOrGatheringSyncRoot)
-			{
-				return solver.Analyze(
-					puzzle,
-					new Progress<double>(
-						percent => DispatcherQueue.TryEnqueue(
-							() =>
-							{
-								ProgressPercent = percent * 100;
-								AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
-							}
-						)
-					)
-				);
 			}
 		}
 	}
