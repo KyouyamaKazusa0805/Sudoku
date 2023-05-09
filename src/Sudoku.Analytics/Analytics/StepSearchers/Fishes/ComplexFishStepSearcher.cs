@@ -366,7 +366,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 								// Collect highlighting candidates.
 								var candidateOffsets = new List<CandidateViewNode>();
 								var houseOffsets = new List<HouseViewNode>();
-								foreach (var body in actualBaseMap - exofins)
+								foreach (var body in actualBaseMap - exofins - endofins)
 								{
 									candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, body * 9 + digit));
 								}
