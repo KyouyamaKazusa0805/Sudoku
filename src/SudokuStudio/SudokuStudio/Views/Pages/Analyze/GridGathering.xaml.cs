@@ -85,7 +85,10 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 
 		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
 
-		var gatherer = ((App)Application.Current).StepCollector;
+		var collector = ((App)Application.Current).StepCollector;
+		collector.MaxStepsGathered = ((App)Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered;
+		collector.OnlyShowSameLevelTechniquesInFindAllSteps = ((App)Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps;
+
 		var result = await Task.Run(collect);
 
 		_currentFountSteps = result;
@@ -98,7 +101,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		{
 			lock (StepSearchingOrGatheringSyncRoot)
 			{
-				return gatherer.Search(
+				return collector.Search(
 					grid,
 					new Progress<double>(
 						percent =>
