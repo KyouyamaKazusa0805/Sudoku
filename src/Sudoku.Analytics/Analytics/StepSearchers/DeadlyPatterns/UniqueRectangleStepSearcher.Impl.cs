@@ -70,7 +70,7 @@ partial class UniqueRectangleStepSearcher
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 			}
 		}
 
@@ -165,7 +165,7 @@ partial class UniqueRectangleStepSearcher
 				{
 					candidateOffsets.Add(
 						new(
-							digit == extraDigit ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal,
+							digit == extraDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
 							cell * 9 + digit
 						)
 					);
@@ -296,7 +296,7 @@ partial class UniqueRectangleStepSearcher
 					{
 						if (grid.GetStatus(cell) != CellStatus.Empty)
 						{
-							cellOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell));
+							cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 						}
 					}
 
@@ -309,7 +309,7 @@ partial class UniqueRectangleStepSearcher
 							{
 								candidateOffsets.Add(
 									new(
-										(tempMask >> digit & 1) != 0 ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal,
+										(tempMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
 										cell * 9 + digit
 									)
 								);
@@ -320,7 +320,7 @@ partial class UniqueRectangleStepSearcher
 					{
 						foreach (var digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 						}
 					}
 
@@ -332,7 +332,7 @@ partial class UniqueRectangleStepSearcher
 								View.Empty
 									| (arMode ? cellOffsets : null)
 									| candidateOffsets
-									| new HouseViewNode(WellKnownColorIdentifierKind.Normal, houseIndex)
+									| new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)
 							},
 							d1,
 							d2,
@@ -427,11 +427,11 @@ partial class UniqueRectangleStepSearcher
 					{
 						if (d1 != elimDigit && CandidatesMap[d1].Contains(cell))
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + d1));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + d1));
 						}
 						if (d2 != elimDigit && CandidatesMap[d2].Contains(cell))
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + d2));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + d2));
 						}
 					}
 					else
@@ -439,7 +439,7 @@ partial class UniqueRectangleStepSearcher
 						// Corner1 and corner2.
 						foreach (var d in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + d));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d));
 						}
 					}
 				}
@@ -459,7 +459,7 @@ partial class UniqueRectangleStepSearcher
 							View.Empty
 								| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 								| candidateOffsets
-								| new HouseViewNode(WellKnownColorIdentifierKind.Normal, houseIndex)
+								| new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)
 						},
 						Technique.UniqueRectangleType4,
 						d1,
@@ -548,7 +548,7 @@ partial class UniqueRectangleStepSearcher
 
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(digit == extraDigit ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
+				candidateOffsets.Add(new(digit == extraDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell * 9 + digit));
 			}
 		}
 		if (UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
@@ -654,18 +654,18 @@ partial class UniqueRectangleStepSearcher
 				{
 					if (d1 != digit && CandidatesMap[d1].Contains(cell))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + d1));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d1));
 					}
 					if (d2 != digit && CandidatesMap[d2].Contains(cell))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + d2));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d2));
 					}
 				}
 				else
 				{
 					foreach (var d in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(d == digit ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cell * 9 + d));
+						candidateOffsets.Add(new(d == digit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell * 9 + d));
 					}
 				}
 			}
@@ -686,8 +686,8 @@ partial class UniqueRectangleStepSearcher
 							| candidateOffsets
 							| new HouseViewNode[]
 							{
-								new(WellKnownColorIdentifierKind.Normal, house1),
-								new(WellKnownColorIdentifierKind.Normal, house2)
+								new(WellKnownColorIdentifier.Normal, house1),
+								new(WellKnownColorIdentifier.Normal, house2)
 							}
 					},
 					Technique.UniqueRectangleType6,
@@ -783,18 +783,18 @@ partial class UniqueRectangleStepSearcher
 				{
 					if ((cell != abzCell || d1 != elimDigit) && CandidatesMap[d1].Contains(cell))
 					{
-						candidateOffsets.Add(new(d1 != elimDigit ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cell * 9 + d1));
+						candidateOffsets.Add(new(d1 != elimDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell * 9 + d1));
 					}
 					if ((cell != abzCell || d2 != elimDigit) && CandidatesMap[d2].Contains(cell))
 					{
-						candidateOffsets.Add(new(d2 != elimDigit ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cell * 9 + d2));
+						candidateOffsets.Add(new(d2 != elimDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell * 9 + d2));
 					}
 				}
 				else
 				{
 					foreach (var d in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + d));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d));
 					}
 				}
 			}
@@ -812,7 +812,7 @@ partial class UniqueRectangleStepSearcher
 						View.Empty
 							| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 							| candidateOffsets
-							| new HouseViewNode[] { new(WellKnownColorIdentifierKind.Normal, r), new(WellKnownColorIdentifierKind.Normal, c) }
+							| new HouseViewNode[] { new(WellKnownColorIdentifier.Normal, r), new(WellKnownColorIdentifier.Normal, c) }
 					},
 					d1,
 					d2,
@@ -915,20 +915,20 @@ partial class UniqueRectangleStepSearcher
 				{
 					foreach (var digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new((comparer >> digit & 1) == 0 ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
+						candidateOffsets.Add(new((comparer >> digit & 1) == 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell * 9 + digit));
 					}
 				}
 				else
 				{
 					foreach (var digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 					}
 				}
 			}
 			foreach (var digit in xyMask)
 			{
-				candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, possibleXyCell * 9 + digit));
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, possibleXyCell * 9 + digit));
 			}
 
 			if (UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
@@ -1051,14 +1051,14 @@ partial class UniqueRectangleStepSearcher
 									foreach (var d in grid.GetCandidates(urCell))
 									{
 										candidateOffsets.Add(
-											new(d == digit ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, urCell * 9 + d));
+											new(d == digit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, urCell * 9 + d));
 									}
 								}
 								else
 								{
 									foreach (var d in grid.GetCandidates(urCell))
 									{
-										candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, urCell * 9 + d));
+										candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, urCell * 9 + d));
 									}
 								}
 							}
@@ -1071,8 +1071,8 @@ partial class UniqueRectangleStepSearcher
 										candidateOffsets.Add(
 											new(
 												urCell == elimCell
-													? WellKnownColorIdentifierKind.Normal
-													: d1 == digit ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal,
+													? WellKnownColorIdentifier.Normal
+													: d1 == digit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
 												urCell * 9 + d1
 											)
 										);
@@ -1085,8 +1085,8 @@ partial class UniqueRectangleStepSearcher
 										candidateOffsets.Add(
 											new(
 												urCell == elimCell
-													? WellKnownColorIdentifierKind.Normal
-													: d2 == digit ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal,
+													? WellKnownColorIdentifier.Normal
+													: d2 == digit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
 												urCell * 9 + d2
 											)
 										);
@@ -1108,7 +1108,7 @@ partial class UniqueRectangleStepSearcher
 									View.Empty
 										| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 										| candidateOffsets
-										| new HouseViewNode(WellKnownColorIdentifierKind.Normal, house)
+										| new HouseViewNode(WellKnownColorIdentifier.Normal, house)
 								},
 								Technique.UniqueRectangle2B1,
 								d1,
@@ -1231,14 +1231,14 @@ partial class UniqueRectangleStepSearcher
 									foreach (var d in grid.GetCandidates(urCell))
 									{
 										candidateOffsets.Add(
-											new(d == digit ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, urCell * 9 + d));
+											new(d == digit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, urCell * 9 + d));
 									}
 								}
 								else
 								{
 									foreach (var d in grid.GetCandidates(urCell))
 									{
-										candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, urCell * 9 + d));
+										candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, urCell * 9 + d));
 									}
 								}
 							}
@@ -1249,8 +1249,8 @@ partial class UniqueRectangleStepSearcher
 									candidateOffsets.Add(
 										new(
 											urCell == elimCell
-												? WellKnownColorIdentifierKind.Normal
-												: d1 == digit ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal,
+												? WellKnownColorIdentifier.Normal
+												: d1 == digit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
 											urCell * 9 + d1
 										)
 									);
@@ -1260,8 +1260,8 @@ partial class UniqueRectangleStepSearcher
 									candidateOffsets.Add(
 										new(
 											urCell == elimCell
-												? WellKnownColorIdentifierKind.Normal
-												: d2 == digit ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal,
+												? WellKnownColorIdentifier.Normal
+												: d2 == digit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
 											urCell * 9 + d2
 										)
 									);
@@ -1282,7 +1282,7 @@ partial class UniqueRectangleStepSearcher
 									View.Empty
 										| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
 										| candidateOffsets
-										| new HouseViewNode(WellKnownColorIdentifierKind.Normal, house)
+										| new HouseViewNode(WellKnownColorIdentifier.Normal, house)
 								},
 								Technique.UniqueRectangle2D1,
 								d1,
@@ -1394,7 +1394,7 @@ partial class UniqueRectangleStepSearcher
 					{
 						candidateOffsets.Add(
 							new(
-								(comparer >> digit & 1) == 0 ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal,
+								(comparer >> digit & 1) == 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
 								cell * 9 + digit
 							)
 						);
@@ -1404,13 +1404,13 @@ partial class UniqueRectangleStepSearcher
 				{
 					foreach (var digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 					}
 				}
 			}
 			foreach (var digit in xyMask)
 			{
-				candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, possibleXyCell * 9 + digit));
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, possibleXyCell * 9 + digit));
 			}
 			if (UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
 			{
@@ -1510,26 +1510,26 @@ partial class UniqueRectangleStepSearcher
 			{
 				if ((digit == d1 || digit == d2) && digit != a)
 				{
-					candidateOffsets.Add(new(digit == b ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, abxCell * 9 + digit));
+					candidateOffsets.Add(new(digit == b ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, abxCell * 9 + digit));
 				}
 			}
 			foreach (var digit in grid.GetCandidates(abyCell))
 			{
 				if ((digit == d1 || digit == d2) && digit != b)
 				{
-					candidateOffsets.Add(new(digit == a ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, abyCell * 9 + digit));
+					candidateOffsets.Add(new(digit == a ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, abyCell * 9 + digit));
 				}
 			}
 			foreach (var digit in grid.GetCandidates(abzCell))
 			{
 				if (digit == a || digit == b)
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, abzCell * 9 + digit));
+					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, abzCell * 9 + digit));
 				}
 			}
 			foreach (var digit in comparer)
 			{
-				candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cornerCell * 9 + digit));
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cornerCell * 9 + digit));
 			}
 			if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 6)
 			{
@@ -1546,8 +1546,8 @@ partial class UniqueRectangleStepSearcher
 							| candidateOffsets
 							| new HouseViewNode[]
 							{
-								new(WellKnownColorIdentifierKind.Normal, map1.CoveredLine),
-								new(WellKnownColorIdentifierKind.Auxiliary1, map2.CoveredLine)
+								new(WellKnownColorIdentifier.Normal, map1.CoveredLine),
+								new(WellKnownColorIdentifier.Auxiliary1, map2.CoveredLine)
 							}
 					},
 					Technique.UniqueRectangle3X2,
@@ -1638,27 +1638,27 @@ partial class UniqueRectangleStepSearcher
 				var candidateOffsets = new List<CandidateViewNode>(7);
 				foreach (var d in comparer)
 				{
-					candidateOffsets.Add(new(d == a ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cornerCell * 9 + d));
+					candidateOffsets.Add(new(d == a ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cornerCell * 9 + d));
 				}
 				foreach (var d in digits)
 				{
 					if (CandidatesMap[d].Contains(abzCell))
 					{
-						candidateOffsets.Add(new(d == b ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, abzCell * 9 + d));
+						candidateOffsets.Add(new(d == b ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, abzCell * 9 + d));
 					}
 				}
 				foreach (var d in grid.GetCandidates(begin))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, begin * 9 + d));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, begin * 9 + d));
 					}
 				}
 				foreach (var d in grid.GetCandidates(end))
 				{
 					if ((d == d1 || d == d2) && d != a)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, end * 9 + d));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, end * 9 + d));
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -1677,8 +1677,8 @@ partial class UniqueRectangleStepSearcher
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
-									new(WellKnownColorIdentifierKind.Normal, conjugatePairs[0].Line),
-									new(WellKnownColorIdentifierKind.Auxiliary1, conjugatePairs[1].Line)
+									new(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
+									new(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
 								}
 						},
 						Technique.UniqueRectangle3N2,
@@ -1765,27 +1765,27 @@ partial class UniqueRectangleStepSearcher
 				var candidateOffsets = new List<CandidateViewNode>(7);
 				foreach (var d in comparer)
 				{
-					candidateOffsets.Add(new(d == a ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cornerCell * 9 + d));
+					candidateOffsets.Add(new(d == a ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cornerCell * 9 + d));
 				}
 				foreach (var d in grid.GetCandidates(begin))
 				{
 					if ((d == d1 || d == d2) && d != a)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, begin * 9 + d));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, begin * 9 + d));
 					}
 				}
 				foreach (var d in grid.GetCandidates(end))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(d == a ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, end * 9 + d));
+						candidateOffsets.Add(new(d == a ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, end * 9 + d));
 					}
 				}
 				foreach (var d in grid.GetCandidates(abzCell))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(d == b ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, abzCell * 9 + d));
+						candidateOffsets.Add(new(d == b ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, abzCell * 9 + d));
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -1804,8 +1804,8 @@ partial class UniqueRectangleStepSearcher
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
-									new(WellKnownColorIdentifierKind.Normal, conjugatePairs[0].Line),
-									new(WellKnownColorIdentifierKind.Auxiliary1, conjugatePairs[1].Line)
+									new(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
+									new(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
 								}
 						},
 						Technique.UniqueRectangle3U2,
@@ -1892,27 +1892,27 @@ partial class UniqueRectangleStepSearcher
 				var candidateOffsets = new List<CandidateViewNode>(7);
 				foreach (var d in comparer)
 				{
-					candidateOffsets.Add(new(d == a ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cornerCell * 9 + d));
+					candidateOffsets.Add(new(d == a ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cornerCell * 9 + d));
 				}
 				foreach (var d in grid.GetCandidates(begin))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(d == a ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, begin * 9 + d));
+						candidateOffsets.Add(new(d == a ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, begin * 9 + d));
 					}
 				}
 				foreach (var d in grid.GetCandidates(end))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(d == a ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, end * 9 + d));
+						candidateOffsets.Add(new(d == a ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, end * 9 + d));
 					}
 				}
 				foreach (var d in grid.GetCandidates(abzCell))
 				{
 					if ((d == d1 || d == d2) && d != b)
 					{
-						candidateOffsets.Add(new(d == a ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, abzCell * 9 + d));
+						candidateOffsets.Add(new(d == a ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, abzCell * 9 + d));
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -1931,8 +1931,8 @@ partial class UniqueRectangleStepSearcher
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
-									new(WellKnownColorIdentifierKind.Normal, conjugatePairs[0].Line),
-									new(WellKnownColorIdentifierKind.Auxiliary1, conjugatePairs[1].Line)
+									new(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
+									new(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
 								}
 						},
 						Technique.UniqueRectangle3E2,
@@ -2030,28 +2030,28 @@ partial class UniqueRectangleStepSearcher
 				{
 					if ((d == d1 || d == d2) && d != b)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, head * 9 + d));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, head * 9 + d));
 					}
 				}
 				foreach (var d in grid.GetCandidates(extra))
 				{
 					if ((d == d1 || d == d2) && d != b)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, extra * 9 + d));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, extra * 9 + d));
 					}
 				}
 				foreach (var d in grid.GetCandidates(begin))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, begin * 9 + d));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, begin * 9 + d));
 					}
 				}
 				foreach (var d in grid.GetCandidates(end))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, end * 9 + d));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, end * 9 + d));
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && (candidateOffsets.Count, conclusions.Count) != (6, 2))
@@ -2070,9 +2070,9 @@ partial class UniqueRectangleStepSearcher
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
-									new(WellKnownColorIdentifierKind.Normal, conjugatePairs[0].Line),
-									new(WellKnownColorIdentifierKind.Auxiliary1, conjugatePairs[1].Line),
-									new(WellKnownColorIdentifierKind.Normal, conjugatePairs[2].Line)
+									new(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
+									new(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line),
+									new(WellKnownColorIdentifier.Normal, conjugatePairs[2].Line)
 								}
 						},
 						Technique.UniqueRectangle4X3,
@@ -2184,7 +2184,7 @@ partial class UniqueRectangleStepSearcher
 						{
 							candidateOffsets.Add(
 								new(
-									i == 0 ? d == a ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal : WellKnownColorIdentifierKind.Auxiliary1,
+									i == 0 ? d == a ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal : WellKnownColorIdentifier.Auxiliary1,
 									abx * 9 + d
 								)
 							);
@@ -2194,21 +2194,21 @@ partial class UniqueRectangleStepSearcher
 					{
 						if (d == d1 || d == d2)
 						{
-							candidateOffsets.Add(new(d == b ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, abz * 9 + d));
+							candidateOffsets.Add(new(d == b ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, abz * 9 + d));
 						}
 					}
 					foreach (var d in grid.GetCandidates(aby))
 					{
 						if ((d == d1 || d == d2) && d != b)
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, aby * 9 + d));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, aby * 9 + d));
 						}
 					}
 					foreach (var d in grid.GetCandidates(abw))
 					{
 						if (d == d1 || d == d2)
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, abw * 9 + d));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, abw * 9 + d));
 						}
 					}
 					if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -2227,9 +2227,9 @@ partial class UniqueRectangleStepSearcher
 									| candidateOffsets
 									| new HouseViewNode[]
 									{
-										new(WellKnownColorIdentifierKind.Normal, conjugatePairs[0].Line),
-										new(WellKnownColorIdentifierKind.Normal, conjugatePairs[1].Line),
-										new(WellKnownColorIdentifierKind.Auxiliary1, conjugatePairs[2].Line)
+										new(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
+										new(WellKnownColorIdentifier.Normal, conjugatePairs[1].Line),
+										new(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[2].Line)
 									}
 							},
 							Technique.UniqueRectangle4C3,
@@ -2389,8 +2389,8 @@ partial class UniqueRectangleStepSearcher
 									candidateOffsets.Add(
 										new(
 											digit == elimDigit
-												? otherCellsMap.Contains(cell) ? WellKnownColorIdentifierKind.Auxiliary2 : WellKnownColorIdentifierKind.Normal
-												: (extraDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal,
+												? otherCellsMap.Contains(cell) ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Normal
+												: (extraDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
 											cell * 9 + digit
 										)
 									);
@@ -2400,12 +2400,12 @@ partial class UniqueRectangleStepSearcher
 						foreach (var digit in grid.GetCandidates(c1))
 						{
 							candidateOffsets.Add(
-								new(digit == elimDigit ? WellKnownColorIdentifierKind.Auxiliary2 : WellKnownColorIdentifierKind.Auxiliary1, c1 * 9 + digit));
+								new(digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1, c1 * 9 + digit));
 						}
 						foreach (var digit in grid.GetCandidates(c2))
 						{
 							candidateOffsets.Add(
-								new(digit == elimDigit ? WellKnownColorIdentifierKind.Auxiliary2 : WellKnownColorIdentifierKind.Auxiliary1, c2 * 9 + digit));
+								new(digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1, c2 * 9 + digit));
 						}
 						if (UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
 						{
@@ -2487,7 +2487,7 @@ partial class UniqueRectangleStepSearcher
 										{
 											candidateOffsets.Add(
 												new(
-													(extraDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal,
+													(extraDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
 													cell * 9 + digit
 												)
 											);
@@ -2497,17 +2497,17 @@ partial class UniqueRectangleStepSearcher
 								foreach (var digit in grid.GetCandidates(c1))
 								{
 									candidateOffsets.Add(
-										new(digit == elimDigit ? WellKnownColorIdentifierKind.Auxiliary2 : WellKnownColorIdentifierKind.Auxiliary1, c1 * 9 + digit));
+										new(digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1, c1 * 9 + digit));
 								}
 								foreach (var digit in grid.GetCandidates(c2))
 								{
 									candidateOffsets.Add(
-										new(digit == elimDigit ? WellKnownColorIdentifierKind.Auxiliary2 : WellKnownColorIdentifierKind.Auxiliary1, c2 * 9 + digit));
+										new(digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1, c2 * 9 + digit));
 								}
 								foreach (var digit in grid.GetCandidates(c3))
 								{
 									candidateOffsets.Add(
-										new(digit == elimDigit ? WellKnownColorIdentifierKind.Auxiliary2 : WellKnownColorIdentifierKind.Auxiliary1, c3 * 9 + digit));
+										new(digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1, c3 * 9 + digit));
 								}
 								if (UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
 								{
@@ -2588,8 +2588,8 @@ partial class UniqueRectangleStepSearcher
 												candidateOffsets.Add(
 													new(
 														(extraDigitsMask >> digit & 1) != 0
-															? WellKnownColorIdentifierKind.Auxiliary1
-															: WellKnownColorIdentifierKind.Normal,
+															? WellKnownColorIdentifier.Auxiliary1
+															: WellKnownColorIdentifier.Normal,
 														cell * 9 + digit
 													)
 												);
@@ -2600,7 +2600,7 @@ partial class UniqueRectangleStepSearcher
 									{
 										candidateOffsets.Add(
 											new(
-												digit == elimDigit ? WellKnownColorIdentifierKind.Auxiliary2 : WellKnownColorIdentifierKind.Auxiliary1,
+												digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1,
 												c1 * 9 + digit
 											)
 										);
@@ -2609,7 +2609,7 @@ partial class UniqueRectangleStepSearcher
 									{
 										candidateOffsets.Add(
 											new(
-												digit == elimDigit ? WellKnownColorIdentifierKind.Auxiliary2 : WellKnownColorIdentifierKind.Auxiliary1,
+												digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1,
 												c2 * 9 + digit
 											)
 										);
@@ -2618,7 +2618,7 @@ partial class UniqueRectangleStepSearcher
 									{
 										candidateOffsets.Add(
 											new(
-												digit == elimDigit ? WellKnownColorIdentifierKind.Auxiliary2 : WellKnownColorIdentifierKind.Auxiliary1,
+												digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1,
 												c3 * 9 + digit
 											)
 										);
@@ -2627,7 +2627,7 @@ partial class UniqueRectangleStepSearcher
 									{
 										candidateOffsets.Add(
 											new(
-												digit == elimDigit ? WellKnownColorIdentifierKind.Auxiliary2 : WellKnownColorIdentifierKind.Auxiliary1,
+												digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1,
 												c4 * 9 + digit
 											)
 										);
@@ -2927,7 +2927,7 @@ partial class UniqueRectangleStepSearcher
 					{
 						candidateOffsets.Add(
 							new(
-								(otherDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal,
+								(otherDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
 								cell * 9 + digit
 							)
 						);
@@ -2939,7 +2939,7 @@ partial class UniqueRectangleStepSearcher
 					{
 						candidateOffsets.Add(
 							new(
-								!cannibalMode && digit == digitIsolated ? WellKnownColorIdentifierKind.Auxiliary3 : WellKnownColorIdentifierKind.Auxiliary2,
+								!cannibalMode && digit == digitIsolated ? WellKnownColorIdentifier.Auxiliary3 : WellKnownColorIdentifier.Auxiliary2,
 								cell * 9 + digit
 							)
 						);
@@ -2952,8 +2952,8 @@ partial class UniqueRectangleStepSearcher
 						candidateOffsets.Add(
 							new(
 								digitIsolated == digit
-									? WellKnownColorIdentifierKind.Auxiliary3
-									: (otherDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Auxiliary2,
+									? WellKnownColorIdentifier.Auxiliary3
+									: (otherDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Auxiliary2,
 								cell * 9 + digit
 							)
 						);
@@ -2970,8 +2970,8 @@ partial class UniqueRectangleStepSearcher
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
-									new(WellKnownColorIdentifierKind.Normal, block),
-									new(WellKnownColorIdentifierKind.Auxiliary2, line)
+									new(WellKnownColorIdentifier.Normal, block),
+									new(WellKnownColorIdentifier.Auxiliary2, line)
 								}
 						},
 						digit1,
@@ -3140,33 +3140,33 @@ partial class UniqueRectangleStepSearcher
 						// Gather views.
 						var candidateOffsets = new List<CandidateViewNode>
 						{
-							new(WellKnownColorIdentifierKind.Auxiliary1, targetCell * 9 + extraDigit)
+							new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit)
 						};
 						if (CandidatesMap[d1].Contains(resultCell))
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, resultCell * 9 + d1));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, resultCell * 9 + d1));
 						}
 						if (CandidatesMap[d2].Contains(resultCell))
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, resultCell * 9 + d2));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, resultCell * 9 + d2));
 						}
 						if (CandidatesMap[extraDigit].Contains(resultCell))
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, resultCell * 9 + extraDigit));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit));
 						}
 
 						foreach (var digit in (Mask)(grid.GetCandidates(urCellInSameBlock) & abcMask))
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, urCellInSameBlock * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, urCellInSameBlock * 9 + digit));
 						}
 						foreach (var digit in grid.GetCandidates(anotherCell))
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, anotherCell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, anotherCell * 9 + digit));
 						}
 						var _xOr_yMask = grid.GetCandidates(bivalueCellToCheck);
 						foreach (var digit in _xOr_yMask)
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, bivalueCellToCheck * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, bivalueCellToCheck * 9 + digit));
 						}
 
 						// Add into the list.
@@ -3178,26 +3178,26 @@ partial class UniqueRectangleStepSearcher
 								new[]
 								{
 									View.Empty
-										| new CellViewNode(WellKnownColorIdentifierKind.Normal, targetCell)
+										| new CellViewNode(WellKnownColorIdentifier.Normal, targetCell)
 										| candidateOffsets
 										| new HouseViewNode[]
 										{
-											new(WellKnownColorIdentifierKind.Normal, block),
-											new(WellKnownColorIdentifierKind.Auxiliary1, line)
+											new(WellKnownColorIdentifier.Normal, block),
+											new(WellKnownColorIdentifier.Auxiliary1, line)
 										},
 									View.Empty
 										| new CandidateViewNode[]
 										{
-											new(WellKnownColorIdentifierKind.Auxiliary1, resultCell * 9 + extraDigit),
-											new(WellKnownColorIdentifierKind.Auxiliary1, targetCell * 9 + extraDigit)
+											new(WellKnownColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit),
+											new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit)
 										}
 										| new BabaGroupViewNode[]
 										{
-											new(WellKnownColorIdentifierKind.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask),
-											new(WellKnownColorIdentifierKind.Normal, targetCell, (byte)'x', _xOr_yMask),
-											new(WellKnownColorIdentifierKind.Normal, urCellInSameBlock, extraDigitId, extraDigitMask),
-											new(WellKnownColorIdentifierKind.Normal, anotherCell, (byte)'x', _xOr_yMask),
-											new(WellKnownColorIdentifierKind.Normal, resultCell, extraDigitId, extraDigitMask)
+											new(WellKnownColorIdentifier.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask),
+											new(WellKnownColorIdentifier.Normal, targetCell, (byte)'x', _xOr_yMask),
+											new(WellKnownColorIdentifier.Normal, urCellInSameBlock, extraDigitId, extraDigitMask),
+											new(WellKnownColorIdentifier.Normal, anotherCell, (byte)'x', _xOr_yMask),
+											new(WellKnownColorIdentifier.Normal, resultCell, extraDigitId, extraDigitMask)
 										}
 								},
 								d1,
@@ -3236,54 +3236,54 @@ partial class UniqueRectangleStepSearcher
 						// Gather views.
 						var candidateOffsetsAnotherSubtype = new List<CandidateViewNode>
 						{
-							new(WellKnownColorIdentifierKind.Auxiliary1, targetCell * 9 + extraDigit)
+							new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit)
 						};
 						if (CandidatesMap[d1].Contains(resultCell))
 						{
-							candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifierKind.Normal, resultCell * 9 + d1));
+							candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Normal, resultCell * 9 + d1));
 						}
 						if (CandidatesMap[d2].Contains(resultCell))
 						{
-							candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifierKind.Normal, resultCell * 9 + d2));
+							candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Normal, resultCell * 9 + d2));
 						}
 						if (CandidatesMap[extraDigit].Contains(resultCell))
 						{
-							candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifierKind.Auxiliary1, resultCell * 9 + extraDigit));
+							candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit));
 						}
 
 						var candidateOffsetsAnotherSubtypeLighter = new List<CandidateViewNode>
 						{
-							new(WellKnownColorIdentifierKind.Auxiliary1, resultCell * 9 + extraDigit),
-							new(WellKnownColorIdentifierKind.Auxiliary1, targetCell * 9 + extraDigit)
+							new(WellKnownColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit),
+							new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit)
 						};
 						foreach (var digit in (Mask)(grid.GetCandidates(urCellInSameBlock) & abcMask))
 						{
 							if (digit == extraDigit)
 							{
-								candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifierKind.Auxiliary1, urCellInSameBlock * 9 + digit));
-								candidateOffsetsAnotherSubtypeLighter.Add(new(WellKnownColorIdentifierKind.Auxiliary1, urCellInSameBlock * 9 + digit));
+								candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Auxiliary1, urCellInSameBlock * 9 + digit));
+								candidateOffsetsAnotherSubtypeLighter.Add(new(WellKnownColorIdentifier.Auxiliary1, urCellInSameBlock * 9 + digit));
 							}
 							else
 							{
-								candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifierKind.Normal, urCellInSameBlock * 9 + digit));
+								candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Normal, urCellInSameBlock * 9 + digit));
 							}
 						}
 						foreach (var digit in grid.GetCandidates(anotherCell))
 						{
 							if (digit == extraDigit)
 							{
-								candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifierKind.Auxiliary1, anotherCell * 9 + digit));
-								candidateOffsetsAnotherSubtypeLighter.Add(new(WellKnownColorIdentifierKind.Auxiliary1, anotherCell * 9 + digit));
+								candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Auxiliary1, anotherCell * 9 + digit));
+								candidateOffsetsAnotherSubtypeLighter.Add(new(WellKnownColorIdentifier.Auxiliary1, anotherCell * 9 + digit));
 							}
 							else
 							{
-								candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifierKind.Normal, anotherCell * 9 + digit));
+								candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Normal, anotherCell * 9 + digit));
 							}
 						}
 						var _xOr_yMask2 = grid.GetCandidates(bivalueCellToCheck);
 						foreach (var digit in _xOr_yMask2)
 						{
-							candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifierKind.Auxiliary2, bivalueCellToCheck * 9 + digit));
+							candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Auxiliary2, bivalueCellToCheck * 9 + digit));
 						}
 
 						// Add into the list.
@@ -3295,23 +3295,23 @@ partial class UniqueRectangleStepSearcher
 								new[]
 								{
 									View.Empty
-										| new CellViewNode(WellKnownColorIdentifierKind.Normal, targetCell)
+										| new CellViewNode(WellKnownColorIdentifier.Normal, targetCell)
 										| candidateOffsetsAnotherSubtype
 										| new HouseViewNode[]
 										{
-											new(WellKnownColorIdentifierKind.Normal, block),
-											new(WellKnownColorIdentifierKind.Auxiliary1, line),
-											new(WellKnownColorIdentifierKind.Auxiliary1, anotherLine)
+											new(WellKnownColorIdentifier.Normal, block),
+											new(WellKnownColorIdentifier.Auxiliary1, line),
+											new(WellKnownColorIdentifier.Auxiliary1, anotherLine)
 										},
 									View.Empty
 										| candidateOffsetsAnotherSubtypeLighter
 										| new BabaGroupViewNode[]
 										{
-											new(WellKnownColorIdentifierKind.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask2),
-											new(WellKnownColorIdentifierKind.Normal, targetCell, (byte)'x', _xOr_yMask2),
-											new(WellKnownColorIdentifierKind.Normal, urCellInSameBlock, extraDigitId2, extraDigitMask2),
-											new(WellKnownColorIdentifierKind.Normal, anotherCell, (byte)'x', _xOr_yMask2),
-											new(WellKnownColorIdentifierKind.Normal, resultCell, extraDigitId2, extraDigitMask2)
+											new(WellKnownColorIdentifier.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask2),
+											new(WellKnownColorIdentifier.Normal, targetCell, (byte)'x', _xOr_yMask2),
+											new(WellKnownColorIdentifier.Normal, urCellInSameBlock, extraDigitId2, extraDigitMask2),
+											new(WellKnownColorIdentifier.Normal, anotherCell, (byte)'x', _xOr_yMask2),
+											new(WellKnownColorIdentifier.Normal, resultCell, extraDigitId2, extraDigitMask2)
 										}
 								},
 								d1,
@@ -3411,21 +3411,21 @@ partial class UniqueRectangleStepSearcher
 				{
 					if (CandidatesMap[d1].Contains(cell))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + d1));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d1));
 					}
 					if (CandidatesMap[d2].Contains(cell))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + d2));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d2));
 					}
 
 					if (grid.GetStatus(cell) == CellStatus.Modifiable)
 					{
-						cellOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell));
+						cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 					}
 				}
 				foreach (var cell in guardianMap)
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + guardianDigit));
+					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + guardianDigit));
 				}
 
 				accumulator.Add(
@@ -3438,8 +3438,8 @@ partial class UniqueRectangleStepSearcher
 								| candidateOffsets
 								| new HouseViewNode[]
 								{
-									new(WellKnownColorIdentifierKind.Normal, houseCombination[0]),
-									new(WellKnownColorIdentifierKind.Normal, houseCombination[1])
+									new(WellKnownColorIdentifier.Normal, houseCombination[0]),
+									new(WellKnownColorIdentifier.Normal, houseCombination[1])
 								}
 						},
 						d1,
@@ -3569,34 +3569,34 @@ partial class UniqueRectangleStepSearcher
 							{
 								if (CandidatesMap[d1].Contains(cell))
 								{
-									candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + d1));
+									candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d1));
 								}
 								if (CandidatesMap[d2].Contains(cell))
 								{
-									candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + d2));
+									candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d2));
 								}
 
 								if (grid.GetStatus(cell) == CellStatus.Modifiable)
 								{
-									cellOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell));
+									cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 								}
 							}
 							foreach (var cell in guardianCellPair)
 							{
 								if (CandidatesMap[d1].Contains(cell))
 								{
-									candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, cell * 9 + d1));
+									candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d1));
 								}
 								if (CandidatesMap[d2].Contains(cell))
 								{
-									candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, cell * 9 + d2));
+									candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d2));
 								}
 							}
 							foreach (var cell in otherCells)
 							{
 								foreach (var digit in grid.GetCandidates(cell))
 								{
-									candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
+									candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 								}
 							}
 
@@ -3610,9 +3610,9 @@ partial class UniqueRectangleStepSearcher
 											| candidateOffsets
 											| new HouseViewNode[]
 											{
-												new(WellKnownColorIdentifierKind.Normal, house),
-												new(WellKnownColorIdentifierKind.Auxiliary2, houseCombination[0]),
-												new(WellKnownColorIdentifierKind.Auxiliary2, houseCombination[1])
+												new(WellKnownColorIdentifier.Normal, house),
+												new(WellKnownColorIdentifier.Auxiliary2, houseCombination[0]),
+												new(WellKnownColorIdentifier.Auxiliary2, houseCombination[1])
 											}
 									},
 									d1,
@@ -3746,30 +3746,30 @@ partial class UniqueRectangleStepSearcher
 						{
 							if (CandidatesMap[d1].Contains(cell))
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + d1));
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d1));
 							}
 							if (CandidatesMap[d2].Contains(cell))
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + d2));
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d2));
 							}
 
 							if (grid.GetStatus(cell) == CellStatus.Modifiable)
 							{
-								cellOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell));
+								cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 							}
 						}
 						foreach (var cell in guardianCellPair)
 						{
 							if (CandidatesMap[d1].Contains(cell))
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, cell * 9 + d1));
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d1));
 							}
 							if (CandidatesMap[d2].Contains(cell))
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, cell * 9 + d2));
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d2));
 							}
 
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + conjugatePairDigit));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + conjugatePairDigit));
 						}
 
 						accumulator.Add(
@@ -3782,9 +3782,9 @@ partial class UniqueRectangleStepSearcher
 										| candidateOffsets
 										| new HouseViewNode[]
 										{
-											new(WellKnownColorIdentifierKind.Normal, house),
-											new(WellKnownColorIdentifierKind.Auxiliary2, houseCombination[0]),
-											new(WellKnownColorIdentifierKind.Auxiliary2, houseCombination[1])
+											new(WellKnownColorIdentifier.Normal, house),
+											new(WellKnownColorIdentifier.Auxiliary2, houseCombination[0]),
+											new(WellKnownColorIdentifier.Auxiliary2, houseCombination[1])
 										}
 								},
 								d1,
@@ -3916,14 +3916,14 @@ partial class UniqueRectangleStepSearcher
 							{
 								foreach (var digit in (Mask)(grid.GetCandidates(cell) & comparer))
 								{
-									candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
+									candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 								}
 
 								break;
 							}
 							case CellStatus.Modifiable:
 							{
-								cellOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell));
+								cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 								break;
 							}
 						}
@@ -3932,7 +3932,7 @@ partial class UniqueRectangleStepSearcher
 					{
 						candidateOffsets.Add(
 							new(
-								cell == guardianHead ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Auxiliary2,
+								cell == guardianHead ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Auxiliary2,
 								cell * 9 + guardianDigit
 							)
 						);
@@ -3941,7 +3941,7 @@ partial class UniqueRectangleStepSearcher
 					{
 						candidateOffsets.Add(
 							new(
-								cell == anotherHead ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Auxiliary2,
+								cell == anotherHead ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Auxiliary2,
 								cell * 9 + guardianDigit
 							)
 						);
@@ -4083,14 +4083,14 @@ partial class UniqueRectangleStepSearcher
 						{
 							foreach (var digit in (Mask)(grid.GetCandidates(cell) & comparer))
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 							}
 
 							break;
 						}
 						case CellStatus.Modifiable:
 						{
-							cellOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell));
+							cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 
 							break;
 						}
@@ -4105,7 +4105,7 @@ partial class UniqueRectangleStepSearcher
 							continue;
 						}
 
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, cell * 9 + digit));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
 					}
 				}
 				foreach (var cell in cellPair)
@@ -4114,7 +4114,7 @@ partial class UniqueRectangleStepSearcher
 					{
 						candidateOffsets.Add(
 							new(
-								digit != d1 && digit != d2 ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Auxiliary2,
+								digit != d1 && digit != d2 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Auxiliary2,
 								cell * 9 + digit
 							)
 						);
@@ -4254,7 +4254,7 @@ partial class UniqueRectangleStepSearcher
 									{
 										if (CandidatesMap[digit].Contains(urCell))
 										{
-											candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, urCell * 9 + digit));
+											candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, urCell * 9 + digit));
 										}
 									}
 
@@ -4262,18 +4262,18 @@ partial class UniqueRectangleStepSearcher
 								}
 								case CellStatus.Modifiable:
 								{
-									cellOffsets.Add(new(WellKnownColorIdentifierKind.Normal, urCell));
+									cellOffsets.Add(new(WellKnownColorIdentifier.Normal, urCell));
 									break;
 								}
 							}
 						}
 						foreach (var xDigitCell in xDigitGuardianCells)
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, xDigitCell * 9 + xDigit));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, xDigitCell * 9 + xDigit));
 						}
 						foreach (var zDigitCell in zDigitGuardianCells)
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, zDigitCell * 9 + zDigit));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, zDigitCell * 9 + zDigit));
 						}
 						foreach (var alsCell in alsMap)
 						{
@@ -4281,7 +4281,7 @@ partial class UniqueRectangleStepSearcher
 							{
 								candidateOffsets.Add(
 									new(
-										digit == d1 || digit == d2 ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.AlmostLockedSet1,
+										digit == d1 || digit == d2 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.AlmostLockedSet1,
 										alsCell * 9 + digit
 									)
 								);
@@ -4296,7 +4296,7 @@ partial class UniqueRectangleStepSearcher
 									View.Empty
 										| candidateOffsets
 										| cellOffsets
-										| new HouseViewNode(WellKnownColorIdentifierKind.AlmostLockedSet1, alsHouse)
+										| new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet1, alsHouse)
 								},
 								d1,
 								d2,
@@ -4403,22 +4403,22 @@ partial class UniqueRectangleStepSearcher
 					var cellOffsets = new List<CellViewNode>();
 					foreach (var cell in urCells)
 					{
-						cellOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell));
+						cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 					}
 
 					var candidateOffsets = new List<CandidateViewNode>
 					{
-						new(WellKnownColorIdentifierKind.Normal, anotherCell * 9 + otherDigit)
+						new(WellKnownColorIdentifier.Normal, anotherCell * 9 + otherDigit)
 					};
 					foreach (var cell in otherCells)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + otherDigit));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + otherDigit));
 					}
 
 					accumulator.Add(
 						new AvoidableRectangleWithHiddenSingleStep(
 							new[] { new Conclusion(Elimination, baseCell, otherDigit) },
-							new[] { View.Empty | cellOffsets | candidateOffsets | new HouseViewNode(WellKnownColorIdentifierKind.Normal, sameHouse) },
+							new[] { View.Empty | cellOffsets | candidateOffsets | new HouseViewNode(WellKnownColorIdentifier.Normal, sameHouse) },
 							d1,
 							d2,
 							(CellMap)urCells,

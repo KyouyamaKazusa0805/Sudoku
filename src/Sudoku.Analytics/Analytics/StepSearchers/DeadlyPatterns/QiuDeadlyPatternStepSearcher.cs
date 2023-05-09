@@ -263,7 +263,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var i = 0;
 		foreach (var cell in cellMap)
 		{
-			cellOffsets[i++] = new(WellKnownColorIdentifierKind.Normal, cell);
+			cellOffsets[i++] = new(WellKnownColorIdentifier.Normal, cell);
 		}
 
 		var candidateOffsets = new List<CandidateViewNode>();
@@ -271,13 +271,13 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		{
 			foreach (var cell in square & CandidatesMap[digit])
 			{
-				candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 			}
 		}
 		var anotherCellInPair = (pair - map)[0];
 		foreach (var digit in grid.GetCandidates(anotherCellInPair))
 		{
-			candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, anotherCellInPair * 9 + digit));
+			candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, anotherCellInPair * 9 + digit));
 		}
 
 		var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
@@ -289,7 +289,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				View.Empty
 					| cellOffsets
 					| candidateOffsets
-					| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifierKind.Normal, pos + offset)
+					| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
 			},
 			pattern,
 			elimCell * 9 + extraDigit
@@ -343,21 +343,21 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var i = 0;
 		foreach (var cell in cellMap)
 		{
-			cellOffsets[i++] = new(WellKnownColorIdentifierKind.Normal, cell);
+			cellOffsets[i++] = new(WellKnownColorIdentifier.Normal, cell);
 		}
 		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (var digit in comparer)
 		{
 			foreach (var cell in square & CandidatesMap[digit])
 			{
-				candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 			}
 		}
 		foreach (var cell in pair)
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(digit == extraDigit ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
+				candidateOffsets.Add(new(digit == extraDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell * 9 + digit));
 			}
 		}
 
@@ -370,7 +370,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				View.Empty
 					| cellOffsets
 					| candidateOffsets
-					| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifierKind.Normal, pos + offset)
+					| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
 			},
 			pattern,
 			extraDigit
@@ -432,14 +432,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					var i = 0;
 					foreach (var cell in cellMap)
 					{
-						cellOffsets[i++] = new(WellKnownColorIdentifierKind.Normal, cell);
+						cellOffsets[i++] = new(WellKnownColorIdentifier.Normal, cell);
 					}
 					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (var digit in comparer)
 					{
 						foreach (var cell in square & CandidatesMap[digit])
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 						}
 					}
 					foreach (var cell in pair)
@@ -448,7 +448,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 						{
 							candidateOffsets.Add(
 								new(
-									(otherDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal,
+									(otherDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
 									cell * 9 + digit
 								)
 							);
@@ -458,7 +458,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					{
 						foreach (var digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 						}
 					}
 
@@ -471,7 +471,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 							View.Empty
 								| cellOffsets
 								| candidateOffsets
-								| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifierKind.Normal, pos + offset)
+								| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
 						},
 						pattern,
 						cells,
@@ -547,19 +547,19 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				var i = 0;
 				foreach (var cell in cellMap)
 				{
-					cellOffsets[i++] = new(WellKnownColorIdentifierKind.Normal, cell);
+					cellOffsets[i++] = new(WellKnownColorIdentifier.Normal, cell);
 				}
 				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (var d in comparer)
 				{
 					foreach (var cell in square & CandidatesMap[d])
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + d));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + d));
 					}
 				}
 				foreach (var cell in pair)
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
+					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 				}
 
 				var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
@@ -571,7 +571,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 						View.Empty
 							| cellOffsets
 							| candidateOffsets
-							| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifierKind.Normal, pos + offset)
+							| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
 					},
 					pattern,
 					new(pair, digit)
@@ -667,26 +667,26 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var i = 0;
 		foreach (var cell in cellMap)
 		{
-			cellOffsets[i++] = new(WellKnownColorIdentifierKind.Normal, cell);
+			cellOffsets[i++] = new(WellKnownColorIdentifier.Normal, cell);
 		}
 		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (var d in comparer)
 		{
 			foreach (var cell in square & CandidatesMap[d])
 			{
-				candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + d));
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + d));
 			}
 		}
 		foreach (var cell in pair)
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 			}
 		}
 		foreach (var candidate in candidates)
 		{
-			candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, candidate));
+			candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, candidate));
 		}
 
 		var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
@@ -698,7 +698,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				View.Empty
 					| cellOffsets
 					| candidateOffsets
-					| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifierKind.Normal, pos + offset)
+					| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
 			},
 			pattern,
 			candidates

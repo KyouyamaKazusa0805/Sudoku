@@ -148,9 +148,9 @@ internal static class UniqueRectangleStepSearcherHelper
 	public static CellViewNode[] GetHighlightCells(Cell[] urCells)
 		=> new CellViewNode[]
 		{
-			new(WellKnownColorIdentifierKind.Normal, urCells[0]),
-			new(WellKnownColorIdentifierKind.Normal, urCells[1]),
-			new(WellKnownColorIdentifierKind.Normal, urCells[2]),
-			new(WellKnownColorIdentifierKind.Normal, urCells[3])
+			new(WellKnownColorIdentifier.Normal, urCells[0]),
+			new(WellKnownColorIdentifier.Normal, urCells[1]),
+			new(WellKnownColorIdentifier.Normal, urCells[2]),
+			new(WellKnownColorIdentifier.Normal, urCells[3])
 		};
 }

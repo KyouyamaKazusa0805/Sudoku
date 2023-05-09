@@ -178,8 +178,8 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 												candidateOffsets.Add(
 													new(
 														!cannibalMode && digit == digitIsolated
-															? WellKnownColorIdentifierKind.Auxiliary2
-															: WellKnownColorIdentifierKind.Normal,
+															? WellKnownColorIdentifier.Auxiliary2
+															: WellKnownColorIdentifier.Normal,
 														cell * 9 + digit
 													)
 												);
@@ -192,8 +192,8 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 												candidateOffsets.Add(
 													new(
 														!cannibalMode && digit == digitIsolated
-															? WellKnownColorIdentifierKind.Auxiliary2
-															: WellKnownColorIdentifierKind.Auxiliary1,
+															? WellKnownColorIdentifier.Auxiliary2
+															: WellKnownColorIdentifier.Auxiliary1,
 														cell * 9 + digit
 													)
 												);
@@ -206,10 +206,10 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 												candidateOffsets.Add(
 													new(
 														digitIsolated == digit
-															? WellKnownColorIdentifierKind.Auxiliary2
+															? WellKnownColorIdentifier.Auxiliary2
 															: (blockMask >> digit & 1) != 0
-																? WellKnownColorIdentifierKind.Normal
-																: WellKnownColorIdentifierKind.Auxiliary1,
+																? WellKnownColorIdentifier.Normal
+																: WellKnownColorIdentifier.Auxiliary1,
 														cell * 9 + digit
 													)
 												);
@@ -224,8 +224,8 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 													| candidateOffsets
 													| new HouseViewNode[]
 													{
-														new(WellKnownColorIdentifierKind.Normal, coverSet),
-														new(WellKnownColorIdentifierKind.Auxiliary2, baseSet)
+														new(WellKnownColorIdentifier.Normal, coverSet),
+														new(WellKnownColorIdentifier.Auxiliary2, baseSet)
 													}
 											},
 											coverSet,

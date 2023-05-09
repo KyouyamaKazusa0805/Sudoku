@@ -209,7 +209,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		var cellOffsets = new List<CellViewNode>(completePattern.Count);
 		foreach (var cell in completePattern)
 		{
-			cellOffsets.Add(new(cellsChosen.Contains(cell) ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cell));
+			cellOffsets.Add(new(cellsChosen.Contains(cell) ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell));
 		}
 
 		var step = new ReverseBivalueUniversalGraveType1Step(
@@ -265,13 +265,13 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		var cellOffsets = new List<CellViewNode>(completePattern.Count);
 		foreach (var cell in completePattern)
 		{
-			cellOffsets.Add(new(cellsChosen.Contains(cell) ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cell));
+			cellOffsets.Add(new(cellsChosen.Contains(cell) ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell));
 		}
 
 		var candidateOffsets = new List<CandidateViewNode>(cellsChosen.Count);
 		foreach (var cell in cellsChosen)
 		{
-			candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + extraDigit));
+			candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + extraDigit));
 		}
 
 		var step = new ReverseBivalueUniversalGraveType2Step(
@@ -359,7 +359,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			foreach (var cell in completePattern)
 			{
 				cellOffsets.Add(
-					new(cellsChosen.Contains(cell) ? WellKnownColorIdentifierKind.Auxiliary1 : WellKnownColorIdentifierKind.Normal, cell)
+					new(cellsChosen.Contains(cell) ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell)
 				);
 			}
 
@@ -372,11 +372,11 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				{
 					View.Empty
 						| cellOffsets
-						| new CandidateViewNode(WellKnownColorIdentifierKind.Auxiliary1, conjugatePairCellInnerPattern * 9 + selectedDigit)
-						| new CandidateViewNode(WellKnownColorIdentifierKind.Auxiliary1, conjugatePairCellOuterPattern * 9 + selectedDigit)
-						| new HouseViewNode(WellKnownColorIdentifierKind.Normal, house)
-						| new LinkViewNode(WellKnownColorIdentifierKind.Normal, lockedTargetInner, anotherLockedTarget, Inference.Weak)
-						| new LinkViewNode(WellKnownColorIdentifierKind.Normal, lockedTargetOuter, anotherLockedTarget, Inference.Weak)
+						| new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairCellInnerPattern * 9 + selectedDigit)
+						| new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairCellOuterPattern * 9 + selectedDigit)
+						| new HouseViewNode(WellKnownColorIdentifier.Normal, house)
+						| new LinkViewNode(WellKnownColorIdentifier.Normal, lockedTargetInner, anotherLockedTarget, Inference.Weak)
+						| new LinkViewNode(WellKnownColorIdentifier.Normal, lockedTargetOuter, anotherLockedTarget, Inference.Weak)
 				},
 				d1,
 				d2,

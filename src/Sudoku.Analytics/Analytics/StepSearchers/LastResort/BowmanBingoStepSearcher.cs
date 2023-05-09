@@ -59,7 +59,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 					var i = 0;
 					foreach (var (_, candidate) in _tempConclusions)
 					{
-						candidateOffsets[i++] = new(WellKnownColorIdentifierKind.Normal, candidate);
+						candidateOffsets[i++] = new(WellKnownColorIdentifier.Normal, candidate);
 					}
 
 					tempAccumulator.Add(
@@ -127,7 +127,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 			var i = 0;
 			foreach (var (_, candidate) in _tempConclusions)
 			{
-				candidateOffsets[i++] = new(WellKnownColorIdentifierKind.Normal, candidate);
+				candidateOffsets[i++] = new(WellKnownColorIdentifier.Normal, candidate);
 			}
 
 			var step = new BowmanBingoStep(
@@ -162,7 +162,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		{
 			var c1 = _tempConclusions[i].Candidate;
 			var c2 = _tempConclusions[i + 1].Candidate;
-			result.Add(new(WellKnownColorIdentifierKind.Normal, new(c1 % 9, c1 / 9), new(c2 % 9, c2 / 9), Inference.Default));
+			result.Add(new(WellKnownColorIdentifier.Normal, new(c1 % 9, c1 / 9), new(c2 % 9, c2 / 9), Inference.Default));
 		}
 
 		return result;

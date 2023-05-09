@@ -142,7 +142,7 @@ internal static class UniqueLoopStepSearcherHelper
 		{
 			result.Add(
 				new(
-					WellKnownColorIdentifierKind.Normal,
+					WellKnownColorIdentifier.Normal,
 					new(digit, CellsMap[path[i]]),
 					new(digit, CellsMap[path[i + 1 == path.Length ? 0 : i + 1]]),
 					Inference.ConjugatePair

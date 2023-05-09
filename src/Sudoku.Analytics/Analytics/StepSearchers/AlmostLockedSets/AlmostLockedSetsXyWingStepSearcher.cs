@@ -156,15 +156,15 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 							var zDigitsMask = (Mask)(mask & finalZ);
 							foreach (var digit in alsDigitsMask)
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifierKind.AlmostLockedSet1, cell * 9 + digit));
+								candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell * 9 + digit));
 							}
 							foreach (var digit in xDigitsMask)
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 							}
 							foreach (var digit in zDigitsMask)
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, cell * 9 + digit));
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
 							}
 						}
 						foreach (var cell in bMap)
@@ -175,15 +175,15 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 							var zDigitsMask = (Mask)(mask & finalZ);
 							foreach (var digit in alsDigitsMask)
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifierKind.AlmostLockedSet1, cell * 9 + digit));
+								candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell * 9 + digit));
 							}
 							foreach (var digit in yDigitsMask)
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 							}
 							foreach (var digit in zDigitsMask)
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifierKind.AlmostLockedSet2, cell * 9 + digit));
+								candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet2, cell * 9 + digit));
 							}
 						}
 						foreach (var cell in cMap)
@@ -193,11 +193,11 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 							var xyDigitsMask = (Mask)(mask & (finalX | finalY));
 							foreach (var digit in alsDigitsMask)
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifierKind.AlmostLockedSet1, cell * 9 + digit));
+								candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell * 9 + digit));
 							}
 							foreach (var digit in xyDigitsMask)
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 							}
 						}
 
@@ -209,9 +209,9 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 									| candidateOffsets
 									| new HouseViewNode[]
 									{
-										new(WellKnownColorIdentifierKind.AlmostLockedSet1, aHouse),
-										new(WellKnownColorIdentifierKind.AlmostLockedSet2, bHouse),
-										new(WellKnownColorIdentifierKind.AlmostLockedSet3, cHouse)
+										new(WellKnownColorIdentifier.AlmostLockedSet1, aHouse),
+										new(WellKnownColorIdentifier.AlmostLockedSet2, bHouse),
+										new(WellKnownColorIdentifier.AlmostLockedSet3, cHouse)
 									}
 							},
 							a,

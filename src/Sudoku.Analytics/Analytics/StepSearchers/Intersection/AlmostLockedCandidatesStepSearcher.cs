@@ -167,21 +167,21 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			{
 				foreach (var cell in cells & CandidatesMap[digit])
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 				}
 			}
 			foreach (var cell in c)
 			{
 				foreach (var digit in (Mask)(mask & grid.GetCandidates(cell)))
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, cell * 9 + digit));
+					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 				}
 			}
 			foreach (var cell in ahsCells)
 			{
 				foreach (var digit in (Mask)(mask & grid.GetCandidates(cell)))
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 				}
 			}
 
@@ -189,7 +189,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			var valueCells = new List<CellViewNode>(map.Count);
 			foreach (var cell in map)
 			{
-				valueCells.Add(new(WellKnownColorIdentifierKind.Normal, cell));
+				valueCells.Add(new(WellKnownColorIdentifier.Normal, cell));
 			}
 
 			var hasValueCell = valueCells.Count != 0;
@@ -200,7 +200,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 					View.Empty
 						| (hasValueCell ? valueCells : null)
 						| candidateOffsets
-						| new HouseViewNode[] { new(WellKnownColorIdentifierKind.Normal, baseSet), new(WellKnownColorIdentifierKind.Auxiliary2, coverSet) }
+						| new HouseViewNode[] { new(WellKnownColorIdentifier.Normal, baseSet), new(WellKnownColorIdentifier.Auxiliary2, coverSet) }
 				},
 				mask,
 				cells,

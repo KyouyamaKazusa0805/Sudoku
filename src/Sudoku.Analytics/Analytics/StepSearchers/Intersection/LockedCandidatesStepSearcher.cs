@@ -86,7 +86,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (var cell in c & CandidatesMap[digit])
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 				}
 
 				// Okay, now accumulate into the collection.
@@ -98,7 +98,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 					{
 						View.Empty
 							| candidateOffsets
-							| new HouseViewNode[] { new(WellKnownColorIdentifierKind.Normal, bs), new(WellKnownColorIdentifierKind.Auxiliary1, cs) }
+							| new HouseViewNode[] { new(WellKnownColorIdentifier.Normal, bs), new(WellKnownColorIdentifier.Auxiliary1, cs) }
 					},
 					digit,
 					bs,

@@ -151,29 +151,29 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 			var eliminations = new List<ExocetElimination>();
 			var cellOffsets = new List<CellViewNode>
 			{
-				new(WellKnownColorIdentifierKind.Normal, currentJe.Base1),
-				new(WellKnownColorIdentifierKind.Normal, currentJe.Base2),
-				new(WellKnownColorIdentifierKind.Auxiliary1, currentJe.TargetQ1),
-				new(WellKnownColorIdentifierKind.Auxiliary1, currentJe.TargetQ2),
-				new(WellKnownColorIdentifierKind.Auxiliary1, currentJe.TargetR1),
-				new(WellKnownColorIdentifierKind.Auxiliary1, currentJe.TargetR2)
+				new(WellKnownColorIdentifier.Normal, currentJe.Base1),
+				new(WellKnownColorIdentifier.Normal, currentJe.Base2),
+				new(WellKnownColorIdentifier.Auxiliary1, currentJe.TargetQ1),
+				new(WellKnownColorIdentifier.Auxiliary1, currentJe.TargetQ2),
+				new(WellKnownColorIdentifier.Auxiliary1, currentJe.TargetR1),
+				new(WellKnownColorIdentifier.Auxiliary1, currentJe.TargetR2)
 			};
 			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (var digit in grid.GetCandidates(currentJe.Base1))
 			{
-				candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, currentJe.Base1 * 9 + digit));
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, currentJe.Base1 * 9 + digit));
 			}
 			foreach (var digit in grid.GetCandidates(currentJe.Base2))
 			{
-				candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, currentJe.Base2 * 9 + digit));
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, currentJe.Base2 * 9 + digit));
 			}
 			foreach (var cell in currentJe.CrossLine)
 			{
-				cellOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, cell));
+				cellOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell));
 
 				foreach (var digit in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask))
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary2, cell * 9 + digit));
+					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
 				}
 			}
 
@@ -218,7 +218,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 					// Highlight candidates.
 					foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~elimDigitsMask))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifierKind.Auxiliary1, targetCell * 9 + digit));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + digit));
 					}
 				}
 			}

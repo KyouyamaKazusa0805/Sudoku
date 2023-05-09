@@ -91,12 +91,12 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 							View.Empty
 								| new CandidateViewNode[]
 								{
-									new(WellKnownColorIdentifierKind.Normal, cellsList1[c1Index] * 9 + digit),
-									new(WellKnownColorIdentifierKind.Normal, cellsList2[c2Index] * 9 + digit),
-									new(WellKnownColorIdentifierKind.Normal, head * 9 + digit),
-									new(WellKnownColorIdentifierKind.Normal, tail * 9 + digit)
+									new(WellKnownColorIdentifier.Normal, cellsList1[c1Index] * 9 + digit),
+									new(WellKnownColorIdentifier.Normal, cellsList2[c2Index] * 9 + digit),
+									new(WellKnownColorIdentifier.Normal, head * 9 + digit),
+									new(WellKnownColorIdentifier.Normal, tail * 9 + digit)
 								}
-								| new HouseViewNode(WellKnownColorIdentifierKind.Auxiliary1, sameHouse)
+								| new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, sameHouse)
 						},
 						digit,
 						h1,

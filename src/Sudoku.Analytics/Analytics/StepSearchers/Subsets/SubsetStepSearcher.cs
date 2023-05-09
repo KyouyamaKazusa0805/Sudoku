@@ -85,14 +85,14 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 					{
 						foreach (var digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 						}
 					}
 
 					var isLocked = flagMask == mask ? true : flagMask != 0 ? false : default(bool?);
 					var step = new NakedSubsetStep(
 						conclusions.ToArray(),
-						new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifierKind.Normal, house) },
+						new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifier.Normal, house) },
 						house,
 						cells,
 						mask,
@@ -159,13 +159,13 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 					{
 						foreach (var cell in map & CandidatesMap[digit])
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifierKind.Normal, cell * 9 + digit));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 						}
 					}
 
 					var step = new HiddenSubsetStep(
 						conclusions.ToArray(),
-						new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifierKind.Normal, house) },
+						new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifier.Normal, house) },
 						house,
 						map,
 						digitsMask

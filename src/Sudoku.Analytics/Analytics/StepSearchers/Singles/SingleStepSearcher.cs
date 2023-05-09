@@ -92,7 +92,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 				var step = new FullHouseStep(
 					new[] { new Conclusion(Assignment, resultCell, digit) },
-					new[] { View.Empty | new HouseViewNode(WellKnownColorIdentifierKind.Normal, house) },
+					new[] { View.Empty | new HouseViewNode(WellKnownColorIdentifier.Normal, house) },
 					resultCell,
 					digit
 				);
@@ -198,7 +198,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			var digit = TrailingZeroCount(grid.GetCandidates(resultCell));
 			var step = new FullHouseStep(
 				new[] { new Conclusion(Assignment, resultCell, digit) },
-				new[] { View.Empty | new HouseViewNode(WellKnownColorIdentifierKind.Normal, house) },
+				new[] { View.Empty | new HouseViewNode(WellKnownColorIdentifier.Normal, house) },
 				resultCell,
 				digit
 			);
@@ -354,7 +354,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				if (grid[i] == digit)
 				{
 					digitCount++;
-					cellOffsets.Add(new(WellKnownColorIdentifierKind.Normal, i));
+					cellOffsets.Add(new(WellKnownColorIdentifier.Normal, i));
 				}
 			}
 
@@ -367,7 +367,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				View.Empty
 					| (enableAndIsLastDigit ? cellOffsets : null)
-					| (enableAndIsLastDigit ? null : new HouseViewNode(WellKnownColorIdentifierKind.Normal, house))
+					| (enableAndIsLastDigit ? null : new HouseViewNode(WellKnownColorIdentifier.Normal, house))
 			},
 			resultCell,
 			digit,
