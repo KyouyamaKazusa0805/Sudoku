@@ -18,6 +18,17 @@ public static class TechniqueExtensions
 	public static string? GetName(this Technique @this) => R[@this.ToString()];
 
 	/// <summary>
+	/// Try to get the English name of the current <see cref="Technique"/>.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>
+	/// The name of the current technique.
+	/// Return <see langword="null"/> if the current technique does not contain a valid name in resource dictionary.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string? GetEnglishName(this Technique @this) => RawResources.ResourceManager.GetString(@this.ToString(), new(1033));
+
+	/// <summary>
 	/// Try to get the abbreviation of the current <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>

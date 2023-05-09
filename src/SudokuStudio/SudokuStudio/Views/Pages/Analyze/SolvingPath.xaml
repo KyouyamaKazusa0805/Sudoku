@@ -11,7 +11,7 @@
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:SolvingPath}">
 	<ScrollViewer>
-		<StackPanel Orientation="Vertical" Spacing="6">
+		<StackPanel Padding="45,0" Orientation="Vertical" Spacing="6">
 			<ListView
 				x:Name="SolvingPathList" HorizontalAlignment="Stretch" SelectionMode="Single"
 				BorderBrush="LightGray" BorderThickness="1" CornerRadius="5"
@@ -27,7 +27,7 @@
 											a:TextBlockBindable.Inlines="{x:Bind cvt:AnalyzeConversion.GetInlinesOfTooltip((bs:SolvingPathStepBindableSource))}" />
 									</ToolTipService.ToolTip>
 
-									<Grid RowDefinitions="*,*" ColumnDefinitions="20,Auto,*">
+									<Grid RowDefinitions="*,*" ColumnDefinitions="20,Auto,*,*">
 										<TextBlock
 											Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center"
 											Text="{x:Bind cvt:AnalyzeConversion.GetIndexText((bs:SolvingPathStepBindableSource))}" />
@@ -42,11 +42,14 @@
 											Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText(Step)}"
 											Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(Step.DifficultyLevel)}" />
 										<TextBlock
-											Grid.Row="0" Grid.Column="2" Style="{StaticResource BaseTextBlockStyle}" Margin="12,6,0,0"
-											Text="{x:Bind Step.Name}" />
+											Grid.Row="0" Grid.Column="2" Margin="12,6,0,0"
+											Style="{StaticResource BaseTextBlockStyle}" Text="{x:Bind Step.Name}" />
 										<TextBlock
-											Grid.Row="1" Grid.Column="2" Style="{StaticResource BodyTextBlockStyle}" Margin="12,0,0,6"
-											Text="{x:Bind cvt:AnalyzeConversion.GetEliminationString(Step)}" />
+											Grid.Row="0" Grid.Column="3" FontSize="11" Style="{StaticResource BodyTextBlockStyle}"
+											Text="{x:Bind Step.EnglishName}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+										<TextBlock
+											Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource BodyTextBlockStyle}"
+											Margin="12,0,0,6" Text="{x:Bind cvt:AnalyzeConversion.GetEliminationString(Step)}" />
 									</Grid>
 								</ListViewItem>
 							</DataTemplate>

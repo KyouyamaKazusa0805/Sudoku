@@ -2257,6 +2257,16 @@
             Return <see langword="null"/> if the current technique does not contain a valid name in resource dictionary.
             </returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetEnglishName(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the English name of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>
+            The name of the current technique.
+            Return <see langword="null"/> if the current technique does not contain a valid name in resource dictionary.
+            </returns>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAbbreviation(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to get the abbreviation of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
@@ -4773,13 +4783,24 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Step.Name">
             <summary>
-            Indicates the technique name. The technique name are all stored in the resource dictionary,
-            you can find them in the <c>Resources</c> folder (Type <see cref="T:Sudoku.Resources.MergedResources"/>).
+            Indicates the technique name.
             </summary>
+            <remarks>
+            The technique name are all stored in the resource dictionary,
+            you can find them in the <c>Resources</c> folder (Type <see cref="T:Sudoku.Resources.MergedResources"/>).
+            </remarks>
             <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
         </member>
-        <member name="P:Sudoku.Analytics.Step.Format">
+        <member name="P:Sudoku.Analytics.Step.EnglishName">
             <summary>
+            Indicates the English name of the technique.
+            </summary>
+            <remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.Step.Name" path="/remarks"/>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.Format">
+            <summary>s
             Gets the format of the current instance.
             </summary>
             <returns>

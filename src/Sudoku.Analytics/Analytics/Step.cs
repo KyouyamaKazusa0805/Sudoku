@@ -9,13 +9,24 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	IRenderable
 {
 	/// <summary>
-	/// Indicates the technique name. The technique name are all stored in the resource dictionary,
-	/// you can find them in the <c>Resources</c> folder (Type <see cref="MergedResources"/>).
+	/// Indicates the technique name.
 	/// </summary>
+	/// <remarks>
+	/// The technique name are all stored in the resource dictionary,
+	/// you can find them in the <c>Resources</c> folder (Type <see cref="MergedResources"/>).
+	/// </remarks>
 	/// <exception cref="ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
 	public virtual string Name => Code.GetName() ?? throw new ResourceNotFoundException(Code.ToString(), GetType().Assembly);
 
 	/// <summary>
+	/// Indicates the English name of the technique.
+	/// </summary>
+	/// <remarks>
+	/// <inheritdoc cref="Name" path="/remarks"/>
+	/// </remarks>
+	public string EnglishName => Code.GetEnglishName() ?? throw new ResourceNotFoundException(Code.ToString(), GetType().Assembly);
+
+	/// <summary>s
 	/// Gets the format of the current instance.
 	/// </summary>
 	/// <returns>

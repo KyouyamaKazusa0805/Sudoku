@@ -37,4 +37,5 @@ global using static Sudoku.Analytics.CommonReadOnlies;
 global using static Sudoku.Resources.MergedResources;
 global using unsafe LoopChecker = delegate*<in Sudoku.Concepts.CellMap, bool>;
 global using ChainBranch = System.Collections.Generic.Dictionary<byte, Sudoku.Analytics.Patterns.NodeSet>;
+global using RawResources = Sudoku.Resources.Resources;
 global using ExtraDifficultyCase = (string Name, decimal Value);
