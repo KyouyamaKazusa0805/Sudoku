@@ -6213,6 +6213,14 @@ if (student is (name: var name, age: >= 18))
             Throws when the property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/> is not <see langword="true"/>.
             </exception>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetOrDeleteDigit(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Try to set a digit into a cell, or delete a digit from a cell.
+            </summary>
+            <param name="cell">The cell to be set or delete.</param>
+            <param name="digit">The digit to be set or delete.</param>
+            <param name="isSet">Indicates whether the operation is to set a digit into the target cell.</param>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.TriggerGridUpdated(SudokuStudio.Interaction.GridUpdatedBehavior,System.Object)">
             <summary>
             <para>Triggers <see cref="E:SudokuStudio.Views.Controls.SudokuPane.GridUpdated"/> event.</para>

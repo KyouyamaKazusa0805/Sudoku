@@ -381,6 +381,22 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
+	/// Try to set a digit into a cell, or delete a digit from a cell.
+	/// </summary>
+	/// <param name="cell">The cell to be set or delete.</param>
+	/// <param name="digit">The digit to be set or delete.</param>
+	/// <param name="isSet">Indicates whether the operation is to set a digit into the target cell.</param>
+	public void SetOrDeleteDigit(Cell cell, Digit digit, bool isSet)
+	{
+		var puzzle = Puzzle;
+		var conclusion = (Conclusion)(isSet ? new(Assignment, cell, digit) : new(Elimination, cell, digit));
+		puzzle.Apply(conclusion);
+
+		SetPuzzleInternal(puzzle);
+		GridUpdated?.Invoke(this, new(isSet ? GridUpdatedBehavior.Assignment : GridUpdatedBehavior.Elimination, cell * 9 + digit));
+	}
+
+	/// <summary>
 	/// <para>Triggers <see cref="GridUpdated"/> event.</para>
 	/// <para>This method can only be used by internal control type <see cref="SudokuPaneCell"/> or the current type scope.</para>
 	/// </summary>

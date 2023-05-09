@@ -1241,36 +1241,22 @@ public sealed partial class AnalyzePage : Page
 
 	private void SetOrDeleteButton_Click(object sender, RoutedEventArgs e)
 	{
-		if ((sender, SudokuPane) is not (AppBarButton { Tag: int digit }, { Puzzle: var puzzle, _temporarySelectedCell: var cell and not -1 }))
+		if ((sender, SudokuPane) is (AppBarButton { Tag: int rawDigit }, { _temporarySelectedCell: var cell and not -1 }))
 		{
-			return;
+			SudokuPane.SetOrDeleteDigit(cell, Abs(rawDigit) - 1, rawDigit > 0);
 		}
-
-		var conclusion = digit switch
-		{
-			> 0 => new(Assignment, cell, digit - 1),
-			< 0 => new(Elimination, cell, Abs(digit) - 1),
-			_ => default(Conclusion)
-		};
-		puzzle.Apply(conclusion);
-
-		SudokuPane.SetPuzzleInternal(puzzle);
-		SudokuPane.TriggerGridUpdated(
-			conclusion.ConclusionType == Assignment ? GridUpdatedBehavior.Assignment : GridUpdatedBehavior.Elimination,
-			conclusion.Candidate
-		);
 	}
 
 	private void CopyButton_Click(object sender, RoutedEventArgs e) => CopySudokuGridText(false);
 
 	private void CopyKindButton_Click(object sender, RoutedEventArgs e)
 	{
-		if (sender is not MenuFlyoutItem { Tag: int i })
+		if (sender is not MenuFlyoutItem { Tag: int rawFormatFlag })
 		{
 			return;
 		}
 
-		var flag = (SudokuFormatFlags)i;
+		var flag = (SudokuFormatFlags)rawFormatFlag;
 		if (!Enum.IsDefined(flag))
 		{
 			return;
