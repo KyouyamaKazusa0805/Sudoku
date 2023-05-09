@@ -22,16 +22,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	public AnalyzePage BasePage { get; set; } = null!;
 
 	/// <inheritdoc/>
-	AnalyzerResult? IAnalyzeTabPage.AnalysisResult
-	{
-		[DoesNotReturn]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => throw new NotSupportedException();
-
-		set
-		{
-		}
-	}
+	AnalyzerResult? IAnalyzeTabPage.AnalysisResult { get; set; }
 
 
 	/// <summary>
@@ -51,13 +42,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 				techniqueName
 			let groupedBindableSource =
 				from step in stepGroupGroupedByName
-				select new SolvingPathStepBindableSource
-				{
-					Index = -1,
-					DisplayKinds = StepTooltipDisplayKind,
-					Step = step,
-					StepGrid = grid
-				}
+				select new SolvingPathStepBindableSource { DisplayKinds = StepTooltipDisplayKind, Step = step, StepGrid = grid }
 			select new TechniqueGroupBindableSource(groupedBindableSource) { Key = techniqueName }
 		);
 
