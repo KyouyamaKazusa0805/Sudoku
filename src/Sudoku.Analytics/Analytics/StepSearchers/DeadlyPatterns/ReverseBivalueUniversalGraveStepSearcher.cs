@@ -47,6 +47,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		// Collect all possible digits can be used for the final construction of reverse BUGs.
+		scoped ref readonly var grid = ref context.Grid;
 		Mask digits;
 		if (AllowPartiallyUsedTypes)
 		{
@@ -98,13 +99,35 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 
 				// Extra check: If the global map doesn't use all cells of a grid, we should check the other 2 floors/towers.
 				// If those floors/towers are not filled one of two digits, the pattern won't be formed, neither.
-				var d1Counter = (ValuesMap[d1] - globalMap).Count;
-				var d2Counter = (ValuesMap[d2] - globalMap).Count;
-				if ((i, (d1Counter, d2Counter)) is (not 0, not ((6, 0) or (0, 6))) or (0, ( >= 7, _) or (_, >= 7)))
+				var d1Map = ValuesMap[d1] - globalMap;
+				var d2Map = ValuesMap[d2] - globalMap;
+				var d1Counter = d1Map.Count;
+				var d2Counter = d2Map.Count;
+				switch (i)
 				{
-					// Either 6 houses hold 6 'd1's and 0 'd2', or 6 'd2's and 0 'd1'.
-					// Otherwise, this will be handled in 'i == 0' (first case) or invalid cases.
-					continue;
+					case 0 when (d1Counter, d2Counter) is ( >= 7, _) or (_, >= 7):
+					{
+						continue;
+					}
+					default:
+					{
+						var flag = true;
+						foreach (var c in d1Map | d2Map)
+						{
+							if (grid.GetStatus(c) == CellStatus.Given)
+							{
+								flag = false;
+								break;
+							}
+						}
+						if (!flag)
+						{
+							// The last cells cannot contain givens of digit 1 or 2.
+							continue;
+						}
+
+						break;
+					}
 				}
 
 				// The following loop is used for appending new empty cells into the varible 'valuesMap'.
