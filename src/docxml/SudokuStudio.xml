@@ -102,6 +102,21 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:SudokuStudio.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
         <member name="T:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource">
             <summary>
             Represents a type that can be used for binding as source, for the table-like grid controls to display techniques used,
@@ -3084,6 +3099,18 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToCoordinateLabelModeConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Interaction.ValueConverters.StepTooltipDisplayItemToBooleanConverter">
+            <summary>
+            Represents a value converter that can convert a <see cref="T:SudokuStudio.Interaction.StepTooltipDisplayItems"/> to a <see cref="T:System.Boolean"/> value.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.StepTooltipDisplayItemToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.StepTooltipDisplayItemToBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when <paramref name="parameter"/> or <paramref name="value"/> is invalid.</exception>
+        </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.StringToFontFamilyConverter">
             <summary>
             Defines a converter that converts the value between <see cref="T:System.String"/> and <see cref="T:Microsoft.UI.Xaml.Media.FontFamily"/>.
@@ -4776,6 +4803,41 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_SinglesGroup">
             <summary>
               Looks up a localized string similar to Singles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepDisplayItem_DifficultyRating">
+            <summary>
+              Looks up a localized string similar to Difficulty rating.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepDisplayItem_ExtraDifficultyCases">
+            <summary>
+              Looks up a localized string similar to Extra rating factors.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepDisplayItem_SimpleDescription">
+            <summary>
+              Looks up a localized string similar to Description.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepDisplayItem_TechniqueIndex">
+            <summary>
+              Looks up a localized string similar to Technique position.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepDisplayItem_TechniqueName">
+            <summary>
+              Looks up a localized string similar to Technique name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepDisplayItems">
+            <summary>
+              Looks up a localized string similar to Technique step display items.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepDisplayItemsDescription">
+            <summary>
+              Looks up a localized string similar to This option controls the tooltip content when you put your cursor onto a technique step..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.TextResources.SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps">

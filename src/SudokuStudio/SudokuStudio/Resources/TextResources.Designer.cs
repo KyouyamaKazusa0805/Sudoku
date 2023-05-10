@@ -2718,6 +2718,69 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Difficulty rating.
+        /// </summary>
+        internal static string SettingsPage_StepDisplayItem_DifficultyRating {
+            get {
+                return ResourceManager.GetString("SettingsPage_StepDisplayItem_DifficultyRating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extra rating factors.
+        /// </summary>
+        internal static string SettingsPage_StepDisplayItem_ExtraDifficultyCases {
+            get {
+                return ResourceManager.GetString("SettingsPage_StepDisplayItem_ExtraDifficultyCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string SettingsPage_StepDisplayItem_SimpleDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_StepDisplayItem_SimpleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique position.
+        /// </summary>
+        internal static string SettingsPage_StepDisplayItem_TechniqueIndex {
+            get {
+                return ResourceManager.GetString("SettingsPage_StepDisplayItem_TechniqueIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique name.
+        /// </summary>
+        internal static string SettingsPage_StepDisplayItem_TechniqueName {
+            get {
+                return ResourceManager.GetString("SettingsPage_StepDisplayItem_TechniqueName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique step display items.
+        /// </summary>
+        internal static string SettingsPage_StepDisplayItems {
+            get {
+                return ResourceManager.GetString("SettingsPage_StepDisplayItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This option controls the tooltip content when you put your cursor onto a technique step..
+        /// </summary>
+        internal static string SettingsPage_StepDisplayItemsDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_StepDisplayItemsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Only search for steps in a same difficulty level for step searchers.
         /// </summary>
         internal static string SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps {

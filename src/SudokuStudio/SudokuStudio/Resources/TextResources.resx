@@ -947,6 +947,27 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_SinglesGroup" xml:space="preserve">
     <value>Singles</value>
   </data>
+  <data name="SettingsPage_StepDisplayItems" xml:space="preserve">
+    <value>Technique step display items</value>
+  </data>
+  <data name="SettingsPage_StepDisplayItemsDescription" xml:space="preserve">
+    <value>This option controls the tooltip content when you put your cursor onto a technique step.</value>
+  </data>
+  <data name="SettingsPage_StepDisplayItem_DifficultyRating" xml:space="preserve">
+    <value>Difficulty rating</value>
+  </data>
+  <data name="SettingsPage_StepDisplayItem_ExtraDifficultyCases" xml:space="preserve">
+    <value>Extra rating factors</value>
+  </data>
+  <data name="SettingsPage_StepDisplayItem_SimpleDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="SettingsPage_StepDisplayItem_TechniqueIndex" xml:space="preserve">
+    <value>Technique position</value>
+  </data>
+  <data name="SettingsPage_StepDisplayItem_TechniqueName" xml:space="preserve">
+    <value>Technique name</value>
+  </data>
   <data name="SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps" xml:space="preserve">
     <value>Only search for steps in a same difficulty level for step searchers</value>
   </data>
