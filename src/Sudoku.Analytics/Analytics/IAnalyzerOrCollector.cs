@@ -25,4 +25,14 @@ public interface IAnalyzerOrCollector
 	/// Indicates the result step searchers used in the current analyzer or collector.
 	/// </summary>
 	StepSearcher[] ResultStepSearchers { get; }
+
+
+	/// <summary>
+	/// Try to filter step searchers via the specified running area; removing all step searchers if running area does not match.
+	/// </summary>
+	/// <param name="in">The step searchers passed in.</param>
+	/// <param name="runningArea">The running area to be checked.</param>
+	/// <returns>Filtered collection.</returns>
+	protected static StepSearcher[] FilterStepSearchers(StepSearcher[] @in, StepSearcherRunningArea runningArea)
+		=> (from searcher in @in where searcher.RunningArea.Flags(runningArea) select searcher).ToArray();
 }

@@ -60,16 +60,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>, IAnalyzerOrC
 	{
 		get => _stepSearchers;
 
-		internal set
-		{
-			_stepSearchers = value;
-
-			ResultStepSearchers = (
-				from searcher in value
-				where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
-				select searcher
-			).ToArray();
-		}
+		internal set => ResultStepSearchers = IAnalyzerOrCollector.FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Searching);
 	}
 
 	/// <inheritdoc/>
