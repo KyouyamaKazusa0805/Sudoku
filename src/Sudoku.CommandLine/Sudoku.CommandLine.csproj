@@ -17,7 +17,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Mirai.Net" Version="2.4.6" />
+		<PackageReference Include="Mirai.Net" Version="2.4.8" />
 		<PackageReference Include="OneOf" Version="3.0.223" />
 	</ItemGroup>
 
