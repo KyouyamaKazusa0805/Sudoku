@@ -1099,16 +1099,7 @@ public sealed partial class AnalyzePage : Page
 
 		var analyzer = ((App)Application.Current)
 			.Analyzer
-			.WithStepSearchers(
-				from data in ((App)Application.Current).Preference.StepSearcherOrdering.StepSearchersOrder
-				where data.IsEnabled
-				select data.CreateStepSearchers() into stepSearchers
-				from s in stepSearchers
-				let timeFlag = s.IsConfiguredSlow
-				let spaceFlag = s.IsConfiguredHighAllocation
-				where !timeFlag || timeFlag && !disallowHighTimeComplexity || !spaceFlag || spaceFlag && !disallowSpaceTimeComplexity
-				select s
-			)
+			.WithStepSearchers(((App)Application.Current).GetStepSearchers())
 			.WithRuntimeIdentifierSetters(SudokuPane);
 
 		var analyzerResult = await Task.Run(

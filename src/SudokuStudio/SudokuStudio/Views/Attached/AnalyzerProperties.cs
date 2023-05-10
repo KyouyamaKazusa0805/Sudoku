@@ -38,6 +38,7 @@ public static partial class AnalyzerProperties
 	/// Sets the specified property in a <see cref="StepSearcher"/> with the target value via attached properties
 	/// stored in type <see cref="AnalyzerProperties"/>.
 	/// </summary>
+	/// <typeparam name="T">The type of the instance. The type must implement <see cref="IAnalyzerOrCollector"/>.</typeparam>
 	/// <param name="this">The analyzer instance.</param>
 	/// <param name="attachedPropertyValue">The attached property.</param>
 	/// <param name="methodName">The name of the property <paramref name="attachedPropertyValue"/>.</param>
@@ -47,12 +48,8 @@ public static partial class AnalyzerProperties
 	/// </param>
 	/// <returns>The same reference as <paramref name="this"/>.</returns>
 	/// <seealso cref="AnalyzerProperties"/>
-	public static Analyzer WithRuntimeIdentifierSetter(
-		this Analyzer @this,
-		object attachedPropertyValue,
-		string methodName,
-		out bool propertyMatched
-	)
+	public static T WithRuntimeIdentifierSetter<T>(this T @this, object attachedPropertyValue, string methodName, out bool propertyMatched)
+		where T : class, IAnalyzerOrCollector
 	{
 		var targetStepSearcherCollection = @this.ResultStepSearchers;
 		foreach (var searcher in targetStepSearcherCollection)
@@ -75,15 +72,15 @@ public static partial class AnalyzerProperties
 	}
 
 	/// <summary>
-	/// Calls the method <see cref="WithRuntimeIdentifierSetter(Analyzer, object, string?, out bool)"/> for all properties
-	/// in type <see cref="AnalyzerProperties"/>.
+	/// Calls the method <see cref="WithRuntimeIdentifierSetter{T}(T, object, string?, out bool)"/>
+	/// for all properties in type <see cref="AnalyzerProperties"/>.
 	/// </summary>
 	/// <param name="this">The analyzer instance.</param>
 	/// <param name="attachedPane">Indicates the <see cref="SudokuPane"/> instance that all properties in this type attached to.</param>
 	/// <returns>The same reference with argument <paramref name="this"/>.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the matched property is invalid.</exception>
-	/// <seealso cref="WithRuntimeIdentifierSetter(Analyzer, object, string?, out bool)"/>
-	public static Analyzer WithRuntimeIdentifierSetters(this Analyzer @this, SudokuPane attachedPane)
+	/// <seealso cref="WithRuntimeIdentifierSetter{T}(T, object, string?, out bool)"/>
+	public static T WithRuntimeIdentifierSetters<T>(this T @this, SudokuPane attachedPane) where T : class, IAnalyzerOrCollector
 	{
 		foreach (var methodInfo in typeof(AnalyzerProperties).GetMethods(BindingFlags.Static | BindingFlags.Public))
 		{

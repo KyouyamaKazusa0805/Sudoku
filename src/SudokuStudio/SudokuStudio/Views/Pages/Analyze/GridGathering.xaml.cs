@@ -85,9 +85,12 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 
 		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
 
-		var collector = ((App)Application.Current).StepCollector;
-		collector.MaxStepsGathered = ((App)Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered;
-		collector.OnlyShowSameLevelTechniquesInFindAllSteps = ((App)Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps;
+		var collector = ((App)Application.Current)
+			.StepCollector
+			.WithMaxSteps(((App)Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered)
+			.WithSameLevelConfigruation(((App)Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps)
+			.WithStepSearchers(((App)Application.Current).GetStepSearchers())
+			.WithRuntimeIdentifierSetters(BasePage.SudokuPane);
 
 		var result = await Task.Run(
 			() =>

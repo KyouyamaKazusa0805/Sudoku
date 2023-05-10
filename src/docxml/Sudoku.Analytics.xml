@@ -115,24 +115,10 @@
             <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.UnlimitedSpaceComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.StepSearchers">
-            <summary>
-            <para>
-            Indicates the custom <see cref="T:Sudoku.Analytics.StepSearcher"/>s you defined to solve a puzzle.
-            By default, the solver will use <see cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)"/> to solve a puzzle.
-            If you assign a new array of <see cref="T:Sudoku.Analytics.StepSearcher"/>s into this property
-            the step searchers will use this property instead of <see cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)"/> to solve a puzzle.
-            </para>
-            <para>
-            Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
-            however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/> array into it.
-            </para>
-            </summary>
-            <seealso cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.ResultStepSearchers">
-            <summary>
-            Indicates the result step searchers used in the current analyzer.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Analyzer.#ctor">
             <summary>
@@ -2858,6 +2844,31 @@
             Indicates the analysis result will show elapsed time on solving the puzzle.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.IAnalyzerOrCollector">
+            <summary>
+            Extracts a new type that represents an analyzer or a collector type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalyzerOrCollector.StepSearchers">
+            <summary>
+            <para>
+            Indicates the custom <see cref="T:Sudoku.Analytics.StepSearcher"/>s you defined to solve a puzzle.
+            By default, the solver will use <see cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)"/> to solve a puzzle.
+            If you assign a new array of <see cref="T:Sudoku.Analytics.StepSearcher"/>s into this property
+            the step searchers will use this property instead of <see cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)"/> to solve a puzzle.
+            </para>
+            <para>
+            Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
+            however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/> array into it.
+            </para>
+            </summary>
+            <seealso cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)"/>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalyzerOrCollector.ResultStepSearchers">
+            <summary>
+            Indicates the result step searchers used in the current analyzer or collector.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.InternalHelpers.AlmostLockedSetHelper">
             <summary>
             Represents a helper type that operates with <see cref="T:Sudoku.Analytics.Patterns.AlmostLockedSet"/> instances.
@@ -4964,6 +4975,12 @@ result ^= expression;
             Represents an instance that can collect all possible <see cref="T:Sudoku.Analytics.Step"/>s in a grid for one status.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepCollector._stepSearchers">
+            <summary>
+            The backing field of property <see cref="P:Sudoku.Analytics.StepCollector.StepSearchers"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.StepCollector.StepSearchers"/>
+        </member>
         <member name="P:Sudoku.Analytics.StepCollector.OnlyShowSameLevelTechniquesInFindAllSteps">
             <summary>
             Indicates whether the solver only displays the techniques with the same displaying level.
@@ -4980,6 +4997,12 @@ result ^= expression;
             The default value is 1000.
             </remarks>
         </member>
+        <member name="P:Sudoku.Analytics.StepCollector.StepSearchers">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.StepCollector.ResultStepSearchers">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.StepCollector.Search(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
             <summary>
             Search for all possible steps in a grid.
@@ -4989,6 +5012,39 @@ result ^= expression;
             <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
             <returns>The result.</returns>
             <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
+        </member>
+        <member name="T:Sudoku.Analytics.StepCollectorFactory">
+            <summary>
+            Represents a factory for construction of type <see cref="T:Sudoku.Analytics.StepCollector"/>, with extra configuration.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.StepCollector"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithMaxSteps(Sudoku.Analytics.StepCollector,System.Int32)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.StepCollector.MaxStepsGathered"/> with the target value.
+            </summary>
+            <param name="this">The collector instance.</param>
+            <param name="count">The number of maximum value.</param>
+            <returns>The reference same as <see cref="T:Sudoku.Analytics.StepCollector"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithStepSearchers(Sudoku.Analytics.StepCollector,Sudoku.Analytics.StepSearcher[])">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.StepCollector.StepSearchers"/> with the target value.
+            </summary>
+            <param name="this">The collector instance.</param>
+            <param name="stepSearchers">The step searchers.</param>
+            <returns>The reference same as <see cref="T:Sudoku.Analytics.StepCollector"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithStepSearchers(Sudoku.Analytics.StepCollector,System.Collections.Generic.IEnumerable{Sudoku.Analytics.StepSearcher})">
+            <inheritdoc cref="M:Sudoku.Analytics.StepCollectorFactory.WithStepSearchers(Sudoku.Analytics.StepCollector,Sudoku.Analytics.StepSearcher[])"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithSameLevelConfigruation(Sudoku.Analytics.StepCollector,System.Boolean)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.StepCollector.OnlyShowSameLevelTechniquesInFindAllSteps"/> with the target value.
+            </summary>
+            <param name="this">The collector instance.</param>
+            <param name="sameLevel">A <see cref="T:System.Boolean"/> value indicating whether the collector only collects for same-level steps.</param>
+            <returns>The reference same as <see cref="T:Sudoku.Analytics.StepCollector"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcher">
             <summary>

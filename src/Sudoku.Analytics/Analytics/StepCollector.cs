@@ -3,15 +3,22 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one status.
 /// </summary>
-public sealed class StepCollector
+public sealed class StepCollector : IAnalyzerOrCollector
 {
+	/// <summary>
+	/// The backing field of property <see cref="StepSearchers"/>.
+	/// </summary>
+	/// <seealso cref="StepSearchers"/>
+	private StepSearcher[]? _stepSearchers;
+
+
 	/// <summary>
 	/// Indicates whether the solver only displays the techniques with the same displaying level.
 	/// </summary>
 	/// <remarks>
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
-	public bool OnlyShowSameLevelTechniquesInFindAllSteps { get; set; } = true;
+	public bool OnlyShowSameLevelTechniquesInFindAllSteps { get; internal set; } = true;
 
 	/// <summary>
 	/// Indicates the maximum steps can be gathered.
@@ -19,7 +26,33 @@ public sealed class StepCollector
 	/// <remarks>
 	/// The default value is 1000.
 	/// </remarks>
-	public int MaxStepsGathered { get; set; } = 1000;
+	public int MaxStepsGathered { get; internal set; } = 1000;
+
+	/// <inheritdoc/>
+	[DisallowNull]
+	public StepSearcher[]? StepSearchers
+	{
+		get => _stepSearchers;
+
+		internal set
+		{
+			_stepSearchers = value;
+
+			ResultStepSearchers = (
+				from searcher in value
+				where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
+				select searcher
+			).ToArray();
+		}
+	}
+
+	/// <inheritdoc/>
+	public StepSearcher[] ResultStepSearchers { get; private set; } =
+	(
+		from searcher in StepSearcherPool.Default(true)
+		where searcher.RunningArea.Flags(StepSearcherRunningArea.Gathering)
+		select searcher
+	).ToArray();
 
 
 	/// <summary>
@@ -39,7 +72,7 @@ public sealed class StepCollector
 
 		const StepSearcherLevel defaultLevelValue = (StepSearcherLevel)byte.MaxValue;
 
-		var possibleStepSearchers = StepSearcherPool.Default();
+		var possibleStepSearchers = ResultStepSearchers;
 		var totalSearchersCount = possibleStepSearchers.Length;
 
 		Initialize(puzzle, puzzle.SolutionGrid);
