@@ -3,7 +3,6 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines the gathering page.
 /// </summary>
-[DependencyProperty<StepTooltipDisplayKind>("StepTooltipDisplayKind", DefaultValue = StepTooltipDisplayKind.TechniqueName | StepTooltipDisplayKind.DifficultyRating | StepTooltipDisplayKind.SimpleDescription | StepTooltipDisplayKind.ExtraDifficultyCases, DocSummary = "Indicates the tooltip display kind.")]
 public sealed partial class GridGathering : Page, IAnalyzeTabPage
 {
 	/// <summary>
@@ -32,7 +31,9 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	/// <param name="grid">The puzzle.</param>
 	/// <returns>The collection that can be used as view source.</returns>
 	internal ObservableCollection<TechniqueGroupBindableSource> GetTechniqueGroups(IEnumerable<Step> collection, Grid grid)
-		=> new(
+	{
+		var displayItems = ((App)Application.Current).Preference.UIPreferences.StepDisplayItems;
+		return new(
 			from step in collection
 			group step by step.Name into stepGroupGroupedByName
 			let techniqueName = stepGroupGroupedByName.Key
@@ -42,9 +43,10 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 				techniqueName
 			let groupedBindableSource =
 				from step in stepGroupGroupedByName
-				select new SolvingPathStepBindableSource { DisplayKinds = StepTooltipDisplayKind, Step = step, StepGrid = grid }
+				select new SolvingPathStepBindableSource { DisplayItems = displayItems, Step = step, StepGrid = grid }
 			select new TechniqueGroupBindableSource(groupedBindableSource) { Key = techniqueName }
 		);
+	}
 
 
 	private void TechniqueGroupView_StepChosen(object sender, TechniqueGroupViewStepChosenEventArgs e) => BasePage.VisualUnit = e.ChosenStep;

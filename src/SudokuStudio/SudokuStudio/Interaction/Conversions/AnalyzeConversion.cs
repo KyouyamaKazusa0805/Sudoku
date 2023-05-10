@@ -43,7 +43,7 @@ internal static class AnalyzeConversion
 		if (s is not
 			{
 				Index: var index,
-				DisplayKinds: var displayKind,
+				DisplayItems: var displayKind,
 				Step: { Name: var name, BaseDifficulty: var baseDifficulty, Difficulty: var difficulty, ExtraDifficultyCases: var cases } step
 			})
 		{
@@ -52,14 +52,14 @@ internal static class AnalyzeConversion
 
 		var result = new List<Inline>();
 
-		if (displayKind.Flags(StepTooltipDisplayKind.TechniqueName))
+		if (displayKind.Flags(StepTooltipDisplayItems.TechniqueName))
 		{
 			result.Add(new Run { Text = GetString("AnalyzePage_TechniqueName") }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(new Run { Text = name });
 		}
 
-		if (displayKind.Flags(StepTooltipDisplayKind.TechniqueIndex))
+		if (displayKind.Flags(StepTooltipDisplayItems.TechniqueIndex))
 		{
 			f();
 
@@ -68,7 +68,7 @@ internal static class AnalyzeConversion
 			result.Add(new Run { Text = (index + 1).ToString() });
 		}
 
-		if (displayKind.Flags(StepTooltipDisplayKind.DifficultyRating))
+		if (displayKind.Flags(StepTooltipDisplayItems.DifficultyRating))
 		{
 			f();
 
@@ -77,7 +77,7 @@ internal static class AnalyzeConversion
 			result.Add(new Run { Text = difficulty.ToString("0.0") });
 		}
 
-		if (displayKind.Flags(StepTooltipDisplayKind.ExtraDifficultyCases))
+		if (displayKind.Flags(StepTooltipDisplayItems.ExtraDifficultyCases))
 		{
 			f();
 
@@ -103,7 +103,7 @@ internal static class AnalyzeConversion
 			}
 		}
 
-		if (displayKind.Flags(StepTooltipDisplayKind.SimpleDescription))
+		if (displayKind.Flags(StepTooltipDisplayItems.SimpleDescription))
 		{
 			f();
 

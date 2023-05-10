@@ -34,6 +34,7 @@ using M = CoordinateLabelDisplayMode;
 [DependencyProperty<string>("BabaGroupingFontName", DefaultValue = "Times New Roman")]
 [DependencyProperty<string>("CoordinateLabelFontName", DefaultValue = "Cascadia Code")]
 [DependencyProperty<BackdropKind>("Backdrop", DefaultValue = BackdropKind.Acrylic)]
+[DependencyProperty<StepTooltipDisplayItems>("StepDisplayItems", DefaultValue = StepTooltipDisplayItems.TechniqueName | StepTooltipDisplayItems.DifficultyRating | StepTooltipDisplayItems.SimpleDescription | StepTooltipDisplayItems.ExtraDifficultyCases, DocSummary = "Indicates the tooltip display items.")]
 [DependencyProperty<Color>("GivenFontColor")]
 [DependencyProperty<Color>("ModifiableFontColor")]
 [DependencyProperty<Color>("PencilmarkFontColor")]

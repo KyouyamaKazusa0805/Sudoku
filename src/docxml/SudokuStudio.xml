@@ -247,9 +247,9 @@
             Indicates the step grid used.
             </summary>
         </member>
-        <member name="P:SudokuStudio.BindableSource.SolvingPathStepBindableSource.DisplayKinds">
+        <member name="P:SudokuStudio.BindableSource.SolvingPathStepBindableSource.DisplayItems">
             <summary>
-            Indicates the kinds of items that the step tooltip will be displayed.
+            Indicates the kinds of items which the step tooltip will be displayed.
             </summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.SolvingPathStepBindableSource.Step">
@@ -554,12 +554,12 @@
             </summary>
             <param name="steps">The solving path steps.</param>
         </member>
-        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.Create(Sudoku.Analytics.AnalyzerResult,SudokuStudio.Interaction.StepTooltipDisplayKind)">
+        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.Create(Sudoku.Analytics.AnalyzerResult,SudokuStudio.Interaction.StepTooltipDisplayItems)">
             <summary>
             Creates a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance via the specified <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
             </summary>
             <param name="analyzerResult">A <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.</param>
-            <param name="displayKind">Indicates all displaying values.</param>
+            <param name="displayItems">Indicates all displaying values.</param>
             <returns>An instance of the current type.</returns>
         </member>
         <member name="T:SudokuStudio.CommonPaths">
@@ -1285,6 +1285,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.Backdrop"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.StepDisplayItemsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.StepDisplayItems"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.StepDisplayItems"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor"/>.
@@ -1563,6 +1569,11 @@
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BackdropProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BackdropProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.StepDisplayItems">
+            <summary>
+            Indicates the tooltip display items.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor">
             <summary>
@@ -2878,37 +2889,37 @@ if (student is (name: var name, age: >= 18))
             Indicates the failed reason is the program cannot unsnap.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Interaction.StepTooltipDisplayKind">
+        <member name="T:SudokuStudio.Interaction.StepTooltipDisplayItems">
             <summary>
-            Defines a display kind that displays for a step on tooltip.
+            Defines a display item that will be displayed on tooltip to describe a data unit of a <see cref="T:Sudoku.Analytics.Step"/>.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayKind.None">
+        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayItems.None">
             <summary>
             Indicates none of all elements mentioned below will be displayed.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayKind.TechniqueName">
+        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayItems.TechniqueName">
             <summary>
             Indicates the technique name will be displayed.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayKind.TechniqueIndex">
+        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayItems.TechniqueIndex">
             <summary>
             Indicates the position of the step in the whole solving path.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayKind.DifficultyRating">
+        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayItems.DifficultyRating">
             <summary>
             Indicates the difficulty rating.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayKind.SimpleDescription">
+        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayItems.SimpleDescription">
             <summary>
             Indicates the simple description.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayKind.ExtraDifficultyCases">
+        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayItems.ExtraDifficultyCases">
             <summary>
             Indicates the extra difficulty cases.
             </summary>
@@ -7414,17 +7425,6 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.Analyze.GridGathering.StepTooltipDisplayKindProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.GridGathering.StepTooltipDisplayKind"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.GridGathering.StepTooltipDisplayKind"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.StepTooltipDisplayKind">
-            <summary>
-            Indicates the tooltip display kind.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.SolvingPath">
             <summary>
             Defines the solving path page.
@@ -7443,22 +7443,11 @@ if (student is (name: var name, age: >= 18))
             InitializeComponent()
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.Analyze.SolvingPath.StepTooltipDisplayKindProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.StepTooltipDisplayKind"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.StepTooltipDisplayKind"/>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResultProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.StepTooltipDisplayKind">
-            <summary>
-            Indicates the tooltip display kind.
-            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult">
             <summary>

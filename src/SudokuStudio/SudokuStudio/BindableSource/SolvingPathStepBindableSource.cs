@@ -16,9 +16,9 @@ public sealed class SolvingPathStepBindableSource : IBindableSource
 	public required Grid StepGrid { get; set; }
 
 	/// <summary>
-	/// Indicates the kinds of items that the step tooltip will be displayed.
+	/// Indicates the kinds of items which the step tooltip will be displayed.
 	/// </summary>
-	public required StepTooltipDisplayKind DisplayKinds { get; set; }
+	public required StepTooltipDisplayItems DisplayItems { get; set; }
 
 	/// <summary>
 	/// Indicates the step details.

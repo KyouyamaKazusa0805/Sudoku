@@ -3,7 +3,6 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines the solving path page.
 /// </summary>
-[DependencyProperty<StepTooltipDisplayKind>("StepTooltipDisplayKind", DefaultValue = StepTooltipDisplayKind.TechniqueName | StepTooltipDisplayKind.DifficultyRating | StepTooltipDisplayKind.SimpleDescription | StepTooltipDisplayKind.ExtraDifficultyCases, DocSummary = "Indicates the tooltip display kind.")]
 [DependencyProperty<AnalyzerResult>("AnalysisResult", IsNullable = true, DocSummary = "Indicates the analysis result.")]
 public sealed partial class SolvingPath : Page, IAnalyzeTabPage
 {
@@ -20,21 +19,12 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage
 	[Callback]
 	private static void AnalysisResultPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if (
-#pragma warning disable format
-			(d, e) is not (
-				SolvingPath { StepTooltipDisplayKind: var kind, SolvingPathList: var pathListView } path,
-				{ NewValue: var value and (null or AnalyzerResult) }
-			)
-#pragma warning restore format
-		)
+		if ((d, e) is (SolvingPath { SolvingPathList: var pathListView } path, { NewValue: var value and (null or AnalyzerResult) }))
 		{
-			return;
+			pathListView.ItemsSource = value is AnalyzerResult analyzerResult
+				? SolvingPathStepCollection.Create(analyzerResult, ((App)Application.Current).Preference.UIPreferences.StepDisplayItems)
+				: null;
 		}
-
-		pathListView.ItemsSource = value is AnalyzerResult analyzerResult
-			? SolvingPathStepCollection.Create(analyzerResult, kind)
-			: null;
 	}
 
 
