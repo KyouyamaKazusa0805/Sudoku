@@ -61,7 +61,7 @@ internal static class AnalyzeConversion
 
 		if (displayKind.Flags(StepTooltipDisplayItems.TechniqueIndex))
 		{
-			f();
+			appendEmptyLinesIfNeed();
 
 			result.Add(new Run { Text = GetString("AnalyzePage_TechniqueIndex") }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
@@ -70,7 +70,7 @@ internal static class AnalyzeConversion
 
 		if (displayKind.Flags(StepTooltipDisplayItems.DifficultyRating))
 		{
-			f();
+			appendEmptyLinesIfNeed();
 
 			result.Add(new Run { Text = GetString("AnalyzePage_TechniqueDifficultyRating") }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
@@ -79,7 +79,7 @@ internal static class AnalyzeConversion
 
 		if (displayKind.Flags(StepTooltipDisplayItems.ExtraDifficultyCases))
 		{
-			f();
+			appendEmptyLinesIfNeed();
 
 			result.Add(new Run { Text = GetString("AnalyzePage_ExtraDifficultyCase") }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
@@ -90,7 +90,7 @@ internal static class AnalyzeConversion
 				{
 					result.Add(new Run { Text = $"{GetString("AnalyzePage_BaseDifficulty")}{baseDifficulty:0.0}" });
 					result.Add(new LineBreak());
-					result.AddRange(g(cases));
+					result.AddRange(appendExtraDifficultyCases(cases));
 
 					break;
 				}
@@ -105,7 +105,7 @@ internal static class AnalyzeConversion
 
 		if (displayKind.Flags(StepTooltipDisplayItems.SimpleDescription))
 		{
-			f();
+			appendEmptyLinesIfNeed();
 
 			result.Add(new Run { Text = GetString("AnalyzePage_SimpleDescription") }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
@@ -115,14 +115,12 @@ internal static class AnalyzeConversion
 		return result;
 
 
-		static IEnumerable<Inline> g(ExtraDifficultyCase[] cases)
+		static IEnumerable<Inline> appendExtraDifficultyCases(ExtraDifficultyCase[] cases)
 		{
 			for (var i = 0; i < cases.Length; i++)
 			{
 				var (name, value) = cases[i];
-
-				var nameResourceKey = $"{nameof(ExtraDifficultyCaseNames)}_{name}";
-				yield return new Run { Text = $"{MergedResources.R[nameResourceKey]}{Token("Colon")}+{value:0.0}" };
+				yield return new Run { Text = $"{MergedResources.R[$"{nameof(ExtraDifficultyCaseNames)}_{name}"]}{Token("Colon")}+{value:0.0}" };
 
 				if (i != cases.Length - 1)
 				{
@@ -131,7 +129,7 @@ internal static class AnalyzeConversion
 			}
 		}
 
-		void f()
+		void appendEmptyLinesIfNeed()
 		{
 			if (result.Count != 0)
 			{
