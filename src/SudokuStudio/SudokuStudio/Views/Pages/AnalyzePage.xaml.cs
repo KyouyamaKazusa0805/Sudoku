@@ -214,11 +214,7 @@ public sealed partial class AnalyzePage : Page
 		}
 
 		var fop = new FileOpenPicker();
-
-		var window = ((App)Application.Current).WindowManager.GetWindowForElement(this);
-		var hWnd = WindowNative.GetWindowHandle(window);
-		InitializeWithWindow.Initialize(fop, hWnd);
-
+		fop.Initialize(this);
 		fop.ViewMode = PickerViewMode.Thumbnail;
 		fop.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
 		fop.AddFileFormat(FileFormats.Text);
@@ -272,11 +268,7 @@ public sealed partial class AnalyzePage : Page
 		}
 
 		var fsp = new FileSavePicker();
-
-		var window = ((App)Application.Current).WindowManager.GetWindowForElement(this);
-		var hWnd = WindowNative.GetWindowHandle(window);
-		InitializeWithWindow.Initialize(fsp, hWnd);
-
+		fsp.Initialize(this);
 		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
 		fsp.SuggestedFileName = GetString("Sudoku");
 		fsp.AddFileFormat(FileFormats.Text);

@@ -42,11 +42,7 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 		}
 
 		var fsp = new FileSavePicker();
-
-		var window = ((App)Application.Current).WindowManager.GetWindowForElement(this);
-		var hWnd = WindowNative.GetWindowHandle(window);
-		InitializeWithWindow.Initialize(fsp, hWnd);
-
+		fsp.Initialize(this);
 		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
 		fsp.SuggestedFileName = GetString("SuggestedFileName_Output");
 		fsp.AddFileFormat(FileFormats.PortableDocument);

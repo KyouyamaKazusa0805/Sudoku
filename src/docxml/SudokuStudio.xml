@@ -8292,6 +8292,18 @@ if (student is (name: var name, age: >= 18))
             <param name="color">The color.</param>
             <returns>An <see cref="T:Sudoku.Rendering.ColorIdentifier"/> instance.</returns>
         </member>
+        <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>.
+            </summary>
+            <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
+        </member>
+        <member name="T:Windows.Storage.Pickers.FileSavePickerExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Windows.Storage.Pickers.FileSavePicker"/>.
+            </summary>
+            <seealso cref="T:Windows.Storage.Pickers.FileSavePicker"/>
+        </member>
         <member name="T:Windows.Foundation.PointExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Windows.Foundation.Point"/>.
