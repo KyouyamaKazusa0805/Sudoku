@@ -131,10 +131,6 @@ Of course you can fork my repo and do whatever you want. You can do whatever you
 
 In addition, this repo may update **frequently** (At least 1 commit in a day).
 
-## Planning
-
-Please visit [this link](https://github.com/users/SunnieShine/projects/2) for more information.
-
 ## Open source license
 
 ### Codes
