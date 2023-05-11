@@ -372,12 +372,19 @@ public sealed partial class AnalyzePage : Page
 						=> default(UserDefinedRenderable?)
 				};
 
+				var showCandidatesCurrently = ((App)Application.Current).Preference.UIPreferences.DisplayCandidates;
 				SudokuFileHandler.Write(
 					filePath,
 					(
 						from formatter in gridFormatters
 						select ((IGridFormatter)formatter).ToString(grid) into gridString
-						select new GridInfo { BaseGrid = grid, GridString = gridString, RenderableData = renderableData }
+						select new GridInfo
+						{
+							BaseGrid = grid,
+							GridString = gridString,
+							RenderableData = renderableData,
+							ShowCandidates = showCandidatesCurrently
+						}
 					).ToArray()
 				);
 
