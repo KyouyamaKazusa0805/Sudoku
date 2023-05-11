@@ -351,18 +351,18 @@
 
 		<!--Cursors-->
 		<Border
-			Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="0"
+			Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="0" CornerRadius="12" Margin="12"
 			Background="{x:Bind cvt:SelectedCellConversion.GetCursorColor(CursorBackgroundColor),Mode=OneWay}"
 			Visibility="{x:Bind cvt:SelectedCellConversion.SelectedCellToVisibility(SelectedCell,DisplayCursors),Mode=OneWay}"
 			Grid.Row="{x:Bind cvt:SelectedCellConversion.SelectedCellToGridRow_Block(SelectedCell),Mode=OneWay}"
 			Grid.Column="{x:Bind cvt:SelectedCellConversion.SelectedCellToGridColumn_Block(SelectedCell),Mode=OneWay}" />
 		<Border
-			Grid.RowSpan="1" Grid.ColumnSpan="9" Grid.Column="2" BorderThickness="0"
+			Grid.RowSpan="1" Grid.ColumnSpan="9" Grid.Column="2" BorderThickness="0" CornerRadius="18" Margin="6,12"
 			Background="{x:Bind cvt:SelectedCellConversion.GetCursorColor(CursorBackgroundColor),Mode=OneWay}"
 			Visibility="{x:Bind cvt:SelectedCellConversion.SelectedCellToVisibility(SelectedCell,DisplayCursors),Mode=OneWay}"
 			Grid.Row="{x:Bind cvt:SelectedCellConversion.SelectedCellToGridRow_Row(SelectedCell),Mode=OneWay}" />
 		<Border
-			Grid.RowSpan="9" Grid.ColumnSpan="1" Grid.Row="2" BorderThickness="0"
+			Grid.RowSpan="9" Grid.ColumnSpan="1" Grid.Row="2" BorderThickness="0" CornerRadius="18" Margin="12,6"
 			Background="{x:Bind cvt:SelectedCellConversion.GetCursorColor(CursorBackgroundColor),Mode=OneWay}"
 			Visibility="{x:Bind cvt:SelectedCellConversion.SelectedCellToVisibility(SelectedCell,DisplayCursors),Mode=OneWay}"
 			Grid.Column="{x:Bind cvt:SelectedCellConversion.SelectedCellToGridColumn_Column(SelectedCell),Mode=OneWay}" />

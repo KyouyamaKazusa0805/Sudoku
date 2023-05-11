@@ -43,5 +43,5 @@ internal static class SelectedCellConversion
 			_ => Visibility.Collapsed
 		};
 
-	public static Brush GetCursorColor(Color color) => new SolidColorBrush(color);
+	public static Brush GetCursorColor(Color color) => new SolidColorBrush(color with { A = 32 });
 }
