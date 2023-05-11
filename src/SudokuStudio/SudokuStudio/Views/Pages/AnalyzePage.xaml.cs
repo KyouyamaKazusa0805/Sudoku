@@ -453,7 +453,17 @@ public sealed partial class AnalyzePage : Page
 					{
 						switch (SudokuFileHandler.Read(filePath))
 						{
-							case [{ BaseGrid: var g, GridString: var gridStr, RenderableData: var nullableRenderableData }]:
+							case
+#pragma warning disable format
+							[
+								{
+									BaseGrid: var g,
+									GridString: var gridStr,
+									ShowCandidates: var showCandidates,
+									RenderableData: var nullableRenderableData
+								}
+							]:
+#pragma warning restore format
 							{
 								SudokuPane.Puzzle = gridStr is not null && Grid.TryParse(gridStr, out var g2) ? g2 : g;
 
@@ -461,6 +471,8 @@ public sealed partial class AnalyzePage : Page
 								{
 									VisualUnit = renderableData;
 								}
+
+								SudokuPane.DisplayCandidates = showCandidates;
 
 								break;
 							}
