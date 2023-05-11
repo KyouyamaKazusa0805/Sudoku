@@ -1,4 +1,4 @@
-﻿namespace System.Linq;
+namespace System.Linq;
 
 /// <summary>
 /// Provides with extension methods on <see cref="ArrayList"/>.
@@ -7,11 +7,14 @@
 public static class ArrayListEnumerable
 {
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
-	public static IEnumerable<T> Select<T>(this ArrayList @this, Func<object, T> selector)
+	public static T[] Select<T>(this ArrayList @this, Func<object?, T> selector)
 	{
-		foreach (var element in @this)
+		var result = new T[@this.Count];
+		for (var i = 0; i < @this.Count; i++)
 		{
-			yield return selector(element);
+			result[i] = selector(@this[i]);
 		}
+
+		return result;
 	}
 }

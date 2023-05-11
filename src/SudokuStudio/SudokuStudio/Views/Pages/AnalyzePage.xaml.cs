@@ -233,71 +233,9 @@ public sealed partial class AnalyzePage : Page
 	}
 
 	/// <summary>
-	/// Save a file.
-	/// </summary>
-	/// <returns>A task that handles the operation.</returns>
-	internal async Task SaveFileInternalAsync()
-	{
-		if (!EnsureUnsnapped(true))
-		{
-			return;
-		}
-
-		var fsp = new FileSavePicker();
-
-		var window = ((App)Application.Current).WindowManager.GetWindowForElement(this);
-		var hWnd = WindowNative.GetWindowHandle(window);
-		InitializeWithWindow.Initialize(fsp, hWnd);
-
-		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-		fsp.SuggestedFileName = GetString("Sudoku");
-		fsp.AddFileFormat(FileFormats.Text);
-		fsp.AddFileFormat(FileFormats.PlainText);
-		fsp.AddFileFormat(FileFormats.PortablePicture);
-
-		if (await fsp.PickSaveFileAsync() is not { Path: var filePath } file)
-		{
-			return;
-		}
-
-		switch (SystemPath.GetExtension(filePath))
-		{
-			case FileExtensions.PlainText:
-			{
-				SudokuPlainTextFileHandler.Write(filePath, SudokuPane.Puzzle);
-				break;
-			}
-			case FileExtensions.Text when SudokuPane is { Puzzle: var puzzle, ViewUnit: var viewUnit }:
-			{
-				SudokuFileHandler.Write(
-					filePath,
-					new GridInfo[]
-					{
-						new()
-						{
-							BaseGrid = puzzle,
-							RenderableData = viewUnit switch
-							{
-								{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = new[] { view } },
-								_ => null
-							}
-						}
-					}
-				);
-				break;
-			}
-			case FileExtensions.PortablePicture:
-			{
-				await OnSavingOrCopyingSudokuPanePictureAsync(file);
-				break;
-			}
-		}
-	}
-
-	/// <summary>
 	/// Save a file via grid formatters.
 	/// </summary>
-	/// <param name="gridFormatters">The grid formatters.</param>
+	/// <param name="gridFormatters">The grid formatters. The default value is <see langword="null"/>.</param>
 	/// <returns>A task that handles the operation.</returns>
 	/// <remarks>
 	/// <para>
@@ -326,7 +264,7 @@ public sealed partial class AnalyzePage : Page
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="IGridFormatter"/>
-	internal async Task<bool> SaveFileInternalAsync(ArrayList gridFormatters)
+	internal async Task<bool> SaveFileInternalAsync(ArrayList? gridFormatters = null)
 	{
 		if (!EnsureUnsnapped(true))
 		{
@@ -350,42 +288,63 @@ public sealed partial class AnalyzePage : Page
 			return false;
 		}
 
-		var grid = SudokuPane.Puzzle;
+		if (SudokuPane is not { Puzzle: var grid, ViewUnit: var viewUnit, DisplayCandidates: var displayCandidates })
+		{
+			return false;
+		}
+
 		switch (SystemPath.GetExtension(filePath))
 		{
 			case FileExtensions.PlainText:
 			{
-				await File.WriteAllTextAsync(
-					filePath,
-					string.Join("\r\n\r\n", from formatter in gridFormatters select ((IGridFormatter)formatter).ToString(grid))
-				);
+				if (gridFormatters is null)
+				{
+					SudokuPlainTextFileHandler.Write(filePath, grid);
+				}
+				else
+				{
+					var finalText = from formatter in gridFormatters select ((IGridFormatter)formatter).ToString(grid);
+					await File.WriteAllTextAsync(filePath, string.Join("\r\n\r\n", finalText));
+				}
 
 				break;
 			}
 			case FileExtensions.Text:
 			{
-				var renderableData = SudokuPane.ViewUnit switch
-				{
-					{ Conclusions: var conclusions, View: var view }
-						=> new UserDefinedRenderable { Conclusions = conclusions, Views = new[] { view } },
-					_
-						=> default(UserDefinedRenderable?)
-				};
-
-				var showCandidatesCurrently = ((App)Application.Current).Preference.UIPreferences.DisplayCandidates;
 				SudokuFileHandler.Write(
 					filePath,
-					(
-						from formatter in gridFormatters
-						select ((IGridFormatter)formatter).ToString(grid) into gridString
-						select new GridInfo
-						{
-							BaseGrid = grid,
-							GridString = gridString,
-							RenderableData = renderableData,
-							ShowCandidates = showCandidatesCurrently
-						}
-					).ToArray()
+					gridFormatters switch
+					{
+						null
+							=> new GridInfo[]
+							{
+								new()
+								{
+									BaseGrid = grid,
+									RenderableData = viewUnit switch
+									{
+										{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = new[] { view } },
+										_ => null
+									},
+									ShowCandidates = displayCandidates
+								}
+							},
+						_
+							=>
+							from formatter in gridFormatters
+							select ((IGridFormatter)formatter).ToString(grid) into gridString
+							select new GridInfo
+							{
+								BaseGrid = grid,
+								GridString = gridString,
+								RenderableData = viewUnit switch
+								{
+									{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = new[] { view } },
+									_ => null
+								},
+								ShowCandidates = displayCandidates
+							}
+					}
 				);
 
 				break;

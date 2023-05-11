@@ -7139,17 +7139,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>A task that handles the operation.</returns>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SaveFileInternalAsync">
-            <summary>
-            Save a file.
-            </summary>
-            <returns>A task that handles the operation.</returns>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SaveFileInternalAsync(System.Collections.ArrayList)">
             <summary>
             Save a file via grid formatters.
             </summary>
-            <param name="gridFormatters">The grid formatters.</param>
+            <param name="gridFormatters">The grid formatters. The default value is <see langword="null"/>.</param>
             <returns>A task that handles the operation.</returns>
             <remarks>
             <para>
