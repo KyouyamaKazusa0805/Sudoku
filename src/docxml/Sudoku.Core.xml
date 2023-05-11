@@ -3291,22 +3291,22 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Concepts.Grid.GivenCells">
             <summary>
-            Gets the cell template that only contains the given cells.
+            Gets a cell list that only contains the given cells.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Grid.ModifiableCells">
             <summary>
-            Gets the cell template that only contains the modifiable cells.
+            Gets a cell list that only contains the modifiable cells.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Grid.EmptyCells">
             <summary>
-            Indicates the cells that corresponding position in this grid is empty.
+            Indicates a cell list whose corresponding position in this grid is empty.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Grid.BivalueCells">
             <summary>
-            Indicates the cells that corresponding position in this grid contain two candidates.
+            Indicates a cell list whose corresponding position in this grid contain two candidates.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Grid.CandidatesMap">
@@ -4084,6 +4084,14 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.CellFilteringMethods">
+            <summary>
+            Represents a list of methods to filter the cells, used by <see cref="!:Grid.GetMap(delegate*&lt;in Grid, int, bool&gt;)"/>
+            or <see cref="!:Grid.GetMaps(delegate*&lt;in Grid, int, int, bool&gt;)"/>.
+            </summary>
+            <seealso cref="!:Grid.GetMap(delegate*&lt;in Grid, int, bool&gt;)"/>
+            <seealso cref="!:Grid.GetMaps(delegate*&lt;in Grid, int, int, bool&gt;)"/>
         </member>
         <member name="T:Sudoku.Concepts.GridCreatingOption">
             <summary>

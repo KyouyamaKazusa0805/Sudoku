@@ -401,80 +401,30 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
-	/// Gets the cell template that only contains the given cells.
+	/// Gets a cell list that only contains the given cells.
 	/// </summary>
-	public readonly CellMap GivenCells
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			return GetMap(&p);
-
-
-			static bool p(in Grid g, Cell cell) => g.GetStatus(cell) == CellStatus.Given;
-		}
-	}
+	public readonly CellMap GivenCells => GetMap(&CellFilteringMethods.GivenCells);
 
 	/// <summary>
-	/// Gets the cell template that only contains the modifiable cells.
+	/// Gets a cell list that only contains the modifiable cells.
 	/// </summary>
-	public readonly CellMap ModifiableCells
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			return GetMap(&p);
-
-
-			static bool p(in Grid g, Cell cell) => g.GetStatus(cell) == CellStatus.Modifiable;
-		}
-	}
+	public readonly CellMap ModifiableCells => GetMap(&CellFilteringMethods.ModifiableCells);
 
 	/// <summary>
-	/// Indicates the cells that corresponding position in this grid is empty.
+	/// Indicates a cell list whose corresponding position in this grid is empty.
 	/// </summary>
-	public readonly CellMap EmptyCells
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			return GetMap(&p);
-
-
-			static bool p(in Grid g, Cell cell) => g.GetStatus(cell) == CellStatus.Empty;
-		}
-	}
+	public readonly CellMap EmptyCells => GetMap(&CellFilteringMethods.EmptyCells);
 
 	/// <summary>
-	/// Indicates the cells that corresponding position in this grid contain two candidates.
+	/// Indicates a cell list whose corresponding position in this grid contain two candidates.
 	/// </summary>
-	public readonly CellMap BivalueCells
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			return GetMap(&p);
-
-
-			static bool p(in Grid g, Cell cell) => PopCount((uint)g.GetCandidates(cell)) == 2;
-		}
-	}
+	public readonly CellMap BivalueCells => GetMap(&CellFilteringMethods.BivalueCells);
 
 	/// <summary>
 	/// Indicates the map of possible positions of the existence of the candidate value for each digit.
 	/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
 	/// </summary>
-	public readonly CellMap[] CandidatesMap
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			return GetMaps(&p);
-
-
-			static bool p(in Grid g, Cell cell, Digit digit) => g.Exists(cell, digit) is true;
-		}
-	}
+	public readonly CellMap[] CandidatesMap => GetMaps(&CellFilteringMethods.CandidatesMap);
 
 	/// <summary>
 	/// <para>
@@ -487,17 +437,7 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="CandidatesMap"/>
-	public readonly CellMap[] DigitsMap
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			return GetMaps(&p);
-
-
-			static bool p(in Grid g, Cell cell, Digit digit) => (g.GetCandidates(cell) >> digit & 1) != 0;
-		}
-	}
+	public readonly CellMap[] DigitsMap => GetMaps(&CellFilteringMethods.DigitsMap);
 
 	/// <summary>
 	/// <para>
@@ -510,17 +450,7 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="CandidatesMap"/>
-	public readonly CellMap[] ValuesMap
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			return GetMaps(&p);
-
-
-			static bool p(in Grid g, Cell cell, Digit digit) => g[cell] == digit;
-		}
-	}
+	public readonly CellMap[] ValuesMap => GetMaps(&CellFilteringMethods.ValuesMap);
 
 	/// <summary>
 	/// Indicates all possible conjugate pairs appeared in this grid.
@@ -529,15 +459,13 @@ public unsafe partial struct Grid :
 	{
 		get
 		{
-			var candidatesMap = CandidatesMap; // Cache the map.
-
 			var conjugatePairs = new List<Conjugate>();
-			for (var digit = 0; digit < 9; digit++)
+			for (var (digit, candidatesMap) = (0, CandidatesMap); digit < 9; digit++)
 			{
 				scoped ref readonly var cellsMap = ref candidatesMap[digit];
-				for (var houseIndex = 0; houseIndex < 27; houseIndex++)
+				foreach (var houseMap in HousesMap)
 				{
-					if ((HousesMap[houseIndex] & cellsMap) is { Count: 2 } temp)
+					if ((houseMap & cellsMap) is { Count: 2 } temp)
 					{
 						conjugatePairs.Add(new(temp, digit));
 					}
@@ -1895,4 +1823,29 @@ file sealed class Converter : JsonConverter<Grid>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
 		=> writer.WriteStringValue(value.ToString(SusserFormat.Full));
+}
+
+#pragma warning disable CS1584, CS1658
+/// <summary>
+/// Represents a list of methods to filter the cells, used by <see cref="Grid.GetMap(delegate*{in Grid, int, bool})"/>
+/// or <see cref="Grid.GetMaps(delegate*{in Grid, int, int, bool})"/>.
+/// </summary>
+/// <seealso cref="Grid.GetMap(delegate*{in Grid, int, bool})"/>
+/// <seealso cref="Grid.GetMaps(delegate*{in Grid, int, int, bool})"/>
+#pragma warning restore CS1584, CS1658
+file static class CellFilteringMethods
+{
+	public static bool GivenCells(scoped in Grid g, Cell cell) => g.GetStatus(cell) == CellStatus.Given;
+
+	public static bool ModifiableCells(scoped in Grid g, Cell cell) => g.GetStatus(cell) == CellStatus.Modifiable;
+
+	public static bool EmptyCells(scoped in Grid g, Cell cell) => g.GetStatus(cell) == CellStatus.Empty;
+
+	public static bool BivalueCells(scoped in Grid g, Cell cell) => PopCount((uint)g.GetCandidates(cell)) == 2;
+
+	public static bool CandidatesMap(scoped in Grid g, Cell cell, Digit digit) => g.Exists(cell, digit) is true;
+
+	public static bool DigitsMap(scoped in Grid g, Cell cell, Digit digit) => (g.GetCandidates(cell) >> digit & 1) != 0;
+
+	public static bool ValuesMap(scoped in Grid g, Cell cell, Digit digit) => g[cell] == digit;
 }
