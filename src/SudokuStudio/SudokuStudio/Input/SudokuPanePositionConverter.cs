@@ -4,9 +4,7 @@ namespace SudokuStudio.Input;
 /// Defines a converter instance that calculates for cursor pointers.
 /// </summary>
 /// <param name="Grid">Indicates the grid layout.</param>
-internal readonly partial record struct SudokuPanePositionConverter(GridLayout Grid) :
-	IEquatable<SudokuPanePositionConverter>,
-	IEqualityOperators<SudokuPanePositionConverter, SudokuPanePositionConverter, bool>
+internal readonly partial record struct SudokuPanePositionConverter(GridLayout Grid)
 {
 	/// <summary>
 	/// Indicates the first cell top-left position.
