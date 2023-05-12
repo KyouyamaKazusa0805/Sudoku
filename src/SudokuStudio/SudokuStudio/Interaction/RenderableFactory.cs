@@ -54,9 +54,7 @@ internal static class RenderableFactory
 			return;
 		}
 
-		var controlAddingActions = new AnimatedResults();
-		var overlapped = new List<Conclusion>();
-		var links = new List<LinkViewNode>();
+		var (controlAddingActions, overlapped, links) = (new AnimatedResults(), new List<Conclusion>(), new List<LinkViewNode>());
 		foreach (var viewNode in nodes)
 		{
 			switch (viewNode)
@@ -122,19 +120,18 @@ internal static class RenderableFactory
 	private static void ForConclusion(SudokuPane sudokuPane, Conclusion conclusion, List<Conclusion> overlapped, AnimatedResults animatedResults)
 	{
 		var (type, candidate) = conclusion;
-		var paneCellControl = sudokuPane._children[candidate / 9];
-		if (paneCellControl is null)
+		if (sudokuPane._children[candidate / 9] is not { } paneCellControl)
 		{
 			return;
 		}
 
-		var predicate = overlapped.Exists(conclusion => conclusion.Candidate == candidate);
+		var isOverlapped = overlapped.Exists(conclusion => conclusion.Candidate == candidate);
 		ForCandidateNodeCore(
 			IdentifierConversion.GetColor(
 				type switch
 				{
-					Assignment => predicate ? WellKnownColorIdentifierKind.OverlappedAssignment : WellKnownColorIdentifierKind.Assignment,
-					Elimination => predicate ? WellKnownColorIdentifierKind.Cannibalism : WellKnownColorIdentifierKind.Elimination
+					Assignment => isOverlapped ? WellKnownColorIdentifierKind.OverlappedAssignment : WellKnownColorIdentifierKind.Assignment,
+					Elimination => isOverlapped ? WellKnownColorIdentifierKind.Cannibalism : WellKnownColorIdentifierKind.Elimination
 				}
 			),
 			candidate,
@@ -157,13 +154,17 @@ internal static class RenderableFactory
 	private static void ForCellNode(SudokuPane sudokuPane, CellViewNode cellNode, AnimatedResults animatedResults)
 	{
 		var (id, cell) = cellNode;
-		var paneCellControl = sudokuPane._children[cell];
-		if (paneCellControl is null)
+		if (sudokuPane._children[cell] is not { } paneCellControl)
 		{
 			return;
 		}
 
-		var control = new Border { BorderThickness = new(0), Tag = nameof(RenderableFactory), Opacity = (double)sudokuPane.HighlightBackgroundOpacity };
+		var control = new Border
+		{
+			BorderThickness = new(0),
+			Tag = nameof(RenderableFactory),
+			Opacity = (double)sudokuPane.HighlightBackgroundOpacity
+		};
 
 		GridLayout.SetRowSpan(control, 3);
 		GridLayout.SetColumnSpan(control, 3);
@@ -212,8 +213,7 @@ internal static class RenderableFactory
 
 		var (id, candidate) = candidateNode;
 		var cell = candidate / 9;
-		var paneCellControl = sudokuPane._children[cell];
-		if (paneCellControl is null)
+		if (sudokuPane._children[cell] is not { } paneCellControl)
 		{
 			return;
 		}
@@ -284,8 +284,7 @@ internal static class RenderableFactory
 	private static void ForHouseNode(SudokuPane sudokuPane, HouseViewNode houseNode, AnimatedResults animatedResults)
 	{
 		var (id, house) = houseNode;
-		var gridControl = sudokuPane.MainGrid;
-		if (gridControl is null)
+		if (sudokuPane.MainGrid is not { } gridControl)
 		{
 			return;
 		}
@@ -342,8 +341,7 @@ internal static class RenderableFactory
 	private static void ForChuteNode(SudokuPane sudokuPane, ChuteViewNode chuteNode, AnimatedResults animatedResults)
 	{
 		var (id, chute) = chuteNode;
-		var gridControl = sudokuPane.MainGrid;
-		if (gridControl is null)
+		if (sudokuPane.MainGrid is not { } gridControl)
 		{
 			return;
 		}
@@ -396,8 +394,7 @@ internal static class RenderableFactory
 	private static void ForBabaGroupNode(SudokuPane sudokuPane, BabaGroupViewNode babaGroupNode, AnimatedResults animatedResults)
 	{
 		var (id, cell, @char) = babaGroupNode;
-		var paneCellControl = sudokuPane._children[cell];
-		if (paneCellControl is null)
+		if (sudokuPane._children[cell] is not { } paneCellControl)
 		{
 			return;
 		}
@@ -458,8 +455,7 @@ internal static class RenderableFactory
 	/// </remarks>
 	private static void ForLinkNodes(SudokuPane sudokuPane, LinkViewNode[] linkNodes, Conclusion[] conclusions, AnimatedResults animatedResults)
 	{
-		var gridControl = sudokuPane.MainGrid;
-		if (gridControl is null)
+		if (sudokuPane.MainGrid is not { } gridControl)
 		{
 			return;
 		}
