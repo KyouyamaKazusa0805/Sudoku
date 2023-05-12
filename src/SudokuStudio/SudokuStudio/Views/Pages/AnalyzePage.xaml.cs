@@ -874,34 +874,26 @@ public sealed partial class AnalyzePage : Page
 	private bool CheckBabaGroupingNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
 	{
 		TextBlock wrongHintControl() => ((Drawing)((AnalyzeTabPageBindableSource)AnalyzeTabs.SelectedItem).Page).InvalidInputInfoDisplayer;
-		switch (BabaGroupNameInput)
+		switch (BabaGroupNameInput, e, view)
 		{
-			case null or []:
+			case (null or [], _, _):
 			{
 				return true;
 			}
-			case [var character]:
+			case ([var character], { Candidate: var candidate }, { View: var v }):
 			{
-				switch (e)
+				var cell = candidate / 9;
+				if (v.Find(node => node is BabaGroupViewNode { Cell: var c } && c == cell) is { } foundNode)
 				{
-					case { Candidate: var candidate }:
-					{
-						var cell = candidate / 9;
-						if (view.View.Find(node => node is BabaGroupViewNode { Cell: var c } && c == cell) is { } foundNode)
-						{
-							view.View.Remove(foundNode);
-						}
-						else
-						{
-							var id = UserDefinedPalette[index].GetIdentifier();
-							view.View.Add(new BabaGroupViewNode(id, cell, (Utf8Char)character, Grid.MaxCandidatesMask));
-						}
-
-						UpdateViewUnit();
-
-						break;
-					}
+					v.Remove(foundNode);
 				}
+				else
+				{
+					var id = index != -1 ? UserDefinedPalette[index].GetIdentifier() : new ColorColorIdentifier(0, 255, 255, 255);
+					v.Add(new BabaGroupViewNode(id, cell, (Utf8Char)character, Grid.MaxCandidatesMask));
+				}
+
+				UpdateViewUnit();
 
 				wrongHintControl().Visibility = Visibility.Collapsed;
 				break;
@@ -1162,7 +1154,7 @@ public sealed partial class AnalyzePage : Page
 					{ SelectedMode: DrawingMode.House, SelectedColorIndex: var index and not -1 } => CheckHouseNode(index, e, tempView),
 					{ SelectedMode: DrawingMode.Chute, SelectedColorIndex: var index and not -1 } => CheckChuteNode(index, e, tempView),
 					{ SelectedMode: DrawingMode.Link } => CheckLinkNode(e, tempView),
-					{ SelectedMode: DrawingMode.BabaGrouping, SelectedColorIndex: var index and not -1 } => CheckBabaGroupingNode(index, e, tempView),
+					{ SelectedMode: DrawingMode.BabaGrouping, SelectedColorIndex: var index } => CheckBabaGroupingNode(index, e, tempView),
 					_ => true
 				})
 				{
