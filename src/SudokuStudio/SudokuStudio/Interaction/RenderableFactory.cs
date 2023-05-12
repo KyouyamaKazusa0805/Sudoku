@@ -637,12 +637,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 												IsFilled = false,
 												Segments = new()
 												{
-													new BezierSegment
-													{
-														Point1 = new(bx1, by1),
-														Point2 = new(bx2, by2),
-														Point3 = pt2
-													}
+													new BezierSegment { Point1 = new(bx1, by1), Point2 = new(bx2, by2), Point3 = pt2 }
 												}
 											}
 										}
@@ -673,10 +668,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							StrokeDashArray = dashArray,
 							Data = new GeometryGroup
 							{
-								Children = new GeometryCollection
-								{
-									new LineGeometry { StartPoint = pt1, EndPoint = pt2 }
-								}
+								Children = new GeometryCollection { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } }
 							},
 							Tag = nameof(RenderableFactory),
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
