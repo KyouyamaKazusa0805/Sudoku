@@ -64,6 +64,8 @@ public sealed partial class Drawing : Page, IAnalyzeTabPage
 
 		BasePage.SudokuPane.ViewUnit = null;
 		BasePage.SudokuPane.ViewUnit = localViewUnit;
+
+		BasePage.SelectedColorIndex = -1;
 	}
 
 	private void ClearAllViewItems_Click(object sender, RoutedEventArgs e)
@@ -77,5 +79,7 @@ public sealed partial class Drawing : Page, IAnalyzeTabPage
 
 		BasePage.SudokuPane.ViewUnit = null;
 		BasePage.SudokuPane.ViewUnit = localViewUnit;
+
+		BasePage.SelectedColorIndex = -1;
 	}
 }

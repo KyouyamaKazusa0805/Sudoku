@@ -873,6 +873,7 @@ public sealed partial class AnalyzePage : Page
 
 	private bool CheckBabaGroupingNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
 	{
+		TextBlock wrongHintControl() => ((Drawing)((AnalyzeTabPageBindableSource)AnalyzeTabs.SelectedItem).Page).InvalidInputInfoDisplayer;
 		switch (BabaGroupNameInput)
 		{
 			case null or []:
@@ -902,11 +903,12 @@ public sealed partial class AnalyzePage : Page
 					}
 				}
 
+				wrongHintControl().Visibility = Visibility.Collapsed;
 				break;
 			}
 			default:
 			{
-				((Drawing)AnalyzeTabs.SelectedItem).InvalidInputInfoDisplayer.Visibility = Visibility.Visible;
+				wrongHintControl().Visibility = Visibility.Visible;
 				break;
 			}
 		}

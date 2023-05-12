@@ -85,7 +85,7 @@
 				Text="{x:Bind BasePage.BabaGroupNameInput,Mode=TwoWay}" Grid.Column="1" Width="200"
 				PlaceholderText="{m:R Key=DrawingPage_InputCharacterTextBoxPlaceholder}" />
 			<TextBlock
-				x:Name="InvalidInputInfoDisplayer" x:FieldModifier="internal" Grid.Column="2" VerticalAlignment="Center"
+				x:Name="InvalidInputInfoDisplayer" x:FieldModifier="internal" Grid.Column="2" Margin="12,0,0,0" VerticalAlignment="Center"
 				Text="{m:R Key=DrawingPage_InputCharacterIsInvalid}" Foreground="Red" Visibility="Collapsed" />
 		</Grid>
 		<Grid RowDefinitions="Auto,*" Style="{StaticResource DrawingInfoChangerStyle}">
