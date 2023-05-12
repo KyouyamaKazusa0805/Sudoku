@@ -404,7 +404,7 @@ internal static class RenderableFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = nameof(RenderableFactory),
-			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
+			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : 1,
 			Child = new TextBlock
 			{
 				Text = @char.ToString(),
@@ -414,7 +414,7 @@ internal static class RenderableFactory
 				FontWeight = FontWeights.Bold,
 				FontStyle = FontStyle.Italic,
 				HorizontalAlignment = HorizontalAlignment.Stretch,
-				VerticalAlignment = VerticalAlignment.Stretch,
+				VerticalAlignment = VerticalAlignment.Center,
 				HorizontalTextAlignment = TextAlignment.Center,
 				TextAlignment = TextAlignment.Center
 			}
@@ -429,12 +429,7 @@ internal static class RenderableFactory
 			control.OpacityTransition = new();
 		}
 
-		animatedResults.Add(
-			(
-				() => paneCellControl.MainGrid.Children.Add(control),
-				() => control.Opacity = (double)sudokuPane.HighlightBackgroundOpacity
-			)
-		);
+		animatedResults.Add((() => paneCellControl.MainGrid.Children.Add(control), () => control.Opacity = 1));
 	}
 
 	/// <summary>
