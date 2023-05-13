@@ -319,6 +319,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="identifier"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Rendering.Nodes.BasicViewNode.RenderingMode">
+            <summary>
+            Indicates the mode that the bound view node will be displayed.
+            The default value is <see cref="F:Sudoku.Rendering.RenderingMode.PencilmarkModeOnly"/>, which means only pencilmark mode the node will be displayed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Rendering.Nodes.CandidateViewNode">
             <summary>
             Defines a view node that highlights for a candidate.
@@ -1739,12 +1745,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Shapes.ShapeViewNode.#ctor(Sudoku.Rendering.ColorIdentifier)">
             <summary>
             Defines a shape view node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.Shapes.ShapeViewNode.RenderingMode">
-            <summary>
-            Indicates the mode that the bound view node will be displayed.
-            The default value is <see cref="F:Sudoku.Rendering.RenderingMode.PencilmarkModeOnly"/>, which means only pencilmark mode the node will be displayed.
             </summary>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.SingleCellMarkViewNode">

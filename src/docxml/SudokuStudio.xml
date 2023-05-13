@@ -6171,20 +6171,9 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.Shapes.CircleRing.StrokeThickness"/>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.Shapes.CircleRing.BackgroundProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.CircleRing.Background"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.CircleRing.Background"/>
-        </member>
         <member name="P:SudokuStudio.Views.Controls.Shapes.CircleRing.StrokeThickness">
             <summary>
             Indicates the stroke thickness.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.Shapes.CircleRing.Background">
-            <summary>
-            Indicates the color of the background.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Controls.StepSearcherListView">

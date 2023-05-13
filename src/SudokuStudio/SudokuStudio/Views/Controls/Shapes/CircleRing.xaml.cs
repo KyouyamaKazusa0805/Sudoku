@@ -4,17 +4,17 @@ namespace SudokuStudio.Views.Controls.Shapes;
 /// Represents a circle ring.
 /// </summary>
 [DependencyProperty<double>("StrokeThickness", DefaultValue = 10, DocSummary = "Indicates the stroke thickness.")]
-[DependencyProperty<Brush>("Background", DocSummary = "Indicates the color of the background.")]
 public sealed partial class CircleRing : UserControl
 {
-	[DefaultValue]
-	private static readonly Brush BackgroundDefaultValue = new SolidColorBrush(Colors.DimGray with { A = 64 });
-
-
 	/// <summary>
 	/// Initializes a <see cref="CircleRing"/> instance.
 	/// </summary>
-	public CircleRing() => InitializeComponent();
+	public CircleRing()
+	{
+		InitializeComponent();
+
+		Background = new SolidColorBrush(Colors.DimGray with { A = 64 });
+	}
 
 
 	[Callback]

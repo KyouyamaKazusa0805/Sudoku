@@ -54,9 +54,19 @@ internal static class RenderableFactory
 			return;
 		}
 
+		var pencilmarkMode = ((App)Application.Current).Preference.UIPreferences.DisplayCandidates;
 		var (controlAddingActions, overlapped, links) = (new AnimatedResults(), new List<Conclusion>(), new List<LinkViewNode>());
 		foreach (var viewNode in nodes)
 		{
+			if (pencilmarkMode switch
+			{
+				true => viewNode.RenderingMode is not (RenderingMode.BothDirectAndPencilmark or RenderingMode.PencilmarkModeOnly),
+				_ => viewNode.RenderingMode is not (RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly)
+			})
+			{
+				continue;
+			}
+
 			switch (viewNode)
 			{
 				case CellViewNode c:
