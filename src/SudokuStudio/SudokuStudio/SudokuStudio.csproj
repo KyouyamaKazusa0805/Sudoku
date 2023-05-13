@@ -49,6 +49,7 @@
 		<None Remove="Views\Controls\ColorSelector.xaml" />
 		<None Remove="Views\Controls\DashArrayTextBox.xaml" />
 		<None Remove="Views\Controls\FontPicker.xaml" />
+		<None Remove="Views\Controls\Shapes\CircleRing.xaml" />
 		<None Remove="Views\Controls\StepSearcherListView.xaml" />
 		<None Remove="Views\Controls\SudokuPane.xaml" />
 		<None Remove="Views\Controls\SudokuPaneCell.xaml" />
@@ -108,12 +109,6 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>TextResources.resx</DependentUpon>
 		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Page Update="Views\Pages\Analyze\Drawing.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -190,6 +185,12 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\ContentDialogs\ErrorStepDialogContent.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Analyze\Drawing.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Controls\Shapes\CircleRing.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>
