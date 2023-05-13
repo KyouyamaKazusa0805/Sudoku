@@ -517,7 +517,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			((App)Application.Current).Preference.UIPreferences.DisplayCandidates = value;
 
-			pane.UpdateViewUnit(pane.ViewUnit);
+			pane.UpdateViewUnit();
 		}
 	}
 

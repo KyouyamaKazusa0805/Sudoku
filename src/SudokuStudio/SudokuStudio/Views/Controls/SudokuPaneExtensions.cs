@@ -6,6 +6,9 @@ namespace SudokuStudio.Views.Controls;
 /// <seealso cref="SudokuPane"/>
 public static class SudokuPaneExtensions
 {
+	/// <inheritdoc cref="UpdateViewUnit(SudokuPane, ViewUnitBindableSource?)"/>
+	public static void UpdateViewUnit(this SudokuPane @this) => @this.UpdateViewUnit(@this.ViewUnit);
+
 	/// <summary>
 	/// Update view unit (add view nodes or remove view nodes).
 	/// </summary>

@@ -7107,6 +7107,9 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:SudokuStudio.Views.Controls.SudokuPane"/>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneExtensions.UpdateViewUnit(SudokuStudio.Views.Controls.SudokuPane)">
+            <inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPaneExtensions.UpdateViewUnit(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.BindableSource.ViewUnitBindableSource)"/>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPaneExtensions.UpdateViewUnit(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.BindableSource.ViewUnitBindableSource)">
             <summary>
             Update view unit (add view nodes or remove view nodes).
