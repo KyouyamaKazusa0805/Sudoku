@@ -6140,6 +6140,53 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.IntegerBox.LargeChange">
             <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.NumberBox.LargeChange"/>
         </member>
+        <member name="T:SudokuStudio.Views.Controls.Shapes.CircleRing">
+            <summary>
+            Represents a circle ring.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.Shapes.CircleRing.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.Shapes.CircleRing"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.Shapes.CircleRing.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.Shapes.CircleRing.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.Shapes.CircleRing.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.Shapes.CircleRing.StrokeThicknessProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.CircleRing.StrokeThickness"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.CircleRing.StrokeThickness"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.Shapes.CircleRing.BackgroundProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.CircleRing.Background"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.CircleRing.Background"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.Shapes.CircleRing.StrokeThickness">
+            <summary>
+            Indicates the stroke thickness.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.Shapes.CircleRing.Background">
+            <summary>
+            Indicates the color of the background.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Controls.StepSearcherListView">
             <summary>
             Represents a <see cref="T:Microsoft.UI.Xaml.Controls.ListView"/> control that displays for <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.

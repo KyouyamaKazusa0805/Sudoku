@@ -19,7 +19,6 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 	/// <summary>
 	/// Indicates the identifier used.
 	/// </summary>
-	[JsonInclude]
 	public ColorIdentifier Identifier { get; protected set; } = identifier;
 
 	/// <summary>

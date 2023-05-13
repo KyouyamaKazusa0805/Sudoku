@@ -1,3 +1,4 @@
+global using System.ComponentModel;
 global using System.SourceGeneration;
 global using Sudoku.Analytics;
 global using Sudoku.Rendering.Nodes;
