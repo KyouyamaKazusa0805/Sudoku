@@ -513,12 +513,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[Callback]
 	private static void DisplayCandidatesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if (e is not { NewValue: bool value })
+		if ((d, e) is (SudokuPane pane, { NewValue: bool value }))
 		{
-			return;
-		}
+			((App)Application.Current).Preference.UIPreferences.DisplayCandidates = value;
 
-		((App)Application.Current).Preference.UIPreferences.DisplayCandidates = value;
+			pane.UpdateViewUnit(pane.ViewUnit);
+		}
 	}
 
 	[Callback]
@@ -529,12 +529,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			return;
 		}
 
-		RenderableFactory.RemoveViewUnitControls(pane);
-
-		if (rawValue is ViewUnitBindableSource value)
-		{
-			RenderableFactory.AddViewUnitControls(pane, value);
-		}
+		pane.UpdateViewUnit(rawValue as ViewUnitBindableSource);
 	}
 
 

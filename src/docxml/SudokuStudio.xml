@@ -7101,6 +7101,19 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.StatusProperty" />
         </member>
+        <member name="T:SudokuStudio.Views.Controls.SudokuPaneExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Views.Controls.SudokuPane"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneExtensions.UpdateViewUnit(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.BindableSource.ViewUnitBindableSource)">
+            <summary>
+            Update view unit (add view nodes or remove view nodes).
+            </summary>
+            <param name="this">The sudoku pane.</param>
+            <param name="viewUnit">The view unit bindable source.</param>
+        </member>
         <member name="T:SudokuStudio.Views.Controls.TechniqueGroupView">
             <summary>
             Defines a technique group view control.
