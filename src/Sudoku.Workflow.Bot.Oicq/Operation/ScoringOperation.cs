@@ -44,6 +44,31 @@ public static class ScoringOperation
 		4.0M, 5.0M, 5.5M, 6.0M, 7.0M, 8.0M
 	};
 
+	/// <summary>
+	/// 强化系统里，上保险的价格。
+	/// </summary>
+	private static readonly int[] InsurancePrice =
+	{
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		100,
+		300,
+		600,
+		1000,
+		17000,
+		35000,
+		50000,
+		100000,
+		200000,
+		400000,
+		800000,
+		1600000
+	};
+
 
 	/// <summary>
 	/// 根据经验值判断用户的级别。
@@ -118,6 +143,14 @@ public static class ScoringOperation
 
 		return Clamp(cloverLevel switch { -1 => p, _ => p * CloverLevels[cloverLevel] }, 0, 1);
 	}
+
+	/// <summary>
+	/// 根据主卡强化级别来计算保险价格。
+	/// </summary>
+	/// <param name="main">主卡级别。</param>
+	/// <returns>保险价格。</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetInsurance(int main) => InsurancePrice[main];
 
 	/// <inheritdoc cref="GetUserRankingListAsync{T}(Group, Func{Task}, Func{User, T}?)"/>
 	public static async Task<(string Name, User Data)[]?> GetUserRankingListAsync(Group @group, Func<Task> rankingListIsEmptyCallback)

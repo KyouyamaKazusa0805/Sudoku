@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Workflow.Bot.Oicq.ValueConverters;
+namespace Sudoku.Workflow.Bot.Oicq.ValueConverters;
 
 /// <summary>
 /// 一个转换器类型，可以提供将 <see cref="string"/> 类型的实例解析，并转换为一个数值类型的实例。

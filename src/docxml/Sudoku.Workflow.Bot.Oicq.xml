@@ -1597,6 +1597,11 @@
             强化系统里，强化卡的对应级别，以及全局的加成倍数表。
             </summary>
         </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.InsurancePrice">
+            <summary>
+            强化系统里，上保险的价格。
+            </summary>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetGrade(System.Int32)">
             <summary>
             根据经验值判断用户的级别。
@@ -1628,6 +1633,13 @@
             <param name="cloverLevel">三叶草的级别。如果不需要三叶草，则传 -1。</param>
             <returns>强化的成功率。</returns>
             <exception cref="T:System.ArgumentException">如果辅助卡为空数组，或超过 3 个元素，则产生此异常。</exception>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetInsurance(System.Int32)">
+            <summary>
+            根据主卡强化级别来计算保险价格。
+            </summary>
+            <param name="main">主卡级别。</param>
+            <returns>保险价格。</returns>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetUserRankingListAsync(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task})">
             <inheritdoc cref="M:Sudoku.Workflow.Bot.Oicq.Operation.ScoringOperation.GetUserRankingListAsync``1(Mirai.Net.Data.Shared.Group,System.Func{System.Threading.Tasks.Task},System.Func{Sudoku.Workflow.Bot.Oicq.ComponentModel.User,``0})"/>
@@ -2355,7 +2367,7 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.QueryContentKind">
             <summary>
-            表示你需要查询的具体内容。可以是“基本”、“对抗”、“物品”和“强化”。该参数可以没有，默认表示的是查询基本信息，即“基本”。
+            表示你需要查询的具体内容。可以是“基本”、“对抗”、“物品”、“保险”、“题库”和“强化”。该参数可以没有，默认表示的是查询基本信息，即“基本”。
             </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryCommand.UserId">
@@ -2414,6 +2426,11 @@
         <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryContentKinds.PuzzleLibrary">
             <summary>
             表示查询本群的题库数据。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.QueryContentKinds.Insurance">
+            <summary>
+            表示查询强化操作的保险价格。
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.RankCommand">
@@ -2550,6 +2567,12 @@
             强化指令。
             </summary>
         </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.UplevelCommand.WithInsurance">
+            <summary>
+            表示在你当前强化操作时，是否为操作上保险。可以是“是”和“否”两种情况。默认不写的是“否”。为“是”则会为强化操作上保险；
+            失败也不会掉级，但保险不论成功与否都会消耗掉。每一次强化操作都会消耗一定数额的金币。
+            </summary>
+        </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.UplevelCommand.BatchedCount">
             <summary>
             表示你进行当前强化方案下，批量强化操作的次数。默认不写的时候为 1，即只执行一次。
@@ -2571,6 +2594,14 @@
             </summary>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.UplevelCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.ValueConverters.BooleanConverter">
+            <summary>
+            一个转换器类型，可以提供将 <see cref="T:System.String"/> 类型的实例解析为 <see cref="T:System.Boolean"/> 结果。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.ValueConverters.BooleanConverter.Convert(System.String)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.ValueConverters.GridConverter">

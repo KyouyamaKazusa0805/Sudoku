@@ -7,6 +7,7 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 [Usage("！查询 内容 物品", "查询用户自己的物品所有情况。")]
 [Usage("！查询 内容 强化 主卡 3 辅助 1，1，1 三叶草 1", "查询强化期间，主卡为 3 级，辅助卡为三张 1 级，带有 1 级三叶草强化时，成功率为多少。")]
 [Usage("！查询 内容 题库 群名 摇曳数独 题库名 sdc", "查询群名为“摇曳数独”的“sdc”题库的数据（完成情况等）。")]
+[Usage("！查询 内容 保险 主卡 7", "查询强化操作上保险的在 7 级上 8 级的时候使用保险的价格。")]
 internal sealed class QueryCommand : Command
 {
 	/// <summary>
@@ -42,10 +43,10 @@ internal sealed class QueryCommand : Command
 	public int[]? AuxiliaryCards { get; set; }
 
 	/// <summary>
-	/// 表示你需要查询的具体内容。可以是“基本”、“对抗”、“物品”和“强化”。该参数可以没有，默认表示的是查询基本信息，即“基本”。
+	/// 表示你需要查询的具体内容。可以是“基本”、“对抗”、“物品”、“保险”、“题库”和“强化”。该参数可以没有，默认表示的是查询基本信息，即“基本”。
 	/// </summary>
 	[DoubleArgument("内容")]
-	[Hint("表示你需要查询的具体内容。可以是“基本”、“对抗”、“物品”和“强化”。该参数可以没有，默认表示的是查询基本信息，即“基本”。")]
+	[Hint("表示你需要查询的具体内容。可以是“基本”、“对抗”、“物品”、“保险”、“题库”和“强化”。该参数可以没有，默认表示的是查询基本信息，即“基本”。")]
 	[DefaultValue<string>(QueryContentKinds.Elementary)]
 	[DisplayingIndex(0)]
 	public string? QueryContentKind { get; set; }
@@ -138,6 +139,30 @@ internal sealed class QueryCommand : Command
 						await (name is null ? getResultMessage_PuzzleLibraries(groupId) : getResultMessage_PuzzleLibrary(groupId, name));
 						break;
 					}
+				}
+				break;
+			}
+			case QueryContentKinds.Insurance:
+			{
+				if (MainLevel == -1)
+				{
+					var finalText = string.Join(
+						Environment.NewLine,
+						from main in Enumerable.Range(0, 17) select $"主卡 {main} 级 - 保险 {ScoringOperation.GetInsurance(main)} 金币"
+					);
+					await messageReceiver.SendMessageAsync(
+						$"""
+						保险价格：
+						---
+						{finalText}
+						"""
+					);
+				}
+				else
+				{
+					await messageReceiver.SendMessageAsync(
+						$"主卡在 {MainLevel} -> {MainLevel + 1} 期间，消耗保险为 {ScoringOperation.GetInsurance(MainLevel)} 金币。"
+					);
 				}
 				break;
 			}
@@ -409,7 +434,7 @@ internal sealed class QueryCommand : Command
 						}
 						default:
 						{
-							await messageReceiver.SendMessageAsync("参数“内容”的数值有误——它只能是“对抗”、“基本”、“物品”、“强化”或“题库”，请检查。");
+							await messageReceiver.SendMessageAsync("参数“内容”的数值有误——它只能是“对抗”、“基本”、“物品”、“强化”、“保险”或“题库”，请检查。");
 							break;
 						}
 					}
@@ -470,4 +495,9 @@ file static class QueryContentKinds
 	/// 表示查询本群的题库数据。
 	/// </summary>
 	public const string PuzzleLibrary = "题库";
+
+	/// <summary>
+	/// 表示查询强化操作的保险价格。
+	/// </summary>
+	public const string Insurance = "保险";
 }

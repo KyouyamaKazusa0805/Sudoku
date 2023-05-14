@@ -8,12 +8,23 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 internal sealed class UplevelCommand : Command
 {
 	/// <summary>
+	/// 表示在你当前强化操作时，是否为操作上保险。可以是“是”和“否”两种情况。默认不写的是“否”。为“是”则会为强化操作上保险；
+	/// 失败也不会掉级，但保险不论成功与否都会消耗掉。每一次强化操作都会消耗一定数额的金币。
+	/// </summary>
+	[DoubleArgument("保险")]
+	[Hint("表示在你当前强化操作时，是否为操作上保险。可以是“是”和“否”两种情况。默认不写的是“否”。为“是”则会为强化操作上保险；失败也不会掉级，但保险不论成功与否都会消耗掉。每一次强化操作都会消耗一定数额的金币。")]
+	[DisplayingIndex(3)]
+	[ArgumentDisplayer("是/否")]
+	[ValueConverter<BooleanConverter>]
+	public bool WithInsurance { get; set; }
+
+	/// <summary>
 	/// 表示你进行当前强化方案下，批量强化操作的次数。默认不写的时候为 1，即只执行一次。
 	/// </summary>
 	[DoubleArgument("批量")]
 	[Hint("表示你进行当前强化方案下，批量强化操作的次数。默认不写的时候为 1，即只执行一次。")]
 	[ValueConverter<NumericConverter<int>>]
-	[DisplayingIndex(3)]
+	[DisplayingIndex(4)]
 	[DefaultValue<int>(1)]
 	[ArgumentDisplayer("次数")]
 	public int BatchedCount { get; set; }
@@ -135,7 +146,14 @@ internal sealed class UplevelCommand : Command
 								user.Items[targetClover]--;
 							}
 
-							user.Coin -= 3;
+							var insurance = ScoringOperation.GetInsurance(main);
+							if (WithInsurance && user.Coin < insurance + 3)
+							{
+								await messageReceiver.SendMessageAsync($"抱歉，强化一次需要消耗保险为 {insurance} 金币。你的金币不足，或扣除了强化手续费 3 金币后不足。");
+								return;
+							}
+
+							user.Coin -= 3 + (WithInsurance ? insurance : 0);
 
 							var possibility = ScoringOperation.GetUpLevelingSuccessPossibility(main, cards, level - 1);
 							var final = Rng.Next(0, 10000);
@@ -162,7 +180,7 @@ internal sealed class UplevelCommand : Command
 							{
 								// Failed.
 								var originalLevel = main;
-								if (main > 5)
+								if (main > 5 && !WithInsurance)
 								{
 									main--;
 								}
@@ -242,9 +260,11 @@ internal sealed class UplevelCommand : Command
 
 						var (succeed, failed) = (0, 0);
 						var copied = copy(user);
+
+						var insurance = ScoringOperation.GetInsurance(main);
 						for (var i = 0; i < BatchedCount; i++)
 						{
-							if (user.Coin < 3)
+							if (user.Coin < 3 + (WithInsurance ? insurance : 0))
 							{
 								break;
 							}
@@ -320,7 +340,6 @@ internal sealed class UplevelCommand : Command
 						await messageReceiver.SendMessageAsync(
 							$"""
 							批量强化操作完成。强化总次数：{BatchedCount}，成功 {succeed} 次，失败 {failed} 次。
-							---
 							卡片最终剩余情况：
 							{finalData}
 							"""
@@ -343,7 +362,7 @@ internal sealed class UplevelCommand : Command
 						{
 							var possibility = ScoringOperation.GetUpLevelingSuccessPossibility(main, cards, level - 1);
 
-							user.Coin -= 3;
+							user.Coin -= 3 + (WithInsurance ? insurance : 0);
 
 							var final = Rng.Next(0, 10000);
 							var boundary = possibility * 10000;
@@ -366,7 +385,7 @@ internal sealed class UplevelCommand : Command
 								// Failed.
 								user.Items.Remove(Item.Card);
 
-								var next = main > 5 ? main - 1 : main;
+								var next = main > 5 && !WithInsurance ? main - 1 : main;
 								if (!copied.TryAdd(next, 1))
 								{
 									copied[next]++;
