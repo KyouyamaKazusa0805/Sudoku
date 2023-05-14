@@ -59,48 +59,39 @@ internal static class RenderableFactory
 		var (controlAddingActions, overlapped, links) = (new AnimatedResults(), new List<Conclusion>(), new List<LinkViewNode>());
 		foreach (var viewNode in nodes)
 		{
-			if (pencilmarkMode switch
+			switch (viewNode, pencilmarkMode)
 			{
-				true => viewNode.RenderingMode is not (RenderingMode.BothDirectAndPencilmark or RenderingMode.PencilmarkModeOnly),
-				_ => viewNode.RenderingMode is not (RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly)
-			})
-			{
-				continue;
-			}
-
-			switch (viewNode)
-			{
-				case CellViewNode c:
+				case (CellViewNode { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.PencilmarkModeOnly }, true):
+				case (CellViewNode { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly }, false):
 				{
-					ForCellNode(sudokuPane, c, controlAddingActions);
+					ForCellNode(sudokuPane, (CellViewNode)viewNode, controlAddingActions);
 					break;
 				}
-				case CandidateViewNode c:
+				case (CandidateViewNode c, _):
 				{
 					ForCandidateNode(sudokuPane, c, conclusions, out var o, controlAddingActions);
 					if (o is { } currentOverlappedConclusion)
 					{
 						overlapped.Add(currentOverlappedConclusion);
 					}
-
 					break;
 				}
-				case HouseViewNode h:
+				case (HouseViewNode h, _):
 				{
 					ForHouseNode(sudokuPane, h, controlAddingActions);
 					break;
 				}
-				case ChuteViewNode c:
+				case (ChuteViewNode c, _):
 				{
 					ForChuteNode(sudokuPane, c, controlAddingActions);
 					break;
 				}
-				case BabaGroupViewNode b:
+				case (BabaGroupViewNode b, _):
 				{
 					ForBabaGroupNode(sudokuPane, b, controlAddingActions);
 					break;
 				}
-				case LinkViewNode l:
+				case (LinkViewNode l, _):
 				{
 					links.Add(l);
 					break;
