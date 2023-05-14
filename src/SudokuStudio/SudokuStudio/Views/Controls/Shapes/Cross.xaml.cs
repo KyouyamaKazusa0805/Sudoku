@@ -7,7 +7,7 @@ namespace SudokuStudio.Views.Controls.Shapes;
 public sealed partial class Cross : UserControl
 {
 	[DefaultValue]
-	private static readonly double StrokeThicknessDefaultValue = 10;
+	private static readonly double StrokeThicknessDefaultValue = 6;
 
 
 	/// <summary>

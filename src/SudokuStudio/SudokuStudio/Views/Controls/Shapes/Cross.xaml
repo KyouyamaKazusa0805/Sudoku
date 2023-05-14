@@ -5,16 +5,29 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:s="using:SudokuStudio.Views.Controls.Shapes"
+	xmlns:vcvt="using:SudokuStudio.Interaction.ValueConverters"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=s:Cross}">
-	<Grid x:Name="MainGrid">
+	<UserControl.Resources>
+		<vcvt:LengthMultipliedByRootOf2Converter x:Key="LengthMultipliedByRootOf2Converter" />
+	</UserControl.Resources>
+
+	<Canvas x:Name="MainGrid">
 		<Line
 			X1="0" Y1="0"
-			X2="{Binding ElementName=MainGrid,Path=ActualWidth,Mode=OneWay}"
-			Y2="{Binding ElementName=MainGrid,Path=ActualHeight,Mode=OneWay}"
-			Stroke="{x:Bind Background,Mode=OneWay}" StrokeThickness="{x:Bind StrokeThickness,Mode=OneWay}" />
+			X2="{Binding ElementName=MainGrid,Path=ActualWidth,Mode=OneWay,Converter={StaticResource LengthMultipliedByRootOf2Converter}}"
+			Y2="0" Stroke="{x:Bind Background,Mode=OneWay}" StrokeThickness="{x:Bind StrokeThickness,Mode=OneWay}">
+			<Line.RenderTransform>
+				<RotateTransform Angle="45" />
+			</Line.RenderTransform>
+		</Line>
 		<Line
-			X1="0" Y1="{Binding ElementName=MainGrid,Path=ActualHeight,Mode=OneWay}"
-			X2="{Binding ElementName=MainGrid,Path=ActualWidth,Mode=OneWay}" Y2="0"
-			Stroke="{x:Bind Background,Mode=OneWay}" StrokeThickness="{x:Bind StrokeThickness,Mode=OneWay}" />
-	</Grid>
+			x:Name="Line2" X1="{Binding ElementName=MainGrid,Path=ActualWidth,Mode=OneWay}" Y1="0"
+			X2="{Binding ElementName=MainGrid,Path=ActualWidth,Mode=OneWay}"
+			Y2="{Binding ElementName=MainGrid,Path=ActualHeight,Mode=OneWay,Converter={StaticResource LengthMultipliedByRootOf2Converter}}"
+			Stroke="{x:Bind Background,Mode=OneWay}" StrokeThickness="{x:Bind StrokeThickness,Mode=OneWay}">
+			<Line.RenderTransform>
+				<RotateTransform Angle="45" CenterX="{x:Bind Line2.X1,Mode=OneWay}" />
+			</Line.RenderTransform>
+		</Line>
+	</Canvas>
 </UserControl>

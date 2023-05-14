@@ -3084,6 +3084,17 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToCoordinateLabelModeConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Interaction.ValueConverters.LengthMultipliedByRootOf2Converter">
+            <summary>
+            Indicates a value converter that creates a new value, multiplied by root of 2.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.LengthMultipliedByRootOf2Converter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.LengthMultipliedByRootOf2Converter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.StepTooltipDisplayItemToBooleanConverter">
             <summary>
             Represents a value converter that can convert a <see cref="T:SudokuStudio.Interaction.StepTooltipDisplayItems"/> to a <see cref="T:System.Boolean"/> value.

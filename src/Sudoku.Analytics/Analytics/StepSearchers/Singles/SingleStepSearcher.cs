@@ -403,7 +403,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		}
 		if (nullableCombination is not { } combination)
 		{
-			throw new InvalidOperationException("The pattern is invalid.");
+			return Array.Empty<CellViewNode>();
 		}
 
 		var result = new List<CellViewNode>();

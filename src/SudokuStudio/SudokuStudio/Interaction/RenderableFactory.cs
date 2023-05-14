@@ -222,7 +222,7 @@ internal static class RenderableFactory
 						Tag = nameof(RenderableFactory),
 						Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 						Opacity = 0,
-						Padding = new(5)
+						Margin = new(6)
 					};
 			}
 		}
