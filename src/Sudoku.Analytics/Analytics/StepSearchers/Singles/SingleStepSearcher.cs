@@ -401,13 +401,10 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				break;
 			}
 		}
-		if (nullableCombination is not { } combination)
+		return nullableCombination switch
 		{
-			throw new InvalidOperationException("The pattern is invalid.");
-		}
-
-		return
-			from c in combination
-			select new CellViewNode(WellKnownColorIdentifierKind.Normal, c) { RenderingMode = RenderingMode.DirectModeOnly };
+			{ } combination => from c in combination select new CellViewNode(WellKnownColorIdentifierKind.Normal, c) { RenderingMode = RenderingMode.DirectModeOnly },
+			_ => throw new InvalidOperationException("The pattern is invalid.")
+		};
 	}
 }
