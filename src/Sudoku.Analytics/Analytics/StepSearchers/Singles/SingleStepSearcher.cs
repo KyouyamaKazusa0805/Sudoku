@@ -401,10 +401,22 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				break;
 			}
 		}
-		return nullableCombination switch
+		if (nullableCombination is not { } combination)
 		{
-			{ } combination => from c in combination select new CellViewNode(WellKnownColorIdentifierKind.Normal, c) { RenderingMode = RenderingMode.DirectModeOnly },
-			_ => throw new InvalidOperationException("The pattern is invalid.")
-		};
+			throw new InvalidOperationException("The pattern is invalid.");
+		}
+
+		var result = new List<CellViewNode>();
+		foreach (var c in combination)
+		{
+			result.Add(new(WellKnownColorIdentifier.Normal, c) { RenderingMode = RenderingMode.DirectModeOnly });
+		}
+		foreach (var c in emptyCellsShouldBeCovered)
+		{
+			var p = emptyCellsNotNeedToBeCovered.Contains(c) ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1;
+			result.Add(new(p, c) { RenderingMode = RenderingMode.DirectModeOnly });
+		}
+
+		return result.ToArray();
 	}
 }

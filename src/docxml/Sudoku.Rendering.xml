@@ -125,7 +125,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents an identifier that is used for describing target rendering item.
             </summary>
-            <completionlist cref="T:Sudoku.Rendering.WellKnownColorIdentifierKind"/>
+            <completionlist cref="T:Sudoku.Rendering.WellKnownColorIdentifier"/>
         </member>
         <member name="M:Sudoku.Rendering.ColorIdentifier.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

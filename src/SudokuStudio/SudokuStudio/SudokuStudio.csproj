@@ -50,6 +50,7 @@
 		<None Remove="Views\Controls\DashArrayTextBox.xaml" />
 		<None Remove="Views\Controls\FontPicker.xaml" />
 		<None Remove="Views\Controls\Shapes\CircleRing.xaml" />
+		<None Remove="Views\Controls\Shapes\Cross.xaml" />
 		<None Remove="Views\Controls\StepSearcherListView.xaml" />
 		<None Remove="Views\Controls\SudokuPane.xaml" />
 		<None Remove="Views\Controls\SudokuPaneCell.xaml" />
@@ -191,6 +192,9 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Controls\Shapes\CircleRing.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Controls\Shapes\Cross.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>

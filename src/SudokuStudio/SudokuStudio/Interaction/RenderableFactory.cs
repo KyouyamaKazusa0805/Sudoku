@@ -1,6 +1,7 @@
 namespace SudokuStudio.Interaction;
 
 using AnimatedResults = List<(Action Animating, Action Adding)>;
+using Kind = WellKnownColorIdentifierKind;
 
 /// <summary>
 /// Defines a factory type that is used for creating a list of <see cref="FrameworkElement"/>
@@ -140,8 +141,8 @@ internal static class RenderableFactory
 			IdentifierConversion.GetColor(
 				type switch
 				{
-					Assignment => isOverlapped ? WellKnownColorIdentifierKind.OverlappedAssignment : WellKnownColorIdentifierKind.Assignment,
-					Elimination => isOverlapped ? WellKnownColorIdentifierKind.Cannibalism : WellKnownColorIdentifierKind.Elimination
+					Assignment => isOverlapped ? Kind.OverlappedAssignment : Kind.Assignment,
+					Elimination => isOverlapped ? Kind.Cannibalism : Kind.Elimination
 				}
 			),
 			candidate,
@@ -169,9 +170,14 @@ internal static class RenderableFactory
 			return;
 		}
 
-		switch (sudokuPane.DisplayCandidates, cellNode.RenderingMode)
+		switch (sudokuPane.DisplayCandidates, cellNode)
 		{
-			case (true, RenderingMode.BothDirectAndPencilmark or RenderingMode.PencilmarkModeOnly):
+			case (true, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.PencilmarkModeOnly }):
+			case (false,
+			{
+				RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly,
+				Identifier: WellKnownColorIdentifier { Kind: not (Kind.Normal or >= Kind.Auxiliary1 and <= Kind.Auxiliary3) }
+			}):
 			{
 				var control = new Border
 				{
@@ -199,15 +205,9 @@ internal static class RenderableFactory
 
 				break;
 			}
-			case (false, RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly):
+			case (false, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly }):
 			{
-				var control = new CircleRing
-				{
-					BorderThickness = new(0),
-					Tag = nameof(RenderableFactory),
-					Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-					Opacity = 0
-				};
+				var control = cellNode.Identifier == WellKnownColorIdentifier.Normal ? create<CircleRing>() : create<Cross>();
 
 				GridLayout.SetRowSpan(control, 3);
 				GridLayout.SetColumnSpan(control, 3);
@@ -221,6 +221,18 @@ internal static class RenderableFactory
 				animatedResults.Add((() => paneCellControl.MainGrid.Children.Add(control), () => control.Opacity = 1));
 
 				break;
+
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				Control create<T>() where T : Control, new()
+					=> new T
+					{
+						BorderThickness = new(0),
+						Tag = nameof(RenderableFactory),
+						Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
+						Opacity = 0,
+						Padding = new(5)
+					};
 			}
 		}
 	}

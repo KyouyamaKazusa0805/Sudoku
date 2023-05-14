@@ -6,5 +6,5 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:s="using:SudokuStudio.Views.Controls.Shapes"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=s:CircleRing}">
-	<Ellipse x:Name="BackingEllipse" Stroke="{x:Bind Background,Mode=OneWay}" StrokeThickness="10" />
+	<Ellipse x:Name="BackingEllipse" Stroke="{x:Bind Background,Mode=OneWay}" StrokeThickness="{x:Bind StrokeThickness,Mode=OneWay}" />
 </UserControl>

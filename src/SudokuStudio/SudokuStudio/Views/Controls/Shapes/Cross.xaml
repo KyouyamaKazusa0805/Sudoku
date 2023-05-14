@@ -1,0 +1,20 @@
+<UserControl
+	x:Class="SudokuStudio.Views.Controls.Shapes.Cross"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:s="using:SudokuStudio.Views.Controls.Shapes"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=s:Cross}">
+	<Grid x:Name="MainGrid">
+		<Line
+			X1="0" Y1="0"
+			X2="{Binding ElementName=MainGrid,Path=ActualWidth,Mode=OneWay}"
+			Y2="{Binding ElementName=MainGrid,Path=ActualHeight,Mode=OneWay}"
+			Stroke="{x:Bind Background,Mode=OneWay}" StrokeThickness="{x:Bind StrokeThickness,Mode=OneWay}" />
+		<Line
+			X1="0" Y1="{Binding ElementName=MainGrid,Path=ActualHeight,Mode=OneWay}"
+			X2="{Binding ElementName=MainGrid,Path=ActualWidth,Mode=OneWay}" Y2="0"
+			Stroke="{x:Bind Background,Mode=OneWay}" StrokeThickness="{x:Bind StrokeThickness,Mode=OneWay}" />
+	</Grid>
+</UserControl>

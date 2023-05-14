@@ -3,7 +3,7 @@ namespace Sudoku.Rendering;
 /// <summary>
 /// Represents an identifier that is used for describing target rendering item.
 /// </summary>
-/// <completionlist cref="WellKnownColorIdentifierKind"/>
+/// <completionlist cref="WellKnownColorIdentifier"/>
 [JsonPolymorphic(UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType, TypeDiscriminatorPropertyName = "$typeid")]
 [JsonDerivedType(typeof(ColorColorIdentifier), 0)]
 [JsonDerivedType(typeof(WellKnownColorIdentifier), 1)]

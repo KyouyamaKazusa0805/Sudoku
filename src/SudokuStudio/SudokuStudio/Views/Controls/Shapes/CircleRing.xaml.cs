@@ -15,14 +15,4 @@ public sealed partial class CircleRing : UserControl
 
 		Background = new SolidColorBrush(Colors.DimGray with { A = 64 });
 	}
-
-
-	[Callback]
-	private static void StrokeThicknessPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-	{
-		if ((d, e) is (CircleRing inst, { NewValue: double value }))
-		{
-			inst.BackingEllipse.StrokeThickness = value;
-		}
-	}
 }
