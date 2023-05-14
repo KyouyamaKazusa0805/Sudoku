@@ -3,9 +3,13 @@ namespace SudokuStudio.Views.Controls.Shapes;
 /// <summary>
 /// Represents a circle ring.
 /// </summary>
-[DependencyProperty<double>("StrokeThickness", DefaultValue = 10, DocSummary = "Indicates the stroke thickness.")]
+[DependencyProperty<double>("StrokeThickness", DocSummary = "Indicates the stroke thickness.")]
 public sealed partial class CircleRing : UserControl
 {
+	[DefaultValue]
+	private static readonly double StrokeThicknessDefaultValue = 10;
+
+
 	/// <summary>
 	/// Initializes a <see cref="CircleRing"/> instance.
 	/// </summary>
