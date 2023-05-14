@@ -64,9 +64,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 			for (var house = 0; house < 27; house++)
 			{
-				var count = 0;
-				var resultCell = -1;
-				var flag = true;
+				var (count, resultCell, flag) = (0, -1, true);
 				foreach (var cell in HousesMap[house])
 				{
 					if (grid.GetStatus(cell) == CellStatus.Empty)
@@ -100,7 +98,6 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				if (context.OnlyFindOne)
 				{
 					context.PreviousSetDigit = digit;
-
 					return step;
 				}
 
@@ -118,7 +115,6 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				if (context.OnlyFindOne)
 				{
 					context.PreviousSetDigit = digit;
-
 					return step;
 				}
 
@@ -148,7 +144,6 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				if (context.OnlyFindOne)
 				{
 					context.PreviousSetDigit = digit;
-
 					return step;
 				}
 
@@ -175,9 +170,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 		for (var house = 0; house < 27; house++)
 		{
-			var count = 0;
-			var resultCell = -1;
-			var flag = true;
+			var (count, resultCell, flag) = (0, -1, true);
 			foreach (var cell in HousesMap[house])
 			{
 				if (grid.GetStatus(cell) == CellStatus.Empty)
@@ -319,9 +312,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// </remarks>
 	private Step? CheckForHiddenSingleAndLastDigit(scoped in Grid grid, Digit digit, House house)
 	{
-		var count = 0;
-		var resultCell = -1;
-		var flag = true;
+		var (count, resultCell, flag) = (0, -1, true);
 		foreach (var cell in HousesMap[house])
 		{
 			if (grid.Exists(cell, digit) is true)
