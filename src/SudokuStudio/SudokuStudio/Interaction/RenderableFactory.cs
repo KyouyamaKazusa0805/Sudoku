@@ -169,28 +169,60 @@ internal static class RenderableFactory
 			return;
 		}
 
-		var control = new Border
+		switch (sudokuPane.DisplayCandidates, cellNode.RenderingMode)
 		{
-			BorderThickness = new(0),
-			Tag = nameof(RenderableFactory),
-			Opacity = (double)sudokuPane.HighlightBackgroundOpacity
-		};
+			case (true, RenderingMode.BothDirectAndPencilmark or RenderingMode.PencilmarkModeOnly):
+			{
+				var control = new Border
+				{
+					BorderThickness = new(0),
+					Tag = nameof(RenderableFactory),
+					Opacity = 0,
+					Background = new SolidColorBrush(IdentifierConversion.GetColor(id))
+				};
 
-		GridLayout.SetRowSpan(control, 3);
-		GridLayout.SetColumnSpan(control, 3);
-		Canvas.SetZIndex(control, -1);
+				GridLayout.SetRowSpan(control, 3);
+				GridLayout.SetColumnSpan(control, 3);
+				Canvas.SetZIndex(control, -1);
 
-		if (sudokuPane.EnableAnimationFeedback)
-		{
-			control.OpacityTransition = new();
+				if (sudokuPane.EnableAnimationFeedback)
+				{
+					control.OpacityTransition = new();
+				}
+
+				animatedResults.Add(
+					(
+						() => paneCellControl.MainGrid.Children.Add(control),
+						() => control.Opacity = (double)sudokuPane.HighlightBackgroundOpacity
+					)
+				);
+
+				break;
+			}
+			case (false, RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly):
+			{
+				var control = new CircleRing
+				{
+					BorderThickness = new(0),
+					Tag = nameof(RenderableFactory),
+					Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
+					Opacity = 0
+				};
+
+				GridLayout.SetRowSpan(control, 3);
+				GridLayout.SetColumnSpan(control, 3);
+				Canvas.SetZIndex(control, -1);
+
+				if (sudokuPane.EnableAnimationFeedback)
+				{
+					control.OpacityTransition = new();
+				}
+
+				animatedResults.Add((() => paneCellControl.MainGrid.Children.Add(control), () => control.Opacity = 1));
+
+				break;
+			}
 		}
-
-		animatedResults.Add(
-			(
-				() => paneCellControl.MainGrid.Children.Add(control),
-				() => control.Background = new SolidColorBrush(IdentifierConversion.GetColor(id))
-			)
-		);
 	}
 
 	/// <summary>
