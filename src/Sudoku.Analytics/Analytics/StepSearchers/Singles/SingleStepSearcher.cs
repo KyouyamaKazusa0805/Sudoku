@@ -332,10 +332,9 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			return null;
 		}
 
-		// Now here the digit is a hidden single. We should gather the information (painting or text information)
-		// on the step in order to display onto the UI.
-		var enableAndIsLastDigit = false;
-		var cellOffsets = new List<CellViewNode>();
+		// The digit is a hidden single.
+		// Now collect information (especially for rendering & text) from the current found step.
+		var (enableAndIsLastDigit, cellOffsets) = (false, new List<CellViewNode>());
 		if (EnableLastDigit)
 		{
 			// Sum up the number of appearing in the grid of 'digit'.
@@ -358,6 +357,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				View.Empty
 					| (enableAndIsLastDigit ? cellOffsets : null)
+					| (enableAndIsLastDigit ? null : GetCrosshatchBaseCells(grid, digit, house, resultCell))
 					| (enableAndIsLastDigit ? null : new HouseViewNode(WellKnownColorIdentifier.Normal, house))
 			},
 			resultCell,
@@ -365,5 +365,49 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			house,
 			enableAndIsLastDigit
 		);
+	}
+
+	/// <summary>
+	/// Try to create a list of <see cref="CellViewNode"/>s indicating the crosshatching base cells.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="digit">The digit.</param>
+	/// <param name="house">The house.</param>
+	/// <param name="cell">The cell.</param>
+	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
+	private CellViewNode[] GetCrosshatchBaseCells(scoped in Grid grid, Digit digit, House house, Cell cell)
+	{
+		var (houseCells, valueCells, emptyCells) = (HousesMap[house], grid.ValuesMap[digit], grid.EmptyCells);
+		var (emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered, values) = (houseCells - cell & emptyCells, CellMap.Empty, CellMap.Empty);
+		foreach (var c in emptyCellsShouldBeCovered)
+		{
+			var tempValues = PeersMap[c] & valueCells;
+			if (tempValues)
+			{
+				values |= tempValues;
+			}
+			else
+			{
+				emptyCellsNotNeedToBeCovered.Add(c);
+			}
+		}
+
+		var nullableCombination = default(CellMap?);
+		foreach (var valueCombination in values | values.Count)
+		{
+			if ((valueCombination.ExpandedPeers & houseCells & emptyCells) - cell == emptyCellsShouldBeCovered - emptyCellsNotNeedToBeCovered)
+			{
+				nullableCombination = valueCombination;
+				break;
+			}
+		}
+		if (nullableCombination is not { } combination)
+		{
+			throw new InvalidOperationException("The pattern is invalid.");
+		}
+
+		return
+			from c in combination
+			select new CellViewNode(WellKnownColorIdentifierKind.Normal, c) { RenderingMode = RenderingMode.DirectModeOnly };
 	}
 }
