@@ -199,7 +199,7 @@ internal static class RenderableFactory
 
 				GridLayout.SetRowSpan(control, 3);
 				GridLayout.SetColumnSpan(control, 3);
-				Canvas.SetZIndex(control, -1);
+				Canvas.SetZIndex(control, -2);
 
 				if (sudokuPane.EnableAnimationFeedback)
 				{
@@ -221,7 +221,7 @@ internal static class RenderableFactory
 
 				GridLayout.SetRowSpan(control, 3);
 				GridLayout.SetColumnSpan(control, 3);
-				Canvas.SetZIndex(control, -1);
+				Canvas.SetZIndex(control, -2);
 
 				if (sudokuPane.EnableAnimationFeedback)
 				{
@@ -319,7 +319,7 @@ internal static class RenderableFactory
 		var digit = candidate % 9;
 		GridLayout.SetRow(control, digit / 3);
 		GridLayout.SetColumn(control, digit % 3);
-		Canvas.SetZIndex(control, -1);
+		Canvas.SetZIndex(control, -2);
 
 		if (paneCellControl.BasePane.EnableAnimationFeedback)
 		{
@@ -482,7 +482,7 @@ internal static class RenderableFactory
 
 		GridLayout.SetRowSpan(control, 3);
 		GridLayout.SetColumnSpan(control, 3);
-		Canvas.SetZIndex(control, -1);
+		Canvas.SetZIndex(control, -2);
 
 		if (sudokuPane.EnableAnimationFeedback)
 		{
@@ -515,20 +515,20 @@ internal static class RenderableFactory
 			return;
 		}
 
-		foreach (var link in new PathCreator(sudokuPane, new(gridControl), conclusions).CreateLinks(linkNodes))
+		foreach (var control in new PathCreator(sudokuPane, new(gridControl), conclusions).CreateLinks(linkNodes))
 		{
-			GridLayout.SetRow(link, 2);
-			GridLayout.SetColumn(link, 2);
-			GridLayout.SetRowSpan(link, 9);
-			GridLayout.SetColumnSpan(link, 9);
-			Canvas.SetZIndex(link, -1);
+			GridLayout.SetRow(control, 2);
+			GridLayout.SetColumn(control, 2);
+			GridLayout.SetRowSpan(control, 9);
+			GridLayout.SetColumnSpan(control, 9);
+			Canvas.SetZIndex(control, -2);
 
 			if (sudokuPane.EnableAnimationFeedback)
 			{
-				link.OpacityTransition = new();
+				control.OpacityTransition = new();
 			}
 
-			animatedResults.Add((() => gridControl.Children.Add(link), () => link.Opacity = 1));
+			animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = 1));
 		}
 	}
 }

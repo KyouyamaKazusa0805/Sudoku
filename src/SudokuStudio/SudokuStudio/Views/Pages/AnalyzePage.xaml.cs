@@ -1163,24 +1163,39 @@ public sealed partial class AnalyzePage : Page
 
 				break;
 			}
-			case { MouseButton: MouseButton.Right, Cell: var cell }
-			when SudokuPane is { DisableFlyout: false, Puzzle: var puzzle } && puzzle.GetStatus(cell) == CellStatus.Empty:
+			case { MouseButton: MouseButton.Right, Cell: var cell } when SudokuPane is { DisableFlyout: false, Puzzle: var puzzle }:
 			{
-				SudokuPane._temporarySelectedCell = cell;
-
-				foreach (var element in MainMenuFlyout.SecondaryCommands.OfType<AppBarButton>())
+				switch (puzzle.GetStatus(cell))
 				{
-					if (element.Tag is int digit && (puzzle.GetCandidates(cell) >> Abs(digit) - 1 & 1) == 0)
+					case CellStatus.Empty:
 					{
-						element.Visibility = Visibility.Collapsed;
+						SudokuPane._temporarySelectedCell = cell;
+						foreach (var element in getAppBarButtons(MainMenuFlyout))
+						{
+							element.IsEnabled = (puzzle.GetCandidates(cell) >> Abs((int)element.Tag) - 1 & 1) != 0;
+						}
+
+						MainMenuFlyout.ShowAt(SudokuPane);
+						break;
+					}
+					case CellStatus.Given or CellStatus.Modifiable:
+					{
+						SudokuPane._temporarySelectedCell = cell;
+						foreach (var element in getAppBarButtons(MainMenuFlyout))
+						{
+							element.IsEnabled = false;
+						}
+
+						MainMenuFlyout.ShowAt(SudokuPane, new() { ShowMode = FlyoutShowMode.Transient });
+						break;
 					}
 				}
-
-				MainMenuFlyout.ShowAt(SudokuPane);
-
 				break;
 			}
 		}
+
+
+		static IEnumerable<AppBarButton> getAppBarButtons(CommandBarFlyout flyout) => flyout.SecondaryCommands.OfType<AppBarButton>();
 	}
 
 	private void MainMenuFlyout_Closed(object sender, object e)
