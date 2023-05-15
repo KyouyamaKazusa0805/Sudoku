@@ -21,14 +21,12 @@ public sealed partial class CellViewNode : BasicViewNode//(ColorIdentifier ident
 	/// <summary>
 	/// Indicates the cell highlighted.
 	/// </summary>
-	[JsonInclude]
 	public Cell Cell { get; }// = cell;
 
 	/// <summary>
 	/// Indicates the cell string.
 	/// </summary>
 	[GeneratedDisplayName(nameof(Cell))]
-	[JsonIgnore]
 	private string CellString => CellsMap[Cell].ToString();
 
 
