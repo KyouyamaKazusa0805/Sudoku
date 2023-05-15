@@ -9,12 +9,10 @@
     <Import_RootNamespace>SudokuTutorial</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)pic\" />
-    <Folder Include="$(MSBuildThisFileDirectory)output\" />
-    <Folder Include="$(MSBuildThisFileDirectory)src\Part 1 Welcome to Sudoku\" />
+    <None Include="$(MSBuildThisFileDirectory)README.md" />
+    <None Include="$(MSBuildThisFileDirectory)文档\教程.docx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)README.md" />
-    <None Include="$(MSBuildThisFileDirectory)src\Sudoku-Tutorial.docx" />
+    <Folder Include="$(MSBuildThisFileDirectory)图片\" />
   </ItemGroup>
 </Project>
