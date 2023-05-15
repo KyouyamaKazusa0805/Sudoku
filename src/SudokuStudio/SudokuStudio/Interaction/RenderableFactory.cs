@@ -106,7 +106,7 @@ internal static class RenderableFactory
 
 		ForLinkNodes(sudokuPane, links.ToArray(), conclusions, controlAddingActions);
 
-		controlAddingActions.ForEach(static pair => { pair.Adding(); pair.Animating(); });
+		controlAddingActions.ForEach(static pair => pair.Invoke());
 	}
 
 	/// <summary>
@@ -385,12 +385,12 @@ internal static class RenderableFactory
 	/// <seealso cref="ChuteViewNode"/>
 	private static void ForChuteNode(SudokuPane sudokuPane, ChuteViewNode chuteNode, AnimatedResults animatedResults)
 	{
-		var (id, chute) = chuteNode;
 		if (sudokuPane.MainGrid is not { } gridControl)
 		{
 			return;
 		}
 
+		var (id, chute) = chuteNode;
 		var control = new Border
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
@@ -403,11 +403,7 @@ internal static class RenderableFactory
 		{
 			>= 0 and < 3 => (chute * 3 + 2, 2, 3, 9),
 			>= 3 and < 6 => (2, (chute - 3) * 3 + 2, 9, 3),
-			_ => throw new ArgumentException(
-				$"The value '{nameof(chuteNode)}' is invalid.",
-				nameof(chuteNode),
-				new InvalidOperationException($"The property '{nameof(chuteNode)}.{nameof(ChuteViewNode.ChuteIndex)}' of instance is invalid.")
-			)
+			_ => throw new ArgumentException($"The value '{nameof(chuteNode)}' is invalid.", nameof(chuteNode))
 		};
 
 		GridLayout.SetRow(control, row);
@@ -500,8 +496,7 @@ internal static class RenderableFactory
 			return;
 		}
 
-		var pathCreator = new PathCreator(sudokuPane, new(gridControl), conclusions);
-		foreach (var link in pathCreator.CreateLinks(linkNodes))
+		foreach (var link in new PathCreator(sudokuPane, new(gridControl), conclusions).CreateLinks(linkNodes))
 		{
 			GridLayout.SetRow(link, 2);
 			GridLayout.SetColumn(link, 2);
