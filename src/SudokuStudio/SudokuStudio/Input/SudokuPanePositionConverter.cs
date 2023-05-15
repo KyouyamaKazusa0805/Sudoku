@@ -68,10 +68,10 @@ internal readonly partial record struct SudokuPanePositionConverter(GridLayout G
 		}
 	}
 
-	[GeneratedDisplayName("GridWidth")]
+	[ToStringIdentifier("GridWidth")]
 	private string GridWidthString => ((int)GridSize.Width).ToString();
 
-	[GeneratedDisplayName("GridHeight")]
+	[ToStringIdentifier("GridHeight")]
 	private string GridHeightString => ((int)GridSize.Height).ToString();
 
 

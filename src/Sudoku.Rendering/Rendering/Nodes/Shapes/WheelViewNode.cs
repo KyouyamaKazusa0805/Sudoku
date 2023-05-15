@@ -16,7 +16,7 @@ public sealed partial class WheelViewNode(ColorIdentifier identifier, Cell cell,
 	/// <summary>
 	/// Indicates the cell string.
 	/// </summary>
-	[GeneratedDisplayName(nameof(Cell))]
+	[ToStringIdentifier(nameof(Cell))]
 	private string CellString => CellsMap[Cell].ToString();
 
 

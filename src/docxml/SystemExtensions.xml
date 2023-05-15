@@ -4131,18 +4131,6 @@ fixed (short* ptr = instance)
             Indicates the accessibility is <see langword="public"/>.
             </summary>
         </member>
-        <member name="T:System.SourceGeneration.GeneratedDisplayNameAttribute">
-            <summary>
-            Indicates the display name on generated code of <c>ToString</c> method.
-            </summary>
-            <param name="displayMemberName">The display member name.</param>
-        </member>
-        <member name="M:System.SourceGeneration.GeneratedDisplayNameAttribute.#ctor(System.String)">
-            <summary>
-            Indicates the display name on generated code of <c>ToString</c> method.
-            </summary>
-            <param name="displayMemberName">The display member name.</param>
-        </member>
         <member name="T:System.SourceGeneration.GeneratedEqualsBehavior">
             <summary>
             Defines a kind of behavior describing source generator's generated source code on overridding <see cref="M:System.Object.Equals(System.Object)"/>.
@@ -4606,6 +4594,18 @@ fixed (short* ptr = instance)
             If you want to set <see langword="ref readonly"/>, you should manually set this property with value <c>"ref readonly"</c> value.
             </para>
             </remarks>
+        </member>
+        <member name="T:System.SourceGeneration.ToStringIdentifierAttribute">
+            <summary>
+            Indicates the identifier name displayed in generated code for <c>ToString</c> method.
+            </summary>
+            <param name="displayMemberName">The display member name.</param>
+        </member>
+        <member name="M:System.SourceGeneration.ToStringIdentifierAttribute.#ctor(System.String)">
+            <summary>
+            Indicates the identifier name displayed in generated code for <c>ToString</c> method.
+            </summary>
+            <param name="displayMemberName">The display member name.</param>
         </member>
         <member name="T:System.Timers.ValueStopwatch">
             <summary>

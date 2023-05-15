@@ -144,7 +144,7 @@ public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKind
 	/// <summary>
 	/// Indicates the candidate string representation.
 	/// </summary>
-	[GeneratedDisplayName(nameof(Candidate))]
+	[ToStringIdentifier(nameof(Candidate))]
 	private string CandidateString => $"{CellsMap[Cell]}({Digit + 1})";
 
 	/// <summary>

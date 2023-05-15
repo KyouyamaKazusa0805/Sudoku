@@ -15,7 +15,7 @@ public sealed partial class NeighborSignViewNode(ColorIdentifier identifier, Cel
 	/// <summary>
 	/// Indicates the cell string.
 	/// </summary>
-	[GeneratedDisplayName(nameof(Cell))]
+	[ToStringIdentifier(nameof(Cell))]
 	private string CellString => CellsMap[Cell].ToString();
 
 

@@ -35,13 +35,13 @@ public sealed partial class BabaGroupViewNode : BasicViewNode//(ColorIdentifier 
 	/// <summary>
 	/// Indicates the cell string.
 	/// </summary>
-	[GeneratedDisplayName(nameof(Cell))]
+	[ToStringIdentifier(nameof(Cell))]
 	private string CellString => CellsMap[Cell].ToString();
 
 	/// <summary>
 	/// Indicates the digits mask string.
 	/// </summary>
-	[GeneratedDisplayName(nameof(DigitsMask))]
+	[ToStringIdentifier(nameof(DigitsMask))]
 	private string DigitsMaskString => Convert.ToString(DigitsMask, 2).ToString();
 
 

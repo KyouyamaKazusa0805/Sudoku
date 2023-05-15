@@ -38,7 +38,7 @@ internal static class ToStringOverriddenHandler
 			return null;
 		}
 
-		var attributeType = compilation.GetTypeByMetadataName("System.SourceGeneration.GeneratedDisplayNameAttribute");
+		var attributeType = compilation.GetTypeByMetadataName("System.SourceGeneration.ToStringIdentifierAttribute");
 		if (attributeType is null)
 		{
 			return null;

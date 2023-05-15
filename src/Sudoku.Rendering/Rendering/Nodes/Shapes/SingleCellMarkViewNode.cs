@@ -21,7 +21,7 @@ public abstract partial class SingleCellMarkViewNode(ColorIdentifier identifier,
 	/// <summary>
 	/// Indicates the cell string.
 	/// </summary>
-	[GeneratedDisplayName(nameof(Cell))]
+	[ToStringIdentifier(nameof(Cell))]
 	private string CellString => CellsMap[Cell].ToString();
 
 

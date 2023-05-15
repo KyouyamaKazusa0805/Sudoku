@@ -9,13 +9,13 @@ public sealed partial class BorderBarViewNode(ColorIdentifier identifier, Cell c
 	/// <summary>
 	/// Indicates the cell 1 string.
 	/// </summary>
-	[GeneratedDisplayName(nameof(Cell1))]
+	[ToStringIdentifier(nameof(Cell1))]
 	private string Cell1String => CellsMap[Cell1].ToString();
 
 	/// <summary>
 	/// Indicates the cell 2 string.
 	/// </summary>
-	[GeneratedDisplayName(nameof(Cell2))]
+	[ToStringIdentifier(nameof(Cell2))]
 	private string Cell2String => CellsMap[Cell2].ToString();
 
 

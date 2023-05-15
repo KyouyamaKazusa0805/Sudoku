@@ -20,7 +20,7 @@ public sealed partial class CandidateViewNode : BasicViewNode//(ColorIdentifier 
 	/// <summary>
 	/// Indicates the candidate string.
 	/// </summary>
-	[GeneratedDisplayName(nameof(Candidate))]
+	[ToStringIdentifier(nameof(Candidate))]
 	private string CandidateString => RxCyNotation.ToCandidateString(Candidate);
 
 
