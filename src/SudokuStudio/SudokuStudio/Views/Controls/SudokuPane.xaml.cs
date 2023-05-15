@@ -24,6 +24,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<Cell>("SelectedCell", DocSummary = "Indicates the currently selected cell.")]
 [DependencyProperty<CoordinateLabelDisplayKind>("CoordinateLabelDisplayKind", DefaultValue = CoordinateLabelDisplayKind.RxCy, DocSummary = "Indicates the displaying kind of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Interaction.CoordinateLabelDisplayKind\"/>.")]
 [DependencyProperty<CoordinateLabelDisplayMode>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplayMode.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Interaction.CoordinateLabelDisplayMode\"/>.")]
+[DependencyProperty<CandidateMap>("ViewUnitUsedCandidates", DocSummary = "Indicates a map that stores candidates used in a view unit.")]
 [DependencyProperty<Color>("GivenColor", DocSummary = "Indicates the given color.")]
 [DependencyProperty<Color>("ModifiableColor", DocSummary = "Indicates the modifiable color.")]
 [DependencyProperty<Color>("PencilmarkColor", DocSummary = "Indicates the pencilmark color.")]
@@ -132,6 +133,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	[DefaultValue]
 	private static readonly Color EndofinColorDefaultValue = Color.FromArgb(255, 216, 178, 255);
+
+	[DefaultValue]
+	private static readonly CandidateMap ViewUnitUsedCandidatesDefaultValue = CandidateMap.Empty;
 
 	[DefaultValue]
 	private static readonly DashArray StrongLinkDashStyleDefaultValue = new();

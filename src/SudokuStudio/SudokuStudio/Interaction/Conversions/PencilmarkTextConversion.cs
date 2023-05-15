@@ -19,21 +19,33 @@ internal static class PencilmarkTextConversion
 		Mask candidatesMask,
 		Digit digit,
 		bool displayCandidates,
-		bool useDifferentColorToDisplayDeltaDigits
+		bool useDifferentColorToDisplayDeltaDigits,
+		CandidateMap usedCandidates
 	)
 	{
 		var defaultBrush = new SolidColorBrush();
 		return (displayCandidates, cellStatus) switch
 		{
-			(false, _) => defaultBrush,
-			(_, CellStatus.Given or CellStatus.Modifiable) => defaultBrush,
-			(_, CellStatus.Empty) => (!solution.IsUndefined && solution[cell] == digit, candidatesMask >> digit & 1, useDifferentColorToDisplayDeltaDigits) switch
-			{
-				(true, 0, true) => new SolidColorBrush(deltaColor),
-				(_, not 0, _) => new SolidColorBrush(pencilmarkColor),
-				_ => defaultBrush
-			},
-			_ => throw new ArgumentOutOfRangeException(nameof(cellStatus))
+			(false, CellStatus.Empty)
+				=> (!solution.IsUndefined && solution[cell] == digit, candidatesMask >> digit & 1, useDifferentColorToDisplayDeltaDigits) switch
+				{
+					(true, 0, true) when usedCandidates.Contains(cell * 9 + digit) => new SolidColorBrush(deltaColor),
+					(_, not 0, _) when usedCandidates.Contains(cell * 9 + digit) => new SolidColorBrush(pencilmarkColor),
+					_ => defaultBrush
+				},
+			(false, _)
+				=> defaultBrush,
+			(_, CellStatus.Given or CellStatus.Modifiable)
+				=> defaultBrush,
+			(_, CellStatus.Empty)
+				=> (!solution.IsUndefined && solution[cell] == digit, candidatesMask >> digit & 1, useDifferentColorToDisplayDeltaDigits) switch
+				{
+					(true, 0, true) => new SolidColorBrush(deltaColor),
+					(_, not 0, _) => new SolidColorBrush(pencilmarkColor),
+					_ => defaultBrush
+				},
+			_
+				=> throw new ArgumentOutOfRangeException(nameof(cellStatus))
 		};
 	}
 }

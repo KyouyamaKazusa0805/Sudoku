@@ -50,13 +50,21 @@ internal static class RenderableFactory
 	/// <seealso cref="ViewUnitBindableSource"/>
 	public static void AddViewUnitControls(SudokuPane sudokuPane, ViewUnitBindableSource viewUnit)
 	{
+		// Check whether the data can be deconstructed.
 		if (viewUnit is not { View.BasicNodes: var nodes, Conclusions: var conclusions })
 		{
 			return;
 		}
 
-		var pencilmarkMode = ((App)Application.Current).Preference.UIPreferences.DisplayCandidates;
-		var (controlAddingActions, overlapped, links) = (new AnimatedResults(), new List<Conclusion>(), new List<LinkViewNode>());
+		var (pencilmarkMode, controlAddingActions, overlapped, links, usedCandidates) = (
+			((App)Application.Current).Preference.UIPreferences.DisplayCandidates,
+			new AnimatedResults(),
+			new List<Conclusion>(),
+			new List<LinkViewNode>(),
+			CandidateMap.Empty
+		);
+
+		// Iterate on each view node, and get their own corresponding controls.
 		foreach (var viewNode in nodes)
 		{
 			switch (viewNode, pencilmarkMode)
@@ -67,13 +75,15 @@ internal static class RenderableFactory
 					ForCellNode(sudokuPane, (CellViewNode)viewNode, controlAddingActions);
 					break;
 				}
-				case (CandidateViewNode c, _):
+				case (CandidateViewNode(_, var candidate) c, _):
 				{
 					ForCandidateNode(sudokuPane, c, conclusions, out var o, controlAddingActions);
 					if (o is { } currentOverlappedConclusion)
 					{
 						overlapped.Add(currentOverlappedConclusion);
 					}
+
+					usedCandidates.Add(candidate);
 					break;
 				}
 				case (HouseViewNode h, _):
@@ -99,14 +109,23 @@ internal static class RenderableFactory
 			}
 		}
 
+		// Then iterate on each conclusions. Those conclusions will also be rendered as real controls.
 		foreach (var conclusion in conclusions)
 		{
 			ForConclusion(sudokuPane, conclusion, overlapped, controlAddingActions);
+
+			usedCandidates.Add(conclusion.Candidate);
 		}
 
+		// Finally, iterate on links.
+		// The links are special to be handled - they will create a list of line controls.
+		// We should handle it at last.
 		ForLinkNodes(sudokuPane, links.ToArray(), conclusions, controlAddingActions);
 
 		controlAddingActions.ForEach(static pair => pair.Invoke());
+
+		// Update property to get highlighted candidates.
+		sudokuPane.ViewUnitUsedCandidates = usedCandidates;
 	}
 
 	/// <summary>
