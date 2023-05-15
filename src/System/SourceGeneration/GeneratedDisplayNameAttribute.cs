@@ -5,8 +5,4 @@ namespace System.SourceGeneration;
 /// </summary>
 /// <param name="displayMemberName">The display member name.</param>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false)]
-public sealed class GeneratedDisplayNameAttribute(
-#pragma warning disable IDE0060, CS9113
-	string displayMemberName
-#pragma warning restore IDE0060, CS9113
-) : Attribute;
+public sealed class GeneratedDisplayNameAttribute(string displayMemberName) : Attribute;

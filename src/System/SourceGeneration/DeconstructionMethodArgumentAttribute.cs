@@ -5,8 +5,4 @@ namespace System.SourceGeneration;
 /// </summary>
 /// <param name="referencedMemberName">The referenced member name.</param>
 [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
-public sealed class DeconstructionMethodArgumentAttribute(
-#pragma warning disable IDE0060, CS9113
-	string referencedMemberName
-#pragma warning restore IDE0060, CS9113
-) : Attribute;
+public sealed class DeconstructionMethodArgumentAttribute(string referencedMemberName) : Attribute;

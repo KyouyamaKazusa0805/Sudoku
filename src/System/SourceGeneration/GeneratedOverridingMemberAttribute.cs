@@ -1,4 +1,3 @@
-#pragma warning disable IDE0060
 namespace System.SourceGeneration;
 
 /// <summary>
