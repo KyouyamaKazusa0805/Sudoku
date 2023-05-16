@@ -10,9 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)README.md" />
-    <None Include="$(MSBuildThisFileDirectory)文档\教程.docx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)图片\" />
+    <None Include="$(MSBuildThisFileDirectory)教程.docx" />
   </ItemGroup>
 </Project>
