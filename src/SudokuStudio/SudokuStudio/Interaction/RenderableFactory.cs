@@ -199,7 +199,7 @@ internal static class RenderableFactory
 
 				GridLayout.SetRowSpan(control, 3);
 				GridLayout.SetColumnSpan(control, 3);
-				Canvas.SetZIndex(control, -2);
+				Canvas.SetZIndex(control, -1);
 
 				if (sudokuPane.EnableAnimationFeedback)
 				{
@@ -221,7 +221,7 @@ internal static class RenderableFactory
 
 				GridLayout.SetRowSpan(control, 3);
 				GridLayout.SetColumnSpan(control, 3);
-				Canvas.SetZIndex(control, -2);
+				Canvas.SetZIndex(control, -1);
 
 				if (sudokuPane.EnableAnimationFeedback)
 				{
@@ -319,7 +319,7 @@ internal static class RenderableFactory
 		var digit = candidate % 9;
 		GridLayout.SetRow(control, digit / 3);
 		GridLayout.SetColumn(control, digit % 3);
-		Canvas.SetZIndex(control, -2);
+		Canvas.SetZIndex(control, -1);
 
 		if (paneCellControl.BasePane.EnableAnimationFeedback)
 		{
@@ -353,24 +353,28 @@ internal static class RenderableFactory
 			return;
 		}
 
-		var control = new Border
-		{
-			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			BorderThickness = new(0),
-			Tag = nameof(RenderableFactory),
-			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity
-		};
-
 		var (row, column, rowSpan, columnSpan) = house switch
 		{
 			>= 0 and < 9 => (house / 3 * 3 + 2, house % 3 * 3 + 2, 3, 3),
 			>= 9 and < 18 => (house - 9 + 2, 2, 1, 9),
 			>= 18 and < 27 => (2, house - 18 + 2, 9, 1),
-			_ => throw new ArgumentException(
-				$"The value '{nameof(houseNode)}' is invalid.",
-				nameof(houseNode),
-				new InvalidOperationException($"The property '{nameof(HouseViewNode.House)}' of instance '{nameof(houseNode)}' is invalid.")
-			)
+			_ => Throw<(int, int, int, int)>(house, 27)
+		};
+
+		var control = new Border
+		{
+			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
+			Tag = nameof(RenderableFactory),
+			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
+			Margin = house switch
+			{
+				>= 0 and < 9 => new(12),
+				>= 9 and < 18 => new(6, 12, 6, 12),
+				>= 18 and < 27 => new(12, 6, 12, 6),
+				_ => Throw<Thickness>(house, 27)
+			},
+			CornerRadius = house switch { >= 0 and < 9 => new(12), >= 9 and < 27 => new(18), _ => Throw<CornerRadius>(house, 27) },
+			BorderThickness = new(0)
 		};
 
 		GridLayout.SetRow(control, row);
@@ -410,19 +414,26 @@ internal static class RenderableFactory
 		}
 
 		var (id, chute) = chuteNode;
-		var control = new Border
-		{
-			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			BorderThickness = new(0),
-			Tag = nameof(RenderableFactory),
-			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity
-		};
-
 		var (row, column, rowSpan, columnSpan) = chute switch
 		{
 			>= 0 and < 3 => (chute * 3 + 2, 2, 3, 9),
 			>= 3 and < 6 => (2, (chute - 3) * 3 + 2, 9, 3),
 			_ => throw new ArgumentException($"The value '{nameof(chuteNode)}' is invalid.", nameof(chuteNode))
+		};
+
+		var control = new Border
+		{
+			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
+			Tag = nameof(RenderableFactory),
+			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
+			Margin = chute switch
+			{
+				>= 0 and < 3 => new(6, 12, 6, 12),
+				>= 3 and < 6 => new(12, 6, 12, 6),
+				_ => Throw<Thickness>(chute, 6)
+			},
+			CornerRadius = new(18),
+			BorderThickness = new(0)
 		};
 
 		GridLayout.SetRow(control, row);
@@ -482,7 +493,7 @@ internal static class RenderableFactory
 
 		GridLayout.SetRowSpan(control, 3);
 		GridLayout.SetColumnSpan(control, 3);
-		Canvas.SetZIndex(control, -2);
+		Canvas.SetZIndex(control, -1);
 
 		if (sudokuPane.EnableAnimationFeedback)
 		{
@@ -521,7 +532,7 @@ internal static class RenderableFactory
 			GridLayout.SetColumn(control, 2);
 			GridLayout.SetRowSpan(control, 9);
 			GridLayout.SetColumnSpan(control, 9);
-			Canvas.SetZIndex(control, -2);
+			Canvas.SetZIndex(control, -1);
 
 			if (sudokuPane.EnableAnimationFeedback)
 			{
@@ -531,6 +542,10 @@ internal static class RenderableFactory
 			animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = 1));
 		}
 	}
+
+	[DoesNotReturn]
+	private static T? Throw<T>(object? o, int range, [CallerArgumentExpression(nameof(o))] string? s = null)
+		=> throw new InvalidOperationException($"The {s} index configured is invalid - it must be between 0 and {range}.");
 }
 
 /// <summary>

@@ -396,7 +396,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 								}
 								foreach (var coverSet in actualCoverSets)
 								{
-									houseOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, coverSet));
+									houseOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, coverSet));
 									coverSetsMask |= 1 << coverSet;
 								}
 
