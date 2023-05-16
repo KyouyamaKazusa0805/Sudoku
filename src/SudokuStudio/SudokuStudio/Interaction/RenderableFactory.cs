@@ -29,6 +29,9 @@ internal static class RenderableFactory
 			}
 		}
 
+		// Manually update property.
+		sudokuPane.ViewUnitUsedCandidates = CandidateMap.Empty;
+
 
 		static IEnumerable<FrameworkElement> getParentControls(SudokuPane sudokuPane)
 		{
