@@ -140,7 +140,12 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var step = new NakedSingleStep(new[] { new Conclusion(Assignment, cell, digit) }, null, cell, digit);
+				var step = new NakedSingleStep(
+					new[] { new Conclusion(Assignment, cell, digit) },
+					new[] { View.Empty | GetNakedSingleExcluders(grid, cell, digit) },
+					cell,
+					digit
+				);
 				if (context.OnlyFindOne)
 				{
 					context.PreviousSetDigit = digit;
@@ -283,7 +288,12 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			}
 
 			var digit = TrailingZeroCount(mask);
-			var step = new NakedSingleStep(new[] { new Conclusion(Assignment, cell, digit) }, null, cell, digit);
+			var step = new NakedSingleStep(
+				new[] { new Conclusion(Assignment, cell, digit) },
+				new[] { View.Empty | GetNakedSingleExcluders(grid, cell, digit) },
+				cell,
+				digit
+			);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -418,5 +428,30 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		}
 
 		return result.ToArray();
+	}
+
+	/// <summary>
+	/// Get all <see cref="CellViewNode"/>s that represents as excluders.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">The digit.</param>
+	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
+	private CellViewNode[] GetNakedSingleExcluders(scoped in Grid grid, Cell cell, Digit digit)
+	{
+		var (result, i) = (new CellViewNode[8], 0);
+		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & ~(1 << digit)))
+		{
+			foreach (var otherCell in Peers[cell])
+			{
+				if (grid[otherCell] == otherDigit)
+				{
+					result[i++] = new(WellKnownColorIdentifier.Normal, otherCell) { RenderingMode = RenderingMode.DirectModeOnly };
+					break;
+				}
+			}
+		}
+
+		return result;
 	}
 }
