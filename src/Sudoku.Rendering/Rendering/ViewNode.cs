@@ -19,7 +19,7 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 	/// <summary>
 	/// Indicates the identifier used.
 	/// </summary>
-	public ColorIdentifier Identifier { get; protected set; } = identifier;
+	public ColorIdentifier Identifier { get; } = identifier;
 
 	/// <summary>
 	/// Indicates the inner identifier to distinct the different types that is derived from <see cref="ViewNode"/>.
