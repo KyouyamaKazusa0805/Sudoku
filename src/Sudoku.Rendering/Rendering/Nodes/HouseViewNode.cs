@@ -3,21 +3,11 @@ namespace Sudoku.Rendering.Nodes;
 /// <summary>
 /// Defines a view node that highlights for a house.
 /// </summary>
-//[method: JsonConstructor]
-public sealed partial class HouseViewNode : BasicViewNode//(ColorIdentifier identifier, House house) : BasicViewNode(identifier)
+/// <param name="identifier"><inheritdoc/></param>
+/// <param name="house">Indicates the house highlighted.</param>
+[method: JsonConstructor]
+public sealed partial class HouseViewNode(ColorIdentifier identifier, [PrimaryConstructorParameter] House house) : BasicViewNode(identifier)
 {
-#pragma warning disable CS1591
-	[JsonConstructor]
-	public HouseViewNode(ColorIdentifier identifier, House house) : base(identifier) => House = house;
-#pragma warning restore CS1591
-
-
-	/// <summary>
-	/// Indicates the house highlighted.
-	/// </summary>
-	public House House { get; }// = house;
-
-
 	[DeconstructionMethod]
 	public partial void Deconstruct(out ColorIdentifier identifier, out House house);
 

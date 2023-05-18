@@ -3,25 +3,16 @@ namespace Sudoku.Rendering.Nodes;
 /// <summary>
 /// Defines a view node that highlights for a cell.
 /// </summary>
-//[method: JsonConstructor]
-public sealed partial class CellViewNode : BasicViewNode//(ColorIdentifier identifier, Cell cell) : BasicViewNode(identifier)
+/// <param name="identifier"><inheritdoc/></param>
+/// <param name="cell">Indicates the cell highlighted.</param>
+[method: JsonConstructor]
+public sealed partial class CellViewNode(ColorIdentifier identifier, [PrimaryConstructorParameter] Cell cell) : BasicViewNode(identifier)
 {
-#pragma warning disable CS1591
-	[JsonConstructor]
-	public CellViewNode(ColorIdentifier identifier, Cell cell) : base(identifier) => Cell = cell;
-#pragma warning restore CS1591
-
-
 	/// <summary>
 	/// Indicates the mode that the bound view node will be displayed.
 	/// The default value is <see cref="RenderingMode.PencilmarkModeOnly"/>, which means only pencilmark mode the node will be displayed.
 	/// </summary>
 	public RenderingMode RenderingMode { get; init; } = RenderingMode.PencilmarkModeOnly;
-
-	/// <summary>
-	/// Indicates the cell highlighted.
-	/// </summary>
-	public Cell Cell { get; }// = cell;
 
 	/// <summary>
 	/// Indicates the cell string.

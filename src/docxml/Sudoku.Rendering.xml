@@ -13,6 +13,15 @@
             <param name="g">Indicates the color green raw values to be assigned.</param>
             <param name="b">Indicates the color blue raw values to be assigned.</param>
         </member>
+        <member name="M:Sudoku.Rendering.ColorColorIdentifier.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Defines a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> derived type that uses color value (like type <c>System.Drawing.Color</c>) to distinct with colors.
+            </summary>
+            <param name="a">Indicates the color alpha raw values to be assigned.</param>
+            <param name="r">Indicates the color red raw values to be assigned.</param>
+            <param name="g">Indicates the color green raw values to be assigned.</param>
+            <param name="b">Indicates the color blue raw values to be assigned.</param>
+        </member>
         <member name="P:Sudoku.Rendering.ColorColorIdentifier.RawValue">
             <summary>
             Indicates the raw value.
@@ -121,6 +130,26 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.ColorColorIdentifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="P:Sudoku.Rendering.ColorColorIdentifier.A">
+            <summary>
+            The generated property declaration for parameter <c>a</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Rendering.ColorColorIdentifier.R">
+            <summary>
+            The generated property declaration for parameter <c>r</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Rendering.ColorColorIdentifier.G">
+            <summary>
+            The generated property declaration for parameter <c>g</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Rendering.ColorColorIdentifier.B">
+            <summary>
+            The generated property declaration for parameter <c>b</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Rendering.ColorIdentifier">
             <summary>
             Represents an identifier that is used for describing target rendering item.
@@ -176,21 +205,19 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a view node that highlights for a Baba group.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell">Indicates the cell used.</param>
+            <param name="digitsMask">Indicates a mask that hold digits used.</param>
+            <param name="unknownValueChar">Indicates the character that represents the baba group name.</param>
         </member>
-        <member name="P:Sudoku.Rendering.Nodes.BabaGroupViewNode.Cell">
+        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Utf8Char,System.Int16)">
             <summary>
-            Indicates the cell used.
+            Defines a view node that highlights for a Baba group.
             </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.BabaGroupViewNode.DigitsMask">
-            <summary>
-            Indicates the digits used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.BabaGroupViewNode.UnknownValueChar">
-            <summary>
-            Indicates the character that represents the unknown range.
-            </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell">Indicates the cell used.</param>
+            <param name="digitsMask">Indicates a mask that hold digits used.</param>
+            <param name="unknownValueChar">Indicates the character that represents the baba group name.</param>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.BabaGroupViewNode.CellString">
             <summary>
@@ -308,6 +335,21 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Rendering.Nodes.BabaGroupViewNode.Cell">
+            <summary>
+            The generated property declaration for parameter <c>cell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.BabaGroupViewNode.UnknownValueChar">
+            <summary>
+            The generated property declaration for parameter <c>unknownValueChar</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.BabaGroupViewNode.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Rendering.Nodes.BasicViewNode">
             <summary>
             Defines a basic view node type that provides with basic displaying elements from a grid.
@@ -324,11 +366,15 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a view node that highlights for a candidate.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="candidate">Indicates the candidate highlighted.</param>
         </member>
-        <member name="P:Sudoku.Rendering.Nodes.CandidateViewNode.Candidate">
+        <member name="M:Sudoku.Rendering.Nodes.CandidateViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32)">
             <summary>
-            Indicates the candidate highlighted.
+            Defines a view node that highlights for a candidate.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="candidate">Indicates the candidate highlighted.</param>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.CandidateViewNode.CandidateString">
             <summary>
@@ -394,20 +440,29 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.CandidateViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Rendering.Nodes.CandidateViewNode.Candidate">
+            <summary>
+            The generated property declaration for parameter <c>candidate</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Rendering.Nodes.CellViewNode">
             <summary>
             Defines a view node that highlights for a cell.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell">Indicates the cell highlighted.</param>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.CellViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32)">
+            <summary>
+            Defines a view node that highlights for a cell.
+            </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell">Indicates the cell highlighted.</param>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.CellViewNode.RenderingMode">
             <summary>
             Indicates the mode that the bound view node will be displayed.
             The default value is <see cref="F:Sudoku.Rendering.RenderingMode.PencilmarkModeOnly"/>, which means only pencilmark mode the node will be displayed.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.CellViewNode.Cell">
-            <summary>
-            Indicates the cell highlighted.
             </summary>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.CellViewNode.CellString">
@@ -474,19 +529,28 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.CellViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Rendering.Nodes.CellViewNode.Cell">
+            <summary>
+            The generated property declaration for parameter <c>cell</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Rendering.Nodes.ChuteViewNode">
             <summary>
             Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="chuteIndex">Indicates the chute index. The value can be between 0 and 5.</param>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.ChuteViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32)">
+            <summary>
+            Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
+            </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="chuteIndex">Indicates the chute index. The value can be between 0 and 5.</param>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.ChuteViewNode.IsRow">
             <summary>
             Indicates whether the chute is in a row.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.ChuteViewNode.ChuteIndex">
-            <summary>
-            Indicates the chute index. The value can be between 0 and 5.
             </summary>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.ChuteViewNode.HousesMask">
@@ -559,6 +623,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.Nodes.ChuteViewNode.Clone">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.ChuteViewNode.ChuteIndex">
+            <summary>
+            The generated property declaration for parameter <c>chuteIndex</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.CircleViewNode">
             <summary>
@@ -841,11 +910,15 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a view node that highlights for a house.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="house">Indicates the house highlighted.</param>
         </member>
-        <member name="P:Sudoku.Rendering.Nodes.HouseViewNode.House">
+        <member name="M:Sudoku.Rendering.Nodes.HouseViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32)">
             <summary>
-            Indicates the house highlighted.
+            Defines a view node that highlights for a house.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="house">Indicates the house highlighted.</param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.HouseViewNode.Deconstruct(Sudoku.Rendering.ColorIdentifier@,System.Int32@)">
             <target name="method">
@@ -905,6 +978,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.Nodes.HouseViewNode.Clone">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.HouseViewNode.House">
+            <summary>
+            The generated property declaration for parameter <c>house</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.IconViewNode">
             <summary>
@@ -985,21 +1063,19 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a view node that highlights for a link.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="startPoint">Indicates the start point.</param>
+            <param name="endPoint">Indicates the end point.</param>
+            <param name="inference">Indicates the inference type.</param>
         </member>
-        <member name="P:Sudoku.Rendering.Nodes.LinkViewNode.Start">
+        <member name="M:Sudoku.Rendering.Nodes.LinkViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,Sudoku.Concepts.LockedTarget@,Sudoku.Concepts.LockedTarget@,Sudoku.Concepts.Inference)">
             <summary>
-            Indicates the start point.
+            Defines a view node that highlights for a link.
             </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.LinkViewNode.End">
-            <summary>
-            Indicates the end point.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.LinkViewNode.Inference">
-            <summary>
-            Indicates the inference type.
-            </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="startPoint">Indicates the start point.</param>
+            <param name="endPoint">Indicates the end point.</param>
+            <param name="inference">Indicates the inference type.</param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.LinkViewNode.Deconstruct(Sudoku.Rendering.ColorIdentifier@,Sudoku.Concepts.LockedTarget@,Sudoku.Concepts.LockedTarget@,Sudoku.Concepts.Inference@)">
             <target name="method">
@@ -1059,6 +1135,21 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.Nodes.LinkViewNode.Clone">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.LinkViewNode.Start">
+            <summary>
+            The generated property declaration for parameter <c>startPoint</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.LinkViewNode.End">
+            <summary>
+            The generated property declaration for parameter <c>endPoint</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.LinkViewNode.Inference">
+            <summary>
+            The generated property declaration for parameter <c>inference</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.AdjacentCellMarkViewNode">
             <summary>
@@ -2006,6 +2097,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="value">The palette color ID value to be assigned. The color palette requires implementation of target projects.</param>
         </member>
+        <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier.#ctor(System.Int32)">
+            <summary>
+            Defines a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> derived type that uses palette ID value to distinct with colors.
+            </summary>
+            <param name="value">The palette color ID value to be assigned. The color palette requires implementation of target projects.</param>
+        </member>
         <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier.Equals(Sudoku.Rendering.ColorIdentifier)">
             <inheritdoc/>
         </member>
@@ -2014,6 +2111,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="P:Sudoku.Rendering.PaletteIdColorIdentifier.Value">
+            <summary>
+            The generated property declaration for parameter <c>value</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Rendering.RenderingMode">
             <summary>
@@ -2249,6 +2351,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="kind">The well-known identifier kind to be assigned.</param>
         </member>
+        <member name="M:Sudoku.Rendering.WellKnownColorIdentifier.#ctor(Sudoku.Rendering.WellKnownColorIdentifierKind)">
+            <summary>
+            Defines a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> derived type that uses well-known kinds to distinct with colors.
+            </summary>
+            <param name="kind">The well-known identifier kind to be assigned.</param>
+        </member>
         <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.Normal">
             <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Normal"/>
         </member>
@@ -2305,6 +2413,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.WellKnownColorIdentifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="P:Sudoku.Rendering.WellKnownColorIdentifier.Kind">
+            <summary>
+            The generated property declaration for parameter <c>kind</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Rendering.WellKnownColorIdentifierKind">
             <summary>

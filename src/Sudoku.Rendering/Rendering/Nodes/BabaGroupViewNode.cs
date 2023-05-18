@@ -3,35 +3,18 @@ namespace Sudoku.Rendering.Nodes;
 /// <summary>
 /// Defines a view node that highlights for a Baba group.
 /// </summary>
-//[method: JsonConstructor]
-public sealed partial class BabaGroupViewNode : BasicViewNode//(ColorIdentifier identifier, Cell cell, Utf8Char unknownValueChar, Mask digitsMask) : BasicViewNode(identifier)
+/// <param name="identifier"><inheritdoc/></param>
+/// <param name="cell">Indicates the cell used.</param>
+/// <param name="digitsMask">Indicates a mask that hold digits used.</param>
+/// <param name="unknownValueChar">Indicates the character that represents the baba group name.</param>
+[method: JsonConstructor]
+public sealed partial class BabaGroupViewNode(
+	ColorIdentifier identifier,
+	[PrimaryConstructorParameter] Cell cell,
+	[PrimaryConstructorParameter] Utf8Char unknownValueChar,
+	[PrimaryConstructorParameter] Mask digitsMask
+) : BasicViewNode(identifier)
 {
-#pragma warning disable CS1591
-	[JsonConstructor]
-	public BabaGroupViewNode(ColorIdentifier identifier, Cell cell, Utf8Char unknownValueChar, Mask digitsMask) : base(identifier)
-	{
-		Cell = cell;
-		DigitsMask = digitsMask;
-		UnknownValueChar = unknownValueChar;
-	}
-#pragma warning restore CS1591
-
-
-	/// <summary>
-	/// Indicates the cell used.
-	/// </summary>
-	public Cell Cell { get; }// = cell;
-
-	/// <summary>
-	/// Indicates the digits used.
-	/// </summary>
-	public Mask DigitsMask { get; }// = digitsMask;
-
-	/// <summary>
-	/// Indicates the character that represents the unknown range.
-	/// </summary>
-	public Utf8Char UnknownValueChar { get; }// = unknownValueChar;
-
 	/// <summary>
 	/// Indicates the cell string.
 	/// </summary>
@@ -58,7 +41,7 @@ public sealed partial class BabaGroupViewNode : BasicViewNode//(ColorIdentifier 
 	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
 	public override partial int GetHashCode();
 
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CellString), nameof(DigitsMaskString), nameof(UnknownValueChar))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, "Identifier", "CellString", "DigitsMaskString", "UnknownValueChar")]
 	public override partial string ToString();
 
 	/// <inheritdoc/>

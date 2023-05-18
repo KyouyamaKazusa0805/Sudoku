@@ -3,25 +3,16 @@ namespace Sudoku.Rendering.Nodes;
 /// <summary>
 /// Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).
 /// </summary>
-//[method: JsonConstructor]
-public sealed partial class ChuteViewNode : BasicViewNode//(ColorIdentifier identifier, int chuteIndex) : BasicViewNode(identifier)
+/// <param name="identifier"><inheritdoc/></param>
+/// <param name="chuteIndex">Indicates the chute index. The value can be between 0 and 5.</param>
+[method: JsonConstructor]
+public sealed partial class ChuteViewNode(ColorIdentifier identifier, [PrimaryConstructorParameter] int chuteIndex) : BasicViewNode(identifier)
 {
-#pragma warning disable CS1591
-	[JsonConstructor]
-	public ChuteViewNode(ColorIdentifier identifier, int chuteIndex) : base(identifier) => ChuteIndex = chuteIndex;
-#pragma warning restore CS1591
-
-
 	/// <summary>
 	/// Indicates whether the chute is in a row.
 	/// </summary>
 	[JsonIgnore]
 	public bool IsRow => ChuteIndex < 3;
-
-	/// <summary>
-	/// Indicates the chute index. The value can be between 0 and 5.
-	/// </summary>
-	public int ChuteIndex { get; }// = chuteIndex;
 
 	/// <summary>
 	/// <para>
@@ -45,10 +36,10 @@ public sealed partial class ChuteViewNode : BasicViewNode//(ColorIdentifier iden
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is ChuteViewNode comparer && ChuteIndex == comparer.ChuteIndex;
 
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(ChuteIndex))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), "ChuteIndex")]
 	public override partial int GetHashCode();
 
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(ChuteIndex))]
+	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), "ChuteIndex")]
 	public override partial string ToString();
 
 	/// <inheritdoc/>
