@@ -354,7 +354,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				if (grid[i] == digit)
 				{
 					digitCount++;
-					cellOffsets.Add(new(WellKnownColorIdentifier.Normal, i));
+					cellOffsets.Add(new(WellKnownColorIdentifier.Normal, i) { RenderingMode = RenderingMode.BothDirectAndPencilmark });
 				}
 			}
 

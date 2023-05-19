@@ -692,7 +692,7 @@ public sealed partial class AnalyzePage : Page
 				else
 				{
 					var id = UserDefinedPalette[index].GetIdentifier();
-					view.View.Add(new CellViewNode(id, cell));
+					view.View.Add(new CellViewNode(id, cell) { RenderingMode = RenderingMode.BothDirectAndPencilmark });
 				}
 
 				UpdateViewUnit();
