@@ -3,7 +3,7 @@ namespace Sudoku.Rendering;
 /// <summary>
 /// Defines a view node.
 /// </summary>
-/// <param name="identifier">The <see cref="ColorIdentifier"/> instance.</param>
+/// <param name="identifier"><inheritdoc cref="Identifier" path="/summary"/></param>
 [JsonPolymorphic(UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType, TypeDiscriminatorPropertyName = "$typeid")]
 [JsonDerivedType(typeof(CellViewNode), 0)]
 [JsonDerivedType(typeof(CandidateViewNode), 1)]
@@ -17,7 +17,7 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 	IEqualityOperators<ViewNode, ViewNode, bool>
 {
 	/// <summary>
-	/// Indicates the identifier used.
+	/// Indicates an instance providing with data for describing coloring.
 	/// </summary>
 	public ColorIdentifier Identifier { get; } = identifier;
 

@@ -2305,17 +2305,17 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a view node.
             </summary>
-            <param name="identifier">The <see cref="T:Sudoku.Rendering.ColorIdentifier"/> instance.</param>
+            <param name="identifier"><inheritdoc cref="P:Sudoku.Rendering.ViewNode.Identifier" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Rendering.ViewNode.#ctor(Sudoku.Rendering.ColorIdentifier)">
             <summary>
             Defines a view node.
             </summary>
-            <param name="identifier">The <see cref="T:Sudoku.Rendering.ColorIdentifier"/> instance.</param>
+            <param name="identifier"><inheritdoc cref="P:Sudoku.Rendering.ViewNode.Identifier" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Rendering.ViewNode.Identifier">
             <summary>
-            Indicates the identifier used.
+            Indicates an instance providing with data for describing coloring.
             </summary>
         </member>
         <member name="P:Sudoku.Rendering.ViewNode.TypeIdentifier">
