@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:
@@ -63,8 +63,7 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 					}
 
 					// Naked subset found. Now check eliminations.
-					var flagMask = (Mask)0;
-					var conclusions = new List<Conclusion>(18);
+					var (flagMask, conclusions) = ((Mask)0, new List<Conclusion>(18));
 					foreach (var digit in mask)
 					{
 						var map = cells % CandidatesMap[digit];
@@ -89,14 +88,13 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 						}
 					}
 
-					var isLocked = flagMask == mask ? true : flagMask != 0 ? false : default(bool?);
 					var step = new NakedSubsetStep(
 						conclusions.ToArray(),
 						new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifier.Normal, house) },
 						house,
 						cells,
 						mask,
-						isLocked
+						flagMask == mask ? true : flagMask != 0 ? false : default(bool?)
 					);
 
 					if (context.OnlyFindOne)
@@ -125,9 +123,7 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 				}
 				foreach (var digits in mask.GetAllSets().GetSubsets(size))
 				{
-					var tempMask = mask;
-					var digitsMask = (Mask)0;
-					var map = CellMap.Empty;
+					var (tempMask, digitsMask, map) = (mask, (Mask)0, CellMap.Empty);
 					foreach (var digit in digits)
 					{
 						tempMask &= (Mask)~(1 << digit);
