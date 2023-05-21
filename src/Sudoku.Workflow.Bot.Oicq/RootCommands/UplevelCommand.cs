@@ -196,10 +196,11 @@ internal sealed class UplevelCommand : Command
 								UserOperations.Write(user);
 
 								await messageReceiver.SendMessageAsync(
-									originalLevel switch
+									(originalLevel, WithInsurance) switch
 									{
-										> 5 => $"不够好运，强化失败。卡片等级降级：{originalLevel} -> {originalLevel - 1}。",
-										_ => "不够好运，强化失败。卡片小于 5 级不掉级。"
+										(> 5, true) => $"不够好运，强化失败。卡片等级降级：{originalLevel} -> {originalLevel - 1}。",
+										(<= 5, _) => "不够好运，强化失败。卡片小于 5 级不掉级。",
+										_ => "不够好运，强化失败。"
 									}
 								);
 							}
