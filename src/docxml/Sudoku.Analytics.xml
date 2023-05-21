@@ -2887,6 +2887,47 @@
             <remarks><b>This method uses <see cref="T:Sudoku.Analytics.Buffers.CachedFields"/>.</b></remarks>
             <seealso cref="T:Sudoku.Analytics.Buffers.CachedFields"/>
         </member>
+        <member name="T:Sudoku.Analytics.InternalHelpers.Crosshatching">
+            <summary>
+            Represents a list of methods that operates with single techniques, in order to get crosshatching information.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.Crosshatching.GetCrosshatchingInfo(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to get a pair of <see cref="T:Sudoku.Concepts.CellMap"/> instances indicating the crosshatching information for the specified house,
+            with the specified digit in the specified grid.
+            </summary>
+            <param name="grid">The puzzle relying on.</param>
+            <param name="digit">The digit to be checked.</param>
+            <param name="house">The house to be checked.</param>
+            <param name="cells">The cell to be checked. The cell is the final hidden single cell or the locked candidate cells.</param>
+            <returns>The result pair.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.InternalHelpers.CrosshatchingInfo">
+            <summary>
+            Defines the target crosshatching information.
+            </summary>
+            <param name="BaseCells">The base cells to be used.</param>
+            <param name="EmptyCells">The empty cells in the final.</param>
+            <param name="ExcludedCells">The excluded cells to be used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.CrosshatchingInfo.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines the target crosshatching information.
+            </summary>
+            <param name="BaseCells">The base cells to be used.</param>
+            <param name="EmptyCells">The empty cells in the final.</param>
+            <param name="ExcludedCells">The excluded cells to be used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.InternalHelpers.CrosshatchingInfo.BaseCells">
+            <summary>The base cells to be used.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.InternalHelpers.CrosshatchingInfo.EmptyCells">
+            <summary>The empty cells in the final.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.InternalHelpers.CrosshatchingInfo.ExcludedCells">
+            <summary>The excluded cells to be used.</summary>
+        </member>
         <member name="T:Sudoku.Analytics.InternalHelpers.EmptyRectangleHelper">
             <summary>
             Represents a helper type that operates with empty rectangles.
@@ -7647,6 +7688,16 @@ result ^= expression;
             all possible location where may form a locked candidate.
             </para>
             </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cells">The cells.</param>
+            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher">
             <summary>

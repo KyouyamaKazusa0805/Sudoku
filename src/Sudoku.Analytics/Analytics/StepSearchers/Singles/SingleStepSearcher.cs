@@ -387,31 +387,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
 	private CellViewNode[] GetCrosshatchBaseCells(scoped in Grid grid, Digit digit, House house, Cell cell)
 	{
-		var (houseCells, valueCells, emptyCells) = (HousesMap[house], grid.ValuesMap[digit], grid.EmptyCells);
-		var (emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered, values) = (houseCells - cell & emptyCells, CellMap.Empty, CellMap.Empty);
-		foreach (var c in emptyCellsShouldBeCovered)
-		{
-			var tempValues = PeersMap[c] & valueCells;
-			if (tempValues)
-			{
-				values |= tempValues;
-			}
-			else
-			{
-				emptyCellsNotNeedToBeCovered.Add(c);
-			}
-		}
-
-		var nullableCombination = default(CellMap?);
-		foreach (var valueCombination in values | values.Count)
-		{
-			if ((valueCombination.ExpandedPeers & houseCells & emptyCells) - cell == emptyCellsShouldBeCovered - emptyCellsNotNeedToBeCovered)
-			{
-				nullableCombination = valueCombination;
-				break;
-			}
-		}
-		if (nullableCombination is not { } combination)
+		var info = Crosshatching.GetCrosshatchingInfo(grid, digit, house, CellsMap[cell]);
+		if (info is not ({ } combination, var emptyCellsShouldBeCovered, var emptyCellsNotNeedToBeCovered))
 		{
 			return Array.Empty<CellViewNode>();
 		}

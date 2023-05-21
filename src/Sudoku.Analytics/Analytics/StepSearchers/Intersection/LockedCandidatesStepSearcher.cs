@@ -84,19 +84,25 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 				}
 
 				// Okay, now collect the current step into the collection.
-				var bs = housesMask >> 8 & 127;
-				var cs = housesMask & 127;
+				var realBaseSet = housesMask >> 8 & 127;
+				var realCoverSet = housesMask & 127;
+				var intersection = c & candidatesMap;
 				var step = new LockedCandidatesStep(
 					from cell in elimMap select new Conclusion(Elimination, cell, digit),
 					new[]
 					{
 						View.Empty
-							| (from cell in c & candidatesMap select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit))
-							| new HouseViewNode[] { new(WellKnownColorIdentifier.Normal, bs), new(WellKnownColorIdentifier.Auxiliary1, cs) }
+							| (from cell in intersection select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit))
+							| new HouseViewNode[]
+							{
+								new(WellKnownColorIdentifier.Normal, realBaseSet),
+								new(WellKnownColorIdentifier.Auxiliary1, realCoverSet)
+							}
+							| GetCrosshatchBaseCells(grid, digit, realBaseSet, intersection)
 					},
 					digit,
-					bs,
-					cs
+					realBaseSet,
+					realCoverSet
 				);
 
 				if (context.OnlyFindOne)
@@ -109,5 +115,35 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 		}
 
 		return null;
+	}
+
+	/// <summary>
+	/// Try to create a list of <see cref="CellViewNode"/>s indicating the crosshatching base cells.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="digit">The digit.</param>
+	/// <param name="house">The house.</param>
+	/// <param name="cells">The cells.</param>
+	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
+	private CellViewNode[] GetCrosshatchBaseCells(scoped in Grid grid, Digit digit, House house, scoped in CellMap cells)
+	{
+		var info = Crosshatching.GetCrosshatchingInfo(grid, digit, house, cells);
+		if (info is not ({ } combination, var emptyCellsShouldBeCovered, var emptyCellsNotNeedToBeCovered))
+		{
+			return Array.Empty<CellViewNode>();
+		}
+
+		var result = new List<CellViewNode>();
+		foreach (var c in combination)
+		{
+			result.Add(new(WellKnownColorIdentifier.Normal, c) { RenderingMode = RenderingMode.DirectModeOnly });
+		}
+		foreach (var c in emptyCellsShouldBeCovered)
+		{
+			var p = emptyCellsNotNeedToBeCovered.Contains(c) ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1;
+			result.Add(new(p, c) { RenderingMode = RenderingMode.DirectModeOnly });
+		}
+
+		return result.ToArray();
 	}
 }
