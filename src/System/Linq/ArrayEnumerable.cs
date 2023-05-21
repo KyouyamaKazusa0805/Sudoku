@@ -1,17 +1,22 @@
-﻿namespace System.Linq;
+namespace System.Linq;
 
 /// <summary>
 /// Provides with the LINQ-related methods on type <see cref="Array"/>, especially for the one-dimensional array.
 /// </summary>
 public static class ArrayEnumerable
 {
-	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
+	/// <summary>
+	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/summary"/>
+	/// </summary>
 	/// <param name="this">
-	/// A sequence of values to invoke a transform function on.
+	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/param[@name='source']"/>
 	/// </param>
 	/// <param name="selector">
-	/// A transform function to apply to each element.
+	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/param[@name='selector']"/>
 	/// </param>
+	/// <returns>
+	/// A <typeparamref name="T"/>[] whose elements are the result of invoking the transform function on each element of <paramref name="this"/>.
+	/// </returns>
 	public static TResult[] Select<T, TResult>(this T[] @this, Func<T, TResult> selector)
 	{
 		var length = @this.Length;

@@ -46,7 +46,6 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 	/// </remarks>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
-		var housesMask = (Mask)0;
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 		{
@@ -73,23 +72,18 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 			// Now iterate on the mask to get all digits.
 			foreach (var digit in m)
 			{
+				scoped ref readonly var candidatesMap = ref CandidatesMap[digit];
+
 				// Check whether the digit contains any eliminations.
-				(housesMask, var elimMap) = a & CandidatesMap[digit]
-					? ((Mask)(coverSet << 8 | baseSet), a & CandidatesMap[digit])
-					: ((Mask)(baseSet << 8 | coverSet), b & CandidatesMap[digit]);
+				var (housesMask, elimMap) = a & candidatesMap
+					? ((Mask)(coverSet << 8 | baseSet), a & candidatesMap)
+					: ((Mask)(baseSet << 8 | coverSet), b & candidatesMap);
 				if (!elimMap)
 				{
 					continue;
 				}
 
-				// Gather the information, such as the type of the locked candidates, the located house, etc..
-				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (var cell in c & CandidatesMap[digit])
-				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
-				}
-
-				// Okay, now accumulate into the collection.
+				// Okay, now collect the current step into the collection.
 				var bs = housesMask >> 8 & 127;
 				var cs = housesMask & 127;
 				var step = new LockedCandidatesStep(
@@ -97,7 +91,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 					new[]
 					{
 						View.Empty
-							| candidateOffsets
+							| (from cell in c & candidatesMap select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit))
 							| new HouseViewNode[] { new(WellKnownColorIdentifier.Normal, bs), new(WellKnownColorIdentifier.Auxiliary1, cs) }
 					},
 					digit,
