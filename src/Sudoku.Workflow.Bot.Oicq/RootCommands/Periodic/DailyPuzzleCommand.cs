@@ -19,7 +19,7 @@ internal sealed class DailyPuzzleCommand : PeriodicCommand
 					DifficultyLevel: var diffLevel and < DifficultyLevel.Nightmare and not 0,
 					MaxDifficulty: var diff and >= 3.4M,
 					Solution: var solution
-				} analyzerResult)
+				})
 			{
 				continue;
 			}
