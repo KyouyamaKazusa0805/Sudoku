@@ -8291,6 +8291,16 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cells">The cells.</param>
+            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher">
             <summary>
             Provides with a <b>Gurth's Symmetrical Placement</b> step searcher.
