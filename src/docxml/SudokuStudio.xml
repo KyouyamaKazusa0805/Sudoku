@@ -8227,11 +8227,6 @@ if (student is (name: var name, age: >= 18))
             Try to set icon of the program.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.SetAppTitle">
-            <summary>
-            Try to set program name onto the title.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase)">
             <summary>
             An outer-layered method to switching pages. This method can be used by both

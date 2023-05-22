@@ -26,7 +26,6 @@ public sealed partial class MainWindow : Window
 		InitializeAppWindow();
 		SetAppTitleBarStatus();
 		SetAppIcon();
-		SetAppTitle();
 #endif
 	}
 
@@ -284,11 +283,6 @@ public sealed partial class MainWindow : Window
 	/// Try to set icon of the program.
 	/// </summary>
 	private void SetAppIcon() => AppWindow.SetIcon(@"Resources\images\Logo.ico");
-
-	/// <summary>
-	/// Try to set program name onto the title.
-	/// </summary>
-	private void SetAppTitle() => AppWindow.Title = GetString("_ProgramName");
 
 	/// <summary>
 	/// An outer-layered method to switching pages. This method can be used by both
