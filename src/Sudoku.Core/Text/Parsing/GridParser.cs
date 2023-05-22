@@ -12,11 +12,7 @@ namespace Sudoku.Text.Parsing;
 /// </param>
 /// <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
 [StructLayout(LayoutKind.Auto)]
-public unsafe ref partial struct GridParser(
-	string parsingValue,
-	[PrimaryConstructorParameter] bool compatibleFirst,
-	bool shortenSusser
-)
+public unsafe ref partial struct GridParser(string parsingValue, [PrimaryConstructorParameter] bool compatibleFirst, bool shortenSusser)
 {
 	/// <summary>
 	/// The list of all methods to parse.
@@ -470,8 +466,7 @@ public unsafe ref partial struct GridParser(
 		var length = match.Length;
 		for (var realPos = 0; i < length && match[i] != ':'; realPos++)
 		{
-			var c = match[i];
-			switch (c)
+			switch (match[i])
 			{
 				case '+':
 				{
@@ -510,7 +505,7 @@ public unsafe ref partial struct GridParser(
 
 					break;
 				}
-				case >= '1' and <= '9':
+				case var c and >= '1' and <= '9':
 				{
 					// Is a digit character.
 					// Digits are representing given values in the grid.
