@@ -159,7 +159,7 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 						}
 
-						cellOffsets.AddRange(from node in GetCrosshatchBaseCells(grid, digit, house, subsetCellsForThisDigit) select node);
+						cellOffsets.AddRange(GetCrosshatchBaseCells(grid, digit, house, subsetCellsForThisDigit));
 					}
 
 					var step = new HiddenSubsetStep(
