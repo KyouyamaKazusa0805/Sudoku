@@ -4,143 +4,116 @@
     "ShowCandidates": false,
     "GridString": null,
     "RenderableData": {
-      "Conclusions": [],
+      "Conclusions": [
+        "r4c5 <> 8",
+        "r4c6 <> 8",
+        "r6c5 <> 8",
+        "r6c6 <> 8"
+      ],
       "Views": [
         [
           {
-            "$typeid": 0,
-            "RenderingMode": 3,
-            "Cell": 75,
-            "Identifier": {
-              "$typeid": 0,
-              "A": 255,
-              "R": 255,
-              "G": 192,
-              "B": 89
-            }
-          },
-          {
-            "$typeid": 0,
-            "RenderingMode": 3,
-            "Cell": 3,
-            "Identifier": {
-              "$typeid": 0,
-              "A": 255,
-              "R": 255,
-              "G": 192,
-              "B": 89
-            }
-          },
-          {
-            "$typeid": 2,
-            "House": 4,
-            "Identifier": {
-              "$typeid": 0,
-              "A": 255,
-              "R": 255,
-              "G": 192,
-              "B": 89
-            }
-          },
-          {
             "$typeid": 1,
-            "Candidate": 448,
+            "Candidate": 277,
             "Identifier": {
-              "$typeid": 0,
-              "A": 255,
-              "R": 255,
-              "G": 118,
-              "B": 132
-            }
-          },
-          {
-            "$typeid": 1,
-            "Candidate": 295,
-            "Identifier": {
-              "$typeid": 0,
-              "A": 255,
-              "R": 255,
-              "G": 118,
-              "B": 132
-            }
-          },
-          {
-            "$typeid": 2,
-            "House": 21,
-            "Identifier": {
-              "$typeid": 0,
-              "A": 255,
-              "R": 63,
-              "G": 218,
-              "B": 101
-            }
-          },
-          {
-            "$typeid": 1,
-            "Candidate": 457,
-            "Identifier": {
-              "$typeid": 0,
-              "A": 255,
-              "R": 255,
-              "G": 118,
-              "B": 132
-            }
-          },
-          {
-            "$typeid": 1,
-            "Candidate": 286,
-            "Identifier": {
-              "$typeid": 0,
-              "A": 255,
-              "R": 255,
-              "G": 118,
-              "B": 132
+              "$typeid": 1,
+              "Kind": 0
             }
           },
           {
             "$typeid": 1,
             "Candidate": 439,
             "Identifier": {
-              "$typeid": 0,
-              "A": 255,
-              "R": 63,
-              "G": 218,
-              "B": 101
+              "$typeid": 1,
+              "Kind": 0
             }
           },
           {
-            "$typeid": 0,
-            "RenderingMode": 3,
-            "Cell": 57,
+            "$typeid": 2,
+            "House": 21,
             "Identifier": {
-              "$typeid": 0,
-              "A": 255,
-              "R": 255,
-              "G": 192,
-              "B": 89
+              "$typeid": 1,
+              "Kind": 0
+            }
+          },
+          {
+            "$typeid": 2,
+            "House": 4,
+            "Identifier": {
+              "$typeid": 1,
+              "Kind": 1
             }
           },
           {
             "$typeid": 0,
-            "RenderingMode": 3,
+            "RenderingMode": 1,
+            "Cell": 7,
+            "Identifier": {
+              "$typeid": 1,
+              "Kind": 0
+            }
+          },
+          {
+            "$typeid": 0,
+            "RenderingMode": 1,
+            "Cell": 9,
+            "Identifier": {
+              "$typeid": 1,
+              "Kind": 0
+            }
+          },
+          {
+            "$typeid": 0,
+            "RenderingMode": 1,
+            "Cell": 56,
+            "Identifier": {
+              "$typeid": 1,
+              "Kind": 0
+            }
+          },
+          {
+            "$typeid": 0,
+            "RenderingMode": 1,
+            "Cell": 78,
+            "Identifier": {
+              "$typeid": 1,
+              "Kind": 0
+            }
+          },
+          {
+            "$typeid": 0,
+            "RenderingMode": 1,
+            "Cell": 3,
+            "Identifier": {
+              "$typeid": 1,
+              "Kind": 1
+            }
+          },
+          {
+            "$typeid": 0,
+            "RenderingMode": 1,
             "Cell": 12,
             "Identifier": {
-              "$typeid": 0,
-              "A": 255,
-              "R": 255,
-              "G": 192,
-              "B": 89
+              "$typeid": 1,
+              "Kind": 1
             }
           },
           {
-            "$typeid": 1,
-            "Candidate": 277,
+            "$typeid": 0,
+            "RenderingMode": 1,
+            "Cell": 57,
             "Identifier": {
-              "$typeid": 0,
-              "A": 255,
-              "R": 63,
-              "G": 218,
-              "B": 101
+              "$typeid": 1,
+              "Kind": 1
+            }
+          },
+          {
+            "$typeid": 0,
+            "RenderingMode": 1,
+            "Cell": 75,
+            "Identifier": {
+              "$typeid": 1,
+              "Kind": 1
             }
           }
         ]

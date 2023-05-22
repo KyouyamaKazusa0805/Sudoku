@@ -43,6 +43,60 @@
               "$typeid": 1,
               "Kind": 1
             }
+          },
+          {
+            "$typeid": 0,
+            "RenderingMode": 1,
+            "Cell": 6,
+            "Identifier": {
+              "$typeid": 1,
+              "Kind": 0
+            }
+          },
+          {
+            "$typeid": 0,
+            "RenderingMode": 1,
+            "Cell": 22,
+            "Identifier": {
+              "$typeid": 1,
+              "Kind": 0
+            }
+          },
+          {
+            "$typeid": 0,
+            "RenderingMode": 1,
+            "Cell": 34,
+            "Identifier": {
+              "$typeid": 1,
+              "Kind": 0
+            }
+          },
+          {
+            "$typeid": 0,
+            "RenderingMode": 1,
+            "Cell": 1,
+            "Identifier": {
+              "$typeid": 1,
+              "Kind": 1
+            }
+          },
+          {
+            "$typeid": 0,
+            "RenderingMode": 1,
+            "Cell": 19,
+            "Identifier": {
+              "$typeid": 1,
+              "Kind": 1
+            }
+          },
+          {
+            "$typeid": 0,
+            "RenderingMode": 1,
+            "Cell": 28,
+            "Identifier": {
+              "$typeid": 1,
+              "Kind": 1
+            }
           }
         ]
       ]
