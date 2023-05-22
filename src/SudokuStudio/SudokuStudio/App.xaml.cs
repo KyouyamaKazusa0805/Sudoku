@@ -38,9 +38,9 @@ public partial class App : Application
 	public StepCollector StepCollector { get; } = new();
 
 	/// <summary>
-	/// Indicates the first-opened grid.
+	/// Indicates a <see cref="GridInfo"/> instance that will be initialized when opening the application via extension-binding files.
 	/// </summary>
-	internal Grid? FirstGrid { get; set; }
+	internal GridInfo? AppStartingGridInfo { get; set; }
 
 	/// <summary>
 	/// Indicates the window manager.
@@ -108,9 +108,9 @@ public partial class App : Application
 				Kind: ExtendedActivationKind.File,
 				Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: FileExtensions.Text, Path: var filePath }] }
 			}
-			when SudokuFileHandler.Read(filePath) is [{ BaseGrid: var grid }, ..]:
+			when SudokuFileHandler.Read(filePath) is [var instance, ..]:
 			{
-				FirstGrid = grid;
+				AppStartingGridInfo = instance;
 				break;
 			}
 		}

@@ -532,10 +532,19 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	private void LoadInitialGrid()
 	{
-		if (((App)Application.Current).FirstGrid is { } grid)
+		if (((App)Application.Current).AppStartingGridInfo is
+			{
+				BaseGrid: var grid,
+				GridString: _,
+				ShowCandidates: var showCandidates,
+				RenderableData: var renderableData
+			})
 		{
 			SudokuPane.Puzzle = grid;
-			((App)Application.Current).FirstGrid = null; // Maybe not necessary...
+			VisualUnit = renderableData;
+			SudokuPane.DisplayCandidates = showCandidates;
+
+			((App)Application.Current).AppStartingGridInfo = null; // Maybe not necessary...
 		}
 	}
 
