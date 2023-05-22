@@ -153,13 +153,12 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 					var (cellOffsets, candidateOffsets) = (new List<CellViewNode>(), new List<CandidateViewNode>());
 					foreach (var digit in digits)
 					{
-						var subsetCellsForThisDigit = map & CandidatesMap[digit];
-						foreach (var cell in subsetCellsForThisDigit)
+						foreach (var cell in map & CandidatesMap[digit])
 						{
 							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 						}
 
-						cellOffsets.AddRange(GetCrosshatchBaseCells(grid, digit, house, subsetCellsForThisDigit));
+						cellOffsets.AddRange(GetCrosshatchBaseCells(grid, digit, house, map));
 					}
 
 					var step = new HiddenSubsetStep(
