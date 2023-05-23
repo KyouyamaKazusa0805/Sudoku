@@ -10,5 +10,39 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)README.md" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第1部分 数独初步介绍\01 数独规则\001-题目.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第1部分 数独初步介绍\01 数独规则\002-解.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第1部分 数独初步介绍\07 数独中的数学\01 17数数独题例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第1部分 数独初步介绍\07 数独中的数学\02 40数精简题例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\01 排除\01 宫排除.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\01 排除\02 行排除.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\01 排除\03 列排除.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\02 唯一余数\01 唯一余数.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\02 唯一余数\02 唯一余数，但是三个区域都用上了.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\03 剩余类技巧\01 同数剩余.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\03 剩余类技巧\02 同数剩余宫相对位置相同的例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\03 剩余类技巧\03 同区域剩余.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\04 区块\01-1 宫区块.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\04 区块\01-2 宫区块，然后排除出数.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\04 区块\02-1 行列区块.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\04 区块\02-2 行列区块，然后唯一余数出数.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\04 区块\03-1 组合区块.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\04 区块\03-2 组合区块，然后唯一余数出数.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\04 区块\04 组合区块就是行列区块.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 隐性数组\01-1 隐性数对.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 隐性数组\01-2 隐性数对出宫排除.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 隐性数组\02-1 隐性三数组.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 隐性数组\02-2 隐性三数组出行排除.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 隐性数组\03-1 隐性四数组.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 隐性数组\03-2 隐性四数组出行排除.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)图片\第1部分 数独初步介绍\06 数独的由来与历史\01 日报刊登的题目.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)图片\第1部分 数独初步介绍\06 数独的由来与历史\02 两位数的Carré Magique Diabolique.png" />
+    <Content Include="$(MSBuildThisFileDirectory)图片\第1部分 数独初步介绍\06 数独的由来与历史\03 九数略.png" />
+    <Content Include="$(MSBuildThisFileDirectory)图片\第1部分 数独初步介绍\06 数独的由来与历史\04 洛书.png" />
+    <Content Include="$(MSBuildThisFileDirectory)图片\第1部分 数独初步介绍\06 数独的由来与历史\05 高乐德.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)图片\第1部分 数独初步介绍\06 数独的由来与历史\06 鍜治真起.jpg" />
   </ItemGroup>
 </Project>
