@@ -13,6 +13,9 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+# Tutorial raw file
+src/SudokuTutorial/教程.docx
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
