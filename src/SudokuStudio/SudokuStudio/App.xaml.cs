@@ -99,10 +99,12 @@ public partial class App : Application
 	{
 		switch (AppInstance.GetCurrent().GetActivatedEventArgs())
 		{
+#if false
 			case { Kind: ExtendedActivationKind.Protocol, Data: IProtocolActivatedEventArgs { Uri: _ } }:
 			{
 				break;
 			}
+#endif
 			case
 			{
 				Kind: ExtendedActivationKind.File,
