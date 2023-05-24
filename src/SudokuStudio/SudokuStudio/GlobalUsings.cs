@@ -42,7 +42,6 @@ global using Sudoku.Preprocessing;
 global using Sudoku.Rendering;
 global using Sudoku.Rendering.Nodes;
 global using Sudoku.Resources;
-global using Sudoku.Text;
 global using Sudoku.Text.Formatting;
 global using Sudoku.Text.Notations;
 global using SudokuStudio;
