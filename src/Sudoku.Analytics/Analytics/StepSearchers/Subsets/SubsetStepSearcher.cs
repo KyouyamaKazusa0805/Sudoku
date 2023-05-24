@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </item>
 /// <item>
-/// Semi-Locked Subsets:
+/// Naked Subsets (+):
 /// <list type="bullet">
 /// <item>Naked Pair (+)</item>
 /// <item>Naked Triple (+)</item>
@@ -19,7 +19,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </item>
 /// <item>
-/// Normal Naked Subsets:
+/// Naked Subsets:
 /// <list type="bullet">
 /// <item>Naked Pair</item>
 /// <item>Naked Triple</item>

@@ -8262,7 +8262,7 @@ result ^= expression;
             </list>
             </item>
             <item>
-            Semi-Locked Subsets:
+            Naked Subsets (+):
             <list type="bullet">
             <item>Naked Pair (+)</item>
             <item>Naked Triple (+)</item>
@@ -8270,7 +8270,7 @@ result ^= expression;
             </list>
             </item>
             <item>
-            Normal Naked Subsets:
+            Naked Subsets:
             <list type="bullet">
             <item>Naked Pair</item>
             <item>Naked Triple</item>
