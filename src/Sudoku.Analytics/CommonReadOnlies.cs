@@ -1,5 +1,8 @@
 namespace Sudoku.Analytics;
 
+using HouseCellsTuple = (CellMap LineMap, CellMap BlockMap, CellMap IntersectionMap, byte[] OtherBlocks);
+using HousePair = (byte Line, byte Block);
+
 /// <summary>
 /// Represents a type holding some common read-only fields used by runtime or compiling-time.
 /// </summary>
@@ -167,7 +170,7 @@ public static class CommonReadOnlies
 	/// In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
 	/// </para>
 	/// </summary>
-	public static readonly IReadOnlyDictionary<(byte Line, byte Block), (CellMap LineMap, CellMap BlockMap, CellMap IntersectionMap, byte[] OtherBlocks)> IntersectionMaps;
+	public static readonly IReadOnlyDictionary<HousePair, HouseCellsTuple> IntersectionMaps;
 
 	/// <summary>
 	/// <para>The table of all blocks to iterate for each blocks.</para>
@@ -204,7 +207,7 @@ public static class CommonReadOnlies
 	{
 		scoped var r = (stackalloc[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 });
 		scoped var c = (stackalloc[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 });
-		var dic = new Dictionary<(byte, byte), (CellMap, CellMap, CellMap, byte[])>(new ValueTupleComparer());
+		var dic = new Dictionary<HousePair, HouseCellsTuple>(new ValueTupleComparer());
 		for (byte bs = 9; bs < 27; bs++)
 		{
 			for (byte j = 0; j < 3; j++)
@@ -224,13 +227,13 @@ public static class CommonReadOnlies
 /// <summary>
 /// Represents a comparer instance that compares two tuples.
 /// </summary>
-file sealed class ValueTupleComparer : IEqualityComparer<(byte Value1, byte Value2)>
+file sealed class ValueTupleComparer : IEqualityComparer<HousePair>
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals((byte Value1, byte Value2) x, (byte Value1, byte Value2) y) => x == y;
+	public bool Equals(HousePair x, HousePair y) => x == y;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int GetHashCode((byte Value1, byte Value2) obj) => obj.Value1 << 5 | obj.Value2;
+	public int GetHashCode(HousePair obj) => obj.Line << 5 | obj.Block;
 }
