@@ -20,6 +20,7 @@ public sealed partial class MainWindow : Window
 	public MainWindow()
 	{
 		InitializeComponent();
+
 		InitializeField();
 
 #if UI_FEATURE_CUSTOMIZED_TITLE_BAR
@@ -39,6 +40,17 @@ public sealed partial class MainWindow : Window
 		{
 			NavigationViewFrame.Navigate(pageType, null, DefaultNavigationTransitionInfo);
 			SetFrameDisplayTitle(pageType);
+
+#if false
+			foreach (var element in MainNavigationView.MenuItems.Concat(MainNavigationView.FooterMenuItems).OfType<NavigationViewItemBase>())
+			{
+				if (_navigatingData.First(pair => pair.Key(element)).Value == pageType)
+				{
+					MainNavigationView.SelectedItem = element;
+					return;
+				}
+			}
+#endif
 		}
 	}
 
@@ -54,6 +66,17 @@ public sealed partial class MainWindow : Window
 		{
 			NavigationViewFrame.Navigate(pageType, data, DefaultNavigationTransitionInfo);
 			SetFrameDisplayTitle(pageType);
+
+#if false
+			foreach (var element in MainNavigationView.MenuItems.Concat(MainNavigationView.FooterMenuItems).OfType<NavigationViewItemBase>())
+			{
+				if (_navigatingData.First(pair => pair.Key(element)).Value == pageType)
+				{
+					MainNavigationView.SelectedItem = element;
+					return;
+				}
+			}
+#endif
 		}
 	}
 
