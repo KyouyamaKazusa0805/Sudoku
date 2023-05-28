@@ -21,5 +21,9 @@ internal static class ProjectWideConstants
 	/// <summary>
 	/// Indicates the default <see cref="NavigationTransitionInfo"/> instance that describes the details of data while switching pages.
 	/// </summary>
-	public static readonly NavigationTransitionInfo DefaultNavigationTransitionInfo = new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight };
+	public static readonly NavigationTransitionInfo DefaultNavigationTransitionInfo
+		= new SlideNavigationTransitionInfo
+		{
+			Effect = SlideNavigationTransitionEffect.FromRight
+		};
 }
