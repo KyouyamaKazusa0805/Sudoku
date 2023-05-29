@@ -72,7 +72,7 @@ internal sealed class ManualUpdateUserCommand : Command
 
 		switch (UserNickname, UserId, ExperiencePointAddition, CoinAddition)
 		{
-			case (_, _, 0, _) or (_, _, _, 0):
+			case (_, _, 0, 0):
 			{
 				await messageReceiver.SendMessageAsync("经验或金币数至少有一个数必须非 0。");
 				break;
@@ -86,7 +86,7 @@ internal sealed class ManualUpdateUserCommand : Command
 						await messageReceiver.SendMessageAsync($"本群不存在昵称为“{name}”的用户。");
 						break;
 					}
-					case [{ Id: var userId } target]:
+					case [{ Id: var userId }]:
 					{
 						var fileName = $"""{botUsersDataFolder}\{userId}.json""";
 						var userData = File.Exists(fileName)
