@@ -3,7 +3,7 @@
 
 [assembly: StepSearcherImport<SingleStepSearcher>(StepSearcherLevel.Elementary)]
 [assembly: StepSearcherImport<LockedCandidatesStepSearcher>(StepSearcherLevel.Elementary)]
-[assembly: StepSearcherImport<SubsetStepSearcher>(StepSearcherLevel.Moderate)]
+[assembly: StepSearcherImport<SubsetStepSearcher>(StepSearcherLevel.Elementary)]
 [assembly: StepSearcherImport<NormalFishStepSearcher>(StepSearcherLevel.Moderate)]
 [assembly: StepSearcherImport<TwoStrongLinksStepSearcher>(StepSearcherLevel.Moderate)]
 [assembly: StepSearcherImport<RegularWingStepSearcher>(StepSearcherLevel.Moderate)]
