@@ -198,9 +198,9 @@ internal sealed class UplevelCommand : Command
 								await messageReceiver.SendMessageAsync(
 									(originalLevel, WithInsurance) switch
 									{
-										(> 5, true) => $"不够好运，强化失败。卡片等级降级：{originalLevel} -> {originalLevel - 1}。",
-										(<= 5, _) => "不够好运，强化失败。卡片小于 5 级不掉级。",
-										_ => "不够好运，强化失败。"
+										(> 5, true) => "不够好运，强化失败。",
+										(> 5, _) => $"不够好运，强化失败。卡片等级降级：{originalLevel} -> {originalLevel - 1}。",
+										(<= 5, _) => "不够好运，强化失败。卡片小于 5 级不掉级。"
 									}
 								);
 							}
