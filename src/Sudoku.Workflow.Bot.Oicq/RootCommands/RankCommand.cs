@@ -25,7 +25,7 @@ internal sealed class RankCommand : Command
 	[DefaultValue<int>(10)]
 	[ValueConverter<NumericConverter<int>>]
 	[DisplayingIndex(1)]
-	[ArgumentDisplayer("5-20")]
+	[ArgumentDisplayer("5-25")]
 	public int TopCount { get; set; }
 
 
@@ -37,7 +37,7 @@ internal sealed class RankCommand : Command
 			return;
 		}
 
-		var finalTopCount = Clamp(TopCount, 5, 20);
+		var finalTopCount = Clamp(TopCount, 5, 25);
 		switch (Type)
 		{
 			case Types.Basic:
@@ -89,7 +89,7 @@ internal sealed class RankCommand : Command
 							Types.ContinuousCheckIn => ud.ComboCheckedIn
 						}
 					)
-				)!.Take(10);
+				)!.Take(finalTopCount);
 
 				await messageReceiver.SendMessageAsync(
 					$"""
