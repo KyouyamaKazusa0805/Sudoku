@@ -164,8 +164,7 @@
             <param name="this">The array.</param>
             <param name="comparer">The method to compare two elements.</param>
             <remarks>
-            If you want to use this method, please call the other method
-            <see cref="!:Sort&lt;T&gt;(T[], delegate*&lt;T, T, int&gt;, int, int)"/> instead.
+            If you want to use this method, please call the other method <see cref="!:Sort&lt;T&gt;(T[], delegate*&lt;T, T, int&gt;, int, int)"/> instead.
             </remarks>
             <seealso cref="!:Sort&lt;T&gt;(T[], delegate*&lt;T, T, int&gt;, int, int)"/>
         </member>

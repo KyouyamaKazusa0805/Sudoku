@@ -1,4 +1,4 @@
-﻿namespace System.Algorithm;
+namespace System.Algorithm;
 
 /// <summary>
 /// Provides all algorithm processing methods.
@@ -55,12 +55,11 @@ public static unsafe class Sorting
 	/// <param name="this">The array.</param>
 	/// <param name="comparer">The method to compare two elements.</param>
 	/// <remarks>
-	/// If you want to use this method, please call the other method
-	/// <see cref="Sort{T}(T[], delegate*{T, T, int}, int, int)"/> instead.
+	/// If you want to use this method, please call the other method <see cref="Sort{T}(T[], delegate*{T, T, int}, int, int)"/> instead.
 	/// </remarks>
 	/// <seealso cref="Sort{T}(T[], delegate*{T, T, int}, int, int)"/>
-	public static void Sort<T>(this T[] @this, delegate*<in T, in T, int> comparer)
 #pragma warning restore CS1658, CS1584
+	public static void Sort<T>(this T[] @this, delegate*<in T, in T, int> comparer)
 	{
 		q(0, @this.Length - 1, @this, comparer);
 

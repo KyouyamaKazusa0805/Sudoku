@@ -1534,7 +1534,7 @@ public unsafe partial struct Grid :
 	/// <returns>The map.</returns>
 	/// <seealso cref="EmptyCells"/>
 	/// <seealso cref="BivalueCells"/>
-	private readonly CellMap GetMap(delegate*<in Grid, Cell, bool> predicate)
+	private readonly CellMap GetMap(GridCellFilter predicate)
 	{
 		var result = CellMap.Empty;
 		for (var cell = 0; cell < 81; cell++)
@@ -1556,7 +1556,7 @@ public unsafe partial struct Grid :
 	/// <seealso cref="CandidatesMap"/>
 	/// <seealso cref="DigitsMap"/>
 	/// <seealso cref="ValuesMap"/>
-	private readonly CellMap[] GetMaps(delegate*<in Grid, Cell, Digit, bool> predicate)
+	private readonly CellMap[] GetMaps(GridCellDigitFilter predicate)
 	{
 		var result = new CellMap[9];
 		for (var digit = 0; digit < 9; digit++)
@@ -1825,14 +1825,12 @@ file sealed class Converter : JsonConverter<Grid>
 		=> writer.WriteStringValue(value.ToString(SusserFormat.Full));
 }
 
-#pragma warning disable CS1584, CS1658
 /// <summary>
-/// Represents a list of methods to filter the cells, used by <see cref="Grid.GetMap(delegate*{in Grid, int, bool})"/>
-/// or <see cref="Grid.GetMaps(delegate*{in Grid, int, int, bool})"/>.
+/// Represents a list of methods to filter the cells, used by <see cref="Grid.GetMap(GridCellFilter)"/>
+/// or <see cref="Grid.GetMaps(GridCellDigitFilter)"/>.
 /// </summary>
-/// <seealso cref="Grid.GetMap(delegate*{in Grid, int, bool})"/>
-/// <seealso cref="Grid.GetMaps(delegate*{in Grid, int, int, bool})"/>
-#pragma warning restore CS1584, CS1658
+/// <seealso cref="Grid.GetMap(GridCellFilter)"/>
+/// <seealso cref="Grid.GetMaps(GridCellDigitFilter)"/>
 file static class CellFilteringMethods
 {
 	public static bool GivenCells(scoped in Grid g, Cell cell) => g.GetStatus(cell) == CellStatus.Given;

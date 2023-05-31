@@ -3932,11 +3932,11 @@ fixed (short* ptr = instance)
         </member>
         <member name="T:Sudoku.Concepts.CellFilteringMethods">
             <summary>
-            Represents a list of methods to filter the cells, used by <see cref="!:Grid.GetMap(delegate*&lt;in Grid, int, bool&gt;)"/>
-            or <see cref="!:Grid.GetMaps(delegate*&lt;in Grid, int, int, bool&gt;)"/>.
+            Represents a list of methods to filter the cells, used by <see cref="M:Sudoku.Concepts.Grid.GetMap()"/>
+            or <see cref="M:Sudoku.Concepts.Grid.GetMaps()"/>.
             </summary>
-            <seealso cref="!:Grid.GetMap(delegate*&lt;in Grid, int, bool&gt;)"/>
-            <seealso cref="!:Grid.GetMaps(delegate*&lt;in Grid, int, int, bool&gt;)"/>
+            <seealso cref="M:Sudoku.Concepts.Grid.GetMap()"/>
+            <seealso cref="M:Sudoku.Concepts.Grid.GetMaps()"/>
         </member>
         <member name="T:Sudoku.Concepts.GridCreatingOption">
             <summary>

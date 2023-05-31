@@ -20,3 +20,5 @@ global using Chute = (Sudoku.Concepts.CellMap Cells, bool IsRow, /*Mask*/ short 
 global using unsafe RefreshingCandidatesMethodPtr = delegate*<ref Sudoku.Concepts.Grid, void>;
 global using unsafe ValueChangedMethodPtr = delegate*<ref Sudoku.Concepts.Grid, int, short, short, int, void>;
 global using unsafe ParserMethodPtr = delegate*<ref Sudoku.Text.Parsing.GridParser, Sudoku.Concepts.Grid>;
+global using unsafe GridCellFilter = delegate*<in Sudoku.Concepts.Grid, int, bool>;
+global using unsafe GridCellDigitFilter = delegate*<in Sudoku.Concepts.Grid, int, int, bool>;
