@@ -11,7 +11,7 @@
 	xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
 	IgnorableNamespaces="uap rescap">
 
-	<Identity Name="b551d242-176a-4f7b-8e8d-8483cc883567" Publisher="CN=张齐天" Version="3.0.0.0" />
+	<Identity Name="b551d242-176a-4f7b-8e8d-8483cc883567" Publisher="CN=张齐天" Version="3.1.2.0" />
 
 	<Properties>
 		<DisplayName>SudokuStudio (Package)</DisplayName>
