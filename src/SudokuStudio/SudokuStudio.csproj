@@ -4,23 +4,20 @@
 		<TargetFramework>net7.0-windows10.0.19041.0</TargetFramework>
 		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
 		<RootNamespace>SudokuStudio</RootNamespace>
-		<DefineConstants>UI_FEATURE_CUSTOMIZED_TITLE_BAR</DefineConstants>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Platforms>x86;x64;ARM64</Platforms>
 		<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+		<PublishProfile>win10-$(Platform).pubxml</PublishProfile>
 		<UseWinUI>true</UseWinUI>
-		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
-		<DocumentationFile>..\..\docxml\SudokuStudio.xml</DocumentationFile>
+		<EnableMsixTooling>true</EnableMsixTooling>
+		<RootNamespace>SudokuStudio</RootNamespace>
+		<DefineConstants>UI_FEATURE_CUSTOMIZED_TITLE_BAR</DefineConstants>
+		<DocumentationFile>..\docxml\SudokuStudio.xml</DocumentationFile>
 		<Description>The project represents with user interfaces that operates with sudoku puzzles.</Description>
-	</PropertyGroup>
 
-	<ItemGroup>
-		<Content Remove="Resources\images\baba.gif" />
-		<Content Remove="Resources\images\group.gif" />
-		<Content Remove="Resources\images\is.gif" />
-		<Content Remove="Resources\images\logo-devtoys.png" />
-		<Content Remove="Resources\images\repo-dotnet.png" />
-	</ItemGroup>
+		<!--A bug fix.-->
+		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
@@ -42,38 +39,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
+		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Remove="Views\Controls\ColorSelector.xaml" />
-		<None Remove="Views\Controls\DashArrayTextBox.xaml" />
-		<None Remove="Views\Controls\FontPicker.xaml" />
-		<None Remove="Views\Controls\Shapes\CircleRing.xaml" />
-		<None Remove="Views\Controls\Shapes\Cross.xaml" />
-		<None Remove="Views\Controls\StepSearcherListView.xaml" />
-		<None Remove="Views\Controls\SudokuPane.xaml" />
-		<None Remove="Views\Controls\SudokuPaneCell.xaml" />
-		<None Remove="Views\Controls\TechniqueGroupView.xaml" />
-		<None Remove="Views\Pages\AboutPage.xaml" />
-		<None Remove="Views\Pages\AnalyzePage.xaml" />
-		<None Remove="Views\Pages\Analyze\Drawing.xaml" />
-		<None Remove="Views\Pages\Analyze\GridGathering.xaml" />
-		<None Remove="Views\Pages\Analyze\SolvingPath.xaml" />
-		<None Remove="Views\Pages\Analyze\Summary.xaml" />
-		<None Remove="Views\Pages\ContentDialogs\ErrorStepDialogContent.xaml" />
-		<None Remove="Views\Pages\ContentDialogs\ExceptionThrownOnAnalyzingContent.xaml" />
-		<None Remove="Views\Pages\Operation\AttributeCheckingOperation.xaml" />
-		<None Remove="Views\Pages\Operation\BasicOperation.xaml" />
-		<None Remove="Views\Pages\Operation\PrintingOperation.xaml" />
-		<None Remove="Views\Pages\Operation\ShuffleOperation.xaml" />
-		<None Remove="Views\Pages\SettingsPage.xaml" />
-		<None Remove="Views\Pages\Settings\AnalysisPreferenceItemsPage.xaml" />
-		<None Remove="Views\Pages\Settings\BasicPreferenceItemsPage.xaml" />
-		<None Remove="Views\Pages\Settings\DrawingPreferenceItemsPage.xaml" />
-		<None Remove="Views\Pages\SingleCountingPracticingPage.xaml" />
-		<None Remove="Views\Pages\TechniqueGalleryPage.xaml" />
-		<None Remove="Views\Pages\Techniques\FullHousePage.xaml" />
+		<Content Include="Assets\1.png" />
+		<Content Include="Assets\2.png" />
+		<Content Include="Assets\3.png" />
+		<Content Include="Assets\4.png" />
+		<Content Include="Assets\StoreLogo.scale-100.png" />
+		<Content Include="Assets\StoreLogo.scale-200.png" />
+		<Content Include="Images\SplashScreen.scale-200.png" />
+		<Content Include="Images\LockScreenLogo.scale-200.png" />
+		<Content Include="Images\Square150x150Logo.scale-200.png" />
+		<Content Include="Images\Square44x44Logo.scale-200.png" />
+		<Content Include="Images\Square44x44Logo.targetsize-24_altform-unplated.png" />
+		<Content Include="Images\Wide310x150Logo.scale-200.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -198,4 +179,22 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>
+
+	<!--
+	Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+	Tools extension to be activated for this project even if the Windows App SDK Nuget
+	package has not yet been restored.
+	-->
+	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+		<ProjectCapability Include="Msix" />
+	</ItemGroup>
+
+	<!--
+	Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution 
+	Explorer "Package and Publish" context menu entry to be enabled for this project even if 
+	the Windows App SDK Nuget package has not yet been restored.
+	-->
+	<PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+		<HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+	</PropertyGroup>
 </Project>

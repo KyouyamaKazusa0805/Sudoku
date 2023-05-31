@@ -16,7 +16,7 @@ internal static class CommonPaths
 	public static readonly string GeneratingHistory;
 
 
-	/// <include file='../../../global-doc-comments.xml' path='g/static-constructor' />
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static CommonPaths()
 	{
 		var documents = Environment.GetFolderPath(SpecialFolder.MyDocuments);

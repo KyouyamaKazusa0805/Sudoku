@@ -111,16 +111,7 @@
 	</ItemGroup>
 
 	<!--Import 'Sudoku.SourceGeneration' project into the non-source generator projects.-->
-	<Choose>
-		<When Condition="'$(MSBuildProjectFile.Contains(`SudokuStudio`))'=='true' And '$(MSBuildProjectFile.EndsWith(`.wapproj`))'=='false'">
-			<ItemGroup>
-				<ProjectReference Include="..\..\Sudoku.SourceGeneration\Sudoku.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-			</ItemGroup>
-		</When>
-		<When Condition="'$(MSBuildProjectFile.EndsWith(`SourceGeneration.csproj`))'=='false' And '$(MSBuildProjectFile.EndsWith(`.wapproj`))'=='false'">
-			<ItemGroup>
-				<ProjectReference Include="..\Sudoku.SourceGeneration\Sudoku.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-			</ItemGroup>
-		</When>
-	</Choose>
+	<ItemGroup Condition="'$(MSBuildProjectFile.EndsWith(`SourceGeneration.csproj`))'=='false' Or '$(MSBuildProjectFile.Contains(`SudokuStudio.csproj`))'=='true'">
+		<ProjectReference Include="..\Sudoku.SourceGeneration\Sudoku.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
 </Project>

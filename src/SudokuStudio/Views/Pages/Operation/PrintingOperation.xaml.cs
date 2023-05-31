@@ -204,7 +204,7 @@ file sealed class AnalysisResultDocumentCreator
 	);
 }
 
-/// <include file='../../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
 	public static void AddComment(this ColumnDescriptor @this, string comment)

@@ -65,10 +65,9 @@ internal sealed class InstanceDeconstructionMethodHandler : IIncrementalGenerato
 					select $"out {name}{annotation} {parameter.Name}"
 				);
 
-				var includingReferenceLevel = assemblyName.StartsWith("SudokuStudio") ? "../../../" : "../../";
 				codeSnippets.Add(
 					$$"""
-					/// <include file="{{includingReferenceLevel}}global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+					/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 							[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{Value}}")]
 							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]

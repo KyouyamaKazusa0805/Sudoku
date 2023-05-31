@@ -6,11 +6,11 @@ namespace Windows.UI;
 /// <seealso cref="Color"/>
 public static class ColorExtensions
 {
-	/// <include file="../../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Deconstruct(this Color @this, out byte r, out byte g, out byte b) => (r, g, b) = (@this.R, @this.G, @this.B);
 
-	/// <include file="../../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Deconstruct(this Color @this, out byte a, out byte r, out byte g, out byte b)
 		=> (a, r, g, b) = (@this.A, @this.R, @this.G, @this.B);

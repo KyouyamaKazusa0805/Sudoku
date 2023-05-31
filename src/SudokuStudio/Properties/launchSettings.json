@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SudokuStudio (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SudokuStudio (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
