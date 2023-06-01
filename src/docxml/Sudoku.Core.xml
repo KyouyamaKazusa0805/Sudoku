@@ -7053,6 +7053,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Locked Candidates.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_LockedSubsetStepSearcher">
+            <summary>
+              Looks up a localized string similar to Locked Subsets.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_MultiBranchWWingStepSearcher">
             <summary>
               Looks up a localized string similar to Multi-Branched W-Wing.
@@ -7076,6 +7081,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_NormalFishStepSearcher">
             <summary>
               Looks up a localized string similar to Normal Fishes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.StepSearcherName_NormalSubsetStepSearcher">
+            <summary>
+              Looks up a localized string similar to Normal Subsets.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_PatternOverlayStepSearcher">
@@ -7111,11 +7121,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_SingleStepSearcher">
             <summary>
               Looks up a localized string similar to Singles.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.Resources.StepSearcherName_SubsetStepSearcher">
-            <summary>
-              Looks up a localized string similar to Subsets.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources.StepSearcherName_SueDeCoq3DimensionStepSearcher">

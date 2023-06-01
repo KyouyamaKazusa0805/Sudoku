@@ -2007,8 +2007,8 @@
     <value>排除和唯余</value>
     <comment>Step Searcher Name</comment>
   </data>
-  <data name="StepSearcherName_SubsetStepSearcher" xml:space="preserve">
-    <value>数组</value>
+  <data name="StepSearcherName_NormalSubsetStepSearcher" xml:space="preserve">
+    <value>普通数组</value>
     <comment>Step Searcher Name</comment>
   </data>
   <data name="StepSearcherName_SueDeCoq3DimensionStepSearcher" xml:space="preserve">
@@ -2280,5 +2280,9 @@
   <data name="LockedHiddenTriple" xml:space="preserve">
     <value>隐性死锁三数组</value>
     <comment>Technique Name</comment>
+  </data>
+  <data name="StepSearcherName_LockedSubsetStepSearcher" xml:space="preserve">
+    <value>死锁数组</value>
+    <comment>Step Searcher Name</comment>
   </data>
 </root>

@@ -1,46 +1,31 @@
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
-/// Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:
-/// <list type="bullet">
-/// <item>
-/// Locked Subsets:
-/// <list type="bullet">
-/// <item>Locked Pair</item>
-/// <item>Locked Triple</item>
-/// </list>
-/// </item>
-/// <item>
-/// Naked Subsets (+):
-/// <list type="bullet">
-/// <item>Naked Pair (+)</item>
-/// <item>Naked Triple (+)</item>
-/// <item>Naked Quadruple (+)</item>
-/// </list>
-/// </item>
-/// <item>
-/// Naked Subsets:
-/// <list type="bullet">
-/// <item>Naked Pair</item>
-/// <item>Naked Triple</item>
-/// <item>Naked Quadruple</item>
-/// </list>
-/// </item>
-/// <item>
-/// Hidden Subsets:
-/// <list type="bullet">
-/// <item>Hidden Pair</item>
-/// <item>Hidden Triple</item>
-/// <item>Hidden Quadruple</item>
-/// </list>
-/// </item>
-/// </list>
+/// Provides with a <b>Subset</b> step searcher.
 /// </summary>
-[StepSearcher]
-public sealed partial class SubsetStepSearcher : StepSearcher
+/// <param name="priority">
+/// <inheritdoc cref="StepSearcher(int, StepSearcherLevel, StepSearcherRunningArea)" path="/param[@name='priority']"/>
+/// </param>
+/// <param name="level">
+/// <inheritdoc cref="StepSearcher(int, StepSearcherLevel, StepSearcherRunningArea)" path="/param[@name='level']"/>
+/// </param>
+/// <param name="runningArea">
+/// <inheritdoc cref="StepSearcher(int, StepSearcherLevel, StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+/// </param>
+public abstract partial class SubsetStepSearcher(
+	int priority,
+	StepSearcherLevel level,
+	StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering
+) : StepSearcher(priority, level, runningArea)
 {
+	/// <summary>
+	/// Indicates whether the step searcher only searches for locked subsets.
+	/// </summary>
+	public abstract bool OnlySearchingForLocked { get; }
+
+
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal sealed override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		for (var size = 2; size <= 4; size++)
@@ -56,18 +41,18 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 				// Iterate on each combination.
 				foreach (var cells in currentEmptyMap & size)
 				{
-					var mask = grid.GetDigitsUnion(cells);
-					if (PopCount((uint)mask) != size)
+					var digitsMask = grid.GetDigitsUnion(cells);
+					if (PopCount((uint)digitsMask) != size)
 					{
 						continue;
 					}
 
 					// Naked subset found. Now check eliminations.
-					var (flagMask, conclusions) = ((Mask)0, new List<Conclusion>(18));
-					foreach (var digit in mask)
+					var (lockedDigitsMask, conclusions) = ((Mask)0, new List<Conclusion>(18));
+					foreach (var digit in digitsMask)
 					{
 						var map = cells % CandidatesMap[digit];
-						flagMask |= (Mask)(map.InOneHouse ? 0 : 1 << digit);
+						lockedDigitsMask |= (Mask)(map.InOneHouse ? 0 : 1 << digit);
 
 						foreach (var cell in map)
 						{
@@ -88,21 +73,25 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 						}
 					}
 
-					var step = new NakedSubsetStep(
-						conclusions.ToArray(),
-						new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifier.Normal, house) },
-						house,
-						cells,
-						mask,
-						flagMask == mask ? true : flagMask != 0 ? false : default(bool?)
-					);
-
-					if (context.OnlyFindOne)
+					var isLocked = lockedDigitsMask == digitsMask ? true : lockedDigitsMask != 0 ? false : default(bool?);
+					if (!OnlySearchingForLocked || isLocked is true && OnlySearchingForLocked)
 					{
-						return step;
-					}
+						var step = new NakedSubsetStep(
+							conclusions.ToArray(),
+							new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifier.Normal, house) },
+							house,
+							cells,
+							digitsMask,
+							isLocked
+						);
 
-					context.Accumulator.Add(step);
+						if (context.OnlyFindOne)
+						{
+							return step;
+						}
+
+						context.Accumulator.Add(step);
+					}
 				}
 			}
 
@@ -162,7 +151,7 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 					}
 
 					var isLocked = map.IsInIntersection;
-					if (isLocked)
+					if (!OnlySearchingForLocked || isLocked && OnlySearchingForLocked)
 					{
 						// Locked hidden subset found. Extra eliminations should be checked.
 						var eliminatingHouse = TrailingZeroCount(map.CoveredHouses & ~(1 << house));
@@ -176,29 +165,29 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 								}
 							}
 						}
-					}
 
-					var step = new HiddenSubsetStep(
-						conclusions.ToArray(),
-						new[]
+						var step = new HiddenSubsetStep(
+							conclusions.ToArray(),
+							new[]
+							{
+								View.Empty
+									| candidateOffsets
+									| new HouseViewNode(WellKnownColorIdentifier.Normal, house)
+									| cellOffsets
+							},
+							house,
+							map,
+							digitsMask,
+							isLocked
+						);
+
+						if (context.OnlyFindOne)
 						{
-							View.Empty
-								| candidateOffsets
-								| new HouseViewNode(WellKnownColorIdentifier.Normal, house)
-								| cellOffsets
-						},
-						house,
-						map,
-						digitsMask,
-						isLocked
-					);
+							return step;
+						}
 
-					if (context.OnlyFindOne)
-					{
-						return step;
+						context.Accumulator.Add(step);
 					}
-
-					context.Accumulator.Add(step);
 				}
 			}
 		}

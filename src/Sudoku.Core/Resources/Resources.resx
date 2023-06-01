@@ -1659,8 +1659,8 @@
   <data name="StepSearcherName_SingleStepSearcher" xml:space="preserve">
     <value>Singles</value>
   </data>
-  <data name="StepSearcherName_SubsetStepSearcher" xml:space="preserve">
-    <value>Subsets</value>
+  <data name="StepSearcherName_NormalSubsetStepSearcher" xml:space="preserve">
+    <value>Normal Subsets</value>
   </data>
   <data name="StepSearcherName_SueDeCoq3DimensionStepSearcher" xml:space="preserve">
     <value>Sue de Coq 3 Dimension</value>
@@ -2153,5 +2153,8 @@
   </data>
   <data name="LockedHiddenTriple" xml:space="preserve">
     <value>Locked Hidden Triple</value>
+  </data>
+  <data name="StepSearcherName_LockedSubsetStepSearcher" xml:space="preserve">
+    <value>Locked Subsets</value>
   </data>
 </root>

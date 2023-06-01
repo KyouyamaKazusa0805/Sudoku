@@ -3292,6 +3292,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Locked Subsets.
+        /// </summary>
+        public static string StepSearcherName_LockedSubsetStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_LockedSubsetStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multi-Branched W-Wing.
         /// </summary>
         public static string StepSearcherName_MultiBranchWWingStepSearcher {
@@ -3333,6 +3342,15 @@ namespace Sudoku.Resources {
         public static string StepSearcherName_NormalFishStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_NormalFishStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal Subsets.
+        /// </summary>
+        public static string StepSearcherName_NormalSubsetStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_NormalSubsetStepSearcher", resourceCulture);
             }
         }
         
@@ -3396,15 +3414,6 @@ namespace Sudoku.Resources {
         public static string StepSearcherName_SingleStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_SingleStepSearcher", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Subsets.
-        /// </summary>
-        public static string StepSearcherName_SubsetStepSearcher {
-            get {
-                return ResourceManager.GetString("StepSearcherName_SubsetStepSearcher", resourceCulture);
             }
         }
         

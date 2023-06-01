@@ -122,7 +122,16 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	{
 		_otherStepSearchers ??= new()
 		{
-			{ 1, new StepSearcher[] { new LockedCandidatesStepSearcher(), new SubsetStepSearcher(), new NormalFishStepSearcher() } },
+			{
+				1,
+				new StepSearcher[]
+				{
+					new LockedCandidatesStepSearcher(),
+					new LockedSubsetStepSearcher(),
+					new NormalFishStepSearcher(),
+					new NormalSubsetStepSearcher()
+				}
+			},
 			{ 2, new StepSearcher[] { new NonMultipleChainingStepSearcher() } },
 			{ 3, new StepSearcher[] { new MultipleChainingStepSearcher { AllowMultiple = true } } },
 			{ 4, new StepSearcher[] { new MultipleChainingStepSearcher { AllowDynamic = true, AllowMultiple = true } } },

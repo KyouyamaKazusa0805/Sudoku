@@ -2,8 +2,9 @@
 // in order to create default collection of member 'StepSearcherPool.Default'.
 
 [assembly: StepSearcherImport<SingleStepSearcher>(StepSearcherLevel.Elementary)]
+[assembly: StepSearcherImport<LockedSubsetStepSearcher>(StepSearcherLevel.Elementary)]
 [assembly: StepSearcherImport<LockedCandidatesStepSearcher>(StepSearcherLevel.Elementary)]
-[assembly: StepSearcherImport<SubsetStepSearcher>(StepSearcherLevel.Elementary)]
+[assembly: StepSearcherImport<NormalSubsetStepSearcher>(StepSearcherLevel.Elementary)]
 [assembly: StepSearcherImport<NormalFishStepSearcher>(StepSearcherLevel.Moderate)]
 [assembly: StepSearcherImport<TwoStrongLinksStepSearcher>(StepSearcherLevel.Moderate)]
 [assembly: StepSearcherImport<RegularWingStepSearcher>(StepSearcherLevel.Moderate)]

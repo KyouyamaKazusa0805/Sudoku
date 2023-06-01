@@ -8260,17 +8260,24 @@ result ^= expression;
             <param name="digit">The digit.</param>
             <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.SubsetStepSearcher">
+        <member name="T:Sudoku.Analytics.StepSearchers.LockedSubsetStepSearcher">
             <summary>
-            Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>
-            Locked Subsets:
+            Provides with a <b>Locked Subset</b> step searcher. The step searcher will include the following techniques:
             <list type="bullet">
             <item>Locked Pair</item>
+            <item>Locked Hidden Pair</item>
             <item>Locked Triple</item>
+            <item>Locked Hidden Triple</item>
             </list>
-            </item>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.LockedSubsetStepSearcher.OnlySearchingForLocked">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher">
+            <summary>
+            Provides with a <b>Locked Subset</b> step searcher. The step searcher will include the following techniques:
+            <list type="bullet">
             <item>
             Naked Subsets (+):
             <list type="bullet">
@@ -8296,6 +8303,42 @@ result ^= expression;
             </list>
             </item>
             </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher.OnlySearchingForLocked">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.SubsetStepSearcher">
+            <summary>
+            Provides with a <b>Subset</b> step searcher.
+            </summary>
+            <param name="priority">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
+            </param>
+            <param name="level">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
+            </param>
+            <param name="runningArea">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
+            <summary>
+            Provides with a <b>Subset</b> step searcher.
+            </summary>
+            <param name="priority">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
+            </param>
+            <param name="level">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
+            </param>
+            <param name="runningArea">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+            </param>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.OnlySearchingForLocked">
+            <summary>
+            Indicates whether the step searcher only searches for locked subsets.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
