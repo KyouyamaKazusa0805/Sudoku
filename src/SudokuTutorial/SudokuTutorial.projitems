@@ -85,6 +85,14 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\01 候选数的基本概念\07 全标的隐性数对.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\01 候选数的基本概念\08 全标的隐性三数组.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\01 二阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\02 三阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\03 四阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\04 单鱼鳍的鳍二阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\05 双鱼鳍的鳍二阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\06 单鱼鳍的鳍三阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\07 双鱼鳍的鳍三阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\08 单鱼鳍的鳍四阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\09 双鱼鳍的鳍四阶鱼.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
   </ItemGroup>
   <ItemGroup>
