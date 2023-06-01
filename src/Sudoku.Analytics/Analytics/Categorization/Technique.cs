@@ -184,7 +184,7 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates locked pair.
 	/// </summary>
-	[HodokuTechniquePrefix("0110")]
+	[HodokuTechniquePrefix("0110-1")]
 	[HodokuDifficultyRating(40, HodokuDifficultyLevel.Medium)]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[SudokuExplainerDifficultyRating(2.0)]
@@ -201,6 +201,13 @@ public enum Technique : short
 	[SudokuExplainerDifficultyRating(3.4)]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	HiddenPair,
+
+	/// <summary>
+	/// Indicates locked hiden pair.
+	/// </summary>
+	[HodokuTechniquePrefix("0110-2")]
+	[TechniqueGroup(TechniqueGroup.Subset)]
+	LockedHiddenPair,
 
 	/// <summary>
 	/// Indicates naked triple.
@@ -221,7 +228,7 @@ public enum Technique : short
 	/// <summary>
 	/// Indicates locked triple.
 	/// </summary>
-	[HodokuTechniquePrefix("0111")]
+	[HodokuTechniquePrefix("0111-1")]
 	[HodokuDifficultyRating(60, HodokuDifficultyLevel.Medium)]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[SudokuExplainerDifficultyRating(2.5)]
@@ -239,6 +246,13 @@ public enum Technique : short
 	[SudokuExplainerAliasedNames("Hidden Triplet")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	HiddenTriple,
+
+	/// <summary>
+	/// Indicates locked hidden triple.
+	/// </summary>
+	[HodokuTechniquePrefix("0111-2")]
+	[TechniqueGroup(TechniqueGroup.Subset)]
+	LockedHiddenTriple,
 
 	/// <summary>
 	/// Indicates naked quadruple.

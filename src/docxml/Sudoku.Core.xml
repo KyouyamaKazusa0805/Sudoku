@@ -6373,6 +6373,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Local Wing.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources.LockedHiddenPair">
+            <summary>
+              Looks up a localized string similar to Locked Hidden Pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources.LockedHiddenTriple">
+            <summary>
+              Looks up a localized string similar to Locked Hidden Triple.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources.LockedMemberQ">
             <summary>
               Looks up a localized string similar to , locked member 1:.

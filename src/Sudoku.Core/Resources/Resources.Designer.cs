@@ -2068,6 +2068,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Locked Hidden Pair.
+        /// </summary>
+        public static string LockedHiddenPair {
+            get {
+                return ResourceManager.GetString("LockedHiddenPair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked Hidden Triple.
+        /// </summary>
+        public static string LockedHiddenTriple {
+            get {
+                return ResourceManager.GetString("LockedHiddenTriple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , locked member 1:.
         /// </summary>
         public static string LockedMemberQ {

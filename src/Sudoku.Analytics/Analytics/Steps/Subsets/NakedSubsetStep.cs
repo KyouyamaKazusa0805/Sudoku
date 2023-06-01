@@ -16,7 +16,7 @@ namespace Sudoku.Analytics.Steps;
 /// <description>The subset is a locked subset.</description>
 /// </item>
 /// <item>
-/// <term><see langword="true"/></term>
+/// <term><see langword="false"/></term>
 /// <description>The subset is a naked subset with at least one extra locked candidate.</description>
 /// </item>
 /// <item>
@@ -40,12 +40,12 @@ public sealed partial class NakedSubsetStep(
 		{
 			(true, 2) => Technique.LockedPair,
 			(false, 2) => Technique.NakedPairPlus,
-			(null, 2) => Technique.NakedPair,
+			(_, 2) => Technique.NakedPair,
 			(true, 3) => Technique.LockedTriple,
 			(false, 3) => Technique.NakedTriplePlus,
-			(null, 3) => Technique.NakedTriple,
+			(_, 3) => Technique.NakedTriple,
 			(false, 4) => Technique.NakedQuadruplePlus,
-			(null, 4) => Technique.NakedQuadruple,
+			(null, 4) => Technique.NakedQuadruple
 		};
 
 	/// <inheritdoc/>

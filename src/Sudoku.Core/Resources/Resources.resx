@@ -2148,4 +2148,10 @@
   <data name="StepSearcherName_BlossomLoopStepSearcher" xml:space="preserve">
     <value>Blossom Loop</value>
   </data>
+  <data name="LockedHiddenPair" xml:space="preserve">
+    <value>Locked Hidden Pair</value>
+  </data>
+  <data name="LockedHiddenTriple" xml:space="preserve">
+    <value>Locked Hidden Triple</value>
+  </data>
 </root>

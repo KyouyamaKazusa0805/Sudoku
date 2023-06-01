@@ -760,6 +760,11 @@
             Indicates hidden pair.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.LockedHiddenPair">
+            <summary>
+            Indicates locked hiden pair.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.NakedTriple">
             <summary>
             Indicates naked triple.
@@ -778,6 +783,11 @@
         <member name="F:Sudoku.Analytics.Categorization.Technique.HiddenTriple">
             <summary>
             Indicates hidden triple.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.LockedHiddenTriple">
+            <summary>
+            Indicates locked hidden triple.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.NakedQuadruple">
@@ -13698,8 +13708,21 @@ result ^= expression;
             <param name="house"><inheritdoc/></param>
             <param name="cells"><inheritdoc/></param>
             <param name="digitsMask"><inheritdoc/></param>
+            <param name="isLocked">
+            Indicates which locked type this subset is. The cases are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The subset is a locked hidden subset.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The subset is a normal hidden subset without any extra locked candidates.</description>
+            </item>
+            </list>
+            </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
@@ -13708,6 +13731,19 @@ result ^= expression;
             <param name="house"><inheritdoc/></param>
             <param name="cells"><inheritdoc/></param>
             <param name="digitsMask"><inheritdoc/></param>
+            <param name="isLocked">
+            Indicates which locked type this subset is. The cases are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The subset is a locked hidden subset.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The subset is a normal hidden subset without any extra locked candidates.</description>
+            </item>
+            </list>
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.BaseDifficulty">
             <inheritdoc/>
@@ -13720,6 +13756,11 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.FormatInterpolatedParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.IsLocked">
+            <summary>
+            The generated property declaration for parameter <c>isLocked</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.NakedSubsetStep">
             <summary>
@@ -13738,7 +13779,7 @@ result ^= expression;
             <description>The subset is a locked subset.</description>
             </item>
             <item>
-            <term><see langword="true"/></term>
+            <term><see langword="false"/></term>
             <description>The subset is a naked subset with at least one extra locked candidate.</description>
             </item>
             <item>
@@ -13765,7 +13806,7 @@ result ^= expression;
             <description>The subset is a locked subset.</description>
             </item>
             <item>
-            <term><see langword="true"/></term>
+            <term><see langword="false"/></term>
             <description>The subset is a naked subset with at least one extra locked candidate.</description>
             </item>
             <item>

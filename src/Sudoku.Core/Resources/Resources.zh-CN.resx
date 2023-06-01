@@ -2273,4 +2273,12 @@
     <value>绽放环</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="LockedHiddenPair" xml:space="preserve">
+    <value>隐性死锁数对</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="LockedHiddenTriple" xml:space="preserve">
+    <value>隐性死锁三数组</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

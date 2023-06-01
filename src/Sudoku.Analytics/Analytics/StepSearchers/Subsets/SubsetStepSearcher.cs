@@ -161,6 +161,23 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 						cellOffsets.AddRange(GetCrosshatchBaseCells(grid, digit, house, map));
 					}
 
+					var isLocked = map.IsInIntersection;
+					if (isLocked)
+					{
+						// Locked hidden subset found. Extra eliminations should be checked.
+						var eliminatingHouse = TrailingZeroCount(map.CoveredHouses & ~(1 << house));
+						foreach (var cell in (HousesMap[eliminatingHouse] & EmptyCells) - map)
+						{
+							foreach (var digit in digitsMask)
+							{
+								if ((grid.GetCandidates(cell) >> digit & 1) != 0)
+								{
+									conclusions.Add(new(Elimination, cell, digit));
+								}
+							}
+						}
+					}
+
 					var step = new HiddenSubsetStep(
 						conclusions.ToArray(),
 						new[]
@@ -172,7 +189,8 @@ public sealed partial class SubsetStepSearcher : StepSearcher
 						},
 						house,
 						map,
-						digitsMask
+						digitsMask,
+						isLocked
 					);
 
 					if (context.OnlyFindOne)
