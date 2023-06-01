@@ -28,7 +28,7 @@ public abstract partial class SubsetStepSearcher(
 	protected internal sealed override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		for (var size = 2; size <= 4; size++)
+		for (var size = 2; size <= (OnlySearchingForLocked ? 3 : 4); size++)
 		{
 			// Naked subsets.
 			for (var house = 0; house < 27; house++)
@@ -153,15 +153,18 @@ public abstract partial class SubsetStepSearcher(
 					var isLocked = map.IsInIntersection;
 					if (!OnlySearchingForLocked || isLocked && OnlySearchingForLocked)
 					{
-						// Locked hidden subset found. Extra eliminations should be checked.
-						var eliminatingHouse = TrailingZeroCount(map.CoveredHouses & ~(1 << house));
-						foreach (var cell in (HousesMap[eliminatingHouse] & EmptyCells) - map)
+						if (isLocked)
 						{
-							foreach (var digit in digitsMask)
+							// Locked hidden subset found. Extra eliminations should be checked.
+							var eliminatingHouse = TrailingZeroCount(map.CoveredHouses & ~(1 << house));
+							foreach (var cell in (HousesMap[eliminatingHouse] & EmptyCells) - map)
 							{
-								if ((grid.GetCandidates(cell) >> digit & 1) != 0)
+								foreach (var digit in digitsMask)
 								{
-									conclusions.Add(new(Elimination, cell, digit));
+									if ((grid.GetCandidates(cell) >> digit & 1) != 0)
+									{
+										conclusions.Add(new(Elimination, cell, digit));
+									}
 								}
 							}
 						}
