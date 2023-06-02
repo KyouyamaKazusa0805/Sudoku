@@ -8,7 +8,7 @@ internal sealed record StepSearcherDefaultImportingCollectedResult(
 	INamespaceSymbol Namespace,
 	INamedTypeSymbol BaseType,
 	int PriorityValue,
-	byte DifficultyLevel,
+	int StepSearcherLevel,
 	string TypeName,
 	NamedArgs NamedArguments,
 	bool IsPolymorphism

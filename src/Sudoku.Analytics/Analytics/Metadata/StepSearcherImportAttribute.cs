@@ -5,10 +5,12 @@ namespace Sudoku.Analytics.Metadata;
 /// to tell the source generator that the searcher option instance will be generated in the specified type.
 /// </summary>
 /// <typeparam name="T">The type of the step searcher.</typeparam>
-/// <param name="level">Indicates the step searcher level. For more information please visit type <see cref="StepSearcherLevel"/>.</param>
+/// <param name="level">
+/// Indicates the step searcher level. The higher the value be, the higher difficulty of the step the step searcher will search for.
+/// The value can be 0, 1, 2, 3 and 4.
+/// </param>
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true, Inherited = false)]
-public sealed partial class StepSearcherImportAttribute<T>([PrimaryConstructorParameter] StepSearcherLevel level) :
-	StepSearcherMetadataAttribute
+public sealed partial class StepSearcherImportAttribute<T>([PrimaryConstructorParameter] int level) : StepSearcherMetadataAttribute
 	where T : StepSearcher
 {
 	/// <summary>

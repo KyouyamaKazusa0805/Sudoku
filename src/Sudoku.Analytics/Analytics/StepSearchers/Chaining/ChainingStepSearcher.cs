@@ -4,13 +4,13 @@ namespace Sudoku.Analytics.StepSearchers;
 /// Represents a <see cref="StepSearcher"/> as base type of the chaining step searcher types.
 /// </summary>
 /// <param name="priority">
-/// <inheritdoc cref="StepSearcher(int, StepSearcherLevel, StepSearcherRunningArea)" path="/param[@name='priority']"/>
+/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='priority']"/>
 /// </param>
 /// <param name="level">
-/// <inheritdoc cref="StepSearcher(int, StepSearcherLevel, StepSearcherRunningArea)" path="/param[@name='level']"/>
+/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='level']"/>
 /// </param>
 /// <param name="runningArea">
-/// <inheritdoc cref="StepSearcher(int, StepSearcherLevel, StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
 /// </param>
 /// <remarks>
 /// The type is special: it uses source code from another project called Sudoku Explainer.
@@ -19,7 +19,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </remarks>
 public abstract class ChainingStepSearcher(
 	int priority,
-	StepSearcherLevel level,
+	int level,
 	StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering
 ) : StepSearcher(priority, level, runningArea)
 {

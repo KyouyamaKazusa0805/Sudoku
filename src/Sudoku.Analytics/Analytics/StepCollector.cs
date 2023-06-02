@@ -61,7 +61,7 @@ public sealed class StepCollector : IAnalyzerOrCollector
 			return Array.Empty<Step>();
 		}
 
-		const StepSearcherLevel defaultLevelValue = (StepSearcherLevel)byte.MaxValue;
+		const int defaultLevelValue = int.MaxValue;
 
 		var possibleStepSearchers = ResultStepSearchers;
 		var totalSearchersCount = possibleStepSearchers.Length;

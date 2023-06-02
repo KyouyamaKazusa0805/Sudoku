@@ -19,8 +19,7 @@ namespace Sudoku.Analytics;
 /// <param name="level">
 /// <para>Indicates the level that the current step searcher belongs to.</para>
 /// <para>
-/// This property indicates how difficult the step searcher can be enabled. For more information,
-/// please visit type <see cref="StepSearcherLevel"/>.
+/// This property indicates how difficult the step searcher can be enabled.
 /// </para>
 /// </param>
 /// <param name="runningArea">
@@ -33,7 +32,7 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Step"/>
 public abstract partial class StepSearcher(
 	[PrimaryConstructorParameter] int priority,
-	[PrimaryConstructorParameter] StepSearcherLevel level,
+	[PrimaryConstructorParameter] int level,
 	[PrimaryConstructorParameter] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering
 ) :
 	IComparable<StepSearcher>,

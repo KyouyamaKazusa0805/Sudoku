@@ -4,17 +4,17 @@ namespace Sudoku.Analytics.StepSearchers;
 /// Provides with a <b>Subset</b> step searcher.
 /// </summary>
 /// <param name="priority">
-/// <inheritdoc cref="StepSearcher(int, StepSearcherLevel, StepSearcherRunningArea)" path="/param[@name='priority']"/>
+/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='priority']"/>
 /// </param>
 /// <param name="level">
-/// <inheritdoc cref="StepSearcher(int, StepSearcherLevel, StepSearcherRunningArea)" path="/param[@name='level']"/>
+/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='level']"/>
 /// </param>
 /// <param name="runningArea">
-/// <inheritdoc cref="StepSearcher(int, StepSearcherLevel, StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
 /// </param>
 public abstract partial class SubsetStepSearcher(
 	int priority,
-	StepSearcherLevel level,
+	int level,
 	StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering
 ) : StepSearcher(priority, level, runningArea)
 {

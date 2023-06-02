@@ -3399,15 +3399,21 @@
             to tell the source generator that the searcher option instance will be generated in the specified type.
             </summary>
             <typeparam name="T">The type of the step searcher.</typeparam>
-            <param name="level">Indicates the step searcher level. For more information please visit type <see cref="T:Sudoku.Analytics.Metadata.StepSearcherLevel"/>.</param>
+            <param name="level">
+            Indicates the step searcher level. The higher the value be, the higher difficulty of the step the step searcher will search for.
+            The value can be 0, 1, 2, 3 and 4.
+            </param>
         </member>
-        <member name="M:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1.#ctor(Sudoku.Analytics.Metadata.StepSearcherLevel)">
+        <member name="M:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1.#ctor(System.Int32)">
             <summary>
             Defines an attribute that can be applied to the solving assembly,
             to tell the source generator that the searcher option instance will be generated in the specified type.
             </summary>
             <typeparam name="T">The type of the step searcher.</typeparam>
-            <param name="level">Indicates the step searcher level. For more information please visit type <see cref="T:Sudoku.Analytics.Metadata.StepSearcherLevel"/>.</param>
+            <param name="level">
+            Indicates the step searcher level. The higher the value be, the higher difficulty of the step the step searcher will search for.
+            The value can be 0, 1, 2, 3 and 4.
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1.Areas">
             <summary>
@@ -3421,50 +3427,6 @@
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1.Level">
             <summary>
             The generated property declaration for parameter <c>level</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.StepSearcherLevel">
-            <summary>
-            Represents a level that a step searcher belongs to. This type is used for the displaying of the step information list.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherLevel.None">
-            <summary>
-            Indicates the level is none.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherLevel.Elementary">
-            <summary>
-            Indicates the level is the elementary searchers,
-            meaning the techniques found in the current step searcher is the elementary ones.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherLevel.Moderate">
-            <summary>
-            Indicates the level is the moderate searchers,
-            meaning the techniques found in the current step searcher is more difficult than the elementary ones,
-            but they aren't very difficult to understand its backing logic.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherLevel.Hard">
-            <summary>
-            Indicates the level is the hard searchers,
-            meaning means the techniques found in the current step searcher is more difficult than the moderate ones.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherLevel.Fiendish">
-            <summary>
-            Indicates the level is the fiendish searchers,
-            meaning the techniques found in the current step searcher is more difficult than the hard ones.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherLevel.Hidden">
-            <summary>
-            <para>
-            Indicates the level is the hidden searchers,
-            meaning the techniques found in the current step searcher should be hidden no matter how easy the technique is.
-            </para>
-            <para>The well-known technique searcher of this level is Brute Force.</para>
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherMetadataAttribute">
@@ -5125,8 +5087,7 @@ result ^= expression;
             <param name="level">
             <para>Indicates the level that the current step searcher belongs to.</para>
             <para>
-            This property indicates how difficult the step searcher can be enabled. For more information,
-            please visit type <see cref="T:Sudoku.Analytics.Metadata.StepSearcherLevel"/>.
+            This property indicates how difficult the step searcher can be enabled.
             </para>
             </param>
             <param name="runningArea">
@@ -5138,7 +5099,7 @@ result ^= expression;
             </param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
+        <member name="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
             <summary>
             Represents a searcher that can creates <see cref="T:Sudoku.Analytics.Step"/> instances for the specified technique.
             </summary>
@@ -5158,8 +5119,7 @@ result ^= expression;
             <param name="level">
             <para>Indicates the level that the current step searcher belongs to.</para>
             <para>
-            This property indicates how difficult the step searcher can be enabled. For more information,
-            please visit type <see cref="T:Sudoku.Analytics.Metadata.StepSearcherLevel"/>.
+            This property indicates how difficult the step searcher can be enabled.
             </para>
             </param>
             <param name="runningArea">
@@ -5671,13 +5631,13 @@ result ^= expression;
             Represents a <see cref="T:Sudoku.Analytics.StepSearcher"/> as base type of the chaining step searcher types.
             </summary>
             <param name="priority">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
             </param>
             <param name="level">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
             </param>
             <param name="runningArea">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
             </param>
             <remarks>
             The type is special: it uses source code from another project called Sudoku Explainer.
@@ -5685,18 +5645,18 @@ result ^= expression;
             One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
             <summary>
             Represents a <see cref="T:Sudoku.Analytics.StepSearcher"/> as base type of the chaining step searcher types.
             </summary>
             <param name="priority">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
             </param>
             <param name="level">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
             </param>
             <param name="runningArea">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
             </param>
             <remarks>
             The type is special: it uses source code from another project called Sudoku Explainer.
@@ -5927,20 +5887,20 @@ result ^= expression;
             Try to create a region (house) forcing chain hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
             <param name="priority">
             <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
+                cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
                 path="/param[@name='priority']"/>
             </param>
             <param name="level">
             <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
+                cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
                 path="/param[@name='level']"/>
             </param>
             <param name="runningArea">
             <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
+                cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
                 path="/param[@name='runningArea']"/>
             </param>
         </member>
@@ -8313,27 +8273,27 @@ result ^= expression;
             Provides with a <b>Subset</b> step searcher.
             </summary>
             <param name="priority">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
             </param>
             <param name="level">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
             </param>
             <param name="runningArea">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
             <summary>
             Provides with a <b>Subset</b> step searcher.
             </summary>
             <param name="priority">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
             </param>
             <param name="level">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
             </param>
             <param name="runningArea">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,Sudoku.Analytics.Metadata.StepSearcherLevel,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
             </param>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.OnlySearchingForLocked">
