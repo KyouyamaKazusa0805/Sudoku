@@ -5264,24 +5264,6 @@ result ^= expression;
             <seealso cref="T:Sudoku.Analytics.Step"/>
             <seealso cref="T:Sudoku.Analytics.AnalysisContext"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.op_Equality(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.op_Inequality(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.op_GreaterThan(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.op_GreaterThanOrEqual(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.op_LessThan(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.op_LessThanOrEqual(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.StepSearcher.Priority">
             <summary>
             The generated property declaration for parameter <c>priority</c>.

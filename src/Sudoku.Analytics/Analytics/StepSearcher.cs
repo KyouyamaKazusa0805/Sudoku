@@ -34,11 +34,7 @@ public abstract partial class StepSearcher(
 	[PrimaryConstructorParameter] int priority,
 	[PrimaryConstructorParameter] int level,
 	[PrimaryConstructorParameter] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering
-) :
-	IComparable<StepSearcher>,
-	IComparisonOperators<StepSearcher, StepSearcher, bool>,
-	IEqualityOperators<StepSearcher, StepSearcher, bool>,
-	IEquatable<StepSearcher>
+) : IComparable<StepSearcher>, IEquatable<StepSearcher>
 {
 	/// <summary>
 	/// Indicates the backing field of property <see cref="SeparatedPriority"/>.
@@ -193,30 +189,4 @@ public abstract partial class StepSearcher(
 	/// <seealso cref="Step"/>
 	/// <seealso cref="AnalysisContext"/>
 	protected internal abstract Step? Collect(scoped ref AnalysisContext context);
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(StepSearcher? left, StepSearcher? right)
-		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(StepSearcher? left, StepSearcher? right) => !(left == right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >(StepSearcher left, StepSearcher right) => left.CompareTo(right) > 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >=(StepSearcher left, StepSearcher right) => left.CompareTo(right) >= 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <(StepSearcher left, StepSearcher right) => left.CompareTo(right) < 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <=(StepSearcher left, StepSearcher right) => left.CompareTo(right) <= 0;
 }
