@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Categorization;
 /// <summary>
 /// Represents a technique group.
 /// </summary>
-public enum TechniqueGroup : byte
+public enum TechniqueGroup
 {
 	/// <summary>
 	/// Indicates the technique doesn't belong to any group.

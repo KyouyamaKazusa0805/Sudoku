@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics.Metadata;
 
 /// <summary>
 /// Represents a mode that describes an area where a step searcher can be invoked.
 /// </summary>
 [Flags]
-public enum StepSearcherRunningArea : byte
+public enum StepSearcherRunningArea
 {
 	/// <summary>
 	/// Indicates the step searcher is disabled.

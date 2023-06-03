@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Categorization;
 /// Please note that some fields declared in this type may not be used by neither direct reference nor reflection,
 /// but they are reserved ones. In the future I'll implement the searching logic on those fields (maybe?)
 /// </i></b></remarks>
-public enum Technique : short
+public enum Technique
 {
 	/// <summary>
 	/// The placeholder of this enumeration type.

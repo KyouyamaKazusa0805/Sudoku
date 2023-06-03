@@ -1,9 +1,9 @@
-﻿namespace SudokuStudio.Input;
+namespace SudokuStudio.Input;
 
 /// <summary>
 /// Defines a kind of position.
 /// </summary>
-public enum Position : byte
+public enum Position
 {
 	/// <summary>
 	/// Indicates the center position.

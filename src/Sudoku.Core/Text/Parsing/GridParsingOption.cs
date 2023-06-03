@@ -1,9 +1,9 @@
-﻿namespace Sudoku.Text.Parsing;
+namespace Sudoku.Text.Parsing;
 
 /// <summary>
 /// Represents a grid parsing type.
 /// </summary>
-public enum GridParsingOption : byte
+public enum GridParsingOption
 {
 	/// <summary>
 	/// <para>

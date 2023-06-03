@@ -1,11 +1,11 @@
-﻿namespace Sudoku.Analytics.Formatting;
+namespace Sudoku.Analytics.Formatting;
 
 /// <summary>
 /// Indicates the formatting options of <see cref="AnalyzerResult"/> instance.
 /// </summary>
 /// <seealso cref="AnalyzerResult"/>
 [Flags]
-public enum AnalyzerResultFormattingOptions : short
+public enum AnalyzerResultFormattingOptions
 {
 	/// <summary>
 	/// Indicates the none of the formatting option.

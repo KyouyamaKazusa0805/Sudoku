@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Analytics.Eliminations;
+namespace Sudoku.Analytics.Eliminations;
 
 /// <summary>
 /// Encapsulates a type that represents the reason why the exocet eliminations can be removed.
 /// </summary>
 [Flags]
-public enum ExocetEliminatedReason : byte
+public enum ExocetEliminatedReason
 {
 	/// <summary>
 	/// Indicates the elimination is the basic elimination (Target eliminations).

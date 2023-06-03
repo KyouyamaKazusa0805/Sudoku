@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Concepts;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Defines an inference.
 /// </summary>
 [JsonConverter(typeof(Converter))]
-public enum Inference : byte
+public enum Inference
 {
 	/// <summary>
 	/// Indicates the inference is strong inference.

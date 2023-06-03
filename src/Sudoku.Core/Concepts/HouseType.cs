@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a <see href="https://sunnieshine.github.io/Sudoku/terms/house">house type</see>.

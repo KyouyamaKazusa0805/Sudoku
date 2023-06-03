@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Concepts;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Define a symmetry type.
 /// </summary>
 [Flags]
-public enum SymmetryType : byte
+public enum SymmetryType
 {
 	/// <summary>
 	/// Indicates none of symmetry type.

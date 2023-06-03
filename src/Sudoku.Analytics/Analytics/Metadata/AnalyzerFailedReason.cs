@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Metadata;
 /// <summary>
 /// Defines a reason why the puzzle is failed to be analyzed.
 /// </summary>
-public enum AnalyzerFailedReason : byte
+public enum AnalyzerFailedReason
 {
 	/// <summary>
 	/// Indicates nothing goes wrong.

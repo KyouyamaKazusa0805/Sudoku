@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Rendering.Nodes.Shapes;
+namespace Sudoku.Rendering.Nodes.Shapes;
 
 /// <summary>
 /// Defines a direction. This type provides both 4-direction values and 8-direction values.
@@ -12,7 +12,7 @@
 /// Others are provided and used by 8-direction notation.
 /// </summary>
 [Flags]
-public enum Direction : byte
+public enum Direction
 {
 	/// <summary>
 	/// Indicates the direction is none.

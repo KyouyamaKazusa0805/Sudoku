@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
 /// Provides a difficulty kind for a puzzle.
 /// </summary>
 [Flags]
-public enum DifficultyLevel : byte
+public enum DifficultyLevel
 {
 	/// <summary>
 	/// Indicates the difficulty level is unknown.
