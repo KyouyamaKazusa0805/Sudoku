@@ -93,6 +93,32 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\07 双鱼鳍的鳍三阶鱼.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\08 单鱼鳍的鳍四阶鱼.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\09 双鱼鳍的鳍四阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\10 退化二阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\11 退化二阶鱼，另外一个例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\12 双鱼鳍的退化二阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\13 双鱼鳍退化二阶鱼，但是鱼鳍分离.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\14 单鱼鳍的退化三阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\15 双鱼鳍的退化三阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\16 单鱼鳍的退化四阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\17 双鱼鳍的退化四阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\18-1 孪生二阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\18-2 孪生二阶鱼拆解图1.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\18-3 孪生二阶鱼拆解图2.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\19-1 鳍-鳍孪生三阶鱼拆解图1.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\19-2 鳍-鳍孪生三阶鱼拆解图2.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\19-3 整合后的图.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\20-1 退化-退化孪生三阶鱼拆解图1.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\20-2 退化-退化孪生三阶鱼拆解图2.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\20-3 整合后的图.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\21-1 鳍-退化孪生三阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\21-2 鳍-孪生三阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\21-3 整合后的图.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\22-1 鳍-鳍孪生四阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\22-2 鳍-鳍孪生四阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\23-1 退化-退化孪生四阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\23-2 退化-退化孪生四阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\24-1 鳍-退化孪生四阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\24-2 鳍-退化孪生四阶鱼.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
   </ItemGroup>
   <ItemGroup>
