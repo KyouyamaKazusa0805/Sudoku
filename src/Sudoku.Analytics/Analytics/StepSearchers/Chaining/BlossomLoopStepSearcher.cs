@@ -340,8 +340,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 
 			for (var i = 1; i < nodes.Length; i += 2)
 			{
-				var (c1, d1, _) = nodes[i];
-				var (c2, d2, _) = nodes[i + 1];
+				var ((c1, d1, _), (c2, d2, _)) = (nodes[i], nodes[i + 1]);
 				if (c1 == c2)
 				{
 					foreach (var d in (Mask)(grid.GetCandidates(c1) & ~(1 << d1 | 1 << d2 | 1 << baseDigit)))
@@ -428,7 +427,6 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	)
 	{
 		var conclusions = CollectLoopEliminations(outcomes, grid, digit);
-
 		foreach (var cell in elimCells)
 		{
 			conclusions.Add(new(Elimination, cell, targetDigit));
