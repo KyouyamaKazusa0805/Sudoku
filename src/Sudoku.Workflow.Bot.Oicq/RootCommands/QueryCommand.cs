@@ -341,7 +341,7 @@ internal sealed class QueryCommand : Command
 											let total = kvp.Value
 											let corrected = correctedCount.TryGetValue(mode, out var r) ? r : 0
 											let modeName = mode.GetType().GetField(mode.ToString())!.GetCustomAttribute<NameAttribute>()!.Name
-											select $"  * {modeName}：回答数 {tried}，正确数 {corrected}，总答题数 {total}（正确率：{corrected / total:P2}）"
+											select $"  * {modeName}：回答数 {tried}，正确数 {corrected}，总答题数 {total}（正确率：{corrected / (double)total:P2}）"
 										)
 										: "无"
 								)}
