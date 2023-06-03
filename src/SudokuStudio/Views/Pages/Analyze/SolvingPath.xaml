@@ -11,7 +11,7 @@
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:SolvingPath}">
 	<ScrollViewer>
-		<StackPanel Padding="45,0" Orientation="Vertical" Spacing="6">
+		<StackPanel Orientation="Vertical" Spacing="3">
 			<ListView
 				x:Name="SolvingPathList" HorizontalAlignment="Stretch" SelectionMode="Single"
 				BorderBrush="LightGray" BorderThickness="1" CornerRadius="5"
