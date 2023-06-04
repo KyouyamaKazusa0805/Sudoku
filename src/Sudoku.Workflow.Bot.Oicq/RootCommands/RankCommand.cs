@@ -11,7 +11,7 @@ internal sealed class RankCommand : Command
 	/// 表示你要查看的排名的内容类型。可以查看“基本”、“经验值”、“金币”、“魔塔”、“强化”和“签到”。默认为“基本”，即查看基本的排名数据。
 	/// </summary>
 	[DoubleArgument("类型")]
-	[Hint("表示你要查看的排名的内容类型。可以查看“基本”、“经验值”、“金币”、“魔塔”、“强化”和“签到”。默认为“基本”，即查看基本的排名数据。")]
+	[Hint("表示你要查看的排名的内容类型。可以查看“基本”、“经验值”、“金币”、“魔塔”、“强化”、“签到”和“对抗”。默认为“基本”，即查看基本的排名数据。")]
 	[DefaultValue<string>("基本")]
 	[DisplayingIndex(0)]
 	[ArgumentDisplayer("排序依据")]
@@ -27,6 +27,18 @@ internal sealed class RankCommand : Command
 	[DisplayingIndex(1)]
 	[ArgumentDisplayer("5-25")]
 	public int TopCount { get; set; }
+
+#if false
+	/// <summary>
+	/// 表示你要排名的游戏模式。默认为 <see cref="GameMode.FindDifference"/>。
+	/// </summary>
+	[DoubleArgument("模式")]
+	[Hint($"表示你要排名的游戏模式。默认为“九数找相同”。")]
+	[DefaultValue<GameMode>(GameMode.FindDifference)]
+	[ValueConverter<GameModeConverter>]
+	[DisplayingIndex(2)]
+	public GameMode GameMode { get; set; }
+#endif
 
 
 	/// <inheritdoc/>
@@ -73,7 +85,17 @@ internal sealed class RankCommand : Command
 
 				break;
 			}
-			case var type and (Types.ExperiencePoint or Types.Coin or Types.Grade or Types.Tower or Types.ContinuousCheckIn or Types.CardLevel):
+			case var type and (
+				Types.ExperiencePoint
+				or Types.Coin
+				or Types.Grade
+				or Types.Tower
+				or Types.ContinuousCheckIn
+				or Types.CardLevel
+#if false
+				or Types.PkResult
+#endif
+			):
 			{
 				var usersData = (
 					await ScoringOperation.GetUserRankingListAsync(
@@ -168,4 +190,23 @@ file static class Types
 	/// 表示排名的数据为强化级别。
 	/// </summary>
 	public const string CardLevel = "强化";
+
+#if false
+	/// <summary>
+	/// 表示排名的数据为对抗。
+	/// </summary>
+	public const string PkResult = "对抗";
+#endif
 }
+
+#if false
+/// <summary>
+/// 转换 <see cref="RankCommand.GameMode"/> 参数数值的转换器对象。
+/// </summary>
+/// <seealso cref="RankCommand.GameMode"/>
+file sealed class GameModeConverter : IValueConverter
+{
+	/// <inheritdoc/>
+	public object Convert(string value) => value switch { "九数找相同" => GameMode.FindDifference, _ => throw new CommandConverterException() };
+}
+#endif
