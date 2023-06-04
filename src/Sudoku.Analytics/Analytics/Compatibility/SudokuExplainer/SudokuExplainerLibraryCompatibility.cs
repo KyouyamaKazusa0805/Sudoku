@@ -1,7 +1,5 @@
 namespace Sudoku.Analytics.Compatibility;
 
-using DifficultyRange = (SudokuExplainerDifficultyRatingRange? Original, SudokuExplainerDifficultyRatingRange? Advanced);
-
 /// <summary>
 /// Represents some methods that are used for get the details supported and defined
 /// by another program called

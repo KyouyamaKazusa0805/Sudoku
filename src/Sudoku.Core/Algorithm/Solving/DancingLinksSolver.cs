@@ -1,7 +1,5 @@
 namespace Sudoku.Algorithm.Solving;
 
-using MatrixRow = (DancingLinkNode Cell, DancingLinkNode Row, DancingLinkNode Column, DancingLinkNode Block);
-
 /// <summary>
 /// Defines a solver that uses the dancing links algorithm.
 /// </summary>

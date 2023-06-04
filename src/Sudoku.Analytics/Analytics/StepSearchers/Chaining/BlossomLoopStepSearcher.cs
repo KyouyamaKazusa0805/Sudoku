@@ -1,7 +1,5 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using ChainNodeListWithHeadCandidate = Dictionary<ChainNode, Candidate>;
-
 /// <summary>
 /// Provides with a <b>Blossom Loop</b> step searcher.
 /// The step searcher will include the following techniques:

@@ -1,8 +1,5 @@
 namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
-using GeneratedGridData = (Grid Puzzle, Cell[] ChosenCells, Digit FinalIndex, TimeSpan TimeLimit, int ExperiencePoint);
-using ResultInfo = (string UserName, string Id, int ExperiencePoint, int Coin, Item? EarnedItem, int Times, bool IsCorrectedUser);
-
 /// <summary>
 /// 游戏指令。
 /// </summary>

@@ -39,3 +39,7 @@ global using unsafe LoopChecker = delegate*<in Sudoku.Concepts.CellMap, bool>;
 global using ChainBranch = System.Collections.Generic.Dictionary<byte, Sudoku.Analytics.Patterns.NodeSet>;
 global using RawResources = Sudoku.Resources.Resources;
 global using ExtraDifficultyCase = (string Name, decimal Value);
+global using DifficultyRange = (Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange? Original, Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange? Advanced);
+global using ChainNodeListWithHeadCandidate = System.Collections.Generic.Dictionary<Sudoku.Analytics.Patterns.ChainNode, /*Candidate*/ int>;
+global using HouseCellsTuple = (Sudoku.Concepts.CellMap LineMap, Sudoku.Concepts.CellMap BlockMap, Sudoku.Concepts.CellMap IntersectionMap, byte[] OtherBlocks);
+global using HousePair = (byte Line, byte Block);

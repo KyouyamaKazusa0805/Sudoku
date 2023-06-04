@@ -1,8 +1,5 @@
 namespace Sudoku.Analytics;
 
-using HouseCellsTuple = (CellMap LineMap, CellMap BlockMap, CellMap IntersectionMap, byte[] OtherBlocks);
-using HousePair = (byte Line, byte Block);
-
 /// <summary>
 /// Represents a type holding some common read-only fields used by runtime or compiling-time.
 /// </summary>

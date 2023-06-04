@@ -17,6 +17,7 @@ global using static System.Math;
 global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.MaskServices.MaskOperations;
 global using Chute = (Sudoku.Concepts.CellMap Cells, bool IsRow, /*Mask*/ short HousesMask);
+global using MatrixRow = (Sudoku.Algorithm.Collections.DancingLinkNode Cell, Sudoku.Algorithm.Collections.DancingLinkNode Row, Sudoku.Algorithm.Collections.DancingLinkNode Column, Sudoku.Algorithm.Collections.DancingLinkNode Block);
 global using unsafe RefreshingCandidatesMethodPtr = delegate*<ref Sudoku.Concepts.Grid, void>;
 global using unsafe ValueChangedMethodPtr = delegate*<ref Sudoku.Concepts.Grid, int, short, short, int, void>;
 global using unsafe ParserMethodPtr = delegate*<ref Sudoku.Text.Parsing.GridParser, Sudoku.Concepts.Grid>;

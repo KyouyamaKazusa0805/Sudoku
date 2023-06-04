@@ -37,4 +37,6 @@ global using static Sudoku.Workflow.Bot.Oicq.Lifecycle.EnvironmentVariables;
 global using Group = Mirai.Net.Data.Shared.Group;
 global using SpecialFolder = System.Environment.SpecialFolder;
 global using File = System.IO.File;
+global using GeneratedGridData = (Sudoku.Concepts.Grid Puzzle, /*Cell*/ int[] ChosenCells, /*Digit*/ int FinalIndex, System.TimeSpan TimeLimit, int ExperiencePoint);
 global using UserPuzzleAnswerDetails = (Mirai.Net.Data.Shared.Member User, int Conclusion);
+global using ResultInfo = (string UserName, string Id, int ExperiencePoint, int Coin, Sudoku.Workflow.Bot.Oicq.ComponentModel.Item? EarnedItem, int Times, bool IsCorrectedUser);
