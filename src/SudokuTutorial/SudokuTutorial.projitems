@@ -119,6 +119,15 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\23-2 退化-退化孪生四阶鱼.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\24-1 鳍-退化孪生四阶鱼.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\24-2 鳍-退化孪生四阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\25 直观三阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\26 直观鳍三阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\27 直观退化三阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\28-1 直观视角的四阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\28-2 候选数视角1.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\28-3 候选数视角2.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\29-1 直观视角的鳍四阶鱼.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\29-2 候选数视角1.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\29-3 候选数视角2.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
   </ItemGroup>
   <ItemGroup>
