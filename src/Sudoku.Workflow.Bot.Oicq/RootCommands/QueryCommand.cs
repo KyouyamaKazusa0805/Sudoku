@@ -341,7 +341,7 @@ internal sealed class QueryCommand : Command
 											let total = kvp.Value
 											where total != 0
 											let corrected = correctedCount.TryGetValue(mode, out var r) ? r : 0
-											let modeName = mode.GetType().GetField(mode.ToString())!.GetCustomAttribute<NameAttribute>()!.Name
+											let modeName = mode.GetName()
 											select $"  * {modeName}：完成 {corrected} 局 / 共 {total} 局（回答 {tried} 次，正确率：{corrected / (double)total:P2}）"
 										)
 										: "无"

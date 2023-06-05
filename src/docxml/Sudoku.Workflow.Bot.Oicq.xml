@@ -464,6 +464,17 @@
             极少数时候也会存在一个相同的都没有的情况，这个时候需要玩家回答 0 作为答案。
             </summary>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.GameModeExtensions">
+            <summary>
+            为 <see cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.GameMode"/> 实例提供扩展方法。
+            </summary>
+            <seealso cref="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.GameMode"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.ComponentModel.GameModeExtensions.GetName(Sudoku.Workflow.Bot.Oicq.ComponentModel.GameMode)">
+            <summary>
+            获取指定游戏模式的名称。
+            </summary>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.ComponentModel.GroupRoleKind">
             <summary>
             表示一个 QQ 群里用户的所有可能角色情况。

@@ -95,11 +95,11 @@ internal sealed class RankCommand : Command
 				);
 				await messageReceiver.SendMessageAsync(
 					$"""
-					用户基本数据排名：
+					用户“{GameMode.GetName()}”对抗模式数据排名：
 					{string.Join(
 						Environment.NewLine,
 						usersData.Select(
-							(pair, i) =>
+							static (pair, i) =>
 							{
 								var name = pair.Name;
 								var corrected = pair.Data.Corrected;
