@@ -2448,6 +2448,11 @@
             表示参与排名的所有人里的前多少名会被显示出来。默认为 10。如果数字过大，该数值则无效。最大为 20。
             </summary>
         </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.RankCommand.GameMode">
+            <summary>
+            表示你要排名的游戏模式。默认为 <see cref="F:Sudoku.Workflow.Bot.Oicq.ComponentModel.GameMode.FindDifference"/>。
+            </summary>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.RankCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
@@ -2490,6 +2495,53 @@
             <summary>
             表示排名的数据为强化级别。
             </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Types.PkResult">
+            <summary>
+            表示排名的数据为对抗。
+            </summary>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.GameModeConverter">
+            <summary>
+            转换 <see cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.RankCommand.GameMode"/> 参数数值的转换器对象。
+            </summary>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.RankCommand.GameMode"/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.GameModeConverter.Convert(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.PlayingDataTuple">
+            <summary>
+            一个元组对象，存储三个数据表示用户对 PK 进行回答的数据。
+            </summary>
+            <param name="Total">表示用户参与了多少次 PK。</param>
+            <param name="Corrected">表示用户正确了多少题目。</param>
+            <param name="Answered">表示用户正确回答了多少个题目。</param>
+            <param name="GameMode">表示用户需要照哪一个游戏模式进行排序。</param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.PlayingDataTuple.#ctor(System.Int32,System.Int32,System.Int32,Sudoku.Workflow.Bot.Oicq.ComponentModel.GameMode)">
+            <summary>
+            一个元组对象，存储三个数据表示用户对 PK 进行回答的数据。
+            </summary>
+            <param name="Total">表示用户参与了多少次 PK。</param>
+            <param name="Corrected">表示用户正确了多少题目。</param>
+            <param name="Answered">表示用户正确回答了多少个题目。</param>
+            <param name="GameMode">表示用户需要照哪一个游戏模式进行排序。</param>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PlayingDataTuple.Total">
+            <summary>表示用户参与了多少次 PK。</summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PlayingDataTuple.Corrected">
+            <summary>表示用户正确了多少题目。</summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PlayingDataTuple.Answered">
+            <summary>表示用户正确回答了多少个题目。</summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.PlayingDataTuple.GameMode">
+            <summary>表示用户需要照哪一个游戏模式进行排序。</summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.PlayingDataTuple.CompareTo(Sudoku.Workflow.Bot.Oicq.RootCommands.PlayingDataTuple)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.SetTitleCommand">
             <summary>

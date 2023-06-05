@@ -319,7 +319,7 @@ internal sealed class QueryCommand : Command
 								排名：第 {getRank((await ScoringOperation.GetUserRankingListAsync(group, rankingEmptyCallback))!)} 名
 								魔塔：{(tower == 0 ? "尚未开始" : $"第 {tower} 层")}
 								连续签到天数：{comboCheckedIn}（{ScoringOperation.GetCheckInRate(comboCheckedIn)} 倍）
-								倍率：{ScoringOperation.GetGlobalRate(cardLevel):0.0}（卡片 {cardLevel} 级）
+								卡片倍率：{ScoringOperation.GetGlobalRate(cardLevel):0.0}（{cardLevel} 级）
 								"""
 							);
 							break;
@@ -339,9 +339,10 @@ internal sealed class QueryCommand : Command
 											let tried = triedCount.TryGetValue(mode, out var r) ? r : 0
 											where tried != 0
 											let total = kvp.Value
+											where total != 0
 											let corrected = correctedCount.TryGetValue(mode, out var r) ? r : 0
 											let modeName = mode.GetType().GetField(mode.ToString())!.GetCustomAttribute<NameAttribute>()!.Name
-											select $"  * {modeName}：回答数 {tried}，正确数 {corrected}，总答题数 {total}（正确率：{corrected / (double)total:P2}）"
+											select $"  * {modeName}：完成 {corrected} 局 / 共 {total} 局（回答 {tried} 次，正确率：{corrected / (double)total:P2}）"
 										)
 										: "无"
 								)}
