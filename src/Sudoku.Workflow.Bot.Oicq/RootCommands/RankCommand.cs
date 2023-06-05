@@ -236,12 +236,7 @@ file sealed class GameModeConverter : IValueConverter
 /// <param name="Corrected">表示用户正确了多少题目。</param>
 /// <param name="Answered">表示用户正确回答了多少个题目。</param>
 /// <param name="GameMode">表示用户需要照哪一个游戏模式进行排序。</param>
-file sealed record PlayingDataTuple(
-	int Total,
-	int Corrected,
-	int Answered,
-	GameMode GameMode
-) : IComparable<PlayingDataTuple>
+file sealed record PlayingDataTuple(int Total, int Corrected, int Answered, GameMode GameMode) : IComparable<PlayingDataTuple>
 {
 	/// <inheritdoc/>
 	public int CompareTo(PlayingDataTuple? other)
