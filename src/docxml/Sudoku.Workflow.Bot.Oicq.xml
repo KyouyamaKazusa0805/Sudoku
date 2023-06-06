@@ -2887,20 +2887,5 @@
             </param>
             <returns>一个 <see cref="T:System.Threading.Tasks.Task"/> 对象，包裹了异步执行的基本信息。</returns>
         </member>
-        <member name="T:Mirai.Net.Modules.IPeriodicModule">
-            <summary>
-            提供一个周期性自动执行的模块。这个模块不同于群指令的模块，它在每一天的固定时候自动执行。
-            </summary>
-        </member>
-        <member name="P:Mirai.Net.Modules.IPeriodicModule.TriggeringTime">
-            <summary>
-            表示该模块自动执行的时间。由于它每天都执行，因此无关日期数据，所以返回值类型为 <see cref="T:System.TimeOnly"/> 而不是 <see cref="T:System.DateTime"/>。
-            </summary>
-        </member>
-        <member name="M:Mirai.Net.Modules.IPeriodicModule.Execute">
-            <summary>
-            执行的具体实现逻辑。
-            </summary>
-        </member>
     </members>
 </doc>
