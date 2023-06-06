@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithm.Collections;
+namespace Sudoku.Algorithm.Solving;
 
 /// <summary>
 /// Represents a column node.

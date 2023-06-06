@@ -4,70 +4,6 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Algorithm.Collections.ColumnNode">
-            <summary>
-            Represents a column node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Collections.ColumnNode.#ctor(System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Algorithm.Collections.ColumnNode"/> instance via the specified ID value.
-            </summary>
-            <param name="id">The ID value.</param>
-        </member>
-        <member name="P:Sudoku.Algorithm.Collections.ColumnNode.Size">
-            <summary>
-            Indicates the size of the node.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Algorithm.Collections.DancingLinkNode">
-            <summary>
-            Represents a dancing link node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Collections.DancingLinkNode.#ctor(System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Algorithm.Collections.DancingLinkNode"/> instance via the specified ID value and the column node.
-            </summary>
-            <param name="id">The ID value.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Collections.DancingLinkNode.#ctor(System.Int32,Sudoku.Algorithm.Collections.ColumnNode)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Algorithm.Collections.DancingLinkNode"/> instance via the specified ID value and the column node.
-            </summary>
-            <param name="id">The ID value.</param>
-            <param name="column">The column node.</param>
-        </member>
-        <member name="P:Sudoku.Algorithm.Collections.DancingLinkNode.Id">
-            <summary>
-            Indicates the ID of the node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Collections.DancingLinkNode.Column">
-            <summary>
-            Indicates the current column node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Collections.DancingLinkNode.Left">
-            <summary>
-            Indicates the pointer that points to the left node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Collections.DancingLinkNode.Right">
-            <summary>
-            Indicates the pointer that points to the right node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Collections.DancingLinkNode.Up">
-            <summary>
-            Indicates the pointer that points to the up node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Collections.DancingLinkNode.Down">
-            <summary>
-            Indicates the pointer that points to the down node.
-            </summary>
-        </member>
         <member name="T:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator">
             <summary>
             Defines a puzzle generator that makes the given pattern as a hard one.
@@ -719,6 +655,70 @@
             Bit vector of cells with exactly two pencil marks.
             </summary>
         </member>
+        <member name="T:Sudoku.Algorithm.Solving.ColumnNode">
+            <summary>
+            Represents a column node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Solving.ColumnNode.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Algorithm.Solving.ColumnNode"/> instance via the specified ID value.
+            </summary>
+            <param name="id">The ID value.</param>
+        </member>
+        <member name="P:Sudoku.Algorithm.Solving.ColumnNode.Size">
+            <summary>
+            Indicates the size of the node.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Algorithm.Solving.DancingLinkNode">
+            <summary>
+            Represents a dancing link node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Solving.DancingLinkNode.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Algorithm.Solving.DancingLinkNode"/> instance via the specified ID value and the column node.
+            </summary>
+            <param name="id">The ID value.</param>
+        </member>
+        <member name="M:Sudoku.Algorithm.Solving.DancingLinkNode.#ctor(System.Int32,Sudoku.Algorithm.Solving.ColumnNode)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Algorithm.Solving.DancingLinkNode"/> instance via the specified ID value and the column node.
+            </summary>
+            <param name="id">The ID value.</param>
+            <param name="column">The column node.</param>
+        </member>
+        <member name="P:Sudoku.Algorithm.Solving.DancingLinkNode.Id">
+            <summary>
+            Indicates the ID of the node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Solving.DancingLinkNode.Column">
+            <summary>
+            Indicates the current column node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Solving.DancingLinkNode.Left">
+            <summary>
+            Indicates the pointer that points to the left node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Solving.DancingLinkNode.Right">
+            <summary>
+            Indicates the pointer that points to the right node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Solving.DancingLinkNode.Up">
+            <summary>
+            Indicates the pointer that points to the up node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Solving.DancingLinkNode.Down">
+            <summary>
+            Indicates the pointer that points to the down node.
+            </summary>
+        </member>
         <member name="T:Sudoku.Algorithm.Solving.DancingLinksSolver">
             <summary>
             Defines a solver that uses the dancing links algorithm.
@@ -756,19 +756,19 @@
             </summary>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle has multiple solutions.</exception>
         </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLinksSolver.Cover(Sudoku.Algorithm.Collections.DancingLinkNode)">
+        <member name="M:Sudoku.Algorithm.Solving.DancingLinksSolver.Cover(Sudoku.Algorithm.Solving.DancingLinkNode)">
             <summary>
             Cover the nodes for the specified column.
             </summary>
             <param name="column">The column.</param>
         </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLinksSolver.Uncover(Sudoku.Algorithm.Collections.DancingLinkNode)">
+        <member name="M:Sudoku.Algorithm.Solving.DancingLinksSolver.Uncover(Sudoku.Algorithm.Solving.DancingLinkNode)">
             <summary>
             Uncover the nodes for the specified column.
             </summary>
             <param name="column">The column.</param>
         </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLinksSolver.RecordSolution(System.Collections.Generic.Stack{Sudoku.Algorithm.Collections.DancingLinkNode},Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Algorithm.Solving.DancingLinksSolver.RecordSolution(System.Collections.Generic.Stack{Sudoku.Algorithm.Solving.DancingLinkNode},Sudoku.Concepts.Grid@)">
             <summary>
             Try to gather all possible solutions, and determine whether the puzzle is valid.
             </summary>
@@ -790,7 +790,7 @@
             </summary>
             <param name="root">The root node.</param>
         </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLink.#ctor(Sudoku.Algorithm.Collections.ColumnNode)">
+        <member name="M:Sudoku.Algorithm.Solving.DancingLink.#ctor(Sudoku.Algorithm.Solving.ColumnNode)">
             <summary>
             Represents as a dancing link.
             </summary>
@@ -808,19 +808,19 @@
             <param name="gridArray">The grid array.</param>
             <returns>The column node for the root node.</returns>
         </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLink.LinkRow(System.ValueTuple{Sudoku.Algorithm.Collections.DancingLinkNode,Sudoku.Algorithm.Collections.DancingLinkNode,Sudoku.Algorithm.Collections.DancingLinkNode,Sudoku.Algorithm.Collections.DancingLinkNode}@)">
+        <member name="M:Sudoku.Algorithm.Solving.DancingLink.LinkRow(System.ValueTuple{Sudoku.Algorithm.Solving.DancingLinkNode,Sudoku.Algorithm.Solving.DancingLinkNode,Sudoku.Algorithm.Solving.DancingLinkNode,Sudoku.Algorithm.Solving.DancingLinkNode}@)">
             <summary>
             Links the row.
             </summary>
             <param name="d">The matrix row instance.</param>
         </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLink.LinkRowToColumn(Sudoku.Algorithm.Collections.DancingLinkNode)">
+        <member name="M:Sudoku.Algorithm.Solving.DancingLink.LinkRowToColumn(Sudoku.Algorithm.Solving.DancingLinkNode)">
             <summary>
             Links the row to the column.
             </summary>
             <param name="section">The section.</param>
         </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLink.FormLinks(System.Collections.Generic.List{Sudoku.Algorithm.Collections.ColumnNode},System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Algorithm.Solving.DancingLink.FormLinks(System.Collections.Generic.List{Sudoku.Algorithm.Solving.ColumnNode},System.Int32,System.Int32,System.Int32)">
             <summary>
             To form the links via the specified columns, the cell index and the digit used.
             </summary>
