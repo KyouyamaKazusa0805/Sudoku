@@ -27,8 +27,8 @@ public sealed partial class UniqueMatrixType4Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { DigitsStr, CellsStr, ConjStr, Digit1Str, Digit2Str } },
-			{ "zh", new[] { ConjStr, Digit1Str, Digit2Str, DigitsStr, CellsStr } }
+			{ EnglishLanguage, new[] { DigitsStr, CellsStr, ConjStr, Digit1Str, Digit2Str } },
+			{ ChineseLanguage, new[] { ConjStr, Digit1Str, Digit2Str, DigitsStr, CellsStr } }
 		};
 
 	private string ConjStr => ConjugateHouse.ToString();

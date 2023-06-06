@@ -29,7 +29,7 @@ public sealed partial class BivalueOddagonType2Step(
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { "en", new[] { ExtraDigitStr, LoopStr } }, { "zh", new[] { LoopStr, ExtraDigitStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { ExtraDigitStr, LoopStr } }, { ChineseLanguage, new[] { LoopStr, ExtraDigitStr } } };
 
 	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 }

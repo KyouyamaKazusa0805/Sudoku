@@ -29,8 +29,8 @@ public sealed partial class QiuDeadlyPatternType3Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { PatternStr, DigitsStr, CellsStr, SubsetName } },
-			{ "zh", new[] { PatternStr, DigitsStr, CellsStr, SubsetName } }
+			{ EnglishLanguage, new[] { PatternStr, DigitsStr, CellsStr, SubsetName } },
+			{ ChineseLanguage, new[] { PatternStr, DigitsStr, CellsStr, SubsetName } }
 		};
 
 	private string DigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);

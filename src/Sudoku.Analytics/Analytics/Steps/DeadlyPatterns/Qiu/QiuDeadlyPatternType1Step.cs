@@ -19,7 +19,7 @@ public sealed partial class QiuDeadlyPatternType1Step(
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { "en", new[] { PatternStr, CandidateStr } }, { "zh", new[] { CandidateStr, PatternStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { PatternStr, CandidateStr } }, { ChineseLanguage, new[] { CandidateStr, PatternStr } } };
 
 	private string CandidateStr => (CandidateMap.Empty + Candidate).ToString();
 }

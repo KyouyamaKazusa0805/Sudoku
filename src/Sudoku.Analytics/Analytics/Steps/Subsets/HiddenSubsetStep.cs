@@ -54,7 +54,7 @@ public sealed partial class HiddenSubsetStep(
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { "en", new[] { DigitStr, HouseStr } }, { "zh", new[] { DigitStr, HouseStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { DigitStr, HouseStr } }, { ChineseLanguage, new[] { DigitStr, HouseStr } } };
 
 	private string DigitStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 

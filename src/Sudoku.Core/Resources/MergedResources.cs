@@ -6,6 +6,16 @@ namespace Sudoku.Resources;
 public sealed class MergedResources
 {
 	/// <summary>
+	/// Indicates English language identifier.
+	/// </summary>
+	public const string EnglishLanguage = "en";
+
+	/// <summary>
+	/// Indicates Chinese language identifier.
+	/// </summary>
+	public const string ChineseLanguage = "zh";
+
+	/// <summary>
 	/// Indicates the default LCID used.
 	/// </summary>
 	private const int NeutralLanguageLcid = 1033;

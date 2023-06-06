@@ -27,8 +27,8 @@ public sealed partial class ExtendedRectangleType4Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { DigitsStr, CellsStr, ConjStr } },
-			{ "zh", new[] { DigitsStr, CellsStr, ConjStr } }
+			{ EnglishLanguage, new[] { DigitsStr, CellsStr, ConjStr } },
+			{ ChineseLanguage, new[] { DigitsStr, CellsStr, ConjStr } }
 		};
 
 	private string ConjStr => ConjugatePair.ToString();

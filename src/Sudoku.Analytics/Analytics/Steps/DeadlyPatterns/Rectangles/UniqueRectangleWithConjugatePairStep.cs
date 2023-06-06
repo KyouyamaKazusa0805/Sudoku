@@ -38,8 +38,8 @@ public partial class UniqueRectangleWithConjugatePairStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { D1Str, D2Str, CellsStr, Prefix, Suffix, ConjPairsStr } },
-			{ "zh", new[] { D1Str, D2Str, CellsStr, ConjPairsStr } }
+			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, Prefix, Suffix, ConjPairsStr } },
+			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, ConjPairsStr } }
 		};
 
 	private string ConjPairsStr

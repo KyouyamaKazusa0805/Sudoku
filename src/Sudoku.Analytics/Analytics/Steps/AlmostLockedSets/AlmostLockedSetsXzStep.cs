@@ -57,13 +57,13 @@ public sealed partial class AlmostLockedSetsXzStep(
 		=> new Dictionary<string, string[]?>
 		{
 			{
-				"en",
+				EnglishLanguage,
 				IsDoublyLinked is null
 					? ZDigitsMask == 0 ? new[] { CellsStr } : new[] { EspDigitStr, CellsStr }
 					: new[] { Als1Str, Als2Str, XStr, ZResultStr }
 			},
 			{
-				"zh",
+				ChineseLanguage,
 				IsDoublyLinked is null
 					? ZDigitsMask == 0 ? new[] { CellsStr } : new[] { EspDigitStr, CellsStr }
 					: new[] { Als1Str, Als2Str, XStr, ZResultStr }

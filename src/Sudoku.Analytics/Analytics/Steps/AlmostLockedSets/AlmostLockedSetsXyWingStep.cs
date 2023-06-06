@@ -35,8 +35,8 @@ public sealed partial class AlmostLockedSetsXyWingStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr } },
-			{ "zh", new[] { Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr } }
+			{ EnglishLanguage, new[] { Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr } },
+			{ ChineseLanguage, new[] { Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr } }
 		};
 
 	private string Als1Str => FirstAls.ToString();

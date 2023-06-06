@@ -29,8 +29,8 @@ public sealed partial class WWingStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { StartCellStr, EndCellStr, ConjStr } },
-			{ "zh", new[] { StartCellStr, EndCellStr, ConjStr } }
+			{ EnglishLanguage, new[] { StartCellStr, EndCellStr, ConjStr } },
+			{ ChineseLanguage, new[] { StartCellStr, EndCellStr, ConjStr } }
 		};
 
 	private string StartCellStr => RxCyNotation.ToCellString(StartCell);

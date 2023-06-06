@@ -51,8 +51,8 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, AnotherAlsStr } },
-			{ "zh", new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, AnotherAlsStr } }
+			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, AnotherAlsStr } },
+			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, AnotherAlsStr } }
 		};
 
 	private string GuardianCellsStr => GuardianCells.ToString();

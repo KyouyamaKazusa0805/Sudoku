@@ -27,8 +27,8 @@ public sealed partial class ExtendedRectangleType2Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { DigitsStr, CellsStr, ExtraDigitStr } },
-			{ "zh", new[] { DigitsStr, CellsStr, ExtraDigitStr } }
+			{ EnglishLanguage, new[] { DigitsStr, CellsStr, ExtraDigitStr } },
+			{ ChineseLanguage, new[] { DigitsStr, CellsStr, ExtraDigitStr } }
 		};
 
 	private string ExtraDigitStr => (ExtraDigit + 1).ToString();

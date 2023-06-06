@@ -22,7 +22,7 @@ public sealed partial class BivalueUniversalGraveType2Step(
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { "en", new[] { ExtraDigitStr, CellsStr } }, { "zh", new[] { CellsStr, ExtraDigitStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { ExtraDigitStr, CellsStr } }, { ChineseLanguage, new[] { CellsStr, ExtraDigitStr } } };
 
 	private string ExtraDigitStr => (digit + 1).ToString();
 

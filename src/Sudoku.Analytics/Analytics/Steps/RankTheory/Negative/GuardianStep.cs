@@ -33,8 +33,8 @@ public sealed partial class GuardianStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { CellsStr, GuardianSingularOrPlural, GuardianStr } },
-			{ "zh", new[] { CellsStr, GuardianSingularOrPlural, GuardianStr } }
+			{ EnglishLanguage, new[] { CellsStr, GuardianSingularOrPlural, GuardianStr } },
+			{ ChineseLanguage, new[] { CellsStr, GuardianSingularOrPlural, GuardianStr } }
 		};
 
 	private string CellsStr => LoopCells.ToString();

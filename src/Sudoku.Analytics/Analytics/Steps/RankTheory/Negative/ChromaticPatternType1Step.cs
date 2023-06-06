@@ -22,8 +22,8 @@ public sealed partial class ChromaticPatternType1Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { CellsStr, BlocksStr, DigitsStr } },
-			{ "zh", new[] { BlocksStr, CellsStr, DigitsStr } }
+			{ EnglishLanguage, new[] { CellsStr, BlocksStr, DigitsStr } },
+			{ ChineseLanguage, new[] { BlocksStr, CellsStr, DigitsStr } }
 		};
 
 	/// <inheritdoc/>

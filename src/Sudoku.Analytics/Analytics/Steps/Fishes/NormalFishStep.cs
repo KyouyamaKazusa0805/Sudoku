@@ -73,8 +73,8 @@ public sealed partial class NormalFishStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { DigitStr, BaseSetStr, CoverSetStr, FinsStr } },
-			{ "zh", new[] { DigitStr, BaseSetStr, CoverSetStr, FinsStr } }
+			{ EnglishLanguage, new[] { DigitStr, BaseSetStr, CoverSetStr, FinsStr } },
+			{ ChineseLanguage, new[] { DigitStr, BaseSetStr, CoverSetStr, FinsStr } }
 		};
 
 	/// <summary>

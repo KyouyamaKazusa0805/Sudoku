@@ -35,8 +35,8 @@ public sealed partial class SueDeCoq3DimensionStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { Cells1Str, Digits1Str, Cells2Str, Digits2Str, Cells3Str, Digits3Str } },
-			{ "zh", new[] { Cells1Str, Digits1Str, Cells2Str, Digits2Str, Cells3Str, Digits3Str } }
+			{ EnglishLanguage, new[] { Cells1Str, Digits1Str, Cells2Str, Digits2Str, Cells3Str, Digits3Str } },
+			{ ChineseLanguage, new[] { Cells1Str, Digits1Str, Cells2Str, Digits2Str, Cells3Str, Digits3Str } }
 		};
 
 	private string Cells1Str => RowCells.ToString();

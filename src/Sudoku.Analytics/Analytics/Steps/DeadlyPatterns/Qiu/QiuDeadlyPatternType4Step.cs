@@ -22,7 +22,7 @@ public sealed partial class QiuDeadlyPatternType4Step(
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { "en", new[] { PatternStr, ConjStr } }, { "zh", new[] { ConjStr, PatternStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { PatternStr, ConjStr } }, { ChineseLanguage, new[] { ConjStr, PatternStr } } };
 
 	private string ConjStr => ConjugatePair.ToString();
 }

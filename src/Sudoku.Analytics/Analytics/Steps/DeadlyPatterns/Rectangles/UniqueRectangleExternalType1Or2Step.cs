@@ -57,8 +57,8 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { D1Str, D2Str, CellsStr, GuardianDigitStr, GuardianCellsStr } },
-			{ "zh", new[] { D1Str, D2Str, CellsStr, GuardianDigitStr, GuardianCellsStr } }
+			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, GuardianDigitStr, GuardianCellsStr } },
+			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, GuardianDigitStr, GuardianCellsStr } }
 		};
 
 	private string GuardianDigitStr => (GuardianDigit + 1).ToString();

@@ -71,8 +71,8 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { D1Str, D2Str, CellsStr, MergedCellsStr, DigitsStr } },
-			{ "zh", new[] { D1Str, D2Str, CellsStr, MergedCellsStr, DigitsStr } }
+			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, MergedCellsStr, DigitsStr } },
+			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, MergedCellsStr, DigitsStr } }
 		};
 
 	private string MergedCellsStr => (LineCells | BlockCells).ToString();

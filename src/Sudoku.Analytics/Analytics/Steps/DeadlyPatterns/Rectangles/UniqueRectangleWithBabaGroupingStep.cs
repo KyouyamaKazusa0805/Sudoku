@@ -41,8 +41,8 @@ public sealed partial class UniqueRectangleWithBabaGroupingStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr } },
-			{ "zh", new[] { D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr } }
+			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr } },
+			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr } }
 		};
 
 	private string TargetCellStr => RxCyNotation.ToCellString(TargetCell);

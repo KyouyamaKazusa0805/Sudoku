@@ -29,7 +29,7 @@ public sealed partial class ReverseBivalueUniversalGraveType4Step(
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { "en", new[] { ConjugatePairStr } }, { "zh", new[] { ConjugatePairStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { ConjugatePairStr } }, { ChineseLanguage, new[] { ConjugatePairStr } } };
 
 	/// <inheritdoc/>
 	private string ConjugatePairStr => ConjugatePair.ToString();

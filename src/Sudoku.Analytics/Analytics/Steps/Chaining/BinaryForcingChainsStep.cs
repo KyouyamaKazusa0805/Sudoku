@@ -63,11 +63,11 @@ public sealed partial class BinaryForcingChainsStep(
 		=> new Dictionary<string, string[]?>
 		{
 			{
-				"en",
+				EnglishLanguage,
 				IsAbsurd ? new[] { StartCandStr, StartCandOnOffStr, EndCandStr } : new[] { StartCandStr, StartCandOnOffStr, EndCandStr }
 			},
 			{
-				"zh",
+				ChineseLanguage,
 				IsAbsurd ? new[] { StartCandStr, StartCandOnOffStrZhCn, EndCandStr } : new[] { EndCandStr, StartCandStr, StartCandOnOffStrZhCn }
 			}
 		};

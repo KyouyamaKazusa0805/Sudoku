@@ -22,7 +22,7 @@ public sealed class PatternOverlayStep(Conclusion[] conclusions) : LastResortSte
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { "en", new[] { DigitStr } }, { "zh", new[] { DigitStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { DigitStr } }, { ChineseLanguage, new[] { DigitStr } } };
 
 	private string DigitStr => (Digit + 1).ToString();
 }

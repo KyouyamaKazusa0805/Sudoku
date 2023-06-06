@@ -32,8 +32,8 @@ public sealed partial class ChromaticPatternXzStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { DigitsStr, CellsStr, BlocksStr, ExtraCellStr } },
-			{ "zh", new[] { BlocksStr, CellsStr, DigitsStr, ExtraCellStr } }
+			{ EnglishLanguage, new[] { DigitsStr, CellsStr, BlocksStr, ExtraCellStr } },
+			{ ChineseLanguage, new[] { BlocksStr, CellsStr, DigitsStr, ExtraCellStr } }
 		};
 
 	private string ExtraCellStr => RxCyNotation.ToCellString(ExtraCell);

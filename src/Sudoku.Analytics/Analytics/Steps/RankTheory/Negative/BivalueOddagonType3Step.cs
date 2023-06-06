@@ -33,8 +33,8 @@ public sealed partial class BivalueOddagonType3Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { LoopStr, Digit1Str, Digit2Str, DigitsStr, ExtraCellsStr } },
-			{ "zh", new[] { Digit1Str, Digit2Str, LoopStr, ExtraCellsStr, DigitsStr } }
+			{ EnglishLanguage, new[] { LoopStr, Digit1Str, Digit2Str, DigitsStr, ExtraCellsStr } },
+			{ ChineseLanguage, new[] { Digit1Str, Digit2Str, LoopStr, ExtraCellsStr, DigitsStr } }
 		};
 
 	private string Digit1Str => (Digit1 + 1).ToString();

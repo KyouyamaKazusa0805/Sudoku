@@ -17,7 +17,7 @@ public sealed class ExtendedRectangleType1Step(Conclusion[] conclusions, View[]?
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { DigitsStr, CellsStr } },
-			{ "zh", new[] { DigitsStr, CellsStr } }
+			{ EnglishLanguage, new[] { DigitsStr, CellsStr } },
+			{ ChineseLanguage, new[] { DigitsStr, CellsStr } }
 		};
 }

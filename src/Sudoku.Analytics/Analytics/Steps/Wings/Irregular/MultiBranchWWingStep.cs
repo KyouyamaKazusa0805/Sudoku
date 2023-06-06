@@ -38,8 +38,8 @@ public sealed partial class MultiBranchWWingStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { LeavesStr, RootStr, HouseStr } },
-			{ "zh", new[] { RootStr, HouseStr, LeavesStr } }
+			{ EnglishLanguage, new[] { LeavesStr, RootStr, HouseStr } },
+			{ ChineseLanguage, new[] { RootStr, HouseStr, LeavesStr } }
 		};
 
 	private string LeavesStr => RxCyNotation.ToCellsString(Leaves);

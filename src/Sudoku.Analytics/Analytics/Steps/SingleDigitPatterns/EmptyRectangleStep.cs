@@ -29,8 +29,8 @@ public sealed partial class EmptyRectangleStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { DigitStr, HouseStr, ConjStr } },
-			{ "zh", new[] { DigitStr, HouseStr, ConjStr } }
+			{ EnglishLanguage, new[] { DigitStr, HouseStr, ConjStr } },
+			{ ChineseLanguage, new[] { DigitStr, HouseStr, ConjStr } }
 		};
 
 	private string DigitStr => (Digit + 1).ToString();

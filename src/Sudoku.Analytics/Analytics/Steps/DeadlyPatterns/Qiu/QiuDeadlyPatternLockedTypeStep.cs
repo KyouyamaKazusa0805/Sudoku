@@ -24,8 +24,8 @@ public sealed partial class QiuDeadlyPatternLockedTypeStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { PatternStr, Quantifier, Number, SingularOrPlural, CandidateStr, BeVerb } },
-			{ "zh", new[] { Number, PatternStr } }
+			{ EnglishLanguage, new[] { PatternStr, Quantifier, Number, SingularOrPlural, CandidateStr, BeVerb } },
+			{ ChineseLanguage, new[] { Number, PatternStr } }
 		};
 
 	private string CandidateStr => (CandidateMap.Empty + CandidatesLocked).ToString();

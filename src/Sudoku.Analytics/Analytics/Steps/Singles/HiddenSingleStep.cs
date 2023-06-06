@@ -34,8 +34,8 @@ public sealed partial class HiddenSingleStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", EnableAndIsLastDigit ? new[] { DigitStr } : new[] { HouseStr } },
-			{ "zh", EnableAndIsLastDigit ? new[] { DigitStr } : new[] { HouseStr } }
+			{ EnglishLanguage, EnableAndIsLastDigit ? new[] { DigitStr } : new[] { HouseStr } },
+			{ ChineseLanguage, EnableAndIsLastDigit ? new[] { DigitStr } : new[] { HouseStr } }
 		};
 
 	private string DigitStr => (Digit + 1).ToString();

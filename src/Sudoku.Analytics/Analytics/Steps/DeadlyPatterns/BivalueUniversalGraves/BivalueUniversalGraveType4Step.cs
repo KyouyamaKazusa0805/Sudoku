@@ -26,8 +26,8 @@ public sealed partial class BivalueUniversalGraveType4Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { DigitsStr, CellsStr, ConjStr } },
-			{ "zh", new[] { CellsStr, DigitsStr, ConjStr } }
+			{ EnglishLanguage, new[] { DigitsStr, CellsStr, ConjStr } },
+			{ ChineseLanguage, new[] { CellsStr, DigitsStr, ConjStr } }
 		};
 
 	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);

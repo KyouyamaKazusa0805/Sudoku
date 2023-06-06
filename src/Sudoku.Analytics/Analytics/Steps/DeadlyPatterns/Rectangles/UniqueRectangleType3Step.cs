@@ -54,8 +54,8 @@ public sealed partial class UniqueRectangleType3Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { D1Str, D2Str, CellsStr, DigitsStr, OnlyKeyword, CellsStr, HouseStr } },
-			{ "zh", new[] { D1Str, D2Str, CellsStr, DigitsStr, OnlyKeywordZhCn, HouseStr, CellsStr, AppearLimitKeyword } }
+			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, DigitsStr, OnlyKeyword, CellsStr, HouseStr } },
+			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, DigitsStr, OnlyKeywordZhCn, HouseStr, CellsStr, AppearLimitKeyword } }
 		};
 
 	private string DigitsStr => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);

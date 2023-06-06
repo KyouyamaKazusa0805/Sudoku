@@ -29,8 +29,8 @@ public sealed partial class UniqueMatrixType3Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { DigitsStr, CellsStr, ExtraDigitStr, ExtraCellsStr, SubsetName } },
-			{ "zh", new[] { ExtraDigitStr, ExtraCellsStr, SubsetName, DigitsStr, CellsStr } }
+			{ EnglishLanguage, new[] { DigitsStr, CellsStr, ExtraDigitStr, ExtraCellsStr, SubsetName } },
+			{ ChineseLanguage, new[] { ExtraDigitStr, ExtraCellsStr, SubsetName, DigitsStr, CellsStr } }
 		};
 
 	private string ExtraCellsStr => SubsetCells.ToString();

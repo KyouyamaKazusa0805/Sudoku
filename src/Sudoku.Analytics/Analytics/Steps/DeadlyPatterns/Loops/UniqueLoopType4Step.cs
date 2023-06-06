@@ -28,8 +28,8 @@ public sealed partial class UniqueLoopType4Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { Digit1Str, Digit2Str, LoopStr, ConjStr } },
-			{ "zh", new[] { Digit1Str, Digit2Str, LoopStr, ConjStr } }
+			{ EnglishLanguage, new[] { Digit1Str, Digit2Str, LoopStr, ConjStr } },
+			{ ChineseLanguage, new[] { Digit1Str, Digit2Str, LoopStr, ConjStr } }
 		};
 
 	private string ConjStr => ConjugatePair.ToString();

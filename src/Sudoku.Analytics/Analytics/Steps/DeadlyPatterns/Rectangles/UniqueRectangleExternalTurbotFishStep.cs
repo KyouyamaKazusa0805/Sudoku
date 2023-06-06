@@ -71,8 +71,8 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr, TurbotFishDigitStr } },
-			{ "zh", new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr, TurbotFishDigitStr } }
+			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr, TurbotFishDigitStr } },
+			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr, TurbotFishDigitStr } }
 		};
 
 	private string TurbotFishDigitStr => (TurbotFishDigit + 1).ToString();

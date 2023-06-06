@@ -44,8 +44,8 @@ public sealed partial class AlmostLockedCandidatesStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { DigitsStr, BaseCellsStr, TargetCellsStr } },
-			{ "zh", new[] { DigitsStr, BaseCellsStr, TargetCellsStr } }
+			{ EnglishLanguage, new[] { DigitsStr, BaseCellsStr, TargetCellsStr } },
+			{ ChineseLanguage, new[] { DigitsStr, BaseCellsStr, TargetCellsStr } }
 		};
 
 	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);

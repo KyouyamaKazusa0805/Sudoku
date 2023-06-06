@@ -18,7 +18,7 @@ public sealed class UniqueLoopType1Step(Conclusion[] conclusions, View[]? views,
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { Digit1Str, Digit2Str, LoopStr } },
-			{ "zh", new[] { Digit1Str, Digit2Str, LoopStr } }
+			{ EnglishLanguage, new[] { Digit1Str, Digit2Str, LoopStr } },
+			{ ChineseLanguage, new[] { Digit1Str, Digit2Str, LoopStr } }
 		};
 }

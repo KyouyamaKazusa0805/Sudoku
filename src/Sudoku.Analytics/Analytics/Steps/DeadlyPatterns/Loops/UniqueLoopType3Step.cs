@@ -31,8 +31,8 @@ public sealed partial class UniqueLoopType3Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { Digit1Str, Digit2Str, LoopStr, SubsetName, DigitsStr, SubsetCellsStr } },
-			{ "zh", new[] { Digit1Str, Digit2Str, LoopStr, SubsetName, DigitsStr, SubsetCellsStr } }
+			{ EnglishLanguage, new[] { Digit1Str, Digit2Str, LoopStr, SubsetName, DigitsStr, SubsetCellsStr } },
+			{ ChineseLanguage, new[] { Digit1Str, Digit2Str, LoopStr, SubsetName, DigitsStr, SubsetCellsStr } }
 		};
 
 	private string SubsetCellsStr => SubsetCells.ToString();

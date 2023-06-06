@@ -5125,6 +5125,16 @@ if (student is (name: var name, age: >= 18))
             Defines a merged resource dictionary.
             </summary>
         </member>
+        <member name="F:Sudoku.Resources.MergedResources.EnglishLanguage">
+            <summary>
+            Indicates English language identifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.MergedResources.ChineseLanguage">
+            <summary>
+            Indicates Chinese language identifier.
+            </summary>
+        </member>
         <member name="F:Sudoku.Resources.MergedResources.NeutralLanguageLcid">
             <summary>
             Indicates the default LCID used.

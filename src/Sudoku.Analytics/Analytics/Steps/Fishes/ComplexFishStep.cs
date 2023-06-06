@@ -86,8 +86,8 @@ public sealed partial class ComplexFishStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ "en", new[] { DigitStr, BaseSetsStr, CoverSetsStr, ExofinsStr, EndofinsStr } },
-			{ "zh", new[] { BaseSetsStr, CoverSetsStr, DigitStr, ExofinsStr, EndofinsStr } }
+			{ EnglishLanguage, new[] { DigitStr, BaseSetsStr, CoverSetsStr, ExofinsStr, EndofinsStr } },
+			{ ChineseLanguage, new[] { BaseSetsStr, CoverSetsStr, DigitStr, ExofinsStr, EndofinsStr } }
 		};
 
 	/// <summary>
