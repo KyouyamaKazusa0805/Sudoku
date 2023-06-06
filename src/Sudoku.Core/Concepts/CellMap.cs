@@ -1168,8 +1168,7 @@ public unsafe partial struct CellMap :
 	/// <returns>The mask.</returns>
 	public static Mask operator /(scoped in CellMap map, House houseIndex)
 	{
-		var p = (Mask)0;
-		var i = 0;
+		var (p, i) = ((Mask)0, 0);
 		foreach (var cell in HouseCells[houseIndex])
 		{
 			if (map.Contains(cell))
@@ -1197,7 +1196,6 @@ public unsafe partial struct CellMap :
 	static Mask IDivisionOperators<CellMap, House, Mask>.operator checked /(CellMap left, House right)
 	{
 		Argument.ThrowIfFalse(right is >= 0 and < 27);
-
 		return left / right;
 	}
 
@@ -1227,7 +1225,6 @@ public unsafe partial struct CellMap :
 	{
 		var copied = left;
 		((IBitStatusMap<CellMap>)copied).AddChecked(right);
-
 		return copied;
 	}
 
@@ -1241,7 +1238,6 @@ public unsafe partial struct CellMap :
 	{
 		var copied = left;
 		((IBitStatusMap<CellMap>)copied).AddRangeChecked(right);
-
 		return copied;
 	}
 
@@ -1255,7 +1251,6 @@ public unsafe partial struct CellMap :
 	{
 		var copied = left;
 		((IBitStatusMap<CellMap>)left).RemoveChecked(right);
-
 		return copied;
 	}
 
@@ -1268,7 +1263,6 @@ public unsafe partial struct CellMap :
 	{
 		var copied = left;
 		((IBitStatusMap<CellMap>)copied).RemoveRangeChecked(right);
-
 		return copied;
 	}
 
@@ -1287,7 +1281,6 @@ public unsafe partial struct CellMap :
 	{
 		var copied = collection;
 		((IBitStatusMap<CellMap>)copied).AddChecked(offset);
-
 		return copied;
 	}
 
@@ -1296,7 +1289,6 @@ public unsafe partial struct CellMap :
 	{
 		var copied = collection;
 		((IBitStatusMap<CellMap>)copied).AddRangeChecked(offsets);
-
 		return copied;
 	}
 
@@ -1306,7 +1298,6 @@ public unsafe partial struct CellMap :
 	{
 		var copied = collection;
 		((IBitStatusMap<CellMap>)copied).RemoveChecked(offset);
-
 		return copied;
 	}
 
@@ -1315,7 +1306,6 @@ public unsafe partial struct CellMap :
 	{
 		var copied = collection;
 		((IBitStatusMap<CellMap>)copied).RemoveRangeChecked(offsets);
-
 		return copied;
 	}
 
