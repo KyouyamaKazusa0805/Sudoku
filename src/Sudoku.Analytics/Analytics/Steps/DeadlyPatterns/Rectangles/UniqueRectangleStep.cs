@@ -47,10 +47,10 @@ public abstract partial class UniqueRectangleStep(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(UniqueRectangleStep left, UniqueRectangleStep right)
+	static bool IEquatableStep<UniqueRectangleStep>.operator ==(UniqueRectangleStep left, UniqueRectangleStep right)
 		=> (left.Code, left.AbsoluteOffset, left.Digit1, left.Digit2) == (right.Code, right.AbsoluteOffset, right.Digit1, right.Digit2);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(UniqueRectangleStep left, UniqueRectangleStep right) => !(left == right);
+	static bool IEquatableStep<UniqueRectangleStep>.operator !=(UniqueRectangleStep left, UniqueRectangleStep right) => !(left == right);
 }

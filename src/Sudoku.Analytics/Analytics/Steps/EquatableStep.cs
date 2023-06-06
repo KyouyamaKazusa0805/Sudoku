@@ -28,6 +28,7 @@ public static class EquatableStep
 		};
 }
 
+#nullable disable warnings
 /// <summary>
 /// The internal comparer type for <typeparamref name="T"/> instances.
 /// </summary>
@@ -48,13 +49,12 @@ file sealed class LocalEqualityComparer<T> : IEqualityComparer<T> where T : Step
 	}
 
 
-#nullable disable warnings
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(T x, T y) => x == y;
-#nullable restore warnings
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int GetHashCode(T obj) => 0;
 }
+#nullable restore warnings

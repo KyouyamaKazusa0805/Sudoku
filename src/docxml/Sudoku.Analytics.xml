@@ -10043,10 +10043,10 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.op_Equality(Sudoku.Analytics.Steps.UniqueLoopStep,Sudoku.Analytics.Steps.UniqueLoopStep)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#UniqueLoopStep}#op_Equality(Sudoku.Analytics.Steps.UniqueLoopStep,Sudoku.Analytics.Steps.UniqueLoopStep)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.op_Inequality(Sudoku.Analytics.Steps.UniqueLoopStep,Sudoku.Analytics.Steps.UniqueLoopStep)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#UniqueLoopStep}#op_Inequality(Sudoku.Analytics.Steps.UniqueLoopStep,Sudoku.Analytics.Steps.UniqueLoopStep)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Digit1">
@@ -11169,10 +11169,10 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Code">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.op_Equality(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#UniqueRectangleStep}#op_Equality(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.op_Inequality(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#UniqueRectangleStep}#op_Inequality(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Digit1">
@@ -12065,10 +12065,10 @@ result ^= expression;
             The shape modifier.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.op_Equality(Sudoku.Analytics.Steps.ComplexFishStep,Sudoku.Analytics.Steps.ComplexFishStep)">
+        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#ComplexFishStep}#op_Equality(Sudoku.Analytics.Steps.ComplexFishStep,Sudoku.Analytics.Steps.ComplexFishStep)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.op_Inequality(Sudoku.Analytics.Steps.ComplexFishStep,Sudoku.Analytics.Steps.ComplexFishStep)">
+        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#ComplexFishStep}#op_Inequality(Sudoku.Analytics.Steps.ComplexFishStep,Sudoku.Analytics.Steps.ComplexFishStep)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Exofins">
@@ -12869,10 +12869,10 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.op_Equality(Sudoku.Analytics.Steps.BivalueOddagonStep,Sudoku.Analytics.Steps.BivalueOddagonStep)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#BivalueOddagonStep}#op_Equality(Sudoku.Analytics.Steps.BivalueOddagonStep,Sudoku.Analytics.Steps.BivalueOddagonStep)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.op_Inequality(Sudoku.Analytics.Steps.BivalueOddagonStep,Sudoku.Analytics.Steps.BivalueOddagonStep)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#BivalueOddagonStep}#op_Inequality(Sudoku.Analytics.Steps.BivalueOddagonStep,Sudoku.Analytics.Steps.BivalueOddagonStep)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.LoopCells">
@@ -13134,10 +13134,10 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.GuardianStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.GuardianStep.op_Equality(Sudoku.Analytics.Steps.GuardianStep,Sudoku.Analytics.Steps.GuardianStep)">
+        <member name="M:Sudoku.Analytics.Steps.GuardianStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#GuardianStep}#op_Equality(Sudoku.Analytics.Steps.GuardianStep,Sudoku.Analytics.Steps.GuardianStep)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.GuardianStep.op_Inequality(Sudoku.Analytics.Steps.GuardianStep,Sudoku.Analytics.Steps.GuardianStep)">
+        <member name="M:Sudoku.Analytics.Steps.GuardianStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#GuardianStep}#op_Inequality(Sudoku.Analytics.Steps.GuardianStep,Sudoku.Analytics.Steps.GuardianStep)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.GuardianStep.Digit">

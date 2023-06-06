@@ -35,10 +35,10 @@ public abstract partial class BivalueOddagonStep(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(BivalueOddagonStep left, BivalueOddagonStep right)
+	static bool IEquatableStep<BivalueOddagonStep>.operator ==(BivalueOddagonStep left, BivalueOddagonStep right)
 		=> (left.Type, left.Digit1, left.Digit2, left.LoopCells) == (right.Type, right.Digit1, right.Digit2, right.LoopCells);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(BivalueOddagonStep left, BivalueOddagonStep right) => !(left == right);
+	static bool IEquatableStep<BivalueOddagonStep>.operator !=(BivalueOddagonStep left, BivalueOddagonStep right) => !(left == right);
 }

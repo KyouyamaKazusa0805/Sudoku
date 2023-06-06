@@ -146,12 +146,12 @@ public sealed partial class ComplexFishStep(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(ComplexFishStep left, ComplexFishStep right)
+	static bool IEquatableStep<ComplexFishStep>.operator ==(ComplexFishStep left, ComplexFishStep right)
 		=> left.Digit == right.Digit
 		&& left.BaseSetsMask == right.BaseSetsMask && left.CoverSetsMask == right.CoverSetsMask
 		&& left.Exofins == right.Exofins && left.Endofins == right.Endofins;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(ComplexFishStep left, ComplexFishStep right) => !(left == right);
+	static bool IEquatableStep<ComplexFishStep>.operator !=(ComplexFishStep left, ComplexFishStep right) => !(left == right);
 }

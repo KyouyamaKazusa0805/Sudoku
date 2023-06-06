@@ -45,7 +45,7 @@ public abstract partial class UniqueLoopStep(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(UniqueLoopStep left, UniqueLoopStep right)
+	static bool IEquatableStep<UniqueLoopStep>.operator ==(UniqueLoopStep left, UniqueLoopStep right)
 		=> (left.Type, left.Loop, left.Digit1, left.Digit2) == (right.Type, right.Loop, right.Digit1, right.Digit2)
 		&& (left, right) switch
 		{
@@ -56,5 +56,5 @@ public abstract partial class UniqueLoopStep(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(UniqueLoopStep left, UniqueLoopStep right) => !(left == right);
+	static bool IEquatableStep<UniqueLoopStep>.operator !=(UniqueLoopStep left, UniqueLoopStep right) => !(left == right);
 }
