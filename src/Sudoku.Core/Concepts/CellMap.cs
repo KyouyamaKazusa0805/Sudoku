@@ -344,13 +344,10 @@ public unsafe partial struct CellMap :
 	{
 		get
 		{
-			var lowerBits = 0L;
-			var higherBits = 0L;
-			var i = 0;
+			var (lowerBits, higherBits, i) = (0L, 0L, 0);
 			foreach (var offset in Offsets)
 			{
-				var low = 0L;
-				var high = 0L;
+				var (low, high) = (0L, 0L);
 				foreach (var peer in Peers[offset])
 				{
 					(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
