@@ -93,38 +93,12 @@ public sealed partial class ComplexFishStep(
 	/// <summary>
 	/// Indicates the base houses.
 	/// </summary>
-	private House[] BaseHouses
-	{
-		get
-		{
-			var result = new House[PopCount((uint)BaseSetsMask)];
-			var i = 0;
-			foreach (var house in BaseSetsMask)
-			{
-				result[i++] = house;
-			}
-
-			return result;
-		}
-	}
+	private House[] BaseHouses => BaseSetsMask.GetAllSets().ToArray();
 
 	/// <summary>
 	/// Indicates the cover houses.
 	/// </summary>
-	private House[] CoverHouses
-	{
-		get
-		{
-			var result = new House[PopCount((uint)CoverSetsMask)];
-			var i = 0;
-			foreach (var house in CoverSetsMask)
-			{
-				result[i++] = house;
-			}
-
-			return result;
-		}
-	}
+	private House[] CoverHouses => CoverSetsMask.GetAllSets().ToArray();
 
 	private string DigitStr => (Digit + 1).ToString();
 

@@ -51,25 +51,21 @@ public sealed partial class NormalFishStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>
-	public override unsafe Technique Code
+	public override Technique Code
 	{
 		get
 		{
-			fixed (char* pName = InternalName)
+			scoped var buffer = (stackalloc char[InternalName.Length]);
+			var i = 0;
+			foreach (var ch in InternalName)
 			{
-				scoped var buffer = (stackalloc char[InternalName.Length]);
-
-				var i = 0;
-				for (var p = pName; *p != '\0'; p++)
+				if (ch is not (' ' or '-'))
 				{
-					if (*p is var ch and not (' ' or '-'))
-					{
-						buffer[i++] = ch;
-					}
+					buffer[i++] = ch;
 				}
-
-				return Enum.Parse<Technique>(buffer[..i].ToString());
 			}
+
+			return Enum.Parse<Technique>(buffer[..i]);
 		}
 	}
 
