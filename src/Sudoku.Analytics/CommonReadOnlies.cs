@@ -195,7 +195,7 @@ public static class CommonReadOnlies
 		new byte[] {  4,  7 }, new byte[] {  1,  7 }, new byte[] {  1,  4 },
 		new byte[] {  5,  8 }, new byte[] {  2,  8 }, new byte[] {  2,  5 },
 		new byte[] {  5,  8 }, new byte[] {  2,  8 }, new byte[] {  2,  5 },
-		new byte[] {  5,  8 }, new byte[] {  2,  8 }, new byte[] {  2,  5 },
+		new byte[] {  5,  8 }, new byte[] {  2,  8 }, new byte[] {  2,  5 }
 	};
 
 
