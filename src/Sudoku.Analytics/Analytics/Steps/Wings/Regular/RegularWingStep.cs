@@ -26,17 +26,15 @@ public sealed partial class RegularWingStep(
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.2M;
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the size of the wing. The size indicates the number of candidates that the pivot cell holds.
+	/// </summary>
 	/// <remarks>
 	/// All names are:
 	/// <list type="table">
 	/// <item>
-	/// <term>2</term>
-	/// <description>XY-Wing</description>
-	/// </item>
-	/// <item>
 	/// <term>3</term>
-	/// <description>XYZ-Wing</description>
+	/// <description>XY-Wing or XYZ-Wing</description>
 	/// </item>
 	/// <item>
 	/// <term>4</term>
@@ -67,24 +65,7 @@ public sealed partial class RegularWingStep(
 	public int Size => PopCount((uint)DigitsMask);
 
 	/// <inheritdoc/>
-	public override Technique Code
-		=> InternalName switch
-		{
-			"XY-Wing" => Technique.XyWing,
-			"XYZ-Wing" => Technique.XyzWing,
-			"WXYZ-Wing" => Technique.WxyzWing,
-			"VWXYZ-Wing" => Technique.VwxyzWing,
-			"UVWXYZ-Wing" => Technique.UvwxyzWing,
-			"TUVWXYZ-Wing" => Technique.TuvwxyzWing,
-			"STUVWXYZ-Wing" => Technique.StuvwxyzWing,
-			"RSTUVWXYZ-Wing" => Technique.RstuvwxyzWing,
-			"Incomplete WXYZ-Wing" => Technique.IncompleteWxyzWing,
-			"Incomplete VWXYZ-Wing" => Technique.IncompleteVwxyzWing,
-			"Incomplete UVWXYZ-Wing" => Technique.IncompleteUvwxyzWing,
-			"Incomplete TUVWXYZ-Wing" => Technique.IncompleteTuvwxyzWing,
-			"Incomplete STUVWXYZ-Wing" => Technique.IncompleteStuvwxyzWing,
-			"Incomplete RSTUVWXYZ-Wing" => Technique.IncompleteRstuvwxyzWing,
-		};
+	public override Technique Code => TechniqueFact.MakeRegularWingTechniqueCode(TechniqueFact.MakeRegularWingName(Size, IsIncomplete));
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => Size switch { 3 or 4 => DifficultyLevel.Hard, >= 5 => DifficultyLevel.Fiendish };
@@ -99,13 +80,7 @@ public sealed partial class RegularWingStep(
 			),
 			(
 				ExtraDifficultyCaseNames.Incompleteness,
-				(Code, IsIncomplete) switch
-				{
-					(Technique.XyWing, _) => 0,
-					(Technique.XyzWing, _) => .2M,
-					(_, true) => .1M,
-					_ => 0
-				}
+				(Code, IsIncomplete) switch { (Technique.XyWing, _) => 0, (Technique.XyzWing, _) => .2M, (_, true) => .1M, _ => 0 }
 			)
 		};
 
@@ -115,24 +90,6 @@ public sealed partial class RegularWingStep(
 		{
 			{ "en", new[] { DigitsStr, PivotCellStr, CellsStr } },
 			{ "zh", new[] { DigitsStr, PivotCellStr, CellsStr } }
-		};
-
-	/// <summary>
-	/// Indicates the internal name.
-	/// </summary>
-	private string InternalName
-		=> Size switch
-		{
-			3 => IsIncomplete ? "XY-Wing" : "XYZ-Wing",
-			>= 4 and < 9 when Size switch
-			{
-				4 => "WXYZ-Wing",
-				5 => "VWXYZ-Wing",
-				6 => "UVWXYZ-Wing",
-				7 => "TUVWXYZ-Wing",
-				8 => "STUVWXYZ-Wing",
-				9 => "RSTUVWXYZ-Wing"
-			} is var name => IsIncomplete ? $"Incomplete {name}" : name
 		};
 
 	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);

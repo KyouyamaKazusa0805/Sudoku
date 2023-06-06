@@ -14134,17 +14134,15 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Size">
-            <inheritdoc/>
+            <summary>
+            Indicates the size of the wing. The size indicates the number of candidates that the pivot cell holds.
+            </summary>
             <remarks>
             All names are:
             <list type="table">
             <item>
-            <term>2</term>
-            <description>XY-Wing</description>
-            </item>
-            <item>
             <term>3</term>
-            <description>XYZ-Wing</description>
+            <description>XY-Wing or XYZ-Wing</description>
             </item>
             <item>
             <term>4</term>
@@ -14184,11 +14182,6 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.FormatInterpolatedParts">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.InternalName">
-            <summary>
-            Indicates the internal name.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Pivot">
             <summary>
@@ -14419,6 +14412,36 @@ result ^= expression;
             <param name="this">The sudoku painter instance.</param>
             <param name="step">The step instance.</param>
             <returns>Argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Facts.TechniqueFact">
+            <summary>
+            Provides some methods that creates some facts for techniques.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Facts.TechniqueFact.MakeRegularWingName(System.Int32,System.Boolean)">
+            <summary>
+            Make the real name of the regular wing.
+            </summary>
+            <param name="size">Indicates the size of the wing.</param>
+            <param name="isIncomplete">A <see cref="T:System.Boolean"/> value indicating whether the wing is incomplete.</param>
+            <returns>The real name of the regular wing.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> isn't between 3 and 9.</exception>
+        </member>
+        <member name="M:Sudoku.Facts.TechniqueFact.GetFishName(System.Int32)">
+            <summary>
+            Gets the name of the fish via the specified size.
+            </summary>
+            <param name="size">The size.</param>
+            <returns>The fish name.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> is 0.</exception>
+        </member>
+        <member name="M:Sudoku.Facts.TechniqueFact.MakeRegularWingTechniqueCode(System.String)">
+            <summary>
+            Try to fetch corresponding <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance via the real name representing as a <see cref="T:System.String"/> text.
+            </summary>
+            <param name="realName">The real name of the regular wing technique.</param>
+            <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the argument <paramref name="realName"/> is invalid.</exception>
         </member>
         <member name="T:Sudoku.Filtering.Expressions.ConclusionHasExpression">
             <summary>

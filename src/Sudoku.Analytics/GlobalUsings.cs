@@ -22,6 +22,7 @@ global using Sudoku.Analytics.Steps;
 global using Sudoku.Analytics.StepSearchers;
 global using Sudoku.Compatibility.Hodoku;
 global using Sudoku.Compatibility.SudokuExplainer;
+global using Sudoku.Facts;
 global using Sudoku.Filtering.Expressions;
 global using Sudoku.Filtering.Operators;
 global using Sudoku.Rendering;

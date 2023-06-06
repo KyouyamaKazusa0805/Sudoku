@@ -119,15 +119,7 @@ public sealed partial class ComplexFishStep(
 		{
 			var fin = FinModifier == ComplexFishFinKind.Normal ? null : $"{FinModifier} ";
 			var shape = ShapeModifier == ComplexFishShapeKind.Basic ? null : $"{ShapeModifier} ";
-			var sizeName = Size switch
-			{
-				2 => "X-Wing",
-				3 => "Swordfish",
-				4 => "Jellyfish",
-				5 => "Squirmbag",
-				6 => "Whale",
-				7 => "Leviathan"
-			};
+			var sizeName = TechniqueFact.GetFishName(Size);
 			return $"{fin}{shape}{sizeName}";
 		}
 	}
