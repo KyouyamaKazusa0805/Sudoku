@@ -97,7 +97,16 @@ public sealed partial class RegularWingStep(
 				ExtraDifficultyCaseNames.WingSize,
 				Size switch { 3 => 0, 4 => .2M, 5 => .4M, 6 => .7M, 7 => 1.0M, 8 => 1.3M, 9 => 1.6M, _ => 2.0M }
 			),
-			(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? Size == 3 ? .2M : .1M : 0)
+			(
+				ExtraDifficultyCaseNames.Incompleteness,
+				(Code, IsIncomplete) switch
+				{
+					(Technique.XyWing, _) => 0,
+					(Technique.XyzWing, _) => .2M,
+					(_, true) => .1M,
+					_ => 0
+				}
+			)
 		};
 
 	/// <inheritdoc/>
