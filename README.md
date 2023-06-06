@@ -69,6 +69,9 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Firework Subsets (Hanabi)
   * Subsets
     * Naked Subsets
+      * Locked Subsets (Naked, Hidden)
+      * Semi-Locked Susbets
+      * Normal Naked Subsets
     * Hidden Subsets
   * Fishes (including finned types)
     * Normal Fishes
@@ -157,8 +160,8 @@ Please see file [CODE_OF_CONDUCT](CODE_OF_CONDUCT).
 
 Here we list some websites about sudoku techniques that I used and referenced. The contents are constructed by myself, so if you want to learn more about sudoku techniques that this solution used and implemented, you can visit the following links[^4] to learn about more information.
 
-* [标准数独技巧教程（视频）_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
-* [标准数独技巧教程（专栏）_bilibili](https://www.bilibili.com/read/readlist/rl291187)
+* [标准数独技巧教程 (Video)_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
+* [标准数独技巧教程 (Text, New)_bilibili](https://www.bilibili.com/read/readlist/rl717501)[^5]
 
 ## Author
 
@@ -174,3 +177,4 @@ Please visit file [CONTACTS](CONTACTS) to contact me if you want.
 
 [^4]: I'm sorry that those pages are only written in Chinese. However, I may create pages written in other languages in the future.
 
+[^5]: Under construction. Please wait with patience.
