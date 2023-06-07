@@ -125,12 +125,13 @@ public abstract partial class SubsetStepSearcher(
 					}
 
 					// Gather eliminations.
-					var conclusions = new List<Conclusion>();
+					var (conclusions, elimCells) = (new List<Conclusion>(), CellMap.Empty);
 					foreach (var digit in tempMask)
 					{
 						foreach (var cell in map & CandidatesMap[digit])
 						{
 							conclusions.Add(new(Elimination, cell, digit));
+							elimCells.Add(cell);
 						}
 					}
 					if (conclusions.Count == 0)
@@ -150,7 +151,7 @@ public abstract partial class SubsetStepSearcher(
 						cellOffsets.AddRange(GetCrosshatchBaseCells(grid, digit, house, map));
 					}
 
-					var isLocked = map.IsInIntersection;
+					var isLocked = map.IsInIntersection && elimCells.CoveredHouses == 2;
 					if (!OnlySearchingForLocked || isLocked && OnlySearchingForLocked)
 					{
 						if (isLocked)
