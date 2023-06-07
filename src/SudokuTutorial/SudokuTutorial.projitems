@@ -128,6 +128,18 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\29-1 直观视角的鳍四阶鱼.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\29-2 候选数视角1.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\02 普通鱼\29-3 候选数视角2.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\01 XY-Wing.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\02 XY-Wing构型1.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\03 XY-Wing构型2.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\04 XY-Wing构型3.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\05 XYZ-Wing.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\06 WXYZ-Wing.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\07 残缺WXYZ-Wing.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\08 VWXYZ-Wing.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\09 残缺VWXYZ-Wing.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\10 W-Wing.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\11 多分支W-Wing.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\12 M-Wing.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
   </ItemGroup>
   <ItemGroup>
