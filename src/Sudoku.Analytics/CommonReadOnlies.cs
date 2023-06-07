@@ -45,6 +45,7 @@ public static class CommonReadOnlies
 	/// </summary>
 	public const int MultisectorLockedSetsTemplatesCount = 74601;
 
+
 	/// <summary>
 	/// Indicates all houses iterating on the specified block forming an empty rectangle.
 	/// </summary>
