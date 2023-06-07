@@ -4974,9 +4974,6 @@ result ^= expression;
             Returns a string that only contains the name and the basic description.
             </summary>
             <returns>The string instance.</returns>
-            <remarks><i>
-            This method uses modifiers <see langword="sealed"/> and <see langword="override"/> to prevent with compiler overriding this method.
-            </i></remarks>
         </member>
         <member name="M:Sudoku.Analytics.Step.ToSimpleString">
             <inheritdoc/>

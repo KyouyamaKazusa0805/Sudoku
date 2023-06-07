@@ -289,7 +289,7 @@
     <value>{Name}: Chain {ChainStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_AvoidableRectangleWithHiddenSingleStep" xml:space="preserve">
-    <value>Digits {0} and {1} in {2} with hidden single: if cell {3} is filled with the digit {0}, house {5} will only contain a cell {6} can be filled with that digit, but will raise the deadly pattern</value>
+    <value>Digits {0} and {1} in {2} with hidden single: if cell {3} is filled with the digit {0}, house {4} will only contain a cell {5} can be filled with that digit, but will raise the deadly pattern</value>
   </data>
   <data name="TechniqueFormat_BinaryChainingStep" xml:space="preserve">
     <value>{Name}: It can be proved to be a contradiction if {AnchorIsTrueOrFalseStr} is {AnchorIsNotOnStr} =&gt; {ElimStr}</value>

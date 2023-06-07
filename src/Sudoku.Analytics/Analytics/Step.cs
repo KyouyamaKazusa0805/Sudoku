@@ -171,13 +171,10 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// Returns a string that only contains the name and the basic description.
 	/// </summary>
 	/// <returns>The string instance.</returns>
-	/// <remarks><i>
-	/// This method uses modifiers <see langword="sealed"/> and <see langword="override"/> to prevent with compiler overriding this method.
-	/// </i></remarks>
 	public sealed override string ToString()
 	{
 		var currentCultureName = CultureInfo.CurrentCulture.Name;
-		var formatArgs = FormatInterpolatedParts?.FirstOrDefault(c).Value;
+		var formatArgs = FormatInterpolatedParts?.FirstOrDefault(cultureSelector).Value;
 		var colonToken = R["Colon"];
 		return (Format, formatArgs) switch
 		{
@@ -187,7 +184,8 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 		};
 
 
-		bool c(KeyValuePair<string, string[]?> kvp) => currentCultureName.StartsWith(kvp.Key, StringComparison.CurrentCultureIgnoreCase);
+		bool cultureSelector(KeyValuePair<string, string[]?> kvp)
+			=> currentCultureName.StartsWith(kvp.Key, StringComparison.CurrentCultureIgnoreCase);
 	}
 
 	/// <inheritdoc/>

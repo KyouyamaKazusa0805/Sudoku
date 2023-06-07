@@ -295,7 +295,7 @@
     <value>{Name}：链 {ChainStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_AvoidableRectangleWithHiddenSingleStep" xml:space="preserve">
-    <value>数字 {0} 和 {1} 位于单元格 {2} 构成结构，并带排除法：如果单元格 {3} 填上了数字 {0}，{5} 区域仅能让 {6} 填入该数字，便出现致命形式</value>
+    <value>数字 {0} 和 {1} 位于单元格 {2} 构成结构，并带排除法：如果单元格 {3} 填上了数字 {0}，{4} 区域仅能让 {5} 填入该数字，便出现致命形式</value>
   </data>
   <data name="TechniqueFormat_BinaryChainingStep" xml:space="preserve">
     <value>{Name}：可以证明如果 {AnchorCandidateStr} 为{AnchorIsTrueOrFalseStr}时会产生矛盾 =&gt; {ElimStr}</value>

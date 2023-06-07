@@ -4723,7 +4723,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with hidden single: if cell {3} is filled with the digit {0}, house {5} will only contain a cell {6} can be filled with that digit, but will raise the deadly pattern.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with hidden single: if cell {3} is filled with the digit {0}, house {4} will only contain a cell {5} can be filled with that digit, but will raise the deadly pattern.
         /// </summary>
         public static string TechniqueFormat_AvoidableRectangleWithHiddenSingleStep {
             get {
