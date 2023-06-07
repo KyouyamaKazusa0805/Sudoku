@@ -581,363 +581,363 @@
     <comment>Technique Name</comment>
   </data>
   <data name="XWing" xml:space="preserve">
-    <value>二链列</value>
+    <value>二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedXWing" xml:space="preserve">
-    <value>鳍二链列</value>
+    <value>鳍二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiXWing" xml:space="preserve">
-    <value>退化二链列</value>
+    <value>退化二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedXWing" xml:space="preserve">
-    <value>孪生鳍二链列</value>
+    <value>孪生鳍二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiXWing" xml:space="preserve">
-    <value>孪生退化二链列</value>
+    <value>孪生退化二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FrankenXWing" xml:space="preserve">
-    <value>宫内二链列</value>
+    <value>宫内二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedFrankenXWing" xml:space="preserve">
-    <value>宫内鳍二链列</value>
+    <value>宫内鳍二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiFrankenXWing" xml:space="preserve">
-    <value>宫内退化二链列</value>
+    <value>宫内退化二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedFrankenXWing" xml:space="preserve">
-    <value>宫内孪生鳍二链列</value>
+    <value>宫内孪生鳍二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiFrankenXWing" xml:space="preserve">
-    <value>宫内孪生退化二链列</value>
+    <value>宫内孪生退化二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="MutantXWing" xml:space="preserve">
-    <value>交叉二链列</value>
+    <value>交叉二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedMutantXWing" xml:space="preserve">
-    <value>交叉鳍二链列</value>
+    <value>交叉鳍二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiMutantXWing" xml:space="preserve">
-    <value>交叉退化二链列</value>
+    <value>交叉退化二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedMutantXWing" xml:space="preserve">
-    <value>交叉孪生鳍二链列</value>
+    <value>交叉孪生鳍二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiMutantXWing" xml:space="preserve">
-    <value>交叉孪生退化二链列</value>
+    <value>交叉孪生退化二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="Swordfish" xml:space="preserve">
-    <value>三链列</value>
+    <value>三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedSwordfish" xml:space="preserve">
-    <value>鳍三链列</value>
+    <value>鳍三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiSwordfish" xml:space="preserve">
-    <value>退化三链列</value>
+    <value>退化三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedSwordfish" xml:space="preserve">
-    <value>孪生鳍三链列</value>
+    <value>孪生鳍三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiSwordfish" xml:space="preserve">
-    <value>孪生退化三链列</value>
+    <value>孪生退化三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FrankenSwordfish" xml:space="preserve">
-    <value>宫内三链列</value>
+    <value>宫内三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedFrankenSwordfish" xml:space="preserve">
-    <value>宫内鳍三链列</value>
+    <value>宫内鳍三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiFrankenSwordfish" xml:space="preserve">
-    <value>宫内退化三链列</value>
+    <value>宫内退化三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedFrankenSwordfish" xml:space="preserve">
-    <value>宫内孪生鳍三链列</value>
+    <value>宫内孪生鳍三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiFrankenSwordfish" xml:space="preserve">
-    <value>宫内孪生退化三链列</value>
+    <value>宫内孪生退化三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="MutantSwordfish" xml:space="preserve">
-    <value>交叉三链列</value>
+    <value>交叉三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedMutantSwordfish" xml:space="preserve">
-    <value>交叉鳍三链列</value>
+    <value>交叉鳍三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiMutantSwordfish" xml:space="preserve">
-    <value>交叉退化三链列</value>
+    <value>交叉退化三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedMutantSwordfish" xml:space="preserve">
-    <value>交叉孪生鳍三链列</value>
+    <value>交叉孪生鳍三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiMutantSwordfish" xml:space="preserve">
-    <value>交叉孪生退化三链列</value>
+    <value>交叉孪生退化三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="Jellyfish" xml:space="preserve">
-    <value>四链列</value>
+    <value>四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedJellyfish" xml:space="preserve">
-    <value>鳍四链列</value>
+    <value>鳍四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiJellyfish" xml:space="preserve">
-    <value>退化四链列</value>
+    <value>退化四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedJellyfish" xml:space="preserve">
-    <value>孪生鳍四链列</value>
+    <value>孪生鳍四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiJellyfish" xml:space="preserve">
-    <value>孪生退化四链列</value>
+    <value>孪生退化四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FrankenJellyfish" xml:space="preserve">
-    <value>宫内四链列</value>
+    <value>宫内四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedFrankenJellyfish" xml:space="preserve">
-    <value>宫内鳍四链列</value>
+    <value>宫内鳍四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiFrankenJellyfish" xml:space="preserve">
-    <value>宫内退化四链列</value>
+    <value>宫内退化四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedFrankenJellyfish" xml:space="preserve">
-    <value>宫内孪生鳍四链列</value>
+    <value>宫内孪生鳍四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiFrankenJellyfish" xml:space="preserve">
-    <value>宫内孪生退化四链列</value>
+    <value>宫内孪生退化四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="MutantJellyfish" xml:space="preserve">
-    <value>交叉四链列</value>
+    <value>交叉四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedMutantJellyfish" xml:space="preserve">
-    <value>交叉鳍四链列</value>
+    <value>交叉鳍四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiMutantJellyfish" xml:space="preserve">
-    <value>交叉退化四链列</value>
+    <value>交叉退化四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedMutantJellyfish" xml:space="preserve">
-    <value>交叉孪生鳍四链列</value>
+    <value>交叉孪生鳍四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiMutantJellyfish" xml:space="preserve">
-    <value>交叉孪生退化四链列</value>
+    <value>交叉孪生退化四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="Squirmbag" xml:space="preserve">
-    <value>五链列</value>
+    <value>五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedSquirmbag" xml:space="preserve">
-    <value>鳍五链列</value>
+    <value>鳍五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiSquirmbag" xml:space="preserve">
-    <value>退化五链列</value>
+    <value>退化五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedSquirmbag" xml:space="preserve">
-    <value>孪生鳍五链列</value>
+    <value>孪生鳍五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiSquirmbag" xml:space="preserve">
-    <value>孪生退化五链列</value>
+    <value>孪生退化五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FrankenSquirmbag" xml:space="preserve">
-    <value>宫内五链列</value>
+    <value>宫内五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedFrankenSquirmbag" xml:space="preserve">
-    <value>宫内鳍五链列</value>
+    <value>宫内鳍五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiFrankenSquirmbag" xml:space="preserve">
-    <value>宫内退化五链列</value>
+    <value>宫内退化五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedFrankenSquirmbag" xml:space="preserve">
-    <value>宫内孪生鳍五链列</value>
+    <value>宫内孪生鳍五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiFrankenSquirmbag" xml:space="preserve">
-    <value>宫内孪生退化五链列</value>
+    <value>宫内孪生退化五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="MutantSquirmbag" xml:space="preserve">
-    <value>交叉五链列</value>
+    <value>交叉五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedMutantSquirmbag" xml:space="preserve">
-    <value>交叉鳍五链列</value>
+    <value>交叉鳍五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiMutantSquirmbag" xml:space="preserve">
-    <value>交叉退化五链列</value>
+    <value>交叉退化五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedMutantSquirmbag" xml:space="preserve">
-    <value>交叉孪生鳍五链列</value>
+    <value>交叉孪生鳍五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiMutantSquirmbag" xml:space="preserve">
-    <value>交叉孪生退化五链列</value>
+    <value>交叉孪生退化五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="Whale" xml:space="preserve">
-    <value>六链列</value>
+    <value>六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedWhale" xml:space="preserve">
-    <value>鳍六链列</value>
+    <value>鳍六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiWhale" xml:space="preserve">
-    <value>退化六链列</value>
+    <value>退化六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedWhale" xml:space="preserve">
-    <value>孪生鳍六链列</value>
+    <value>孪生鳍六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiWhale" xml:space="preserve">
-    <value>孪生退化六链列</value>
+    <value>孪生退化六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FrankenWhale" xml:space="preserve">
-    <value>宫内六链列</value>
+    <value>宫内六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedFrankenWhale" xml:space="preserve">
-    <value>宫内鳍六链列</value>
+    <value>宫内鳍六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiFrankenWhale" xml:space="preserve">
-    <value>宫内退化六链列</value>
+    <value>宫内退化六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedFrankenWhale" xml:space="preserve">
-    <value>宫内孪生鳍六链列</value>
+    <value>宫内孪生鳍六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiFrankenWhale" xml:space="preserve">
-    <value>宫内孪生退化六链列</value>
+    <value>宫内孪生退化六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="MutantWhale" xml:space="preserve">
-    <value>交叉六链列</value>
+    <value>交叉六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedMutantWhale" xml:space="preserve">
-    <value>交叉鳍六链列</value>
+    <value>交叉鳍六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiMutantWhale" xml:space="preserve">
-    <value>交叉退化六链列</value>
+    <value>交叉退化六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedMutantWhale" xml:space="preserve">
-    <value>交叉孪生鳍六链列</value>
+    <value>交叉孪生鳍六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiMutantWhale" xml:space="preserve">
-    <value>交叉孪生退化六链列</value>
+    <value>交叉孪生退化六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="Leviathan" xml:space="preserve">
-    <value>七链列</value>
+    <value>七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedLeviathan" xml:space="preserve">
-    <value>鳍七链列</value>
+    <value>鳍七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiLeviathan" xml:space="preserve">
-    <value>退化七链列</value>
+    <value>退化七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedLeviathan" xml:space="preserve">
-    <value>孪生鳍七链列</value>
+    <value>孪生鳍七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiLeviathan" xml:space="preserve">
-    <value>孪生退化七链列</value>
+    <value>孪生退化七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FrankenLeviathan" xml:space="preserve">
-    <value>宫内七链列</value>
+    <value>宫内七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedFrankenLeviathan" xml:space="preserve">
-    <value>宫内鳍七链列</value>
+    <value>宫内鳍七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiFrankenLeviathan" xml:space="preserve">
-    <value>宫内退化七链列</value>
+    <value>宫内退化七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedFrankenLeviathan" xml:space="preserve">
-    <value>宫内孪生鳍七链列</value>
+    <value>宫内孪生鳍七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiFrankenLeviathan" xml:space="preserve">
-    <value>宫内孪生退化七链列</value>
+    <value>宫内孪生退化七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="MutantLeviathan" xml:space="preserve">
-    <value>交叉七链列</value>
+    <value>交叉七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="FinnedMutantLeviathan" xml:space="preserve">
-    <value>交叉鳍七链列</value>
+    <value>交叉鳍七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SashimiMutantLeviathan" xml:space="preserve">
-    <value>交叉退化七链列</value>
+    <value>交叉退化七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseFinnedMutantLeviathan" xml:space="preserve">
-    <value>交叉孪生鳍七链列</value>
+    <value>交叉孪生鳍七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SiameseSashimiMutantLeviathan" xml:space="preserve">
-    <value>交叉孪生退化七链列</value>
+    <value>交叉孪生退化七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="XyWing" xml:space="preserve">
@@ -2073,7 +2073,7 @@
     <value>鱼的形状</value>
   </data>
   <data name="ExtraDifficultyCaseNames_GeneralizedSwordfish" xml:space="preserve">
-    <value>广义三链列逻辑</value>
+    <value>广义三阶鱼逻辑</value>
   </data>
   <data name="ExtraDifficultyCaseNames_Guardian" xml:space="preserve">
     <value>守护者逻辑</value>
