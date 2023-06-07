@@ -98,7 +98,8 @@ public abstract partial class SubsetStepSearcher(
 			// Hidden subsets.
 			for (var house = 0; house < 27; house++)
 			{
-				var traversingMap = HousesMap[house] - EmptyCells;
+				scoped ref readonly var currentHouseCells = ref HousesMap[house];
+				var traversingMap = currentHouseCells - EmptyCells;
 				if (traversingMap.Count >= 8)
 				{
 					// No available digit (Or hidden single).
@@ -117,7 +118,7 @@ public abstract partial class SubsetStepSearcher(
 					{
 						tempMask &= (Mask)~(1 << digit);
 						digitsMask |= (Mask)(1 << digit);
-						map |= HousesMap[house] & CandidatesMap[digit];
+						map |= currentHouseCells & CandidatesMap[digit];
 					}
 					if (map.Count != size)
 					{
@@ -125,13 +126,12 @@ public abstract partial class SubsetStepSearcher(
 					}
 
 					// Gather eliminations.
-					var (conclusions, elimCells) = (new List<Conclusion>(), CellMap.Empty);
+					var conclusions = new List<Conclusion>();
 					foreach (var digit in tempMask)
 					{
 						foreach (var cell in map & CandidatesMap[digit])
 						{
 							conclusions.Add(new(Elimination, cell, digit));
-							elimCells.Add(cell);
 						}
 					}
 					if (conclusions.Count == 0)
@@ -151,12 +151,14 @@ public abstract partial class SubsetStepSearcher(
 						cellOffsets.AddRange(GetCrosshatchBaseCells(grid, digit, house, map));
 					}
 
-					var isLocked = map.IsInIntersection && elimCells.CoveredHouses == 2;
+					var isLocked = map.IsInIntersection;
 					if (!OnlySearchingForLocked || isLocked && OnlySearchingForLocked)
 					{
+						var containsExtraEliminations = false;
 						if (isLocked)
 						{
-							// Locked hidden subset found. Extra eliminations should be checked.
+							// A potential locked hidden subset found. Extra eliminations should be checked.
+							// Please note that here a hidden subset may not be a locked one because eliminations aren't validated.
 							var eliminatingHouse = TrailingZeroCount(map.CoveredHouses & ~(1 << house));
 							foreach (var cell in (HousesMap[eliminatingHouse] & EmptyCells) - map)
 							{
@@ -165,9 +167,17 @@ public abstract partial class SubsetStepSearcher(
 									if ((grid.GetCandidates(cell) >> digit & 1) != 0)
 									{
 										conclusions.Add(new(Elimination, cell, digit));
+										containsExtraEliminations = true;
 									}
 								}
 							}
+						}
+
+						if (OnlySearchingForLocked && isLocked && !containsExtraEliminations
+							|| !OnlySearchingForLocked && isLocked && containsExtraEliminations)
+						{
+							// This is a locked hidden subset. We cannot handle this as a normal hidden subset.
+							continue;
 						}
 
 						var step = new HiddenSubsetStep(
@@ -182,7 +192,7 @@ public abstract partial class SubsetStepSearcher(
 							house,
 							map,
 							digitsMask,
-							isLocked
+							isLocked && containsExtraEliminations
 						);
 
 						if (context.OnlyFindOne)

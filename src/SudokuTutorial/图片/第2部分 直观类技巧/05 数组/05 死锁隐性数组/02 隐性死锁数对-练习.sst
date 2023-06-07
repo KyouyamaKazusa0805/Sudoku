@@ -1,21 +1,26 @@
 [
   {
-    "BaseGrid": "...1+92..3....4+65..96.3...1...2.6...4+69.....8.7...2.3....+96...7...6.....8.1...9.3.",
+    "BaseGrid": "9.25..+7+8...7+918+2.4..87..+9..1...+5.+429.+2..9.+5..45+9...+1.8.....96.+22..37.8.......53.7:342 642 351 651 373 683 693",
     "ShowCandidates": false,
     "GridString": null,
     "RenderableData": {
       "Conclusions": [
-        "r2c2 <> 7",
-        "r2c3 <> 7",
-        "r2c1 <> 8",
-        "r2c2 <> 8",
-        "r2c3 <> 8"
+        "r1c2 <> 3",
+        "r3c2 <> 3",
+        "r1c2 <> 6",
+        "r3c2 <> 6",
+        "r7c2 <> 1",
+        "r7c2 <> 4",
+        "r8c2 <> 1",
+        "r8c2 <> 4",
+        "r9c2 <> 1",
+        "r9c2 <> 4"
       ],
       "Views": [
         [
           {
             "$typeid": 1,
-            "Candidate": 81,
+            "Candidate": 9,
             "Identifier": {
               "$typeid": 1,
               "Kind": 0
@@ -23,7 +28,7 @@
           },
           {
             "$typeid": 1,
-            "Candidate": 99,
+            "Candidate": 171,
             "Identifier": {
               "$typeid": 1,
               "Kind": 0
@@ -31,7 +36,7 @@
           },
           {
             "$typeid": 1,
-            "Candidate": 82,
+            "Candidate": 12,
             "Identifier": {
               "$typeid": 1,
               "Kind": 0
@@ -39,31 +44,7 @@
           },
           {
             "$typeid": 1,
-            "Candidate": 91,
-            "Identifier": {
-              "$typeid": 1,
-              "Kind": 0
-            }
-          },
-          {
-            "$typeid": 1,
-            "Candidate": 83,
-            "Identifier": {
-              "$typeid": 1,
-              "Kind": 0
-            }
-          },
-          {
-            "$typeid": 1,
-            "Candidate": 92,
-            "Identifier": {
-              "$typeid": 1,
-              "Kind": 0
-            }
-          },
-          {
-            "$typeid": 1,
-            "Candidate": 101,
+            "Candidate": 174,
             "Identifier": {
               "$typeid": 1,
               "Kind": 0
@@ -80,7 +61,7 @@
           {
             "$typeid": 0,
             "RenderingMode": 1,
-            "Cell": 3,
+            "Cell": 13,
             "Identifier": {
               "$typeid": 1,
               "Kind": 0
@@ -89,7 +70,7 @@
           {
             "$typeid": 0,
             "RenderingMode": 1,
-            "Cell": 25,
+            "Cell": 27,
             "Identifier": {
               "$typeid": 1,
               "Kind": 0
@@ -98,7 +79,7 @@
           {
             "$typeid": 0,
             "RenderingMode": 1,
-            "Cell": 0,
+            "Cell": 9,
             "Identifier": {
               "$typeid": 1,
               "Kind": 1
@@ -107,7 +88,7 @@
           {
             "$typeid": 0,
             "RenderingMode": 1,
-            "Cell": 1,
+            "Cell": 10,
             "Identifier": {
               "$typeid": 1,
               "Kind": 1
@@ -116,7 +97,7 @@
           {
             "$typeid": 0,
             "RenderingMode": 1,
-            "Cell": 2,
+            "Cell": 18,
             "Identifier": {
               "$typeid": 1,
               "Kind": 1
@@ -125,16 +106,7 @@
           {
             "$typeid": 0,
             "RenderingMode": 1,
-            "Cell": 20,
-            "Identifier": {
-              "$typeid": 1,
-              "Kind": 1
-            }
-          },
-          {
-            "$typeid": 0,
-            "RenderingMode": 1,
-            "Cell": 5,
+            "Cell": 17,
             "Identifier": {
               "$typeid": 1,
               "Kind": 0
@@ -143,25 +115,7 @@
           {
             "$typeid": 0,
             "RenderingMode": 1,
-            "Cell": 29,
-            "Identifier": {
-              "$typeid": 1,
-              "Kind": 0
-            }
-          },
-          {
-            "$typeid": 0,
-            "RenderingMode": 1,
-            "Cell": 8,
-            "Identifier": {
-              "$typeid": 1,
-              "Kind": 0
-            }
-          },
-          {
-            "$typeid": 0,
-            "RenderingMode": 1,
-            "Cell": 21,
+            "Cell": 45,
             "Identifier": {
               "$typeid": 1,
               "Kind": 0
