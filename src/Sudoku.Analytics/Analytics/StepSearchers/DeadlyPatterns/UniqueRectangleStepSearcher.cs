@@ -109,9 +109,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var alses = grid.GatherAlmostLockedSets();
 
 		// Iterate on each possible UR structure.
-		for (var index = 0; index < UniqueRectanglePatterns.Length; index++)
+		for (var index = 0; index < UniqueRectangleStepSearcherHelper.CountOfPatterns; index++)
 		{
-			var urCells = UniqueRectanglePatterns[index];
+			var urCells = UniqueRectangleStepSearcherHelper.UniqueRectanglePatterns[index];
 
 			// Check preconditions.
 			if (!UniqueRectangleStepSearcherHelper.CheckPreconditions(grid, urCells, arMode))

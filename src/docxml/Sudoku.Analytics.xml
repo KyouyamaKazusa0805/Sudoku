@@ -3071,6 +3071,18 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>
         </member>
+        <member name="F:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.CountOfPatterns">
+            <summary>
+            Indicates the number of all total possible UR patterns.
+            The value is same as the length of field <see cref="F:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.UniqueRectanglePatterns"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.UniqueRectanglePatterns"/>
+        </member>
+        <member name="F:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.UniqueRectanglePatterns">
+            <summary>
+            The table of all <b>Unique Rectangle</b> cells.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.CheckPreconditions(Sudoku.Concepts.Grid@,System.Int32[],System.Boolean)">
             <summary>
             Check preconditions.
@@ -14290,11 +14302,6 @@ result ^= expression;
         <member name="F:Sudoku.Analytics.CommonReadOnlies.MultisectorLockedSetsTemplatesCount">
             <summary>
             Indicates the total number of multi-sector locked sets possible templates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlies.UniqueRectanglePatterns">
-            <summary>
-            The table of all <b>Unique Rectangle</b> cells.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.CommonReadOnlies.EmptyRectangleLinkIds">
