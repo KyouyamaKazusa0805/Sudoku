@@ -6,12 +6,6 @@ namespace SudokuStudio.BindableSource;
 public sealed class TechniquePageRoutingBindableSource : IBindableSource
 {
 	/// <summary>
-	/// Indicates the default culture.
-	/// </summary>
-	private static readonly CultureInfo DefaultCulture = CultureInfo.GetCultureInfo(1033);
-
-
-	/// <summary>
 	/// Indicates whether the page is enabled.
 	/// </summary>
 	[MemberNotNullWhen(true, nameof(RoutingPageTypeName))]
@@ -25,7 +19,7 @@ public sealed class TechniquePageRoutingBindableSource : IBindableSource
 	/// <summary>
 	/// Indicates the resource default name (English name) of this technique.
 	/// </summary>
-	public string OriginalName => SudokuDefaultResource.ResourceManager.GetString(Technique.ToString(), DefaultCulture)!;
+	public string OriginalName => Technique.GetEnglishName()!;
 
 	/// <summary>
 	/// Indicates the routing page type name.

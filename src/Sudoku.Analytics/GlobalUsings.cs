@@ -34,7 +34,6 @@ global using static System.Math;
 global using static Sudoku.Analytics.Buffers.CachedFields;
 global using static Sudoku.Analytics.CommonReadOnlies;
 global using static Sudoku.Analytics.Resources.MergedResources;
-global using RawResources = Sudoku.Analytics.Resources.Resources;
 global using ChainBranch = System.Collections.Generic.Dictionary<byte, Sudoku.Analytics.Patterns.NodeSet>;
 global using unsafe LoopChecker = delegate*<in Sudoku.Concepts.CellMap, bool>;
 global using ChainNodeListWithHeadCandidate = System.Collections.Generic.Dictionary<Sudoku.Analytics.Patterns.ChainNode, /*Candidate*/ int>;

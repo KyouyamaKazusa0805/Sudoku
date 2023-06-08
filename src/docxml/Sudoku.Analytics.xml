@@ -4829,11 +4829,6 @@ result ^= expression;
             Indicates Chinese language identifier.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Resources.MergedResources.Neutral">
-            <summary>
-            Indicates the default language culture used in the resource file.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.Resources.MergedResources.GetString(System.String)">
             <summary>
             Gets the value via the specified string key.

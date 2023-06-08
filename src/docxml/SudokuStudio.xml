@@ -289,11 +289,6 @@
             Represents a type that can be used for binding as source, for technique page routing.
             </summary>
         </member>
-        <member name="F:SudokuStudio.BindableSource.TechniquePageRoutingBindableSource.DefaultCulture">
-            <summary>
-            Indicates the default culture.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.BindableSource.TechniquePageRoutingBindableSource.IsEnabled">
             <summary>
             Indicates whether the page is enabled.
