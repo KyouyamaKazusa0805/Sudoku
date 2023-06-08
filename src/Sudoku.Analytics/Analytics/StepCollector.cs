@@ -118,7 +118,7 @@ public sealed class StepCollector : IAnalyzerOrCollector
 
 		// Report the progress if worth.
 		ReportProgress:
-			progress?.Report(++currentSearcherIndex / totalSearchersCount);
+			progress?.Report(++currentSearcherIndex / (double)totalSearchersCount);
 		}
 
 		// Return the result.
