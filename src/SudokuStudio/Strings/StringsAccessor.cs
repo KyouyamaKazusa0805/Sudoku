@@ -1,13 +1,13 @@
-﻿namespace SudokuStudio.Resources;
+namespace SudokuStudio.Strings;
 
 /// <summary>
 /// Defines an easy entry to get <see cref="string"/> resources.
 /// </summary>
-internal static class ResourceDictionary
+internal static class StringsAccessor
 {
 	/// <inheritdoc cref="GetString(string)"/>
 	[return: NotNullIfNotNull(nameof(key))]
-	public static string? GetStringNullable(string? key) => key is null ? null : TextResources.ResourceManager.GetString(key);
+	public static string? GetStringNullable(string? key) => key is null ? null : Resources.ResourceManager.GetString(key);
 
 	/// <summary>
 	/// Try to fetch the target resource via the specified key.
@@ -15,7 +15,7 @@ internal static class ResourceDictionary
 	/// <param name="key">The resource key.</param>
 	/// <returns>The target resource.</returns>
 	public static string GetString(string key)
-		=> TextResources.ResourceManager.GetString(key) ?? throw new KeyNotFoundException("The target resource is not found.");
+		=> Resources.ResourceManager.GetString(key) ?? throw new KeyNotFoundException("The target resource is not found.");
 
 	/// <summary>
 	/// Try to fetch the specified token via its name.

@@ -58,38 +58,38 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Resources\images\baba.gif">
+		<EmbeddedResource Include="Assets\images\baba.gif">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<EmbeddedResource Include="Resources\images\group.gif">
+		<EmbeddedResource Include="Assets\images\group.gif">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<EmbeddedResource Include="Resources\images\icon.png">
+		<EmbeddedResource Include="Assets\images\icon.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<EmbeddedResource Include="Resources\images\is.gif">
+		<EmbeddedResource Include="Assets\images\is.gif">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<EmbeddedResource Include="Resources\images\logo-devtoys.png">
+		<EmbeddedResource Include="Assets\images\logo-devtoys.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<EmbeddedResource Include="Resources\images\Logo.ico">
+		<EmbeddedResource Include="Assets\images\Logo.ico">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<EmbeddedResource Include="Resources\images\repo-dotnet.png">
+		<EmbeddedResource Include="Assets\images\repo-dotnet.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Resources\TextResources.resx">
+		<EmbeddedResource Update="Strings\Resources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>TextResources.Designer.cs</LastGenOutput>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Resources\TextResources.Designer.cs">
+		<Compile Update="Strings\Resources.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
-			<DependentUpon>TextResources.resx</DependentUpon>
+			<DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
 	</ItemGroup>
 

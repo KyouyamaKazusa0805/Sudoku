@@ -1,9 +1,9 @@
-namespace Sudoku.Analytics.Resources;
+namespace Sudoku.Analytics.Strings;
 
 /// <summary>
 /// Represents an entry that can access resource strings.
 /// </summary>
-public static class MergedResources
+public static class StringsAccessor
 {
 	/// <summary>
 	/// Indicates English language identifier.
@@ -21,9 +21,8 @@ public static class MergedResources
 	/// </summary>
 	/// <param name="key">The resource key.</param>
 	/// <returns>The value. If none found, <see langword="null"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetString(string key)
-	{
-		var @default = Sudoku.Analytics.Resources.Resources.ResourceManager;
-		return @default.GetString(key) ?? @default.GetString(key, CultureInfo.GetCultureInfo(1033));
-	}
+		=> Resources.ResourceManager.GetString(key)
+		?? Resources.ResourceManager.GetString(key, CultureInfo.GetCultureInfo(1033));
 }

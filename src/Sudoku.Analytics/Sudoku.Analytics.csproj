@@ -14,7 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Analytics\Resources\Resources.Designer.cs">
+		<Compile Update="Analytics\Strings\Resources.Designer.cs">
 			<DependentUpon>Resources.resx</DependentUpon>
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -22,12 +22,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Update="Analytics\Resources\Resources.resx">
+		<EmbeddedResource Update="Analytics\Strings\Resources.resx">
 			<SubType>Designer</SubType>
 			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
 			<Generator>PublicResXFileCodeGenerator</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Analytics\Resources\Resources.zh-CN.resx">
+		<EmbeddedResource Update="Analytics\Strings\Resources.zh-CN.resx">
 			<SubType>Designer</SubType>
 		</EmbeddedResource>
 	</ItemGroup>

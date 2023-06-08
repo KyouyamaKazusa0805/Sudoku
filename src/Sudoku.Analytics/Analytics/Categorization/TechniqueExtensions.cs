@@ -26,7 +26,7 @@ public static class TechniqueExtensions
 	/// Return <see langword="null"/> if the current technique does not contain a valid name in resource dictionary.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? GetEnglishName(this Technique @this) => Sudoku.Analytics.Resources.Resources.ResourceManager.GetString(@this.ToString(), new(1033));
+	public static string? GetEnglishName(this Technique @this) => Resources.ResourceManager.GetString(@this.ToString(), new(1033));
 
 	/// <summary>
 	/// Try to get the abbreviation of the current <see cref="Technique"/>.

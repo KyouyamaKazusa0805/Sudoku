@@ -13,7 +13,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// </summary>
 	/// <remarks>
 	/// The technique name are all stored in the resource dictionary,
-	/// you can find them in the <c>Resources</c> folder (Type <see cref="MergedResources"/>).
+	/// you can find them in the <c>Strings</c> folder (Type <see cref="StringsAccessor"/>).
 	/// </remarks>
 	/// <exception cref="ResourceNotFoundException">Throws when the specified resource key is not found.</exception>
 	public virtual string Name => Code.GetName() ?? throw new ResourceNotFoundException(Code.ToString(), GetType().Assembly);
