@@ -49,7 +49,9 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 数组\04 死锁数组\01 死锁数对.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 数组\04 死锁数组\02 死锁三数组.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 数组\05 死锁隐性数组\01 隐性死锁数对.sst" />
-    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 数组\05 死锁隐性数组\02 隐性死锁三数组.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 数组\05 死锁隐性数组\02 隐性死锁数对-练习.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 数组\05 死锁隐性数组\03 隐性死锁三数组.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 数组\05 死锁隐性数组\04 隐性死锁三数组另外一个例子.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 数组\06 数组之间的关系\01 死锁数对，但只能删一个数.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 数组\06 数组之间的关系\02 显性四数组带区块，但区块没有删数.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第2部分 直观类技巧\05 数组\06 数组之间的关系\03 显性数组和隐性数组互补-显性数组.sst" />
