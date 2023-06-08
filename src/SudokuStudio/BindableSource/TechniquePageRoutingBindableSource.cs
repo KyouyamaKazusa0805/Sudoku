@@ -20,7 +20,7 @@ public sealed class TechniquePageRoutingBindableSource : IBindableSource
 	/// <summary>
 	/// Indicates the resource name of this technique.
 	/// </summary>
-	public string Name => MergedResources.R[Technique.ToString()]!;
+	public string Name => Technique.GetName()!;
 
 	/// <summary>
 	/// Indicates the resource default name (English name) of this technique.

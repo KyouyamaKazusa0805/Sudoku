@@ -150,7 +150,7 @@ public abstract partial class StepSearcher(
 	/// </summary>
 	/// <returns>Real name of this instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override string ToString() => R[$"StepSearcherName_{TypeName}"] ?? TypeName;
+	public sealed override string ToString() => GetString($"StepSearcherName_{TypeName}") ?? TypeName;
 
 	/// <summary>
 	/// Try to collect all available <see cref="Step"/>s using the current technique rule.

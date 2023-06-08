@@ -65,7 +65,7 @@ public sealed partial class RegularWingStep(
 	public int Size => PopCount((uint)DigitsMask);
 
 	/// <inheritdoc/>
-	public override Technique Code => TechniqueFact.MakeRegularWingTechniqueCode(TechniqueFact.MakeRegularWingName(Size, IsIncomplete));
+	public override Technique Code => TechniqueFact.MakeRegularWingTechniqueCode(TechniqueFact.GetRegularWingEnglishName(Size, IsIncomplete));
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => Size switch { 3 or 4 => DifficultyLevel.Hard, >= 5 => DifficultyLevel.Fiendish };

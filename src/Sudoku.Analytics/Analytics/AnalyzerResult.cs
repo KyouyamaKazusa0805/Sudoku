@@ -395,7 +395,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 		scoped var sb = new StringHandler();
 		if (options.Flags(FormattingOptions.ShowGridAndSolutionCode))
 		{
-			sb.Append(R["AnalysisResultPuzzle"]!);
+			sb.Append(GetString("AnalysisResultPuzzle")!);
 			sb.Append(puzzle.ToString("#"));
 			sb.AppendLine();
 		}
@@ -403,7 +403,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 		// Print solving steps (if worth).
 		if (options.Flags(FormattingOptions.ShowSteps) && steps is not null)
 		{
-			sb.Append(R["AnalysisResultSolvingSteps"]!);
+			sb.Append(GetString("AnalysisResultSolvingSteps")!);
 			sb.AppendLine();
 
 			if (getBottleneck() is var (bIndex, bInfo))
@@ -412,7 +412,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 				{
 					if (i > bIndex && !options.Flags(FormattingOptions.ShowStepsAfterBottleneck))
 					{
-						sb.Append(R["Ellipsis"]!);
+						sb.Append(GetString("Ellipsis")!);
 						sb.AppendLine();
 
 						break;
@@ -441,13 +441,13 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 				{
 					a(ref sb, options.Flags(FormattingOptions.ShowSeparators));
 
-					sb.Append(R["AnalysisResultBottleneckStep"]!);
+					sb.Append(GetString("AnalysisResultBottleneckStep")!);
 
 					if (options.Flags(FormattingOptions.ShowStepLabel))
 					{
-						sb.Append(R["AnalysisResultInStep"]!);
+						sb.Append(GetString("AnalysisResultInStep")!);
 						sb.Append(bIndex + 1);
-						sb.Append(R["Colon"]!);
+						sb.Append(GetString("Colon")!);
 					}
 
 					sb.Append(' ');
@@ -462,16 +462,16 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 		// Print solving step statistics (if worth).
 		if (steps is not null)
 		{
-			sb.Append(R["AnalysisResultTechniqueUsed"]!);
+			sb.Append(GetString("AnalysisResultTechniqueUsed")!);
 			sb.AppendLine();
 
 			if (options.Flags(FormattingOptions.ShowStepDetail))
 			{
-				sb.Append(R["AnalysisResultMin"]!, 6);
+				sb.Append(GetString("AnalysisResultMin")!, 6);
 				sb.Append(',');
 				sb.Append(' ');
-				sb.Append(R["AnalysisResultTotal"]!, 6);
-				sb.Append(R["AnalysisResultTechniqueUsing"]!);
+				sb.Append(GetString("AnalysisResultTotal")!, 6);
+				sb.Append(GetString("AnalysisResultTechniqueUsing")!);
 			}
 
 			foreach (var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.Name)
@@ -511,14 +511,14 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 
 			sb.Append(stepsCount, 3);
 			sb.Append(' ');
-			sb.Append(R[stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural"]!);
+			sb.Append(GetString(stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural")!);
 			sb.AppendLine();
 
 			a(ref sb, options.Flags(FormattingOptions.ShowSeparators));
 		}
 
 		// Print detail data.
-		sb.Append(R["AnalysisResultPuzzleRating"]!);
+		sb.Append(GetString("AnalysisResultPuzzleRating")!);
 		sb.Append(max, "0.0");
 		sb.Append('/');
 		sb.Append(pearl, "0.0");
@@ -529,19 +529,19 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 		// Print the solution (if not null and worth).
 		if (!solution.IsUndefined && options.Flags(FormattingOptions.ShowGridAndSolutionCode))
 		{
-			sb.Append(R["AnalysisResultPuzzleSolution"]!);
+			sb.Append(GetString("AnalysisResultPuzzleSolution")!);
 			sb.Append(solution.ToString("!"));
 			sb.AppendLine();
 		}
 
 		// Print the elapsed time.
-		sb.Append(R["AnalysisResultPuzzleHas"]!);
-		sb.AppendWhen(!isSolved, R["AnalysisResultNot"]!);
-		sb.Append(R["AnalysisResultBeenSolved"]!);
+		sb.Append(GetString("AnalysisResultPuzzleHas")!);
+		sb.AppendWhen(!isSolved, GetString("AnalysisResultNot")!);
+		sb.Append(GetString("AnalysisResultBeenSolved")!);
 		sb.AppendLine();
 		if (options.Flags(FormattingOptions.ShowElapsedTime))
 		{
-			sb.Append(R["AnalysisResultTimeElapsed"]!);
+			sb.Append(GetString("AnalysisResultTimeElapsed")!);
 			sb.Append(elapsed.ToString("""hh\:mm\:ss\.fff"""));
 			sb.AppendLine();
 		}

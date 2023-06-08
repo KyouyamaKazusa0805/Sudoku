@@ -42,7 +42,7 @@ public sealed class Visit : IExecutable
 		}
 #else
 		// Output the site link.
-		await Terminal.WriteLineAsync($"{R["_MessageFormat_PleaseVisitFollowingLink"]!}\r\n{link.AbsoluteUri}");
+		await Terminal.WriteLineAsync($"{GetString("_MessageFormat_PleaseVisitFollowingLink")!}\r\n{link.AbsoluteUri}");
 #endif
 	}
 }

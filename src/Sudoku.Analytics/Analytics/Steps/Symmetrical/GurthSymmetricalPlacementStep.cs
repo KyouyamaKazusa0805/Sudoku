@@ -34,13 +34,13 @@ public sealed partial class GurthSymmetricalPlacementStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { SymmetryTypeStr, MappingStr } }, { ChineseLanguage, new[] { SymmetryTypeStr, MappingStr } } };
 
-	private string SymmetryTypeStr => R[$"{SymmetryType}Symmetry"]!;
+	private string SymmetryTypeStr => GetString($"{SymmetryType}Symmetry")!;
 
 	private string MappingStr
 	{
 		get
 		{
-			var separator = R["Comma"]!;
+			var separator = GetString("Comma")!;
 			if (Mapping is not null)
 			{
 				scoped var sb = new StringHandler(10);
@@ -58,7 +58,7 @@ public sealed partial class GurthSymmetricalPlacementStep(
 			}
 			else
 			{
-				return R["NoMappingRelation"]!;
+				return GetString("NoMappingRelation")!;
 			}
 		}
 	}

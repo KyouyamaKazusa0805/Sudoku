@@ -76,16 +76,10 @@ public partial class App : Application
 	/// <inheritdoc/>
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
-		RegisterResourceFetching();
 		HandleOnProgramOpeningEntryCase();
 		ActivateMainWindow();
 		LoadConfigurationFileFromLocal();
 	}
-
-	/// <summary>
-	/// Register resource-fetching service.
-	/// </summary>
-	private void RegisterResourceFetching() => MergedResources.R.RegisterAssembly(CurrentAssembly);
 
 	/// <summary>
 	/// Creates a window, and activate it.

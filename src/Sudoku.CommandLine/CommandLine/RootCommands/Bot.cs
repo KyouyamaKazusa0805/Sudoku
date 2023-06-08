@@ -62,7 +62,7 @@ file sealed class Bot : IExecutable
 			(await AccountManager.GetGroupsAsync()).ForEach(static group => RunningContexts.TryAdd(group.Id, new()));
 
 #if BASIC_LOG_INFO_OUTPUT
-			await Terminal.WriteLineAsync(R["_Message_BootSuccess"]!, ConsoleColor.DarkGreen);
+			await Terminal.WriteLineAsync(GetString("_Message_BootSuccess")!, ConsoleColor.DarkGreen);
 #endif
 		}
 		catch (Exception ex)
@@ -71,8 +71,8 @@ file sealed class Bot : IExecutable
 			await Terminal.WriteLineAsync(
 				ex switch
 				{
-					FlurlHttpException => R["_Message_BootFailed_Mirai"]!,
-					InvalidResponseException => R["_Message_BootFailed_Connection"]!,
+					FlurlHttpException => GetString("_Message_BootFailed_Mirai")!,
+					InvalidResponseException => GetString("_Message_BootFailed_Connection")!,
 					_ => throw ex
 				},
 				ConsoleColor.DarkRed
@@ -135,7 +135,7 @@ file sealed class Bot : IExecutable
 			}
 			else
 			{
-				await e.RejectAsync(R["_MessageFormat_MemberJoinedRejected"]!);
+				await e.RejectAsync(GetString("_MessageFormat_MemberJoinedRejected")!);
 			}
 		}
 	}
@@ -150,7 +150,7 @@ file sealed class Bot : IExecutable
 	{
 		if (e.Member.Group is { Id: SudokuGroupNumber } group)
 		{
-			await group.SendGroupMessageAsync(R["_MessageFormat_SampleMemberJoined"]!);
+			await group.SendGroupMessageAsync(GetString("_MessageFormat_SampleMemberJoined")!);
 		}
 	}
 #endif

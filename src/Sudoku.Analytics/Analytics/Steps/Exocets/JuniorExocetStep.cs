@@ -44,7 +44,7 @@ public sealed partial class JuniorExocetStep(
 		get
 		{
 			string? cells = LockedMemberQ == 0 ? null : DigitMaskFormatter.Format(LockedMemberQ, FormattingMode.Normal);
-			return $"{R["LockedMember1"]}{cells}";
+			return $"{GetString("LockedMember1")}{cells}";
 		}
 	}
 
@@ -56,7 +56,7 @@ public sealed partial class JuniorExocetStep(
 		get
 		{
 			string? cells = LockedMemberR == 0 ? null : DigitMaskFormatter.Format(LockedMemberR, FormattingMode.Normal);
-			return $"{R["LockedMember2"]}{cells}";
+			return $"{GetString("LockedMember2")}{cells}";
 		}
 	}
 #endif

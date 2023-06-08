@@ -64,5 +64,5 @@ public sealed partial class NakedSubsetStep(
 
 	private string HouseStr => HouseFormatter.Format(1 << House);
 
-	private string SubsetName => R[$"SubsetNamesSize{Size}"]!;
+	private string SubsetName => GetString($"SubsetNamesSize{Size}")!;
 }

@@ -39,7 +39,7 @@ public sealed partial class SeniorExocetStep(
 		get
 		{
 			const string separator = ", ";
-			var endoTargetSnippet = R["EndoTarget"]!;
+			var endoTargetSnippet = GetString("EndoTarget")!;
 			var endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr}";
 			if (ExtraHouses is not null)
 			{
@@ -63,7 +63,7 @@ public sealed partial class SeniorExocetStep(
 				{
 					sb.RemoveFromEnd(separator.Length);
 
-					var extraHousesIncluded = R["IncludedExtraHouses"]!;
+					var extraHousesIncluded = GetString("IncludedExtraHouses")!;
 					return $"{endoTargetStr}{extraHousesIncluded}{sb.ToStringAndClear()}";
 				}
 			}

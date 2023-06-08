@@ -1,6 +1,3 @@
-// Registers the resource fetching.
-R.AddExternalResourceFetcher(typeof(Program).Assembly, Resources.ResourceManager.GetString);
-
 // Parse and route commands.
 try
 {

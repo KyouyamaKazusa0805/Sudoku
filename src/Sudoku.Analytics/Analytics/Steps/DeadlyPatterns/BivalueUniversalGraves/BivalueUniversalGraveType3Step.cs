@@ -40,9 +40,9 @@ public sealed partial class BivalueUniversalGraveType3Step(
 
 	private string TrueCandidatesStr => (CandidateMap.Empty + TrueCandidates).ToString();
 
-	private string SubsetTypeStr => R[IsNaked ? "NakedKeyword" : "HiddenKeyword"]!;
+	private string SubsetTypeStr => GetString(IsNaked ? "NakedKeyword" : "HiddenKeyword")!;
 
-	private string SizeStr => R[$"SubsetNamesSize{Size}"]!;
+	private string SizeStr => TechniqueFact.GetSubsetName(Size);
 
 	private string ExtraDigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
 

@@ -53,7 +53,7 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
-	public override string Format => R["TechniqueFormat_UniqueRectangleStep"]!;
+	public override string Format => GetString("TechniqueFormat_UniqueRectangleStep")!;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

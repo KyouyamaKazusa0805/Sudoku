@@ -15,7 +15,7 @@ public static class TechniqueExtensions
 	/// Return <see langword="null"/> if the current technique does not contain a valid name in resource dictionary.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? GetName(this Technique @this) => R[@this.ToString()];
+	public static string? GetName(this Technique @this) => GetString(@this.ToString());
 
 	/// <summary>
 	/// Try to get the English name of the current <see cref="Technique"/>.
@@ -50,7 +50,7 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetAbbreviation(this Technique @this)
 		=> typeof(Technique).GetField(@this.ToString())!.GetCustomAttribute<AbbreviationAttribute>()?.Abbreviation
-		?? R[$"TechniqueAbbr_{@this}"]
+		?? GetString($"TechniqueAbbr_{@this}")
 		?? @this.GetGroup().GetAbbreviation();
 
 	/// <summary>
@@ -63,7 +63,7 @@ public static class TechniqueExtensions
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[]? GetAliases(this Technique @this)
-		=> R[$"TechniqueAlias_{@this}"]?.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+		=> GetString($"TechniqueAlias_{@this}")?.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
 	/// <summary>
 	/// Try to get the group that the current <see cref="Technique"/> belongs to.

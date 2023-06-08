@@ -32,13 +32,14 @@ public sealed partial class AlmostLockedSetsXzStep(
 
 	/// <inheritdoc/>
 	public override string? Format
-		=> R[
-			IsDoublyLinked is null
-				? ZDigitsMask == 0
-					? "TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate"
-					: "TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate"
-				: "TechniqueFormat_AlmostLockedSetsXzRule"
-		];
+		=> GetString(
+			(IsDoublyLinked, ZDigitsMask) switch
+			{
+				(null, 0) => "TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate",
+				(null, _) => "TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate",
+				_ => "TechniqueFormat_AlmostLockedSetsXzRule"
+			}
+		);
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
@@ -83,5 +84,5 @@ public sealed partial class AlmostLockedSetsXzStep(
 	private string ZResultStr
 		=> ZDigitsMask == 0
 			? string.Empty
-			: $"{R["Comma"]!}Z = {DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal)}";
+			: $"{GetString("Comma")!}Z = {DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal)}";
 }

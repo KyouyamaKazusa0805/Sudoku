@@ -55,7 +55,7 @@ public abstract class DigitMaskFormatter : ICollectionFormatter<Digit>
 		=> formattingMode switch
 		{
 			FormattingMode.Simple => Format(digitsMask, string.Empty),
-			FormattingMode.Normal => Format(digitsMask, R["ChineseComma"]!),
+			FormattingMode.Normal => Format(digitsMask, ", "),
 			FormattingMode.Full => throw new NotSupportedException("The full-formatting mode is not supported on digit collections."),
 			_ => throw new ArgumentOutOfRangeException(nameof(formattingMode))
 		};

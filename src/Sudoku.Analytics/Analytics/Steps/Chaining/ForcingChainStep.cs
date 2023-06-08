@@ -34,7 +34,7 @@ public sealed partial class ForcingChainStep(
 
 	private string OnOffStr => Target.IsOn.ToString().ToLower();
 
-	private string OnOffStrZhCn => (Target.IsOn ? R["TrueKeyword"] : R["FalseKeyword"])!;
+	private string OnOffStrZhCn => (Target.IsOn ? GetString("TrueKeyword") : GetString("FalseKeyword"))!;
 
 
 	/// <inheritdoc/>

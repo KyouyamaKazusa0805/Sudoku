@@ -15,22 +15,4 @@
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Compile Update="Resources\Resources.Designer.cs">
-			<DependentUpon>Resources.resx</DependentUpon>
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Update="Resources\Resources.resx">
-			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
-			<Generator>PublicResXFileCodeGenerator</Generator>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Resources\Resources.zh-CN.resx">
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-	</ItemGroup>
-
 </Project>

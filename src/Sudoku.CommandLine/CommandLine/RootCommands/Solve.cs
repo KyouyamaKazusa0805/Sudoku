@@ -69,10 +69,10 @@ public sealed class Solve : IExecutable
 					var uriLink = (string?)type.GetProperty(nameof(ISolver.UriLink))?.GetValue(null);
 					await Terminal.WriteLineAsync(
 						string.Format(
-							R["_MessageFormat_SolveResult"]!,
+							GetString("_MessageFormat_SolveResult")!,
 							Grid.ToString("#"),
 							name,
-							uriLink is null ? string.Empty : $"\r\n{R["_MessageFormat_UriLinkIs"]!} {uriLink}",
+							uriLink is null ? string.Empty : $"\r\n{GetString("_MessageFormat_UriLinkIs")!} {uriLink}",
 							solution.ToString("!")
 						)
 					);
@@ -88,7 +88,7 @@ public sealed class Solve : IExecutable
 
 					await Terminal.WriteLineAsync(
 						string.Format(
-							R["_MessageFormat_AnalysisResult"]!,
+							GetString("_MessageFormat_AnalysisResult")!,
 							Grid.ToString("#"),
 							name,
 							solution.ToString("!"),

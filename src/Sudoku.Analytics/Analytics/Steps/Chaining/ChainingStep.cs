@@ -49,17 +49,17 @@ public abstract partial class ChainingStep(
 			static string space() => CultureInfo.CurrentCulture.Name switch { ['Z' or 'z', 'H' or 'h', ..] => string.Empty, _ => " " };
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static string dynamicKeyword() => $"{R["DynamicKeyword"]!}{space()}";
+			static string dynamicKeyword() => $"{GetString("DynamicKeyword")!}{space()}";
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static string nestedSuffix(int level)
 				=> level switch
 				{
-					1 => R["NestedSuffix_Level1"]!,
-					2 => R["NestedSuffix_Level2"]!,
-					3 => R["NestedSuffix_Level3"]!,
-					4 => R["NestedSuffix_Level4"]!,
-					>= 5 => string.Format(R["NestedSuffix_Level5OrGreater"]!, nestedSuffix(level - 3)),
+					1 => GetString("NestedSuffix_Level1")!,
+					2 => GetString("NestedSuffix_Level2")!,
+					3 => GetString("NestedSuffix_Level3")!,
+					4 => GetString("NestedSuffix_Level4")!,
+					>= 5 => string.Format(GetString("NestedSuffix_Level5OrGreater")!, nestedSuffix(level - 3)),
 					_ => string.Empty
 				};
 
@@ -67,14 +67,14 @@ public abstract partial class ChainingStep(
 			string prefixWithoutLevel()
 				=> this switch
 				{
-					ForcingChainStep => R["NormalChains"]!,
-					CellForcingChainsStep { IsDynamic: false } => R["CellChains"]!,
-					CellForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{R["CellChains"]!}",
-					RegionForcingChainsStep { IsDynamic: false } => R["HouseChains"]!,
-					RegionForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{R["HouseChains"]!}",
-					BinaryForcingChainsStep { IsNishio: true } => R["NishioChains"]!,
-					BinaryForcingChainsStep { IsAbsurd: true } => R["AbsurdChains"]!,
-					BinaryForcingChainsStep => R["DoubleChains"]!,
+					ForcingChainStep => GetString("NormalChains")!,
+					CellForcingChainsStep { IsDynamic: false } => GetString("CellChains")!,
+					CellForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{GetString("CellChains")!}",
+					RegionForcingChainsStep { IsDynamic: false } => GetString("HouseChains")!,
+					RegionForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{GetString("HouseChains")!}",
+					BinaryForcingChainsStep { IsNishio: true } => GetString("NishioChains")!,
+					BinaryForcingChainsStep { IsAbsurd: true } => GetString("AbsurdChains")!,
+					BinaryForcingChainsStep => GetString("DoubleChains")!,
 				};
 		}
 	}

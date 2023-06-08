@@ -37,5 +37,5 @@ public sealed partial class QiuDeadlyPatternType3Step(
 
 	private string CellsStr => SubsetCells.ToString();
 
-	private string SubsetName => R[$"SubsetNamesSize{SubsetCells.Count + 1}"]!;
+	private string SubsetName => TechniqueFact.GetSubsetName(SubsetCells.Count + 1);
 }

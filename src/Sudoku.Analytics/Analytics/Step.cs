@@ -60,18 +60,16 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// If you cannot decide the real name of the culture name, just use suffix instead like <c>"en"</c> and <c>"zh"</c>, ignoring cases.
 	/// </para>
 	/// <para>
-	/// If you want to use the values in the resource dictionary, you can just use a <see langword="static readonly"/> field
-	/// called <see cref="R"/>, for example:
+	/// If you want to use the values in the resource dictionary, you can just use method <see cref="GetString(string)"/>, for example:
 	/// <code><![CDATA[
-	/// using static Sudoku.Resources.MergedResources;
-	/// 
-	/// public override string Format => R["TheKeyYouWantToSearch"];
+	/// public override string Format
+	///     => global::Sudoku.Analytics.Resources.MergedResources.GetString("TheKeyYouWantToSearch");
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="FormatInterpolatedParts"/>
-	/// <seealso cref="R"/>
-	public virtual string? Format => R[$"TechniqueFormat_{GetType().Name}"];
+	/// <seealso cref="GetString(string)"/>
+	public virtual string? Format => GetString($"TechniqueFormat_{GetType().Name}");
 
 	/// <summary>
 	/// Indicates the difficulty of this technique step.
@@ -175,7 +173,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	{
 		var currentCultureName = CultureInfo.CurrentCulture.Name;
 		var formatArgs = FormatInterpolatedParts?.FirstOrDefault(cultureSelector).Value;
-		var colonToken = R["Colon"];
+		var colonToken = GetString("Colon");
 		return (Format, formatArgs) switch
 		{
 			(null, _) => ToSimpleString(),

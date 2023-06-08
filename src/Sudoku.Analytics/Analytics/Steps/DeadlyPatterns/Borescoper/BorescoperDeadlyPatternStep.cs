@@ -23,7 +23,7 @@ public abstract partial class BorescoperDeadlyPatternStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public sealed override string Format => R[$"TechniqueFormat_UniquePolygonType{Type}Step"]!;
+	public sealed override string Format => GetString($"TechniqueFormat_UniquePolygonType{Type}Step")!;
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

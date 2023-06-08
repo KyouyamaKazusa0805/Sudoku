@@ -56,7 +56,7 @@ public sealed partial class BinaryForcingChainsStep(
 
 	/// <inheritdoc/>
 	public override string Format
-		=> (IsAbsurd ? R["TechniqueFormat_ContradictionForcingChainsStep"] : R["TechniqueFormat_DoubleForcingChainsStep"])!;
+		=> (IsAbsurd ? GetString("TechniqueFormat_ContradictionForcingChainsStep") : GetString("TechniqueFormat_DoubleForcingChainsStep"))!;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
@@ -76,7 +76,7 @@ public sealed partial class BinaryForcingChainsStep(
 
 	private string StartCandOnOffStr => SourcePotential.IsOn.ToString().ToLower();
 
-	private string StartCandOnOffStrZhCn => (SourcePotential.IsOn ? R["TrueKeyword"] : R["FalseKeyword"])!;
+	private string StartCandOnOffStrZhCn => (SourcePotential.IsOn ? GetString("TrueKeyword") : GetString("FalseKeyword"))!;
 
 	private string EndCandStr => RxCyNotation.ToCandidateString(FromOnPotential.Candidate);
 

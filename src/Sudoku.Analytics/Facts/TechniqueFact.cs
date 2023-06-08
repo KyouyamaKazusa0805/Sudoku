@@ -6,13 +6,21 @@ namespace Sudoku.Facts;
 public static class TechniqueFact
 {
 	/// <summary>
+	/// Try to get the real name for the specified size of subset.
+	/// </summary>
+	/// <param name="size">The number of cells used in a subset.</param>
+	/// <returns>The name of the subset.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string GetSubsetName(int size) => GetString($"SubsetNamesSize{size}")!;
+
+	/// <summary>
 	/// Make the real name of the regular wing.
 	/// </summary>
 	/// <param name="size">Indicates the size of the wing.</param>
 	/// <param name="isIncomplete">A <see cref="bool"/> value indicating whether the wing is incomplete.</param>
 	/// <returns>The real name of the regular wing.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> isn't between 3 and 9.</exception>
-	public static string MakeRegularWingName(int size, bool isIncomplete)
+	public static string GetRegularWingEnglishName(int size, bool isIncomplete)
 		=> size switch
 		{
 			3 => isIncomplete ? "XY-Wing" : "XYZ-Wing",
@@ -34,7 +42,7 @@ public static class TechniqueFact
 	/// <param name="size">The size.</param>
 	/// <returns>The fish name.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> is 0.</exception>
-	public static string GetFishName(int size)
+	public static string GetFishEnglishName(int size)
 		=> size switch
 		{
 			0 => throw new ArgumentOutOfRangeException(nameof(size)),
@@ -51,11 +59,11 @@ public static class TechniqueFact
 	/// <summary>
 	/// Try to fetch corresponding <see cref="Technique"/> instance via the real name representing as a <see cref="string"/> text.
 	/// </summary>
-	/// <param name="realName">The real name of the regular wing technique.</param>
+	/// <param name="englishName">The real name of the regular wing technique.</param>
 	/// <returns>The <see cref="Technique"/> instance.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the argument <paramref name="realName"/> is invalid.</exception>
-	public static Technique MakeRegularWingTechniqueCode(string realName)
-		=> realName switch
+	/// <exception cref="InvalidOperationException">Throws when the argument <paramref name="englishName"/> is invalid.</exception>
+	public static Technique MakeRegularWingTechniqueCode(string englishName)
+		=> englishName switch
 		{
 			"XY-Wing" => Technique.XyWing,
 			"XYZ-Wing" => Technique.XyzWing,
@@ -71,6 +79,6 @@ public static class TechniqueFact
 			"Incomplete TUVWXYZ-Wing" => Technique.IncompleteTuvwxyzWing,
 			"Incomplete STUVWXYZ-Wing" => Technique.IncompleteStuvwxyzWing,
 			"Incomplete RSTUVWXYZ-Wing" => Technique.IncompleteRstuvwxyzWing,
-			_ => throw new InvalidOperationException($"The argument {nameof(realName)} must be valid.")
+			_ => throw new InvalidOperationException($"The argument {nameof(englishName)} must be valid.")
 		};
 }

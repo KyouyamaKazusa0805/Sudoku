@@ -39,7 +39,7 @@ public sealed partial class GuardianStep(
 
 	private string CellsStr => LoopCells.ToString();
 
-	private string GuardianSingularOrPlural => R[Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural"]!;
+	private string GuardianSingularOrPlural => GetString(Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural")!;
 
 	private string GuardianStr => Guardians.ToString();
 

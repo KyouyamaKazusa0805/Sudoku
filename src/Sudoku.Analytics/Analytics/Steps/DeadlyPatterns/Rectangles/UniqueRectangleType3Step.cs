@@ -62,9 +62,9 @@ public sealed partial class UniqueRectangleType3Step(
 
 	private string OnlyKeyword => IsNaked ? string.Empty : "only ";
 
-	private string OnlyKeywordZhCn => R["Only"]!;
+	private string OnlyKeywordZhCn => GetString("Only")!;
 
 	private string HouseStr => HouseFormatter.Format(1 << House);
 
-	private string AppearLimitKeyword => R["Appear"]!;
+	private string AppearLimitKeyword => GetString("Appear")!;
 }

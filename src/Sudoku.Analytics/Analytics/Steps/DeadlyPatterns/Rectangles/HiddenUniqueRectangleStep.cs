@@ -33,5 +33,5 @@ public sealed class HiddenUniqueRectangleStep(
 )
 {
 	/// <inheritdoc/>
-	public override string Format => R["TechniqueFormat_UniqueRectangleWithConjugatePairStep"]!;
+	public override string Format => GetString("TechniqueFormat_UniqueRectangleWithConjugatePairStep")!;
 }

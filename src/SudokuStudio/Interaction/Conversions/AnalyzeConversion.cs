@@ -120,7 +120,8 @@ internal static class AnalyzeConversion
 			for (var i = 0; i < cases.Length; i++)
 			{
 				var (name, value) = cases[i];
-				yield return new Run { Text = $"{MergedResources.R[$"{nameof(ExtraDifficultyCaseNames)}_{name}"]}{Token("Colon")}+{value:0.0}" };
+				var extraDifficultyName = Sudoku.Analytics.Resources.MergedResources.GetString($"{nameof(ExtraDifficultyCaseNames)}_{name}");
+				yield return new Run { Text = $"{extraDifficultyName}{Token("Colon")}+{value:0.0}" };
 
 				if (i != cases.Length - 1)
 				{

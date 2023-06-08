@@ -1,4 +1,4 @@
-namespace Sudoku.Resources;
+namespace Sudoku.Analytics.Resources;
 
 /// <summary>
 /// Represents an exception that will be thrown when a certain resource key cannot be found in the resource dictionary.

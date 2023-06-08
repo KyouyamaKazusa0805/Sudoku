@@ -96,5 +96,5 @@ public sealed partial class NormalFishStep(
 
 	private string CoverSetStr => HouseFormatter.Format(CoverSetsMask);
 
-	private string FinsStr => Fins ? $"{R["Fin"]!}{Fins}" : string.Empty;
+	private string FinsStr => Fins ? $"{GetString("Fin")!}{Fins}" : string.Empty;
 }
