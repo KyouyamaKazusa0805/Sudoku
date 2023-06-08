@@ -118,7 +118,7 @@ public record SusserFormat(bool WithCandidates = false, bool WithModifiables = f
 
 
 	/// <inheritdoc/>
-	public virtual unsafe string ToString(scoped in Grid grid)
+	public virtual string ToString(scoped in Grid grid)
 	{
 		scoped var sb = new StringHandler(162);
 		var originalGrid = this switch

@@ -2,7 +2,6 @@
 #define ALLOW_MEMBER_REQUEST
 #undef ALLOW_INVITATION
 #define BASIC_LOG_INFO_OUTPUT
-#define ALLOW_PERIODIC_OPERATION
 namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
@@ -80,10 +79,6 @@ file sealed class Bot : IExecutable
 			);
 #endif
 		}
-
-#if ALLOW_PERIODIC_OPERATION
-		_ = PeriodicCommandCollection.BuiltIn;
-#endif
 
 		Terminal.Pause();
 	}

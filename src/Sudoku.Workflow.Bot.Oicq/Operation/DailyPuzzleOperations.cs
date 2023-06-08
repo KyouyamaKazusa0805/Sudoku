@@ -17,12 +17,7 @@ public static class DailyPuzzleOperations
 	[MethodImpl(MethodImplOptions.Synchronized)]
 	public static void WriteDailyPuzzleAnswer(scoped in Grid grid)
 	{
-		var answerList = new Digit[9];
-		for (var i = 0; i < 9; i++)
-		{
-			answerList[i] = grid[HouseCells[17][i]];
-		}
-
+		var answerList = grid[(CellMap)HouseCells[17]];
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 		if (!Directory.Exists(folder))
 		{
@@ -42,7 +37,10 @@ public static class DailyPuzzleOperations
 		}
 
 		var fileName = $"""{dailyPuzzleFolder}\Answer.json""";
-		File.WriteAllText(fileName, Serialize(answerList));
+		File.WriteAllText(
+			fileName,
+			Serialize(new DailyPuzzleAnswerData(grid.ResetGrid, answerList, DateOnly.FromDateTime(DateTime.Today)))
+		);
 	}
 
 	/// <summary>
@@ -50,7 +48,7 @@ public static class DailyPuzzleOperations
 	/// </summary>
 	/// <returns>每日一题的答案。如果当天没有记录（比如机器人临时维护）导致题目尚未生成，本地没有数据的时候，会返回 <see langword="null"/>。</returns>
 	[MethodImpl(MethodImplOptions.Synchronized)]
-	public static Digit[]? ReadDailyPuzzleAnswer()
+	public static DailyPuzzleAnswerData? ReadDailyPuzzleAnswer()
 	{
 		var folder = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 		if (!Directory.Exists(folder))
@@ -76,7 +74,11 @@ public static class DailyPuzzleOperations
 			return null;
 		}
 
-		var json = File.ReadAllText(fileName);
-		return Deserialize<Digit[]>(json);
+		if (Deserialize<DailyPuzzleAnswerData>(File.ReadAllText(fileName)) is not { } possibleResult)
+		{
+			return null;
+		}
+
+		return possibleResult.Date == DateOnly.FromDateTime(DateTime.Today) ? possibleResult : null;
 	}
 }

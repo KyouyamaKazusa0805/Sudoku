@@ -28,7 +28,6 @@ global using Sudoku.Workflow.Bot.Oicq.Lifecycle;
 global using Sudoku.Workflow.Bot.Oicq.Operation;
 global using Sudoku.Workflow.Bot.Oicq.Parsing;
 global using Sudoku.Workflow.Bot.Oicq.RootCommands;
-global using Sudoku.Workflow.Bot.Oicq.RootCommands.Periodic;
 global using Sudoku.Workflow.Bot.Oicq.ValueConverters;
 global using static System.Algorithm.Sequences;
 global using static System.Math;
