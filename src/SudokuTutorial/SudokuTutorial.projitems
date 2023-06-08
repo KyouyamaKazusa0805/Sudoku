@@ -140,6 +140,23 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\10 W-Wing.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\11 多分支W-Wing.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\03 Wings\12 M-Wing.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\01 标准类型.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\01-1 盘面得到的第一个情况.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\01-2 盘面得到的第二个情况.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\02 构型图1.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\03 构型图2.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\04 构型图3.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\05 构型图4.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\06 跨四宫的构型举例.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\06-1 跨四宫示例的第一种填法.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\06-2 跨四宫示例的第二种填法.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\07 梯形构型举例.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\07-1 梯形构型示例的第一种填法.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\07-2 梯形构型示例的第二种填法.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\08 含有6个候选数的结论单元格的唯一矩形.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\09 残缺唯一矩形例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\09-1 第一种填法.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\01 唯一矩形\09-2 第二种填法.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
   </ItemGroup>
   <ItemGroup>
