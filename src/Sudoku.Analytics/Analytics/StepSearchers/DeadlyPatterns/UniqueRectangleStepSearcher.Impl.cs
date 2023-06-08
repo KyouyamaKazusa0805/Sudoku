@@ -46,7 +46,7 @@ partial class UniqueRectangleStepSearcher
 		// Type 1 found. Now check elimination.
 		var d1Exists = CandidatesMap[d1].Contains(cornerCell);
 		var d2Exists = CandidatesMap[d2].Contains(cornerCell);
-		if (!d1Exists && d2Exists)
+		if (!d1Exists && !d2Exists)
 		{
 			return;
 		}
