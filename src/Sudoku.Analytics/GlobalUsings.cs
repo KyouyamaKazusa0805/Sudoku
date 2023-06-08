@@ -13,7 +13,6 @@ global using Sudoku.Analytics;
 global using Sudoku.Analytics.Buffers;
 global using Sudoku.Analytics.Categorization;
 global using Sudoku.Analytics.Eliminations;
-global using Sudoku.Analytics.Formatting;
 global using Sudoku.Analytics.InternalHelpers;
 global using Sudoku.Analytics.Metadata;
 global using Sudoku.Analytics.Patterns;

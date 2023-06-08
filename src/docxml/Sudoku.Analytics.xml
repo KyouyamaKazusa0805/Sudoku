@@ -395,7 +395,7 @@
         <member name="M:Sudoku.Analytics.AnalyzerResult.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.ToString(Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions)">
+        <member name="M:Sudoku.Analytics.AnalyzerResult.ToString(Sudoku.Analytics.AnalyzerResult.FormattingOptions)">
             <summary>
             Returns a string that represents the current object, with the specified formatting options.
             </summary>
@@ -471,6 +471,67 @@
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerResult.Sum``1(System.Collections.Generic.IEnumerable{``0},)">
             <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})"/>
+        </member>
+        <member name="T:Sudoku.Analytics.AnalyzerResult.FormattingOptions">
+            <summary>
+            Indicates the formatting options of <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.None">
+            <summary>
+            Indicates the none of the formatting option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowSeparators">
+            <summary>
+            Indicates the analysis result will append separators.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowStepLabel">
+            <summary>
+            Indicates the analysis result will append the step label.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowSimple">
+            <summary>
+            Indicates the analysis result will use simple mode to show steps.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowBottleneck">
+            <summary>
+            Indicates the analysis result will show the bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowDifficulty">
+            <summary>
+            Indicates the analysis result will show the difficulty.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowStepsAfterBottleneck">
+            <summary>
+            Indicates the analysis result will show all steps after the bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowStepDetail">
+            <summary>
+            Indicates the analysis result will show the step detail.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowSteps">
+            <summary>
+            Indicates the analysis result will show the steps.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowGridAndSolutionCode">
+            <summary>
+            Indicates the analysis result will show grid code for the puzzle itself and its solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowElapsedTime">
+            <summary>
+            Indicates the analysis result will show elapsed time on solving the puzzle.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerResult.StepsEnumerator">
             <summary>
@@ -2792,67 +2853,6 @@
         </member>
         <member name="M:Sudoku.Analytics.Eliminations.IPhasedConclusionProvider`2.System#IEquatable{TSelf}#Equals(`0)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions">
-            <summary>
-            Indicates the formatting options of <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.None">
-            <summary>
-            Indicates the none of the formatting option.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowSeparators">
-            <summary>
-            Indicates the analysis result will append separators.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowStepLabel">
-            <summary>
-            Indicates the analysis result will append the step label.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowSimple">
-            <summary>
-            Indicates the analysis result will use simple mode to show steps.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowBottleneck">
-            <summary>
-            Indicates the analysis result will show the bottleneck.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowDifficulty">
-            <summary>
-            Indicates the analysis result will show the difficulty.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowStepsAfterBottleneck">
-            <summary>
-            Indicates the analysis result will show all steps after the bottleneck.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowStepDetail">
-            <summary>
-            Indicates the analysis result will show the step detail.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowSteps">
-            <summary>
-            Indicates the analysis result will show the steps.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowGridAndSolutionCode">
-            <summary>
-            Indicates the analysis result will show grid code for the puzzle itself and its solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Formatting.AnalyzerResultFormattingOptions.ShowElapsedTime">
-            <summary>
-            Indicates the analysis result will show elapsed time on solving the puzzle.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.IAnalyzerOrCollector">
             <summary>

@@ -356,13 +356,13 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		var flags = AnalyzerResultFormattingOptions.None;
-		flags |= AnalyzerResultFormattingOptions.ShowSeparators;
-		flags |= AnalyzerResultFormattingOptions.ShowDifficulty;
-		flags |= AnalyzerResultFormattingOptions.ShowStepsAfterBottleneck;
-		flags |= AnalyzerResultFormattingOptions.ShowSteps;
-		flags |= AnalyzerResultFormattingOptions.ShowGridAndSolutionCode;
-		flags |= AnalyzerResultFormattingOptions.ShowElapsedTime;
+		var flags = FormattingOptions.None;
+		flags |= FormattingOptions.ShowSeparators;
+		flags |= FormattingOptions.ShowDifficulty;
+		flags |= FormattingOptions.ShowStepsAfterBottleneck;
+		flags |= FormattingOptions.ShowSteps;
+		flags |= FormattingOptions.ShowGridAndSolutionCode;
+		flags |= FormattingOptions.ShowElapsedTime;
 
 		return ToString(flags);
 	}
@@ -372,7 +372,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 	/// </summary>
 	/// <param name="options">The formatting options.</param>
 	/// <returns>A string that represents the current object.</returns>
-	public string ToString(AnalyzerResultFormattingOptions options)
+	public string ToString(FormattingOptions options)
 	{
 		if (this is not
 			{
@@ -393,7 +393,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 
 		// Print header.
 		scoped var sb = new StringHandler();
-		if (options.Flags(AnalyzerResultFormattingOptions.ShowGridAndSolutionCode))
+		if (options.Flags(FormattingOptions.ShowGridAndSolutionCode))
 		{
 			sb.Append(R["AnalysisResultPuzzle"]!);
 			sb.Append(puzzle.ToString("#"));
@@ -401,7 +401,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 		}
 
 		// Print solving steps (if worth).
-		if (options.Flags(AnalyzerResultFormattingOptions.ShowSteps) && steps is not null)
+		if (options.Flags(FormattingOptions.ShowSteps) && steps is not null)
 		{
 			sb.Append(R["AnalysisResultSolvingSteps"]!);
 			sb.AppendLine();
@@ -410,7 +410,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 			{
 				for (var i = 0; i < steps.Length; i++)
 				{
-					if (i > bIndex && !options.Flags(AnalyzerResultFormattingOptions.ShowStepsAfterBottleneck))
+					if (i > bIndex && !options.Flags(FormattingOptions.ShowStepsAfterBottleneck))
 					{
 						sb.Append(R["Ellipsis"]!);
 						sb.AppendLine();
@@ -419,12 +419,12 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 					}
 
 					var info = steps[i];
-					var infoStr = options.Flags(AnalyzerResultFormattingOptions.ShowSimple) ? info.ToSimpleString() : info.ToString();
-					var showDiff = options.Flags(AnalyzerResultFormattingOptions.ShowDifficulty);
+					var infoStr = options.Flags(FormattingOptions.ShowSimple) ? info.ToSimpleString() : info.ToString();
+					var showDiff = options.Flags(FormattingOptions.ShowDifficulty);
 
 					var d = $"({info.Difficulty,5:0.0}";
 					var s = $"{i + 1,4}";
-					var labelInfo = (options.Flags(AnalyzerResultFormattingOptions.ShowStepLabel), showDiff) switch
+					var labelInfo = (options.Flags(FormattingOptions.ShowStepLabel), showDiff) switch
 					{
 						(true, true) => $"{s}, {d}) ",
 						(true, false) => $"{s} ",
@@ -437,13 +437,13 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 					sb.AppendLine();
 				}
 
-				if (options.Flags(AnalyzerResultFormattingOptions.ShowBottleneck))
+				if (options.Flags(FormattingOptions.ShowBottleneck))
 				{
-					a(ref sb, options.Flags(AnalyzerResultFormattingOptions.ShowSeparators));
+					a(ref sb, options.Flags(FormattingOptions.ShowSeparators));
 
 					sb.Append(R["AnalysisResultBottleneckStep"]!);
 
-					if (options.Flags(AnalyzerResultFormattingOptions.ShowStepLabel))
+					if (options.Flags(FormattingOptions.ShowStepLabel))
 					{
 						sb.Append(R["AnalysisResultInStep"]!);
 						sb.Append(bIndex + 1);
@@ -455,7 +455,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 					sb.AppendLine();
 				}
 
-				a(ref sb, options.Flags(AnalyzerResultFormattingOptions.ShowSeparators));
+				a(ref sb, options.Flags(FormattingOptions.ShowSeparators));
 			}
 		}
 
@@ -465,7 +465,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 			sb.Append(R["AnalysisResultTechniqueUsed"]!);
 			sb.AppendLine();
 
-			if (options.Flags(AnalyzerResultFormattingOptions.ShowStepDetail))
+			if (options.Flags(FormattingOptions.ShowStepDetail))
 			{
 				sb.Append(R["AnalysisResultMin"]!, 6);
 				sb.Append(',');
@@ -476,7 +476,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 
 			foreach (var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.Name)
 			{
-				if (options.Flags(AnalyzerResultFormattingOptions.ShowStepDetail))
+				if (options.Flags(FormattingOptions.ShowStepDetail))
 				{
 					var currentTotal = 0M;
 					var currentMinimum = decimal.MaxValue;
@@ -501,7 +501,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 				sb.AppendLine();
 			}
 
-			if (options.Flags(AnalyzerResultFormattingOptions.ShowStepDetail))
+			if (options.Flags(FormattingOptions.ShowStepDetail))
 			{
 				sb.Append("  (---");
 				sb.Append(total, 8);
@@ -514,7 +514,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 			sb.Append(R[stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural"]!);
 			sb.AppendLine();
 
-			a(ref sb, options.Flags(AnalyzerResultFormattingOptions.ShowSeparators));
+			a(ref sb, options.Flags(FormattingOptions.ShowSeparators));
 		}
 
 		// Print detail data.
@@ -527,7 +527,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 		sb.AppendLine();
 
 		// Print the solution (if not null and worth).
-		if (!solution.IsUndefined && options.Flags(AnalyzerResultFormattingOptions.ShowGridAndSolutionCode))
+		if (!solution.IsUndefined && options.Flags(FormattingOptions.ShowGridAndSolutionCode))
 		{
 			sb.Append(R["AnalysisResultPuzzleSolution"]!);
 			sb.Append(solution.ToString("!"));
@@ -539,14 +539,14 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 		sb.AppendWhen(!isSolved, R["AnalysisResultNot"]!);
 		sb.Append(R["AnalysisResultBeenSolved"]!);
 		sb.AppendLine();
-		if (options.Flags(AnalyzerResultFormattingOptions.ShowElapsedTime))
+		if (options.Flags(FormattingOptions.ShowElapsedTime))
 		{
 			sb.Append(R["AnalysisResultTimeElapsed"]!);
 			sb.Append(elapsed.ToString("""hh\:mm\:ss\.fff"""));
 			sb.AppendLine();
 		}
 
-		a(ref sb, options.Flags(AnalyzerResultFormattingOptions.ShowSeparators));
+		a(ref sb, options.Flags(FormattingOptions.ShowSeparators));
 
 		return sb.ToStringAndClear();
 
@@ -732,10 +732,8 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 	/// <seealso cref="Steps"/>
 	private unsafe decimal Evaluator(delegate*<IEnumerable<Step>, delegate*<Step, decimal>, decimal> executor, decimal d)
 	{
-		return Steps is null ? d : executor(Steps, &f);
-
-
 		static decimal f(Step step) => step.Difficulty;
+		return Steps is null ? d : executor(Steps, &f);
 	}
 
 
