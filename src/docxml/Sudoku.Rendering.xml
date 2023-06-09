@@ -11,8 +11,10 @@
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
         <member name="M:Sudoku.Concepts.GridExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Rendering.IRenderable)">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.Apply(Sudoku.Analytics.Conclusion[])"/>
-            <param name="grid"><inheritdoc/></param>
+            <summary>
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.Apply(Sudoku.Analytics.Conclusion[])" path="/summary"/>
+            </summary>
+            <param name="this">The puzzle to be applied.</param>
             <param name="renderable">The renderable instance providing with conclusions to be applied.</param>
         </member>
         <member name="T:Sudoku.Rendering.ColorColorIdentifier">

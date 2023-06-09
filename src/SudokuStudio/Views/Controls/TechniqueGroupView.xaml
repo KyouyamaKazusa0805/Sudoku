@@ -13,9 +13,7 @@
 		<CollectionViewSource x:Name="TechniqueGroups" x:FieldModifier="internal" IsSourceGrouped="True" />
 	</UserControl.Resources>
 
-	<ListView
-		ItemsSource="{x:Bind TechniqueGroups.View,Mode=OneWay}" SelectionMode="Single" IsItemClickEnabled="True"
-		ItemClick="ListView_ItemClick">
+	<ListView ItemsSource="{x:Bind TechniqueGroups.View,Mode=OneWay}" SelectionMode="Single" IsItemClickEnabled="True">
 		<ListView.ItemsPanel>
 			<ItemsPanelTemplate>
 				<ItemsStackPanel AreStickyGroupHeadersEnabled="True"/>
@@ -36,7 +34,7 @@
 			<DataTemplate x:DataType="bs:SolvingPathStepBindableSource">
 				<ListViewItem
 					Tag="{x:Bind}" Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(Step.DifficultyLevel)}"
-					RightTapped="ListViewItem_RightTapped">
+					Tapped="ListViewItem_Tapped" RightTapped="ListViewItem_RightTapped">
 					<ToolTipService.ToolTip>
 						<TextBlock
 							TextWrapping="WrapWholeWords" IsTextSelectionEnabled="True"

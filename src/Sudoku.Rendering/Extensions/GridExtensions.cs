@@ -6,9 +6,11 @@ namespace Sudoku.Concepts;
 /// <seealso cref="Grid"/>
 public static class GridExtensions
 {
-	/// <inheritdoc cref="Grid.Apply(Conclusion[])"/>
-	/// <param name="grid"><inheritdoc/></param>
+	/// <summary>
+	/// <inheritdoc cref="Grid.Apply(Conclusion[])" path="/summary"/>
+	/// </summary>
+	/// <param name="this">The puzzle to be applied.</param>
 	/// <param name="renderable">The renderable instance providing with conclusions to be applied.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Apply(this scoped ref Grid grid, IRenderable renderable) => grid.Apply(renderable.Conclusions);
+	public static void Apply(this scoped ref Grid @this, IRenderable renderable) => @this.Apply(renderable.Conclusions);
 }

@@ -28,9 +28,9 @@ public sealed partial class TechniqueGroupView : UserControl
 	public void ClearViewSource() => TechniqueGroups.Source = null;
 
 
-	private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+	private void ListViewItem_Tapped(object sender, TappedRoutedEventArgs e)
 	{
-		if (e.ClickedItem is SolvingPathStepBindableSource { Step: var step })
+		if (sender is ListViewItem { Tag: SolvingPathStepBindableSource { Step: var step } })
 		{
 			StepChosen?.Invoke(this, new(step));
 		}
