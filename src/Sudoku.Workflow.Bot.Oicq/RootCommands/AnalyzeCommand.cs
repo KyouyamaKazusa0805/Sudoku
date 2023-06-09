@@ -8,12 +8,30 @@ namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 internal sealed class AnalyzeCommand : Command
 {
 	/// <summary>
+	/// 错误信息，提示用户程序存在分析 bug。
+	/// </summary>
+	private const string ErrorMessageHeader =
+		"""
+		抱歉，由于程序算法设计的错误导致的 bug，导致这个题无法正确分析，得到正确结果。
+		请将该错误步骤截图或图文信息反馈给程序设计者，并修复此 bug。
+		""";
+
+
+	/// <summary>
 	/// 表示你需要查询的技巧名称或它的英文名。该参数支持技巧的中文名、英文简称等写法。
 	/// </summary>
 	[DoubleArgument("技巧")]
 	[Hint("表示你需要查询的技巧名称或它的英文名。该参数支持技巧的中文名、英文简称等写法。")]
 	[DisplayingIndex(1)]
 	public string? TechniqueName { get; set; }
+
+	/// <summary>
+	/// 表示你需要分析的题目是引用自哪个地方。目前暂时支持“每日一题”和“题目”。指定“题目”的时候，需要结合参数“题目”使用。
+	/// </summary>
+	[DoubleArgument("类型")]
+	[Hint("表示你需要分析的题目是引用自哪个地方。目前暂时支持“每日一题”和“题目”。指定“题目”的时候，需要结合参数“题目”使用。")]
+	[DisplayingIndex(0)]
+	public string? Type { get; set; }
 
 	/// <summary>
 	/// 表示你输入的题目代码。代码支持各种数独可解析的文本形式，包括但不限于 Sudoku Explainer、Hodoku、Excel 的数独的输入格式。
@@ -28,19 +46,32 @@ internal sealed class AnalyzeCommand : Command
 
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
-	{
-		if (Puzzle.IsUndefined)
-		{
-			await messageReceiver.SendMessageAsync("参数“题目”缺失。请给出必需的参数“题目”作为分析的盘面信息。");
-			return;
-		}
+		=> await (
+			this switch
+			{
+				{ Type: null or Types.Text, Puzzle.IsUndefined: false } => AnalyzePuzzleCoreAsync(Puzzle, messageReceiver),
+				{ Type: { } type } => type switch
+				{
+					Types.DailyPuzzle => DailyPuzzleOperations.ReadDailyPuzzleAnswer() switch
+					{
+						{ Puzzle: var p } => AnalyzePuzzleCoreAsync(p, messageReceiver),
+						_ => messageReceiver.SendMessageAsync("抱歉，当天没有每日一题。")
+					},
+					Types.Text => messageReceiver.SendMessageAsync("抱歉，参数为“题目”，但实际没有传入“题目”参数。"),
+					_ => messageReceiver.SendMessageAsync("抱歉，输入的参数“类型”不合法。")
+				},
+				_ => messageReceiver.SendMessageAsync("参数状态不合法（比如输入的题目参数是无解或多解题，等等），请检查参数的录入。")
+			}
+		);
 
-		const string errorMessageHeader =
-			"""
-			抱歉，由于程序算法设计的错误导致的 bug，导致这个题无法正确分析，得到正确结果。
-			请将该错误步骤截图或图文信息反馈给程序设计者，并修复此 bug。
-			""";
-		switch (PuzzleAnalyzer.Analyze(Puzzle))
+	/// <summary>
+	/// 分析指定的 <paramref name="grid"/> 参数的题目。
+	/// </summary>
+	/// <param name="grid">等待分析的题目。</param>
+	/// <param name="messageReceiver">发送信息的机器人消息接收器对象。</param>
+	private async Task AnalyzePuzzleCoreAsync(Grid grid, GroupMessageReceiver messageReceiver)
+	{
+		switch (PuzzleAnalyzer.Analyze(grid))
 		{
 			case { IsSolved: true } analyzerResult:
 			{
@@ -53,27 +84,27 @@ internal sealed class AnalyzeCommand : Command
 					}
 					default:
 					{
-						if (analyzerResult[TechniqueName] is not var (grid, step))
+						if (analyzerResult[TechniqueName] is not var (g, s))
 						{
 							await messageReceiver.SendMessageAsync(
 								$"""
 								名为“{TechniqueName}”的技巧步骤在本题里尚未找到。没有找到的原因可能是如下的这些：
-								  * 输入的技巧名称（或它的别名）有误
-								  * 输入的技巧确实在这个题目里没有
-								  * 该技巧存在于其他不在按次序解题的主线步骤序列上
+									* 输入的技巧名称（或它的别名）有误
+									* 输入的技巧确实在这个题目里没有
+									* 该技巧存在于其他不在按次序解题的主线步骤序列上
 								"""
 							);
 							break;
 						}
 
-						await messageReceiver.SendMessageAsync(step.ToString());
+						await messageReceiver.SendMessageAsync(s.ToString());
 						await Task.Delay(1000);
 
 						await messageReceiver.SendPictureThenDeleteAsync(
 							ISudokuPainter.Create(1000)
-								.WithGrid(grid)
+								.WithGrid(g)
 								.WithRenderingCandidates(true)
-								.WithStep(step)
+								.WithStep(s)
 								.WithPreferenceSettings(static pref => pref.CandidateScale = .4M)
 						);
 
@@ -90,7 +121,7 @@ internal sealed class AnalyzeCommand : Command
 			{
 				await messageReceiver.SendMessageAsync(
 					$"""
-					{errorMessageHeader}
+					{ErrorMessageHeader}
 					---
 					错误盘面代码：{currentGrid:#}
 					错误步骤描述：{step}
@@ -114,7 +145,7 @@ internal sealed class AnalyzeCommand : Command
 			{
 				await messageReceiver.SendMessageAsync(
 					$"""
-					{errorMessageHeader}
+					{ErrorMessageHeader}
 					---
 					错误信息：{message}
 					异常类型：{exception.GetType()}
@@ -127,7 +158,7 @@ internal sealed class AnalyzeCommand : Command
 			{
 				await messageReceiver.SendMessageAsync(
 					$"""
-					{errorMessageHeader}
+					{ErrorMessageHeader}
 					---
 					内部错误代码：{failedReason}（{failedReason.GetFailedReasonText()}）
 					"""
@@ -137,6 +168,23 @@ internal sealed class AnalyzeCommand : Command
 			}
 		}
 	}
+}
+
+/// <summary>
+/// 为属性 <see cref="AnalyzeCommand.Type"/> 提供数据。
+/// </summary>
+/// <seealso cref="AnalyzeCommand.Type"/>
+file static class Types
+{
+	/// <summary>
+	/// 表示分析每日一题的数据。
+	/// </summary>
+	public const string DailyPuzzle = "每日一题";
+
+	/// <summary>
+	/// 表示分析固定的文本题目。
+	/// </summary>
+	public const string Text = "题目";
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

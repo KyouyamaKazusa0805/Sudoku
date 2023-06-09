@@ -1721,9 +1721,19 @@
             表示一个分析指令。
             </summary>
         </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.ErrorMessageHeader">
+            <summary>
+            错误信息，提示用户程序存在分析 bug。
+            </summary>
+        </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.TechniqueName">
             <summary>
             表示你需要查询的技巧名称或它的英文名。该参数支持技巧的中文名、英文简称等写法。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.Type">
+            <summary>
+            表示你需要分析的题目是引用自哪个地方。目前暂时支持“每日一题”和“题目”。指定“题目”的时候，需要结合参数“题目”使用。
             </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.Puzzle">
@@ -1734,6 +1744,29 @@
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.AnalyzePuzzleCoreAsync(Sudoku.Concepts.Grid,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+            <summary>
+            分析指定的 <paramref name="grid"/> 参数的题目。
+            </summary>
+            <param name="grid">等待分析的题目。</param>
+            <param name="messageReceiver">发送信息的机器人消息接收器对象。</param>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Types">
+            <summary>
+            为属性 <see cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.Type"/> 提供数据。
+            </summary>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.Type"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Types.DailyPuzzle">
+            <summary>
+            表示分析每日一题的数据。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Types.Text">
+            <summary>
+            表示分析固定的文本题目。
+            </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Extensions">
             <target name="class" when="extension">

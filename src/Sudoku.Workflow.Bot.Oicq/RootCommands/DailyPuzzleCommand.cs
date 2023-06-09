@@ -53,7 +53,7 @@ internal sealed class DailyPuzzleCommand : Command
 			if (PuzzleAnalyzer.Analyze(grid) is not
 				{
 					IsSolved: true,
-					DifficultyLevel: var diffLevel and < DifficultyLevel.Nightmare and not 0,
+					DifficultyLevel: var diffLevel and <= DifficultyLevel.Nightmare and not 0,
 					MaxDifficulty: var diff and >= 3.4M,
 					Solution: var solution
 				})
@@ -89,7 +89,8 @@ internal sealed class DailyPuzzleCommand : Command
 				DifficultyLevel.Easy => "容易",
 				DifficultyLevel.Moderate => "一般",
 				DifficultyLevel.Hard => "困难",
-				DifficultyLevel.Fiendish => "极难"
+				DifficultyLevel.Fiendish => "极难",
+				DifficultyLevel.Nightmare => "地狱"
 			};
 
 		async Task sendPictureAsync(string grid, string footerText, DifficultyLevel diffLevel)
