@@ -305,7 +305,7 @@ public sealed partial class MainWindow : Window
 	/// <summary>
 	/// Try to set icon of the program.
 	/// </summary>
-	private void SetAppIcon() => AppWindow.SetIcon(@"Resources\images\Logo.ico");
+	private void SetAppIcon() => AppWindow.SetIcon("""Assets\images\Logo.ico""");
 
 	/// <summary>
 	/// An outer-layered method to switching pages. This method can be used by both

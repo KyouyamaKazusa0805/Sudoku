@@ -5,8 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup" mc:Ignorable="d"
-	Title="{m:R Key=_ProgramName}"
-	Closed="Window_Closed">
+	Title="{m:R Key=_ProgramName}" Closed="Window_Closed">
 	<Grid RowDefinitions="Auto,*">
 		<!--Title bar-->
 		<Grid Height="48" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -21,7 +20,7 @@
 					<ColumnDefinition x:Name="RightPaddingColumn" Width="0" />
 				</Grid.ColumnDefinitions>
 
-				<Image x:Name="TitleBarIcon" Source="/Resources/images/icon.png" Grid.Column="1" Width="32" Height="32" Margin="12,0" />
+				<Image x:Name="TitleBarIcon" Source="/Assets/images/icon.png" Grid.Column="1" Width="32" Height="32" Margin="12,0" />
 				<TextBlock
 					x:Name="TitleTextBlock" Text="{m:R Key=_ProgramName}" Style="{StaticResource CaptionTextBlockStyle}" Grid.Column="2"
 					HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0" />
@@ -31,7 +30,7 @@
 			</Grid>
 			<Grid x:Name="AppTitleBarWithoutAutoSuggestBox" Visibility="Collapsed" ColumnDefinitions="0,Auto,*,0">
 				<Image
-					x:Name="TitleBarIconWithoutAutoSuggestBox" Source="/Resources/images/icon.png"
+					x:Name="TitleBarIconWithoutAutoSuggestBox" Source="/Assets/images/icon.png"
 					Grid.Column="1" Width="32" Height="32" Margin="12,0" />
 				<TextBlock
 					x:Name="TitleTextBlockWithoutAutoSuggestBox" Text="{m:R Key=_ProgramName}"

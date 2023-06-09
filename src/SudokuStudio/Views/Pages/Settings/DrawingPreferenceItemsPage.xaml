@@ -217,17 +217,17 @@
 						<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 							<Image>
 								<Image.Source>
-									<BitmapImage AutoPlay="True" UriSource="/Resources/images/baba.gif" />
+									<BitmapImage AutoPlay="True" UriSource="/Assets/images/baba.gif" />
 								</Image.Source>
 							</Image>
 							<Image>
 								<Image.Source>
-									<BitmapImage AutoPlay="True" UriSource="/Resources/images/is.gif" />
+									<BitmapImage AutoPlay="True" UriSource="/Assets/images/is.gif" />
 								</Image.Source>
 							</Image>
 							<Image>
 								<Image.Source>
-									<BitmapImage AutoPlay="True" UriSource="/Resources/images/group.gif" />
+									<BitmapImage AutoPlay="True" UriSource="/Assets/images/group.gif" />
 								</Image.Source>
 							</Image>
 						</StackPanel>
