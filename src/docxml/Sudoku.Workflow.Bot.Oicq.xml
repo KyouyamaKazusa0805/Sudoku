@@ -1726,6 +1726,11 @@
             错误信息，提示用户程序存在分析 bug。
             </summary>
         </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.TowerStage">
+            <summary>
+            表示你要查询的魔塔的层数。支持 1 到 130。默认数值为 -1。
+            </summary>
+        </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.TechniqueName">
             <summary>
             表示你需要查询的技巧名称或它的英文名。该参数支持技巧的中文名、英文简称等写法。
@@ -1733,7 +1738,7 @@
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.Type">
             <summary>
-            表示你需要分析的题目是引用自哪个地方。目前暂时支持“每日一题”和“题目”。指定“题目”的时候，需要结合参数“题目”使用。
+            表示你需要分析的题目是引用自哪个地方。目前暂时支持“每日一题”、“魔塔”和“题目”。
             </summary>
         </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.Puzzle">
@@ -1766,6 +1771,11 @@
         <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Types.Text">
             <summary>
             表示分析固定的文本题目。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Types.Tower">
+            <summary>
+            表示分析的是魔塔的题目。
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Extensions">

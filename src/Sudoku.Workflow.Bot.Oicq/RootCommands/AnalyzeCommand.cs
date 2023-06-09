@@ -16,20 +16,30 @@ internal sealed class AnalyzeCommand : Command
 		请将该错误步骤截图或图文信息反馈给程序设计者，并修复此 bug。
 		""";
 
+	/// <summary>
+	/// 表示你要查询的魔塔的层数。支持 1 到 130。默认数值为 -1。
+	/// </summary>
+	[DoubleArgument("层数")]
+	[Hint("表示你要查询的魔塔的层数。支持 1 到 130。默认数值为 -1。")]
+	[DisplayingIndex(1)]
+	[ArgumentDisplayer("1-130")]
+	[ValueConverter<NumericConverter<int>>]
+	[DefaultValue<int>(-1)]
+	public int TowerStage { get; set; }
 
 	/// <summary>
 	/// 表示你需要查询的技巧名称或它的英文名。该参数支持技巧的中文名、英文简称等写法。
 	/// </summary>
 	[DoubleArgument("技巧")]
 	[Hint("表示你需要查询的技巧名称或它的英文名。该参数支持技巧的中文名、英文简称等写法。")]
-	[DisplayingIndex(1)]
+	[DisplayingIndex(2)]
 	public string? TechniqueName { get; set; }
 
 	/// <summary>
-	/// 表示你需要分析的题目是引用自哪个地方。目前暂时支持“每日一题”和“题目”。指定“题目”的时候，需要结合参数“题目”使用。
+	/// 表示你需要分析的题目是引用自哪个地方。目前暂时支持“每日一题”、“魔塔”和“题目”。
 	/// </summary>
 	[DoubleArgument("类型")]
-	[Hint("表示你需要分析的题目是引用自哪个地方。目前暂时支持“每日一题”和“题目”。指定“题目”的时候，需要结合参数“题目”使用。")]
+	[Hint("表示你需要分析的题目是引用自哪个地方。目前暂时支持“每日一题”、“魔塔”和“题目”。")]
 	[DisplayingIndex(0)]
 	public string? Type { get; set; }
 
@@ -46,23 +56,49 @@ internal sealed class AnalyzeCommand : Command
 
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
-		=> await (
-			this switch
+	{
+		switch (this)
+		{
+			case { Type: null or Types.Tower, TowerStage: var stage and (-1 or >= 1 and <= 130) }:
 			{
-				{ Type: null or Types.Text, Puzzle.IsUndefined: false } => AnalyzePuzzleCoreAsync(Puzzle, messageReceiver),
-				{ Type: { } type } => type switch
-				{
-					Types.DailyPuzzle => DailyPuzzleOperations.ReadDailyPuzzleAnswer() switch
-					{
-						{ Puzzle: var p } => AnalyzePuzzleCoreAsync(p, messageReceiver),
-						_ => messageReceiver.SendMessageAsync("抱歉，当天没有每日一题。")
-					},
-					Types.Text => messageReceiver.SendMessageAsync("抱歉，参数为“题目”，但实际没有传入“题目”参数。"),
-					_ => messageReceiver.SendMessageAsync("抱歉，输入的参数“类型”不合法。")
-				},
-				_ => messageReceiver.SendMessageAsync("参数状态不合法（比如输入的题目参数是无解或多解题，等等），请检查参数的录入。")
+				var senderId = messageReceiver.Sender.Id;
+				await AnalyzePuzzleCoreAsync(
+					TowerOfSorcererOperations.GetPuzzleFor(
+						(stage, UserOperations.Read(senderId)) switch { (-1, { TowerOfSorcerer: var s }) => s, _ => stage - 1 }
+					),
+					messageReceiver
+				);
+				break;
 			}
-		);
+			case { Type: null or Types.Text, Puzzle.IsUndefined: false }:
+			{
+				await AnalyzePuzzleCoreAsync(Puzzle, messageReceiver);
+				break;
+			}
+			case { Type: { } type }:
+			{
+				await (
+					type switch
+					{
+						Types.DailyPuzzle => DailyPuzzleOperations.ReadDailyPuzzleAnswer() switch
+						{
+							{ Puzzle: var p } => AnalyzePuzzleCoreAsync(p, messageReceiver),
+							_ => messageReceiver.SendMessageAsync("抱歉，当天没有每日一题。")
+						},
+						Types.Text => messageReceiver.SendMessageAsync("抱歉，参数为“题目”，但实际没有传入“题目”参数。"),
+						Types.Tower => messageReceiver.SendMessageAsync("抱歉，参数为“魔塔”，但是尚未指定“层数”参数。"),
+						_ => messageReceiver.SendMessageAsync("抱歉，输入的参数“类型”不合法。")
+					}
+				);
+				break;
+			}
+			default:
+			{
+				await messageReceiver.SendMessageAsync("参数状态不合法（比如输入的题目参数是无解或多解题，等等），请检查参数的录入。");
+				break;
+			}
+		}
+	}
 
 	/// <summary>
 	/// 分析指定的 <paramref name="grid"/> 参数的题目。
@@ -185,6 +221,11 @@ file static class Types
 	/// 表示分析固定的文本题目。
 	/// </summary>
 	public const string Text = "题目";
+
+	/// <summary>
+	/// 表示分析的是魔塔的题目。
+	/// </summary>
+	public const string Tower = "魔塔";
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
