@@ -3826,7 +3826,6 @@ partial class UniqueRectangleStepSearcher
 	)
 	{
 		var cells = (CellMap)urCells;
-
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
@@ -3848,9 +3847,15 @@ partial class UniqueRectangleStepSearcher
 			}
 
 			var guardianCells = guardianMap - cells & (CandidatesMap[d1] | CandidatesMap[d2]);
-			if (guardianCells is { Count: not 1, CoveredHouses: 0 })
+			if (guardianCells.Count != 2)
 			{
-				// All guardian cells must lie in one house.
+				// Conjugate pair must be 2 cells.
+				continue;
+			}
+
+			if (!(HousesMap[houseCombination[0]] & guardianCells) || !(HousesMap[houseCombination[1]] & guardianCells))
+			{
+				// Guardian cells must appear from two houses.
 				continue;
 			}
 
@@ -3863,11 +3868,6 @@ partial class UniqueRectangleStepSearcher
 			}
 
 			var guardianDigit = digit1IntersectionMap ? d1 : d2;
-			if (guardianCells.Count != 2)
-			{
-				continue;
-			}
-
 			foreach (var coveredHouse in guardianCells.CoveredHouses)
 			{
 				for (var house = 0; house < 27; house++)
