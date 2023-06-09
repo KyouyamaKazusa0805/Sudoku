@@ -30,7 +30,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	/// <param name="collection">The raw collection.</param>
 	/// <param name="grid">The puzzle.</param>
 	/// <returns>The collection that can be used as view source.</returns>
-	internal ObservableCollection<TechniqueGroupBindableSource> GetTechniqueGroups(IEnumerable<Step> collection, Grid grid)
+	private ObservableCollection<TechniqueGroupBindableSource> GetTechniqueGroups(IEnumerable<Step> collection, Grid grid)
 	{
 		var displayItems = ((App)Application.Current).Preference.UIPreferences.StepDisplayItems;
 		return new(
@@ -49,7 +49,16 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	}
 
 
-	private void TechniqueGroupView_StepChosen(object sender, TechniqueGroupViewStepChosenEventArgs e) => BasePage.VisualUnit = e.ChosenStep;
+	private void TechniqueGroupView_StepChosen(TechniqueGroupView sender, TechniqueGroupViewStepChosenEventArgs e)
+		=> BasePage.VisualUnit = e.ChosenStep;
+
+	private void TechniqueGroupView_StepApplied(TechniqueGroupView sender, TechniqueGroupViewStepAppliedEventArgs e)
+	{
+		var appliedPuzzle = BasePage.SudokuPane.Puzzle;
+		appliedPuzzle.Apply(e.ChosenStep);
+
+		BasePage.SudokuPane.Puzzle = appliedPuzzle;
+	}
 
 	private void FilterGatheredStepsButton_Click(object sender, RoutedEventArgs e)
 	{

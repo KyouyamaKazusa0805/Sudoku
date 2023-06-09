@@ -4,6 +4,17 @@
         <name>Sudoku.Rendering</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Concepts.GridExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Rendering.IRenderable)">
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.Apply(Sudoku.Analytics.Conclusion[])"/>
+            <param name="grid"><inheritdoc/></param>
+            <param name="renderable">The renderable instance providing with conclusions to be applied.</param>
+        </member>
         <member name="T:Sudoku.Rendering.ColorColorIdentifier">
             <summary>
             Defines a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> derived type that uses color value (like type <c>System.Drawing.Color</c>) to distinct with colors.

@@ -24,7 +24,9 @@
 					x:Name="FilteringExpressionInvalidHint" Foreground="Red" VerticalAlignment="Center" Visibility="Collapsed"
 					Text="{m:R Key=AnalyzePage_FilteringFailedDueToInvalidExpression}" />
 			</StackPanel>
-			<c:TechniqueGroupView x:Name="TechniqueGroupView" x:FieldModifier="internal" StepChosen="TechniqueGroupView_StepChosen" />
+			<c:TechniqueGroupView
+				x:Name="TechniqueGroupView" x:FieldModifier="internal"
+				StepChosen="TechniqueGroupView_StepChosen" StepApplied="TechniqueGroupView_StepApplied" />
 		</StackPanel>
 	</ScrollViewer>
 </Page>

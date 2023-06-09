@@ -34,7 +34,9 @@
 		</ListView.GroupStyle>
 		<ListView.ItemTemplate>
 			<DataTemplate x:DataType="bs:SolvingPathStepBindableSource">
-				<ListViewItem Tag="{x:Bind}" Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(Step.DifficultyLevel)}">
+				<ListViewItem
+					Tag="{x:Bind}" Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(Step.DifficultyLevel)}"
+					RightTapped="ListViewItem_RightTapped">
 					<ToolTipService.ToolTip>
 						<TextBlock
 							TextWrapping="WrapWholeWords" IsTextSelectionEnabled="True"

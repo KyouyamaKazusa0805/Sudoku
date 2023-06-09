@@ -19,6 +19,7 @@
           "SaveFileFailedReason.cs": [ "SaveFileFailedEventHandler.cs" ],
           "SudokuPaneMouseWheelChangedEventArgs.cs": [ "SudokuPaneMouseWheelChangedEventHandler.cs" ],
           "TechniqueGroupViewStepChosenEventArgs.cs": [ "TechniqueGroupViewStepChosenEventHandler.cs" ],
+          "TechniqueGroupViewStepAppliedEventArgs.cs": [ "TechniqueGroupViewStepAppliedEventHandler.cs" ]
         },
         "addedExtension": {}
       }

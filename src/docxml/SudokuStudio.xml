@@ -2996,21 +2996,50 @@ if (student is (name: var name, age: >= 18))
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.MouseWheelChanged"/>
         </member>
+        <member name="T:SudokuStudio.Interaction.TechniqueGroupViewStepAppliedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepAppliedEventHandler"/>.
+            </summary>
+            <param name="step">The step.</param>
+            <seealso cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepAppliedEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.TechniqueGroupViewStepAppliedEventArgs.#ctor(Sudoku.Analytics.Step)">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepAppliedEventHandler"/>.
+            </summary>
+            <param name="step">The step.</param>
+            <seealso cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepAppliedEventHandler"/>
+        </member>
+        <member name="P:SudokuStudio.Interaction.TechniqueGroupViewStepAppliedEventArgs.ChosenStep">
+            <summary>
+            The generated property declaration for parameter <c>step</c>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.TechniqueGroupViewStepAppliedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.TechniqueGroupView.StepApplied"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.TechniqueGroupView.StepApplied"/>
+        </member>
         <member name="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventHandler"/>.
             </summary>
+            <param name="step">The step.</param>
             <seealso cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventHandler"/>
         </member>
         <member name="M:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventArgs.#ctor(Sudoku.Analytics.Step)">
             <summary>
-            Initializes a <see cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventArgs"/> instance via the specified step.
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventHandler"/>.
             </summary>
             <param name="step">The step.</param>
+            <seealso cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventHandler"/>
         </member>
         <member name="P:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventArgs.ChosenStep">
             <summary>
-            Indicates the chosen step.
+            The generated property declaration for parameter <c>step</c>.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.TechniqueGroupViewStepChosenEventHandler">
@@ -7175,6 +7204,11 @@ if (student is (name: var name, age: >= 18))
             Initializes a <see cref="T:SudokuStudio.Views.Controls.TechniqueGroupView"/> instance.
             </summary>
         </member>
+        <member name="E:SudokuStudio.Views.Controls.TechniqueGroupView.StepApplied">
+            <summary>
+            Indicates the event that a step is applied.
+            </summary>
+        </member>
         <member name="E:SudokuStudio.Views.Controls.TechniqueGroupView.StepChosen">
             <summary>
             Indicates the event that a step is chosen.
@@ -7184,13 +7218,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Clears the view source.
             </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.ListView_ItemClick(System.Object,Microsoft.UI.Xaml.Controls.ItemClickEventArgs)">
-            <summary>
-            Triggers when an item is clicked.
-            </summary>
-            <param name="sender">The object that triggers this event.</param>
-            <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.InitializeComponent">
             <summary>
