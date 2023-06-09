@@ -23,6 +23,6 @@ global using Sudoku.Workflow.Bot.Oicq.Collections;
 global using Sudoku.Workflow.Bot.Oicq.Lifecycle;
 global using static System.Math;
 global using static Sudoku.CommandLine.CommonConstants;
-global using static Sudoku.CommandLine.Strings.MergedResources;
+global using static Sudoku.CommandLine.Strings.StringsAccessor;
 global using static Sudoku.Workflow.Bot.Oicq.Constants;
 global using static Sudoku.Workflow.Bot.Oicq.Lifecycle.EnvironmentVariables;

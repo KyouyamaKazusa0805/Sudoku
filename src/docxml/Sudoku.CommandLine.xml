@@ -765,6 +765,16 @@
               Looks up a localized string similar to 924849321.
             </summary>
         </member>
+        <member name="T:Sudoku.CommandLine.Strings.StringsAccessor">
+            <inheritdoc cref="T:Sudoku.Analytics.Strings.StringsAccessor"/>
+        </member>
+        <member name="M:Sudoku.CommandLine.Strings.StringsAccessor.GetString(System.String)">
+            <summary>
+            Gets the value via the specified string key.
+            </summary>
+            <param name="key">The resource key.</param>
+            <returns>The value. If none found, <see langword="null"/>.</returns>
+        </member>
         <member name="T:Sudoku.CommandLine.ValueConverters.CellCountRangeConverter">
             <summary>
             Defines a value converter that converts a <see cref="T:System.String"/> into a range value.

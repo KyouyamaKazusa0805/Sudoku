@@ -44,7 +44,7 @@ public sealed class Help : IExecutable
 					{
 						maxWidth = Max(commandNameLength, maxWidth);
 
-						var parts = R[key]!.SplitByLength(Console.LargestWindowWidth);
+						var parts = GetString(key)!.SplitByLength(Console.LargestWindowWidth);
 						listOfDescriptionParts.Add((commandName, parts));
 
 						break;
@@ -137,7 +137,7 @@ public sealed class Help : IExecutable
 							break;
 						}
 						case { Example: var pattern, DescriptionResourceKey: { } key }
-						when R[key]?.SplitByLength(Console.LargestWindowWidth) is { } parts:
+						when GetString(key)?.SplitByLength(Console.LargestWindowWidth) is { } parts:
 						{
 							helpTextContentBuilder
 								.AppendLine($"{new string(' ', 4)}{pattern}")
@@ -181,7 +181,7 @@ public sealed class Help : IExecutable
 					case ({ Notation: var notation, DescriptionResourceKey: { } key, IsRequired: var isRequired }, null):
 					{
 						// l1 is not null
-						singleArguments.Add(($"<{notation}>", R[key]!.SplitByLength(Console.LargestWindowWidth - 4)));
+						singleArguments.Add(($"<{notation}>", GetString(key)!.SplitByLength(Console.LargestWindowWidth - 4)));
 
 						break;
 					}
@@ -204,7 +204,7 @@ public sealed class Help : IExecutable
 						doubleArguments.Add(
 							(
 								$"{fullCommand} ({shortCommand}){(isRequired ? GetString("_MessageFormat_AndIsRequired")! : string.Empty)}",
-								R[key]!.SplitByLength(Console.LargestWindowWidth - 4)
+								GetString(key)!.SplitByLength(Console.LargestWindowWidth - 4)
 							)
 						);
 
