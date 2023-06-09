@@ -32,7 +32,7 @@ public unsafe ref partial struct ValueList<T> where T : notnull
 	/// <summary>
 	/// Indicates the pointer that points to the first element.
 	/// </summary>
-	private T* _startPtr;
+	private T?* _startPtr;
 
 
 	/// <summary>
@@ -54,7 +54,7 @@ public unsafe ref partial struct ValueList<T> where T : notnull
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ValueList(byte capacity)
 	{
-		_startPtr = (T*)NativeMemory.Alloc((nuint)sizeof(T) * capacity);
+		_startPtr = (T?*)NativeMemory.Alloc((nuint)sizeof(T) * capacity);
 		_capacity = capacity;
 	}
 
