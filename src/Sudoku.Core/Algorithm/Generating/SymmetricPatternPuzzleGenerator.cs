@@ -39,15 +39,14 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 	/// <returns>The result sudoku puzzle.</returns>
 	private Grid Generate(int max, SymmetryType symmetryType, CancellationToken cancellationToken)
 	{
-		string puzzle = new('0', 81), solution = new('0', 81);
+		var (puzzle, solution) = (new string('0', 81), new string('0', 81));
 		fixed (char* pPuzzle = puzzle, pSolution = solution)
 		{
 			GenerateAnswerGrid(pPuzzle, pSolution);
 
 			// Now we remove some digits from the grid.
 			var allTypes = symmetryType.GetAllFlags() ?? new[] { SymmetryType.None };
-			var count = allTypes.Length;
-			var tempSolution = solution.ToString();
+			var (count, tempSolution) = (allTypes.Length, solution.ToString());
 			string result;
 			do
 			{
@@ -61,13 +60,9 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 				do
 				{
 					Cell cell;
-					do
-					{
-						cell = _random.Next(81);
-					} while (totalMap.Contains(cell));
+					do { cell = _random.Next(81); } while (totalMap.Contains(cell));
 
-					var r = cell / 9;
-					var c = cell % 9;
+					var (r, c) = (cell / 9, cell % 9);
 
 					// Get new value of 'last'.
 					var tempMap = CellMap.Empty;
@@ -78,10 +73,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 						tempMap.Add(tCell);
 					}
 
-					if (cancellationToken.IsCancellationRequested)
-					{
-						throw new OperationCanceledException();
-					}
+					cancellationToken.ThrowIfCancellationRequested();
 				} while (81 - totalMap.Count > max);
 			} while (!Solver.CheckValidity(result = solution));
 
@@ -121,10 +113,8 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 
 			foreach (var cell in map)
 			{
-				do
-				{
-					pPuzzle[cell] = (char)(_random.Next(1, 9) + '0');
-				} while (CheckDuplicate(pPuzzle, cell));
+				do { pPuzzle[cell] = (char)(_random.Next(1, 9) + '0'); }
+				while (CheckDuplicate(pPuzzle, cell));
 			}
 		} while (Solver.Solve(pPuzzle, pSolution, 2) == 0);
 	}
@@ -139,7 +129,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 	/// <param name="column">The column value.</param>
 	/// <returns>The cells.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static Cell[] GetCells(SymmetryType symmetryType, int row, int column)
+	private static ReadOnlySpan<Cell> GetCells(SymmetryType symmetryType, int row, int column)
 		=> symmetryType switch
 		{
 			SymmetryType.Central => new[] { row * 9 + column, (8 - row) * 9 + 8 - column },
