@@ -4,6 +4,7 @@ namespace SudokuStudio.Views.Pages.Operation;
 /// Indicates the basic operation command bar.
 /// </summary>
 [DependencyProperty<string>("SucceedFilePath", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the path of the saved file.")]
+[DependencyProperty<DifficultyLevel>("DifficultyLevel", DefaultValue = 0, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the difficulty level of the generated puzzle.")]
 public sealed partial class BasicOperation : Page, IOperationProviderPage
 {
 	/// <summary>
@@ -65,7 +66,18 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 	{
 		BasePage.GeneratorIsNotRunning = false;
 
-		var grid = await Task.Run(() => new HodokuPuzzleGenerator().Generate());
+		var difficultyLevelSelected = DifficultyLevel;
+		var grid = await Task.Run(() =>
+		{
+			while (true)
+			{
+				var grid = new HodokuPuzzleGenerator().Generate();
+				if (difficultyLevelSelected == 0 || ((App)Application.Current).Analyzer.Analyze(grid).DifficultyLevel == difficultyLevelSelected)
+				{
+					return grid;
+				}
+			}
+		});
 
 		BasePage.GeneratorIsNotRunning = true;
 
@@ -127,11 +139,18 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 	private void Dialog_AreYouSureToReturnToEmpty_ActionButtonClick(TeachingTip sender, object args)
 	{
 		BasePage.SudokuPane.Puzzle = Grid.Empty;
-
 		Dialog_AreYouSureToReturnToEmpty.IsOpen = false;
 	}
 
 	private async void SaveFileButton_ClickAsync(object sender, RoutedEventArgs e) => await BasePage.SaveFileInternalAsync();
 
 	private async void OpenFileButton_ClickAsync(object sender, RoutedEventArgs e) => await BasePage.OpenFileInternalAsync();
+
+	private void DifficultyLevelSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+	{
+		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: int value } })
+		{
+			DifficultyLevel = (DifficultyLevel)value;
+		}
+	}
 }

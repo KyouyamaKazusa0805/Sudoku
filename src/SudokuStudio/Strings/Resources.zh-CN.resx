@@ -561,6 +561,24 @@
   <data name="AnonymousAuthor" xml:space="preserve">
     <value>&lt;匿名&gt;</value>
   </data>
+  <data name="DifficultyLevel_Easy" xml:space="preserve">
+    <value>容易</value>
+  </data>
+  <data name="DifficultyLevel_Fiendish" xml:space="preserve">
+    <value>极难</value>
+  </data>
+  <data name="DifficultyLevel_Hard" xml:space="preserve">
+    <value>困难</value>
+  </data>
+  <data name="DifficultyLevel_Moderate" xml:space="preserve">
+    <value>一般</value>
+  </data>
+  <data name="DifficultyLevel_Nightmare" xml:space="preserve">
+    <value>地狱</value>
+  </data>
+  <data name="DifficultyLevel_None" xml:space="preserve">
+    <value>无难度控制</value>
+  </data>
   <data name="DrawingPage_InputCharacter" xml:space="preserve">
     <value>输入代数用的字符：</value>
   </data>

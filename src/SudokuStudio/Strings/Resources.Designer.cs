@@ -1555,6 +1555,60 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Easy.
+        /// </summary>
+        internal static string DifficultyLevel_Easy {
+            get {
+                return ResourceManager.GetString("DifficultyLevel_Easy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fiendish.
+        /// </summary>
+        internal static string DifficultyLevel_Fiendish {
+            get {
+                return ResourceManager.GetString("DifficultyLevel_Fiendish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hard.
+        /// </summary>
+        internal static string DifficultyLevel_Hard {
+            get {
+                return ResourceManager.GetString("DifficultyLevel_Hard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moderate.
+        /// </summary>
+        internal static string DifficultyLevel_Moderate {
+            get {
+                return ResourceManager.GetString("DifficultyLevel_Moderate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nightmare.
+        /// </summary>
+        internal static string DifficultyLevel_Nightmare {
+            get {
+                return ResourceManager.GetString("DifficultyLevel_Nightmare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string DifficultyLevel_None {
+            get {
+                return ResourceManager.GetString("DifficultyLevel_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Input character as a baba group: .
         /// </summary>
         internal static string DrawingPage_InputCharacter {

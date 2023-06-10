@@ -79,5 +79,15 @@
 		<AppBarButton
 			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}" IsEnabled="{x:Bind BasePage.GeneratorIsNotRunning,Mode=OneWay}"
 			Click="NewPuzzleButton_ClickAsync" />
+		<AppBarElementContainer VerticalAlignment="Center">
+			<ComboBox x:Name="DifficultyLevelSelector" SelectedIndex="0" SelectionChanged="DifficultyLevelSelector_SelectionChanged">
+				<ComboBoxItem Content="{m:R Key=DifficultyLevel_None}" Tag="{m:Int32 Value=0}" />
+				<ComboBoxItem Content="{m:R Key=DifficultyLevel_Easy}" Tag="{m:Int32 Value=1}" />
+				<ComboBoxItem Content="{m:R Key=DifficultyLevel_Moderate}" Tag="{m:Int32 Value=2}" />
+				<ComboBoxItem Content="{m:R Key=DifficultyLevel_Hard}" Tag="{m:Int32 Value=4}" />
+				<ComboBoxItem Content="{m:R Key=DifficultyLevel_Fiendish}" Tag="{m:Int32 Value=8}" />
+				<ComboBoxItem Content="{m:R Key=DifficultyLevel_Nightmare}" Tag="{m:Int32 Value=16}" />
+			</ComboBox>
+		</AppBarElementContainer>
 	</CommandBar>
 </Page>
