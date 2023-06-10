@@ -7759,11 +7759,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the basic operation command bar.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.BasicOperation.Generator">
-            <summary>
-            Defines a default puzzle generator.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Operation.BasicOperation"/> instance.

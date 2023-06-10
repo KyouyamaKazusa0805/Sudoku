@@ -63,6 +63,128 @@
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator">
+            <summary>
+            Represents a generator that is implemented by HoDoKu.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.MaxTries">
+            <summary>
+            Maximum number of tries when generating a puzzle using a pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Rng">
+            <summary>
+            A random generator for creating new puzzles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.FastSolver">
+            <summary>
+            Indicates the internal fast solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._generateIndices">
+            <summary>
+            The order in which cells are set when generating a full grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._stack">
+            <summary>
+            The recursion stack.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._newFullSudoku">
+            <summary>
+            The final grid to be used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._newValidSudoku">
+            <summary>
+            The final grid to be used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/summary"/>
+            </summary>
+            <param name="symmetric">A <see cref="T:System.Boolean"/> value indicating whether generated puzzles should be symmetric.</param>
+            <param name="cancellationToken"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/returns"/></returns>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/summary"/>
+            </summary>
+            <param name="symmetric"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='symmetric']"/></param>
+            <param name="pattern">The pattern indicating the states of selection on all cells.</param>
+            <param name="cancellationToken">
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            </param>
+            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/returns"/></returns>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateInitPos(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Takes a full sudoku from <see cref="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
+            If a deletion produces a grid with more than one solution it is of course undone.
+            </summary>
+            <param name="symmetric"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='symmetric']"/></param>
+            <param name="cancellationToken"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/></param>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateInitPos(Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)">
+            <summary>
+            Takes a full sudoku from <see cref="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._newFullSudoku"/> and generates a valid puzzle by deleting the cells indicated
+            by <paramref name="pattern"/>. If the resulting puzzle is invalid, <see langword="false"/> is returned and the caller
+            is responsible for continuing the search.
+            </summary>
+            <param name="pattern">The pattern.</param>
+            <param name="cancellationToken"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/></param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the pattern is valid to be used.</returns>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateForFullGrid">
+            <summary>
+            Generate a solution grid.
+            </summary>
+            <returns>A solution grid.</returns>
+        </member>
+        <member name="T:Sudoku.Algorithm.Generating.GeneratorPattern">
+            <summary>
+            <para>A pattern, that indicates, which cells should contain givens when generating new puzzles.</para>
+            <b>Caution:</b> The setter for <see cref="P:Sudoku.Algorithm.Generating.GeneratorPattern.Pattern"/> only sets the reference, the constructor actually makes a copy of
+            the pattern, that has been passed in. When working with new patterns, only the constructors should be used, the
+            setter is used internally by <code>XmlDecoder</code>.
+            </summary>
+            <param name="Pattern">One entry per cell; if it is <see langword="true"/>, the cell must be a given.</param>
+            <param name="Name">The name of the pattern.</param>
+            <param name="Valid">Patterns must be tested before they can be applied. the result of the test is stored here.</param>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.GeneratorPattern.#ctor(Sudoku.Concepts.CellMap@,System.String,System.Boolean)">
+            <summary>
+            <para>A pattern, that indicates, which cells should contain givens when generating new puzzles.</para>
+            <b>Caution:</b> The setter for <see cref="P:Sudoku.Algorithm.Generating.GeneratorPattern.Pattern"/> only sets the reference, the constructor actually makes a copy of
+            the pattern, that has been passed in. When working with new patterns, only the constructors should be used, the
+            setter is used internally by <code>XmlDecoder</code>.
+            </summary>
+            <param name="Pattern">One entry per cell; if it is <see langword="true"/>, the cell must be a given.</param>
+            <param name="Name">The name of the pattern.</param>
+            <param name="Valid">Patterns must be tested before they can be applied. the result of the test is stored here.</param>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.GeneratorPattern.Pattern">
+            <summary>One entry per cell; if it is <see langword="true"/>, the cell must be a given.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.GeneratorPattern.Name">
+            <summary>The name of the pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.GeneratorPattern.Valid">
+            <summary>Patterns must be tested before they can be applied. the result of the test is stored here.</summary>
+        </member>
         <member name="T:Sudoku.Algorithm.Generating.IPuzzleGenerator">
             <summary>
             Represents an instance that has ability to create a new sudoku puzzle game, allow cancelling.
@@ -250,6 +372,33 @@
         <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._baseCandidates">
             <summary>
             The generated field declaration for parameter <c>baseCandidates</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Algorithm.Generating.RecursionStackEntry">
+            <summary>
+            One entry in recursion stack.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.RecursionStackEntry.Candidates">
+            <summary>
+            The candidates for cells <see cref="F:Sudoku.Algorithm.Generating.RecursionStackEntry.Cell"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Algorithm.Generating.RecursionStackEntry.Cell"/>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.RecursionStackEntry.Cell">
+            <summary>
+            The index of the cell that's being tried.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.RecursionStackEntry.CandidateIndex">
+            <summary>
+            The index of the last tried candidate in <see cref="F:Sudoku.Algorithm.Generating.RecursionStackEntry.Candidates"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Algorithm.Generating.RecursionStackEntry.Candidates"/>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.RecursionStackEntry.SudokuGrid">
+            <summary>
+            The current state of the sudoku.
             </summary>
         </member>
         <member name="T:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator">

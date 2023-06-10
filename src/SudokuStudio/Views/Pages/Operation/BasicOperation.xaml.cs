@@ -7,12 +7,6 @@ namespace SudokuStudio.Views.Pages.Operation;
 public sealed partial class BasicOperation : Page, IOperationProviderPage
 {
 	/// <summary>
-	/// Defines a default puzzle generator.
-	/// </summary>
-	private static readonly PatternBasedPuzzleGenerator Generator = new();
-
-
-	/// <summary>
 	/// Initializes a <see cref="BasicOperation"/> instance.
 	/// </summary>
 	public BasicOperation() => InitializeComponent();
@@ -71,7 +65,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 	{
 		BasePage.GeneratorIsNotRunning = false;
 
-		var grid = await Generator.GenerateAsync();
+		var grid = await Task.Run(() => new HodokuPuzzleGenerator().Generate());
 
 		BasePage.GeneratorIsNotRunning = true;
 
