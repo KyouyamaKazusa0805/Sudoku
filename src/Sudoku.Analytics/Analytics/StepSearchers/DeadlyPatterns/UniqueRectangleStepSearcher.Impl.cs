@@ -4512,10 +4512,7 @@ partial class UniqueRectangleStepSearcher
 						cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 					}
 
-					var candidateOffsets = new List<CandidateViewNode>
-					{
-						new(WellKnownColorIdentifier.Normal, anotherCell * 9 + otherDigit)
-					};
+					var candidateOffsets = new List<CandidateViewNode> { new(WellKnownColorIdentifier.Normal, anotherCell * 9 + otherDigit) };
 					foreach (var cell in otherCells)
 					{
 						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + otherDigit));
