@@ -4037,6 +4037,12 @@ partial class UniqueRectangleStepSearcher
 			{
 				foreach (var cell2 in cellsToEnumerate)
 				{
+					if (!PeersMap[cell1].Contains(cell2))
+					{
+						// Two cells cannot see each other.
+						continue;
+					}
+
 					var (mask1, mask2) = (grid.GetCandidates(cell1), grid.GetCandidates(cell2));
 					var intersectionMask = (Mask)(mask1 & mask2);
 					if (!IsPow2(intersectionMask))
