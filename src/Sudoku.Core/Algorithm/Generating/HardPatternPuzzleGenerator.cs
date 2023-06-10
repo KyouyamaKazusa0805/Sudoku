@@ -120,8 +120,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// <param name="pattern">The base pattern.</param>
 	private void CreatePattern(Cell* pattern)
 	{
-		var a = 54;
-		var b = 0;
+		var (a, b) = (54, 0);
 		for (var i = 0; i < 9; i++)
 		{
 			var n = (int)(_random.NextDouble() * 6);
@@ -143,6 +142,17 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// <param name="pattern">The pointer that points to an array of the pattern values.</param>
 	private void RecreatePattern(Cell* pattern)
 	{
+#if true
+		var target = stackalloc[] { (23, 0, 1), (47, 24, -23), (53, 48, -47), (80, 54, 27) };
+		for (var index = 0; index < 4; index++)
+		{
+			var (initial, boundary, delta) = target[index];
+			for (var i = initial; i >= boundary; i--)
+			{
+				PointerOperations.Swap(pattern + i, pattern + boundary + (Cell)((index == 3 ? delta : (i + delta)) * _random.NextDouble()));
+			}
+		}
+#else
 		for (var i = 23; i >= 0; i--)
 		{
 			PointerOperations.Swap(pattern + i, pattern + (Cell)((i + 1) * _random.NextDouble()));
@@ -159,6 +169,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 		{
 			PointerOperations.Swap(pattern + i, pattern + 54 + (Cell)(27 * _random.NextDouble()));
 		}
+#endif
 	}
 
 
