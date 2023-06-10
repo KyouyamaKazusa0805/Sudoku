@@ -4026,11 +4026,12 @@ partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
-			forOneEndoLeaf(grid, cellsToEnumerate, guardianCells);
+			//forOneEndoLeaf(grid, cellsToEnumerate, guardianCells);
 			forBothExoLeaves(grid, cellsToEnumerate, guardianCells);
 		}
 
 
+#pragma warning disable CS8321
 		void forOneEndoLeaf(scoped in Grid grid, scoped in CellMap cellsToEnumerate, scoped in CellMap guardianCells)
 		{
 			foreach (var cell1 in guardianCells)
@@ -4137,6 +4138,7 @@ partial class UniqueRectangleStepSearcher
 				}
 			}
 		}
+#pragma warning restore CS8321
 
 		void forBothExoLeaves(scoped in Grid grid, scoped in CellMap cellsToEnumerate, scoped in CellMap guardianCells)
 		{
