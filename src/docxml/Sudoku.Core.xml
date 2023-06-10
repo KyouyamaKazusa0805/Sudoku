@@ -105,8 +105,17 @@
         </member>
         <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.#ctor">
             <summary>
-            Creates a new instance of <see cref="T:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator"/>.
+            Creates a new instance of <see cref="T:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator" />.
             </summary>
+            <remarks>
+            <target name="constructor">
+				<i>
+					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
+					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
+					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
+				</i>
+			</target>
+            </remarks>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <inheritdoc/>

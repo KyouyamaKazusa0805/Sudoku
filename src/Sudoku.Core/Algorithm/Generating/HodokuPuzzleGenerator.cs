@@ -11,34 +11,36 @@
 // This code is actually a Java port of code posted by Glenn Fowler in the Sudoku Player's Forum (http://www.setbb.com/sudoku).
 // Many thanks for letting me use it!
 
+#pragma warning disable IDE0011, IDE0064
+
 namespace Sudoku.Algorithm.Generating;
 
 /// <summary>
 /// Represents a generator that is implemented by HoDoKu.
 /// </summary>
-public class HodokuPuzzleGenerator : IPuzzleGenerator
+public struct HodokuPuzzleGenerator : IPuzzleGenerator
 {
 	/// <summary>
 	/// Maximum number of tries when generating a puzzle using a pattern.
 	/// </summary>
-	protected const int MaxTries = 1_000_000;
+	private const int MaxTries = 1_000_000;
 
 
 	/// <summary>
 	/// A random generator for creating new puzzles.
 	/// </summary>
-	protected static readonly Random Rng = new();
+	private static readonly Random Rng = new();
 
 	/// <summary>
 	/// Indicates the internal fast solver.
 	/// </summary>
-	protected static readonly BitwiseSolver FastSolver = new();
+	private static readonly BitwiseSolver FastSolver = new();
 
 
 	/// <summary>
 	/// The order in which cells are set when generating a full grid.
 	/// </summary>
-	private readonly int[] _generateIndices = new int[81];
+	private readonly int[] _generateIndices;
 
 	/// <summary>
 	/// The recursion stack.
@@ -54,18 +56,28 @@ public class HodokuPuzzleGenerator : IPuzzleGenerator
 	/// <summary>
 	/// Creates a new instance of <see cref="HodokuPuzzleGenerator"/>.
 	/// </summary>
+	/// <remarks>
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
+	/// </remarks>
 	public HodokuPuzzleGenerator()
 	{
-		_stack = new RecursionStackEntry[82];
-		for (var i = 0; i <= 81; i++)
+		(_generateIndices, _stack) = (new int[81], new RecursionStackEntry[82]);
+		foreach (ref var element in _stack.EnumerateRef())
 		{
-			_stack[i] = new();
+			element = new();
 		}
 	}
 
 
 	/// <inheritdoc/>
-	public Grid Generate(CancellationToken cancellationToken = default) => Generate(true, default);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Grid Generate(CancellationToken cancellationToken = default)
+	{
+		this = new();
+		return Generate(true, default);
+	}
 
 	/// <summary>
 	/// <inheritdoc cref="Generate(CancellationToken)" path="/summary"/>
@@ -73,6 +85,7 @@ public class HodokuPuzzleGenerator : IPuzzleGenerator
 	/// <param name="symmetric">A <see cref="bool"/> value indicating whether generated puzzles should be symmetric.</param>
 	/// <param name="cancellationToken"><inheritdoc cref="Generate(CancellationToken)" path="/param[@name='cancellationToken']"/></param>
 	/// <returns><inheritdoc cref="Generate(CancellationToken)" path="/returns"/></returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Grid Generate(bool symmetric, CancellationToken cancellationToken = default) => Generate(symmetric, CellMap.Empty, cancellationToken);
 
 	/// <summary>
@@ -84,7 +97,6 @@ public class HodokuPuzzleGenerator : IPuzzleGenerator
 	/// <inheritdoc cref="Generate(bool, CancellationToken)" path="/param[@name='cancellationToken']"/>
 	/// </param>
 	/// <returns><inheritdoc cref="Generate(bool, CancellationToken)" path="/returns"/></returns>
-	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
 	private Grid Generate(bool symmetric, scoped in CellMap pattern, CancellationToken cancellationToken = default)
 	{
 		while (!GenerateForFullGrid()) ;
@@ -120,7 +132,6 @@ public class HodokuPuzzleGenerator : IPuzzleGenerator
 	/// </summary>
 	/// <param name="symmetric"><inheritdoc cref="Generate(bool, CancellationToken)" path="/param[@name='symmetric']"/></param>
 	/// <param name="cancellationToken"><inheritdoc cref="Generate(bool, CancellationToken)" path="/param[@name='cancellationToken']"/></param>
-	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
 	private void GenerateInitPos(bool symmetric, CancellationToken cancellationToken = default)
 	{
 		var (maxPosToFill, used, usedCount) = (17, CellMap.Empty, 81);

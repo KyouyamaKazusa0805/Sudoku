@@ -8,6 +8,12 @@ namespace SudokuStudio.Views.Pages.Operation;
 public sealed partial class BasicOperation : Page, IOperationProviderPage
 {
 	/// <summary>
+	/// Indicates the puzzle generator.
+	/// </summary>
+	private static readonly HodokuPuzzleGenerator PuzzleGenerator = new();
+
+
+	/// <summary>
 	/// Initializes a <see cref="BasicOperation"/> instance.
 	/// </summary>
 	public BasicOperation() => InitializeComponent();
@@ -67,17 +73,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 		BasePage.GeneratorIsNotRunning = false;
 
 		var difficultyLevelSelected = DifficultyLevel;
-		var grid = await Task.Run(() =>
-		{
-			while (true)
-			{
-				var grid = new HodokuPuzzleGenerator().Generate();
-				if (difficultyLevelSelected == 0 || ((App)Application.Current).Analyzer.Analyze(grid).DifficultyLevel == difficultyLevelSelected)
-				{
-					return grid;
-				}
-			}
-		});
+		var grid = await Task.Run(gridCreator);
 
 		BasePage.GeneratorIsNotRunning = true;
 
@@ -87,6 +83,19 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 		}
 
 		BasePage.SudokuPane.Puzzle = grid;
+
+
+		Grid gridCreator()
+		{
+			while (true)
+			{
+				var grid = PuzzleGenerator.Generate();
+				if (difficultyLevelSelected == 0 || ((App)Application.Current).Analyzer.Analyze(grid).DifficultyLevel == difficultyLevelSelected)
+				{
+					return grid;
+				}
+			}
+		}
 	}
 
 	private void SaveAsButton_Click(object sender, RoutedEventArgs e) => Dialog_FormatChoosing.IsOpen = true;

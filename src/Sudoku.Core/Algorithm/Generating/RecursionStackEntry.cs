@@ -16,13 +16,13 @@ namespace Sudoku.Algorithm.Generating;
 /// <summary>
 /// One entry in recursion stack.
 /// </summary>
-internal sealed unsafe class RecursionStackEntry
+internal sealed class RecursionStackEntry
 {
 	/// <summary>
 	/// The candidates for cells <see cref="Cell"/>.
 	/// </summary>
 	/// <seealso cref="Cell"/>
-	public short Candidates;
+	public Mask Candidates;
 
 	/// <summary>
 	/// The index of the cell that's being tried.
