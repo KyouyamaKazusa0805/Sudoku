@@ -3992,7 +3992,6 @@ partial class UniqueRectangleStepSearcher
 	)
 	{
 		var cells = (CellMap)urCells;
-
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
@@ -4027,16 +4026,122 @@ partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
+			forOneEndoLeaf(grid, cellsToEnumerate, guardianCells);
+			forBothExoLeaves(grid, cellsToEnumerate, guardianCells);
+		}
+
+
+		void forOneEndoLeaf(scoped in Grid grid, scoped in CellMap cellsToEnumerate, scoped in CellMap guardianCells)
+		{
+			foreach (var cell1 in guardianCells)
+			{
+				foreach (var cell2 in cellsToEnumerate)
+				{
+					var (mask1, mask2) = (grid.GetCandidates(cell1), grid.GetCandidates(cell2));
+					var intersectionMask = (Mask)(mask1 & mask2);
+					if (!IsPow2(intersectionMask))
+					{
+						// No eliminations can be found in this pattern.
+						continue;
+					}
+
+					var unionMask = (Mask)(mask1 | mask2);
+					if ((unionMask & comparer) != comparer)
+					{
+						// The two cells must contain both two digits.
+						continue;
+					}
+
+					if ((unionMask & ~(comparer | intersectionMask)) != 0)
+					{
+						// These two cells may contain extra cells, which is disallowed in this pattern.
+						continue;
+					}
+
+					var elimDigit = TrailingZeroCount(intersectionMask);
+					if ((mask1 >> elimDigit & 1) == 0)
+					{
+						// No eliminations found.
+						continue;
+					}
+
+					var (candidateOffsets, cellOffsets) = (new List<CandidateViewNode>(), new List<CellViewNode>());
+					foreach (var cell in urCells)
+					{
+						switch (grid.GetStatus(cell))
+						{
+							case CellStatus.Empty:
+							{
+								foreach (var digit in (Mask)(grid.GetCandidates(cell) & comparer))
+								{
+									candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+								}
+								break;
+							}
+							case CellStatus.Modifiable:
+							{
+								cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
+								break;
+							}
+						}
+					}
+					foreach (var cell in guardianCells)
+					{
+						foreach (var digit in grid.GetCandidates(cell))
+						{
+							if (digit == d1 || digit == d2)
+							{
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
+							}
+						}
+					}
+
+					var cellPair = CellsMap[cell1] + cell2;
+					foreach (var cell in cellPair)
+					{
+						foreach (var digit in grid.GetCandidates(cell))
+						{
+							// Elimination cannot be colorized.
+							if (cell != cell1 || digit != elimDigit)
+							{
+								candidateOffsets.Add(
+									new(
+										digit != d1 && digit != d2 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Auxiliary2,
+										cell * 9 + digit
+									)
+								);
+							}
+						}
+					}
+
+					accumulator.Add(
+						new UniqueRectangleExternalXyWingStep(
+							new[] { new Conclusion(Elimination, cell1, elimDigit) },
+							new[] { View.Empty | cellOffsets | candidateOffsets },
+							d1,
+							d2,
+							cells,
+							guardianCells,
+							cellPair,
+							UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets),
+							arMode,
+							index
+						)
+					);
+				}
+			}
+		}
+
+		void forBothExoLeaves(scoped in Grid grid, scoped in CellMap cellsToEnumerate, scoped in CellMap guardianCells)
+		{
 			foreach (var cellPair in cellsToEnumerate & 2)
 			{
-				var cell1 = cellPair[0];
-				var cell2 = cellPair[1];
-				var mask1 = grid.GetCandidates(cell1);
-				var mask2 = grid.GetCandidates(cell2);
+				var (cell1, cell2) = (cellPair[0], cellPair[1]);
+				var (mask1, mask2) = (grid.GetCandidates(cell1), grid.GetCandidates(cell2));
 				var intersectionMask = (Mask)(mask1 & mask2);
 				if (!IsPow2(intersectionMask))
 				{
-					// No eliminations can be found in this structure.
+					// No eliminations can be found in this pattern.
 					continue;
 				}
 
@@ -4073,8 +4178,7 @@ partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				var candidateOffsets = new List<CandidateViewNode>();
-				var cellOffsets = new List<CellViewNode>();
+				var (candidateOffsets, cellOffsets) = (new List<CandidateViewNode>(), new List<CellViewNode>());
 				foreach (var cell in urCells)
 				{
 					switch (grid.GetStatus(cell))
@@ -4085,13 +4189,11 @@ partial class UniqueRectangleStepSearcher
 							{
 								candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 							}
-
 							break;
 						}
 						case CellStatus.Modifiable:
 						{
 							cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
-
 							break;
 						}
 					}
@@ -4100,12 +4202,10 @@ partial class UniqueRectangleStepSearcher
 				{
 					foreach (var digit in grid.GetCandidates(cell))
 					{
-						if (digit != d1 && digit != d2)
+						if (digit == d1 || digit == d2)
 						{
-							continue;
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
 						}
-
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
 					}
 				}
 				foreach (var cell in cellPair)
