@@ -108,6 +108,17 @@ public abstract class Command : IModule
 			return;
 		}
 
+		if (BlackListOperations.Contains(senderId))
+		{
+			await gmr.SendMessageAsync(
+				"""
+				❗严重提示
+				管理员已将你添加到黑名单之中。在管理员解封你之前，你都无法使用机器人。
+				"""
+			);
+			return;
+		}
+
 		if (RequiredUserLevel != 0
 			&& (UserOperations.Read(senderId) is not { ExperiencePoint: var exp } || ScoringOperation.GetGrade(exp) < RequiredUserLevel))
 		{

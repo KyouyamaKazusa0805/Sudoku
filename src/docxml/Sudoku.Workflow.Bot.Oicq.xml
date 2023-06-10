@@ -940,6 +940,25 @@
             机器人的运行上下文。为一个并发字典，按群存储不同的上下文数据。
             </summary>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.BlackListOperations">
+            <summary>
+            表示关于黑名单操作的类型。
+            </summary>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.BlackListOperations.Append(System.String,System.Boolean)">
+            <summary>
+            将指定用户账号的用户添加进入黑名单之中。
+            </summary>
+            <param name="userId">账号。</param>
+            <param name="deleteData">表示在加入黑名单后，该用户的账号信息是否需要被删除。默认为 <see langword="false"/>。</param>
+        </member>
+        <member name="M:Sudoku.Workflow.Bot.Oicq.Operation.BlackListOperations.Contains(System.String)">
+            <summary>
+            查询本地黑名单列表里，是否有指定用户。
+            </summary>
+            <param name="userId">指定用户的账号。</param>
+            <returns>一个 <see cref="T:System.Boolean"/> 结果，表示他是否在该表里。</returns>
+        </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.Operation.DailyPuzzleOperations">
             <summary>
             提供有关于每日一题的一些功能性操作。
@@ -2163,6 +2182,11 @@
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserCommand.CoinAddition">
             <summary>
             表示你要为该用户加多少金币。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserCommand.AppendToBlackList">
+            <summary>
+            表示该指定用户是否应该被加入到黑名单之中。
             </summary>
         </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.ManualUpdateUserCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">

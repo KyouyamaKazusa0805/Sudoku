@@ -41,6 +41,15 @@ internal sealed class ManualUpdateUserCommand : Command
 	[DisplayingIndex(1)]
 	public int CoinAddition { get; set; }
 
+	/// <summary>
+	/// 表示该指定用户是否应该被加入到黑名单之中。
+	/// </summary>
+	[DoubleArgument("进入黑名单")]
+	[Hint("表示该指定用户是否应该被加入到黑名单之中。")]
+	[ValueConverter<BooleanConverter>]
+	[DisplayingIndex(1)]
+	public bool AppendToBlackList { get; set; }
+
 
 	/// <inheritdoc/>
 	protected override async Task ExecuteCoreAsync(GroupMessageReceiver messageReceiver)
@@ -70,14 +79,43 @@ internal sealed class ManualUpdateUserCommand : Command
 			Directory.CreateDirectory(botUsersDataFolder);
 		}
 
-		switch (UserNickname, UserId, ExperiencePointAddition, CoinAddition)
+		switch (UserNickname, UserId, ExperiencePointAddition, CoinAddition, AppendToBlackList)
 		{
-			case (_, _, 0, 0):
+			case ({ } name, null, _, _, true):
+			{
+				switch (await group.GetMatchedMembersViaNicknameAsync(name))
+				{
+					case null or []:
+					{
+						await messageReceiver.SendMessageAsync($"本群不存在昵称为“{name}”的用户。");
+						break;
+					}
+					case [{ Id: var userId }]:
+					{
+						BlackListOperations.Append(userId, true);
+						await messageReceiver.SendMessageAsync($"添加账号为 {userId} 的用户成功。");
+						break;
+					}
+					default:
+					{
+						await messageReceiver.SendMessageAsync($"本群至少存在两个用户昵称为“{name}”。请改用 QQ 号来确保用户的唯一性");
+						break;
+					}
+				}
+				break;
+			}
+			case (null, { } userId, _, _, true):
+			{
+				BlackListOperations.Append(userId, true);
+				await messageReceiver.SendMessageAsync($"添加账号为 {userId} 的用户成功。");
+				break;
+			}
+			case (_, _, 0, 0, _):
 			{
 				await messageReceiver.SendMessageAsync("经验或金币数至少有一个数必须非 0。");
 				break;
 			}
-			case ({ } name, null, var expAdd, var coinAdd):
+			case ({ } name, null, var expAdd, var coinAdd, _):
 			{
 				switch (await group.GetMatchedMembersViaNicknameAsync(name))
 				{
@@ -118,7 +156,7 @@ internal sealed class ManualUpdateUserCommand : Command
 
 				break;
 			}
-			case (null, { } userId, var expAdd, var coinAdd):
+			case (null, { } userId, var expAdd, var coinAdd, _):
 			{
 				switch (await group.GetMatchedMemberViaIdAsync(userId))
 				{
