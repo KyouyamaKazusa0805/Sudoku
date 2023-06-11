@@ -204,15 +204,13 @@ public abstract class Command : IModule
 				var usageText = EqualityContract.GetCustomAttributes<UsageAttribute>().ToArray() switch
 				{
 					var attributes and not []
+					when (from attribute in attributes select $"{attribute.UsageText}：{attribute.Description}") is var u
 						=>
 						$"""
 						
 						---
 						用法举例：
-						{string.Join(
-							Environment.NewLine,
-							from attribute in attributes select $"{attribute.UsageText}：{attribute.Description}"
-						)}
+						{string.Join(Environment.NewLine, u)}
 						""",
 					_ => string.Empty
 				};
