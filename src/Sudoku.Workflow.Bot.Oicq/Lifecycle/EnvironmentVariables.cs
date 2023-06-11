@@ -6,14 +6,14 @@ namespace Sudoku.Workflow.Bot.Oicq.Lifecycle;
 internal static class EnvironmentVariables
 {
 	/// <summary>
+	/// 题目生成器。
+	/// </summary>
+	public static readonly HodokuPuzzleGenerator Generator = new();
+
+	/// <summary>
 	/// 随机数生成器。
 	/// </summary>
 	public static readonly Random Rng = new();
-
-	/// <summary>
-	/// 题目生成器。
-	/// </summary>
-	public static readonly PatternBasedPuzzleGenerator Generator = new();
 
 	/// <summary>
 	/// 逻辑解题的工具。

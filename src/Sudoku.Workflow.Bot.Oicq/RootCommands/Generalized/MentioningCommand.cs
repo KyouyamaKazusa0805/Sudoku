@@ -17,10 +17,16 @@ file sealed class MentioningCommand : IModule
 		if (@base is not GroupMessageReceiver
 			{
 				GroupId: var groupId,
-				Sender: var sender,
+				Sender: { Id: var senderId } sender,
 				MessageChain: [SourceMessage, AtMessage { Target: BotNumber }, PlainMessage { Text: var m }]
 			} messageReceiver)
 		{
+			return;
+		}
+
+		if (BlackListOperations.Contains(senderId))
+		{
+			// 禁止拉进黑名单的人使用特殊指令。
 			return;
 		}
 
