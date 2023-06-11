@@ -82,7 +82,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>, IAnalyzerOrC
 
 
 	/// <inheritdoc/>
-	public AnalyzerResult Analyze(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
+	public AnalyzerResult Analyze(scoped in Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		var result = new AnalyzerResult(puzzle) { IsSolved = false };
 		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } isSukaku)
@@ -119,7 +119,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>, IAnalyzerOrC
 			scoped in Grid solution,
 			bool isSukaku,
 			AnalyzerResult resultBase,
-			IProgress<double>? progress = null,
+			IProgress<AnalyzerProgress>? progress = null,
 			CancellationToken cancellationToken = default
 		)
 		{
@@ -128,6 +128,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>, IAnalyzerOrC
 			var recordedSteps = new List<Step>(100);
 			var stepGrids = new List<Grid>(100);
 			var stepSearchers = ResultStepSearchers;
+			var progressedStepSearcherName = default(string);
 
 			scoped var stopwatch = ValueStopwatch.StartNew();
 
@@ -178,7 +179,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>, IAnalyzerOrC
 
 						// The puzzle has not been finished, we should turn to the first step finder
 						// to continue solving puzzle.
-						goto ReportStatusAndSkipToTryAgain;
+						goto SetAnalyzerProgress;
 					}
 					default:
 					{
@@ -207,11 +208,15 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>, IAnalyzerOrC
 
 								// The puzzle has not been finished, we should turn to the first step finder
 								// to continue solving puzzle.
-								goto ReportStatusAndSkipToTryAgain;
+								goto SetAnalyzerProgress;
 							}
 						}
 					}
 				}
+
+			SetAnalyzerProgress:
+				progressedStepSearcherName = searcher.ToString();
+				goto ReportStatusAndSkipToTryAgain;
 			}
 
 			// All solver can't finish the puzzle...
@@ -226,7 +231,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>, IAnalyzerOrC
 			};
 
 		ReportStatusAndSkipToTryAgain:
-			progress?.Report((double)(totalCandidatesCount - playground.CandidatesCount) / totalCandidatesCount);
+			progress?.Report(new(progressedStepSearcherName, (double)(totalCandidatesCount - playground.CandidatesCount) / totalCandidatesCount));
 			goto Again;
 
 

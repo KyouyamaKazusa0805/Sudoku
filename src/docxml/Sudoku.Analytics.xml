@@ -125,7 +125,7 @@
             Initializes an <see cref="T:Sudoku.Analytics.Analyzer"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerFactory">
@@ -5031,7 +5031,7 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.StepCollector.ResultStepSearchers">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepCollector.Search(Sudoku.Concepts.Grid@,System.IProgress{System.Double},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Analytics.StepCollector.Search(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <summary>
             Search for all possible steps in a grid.
             </summary>

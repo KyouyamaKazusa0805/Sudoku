@@ -54,7 +54,7 @@ public sealed class StepCollector : IAnalyzerOrCollector
 	/// <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
 	/// <returns>The result.</returns>
 	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
-	public IEnumerable<Step> Search(scoped in Grid puzzle, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
+	public IEnumerable<Step> Search(scoped in Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out var sukaku))
 		{
@@ -118,7 +118,7 @@ public sealed class StepCollector : IAnalyzerOrCollector
 
 		// Report the progress if worth.
 		ReportProgress:
-			progress?.Report(++currentSearcherIndex / (double)totalSearchersCount);
+			progress?.Report(new(searcher.ToString(), ++currentSearcherIndex / (double)totalSearchersCount));
 		}
 
 		// Return the result.

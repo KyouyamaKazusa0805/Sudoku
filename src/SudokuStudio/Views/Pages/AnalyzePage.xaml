@@ -261,7 +261,11 @@
 							x:Name="AnalyzeProgress" Width="100" Height="100" IsIndeterminate="False" Value="{x:Bind ProgressPercent,Mode=OneWay}"
 							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched),Mode=OneWay}" />
 						<TextBlock
-							x:Name="AnalyzeProgressLabel" x:FieldModifier="internal"
+							x:Name="AnalyzeProgressLabel" x:FieldModifier="internal" HorizontalAlignment="Center"
+							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched),Mode=OneWay}" />
+						<TextBlock
+							x:Name="AnalyzeStepSearcherNameLabel" x:FieldModifier="internal"
+							HorizontalAlignment="Center" FontWeight="Bold" Margin="0,12" FontSize="24"
 							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched),Mode=OneWay}" />
 					</StackPanel>
 					<TabView

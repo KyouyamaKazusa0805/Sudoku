@@ -307,20 +307,19 @@ public sealed partial class AnalyzePage : Page
 					filePath,
 					gridFormatters switch
 					{
-						null
-							=> new GridInfo[]
+						null => new GridInfo[]
+						{
+							new()
 							{
-								new()
+								BaseGrid = grid,
+								RenderableData = viewUnit switch
 								{
-									BaseGrid = grid,
-									RenderableData = viewUnit switch
-									{
-										{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = new[] { view } },
-										_ => null
-									},
-									ShowCandidates = displayCandidates
-								}
-							},
+									{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = new[] { view } },
+									_ => null
+								},
+								ShowCandidates = displayCandidates
+							}
+						},
 						_
 							=>
 							from formatter in gridFormatters
@@ -1082,13 +1081,15 @@ public sealed partial class AnalyzePage : Page
 				{
 					return analyzer.Analyze(
 						puzzle,
-						new Progress<double>(
-							percent =>
+						new Progress<AnalyzerProgress>(
+							progress =>
 								DispatcherQueue.TryEnqueue(
 									() =>
 									{
-										ProgressPercent = percent * 100;
+										var (stepSearcherName, percent) = progress;
+										ProgressPercent = progress.Percent * 100;
 										AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
+										AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
 									}
 								)
 						)

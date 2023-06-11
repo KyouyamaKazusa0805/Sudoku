@@ -110,13 +110,15 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 				{
 					return collector.Search(
 						grid,
-						new Progress<double>(
-							percent =>
+						new Progress<AnalyzerProgress>(
+							progress =>
 								DispatcherQueue.TryEnqueue(
 									() =>
 									{
+										var (stepSearcherName, percent) = progress;
 										BasePage.ProgressPercent = percent * 100;
 										BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
+										BasePage.AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
 									}
 								)
 						)
