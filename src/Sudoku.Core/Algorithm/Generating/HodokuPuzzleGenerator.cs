@@ -73,20 +73,7 @@ public struct HodokuPuzzleGenerator : IPuzzleGenerator
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Grid Generate(CancellationToken cancellationToken = default)
-	{
-		this = new();
-		return Generate(true, default);
-	}
-
-	/// <summary>
-	/// <inheritdoc cref="Generate(CancellationToken)" path="/summary"/>
-	/// </summary>
-	/// <param name="symmetric">A <see cref="bool"/> value indicating whether generated puzzles should be symmetric.</param>
-	/// <param name="cancellationToken"><inheritdoc cref="Generate(CancellationToken)" path="/param[@name='cancellationToken']"/></param>
-	/// <returns><inheritdoc cref="Generate(CancellationToken)" path="/returns"/></returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Grid Generate(bool symmetric, CancellationToken cancellationToken = default) => Generate(symmetric, CellMap.Empty, cancellationToken);
+	readonly Grid IPuzzleGenerator.Generate(CancellationToken cancellationToken) => Generate(cancellationToken);
 
 	/// <summary>
 	/// <inheritdoc cref="Generate(bool, CancellationToken)" path="/summary"/>
@@ -394,6 +381,21 @@ public struct HodokuPuzzleGenerator : IPuzzleGenerator
 			return true;
 		}
 	}
+
+
+	/// <inheritdoc cref="IPuzzleGenerator.Generate(CancellationToken)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid Generate(CancellationToken cancellationToken = default) => Generate(true, cancellationToken);
+
+	/// <summary>
+	/// <inheritdoc cref="Generate(CancellationToken)" path="/summary"/>
+	/// </summary>
+	/// <param name="symmetric">A <see cref="bool"/> value indicating whether generated puzzles should be symmetric.</param>
+	/// <param name="cancellationToken"><inheritdoc cref="Generate(CancellationToken)" path="/param[@name='cancellationToken']"/></param>
+	/// <returns><inheritdoc cref="Generate(CancellationToken)" path="/returns"/></returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid Generate(bool symmetric, CancellationToken cancellationToken = default)
+		=> new HodokuPuzzleGenerator().Generate(symmetric, CellMap.Empty, cancellationToken);
 }
 
 /// <summary>

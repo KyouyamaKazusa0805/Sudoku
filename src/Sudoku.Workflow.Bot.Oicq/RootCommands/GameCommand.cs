@@ -242,7 +242,7 @@ internal sealed class GameCommand : Command
 			scoped var finalCellsChosen = (stackalloc Cell[9]);
 			while (true)
 			{
-				var grid = Generator.Generate();
+				var grid = HodokuPuzzleGenerator.Generate();
 				switch (PuzzleAnalyzer.Analyze(grid))
 				{
 					case { IsSolved: true, Solution: var solution, DifficultyLevel: var l and <= DifficultyLevel.Hard }:

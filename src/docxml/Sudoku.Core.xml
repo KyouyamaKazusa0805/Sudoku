@@ -117,16 +117,8 @@
 			</target>
             </remarks>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Sudoku#Algorithm#Generating#IPuzzleGenerator#Generate(System.Threading.CancellationToken)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)">
-            <summary>
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/summary"/>
-            </summary>
-            <param name="symmetric">A <see cref="T:System.Boolean"/> value indicating whether generated puzzles should be symmetric.</param>
-            <param name="cancellationToken"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/></param>
-            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/returns"/></returns>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)">
             <summary>
@@ -162,6 +154,17 @@
             Generate a solution grid.
             </summary>
             <returns>A solution grid.</returns>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/summary"/>
+            </summary>
+            <param name="symmetric">A <see cref="T:System.Boolean"/> value indicating whether generated puzzles should be symmetric.</param>
+            <param name="cancellationToken"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/returns"/></returns>
         </member>
         <member name="T:Sudoku.Algorithm.Generating.GeneratorPattern">
             <summary>

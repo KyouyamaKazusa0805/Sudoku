@@ -49,7 +49,7 @@ internal sealed class DailyPuzzleCommand : Command
 		while (true)
 		{
 			// 出题。
-			grid = Generator.Generate();
+			grid = HodokuPuzzleGenerator.Generate();
 			if (PuzzleAnalyzer.Analyze(grid) is not
 				{
 					IsSolved: true,

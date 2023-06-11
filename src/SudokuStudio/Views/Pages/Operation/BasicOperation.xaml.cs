@@ -89,7 +89,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 		{
 			while (true)
 			{
-				var grid = PuzzleGenerator.Generate();
+				var grid = HodokuPuzzleGenerator.Generate();
 				if (difficultyLevelSelected == 0 || ((App)Application.Current).Analyzer.Analyze(grid).DifficultyLevel == difficultyLevelSelected)
 				{
 					return grid;
