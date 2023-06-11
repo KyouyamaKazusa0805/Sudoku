@@ -1,5 +1,8 @@
 namespace Sudoku.Workflow.Bot.Oicq.RootCommands;
 
+/// <summary>
+/// 签到指令。
+/// </summary>
 [Command("签到")]
 internal sealed class CheckInCommand : Command
 {
@@ -164,16 +167,17 @@ file static class LocalScorer
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static int e()
-			=> new[] { 2, 3, 4, 6, 12 }[
-				Rng.Next(0, 10000) switch
-				{
-					< 5000 => 0,
-					>= 5000 and < 7500 => 1,
-					>= 7500 and < 8750 => 2,
-					>= 8750 and < 9375 => 3,
-					_ => 4
-				}
-			];
+		{
+			var index = Rng.Next(0, 10000) switch
+			{
+				< 5000 => 0,
+				>= 5000 and < 7500 => 1,
+				>= 7500 and < 8750 => 2,
+				>= 8750 and < 9375 => 3,
+				_ => 4
+			};
+			return new[] { 2, 3, 4, 6, 12 }[index];
+		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static int n()
@@ -210,8 +214,10 @@ file static class LocalScorer
 	/// <returns>经验值。</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetExperiencePoint(int continuousDaysCount, int cardLevel)
-		=> (int)Round(GetExperienceOriginal() * (ScoringOperation.GetCheckInRate(continuousDaysCount) + ScoringOperation.GetGlobalRate(cardLevel)))
-			* ScoringOperation.GetWeekendFactor();
+	{
+		var resultRate = ScoringOperation.GetCheckInRate(continuousDaysCount) * .5M + ScoringOperation.GetGlobalRate(cardLevel) * .5M;
+		return (int)Round(GetExperienceOriginal() * resultRate) * ScoringOperation.GetWeekendFactor();
+	}
 
 	/// <summary>
 	/// 获得金币。

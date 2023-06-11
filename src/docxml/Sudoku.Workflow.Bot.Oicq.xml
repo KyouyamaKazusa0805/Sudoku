@@ -1811,6 +1811,11 @@
             <param name="this"><see cref="T:Sudoku.Analytics.Metadata.AnalyzerFailedReason"/> 实例。</param>
             <returns>字符串写法。</returns>
         </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.CheckInCommand">
+            <summary>
+            签到指令。
+            </summary>
+        </member>
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.CheckInCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
