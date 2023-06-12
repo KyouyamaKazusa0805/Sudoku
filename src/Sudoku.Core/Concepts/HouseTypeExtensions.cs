@@ -115,4 +115,20 @@ public static class HouseTypeExtensions
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static HouseType ToHouseType(this House houseIndex) => (HouseType)(houseIndex / 9);
+
+	/// <summary>
+	/// Try to get the label of the specified house type.
+	/// </summary>
+	/// <param name="this">The house type.</param>
+	/// <returns>A character that represents a house type.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static char GetLabel(this HouseType @this)
+		=> @this switch
+		{
+			HouseType.Row => 'r',
+			HouseType.Column => 'c',
+			HouseType.Block => 'b',
+			_ => throw new ArgumentOutOfRangeException(nameof(@this))
+		};
 }

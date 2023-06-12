@@ -20,7 +20,7 @@ public abstract class HouseFormatter : ICollectionFormatter<House>
 	public static string Format(int housesMask) => Format(housesMask, FormattingMode.Normal);
 
 	/// <inheritdoc cref="Format(int)"/>
-	/// <param name="housesMask"><inheritdoc/></param>
+	/// <param name="houseMask"><inheritdoc/></param>
 	/// <param name="formattingMode">The formatting mode.</param>
 	/// <returns><inheritdoc/></returns>
 	/// <exception cref="NotSupportedException">
@@ -30,23 +30,23 @@ public abstract class HouseFormatter : ICollectionFormatter<House>
 	/// Throws when the argument <paramref name="formattingMode"/> is not defined.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string Format(int housesMask, FormattingMode formattingMode)
+	public static string Format(HouseMask houseMask, FormattingMode formattingMode)
 	{
 		return formattingMode switch
 		{
-			FormattingMode.Simple => formatSimple(housesMask),
-			FormattingMode.Normal => formatNormal(housesMask),
+			FormattingMode.Simple => formatSimple(houseMask),
+			FormattingMode.Normal => formatNormal(houseMask),
 			FormattingMode.Full => throw new NotSupportedException("The full-formatting mode is not supported on digit collections."),
 			_ => throw new ArgumentOutOfRangeException(nameof(formattingMode))
 		};
 
 
-		static string formatSimple(int housesMask)
+		static string formatSimple(HouseMask houseMask)
 		{
 			scoped var sb = new StringHandler(27);
-			for (House houseIndex = 9, i = 0; i < 27; i++, houseIndex = (houseIndex + 1) % 27)
+			for (var (houseIndex, i) = (9, 0); i < 27; i++, houseIndex = (houseIndex + 1) % 27)
 			{
-				if ((housesMask >> houseIndex & 1) != 0)
+				if ((houseMask >> houseIndex & 1) != 0)
 				{
 					sb.Append(GetLabel(houseIndex / 9));
 				}
@@ -67,30 +67,25 @@ public abstract class HouseFormatter : ICollectionFormatter<House>
 
 			static string f(HouseMask housesMask)
 			{
-				var dic = new Dictionary<int, ICollection<int>>();
-				foreach (var houseIndex in housesMask)
+				var dic = new Dictionary<HouseType, List<int>>();
+				foreach (var house in housesMask)
 				{
-					if (!dic.ContainsKey(houseIndex / 9))
+					var houseType = house.ToHouseType();
+					if (!dic.TryAdd(houseType, new() { house }))
 					{
-						dic.Add(houseIndex / 9, new List<int>());
+						dic[houseType].Add(house);
 					}
-
-					dic[houseIndex / 9].Add(houseIndex % 9);
 				}
 
 				scoped var sb = new StringHandler(30);
-				for (int i = 1, j = 0; j < 3; i = (i + 1) % 3, j++)
+				foreach (var (houseType, houses) in
+					from kvp in dic
+					let key = kvp.Key
+					orderby key switch { HouseType.Block => 2, HouseType.Row => 0, HouseType.Column => 1 }
+					select kvp)
 				{
-					if (!dic.ContainsKey(i))
-					{
-						continue;
-					}
-
-					sb.Append(GetLabel(i));
-					foreach (var z in dic[i])
-					{
-						sb.Append(z + 1);
-					}
+					sb.Append(houseType.GetLabel());
+					sb.AppendRange(from house in houses select house % 9 + 1);
 				}
 
 				return sb.ToStringAndClear();
@@ -112,10 +107,10 @@ public abstract class HouseFormatter : ICollectionFormatter<House>
 	/// <returns>The <see cref="string"/> result.</returns>
 	public static string Format(scoped ReadOnlySpan<House> houses)
 	{
-		var targetMask = (Mask)0;
+		var targetMask = 0;
 		foreach (var house in houses)
 		{
-			targetMask |= (Mask)(1 << house);
+			targetMask |= 1 << house;
 		}
 
 		return Format(targetMask);
@@ -124,10 +119,10 @@ public abstract class HouseFormatter : ICollectionFormatter<House>
 	/// <inheritdoc/>
 	static string ICollectionFormatter<House>.Format(IEnumerable<House> elements, string separator)
 	{
-		var targetMask = (Mask)0;
+		var targetMask = 0;
 		foreach (var element in elements)
 		{
-			targetMask |= (Mask)(1 << element);
+			targetMask |= 1 << element;
 		}
 
 		return Format(targetMask);
@@ -136,10 +131,10 @@ public abstract class HouseFormatter : ICollectionFormatter<House>
 	/// <inheritdoc/>
 	static string ICollectionFormatter<House>.Format(IEnumerable<House> elements, FormattingMode formattingMode)
 	{
-		var targetMask = (Mask)0;
+		var targetMask = 0;
 		foreach (var element in elements)
 		{
-			targetMask |= (Mask)(1 << element);
+			targetMask |= 1 << element;
 		}
 
 		return Format(targetMask, formattingMode);
