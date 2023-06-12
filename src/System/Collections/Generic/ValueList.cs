@@ -18,6 +18,7 @@ namespace System.Collections.Generic;
 /// }
 /// ]]></code>
 /// </remarks>
+[StructLayout(LayoutKind.Auto)]
 public unsafe ref partial struct ValueList<T>([PrimaryConstructorParameter(MemberKinds.Field)] byte capacity) where T : notnull
 {
 	/// <summary>
