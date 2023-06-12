@@ -84,7 +84,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 
 		Grid gridCreator()
 		{
-			var progress = new Progress<GeneratorProgress>(
+			var progress = new SelfReportingProgress<GeneratorProgress>(
 				progress =>
 					DispatcherQueue.TryEnqueue(
 						() =>
@@ -107,7 +107,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 
 				if (++count % 25 == 0 && count != 0)
 				{
-					((IProgress<GeneratorProgress>)progress).Report(new(count));
+					progress.Report(new(count));
 				}
 			}
 		}
@@ -177,4 +177,15 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 			DifficultyLevel = (DifficultyLevel)value;
 		}
 	}
+}
+
+/// <summary>
+/// Defines a self-reporting progress type.
+/// </summary>
+/// <param name="handler"><inheritdoc cref="Progress{T}.Progress(Action{T})" path="/param[@name='handler']"/></param>
+/// <typeparam name="T"><inheritdoc cref="Progress{T}" path="/typeparam[@name='T']"/></typeparam>
+file sealed class SelfReportingProgress<T>(Action<T> handler) : Progress<T>(handler)
+{
+	/// <inheritdoc cref="Progress{T}.OnReport(T)"/>
+	public void Report(T value) => OnReport(value);
 }

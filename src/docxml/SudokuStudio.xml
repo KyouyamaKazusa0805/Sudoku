@@ -8051,6 +8051,23 @@ if (student is (name: var name, age: >= 18))
             Indicates the difficulty level of the generated puzzle.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Views.Pages.Operation.SelfReportingProgress`1">
+            <summary>
+            Defines a self-reporting progress type.
+            </summary>
+            <param name="handler"><inheritdoc cref="M:System.Progress`1.#ctor(System.Action{`0})" path="/param[@name='handler']"/></param>
+            <typeparam name="T"><inheritdoc cref="T:System.Progress`1" path="/typeparam[@name='T']"/></typeparam>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.SelfReportingProgress`1.#ctor(System.Action{`0})">
+            <summary>
+            Defines a self-reporting progress type.
+            </summary>
+            <param name="handler"><inheritdoc cref="M:System.Progress`1.#ctor(System.Action{`0})" path="/param[@name='handler']"/></param>
+            <typeparam name="T"><inheritdoc cref="T:System.Progress`1" path="/typeparam[@name='T']"/></typeparam>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.SelfReportingProgress`1.Report(`0)">
+            <inheritdoc cref="M:System.Progress`1.OnReport(`0)"/>
+        </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.PrintingOperation">
             <summary>
             Represents printing operation.
