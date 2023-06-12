@@ -582,9 +582,10 @@
         </member>
         <member name="T:System.Collections.Generic.ValueList`1">
             <summary>
-            Defines a value-type sequence list.
+            Defines a value-type sequence list, using unmanaged pointer types to describe the sequence memory.
             </summary>
             <typeparam name="T">The element type.</typeparam>
+            <param name="capacity">Indicates the length of the list.</param>
             <remarks>
             We recommend you use this type like:
             <code><![CDATA[
@@ -598,10 +599,24 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="F:System.Collections.Generic.ValueList`1._capacity">
+        <member name="M:System.Collections.Generic.ValueList`1.#ctor(System.Byte)">
             <summary>
-            Indicates the length of the list.
+            Defines a value-type sequence list, using unmanaged pointer types to describe the sequence memory.
             </summary>
+            <typeparam name="T">The element type.</typeparam>
+            <param name="capacity">Indicates the length of the list.</param>
+            <remarks>
+            We recommend you use this type like:
+            <code><![CDATA[
+            static int[] Example()
+            {
+                using scoped var list = new ValueList<int>(10);
+                list.Add(3);
+                list.Add(6);
+                return list.ToArray();
+            }
+            ]]></code>
+            </remarks>
         </member>
         <member name="F:System.Collections.Generic.ValueList`1._length">
             <summary>
@@ -617,16 +632,6 @@
             <summary>
             Initializes a <see cref="T:System.Collections.Generic.ValueList`1"/> instance via the default capacity 255.
             </summary>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.#ctor(System.Byte)">
-            <summary>
-            Initializes a list that stores the specified number of elements.
-            </summary>
-            <param name="capacity">The initial capacity.</param>
-            <remarks>
-            If you call this constructor to initialize an instance, please append keyword <see langword="using"/>
-            to implicitly call the dispose method.
-            </remarks>
         </member>
         <member name="P:System.Collections.Generic.ValueList`1.Count">
             <summary>
@@ -756,6 +761,11 @@
         </member>
         <member name="M:System.Collections.Generic.ValueList`1.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="F:System.Collections.Generic.ValueList`1._capacity">
+            <summary>
+            The generated field declaration for parameter <c>capacity</c>.
+            </summary>
         </member>
         <member name="T:System.Collections.Generic.CollectionExtensions">
             <summary>

@@ -2,9 +2,10 @@
 namespace System.Collections.Generic;
 
 /// <summary>
-/// Defines a value-type sequence list.
+/// Defines a value-type sequence list, using unmanaged pointer types to describe the sequence memory.
 /// </summary>
 /// <typeparam name="T">The element type.</typeparam>
+/// <param name="capacity">Indicates the length of the list.</param>
 /// <remarks>
 /// We recommend you use this type like:
 /// <code><![CDATA[
@@ -17,13 +18,8 @@ namespace System.Collections.Generic;
 /// }
 /// ]]></code>
 /// </remarks>
-public unsafe ref partial struct ValueList<T> where T : notnull
+public unsafe ref partial struct ValueList<T>([PrimaryConstructorParameter(MemberKinds.Field)] byte capacity) where T : notnull
 {
-	/// <summary>
-	/// Indicates the length of the list.
-	/// </summary>
-	private byte _capacity;
-
 	/// <summary>
 	/// Indicates the current length.
 	/// </summary>
@@ -32,7 +28,7 @@ public unsafe ref partial struct ValueList<T> where T : notnull
 	/// <summary>
 	/// Indicates the pointer that points to the first element.
 	/// </summary>
-	private T?* _startPtr;
+	private T?* _startPtr = (T?*)NativeMemory.Alloc((nuint)sizeof(T) * capacity);
 
 
 	/// <summary>
@@ -41,21 +37,6 @@ public unsafe ref partial struct ValueList<T> where T : notnull
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ValueList() : this(byte.MaxValue)
 	{
-	}
-
-	/// <summary>
-	/// Initializes a list that stores the specified number of elements.
-	/// </summary>
-	/// <param name="capacity">The initial capacity.</param>
-	/// <remarks>
-	/// If you call this constructor to initialize an instance, please append keyword <see langword="using"/>
-	/// to implicitly call the dispose method.
-	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ValueList(byte capacity)
-	{
-		_startPtr = (T?*)NativeMemory.Alloc((nuint)sizeof(T) * capacity);
-		_capacity = capacity;
 	}
 
 
@@ -229,10 +210,10 @@ public unsafe ref partial struct ValueList<T> where T : notnull
 	/// </summary>
 	/// <returns>The array of elements of type <typeparamref name="T"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly T[] ToArray()
+	public readonly T?[] ToArray()
 	{
-		var result = new T[_length];
-		fixed (T* pResult = result)
+		var result = new T?[_length];
+		fixed (T?* pResult = result)
 		{
 			CopyBlock(pResult, _startPtr, (uint)(sizeof(T) * _length));
 		}
