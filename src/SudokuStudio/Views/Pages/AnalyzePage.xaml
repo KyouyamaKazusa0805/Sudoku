@@ -259,19 +259,19 @@
 					<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
 						<ProgressRing
 							x:Name="AnalyzeProgress" Width="100" Height="100" IsIndeterminate="False" Value="{x:Bind ProgressPercent,Mode=OneWay}"
-							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched),Mode=OneWay}" />
+							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched,IsGeneratorLaunched),Mode=OneWay}" />
 						<TextBlock
 							x:Name="AnalyzeProgressLabel" x:FieldModifier="internal" HorizontalAlignment="Center"
-							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched),Mode=OneWay}" />
+							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched,IsGeneratorLaunched),Mode=OneWay}" />
 						<TextBlock
 							x:Name="AnalyzeStepSearcherNameLabel" x:FieldModifier="internal"
 							HorizontalAlignment="Center" FontWeight="Bold" Margin="0,12" FontSize="24"
-							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched),Mode=OneWay}" />
+							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched,IsGeneratorLaunched),Mode=OneWay}" />
 					</StackPanel>
 					<TabView
 						x:Name="AnalyzeTabs" HorizontalAlignment="Stretch" Height="600"
 						TabItemsSource="{x:Bind _tabsRoutingData}" IsAddTabButtonVisible="False" TabWidthMode="Equal"
-						Visibility="{x:Bind cvt:AnalyzeConversion.GetAnalyzeTabsVisibility(IsAnalyzerLaunched,IsGathererLaunched),Mode=OneWay}">
+						Visibility="{x:Bind cvt:AnalyzeConversion.GetAnalyzeTabsVisibility(IsAnalyzerLaunched,IsGathererLaunched,IsGeneratorLaunched),Mode=OneWay}">
 						<TabView.TabItemTemplate>
 							<DataTemplate x:DataType="bs:AnalyzeTabPageBindableSource">
 								<TabViewItem Header="{x:Bind Header}" IsClosable="False" IconSource="{x:Bind IconSource}" Content="{x:Bind Page}" />

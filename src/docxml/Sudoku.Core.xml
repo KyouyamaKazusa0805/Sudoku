@@ -4,6 +4,23 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Algorithm.Generating.GeneratorProgress">
+            <summary>
+            Represents a progress used by <see cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
+            </summary>
+            <param name="Count">The number of puzzles generated currently.</param>
+            <seealso cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.GeneratorProgress.#ctor(System.Int32)">
+            <summary>
+            Represents a progress used by <see cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
+            </summary>
+            <param name="Count">The number of puzzles generated currently.</param>
+            <seealso cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.GeneratorProgress.Count">
+            <summary>The number of puzzles generated currently.</summary>
+        </member>
         <member name="T:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator">
             <summary>
             Defines a puzzle generator that makes the given pattern as a hard one.
@@ -31,7 +48,7 @@
             Indicates the random number generator.
             </summary>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
@@ -117,27 +134,32 @@
 			</target>
             </remarks>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Sudoku#Algorithm#Generating#IPuzzleGenerator#Generate(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Sudoku#Algorithm#Generating#IPuzzleGenerator#Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,Sudoku.Concepts.CellMap@,System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/summary"/>
             </summary>
-            <param name="symmetric"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='symmetric']"/></param>
+            <param name="symmetric"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='symmetric']"/></param>
             <param name="pattern">The pattern indicating the states of selection on all cells.</param>
+            <param name="progress"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='progress']"/></param>
             <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
             </param>
-            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/returns"/></returns>
+            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/returns"/></returns>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateInitPos(System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Takes a full sudoku from <see cref="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
             If a deletion produces a grid with more than one solution it is of course undone.
             </summary>
-            <param name="symmetric"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='symmetric']"/></param>
-            <param name="cancellationToken"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/></param>
+            <param name="symmetric">
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='symmetric']"/>
+            </param>
+            <param name="cancellationToken">
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            </param>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateInitPos(Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)">
             <summary>
@@ -146,7 +168,9 @@
             is responsible for continuing the search.
             </summary>
             <param name="pattern">The pattern.</param>
-            <param name="cancellationToken"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/></param>
+            <param name="cancellationToken">
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            </param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the pattern is valid to be used.</returns>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateForFullGrid">
@@ -155,16 +179,21 @@
             </summary>
             <returns>A solution grid.</returns>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.Threading.CancellationToken)"/>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/summary"/>
             </summary>
             <param name="symmetric">A <see cref="T:System.Boolean"/> value indicating whether generated puzzles should be symmetric.</param>
-            <param name="cancellationToken"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/></param>
-            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/returns"/></returns>
+            <param name="progress">
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='progress']"/>
+            </param>
+            <param name="cancellationToken">
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            </param>
+            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/returns"/></returns>
         </member>
         <member name="T:Sudoku.Algorithm.Generating.GeneratorPattern">
             <summary>
@@ -202,10 +231,15 @@
             Represents an instance that has ability to create a new sudoku puzzle game, allow cancelling.
             </summary>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <summary>
             Creates a sudoku grid puzzle.
             </summary>
+            <param name="progress">
+            <inheritdoc
+                cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"
+                path="/param[@name='progress']"/>
+            </param>
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>
             The result puzzle generated. If canceled, the return value will be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
@@ -317,16 +351,19 @@
             </summary>
             <param name="pattern">The pattern.</param>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.Int32,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.Int32,System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <summary>
             Creates a sudoku puzzle via the specified trial times.
             </summary>
             <param name="times">The trial times.</param>
+            <param name="progress">
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='progress']"/>
+            </param>
             <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
             </param>
             <returns>
             If user has canceled the operation or the maximum trial times has been reached, <see cref="F:Sudoku.Concepts.Grid.Undefined"/>;
@@ -334,12 +371,15 @@
             </returns>
             <exception cref="T:System.InvalidOperationException">Throws when the field <c>_baseCandidates</c> is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.GenerateAsync(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.GenerateAsync(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <summary>
             Creates a sudoku puzzle asynchronously.
             </summary>
+            <param name="progress">
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='progress']"/>
+            </param>
             <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
             </param>
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> instance that returns a <see cref="T:Sudoku.Concepts.Grid"/> value.</returns>
         </member>
@@ -426,6 +466,9 @@
             <summary>
             Indicates the random number generator.
             </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator.Sudoku#Algorithm#Generating#IPuzzleGenerator#Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <inheritdoc/>

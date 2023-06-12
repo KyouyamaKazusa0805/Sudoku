@@ -77,7 +77,8 @@
 			IsEnabled="{x:Bind cvt:UndoRedoButtonConversion.GetButtonIsEnabled(BasePage.SudokuPane._redoStack),Mode=OneWay}"
 			Click="RedoButton_Click" />
 		<AppBarButton
-			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}" IsEnabled="{x:Bind BasePage.GeneratorIsNotRunning,Mode=OneWay}"
+			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}"
+			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetAnalyzerButtonIsEnabled(BasePage.IsGeneratorLaunched),Mode=OneWay}"
 			Click="NewPuzzleButton_ClickAsync" />
 		<AppBarElementContainer VerticalAlignment="Center">
 			<ComboBox x:Name="DifficultyLevelSelector" SelectedIndex="0" SelectionChanged="DifficultyLevelSelector_SelectionChanged">

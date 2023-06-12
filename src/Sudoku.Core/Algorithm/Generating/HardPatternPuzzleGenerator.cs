@@ -30,11 +30,12 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 
 
 	/// <inheritdoc/>
-	public Grid Generate(CancellationToken cancellationToken = default)
+	public Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		var puzzle = stackalloc char[81];
 		var solution = stackalloc char[81];
 		var holeCells = stackalloc Cell[81];
+		var progressTimes = 0;
 		while (true)
 		{
 			fixed (char* pEmptyString = Grid.EmptyString)
@@ -49,8 +50,6 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 			CreatePattern(holeCells);
 			for (var trial = 0; trial < 1000; trial++)
 			{
-				cancellationToken.ThrowIfCancellationRequested();
-
 				for (var cell = 0; cell < 81; cell++)
 				{
 					var p = holeCells[cell];
@@ -71,6 +70,11 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 
 				RecreatePattern(holeCells);
 			}
+
+			progressTimes += 1000;
+			progress?.Report(new(progressTimes));
+
+			cancellationToken.ThrowIfCancellationRequested();
 		}
 	}
 

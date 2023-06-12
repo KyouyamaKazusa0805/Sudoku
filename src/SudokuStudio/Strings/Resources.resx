@@ -339,6 +339,9 @@
   <data name="AnalyzePage_GenerateDate" xml:space="preserve">
     <value>Generate date:</value>
   </data>
+  <data name="AnalyzePage_GeneratorIsProcessing" xml:space="preserve">
+    <value>Generator is processing...</value>
+  </data>
   <data name="AnalyzePage_GivensCount" xml:space="preserve">
     <value>Givens count: </value>
   </data>

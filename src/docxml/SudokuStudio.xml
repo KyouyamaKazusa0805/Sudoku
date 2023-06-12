@@ -4086,6 +4086,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Generate date:.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GeneratorIsProcessing">
+            <summary>
+              Looks up a localized string similar to Generator is processing....
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GivensCount">
             <summary>
               Looks up a localized string similar to Givens count: .
@@ -7553,11 +7558,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsGathererLaunched"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.GeneratorIsNotRunningProperty">
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.IsGeneratorLaunchedProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.GeneratorIsNotRunning"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsGeneratorLaunched"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.GeneratorIsNotRunning"/>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsGeneratorLaunched"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercentProperty">
             <summary>
@@ -7623,9 +7628,9 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the gatherer is launched.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.GeneratorIsNotRunning">
+        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.IsGeneratorLaunched">
             <summary>
-            Indicates whether the generator is not running currently.
+            Indicates whether the generator is launched.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent">
@@ -7982,11 +7987,6 @@ if (student is (name: var name, age: >= 18))
         <member name="T:SudokuStudio.Views.Pages.Operation.BasicOperation">
             <summary>
             Indicates the basic operation command bar.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.BasicOperation.PuzzleGenerator">
-            <summary>
-            Indicates the puzzle generator.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.#ctor">

@@ -342,6 +342,9 @@
   <data name="AnalyzePage_GenerateDate" xml:space="preserve">
     <value>生成日期：</value>
   </data>
+  <data name="AnalyzePage_GeneratorIsProcessing" xml:space="preserve">
+    <value>正在出题……</value>
+  </data>
   <data name="AnalyzePage_GivensCount" xml:space="preserve">
     <value>已知数数量：</value>
   </data>

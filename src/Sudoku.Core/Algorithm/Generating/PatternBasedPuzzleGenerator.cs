@@ -89,102 +89,110 @@ public sealed partial class PatternBasedPuzzleGenerator(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Grid Generate(CancellationToken cancellationToken = default) => Generate(int.MaxValue, cancellationToken);
+	public Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
+		=> Generate(int.MaxValue, progress, cancellationToken);
 
 	/// <summary>
 	/// Creates a sudoku puzzle via the specified trial times.
 	/// </summary>
 	/// <param name="times">The trial times.</param>
+	/// <param name="progress">
+	/// <inheritdoc cref="Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/param[@name='progress']"/>
+	/// </param>
 	/// <param name="cancellationToken">
-	/// <inheritdoc cref="Generate(CancellationToken)" path="/param[@name='cancellationToken']"/>
+	/// <inheritdoc cref="Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/param[@name='cancellationToken']"/>
 	/// </param>
 	/// <returns>
 	/// If user has canceled the operation or the maximum trial times has been reached, <see cref="Grid.Undefined"/>;
 	/// otherwise, the valid grid.
 	/// </returns>
 	/// <exception cref="InvalidOperationException">Throws when the field <c>_baseCandidates</c> is invalid.</exception>
-	public unsafe Grid Generate(int times, CancellationToken cancellationToken = default)
+	public unsafe Grid Generate(int times, IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		for (var trialTimeIndex = 0; trialTimeIndex < times; trialTimeIndex++)
 		{
-			while (!cancellationToken.IsCancellationRequested)
+			// Generate a pattern.
+			var pattern = _pattern is { } p ? p : GeneratePattern();
+
+			var emptyChars = new char[BitwiseSolver.BufferLength];
+			var solutionBuffer = new char[BitwiseSolver.BufferLength];
+			emptyChars[81] = '\0';
+			solutionBuffer[81] = '\0';
+
+			// Randomize a multiple-solution grid.
+			fixed (char* ptr = emptyChars, clonedPtr = solutionBuffer, fixedEmptyGridCharsPtr = EmptyGridCharArray)
 			{
-				// Generate a pattern.
-				var pattern = _pattern is { } p ? p : GeneratePattern();
+				CopyBlock(ptr, fixedEmptyGridCharsPtr, sizeof(char) * 81);
 
-				var emptyChars = new char[BitwiseSolver.BufferLength];
-				var solutionBuffer = new char[BitwiseSolver.BufferLength];
-				emptyChars[81] = '\0';
-				solutionBuffer[81] = '\0';
-
-				// Randomize a multiple-solution grid.
-				fixed (char* ptr = emptyChars, clonedPtr = solutionBuffer, fixedEmptyGridCharsPtr = EmptyGridCharArray)
+				if (_baseCandidates is null)
 				{
-					CopyBlock(ptr, fixedEmptyGridCharsPtr, sizeof(char) * 81);
-
-					if (_baseCandidates is null)
+					var (c1, c2, c3) = RandomizeThreeDigits();
+					ptr[c1 / 9] = (char)(c1 % 9 + '1');
+					ptr[c2 / 9] = (char)(c2 % 9 + '1');
+					ptr[c3 / 9] = (char)(c3 % 9 + '1');
+				}
+				else
+				{
+					foreach (var baseCandidate in _baseCandidates)
 					{
-						var (c1, c2, c3) = RandomizeThreeDigits();
-						ptr[c1 / 9] = (char)(c1 % 9 + '1');
-						ptr[c2 / 9] = (char)(c2 % 9 + '1');
-						ptr[c3 / 9] = (char)(c3 % 9 + '1');
+						ptr[baseCandidate / 9] = (char)(baseCandidate % 9 + '1');
 					}
-					else
-					{
-						foreach (var baseCandidate in _baseCandidates)
-						{
-							ptr[baseCandidate / 9] = (char)(baseCandidate % 9 + '1');
-						}
-					}
+				}
 
-					if (SolverWithSolution.Solve(Grid.Parse(new string(ptr)), out var solution) is null)
+				if (SolverWithSolution.Solve(Grid.Parse(new string(ptr)), out var solution) is null)
+				{
+					if (_baseCandidates is not null)
 					{
-						if (_baseCandidates is not null)
-						{
-							throw new InvalidOperationException($"The field {nameof(_baseCandidates)} is invalid to be set as the initial case.");
-						}
-
-						continue;
+						throw new InvalidOperationException($"The field {nameof(_baseCandidates)} is invalid to be set as the initial case.");
 					}
 
-					// Shuffle the grid.
-					Shuffle(ref solution);
+					continue;
+				}
 
-					// Try to apply the pattern and check the validity of the uniqueness of the target puzzle.
-					for (var retrialTimeIndex = 0; retrialTimeIndex < RetrialTimes; retrialTimeIndex++)
+				// Shuffle the grid.
+				Shuffle(ref solution);
+
+				// Try to apply the pattern and check the validity of the uniqueness of the target puzzle.
+				for (var retrialTimeIndex = 0; retrialTimeIndex < RetrialTimes; retrialTimeIndex++)
+				{
+					fixed (char* solutionPtr = solution.ToString("!"))
 					{
-						fixed (char* solutionPtr = solution.ToString("!"))
-						{
-							CopyBlock(clonedPtr, solutionPtr, sizeof(char) * 81);
-						}
+						CopyBlock(clonedPtr, solutionPtr, sizeof(char) * 81);
+					}
 
-						// Remove digits not being filled in the pattern.
-						for (var index = 0; index < 81; index++)
+					// Remove digits not being filled in the pattern.
+					for (var index = 0; index < 81; index++)
+					{
+						if (!pattern.Contains(index))
 						{
-							if (!pattern.Contains(index))
-							{
-								clonedPtr[index] = '0';
-							}
+							clonedPtr[index] = '0';
 						}
+					}
 
-						// Checks the validity.
-						if (Solver.Solve(clonedPtr, null, 2) == 1)
-						{
-							// Unique puzzle. Return the value.
-							return Grid.Parse(new string(clonedPtr));
-						}
+					// Checks the validity.
+					if (Solver.Solve(clonedPtr, null, 2) == 1)
+					{
+						// Unique puzzle. Return the value.
+						return Grid.Parse(new string(clonedPtr));
+					}
 
-						// If the puzzle is invalid, we can adjust the pattern and try again.
-						AdjustPattern(ref pattern);
+					// If the puzzle is invalid, we can adjust the pattern and try again.
+					AdjustPattern(ref pattern);
 
-						// Check whether user has canceled the operation.
-						if (cancellationToken.IsCancellationRequested)
-						{
-							goto ReturnDefault;
-						}
+					// Check whether user has canceled the operation.
+					if (cancellationToken.IsCancellationRequested)
+					{
+						goto ReturnDefault;
 					}
 				}
 			}
+
+			if (trialTimeIndex % 1000 == 0 && trialTimeIndex != 0)
+			{
+				progress?.Report(new(trialTimeIndex));
+			}
+
+			cancellationToken.ThrowIfCancellationRequested();
 		}
 
 	ReturnDefault:
@@ -194,12 +202,15 @@ public sealed partial class PatternBasedPuzzleGenerator(
 	/// <summary>
 	/// Creates a sudoku puzzle asynchronously.
 	/// </summary>
+	/// <param name="progress">
+	/// <inheritdoc cref="Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/param[@name='progress']"/>
+	/// </param>
 	/// <param name="cancellationToken">
-	/// <inheritdoc cref="Generate(CancellationToken)" path="/param[@name='cancellationToken']"/>
+	/// <inheritdoc cref="Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/param[@name='cancellationToken']"/>
 	/// </param>
 	/// <returns>A <see cref="Task{TResult}"/> instance that returns a <see cref="Grid"/> value.</returns>
-	public async Task<Grid> GenerateAsync(CancellationToken cancellationToken = default)
-		=> await Task.Run(() => Generate(cancellationToken), cancellationToken);
+	public async Task<Grid> GenerateAsync(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
+		=> await Task.Run(() => Generate(progress, cancellationToken), cancellationToken);
 
 	/// <summary>
 	/// To shuffle the grid.

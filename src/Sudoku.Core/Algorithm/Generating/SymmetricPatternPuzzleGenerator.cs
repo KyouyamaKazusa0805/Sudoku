@@ -17,6 +17,10 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	Grid IPuzzleGenerator.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken) => Generate(cancellationToken);
+
+	/// <inheritdoc/>
 	public Grid Generate(CancellationToken cancellationToken = default)
 	{
 		try

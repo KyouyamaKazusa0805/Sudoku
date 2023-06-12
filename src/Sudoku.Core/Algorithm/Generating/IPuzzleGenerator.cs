@@ -8,9 +8,14 @@ public interface IPuzzleGenerator
 	/// <summary>
 	/// Creates a sudoku grid puzzle.
 	/// </summary>
+	/// <param name="progress">
+	/// <inheritdoc
+	///     cref="IAnalyzer{TSelf, TResult}.Analyze(in Grid, IProgress{AnalyzerProgress}?, CancellationToken)"
+	///     path="/param[@name='progress']"/>
+	/// </param>
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>
 	/// The result puzzle generated. If canceled, the return value will be <see cref="Grid.Undefined"/>.
 	/// </returns>
-	Grid Generate(CancellationToken cancellationToken = default);
+	Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default);
 }

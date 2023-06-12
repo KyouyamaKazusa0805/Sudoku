@@ -8,12 +8,6 @@ namespace SudokuStudio.Views.Pages.Operation;
 public sealed partial class BasicOperation : Page, IOperationProviderPage
 {
 	/// <summary>
-	/// Indicates the puzzle generator.
-	/// </summary>
-	private static readonly HodokuPuzzleGenerator PuzzleGenerator = new();
-
-
-	/// <summary>
 	/// Initializes a <see cref="BasicOperation"/> instance.
 	/// </summary>
 	public BasicOperation() => InitializeComponent();
@@ -70,12 +64,15 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 
 	private async void NewPuzzleButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		BasePage.GeneratorIsNotRunning = false;
+		BasePage.IsGeneratorLaunched = true;
 
+		BasePage.ClearAnalyzeTabsData();
+
+		var processingText = GetString("AnalyzePage_GeneratorIsProcessing")!;
 		var difficultyLevelSelected = DifficultyLevel;
 		var grid = await Task.Run(gridCreator);
 
-		BasePage.GeneratorIsNotRunning = true;
+		BasePage.IsGeneratorLaunched = false;
 
 		if (((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
 		{
@@ -87,12 +84,30 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 
 		Grid gridCreator()
 		{
+			var progress = new Progress<GeneratorProgress>(
+				progress =>
+					DispatcherQueue.TryEnqueue(
+						() =>
+						{
+							var count = progress.Count;
+							BasePage.AnalyzeProgressLabel.Text = processingText;
+							BasePage.AnalyzeStepSearcherNameLabel.Text = count.ToString();
+						}
+					)
+			);
+
+			var count = 0;
 			while (true)
 			{
-				var grid = HodokuPuzzleGenerator.Generate();
+				var grid = HodokuPuzzleGenerator.Generate(progress);
 				if (difficultyLevelSelected == 0 || ((App)Application.Current).Analyzer.Analyze(grid).DifficultyLevel == difficultyLevelSelected)
 				{
 					return grid;
+				}
+
+				if (++count % 25 == 0 && count != 0)
+				{
+					((IProgress<GeneratorProgress>)progress).Report(new(count));
 				}
 			}
 		}

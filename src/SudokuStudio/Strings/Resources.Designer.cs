@@ -898,6 +898,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generator is processing....
+        /// </summary>
+        internal static string AnalyzePage_GeneratorIsProcessing {
+            get {
+                return ResourceManager.GetString("AnalyzePage_GeneratorIsProcessing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Givens count: .
         /// </summary>
         internal static string AnalyzePage_GivensCount {

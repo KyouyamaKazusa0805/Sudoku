@@ -7,6 +7,8 @@ internal static class AnalyzeConversion
 {
 	public static bool GetIsEnabled(Grid grid) => !grid.SolutionGrid.IsUndefined;
 
+	public static bool GetAnalyzerButtonIsEnabled(bool isGeneratorLaunched) => !isGeneratorLaunched;
+
 	public static int GetViewPipsPagerPageCount(IRenderable? visualUnit) => visualUnit?.Views?.Length ?? 0;
 
 	public static int GetCurrentViewIndexForViewPipsPager(int currentIndex) => currentIndex;
@@ -20,11 +22,11 @@ internal static class AnalyzeConversion
 	public static string GetViewIndexDisplayerString(IRenderable? visualUnit, int currentIndex)
 		=> visualUnit?.Views?.Length is { } length ? $"{currentIndex + 1}/{length}" : "0/0";
 
-	public static Visibility GetProgressRingVisibility(bool isAnalyzerLaunched, bool isGathererLaunched)
-		=> isAnalyzerLaunched || isGathererLaunched ? Visibility.Visible : Visibility.Collapsed;
+	public static Visibility GetProgressRingVisibility(bool isAnalyzerLaunched, bool isGathererLaunched, bool isGeneratorLaunched)
+		=> isAnalyzerLaunched || isGathererLaunched || isGeneratorLaunched ? Visibility.Visible : Visibility.Collapsed;
 
-	public static Visibility GetAnalyzeTabsVisibility(bool isAnalyzerLaunched, bool isGathererLaunched)
-		=> isAnalyzerLaunched || isGathererLaunched ? Visibility.Collapsed : Visibility.Visible;
+	public static Visibility GetAnalyzeTabsVisibility(bool isAnalyzerLaunched, bool isGathererLaunched, bool isGeneratorLaunched)
+		=> isAnalyzerLaunched || isGathererLaunched || isGeneratorLaunched ? Visibility.Collapsed : Visibility.Visible;
 
 	public static Visibility GetDifficultyRatingVisibility(bool showDifficultyRating)
 		=> showDifficultyRating ? Visibility.Visible : Visibility.Collapsed;
