@@ -12,7 +12,6 @@
 // Many thanks for letting me use it!
 
 #pragma warning disable IDE0011, IDE0064
-
 namespace Sudoku.Algorithm.Generating;
 
 /// <summary>
