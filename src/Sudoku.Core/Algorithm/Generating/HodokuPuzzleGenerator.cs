@@ -61,6 +61,7 @@ public struct HodokuPuzzleGenerator
 	///     file='../../global-doc-comments.xml'
 	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
 	/// </remarks>
+	[Obsolete($"This constructor shouldn't be used. Please use static method '{nameof(Generate)}' instead.", false)]
 	public HodokuPuzzleGenerator()
 	{
 		(_generateIndices, _stack) = (new int[81], new RecursionStackEntry[82]);
@@ -401,6 +402,7 @@ public struct HodokuPuzzleGenerator
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Generate(CancellationToken cancellationToken = default) => Generate(true, cancellationToken);
 
+#pragma warning disable CS0618
 	/// <summary>
 	/// <inheritdoc cref="Generate(CancellationToken)" path="/summary"/>
 	/// </summary>
@@ -412,6 +414,7 @@ public struct HodokuPuzzleGenerator
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Generate(bool symmetric, CancellationToken cancellationToken = default)
 		=> new HodokuPuzzleGenerator().Generate(symmetric, CellMap.Empty, cancellationToken);
+#pragma warning restore CS0618
 }
 
 /// <summary>
