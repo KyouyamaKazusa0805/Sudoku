@@ -415,14 +415,3 @@ public struct HodokuPuzzleGenerator
 		=> new HodokuPuzzleGenerator().Generate(symmetric, CellMap.Empty, cancellationToken);
 #pragma warning restore CS0618
 }
-
-/// <summary>
-/// <para>A pattern, that indicates, which cells should contain givens when generating new puzzles.</para>
-/// <b>Caution:</b> The setter for <see cref="Pattern"/> only sets the reference, the constructor actually makes a copy of
-/// the pattern, that has been passed in. When working with new patterns, only the constructors should be used, the
-/// setter is used internally by <code>XmlDecoder</code>.
-/// </summary>
-/// <param name="Pattern">One entry per cell; if it is <see langword="true"/>, the cell must be a given.</param>
-/// <param name="Name">The name of the pattern.</param>
-/// <param name="Valid">Patterns must be tested before they can be applied. the result of the test is stored here.</param>
-file sealed record GeneratorPattern(scoped in CellMap Pattern = default, string Name = "", bool Valid = false);
