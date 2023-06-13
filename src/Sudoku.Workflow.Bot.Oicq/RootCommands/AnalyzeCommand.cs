@@ -59,7 +59,7 @@ internal sealed class AnalyzeCommand : Command
 	{
 		switch (this)
 		{
-			case { Type: null or Types.Tower, TowerStage: var stage and (-1 or >= 1 and <= 130) }:
+			case { Type: Types.Tower, TowerStage: var stage and (-1 or >= 1 and <= 130) }:
 			{
 				var senderId = messageReceiver.Sender.Id;
 				await AnalyzePuzzleCoreAsync(
