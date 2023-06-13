@@ -10,7 +10,8 @@ namespace Sudoku.Concepts;
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
 /// </remarks>
 [StructLayout(LayoutKind.Auto)]
-public readonly partial struct LockedTarget([PrimaryConstructorParameter] Digit digit, [PrimaryConstructorParameter] scoped in CellMap cells) :
+[method: JsonConstructor]
+public readonly partial struct LockedTarget([PrimaryConstructorParameter] Digit digit, [PrimaryConstructorParameter] CellMap cells) :
 	IEquatable<LockedTarget>,
 	IEqualityOperators<LockedTarget, LockedTarget, bool>
 {
@@ -19,7 +20,6 @@ public readonly partial struct LockedTarget([PrimaryConstructorParameter] Digit 
 	/// </summary>
 	/// <param name="digit">Indicates the digit used.</param>
 	/// <param name="cell">Indicates the cell used.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public LockedTarget(Digit digit, Cell cell) : this(digit, CellsMap[cell])
 	{
 	}
@@ -35,7 +35,6 @@ public readonly partial struct LockedTarget([PrimaryConstructorParameter] Digit 
 	/// The digit string value.
 	/// </summary>
 	[ToStringIdentifier(nameof(Digit))]
-	[JsonIgnore]
 	private string DigitString => (Digit + 1).ToString();
 
 

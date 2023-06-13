@@ -4,14 +4,14 @@ namespace Sudoku.Rendering.Nodes;
 /// Defines a view node that highlights for a link.
 /// </summary>
 /// <param name="identifier"><inheritdoc/></param>
-/// <param name="startPoint">Indicates the start point.</param>
-/// <param name="endPoint">Indicates the end point.</param>
+/// <param name="start">Indicates the start point.</param>
+/// <param name="end">Indicates the end point.</param>
 /// <param name="inference">Indicates the inference type.</param>
 [method: JsonConstructor]
 public sealed partial class LinkViewNode(
 	ColorIdentifier identifier,
-	[PrimaryConstructorParameter(GeneratedMemberName = "Start")] scoped in LockedTarget startPoint,
-	[PrimaryConstructorParameter(GeneratedMemberName = "End")] scoped in LockedTarget endPoint,
+	[PrimaryConstructorParameter] LockedTarget start,
+	[PrimaryConstructorParameter] LockedTarget end,
 	[PrimaryConstructorParameter] Inference inference
 ) : BasicViewNode(identifier)
 {

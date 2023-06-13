@@ -1170,13 +1170,23 @@
             <summary>
             Represents a progress used by <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
             </summary>
+            <param name="StepSearcherName">Indicates the currently used step searcher.</param>
+            <param name="Percent">The percent value.</param>
             <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerProgress.#ctor(System.String,System.Double)">
             <summary>
             Represents a progress used by <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
             </summary>
+            <param name="StepSearcherName">Indicates the currently used step searcher.</param>
+            <param name="Percent">The percent value.</param>
             <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerProgress.StepSearcherName">
+            <summary>Indicates the currently used step searcher.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerProgress.Percent">
+            <summary>The percent value.</summary>
         </member>
         <member name="T:Sudoku.Analytics.Conclusion">
             <summary>
@@ -5083,7 +5093,7 @@ fixed (short* ptr = instance)
 	</large-structure>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.LockedTarget.#ctor(System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Concepts.LockedTarget.#ctor(System.Int32,Sudoku.Concepts.CellMap)">
             <summary>
             Defines the data structure that stores a set of cells and a digit, indicating the information
             about the locked candidate node.

@@ -1077,17 +1077,17 @@ if (student is (name: var name, age: >= 18))
             Defines a view node that highlights for a link.
             </summary>
             <param name="identifier"><inheritdoc/></param>
-            <param name="startPoint">Indicates the start point.</param>
-            <param name="endPoint">Indicates the end point.</param>
+            <param name="start">Indicates the start point.</param>
+            <param name="end">Indicates the end point.</param>
             <param name="inference">Indicates the inference type.</param>
         </member>
-        <member name="M:Sudoku.Rendering.Nodes.LinkViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,Sudoku.Concepts.LockedTarget@,Sudoku.Concepts.LockedTarget@,Sudoku.Concepts.Inference)">
+        <member name="M:Sudoku.Rendering.Nodes.LinkViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,Sudoku.Concepts.LockedTarget,Sudoku.Concepts.LockedTarget,Sudoku.Concepts.Inference)">
             <summary>
             Defines a view node that highlights for a link.
             </summary>
             <param name="identifier"><inheritdoc/></param>
-            <param name="startPoint">Indicates the start point.</param>
-            <param name="endPoint">Indicates the end point.</param>
+            <param name="start">Indicates the start point.</param>
+            <param name="end">Indicates the end point.</param>
             <param name="inference">Indicates the inference type.</param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.LinkViewNode.Deconstruct(Sudoku.Rendering.ColorIdentifier@,Sudoku.Concepts.LockedTarget@,Sudoku.Concepts.LockedTarget@,Sudoku.Concepts.Inference@)">
@@ -1151,12 +1151,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Rendering.Nodes.LinkViewNode.Start">
             <summary>
-            The generated property declaration for parameter <c>startPoint</c>.
+            The generated property declaration for parameter <c>start</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.LinkViewNode.End">
             <summary>
-            The generated property declaration for parameter <c>endPoint</c>.
+            The generated property declaration for parameter <c>end</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.LinkViewNode.Inference">

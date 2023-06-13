@@ -43,14 +43,10 @@ public enum Inference
 file sealed class Converter : JsonConverter<Inference>
 {
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override Inference Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-		=> reader.Read() && reader.TokenType == JsonTokenType.String && reader.GetString() is { } value
-			? Enum.Parse<Inference>(value)
-			: throw new JsonException();
+		=> reader.GetString() is { } value ? Enum.Parse<Inference>(value) : throw new JsonException();
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override void Write(Utf8JsonWriter writer, Inference value, JsonSerializerOptions options)
 		=> writer.WriteStringValue(value.ToString());
 }
