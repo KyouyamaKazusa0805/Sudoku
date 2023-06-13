@@ -5047,17 +5047,6 @@ fixed (short* ptr = instance)
             Indicates the inference is the default case that doesn't belong to above.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Converter">
-            <summary>
-            Indicates the JSON converter of the current type.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Inference,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Concepts.InferenceExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Inference"/>.

@@ -2163,6 +2163,19 @@
             </list>
             </summary>
         </member>
+        <member name="T:System.Text.Json.EnumNameJsonConverter`1">
+            <summary>
+            Represents a type that can serialize a field from enumeration type <typeparamref name="T"/> into a JSON string,
+            whose value is equivalent to the field's name.
+            </summary>
+            <typeparam name="T">The type of the enumeration.</typeparam>
+        </member>
+        <member name="M:System.Text.Json.EnumNameJsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.Json.EnumNameJsonConverter`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:System.Text.Json.PascalCaseJsonNamingPolicy">
             <summary>
             Defines the pascal casing JSON naming policy.

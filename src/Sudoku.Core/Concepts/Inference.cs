@@ -3,7 +3,7 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Defines an inference.
 /// </summary>
-[JsonConverter(typeof(Converter))]
+[JsonConverter(typeof(EnumNameJsonConverter<Inference>))]
 public enum Inference
 {
 	/// <summary>
@@ -35,18 +35,4 @@ public enum Inference
 	/// Indicates the inference is the default case that doesn't belong to above.
 	/// </summary>
 	Default
-}
-
-/// <summary>
-/// Indicates the JSON converter of the current type.
-/// </summary>
-file sealed class Converter : JsonConverter<Inference>
-{
-	/// <inheritdoc/>
-	public override Inference Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-		=> reader.GetString() is { } value ? Enum.Parse<Inference>(value) : throw new JsonException();
-
-	/// <inheritdoc/>
-	public override void Write(Utf8JsonWriter writer, Inference value, JsonSerializerOptions options)
-		=> writer.WriteStringValue(value.ToString());
 }
