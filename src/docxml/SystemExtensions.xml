@@ -2033,21 +2033,6 @@
             <param name="flags">All flags used.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="T:System.GenericExtensions">
-            <summary>
-            Provides with extension methods on generic type arguments.
-            </summary>
-        </member>
-        <member name="M:System.GenericExtensions.Covers``1(``0@,System.String)">
-            <summary>
-            Covers the string value with the current <see cref="T:System.Span`1"/> instance, at the specified index as start.
-            </summary>
-            <typeparam name="T">
-            The type of the element. Due to the limit of C# language, the type must be a <see langword="struct"/>.
-            </typeparam>
-            <param name="start">The reference to the space that the string <paramref name="s"/> will be covered.</param>
-            <param name="s">The string to cover.</param>
-        </member>
         <member name="T:System.Int32Extensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Int32"/>.

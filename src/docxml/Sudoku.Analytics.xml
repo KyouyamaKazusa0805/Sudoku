@@ -13881,30 +13881,30 @@ result ^= expression;
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="symmetryType">
-            Indicates the symmetry type used. The supported value can only be:
+            <param name="symmetricType">
+            Indicates the symmetric type used. The supported value can only be:
             <list type="bullet">
-            <item><see cref="F:Sudoku.Concepts.SymmetryType.Central"/></item>
-            <item><see cref="F:Sudoku.Concepts.SymmetryType.Diagonal"/></item>
-            <item><see cref="F:Sudoku.Concepts.SymmetryType.AntiDiagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.Central"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.Diagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.AntiDiagonal"/></item>
             </list>
             </param>
             <param name="mapping">
             Indicates the mapping relations; in other words, this table shows what digits has symmetrical placement relation to what digits.
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.SymmetryType,System.Nullable{System.Int32}[])">
+        <member name="M:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.SymmetricType,System.Nullable{System.Int32}[])">
             <summary>
             Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="symmetryType">
-            Indicates the symmetry type used. The supported value can only be:
+            <param name="symmetricType">
+            Indicates the symmetric type used. The supported value can only be:
             <list type="bullet">
-            <item><see cref="F:Sudoku.Concepts.SymmetryType.Central"/></item>
-            <item><see cref="F:Sudoku.Concepts.SymmetryType.Diagonal"/></item>
-            <item><see cref="F:Sudoku.Concepts.SymmetryType.AntiDiagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.Central"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.Diagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.AntiDiagonal"/></item>
             </list>
             </param>
             <param name="mapping">
@@ -13920,9 +13920,9 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.SymmetryType">
+        <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.SymmetricType">
             <summary>
-            The generated property declaration for parameter <c>symmetryType</c>.
+            The generated property declaration for parameter <c>symmetricType</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.Mapping">

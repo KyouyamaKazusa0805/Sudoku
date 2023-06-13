@@ -301,12 +301,12 @@ public sealed partial class PatternBasedPuzzleGenerator(
 
 
 	/// <summary>
-	/// Get the cells that is used for swapping via <see cref="SymmetryType.Central"/>, and the specified row and column value.
+	/// Get the cells that is used for swapping via <see cref="SymmetricType.Central"/>, and the specified row and column value.
 	/// </summary>
 	/// <param name="row">The row value.</param>
 	/// <param name="column">The column value.</param>
 	/// <returns>The cells.</returns>
-	/// <seealso cref="SymmetryType.Central"/>
+	/// <seealso cref="SymmetricType.Central"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static CellMap GetCells(int row, int column)
 		=> (CellMap)(

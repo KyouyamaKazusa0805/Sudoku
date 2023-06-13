@@ -1,10 +1,10 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Define a symmetry type.
+/// Represents a symmetric type that can describe which one a pattern or a puzzle uses.
 /// </summary>
 [Flags]
-public enum SymmetryType
+public enum SymmetricType
 {
 	/// <summary>
 	/// Indicates none of symmetry type.

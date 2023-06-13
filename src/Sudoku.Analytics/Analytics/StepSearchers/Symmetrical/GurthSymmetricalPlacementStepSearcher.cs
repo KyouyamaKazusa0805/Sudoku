@@ -197,7 +197,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			: new GurthSymmetricalPlacementStep(
 				conclusions.ToArray(),
 				new[] { View.Empty | cellOffsets | candidateOffsets },
-				SymmetryType.Diagonal,
+				SymmetricType.Diagonal,
 				mapping
 			);
 	}
@@ -320,7 +320,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 
 		return conclusions.Count == 0
 			? null
-			: new(conclusions.ToArray(), new[] { View.Empty | cellOffsets | candidateOffsets }, SymmetryType.AntiDiagonal, mapping);
+			: new(conclusions.ToArray(), new[] { View.Empty | cellOffsets | candidateOffsets }, SymmetricType.AntiDiagonal, mapping);
 	}
 
 	/// <summary>
@@ -405,7 +405,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			return new(
 				new[] { new Conclusion(Assignment, 40, digit) },
 				new[] { View.Empty | cellOffsets | new CandidateViewNode(WellKnownColorIdentifier.Normal, 360 + digit) },
-				SymmetryType.Central,
+				SymmetricType.Central,
 				mapping
 			);
 		}

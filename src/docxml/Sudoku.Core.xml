@@ -134,27 +134,29 @@
 			</target>
             </remarks>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/summary"/>
             </summary>
-            <param name="symmetric">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='symmetric']"/>
+            <param name="symmetricType">
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='symmetricType']"/>
             </param>
             <param name="pattern">The pattern indicating the states of selection on all cells.</param>
             <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
             </param>
-            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/returns"/></returns>
+            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateInitPos(System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateInitPos(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
             <summary>
             Takes a full sudoku from <see cref="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
             If a deletion produces a grid with more than one solution it is of course undone.
             </summary>
-            <param name="symmetric"><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='symmetric']"/></param>
+            <param name="symmetricType">
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='symmetricType']"/>
+            </param>
             <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
             </param>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateInitPos(Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)">
@@ -165,7 +167,7 @@
             </summary>
             <param name="pattern">The pattern.</param>
             <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
             </param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the pattern is valid to be used.</returns>
         </member>
@@ -175,18 +177,18 @@
             </summary>
             <returns>A solution grid.</returns>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/summary"/>
             </summary>
-            <param name="symmetric">A <see cref="T:System.Boolean"/> value indicating whether generated puzzles should be symmetric.</param>
+            <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.Concepts.SymmetricType.Central"/> by default.</param>
             <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            <inheritdoc
+                cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)"
+                path="/param[@name='cancellationToken']"/>
             </param>
-            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Threading.CancellationToken)" path="/returns"/></returns>
+            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/returns"/></returns>
+            <exception cref="T:System.ArgumentException">Throws when the argument <paramref name="symmetricType"/> holds multiple flags.</exception>
         </member>
         <member name="T:Sudoku.Algorithm.Generating.IPuzzleGenerator">
             <summary>
@@ -371,12 +373,12 @@
         </member>
         <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.GetCells(System.Int32,System.Int32)">
             <summary>
-            Get the cells that is used for swapping via <see cref="F:Sudoku.Concepts.SymmetryType.Central"/>, and the specified row and column value.
+            Get the cells that is used for swapping via <see cref="F:Sudoku.Concepts.SymmetricType.Central"/>, and the specified row and column value.
             </summary>
             <param name="row">The row value.</param>
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
-            <seealso cref="F:Sudoku.Concepts.SymmetryType.Central"/>
+            <seealso cref="F:Sudoku.Concepts.SymmetricType.Central"/>
         </member>
         <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._pattern">
             <summary>
@@ -435,7 +437,7 @@
         <member name="M:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetryType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
             <summary>
             Generates a sudoku puzzle, via the specified number of givens used, the symmetry type, and
             a cancellation token to cancel the operation.
@@ -453,16 +455,6 @@
             <param name="pSolution">
             The pointer that points to the solution. The result value will be changed here.
             </param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator.GetCells(Sudoku.Concepts.SymmetryType,System.Int32,System.Int32)">
-            <summary>
-            Get the cells that is used for swapping via the specified symmetry type, and the specified row
-            and column value.
-            </summary>
-            <param name="symmetryType">The symmetry type.</param>
-            <param name="row">The row value.</param>
-            <param name="column">The column value.</param>
-            <returns>The cells.</returns>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
             <summary>
@@ -5164,55 +5156,77 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>cells</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.SymmetryType">
+        <member name="T:Sudoku.Concepts.SymmetricType">
             <summary>
-            Define a symmetry type.
+            Represents a symmetric type that can describe which one a pattern or a puzzle uses.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.SymmetryType.None">
+        <member name="F:Sudoku.Concepts.SymmetricType.None">
             <summary>
             Indicates none of symmetry type.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.SymmetryType.Central">
+        <member name="F:Sudoku.Concepts.SymmetricType.Central">
             <summary>
             Indicates the central symmetry type.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.SymmetryType.Diagonal">
+        <member name="F:Sudoku.Concepts.SymmetricType.Diagonal">
             <summary>
             Indicates the diagonal symmetry type.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.SymmetryType.AntiDiagonal">
+        <member name="F:Sudoku.Concepts.SymmetricType.AntiDiagonal">
             <summary>
             Indicates the anti-diagonal symmetry type.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.SymmetryType.XAxis">
+        <member name="F:Sudoku.Concepts.SymmetricType.XAxis">
             <summary>
             Indicates the x-axis symmetry type.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.SymmetryType.YAxis">
+        <member name="F:Sudoku.Concepts.SymmetricType.YAxis">
             <summary>
             Indicates the y-axis symmetry type.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.SymmetryType.AxisBoth">
+        <member name="F:Sudoku.Concepts.SymmetricType.AxisBoth">
             <summary>
             Indicates both X-axis and Y-axis symmetry types.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.SymmetryType.DiagonalBoth">
+        <member name="F:Sudoku.Concepts.SymmetricType.DiagonalBoth">
             <summary>
             Indicates both diagonal and anti-diagonal symmetry types.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.SymmetryType.All">
+        <member name="F:Sudoku.Concepts.SymmetricType.All">
             <summary>
             Indicates all symmetry types should be satisfied.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.SymmetricTypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.SymmetricType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.SymmetricType"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetExcludedCells(Sudoku.Concepts.SymmetricType)">
+            <summary>
+            Try to get excluded cells for the specified symmetric type.
+            </summary>
+            <param name="this">The symmetric type.</param>
+            <returns>The excluded cell.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.SymmetricType,System.Int32,System.Int32)">
+            <summary>
+            Get the cells that is used for swapping via the specified symmetric type, and the specified row and column value.
+            </summary>
+            <param name="this">The symmetric type.</param>
+            <param name="row">The row value.</param>
+            <param name="column">The column value.</param>
+            <returns>The cells.</returns>
         </member>
         <member name="T:Sudoku.IO.GridLibrary">
             <summary>

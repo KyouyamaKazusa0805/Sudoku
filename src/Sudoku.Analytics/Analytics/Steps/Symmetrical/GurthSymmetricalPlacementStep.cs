@@ -5,12 +5,12 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
-/// <param name="symmetryType">
-/// Indicates the symmetry type used. The supported value can only be:
+/// <param name="symmetricType">
+/// Indicates the symmetric type used. The supported value can only be:
 /// <list type="bullet">
-/// <item><see cref="SymmetryType.Central"/></item>
-/// <item><see cref="SymmetryType.Diagonal"/></item>
-/// <item><see cref="SymmetryType.AntiDiagonal"/></item>
+/// <item><see cref="SymmetricType.Central"/></item>
+/// <item><see cref="SymmetricType.Diagonal"/></item>
+/// <item><see cref="SymmetricType.AntiDiagonal"/></item>
 /// </list>
 /// </param>
 /// <param name="mapping">
@@ -19,13 +19,13 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class GurthSymmetricalPlacementStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] SymmetryType symmetryType,
+	[PrimaryConstructorParameter] SymmetricType symmetricType,
 	[PrimaryConstructorParameter] Digit?[]? mapping
 ) : SymmetryStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty
-		=> SymmetryType switch { SymmetryType.Diagonal or SymmetryType.AntiDiagonal => 7.1M, SymmetryType.Central => 7.0M };
+		=> SymmetricType switch { SymmetricType.Diagonal or SymmetricType.AntiDiagonal => 7.1M, SymmetricType.Central => 7.0M };
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.GurthSymmetricalPlacement;
@@ -34,7 +34,7 @@ public sealed partial class GurthSymmetricalPlacementStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { SymmetryTypeStr, MappingStr } }, { ChineseLanguage, new[] { SymmetryTypeStr, MappingStr } } };
 
-	private string SymmetryTypeStr => GetString($"{SymmetryType}Symmetry")!;
+	private string SymmetryTypeStr => GetString($"{SymmetricType}Symmetry")!;
 
 	private string MappingStr
 	{

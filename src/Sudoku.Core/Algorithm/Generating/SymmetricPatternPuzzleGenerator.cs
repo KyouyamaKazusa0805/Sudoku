@@ -25,7 +25,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 	{
 		try
 		{
-			return Generate(28, SymmetryType.Central, cancellationToken);
+			return Generate(28, SymmetricType.Central, cancellationToken);
 		}
 		catch (OperationCanceledException)
 		{
@@ -41,7 +41,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 	/// <param name="symmetryType">The symmetry type.</param>
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>The result sudoku puzzle.</returns>
-	private Grid Generate(int max, SymmetryType symmetryType, CancellationToken cancellationToken)
+	private Grid Generate(int max, SymmetricType symmetryType, CancellationToken cancellationToken)
 	{
 		var (puzzle, solution) = (new string('0', 81), new string('0', 81));
 		fixed (char* pPuzzle = puzzle, pSolution = solution)
@@ -49,7 +49,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 			GenerateAnswerGrid(pPuzzle, pSolution);
 
 			// Now we remove some digits from the grid.
-			var allTypes = symmetryType.GetAllFlags() ?? new[] { SymmetryType.None };
+			var allTypes = symmetryType.GetAllFlags() ?? new[] { SymmetricType.None };
 			var (count, tempSolution) = (allTypes.Length, solution.ToString());
 			string result;
 			do
@@ -70,7 +70,7 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 
 					// Get new value of 'last'.
 					var tempMap = CellMap.Empty;
-					foreach (var tCell in GetCells(selectedType, r, c))
+					foreach (var tCell in selectedType.GetCells(r, c))
 					{
 						pSolution[tCell] = '0';
 						totalMap.Add(tCell);
@@ -123,41 +123,6 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzleGenerator
 		} while (Solver.Solve(pPuzzle, pSolution, 2) == 0);
 	}
 
-
-	/// <summary>
-	/// Get the cells that is used for swapping via the specified symmetry type, and the specified row
-	/// and column value.
-	/// </summary>
-	/// <param name="symmetryType">The symmetry type.</param>
-	/// <param name="row">The row value.</param>
-	/// <param name="column">The column value.</param>
-	/// <returns>The cells.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static ReadOnlySpan<Cell> GetCells(SymmetryType symmetryType, int row, int column)
-		=> symmetryType switch
-		{
-			SymmetryType.Central => new[] { row * 9 + column, (8 - row) * 9 + 8 - column },
-			SymmetryType.Diagonal => new[] { row * 9 + column, column * 9 + row },
-			SymmetryType.AntiDiagonal => new[] { row * 9 + column, (8 - column) * 9 + 8 - row },
-			SymmetryType.XAxis => new[] { row * 9 + column, (8 - row) * 9 + column },
-			SymmetryType.YAxis => new[] { row * 9 + column, row * 9 + 8 - column },
-			SymmetryType.DiagonalBoth => new[] { row * 9 + column, column * 9 + row, (8 - column) * 9 + 8 - row, (8 - row) * 9 + 8 - column },
-			SymmetryType.AxisBoth => new[] { row * 9 + column, (8 - row) * 9 + column, row * 9 + 8 - column, (8 - row) * 9 + 8 - column },
-			SymmetryType.All
-				=> new[]
-				{
-					row * 9 + column,
-					row * 9 + (8 - column),
-					(8 - row) * 9 + column,
-					(8 - row) * 9 + (8 - column),
-					column * 9 + row,
-					column * 9 + (8 - row),
-					(8 - column) * 9 + row,
-					(8 - column) * 9 + (8 - row)
-				},
-			SymmetryType.None => new[] { row * 9 + column },
-			_ => Array.Empty<Cell>()
-		};
 
 	/// <summary>
 	/// Check whether the digit in its peer cells has duplicate ones.
