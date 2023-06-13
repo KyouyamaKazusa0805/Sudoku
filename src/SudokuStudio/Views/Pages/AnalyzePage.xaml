@@ -258,14 +258,16 @@
 				<Grid Grid.Column="1">
 					<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
 						<ProgressRing
-							x:Name="AnalyzeProgress" Width="100" Height="100" IsIndeterminate="False" Value="{x:Bind ProgressPercent,Mode=OneWay}"
+							x:Name="AnalyzeProgress" Width="100" Height="100" Value="{x:Bind ProgressPercent,Mode=OneWay}"
+							IsIndeterminate="{x:Bind cvt:AnalyzeConversion.GetProgressRingIsIntermediate(IsAnalyzerLaunched,IsGathererLaunched,IsGeneratorLaunched),Mode=OneWay}"
+							IsActive="{x:Bind cvt:AnalyzeConversion.GetProgressRingIsActive(IsAnalyzerLaunched,IsGathererLaunched,IsGeneratorLaunched),Mode=OneWay}"
 							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched,IsGeneratorLaunched),Mode=OneWay}" />
 						<TextBlock
-							x:Name="AnalyzeProgressLabel" x:FieldModifier="internal" HorizontalAlignment="Center"
+							x:Name="AnalyzeProgressLabel" x:FieldModifier="internal" HorizontalAlignment="Center" Margin="0,12"
 							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched,IsGeneratorLaunched),Mode=OneWay}" />
 						<TextBlock
 							x:Name="AnalyzeStepSearcherNameLabel" x:FieldModifier="internal"
-							HorizontalAlignment="Center" FontWeight="Bold" Margin="0,12" FontSize="24"
+							HorizontalAlignment="Center" FontWeight="Bold" FontSize="24"
 							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched,IsGeneratorLaunched),Mode=OneWay}" />
 					</StackPanel>
 					<TabView

@@ -96,19 +96,16 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 					)
 			);
 
-			var count = 0;
-			while (true)
+			for (var count = 0; ; count++)
 			{
-				var grid = HodokuPuzzleGenerator.Generate(progress);
-				if (difficultyLevelSelected == 0 || ((App)Application.Current).Analyzer.Analyze(grid).DifficultyLevel == difficultyLevelSelected)
+				if (HodokuPuzzleGenerator.Generate(progress) is var grid
+					&& ((App)Application.Current).Analyzer.Analyze(grid).DifficultyLevel is var puzzleDifficultyLevel
+					&& (difficultyLevelSelected == 0 || puzzleDifficultyLevel == difficultyLevelSelected))
 				{
 					return grid;
 				}
 
-				if (++count % 25 == 0 && count != 0)
-				{
-					progress.Report(new(count));
-				}
+				progress.Report(new(count));
 			}
 		}
 	}

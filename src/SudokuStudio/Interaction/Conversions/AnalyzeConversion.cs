@@ -9,7 +9,21 @@ internal static class AnalyzeConversion
 
 	public static bool GetAnalyzerButtonIsEnabled(bool isGeneratorLaunched) => !isGeneratorLaunched;
 
-	public static int GetViewPipsPagerPageCount(IRenderable? visualUnit) => visualUnit?.Views?.Length ?? 0;
+	public static bool GetProgressRingIsIntermediate(bool isAnalyzerLaunched, bool isGathererLaunched, bool isGeneratorLaunched)
+		=> (isAnalyzerLaunched, isGathererLaunched, isGeneratorLaunched) switch
+		{
+			(_, _, true) => true,
+			_ => false
+		};
+
+	public static bool GetProgressRingIsActive(bool isAnalyzerLaunched, bool isGathererLaunched, bool isGeneratorLaunched)
+		=> (isAnalyzerLaunched, isGathererLaunched, isGeneratorLaunched) switch
+		{
+			(_, _, true) => false,
+			_ => true
+		};
+
+	public static int GetViewPipsPagerPageCount(IRenderable? renderable) => renderable?.Views?.Length ?? 0;
 
 	public static int GetCurrentViewIndexForViewPipsPager(int currentIndex) => currentIndex;
 
@@ -37,8 +51,8 @@ internal static class AnalyzeConversion
 	public static Visibility GetSolvingPathListVisibility(object itemsSource)
 		=> itemsSource switch { SolvingPathStepCollection and not [] => Visibility.Visible, _ => Visibility.Collapsed };
 
-	public static Visibility GetViewPipsPagerVisibility(IRenderable? visualUnit)
-		=> visualUnit switch { { Views.Length: >= 2 } => Visibility.Visible, _ => Visibility.Collapsed };
+	public static Visibility GetViewPipsPagerVisibility(IRenderable? renderable)
+		=> renderable switch { { Views.Length: >= 2 } => Visibility.Visible, _ => Visibility.Collapsed };
 
 	public static IEnumerable<Inline> GetInlinesOfTooltip(SolvingPathStepBindableSource s)
 	{
