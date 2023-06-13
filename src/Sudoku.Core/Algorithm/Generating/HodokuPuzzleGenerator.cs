@@ -90,12 +90,7 @@ public struct HodokuPuzzleGenerator : IPuzzleGenerator
 	{
 		while (!GenerateForFullGrid()) ;
 
-		if (!pattern)
-		{
-			// Argument 'progress' is not passed in on purpose.
-			GenerateInitPos(symmetric, cancellationToken);
-		}
-		else
+		if (pattern)
 		{
 			var ok = false;
 			for (var i = 0; i < MaxTries; i++)
@@ -115,6 +110,11 @@ public struct HodokuPuzzleGenerator : IPuzzleGenerator
 			{
 				return Grid.Undefined;
 			}
+		}
+		else
+		{
+			// Argument 'progress' is not passed in on purpose.
+			GenerateInitPos(symmetric, cancellationToken);
 		}
 
 		var result = _newValidSudoku;
