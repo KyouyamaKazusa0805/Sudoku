@@ -34,7 +34,7 @@ public sealed class Generate : IExecutable
 				var generator = new HardPatternPuzzleGenerator();
 				while (true)
 				{
-					var targetPuzzle = generator.Generate(cancellationToken);
+					var targetPuzzle = generator.Generate(cancellationToken: cancellationToken);
 					var c = targetPuzzle.GivensCount;
 					if (c < Range.Min || c >= Range.Max)
 					{
@@ -51,7 +51,7 @@ public sealed class Generate : IExecutable
 				var generator = new PatternBasedPuzzleGenerator();
 				while (true)
 				{
-					var targetPuzzle = generator.Generate(cancellationToken);
+					var targetPuzzle = generator.Generate(cancellationToken: cancellationToken);
 					var c = targetPuzzle.GivensCount;
 					if (c < Range.Min || c >= Range.Max)
 					{

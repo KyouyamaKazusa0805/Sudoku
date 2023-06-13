@@ -18,7 +18,7 @@ namespace Sudoku.Algorithm.Generating;
 /// <summary>
 /// Represents a generator that is implemented by HoDoKu.
 /// </summary>
-public struct HodokuPuzzleGenerator : IPuzzleGenerator
+public struct HodokuPuzzleGenerator
 {
 	/// <summary>
 	/// Maximum number of tries when generating a puzzle using a pattern.
@@ -71,42 +71,32 @@ public struct HodokuPuzzleGenerator : IPuzzleGenerator
 	}
 
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly Grid IPuzzleGenerator.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
-		=> Generate(progress, cancellationToken);
-
 	/// <summary>
-	/// <inheritdoc cref="Generate(bool, IProgress{GeneratorProgress}?, CancellationToken)" path="/summary"/>
+	/// <inheritdoc cref="Generate(bool, CancellationToken)" path="/summary"/>
 	/// </summary>
-	/// <param name="symmetric"><inheritdoc cref="Generate(bool, IProgress{GeneratorProgress}?, CancellationToken)" path="/param[@name='symmetric']"/></param>
-	/// <param name="pattern">The pattern indicating the states of selection on all cells.</param>
-	/// <param name="progress"><inheritdoc cref="Generate(bool, IProgress{GeneratorProgress}?, CancellationToken)" path="/param[@name='progress']"/></param>
-	/// <param name="cancellationToken">
-	/// <inheritdoc cref="Generate(bool, IProgress{GeneratorProgress}?, CancellationToken)" path="/param[@name='cancellationToken']"/>
+	/// <param name="symmetric">
+	/// <inheritdoc cref="Generate(bool, CancellationToken)" path="/param[@name='symmetric']"/>
 	/// </param>
-	/// <returns><inheritdoc cref="Generate(bool, IProgress{GeneratorProgress}?, CancellationToken)" path="/returns"/></returns>
-	private Grid Generate(bool symmetric, scoped in CellMap pattern, IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
+	/// <param name="pattern">The pattern indicating the states of selection on all cells.</param>
+	/// <param name="cancellationToken">
+	/// <inheritdoc cref="Generate(bool, CancellationToken)" path="/param[@name='cancellationToken']"/>
+	/// </param>
+	/// <returns><inheritdoc cref="Generate(bool, CancellationToken)" path="/returns"/></returns>
+	private Grid Generate(bool symmetric, scoped in CellMap pattern, CancellationToken cancellationToken = default)
 	{
 		while (!GenerateForFullGrid()) ;
 
 		if (pattern)
 		{
-			var ok = false;
+			var ok = (bool?)false;
 			for (var i = 0; i < MaxTries; i++)
 			{
-				if (ok = GenerateInitPos(pattern, cancellationToken))
+				if ((ok = GenerateInitPos(pattern, cancellationToken)) is not false)
 				{
 					break;
 				}
-
-				// Report the progress.
-				if (i % 1000 == 0 && i != 0)
-				{
-					progress?.Report(new(i));
-				}
 			}
-			if (!ok)
+			if (ok is not true)
 			{
 				return Grid.Undefined;
 			}
@@ -126,11 +116,9 @@ public struct HodokuPuzzleGenerator : IPuzzleGenerator
 	/// Takes a full sudoku from <see cref="_newFullSudoku"/> and generates a valid puzzle by deleting cells.
 	/// If a deletion produces a grid with more than one solution it is of course undone.
 	/// </summary>
-	/// <param name="symmetric">
-	/// <inheritdoc cref="Generate(bool, IProgress{GeneratorProgress}?, CancellationToken)" path="/param[@name='symmetric']"/>
-	/// </param>
+	/// <param name="symmetric"><inheritdoc cref="Generate(bool, CancellationToken)" path="/param[@name='symmetric']"/></param>
 	/// <param name="cancellationToken">
-	/// <inheritdoc cref="Generate(bool, IProgress{GeneratorProgress}?, CancellationToken)" path="/param[@name='cancellationToken']"/>
+	/// <inheritdoc cref="Generate(bool, CancellationToken)" path="/param[@name='cancellationToken']"/>
 	/// </param>
 	private void GenerateInitPos(bool symmetric, CancellationToken cancellationToken = default)
 	{
@@ -144,7 +132,18 @@ public struct HodokuPuzzleGenerator : IPuzzleGenerator
 		{
 			// Get the next position to try.
 			var i = Rng.Next(81);
-			do if (i < 80) { i++; } else { i = 0; } while (used.Contains(i));
+			do
+			{
+				if (i < 80)
+				{
+					i++;
+				}
+				else
+				{
+					i = 0;
+				}
+			}
+			while (used.Contains(i));
 			used.Add(i);
 			usedCount--;
 
@@ -195,10 +194,10 @@ public struct HodokuPuzzleGenerator : IPuzzleGenerator
 	/// </summary>
 	/// <param name="pattern">The pattern.</param>
 	/// <param name="cancellationToken">
-	/// <inheritdoc cref="Generate(bool, IProgress{GeneratorProgress}?, CancellationToken)" path="/param[@name='cancellationToken']"/>
+	/// <inheritdoc cref="Generate(bool, CancellationToken)" path="/param[@name='cancellationToken']"/>
 	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating whether the pattern is valid to be used.</returns>
-	private bool GenerateInitPos(scoped in CellMap pattern, CancellationToken cancellationToken = default)
+	private bool? GenerateInitPos(scoped in CellMap pattern, CancellationToken cancellationToken = default)
 	{
 		_newValidSudoku = _newFullSudoku;
 		for (var cell = 0; cell < 81; cell++)
@@ -209,16 +208,14 @@ public struct HodokuPuzzleGenerator : IPuzzleGenerator
 			}
 		}
 
-		cancellationToken.ThrowIfCancellationRequested();
-
-		return FastSolver.CheckValidity(_newValidSudoku.ToString("!0"));
+		return cancellationToken.IsCancellationRequested ? null : FastSolver.CheckValidity(_newValidSudoku.ToString("!0"));
 	}
 
 	/// <summary>
 	/// Generate a solution grid.
 	/// </summary>
 	/// <returns>A solution grid.</returns>
-	private unsafe bool GenerateForFullGrid()
+	private bool GenerateForFullGrid()
 	{
 		// Limit the number of tries.
 		var actTries = 0;
@@ -237,9 +234,12 @@ public struct HodokuPuzzleGenerator : IPuzzleGenerator
 				index2 = Rng.Next(81);
 			}
 
-			fixed (int* p = _generateIndices)
+			unsafe
 			{
-				PointerOperations.Swap(p + index1, p + index2);
+				fixed (int* p = _generateIndices)
+				{
+					PointerOperations.Swap(p + index1, p + index2);
+				}
 			}
 		}
 
@@ -307,7 +307,7 @@ public struct HodokuPuzzleGenerator : IPuzzleGenerator
 
 				// Start with a fresh sudoku.
 				scoped ref var targetGrid = ref _stack[level].SudokuGrid;
-				targetGrid = _stack[level - 1].SudokuGrid; //??? What the hell is setBS for HoDoKu API?
+				targetGrid = _stack[level - 1].SudokuGrid;
 				targetGrid[_stack[level].Cell] = nextCand;
 				if (!checkValidityOnDuplicate(targetGrid, _stack[level].Cell))
 				{
@@ -399,23 +399,19 @@ public struct HodokuPuzzleGenerator : IPuzzleGenerator
 
 	/// <inheritdoc cref="IPuzzleGenerator.Generate(IProgress{GeneratorProgress}?, CancellationToken)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
-		=> Generate(true, progress, cancellationToken);
+	public static Grid Generate(CancellationToken cancellationToken = default) => Generate(true, cancellationToken);
 
 	/// <summary>
-	/// <inheritdoc cref="Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/summary"/>
+	/// <inheritdoc cref="Generate(CancellationToken)" path="/summary"/>
 	/// </summary>
 	/// <param name="symmetric">A <see cref="bool"/> value indicating whether generated puzzles should be symmetric.</param>
-	/// <param name="progress">
-	/// <inheritdoc cref="Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/param[@name='progress']"/>
-	/// </param>
 	/// <param name="cancellationToken">
-	/// <inheritdoc cref="Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/param[@name='cancellationToken']"/>
+	/// <inheritdoc cref="Generate(CancellationToken)" path="/param[@name='cancellationToken']"/>
 	/// </param>
-	/// <returns><inheritdoc cref="Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="Generate(CancellationToken)" path="/returns"/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Generate(bool symmetric, IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
-		=> new HodokuPuzzleGenerator().Generate(symmetric, CellMap.Empty, progress, cancellationToken);
+	public static Grid Generate(bool symmetric, CancellationToken cancellationToken = default)
+		=> new HodokuPuzzleGenerator().Generate(symmetric, CellMap.Empty, cancellationToken);
 }
 
 /// <summary>

@@ -98,7 +98,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 
 			for (var count = 0; ; count++)
 			{
-				if (HodokuPuzzleGenerator.Generate(progress) is var grid
+				if (HodokuPuzzleGenerator.Generate() is var grid
 					&& ((App)Application.Current).Analyzer.Analyze(grid).DifficultyLevel is var puzzleDifficultyLevel
 					&& (difficultyLevelSelected == 0 || puzzleDifficultyLevel == difficultyLevelSelected))
 				{
