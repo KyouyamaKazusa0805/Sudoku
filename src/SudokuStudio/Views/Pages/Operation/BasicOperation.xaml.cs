@@ -5,7 +5,7 @@ namespace SudokuStudio.Views.Pages.Operation;
 /// </summary>
 [DependencyProperty<string>("SucceedFilePath", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the path of the saved file.")]
 [DependencyProperty<DifficultyLevel>("DifficultyLevel", DefaultValue = 0, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the difficulty level of generated puzzles.")]
-[DependencyProperty<SymmetricType>("SymmetricType", DefaultValue = 0, Accessibility = GeneralizedAccessibility.Internal, DocSummary ="Indicates the customized symmetric pattern for generated puzzles.")]
+[DependencyProperty<SymmetricType>("SymmetricType", DefaultValue = 0, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the customized symmetric pattern for generated puzzles.")]
 public sealed partial class BasicOperation : Page, IOperationProviderPage
 {
 	/// <summary>
@@ -86,18 +86,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 
 		Grid gridCreator()
 		{
-			var progress = new SelfReportingProgress<GeneratorProgress>(
-				progress =>
-					DispatcherQueue.TryEnqueue(
-						() =>
-						{
-							var count = progress.Count;
-							BasePage.AnalyzeProgressLabel.Text = processingText;
-							BasePage.AnalyzeStepSearcherNameLabel.Text = count.ToString();
-						}
-					)
-			);
-
+			var progress = new SelfReportingProgress<GeneratorProgress>(reportingAction);
 			for (var count = 0; ; count++)
 			{
 				if (HodokuPuzzleGenerator.Generate(symmetricType) is var grid
@@ -108,6 +97,19 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 				}
 
 				progress.Report(new(count));
+			}
+		}
+
+		void reportingAction(GeneratorProgress progress)
+		{
+			DispatcherQueue.TryEnqueue(progressCallback);
+
+
+			void progressCallback()
+			{
+				var count = progress.Count;
+				BasePage.AnalyzeProgressLabel.Text = processingText;
+				BasePage.AnalyzeStepSearcherNameLabel.Text = count.ToString();
 			}
 		}
 	}
