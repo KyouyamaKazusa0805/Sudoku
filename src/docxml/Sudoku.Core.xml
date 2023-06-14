@@ -43,7 +43,7 @@
             of a puzzle being generated.
             </summary>
         </member>
-        <member name="F:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator._random">
+        <member name="F:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.Rng">
             <summary>
             Indicates the random number generator.
             </summary>
@@ -84,6 +84,13 @@
             <summary>
             Represents a generator that is implemented by HoDoKu.
             </summary>
+            <remarks><b>
+            This type is special: we strongly recommend use <see langword="static"/> method
+            <see cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)"/> or <see cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)"/>
+            instead of calling parameterless constructor due to the internal mechanism.
+            </b></remarks>
+            <seealso cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)"/>
         </member>
         <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.MaxTries">
             <summary>
@@ -175,7 +182,7 @@
             <summary>
             Generate a solution grid.
             </summary>
-            <returns>A solution grid.</returns>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the generation operation is succeeded.</returns>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
             <summary>
@@ -209,187 +216,6 @@
             The result puzzle generated. If canceled, the return value will be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </returns>
         </member>
-        <member name="T:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator">
-            <summary>
-            Indicates a puzzle generator that uses the pattern-based sudoku generation algorithm.
-            </summary>
-            <param name="pattern">The pattern. The default value is <see langword="null"/>.</param>
-            <param name="baseCandidates">The base candidates. The default value is <see langword="null"/>.</param>
-            <remarks>
-            The main idea can be shortened into the several following steps:
-            <list type="number">
-            <item>Randomize to generate a pattern which contains about 24 cells.</item>
-            <item>
-            Randomize to get some numbers (Just about 3 digits is okay).
-            These digits should guarantee the validity of the pattern.
-            </item>
-            <item>Try to solve this as the multiple solution puzzle. Our aim in this step is to get a valid solution.</item>
-            <item>Remove digits not filled in the pattern.</item>
-            <item>
-            Check validity of the removed puzzle.
-            <br/>
-            If the puzzle is unique, generated successfully, and return this puzzle;
-            <br/>
-            otherwise, adjust pattern slightly and try again. If failed after having tried 10000 times, we will re-generate
-            a sudoku puzzle.
-            </item>
-            </list>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.#ctor(System.Nullable{Sudoku.Concepts.CellMap}@,System.Int32[])">
-            <summary>
-            Indicates a puzzle generator that uses the pattern-based sudoku generation algorithm.
-            </summary>
-            <param name="pattern">The pattern. The default value is <see langword="null"/>.</param>
-            <param name="baseCandidates">The base candidates. The default value is <see langword="null"/>.</param>
-            <remarks>
-            The main idea can be shortened into the several following steps:
-            <list type="number">
-            <item>Randomize to generate a pattern which contains about 24 cells.</item>
-            <item>
-            Randomize to get some numbers (Just about 3 digits is okay).
-            These digits should guarantee the validity of the pattern.
-            </item>
-            <item>Try to solve this as the multiple solution puzzle. Our aim in this step is to get a valid solution.</item>
-            <item>Remove digits not filled in the pattern.</item>
-            <item>
-            Check validity of the removed puzzle.
-            <br/>
-            If the puzzle is unique, generated successfully, and return this puzzle;
-            <br/>
-            otherwise, adjust pattern slightly and try again. If failed after having tried 10000 times, we will re-generate
-            a sudoku puzzle.
-            </item>
-            </list>
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.RetrialTimes">
-            <summary>
-            Indicates the times that can retry a new pattern without updating sudoku solution template.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.MinPatternCellsCount">
-            <summary>
-            Indicates the number of pattern cells used that can be used in the generation for a pattern.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.MaxPatternCellsCount">
-            <summary>
-            Indicates the number of pattern cells used that can be used in the generation for a pattern.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.EmptyGridCharArray">
-            <summary>
-            Indicates the empty grid characters.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.SwapperHouseStarts">
-            <summary>
-            Indicates the swapper house starts.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.SwappableFactor">
-            <summary>
-            Indicates the swappable factor.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Solver">
-            <inheritdoc cref="F:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.Solver"/>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.SolverWithSolution">
-            <summary>
-            Indicates the solver with solution grid can be used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._random">
-            <inheritdoc cref="F:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator._random"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator"/> instance via the specified pattern.
-            </summary>
-            <param name="pattern">The pattern.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.Int32,System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
-            <summary>
-            Creates a sudoku puzzle via the specified trial times.
-            </summary>
-            <param name="times">The trial times.</param>
-            <param name="progress">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='progress']"/>
-            </param>
-            <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
-            </param>
-            <returns>
-            If user has canceled the operation or the maximum trial times has been reached, <see cref="F:Sudoku.Concepts.Grid.Undefined"/>;
-            otherwise, the valid grid.
-            </returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the field <c>_baseCandidates</c> is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.GenerateAsync(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
-            <summary>
-            Creates a sudoku puzzle asynchronously.
-            </summary>
-            <param name="progress">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='progress']"/>
-            </param>
-            <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
-            </param>
-            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> instance that returns a <see cref="T:Sudoku.Concepts.Grid"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Shuffle(Sudoku.Concepts.Grid@)">
-            <summary>
-            To shuffle the grid.
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.AdjustPattern(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Adjust a pattern slightly.
-            </summary>
-            <param name="pattern">The pattern.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.GeneratePattern">
-            <summary>
-            Randomize to generate a pattern.
-            </summary>
-            <returns>A pattern result.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.RandomizeThreeDigits">
-            <summary>
-            Randomize to generate three candidates at different places.
-            </summary>
-            <returns>A triplet of candidates.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.GetCells(System.Int32,System.Int32)">
-            <summary>
-            Get the cells that is used for swapping via <see cref="F:Sudoku.Concepts.SymmetricType.Central"/>, and the specified row and column value.
-            </summary>
-            <param name="row">The row value.</param>
-            <param name="column">The column value.</param>
-            <returns>The cells.</returns>
-            <seealso cref="F:Sudoku.Concepts.SymmetricType.Central"/>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._pattern">
-            <summary>
-            The generated field declaration for parameter <c>pattern</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._baseCandidates">
-            <summary>
-            The generated field declaration for parameter <c>baseCandidates</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Algorithm.Generating.RecursionStackEntry">
             <summary>
             One entry in recursion stack.
@@ -416,53 +242,6 @@
             <summary>
             The current state of the sudoku.
             </summary>
-        </member>
-        <member name="T:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator">
-            <summary>
-            Defines a symmetric puzzle generator, that is, a generator than can include the symmetrical placement
-            of all givens while generating puzzles.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator.Solver">
-            <inheritdoc cref="F:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.Solver"/>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator._random">
-            <summary>
-            Indicates the random number generator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator.Sudoku#Algorithm#Generating#IPuzzleGenerator#Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator.Generate(System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
-            <summary>
-            Generates a sudoku puzzle, via the specified number of givens used, the symmetry type, and
-            a cancellation token to cancel the operation.
-            </summary>
-            <param name="max">The maximum number of givens generated.</param>
-            <param name="symmetryType">The symmetry type.</param>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-            <returns>The result sudoku puzzle.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
-            <summary>
-            Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
-            </summary>
-            <param name="pPuzzle">The pointer that points to the puzzle.</param>
-            <param name="pSolution">
-            The pointer that points to the solution. The result value will be changed here.
-            </param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.SymmetricPatternPuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
-            <summary>
-            Check whether the digit in its peer cells has duplicate ones.
-            </summary>
-            <param name="ptrGrid">The pointer that points to a grid.</param>
-            <param name="cell">The cell.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Algorithm.Solving.BacktrackingSolver">
             <summary>

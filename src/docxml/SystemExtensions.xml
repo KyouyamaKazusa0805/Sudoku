@@ -365,6 +365,17 @@
             The enumerable collection that allows the iteration by reference on an one-dimensional array.
             </returns>
         </member>
+        <member name="M:System.Collections.Generic.CollectionEnumeration.ForEachRef``1(``0[],System.ForEachRefCallback{``0})">
+            <summary>
+            Same as for-each method <see cref="M:System.Array.ForEach``1(``0[],System.Action{``0})"/>, but iterating on references to corresponding elements.
+            </summary>
+            <typeparam name="T">The type of each element in this array.</typeparam>
+            <param name="this">The array.</param>
+            <param name="callback">The callback method to handle for each reference to each element.</param>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionEnumeration.ForEachRefUnsafe``1(``0[],)">
+            <inheritdoc cref="M:System.Collections.Generic.CollectionEnumeration.ForEachRef``1(``0[],System.ForEachRefCallback{``0})"/>
+        </member>
         <member name="M:System.Collections.Generic.CollectionEnumeration.EnumerateReversely``1(``0[])">
             <inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})"/>.
         </member>
@@ -3697,6 +3708,13 @@ fixed (short* ptr = instance)
             Invokes the tuple.
             </summary>
             <param name="this">The pair elements.</param>
+        </member>
+        <member name="T:System.ForEachRefCallback`1">
+            <summary>
+            Indicates a callback method that is used by for-each methods, iterating on each reference instead of instance.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="element">The reference to the element.</param>
         </member>
         <member name="T:System.ICloneable`1">
             <summary>

@@ -22,11 +22,10 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// </summary>
 	private static readonly BitwiseSolver Solver = new();
 
-
 	/// <summary>
 	/// Indicates the random number generator.
 	/// </summary>
-	private readonly Random _random = new();
+	private static readonly Random Rng = new();
 
 
 	/// <inheritdoc/>
@@ -99,7 +98,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 			{
 				while (true)
 				{
-					var cell = _random.Next(81);
+					var cell = Rng.Next(81);
 					if (!map.Contains(cell))
 					{
 						map.Add(cell);
@@ -112,7 +111,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 			{
 				do
 				{
-					pPuzzle[cell] = (char)(_random.Next(1, 9) + '0');
+					pPuzzle[cell] = (char)(Rng.Next(1, 9) + '0');
 				} while (CheckDuplicate(pPuzzle, cell));
 			}
 		} while (Solver.Solve(pPuzzle, pSolution, 2) == 0);
@@ -127,7 +126,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 		var (a, b) = (54, 0);
 		for (var i = 0; i < 9; i++)
 		{
-			var n = (int)(_random.NextDouble() * 6);
+			var n = (int)(Rng.NextDouble() * 6);
 			for (var j = 0; j < 3; j++)
 			{
 				for (var k = 0; k < 3; k++)
@@ -153,7 +152,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 			var (initial, boundary, delta) = target[index];
 			for (var i = initial; i >= boundary; i--)
 			{
-				PointerOperations.Swap(pattern + i, pattern + boundary + (Cell)((index == 3 ? delta : (i + delta)) * _random.NextDouble()));
+				PointerOperations.Swap(pattern + i, pattern + boundary + (Cell)((index == 3 ? delta : (i + delta)) * Rng.NextDouble()));
 			}
 		}
 #else

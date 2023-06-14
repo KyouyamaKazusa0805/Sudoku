@@ -35,6 +35,29 @@ public static class CollectionEnumeration
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static OneDimensionalArrayRefEnumerator<T> EnumerateRef<T>(this T[] @this) => new(@this);
 
+	/// <summary>
+	/// Same as for-each method <see cref="Array.ForEach{T}(T[], Action{T})"/>, but iterating on references to corresponding elements.
+	/// </summary>
+	/// <typeparam name="T">The type of each element in this array.</typeparam>
+	/// <param name="this">The array.</param>
+	/// <param name="callback">The callback method to handle for each reference to each element.</param>
+	public static void ForEachRef<T>(this T[] @this, ForEachRefCallback<T> callback)
+	{
+		foreach (ref var element in @this.EnumerateRef())
+		{
+			callback(ref element);
+		}
+	}
+
+	/// <inheritdoc cref="ForEachRef{T}(T[], ForEachRefCallback{T})"/>
+	public static unsafe void ForEachRefUnsafe<T>(this T[] @this, delegate*</*scoped*/ ref T, void> callback)
+	{
+		foreach (ref var element in @this.EnumerateRef())
+		{
+			callback(ref element);
+		}
+	}
+
 	/// <inheritdoc cref="Enumerable.Reverse{TSource}(IEnumerable{TSource})"/>.
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ReverseEnumerator<T> EnumerateReversely<T>(this T[] @this) => new(@this);
