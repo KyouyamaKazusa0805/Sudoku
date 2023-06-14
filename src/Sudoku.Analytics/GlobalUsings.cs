@@ -35,7 +35,7 @@ global using static Sudoku.Analytics.Buffers.CachedFields;
 global using static Sudoku.Analytics.CommonReadOnlies;
 global using static Sudoku.Analytics.Strings.StringsAccessor;
 global using ChainBranch = System.Collections.Generic.Dictionary<byte, Sudoku.Analytics.Patterns.NodeSet>;
-global using unsafe LoopChecker = delegate*<in Sudoku.Concepts.CellMap, bool>;
+global using unsafe LoopChecker = delegate*</*scoped*/ in Sudoku.Concepts.CellMap, bool>;
 global using ChainNodeListWithHeadCandidate = System.Collections.Generic.Dictionary<Sudoku.Analytics.Patterns.ChainNode, /*Candidate*/ int>;
 global using ExtraDifficultyCase = (string Name, decimal Value);
 global using DifficultyRange = (Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange? Original, Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange? Advanced);
