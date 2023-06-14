@@ -15,7 +15,7 @@ public sealed partial class TemplateStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether the technique searcher only checks template deletes.
 	/// </summary>
-	[RuntimeIdentifier("TemplateDeleteOnly")]
+	[RuntimeIdentifier(RuntimeIdentifier.TemplateDeleteOnly)]
 	public bool TemplateDeleteOnly { get; set; }
 
 

@@ -17,19 +17,19 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether the solver enables the technique full house.
 	/// </summary>
-	[RuntimeIdentifier("EnableFullHouse")]
+	[RuntimeIdentifier(RuntimeIdentifier.EnableFullHouse)]
 	public bool EnableFullHouse { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver enables the technique last digit.
 	/// </summary>
-	[RuntimeIdentifier("EnableLastDigit")]
+	[RuntimeIdentifier(RuntimeIdentifier.EnableLastDigit)]
 	public bool EnableLastDigit { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver checks for hidden single in block firstly.
 	/// </summary>
-	[RuntimeIdentifier("HiddenSinglesInBlockFirst")]
+	[RuntimeIdentifier(RuntimeIdentifier.HiddenSinglesInBlockFirst)]
 	public bool HiddenSinglesInBlockFirst { get; set; }
 
 	/// <summary>
@@ -39,7 +39,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// For more information about what is an ittoryu puzzle, please visit
 	/// <see href="https://sunnieshine.github.io/Sudoku/terms/ittouryu-puzzle">this link</see>.
 	/// </remarks>
-	[RuntimeIdentifier("UseIttoryuMode")]
+	[RuntimeIdentifier(RuntimeIdentifier.AnalyzerUseIttoryuMode)]
 	public bool UseIttoryuMode { get; set; }
 
 

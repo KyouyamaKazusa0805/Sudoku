@@ -15,7 +15,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether the user checks the almost locked quadruple.
 	/// </summary>
-	[RuntimeIdentifier("CheckAlmostLockedQuadruple")]
+	[RuntimeIdentifier(RuntimeIdentifier.CheckAlmostLockedQuadruple)]
 	public bool CheckAlmostLockedQuadruple { get; set; }
 
 

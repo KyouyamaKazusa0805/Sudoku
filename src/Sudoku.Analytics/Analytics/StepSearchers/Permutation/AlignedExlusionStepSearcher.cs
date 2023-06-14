@@ -14,7 +14,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the maximum searching size. This value must be greater than 2 and less than 5. The default value is 3.
 	/// </summary>
-	[RuntimeIdentifier("AlignedExclusionMaxSearchingSize")]
+	[RuntimeIdentifier(RuntimeIdentifier.AlignedExclusionMaxSearchingSize)]
 	public int MaxSearchingSize { get; set; } = 3;
 
 

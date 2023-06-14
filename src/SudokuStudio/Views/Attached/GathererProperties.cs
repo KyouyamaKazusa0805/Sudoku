@@ -5,8 +5,8 @@ namespace SudokuStudio.Views.Attached;
 /// </summary>
 /// <seealso cref="SudokuPane"/>
 /// <seealso cref="StepCollector"/>
-[AttachedProperty<bool>("StepGathererOnlySearchSameLevelTechniquesInFindAllSteps", DefaultValue = true)]
-[AttachedProperty<int>("StepGathererMaxStepsGathered", DefaultValue = 1000)]
+[AttachedProperty<bool>(RuntimeIdentifier.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps, DefaultValue = true)]
+[AttachedProperty<int>(RuntimeIdentifier.StepGathererMaxStepsGathered, DefaultValue = 1000)]
 public static partial class GathererProperties
 {
 	[Callback]

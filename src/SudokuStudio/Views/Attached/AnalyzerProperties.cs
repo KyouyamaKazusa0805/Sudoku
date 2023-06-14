@@ -9,31 +9,37 @@ namespace SudokuStudio.Views.Attached;
 /// </remarks>
 /// <seealso cref="SudokuPane"/>
 /// <seealso cref="Analyzer"/>
-[AttachedProperty<bool>("EnableFullHouse", DefaultValue = true)]
-[AttachedProperty<bool>("EnableLastDigit", DefaultValue = true)]
-[AttachedProperty<bool>("HiddenSinglesInBlockFirst", DefaultValue = true)]
-[AttachedProperty<bool>("UseIttoryuMode")]
-[AttachedProperty<bool>("AllowIncompleteUniqueRectangles", DefaultValue = true)]
-[AttachedProperty<bool>("SearchForExtendedUniqueRectangles", DefaultValue = true)]
-[AttachedProperty<bool>("SearchExtendedBivalueUniversalGraveTypes", DefaultValue = true)]
-[AttachedProperty<bool>("AllowCollisionOnAlsXz", DefaultValue = true)]
-[AttachedProperty<bool>("AllowLoopedPatternsOnAlsXz", DefaultValue = true)]
-[AttachedProperty<bool>("AllowCollisionOnAlsXyWing", DefaultValue = true)]
-[AttachedProperty<bool>("SearchForReverseBugPartiallyUsedTypes", DefaultValue = true)]
-[AttachedProperty<int>("ReverseBugMaxSearchingEmptyCellsCount", DefaultValue = 2)]
-[AttachedProperty<int>("AlignedExclusionMaxSearchingSize", DefaultValue = 3)]
-[AttachedProperty<int>("MaxSizeOfRegularWing", DefaultValue = 5)]
-[AttachedProperty<int>("MaxSizeOfComplexFish", DefaultValue = 5)]
-[AttachedProperty<bool>("TemplateDeleteOnly")]
-[AttachedProperty<int>("BowmanBingoMaxLength", DefaultValue = 64)]
-[AttachedProperty<bool>("CheckAlmostLockedQuadruple")]
-[AttachedProperty<bool>("CheckAdvancedJuniorExocet", DefaultValue = true)]
-[AttachedProperty<bool>("CheckAdvancedSeniorExocet", DefaultValue = true)]
-[AttachedProperty<bool>("SolverIsFullApplying")]
-[AttachedProperty<bool>("SolverIgnoreSlowAlgorithms")]
-[AttachedProperty<bool>("SolverIgnoreHighAllocationAlgorithms")]
+[AttachedProperty<bool>(RuntimeIdentifier.EnableFullHouse, DefaultValue = true)]
+[AttachedProperty<bool>(RuntimeIdentifier.EnableLastDigit, DefaultValue = true)]
+[AttachedProperty<bool>(RuntimeIdentifier.HiddenSinglesInBlockFirst, DefaultValue = true)]
+[AttachedProperty<bool>(RuntimeIdentifier.AnalyzerUseIttoryuMode)]
+[AttachedProperty<bool>(RuntimeIdentifier.AllowIncompleteUniqueRectangles, DefaultValue = true)]
+[AttachedProperty<bool>(RuntimeIdentifier.SearchForExtendedUniqueRectangles, DefaultValue = true)]
+[AttachedProperty<bool>(RuntimeIdentifier.SearchExtendedBivalueUniversalGraveTypes, DefaultValue = true)]
+[AttachedProperty<bool>(RuntimeIdentifier.AllowCollisionOnAlmostLockedSetXzRule, DefaultValue = true)]
+[AttachedProperty<bool>(RuntimeIdentifier.AllowLoopedPatternsOnAlmostLockedSetXzRule, DefaultValue = true)]
+[AttachedProperty<bool>(RuntimeIdentifier.AllowCollisionOnAlmostLockedSetXyWing, DefaultValue = true)]
+[AttachedProperty<bool>(RuntimeIdentifier.SearchForReverseBugPartiallyUsedTypes, DefaultValue = true)]
+[AttachedProperty<int>(RuntimeIdentifier.ReverseBugMaxSearchingEmptyCellsCount, DefaultValue = 2)]
+[AttachedProperty<int>(RuntimeIdentifier.AlignedExclusionMaxSearchingSize, DefaultValue = 3)]
+[AttachedProperty<int>(RuntimeIdentifier.MaxSizeOfRegularWing, DefaultValue = 5)]
+[AttachedProperty<int>(RuntimeIdentifier.MaxSizeOfComplexFish, DefaultValue = 5)]
+[AttachedProperty<bool>(RuntimeIdentifier.TemplateDeleteOnly)]
+[AttachedProperty<int>(RuntimeIdentifier.BowmanBingoMaxLength, DefaultValue = 64)]
+[AttachedProperty<bool>(RuntimeIdentifier.CheckAlmostLockedQuadruple)]
+[AttachedProperty<bool>(RuntimeIdentifier.CheckAdvancedJuniorExocet, DefaultValue = true)]
+[AttachedProperty<bool>(RuntimeIdentifier.CheckAdvancedSeniorExocet, DefaultValue = true)]
+[AttachedProperty<bool>(RuntimeIdentifier.LogicalSolverIsFullApplying)]
+[AttachedProperty<bool>(RuntimeIdentifier.LogicalSolverIgnoresSlowAlgorithms)]
+[AttachedProperty<bool>(RuntimeIdentifier.LogicalSolverIgnoresHighAllocationAlgorithms)]
 public static partial class AnalyzerProperties
 {
+	/// <summary>
+	/// Indicates the anonymous name for getters.
+	/// </summary>
+	private const string GetSetterName = "Get";
+
+
 	/// <summary>
 	/// Sets the specified property in a <see cref="StepSearcher"/> with the target value via attached properties
 	/// stored in type <see cref="AnalyzerProperties"/>.
@@ -64,7 +70,7 @@ public static partial class AnalyzerProperties
 
 			bool methodNameMatcher(PropertyInfo property)
 				=> property.GetCustomAttribute<RuntimeIdentifierAttribute>() is { RuntimeIdentifier: var identifier }
-				&& methodName["Get".Length..] == identifier;
+				&& methodName[GetSetterName.Length..] == identifier;
 		}
 
 		propertyMatched = false;
@@ -84,7 +90,7 @@ public static partial class AnalyzerProperties
 	{
 		foreach (var methodInfo in typeof(AnalyzerProperties).GetMethods(BindingFlags.Static | BindingFlags.Public))
 		{
-			if (!methodInfo.Name.StartsWith("Get"))
+			if (!methodInfo.Name.StartsWith(GetSetterName))
 			{
 				continue;
 			}
@@ -113,7 +119,7 @@ public static partial class AnalyzerProperties
 		=> A<SingleStepSearcher>(d, s => s.HiddenSinglesInBlockFirst = (bool)e.NewValue);
 
 	[Callback]
-	private static void UseIttoryuModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void AnalyzerUseIttoryuModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<SingleStepSearcher>(d, s => s.UseIttoryuMode = (bool)e.NewValue);
 
 	[Callback]
@@ -129,15 +135,15 @@ public static partial class AnalyzerProperties
 		=> A<BivalueUniversalGraveStepSearcher>(d, s => s.SearchExtendedTypes = (bool)e.NewValue);
 
 	[Callback]
-	private static void AllowCollisionOnAlsXzPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void AllowCollisionOnAlmostLockedSetXzRulePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<AlmostLockedSetsXzStepSearcher>(d, s => s.AllowCollision = (bool)e.NewValue);
 
 	[Callback]
-	private static void AllowLoopedPatternsOnAlsXzPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void AllowLoopedPatternsOnAlmostLockedSetXzRulePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<AlmostLockedSetsXzStepSearcher>(d, s => s.AllowLoopedPatterns = (bool)e.NewValue);
 
 	[Callback]
-	private static void AllowCollisionOnAlsXyWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void AllowCollisionOnAlmostLockedSetXyWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<AlmostLockedSetsXyWingStepSearcher>(d, s => s.AllowCollision = (bool)e.NewValue);
 
 	[Callback]
@@ -181,18 +187,18 @@ public static partial class AnalyzerProperties
 		=> A<AlignedExclusionStepSearcher>(d, s => s.MaxSearchingSize = (int)e.NewValue);
 
 	[Callback]
-	private static void SolverIsFullApplyingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void LogicalSolverIsFullApplyingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> SudokuPaneBindable.GetAnalyzer((SudokuPane)d).IsFullApplying = (bool)e.NewValue;
 
 	[Callback]
-	private static void SolverIgnoreSlowAlgorithmsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void LogicalSolverIgnoresSlowAlgorithmsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		var analyzer = SudokuPaneBindable.GetAnalyzer((SudokuPane)d);
 		analyzer.WithAlgorithmLimits((bool)e.NewValue, analyzer.IgnoreHighAllocationAlgorithms);
 	}
 
 	[Callback]
-	private static void SolverIgnoreHighAllocationAlgorithmsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void LogicalSolverIgnoresHighAllocationAlgorithmsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		var analyzer = SudokuPaneBindable.GetAnalyzer((SudokuPane)d);
 		analyzer.WithAlgorithmLimits(analyzer.IgnoreSlowAlgorithms, (bool)e.NewValue);
