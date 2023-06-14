@@ -18,7 +18,7 @@ public static class SolutionWideReadOnlyFields
 	/// </remarks>
 	/// <seealso cref="TrailingZeroCount(int)"/>
 	/// <seealso cref="TrailingZeroCount(uint)"/>
-	public const int InvalidValidOfTrailingZeroCountMethodFallback = 32;
+	public const int InvalidTrailingZeroCountMethodFallback = 32;
 
 	/// <summary>
 	/// Indicates the invalid fallback value
@@ -33,7 +33,7 @@ public static class SolutionWideReadOnlyFields
 	/// </remarks>
 	/// <seealso cref="TrailingZeroCount(long)"/>
 	/// <seealso cref="TrailingZeroCount(ulong)"/>
-	public const int InvalidValidOfTrailingZeroCountMethodFallbackLong = 64;
+	public const int InvalidTrailingZeroCountMethodFallbackLong = 64;
 
 	/// <summary>
 	/// Indicates the mask that means all rows.

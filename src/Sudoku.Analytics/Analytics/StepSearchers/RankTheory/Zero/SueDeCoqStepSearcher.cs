@@ -121,7 +121,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 
 									var elimMapIsolated = CellMap.Empty;
 									var digitIsolated = TrailingZeroCount(maskIsolated);
-									if (digitIsolated != InvalidValidOfTrailingZeroCountMethodFallback)
+									if (digitIsolated != InvalidTrailingZeroCountMethodFallback)
 									{
 										elimMapIsolated = (
 											cannibalMode

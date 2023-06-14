@@ -751,8 +751,8 @@ partial class UniqueRectangleStepSearcher
 		{
 			var map1 = CellsMap[abzCell] + abxCell;
 			var map2 = CellsMap[abzCell] + abyCell;
-			if (map1.CoveredLine is not (var m1cl and not InvalidValidOfTrailingZeroCountMethodFallback)
-				|| map2.CoveredLine is not (var m2cl and not InvalidValidOfTrailingZeroCountMethodFallback))
+			if (map1.CoveredLine is not (var m1cl and not InvalidTrailingZeroCountMethodFallback)
+				|| map2.CoveredLine is not (var m2cl and not InvalidTrailingZeroCountMethodFallback))
 			{
 				// There's no common covered line to display.
 				continue;
@@ -2878,7 +2878,7 @@ partial class UniqueRectangleStepSearcher
 
 			var elimMapIsolated = CellMap.Empty;
 			var digitIsolated = TrailingZeroCount(maskIsolated);
-			if (digitIsolated != InvalidValidOfTrailingZeroCountMethodFallback)
+			if (digitIsolated != InvalidTrailingZeroCountMethodFallback)
 			{
 				elimMapIsolated = (cannibalMode ? currentBlockMap | currentLineMap : currentInterMap)
 					% CandidatesMap[digitIsolated]
@@ -3078,7 +3078,7 @@ partial class UniqueRectangleStepSearcher
 				// Check all bi-value cells.
 				foreach (var bivalueCellToCheck in bivalueCellsToCheck)
 				{
-					if ((CellsMap[bivalueCellToCheck] + targetCell).CoveredLine != InvalidValidOfTrailingZeroCountMethodFallback)
+					if ((CellsMap[bivalueCellToCheck] + targetCell).CoveredLine != InvalidTrailingZeroCountMethodFallback)
 					{
 						// 'targetCell' and 'bivalueCellToCheck' can't lie on a same line.
 						continue;
@@ -3092,7 +3092,7 @@ partial class UniqueRectangleStepSearcher
 
 					var urCellInSameBlock = ((HousesMap[block] & cells) - targetCell)[0];
 					var coveredLine = (CellsMap[bivalueCellToCheck] + urCellInSameBlock).CoveredLine;
-					if (coveredLine == InvalidValidOfTrailingZeroCountMethodFallback)
+					if (coveredLine == InvalidTrailingZeroCountMethodFallback)
 					{
 						// The bi-value cell 'bivalueCellToCheck' should be lie on a same house
 						// as 'urCellInSameBlock'.
