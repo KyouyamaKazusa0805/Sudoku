@@ -34,7 +34,7 @@ public abstract partial class StepSearcher(
 	[PrimaryConstructorParameter] int priority,
 	[PrimaryConstructorParameter] int level,
 	[PrimaryConstructorParameter] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering
-) : IComparable<StepSearcher>, IEquatable<StepSearcher>
+) : IEquatable<StepSearcher>
 {
 	/// <summary>
 	/// Indicates the backing field of property <see cref="SeparatedPriority"/>.
@@ -44,10 +44,10 @@ public abstract partial class StepSearcher(
 
 
 	/// <summary>
-	/// Determines whether the current step searcher is separated one, which mean it can be created
-	/// as many possible instances in a same step searchers pool.
+	/// Determines whether the current step searcher is separated one,
+	/// meaning it can be created as many possible instances in a same step searchers pool.
 	/// </summary>
-	public bool IsSeparated => EqualityContract.GetCustomAttribute<SeparatedAttribute>() is not null;
+	public bool IsSeparated => GetType().GetCustomAttribute<SeparatedAttribute>() is not null;
 
 	/// <summary>
 	/// Determines whether the current step searcher is a direct one.
@@ -57,7 +57,7 @@ public abstract partial class StepSearcher(
 	/// <see cref="DirectAttribute"/> to learn more information.
 	/// </remarks>
 	/// <seealso cref="DirectAttribute"/>
-	public bool IsDirect => EqualityContract.IsDefined(typeof(DirectAttribute));
+	public bool IsDirect => GetType().IsDefined(typeof(DirectAttribute));
 
 	/// <summary>
 	/// Determines whether we can adjust the ordering of the current step searcher
@@ -67,13 +67,13 @@ public abstract partial class StepSearcher(
 	/// If you don't know what is a direct step searcher, please visit the property <see cref="FixedAttribute"/> to learn more information.
 	/// </remarks>
 	/// <seealso cref="FixedAttribute"/>
-	public bool IsFixed => EqualityContract.IsDefined(typeof(FixedAttribute));
+	public bool IsFixed => GetType().IsDefined(typeof(FixedAttribute));
 
 	/// <summary>
 	/// Determines whether the current step searcher is not supported for sukaku solving mode.
 	/// </summary>
 	public bool IsNotSupportedForSukaku
-		=> EqualityContract.GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases } && cases.Flags(ConditionalCase.Standard);
+		=> GetType().GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases } && cases.Flags(ConditionalCase.Standard);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
@@ -81,7 +81,7 @@ public abstract partial class StepSearcher(
 	/// </summary>
 	/// <seealso cref="ConditionalCase.UnlimitedTimeComplexity"/>
 	public bool IsConfiguredSlow
-		=> EqualityContract.GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases }
+		=> GetType().GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases }
 		&& cases.Flags(ConditionalCase.UnlimitedTimeComplexity);
 
 	/// <summary>
@@ -90,7 +90,7 @@ public abstract partial class StepSearcher(
 	/// </summary>
 	/// <seealso cref="ConditionalCase.UnlimitedSpaceComplexity"/>
 	public bool IsConfiguredHighAllocation
-		=> EqualityContract.GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases }
+		=> GetType().GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases }
 		&& cases.Flags(ConditionalCase.UnlimitedSpaceComplexity);
 
 	/// <summary>
@@ -116,41 +116,26 @@ public abstract partial class StepSearcher(
 	/// </summary>
 	internal int PriorityId => Priority << 4 | SeparatedPriority;
 
-	/// <summary>
-	/// The qualified type name of this instance.
-	/// </summary>
-	protected string TypeName => EqualityContract.Name;
-
-	/// <summary>
-	/// Indicates the <see cref="Type"/> instance that represents the reflection data for the current instance.
-	/// This property is used as type checking to distinct with multiple <see cref="StepSearcher"/>s.
-	/// </summary>
-	protected Type EqualityContract => GetType();
-
 
 	[GeneratedOverridingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
 	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
-	public bool Equals([NotNullWhen(true)] StepSearcher? other) => other is not null && CompareTo(other) == 0;
+	public bool Equals([NotNullWhen(true)] StepSearcher? other) => other is not null && PriorityId == other.PriorityId;
 
 	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(PriorityId))]
 	public override partial int GetHashCode();
-
-	/// <inheritdoc/>
-	public int CompareTo(StepSearcher? other)
-	{
-		ArgumentNullException.ThrowIfNull(other);
-
-		return Sign(PriorityId - other.PriorityId);
-	}
 
 	/// <summary>
 	/// Returns the real name of this instance.
 	/// </summary>
 	/// <returns>Real name of this instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override string ToString() => GetString($"StepSearcherName_{TypeName}") ?? TypeName;
+	public sealed override string ToString()
+	{
+		var rawTypeName = GetType().Name;
+		return GetString($"StepSearcherName_{rawTypeName}") ?? rawTypeName;
+	}
 
 	/// <summary>
 	/// Try to collect all available <see cref="Step"/>s using the current technique rule.
