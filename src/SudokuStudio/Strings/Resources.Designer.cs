@@ -3237,6 +3237,87 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        internal static string SymmetricType_All {
+            get {
+                return ResourceManager.GetString("SymmetricType_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anti-diagonal.
+        /// </summary>
+        internal static string SymmetricType_AntiDiagonal {
+            get {
+                return ResourceManager.GetString("SymmetricType_AntiDiagonal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Both X &amp; Y axes.
+        /// </summary>
+        internal static string SymmetricType_AxisBoth {
+            get {
+                return ResourceManager.GetString("SymmetricType_AxisBoth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Central.
+        /// </summary>
+        internal static string SymmetricType_Central {
+            get {
+                return ResourceManager.GetString("SymmetricType_Central", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diagonal.
+        /// </summary>
+        internal static string SymmetricType_Diagonal {
+            get {
+                return ResourceManager.GetString("SymmetricType_Diagonal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Both diagonal &amp; anti-diagonal.
+        /// </summary>
+        internal static string SymmetricType_DiagonalBoth {
+            get {
+                return ResourceManager.GetString("SymmetricType_DiagonalBoth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No symmetry.
+        /// </summary>
+        internal static string SymmetricType_None {
+            get {
+                return ResourceManager.GetString("SymmetricType_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X axis.
+        /// </summary>
+        internal static string SymmetricType_XAxis {
+            get {
+                return ResourceManager.GetString("SymmetricType_XAxis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y axis.
+        /// </summary>
+        internal static string SymmetricType_YAxis {
+            get {
+                return ResourceManager.GetString("SymmetricType_YAxis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Intersections.
         /// </summary>
         internal static string TechniqueGalleryPage_Intersections {

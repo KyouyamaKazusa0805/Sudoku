@@ -105,7 +105,6 @@ public struct HodokuPuzzleGenerator
 		}
 		else
 		{
-			// Argument 'progress' is not passed in on purpose.
 			GenerateInitPos(symmetric, cancellationToken);
 		}
 
@@ -450,7 +449,6 @@ public struct HodokuPuzzleGenerator
 		}
 		else
 		{
-			// Argument 'progress' is not passed in on purpose.
 			GenerateInitPos(symmetricType, cancellationToken);
 		}
 
@@ -501,47 +499,45 @@ public struct HodokuPuzzleGenerator
 				continue;
 			}
 
-			if (symmetricType != SymmetricType.None)
+			candidateCells.Clear();
+
+			foreach (var tempCell in symmetricType.GetCells(cell / 9, cell % 9))
 			{
-				candidateCells.Clear();
-
-				foreach (var tempCell in symmetricType.GetCells(cell / 9, cell % 9))
+				if (_newValidSudoku[tempCell] != -1
+					&& (symmetricType == SymmetricType.None && Rng.NextDouble() >= .5 || symmetricType != SymmetricType.None))
 				{
-					if (_newValidSudoku[tempCell] != -1)
-					{
-						candidateCells.Add(tempCell);
-					}
+					candidateCells.Add(tempCell);
 				}
-				if (candidateCells.Count == 0)
-				{
-					// The other end of our symmetric puzzle is already deleted.
-					continue;
-				}
+			}
+			if (candidateCells.Count == 0)
+			{
+				// The other end of our symmetric puzzle is already deleted.
+				continue;
+			}
 
+			foreach (var candidateCell in candidateCells)
+			{
+				// Delete cell.
+				_newValidSudoku[candidateCell] = -1;
+				used.Add(candidateCell);
+				remainingClues--;
+				if (candidateCell != cell)
+				{
+					usedCount--;
+				}
+			}
+
+			if (!FastSolver.CheckValidity(_newValidSudoku.ToString("!0")))
+			{
+				// If not unique, revert deletion.
 				foreach (var candidateCell in candidateCells)
 				{
-					// Delete cell.
-					_newValidSudoku[candidateCell] = -1;
-					used.Add(candidateCell);
-					remainingClues--;
-					if (candidateCell != cell)
-					{
-						usedCount--;
-					}
+					_newValidSudoku[candidateCell] = _newFullSudoku[candidateCell];
+					remainingClues++;
 				}
-
-				if (!FastSolver.CheckValidity(_newValidSudoku.ToString("!0")))
-				{
-					// If not unique, revert deletion.
-					foreach (var candidateCell in candidateCells)
-					{
-						_newValidSudoku[candidateCell] = _newFullSudoku[candidateCell];
-						remainingClues++;
-					}
-				}
-
-				cancellationToken.ThrowIfCancellationRequested();
 			}
+
+			cancellationToken.ThrowIfCancellationRequested();
 		}
 	}
 
@@ -686,6 +682,7 @@ public struct HodokuPuzzleGenerator
 		}
 
 		return false;
+
 
 		static bool checkValidityOnDuplicate(scoped in Grid grid, Cell cell)
 		{

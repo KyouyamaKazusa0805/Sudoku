@@ -5389,6 +5389,51 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Output.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SymmetricType_All">
+            <summary>
+              Looks up a localized string similar to All.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SymmetricType_AntiDiagonal">
+            <summary>
+              Looks up a localized string similar to Anti-diagonal.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SymmetricType_AxisBoth">
+            <summary>
+              Looks up a localized string similar to Both X &amp; Y axes.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SymmetricType_Central">
+            <summary>
+              Looks up a localized string similar to Central.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SymmetricType_Diagonal">
+            <summary>
+              Looks up a localized string similar to Diagonal.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SymmetricType_DiagonalBoth">
+            <summary>
+              Looks up a localized string similar to Both diagonal &amp; anti-diagonal.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SymmetricType_None">
+            <summary>
+              Looks up a localized string similar to No symmetry.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SymmetricType_XAxis">
+            <summary>
+              Looks up a localized string similar to X axis.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SymmetricType_YAxis">
+            <summary>
+              Looks up a localized string similar to Y axis.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.TechniqueGalleryPage_Intersections">
             <summary>
               Looks up a localized string similar to Intersections.
@@ -8041,6 +8086,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.DifficultyLevel"/>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.BasicOperation.SymmetricTypeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SymmetricType"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SymmetricType"/>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath">
             <summary>
             Indicates the path of the saved file.
@@ -8048,7 +8099,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.DifficultyLevel">
             <summary>
-            Indicates the difficulty level of the generated puzzle.
+            Indicates the difficulty level of generated puzzles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SymmetricType">
+            <summary>
+            Indicates the customized symmetric pattern for generated puzzles.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.SelfReportingProgress`1">

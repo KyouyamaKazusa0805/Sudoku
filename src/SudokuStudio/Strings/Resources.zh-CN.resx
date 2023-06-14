@@ -1127,6 +1127,33 @@
   <data name="SuggestedFileName_Output" xml:space="preserve">
     <value>导出</value>
   </data>
+  <data name="SymmetricType_All" xml:space="preserve">
+    <value>全对称</value>
+  </data>
+  <data name="SymmetricType_AntiDiagonal" xml:space="preserve">
+    <value>撇对角线对称</value>
+  </data>
+  <data name="SymmetricType_AxisBoth" xml:space="preserve">
+    <value>双轴对称</value>
+  </data>
+  <data name="SymmetricType_Central" xml:space="preserve">
+    <value>中心对称</value>
+  </data>
+  <data name="SymmetricType_Diagonal" xml:space="preserve">
+    <value>捺对角线对称</value>
+  </data>
+  <data name="SymmetricType_DiagonalBoth" xml:space="preserve">
+    <value>双对角线对称</value>
+  </data>
+  <data name="SymmetricType_None" xml:space="preserve">
+    <value>无对称性</value>
+  </data>
+  <data name="SymmetricType_XAxis" xml:space="preserve">
+    <value>横轴对称</value>
+  </data>
+  <data name="SymmetricType_YAxis" xml:space="preserve">
+    <value>纵轴对称</value>
+  </data>
   <data name="TechniqueGalleryPage_Intersections" xml:space="preserve">
     <value>区块</value>
   </data>

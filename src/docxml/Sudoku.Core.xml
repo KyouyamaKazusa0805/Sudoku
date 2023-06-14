@@ -5212,13 +5212,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Concepts.SymmetricType"/>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetExcludedCells(Sudoku.Concepts.SymmetricType)">
-            <summary>
-            Try to get excluded cells for the specified symmetric type.
-            </summary>
-            <param name="this">The symmetric type.</param>
-            <returns>The excluded cell.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.SymmetricType,System.Int32,System.Int32)">
             <summary>
             Get the cells that is used for swapping via the specified symmetric type, and the specified row and column value.

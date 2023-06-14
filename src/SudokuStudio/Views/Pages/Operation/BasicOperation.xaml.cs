@@ -4,7 +4,8 @@ namespace SudokuStudio.Views.Pages.Operation;
 /// Indicates the basic operation command bar.
 /// </summary>
 [DependencyProperty<string>("SucceedFilePath", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the path of the saved file.")]
-[DependencyProperty<DifficultyLevel>("DifficultyLevel", DefaultValue = 0, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the difficulty level of the generated puzzle.")]
+[DependencyProperty<DifficultyLevel>("DifficultyLevel", DefaultValue = 0, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the difficulty level of generated puzzles.")]
+[DependencyProperty<SymmetricType>("SymmetricType", DefaultValue = 0, Accessibility = GeneralizedAccessibility.Internal, DocSummary ="Indicates the customized symmetric pattern for generated puzzles.")]
 public sealed partial class BasicOperation : Page, IOperationProviderPage
 {
 	/// <summary>
@@ -70,6 +71,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 
 		var processingText = GetString("AnalyzePage_GeneratorIsProcessing")!;
 		var difficultyLevelSelected = DifficultyLevel;
+		var symmetricType = SymmetricType;
 		var grid = await Task.Run(gridCreator);
 
 		BasePage.IsGeneratorLaunched = false;
@@ -98,7 +100,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 
 			for (var count = 0; ; count++)
 			{
-				if (HodokuPuzzleGenerator.Generate() is var grid
+				if (HodokuPuzzleGenerator.Generate(symmetricType) is var grid
 					&& ((App)Application.Current).Analyzer.Analyze(grid).DifficultyLevel is var puzzleDifficultyLevel
 					&& (difficultyLevelSelected == 0 || puzzleDifficultyLevel == difficultyLevelSelected))
 				{
@@ -172,6 +174,14 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: int value } })
 		{
 			DifficultyLevel = (DifficultyLevel)value;
+		}
+	}
+
+	private void PuzzleSymmetricPatternSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+	{
+		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: int value } })
+		{
+			SymmetricType = (SymmetricType)value;
 		}
 	}
 }
