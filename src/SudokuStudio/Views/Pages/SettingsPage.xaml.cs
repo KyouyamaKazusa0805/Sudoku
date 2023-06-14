@@ -32,4 +32,7 @@ public sealed partial class SettingsPage : Page
 
 	private void GoToRenderingOptionsButton_Click(object sender, RoutedEventArgs e)
 		=> GetMainWindow().NavigateToPage<DrawingPreferenceItemsPage>();
+
+	private async void OpenSettingsFolderButton_ClickAsync(object sender, RoutedEventArgs e)
+		=> await Launcher.LaunchFolderPathAsync(SystemPath.GetDirectoryName(CommonPaths.UserPreference));
 }

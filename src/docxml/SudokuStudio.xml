@@ -5033,6 +5033,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Yes.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_OpenSettingsFolder">
+            <summary>
+              Looks up a localized string similar to Open settings folder.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Others">
             <summary>
               Looks up a localized string similar to Others.

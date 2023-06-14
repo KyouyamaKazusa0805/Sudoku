@@ -911,6 +911,9 @@
   <data name="SettingsPage_OnContent" xml:space="preserve">
     <value>是</value>
   </data>
+  <data name="SettingsPage_OpenSettingsFolder" xml:space="preserve">
+    <value>打开设置文件夹</value>
+  </data>
   <data name="SettingsPage_Others" xml:space="preserve">
     <value>其他</value>
   </data>

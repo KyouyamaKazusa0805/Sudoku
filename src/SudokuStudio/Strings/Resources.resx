@@ -908,6 +908,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_OnContent" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="SettingsPage_OpenSettingsFolder" xml:space="preserve">
+    <value>Open settings folder</value>
+  </data>
   <data name="SettingsPage_Others" xml:space="preserve">
     <value>Others</value>
   </data>

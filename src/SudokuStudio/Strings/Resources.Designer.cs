@@ -2601,6 +2601,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open settings folder.
+        /// </summary>
+        internal static string SettingsPage_OpenSettingsFolder {
+            get {
+                return ResourceManager.GetString("SettingsPage_OpenSettingsFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Others.
         /// </summary>
         internal static string SettingsPage_Others {
