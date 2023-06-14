@@ -201,11 +201,6 @@ public static class SolutionWideReadOnlyFields
 	};
 
 	/// <summary>
-	/// Indicates the chute houses.
-	/// </summary>
-	public static readonly (House, House, House)[] ChuteHouses = { (9, 10, 11), (12, 13, 14), (15, 16, 17), (18, 19, 20), (21, 22, 23), (24, 25, 26) };
-
-	/// <summary>
 	/// Indicates all grid maps that a grid contains.
 	/// </summary>
 	/// <example>
@@ -318,6 +313,11 @@ public static class SolutionWideReadOnlyFields
 		{ 29, 406, 3654, 23751, 118755, 475020, 1560780, 4292145, 10015005, 20030010, 34597290, 51895935,  67863915,  77558760,  77558760,  67863915,  51895935, 34597290, 20030010, 10015005,  4292145, 1560780,  475020, 118755,  23751,  3654,  406,  29,  1, -1 },
 		{ 30, 435, 4060, 27405, 142506, 593775, 2035800, 5852925, 14307150, 30045015, 54627300, 86493225, 119759850, 145422675, 155117520, 145422675, 119759850, 86493225, 54627300, 30045015, 14307150, 5852925, 2035800, 593775, 142506, 27405, 4060, 435, 30,  1 },
 	};
+
+	/// <summary>
+	/// Indicates the chute houses.
+	/// </summary>
+	private static readonly (House, House, House)[] ChuteHouses = { (9, 10, 11), (12, 13, 14), (15, 16, 17), (18, 19, 20), (21, 22, 23), (24, 25, 26) };
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
