@@ -4908,14 +4908,14 @@ result ^= expression;
         </member>
         <member name="T:Sudoku.Analytics.Step">
             <summary>
-            Provides with a logical solving step that is a technique usage, and contains the conclusions.
+            Provides with a solving step that describes for a technique usage, with conclusions and detail data for the corresponding technique pattern.
             </summary>
             <param name="conclusions"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Conclusions" path="/summary"/></param>
             <param name="views"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Views" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
-            Provides with a logical solving step that is a technique usage, and contains the conclusions.
+            Provides with a solving step that describes for a technique usage, with conclusions and detail data for the corresponding technique pattern.
             </summary>
             <param name="conclusions"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Conclusions" path="/summary"/></param>
             <param name="views"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Views" path="/summary"/></param>
