@@ -16,6 +16,7 @@ internal sealed class AnalyzeCommand : Command
 		请将该错误步骤截图或图文信息反馈给程序设计者，并修复此 bug。
 		""";
 
+
 	/// <summary>
 	/// 表示你要查询的魔塔的层数。支持 1 到 130。默认数值为 -1。
 	/// </summary>
