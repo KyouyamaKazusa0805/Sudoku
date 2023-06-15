@@ -5065,12 +5065,6 @@ result ^= expression;
             <exception cref="T:System.NotSupportedException">Always throws this exception.</exception>
             <seealso cref="T:Sudoku.Analytics.Steps.IEquatableStep`1"/>
         </member>
-        <member name="M:Sudoku.Analytics.Step.ApplyTo(Sudoku.Concepts.Grid@)">
-            <summary>
-            Put this instance into the specified grid.
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
         <member name="M:Sudoku.Analytics.Step.ToString">
             <summary>
             Returns a string that only contains the name and the basic description.

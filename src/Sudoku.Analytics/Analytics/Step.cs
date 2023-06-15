@@ -159,13 +159,6 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	public sealed override int GetHashCode() => throw new NotSupportedException();
 
 	/// <summary>
-	/// Put this instance into the specified grid.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ApplyTo(scoped ref Grid grid) => grid.Apply(Conclusions);
-
-	/// <summary>
 	/// Returns a string that only contains the name and the basic description.
 	/// </summary>
 	/// <returns>The string instance.</returns>

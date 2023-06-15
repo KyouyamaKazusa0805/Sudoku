@@ -279,7 +279,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>, IAnalyzerOrC
 				if (atLeastOneConclusionIsWorth)
 				{
 					stepGrids.Add(playground);
-					step.ApplyTo(ref playground);
+					playground.Apply(step);
 					steps.Add(step);
 
 					if (playground.IsSolved)
