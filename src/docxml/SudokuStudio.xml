@@ -1268,6 +1268,18 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.StepDisplayItems"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorDifficultyLevelProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorDifficultyLevel"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorDifficultyLevel"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSymmetricPatternProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSymmetricPattern"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSymmetricPattern"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor"/>.
@@ -1550,6 +1562,16 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.StepDisplayItems">
             <summary>
             Indicates the tooltip display items.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorDifficultyLevel">
+            <summary>
+            Indicates the difficulty level for generated puzzles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSymmetricPattern">
+            <summary>
+            Indicates the symmetric pattern for generated puzzles.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor">
@@ -8052,6 +8074,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.BasePage">
             <inheritdoc/>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.SetComboBoxSelectedIndices">
+            <summary>
+            Try to set indices.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.OnSaveFileFailed(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Interaction.SaveFileFailedEventArgs)">
             <summary>
             The method called by <see cref="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Page_Unloaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/>.
@@ -8082,39 +8109,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePathProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.BasicOperation.DifficultyLevelProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.DifficultyLevel"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.DifficultyLevel"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.BasicOperation.SymmetricTypeProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SymmetricType"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SymmetricType"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SucceedFilePath">
-            <summary>
-            Indicates the path of the saved file.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.DifficultyLevel">
-            <summary>
-            Indicates the difficulty level of generated puzzles.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.SymmetricType">
-            <summary>
-            Indicates the customized symmetric pattern for generated puzzles.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.SelfReportingProgress`1">

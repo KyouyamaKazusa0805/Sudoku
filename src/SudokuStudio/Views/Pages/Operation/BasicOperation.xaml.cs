@@ -3,19 +3,58 @@ namespace SudokuStudio.Views.Pages.Operation;
 /// <summary>
 /// Indicates the basic operation command bar.
 /// </summary>
-[DependencyProperty<string>("SucceedFilePath", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the path of the saved file.")]
-[DependencyProperty<DifficultyLevel>("DifficultyLevel", DefaultValue = 0, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the difficulty level of generated puzzles.")]
-[DependencyProperty<SymmetricType>("SymmetricType", DefaultValue = 0, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the customized symmetric pattern for generated puzzles.")]
 public sealed partial class BasicOperation : Page, IOperationProviderPage
 {
 	/// <summary>
 	/// Initializes a <see cref="BasicOperation"/> instance.
 	/// </summary>
-	public BasicOperation() => InitializeComponent();
+	public BasicOperation()
+	{
+		InitializeComponent();
+		SetComboBoxSelectedIndices();
+	}
 
 
 	/// <inheritdoc/>
 	public AnalyzePage BasePage { get; set; } = null!;
+
+
+	/// <summary>
+	/// Try to set indices.
+	/// </summary>
+	private void SetComboBoxSelectedIndices()
+	{
+		var flag = false;
+		for (var (i, items, target) = (0, DifficultyLevelSelector.Items, ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel);
+			i < items.Count;
+			i++)
+		{
+			if (items[i] is ComboBoxItem { Tag: int rawValue } && (DifficultyLevel)rawValue == target)
+			{
+				(DifficultyLevelSelector.SelectedIndex, flag) = (i, true);
+				break;
+			}
+		}
+		if (!flag)
+		{
+			DifficultyLevelSelector.SelectedIndex = 0;
+		}
+
+		for ((var i, var items, var target, flag) = (0, PuzzleSymmetricPatternSelector.Items, ((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern, false);
+			i < items.Count;
+			i++)
+		{
+			if (items[i] is ComboBoxItem { Tag: int rawValue } && (SymmetricType)rawValue == target)
+			{
+				(PuzzleSymmetricPatternSelector.SelectedIndex, flag) = (i, true);
+				break;
+			}
+		}
+		if (!flag)
+		{
+			PuzzleSymmetricPatternSelector.SelectedIndex = 0;
+		}
+	}
 
 
 	/// <summary>
@@ -70,8 +109,8 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 		BasePage.ClearAnalyzeTabsData();
 
 		var processingText = GetString("AnalyzePage_GeneratorIsProcessing")!;
-		var difficultyLevelSelected = DifficultyLevel;
-		var symmetricType = SymmetricType;
+		var difficultyLevelSelected = ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel;
+		var symmetricType = ((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern;
 		var grid = await Task.Run(gridCreator);
 
 		BasePage.IsGeneratorLaunched = false;
@@ -175,7 +214,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 	{
 		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: int value } })
 		{
-			DifficultyLevel = (DifficultyLevel)value;
+			((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel = (DifficultyLevel)value;
 		}
 	}
 
@@ -183,7 +222,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 	{
 		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: int value } })
 		{
-			SymmetricType = (SymmetricType)value;
+			((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern = (SymmetricType)value;
 		}
 	}
 }

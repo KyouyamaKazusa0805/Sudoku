@@ -30,33 +30,15 @@
 				</AppBarButton.Icon>
 				<AppBarButton.Flyout>
 					<MenuFlyout>
-						<MenuFlyoutItem
-							Text="{m:R Key=AnalyzePage_InitialGridFormat}" Tag="{m:Int32 Value=1}"
-							Click="CopyKindButton_Click" />
-						<MenuFlyoutItem
-							Text="{m:R Key=AnalyzePage_CurrentGridFormat}" Tag="{m:Int32 Value=2}"
-							Click="CopyKindButton_Click" />
-						<MenuFlyoutItem
-							Text="{m:R Key=AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven}" Tag="{m:Int32 Value=4}"
-							Click="CopyKindButton_Click" />
-						<MenuFlyoutItem
-							Text="{m:R Key=AnalyzePage_HodokuFormat}" Tag="{m:Int32 Value=8}"
-							Click="CopyKindButton_Click" />
-						<MenuFlyoutItem
-							Text="{m:R Key=AnalyzePage_MultipleLineGridFormat}" Tag="{m:Int32 Value=16}"
-							Click="CopyKindButton_Click" />
-						<MenuFlyoutItem
-							Text="{m:R Key=AnalyzePage_PencilmarkFormat}" Tag="{m:Int32 Value=32}"
-							Click="CopyKindButton_Click" />
-						<MenuFlyoutItem
-							Text="{m:R Key=AnalyzePage_SukakuFormat}" Tag="{m:Int32 Value=64}"
-							Click="CopyKindButton_Click" />
-						<MenuFlyoutItem
-							Text="{m:R Key=AnalyzePage_ExcelFormat}" Tag="{m:Int32 Value=128}"
-							Click="CopyKindButton_Click" />
-						<MenuFlyoutItem
-							Text="{m:R Key=AnalyzePage_OpenSudokuFormat}" Tag="{m:Int32 Value=256}"
-							Click="CopyKindButton_Click" />
+						<MenuFlyoutItem Text="{m:R Key=AnalyzePage_InitialGridFormat}" Tag="{m:Int32 Value=1}" Click="CopyKindButton_Click" />
+						<MenuFlyoutItem Text="{m:R Key=AnalyzePage_CurrentGridFormat}" Tag="{m:Int32 Value=2}" Click="CopyKindButton_Click" />
+						<MenuFlyoutItem Text="{m:R Key=AnalyzePage_CurrentGridFormatTreatingModifiableAsGiven}" Tag="{m:Int32 Value=4}" Click="CopyKindButton_Click" />
+						<MenuFlyoutItem Text="{m:R Key=AnalyzePage_HodokuFormat}" Tag="{m:Int32 Value=8}" Click="CopyKindButton_Click" />
+						<MenuFlyoutItem Text="{m:R Key=AnalyzePage_MultipleLineGridFormat}" Tag="{m:Int32 Value=16}" Click="CopyKindButton_Click" />
+						<MenuFlyoutItem Text="{m:R Key=AnalyzePage_PencilmarkFormat}" Tag="{m:Int32 Value=32}" Click="CopyKindButton_Click" />
+						<MenuFlyoutItem Text="{m:R Key=AnalyzePage_SukakuFormat}" Tag="{m:Int32 Value=64}" Click="CopyKindButton_Click" />
+						<MenuFlyoutItem Text="{m:R Key=AnalyzePage_ExcelFormat}" Tag="{m:Int32 Value=128}" Click="CopyKindButton_Click" />
+						<MenuFlyoutItem Text="{m:R Key=AnalyzePage_OpenSudokuFormat}" Tag="{m:Int32 Value=256}" Click="CopyKindButton_Click" />
 					</MenuFlyout>
 				</AppBarButton.Flyout>
 			</AppBarButton>
@@ -114,9 +96,8 @@
 					<Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="#EAEAEA">
 						<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
 							<AppBarToggleButton
-								Label="{m:R Key=AnalyzePage_ToggleDisplayingCandidates}"
-								Icon="{x:Bind cvt:SymbolIconConversion.GetSymbolViaCandidateVisibility(SudokuPane.DisplayCandidates),Mode=OneWay}"
-								IsChecked="{x:Bind SudokuPane.DisplayCandidates,Mode=TwoWay}" />
+								Label="{m:R Key=AnalyzePage_ToggleDisplayingCandidates}" IsChecked="{x:Bind SudokuPane.DisplayCandidates,Mode=TwoWay}"
+								Icon="{x:Bind cvt:SymbolIconConversion.GetSymbolViaCandidateVisibility(SudokuPane.DisplayCandidates),Mode=OneWay}" />
 							<AppBarSeparator />
 							<AppBarButton
 								CommandParameter="{x:Bind SudokuPane}" Label="{m:R Key=AnalyzePage_FixGrid}" Icon="Pin"
