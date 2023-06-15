@@ -22,7 +22,6 @@ namespace Sudoku.Analytics;
 [JsonConverter(typeof(JsonConverter))]
 public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field)] int mask) :
 	IComparable<Conclusion>,
-	IComparisonOperators<Conclusion, Conclusion, bool>,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
 	IEquatable<Conclusion>
 {
@@ -120,22 +119,6 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(Conclusion left, Conclusion right) => !left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >(Conclusion left, Conclusion right) => left.CompareTo(right) > 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >=(Conclusion left, Conclusion right) => left.CompareTo(right) >= 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <(Conclusion left, Conclusion right) => left.CompareTo(right) < 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <=(Conclusion left, Conclusion right) => left.CompareTo(right) <= 0;
 }
 
 /// <summary>

@@ -1115,18 +1115,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Conclusion.op_Inequality(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Conclusion.op_GreaterThan(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.op_GreaterThanOrEqual(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.op_LessThan(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.op_LessThanOrEqual(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
-            <inheritdoc/>
-        </member>
         <member name="F:Sudoku.Analytics.Conclusion._mask">
             <summary>
             The generated field declaration for parameter <c>mask</c>.
