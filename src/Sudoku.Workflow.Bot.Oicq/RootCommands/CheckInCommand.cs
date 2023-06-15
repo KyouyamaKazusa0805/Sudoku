@@ -215,8 +215,8 @@ file static class LocalScorer
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetExperiencePoint(int continuousDaysCount, int cardLevel)
 	{
-		var resultRate = ScoringOperation.GetCheckInRate(continuousDaysCount) * .5M + ScoringOperation.GetGlobalRate(cardLevel) * .5M;
-		return (int)Round(GetExperienceOriginal() * resultRate) * ScoringOperation.GetWeekendFactor();
+		var (a, b) = (ScoringOperation.GetCheckInRate(continuousDaysCount), ScoringOperation.GetGlobalRate(cardLevel) * .5M);
+		return (int)Round(GetExperienceOriginal() * (a + b)) * ScoringOperation.GetWeekendFactor();
 	}
 
 	/// <summary>
