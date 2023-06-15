@@ -164,8 +164,7 @@ public ref struct HodokuPuzzleGenerator
 
 			foreach (var tempCell in symmetricType.GetCells(cell / 9, cell % 9))
 			{
-				if (_newValidSudoku[tempCell] != -1
-					&& (symmetricType == SymmetricType.None && Rng.NextDouble() >= .5 || symmetricType != SymmetricType.None))
+				if (_newValidSudoku[tempCell] != -1)
 				{
 					candidateCells.Add(tempCell);
 				}
