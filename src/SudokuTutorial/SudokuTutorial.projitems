@@ -207,6 +207,7 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\03 唯一环\01 唯一环标准类型.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\03 唯一环\01-1 填法1.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\03 唯一环\01-2 填法2.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\03 唯一环\02 UL形成条件不能分散的反例.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
   </ItemGroup>
   <ItemGroup>
