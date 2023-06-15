@@ -42,16 +42,14 @@ public sealed class Generate : IExecutable
 					}
 
 					await Terminal.WriteLineAsync(string.Format(GetString("_MessageFormat_GeneratedPuzzleIs")!, targetPuzzle.ToString("0")));
-
 					return;
 				}
 			}
 			case GenerateType.PatternBased:
 			{
-				var generator = new PatternBasedPuzzleGenerator();
 				while (true)
 				{
-					var targetPuzzle = generator.Generate(cancellationToken: cancellationToken);
+					var targetPuzzle = HodokuPuzzleGenerator.Generate(cancellationToken: cancellationToken);
 					var c = targetPuzzle.GivensCount;
 					if (c < Range.Min || c >= Range.Max)
 					{
@@ -59,7 +57,6 @@ public sealed class Generate : IExecutable
 					}
 
 					await Terminal.WriteLineAsync(string.Format(GetString("_MessageFormat_GeneratedPuzzleIs")!, targetPuzzle.ToString("0")));
-
 					return;
 				}
 			}

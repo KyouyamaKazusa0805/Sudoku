@@ -930,6 +930,11 @@
             逻辑解题的工具。
             </summary>
         </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.Lifecycle.EnvironmentVariables.PuzzleStepCollector">
+            <summary>
+            进行单步分析的工具。
+            </summary>
+        </member>
         <member name="F:Sudoku.Workflow.Bot.Oicq.Lifecycle.EnvironmentVariables.RunningContexts">
             <summary>
             机器人的运行上下文。为一个并发字典，按群存储不同的上下文数据。
@@ -1755,6 +1760,11 @@
             表示你需要分析的题目是引用自哪个地方。目前暂时支持“每日一题”、“魔塔”和“题目”。
             </summary>
         </member>
+        <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.Operation">
+            <summary>
+            表示你需要操作的类型。目前支持的操作有“整题”和“单步”。默认为“整题”。
+            </summary>
+        </member>
         <member name="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.Puzzle">
             <summary>
             表示你输入的题目代码。代码支持各种数独可解析的文本形式，包括但不限于 Sudoku Explainer、Hodoku、Excel 的数独的输入格式。
@@ -1764,11 +1774,12 @@
         <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.ExecuteCoreAsync(Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.AnalyzePuzzleCoreAsync(Sudoku.Concepts.Grid,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
+        <member name="M:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.AnalyzePuzzleCoreAsync(Sudoku.Concepts.Grid,System.String,Mirai.Net.Data.Messages.Receivers.GroupMessageReceiver)">
             <summary>
             分析指定的 <paramref name="grid"/> 参数的题目。
             </summary>
             <param name="grid">等待分析的题目。</param>
+            <param name="operation">表示分析操作。</param>
             <param name="messageReceiver">发送信息的机器人消息接收器对象。</param>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Types">
@@ -1790,6 +1801,22 @@
         <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Types.Tower">
             <summary>
             表示分析的是魔塔的题目。
+            </summary>
+        </member>
+        <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations">
+            <summary>
+            为属性 <see cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.Operation"/> 提供数据。
+            </summary>
+            <seealso cref="P:Sudoku.Workflow.Bot.Oicq.RootCommands.AnalyzeCommand.Operation"/>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.Full">
+            <summary>
+            表示分析整个题目的所有步骤。
+            </summary>
+        </member>
+        <member name="F:Sudoku.Workflow.Bot.Oicq.RootCommands.Operations.SingleStep">
+            <summary>
+            表示分析当前盘面下的所有步骤。
             </summary>
         </member>
         <member name="T:Sudoku.Workflow.Bot.Oicq.RootCommands.Extensions">

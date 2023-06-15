@@ -16,6 +16,11 @@ internal static class EnvironmentVariables
 	public static readonly Analyzer PuzzleAnalyzer = PredefinedAnalyzers.Balanced;
 
 	/// <summary>
+	/// 进行单步分析的工具。
+	/// </summary>
+	public static readonly StepCollector PuzzleStepCollector = new();
+
+	/// <summary>
 	/// 机器人的运行上下文。为一个并发字典，按群存储不同的上下文数据。
 	/// </summary>
 	internal static readonly ConcurrentDictionary<string, BotRunningContext> RunningContexts = new();
