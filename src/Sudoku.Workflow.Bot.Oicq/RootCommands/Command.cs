@@ -205,8 +205,7 @@ public abstract class Command : IModule
 				{
 					var attributes and not []
 					when (from attribute in attributes select $"{attribute.UsageText}：{attribute.Description}") is var u
-						=>
-						$"""
+						=> $"""
 						
 						---
 						用法举例：

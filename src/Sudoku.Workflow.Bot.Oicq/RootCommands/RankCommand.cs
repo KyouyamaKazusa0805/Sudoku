@@ -53,29 +53,28 @@ internal sealed class RankCommand : Command
 			case Types.Basic:
 			{
 				var usersData = (await ScoringOperation.GetUserRankingListAsync(group, rankingListIsEmptyCallback))!.Take(finalTopCount);
+				var rankingStr = string.Join(Environment.NewLine, usersData.Select(rankingSelector));
 				await messageReceiver.SendMessageAsync(
 					$"""
 					用户基本数据排名：
-					{string.Join(
-						Environment.NewLine,
-						usersData.Select(
-							static (pair, i) =>
-							{
-								var name = pair.Name;
-								var qq = pair.Data.Number;
-								var score = pair.Data.ExperiencePoint;
-								var tower = pair.Data.TowerOfSorcerer;
-								var grade = ScoringOperation.GetGrade(score);
-								return $"#{i + 1,2} {name} 🚩{score} 📈{tower} 🏅{grade}";
-							}
-						)
-					)}
+					{rankingStr}
 					---
 					排名最多仅列举本群前 {finalTopCount} 名的成绩；想要精确查看用户名次请使用“查询”指令。
 					"""
 				);
 
 				break;
+
+
+				static string rankingSelector((string Name, User Data) pair, int i)
+				{
+					var name = pair.Name;
+					var qq = pair.Data.Number;
+					var score = pair.Data.ExperiencePoint;
+					var tower = pair.Data.TowerOfSorcerer;
+					var grade = ScoringOperation.GetGrade(score);
+					return $"#{i + 1,2} {name} 🚩{score} 📈{tower} 🏅{grade}";
+				}
 			}
 			case Types.PkResult:
 			{
@@ -85,40 +84,69 @@ internal sealed class RankCommand : Command
 					break;
 				}
 
-				var usersData = await getDataAsync(
-					ud => new PlayingDataTuple(
-						ud.TotalPlayingCount.TryGetValue(GameMode, out var r) ? r : 0,
-						ud.CorrectedCount.TryGetValue(GameMode, out r) ? r : 0,
-						ud.TriedCount.TryGetValue(GameMode, out r) ? r : 0,
-						GameMode
-					)
-				);
+				var usersData = await getDataAsync(dataSelector);
+				var rankingStr = string.Join(Environment.NewLine, usersData.Select(rankingSelector));
 				await messageReceiver.SendMessageAsync(
 					$"""
 					用户“{GameMode.GetName()}”对抗模式数据排名：
-					{string.Join(
-						Environment.NewLine,
-						usersData.Select(
-							static (pair, i) =>
-							{
-								var name = pair.Name;
-								var corrected = pair.Data.Corrected;
-								var total = pair.Data.Total;
-								return $"#{i + 1,2} {name} - {corrected}/{total} 局（{corrected / (double)total:P2}）";
-							}
-						)
-					)}
+					{rankingStr}
 					---
 					排名最多仅列举本群前 {finalTopCount} 名的成绩；想要精确查看用户名次请使用“查询”指令。
 					"""
 				);
 
 				break;
+
+
+				static string rankingSelector((string Name, PlayingDataTuple Data) pair, int i)
+				{
+					var name = pair.Name;
+					var corrected = pair.Data.Corrected;
+					var total = pair.Data.Total;
+					return $"#{i + 1,2} {name} - {corrected}/{total} 局（{corrected / (double)total:P2}）";
+				}
+
+				PlayingDataTuple dataSelector(User ud)
+					=> new(
+						ud.TotalPlayingCount.TryGetValue(GameMode, out var r) ? r : 0,
+						ud.CorrectedCount.TryGetValue(GameMode, out r) ? r : 0,
+						ud.TriedCount.TryGetValue(GameMode, out r) ? r : 0,
+						GameMode
+					);
 			}
 			case var type and (Types.ExperiencePoint or Types.Coin or Types.Grade or Types.Tower or Types.ContinuousCheckIn or Types.CardLevel):
 			{
-				var usersData = await getDataAsync(
-					ud => type switch
+				var usersData = await getDataAsync(dataSelector);
+				var rankingStr = string.Join(Environment.NewLine, usersData.Select(rankingSelector));
+				await messageReceiver.SendMessageAsync(
+					$"""
+					用户{Type}排名：
+					{rankingStr}
+					---
+					排名最多仅列举本群前 {finalTopCount} 名的成绩；想要精确查看用户名次请使用“查询”指令。
+					"""
+				);
+
+				break;
+
+
+				string rankingSelector((string Name, int Data) pair, int i)
+				{
+					var (name, data) = pair;
+					var unit = Type switch
+					{
+						Types.ExperiencePoint => "经验值",
+						Types.Coin => "金币",
+						Types.Grade => "级",
+						Types.Tower => "层",
+						Types.ContinuousCheckIn => $"天（× {ScoringOperation.GetCheckInRate(data)}）",
+						Types.CardLevel => $"级（× {ScoringOperation.GetGlobalRate(data)}）"
+					};
+					return $"#{i + 1,2} {name} - {data} {unit}";
+				}
+
+				int dataSelector(User ud)
+					=> type switch
 					{
 						Types.ExperiencePoint => ud.ExperiencePoint,
 						Types.Coin => ud.Coin,
@@ -126,37 +154,7 @@ internal sealed class RankCommand : Command
 						Types.Grade => ScoringOperation.GetGrade(ud.ExperiencePoint),
 						Types.Tower => ud.TowerOfSorcerer,
 						Types.ContinuousCheckIn => ud.ComboCheckedIn
-					}
-				);
-
-				await messageReceiver.SendMessageAsync(
-					$"""
-					用户{Type}排名：
-					{string.Join(
-						Environment.NewLine,
-						usersData.Select(
-							(pair, i) =>
-							{
-								var (name, data) = pair;
-								var unit = Type switch
-								{
-									Types.ExperiencePoint => "经验值",
-									Types.Coin => "金币",
-									Types.Grade => "级",
-									Types.Tower => "层",
-									Types.ContinuousCheckIn => $"天（× {ScoringOperation.GetCheckInRate(data)}）",
-									Types.CardLevel => $"级（× {ScoringOperation.GetGlobalRate(data)}）"
-								};
-								return $"#{i + 1,2} {name} - {data} {unit}";
-							}
-						)
-					)}
-					---
-					排名最多仅列举本群前 {finalTopCount} 名的成绩；想要精确查看用户名次请使用“查询”指令。
-					"""
-				);
-
-				break;
+					};
 			}
 			default:
 			{

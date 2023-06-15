@@ -103,33 +103,36 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 			.WithStepSearchers(((App)Application.Current).GetStepSearchers())
 			.WithRuntimeIdentifierSetters(BasePage.SudokuPane);
 
-		var result = await Task.Run(
-			() =>
-			{
-				lock (StepSearchingOrGatheringSyncRoot)
-				{
-					return collector.Search(
-						grid,
-						new Progress<AnalyzerProgress>(
-							progress =>
-								DispatcherQueue.TryEnqueue(
-									() =>
-									{
-										var (stepSearcherName, percent) = progress;
-										BasePage.ProgressPercent = percent * 100;
-										BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
-										BasePage.AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
-									}
-								)
-						)
-					);
-				}
-			}
-		);
+		var result = await Task.Run(resultCreatorWithLock);
 
 		_currentFountSteps = result;
 		TechniqueGroupView.TechniqueGroups.Source = GetTechniqueGroups(result, grid);
 		GatherButton.IsEnabled = true;
 		BasePage.IsGathererLaunched = false;
+
+
+		IEnumerable<Step> resultCreatorWithLock()
+		{
+			var progress = new Progress<AnalyzerProgress>(progressReporter);
+			lock (StepSearchingOrGatheringSyncRoot)
+			{
+				return collector.Search(grid, progress);
+			}
+
+
+			void progressReporter(AnalyzerProgress progress)
+			{
+				DispatcherQueue.TryEnqueue(callback);
+
+
+				void callback()
+				{
+					var (stepSearcherName, percent) = progress;
+					BasePage.ProgressPercent = percent * 100;
+					BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
+					BasePage.AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
+				}
+			}
+		}
 	}
 }

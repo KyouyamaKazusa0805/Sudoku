@@ -1074,29 +1074,7 @@ public sealed partial class AnalyzePage : Page
 			.WithStepSearchers(((App)Application.Current).GetStepSearchers())
 			.WithRuntimeIdentifierSetters(SudokuPane);
 
-		var analyzerResult = await Task.Run(
-			() =>
-			{
-				lock (StepSearchingOrGatheringSyncRoot)
-				{
-					return analyzer.Analyze(
-						puzzle,
-						new Progress<AnalyzerProgress>(
-							progress =>
-								DispatcherQueue.TryEnqueue(
-									() =>
-									{
-										var (stepSearcherName, percent) = progress;
-										ProgressPercent = progress.Percent * 100;
-										AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
-										AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
-									}
-								)
-						)
-					);
-				}
-			}
-		);
+		var analyzerResult = await Task.Run(resultCreator);
 
 		AnalyzeButton.IsEnabled = true;
 		IsAnalyzerLaunched = false;
@@ -1147,6 +1125,31 @@ public sealed partial class AnalyzePage : Page
 				}.ShowAsync();
 
 				break;
+			}
+		}
+
+
+		AnalyzerResult resultCreator()
+		{
+			var progress = new Progress<AnalyzerProgress>(progressReporter);
+			lock (StepSearchingOrGatheringSyncRoot)
+			{
+				return analyzer.Analyze(puzzle, progress);
+			}
+
+
+			void progressReporter(AnalyzerProgress progress)
+			{
+				DispatcherQueue.TryEnqueue(callback);
+
+
+				void callback()
+				{
+					var (stepSearcherName, percent) = progress;
+					ProgressPercent = progress.Percent * 100;
+					AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
+					AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
+				}
 			}
 		}
 	}

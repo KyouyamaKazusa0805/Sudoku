@@ -162,7 +162,45 @@ public sealed partial class MainWindow : Window
 	/// </remarks>
 	private void InitializeAppWindow()
 	{
-		AppWindow.Changed += (sender, args) =>
+		AppWindow.Changed += appWindowChangedHandler;
+
+		// Check to see if customization is supported. Currently only supported on Windows 11.
+		if (AppWindowTitleBar.IsCustomizationSupported())
+		{
+			var titleBar = AppWindow.TitleBar;
+			titleBar.ExtendsContentIntoTitleBar = true;
+
+			// Sets the background color on "those" three buttons to transparent.
+			titleBar.ButtonBackgroundColor = Colors.Transparent;
+			titleBar.ButtonForegroundColor = Colors.Black;
+			titleBar.ButtonHoverBackgroundColor = Colors.LightGray;
+			titleBar.ButtonHoverForegroundColor = Colors.Black;
+			titleBar.ButtonPressedBackgroundColor = Colors.DimGray;
+			titleBar.ButtonPressedForegroundColor = Colors.Black;
+			titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+			titleBar.ButtonInactiveForegroundColor = Colors.Gray;
+
+#if SEARCH_AUTO_SUGGESTION_BOX
+			AppTitleBar.Loaded += (_, _) => SetDragRegionForCustomTitleBar(AppWindow);
+			AppTitleBar.SizeChanged += (_, _) => SetDragRegionForCustomTitleBar(AppWindow);
+#else
+			AppTitleBarWithoutAutoSuggestBox.Loaded += (_, _) => SetDragRegionForCustomTitleBar(AppWindow);
+			AppTitleBarWithoutAutoSuggestBox.SizeChanged += (_, _) => SetDragRegionForCustomTitleBar(AppWindow);
+#endif
+		}
+		else
+		{
+			// Title bar customization using these APIs is currently supported only on Windows 11.
+			// In other cases, hide the custom title bar element.
+#if SEARCH_AUTO_SUGGESTION_BOX
+			AppTitleBar.Visibility = Visibility.Collapsed;
+#else
+			AppTitleBarWithoutAutoSuggestBox.Visibility = Visibility.Collapsed;
+#endif
+		}
+
+
+		void appWindowChangedHandler(AppWindow sender, AppWindowChangedEventArgs args)
 		{
 			if ((sender, args) is not ({ Presenter.Kind: var kind, TitleBar: var titleBar }, { DidPresenterChange: var didPresenterChange }))
 			{
@@ -215,41 +253,6 @@ public sealed partial class MainWindow : Window
 					}
 				}
 			}
-		};
-
-		// Check to see if customization is supported. Currently only supported on Windows 11.
-		if (AppWindowTitleBar.IsCustomizationSupported())
-		{
-			var titleBar = AppWindow.TitleBar;
-			titleBar.ExtendsContentIntoTitleBar = true;
-
-			// Sets the background color on "those" three buttons to transparent.
-			titleBar.ButtonBackgroundColor = Colors.Transparent;
-			titleBar.ButtonForegroundColor = Colors.Black;
-			titleBar.ButtonHoverBackgroundColor = Colors.LightGray;
-			titleBar.ButtonHoverForegroundColor = Colors.Black;
-			titleBar.ButtonPressedBackgroundColor = Colors.DimGray;
-			titleBar.ButtonPressedForegroundColor = Colors.Black;
-			titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-			titleBar.ButtonInactiveForegroundColor = Colors.Gray;
-
-#if SEARCH_AUTO_SUGGESTION_BOX
-			AppTitleBar.Loaded += (_, _) => SetDragRegionForCustomTitleBar(AppWindow);
-			AppTitleBar.SizeChanged += (_, _) => SetDragRegionForCustomTitleBar(AppWindow);
-#else
-			AppTitleBarWithoutAutoSuggestBox.Loaded += (_, _) => SetDragRegionForCustomTitleBar(AppWindow);
-			AppTitleBarWithoutAutoSuggestBox.SizeChanged += (_, _) => SetDragRegionForCustomTitleBar(AppWindow);
-#endif
-		}
-		else
-		{
-			// Title bar customization using these APIs is currently supported only on Windows 11.
-			// In other cases, hide the custom title bar element.
-#if SEARCH_AUTO_SUGGESTION_BOX
-			AppTitleBar.Visibility = Visibility.Collapsed;
-#else
-			AppTitleBarWithoutAutoSuggestBox.Visibility = Visibility.Collapsed;
-#endif
 		}
 	}
 
