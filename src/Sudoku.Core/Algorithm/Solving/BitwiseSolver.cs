@@ -58,11 +58,6 @@ public sealed unsafe class BitwiseSolver : ISolver
 	private BitwiseSolverState* _g;
 
 
-	/// <summary>
-	/// Indicates the number of solutions found.
-	/// </summary>
-	internal long LimitSolutions => _limitSolutions;
-
 	/// <inheritdoc/>
 	public static string? UriLink => null;
 

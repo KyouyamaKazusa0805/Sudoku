@@ -350,11 +350,6 @@
             Pointer to the currently active slot.
             </summary>
         </member>
-        <member name="P:Sudoku.Algorithm.Solving.BitwiseSolver.LimitSolutions">
-            <summary>
-            Indicates the number of solutions found.
-            </summary>
-        </member>
         <member name="P:Sudoku.Algorithm.Solving.BitwiseSolver.UriLink">
             <inheritdoc/>
         </member>
