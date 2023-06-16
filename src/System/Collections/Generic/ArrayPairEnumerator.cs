@@ -26,7 +26,7 @@ public ref struct ArrayPairEnumerator<T, TFirst, TSecond>(T[] array) where T : n
 
 
 	/// <inheritdoc cref="IEnumerator.Current"/>
-	public (TFirst, TSecond) Current => ((TFirst)_array[_index], (TSecond)_array[_index + 1]);
+	public readonly (TFirst, TSecond) Current => ((TFirst)_array[_index], (TSecond)_array[_index + 1]);
 
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
