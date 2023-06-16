@@ -6121,69 +6121,30 @@ result ^= expression;
             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.CandidateMap@,System.Boolean)">
             <summary>
             Check for type 2.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType3Naked(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType3Naked(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,System.Boolean)">
             <summary>
             Check for type 3 with naked subsets.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Step},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.CandidateMap@,System.Boolean)">
             <summary>
             Check for type 4.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckMultiple(System.Collections.Generic.List{Sudoku.Analytics.Step},System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckMultiple(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.CandidateMap,System.Boolean)">
             <summary>
             Check for BUG + n.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckXz(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Collections.Generic.IReadOnlyList{System.Int32},System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckXz(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,System.Boolean)">
             <summary>
             Check for BUG-XZ.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckSingleDigit(System.Collections.Generic.IReadOnlyList{System.Int32})">
-            <summary>
-            Check whether all candidates in the list has same digit value.
-            </summary>
-            <param name="list">The list of all true candidates.</param>
-            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.Cached">
-            <summary>
-            Represents a cached gathering operation set.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.FindTrueCandidates(Sudoku.Concepts.Grid@,System.Collections.Generic.IReadOnlyList{System.Int32}@,System.Int32)">
-            <summary>
-            Finds all possible true candidates in this current grid.
-            </summary>
-            <param name="grid">The grid to find all possible true candidates.</param>
-            <param name="trueCandidates">All possible true candidates returned.</param>
-            <param name="maximumCellsToCheck">Indicates the maximum number of possible cells to check.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/> value indicating whether the grid contains any possible true candidates.
-            If so, the argument <paramref name="trueCandidates"/> won't be <see langword="null"/>.
-            </returns>
-            <remarks>
-            A <b>true candidate</b> is a candidate that makes the puzzle containing no valid solution
-            if it is eliminated from the current puzzle. It is a strict concept, which means sometimes the puzzle
-            doesn't contain any satisfied candidate to make the puzzle containing no solution if being eliminated.
-            </remarks>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the puzzle contains multiple solutions or even no solution.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.FormsPattern(Sudoku.Concepts.Grid@)">
-            <summary>
-            Checks whether the specified grid forms a BUG deadly pattern.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher">
             <summary>
@@ -18199,8 +18160,7 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Preprocessing.TrueCandidatesSearcher.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <summary>
-            Get all true candidates when the number of empty cells
-            is below than the argument.
+            Get all true candidates when the number of empty cells is below than the argument.
             </summary>
             <param name="grid">Indicates the puzzle.</param>
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>

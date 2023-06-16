@@ -24,6 +24,7 @@ global using Sudoku.Compatibility.SudokuExplainer;
 global using Sudoku.Facts;
 global using Sudoku.Filtering.Expressions;
 global using Sudoku.Filtering.Operators;
+global using Sudoku.Preprocessing;
 global using Sudoku.Rendering;
 global using Sudoku.Rendering.Nodes;
 global using Sudoku.Runtime.MaskServices;

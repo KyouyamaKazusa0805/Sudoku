@@ -6,14 +6,13 @@ namespace Sudoku.Preprocessing;
 public static class TrueCandidatesSearcher
 {
 	/// <summary>
-	/// Get all true candidates when the number of empty cells
-	/// is below than the argument.
+	/// Get all true candidates when the number of empty cells is below than the argument.
 	/// </summary>
 	/// <param name="grid">Indicates the puzzle.</param>
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>All true candidates.</returns>
 	/// <exception cref="ArgumentException">Throws when the puzzle is invalid.</exception>
-	public static unsafe CandidateMap GetAllTrueCandidates(scoped in Grid grid, CancellationToken cancellationToken = default)
+	public static CandidateMap GetAllTrueCandidates(scoped in Grid grid, CancellationToken cancellationToken = default)
 	{
 		if (!grid.IsValid)
 		{
@@ -88,10 +87,11 @@ public static class TrueCandidatesSearcher
 		// If the pattern is a valid BUG + n, the processing here will give you one plan of all possible
 		// combinations; otherwise, none will be found.
 		scoped var playground = (stackalloc House[3]);
-		scoped var chosen = (stackalloc int[multivalueCellsCount + 1]);
-		scoped var resultMap = (stackalloc CellMap[9]);
+		scoped var chosen = (stackalloc Candidate[multivalueCellsCount + 1]);
 		var currentIndex = 1;
 		var result = CandidateMap.Empty;
+
+		chosen.Clear();
 		do
 		{
 			int i;
@@ -141,9 +141,7 @@ public static class TrueCandidatesSearcher
 					{
 						// Take the cell that doesn't contain in the map above.
 						// Here, the cell is the "true candidate cell".
-						scoped ref var map = ref resultMap[digit];
-						map = grid.CandidatesMap[digit] - stack[currentIndex, digit];
-						foreach (var cell in map)
+						foreach (var cell in grid.CandidatesMap[digit] - stack[currentIndex, digit])
 						{
 							result.Add(cell * 9 + digit);
 						}

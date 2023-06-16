@@ -86,8 +86,7 @@ public unsafe partial struct CandidateMap :
 	/// <param name="withItself">Indicates whether the map will process itself with <see langword="true"/> value.</param>
 	private CandidateMap(Candidate candidate, bool withItself)
 	{
-		(this, var cell, var digit) = (default, candidate / 9, candidate % 9);
-
+		(this, var cell, var digit) = (Empty, candidate / 9, candidate % 9);
 		foreach (var c in PeersMap[cell])
 		{
 			Add(c * 9 + digit);
@@ -196,7 +195,7 @@ public unsafe partial struct CandidateMap :
 			var pos = 0;
 			for (var i = 0; i < 729; i++)
 			{
-				if ((_bits[i >> 6] >> (i & 63) & 1) != 0)
+				if (Contains(i))
 				{
 					arr[pos++] = i;
 				}
@@ -229,12 +228,9 @@ public unsafe partial struct CandidateMap :
 			var pos = 0;
 			for (var i = 0; i < 729; i++)
 			{
-				if ((_bits[i >> 6] >> (i & 63) & 1) != 0)
+				if (Contains(i) && pos++ == index)
 				{
-					if (pos++ == index)
-					{
-						return i;
-					}
+					return i;
 				}
 			}
 
@@ -244,7 +240,7 @@ public unsafe partial struct CandidateMap :
 
 
 	/// <inheritdoc/>
-	public readonly unsafe void CopyTo(Candidate* arr, int length)
+	public readonly void CopyTo(Candidate* arr, int length)
 	{
 		if (length < 729)
 		{
@@ -496,24 +492,36 @@ public unsafe partial struct CandidateMap :
 
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !(scoped in CandidateMap offsets) => offsets ? false : true;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator true(scoped in CandidateMap value) => value._count != 0;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator false(scoped in CandidateMap value) => value._count == 0;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator ~(scoped in CandidateMap offsets)
 	{
 		var result = offsets;
+		result._bits[0] = ~result._bits[0];
+		result._bits[1] = ~result._bits[1];
+		result._bits[2] = ~result._bits[2];
+		result._bits[3] = ~result._bits[3];
+		result._bits[4] = ~result._bits[4];
+		result._bits[5] = ~result._bits[5];
+		result._bits[6] = ~result._bits[6];
+		result._bits[7] = ~result._bits[7];
+		result._bits[8] = ~result._bits[8];
+		result._bits[9] = ~result._bits[9];
+		result._bits[10] = ~result._bits[10];
 		result._bits[11] = ~result._bits[11] & 0x1FFFFFF;
-		for (var i = 0; i < 11; i++)
-		{
-			result._bits[i] = ~result._bits[i];
-		}
 
+		result._count = 729 - offsets._count;
 		return result;
 	}
 
@@ -592,50 +600,94 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator &(scoped in CandidateMap left, scoped in CandidateMap right)
 	{
+		var finalCount = 0;
 		var copied = left;
-		foreach (var pair in new RefEnumerator(ref copied._bits[0], right._bits[0]))
-		{
-			pair.First &= pair.Second;
-		}
+		finalCount += PopCount((ulong)(copied._bits[0] &= right._bits[0]));
+		finalCount += PopCount((ulong)(copied._bits[1] &= right._bits[1]));
+		finalCount += PopCount((ulong)(copied._bits[2] &= right._bits[2]));
+		finalCount += PopCount((ulong)(copied._bits[3] &= right._bits[3]));
+		finalCount += PopCount((ulong)(copied._bits[4] &= right._bits[4]));
+		finalCount += PopCount((ulong)(copied._bits[5] &= right._bits[5]));
+		finalCount += PopCount((ulong)(copied._bits[6] &= right._bits[6]));
+		finalCount += PopCount((ulong)(copied._bits[7] &= right._bits[7]));
+		finalCount += PopCount((ulong)(copied._bits[8] &= right._bits[8]));
+		finalCount += PopCount((ulong)(copied._bits[9] &= right._bits[9]));
+		finalCount += PopCount((ulong)(copied._bits[10] &= right._bits[10]));
+		finalCount += PopCount((ulong)(copied._bits[11] &= right._bits[11]));
 
+		copied._count = finalCount;
 		return copied;
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator |(scoped in CandidateMap left, scoped in CandidateMap right)
 	{
+		var finalCount = 0;
 		var copied = left;
-		foreach (var pair in new RefEnumerator(ref copied._bits[0], right._bits[0]))
-		{
-			pair.First |= pair.Second;
-		}
+		finalCount += PopCount((ulong)(copied._bits[0] |= right._bits[0]));
+		finalCount += PopCount((ulong)(copied._bits[1] |= right._bits[1]));
+		finalCount += PopCount((ulong)(copied._bits[2] |= right._bits[2]));
+		finalCount += PopCount((ulong)(copied._bits[3] |= right._bits[3]));
+		finalCount += PopCount((ulong)(copied._bits[4] |= right._bits[4]));
+		finalCount += PopCount((ulong)(copied._bits[5] |= right._bits[5]));
+		finalCount += PopCount((ulong)(copied._bits[6] |= right._bits[6]));
+		finalCount += PopCount((ulong)(copied._bits[7] |= right._bits[7]));
+		finalCount += PopCount((ulong)(copied._bits[8] |= right._bits[8]));
+		finalCount += PopCount((ulong)(copied._bits[9] |= right._bits[9]));
+		finalCount += PopCount((ulong)(copied._bits[10] |= right._bits[10]));
+		finalCount += PopCount((ulong)(copied._bits[11] |= right._bits[11]));
 
+		copied._count = finalCount;
 		return copied;
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator ^(scoped in CandidateMap left, scoped in CandidateMap right)
 	{
+		var finalCount = 0;
 		var copied = left;
-		foreach (var pair in new RefEnumerator(ref copied._bits[0], right._bits[0]))
-		{
-			pair.First ^= pair.Second;
-		}
+		finalCount += PopCount((ulong)(copied._bits[0] ^= right._bits[0]));
+		finalCount += PopCount((ulong)(copied._bits[1] ^= right._bits[1]));
+		finalCount += PopCount((ulong)(copied._bits[2] ^= right._bits[2]));
+		finalCount += PopCount((ulong)(copied._bits[3] ^= right._bits[3]));
+		finalCount += PopCount((ulong)(copied._bits[4] ^= right._bits[4]));
+		finalCount += PopCount((ulong)(copied._bits[5] ^= right._bits[5]));
+		finalCount += PopCount((ulong)(copied._bits[6] ^= right._bits[6]));
+		finalCount += PopCount((ulong)(copied._bits[7] ^= right._bits[7]));
+		finalCount += PopCount((ulong)(copied._bits[8] ^= right._bits[8]));
+		finalCount += PopCount((ulong)(copied._bits[9] ^= right._bits[9]));
+		finalCount += PopCount((ulong)(copied._bits[10] ^= right._bits[10]));
+		finalCount += PopCount((ulong)(copied._bits[11] ^= right._bits[11]));
 
+		copied._count = finalCount;
 		return copied;
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator -(scoped in CandidateMap left, scoped in CandidateMap right)
 	{
+		var finalCount = 0;
 		var copied = left;
-		foreach (var pair in new RefEnumerator(ref copied._bits[0], right._bits[0]))
-		{
-			pair.First &= ~pair.Second;
-		}
+		finalCount += PopCount((ulong)(copied._bits[0] &= ~right._bits[0]));
+		finalCount += PopCount((ulong)(copied._bits[1] &= ~right._bits[1]));
+		finalCount += PopCount((ulong)(copied._bits[2] &= ~right._bits[2]));
+		finalCount += PopCount((ulong)(copied._bits[3] &= ~right._bits[3]));
+		finalCount += PopCount((ulong)(copied._bits[4] &= ~right._bits[4]));
+		finalCount += PopCount((ulong)(copied._bits[5] &= ~right._bits[5]));
+		finalCount += PopCount((ulong)(copied._bits[6] &= ~right._bits[6]));
+		finalCount += PopCount((ulong)(copied._bits[7] &= ~right._bits[7]));
+		finalCount += PopCount((ulong)(copied._bits[8] &= ~right._bits[8]));
+		finalCount += PopCount((ulong)(copied._bits[9] &= ~right._bits[9]));
+		finalCount += PopCount((ulong)(copied._bits[10] &= ~right._bits[10]));
+		finalCount += PopCount((ulong)(copied._bits[11] &= ~right._bits[11]));
 
+		copied._count = finalCount;
 		return copied;
 	}
 
@@ -946,80 +998,6 @@ public unsafe partial struct CandidateMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static explicit IBitStatusMap<CandidateMap>.operator ReadOnlySpan<Candidate>(scoped in CandidateMap offsets) => offsets.Offsets;
-}
-
-/// <summary>
-/// A reference pair.
-/// </summary>
-file readonly ref struct RefPair
-{
-	/// <summary>
-	/// The first reference.
-	/// </summary>
-	public readonly ref long First;
-
-	/// <summary>
-	/// The second reference.
-	/// </summary>
-	public readonly ref readonly long Second;
-
-
-	/// <summary>
-	/// Initializes a <see cref="RefPair"/> instance.
-	/// </summary>
-	public RefPair(ref long first, in long second)
-	{
-		First = ref first;
-		Second = ref second;
-	}
-}
-
-/// <summary>
-/// Defines an enumerator that iterates the one-dimensional array.
-/// </summary>
-/// <param name="first">The first reference.</param>
-/// <param name="second">The second reference.</param>
-file ref struct RefEnumerator([UnscopedRef] ref long first, [UnscopedRef] in long second)
-{
-	/// <summary>
-	/// Indicates the first reference.
-	/// </summary>
-	private readonly ref long _refFirst = ref first;
-
-	/// <summary>
-	/// Indicates the second reference.
-	/// </summary>
-	private readonly ref readonly long _refSecond = ref second;
-
-	/// <summary>
-	/// Indicates the current index being iterated.
-	/// </summary>
-	private int _index = -1;
-
-
-	/// <summary>
-	/// Indicates the current instance being iterated. Please note that the value is returned by reference.
-	/// </summary>
-	public readonly RefPair Current
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new(ref AddByteOffset(ref _refFirst, _index), AddByteOffset(ref AsRef(_refSecond), _index));
-	}
-
-
-	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-	public readonly RefEnumerator GetEnumerator() => this;
-
-	/// <summary>
-	/// Retrieve the iterator to make it points to the next element.
-	/// </summary>
-	/// <returns>
-	/// A <see cref="bool"/> value indicating whether the moving operation is successful.
-	/// Returns <see langword="false"/> when the last iteration is for the last element,
-	/// and now there's no elements to be iterated.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool MoveNext() => ++_index < 12;
 }
 
 /// <summary>

@@ -58,7 +58,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		}
 
 		var trueCandidates = await Task.Run(getTrueCandidates);
-		if (trueCandidates.Count == 0)
+		if (trueCandidates.Length == 0)
 		{
 			ErrorDialog_PuzzleIsNotBugMultipleGrid.IsOpen = true;
 
@@ -66,13 +66,13 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		}
 
 		var view = View.Empty;
-		trueCandidates.ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifierKind.Assignment, candidate)));
+		Array.ForEach(trueCandidates, candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifierKind.Assignment, candidate)));
 
 		var visualUnit = new TrueCandidateVisualUnit(view);
 		BasePage.VisualUnit = visualUnit;
 
 
-		CandidateMap getTrueCandidates()
+		Candidate[] getTrueCandidates()
 		{
 			lock (StepSearchingOrGatheringSyncRoot)
 			{
