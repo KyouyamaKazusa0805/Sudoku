@@ -8,7 +8,6 @@
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages.Operation"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:GeneratingOperation}">
-
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
 		<AppBarButton
 			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}"
