@@ -8155,9 +8155,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingOperation.BasePage">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.SetComboBoxSelectedIndices">
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.SetMemoryOptions">
             <summary>
-            Try to set indices.
+            Update control selection via user configuration.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.InitializeComponent">

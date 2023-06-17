@@ -56,8 +56,9 @@
 					Text="{m:R Key=AnalyzePage_GenerateForMinimalPuzzle}" VerticalAlignment="Center"
 					ToolTipService.ToolTip="{m:R Key=AnalyzePage_GenerateForMinimalPuzzleTooltip}" />
 				<ToggleSwitch
-					Grid.Column="1" OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}"
-					Toggled="GenerateForMinimalPuzzleToggleButton_Toggled" />
+					x:Name="GenerateForMinimalPuzzleToggleSwitch" Grid.Column="1"
+					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}"
+					Toggled="GenerateForMinimalPuzzleToggleSwitch_Toggled" />
 			</Grid>
 		</AppBarElementContainer>
 	</CommandBar>

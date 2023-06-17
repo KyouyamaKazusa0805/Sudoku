@@ -11,7 +11,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	public GeneratingOperation()
 	{
 		InitializeComponent();
-		SetComboBoxSelectedIndices();
+		SetMemoryOptions();
 	}
 
 
@@ -20,12 +20,16 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 
 	/// <summary>
-	/// Try to set indices.
+	/// Update control selection via user configuration.
 	/// </summary>
-	private void SetComboBoxSelectedIndices()
+	private void SetMemoryOptions()
 	{
+		//
+		// DifficultyLevelSelector
+		//
+		var uiPref = ((App)Application.Current).Preference.UIPreferences;
 		var flag = false;
-		for (var (i, items, target) = (0, DifficultyLevelSelector.Items, ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel);
+		for (var (i, items, target) = (0, DifficultyLevelSelector.Items, uiPref.GeneratorDifficultyLevel);
 			i < items.Count;
 			i++)
 		{
@@ -40,7 +44,10 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			DifficultyLevelSelector.SelectedIndex = 0;
 		}
 
-		for ((var i, var items, var target, flag) = (0, PuzzleSymmetricPatternSelector.Items, ((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern, false);
+		//
+		// PuzzleSymmetricPatternSelector
+		//
+		for ((var i, var items, var target, flag) = (0, PuzzleSymmetricPatternSelector.Items, uiPref.GeneratorSymmetricPattern, false);
 			i < items.Count;
 			i++)
 		{
@@ -54,6 +61,11 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		{
 			PuzzleSymmetricPatternSelector.SelectedIndex = 0;
 		}
+
+		//
+		// GenerateForMinimalPuzzleToggleSwitch
+		//
+		GenerateForMinimalPuzzleToggleSwitch.IsOn = uiPref.GeneratedPuzzleShouldBeMinimal;
 	}
 
 
@@ -127,7 +139,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		}
 	}
 
-	private void GenerateForMinimalPuzzleToggleButton_Toggled(object sender, RoutedEventArgs e)
+	private void GenerateForMinimalPuzzleToggleSwitch_Toggled(object sender, RoutedEventArgs e)
 	{
 		if (sender is ToggleSwitch { IsOn: var isOn })
 		{
