@@ -267,6 +267,26 @@
             Indicates the step details.
             </summary>
         </member>
+        <member name="T:SudokuStudio.BindableSource.TechniqueBindableSource">
+            <summary>
+            Indicates the techique bindable source.
+            </summary>
+            <param name="Technique">The technique enumeration field.</param>
+            <param name="DisplayName">The display name.</param>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.TechniqueBindableSource.#ctor(Sudoku.Analytics.Categorization.Technique,System.String)">
+            <summary>
+            Indicates the techique bindable source.
+            </summary>
+            <param name="Technique">The technique enumeration field.</param>
+            <param name="DisplayName">The display name.</param>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueBindableSource.Technique">
+            <summary>The technique enumeration field.</summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueBindableSource.DisplayName">
+            <summary>The display name.</summary>
+        </member>
         <member name="T:SudokuStudio.BindableSource.TechniqueGroupBindableSource">
             <summary>
             Indicates a group of technique steps.
@@ -7418,49 +7438,6 @@ if (student is (name: var name, age: >= 18))
             Initializes member data.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.TechniqueSelector.SelectedTechniqueProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueSelector.SelectedTechnique"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueSelector.SelectedTechnique"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.TechniqueSelector.SelectedTechnique">
-            <summary>
-            Indicates the selected technique.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Controls.TechniqueBindingSource">
-            <summary>
-            Indicates the techique binding source.
-            </summary>
-            <param name="Technique">The technique enumeration field.</param>
-            <param name="DisplayName">The display name.</param>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueBindingSource.#ctor(Sudoku.Analytics.Categorization.Technique,System.String)">
-            <summary>
-            Indicates the techique binding source.
-            </summary>
-            <param name="Technique">The technique enumeration field.</param>
-            <param name="DisplayName">The display name.</param>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.TechniqueBindingSource.Technique">
-            <summary>The technique enumeration field.</summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.TechniqueBindingSource.DisplayName">
-            <summary>The display name.</summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Controls.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.Extensions.GetRealOrRawName(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to fetch the technique name from resource dictionary; if none found, return the enumeration field name itself.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.AboutPage">
             <summary>
             Represents about page.
@@ -8278,14 +8255,16 @@ if (student is (name: var name, age: >= 18))
             <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
             <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
             <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
+            <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingDetails.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Concepts.SymmetricType,System.Boolean)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingDetails.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Concepts.SymmetricType,System.Boolean,Sudoku.Analytics.Categorization.Technique)">
             <summary>
             The encapsulated type to describe the details for generating puzzles.
             </summary>
             <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
             <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
             <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
+            <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.DifficultyLevel">
             <summary>Indicates the difficulty level selected.</summary>
@@ -8295,6 +8274,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.ShouldBeMinimal">
             <summary>Indicates whether generated puzzles should be minimal.</summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.SelectedTechnique">
+            <summary>Indicates the selected technique that you want it to be appeared in generated puzzles.</summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.PrintingOperation">
             <summary>

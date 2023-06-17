@@ -70,7 +70,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		//
 		// PuzzleTechniqueSelector
 		//
-		PuzzleTechniqueSelector.SelectedTechnique = uiPref.SelectedTechnique;
+		PuzzleTechniqueSelector.SelectedValue = uiPref.SelectedTechnique;
 	}
 
 
@@ -85,7 +85,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var difficultyLevel = preferences.GeneratorDifficultyLevel;
 		var symmetry = preferences.GeneratorSymmetricPattern;
 		var minimal = preferences.GeneratedPuzzleShouldBeMinimal;
-		var grid = await Task.Run(() => gridCreator(new(difficultyLevel, symmetry, minimal)));
+		var technique = preferences.SelectedTechnique;
+		var grid = await Task.Run(() => gridCreator(new(difficultyLevel, symmetry, minimal, technique)));
 
 		BasePage.IsGeneratorLaunched = false;
 
@@ -99,13 +100,14 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		Grid gridCreator(GeneratingDetails details)
 		{
-			var (progress, (difficultyLevel, symmetry, minimal)) = (new SelfReportingProgress<GeneratorProgress>(reportingAction), details);
+			var (progress, (difficultyLevel, symmetry, minimal, technique)) = (new SelfReportingProgress<GeneratorProgress>(reportingAction), details);
 			for (var count = 0; ; count++)
 			{
 				if (HodokuPuzzleGenerator.Generate(symmetry) is var grid
-					&& ((App)Application.Current).Analyzer.Analyze(grid).DifficultyLevel is var puzzleDifficultyLevel
+					&& ((App)Application.Current).Analyzer.Analyze(grid) is { DifficultyLevel: var puzzleDifficultyLevel } analyzerResult
 					&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
-					&& (minimal && grid.IsMinimal || !minimal))
+					&& (minimal && grid.IsMinimal || !minimal)
+					&& (technique != 0 && analyzerResult.HasTechnique(technique) || technique == 0))
 				{
 					return grid;
 				}
@@ -146,9 +148,17 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 	private void GenerateForMinimalPuzzleToggleSwitch_Toggled(object sender, RoutedEventArgs e)
 	{
-		if (sender is ToggleSwitch { IsOn: var isOn })
+		if (sender is ToggleSwitch { IsOn: var value })
 		{
-			((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBeMinimal = isOn;
+			((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBeMinimal = value;
+		}
+	}
+
+	private void PuzzleTechniqueSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+	{
+		if (sender is TechniqueSelector { SelectedValue: Technique value })
+		{
+			((App)Application.Current).Preference.UIPreferences.SelectedTechnique = value;
 		}
 	}
 }
@@ -170,4 +180,10 @@ file sealed class SelfReportingProgress<T>(Action<T> handler) : Progress<T>(hand
 /// <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
 /// <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
 /// <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
-file readonly record struct GeneratingDetails(DifficultyLevel DifficultyLevel, SymmetricType SymmetricPattern, bool ShouldBeMinimal);
+/// <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
+file readonly record struct GeneratingDetails(
+	DifficultyLevel DifficultyLevel,
+	SymmetricType SymmetricPattern,
+	bool ShouldBeMinimal,
+	Technique SelectedTechnique
+);

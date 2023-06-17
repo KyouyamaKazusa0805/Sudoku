@@ -392,6 +392,14 @@
             </returns>
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
         </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.HasTechnique(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Determine whether the analyzer result instance contains any step with specified technique.
+            </summary>
+            <param name="technique">The technique you want to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has not been solved.</exception>
+        </member>
         <member name="M:Sudoku.Analytics.AnalyzerResult.ToString">
             <inheritdoc/>
         </member>

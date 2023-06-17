@@ -67,9 +67,7 @@
 		<AppBarElementContainer>
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="{m:R Key=AnalyzePage_TechniqueMustAppear}" VerticalAlignment="Center" />
-				<c:TechniqueSelector
-					x:Name="PuzzleTechniqueSelector"
-					SelectedTechnique="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SelectedTechnique,Mode=TwoWay}" />
+				<c:TechniqueSelector x:Name="PuzzleTechniqueSelector" SelectionChanged="PuzzleTechniqueSelector_SelectionChanged" />
 			</StackPanel>
 		</AppBarElementContainer>
 	</CommandBar>

@@ -352,6 +352,30 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 		=> IsSolved ? Array.FindAll(Steps, step => step.DifficultyLevel == difficultyLevel) : null;
 
 
+	/// <summary>
+	/// Determine whether the analyzer result instance contains any step with specified technique.
+	/// </summary>
+	/// <param name="technique">The technique you want to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle has not been solved.</exception>
+	public bool HasTechnique(Technique technique)
+	{
+		if (!IsSolved)
+		{
+			throw new InvalidOperationException("The puzzle must be solved before call this method.");
+		}
+
+		foreach (var step in Steps)
+		{
+			if (step.Code == technique)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
