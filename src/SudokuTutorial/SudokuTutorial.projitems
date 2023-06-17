@@ -216,6 +216,8 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\03 唯一环\08 唯一环，10个单元格.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\03 唯一环\09 唯一环，12个单元格.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\03 唯一环\10 唯一环，14个单元格.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\03 唯一环\11-1 唯一环的路径不唯一性.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\03 唯一环\11-2 唯一环路径的另外一种连接方式.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
   </ItemGroup>
   <ItemGroup>
