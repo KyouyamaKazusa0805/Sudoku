@@ -64,9 +64,11 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		BasePage.ClearAnalyzeTabsData();
 
 		var processingText = GetString("AnalyzePage_GeneratorIsProcessing")!;
-		var difficultyLevelSelected = ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel;
-		var symmetricType = ((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern;
-		var grid = await Task.Run(gridCreator);
+		var preferences = ((App)Application.Current).Preference.UIPreferences;
+		var difficultyLevel = preferences.GeneratorDifficultyLevel;
+		var symmetry = preferences.GeneratorSymmetricPattern;
+		var minimal = preferences.GeneratedPuzzleShouldBeMinimal;
+		var grid = await Task.Run(() => gridCreator(new(difficultyLevel, symmetry, minimal)));
 
 		BasePage.IsGeneratorLaunched = false;
 
@@ -78,14 +80,15 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		BasePage.SudokuPane.Puzzle = grid;
 
 
-		Grid gridCreator()
+		Grid gridCreator(GeneratingDetails details)
 		{
-			var progress = new SelfReportingProgress<GeneratorProgress>(reportingAction);
+			var (progress, (difficultyLevel, symmetry, minimal)) = (new SelfReportingProgress<GeneratorProgress>(reportingAction), details);
 			for (var count = 0; ; count++)
 			{
-				if (HodokuPuzzleGenerator.Generate(symmetricType) is var grid
+				if (HodokuPuzzleGenerator.Generate(symmetry) is var grid
 					&& ((App)Application.Current).Analyzer.Analyze(grid).DifficultyLevel is var puzzleDifficultyLevel
-					&& (difficultyLevelSelected == 0 || puzzleDifficultyLevel == difficultyLevelSelected))
+					&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
+					&& (minimal && grid.IsMinimal || !minimal))
 				{
 					return grid;
 				}
@@ -123,6 +126,14 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern = (SymmetricType)value;
 		}
 	}
+
+	private void GenerateForMinimalPuzzleToggleButton_Toggled(object sender, RoutedEventArgs e)
+	{
+		if (sender is ToggleSwitch { IsOn: var isOn })
+		{
+			((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBeMinimal = isOn;
+		}
+	}
 }
 
 /// <summary>
@@ -135,3 +146,11 @@ file sealed class SelfReportingProgress<T>(Action<T> handler) : Progress<T>(hand
 	/// <inheritdoc cref="Progress{T}.OnReport(T)"/>
 	public void Report(T value) => OnReport(value);
 }
+
+/// <summary>
+/// The encapsulated type to describe the details for generating puzzles.
+/// </summary>
+/// <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
+/// <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
+/// <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
+file readonly record struct GeneratingDetails(DifficultyLevel DifficultyLevel, SymmetricType SymmetricPattern, bool ShouldBeMinimal);

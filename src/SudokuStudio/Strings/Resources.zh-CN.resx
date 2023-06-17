@@ -342,6 +342,12 @@
   <data name="AnalyzePage_GenerateDate" xml:space="preserve">
     <value>生成日期：</value>
   </data>
+  <data name="AnalyzePage_GenerateForMinimalPuzzle" xml:space="preserve">
+    <value>是否为最小题？</value>
+  </data>
+  <data name="AnalyzePage_GenerateForMinimalPuzzleTooltip" xml:space="preserve">
+    <value>最小题是说，某个唯一解的题目的任何一个提示数被去掉，都会变为多解题的题目类型。</value>
+  </data>
   <data name="AnalyzePage_GeneratorIsProcessing" xml:space="preserve">
     <value>正在出题……</value>
   </data>

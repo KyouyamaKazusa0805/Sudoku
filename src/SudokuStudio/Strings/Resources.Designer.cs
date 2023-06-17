@@ -898,6 +898,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Should Be Minimal? .
+        /// </summary>
+        internal static string AnalyzePage_GenerateForMinimalPuzzle {
+            get {
+                return ResourceManager.GetString("AnalyzePage_GenerateForMinimalPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If any one given in a puzzle cannot be removed, the puzzle will be minimal..
+        /// </summary>
+        internal static string AnalyzePage_GenerateForMinimalPuzzleTooltip {
+            get {
+                return ResourceManager.GetString("AnalyzePage_GenerateForMinimalPuzzleTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generator is processing....
         /// </summary>
         internal static string AnalyzePage_GeneratorIsProcessing {

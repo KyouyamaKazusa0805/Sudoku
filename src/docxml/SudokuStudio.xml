@@ -1160,6 +1160,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.TransparentBackground"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBeMinimalProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBeMinimal"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBeMinimal"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScaleProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale"/>.
@@ -1471,6 +1477,11 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.TransparentBackground">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.TransparentBackground"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBeMinimal">
+            <summary>
+            Indicates whether the generated puzzles should be minimal.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale"/>
@@ -4106,6 +4117,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GenerateDate">
             <summary>
               Looks up a localized string similar to Generate date:.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GenerateForMinimalPuzzle">
+            <summary>
+              Looks up a localized string similar to Should Be Minimal? .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GenerateForMinimalPuzzleTooltip">
+            <summary>
+              Looks up a localized string similar to If any one given in a puzzle cannot be removed, the puzzle will be minimal..
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GeneratorIsProcessing">
@@ -8170,6 +8191,31 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.SelfReportingProgress`1.Report(`0)">
             <inheritdoc cref="M:System.Progress`1.OnReport(`0)"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Operation.GeneratingDetails">
+            <summary>
+            The encapsulated type to describe the details for generating puzzles.
+            </summary>
+            <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
+            <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
+            <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingDetails.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Concepts.SymmetricType,System.Boolean)">
+            <summary>
+            The encapsulated type to describe the details for generating puzzles.
+            </summary>
+            <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
+            <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
+            <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.DifficultyLevel">
+            <summary>Indicates the difficulty level selected.</summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.SymmetricPattern">
+            <summary>Indicates the symmetric pattern selected.</summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.ShouldBeMinimal">
+            <summary>Indicates whether generated puzzles should be minimal.</summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.PrintingOperation">
             <summary>
