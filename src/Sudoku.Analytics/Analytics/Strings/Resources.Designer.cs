@@ -907,6 +907,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Death Blossom House Type.
+        /// </summary>
+        public static string DeathBlossomHouseType {
+            get {
+                return ResourceManager.GetString("DeathBlossomHouseType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Diagonal.
         /// </summary>
         public static string DiagonalSymmetry {

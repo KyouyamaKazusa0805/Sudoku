@@ -4,9 +4,12 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages.Operation"
+	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:GeneratingOperation}">
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
 		<CommandBar.Resources>
@@ -15,16 +18,16 @@
 				<Setter Property="Margin" Value="12,0,0,0" />
 			</Style>
 		</CommandBar.Resources>
-		
+
 		<AppBarButton
 			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}"
 			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetAnalyzerButtonIsEnabled(BasePage.IsGeneratorLaunched),Mode=OneWay}"
 			Click="NewPuzzleButton_ClickAsync" />
 		<AppBarSeparator />
 		<AppBarElementContainer>
-			<Grid ColumnDefinitions="Auto,*">
+			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="{m:R Key=AnalyzePage_PleaseSelectDifficultyLevel}" VerticalAlignment="Center" />
-				<ComboBox Grid.Column="1" x:Name="DifficultyLevelSelector" SelectionChanged="DifficultyLevelSelector_SelectionChanged">
+				<ComboBox x:Name="DifficultyLevelSelector" SelectionChanged="DifficultyLevelSelector_SelectionChanged">
 					<ComboBoxItem Content="{m:R Key=DifficultyLevel_None}" Tag="{m:Int32 Value=0}" />
 					<ComboBoxItem Content="{m:R Key=DifficultyLevel_Easy}" Tag="{m:Int32 Value=1}" />
 					<ComboBoxItem Content="{m:R Key=DifficultyLevel_Moderate}" Tag="{m:Int32 Value=2}" />
@@ -32,12 +35,12 @@
 					<ComboBoxItem Content="{m:R Key=DifficultyLevel_Fiendish}" Tag="{m:Int32 Value=8}" />
 					<ComboBoxItem Content="{m:R Key=DifficultyLevel_Nightmare}" Tag="{m:Int32 Value=16}" />
 				</ComboBox>
-			</Grid>
+			</StackPanel>
 		</AppBarElementContainer>
 		<AppBarElementContainer>
-			<Grid ColumnDefinitions="Auto,*">
+			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="{m:R Key=AnalyzePage_PleaseSelectSymmetricPattern}" VerticalAlignment="Center" />
-				<ComboBox Grid.Column="1" x:Name="PuzzleSymmetricPatternSelector" SelectionChanged="PuzzleSymmetricPatternSelector_SelectionChanged">
+				<ComboBox x:Name="PuzzleSymmetricPatternSelector" SelectionChanged="PuzzleSymmetricPatternSelector_SelectionChanged">
 					<ComboBoxItem Content="{m:R Key=SymmetricType_None}" Tag="{m:Int32 Value=0}" />
 					<ComboBoxItem Content="{m:R Key=SymmetricType_Central}" Tag="{m:Int32 Value=1}" />
 					<ComboBoxItem Content="{m:R Key=SymmetricType_Diagonal}" Tag="{m:Int32 Value=2}" />
@@ -48,18 +51,26 @@
 					<ComboBoxItem Content="{m:R Key=SymmetricType_DiagonalBoth}" Tag="{m:Int32 Value=64}" />
 					<ComboBoxItem Content="{m:R Key=SymmetricType_All}" Tag="{m:Int32 Value=128}" />
 				</ComboBox>
-			</Grid>
+			</StackPanel>
 		</AppBarElementContainer>
 		<AppBarElementContainer>
-			<Grid ColumnDefinitions="Auto,*">
+			<StackPanel Orientation="Horizontal">
 				<TextBlock
 					Text="{m:R Key=AnalyzePage_GenerateForMinimalPuzzle}" VerticalAlignment="Center"
 					ToolTipService.ToolTip="{m:R Key=AnalyzePage_GenerateForMinimalPuzzleTooltip}" />
 				<ToggleSwitch
-					x:Name="GenerateForMinimalPuzzleToggleSwitch" Grid.Column="1"
+					x:Name="GenerateForMinimalPuzzleToggleSwitch"
 					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}"
 					Toggled="GenerateForMinimalPuzzleToggleSwitch_Toggled" />
-			</Grid>
+			</StackPanel>
+		</AppBarElementContainer>
+		<AppBarElementContainer>
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="{m:R Key=AnalyzePage_TechniqueMustAppear}" VerticalAlignment="Center" />
+				<c:TechniqueSelector
+					x:Name="PuzzleTechniqueSelector"
+					SelectedTechnique="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SelectedTechnique,Mode=TwoWay}" />
+			</StackPanel>
 		</AppBarElementContainer>
 	</CommandBar>
 </Page>

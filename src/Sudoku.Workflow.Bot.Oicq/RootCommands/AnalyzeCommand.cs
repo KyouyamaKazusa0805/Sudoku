@@ -263,7 +263,7 @@ internal sealed class AnalyzeCommand : Command
 		static bool rawNameMatcher((Technique Code, Step[] Steps) stepGroup, string techniqueName)
 		{
 			var code = stepGroup.Code;
-			if (nameEquality(code.GetName()!))
+			if (nameEquality(code.GetName()))
 			{
 				return true;
 			}

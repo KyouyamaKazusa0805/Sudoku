@@ -1510,6 +1510,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Technique must appear: .
+        /// </summary>
+        internal static string AnalyzePage_TechniqueMustAppear {
+            get {
+                return ResourceManager.GetString("AnalyzePage_TechniqueMustAppear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Technique Name:.
         /// </summary>
         internal static string AnalyzePage_TechniqueName {
@@ -3458,6 +3467,15 @@ namespace SudokuStudio.Strings {
         internal static string TechniqueGalleryPage_UniqueRectangles3 {
             get {
                 return ResourceManager.GetString("TechniqueGalleryPage_UniqueRectangles3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No technique selected.
+        /// </summary>
+        internal static string TechniqueSelector_NoTechniqueSelected {
+            get {
+                return ResourceManager.GetString("TechniqueSelector_NoTechniqueSelected", resourceCulture);
             }
         }
     }

@@ -38,6 +38,7 @@ using M = CoordinateLabelDisplayMode;
 [DependencyProperty<StepTooltipDisplayItems>("StepDisplayItems", DefaultValue = StepTooltipDisplayItems.TechniqueName | StepTooltipDisplayItems.DifficultyRating | StepTooltipDisplayItems.SimpleDescription | StepTooltipDisplayItems.ExtraDifficultyCases, DocSummary = "Indicates the tooltip display items.")]
 [DependencyProperty<DifficultyLevel>("GeneratorDifficultyLevel", DefaultValue = 0, DocSummary = "Indicates the difficulty level for generated puzzles.")]
 [DependencyProperty<SymmetricType>("GeneratorSymmetricPattern", DefaultValue = 0, DocSummary = "Indicates the symmetric pattern for generated puzzles.")]
+[DependencyProperty<Technique>("SelectedTechnique", DefaultValue = 0, DocSummary = "Indicates the selected technique, which will be appeared in generated puzzles.")]
 [DependencyProperty<Color>("GivenFontColor")]
 [DependencyProperty<Color>("ModifiableFontColor")]
 [DependencyProperty<Color>("PencilmarkFontColor")]

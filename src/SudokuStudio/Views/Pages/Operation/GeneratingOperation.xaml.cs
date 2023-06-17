@@ -66,6 +66,11 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		// GenerateForMinimalPuzzleToggleSwitch
 		//
 		GenerateForMinimalPuzzleToggleSwitch.IsOn = uiPref.GeneratedPuzzleShouldBeMinimal;
+
+		//
+		// PuzzleTechniqueSelector
+		//
+		PuzzleTechniqueSelector.SelectedTechnique = uiPref.SelectedTechnique;
 	}
 
 

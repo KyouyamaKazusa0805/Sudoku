@@ -10,23 +10,23 @@ public static class TechniqueExtensions
 	/// Try to get the name of the current <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
-	/// <returns>
-	/// The name of the current technique.
-	/// Return <see langword="null"/> if the current technique does not contain a valid name in resource dictionary.
-	/// </returns>
+	/// <returns>The name of the current technique.</returns>
+	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? GetName(this Technique @this) => GetString(@this.ToString());
+	public static string GetName(this Technique @this)
+		=> GetString(@this.ToString())
+		?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly);
 
 	/// <summary>
 	/// Try to get the English name of the current <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
-	/// <returns>
-	/// The name of the current technique.
-	/// Return <see langword="null"/> if the current technique does not contain a valid name in resource dictionary.
-	/// </returns>
+	/// <returns>The name of the current technique.</returns>
+	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? GetEnglishName(this Technique @this) => Resources.ResourceManager.GetString(@this.ToString(), new(1033));
+	public static string? GetEnglishName(this Technique @this)
+		=> Resources.ResourceManager.GetString(@this.ToString(), new(1033))
+		?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly);
 
 	/// <summary>
 	/// Try to get the abbreviation of the current <see cref="Technique"/>.

@@ -2157,4 +2157,7 @@
   <data name="StepSearcherName_LockedSubsetStepSearcher" xml:space="preserve">
     <value>Locked Subsets</value>
   </data>
+  <data name="DeathBlossomHouseType" xml:space="preserve">
+    <value>Death Blossom House Type</value>
+  </data>
 </root>

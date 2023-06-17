@@ -543,6 +543,9 @@
   <data name="AnalyzePage_TechniqueIndex" xml:space="preserve">
     <value>Index of Path:</value>
   </data>
+  <data name="AnalyzePage_TechniqueMustAppear" xml:space="preserve">
+    <value>Technique must appear: </value>
+  </data>
   <data name="AnalyzePage_TechniqueName" xml:space="preserve">
     <value>Technique Name:</value>
   </data>
@@ -1198,6 +1201,9 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="TechniqueGalleryPage_UniqueRectangles3" xml:space="preserve">
     <value>Unique Rectangles with Techniques</value>
+  </data>
+  <data name="TechniqueSelector_NoTechniqueSelected" xml:space="preserve">
+    <value>No technique selected</value>
   </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>Easy</value>

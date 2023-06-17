@@ -1286,6 +1286,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSymmetricPattern"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.SelectedTechniqueProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SelectedTechnique"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SelectedTechnique"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor"/>.
@@ -1583,6 +1589,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSymmetricPattern">
             <summary>
             Indicates the symmetric pattern for generated puzzles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SelectedTechnique">
+            <summary>
+            Indicates the selected technique, which will be appeared in generated puzzles.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor">
@@ -4459,6 +4470,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Index of Path:.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_TechniqueMustAppear">
+            <summary>
+              Looks up a localized string similar to Technique must appear: .
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_TechniqueName">
             <summary>
               Looks up a localized string similar to Technique Name:.
@@ -5545,6 +5561,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.TechniqueGalleryPage_UniqueRectangles3">
             <summary>
               Looks up a localized string similar to Unique Rectangles with Techniques.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelector_NoTechniqueSelected">
+            <summary>
+              Looks up a localized string similar to No technique selected.
             </summary>
         </member>
         <member name="T:SudokuStudio.Strings.StringsAccessor">
@@ -7380,6 +7401,64 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.TechniqueGroupView.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.TechniqueSelector">
+            <summary>
+            Represents a technique selector instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueSelector.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.TechniqueSelector"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueSelector.InitializeComponents">
+            <summary>
+            Initializes member data.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueSelector.SelectedTechniqueProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueSelector.SelectedTechnique"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueSelector.SelectedTechnique"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueSelector.SelectedTechnique">
+            <summary>
+            Indicates the selected technique.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.TechniqueBindingSource">
+            <summary>
+            Indicates the techique binding source.
+            </summary>
+            <param name="Technique">The technique enumeration field.</param>
+            <param name="DisplayName">The display name.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueBindingSource.#ctor(Sudoku.Analytics.Categorization.Technique,System.String)">
+            <summary>
+            Indicates the techique binding source.
+            </summary>
+            <param name="Technique">The technique enumeration field.</param>
+            <param name="DisplayName">The display name.</param>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueBindingSource.Technique">
+            <summary>The technique enumeration field.</summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueBindingSource.DisplayName">
+            <summary>The display name.</summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.Extensions.GetRealOrRawName(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to fetch the technique name from resource dictionary; if none found, return the enumeration field name itself.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.AboutPage">

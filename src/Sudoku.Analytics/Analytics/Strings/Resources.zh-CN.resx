@@ -2285,4 +2285,8 @@
     <value>死锁数组</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="DeathBlossomHouseType" xml:space="preserve">
+    <value>死亡绽放・区域类型</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

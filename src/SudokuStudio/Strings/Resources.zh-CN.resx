@@ -546,6 +546,9 @@
   <data name="AnalyzePage_TechniqueIndex" xml:space="preserve">
     <value>第几步：</value>
   </data>
+  <data name="AnalyzePage_TechniqueMustAppear" xml:space="preserve">
+    <value>必须出现的技巧：</value>
+  </data>
   <data name="AnalyzePage_TechniqueName" xml:space="preserve">
     <value>技巧名：</value>
   </data>
@@ -1201,6 +1204,9 @@
   </data>
   <data name="TechniqueGalleryPage_UniqueRectangles3" xml:space="preserve">
     <value>唯一矩形（复合结构）</value>
+  </data>
+  <data name="TechniqueSelector_NoTechniqueSelected" xml:space="preserve">
+    <value>未选择技巧</value>
   </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>容易</value>
