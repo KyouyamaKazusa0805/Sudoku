@@ -461,9 +461,12 @@ public unsafe ref partial struct GridParser(string parsingValue, [PrimaryConstru
 		}
 
 		// Step 1: fills all digits.
-		var result = Grid.Empty;
-		var i = 0;
-		var length = match.Length;
+		var (result, i) = (Grid.Empty, 0);
+		if (match.Length is not (var length and not 0))
+		{
+			return Grid.Undefined;
+		}
+
 		for (var realPos = 0; i < length && match[i] != ':'; realPos++)
 		{
 			switch (match[i])

@@ -196,7 +196,8 @@ public sealed partial class AnalyzePage : Page
 		}
 
 		var dataPackageView = Clipboard.GetContent();
-		if (dataPackageView.Contains(StandardDataFormats.Text) && Grid.TryParse(await dataPackageView.GetTextAsync(), out var grid))
+		var targetText = await dataPackageView.GetTextAsync();
+		if (dataPackageView.Contains(StandardDataFormats.Text) && Grid.TryParse(targetText, out var grid))
 		{
 			SudokuPane.Puzzle = grid;
 		}
