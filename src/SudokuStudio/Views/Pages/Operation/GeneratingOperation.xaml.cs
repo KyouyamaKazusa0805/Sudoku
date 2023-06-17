@@ -70,7 +70,9 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		//
 		// PuzzleTechniqueSelector
 		//
-		PuzzleTechniqueSelector.SelectedValue = uiPref.SelectedTechnique;
+		//PuzzleTechniqueSelector.SelectedValue = uiPref.SelectedTechnique; // This assignment is never successful :(
+		bool techniqueMatcher(TechniqueBindableSource e) => e.Technique == uiPref.SelectedTechnique;
+		PuzzleTechniqueSelector.SelectedIndex = Array.FindIndex((TechniqueBindableSource[])PuzzleTechniqueSelector.ItemsSource, techniqueMatcher);
 	}
 
 
