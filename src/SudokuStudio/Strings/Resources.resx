@@ -414,11 +414,20 @@
   <data name="AnalyzePage_PivotItem_BasicOperations" xml:space="preserve">
     <value>Basics</value>
   </data>
+  <data name="AnalyzePage_PivotItem_GeneratingOperations" xml:space="preserve">
+    <value>Generating</value>
+  </data>
   <data name="AnalyzePage_PivotItem_PrintingOperation" xml:space="preserve">
     <value>Printing</value>
   </data>
   <data name="AnalyzePage_PivotItem_ShuffleOperations" xml:space="preserve">
     <value>Transformations</value>
+  </data>
+  <data name="AnalyzePage_PleaseSelectDifficultyLevel" xml:space="preserve">
+    <value>Difficulty Level:  </value>
+  </data>
+  <data name="AnalyzePage_PleaseSelectSymmetricPattern" xml:space="preserve">
+    <value>Symmetric Pattern: </value>
   </data>
   <data name="AnalyzePage_PrintAnalysisResult" xml:space="preserve">
     <value>Print analysis</value>

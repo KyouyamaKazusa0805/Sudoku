@@ -178,6 +178,9 @@
 		<Page Update="Views\Controls\Shapes\Cross.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
+		<Page Update="Views\Pages\Operation\GeneratingOperation.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 
 	<!--

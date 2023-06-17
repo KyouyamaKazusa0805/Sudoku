@@ -522,7 +522,8 @@ public sealed partial class AnalyzePage : Page
 			{ container => container == BasicOperationBar, typeof(BasicOperation) },
 			{ container => container == AttributeCheckingOperationBar, typeof(AttributeCheckingOperation) },
 			{ container => container == PrintingOperationBar, typeof(PrintingOperation) },
-			{ container => container == ShuffleOperationBar, typeof(ShuffleOperation) }
+			{ container => container == ShuffleOperationBar, typeof(ShuffleOperation) },
+			{ container => container == GeneratingOperationBar, typeof(GeneratingOperation) }
 		};
 	}
 

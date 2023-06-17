@@ -4233,6 +4233,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Basics.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_PivotItem_GeneratingOperations">
+            <summary>
+              Looks up a localized string similar to Generating.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_PivotItem_PrintingOperation">
             <summary>
               Looks up a localized string similar to Printing.
@@ -4241,6 +4246,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_PivotItem_ShuffleOperations">
             <summary>
               Looks up a localized string similar to Transformations.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_PleaseSelectDifficultyLevel">
+            <summary>
+              Looks up a localized string similar to Difficulty Level:  .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_PleaseSelectSymmetricPattern">
+            <summary>
+              Looks up a localized string similar to Symmetric Pattern: .
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_PrintAnalysisResult">
@@ -8074,11 +8089,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Operation.BasicOperation.BasePage">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.SetComboBoxSelectedIndices">
-            <summary>
-            Try to set indices.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.OnSaveFileFailed(SudokuStudio.Views.Pages.AnalyzePage,SudokuStudio.Interaction.SaveFileFailedEventArgs)">
             <summary>
             The method called by <see cref="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Pages.Operation.BasicOperation.Page_Unloaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)"/>.
@@ -8107,6 +8117,39 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.BasicOperation.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Operation.GeneratingOperation">
+            <summary>
+            Indicates the generating operation command bar.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Operation.GeneratingOperation"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingOperation.BasePage">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.SetComboBoxSelectedIndices">
+            <summary>
+            Try to set indices.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

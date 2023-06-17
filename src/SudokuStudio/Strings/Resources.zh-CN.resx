@@ -417,11 +417,20 @@
   <data name="AnalyzePage_PivotItem_BasicOperations" xml:space="preserve">
     <value>基本功能</value>
   </data>
+  <data name="AnalyzePage_PivotItem_GeneratingOperations" xml:space="preserve">
+    <value>题目生成</value>
+  </data>
   <data name="AnalyzePage_PivotItem_PrintingOperation" xml:space="preserve">
     <value>打印</value>
   </data>
   <data name="AnalyzePage_PivotItem_ShuffleOperations" xml:space="preserve">
     <value>变换</value>
+  </data>
+  <data name="AnalyzePage_PleaseSelectDifficultyLevel" xml:space="preserve">
+    <value>题目难度：</value>
+  </data>
+  <data name="AnalyzePage_PleaseSelectSymmetricPattern" xml:space="preserve">
+    <value>题目对称性：</value>
   </data>
   <data name="AnalyzePage_PrintAnalysisResult" xml:space="preserve">
     <value>打印分析结果</value>

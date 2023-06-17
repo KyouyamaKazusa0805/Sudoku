@@ -80,9 +80,8 @@
 						Loaded="CommandBarView_Loaded" SelectionChanged="CommandBarView_SelectionChanged" ItemInvoked="CommandBarView_ItemInvoked">
 						<NavigationView.MenuItems>
 							<NavigationViewItem x:Name="BasicOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_BasicOperations}" />
-							<NavigationViewItem
-								x:Name="AttributeCheckingOperationBar"
-								Content="{m:R Key=AnalyzePage_PivotItem_AttributeCheckingOperation}" />
+							<NavigationViewItem x:Name="GeneratingOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_GeneratingOperations}" />
+							<NavigationViewItem x:Name="AttributeCheckingOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_AttributeCheckingOperation}" />
 							<NavigationViewItem x:Name="ShuffleOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_ShuffleOperations}" />
 							<NavigationViewItem x:Name="PrintingOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_PrintingOperation}" />
 						</NavigationView.MenuItems>

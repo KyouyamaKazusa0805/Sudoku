@@ -1123,6 +1123,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generating.
+        /// </summary>
+        internal static string AnalyzePage_PivotItem_GeneratingOperations {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PivotItem_GeneratingOperations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Printing.
         /// </summary>
         internal static string AnalyzePage_PivotItem_PrintingOperation {
@@ -1137,6 +1146,24 @@ namespace SudokuStudio.Strings {
         internal static string AnalyzePage_PivotItem_ShuffleOperations {
             get {
                 return ResourceManager.GetString("AnalyzePage_PivotItem_ShuffleOperations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty Level:  .
+        /// </summary>
+        internal static string AnalyzePage_PleaseSelectDifficultyLevel {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PleaseSelectDifficultyLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symmetric Pattern: .
+        /// </summary>
+        internal static string AnalyzePage_PleaseSelectSymmetricPattern {
+            get {
+                return ResourceManager.GetString("AnalyzePage_PleaseSelectSymmetricPattern", resourceCulture);
             }
         }
         

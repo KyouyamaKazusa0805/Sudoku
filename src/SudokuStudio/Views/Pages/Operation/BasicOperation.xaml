@@ -76,32 +76,5 @@
 			x:Name="RedoButton" Icon="Redo" Label="{m:R Key=AnalyzePage_Redo}"
 			IsEnabled="{x:Bind cvt:UndoRedoButtonConversion.GetButtonIsEnabled(BasePage.SudokuPane._redoStack),Mode=OneWay}"
 			Click="RedoButton_Click" />
-		<AppBarButton
-			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}"
-			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetAnalyzerButtonIsEnabled(BasePage.IsGeneratorLaunched),Mode=OneWay}"
-			Click="NewPuzzleButton_ClickAsync" />
-		<AppBarElementContainer VerticalAlignment="Center">
-			<ComboBox x:Name="DifficultyLevelSelector" SelectionChanged="DifficultyLevelSelector_SelectionChanged">
-				<ComboBoxItem Content="{m:R Key=DifficultyLevel_None}" Tag="{m:Int32 Value=0}" />
-				<ComboBoxItem Content="{m:R Key=DifficultyLevel_Easy}" Tag="{m:Int32 Value=1}" />
-				<ComboBoxItem Content="{m:R Key=DifficultyLevel_Moderate}" Tag="{m:Int32 Value=2}" />
-				<ComboBoxItem Content="{m:R Key=DifficultyLevel_Hard}" Tag="{m:Int32 Value=4}" />
-				<ComboBoxItem Content="{m:R Key=DifficultyLevel_Fiendish}" Tag="{m:Int32 Value=8}" />
-				<ComboBoxItem Content="{m:R Key=DifficultyLevel_Nightmare}" Tag="{m:Int32 Value=16}" />
-			</ComboBox>
-		</AppBarElementContainer>
-		<AppBarElementContainer VerticalAlignment="Center">
-			<ComboBox x:Name="PuzzleSymmetricPatternSelector" SelectionChanged="PuzzleSymmetricPatternSelector_SelectionChanged">
-				<ComboBoxItem Content="{m:R Key=SymmetricType_None}" Tag="{m:Int32 Value=0}" />
-				<ComboBoxItem Content="{m:R Key=SymmetricType_Central}" Tag="{m:Int32 Value=1}" />
-				<ComboBoxItem Content="{m:R Key=SymmetricType_Diagonal}" Tag="{m:Int32 Value=2}" />
-				<ComboBoxItem Content="{m:R Key=SymmetricType_AntiDiagonal}" Tag="{m:Int32 Value=4}" />
-				<ComboBoxItem Content="{m:R Key=SymmetricType_XAxis}" Tag="{m:Int32 Value=8}" />
-				<ComboBoxItem Content="{m:R Key=SymmetricType_YAxis}" Tag="{m:Int32 Value=16}" />
-				<ComboBoxItem Content="{m:R Key=SymmetricType_AxisBoth}" Tag="{m:Int32 Value=32}" />
-				<ComboBoxItem Content="{m:R Key=SymmetricType_DiagonalBoth}" Tag="{m:Int32 Value=64}" />
-				<ComboBoxItem Content="{m:R Key=SymmetricType_All}" Tag="{m:Int32 Value=128}" />
-			</ComboBox>
-		</AppBarElementContainer>
 	</CommandBar>
 </Page>
