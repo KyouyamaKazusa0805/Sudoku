@@ -1,4 +1,3 @@
-#undef COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
@@ -124,6 +123,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[Abbreviation("ALQ")]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	AlmostLockedQuadruple,
 	#endregion
 
@@ -953,6 +953,7 @@ public enum Technique
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	VwxyzWing,
 
 	/// <summary>
@@ -960,6 +961,7 @@ public enum Technique
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	UvwxyzWing,
 
 	/// <summary>
@@ -967,6 +969,7 @@ public enum Technique
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	TuvwxyzWing,
 
 	/// <summary>
@@ -974,6 +977,7 @@ public enum Technique
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	StuvwxyzWing,
 
 	/// <summary>
@@ -981,6 +985,7 @@ public enum Technique
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	RstuvwxyzWing,
 
 	/// <summary>
@@ -999,24 +1004,28 @@ public enum Technique
 	/// Indicates incomplete UVWXYZ-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	IncompleteUvwxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete TUVWXYZ-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	IncompleteTuvwxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete STUVWXYZ-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	IncompleteStuvwxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete RSTUVWXYZ-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	IncompleteRstuvwxyzWing,
 
 	/// <summary>
@@ -1038,60 +1047,70 @@ public enum Technique
 	/// Indicates M-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	MWing,
 
 	/// <summary>
 	/// Indicates local wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	LocalWing,
 
 	/// <summary>
 	/// Indicates split wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SplitWing,
 
 	/// <summary>
 	/// Indicates hybrid wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	HybridWing,
 
 	/// <summary>
 	/// Indicates grouped XY-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedXyWing,
 
 	/// <summary>
 	/// Indicates grouped W-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedWWing,
 
 	/// <summary>
 	/// Indicates grouped M-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedMWing,
 
 	/// <summary>
 	/// Indicates grouped local wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedLocalWing,
 
 	/// <summary>
 	/// Indicates grouped split wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedSplitWing,
 
 	/// <summary>
 	/// Indicates grouped hybrid wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedHybridWing,
 	#endregion
 
@@ -1177,6 +1196,7 @@ public enum Technique
 	/// Indicates unique rectangle + 2D.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	UniqueRectangle2D,
 
 	/// <summary>
@@ -1195,6 +1215,7 @@ public enum Technique
 	/// Indicates unique rectangle + 3X.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	UniqueRectangle3X,
 
 	/// <summary>
@@ -1393,18 +1414,21 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[Abbreviation("HAR")]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	HiddenAvoidableRectangle,
 
 	/// <summary>
 	/// Indicates avoidable rectangle + 2D.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	AvoidableRectangle2D,
 
 	/// <summary>
 	/// Indicates avoidable rectangle + 3X.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	AvoidableRectangle3X,
 
 	/// <summary>
@@ -1693,6 +1717,7 @@ public enum Technique
 	/// Indicates uniqueness clue cover type 2.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniquenessClueCover)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	UniquenessClueCoverType2,
 	#endregion
 
@@ -1704,6 +1729,7 @@ public enum Technique
 	/// Indicates RW's deadly pattern.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.RwDeadlyPattern)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	RwDeadlyPattern,
 	#endregion
 
@@ -1744,30 +1770,35 @@ public enum Technique
 	/// Indicates Qiu's deadly pattern type 1.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	QiuDeadlyPatternType1,
 
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 2.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	QiuDeadlyPatternType2,
 
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 3.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	QiuDeadlyPatternType3,
 
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 4.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	QiuDeadlyPatternType4,
 
 	/// <summary>
 	/// Indicates locked Qiu's deadly pattern.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	LockedQiuDeadlyPattern,
 	#endregion
 
@@ -1779,24 +1810,28 @@ public enum Technique
 	/// Indicates unique matrix type 1.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	UniqueMatrixType1,
 
 	/// <summary>
 	/// Indicates unique matrix type 2.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	UniqueMatrixType2,
 
 	/// <summary>
 	/// Indicates unique matrix type 3.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	UniqueMatrixType3,
 
 	/// <summary>
 	/// Indicates unique matrix type 4.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	UniqueMatrixType4,
 	#endregion
 
@@ -1868,6 +1903,7 @@ public enum Technique
 	/// Indicates grouped bi-value oddagon.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedBivalueOddagon,
 	#endregion
 
@@ -1879,30 +1915,35 @@ public enum Technique
 	/// Indicates chromatic pattern (tri-value oddagon) type 1.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	ChromaticPatternType1,
 
 	/// <summary>
 	/// Indicates chromatic pattern (tri-value oddagon) type 2.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	ChromaticPatternType2,
 
 	/// <summary>
 	/// Indicates chromatic pattern (tri-value oddagon) type 3.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	ChromaticPatternType3,
 
 	/// <summary>
 	/// Indicates chromatic pattern (tri-value oddagon) type 4.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	ChromaticPatternType4,
 
 	/// <summary>
 	/// Indicates chromatic pattern (tri-value oddagon) XZ rule.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	ChromaticPatternXzRule,
 	#endregion
 
@@ -1979,6 +2020,7 @@ public enum Technique
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
 #endif
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	YChain,
 
 	/// <summary>
@@ -1988,6 +2030,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(6.5, 6.6)]
 	[SudokuExplainerAliasedNames("Bidirectional X-Cycle")]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	FishyCycle,
 
 	/// <summary>
@@ -1996,18 +2039,21 @@ public enum Technique
 	[HodokuTechniquePrefix("0702")]
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	XyChain,
 
 	/// <summary>
 	/// Indicates XY-Cycle.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	XyCycle,
 
 	/// <summary>
 	/// Indicates XY-X-Chain.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	XyXChain,
 
 	/// <summary>
@@ -2016,12 +2062,14 @@ public enum Technique
 	[HodokuTechniquePrefix("0703")]
 	[HodokuDifficultyRating(110, HodokuDifficultyLevel.Hard)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	RemotePair,
 
 	/// <summary>
 	/// Indicates purple cow.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	PurpleCow,
 
 	/// <summary>
@@ -2033,6 +2081,7 @@ public enum Technique
 	[SudokuExplainerAliasedNames("Forcing Chain")]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[Abbreviation("DNL")]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	DiscontinuousNiceLoop,
 
 	/// <summary>
@@ -2059,36 +2108,42 @@ public enum Technique
 	/// Indicates grouped X-Chain.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedXChain,
 
 	/// <summary>
 	/// Indicates grouped fishy cycle (grouped X-Cycle).
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedFishyCycle,
 
 	/// <summary>
 	/// Indicates grouped XY-Chain.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedXyChain,
 
 	/// <summary>
 	/// Indicates grouped XY-Cycle.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedXyCycle,
 
 	/// <summary>
 	/// Indicates grouped XY-X-Chain.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedXyXChain,
 
 	/// <summary>
 	/// Indicates grouped purple cow.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedPurpleCow,
 
 	/// <summary>
@@ -2097,6 +2152,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0710")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedDiscontinuousNiceLoop,
 
 	/// <summary>
@@ -2105,6 +2161,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0709")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedContinuousNiceLoop,
 
 	/// <summary>
@@ -2113,12 +2170,14 @@ public enum Technique
 	[HodokuTechniquePrefix("0711")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	GroupedAlternatingInferenceChain,
 
 	/// <summary>
 	/// Indicates special case that a grouped alternating inference chain has a collision between start and end node.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	NodeCollision,
 	#endregion
 
@@ -2228,6 +2287,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
 	[Abbreviation("APE")]
 	[SudokuExplainerDifficultyRating(6.2)]
+	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	AlignedPairExclusion,
 
 	/// <summary>
@@ -2236,18 +2296,21 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
 	[Abbreviation("ATE")]
 	[SudokuExplainerDifficultyRating(7.5)]
+	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	AlignedTripleExclusion,
 
 	/// <summary>
 	/// Indicates aligned quadruple exclusion.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
+	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	AlignedQuadrupleExclusion,
 
 	/// <summary>
 	/// Indicates aligned quintuple exclusion.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
+	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	AlignedQuintupleExclusion,
 	#endregion
 
@@ -2298,6 +2361,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0903")]
 	[HodokuDifficultyRating(340, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	AlmostLockedSetsChain,
 	#endregion
 
@@ -2324,12 +2388,14 @@ public enum Technique
 	[HodokuDifficultyRating(360, HodokuDifficultyLevel.Unfair)]
 	[HodokuAliasedNames("Death Blossom")]
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	DeathBlossomCellType,
 
 	/// <summary>
 	/// Indicates death blossom house type.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	DeathBlossomHouseType,
 	#endregion
 
@@ -2342,12 +2408,14 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Symmetry)]
 	[Abbreviation("GSP")]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	GurthSymmetricalPlacement,
 
 	/// <summary>
 	/// Indicates extended Gurth's symmetrical placement.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Symmetry)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	ExtendedGurthSymmetricalPlacement,
 	#endregion
 
@@ -2360,6 +2428,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[Abbreviation("JE")]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	JuniorExocet,
 
 	/// <summary>
@@ -2367,24 +2436,28 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[Abbreviation("SE")]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SeniorExocet,
 
 	/// <summary>
 	/// Indicates complex senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	ComplexSeniorExocet,
 
 	/// <summary>
 	/// Indicates Siamese junior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseJuniorExocet,
 
 	/// <summary>
 	/// Indicates Siamese senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSeniorExocet,
 	#endregion
 
@@ -2396,6 +2469,7 @@ public enum Technique
 	/// Indicates domino loop.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.DominoLoop)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	DominoLoop,
 	#endregion
 
@@ -2408,6 +2482,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.MultisectorLockedSets)]
 	[Abbreviation("MSLS")]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	MultisectorLockedSets,
 	#endregion
 
@@ -2420,6 +2495,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.PatternOverlay)]
 	[Abbreviation("POM")]
+	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	PatternOverlay,
 	#endregion
 
@@ -2433,6 +2509,7 @@ public enum Technique
 	[HodokuTechniquePrefix("1201")]
 	[HodokuDifficultyRating(10000, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.Templating)]
+	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	TemplateSet,
 
 	/// <summary>
@@ -2441,6 +2518,7 @@ public enum Technique
 	[HodokuTechniquePrefix("1202")]
 	[HodokuDifficultyRating(10000, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.Templating)]
+	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	TemplateDelete,
 	#endregion
 
@@ -2452,6 +2530,7 @@ public enum Technique
 	/// Indicates bowman's bingo.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BowmanBingo)]
+	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	BowmanBingo,
 	#endregion
 
@@ -2466,6 +2545,7 @@ public enum Technique
 	[SudokuExplainerAliasedNames("Try & Error")]
 	[TechniqueGroup(TechniqueGroup.BruteForce)]
 	[Abbreviation("BF")]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	BruteForce,
 	#endregion
 }

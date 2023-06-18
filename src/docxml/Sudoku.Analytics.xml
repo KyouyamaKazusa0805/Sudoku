@@ -2315,6 +2315,11 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueExtensions.TypeOfTechnique">
+            <summary>
+            Indicates the bound technique type instance.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetName(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
@@ -2371,6 +2376,60 @@
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the specified <see cref="T:Sudoku.Analytics.Categorization.Technique"/> does not belong to any <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>.
             </exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetFeature(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get features for the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>All found features for the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueFeature">
+            <summary>
+            Defines a feature flag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeature.None">
+            <summary>
+            Indicates no feature.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeature.HardToBeGenerated">
+            <summary>
+            Indicates it is hard to create a puzzle with this technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeature.WillBeReplacedByOtherTechnique">
+            <summary>
+            Indicates the current technique won't be appeared because it will be replaced with other techniques.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeature.OnlyExistInTheory">
+            <summary>
+            Indicates the current technique can only exist in theory. In practice, this technique won't be appeared.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeature.NotImplemented">
+            <summary>
+            Indicates the current technique hasn't implemented by author.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute">
+            <summary>
+            Represents a type that is used by a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> type, indicating the runtime feature to be described.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute.#ctor(Sudoku.Analytics.Categorization.TechniqueFeature)">
+            <summary>
+            Represents a type that is used by a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> type, indicating the runtime feature to be described.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute.Features">
+            <summary>
+            The generated property declaration for parameter <c>features</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueGroup">
             <summary>

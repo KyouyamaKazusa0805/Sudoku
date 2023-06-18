@@ -19,7 +19,9 @@ public sealed partial class TechniqueSelector : ComboBox
 		DefaultStyleKey = typeof(ComboBox);
 		ItemsSource =
 			from field in Enum.GetValues<Technique>()
-			select new TechniqueBindableSource(field, field == 0 ? GetString("TechniqueSelector_NoTechniqueSelected") : field.GetName());
+			let displayName = field == 0 ? GetString("TechniqueSelector_NoTechniqueSelected") : field.GetName()
+			let feature = field.GetFeature()
+			select new TechniqueBindableSource(field, displayName, feature);
 		DisplayMemberPath = nameof(TechniqueBindableSource.DisplayName);
 		SelectedValuePath = nameof(TechniqueBindableSource.Technique);
 	}

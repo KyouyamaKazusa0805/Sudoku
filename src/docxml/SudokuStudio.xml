@@ -273,19 +273,24 @@
             </summary>
             <param name="Technique">The technique enumeration field.</param>
             <param name="DisplayName">The display name.</param>
+            <param name="Feature">Indicates the feature for the current technique.</param>
         </member>
-        <member name="M:SudokuStudio.BindableSource.TechniqueBindableSource.#ctor(Sudoku.Analytics.Categorization.Technique,System.String)">
+        <member name="M:SudokuStudio.BindableSource.TechniqueBindableSource.#ctor(Sudoku.Analytics.Categorization.Technique,System.String,Sudoku.Analytics.Categorization.TechniqueFeature)">
             <summary>
             Indicates the techique bindable source.
             </summary>
             <param name="Technique">The technique enumeration field.</param>
             <param name="DisplayName">The display name.</param>
+            <param name="Feature">Indicates the feature for the current technique.</param>
         </member>
         <member name="P:SudokuStudio.BindableSource.TechniqueBindableSource.Technique">
             <summary>The technique enumeration field.</summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.TechniqueBindableSource.DisplayName">
             <summary>The display name.</summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueBindableSource.Feature">
+            <summary>Indicates the feature for the current technique.</summary>
         </member>
         <member name="T:SudokuStudio.BindableSource.TechniqueGroupBindableSource">
             <summary>

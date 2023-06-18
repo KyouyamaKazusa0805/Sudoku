@@ -5,4 +5,5 @@ namespace SudokuStudio.BindableSource;
 /// </summary>
 /// <param name="Technique">The technique enumeration field.</param>
 /// <param name="DisplayName">The display name.</param>
-public sealed record TechniqueBindableSource(Technique Technique, string DisplayName) : IBindableSource;
+/// <param name="Feature">Indicates the feature for the current technique.</param>
+public sealed record TechniqueBindableSource(Technique Technique, string DisplayName, TechniqueFeature Feature) : IBindableSource;

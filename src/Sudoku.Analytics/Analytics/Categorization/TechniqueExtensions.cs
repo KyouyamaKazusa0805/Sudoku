@@ -7,6 +7,12 @@ namespace Sudoku.Analytics.Categorization;
 public static class TechniqueExtensions
 {
 	/// <summary>
+	/// Indicates the bound technique type instance.
+	/// </summary>
+	private static readonly Type TypeOfTechnique = typeof(Technique);
+
+
+	/// <summary>
 	/// Try to get the name of the current <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
@@ -49,7 +55,7 @@ public static class TechniqueExtensions
 	/// <seealso cref="TechniqueGroup"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetAbbreviation(this Technique @this)
-		=> typeof(Technique).GetField(@this.ToString())!.GetCustomAttribute<AbbreviationAttribute>()?.Abbreviation
+		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<AbbreviationAttribute>()?.Abbreviation
 		?? GetString($"TechniqueAbbr_{@this}")
 		?? @this.GetGroup().GetAbbreviation();
 
@@ -75,6 +81,15 @@ public static class TechniqueExtensions
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueGroup GetGroup(this Technique @this)
-		=> typeof(Technique).GetField(@this.ToString())?.GetCustomAttribute<TechniqueGroupAttribute>()?.Group
+		=> TypeOfTechnique.GetField(@this.ToString())?.GetCustomAttribute<TechniqueGroupAttribute>()?.Group
 		?? throw new ArgumentOutOfRangeException(nameof(@this));
+
+	/// <summary>
+	/// Try to get features for the current <see cref="Technique"/>.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>All found features for the current <see cref="Technique"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TechniqueFeature GetFeature(this Technique @this)
+		=> TypeOfTechnique.GetField(@this.ToString())?.GetCustomAttribute<TechniqueFeatureAttribute>()?.Features ?? 0;
 }
