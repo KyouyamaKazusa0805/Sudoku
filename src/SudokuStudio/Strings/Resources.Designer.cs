@@ -3381,6 +3381,42 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This technique cannot be generated or is extremely hard to be generated..
+        /// </summary>
+        internal static string TechniqueFeature_HardToBeGenerated {
+            get {
+                return ResourceManager.GetString("TechniqueFeature_HardToBeGenerated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This technique hasn&apos;t be implemented by author. Please wait for implementation with patience..
+        /// </summary>
+        internal static string TechniqueFeature_NotImplemented {
+            get {
+                return ResourceManager.GetString("TechniqueFeature_NotImplemented", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This technique can only exist in theory. In practice you may not see them..
+        /// </summary>
+        internal static string TechniqueFeature_OnlyExistInTheory {
+            get {
+                return ResourceManager.GetString("TechniqueFeature_OnlyExistInTheory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This technique will be replaced with other techniques..
+        /// </summary>
+        internal static string TechniqueFeature_WillBeReplacedByOtherTechnique {
+            get {
+                return ResourceManager.GetString("TechniqueFeature_WillBeReplacedByOtherTechnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Intersections.
         /// </summary>
         internal static string TechniqueGalleryPage_Intersections {
@@ -3476,6 +3512,15 @@ namespace SudokuStudio.Strings {
         internal static string TechniqueSelector_NoTechniqueSelected {
             get {
                 return ResourceManager.GetString("TechniqueSelector_NoTechniqueSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not recommend.
+        /// </summary>
+        internal static string TechniqueSelector_NotRecommend {
+            get {
+                return ResourceManager.GetString("TechniqueSelector_NotRecommend", resourceCulture);
             }
         }
     }

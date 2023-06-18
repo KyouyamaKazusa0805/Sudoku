@@ -1175,6 +1175,18 @@
   <data name="SymmetricType_YAxis" xml:space="preserve">
     <value>纵轴对称</value>
   </data>
+  <data name="TechniqueFeature_HardToBeGenerated" xml:space="preserve">
+    <value>该技巧不能通过生成功能出出来。</value>
+  </data>
+  <data name="TechniqueFeature_NotImplemented" xml:space="preserve">
+    <value>该技巧尚未在代码里实现。请耐心等待。</value>
+  </data>
+  <data name="TechniqueFeature_OnlyExistInTheory" xml:space="preserve">
+    <value>该技巧只可能出现在理论层面里，在做题期间是遇不到的。</value>
+  </data>
+  <data name="TechniqueFeature_WillBeReplacedByOtherTechnique" xml:space="preserve">
+    <value>该技巧会被其他技巧所代替。</value>
+  </data>
   <data name="TechniqueGalleryPage_Intersections" xml:space="preserve">
     <value>区块</value>
   </data>
@@ -1207,6 +1219,9 @@
   </data>
   <data name="TechniqueSelector_NoTechniqueSelected" xml:space="preserve">
     <value>未选择技巧</value>
+  </data>
+  <data name="TechniqueSelector_NotRecommend" xml:space="preserve">
+    <value>不推荐选择</value>
   </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>容易</value>

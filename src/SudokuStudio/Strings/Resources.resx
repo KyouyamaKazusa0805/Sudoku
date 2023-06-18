@@ -1172,6 +1172,18 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="SymmetricType_YAxis" xml:space="preserve">
     <value>Y axis</value>
   </data>
+  <data name="TechniqueFeature_HardToBeGenerated" xml:space="preserve">
+    <value>This technique cannot be generated or is extremely hard to be generated.</value>
+  </data>
+  <data name="TechniqueFeature_NotImplemented" xml:space="preserve">
+    <value>This technique hasn't be implemented by author. Please wait for implementation with patience.</value>
+  </data>
+  <data name="TechniqueFeature_OnlyExistInTheory" xml:space="preserve">
+    <value>This technique can only exist in theory. In practice you may not see them.</value>
+  </data>
+  <data name="TechniqueFeature_WillBeReplacedByOtherTechnique" xml:space="preserve">
+    <value>This technique will be replaced with other techniques.</value>
+  </data>
   <data name="TechniqueGalleryPage_Intersections" xml:space="preserve">
     <value>Intersections</value>
   </data>
@@ -1204,6 +1216,9 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="TechniqueSelector_NoTechniqueSelected" xml:space="preserve">
     <value>No technique selected</value>
+  </data>
+  <data name="TechniqueSelector_NotRecommend" xml:space="preserve">
+    <value>Not recommend</value>
   </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>Easy</value>

@@ -1,0 +1,28 @@
+namespace SudokuStudio.Interaction.Conversions;
+
+/// <summary>
+/// Provides with conversion methods used by XAML designer, about technique.
+/// </summary>
+internal static class TechniqueConversion
+{
+	public static int GetDisplayNameColumnSpan(TechniqueFeature feature) => feature == TechniqueFeature.None ? 2 : 1;
+
+	public static string GetStringResourceViaFeature(TechniqueFeature feature)
+		=> feature != TechniqueFeature.None ? GetString("TechniqueSelector_NotRecommend") : string.Empty;
+
+	public static string? GetStringTooltipViaFeature(TechniqueFeature feature)
+		=> feature switch
+		{
+			TechniqueFeature.HardToBeGenerated => GetString("TechniqueFeature_HardToBeGenerated"),
+			TechniqueFeature.WillBeReplacedByOtherTechnique => GetString("TechniqueFeature_WillBeReplacedByOtherTechnique"),
+			TechniqueFeature.OnlyExistInTheory => GetString("TechniqueFeature_OnlyExistInTheory"),
+			TechniqueFeature.NotImplemented => GetString("TechniqueFeature_NotImplemented"),
+			_ => null
+		};
+
+	public static Visibility GetExtraDescriptionVisibility(TechniqueFeature feature)
+		=> feature == TechniqueFeature.None ? Visibility.Collapsed : Visibility.Visible;
+
+	public static Brush GetBrush(TechniqueFeature feature)
+		=> new SolidColorBrush(feature == TechniqueFeature.None ? Colors.Black : Colors.LightGray);
+}

@@ -316,12 +316,14 @@ public enum Technique
 	/// Indicates Siamese finned X-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedXWing,
 
 	/// <summary>
 	/// Indicates Siamese sashimi X-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiXWing,
 
 	/// <summary>
@@ -350,12 +352,14 @@ public enum Technique
 	/// Indicates Siamese finned franken X-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedFrankenXWing,
 
 	/// <summary>
 	/// Indicates Siamese sashimi franken X-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiFrankenXWing,
 
 	/// <summary>
@@ -384,12 +388,14 @@ public enum Technique
 	/// Indicates Siamese finned mutant X-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedMutantXWing,
 
 	/// <summary>
 	/// Indicates Siamese sashimi mutant X-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiMutantXWing,
 
 	/// <summary>
@@ -423,12 +429,14 @@ public enum Technique
 	/// Indicates Siamese finned swordfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedSwordfish,
 
 	/// <summary>
 	/// Indicates Siamese sashimi swordfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiSwordfish,
 
 	/// <summary>
@@ -457,11 +465,13 @@ public enum Technique
 	/// Indicates Siamese finned franken swordfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedFrankenSwordfish,
 
 	/// <summary>
 	/// Indicates Siamese sashimi franken swordfish.
 	/// </summary>
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiFrankenSwordfish,
 
 	/// <summary>
@@ -490,12 +500,14 @@ public enum Technique
 	/// Indicates Siamese finned mutant swordfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedMutantSwordfish,
 
 	/// <summary>
 	/// Indicates Siamese sashimi mutant swordfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiMutantSwordfish,
 
 	/// <summary>
@@ -529,12 +541,14 @@ public enum Technique
 	/// Indicates Siamese finned jellyfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedJellyfish,
 
 	/// <summary>
 	/// Indicates Siamese sashimi jellyfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiJellyfish,
 
 	/// <summary>
@@ -563,12 +577,14 @@ public enum Technique
 	/// Indicates Siamese finned franken jellyfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedFrankenJellyfish,
 
 	/// <summary>
 	/// Indicates Siamese sashimi franken jellyfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiFrankenJellyfish,
 
 	/// <summary>
@@ -597,12 +613,14 @@ public enum Technique
 	/// Indicates Siamese finned mutant jellyfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedMutantJellyfish,
 
 	/// <summary>
 	/// Indicates Siamese sashimi mutant jellyfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiMutantJellyfish,
 
 	/// <summary>
@@ -611,6 +629,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0303")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	Squirmbag,
 
 	/// <summary>
@@ -619,6 +638,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0313")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	FinnedSquirmbag,
 
 	/// <summary>
@@ -627,18 +647,21 @@ public enum Technique
 	[HodokuTechniquePrefix("0323")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	SashimiSquirmbag,
 
 	/// <summary>
 	/// Indicates Siamese finned squirmbag.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedSquirmbag,
 
 	/// <summary>
 	/// Indicates Siamese sashimi squirmbag.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiSquirmbag,
 
 	/// <summary>
@@ -667,12 +690,14 @@ public enum Technique
 	/// Indicates Siamese finned franken squirmbag.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedFrankenSquirmbag,
 
 	/// <summary>
 	/// Indicates Siamese sashimi franken squirmbag.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiFrankenSquirmbag,
 
 	/// <summary>
@@ -701,12 +726,14 @@ public enum Technique
 	/// Indicates Siamese finned mutant squirmbag.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedMutantSquirmbag,
 
 	/// <summary>
 	/// Indicates Siamese sashimi mutant squirmbag.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiMutantSquirmbag,
 
 	/// <summary>
@@ -715,6 +742,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0304")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	Whale,
 
 	/// <summary>
@@ -723,6 +751,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0314")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	FinnedWhale,
 
 	/// <summary>
@@ -731,18 +760,21 @@ public enum Technique
 	[HodokuTechniquePrefix("0324")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	SashimiWhale,
 
 	/// <summary>
 	/// Indicates Siamese finned whale.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedWhale,
 
 	/// <summary>
 	/// Indicates Siamese sashimi whale.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiWhale,
 
 	/// <summary>
@@ -771,12 +803,14 @@ public enum Technique
 	/// Indicates Siamese finned franken whale.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedFrankenWhale,
 
 	/// <summary>
 	/// Indicates Siamese sashimi franken whale.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiFrankenWhale,
 
 	/// <summary>
@@ -819,6 +853,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0305")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	Leviathan,
 
 	/// <summary>
@@ -827,6 +862,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0315")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	FinnedLeviathan,
 
 	/// <summary>
@@ -835,18 +871,21 @@ public enum Technique
 	[HodokuTechniquePrefix("0325")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	SashimiLeviathan,
 
 	/// <summary>
 	/// Indicates Siamese finned leviathan.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedLeviathan,
 
 	/// <summary>
 	/// Indicates Siamese sashimi leviathan.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiLeviathan,
 
 	/// <summary>
@@ -875,12 +914,14 @@ public enum Technique
 	/// Indicates Siamese finned franken leviathan.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedFrankenLeviathan,
 
 	/// <summary>
 	/// Indicates Siamese sashimi franken leviathan.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiFrankenLeviathan,
 
 	/// <summary>
@@ -909,12 +950,14 @@ public enum Technique
 	/// Indicates Siamese finned mutant leviathan.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseFinnedMutantLeviathan,
 
 	/// <summary>
 	/// Indicates Siamese sashimi mutant leviathan.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	SiameseSashimiMutantLeviathan,
 	#endregion
 

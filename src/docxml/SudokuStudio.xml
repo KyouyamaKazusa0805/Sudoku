@@ -271,26 +271,21 @@
             <summary>
             Indicates the techique bindable source.
             </summary>
-            <param name="Technique">The technique enumeration field.</param>
-            <param name="DisplayName">The display name.</param>
-            <param name="Feature">Indicates the feature for the current technique.</param>
-        </member>
-        <member name="M:SudokuStudio.BindableSource.TechniqueBindableSource.#ctor(Sudoku.Analytics.Categorization.Technique,System.String,Sudoku.Analytics.Categorization.TechniqueFeature)">
-            <summary>
-            Indicates the techique bindable source.
-            </summary>
-            <param name="Technique">The technique enumeration field.</param>
-            <param name="DisplayName">The display name.</param>
-            <param name="Feature">Indicates the feature for the current technique.</param>
         </member>
         <member name="P:SudokuStudio.BindableSource.TechniqueBindableSource.Technique">
-            <summary>The technique enumeration field.</summary>
+            <summary>
+            The technique enumeration field.
+            </summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.TechniqueBindableSource.DisplayName">
-            <summary>The display name.</summary>
+            <summary>
+            The display name.
+            </summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.TechniqueBindableSource.Feature">
-            <summary>Indicates the feature for the current technique.</summary>
+            <summary>
+            Indicates the feature for the current technique.
+            </summary>
         </member>
         <member name="T:SudokuStudio.BindableSource.TechniqueGroupBindableSource">
             <summary>
@@ -2216,6 +2211,11 @@ if (student is (name: var name, age: >= 18))
         <member name="T:SudokuStudio.Interaction.Conversions.SymbolIconConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about symbol icon used by side bar buttons.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.TechniqueConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about technique.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.UndoRedoButtonConversion">
@@ -5538,6 +5538,26 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Y axis.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueFeature_HardToBeGenerated">
+            <summary>
+              Looks up a localized string similar to This technique cannot be generated or is extremely hard to be generated..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueFeature_NotImplemented">
+            <summary>
+              Looks up a localized string similar to This technique hasn&apos;t be implemented by author. Please wait for implementation with patience..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueFeature_OnlyExistInTheory">
+            <summary>
+              Looks up a localized string similar to This technique can only exist in theory. In practice you may not see them..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueFeature_WillBeReplacedByOtherTechnique">
+            <summary>
+              Looks up a localized string similar to This technique will be replaced with other techniques..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.TechniqueGalleryPage_Intersections">
             <summary>
               Looks up a localized string similar to Intersections.
@@ -5591,6 +5611,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.TechniqueSelector_NoTechniqueSelected">
             <summary>
               Looks up a localized string similar to No technique selected.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelector_NotRecommend">
+            <summary>
+              Looks up a localized string similar to Not recommend.
             </summary>
         </member>
         <member name="T:SudokuStudio.Strings.StringsAccessor">
@@ -7430,7 +7455,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Views.Controls.TechniqueSelector">
             <summary>
-            Represents a technique selector instance.
+            Represents a technique selector control.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.TechniqueSelector.#ctor">
@@ -7438,9 +7463,38 @@ if (student is (name: var name, age: >= 18))
             Initializes a <see cref="T:SudokuStudio.Views.Controls.TechniqueSelector"/> instance.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueSelector.InitializeComponents">
+        <member name="P:SudokuStudio.Views.Controls.TechniqueSelector.ItemsSource">
             <summary>
-            Initializes member data.
+            Indicates the base items source.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.TechniqueSelector.SelectionChanged">
+            <inheritdoc cref="E:Microsoft.UI.Xaml.Controls.Primitives.Selector.SelectionChanged"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueSelector.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueSelector.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueSelector.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueSelector.SelectedIndexProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueSelector.SelectedIndex"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueSelector.SelectedIndex"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueSelector.SelectedIndex">
+            <summary>
+            Indicates the selected index.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.AboutPage">

@@ -70,9 +70,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		//
 		// PuzzleTechniqueSelector
 		//
-		//PuzzleTechniqueSelector.SelectedValue = uiPref.SelectedTechnique; // This assignment is never successful :(
-		bool techniqueMatcher(TechniqueBindableSource e) => e.Technique == uiPref.SelectedTechnique;
-		PuzzleTechniqueSelector.SelectedIndex = Array.FindIndex((TechniqueBindableSource[])PuzzleTechniqueSelector.ItemsSource, techniqueMatcher);
+		PuzzleTechniqueSelector.SelectedIndex = Array.FindIndex(PuzzleTechniqueSelector.ItemsSource, e => e.Technique == uiPref.SelectedTechnique);
 	}
 
 
@@ -158,9 +156,9 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 	private void PuzzleTechniqueSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		if (sender is TechniqueSelector { SelectedValue: Technique value })
+		if (sender is TechniqueSelector { ItemsSource: TechniqueBindableSource[] source, SelectedIndex: var index and not -1 })
 		{
-			((App)Application.Current).Preference.UIPreferences.SelectedTechnique = value;
+			((App)Application.Current).Preference.UIPreferences.SelectedTechnique = source[index].Technique;
 		}
 	}
 }
