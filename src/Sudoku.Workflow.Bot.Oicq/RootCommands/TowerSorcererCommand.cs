@@ -65,6 +65,7 @@ internal sealed class TowerSorcererCommand : Command
 				ISudokuPainter.Create(1000)
 					.WithGrid(grid)
 					.WithRenderingCandidates(count >= 80)
+					.WithFontScale(1M, .4M)
 					.WithFooterText($"魔塔 #{count + 1}")
 			);
 
