@@ -9,7 +9,7 @@ internal static partial class Constants
 	/// <summary>
 	/// 表示机器人的 QQ 账号。<b>如果你要使用机器人，请修改喂你自己的机器人的账号。</b>
 	/// </summary>
-	public const string BotNumber = "979329690";
+	public const string BotNumber = "2222097152";
 
 	/// <summary>
 	/// 表示一个全局最高权限的 QQ 账号。该账号可以在任何可以使用的地方使用机器人，避免权限不够导致触发不成功的情况。
