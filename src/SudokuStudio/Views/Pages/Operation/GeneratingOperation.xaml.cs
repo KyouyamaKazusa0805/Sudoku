@@ -81,12 +81,13 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		BasePage.ClearAnalyzeTabsData();
 
 		var processingText = GetString("AnalyzePage_GeneratorIsProcessing")!;
+		var analyzer = ((App)Application.Current).Analyzer;
 		var preferences = ((App)Application.Current).Preference.UIPreferences;
 		var difficultyLevel = preferences.GeneratorDifficultyLevel;
 		var symmetry = preferences.GeneratorSymmetricPattern;
 		var minimal = preferences.GeneratedPuzzleShouldBeMinimal;
 		var technique = preferences.SelectedTechnique;
-		var grid = await Task.Run(() => gridCreator(new(difficultyLevel, symmetry, minimal, technique)));
+		var grid = await Task.Run(() => gridCreator(analyzer, new(difficultyLevel, symmetry, minimal, technique)));
 
 		BasePage.IsGeneratorLaunched = false;
 
@@ -98,13 +99,13 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		BasePage.SudokuPane.Puzzle = grid;
 
 
-		Grid gridCreator(GeneratingDetails details)
+		Grid gridCreator(Analyzer analyzer, GeneratingDetails details)
 		{
 			var (progress, (difficultyLevel, symmetry, minimal, technique)) = (new SelfReportingProgress<GeneratorProgress>(reportingAction), details);
 			for (var count = 0; ; count++)
 			{
 				if (HodokuPuzzleGenerator.Generate(symmetry) is var grid
-					&& ((App)Application.Current).Analyzer.Analyze(grid) is { DifficultyLevel: var puzzleDifficultyLevel } analyzerResult
+					&& analyzer.Analyze(grid) is { IsSolved: true, DifficultyLevel: var puzzleDifficultyLevel } analyzerResult
 					&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
 					&& (minimal && grid.IsMinimal || !minimal)
 					&& (technique != 0 && analyzerResult.HasTechnique(technique) || technique == 0))
