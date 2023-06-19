@@ -91,31 +91,38 @@ public ref struct HodokuPuzzleGenerator
 	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
 	private Grid Generate(SymmetricType symmetricType, scoped in CellMap pattern, CancellationToken cancellationToken = default)
 	{
-		while (!GenerateForFullGrid()) ;
-
-		if (pattern)
+		try
 		{
-			var ok = (bool?)false;
-			for (var i = 0; i < MaxTries; i++)
+			while (!GenerateForFullGrid()) ;
+
+			if (pattern)
 			{
-				if ((ok = GenerateInitPos(pattern, cancellationToken)) is not false)
+				var ok = (bool?)false;
+				for (var i = 0; i < MaxTries; i++)
 				{
-					break;
+					if ((ok = GenerateInitPos(pattern, cancellationToken)) is not false)
+					{
+						break;
+					}
+				}
+				if (ok is not true)
+				{
+					return Grid.Undefined;
 				}
 			}
-			if (ok is not true)
+			else
 			{
-				return Grid.Undefined;
+				GenerateInitPos(symmetricType, cancellationToken);
 			}
-		}
-		else
-		{
-			GenerateInitPos(symmetricType, cancellationToken);
-		}
 
-		var result = _newValidSudoku;
-		result.Fix();
-		return result;
+			var result = _newValidSudoku;
+			result.Fix();
+			return result;
+		}
+		catch (OperationCanceledException)
+		{
+			return Grid.Undefined;
+		}
 	}
 
 	/// <summary>

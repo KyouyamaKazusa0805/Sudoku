@@ -249,6 +249,11 @@
 							x:Name="AnalyzeStepSearcherNameLabel" x:FieldModifier="internal"
 							HorizontalAlignment="Center" FontWeight="Bold" FontSize="24"
 							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched,IsGeneratorLaunched),Mode=OneWay}" />
+						<Button
+							x:Name="CancelOperationButton" x:FieldModifier="internal" HorizontalAlignment="Center"
+							FontWeight="Bold" FontSize="16" Content="{m:R Key=AnalyzePage_CancelAnalyzing}"
+							Visibility="{x:Bind cvt:AnalyzeConversion.GetProgressRingVisibility(IsAnalyzerLaunched,IsGathererLaunched,IsGeneratorLaunched),Mode=OneWay}"
+							Click="CancelOperationButton_Click" />
 					</StackPanel>
 					<TabView
 						x:Name="AnalyzeTabs" HorizontalAlignment="Stretch" Height="600"

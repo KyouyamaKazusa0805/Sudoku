@@ -216,6 +216,9 @@
   <data name="AnalyzePage_Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="AnalyzePage_CancelAnalyzing" xml:space="preserve">
+    <value>取消</value>
+  </data>
   <data name="AnalyzePage_CannotOpenFile_FileIsEmpty" xml:space="preserve">
     <value>文件为空。</value>
   </data>

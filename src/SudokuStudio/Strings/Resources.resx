@@ -216,6 +216,9 @@
   <data name="AnalyzePage_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="AnalyzePage_CancelAnalyzing" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="AnalyzePage_CannotOpenFile_FileIsEmpty" xml:space="preserve">
     <value>The currently chosen file is empty.</value>
   </data>

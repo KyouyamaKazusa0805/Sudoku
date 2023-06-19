@@ -5212,8 +5212,19 @@ result ^= expression;
             <param name="puzzle">The puzzle grid.</param>
             <param name="progress">The progress instance that is used for reporting the status.</param>
             <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
-            <returns>The result.</returns>
-            <exception cref="T:System.OperationCanceledException">Throws when the operation is canceled.</exception>
+            <returns>
+            The result. If cancelled, the return value will be <see langword="null"/>; otherwise, a real list even though it may be empty.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepCollector.InternalSearch(System.Nullable{System.Boolean},System.IProgress{Sudoku.Analytics.AnalyzerProgress},Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            The core searching method.
+            </summary>
+            <param name="sukaku">Indicates whether the puzzle is a sukaku.</param>
+            <param name="progress">The progress reporter instance.</param>
+            <param name="puzzle">The puzzle.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>The target result collection.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepCollectorFactory">
             <summary>

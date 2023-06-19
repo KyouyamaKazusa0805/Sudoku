@@ -52,15 +52,49 @@ public sealed class StepCollector : IAnalyzerOrCollector
 	/// <param name="puzzle">The puzzle grid.</param>
 	/// <param name="progress">The progress instance that is used for reporting the status.</param>
 	/// <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
-	/// <returns>The result.</returns>
-	/// <exception cref="OperationCanceledException">Throws when the operation is canceled.</exception>
-	public IEnumerable<Step> Search(scoped in Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
+	/// <returns>
+	/// The result. If cancelled, the return value will be <see langword="null"/>; otherwise, a real list even though it may be empty.
+	/// </returns>
+	public IEnumerable<Step>? Search(
+		scoped in Grid puzzle,
+		IProgress<AnalyzerProgress>? progress = null,
+		CancellationToken cancellationToken = default
+	)
 	{
 		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out var sukaku))
 		{
 			return Array.Empty<Step>();
 		}
 
+		try
+		{
+			return InternalSearch(sukaku, progress, puzzle, cancellationToken);
+		}
+		catch (OperationCanceledException ex) when (ex.CancellationToken == cancellationToken)
+		{
+			return null;
+		}
+		catch
+		{
+			throw;
+		}
+	}
+
+	/// <summary>
+	/// The core searching method.
+	/// </summary>
+	/// <param name="sukaku">Indicates whether the puzzle is a sukaku.</param>
+	/// <param name="progress">The progress reporter instance.</param>
+	/// <param name="puzzle">The puzzle.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+	/// <returns>The target result collection.</returns>
+	private List<Step> InternalSearch(
+		[DisallowNull] bool? sukaku,
+		IProgress<AnalyzerProgress>? progress,
+		scoped in Grid puzzle,
+		CancellationToken cancellationToken
+	)
+	{
 		const int defaultLevelValue = int.MaxValue;
 
 		var possibleStepSearchers = ResultStepSearchers;

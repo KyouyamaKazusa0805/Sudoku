@@ -197,7 +197,7 @@ internal sealed class AnalyzeCommand : Command
 			}
 			case Operations.SingleStep:
 			{
-				switch (PuzzleStepCollector.Search(grid).ToArray())
+				switch (PuzzleStepCollector.Search(grid)?.ToArray() ?? Array.Empty<Step>())
 				{
 					case []:
 					{

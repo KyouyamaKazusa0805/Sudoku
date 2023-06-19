@@ -39,7 +39,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 
 		Conclusion[] getBackdoors()
 		{
-			lock (StepSearchingOrGatheringSyncRoot)
+			lock (AnalyzingRelatedSyncRoot)
 			{
 				return BackdoorSearcher.GetBackdoors(puzzle);
 			}
@@ -74,7 +74,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 
 		Candidate[] getTrueCandidates()
 		{
-			lock (StepSearchingOrGatheringSyncRoot)
+			lock (AnalyzingRelatedSyncRoot)
 			{
 				return TrueCandidatesSearcher.GetAllTrueCandidates(puzzle);
 			}

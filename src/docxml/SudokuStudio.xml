@@ -3307,7 +3307,7 @@ if (student is (name: var name, age: >= 18))
             Represents a list of constant or <see langword="static readonly"/> fields used in the whole project.
             </summary>
         </member>
-        <member name="F:SudokuStudio.ProjectWideConstants.StepSearchingOrGatheringSyncRoot">
+        <member name="F:SudokuStudio.ProjectWideConstants.AnalyzingRelatedSyncRoot">
             <summary>
             Indicates the instance that is used for synchronization for asynchronized environment,
             used for the operations that is analyzing a puzzle, or gathering steps.
@@ -3957,6 +3957,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_Cancel">
+            <summary>
+              Looks up a localized string similar to Cancel.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_CancelAnalyzing">
             <summary>
               Looks up a localized string similar to Cancel.
             </summary>
@@ -7551,6 +7556,11 @@ if (student is (name: var name, age: >= 18))
             For example, constructing a chain, we should click twice, for the head and tail of the chain.
             If we click at the second time, this field will be set the candidate having clicked at the first time.
             </para>
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._ctsForAnalyzingRelatedOperations">
+            <summary>
+            Indicates the cancellation token source used by analyzing-related operations.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._localView">

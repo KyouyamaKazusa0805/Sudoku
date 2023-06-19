@@ -529,6 +529,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string AnalyzePage_CancelAnalyzing {
+            get {
+                return ResourceManager.GetString("AnalyzePage_CancelAnalyzing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The currently chosen file is empty..
         /// </summary>
         internal static string AnalyzePage_CannotOpenFile_FileIsEmpty {

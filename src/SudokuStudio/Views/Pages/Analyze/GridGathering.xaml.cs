@@ -95,44 +95,57 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		TechniqueGroupView.ClearViewSource();
 
 		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
-
+		using var cts = new CancellationTokenSource();
 		var collector = ((App)Application.Current)
 			.StepCollector
 			.WithMaxSteps(((App)Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered)
 			.WithSameLevelConfigruation(((App)Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps)
 			.WithStepSearchers(((App)Application.Current).GetStepSearchers())
 			.WithRuntimeIdentifierSetters(BasePage.SudokuPane);
+		BasePage._ctsForAnalyzingRelatedOperations = cts;
 
-		var result = await Task.Run(resultCreatorWithLock);
-
-		_currentFountSteps = result;
-		TechniqueGroupView.TechniqueGroups.Source = GetTechniqueGroups(result, grid);
-		GatherButton.IsEnabled = true;
-		BasePage.IsGathererLaunched = false;
-
-
-		IEnumerable<Step> resultCreatorWithLock()
+		try
 		{
-			var progress = new Progress<AnalyzerProgress>(progressReporter);
-			lock (StepSearchingOrGatheringSyncRoot)
+			switch (await Task.Run(() =>
 			{
-				return collector.Search(grid, progress);
-			}
-
-
-			void progressReporter(AnalyzerProgress progress)
-			{
-				DispatcherQueue.TryEnqueue(callback);
-
-
-				void callback()
+				var progress = new Progress<AnalyzerProgress>(progressReporter);
+				lock (AnalyzingRelatedSyncRoot)
 				{
-					var (stepSearcherName, percent) = progress;
-					BasePage.ProgressPercent = percent * 100;
-					BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
-					BasePage.AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
+					return collector.Search(grid, progress, cts.Token);
+				}
+
+
+				void progressReporter(AnalyzerProgress progress)
+				{
+					DispatcherQueue.TryEnqueue(callback);
+
+
+					void callback()
+					{
+						var (stepSearcherName, percent) = progress;
+						BasePage.ProgressPercent = percent * 100;
+						BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
+						BasePage.AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
+					}
+				}
+			}))
+			{
+				case { } result:
+				{
+					_currentFountSteps = result;
+					TechniqueGroupView.TechniqueGroups.Source = GetTechniqueGroups(result, grid);
+					break;
 				}
 			}
+		}
+		catch (TaskCanceledException)
+		{
+		}
+		finally
+		{
+			BasePage._ctsForAnalyzingRelatedOperations = null;
+			GatherButton.IsEnabled = true;
+			BasePage.IsGathererLaunched = false;
 		}
 	}
 }

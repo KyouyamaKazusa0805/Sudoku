@@ -32,6 +32,11 @@ public sealed partial class AnalyzePage : Page
 	internal Candidate? _previousSelectedCandidate;
 
 	/// <summary>
+	/// Indicates the cancellation token source used by analyzing-related operations.
+	/// </summary>
+	internal CancellationTokenSource? _ctsForAnalyzingRelatedOperations;
+
+	/// <summary>
 	/// Defines a local view.
 	/// </summary>
 	internal ViewUnitBindableSource? _localView = new() { Conclusions = Array.Empty<Conclusion>(), View = View.Empty };
@@ -1067,92 +1072,95 @@ public sealed partial class AnalyzePage : Page
 		IsAnalyzerLaunched = true;
 
 		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
-
 		var disallowHighTimeComplexity = ((App)Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms;
 		var disallowSpaceTimeComplexity = ((App)Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms;
-
+		using var cts = new CancellationTokenSource();
 		var analyzer = ((App)Application.Current)
 			.Analyzer
 			.WithStepSearchers(((App)Application.Current).GetStepSearchers())
 			.WithRuntimeIdentifierSetters(SudokuPane);
+		_ctsForAnalyzingRelatedOperations = cts;
 
-		var analyzerResult = await Task.Run(resultCreator);
-
-		AnalyzeButton.IsEnabled = true;
-		IsAnalyzerLaunched = false;
-
-		switch (analyzerResult)
+		try
 		{
-			case { IsSolved: true }:
+			switch (await Task.Run(() =>
 			{
-				UpdateAnalysisResult(analyzerResult);
-				AnalysisResultCache = analyzerResult;
-
-				break;
-			}
-			case
-			{
-				WrongStep: { Views: var views, Conclusions: var conclusions } wrongStep,
-				FailedReason: AnalyzerFailedReason.WrongStep,
-				UnhandledException: WrongStepException { CurrentInvalidGrid: var invalidGrid }
-			}:
-			{
-				await new ContentDialog
+				var progress = new Progress<AnalyzerProgress>(progressReporter);
+				lock (AnalyzingRelatedSyncRoot)
 				{
-					XamlRoot = XamlRoot,
-					Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
-					Title = GetString("AnalyzePage_ErrorStepEncounteredTitle"),
-					CloseButtonText = GetString("AnalyzePage_ErrorStepDialogCloseButtonText"),
-					DefaultButton = ContentDialogButton.Close,
-					Content = new ErrorStepDialogContent
+					return analyzer.Analyze(puzzle, progress, cts.Token);
+				}
+
+
+				void progressReporter(AnalyzerProgress progress)
+				{
+					DispatcherQueue.TryEnqueue(callback);
+
+
+					void callback()
 					{
-						ErrorStepGrid = invalidGrid,
-						ErrorStepText = string.Format(GetString("AnalyzePage_ErrorStepDescription"), wrongStep),
-						ViewUnit = new() { View = views?[0] ?? View.Empty, Conclusions = conclusions }
+						var (stepSearcherName, percent) = progress;
+						ProgressPercent = progress.Percent * 100;
+						AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
+						AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
 					}
-				}.ShowAsync();
-
-				break;
-			}
-			case { FailedReason: AnalyzerFailedReason.ExceptionThrown, UnhandledException: { } ex }:
+				}
+			}))
 			{
-				await new ContentDialog
+				case { IsSolved: true } analyzerResult:
 				{
-					XamlRoot = XamlRoot,
-					Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
-					Title = GetString("AnalyzePage_ExceptionThrownTitle"),
-					CloseButtonText = GetString("AnalyzePage_ErrorStepDialogCloseButtonText"),
-					DefaultButton = ContentDialogButton.Close,
-					Content = new ExceptionThrownOnAnalyzingContent { ThrownException = ex }
-				}.ShowAsync();
-
-				break;
-			}
-		}
-
-
-		AnalyzerResult resultCreator()
-		{
-			var progress = new Progress<AnalyzerProgress>(progressReporter);
-			lock (StepSearchingOrGatheringSyncRoot)
-			{
-				return analyzer.Analyze(puzzle, progress);
-			}
-
-
-			void progressReporter(AnalyzerProgress progress)
-			{
-				DispatcherQueue.TryEnqueue(callback);
-
-
-				void callback()
+					UpdateAnalysisResult(analyzerResult);
+					AnalysisResultCache = analyzerResult;
+					break;
+				}
+				case
 				{
-					var (stepSearcherName, percent) = progress;
-					ProgressPercent = progress.Percent * 100;
-					AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
-					AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
+					WrongStep: { Views: var views, Conclusions: var conclusions } wrongStep,
+					FailedReason: AnalyzerFailedReason.WrongStep,
+					UnhandledException: WrongStepException { CurrentInvalidGrid: var invalidGrid }
+				}:
+				{
+					await new ContentDialog
+					{
+						XamlRoot = XamlRoot,
+						Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
+						Title = GetString("AnalyzePage_ErrorStepEncounteredTitle"),
+						CloseButtonText = GetString("AnalyzePage_ErrorStepDialogCloseButtonText"),
+						DefaultButton = ContentDialogButton.Close,
+						Content = new ErrorStepDialogContent
+						{
+							ErrorStepGrid = invalidGrid,
+							ErrorStepText = string.Format(GetString("AnalyzePage_ErrorStepDescription"), wrongStep),
+							ViewUnit = new() { View = views?[0] ?? View.Empty, Conclusions = conclusions }
+						}
+					}.ShowAsync();
+
+					break;
+				}
+				case { FailedReason: AnalyzerFailedReason.ExceptionThrown, UnhandledException: { } ex }:
+				{
+					await new ContentDialog
+					{
+						XamlRoot = XamlRoot,
+						Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
+						Title = GetString("AnalyzePage_ExceptionThrownTitle"),
+						CloseButtonText = GetString("AnalyzePage_ErrorStepDialogCloseButtonText"),
+						DefaultButton = ContentDialogButton.Close,
+						Content = new ExceptionThrownOnAnalyzingContent { ThrownException = ex }
+					}.ShowAsync();
+
+					break;
 				}
 			}
+		}
+		catch (TaskCanceledException)
+		{
+		}
+		finally
+		{
+			_ctsForAnalyzingRelatedOperations = null;
+			AnalyzeButton.IsEnabled = true;
+			IsAnalyzerLaunched = false;
 		}
 	}
 
@@ -1254,4 +1262,6 @@ public sealed partial class AnalyzePage : Page
 
 		Clipboard.SetContent(dataPackage);
 	}
+
+	private void CancelOperationButton_Click(object sender, RoutedEventArgs e) => _ctsForAnalyzingRelatedOperations?.Cancel();
 }

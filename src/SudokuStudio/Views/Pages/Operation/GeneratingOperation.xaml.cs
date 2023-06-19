@@ -77,7 +77,6 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	private async void NewPuzzleButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		BasePage.IsGeneratorLaunched = true;
-
 		BasePage.ClearAnalyzeTabsData();
 
 		var processingText = GetString("AnalyzePage_GeneratorIsProcessing")!;
@@ -88,52 +87,88 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var minimal = preferences.GeneratedPuzzleShouldBeMinimal;
 		var pearl = preferences.GeneratedPuzzleShouldBePearl;
 		var technique = preferences.SelectedTechnique;
-		var grid = await Task.Run(() => gridCreator(analyzer, new(difficultyLevel, symmetry, minimal, pearl, technique)));
+		using var cts = new CancellationTokenSource();
+		BasePage._ctsForAnalyzingRelatedOperations = cts;
 
-		BasePage.IsGeneratorLaunched = false;
-
-		if (((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
+		try
 		{
-			((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = grid });
-		}
+			var grid = await Task.Run(() => gridCreator(analyzer, new(difficultyLevel, symmetry, minimal, pearl, technique)));
+			if (grid.IsUndefined)
+			{
+				return;
+			}
 
-		BasePage.SudokuPane.Puzzle = grid;
+			if (((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
+			{
+				((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = grid });
+			}
+
+			BasePage.SudokuPane.Puzzle = grid;
+		}
+		catch (TaskCanceledException)
+		{
+		}
+		finally
+		{
+			BasePage._ctsForAnalyzingRelatedOperations = null;
+			BasePage.IsGeneratorLaunched = false;
+		}
 
 
 		Grid gridCreator(Analyzer analyzer, GeneratingDetails details)
 		{
-			for (
-				var (count, progress, (difficultyLevel, symmetry, minimal, pearl, technique)) = (
-					0,
-					new SelfReportingProgress<GeneratorProgress>(reportingAction),
-					details
-				); ; count++
-			)
+			try
 			{
-				if (HodokuPuzzleGenerator.Generate(symmetry) is var grid
-					&& analyzer.Analyze(grid) is { IsSolved: true, IsPearl: var isPearl, DifficultyLevel: var puzzleDifficultyLevel } analyzerResult
-					&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
-					&& (minimal && grid.IsMinimal || !minimal)
-					&& (pearl && isPearl is true || !pearl)
-					&& (technique != 0 && analyzerResult.HasTechnique(technique) || technique == 0))
+				return generatePuzzleCore(progress =>
 				{
-					return grid;
-				}
+					DispatcherQueue.TryEnqueue(progressCallback);
 
-				progress.Report(new(count));
+
+					void progressCallback()
+					{
+						var count = progress.Count;
+						BasePage.AnalyzeProgressLabel.Text = processingText;
+						BasePage.AnalyzeStepSearcherNameLabel.Text = count.ToString();
+					}
+				}, details, cts.Token, analyzer) ?? Grid.Undefined;
+			}
+			catch (TaskCanceledException)
+			{
+				return Grid.Undefined;
 			}
 		}
 
-		void reportingAction(GeneratorProgress progress)
+		static Grid? generatePuzzleCore(
+			Action<GeneratorProgress> reportingAction,
+			GeneratingDetails details,
+			CancellationToken cancellationToken,
+			Analyzer analyzer
+		)
 		{
-			DispatcherQueue.TryEnqueue(progressCallback);
-
-
-			void progressCallback()
+			try
 			{
-				var count = progress.Count;
-				BasePage.AnalyzeProgressLabel.Text = processingText;
-				BasePage.AnalyzeStepSearcherNameLabel.Text = count.ToString();
+				for (
+					var (count, progress, (difficultyLevel, symmetry, minimal, pearl, technique)) = (
+						0,
+						new SelfReportingProgress<GeneratorProgress>(reportingAction),
+						details
+					); ; count++, progress.Report(new(count)), cancellationToken.ThrowIfCancellationRequested()
+				)
+				{
+					if (HodokuPuzzleGenerator.Generate(symmetry, cancellationToken) is var grid
+						&& analyzer.Analyze(grid) is { IsSolved: true, IsPearl: var isPearl, DifficultyLevel: var puzzleDifficultyLevel } analyzerResult
+						&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
+						&& (minimal && grid.IsMinimal || !minimal)
+						&& (pearl && isPearl is true || !pearl)
+						&& (technique != 0 && analyzerResult.HasTechnique(technique) || technique == 0))
+					{
+						return grid;
+					}
+				}
+			}
+			catch (OperationCanceledException)
+			{
+				return null;
 			}
 		}
 	}
