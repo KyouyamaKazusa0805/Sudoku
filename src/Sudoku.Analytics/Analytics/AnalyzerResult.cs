@@ -11,6 +11,32 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 	public required bool IsSolved { get; init; }
 
 	/// <summary>
+	/// Indicates whether the puzzle is a pearl puzzle, which means the first step must be an indirect technique usage.
+	/// </summary>
+	/// <returns>
+	/// Returns a <see cref="bool"/>? value indicating the result. The values are:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Value</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>The puzzle has a unique solution, and the first step is a indirect technique usage indeed.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>The puzzle has a unique solution, but the first step is a single.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term>
+	/// <description>The puzzle has multiple solutions, or the puzzle has no valid solution.</description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	public bool? IsPearl => this switch { { IsSolved: true, Steps: [not SingleStep, ..] } => true, { IsSolved: true } => false, _ => null };
+
+	/// <summary>
 	/// Indicates the maximum difficulty of the puzzle.
 	/// </summary>
 	/// <remarks>

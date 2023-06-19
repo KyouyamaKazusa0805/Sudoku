@@ -66,9 +66,16 @@
 					Text="{m:R Key=AnalyzePage_GenerateForMinimalPuzzle}" VerticalAlignment="Center"
 					ToolTipService.ToolTip="{m:R Key=AnalyzePage_GenerateForMinimalPuzzleTooltip}" />
 				<ToggleSwitch
-					x:Name="GenerateForMinimalPuzzleToggleSwitch"
-					OnContent="{m:R Key=SettingsPage_OnContent}" OffContent="{m:R Key=SettingsPage_OffContent}"
+					x:Name="GenerateForMinimalPuzzleToggleSwitch" OnContent="{x:Null}" OffContent="{x:Null}" Width="40"
 					Toggled="GenerateForMinimalPuzzleToggleSwitch_Toggled" />
+			</StackPanel>
+		</AppBarElementContainer>
+		<AppBarElementContainer>
+			<StackPanel>
+				<TextBlock Text="{m:R Key=TechniqueSelector_ShouleBePearlPuzzle}" VerticalAlignment="Center" />
+				<ToggleSwitch
+					x:Name="GenerateForPearlPuzzleToggleSwitch" OnContent="{x:Null}" OffContent="{x:Null}" Width="40"
+					Toggled="GenerateForPearlPuzzleToggleSwitch_Toggled" />
 			</StackPanel>
 		</AppBarElementContainer>
 	</CommandBar>

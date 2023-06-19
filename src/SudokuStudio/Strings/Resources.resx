@@ -1220,6 +1220,9 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="TechniqueSelector_NotRecommend" xml:space="preserve">
     <value>Not recommend</value>
   </data>
+  <data name="TechniqueSelector_ShouleBePearlPuzzle" xml:space="preserve">
+    <value>Should be pearl puzzle: </value>
+  </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>Easy</value>
   </data>

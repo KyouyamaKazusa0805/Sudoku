@@ -1186,6 +1186,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBeMinimal"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBePearlProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBePearl"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBePearl"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScaleProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale"/>.
@@ -1507,6 +1513,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBeMinimal">
             <summary>
             Indicates whether the generated puzzles should be minimal.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBePearl">
+            <summary>
+            Indicates whether the generated puzzles should be pearl.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale">
@@ -5618,6 +5629,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Not recommend.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelector_ShouleBePearlPuzzle">
+            <summary>
+              Looks up a localized string similar to Should be pearl puzzle: .
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Strings.StringsAccessor">
             <summary>
             Defines an easy entry to get <see cref="T:System.String"/> resources.
@@ -8314,15 +8330,17 @@ if (student is (name: var name, age: >= 18))
             <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
             <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
             <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
+            <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
             <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingDetails.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Concepts.SymmetricType,System.Boolean,Sudoku.Analytics.Categorization.Technique)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingDetails.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Concepts.SymmetricType,System.Boolean,System.Boolean,Sudoku.Analytics.Categorization.Technique)">
             <summary>
             The encapsulated type to describe the details for generating puzzles.
             </summary>
             <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
             <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
             <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
+            <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
             <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.DifficultyLevel">
@@ -8333,6 +8351,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.ShouldBeMinimal">
             <summary>Indicates whether generated puzzles should be minimal.</summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.ShouldBePearl">
+            <summary>Indicates whether generated puzzles should be pearl.</summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.SelectedTechnique">
             <summary>Indicates the selected technique that you want it to be appeared in generated puzzles.</summary>

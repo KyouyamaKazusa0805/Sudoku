@@ -86,8 +86,9 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var difficultyLevel = preferences.GeneratorDifficultyLevel;
 		var symmetry = preferences.GeneratorSymmetricPattern;
 		var minimal = preferences.GeneratedPuzzleShouldBeMinimal;
+		var pearl = preferences.GeneratedPuzzleShouldBePearl;
 		var technique = preferences.SelectedTechnique;
-		var grid = await Task.Run(() => gridCreator(analyzer, new(difficultyLevel, symmetry, minimal, technique)));
+		var grid = await Task.Run(() => gridCreator(analyzer, new(difficultyLevel, symmetry, minimal, pearl, technique)));
 
 		BasePage.IsGeneratorLaunched = false;
 
@@ -101,13 +102,19 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		Grid gridCreator(Analyzer analyzer, GeneratingDetails details)
 		{
-			var (progress, (difficultyLevel, symmetry, minimal, technique)) = (new SelfReportingProgress<GeneratorProgress>(reportingAction), details);
-			for (var count = 0; ; count++)
+			for (
+				var (count, progress, (difficultyLevel, symmetry, minimal, pearl, technique)) = (
+					0,
+					new SelfReportingProgress<GeneratorProgress>(reportingAction),
+					details
+				); ; count++
+			)
 			{
 				if (HodokuPuzzleGenerator.Generate(symmetry) is var grid
-					&& analyzer.Analyze(grid) is { IsSolved: true, DifficultyLevel: var puzzleDifficultyLevel } analyzerResult
+					&& analyzer.Analyze(grid) is { IsSolved: true, IsPearl: var isPearl, DifficultyLevel: var puzzleDifficultyLevel } analyzerResult
 					&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
 					&& (minimal && grid.IsMinimal || !minimal)
+					&& (pearl && isPearl is true || !pearl)
 					&& (technique != 0 && analyzerResult.HasTechnique(technique) || technique == 0))
 				{
 					return grid;
@@ -155,6 +162,14 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		}
 	}
 
+	private void GenerateForPearlPuzzleToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+	{
+		if (sender is ToggleSwitch { IsOn: var value })
+		{
+			((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBePearl = value;
+		}
+	}
+
 	private void PuzzleTechniqueSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
 		if (sender is TechniqueSelector { ItemsSource: TechniqueBindableSource[] source, SelectedIndex: var index and not -1 })
@@ -181,10 +196,12 @@ file sealed class SelfReportingProgress<T>(Action<T> handler) : Progress<T>(hand
 /// <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
 /// <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
 /// <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
+/// <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
 /// <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
 file readonly record struct GeneratingDetails(
 	DifficultyLevel DifficultyLevel,
 	SymmetricType SymmetricPattern,
 	bool ShouldBeMinimal,
+	bool ShouldBePearl,
 	Technique SelectedTechnique
 );

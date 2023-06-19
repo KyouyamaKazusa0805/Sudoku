@@ -3523,5 +3523,14 @@ namespace SudokuStudio.Strings {
                 return ResourceManager.GetString("TechniqueSelector_NotRecommend", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Should be pearl puzzle: .
+        /// </summary>
+        internal static string TechniqueSelector_ShouleBePearlPuzzle {
+            get {
+                return ResourceManager.GetString("TechniqueSelector_ShouleBePearlPuzzle", resourceCulture);
+            }
+        }
     }
 }

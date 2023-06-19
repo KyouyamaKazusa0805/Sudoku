@@ -1223,6 +1223,9 @@
   <data name="TechniqueSelector_NotRecommend" xml:space="preserve">
     <value>不推荐选择</value>
   </data>
+  <data name="TechniqueSelector_ShouleBePearlPuzzle" xml:space="preserve">
+    <value>是否为珍珠题：</value>
+  </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>容易</value>
   </data>

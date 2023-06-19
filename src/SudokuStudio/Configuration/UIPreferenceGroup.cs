@@ -18,6 +18,7 @@ using M = CoordinateLabelDisplayMode;
 [DependencyProperty<bool>("EnableAnimationFeedback", DefaultValue = true, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EnableAnimationFeedback")]
 [DependencyProperty<bool>("TransparentBackground", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.TransparentBackground")]
 [DependencyProperty<bool>("GeneratedPuzzleShouldBeMinimal", DefaultValue = false, DocSummary = "Indicates whether the generated puzzles should be minimal.")]
+[DependencyProperty<bool>("GeneratedPuzzleShouldBePearl", DefaultValue = false, DocSummary = "Indicates whether the generated puzzles should be pearl.")]
 [DependencyProperty<decimal>("HighlightedPencilmarkBackgroundEllipseScale", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale")]
 [DependencyProperty<decimal>("HighlightedBackgroundOpacity", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity")]
 [DependencyProperty<decimal>("ChainStrokeThickness", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness")]
