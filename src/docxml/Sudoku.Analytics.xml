@@ -198,11 +198,38 @@
             </listheader>
             <item>
             <term><see langword="true"/></term>
-            <description>The puzzle has a unique solution, and the first step is a indirect technique usage indeed.</description>
+            <description>The puzzle has a unique solution, and the first set step has same difficulty with the whole steps.</description>
             </item>
             <item>
             <term><see langword="false"/></term>
-            <description>The puzzle has a unique solution, but the first step is a single.</description>
+            <description>The puzzle has a unique solution, but the first set step does not have same difficulty with the whole steps.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The puzzle has multiple solutions, or the puzzle has no valid solution.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.IsDiamond">
+            <summary>
+            Indicates whether the puzzle is a diamond puzzle, which means the first deletion has the same difficulty
+            with the maximum difficulty of the whole steps.
+            </summary>
+            <returns>
+            Returns a <see cref="T:System.Boolean"/>? value indicating the result. The values are:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>The puzzle has a unique solution, and the first deletion step has same difficulty with the whole steps.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The puzzle has a unique solution, but the first deletion step does not have same difficulty with the whole steps.</description>
             </item>
             <item>
             <term><see langword="null"/></term>
@@ -239,10 +266,10 @@
             Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="T:Sudoku.Analytics.Analyzer"/>.
             </summary>
             <remarks>
-            When the puzzle is solved, the value will be the difficulty rating of the first solving step.
-            If the puzzle has not solved or the puzzle is solved by other solvers, this value will be always <c>0</c>.
+            When the puzzle is solved, the value will be the difficulty rating of the first delete step that cause a set.
             </remarks>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.DiamondDifficulty">
             <summary>
@@ -250,13 +277,11 @@
             Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="T:Sudoku.Analytics.Analyzer"/>.
             </para>
             <para>
-            When the puzzle is solved, the value will be the difficulty rating of the first step before the first one
-            whose conclusion is <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/>.
-            If the puzzle has not solved or solved by other solvers, this value will be <c>20.0M</c>.
+            When the puzzle is solved, the value will be the difficulty rating of the first delete step.
             </para>
             </summary>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-            <seealso cref="F:Sudoku.Analytics.ConclusionType.Assignment"/>
+            <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.SolvingStepsCount">
             <summary>
@@ -329,6 +354,16 @@
             <see cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/> is default case (not initialized or empty).
             </summary>
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.PearlStep">
+            <summary>
+            Indicates the pearl step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.DiamondStep">
+            <summary>
+            Indicates the diamond step.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.Steps">
             <summary>

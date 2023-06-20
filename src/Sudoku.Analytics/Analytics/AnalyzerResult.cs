@@ -7,7 +7,7 @@ namespace Sudoku.Analytics;
 public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerResult<Analyzer, AnalyzerResult>, IEnumerable, IEnumerable<Step>
 {
 	/// <inheritdoc/>
-	[MemberNotNullWhen(true, nameof(Steps), nameof(StepGrids), nameof(SolvingPath))]
+	[MemberNotNullWhen(true, nameof(Steps), nameof(StepGrids), nameof(SolvingPath), nameof(PearlStep), nameof(DiamondStep))]
 	public required bool IsSolved { get; init; }
 
 	/// <summary>
@@ -22,11 +22,11 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 	/// </listheader>
 	/// <item>
 	/// <term><see langword="true"/></term>
-	/// <description>The puzzle has a unique solution, and the first step is a indirect technique usage indeed.</description>
+	/// <description>The puzzle has a unique solution, and the first set step has same difficulty with the whole steps.</description>
 	/// </item>
 	/// <item>
 	/// <term><see langword="false"/></term>
-	/// <description>The puzzle has a unique solution, but the first step is a single.</description>
+	/// <description>The puzzle has a unique solution, but the first set step does not have same difficulty with the whole steps.</description>
 	/// </item>
 	/// <item>
 	/// <term><see langword="null"/></term>
@@ -34,7 +34,45 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 	/// </item>
 	/// </list>
 	/// </returns>
-	public bool? IsPearl => this switch { { IsSolved: true, Steps: [not SingleStep, ..] } => true, { IsSolved: true } => false, _ => null };
+	public bool? IsPearl
+		=> this switch
+		{
+			{ IsSolved: true, PearlStep: { Difficulty: var ep } step } => ep == MaxDifficulty && step is not SingleStep,
+			_ => null
+		};
+
+	/// <summary>
+	/// Indicates whether the puzzle is a diamond puzzle, which means the first deletion has the same difficulty
+	/// with the maximum difficulty of the whole steps.
+	/// </summary>
+	/// <returns>
+	/// Returns a <see cref="bool"/>? value indicating the result. The values are:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Value</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>The puzzle has a unique solution, and the first deletion step has same difficulty with the whole steps.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>The puzzle has a unique solution, but the first deletion step does not have same difficulty with the whole steps.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term>
+	/// <description>The puzzle has multiple solutions, or the puzzle has no valid solution.</description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	public bool? IsDiamond
+		=> this switch
+		{
+			{ IsSolved: true, PearlStep: { Difficulty: var ep } pStep, DiamondStep: { Difficulty: var ed } dStep }
+				=> ed == MaxDifficulty && ep == ed && (pStep, dStep) is (not SingleStep, not SingleStep),
+			_ => null
+		};
 
 	/// <summary>
 	/// Indicates the maximum difficulty of the puzzle.
@@ -63,57 +101,25 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 	/// Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="Analyzer"/>.
 	/// </summary>
 	/// <remarks>
-	/// When the puzzle is solved, the value will be the difficulty rating of the first solving step.
-	/// If the puzzle has not solved or the puzzle is solved by other solvers, this value will be always <c>0</c>.
+	/// When the puzzle is solved, the value will be the difficulty rating of the first delete step that cause a set.
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
-	public decimal PearlDifficulty => this switch { { IsSolved: true, Steps: [{ Difficulty: var d }, ..] } => d, _ => 0 };
+	/// <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
+	[NotNullIfNotNull(nameof(PearlStep))]
+	public decimal? PearlDifficulty => PearlStep?.Difficulty;
 
 	/// <summary>
 	/// <para>
 	/// Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="Analyzer"/>.
 	/// </para>
 	/// <para>
-	/// When the puzzle is solved, the value will be the difficulty rating of the first step before the first one
-	/// whose conclusion is <see cref="Assignment"/>.
-	/// If the puzzle has not solved or solved by other solvers, this value will be <c>20.0M</c>.
+	/// When the puzzle is solved, the value will be the difficulty rating of the first delete step.
 	/// </para>
 	/// </summary>
 	/// <seealso cref="Analyzer"/>
-	/// <seealso cref="Assignment"/>
-	public decimal DiamondDifficulty
-	{
-		get
-		{
-			if (Steps is { Length: var l })
-			{
-				for (var i = 0; i < l; i++)
-				{
-					if (Steps[i] is SingleStep { Difficulty: var diff })
-					{
-						if (i == 0)
-						{
-							return diff;
-						}
-
-						var max = 0.0M;
-						for (var j = 0; j < i; j++)
-						{
-							var difficulty = Steps[j].Difficulty;
-							if (difficulty >= max)
-							{
-								max = difficulty;
-							}
-						}
-
-						return max;
-					}
-				}
-			}
-
-			return 20.0M;
-		}
-	}
+	/// <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
+	[NotNullIfNotNull(nameof(DiamondStep))]
+	public decimal? DiamondDifficulty => DiamondStep?.Difficulty;
 
 	/// <summary>
 	/// Indicates the number of all solving steps recorded.
@@ -227,6 +233,54 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 					return firstStep;
 				}
 			}
+		}
+	}
+
+	/// <summary>
+	/// Indicates the pearl step.
+	/// </summary>
+	public Step? PearlStep
+	{
+		get
+		{
+			if (!IsSolved)
+			{
+				return null;
+			}
+
+			for (var i = 0; i < Steps.Length; i++)
+			{
+				if (Steps[i] is SingleStep)
+				{
+					return i - 1 is var targetIndex and >= 0 ? Steps[targetIndex] : Steps[0];
+				}
+			}
+
+			throw new InvalidOperationException("The puzzle has wrong status.");
+		}
+	}
+
+	/// <summary>
+	/// Indicates the diamond step.
+	/// </summary>
+	public Step? DiamondStep
+	{
+		get
+		{
+			if (!IsSolved)
+			{
+				return null;
+			}
+
+			for (var i = 0; i < Steps.Length; i++)
+			{
+				if (Steps[i] is var step and not SingleStep)
+				{
+					return step;
+				}
+			}
+
+			throw new InvalidOperationException("The puzzle has wrong status.");
 		}
 	}
 
@@ -571,9 +625,9 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 		sb.Append(GetString("AnalysisResultPuzzleRating")!);
 		sb.Append(max, "0.0");
 		sb.Append('/');
-		sb.Append(pearl, "0.0");
+		sb.Append(pearl ?? 20.0M, "0.0");
 		sb.Append('/');
-		sb.Append(diamond, "0.0");
+		sb.Append(diamond ?? 20.0M, "0.0");
 		sb.AppendLine();
 
 		// Print the solution (if not null and worth).

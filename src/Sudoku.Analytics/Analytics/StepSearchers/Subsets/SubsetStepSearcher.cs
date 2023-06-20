@@ -74,7 +74,7 @@ public abstract partial class SubsetStepSearcher(
 					}
 
 					var isLocked = lockedDigitsMask == digitsMask ? true : lockedDigitsMask != 0 ? false : default(bool?);
-					if (!OnlySearchingForLocked || isLocked is true && OnlySearchingForLocked)
+					if (!OnlySearchingForLocked || isLocked is not null && OnlySearchingForLocked)
 					{
 						var step = new NakedSubsetStep(
 							conclusions.ToArray(),
@@ -82,7 +82,7 @@ public abstract partial class SubsetStepSearcher(
 							house,
 							cells,
 							digitsMask,
-							isLocked
+							OnlySearchingForLocked ? true : isLocked
 						);
 
 						if (context.OnlyFindOne)
