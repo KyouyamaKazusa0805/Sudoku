@@ -515,6 +515,7 @@ public sealed partial class AnalyzePage : Page
 			},
 			{ new(VirtualKeyModifiers.Control, VirtualKey.V), async () => await PasteCodeToSudokuGridAsync() },
 			{ new(VirtualKeyModifiers.Control, VirtualKey.O), async () => await OpenFileInternalAsync() },
+			{ new(VirtualKeyModifiers.Control, VirtualKey.R), UpdatePuzzleViaSolutionGrid },
 			{ new(VirtualKeyModifiers.Control, VirtualKey.S), async () => await SaveFileInternalAsync() },
 			{ new((VirtualKey)189), SetPreviousView }, // Minus sign
 			{ new((VirtualKey)187), SetNextView }, // Equals sign
@@ -684,6 +685,11 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	private bool IsSudokuPaneFocused() => SudokuPane.FocusState != FocusState.Unfocused;
+
+	/// <summary>
+	/// To update puzzle via solution grid.
+	/// </summary>
+	private void UpdatePuzzleViaSolutionGrid() => SudokuPane.UpdateGrid(SudokuPane.Puzzle.SolutionGrid);
 
 	/// <summary>
 	/// Try to update view unit.
@@ -1264,4 +1270,6 @@ public sealed partial class AnalyzePage : Page
 	}
 
 	private void CancelOperationButton_Click(object sender, RoutedEventArgs e) => _ctsForAnalyzingRelatedOperations?.Cancel();
+
+	private void AutoSolveButton_Click(object sender, RoutedEventArgs e) => UpdatePuzzleViaSolutionGrid();
 }

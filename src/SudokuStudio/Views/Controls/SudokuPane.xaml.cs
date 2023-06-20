@@ -401,6 +401,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
+	/// Try to update grid status.
+	/// </summary>
+	/// <param name="newGrid">The new grid to be used for assigning to the target.</param>
+	public void UpdateGrid(scoped in Grid newGrid) => SetPuzzleInternal(newGrid, false);
+
+	/// <summary>
 	/// <para>Triggers <see cref="GridUpdated"/> event.</para>
 	/// <para>This method can only be used by internal control type <see cref="SudokuPaneCell"/> or the current type scope.</para>
 	/// </summary>

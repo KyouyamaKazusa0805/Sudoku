@@ -99,13 +99,15 @@
 								Icon="{x:Bind cvt:SymbolIconConversion.GetSymbolViaCandidateVisibility(SudokuPane.DisplayCandidates),Mode=OneWay}" />
 							<AppBarSeparator />
 							<AppBarButton
-								CommandParameter="{x:Bind SudokuPane}" Label="{m:R Key=AnalyzePage_FixGrid}" Icon="Pin"
+								Label="{m:R Key=AnalyzePage_FixGrid}" Icon="Pin"
 								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetFixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}"
 								Click="FixGridButton_Click" />
 							<AppBarButton
-								CommandParameter="{x:Bind SudokuPane}" Label="{m:R Key=AnalyzePage_UnfixGrid}" Icon="UnPin"
+								Label="{m:R Key=AnalyzePage_UnfixGrid}" Icon="UnPin"
 								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetUnfixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}"
 								Click="UnfixGridButton_Click" />
+							<AppBarSeparator />
+							<AppBarButton Icon="Flag" Label="{m:R Key=AnalyzePage_AutoSolve}" Click="AutoSolveButton_Click" />
 							<AppBarSeparator />
 							<AppBarButton
 								x:Name="AnalyzeButton" x:FieldModifier="internal" Icon="Find" Label="{m:R Key=AnalyzePage_AnalyzeButton}"

@@ -3946,6 +3946,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Score.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_AutoSolve">
+            <summary>
+              Looks up a localized string similar to View Solution.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_BackdoorButton">
             <summary>
               Looks up a localized string similar to Backdoors.
@@ -6689,6 +6694,12 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">The digit to be set or delete.</param>
             <param name="isSet">Indicates whether the operation is to set a digit into the target cell.</param>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.UpdateGrid(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to update grid status.
+            </summary>
+            <param name="newGrid">The new grid to be used for assigning to the target.</param>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.TriggerGridUpdated(SudokuStudio.Interaction.GridUpdatedBehavior,System.Object)">
             <summary>
             <para>Triggers <see cref="E:SudokuStudio.Views.Controls.SudokuPane.GridUpdated"/> event.</para>
@@ -7759,6 +7770,11 @@ if (student is (name: var name, age: >= 18))
             Checks whether the pane is focused.
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.UpdatePuzzleViaSolutionGrid">
+            <summary>
+            To update puzzle via solution grid.
+            </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.UpdateViewUnit">
             <summary>

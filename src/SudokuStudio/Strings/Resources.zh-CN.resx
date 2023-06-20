@@ -207,6 +207,9 @@
   <data name="AnalyzePage_ArgumentsPolarScoreName" xml:space="preserve">
     <value>分值</value>
   </data>
+  <data name="AnalyzePage_AutoSolve" xml:space="preserve">
+    <value>查看答案</value>
+  </data>
   <data name="AnalyzePage_BackdoorButton" xml:space="preserve">
     <value>查看后门</value>
   </data>

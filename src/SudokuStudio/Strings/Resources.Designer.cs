@@ -502,6 +502,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View Solution.
+        /// </summary>
+        internal static string AnalyzePage_AutoSolve {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AutoSolve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backdoors.
         /// </summary>
         internal static string AnalyzePage_BackdoorButton {

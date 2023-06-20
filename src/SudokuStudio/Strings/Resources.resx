@@ -207,6 +207,9 @@
   <data name="AnalyzePage_ArgumentsPolarScoreName" xml:space="preserve">
     <value>Score</value>
   </data>
+  <data name="AnalyzePage_AutoSolve" xml:space="preserve">
+    <value>View Solution</value>
+  </data>
   <data name="AnalyzePage_BackdoorButton" xml:space="preserve">
     <value>Backdoors</value>
   </data>
