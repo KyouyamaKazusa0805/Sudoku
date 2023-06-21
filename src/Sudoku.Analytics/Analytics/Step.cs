@@ -61,8 +61,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// <para>
 	/// If you want to use the values in the resource dictionary, you can just use method <see cref="GetString(string)"/>, for example:
 	/// <code><![CDATA[
-	/// public override string Format
-	///     => global::Sudoku.Analytics.Resources.MergedResources.GetString("TheKeyYouWantToSearch");
+	/// public override string Format => Sudoku.Analytics.Strings.StringsAccessor.GetString("TheKeyYouWantToSearch");
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
