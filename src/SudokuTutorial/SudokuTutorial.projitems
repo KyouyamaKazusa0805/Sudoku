@@ -224,6 +224,19 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\01-1 第一种填法.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\01-2 第二种填法.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\02 上下不一致造成的情况.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\03 瘦拓展矩形的举例.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\04 拓展矩形区块类型，普通的例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\05 拓展矩形区块类型，三角形式.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\06 拓展矩形区块类型，瘦拓展矩形.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\07 拓展矩形数组类型，带显性数组.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\08 拓展矩形数组类型，带隐性数组.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\09 拓展矩形共轭对类型，最基本的用例.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\10 拓展类型共轭对类型，但是删两种数字.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\11 拓展矩形共轭对类型，完整删数版.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\12 拓展矩形共轭对类型，8个单元格.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\13 拓展矩形区块类型，10个单元格.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\14 拓展矩形区块类型，12个单元格.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形\15 拓展矩形标准类型，14个单元格.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
   </ItemGroup>
   <ItemGroup>
