@@ -20,7 +20,7 @@ partial record AnalyzerResult
 
 
 		/// <inheritdoc cref="IEnumerator.Current"/>
-		public Step Current => _steps![_index];
+		public readonly Step Current => _steps![_index];
 
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
