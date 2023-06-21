@@ -73,8 +73,10 @@ public abstract partial class SubsetStepSearcher(
 						}
 					}
 
-					var isLocked = lockedDigitsMask == digitsMask ? true : lockedDigitsMask != 0 ? false : default(bool?);
-					if (!OnlySearchingForLocked || isLocked is not null && OnlySearchingForLocked)
+					var isLocked = cells.IsInIntersection
+						? true
+						: lockedDigitsMask == digitsMask ? true : lockedDigitsMask != 0 ? false : default(bool?);
+					if (isLocked is true && OnlySearchingForLocked || !OnlySearchingForLocked)
 					{
 						var step = new NakedSubsetStep(
 							conclusions.ToArray(),
@@ -82,7 +84,7 @@ public abstract partial class SubsetStepSearcher(
 							house,
 							cells,
 							digitsMask,
-							OnlySearchingForLocked ? true : isLocked
+							isLocked
 						);
 
 						if (context.OnlyFindOne)
