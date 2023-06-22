@@ -8,20 +8,17 @@ public static class Keyboard
 	/// <summary>
 	/// Checks whether the key <see cref="VirtualKey.Control"/> is input.
 	/// </summary>
-	public static bool IsControlKeyDown
-		=> InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Control).Flags(CoreVirtualKeyStates.Down);
+	public static bool IsControlKeyDown => InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Control).Flags(CoreVirtualKeyStates.Down);
 
 	/// <summary>
 	/// Checks whether the key <see cref="VirtualKey.Shift"/> is input.
 	/// </summary>
-	public static bool IsShiftKeyDown
-		=> InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Shift).Flags(CoreVirtualKeyStates.Down);
+	public static bool IsShiftKeyDown => InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Shift).Flags(CoreVirtualKeyStates.Down);
 
 	/// <summary>
 	/// Checks whether the key <see cref="VirtualKey.Menu"/> is input.
 	/// </summary>
-	public static bool IsAltKeyDown
-		=> InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Menu).Flags(CoreVirtualKeyStates.Down);
+	public static bool IsAltKeyDown => InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Menu).Flags(CoreVirtualKeyStates.Down);
 
 	/// <summary>
 	/// Checks whether the key <see cref="VirtualKey.LeftWindows"/> or <see cref="VirtualKey.RightWindows"/> is input.
@@ -81,6 +78,5 @@ public static class Keyboard
 	/// ]]></code>
 	/// For more information, please visit that type to learn more details.
 	/// </remarks>
-	public static VirtualKeyModifierStatus GetModifierStatusForCurrentThread()
-		=> new(IsControlKeyDown, IsShiftKeyDown, IsAltKeyDown, IsWindowsKeyDown);
+	public static VirtualKeyModifierStatus GetModifierStatusForCurrentThread() => new(IsControlKeyDown, IsShiftKeyDown, IsAltKeyDown, IsWindowsKeyDown);
 }
