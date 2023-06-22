@@ -13,15 +13,8 @@ namespace Sudoku.Analytics;
 /// <seealso cref="PredefinedAnalyzers"/>
 /// <seealso cref="AnalyzerFactory"/>
 /// <completionlist cref="PredefinedAnalyzers"/>
-public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>, IAnalyzerOrCollector
+public sealed partial class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>, IAnalyzerOrCollector
 {
-	/// <summary>
-	/// Indicates the backing field of property <see cref="StepSearchers"/>.
-	/// </summary>
-	/// <seealso cref="StepSearchers"/>
-	private StepSearcher[]? _stepSearchers;
-
-
 	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher,
 	/// in order to solve a puzzle faster. If the value is <see langword="true"/>,
@@ -56,6 +49,7 @@ public sealed class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>, IAnalyzerOrC
 
 	/// <inheritdoc/>
 	[DisallowNull]
+	[ImplicitField(RequiredReadOnlyModifier = false)]
 	public StepSearcher[]? StepSearchers
 	{
 		get => _stepSearchers;

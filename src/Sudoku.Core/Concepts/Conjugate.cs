@@ -7,15 +7,11 @@ namespace Sudoku.Concepts;
 /// A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
 /// two position can fill this candidate.
 /// </remarks>
-/// <param name="mask">The mask to be set.</param>
-public readonly partial struct Conjugate(int mask) : IEquatable<Conjugate>, IEqualityOperators<Conjugate, Conjugate, bool>
+/// <param name="mask">Indicates the target mask.</param>
+public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKinds.Field)] int mask) :
+	IEquatable<Conjugate>,
+	IEqualityOperators<Conjugate, Conjugate, bool>
 {
-	/// <summary>
-	/// Indicates the mask.
-	/// </summary>
-	private readonly int _mask = mask;
-
-
 	/// <summary>
 	/// Initializes a <see cref="Conjugate"/> instance with from and to cell offset and a digit.
 	/// </summary>

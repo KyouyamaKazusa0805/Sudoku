@@ -23,6 +23,7 @@ namespace Sudoku.Concepts;
 /// </para>
 /// </remarks>
 [JsonConverter(typeof(Converter))]
+[StructLayout(LayoutKind.Auto)]
 public unsafe partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, Candidate, CandidateMap>,
 	IAdditionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>,
@@ -43,13 +44,6 @@ public unsafe partial struct CandidateMap :
 	/// </remarks>
 	public static readonly CandidateMap MinValue;
 
-
-	/// <summary>
-	/// The background field of the property <see cref="Count"/>.
-	/// </summary>
-	/// <remarks><b><i>This field is explicitly declared on purpose. Please don't use auto property.</i></b></remarks>
-	/// <seealso cref="Count"/>
-	private int _count;
 
 	/// <summary>
 	/// Indicates the internal bits. 12 is for floor(729 / <see langword="sizeof"/>(<see cref="long"/>) <![CDATA[<<]]> 6).
@@ -102,6 +96,7 @@ public unsafe partial struct CandidateMap :
 
 
 	/// <inheritdoc/>
+	[ImplicitField(RequiredReadOnlyModifier = false)]
 	public readonly int Count
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

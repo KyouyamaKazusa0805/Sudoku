@@ -1554,13 +1554,6 @@ if (student is (name: var name, age: >= 18))
             This value is equivalent to <see cref="F:Sudoku.Concepts.CandidateMap.Empty"/>.
             </remarks>
         </member>
-        <member name="F:Sudoku.Concepts.CandidateMap._count">
-            <summary>
-            The background field of the property <see cref="P:Sudoku.Concepts.CandidateMap.Count"/>.
-            </summary>
-            <remarks><b><i>This field is explicitly declared on purpose. Please don't use auto property.</i></b></remarks>
-            <seealso cref="P:Sudoku.Concepts.CandidateMap.Count"/>
-        </member>
         <member name="F:Sudoku.Concepts.CandidateMap._bits">
             <summary>
             Indicates the internal bits. 12 is for floor(729 / <see langword="sizeof"/>(<see cref="T:System.Int64"/>) <![CDATA[<<]]> 6).
@@ -1842,6 +1835,12 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_Explicit(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
+        <member name="F:Sudoku.Concepts.CandidateMap._count">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Concepts.CandidateMap.Count"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.CandidateMap.Count"/>
+        </member>
         <member name="T:Sudoku.Concepts.Converter">
             <summary>
             Indicates the JSON converter of the current type.
@@ -1928,13 +1927,6 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.CellMap._count">
-            <summary>
-            The background field of the property <see cref="P:Sudoku.Concepts.CellMap.Count"/>.
-            </summary>
-            <remarks><b><i>This field is explicitly declared on purpose. Please don't use auto property.</i></b></remarks>
-            <seealso cref="P:Sudoku.Concepts.CellMap.Count"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.#ctor(System.String[])">
             <summary>
@@ -2498,6 +2490,12 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_Explicit(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
+        <member name="F:Sudoku.Concepts.CellMap._count">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Concepts.CellMap.Count"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.CellMap.Count"/>
+        </member>
         <member name="T:Sudoku.Concepts.Converter">
             <summary>
             Indicates the JSON converter of the current type.
@@ -2545,7 +2543,7 @@ if (student is (name: var name, age: >= 18))
             A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
             two position can fill this candidate.
             </remarks>
-            <param name="mask">The mask to be set.</param>
+            <param name="mask">Indicates the target mask.</param>
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.#ctor(System.Int32)">
             <summary>
@@ -2555,12 +2553,7 @@ if (student is (name: var name, age: >= 18))
             A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
             two position can fill this candidate.
             </remarks>
-            <param name="mask">The mask to be set.</param>
-        </member>
-        <member name="F:Sudoku.Concepts.Conjugate._mask">
-            <summary>
-            Indicates the mask.
-            </summary>
+            <param name="mask">Indicates the target mask.</param>
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -2673,6 +2666,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.op_Inequality(Sudoku.Concepts.Conjugate,Sudoku.Concepts.Conjugate)">
             <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Concepts.Conjugate._mask">
+            <summary>
+            The generated field declaration for parameter <c>mask</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Concepts.Grid">
             <summary>
@@ -5876,12 +5874,6 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Text.Formatting.MultipleLineFormat._placeholder">
-            <summary>
-            The backing field of property <see cref="P:Sudoku.Text.Formatting.MultipleLineFormat.Placeholder"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Text.Formatting.MultipleLineFormat.Placeholder"/>
-        </member>
         <member name="P:Sudoku.Text.Formatting.MultipleLineFormat.Placeholder">
             <summary>
             Indicates the placeholder of the grid text formatter.
@@ -5894,6 +5886,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Formatting.MultipleLineFormat.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.MultipleLineFormat._placeholder">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Text.Formatting.MultipleLineFormat.Placeholder"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Formatting.MultipleLineFormat.Placeholder"/>
         </member>
         <member name="T:Sudoku.Text.Formatting.OpenSudokuFormat">
             <summary>
@@ -6155,12 +6153,6 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Text.Formatting.SukakuFormat._placeholder">
-            <summary>
-            The backing field of property <see cref="P:Sudoku.Text.Formatting.SukakuFormat.Placeholder"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Text.Formatting.SukakuFormat.Placeholder"/>
-        </member>
         <member name="P:Sudoku.Text.Formatting.SukakuFormat.Placeholder">
             <summary>
             Indicates the placeholder of the grid text formatter.
@@ -6173,6 +6165,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Formatting.SukakuFormat.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SukakuFormat._placeholder">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Text.Formatting.SukakuFormat.Placeholder"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Formatting.SukakuFormat.Placeholder"/>
         </member>
         <member name="T:Sudoku.Text.Formatting.SusserFormat">
             <summary>
@@ -6303,12 +6301,6 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Text.Formatting.SusserFormat._placeholder">
-            <summary>
-            The backing field of property <see cref="P:Sudoku.Text.Formatting.SusserFormat.Placeholder"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Text.Formatting.SusserFormat.Placeholder"/>
-        </member>
         <member name="P:Sudoku.Text.Formatting.SusserFormat.Placeholder">
             <summary>
             Indicates the placeholder of the grid text formatter.
@@ -6321,6 +6313,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Formatting.SusserFormat.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Text.Formatting.SusserFormat._placeholder">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Text.Formatting.SusserFormat.Placeholder"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Formatting.SusserFormat.Placeholder"/>
         </member>
         <member name="T:Sudoku.Text.Formatting.MatchLengthComparer">
             <summary>
@@ -7066,18 +7064,13 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a range of cells.
             </summary>
-            <param name="mask">The mask to be set.</param>
+            <param name="mask">Indicates the mask.</param>
         </member>
         <member name="M:Sudoku.Text.Parsing.CellRange.#ctor(System.Int16)">
             <summary>
             Defines a range of cells.
             </summary>
-            <param name="mask">The mask to be set.</param>
-        </member>
-        <member name="F:Sudoku.Text.Parsing.CellRange._mask">
-            <summary>
-            Indicates the inner mask.
-            </summary>
+            <param name="mask">Indicates the mask.</param>
         </member>
         <member name="M:Sudoku.Text.Parsing.CellRange.#ctor(System.Int32,System.Int32)">
             <summary>
@@ -7180,6 +7173,11 @@ if (student is (name: var name, age: >= 18))
             Implicitly cast from <see cref="T:System.Range"/> to <see cref="T:Sudoku.Text.Parsing.CellRange"/>.
             </summary>
             <param name="range">The range instance.</param>
+        </member>
+        <member name="F:Sudoku.Text.Parsing.CellRange._mask">
+            <summary>
+            The generated field declaration for parameter <c>mask</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Text.Parsing.GridParser">
             <summary>

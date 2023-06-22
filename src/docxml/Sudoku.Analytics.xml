@@ -76,12 +76,6 @@
             <seealso cref="T:Sudoku.Analytics.AnalyzerFactory"/>
             <completionlist cref="T:Sudoku.Analytics.PredefinedAnalyzers"/>
         </member>
-        <member name="F:Sudoku.Analytics.Analyzer._stepSearchers">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>
-        </member>
         <member name="P:Sudoku.Analytics.Analyzer.IsFullApplying">
             <summary>
             Indicates whether the solver will apply all found steps in a step searcher,
@@ -127,6 +121,12 @@
         </member>
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Analytics.Analyzer._stepSearchers">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerFactory">
             <summary>
@@ -5211,12 +5211,6 @@ result ^= expression;
             Represents an instance that can collect all possible <see cref="T:Sudoku.Analytics.Step"/>s in a grid for one status.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepCollector._stepSearchers">
-            <summary>
-            The backing field of property <see cref="P:Sudoku.Analytics.StepCollector.StepSearchers"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.StepCollector.StepSearchers"/>
-        </member>
         <member name="P:Sudoku.Analytics.StepCollector.OnlyShowSameLevelTechniquesInFindAllSteps">
             <summary>
             Indicates whether the solver only displays the techniques with the same displaying level.
@@ -5259,6 +5253,12 @@ result ^= expression;
             <param name="puzzle">The puzzle.</param>
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>The target result collection.</returns>
+        </member>
+        <member name="F:Sudoku.Analytics.StepCollector._stepSearchers">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Analytics.StepCollector.StepSearchers"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.StepCollector.StepSearchers"/>
         </member>
         <member name="T:Sudoku.Analytics.StepCollectorFactory">
             <summary>
@@ -18108,21 +18108,23 @@ result ^= expression;
             <summary>
             Base class implementation of <see cref="T:Expressive.Expressions.IExpression"/>.
             </summary>
+            <param name="expression">The expression.</param>
             <seealso cref="T:Expressive.Expressions.IExpression"/>
-        </member>
-        <member name="F:Sudoku.Filtering.Expressions.UnaryExpressionBase._expression">
-            <summary>
-            The inner expression.
-            </summary>
         </member>
         <member name="M:Sudoku.Filtering.Expressions.UnaryExpressionBase.#ctor(Expressive.Expressions.IExpression)">
             <summary>
-            Initializes a new instance of <see cref="T:Sudoku.Filtering.Expressions.UnaryExpressionBase"/>.
+            Base class implementation of <see cref="T:Expressive.Expressions.IExpression"/>.
             </summary>
             <param name="expression">The expression.</param>
+            <seealso cref="T:Expressive.Expressions.IExpression"/>
         </member>
         <member name="M:Sudoku.Filtering.Expressions.UnaryExpressionBase.Evaluate(System.Collections.Generic.IDictionary{System.String,System.Object})">
             <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Filtering.Expressions.UnaryExpressionBase._expression">
+            <summary>
+            The generated field declaration for parameter <c>expression</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Filtering.Operators.ConclusionHasOperator">
             <summary>

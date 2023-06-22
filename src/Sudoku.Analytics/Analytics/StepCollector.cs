@@ -3,15 +3,8 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one status.
 /// </summary>
-public sealed class StepCollector : IAnalyzerOrCollector
+public sealed partial class StepCollector : IAnalyzerOrCollector
 {
-	/// <summary>
-	/// The backing field of property <see cref="StepSearchers"/>.
-	/// </summary>
-	/// <seealso cref="StepSearchers"/>
-	private StepSearcher[]? _stepSearchers;
-
-
 	/// <summary>
 	/// Indicates whether the solver only displays the techniques with the same displaying level.
 	/// </summary>
@@ -30,6 +23,7 @@ public sealed class StepCollector : IAnalyzerOrCollector
 
 	/// <inheritdoc/>
 	[DisallowNull]
+	[ImplicitField(RequiredReadOnlyModifier = false)]
 	public StepSearcher[]? StepSearchers
 	{
 		get => _stepSearchers;

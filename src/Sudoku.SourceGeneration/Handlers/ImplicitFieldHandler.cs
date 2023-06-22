@@ -17,13 +17,14 @@ internal sealed class ImplicitFieldHandler : IIncrementalGeneratorAttributeHandl
 			foreach (var (_, property, readOnlyModifier) in group)
 			{
 				var readOnlyKeyword = readOnlyModifier ? "readonly " : string.Empty;
+				var nullableToken = property.Type.NullableAnnotation == Annotated ? "?" : string.Empty;
 				fieldDeclarations.Add(
 					$$"""
 					/// <summary>
 							/// Indicates the backing field of property <see cref="{{property.Name}}"/>.
 							/// </summary>
 							/// <seealso cref="{{property.Name}}"/>
-							private {{readOnlyKeyword}}{{property.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}} {{property.Name.ToCamelCase()}};
+							private {{readOnlyKeyword}}{{property.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}}{{nullableToken}} {{property.Name.ToCamelCase()}};
 					"""
 				);
 			}

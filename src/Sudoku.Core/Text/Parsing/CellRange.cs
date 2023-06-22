@@ -3,18 +3,12 @@ namespace Sudoku.Text.Parsing;
 /// <summary>
 /// Defines a range of cells.
 /// </summary>
-/// <param name="mask">The mask to be set.</param>
-public readonly partial struct CellRange(Mask mask) :
+/// <param name="mask">Indicates the mask.</param>
+public readonly partial struct CellRange([PrimaryConstructorParameter(MemberKinds.Field)] Mask mask) :
 	IEquatable<CellRange>,
 	IEqualityOperators<CellRange, CellRange, bool>,
 	ISimpleParsable<CellRange>
 {
-	/// <summary>
-	/// Indicates the inner mask.
-	/// </summary>
-	private readonly Mask _mask = mask;
-
-
 	/// <summary>
 	/// Initializes a <see cref="CellRange"/> instance via the specified value controlling the range.
 	/// </summary>
@@ -72,7 +66,7 @@ public readonly partial struct CellRange(Mask mask) :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(CellRange other) => _mask == other._mask;
 
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_mask))]
+	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, "_mask")]
 	public override partial int GetHashCode();
 
 	/// <inheritdoc cref="object.ToString"/>

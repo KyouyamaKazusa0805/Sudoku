@@ -20,7 +20,7 @@ namespace Sudoku.Text.Formatting;
 /// <para>The default value is <see langword="false"/>.</para>
 /// </param>
 /// <seealso cref="Grid"/>
-public record SusserFormat(bool WithCandidates = false, bool WithModifiables = false, bool ShortenSusser = false) : IGridFormatter
+public partial record SusserFormat(bool WithCandidates = false, bool WithModifiables = false, bool ShortenSusser = false) : IGridFormatter
 {
 	/// <summary>
 	/// Indicates the modifiable prefix character.
@@ -88,17 +88,11 @@ public record SusserFormat(bool WithCandidates = false, bool WithModifiables = f
 
 
 	/// <summary>
-	/// The backing field of property <see cref="Placeholder"/>.
-	/// </summary>
-	/// <seealso cref="Placeholder"/>
-	private readonly char _placeholder;
-
-
-	/// <summary>
 	/// Indicates the placeholder of the grid text formatter.
 	/// </summary>
 	/// <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
 	/// <returns>The placeholder text.</returns>
+	[ImplicitField]
 	public required char Placeholder
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Defines a Sukaku format.
@@ -7,7 +7,7 @@
 /// <para>Indicates whether the output should be multi-line.</para>
 /// <para>The default value is <see langword="false"/>.</para>
 /// </param>
-public sealed record SukakuFormat(bool Multiline = false) : IGridFormatter
+public sealed partial record SukakuFormat(bool Multiline = false) : IGridFormatter
 {
 	/// <summary>
 	/// Indicates the dot character.
@@ -31,17 +31,11 @@ public sealed record SukakuFormat(bool Multiline = false) : IGridFormatter
 
 
 	/// <summary>
-	/// The backing field of property <see cref="Placeholder"/>.
-	/// </summary>
-	/// <seealso cref="Placeholder"/>
-	private readonly char _placeholder;
-
-
-	/// <summary>
 	/// Indicates the placeholder of the grid text formatter.
 	/// </summary>
 	/// <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
 	/// <returns>The placeholder text.</returns>
+	[ImplicitField]
 	public required char Placeholder
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
