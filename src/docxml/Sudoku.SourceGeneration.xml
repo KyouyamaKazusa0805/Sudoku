@@ -46,13 +46,13 @@
         </member>
         <member name="T:Sudoku.SourceGeneration.CollectedResults.AttachedPropertyCollectedResult">
             <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>.
             </summary>
             <seealso cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>
         </member>
         <member name="M:Sudoku.SourceGeneration.CollectedResults.AttachedPropertyCollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.SourceGeneration.CollectedResults.AttachedPropertyData})">
             <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>.
             </summary>
             <seealso cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>
         </member>
@@ -70,13 +70,13 @@
         </member>
         <member name="T:Sudoku.SourceGeneration.CollectedResults.DependencyPropertyCollectedResult">
             <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>.
             </summary>
             <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
         </member>
         <member name="M:Sudoku.SourceGeneration.CollectedResults.DependencyPropertyCollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.SourceGeneration.CollectedResults.DependencyPropertyData})">
             <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>.
             </summary>
             <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
         </member>
@@ -116,15 +116,27 @@
             </summary>
             <seealso cref="T:Sudoku.SourceGeneration.Handlers.GetHashCodeOveriddenHandler"/>
         </member>
+        <member name="T:Sudoku.SourceGeneration.CollectedResults.ImplicitFieldCollectedResult">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CollectedResults.ImplicitFieldCollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IPropertySymbol,System.Boolean)">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>
+        </member>
         <member name="T:Sudoku.SourceGeneration.CollectedResults.InstanceDeconstructionMethodCollectedResult">
             <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.InstanceDeconstructionMethodHandler"/>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.InstanceDeconstructionMethodHandler"/>.
             </summary>
             <seealso cref="T:Sudoku.SourceGeneration.Handlers.InstanceDeconstructionMethodHandler"/>
         </member>
         <member name="M:Sudoku.SourceGeneration.CollectedResults.InstanceDeconstructionMethodCollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IMethodSymbol,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol},Microsoft.CodeAnalysis.SyntaxTokenList,Microsoft.CodeAnalysis.INamedTypeSymbol,System.String)">
             <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.InstanceDeconstructionMethodHandler"/>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.InstanceDeconstructionMethodHandler"/>.
             </summary>
             <seealso cref="T:Sudoku.SourceGeneration.Handlers.InstanceDeconstructionMethodHandler"/>
         </member>
@@ -384,6 +396,31 @@
             <param name="compilation">
             The <see cref="T:Microsoft.CodeAnalysis.Compilation"/> instance that provides the information for the calling project.
             </param>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler">
+            <summary>
+            The generator handler for implicit fields.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.CollectedResults.ImplicitFieldCollectedResult})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.Extensions.ToCamelCase(System.String)">
+            <summary>
+            Converts the current instance into its camel casing.
+            </summary>
+            <param name="this">The string.</param>
+            <returns>The camel-cased string.</returns>
         </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.InstanceDeconstructionMethodHandler">
             <summary>

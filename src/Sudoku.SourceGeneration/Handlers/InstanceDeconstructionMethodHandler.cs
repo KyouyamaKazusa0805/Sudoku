@@ -120,7 +120,7 @@ internal sealed class InstanceDeconstructionMethodHandler : IIncrementalGenerato
 		{
 			{
 				Attributes.Length: 1,
-				TargetNode: MethodDeclarationSyntax { Modifiers: var modifiers } node,
+				TargetNode: MethodDeclarationSyntax { Modifiers: var modifiers },
 				TargetSymbol: IMethodSymbol
 				{
 					Name: "Deconstruct",

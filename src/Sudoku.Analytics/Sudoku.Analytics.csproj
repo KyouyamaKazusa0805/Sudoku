@@ -11,6 +11,7 @@
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 		<ProjectReference Include="..\Sudoku.Gdip\Sudoku.Gdip.csproj" />
 		<ProjectReference Include="..\Sudoku.Rendering\Sudoku.Rendering.csproj" />
+		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

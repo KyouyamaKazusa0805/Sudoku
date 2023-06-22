@@ -1,7 +1,7 @@
-﻿namespace Sudoku.SourceGeneration.CollectedResults;
+namespace Sudoku.SourceGeneration.CollectedResults;
 
 /// <summary>
-/// Indicates the data collected via <see cref="InstanceDeconstructionMethodHandler"/>
+/// Indicates the data collected via <see cref="InstanceDeconstructionMethodHandler"/>.
 /// </summary>
 /// <seealso cref="InstanceDeconstructionMethodHandler"/>
 internal sealed record InstanceDeconstructionMethodCollectedResult(

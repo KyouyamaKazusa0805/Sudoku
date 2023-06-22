@@ -5357,12 +5357,6 @@ result ^= expression;
             </param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearcher._separatedPriority">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Analytics.StepSearcher.SeparatedPriority"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.StepSearcher.SeparatedPriority"/>
-        </member>
         <member name="P:Sudoku.Analytics.StepSearcher.IsSeparated">
             <summary>
             Determines whether the current step searcher is separated one,
@@ -5490,6 +5484,12 @@ result ^= expression;
             <summary>
             The generated property declaration for parameter <c>runningArea</c>.
             </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearcher._separatedPriority">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Analytics.StepSearcher.SeparatedPriority"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.StepSearcher.SeparatedPriority"/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherPool">
             <summary>

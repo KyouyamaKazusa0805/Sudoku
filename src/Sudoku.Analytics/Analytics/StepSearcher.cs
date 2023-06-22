@@ -37,13 +37,6 @@ public abstract partial class StepSearcher(
 ) : IEquatable<StepSearcher>
 {
 	/// <summary>
-	/// Indicates the backing field of property <see cref="SeparatedPriority"/>.
-	/// </summary>
-	/// <seealso cref="SeparatedPriority"/>
-	private int _separatedPriority;
-
-
-	/// <summary>
 	/// Determines whether the current step searcher is separated one,
 	/// meaning it can be created as many possible instances in a same step searchers pool.
 	/// </summary>
@@ -101,6 +94,7 @@ public abstract partial class StepSearcher(
 	/// Throws when <see langword="value"/> is below 0, greater than 16 or equal to 16.
 	/// </exception>
 	/// <seealso cref="SeparatedAttribute"/>
+	[ImplicitField(RequiredReadOnlyModifier = false)]
 	public int SeparatedPriority
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

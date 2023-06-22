@@ -30,6 +30,12 @@ public sealed class Generator : IIncrementalGenerator
 			const string name = "System.SourceGeneration.DeconstructionMethodAttribute";
 			context.Register<InstanceDeconstructionMethodHandler, InstanceDeconstructionMethodCollectedResult>(name, IsPartialMethodPredicate);
 		}
+
+		// Implicit Fields
+		{
+			const string name = "System.SourceGeneration.ImplicitFieldAttribute";
+			context.Register<ImplicitFieldHandler, ImplicitFieldCollectedResult>(name, SyntaxNodeTypePredicate<PropertyDeclarationSyntax>);
+		}
 		#endregion
 
 		//
