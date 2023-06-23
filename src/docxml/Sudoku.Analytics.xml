@@ -8321,14 +8321,14 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll_IttoryuMode(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect_IttoryuMode(Sudoku.Analytics.AnalysisContext@)">
             <summary>
             Checks for single steps using ittoryu mode.
             </summary>
             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetAll_NonIttoryuMode(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect_NonIttoryuMode(Sudoku.Analytics.AnalysisContext@)">
             <summary>
             Checks for single steps using non-ittoryu mode.
             </summary>
