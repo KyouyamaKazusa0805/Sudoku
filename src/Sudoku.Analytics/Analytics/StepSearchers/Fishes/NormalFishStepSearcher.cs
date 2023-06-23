@@ -192,8 +192,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 					else // Should check fins.
 					{
 						// All fins should be in the same block.
-						fins = baseLine - coverLine;
-						var blockMask = fins.BlockMask;
+						var blockMask = (fins = baseLine - coverLine).BlockMask;
 						if (fins is [] || !IsPow2(blockMask))
 						{
 							continue;
@@ -239,8 +238,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 						houseOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, coverSet));
 					}
 
-					var baseSetsMask = 0;
-					var coverSetsMask = 0;
+					var (baseSetsMask, coverSetsMask) = (0, 0);
 					foreach (var baseSet in bs)
 					{
 						baseSetsMask |= 1 << baseSet;
@@ -315,8 +313,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 							continue;
 						}
 
-						var baseMap = CellMap.Empty;
-						var coverMap = CellMap.Empty;
+						var (baseMap, coverMap) = (CellMap.Empty, CellMap.Empty);
 						foreach (var b in baseSets)
 						{
 							baseMap |= HousesMap[b];

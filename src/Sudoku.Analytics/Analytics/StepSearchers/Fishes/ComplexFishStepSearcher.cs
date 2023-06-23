@@ -142,8 +142,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 						}
 
 						// Get the primary map of endo-fins.
-						var tempMap = CellMap.Empty;
-						var endofins = CellMap.Empty;
+						var (tempMap, endofins) = (CellMap.Empty, CellMap.Empty);
 						for (var i = 0; i < baseSets.Length; i++)
 						{
 							var baseSet = baseSets[i];
@@ -184,8 +183,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 						}
 
 						// Get all used base set list.
-						var usedInBaseSets = 0;
-						var baseMap = CellMap.Empty;
+						var (usedInBaseSets, baseMap) = (0, CellMap.Empty);
 						foreach (var baseSet in baseSets)
 						{
 							baseMap |= HousesMap[baseSet];
@@ -197,8 +195,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 						baseMap &= possibleMap;
 
 						// Now check the possible cover sets to iterate.
-						var z = baseMap.Houses & ~usedInBaseSets & AllHousesMask;
-						if (z == 0)
+						if ((baseMap.Houses & ~usedInBaseSets & AllHousesMask) is not (var z and not 0))
 						{
 							continue;
 						}
@@ -230,8 +227,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 							}
 
 							// Now check the current cover sets.
-							var usedInCoverSets = 0;
-							var i = 0;
+							var (usedInCoverSets, i) = (0, 0);
 							foreach (var coverSet in coverSets)
 							{
 								currentCoverSets[i++] = coverSet;
