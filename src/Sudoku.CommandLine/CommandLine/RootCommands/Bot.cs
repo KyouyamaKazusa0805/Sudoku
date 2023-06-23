@@ -1,7 +1,28 @@
+//
+// This file will be permanently disabled because Tencent QQ disallows me using it.
+// Maybe I will change another way to use the bot (e.g. QQ Channel).
+//
+// However, this file will be maintained because I will use the same logic to implement new-look bot in the future.
+//
+#if false
 #define AUTO_SEND_MESSAGE_AFTER_MEMBER_JOINED
 #define ALLOW_MEMBER_REQUEST
 #undef ALLOW_INVITATION
 #define BASIC_LOG_INFO_OUTPUT
+using System.Reactive.Linq;
+using Flurl.Http;
+using Mirai.Net.Data.Events.Concretes.Group;
+using Mirai.Net.Data.Events.Concretes.Request;
+using Mirai.Net.Data.Exceptions;
+using Mirai.Net.Data.Messages.Receivers;
+using Mirai.Net.Sessions;
+using Mirai.Net.Sessions.Http.Managers;
+using Mirai.Net.Utils.Scaffolds;
+using Sudoku.Workflow.Bot.Oicq.Collections;
+using Sudoku.Workflow.Bot.Oicq.Lifecycle;
+using static Sudoku.Workflow.Bot.Oicq.Constants;
+using static Sudoku.Workflow.Bot.Oicq.Lifecycle.EnvironmentVariables;
+
 namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
@@ -330,3 +351,4 @@ file static class Extensions
 			}
 		);
 }
+#endif

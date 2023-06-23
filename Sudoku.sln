@@ -43,8 +43,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Gdip", "src\Sudoku.G
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Analytics", "src\Sudoku.Analytics\Sudoku.Analytics.csproj", "{D188748E-0794-445F-AAE5-08F3874FDF26}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Workflow.Bot.Oicq", "src\Sudoku.Workflow.Bot.Oicq\Sudoku.Workflow.Bot.Oicq.csproj", "{8139FDAC-48DA-4007-8B3B-50BEC86F9830}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution-wide Code Configuration", "Solution-wide Code Configuration", "{B33F37B0-E19F-4CD2-993A-94C4571248AD}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
@@ -62,7 +60,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.SourceGeneration", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RootLevelSourceGeneration", "src\RootLevelSourceGeneration\RootLevelSourceGeneration.csproj", "{971E9510-5D09-44A3-9689-5B44A500DF08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuStudio", "src\SudokuStudio\SudokuStudio.csproj", "{88EAFE6C-050B-4F43-B768-0C564D48CC3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuStudio", "src\SudokuStudio\SudokuStudio.csproj", "{88EAFE6C-050B-4F43-B768-0C564D48CC3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -263,36 +261,6 @@ Global
 		{D188748E-0794-445F-AAE5-08F3874FDF26}.Release|x64.Build.0 = Release|Any CPU
 		{D188748E-0794-445F-AAE5-08F3874FDF26}.Release|x86.ActiveCfg = Release|Any CPU
 		{D188748E-0794-445F-AAE5-08F3874FDF26}.Release|x86.Build.0 = Release|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Build|Any CPU.ActiveCfg = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Build|Any CPU.Build.0 = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Build|ARM.ActiveCfg = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Build|ARM.Build.0 = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Build|ARM64.ActiveCfg = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Build|ARM64.Build.0 = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Build|x64.ActiveCfg = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Build|x64.Build.0 = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Build|x86.ActiveCfg = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Build|x86.Build.0 = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Debug|ARM.Build.0 = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Debug|x64.Build.0 = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Debug|x86.Build.0 = Debug|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Release|ARM.ActiveCfg = Release|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Release|ARM.Build.0 = Release|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Release|ARM64.Build.0 = Release|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Release|x64.ActiveCfg = Release|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Release|x64.Build.0 = Release|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Release|x86.ActiveCfg = Release|Any CPU
-		{8139FDAC-48DA-4007-8B3B-50BEC86F9830}.Release|x86.Build.0 = Release|Any CPU
 		{8B2F4BE6-A6CC-4262-B162-05D399244F72}.Build|Any CPU.ActiveCfg = Debug|Any CPU
 		{8B2F4BE6-A6CC-4262-B162-05D399244F72}.Build|Any CPU.Build.0 = Debug|Any CPU
 		{8B2F4BE6-A6CC-4262-B162-05D399244F72}.Build|ARM.ActiveCfg = Debug|Any CPU
@@ -440,9 +408,9 @@ Global
 		{B33F37B0-E19F-4CD2-993A-94C4571248AD} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\SudokuTutorial\SudokuTutorial.projitems*{597d5691-2e11-43c7-ae3b-826e979450da}*SharedItemsImports = 13

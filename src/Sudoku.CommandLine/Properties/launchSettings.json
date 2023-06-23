@@ -1,8 +1,8 @@
 {
   "profiles": {
     "Sudoku.CommandLine": {
-      "commandName": "Project",
-      "commandLineArgs": "bot -a localhost:8080 -q 2222097152 -k helloworld"
+      "commandName": "Project"
+      //"commandLineArgs": "bot -a localhost:8080 -q 2222097152 -k helloworld"
       //"commandLineArgs": "draw -s 560 -o 10 -g \"00+210090+310+403+95+7+209+30000+18+428+973+1+563+1+95+86+7+246+7+521+438+920+700+109+5001090007+906+70500+1:511 812 435 635 882 884 887\" -p \"A:\\output.png\""
       //"commandLineArgs": "help"
       //"commandLineArgs": "help solve"
