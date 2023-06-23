@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics.StepSearchers;
 
+using unsafe SymmetricalPlacementChecker = delegate*</*scoped*/ in Grid, GurthSymmetricalPlacementStep?>;
+
 /// <summary>
 /// Provides with a <b>Gurth's Symmetrical Placement</b> step searcher.
 /// The step searcher will include the following techniques:
@@ -14,7 +16,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 	/// <summary>
 	/// The methods.
 	/// </summary>
-	private static readonly delegate*<in Grid, GurthSymmetricalPlacementStep?>[] Methods = { &CheckDiagonal, &CheckAntiDiagonal, &CheckCentral };
+	private static readonly SymmetricalPlacementChecker[] Methods = { &CheckDiagonal, &CheckAntiDiagonal, &CheckCentral };
 
 
 	/// <inheritdoc/>
