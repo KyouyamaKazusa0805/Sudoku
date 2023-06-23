@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics.Metadata;
 
 /// <summary>
 /// Represents a step searcher metadata attribute.

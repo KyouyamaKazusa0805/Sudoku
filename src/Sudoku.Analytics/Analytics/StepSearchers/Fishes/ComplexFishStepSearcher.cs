@@ -20,8 +20,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </item>
 /// </list>
 /// </summary>
-[StepSearcher]
-[ConditionalCases(ConditionalCase.UnlimitedTimeComplexity)]
+[StepSearcher(ConditionalCases = ConditionalCase.UnlimitedTimeComplexity)]
 public sealed partial class ComplexFishStepSearcher : StepSearcher
 {
 	/// <summary>

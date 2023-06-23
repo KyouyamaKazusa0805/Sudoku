@@ -7,8 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Pattern Overlay</item>
 /// </list>
 /// </summary>
-[StepSearcher]
-[Direct]
+[StepSearcher(IsPure = true)]
 public sealed partial class PatternOverlayStepSearcher : StepSearcher
 {
 	/// <summary>

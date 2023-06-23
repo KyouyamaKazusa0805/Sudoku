@@ -8,8 +8,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Template Delete</item>
 /// </list>
 /// </summary>
-[StepSearcher]
-[CachedOnly]
+[StepSearcher(OnlyUsesCachedFields = true)]
 public sealed partial class TemplateStepSearcher : StepSearcher
 {
 	/// <summary>

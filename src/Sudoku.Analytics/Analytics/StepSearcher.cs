@@ -43,30 +43,20 @@ public abstract partial class StepSearcher(
 	public bool IsSeparated => GetType().GetCustomAttribute<SeparatedAttribute>() is not null;
 
 	/// <summary>
-	/// Determines whether the current step searcher is a direct one.
+	/// Determines whether the current step searcher is a pure one, which means it doesn't use cached fields.
 	/// </summary>
-	/// <remarks>
-	/// If you don't know what is a direct step searcher, please visit the property
-	/// <see cref="DirectAttribute"/> to learn more information.
-	/// </remarks>
-	/// <seealso cref="DirectAttribute"/>
-	public bool IsDirect => GetType().IsDefined(typeof(DirectAttribute));
+	public bool IsPure => GetType().GetCustomAttribute<StepSearcherAttribute>()!.IsPure;
 
 	/// <summary>
-	/// Determines whether we can adjust the ordering of the current step searcher
-	/// as a customized configuration option before solving a puzzle.
+	/// Determines whether we can adjust the ordering of the current step searcher as a customized configuration option before solving a puzzle.
 	/// </summary>
-	/// <remarks>
-	/// If you don't know what is a direct step searcher, please visit the property <see cref="FixedAttribute"/> to learn more information.
-	/// </remarks>
-	/// <seealso cref="FixedAttribute"/>
-	public bool IsFixed => GetType().IsDefined(typeof(FixedAttribute));
+	public bool IsFixed => GetType().GetCustomAttribute<StepSearcherAttribute>()!.IsFixed;
 
 	/// <summary>
 	/// Determines whether the current step searcher is not supported for sukaku solving mode.
 	/// </summary>
 	public bool IsNotSupportedForSukaku
-		=> GetType().GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases } && cases.Flags(ConditionalCase.Standard);
+		=> GetType().GetCustomAttribute<StepSearcherAttribute>()!.ConditionalCases is var cases && cases.Flags(ConditionalCase.Standard);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
@@ -74,7 +64,7 @@ public abstract partial class StepSearcher(
 	/// </summary>
 	/// <seealso cref="ConditionalCase.UnlimitedTimeComplexity"/>
 	public bool IsConfiguredSlow
-		=> GetType().GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases }
+		=> GetType().GetCustomAttribute<StepSearcherAttribute>()!.ConditionalCases is var cases
 		&& cases.Flags(ConditionalCase.UnlimitedTimeComplexity);
 
 	/// <summary>
@@ -83,7 +73,7 @@ public abstract partial class StepSearcher(
 	/// </summary>
 	/// <seealso cref="ConditionalCase.UnlimitedSpaceComplexity"/>
 	public bool IsConfiguredHighAllocation
-		=> GetType().GetCustomAttribute<ConditionalCasesAttribute>() is { Cases: var cases }
+		=> GetType().GetCustomAttribute<StepSearcherAttribute>()!.ConditionalCases is var cases
 		&& cases.Flags(ConditionalCase.UnlimitedSpaceComplexity);
 
 	/// <summary>

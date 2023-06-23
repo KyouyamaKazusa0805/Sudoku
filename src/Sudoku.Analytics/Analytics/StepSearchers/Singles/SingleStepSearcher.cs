@@ -9,9 +9,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Naked Single</item>
 /// </list>
 /// </summary>
-[StepSearcher]
-[Direct]
-[Fixed]
+[StepSearcher(IsPure = true, IsFixed = true)]
 public sealed partial class SingleStepSearcher : StepSearcher
 {
 	/// <summary>

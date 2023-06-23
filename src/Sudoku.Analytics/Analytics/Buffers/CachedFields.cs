@@ -34,11 +34,10 @@ public static class CachedFields
 	/// </summary>
 	/// <remarks>
 	/// This map <b>should</b> be used after <see cref="Initialize(in Grid, in Grid)"/> called, and you<b>'d better</b>
-	/// not use this field on instances which are marked the attribute
-	/// <see cref="DirectAttribute"/>.
+	/// not use this field on instances which are set <see langword="true"/> for property <see cref="StepSearcherAttribute.IsPure"/>.
 	/// </remarks>
 	/// <seealso cref="Initialize(in Grid, in Grid)"/>
-	/// <seealso cref="DirectAttribute"/>
+	/// <seealso cref="StepSearcherAttribute.IsPure"/>
 	internal static CellMap EmptyCells;
 
 	/// <summary>
