@@ -51,12 +51,6 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 
 ![](docs/pic/winui.png)
 
-### 群机器人
-
-<img src="docs/pic/bot-1.png" style="zoom:40%" />
-
-<img src="docs/pic/bot-2.png" style="zoom:40%" />
-
 ## 支持的技巧
 
 本项目支持众多人工解题技巧的逻辑推理过程。下面给大家列举一下这些技巧。
