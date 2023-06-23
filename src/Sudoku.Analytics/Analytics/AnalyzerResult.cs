@@ -252,7 +252,9 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 			{
 				if (Steps[i] is SingleStep)
 				{
-					return i - 1 is var targetIndex and >= 0 ? Steps[targetIndex] : Steps[0];
+					return i - 1 is not (var targetIndex and >= 0)
+						? Steps[0]
+						: (from step in Steps[..i] select (Step: step, step.Difficulty)).MaxBy(static pair => pair.Difficulty).Step;
 				}
 			}
 
