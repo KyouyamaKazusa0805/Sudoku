@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Junior Exocet</item>
 /// </list>
 /// </summary>
-[StepSearcher]
+[StepSearcher(new[] { DifficultyLevel.Nightmare })]
 public sealed partial class JuniorExocetStepSearcher : StepSearcher
 {
 	/// <summary>

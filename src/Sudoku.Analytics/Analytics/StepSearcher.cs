@@ -96,9 +96,15 @@ public abstract partial class StepSearcher(
 	}
 
 	/// <summary>
+	/// Indicates the <see cref="DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
+	/// </summary>
+	public DifficultyLevel[] DifficultyLevelRange
+		=> GetType().GetCustomAttribute<StepSearcherAttribute>()!.DifficultyLevelRange ?? Array.Empty<DifficultyLevel>();
+
+	/// <summary>
 	/// Indicates the final priority value ID of the step searcher. This property is used as comparison.
 	/// </summary>
-	internal int PriorityId => Priority << 4 | SeparatedPriority;
+	private int PriorityId => Priority << 4 | SeparatedPriority;
 
 
 	[GeneratedOverridingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]

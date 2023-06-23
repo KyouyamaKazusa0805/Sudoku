@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Provides with a <b>Sue de Coq</b> step searcher.
@@ -9,7 +9,7 @@
 /// <item>Cannibalistic Sue de Coq</item>
 /// </list>
 /// </summary>
-[StepSearcher]
+[StepSearcher(new[] { DifficultyLevel.Fiendish })]
 public sealed partial class SueDeCoqStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

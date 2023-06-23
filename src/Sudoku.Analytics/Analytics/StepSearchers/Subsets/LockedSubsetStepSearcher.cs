@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Locked Hidden Triple</item>
 /// </list>
 /// </summary>
-[StepSearcher]
+[StepSearcher(new[] { DifficultyLevel.Moderate })]
 public sealed partial class LockedSubsetStepSearcher : SubsetStepSearcher
 {
 	/// <inheritdoc/>

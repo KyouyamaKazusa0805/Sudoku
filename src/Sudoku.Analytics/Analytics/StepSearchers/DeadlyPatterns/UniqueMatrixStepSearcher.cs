@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Unique Matrix Type 4</item>
 /// </list>
 /// </summary>
-[StepSearcher(ConditionalCases = ConditionalCase.Standard)]
+[StepSearcher(new[] { DifficultyLevel.Fiendish }, ConditionalCases = ConditionalCase.Standard)]
 public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 {
 	/// <summary>

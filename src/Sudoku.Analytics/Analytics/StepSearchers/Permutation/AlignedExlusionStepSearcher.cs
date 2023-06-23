@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Aligned Exclusion</item>
 /// </list>
 /// </summary>
-[StepSearcher(ConditionalCases = ConditionalCase.UnlimitedTimeComplexity)]
+[StepSearcher(new[] { DifficultyLevel.Fiendish }, ConditionalCases = ConditionalCase.UnlimitedTimeComplexity)]
 public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 {
 	/// <summary>

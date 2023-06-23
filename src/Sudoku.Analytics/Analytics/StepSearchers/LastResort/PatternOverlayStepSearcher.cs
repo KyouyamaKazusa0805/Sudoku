@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Pattern Overlay</item>
 /// </list>
 /// </summary>
-[StepSearcher(IsPure = true)]
+[StepSearcher(new[] { DifficultyLevel.LastResort }, IsPure = true)]
 public sealed partial class PatternOverlayStepSearcher : StepSearcher
 {
 	/// <summary>

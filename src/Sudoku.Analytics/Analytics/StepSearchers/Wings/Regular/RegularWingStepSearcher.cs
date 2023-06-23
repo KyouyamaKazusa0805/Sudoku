@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>RSTUVWXYZ-Wing</item>
 /// </list>
 /// </summary>
-[StepSearcher]
+[StepSearcher(new[] { DifficultyLevel.Hard, DifficultyLevel.Fiendish })]
 public sealed partial class RegularWingStepSearcher : StepSearcher
 {
 	/// <summary>

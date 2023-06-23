@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Turbot Fish</item>
 /// </list>
 /// </summary>
-[StepSearcher(OnlyUsesCachedFields = true)]
+[StepSearcher(new[] { DifficultyLevel.Hard }, OnlyUsesCachedFields = true)]
 public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
@@ -30,8 +30,8 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 
 					// Get all cells.
 					var (cells1, cells2) = (CellMap.Empty, CellMap.Empty);
-					scoped var cellsList1 = new ValueList<Cell>(2);
-					scoped var cellsList2 = new ValueList<Cell>(2);
+					using scoped var cellsList1 = new ValueList<Cell>(2);
+					using scoped var cellsList2 = new ValueList<Cell>(2);
 					foreach (var pos1 in mask1)
 					{
 						var cell1 = HouseCells[h1][pos1];

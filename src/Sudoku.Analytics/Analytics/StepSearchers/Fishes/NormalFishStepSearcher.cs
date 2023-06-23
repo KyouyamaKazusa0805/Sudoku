@@ -34,7 +34,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </item>
 /// </list>
 /// </summary>
-[StepSearcher]
+[StepSearcher(new[] { DifficultyLevel.Hard })]
 public sealed partial class NormalFishStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

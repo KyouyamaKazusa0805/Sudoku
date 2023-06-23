@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <!--<item>Gurth's Symmetrical Placement (Shuffling Type)</item>-->
 /// </list>
 /// </summary>
-[StepSearcher(IsPure = true)]
+[StepSearcher(new[] { DifficultyLevel.Fiendish }, IsPure = true)]
 public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 {
 	/// <summary>

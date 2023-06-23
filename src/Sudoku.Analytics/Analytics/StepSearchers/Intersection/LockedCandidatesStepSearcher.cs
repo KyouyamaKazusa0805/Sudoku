@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Claiming</item>
 /// </list>
 /// </summary>
-[StepSearcher]
+[StepSearcher(new[] { DifficultyLevel.Moderate })]
 public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

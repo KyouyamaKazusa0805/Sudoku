@@ -3543,6 +3543,15 @@
             <summary>
             Indicates the type is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
+            <param name="difficultyLevelRange">Indicates what difficulty level the current step searcher can produce.</param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.StepSearcherAttribute.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel[])">
+            <summary>
+            Indicates the type is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
+            </summary>
+            <param name="difficultyLevelRange">Indicates what difficulty level the current step searcher can produce.</param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.OnlyUsesCachedFields">
             <summary>
@@ -3593,6 +3602,11 @@
             Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> instance is unavailable on partial cases.
             For example, Deadly Patterns are unavailable for Sukaku puzzles because we cannot determine
             whether a candidate is having been removed before.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.DifficultyLevelRange">
+            <summary>
+            The generated property declaration for parameter <c>difficultyLevelRange</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1">
@@ -5375,6 +5389,11 @@ result ^= expression;
             Throws when <see langword="value"/> is below 0, greater than 16 or equal to 16.
             </exception>
             <seealso cref="T:Sudoku.Analytics.Metadata.SeparatedAttribute"/>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcher.DifficultyLevelRange">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearcher.PriorityId">
             <summary>

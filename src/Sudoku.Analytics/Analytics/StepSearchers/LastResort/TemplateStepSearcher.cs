@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Template Delete</item>
 /// </list>
 /// </summary>
-[StepSearcher(OnlyUsesCachedFields = true)]
+[StepSearcher(new[] { DifficultyLevel.LastResort }, OnlyUsesCachedFields = true)]
 public sealed partial class TemplateStepSearcher : StepSearcher
 {
 	/// <summary>
