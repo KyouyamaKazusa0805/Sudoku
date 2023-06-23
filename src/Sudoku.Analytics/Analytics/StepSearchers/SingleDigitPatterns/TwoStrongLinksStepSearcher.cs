@@ -23,18 +23,16 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 				for (var h2 = h1 + 1; h2 < 27; h2++)
 				{
 					// Get masks.
-					var mask1 = (HousesMap[h1] & CandidatesMap[digit]) / h1;
-					var mask2 = (HousesMap[h2] & CandidatesMap[digit]) / h2;
+					var (mask1, mask2) = ((HousesMap[h1] & CandidatesMap[digit]) / h1, (HousesMap[h2] & CandidatesMap[digit]) / h2);
 					if (PopCount((uint)mask1) != 2 || PopCount((uint)mask2) != 2)
 					{
 						continue;
 					}
 
 					// Get all cells.
-					var cells1 = CellMap.Empty;
-					var cells2 = CellMap.Empty;
-					var cellsList1 = new List<Cell>(PopCount((uint)mask1));
-					var cellsList2 = new List<Cell>(PopCount((uint)mask2));
+					var (cells1, cells2) = (CellMap.Empty, CellMap.Empty);
+					scoped var cellsList1 = new ValueList<Cell>(2);
+					scoped var cellsList2 = new ValueList<Cell>(2);
 					foreach (var pos1 in mask1)
 					{
 						var cell1 = HouseCells[h1][pos1];
@@ -77,8 +75,7 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 				Checking:
 					// Two strong link found.
 					// Record all eliminations.
-					var head = cellsList1[headIndex];
-					var tail = cellsList2[tailIndex];
+					var (head, tail) = (cellsList1[headIndex], cellsList2[tailIndex]);
 					if ((PeersMap[head] & PeersMap[tail] & CandidatesMap[digit]) is not (var elimMap and not []))
 					{
 						continue;
