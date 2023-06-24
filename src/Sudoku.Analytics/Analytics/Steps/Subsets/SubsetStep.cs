@@ -24,10 +24,4 @@ public abstract partial class SubsetStep(
 	/// Due to the technique logic, you can also treat the result value of this property as the number of digits used.
 	/// </summary>
 	public int Size => PopCount((uint)DigitsMask);
-
-	/// <inheritdoc/>
-	public sealed override string Name => base.Name;
-
-	/// <inheritdoc/>
-	public sealed override string? Format => base.Format;
 }

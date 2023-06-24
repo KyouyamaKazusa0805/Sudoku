@@ -5,11 +5,4 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
-public abstract class WingStep(Conclusion[] conclusions, View[]? views) : Step(conclusions, views)
-{
-	/// <inheritdoc/>
-	public sealed override string Name => base.Name;
-
-	/// <inheritdoc/>
-	public sealed override string? Format => base.Format;
-}
+public abstract class WingStep(Conclusion[] conclusions, View[]? views) : Step(conclusions, views);

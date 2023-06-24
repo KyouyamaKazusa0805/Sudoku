@@ -12,8 +12,4 @@ public abstract partial class SingleStep(
 	View[]? views,
 	[PrimaryConstructorParameter] Cell cell,
 	[PrimaryConstructorParameter] Digit digit
-) : Step(conclusions, views)
-{
-	/// <inheritdoc/>
-	public sealed override string Name => base.Name;
-}
+) : Step(conclusions, views);

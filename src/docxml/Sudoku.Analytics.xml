@@ -8591,9 +8591,6 @@ result ^= expression;
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsStep.Name">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
@@ -9577,9 +9574,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.Format">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.Code">
             <inheritdoc/>
         </member>
@@ -10003,9 +9997,6 @@ result ^= expression;
             Indicates the type of the step. The value must be between 1 and 4.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Format">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Code">
             <inheritdoc/>
         </member>
@@ -10189,9 +10180,6 @@ result ^= expression;
             <summary>
             Indicates the type.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Format">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Code">
             <inheritdoc/>
@@ -10386,9 +10374,6 @@ result ^= expression;
             <summary>
             Indicates the type of the current technique step.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Format">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Code">
             <inheritdoc/>
@@ -10609,12 +10594,6 @@ result ^= expression;
             <summary>
             Indicates the type of the current technique.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.Format">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.Code">
             <inheritdoc/>
@@ -11733,9 +11712,6 @@ result ^= expression;
             Indicates the type of the technique.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Format">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Code">
             <inheritdoc/>
         </member>
@@ -11937,12 +11913,6 @@ result ^= expression;
             <param name="eliminations">Indicates the eliminations, grouped by the type.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetStep.Format">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetStep.BaseMap">
@@ -12206,12 +12176,6 @@ result ^= expression;
             <param name="digit">Indicates the digit used.</param>
             <param name="baseSetsMask">Indicates the mask that contains the base sets.</param>
             <param name="coverSetsMask">Indicates the mask that contains the cover sets.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FishStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FishStep.Format">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Size">
             <inheritdoc/>
@@ -12683,12 +12647,6 @@ result ^= expression;
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.IntersectionStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.IntersectionStep.Format">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.LockedCandidatesStep">
             <summary>
@@ -13240,12 +13198,6 @@ result ^= expression;
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.RankTheoryStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RankTheoryStep.Format">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.DominoLoopStep">
             <summary>
             Provides with a step that is a <b>Domino Loop</b> technique.
@@ -13543,12 +13495,6 @@ result ^= expression;
             <param name="views"><inheritdoc/></param>
             <param name="digit">Indicates the digit used in this pattern.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SingleDigitPatternStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SingleDigitPatternStep.Format">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.SingleDigitPatternStep.Digit">
             <summary>
             The generated property declaration for parameter <c>digit</c>.
@@ -13706,9 +13652,6 @@ result ^= expression;
             <param name="views"><inheritdoc/></param>
             <param name="cell">Indicates the cell used.</param>
             <param name="digit">Indicates the digit used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SingleStep.Name">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SingleStep.Cell">
             <summary>
@@ -13879,12 +13822,6 @@ result ^= expression;
             Indicates the number of cells used.
             Due to the technique logic, you can also treat the result value of this property as the number of digits used.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SubsetStep.Format">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.House">
             <summary>
@@ -14234,12 +14171,6 @@ result ^= expression;
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WingStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WingStep.Format">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Strings.ResourceNotFoundException">
             <summary>

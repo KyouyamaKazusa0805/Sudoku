@@ -25,9 +25,6 @@ public abstract partial class UniqueLoopStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public sealed override string? Format => base.Format;
-
-	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"UniqueLoopType{Type}");
 
 	/// <inheritdoc/>

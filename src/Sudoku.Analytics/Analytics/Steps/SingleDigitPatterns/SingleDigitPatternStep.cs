@@ -7,11 +7,4 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc/></param>
 /// <param name="digit">Indicates the digit used in this pattern.</param>
 public abstract partial class SingleDigitPatternStep(Conclusion[] conclusions, View[]? views, [PrimaryConstructorParameter] Digit digit) :
-	Step(conclusions, views)
-{
-	/// <inheritdoc/>
-	public sealed override string Name => base.Name;
-
-	/// <inheritdoc/>
-	public sealed override string? Format => base.Format;
-}
+	Step(conclusions, views);

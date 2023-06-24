@@ -32,9 +32,6 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public sealed override string? Format => base.Format;
-
-	/// <inheritdoc/>
 	public sealed override Technique Code => Technique.ReverseBivalueUniversalGraveType1 + (short)(Type - 1);
 
 	/// <inheritdoc/>

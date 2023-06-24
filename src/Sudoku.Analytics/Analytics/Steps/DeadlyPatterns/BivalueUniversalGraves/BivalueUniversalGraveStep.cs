@@ -11,8 +11,5 @@ public abstract class BivalueUniversalGraveStep(Conclusion[] conclusions, View[]
 	public override decimal BaseDifficulty => 5.6M;
 
 	/// <inheritdoc/>
-	public sealed override string? Format => base.Format;
-
-	/// <inheritdoc/>
 	public abstract override Technique Code { get; }
 }

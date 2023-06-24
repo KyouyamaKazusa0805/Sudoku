@@ -17,12 +17,6 @@ public abstract partial class FishStep(
 ) : Step(conclusions, views)
 {
 	/// <inheritdoc/>
-	public sealed override string Name => base.Name;
-
-	/// <inheritdoc/>
-	public sealed override string? Format => base.Format;
-
-	/// <inheritdoc/>
 	/// <remarks>
 	/// The name of the corresponding names are:
 	/// <list type="table">

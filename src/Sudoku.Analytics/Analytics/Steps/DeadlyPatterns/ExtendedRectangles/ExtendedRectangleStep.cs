@@ -23,9 +23,6 @@ public abstract partial class ExtendedRectangleStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public sealed override string? Format => base.Format;
-
-	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"ExtendedRectangleType{Type}");
 
 	/// <inheritdoc/>

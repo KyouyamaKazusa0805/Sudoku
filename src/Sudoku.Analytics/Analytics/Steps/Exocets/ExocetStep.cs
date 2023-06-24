@@ -17,12 +17,6 @@ public abstract partial class ExocetStep(
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 9.4M;
 
-	/// <inheritdoc/>
-	public sealed override string Name => base.Name;
-
-	/// <inheritdoc/>
-	public sealed override string? Format => base.Format;
-
 	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
 	private protected string BaseCellsStr => BaseMap.ToString();
