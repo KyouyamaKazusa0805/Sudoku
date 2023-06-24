@@ -238,6 +238,11 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形（XR）\14 拓展矩形区块类型，12个单元格.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\04 拓展矩形（XR）\15 拓展矩形标准类型，14个单元格.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\01 全双值格致死结构标准类型.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\01-1 错误填法1（假设2）.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\01-2 错误填法2（假设6）.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\02 不是全双值格致死结构的例子1.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\03 不是全双值格致死结构的例子2.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\04 全双值格致死结构区块类型.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
   </ItemGroup>
   <ItemGroup>
