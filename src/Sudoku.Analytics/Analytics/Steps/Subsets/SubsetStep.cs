@@ -30,7 +30,4 @@ public abstract partial class SubsetStep(
 
 	/// <inheritdoc/>
 	public sealed override string? Format => base.Format;
-
-	/// <inheritdoc/>
-	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;
 }

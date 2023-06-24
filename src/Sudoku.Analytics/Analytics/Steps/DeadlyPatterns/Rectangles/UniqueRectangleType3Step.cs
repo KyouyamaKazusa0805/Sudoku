@@ -40,9 +40,6 @@ public sealed partial class UniqueRectangleType3Step(
 )
 {
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new[]
 		{

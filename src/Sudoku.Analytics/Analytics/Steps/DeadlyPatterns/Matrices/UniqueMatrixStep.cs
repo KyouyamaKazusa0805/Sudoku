@@ -26,9 +26,6 @@ public abstract partial class UniqueMatrixStep(
 	public sealed override string? Format => base.Format;
 
 	/// <inheritdoc/>
-	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"UniqueMatrixType{Type}");
 
 	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);

@@ -68,9 +68,6 @@ public sealed partial class RegularWingStep(
 	public override Technique Code => TechniqueFact.MakeRegularWingTechniqueCode(TechniqueFact.GetRegularWingEnglishName(Size, IsIncomplete));
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => Size switch { 3 or 4 => DifficultyLevel.Hard, >= 5 => DifficultyLevel.Fiendish };
-
-	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new[]
 		{

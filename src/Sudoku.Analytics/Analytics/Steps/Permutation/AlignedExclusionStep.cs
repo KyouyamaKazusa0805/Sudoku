@@ -37,7 +37,4 @@ public sealed partial class AlignedExclusionStep(
 			>= 2 and <= 5 => Technique.AlignedPairExclusion + (short)(Size - 2),
 			_ => throw new NotSupportedException("The subset is too complex to be calculated.")
 		};
-
-	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 }

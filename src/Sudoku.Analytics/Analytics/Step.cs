@@ -103,8 +103,20 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// we still can't set multiple flag values into the result. The flags are filtered
 	/// during generating puzzles.
 	/// </remarks>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the target diffculty level is <see cref="DifficultyLevel.Unknown"/>.
+	/// </exception>
 	/// <seealso cref="FlagsAttribute"/>
-	public abstract DifficultyLevel DifficultyLevel { get; }
+	public DifficultyLevel DifficultyLevel
+		=> Code.GetDifficultyLevel() is var level and not 0
+			? level
+			: throw new InvalidOperationException(
+				$"""
+				The target level is unknown. 
+				If you see this exception thrown, 
+				please append '{typeof(DifficultyLevelAttribute).FullName}' onto the target technique code.
+				""".RemoveLineEndings()
+			);
 
 	/// <summary>
 	/// Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,

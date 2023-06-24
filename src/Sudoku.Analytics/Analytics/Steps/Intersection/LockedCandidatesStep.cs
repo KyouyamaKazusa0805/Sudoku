@@ -23,9 +23,6 @@ public sealed partial class LockedCandidatesStep(
 	public override Technique Code => BaseSet < 9 ? Technique.Pointing : Technique.Claiming;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;
-
-	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{

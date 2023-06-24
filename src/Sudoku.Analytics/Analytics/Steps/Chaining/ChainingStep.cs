@@ -105,15 +105,6 @@ public abstract partial class ChainingStep(
 		};
 
 	/// <inheritdoc/>
-	public sealed override DifficultyLevel DifficultyLevel
-		=> this switch
-		{
-			ForcingChainStep or BidirectionalCycleStep => DifficultyLevel.Fiendish,
-			CellForcingChainsStep or RegionForcingChainsStep or BinaryForcingChainsStep => DifficultyLevel.Nightmare,
-			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
-		};
-
-	/// <inheritdoc/>
 	public sealed override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Length, LengthDifficulty) };
 
 	/// <summary>

@@ -16,7 +16,4 @@ public abstract partial class SingleStep(
 {
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
-
-	/// <inheritdoc/>
-	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Easy;
 }

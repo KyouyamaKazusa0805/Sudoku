@@ -14,8 +14,5 @@ public abstract class BivalueUniversalGraveStep(Conclusion[] conclusions, View[]
 	public sealed override string? Format => base.Format;
 
 	/// <inheritdoc/>
-	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
 	public abstract override Technique Code { get; }
 }

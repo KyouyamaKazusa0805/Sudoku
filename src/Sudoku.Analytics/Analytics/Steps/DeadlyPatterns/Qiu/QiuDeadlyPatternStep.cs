@@ -29,8 +29,5 @@ public abstract partial class QiuDeadlyPatternStep(
 	/// <inheritdoc/>
 	public sealed override Technique Code => Type == 5 ? Technique.LockedQiuDeadlyPattern : Enum.Parse<Technique>($"QiuDeadlyPatternType{Type}");
 
-	/// <inheritdoc/>
-	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
 	private protected string PatternStr => Pattern.Map.ToString();
 }

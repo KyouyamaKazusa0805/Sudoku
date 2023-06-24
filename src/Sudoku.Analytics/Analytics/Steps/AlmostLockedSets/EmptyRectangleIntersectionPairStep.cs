@@ -24,9 +24,6 @@ public sealed partial class EmptyRectangleIntersectionPairStep(
 	public override decimal BaseDifficulty => 6.0M;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
 	public override Technique Code => Technique.EmptyRectangleIntersectionPair;
 
 	/// <inheritdoc/>

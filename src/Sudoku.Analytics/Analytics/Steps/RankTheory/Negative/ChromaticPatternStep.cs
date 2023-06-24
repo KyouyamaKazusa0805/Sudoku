@@ -19,9 +19,6 @@ public abstract partial class ChromaticPatternStep(
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 6.5M;
 
-	/// <inheritdoc/>
-	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
 	private protected string BlocksStr => string.Join(", ", from block in Blocks select $"{block + 1}");
 
 	private protected string CellsStr => Pattern.ToString();

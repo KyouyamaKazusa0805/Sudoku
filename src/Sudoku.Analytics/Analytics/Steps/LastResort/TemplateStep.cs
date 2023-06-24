@@ -21,9 +21,6 @@ public sealed partial class TemplateStep(
 	public override decimal BaseDifficulty => 9.0M;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
-
-	/// <inheritdoc/>
 	public override Technique Code => IsTemplateDeletion ? Technique.TemplateDelete : Technique.TemplateSet;
 
 	/// <inheritdoc/>

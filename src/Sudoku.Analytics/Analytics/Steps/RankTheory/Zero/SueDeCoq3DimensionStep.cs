@@ -29,9 +29,6 @@ public sealed partial class SueDeCoq3DimensionStep(
 	public override Technique Code => Technique.SueDeCoq3Dimension;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{

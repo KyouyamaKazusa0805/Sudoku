@@ -38,9 +38,6 @@ public sealed partial class UniqueRectangleWithWingStep(
 )
 {
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new[]
 		{

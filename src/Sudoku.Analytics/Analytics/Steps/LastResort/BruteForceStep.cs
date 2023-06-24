@@ -11,9 +11,6 @@ public sealed class BruteForceStep(Conclusion[] conclusions, View[]? views) : La
 	public override decimal BaseDifficulty => 20.0M;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
-
-	/// <inheritdoc/>
 	public override Technique Code => Technique.BruteForce;
 
 	/// <inheritdoc/>

@@ -42,15 +42,12 @@ public sealed partial class AlmostLockedSetsXzStep(
 		);
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
 	public override Technique Code
 		=> IsDoublyLinked switch
 		{
 			true => Technique.DoublyLinkedAlmostLockedSetsXzRule,
 			false => Technique.SinglyLinkedAlmostLockedSetsXzRule,
-			null => Technique.ExtendedSubsetPrinciple
+			_ => Technique.ExtendedSubsetPrinciple
 		};
 
 	/// <inheritdoc/>

@@ -30,9 +30,6 @@ public sealed class UniqueRectangleType1Step(
 )
 {
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { D1Str, D2Str, CellsStr } }, { ChineseLanguage, new[] { D1Str, D2Str, CellsStr } } };
 }

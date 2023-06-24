@@ -26,9 +26,6 @@ public abstract partial class BorescoperDeadlyPatternStep(
 	public sealed override string Format => GetString($"TechniqueFormat_UniquePolygonType{Type}Step")!;
 
 	/// <inheritdoc/>
-	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"BorescoperDeadlyPatternType{Type}");
 
 	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);

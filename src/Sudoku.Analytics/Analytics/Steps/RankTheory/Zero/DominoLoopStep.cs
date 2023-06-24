@@ -16,9 +16,6 @@ public sealed partial class DominoLoopStep(
 	public override decimal BaseDifficulty => 9.6M;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
-
-	/// <inheritdoc/>
 	public override Technique Code => Technique.DominoLoop;
 
 	/// <inheritdoc/>

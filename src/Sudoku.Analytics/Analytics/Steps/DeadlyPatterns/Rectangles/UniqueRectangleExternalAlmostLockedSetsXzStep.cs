@@ -36,9 +36,6 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 )
 {
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new[]
 		{

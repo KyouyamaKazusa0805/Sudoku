@@ -54,10 +54,6 @@ public sealed partial class ComplexFishStep(
 	public override decimal BaseDifficulty => 3.2M;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel
-		=> Size switch { 2 => DifficultyLevel.Hard, 3 or 4 => DifficultyLevel.Fiendish, _ => DifficultyLevel.Nightmare };
-
-	/// <inheritdoc/>
 	public override Technique Code => FishStepSearcherHelper.GetComplexFishTechniqueCodeFromName(InternalName);
 
 	/// <inheritdoc/>

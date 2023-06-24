@@ -23,9 +23,6 @@ public sealed partial class GroupedWWingStep(
 	public override Technique Code => Technique.GroupedWWing;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{

@@ -5,8 +5,4 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
-public abstract class SymmetryStep(Conclusion[] conclusions, View[]? views) : Step(conclusions, views)
-{
-	/// <inheritdoc/>
-	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-}
+public abstract class SymmetryStep(Conclusion[] conclusions, View[]? views) : Step(conclusions, views);

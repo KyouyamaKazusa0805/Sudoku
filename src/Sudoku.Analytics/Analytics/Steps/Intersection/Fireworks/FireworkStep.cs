@@ -9,7 +9,4 @@ public abstract class FireworkStep(Conclusion[] conclusions, View[]? views) : In
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.9M;
-
-	/// <inheritdoc/>
-	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 }

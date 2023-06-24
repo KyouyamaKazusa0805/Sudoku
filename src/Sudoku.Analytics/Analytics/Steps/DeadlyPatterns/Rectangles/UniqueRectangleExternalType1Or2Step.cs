@@ -42,9 +42,6 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 )
 {
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new[]
 		{

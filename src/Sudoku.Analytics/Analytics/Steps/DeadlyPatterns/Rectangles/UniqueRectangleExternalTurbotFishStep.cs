@@ -56,9 +56,6 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 	public override string Format => GetString("TechniqueFormat_UniqueRectangleStep")!;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new[]
 		{

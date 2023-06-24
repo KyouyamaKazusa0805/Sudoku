@@ -15,9 +15,6 @@ public sealed class PatternOverlayStep(Conclusion[] conclusions) : LastResortSte
 	public override decimal BaseDifficulty => 8.5M;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
-
-	/// <inheritdoc/>
 	public override Technique Code => Technique.PatternOverlay;
 
 	/// <inheritdoc/>

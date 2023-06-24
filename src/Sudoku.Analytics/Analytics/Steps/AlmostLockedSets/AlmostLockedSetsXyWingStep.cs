@@ -26,9 +26,6 @@ public sealed partial class AlmostLockedSetsXyWingStep(
 	public override decimal BaseDifficulty => 6.0M;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
 	public override Technique Code => Technique.AlmostLockedSetsXyWing;
 
 	/// <inheritdoc/>

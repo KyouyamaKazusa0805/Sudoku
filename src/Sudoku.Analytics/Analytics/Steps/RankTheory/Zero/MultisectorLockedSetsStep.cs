@@ -19,9 +19,6 @@ public sealed partial class MultisectorLockedSetsStep(
 	public override Technique Code => Technique.MultisectorLockedSets;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
-
-	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Size, A002024(Cells.Count) * .1M) };
 
 	/// <inheritdoc/>

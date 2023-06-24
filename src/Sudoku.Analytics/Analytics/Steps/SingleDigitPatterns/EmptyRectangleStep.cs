@@ -20,9 +20,6 @@ public sealed partial class EmptyRectangleStep(
 	public override decimal BaseDifficulty => 4.6M;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
 	public override Technique Code => Technique.EmptyRectangle;
 
 	/// <inheritdoc/>

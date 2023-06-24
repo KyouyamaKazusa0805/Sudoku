@@ -48,9 +48,6 @@ public sealed partial class NormalFishStep(
 		};
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
 	public override Technique Code
 	{
 		get

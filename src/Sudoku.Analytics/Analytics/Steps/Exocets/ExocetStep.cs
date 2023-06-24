@@ -23,9 +23,6 @@ public abstract partial class ExocetStep(
 	/// <inheritdoc/>
 	public sealed override string? Format => base.Format;
 
-	/// <inheritdoc/>
-	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
-
 	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
 	private protected string BaseCellsStr => BaseMap.ToString();

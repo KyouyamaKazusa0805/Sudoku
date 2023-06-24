@@ -21,9 +21,6 @@ public sealed partial class TwoStrongLinksStep(
 		=> Code switch { Technique.TurbotFish => 4.2M, Technique.Skyscraper => 4.0M, Technique.TwoStringKite => 4.1M };
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
-
-	/// <inheritdoc/>
 	public override Technique Code
 		=> (baseHouse / 9, targetHouse / 9) switch
 		{

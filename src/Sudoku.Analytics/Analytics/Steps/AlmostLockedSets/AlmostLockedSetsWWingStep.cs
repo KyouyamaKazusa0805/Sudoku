@@ -24,9 +24,6 @@ public sealed partial class AlmostLockedSetsWWingStep(
 	public override decimal BaseDifficulty => 6.2M;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
 	public override Technique Code => Technique.AlmostLockedSetsWWing;
 
 	/// <inheritdoc/>

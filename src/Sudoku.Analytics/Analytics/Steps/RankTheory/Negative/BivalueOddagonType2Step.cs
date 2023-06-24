@@ -22,9 +22,6 @@ public sealed partial class BivalueOddagonType2Step(
 	public override int Type => 2;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.ExtraDigit, .1M) };
 
 	/// <inheritdoc/>

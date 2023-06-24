@@ -41,9 +41,6 @@ public sealed partial class UniqueRectangleExternalType3Step(
 	public override decimal BaseDifficulty => 4.6M;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
-
-	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> new[]
 		{
