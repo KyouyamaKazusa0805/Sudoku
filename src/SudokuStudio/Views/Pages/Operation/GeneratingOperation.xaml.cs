@@ -80,13 +80,15 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		BasePage.ClearAnalyzeTabsData();
 
 		var processingText = GetString("AnalyzePage_GeneratorIsProcessing")!;
-		var analyzer = ((App)Application.Current).Analyzer;
 		var preferences = ((App)Application.Current).Preference.UIPreferences;
 		var difficultyLevel = preferences.GeneratorDifficultyLevel;
 		var symmetry = preferences.GeneratorSymmetricPattern;
 		var minimal = preferences.GeneratedPuzzleShouldBeMinimal;
 		var pearl = preferences.GeneratedPuzzleShouldBePearl;
 		var technique = preferences.SelectedTechnique;
+		var analyzer = ((App)Application.Current).Analyzer
+			.WithStepSearchers(((App)Application.Current).GetStepSearchers(), difficultyLevel)
+			.WithRuntimeIdentifierSetters(BasePage.SudokuPane);
 		using var cts = new CancellationTokenSource();
 		BasePage._ctsForAnalyzingRelatedOperations = cts;
 

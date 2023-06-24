@@ -76,6 +76,21 @@
             <seealso cref="T:Sudoku.Analytics.AnalyzerFactory"/>
             <completionlist cref="T:Sudoku.Analytics.PredefinedAnalyzers"/>
         </member>
+        <member name="M:Sudoku.Analytics.Analyzer.#ctor">
+            <summary>
+            Provides an analyzer that solves a sudoku puzzle using the human-friendly logics, and creates an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance
+            indicating the analytics data.
+            </summary>
+            <remarks>
+            Please note that this type has no accessible constructors,
+            you can just use type <see cref="T:Sudoku.Analytics.PredefinedAnalyzers"/> to get <see cref="T:Sudoku.Analytics.Analyzer"/>s you want to get.
+            In addition, you can also use <see cref="T:Sudoku.Analytics.AnalyzerFactory"/> to create some extra configuration.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+            <seealso cref="T:Sudoku.Analytics.PredefinedAnalyzers"/>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerFactory"/>
+            <completionlist cref="T:Sudoku.Analytics.PredefinedAnalyzers"/>
+        </member>
         <member name="P:Sudoku.Analytics.Analyzer.IsFullApplying">
             <summary>
             Indicates whether the solver will apply all found steps in a step searcher,
@@ -114,11 +129,6 @@
         <member name="P:Sudoku.Analytics.Analyzer.ResultStepSearchers">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Analyzer.#ctor">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Analytics.Analyzer"/> instance.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
@@ -143,18 +153,19 @@
             <param name="ignoreLargeSpaceComplexity">Indicates whether the analyzer ignores for large space-complexity step searchers.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[])">
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Categorization.DifficultyLevel)">
             <summary>
             Try to set property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/> with the specified value.
             </summary>
             <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
             <param name="stepSearchers">The custom collection of <see cref="T:Sudoku.Analytics.StepSearcher"/>s.</param>
+            <param name="level">Indicates the difficulty level preserved.</param>
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,System.Collections.Generic.IEnumerable{Sudoku.Analytics.StepSearcher})">
-            <inheritdoc cref="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[])"/>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,System.Collections.Generic.IEnumerable{Sudoku.Analytics.StepSearcher},Sudoku.Analytics.Categorization.DifficultyLevel)">
+            <inheritdoc cref="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Categorization.DifficultyLevel)"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearcherSetters``1(Sudoku.Analytics.Analyzer,System.Action{``0})">
             <summary>

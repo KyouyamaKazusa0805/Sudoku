@@ -108,15 +108,17 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// </exception>
 	/// <seealso cref="FlagsAttribute"/>
 	public DifficultyLevel DifficultyLevel
-		=> Code.GetDifficultyLevel() is var level and not 0
-			? level
-			: throw new InvalidOperationException(
+		=> Code.GetDifficultyLevel() switch
+		{
+			var level and not 0 => level,
+			_ => throw new InvalidOperationException(
 				$"""
 				The target level is unknown. 
 				If you see this exception thrown, 
 				please append '{typeof(DifficultyLevelAttribute).FullName}' onto the target technique code.
 				""".RemoveLineEndings()
-			);
+			)
+		};
 
 	/// <summary>
 	/// Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,

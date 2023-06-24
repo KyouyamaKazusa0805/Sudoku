@@ -1265,7 +1265,6 @@ public enum Technique
 	/// Indicates grouped W-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	GroupedWWing,
 

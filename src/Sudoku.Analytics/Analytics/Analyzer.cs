@@ -13,7 +13,8 @@ namespace Sudoku.Analytics;
 /// <seealso cref="PredefinedAnalyzers"/>
 /// <seealso cref="AnalyzerFactory"/>
 /// <completionlist cref="PredefinedAnalyzers"/>
-public sealed partial class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>, IAnalyzerOrCollector
+[method: Obsolete($"This constructor may not produce some extra options. Please visit type '{nameof(PredefinedAnalyzers)}' to get a suitable instance.", false)]
+public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IAnalyzerOrCollector
 {
 	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher,
@@ -59,20 +60,9 @@ public sealed partial class Analyzer : IAnalyzer<Analyzer, AnalyzerResult>, IAna
 
 	/// <inheritdoc/>
 	public StepSearcher[] ResultStepSearchers { get; private set; } =
-	(
 		from searcher in StepSearcherPool.Default(true)
 		where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
-		select searcher
-	).ToArray();
-
-
-	/// <summary>
-	/// Initializes an <see cref="Analyzer"/> instance.
-	/// </summary>
-	[Obsolete($"This constructor may not produce some extra options. Please visit type '{nameof(PredefinedAnalyzers)}' to get a suitable instance.", false)]
-	public Analyzer()
-	{
-	}
+		select searcher;
 
 
 	/// <inheritdoc/>

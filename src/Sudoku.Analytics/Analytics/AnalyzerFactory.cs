@@ -25,18 +25,24 @@ public static class AnalyzerFactory
 	/// </summary>
 	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
 	/// <param name="stepSearchers">The custom collection of <see cref="StepSearcher"/>s.</param>
+	/// <param name="level">Indicates the difficulty level preserved.</param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Analyzer.StepSearchers"/>
 	/// <seealso cref="StepSearcher"/>
-	public static Analyzer WithStepSearchers(this Analyzer @this, StepSearcher[] stepSearchers)
+	public static Analyzer WithStepSearchers(this Analyzer @this, StepSearcher[] stepSearchers, DifficultyLevel level = default)
 	{
-		@this.StepSearchers = stepSearchers;
+		@this.StepSearchers = level == 0
+			? stepSearchers
+			:
+			from stepSearcher in stepSearchers
+			where Array.Exists(stepSearcher.DifficultyLevelRange, l => l <= level)
+			select stepSearcher;
 		return @this;
 	}
 
-	/// <inheritdoc cref="WithStepSearchers(Analyzer, StepSearcher[])"/>
-	public static Analyzer WithStepSearchers(this Analyzer @this, IEnumerable<StepSearcher> stepSearchers)
-		=> @this.WithStepSearchers(stepSearchers.ToArray());
+	/// <inheritdoc cref="WithStepSearchers(Analyzer, StepSearcher[], DifficultyLevel)"/>
+	public static Analyzer WithStepSearchers(this Analyzer @this, IEnumerable<StepSearcher> stepSearchers, DifficultyLevel level = default)
+		=> @this.WithStepSearchers(stepSearchers.ToArray(), level);
 
 	/// <summary>
 	/// Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
