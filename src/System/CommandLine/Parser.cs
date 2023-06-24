@@ -69,13 +69,12 @@ public static class Parser
 					var realSubcommand = currentArg[fullCommandNamePrefix.Length..];
 
 					// Then find property in the type.
-					var properties = (
+					var properties =
 						from propertyInfo in typeOfRootCommand.GetProperties()
 						where propertyInfo is { CanRead: true, CanWrite: true }
 						let attribute = propertyInfo.GetCustomAttribute<DoubleArgumentsCommandAttribute>()
 						where attribute?.FullName.Equals(realSubcommand, StringComparison.OrdinalIgnoreCase) ?? false
-						select propertyInfo
-					).ToArray();
+						select propertyInfo;
 					if (properties is not [{ PropertyType: var propertyType } property])
 					{
 						throw new CommandLineParserException(CommandLineInternalError.ArgumentsAmbiguousMatchedOrMismatched);
@@ -96,13 +95,12 @@ public static class Parser
 					var realSubcommand = currentArg[^1];
 
 					// Then find property in the type.
-					var properties = (
+					var properties =
 						from propertyInfo in typeOfRootCommand.GetProperties()
 						where propertyInfo is { CanRead: true, CanWrite: true }
 						let attribute = propertyInfo.GetCustomAttribute<DoubleArgumentsCommandAttribute>()
 						where attribute?.ShortName == realSubcommand
-						select propertyInfo
-					).ToArray();
+						select propertyInfo;
 					if (properties is not [{ PropertyType: var propertyType } property])
 					{
 						throw new CommandLineParserException(CommandLineInternalError.ArgumentsAmbiguousMatchedOrMismatched);
@@ -119,13 +117,12 @@ public static class Parser
 				default:
 				{
 					// Try to treat the argument as the single-argument command.
-					var properties = (
+					var properties =
 						from propertyInfo in typeOfRootCommand.GetProperties()
 						where propertyInfo is { CanRead: true, CanWrite: true }
 						let attribute = propertyInfo.GetCustomAttribute<SingleArgumentCommandAttribute>()
 						where attribute is not null
-						select propertyInfo
-					).ToArray();
+						select propertyInfo;
 					if (properties is not [{ PropertyType: var propertyType } property])
 					{
 						throw new CommandLineParserException(CommandLineInternalError.MultipleSingleArgumentCommandPropertiesFound);

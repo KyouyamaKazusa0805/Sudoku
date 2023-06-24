@@ -821,11 +821,11 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator IEnumerable.GetEnumerator() => (Steps?.ToArray() ?? Array.Empty<Step>()).GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => (Steps ?? Array.Empty<Step>()).GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator<Step> IEnumerable<Step>.GetEnumerator() => ((IEnumerable<Step>)(Steps?.ToArray() ?? Array.Empty<Step>())).GetEnumerator();
+	IEnumerator<Step> IEnumerable<Step>.GetEnumerator() => ((IEnumerable<Step>)(Steps ?? Array.Empty<Step>())).GetEnumerator();
 
 	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).

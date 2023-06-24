@@ -29,6 +29,27 @@ public static class ArrayEnumerable
 		return result;
 	}
 
+	/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
+	public static TResult[] SelectMany<TSource, TCollection, TResult>(
+		this TSource[] source,
+		Func<TSource, TCollection[]> collectionSelector,
+		Func<TSource, TCollection, TResult> resultSelector
+	)
+	{
+		var length = source.Length;
+		var result = new List<TResult>(length << 1);
+		for (var i = 0; i < length; i++)
+		{
+			var element = source[i];
+			foreach (var subElement in collectionSelector(element))
+			{
+				result.Add(resultSelector(element, subElement));
+			}
+		}
+
+		return result.ToArray();
+	}
+
 	/// <summary>
 	/// Filters a sequence of values based on a predicate.
 	/// </summary>

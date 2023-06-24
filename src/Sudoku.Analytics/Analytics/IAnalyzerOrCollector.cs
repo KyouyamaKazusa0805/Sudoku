@@ -34,5 +34,5 @@ public interface IAnalyzerOrCollector
 	/// <param name="runningArea">The running area to be checked.</param>
 	/// <returns>Filtered collection.</returns>
 	protected static StepSearcher[] FilterStepSearchers(StepSearcher[] @in, StepSearcherRunningArea runningArea)
-		=> (from searcher in @in where searcher.RunningArea.Flags(runningArea) select searcher).ToArray();
+		=> from searcher in @in where searcher.RunningArea.Flags(runningArea) select searcher;
 }
