@@ -85,6 +85,26 @@ public static class TechniqueExtensions
 		?? throw new ArgumentOutOfRangeException(nameof(@this));
 
 	/// <summary>
+	/// Try to get its static difficulty level for the specified technique.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>
+	/// The difficulty level that the current technique belongs to.
+	/// If it doesn't contain a static difficulty level value, <see cref="DifficultyLevel.Unknown"/> will be returned.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static DifficultyLevel GetDifficultyLevel(this Technique @this)
+	{
+		var fi = TypeOfTechnique.GetField(@this.ToString())!;
+		return (fi.GetCustomAttribute<TechniqueFeatureAttribute>(), fi.GetCustomAttribute<DifficultyLevelAttribute>()) switch
+		{
+			({ Features: var feature }, _) when feature.Flags(TechniqueFeature.NotImplemented) => DifficultyLevel.Unknown,
+			(_, { Level: var level }) => level,
+			_ => throw new InvalidOperationException("The status is invalid for the current technique field.")
+		};
+	}
+
+	/// <summary>
 	/// Try to get features for the current <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>

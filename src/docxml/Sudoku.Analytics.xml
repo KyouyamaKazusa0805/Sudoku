@@ -774,6 +774,23 @@
             Indicates the puzzle can't be solved unless using last resort methods.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Categorization.DifficultyLevelAttribute">
+            <summary>
+            Provides with an attribute type that represents the target difficulty level for the specified technique.
+            </summary>
+            <param name="level">The difficulty level. This value is used to describe the target difficulty for the specified technique.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.DifficultyLevelAttribute.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel)">
+            <summary>
+            Provides with an attribute type that represents the target difficulty level for the specified technique.
+            </summary>
+            <param name="level">The difficulty level. This value is used to describe the target difficulty for the specified technique.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.DifficultyLevelAttribute.Level">
+            <summary>
+            The generated property declaration for parameter <c>level</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Categorization.Technique">
             <summary>
             Represents a technique instance, which is used for comparison.
@@ -2436,6 +2453,16 @@
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the specified <see cref="T:Sudoku.Analytics.Categorization.Technique"/> does not belong to any <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>.
             </exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetDifficultyLevel(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get its static difficulty level for the specified technique.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>
+            The difficulty level that the current technique belongs to.
+            If it doesn't contain a static difficulty level value, <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown"/> will be returned.
+            </returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetFeature(Sudoku.Analytics.Categorization.Technique)">
             <summary>

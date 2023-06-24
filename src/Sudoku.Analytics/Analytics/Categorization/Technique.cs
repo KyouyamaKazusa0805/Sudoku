@@ -26,6 +26,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(1.0)]
 	[SudokuExplainerAliasedNames("Single")]
 	[TechniqueGroup(TechniqueGroup.Single)]
+	[DifficultyLevel(DifficultyLevel.Easy)]
 	FullHouse,
 
 	/// <summary>
@@ -33,6 +34,7 @@ public enum Technique
 	/// </summary>
 	[HodokuTechniquePrefix("0001")]
 	[TechniqueGroup(TechniqueGroup.Single)]
+	[DifficultyLevel(DifficultyLevel.Easy)]
 	LastDigit,
 
 	/// <summary>
@@ -42,6 +44,7 @@ public enum Technique
 	[HodokuDifficultyRating(14, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(1.2)]
 	[TechniqueGroup(TechniqueGroup.Single)]
+	[DifficultyLevel(DifficultyLevel.Easy)]
 	HiddenSingleBlock,
 
 	/// <summary>
@@ -51,6 +54,7 @@ public enum Technique
 	[HodokuDifficultyRating(14, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(1.5)]
 	[TechniqueGroup(TechniqueGroup.Single)]
+	[DifficultyLevel(DifficultyLevel.Easy)]
 	HiddenSingleRow,
 
 	/// <summary>
@@ -60,6 +64,7 @@ public enum Technique
 	[HodokuDifficultyRating(14, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(1.5)]
 	[TechniqueGroup(TechniqueGroup.Single)]
+	[DifficultyLevel(DifficultyLevel.Easy)]
 	HiddenSingleColumn,
 
 	/// <summary>
@@ -69,6 +74,7 @@ public enum Technique
 	[HodokuDifficultyRating(4, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(2.3)]
 	[TechniqueGroup(TechniqueGroup.Single)]
+	[DifficultyLevel(DifficultyLevel.Easy)]
 	NakedSingle,
 	#endregion
 
@@ -84,6 +90,7 @@ public enum Technique
 	[HodokuAliasedNames("Locked Candidates Type 1")]
 	[SudokuExplainerDifficultyRating(2.6)]
 	[TechniqueGroup(TechniqueGroup.LockedCandidates)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	Pointing,
 
 	/// <summary>
@@ -94,6 +101,7 @@ public enum Technique
 	[HodokuAliasedNames("Locked Candidates Type 2")]
 	[SudokuExplainerDifficultyRating(2.8)]
 	[TechniqueGroup(TechniqueGroup.LockedCandidates)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	Claiming,
 	#endregion
 
@@ -107,6 +115,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[Abbreviation("ALP")]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	AlmostLockedPair,
 
 	/// <summary>
@@ -115,6 +124,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(5.2, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[Abbreviation("ALT")]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	AlmostLockedTriple,
 
 	/// <summary>
@@ -124,6 +134,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[Abbreviation("ALQ")]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	AlmostLockedQuadruple,
 	#endregion
 
@@ -135,30 +146,35 @@ public enum Technique
 	/// Indicates firework pair type 1.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Firework)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FireworkPairType1,
 
 	/// <summary>
 	/// Indicates firework pair type 2.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Firework)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FireworkPairType2,
 
 	/// <summary>
 	/// Indicates firework pair type 3.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Firework)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FireworkPairType3,
 
 	/// <summary>
 	/// Indicates firework triple.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Firework)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FireworkTriple,
 
 	/// <summary>
 	/// Indicates firework quadruple.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Firework)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FireworkQuadruple,
 	#endregion
 
@@ -173,12 +189,14 @@ public enum Technique
 	[HodokuDifficultyRating(60, HodokuDifficultyLevel.Medium)]
 	[SudokuExplainerDifficultyRating(3.0)]
 	[TechniqueGroup(TechniqueGroup.Subset)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	NakedPair,
 
 	/// <summary>
 	/// Indicates naked pair plus (naked pair (+)).
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Subset)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	NakedPairPlus,
 
 	/// <summary>
@@ -191,6 +209,7 @@ public enum Technique
 	[SudokuExplainerAliasNames("Direct Hidden Pair")]
 #endif
 	[TechniqueGroup(TechniqueGroup.Subset)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	LockedPair,
 
 	/// <summary>
@@ -200,6 +219,7 @@ public enum Technique
 	[HodokuDifficultyRating(70, HodokuDifficultyLevel.Medium)]
 	[SudokuExplainerDifficultyRating(3.4)]
 	[TechniqueGroup(TechniqueGroup.Subset)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	HiddenPair,
 
 	/// <summary>
@@ -207,6 +227,7 @@ public enum Technique
 	/// </summary>
 	[HodokuTechniquePrefix("0110-2")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	LockedHiddenPair,
 
 	/// <summary>
@@ -217,12 +238,14 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(3.6)]
 	[SudokuExplainerAliasedNames("Naked Triplet")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	NakedTriple,
 
 	/// <summary>
 	/// Indicates naked triple plus (naked triple (+)).
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Subset)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	NakedTriplePlus,
 
 	/// <summary>
@@ -235,6 +258,7 @@ public enum Technique
 	[SudokuExplainerAliasNames("Direct Hidden Triplet")]
 #endif
 	[TechniqueGroup(TechniqueGroup.Subset)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	LockedTriple,
 
 	/// <summary>
@@ -245,6 +269,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.0)]
 	[SudokuExplainerAliasedNames("Hidden Triplet")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	HiddenTriple,
 
 	/// <summary>
@@ -252,6 +277,7 @@ public enum Technique
 	/// </summary>
 	[HodokuTechniquePrefix("0111-2")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	LockedHiddenTriple,
 
 	/// <summary>
@@ -262,12 +288,14 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(5.0)]
 	[SudokuExplainerAliasedNames("Naked Quad")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	NakedQuadruple,
 
 	/// <summary>
 	/// Indicates naked quadruple plus (naked quadruple (+)).
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Subset)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	NakedQuadruplePlus,
 
 	/// <summary>
@@ -278,6 +306,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(5.4)]
 	[SudokuExplainerAliasedNames("Hidden Quad")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
 	HiddenQuadruple,
 	#endregion
 
@@ -292,6 +321,7 @@ public enum Technique
 	[HodokuDifficultyRating(140, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(3.2)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	XWing,
 
 	/// <summary>
@@ -301,6 +331,7 @@ public enum Technique
 	[HodokuDifficultyRating(130, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(3.4, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	FinnedXWing,
 
 	/// <summary>
@@ -310,6 +341,7 @@ public enum Technique
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(3.5, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SashimiXWing,
 
 	/// <summary>
@@ -317,6 +349,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseFinnedXWing,
 
 	/// <summary>
@@ -324,6 +357,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseSashimiXWing,
 
 	/// <summary>
@@ -332,6 +366,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0330")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	FrankenXWing,
 
 	/// <summary>
@@ -340,12 +375,14 @@ public enum Technique
 	[HodokuTechniquePrefix("0340")]
 	[HodokuDifficultyRating(390, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	FinnedFrankenXWing,
 
 	/// <summary>
 	/// Indicates sashimi franken X-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SashimiFrankenXWing,
 
 	/// <summary>
@@ -353,6 +390,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseFinnedFrankenXWing,
 
 	/// <summary>
@@ -360,6 +398,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseSashimiFrankenXWing,
 
 	/// <summary>
@@ -368,6 +407,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0350")]
 	[HodokuDifficultyRating(450, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	MutantXWing,
 
 	/// <summary>
@@ -376,12 +416,14 @@ public enum Technique
 	[HodokuTechniquePrefix("0360")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	FinnedMutantXWing,
 
 	/// <summary>
 	/// Indicates sashimi mutant X-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SashimiMutantXWing,
 
 	/// <summary>
@@ -389,6 +431,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseFinnedMutantXWing,
 
 	/// <summary>
@@ -396,6 +439,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseSashimiMutantXWing,
 
 	/// <summary>
@@ -405,6 +449,7 @@ public enum Technique
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(3.8)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	Swordfish,
 
 	/// <summary>
@@ -414,6 +459,7 @@ public enum Technique
 	[HodokuDifficultyRating(200, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(4.0, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	FinnedSwordfish,
 
 	/// <summary>
@@ -423,6 +469,7 @@ public enum Technique
 	[HodokuDifficultyRating(240, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(4.1, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SashimiSwordfish,
 
 	/// <summary>
@@ -430,6 +477,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseFinnedSwordfish,
 
 	/// <summary>
@@ -437,6 +485,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseSashimiSwordfish,
 
 	/// <summary>
@@ -445,6 +494,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0331")]
 	[HodokuDifficultyRating(350, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FrankenSwordfish,
 
 	/// <summary>
@@ -453,12 +503,14 @@ public enum Technique
 	[HodokuTechniquePrefix("0341")]
 	[HodokuDifficultyRating(410, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FinnedFrankenSwordfish,
 
 	/// <summary>
 	/// Indicates sashimi franken swordfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SashimiFrankenSwordfish,
 
 	/// <summary>
@@ -466,12 +518,14 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedFrankenSwordfish,
 
 	/// <summary>
 	/// Indicates Siamese sashimi franken swordfish.
 	/// </summary>
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiFrankenSwordfish,
 
 	/// <summary>
@@ -480,6 +534,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0351")]
 	[HodokuDifficultyRating(450, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	MutantSwordfish,
 
 	/// <summary>
@@ -488,12 +543,14 @@ public enum Technique
 	[HodokuTechniquePrefix("0361")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FinnedMutantSwordfish,
 
 	/// <summary>
 	/// Indicates sashimi mutant swordfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SashimiMutantSwordfish,
 
 	/// <summary>
@@ -501,6 +558,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedMutantSwordfish,
 
 	/// <summary>
@@ -508,6 +566,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiMutantSwordfish,
 
 	/// <summary>
@@ -517,6 +576,7 @@ public enum Technique
 	[HodokuDifficultyRating(160, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(5.2)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	Jellyfish,
 
 	/// <summary>
@@ -526,6 +586,7 @@ public enum Technique
 	[HodokuDifficultyRating(250, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(5.4, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	FinnedJellyfish,
 
 	/// <summary>
@@ -535,6 +596,7 @@ public enum Technique
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(5.6, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SashimiJellyfish,
 
 	/// <summary>
@@ -542,6 +604,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseFinnedJellyfish,
 
 	/// <summary>
@@ -549,6 +612,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseSashimiJellyfish,
 
 	/// <summary>
@@ -557,6 +621,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0332")]
 	[HodokuDifficultyRating(370, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FrankenJellyfish,
 
 	/// <summary>
@@ -565,12 +630,14 @@ public enum Technique
 	[HodokuTechniquePrefix("0342")]
 	[HodokuDifficultyRating(430, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FinnedFrankenJellyfish,
 
 	/// <summary>
 	/// Indicates sashimi franken jellyfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SashimiFrankenJellyfish,
 
 	/// <summary>
@@ -578,6 +645,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedFrankenJellyfish,
 
 	/// <summary>
@@ -585,6 +653,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiFrankenJellyfish,
 
 	/// <summary>
@@ -593,6 +662,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0352")]
 	[HodokuDifficultyRating(450, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	MutantJellyfish,
 
 	/// <summary>
@@ -601,12 +671,14 @@ public enum Technique
 	[HodokuTechniquePrefix("0362")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FinnedMutantJellyfish,
 
 	/// <summary>
 	/// Indicates sashimi mutant jellyfish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SashimiMutantJellyfish,
 
 	/// <summary>
@@ -614,6 +686,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedMutantJellyfish,
 
 	/// <summary>
@@ -621,6 +694,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiMutantJellyfish,
 
 	/// <summary>
@@ -630,6 +704,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	Squirmbag,
 
 	/// <summary>
@@ -639,6 +714,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FinnedSquirmbag,
 
 	/// <summary>
@@ -648,6 +724,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SashimiSquirmbag,
 
 	/// <summary>
@@ -655,6 +732,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedSquirmbag,
 
 	/// <summary>
@@ -662,6 +740,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiSquirmbag,
 
 	/// <summary>
@@ -670,6 +749,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0333")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FrankenSquirmbag,
 
 	/// <summary>
@@ -678,12 +758,14 @@ public enum Technique
 	[HodokuTechniquePrefix("0343")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FinnedFrankenSquirmbag,
 
 	/// <summary>
 	/// Indicates sashimi franken squirmbag.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SashimiFrankenSquirmbag,
 
 	/// <summary>
@@ -691,6 +773,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseFinnedFrankenSquirmbag,
 
 	/// <summary>
@@ -698,6 +781,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseSashimiFrankenSquirmbag,
 
 	/// <summary>
@@ -706,6 +790,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0353")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantSquirmbag,
 
 	/// <summary>
@@ -714,12 +799,14 @@ public enum Technique
 	[HodokuTechniquePrefix("0363")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FinnedMutantSquirmbag,
 
 	/// <summary>
 	/// Indicates sashimi mutant squirmbag.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SashimiMutantSquirmbag,
 
 	/// <summary>
@@ -727,6 +814,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseFinnedMutantSquirmbag,
 
 	/// <summary>
@@ -734,6 +822,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseSashimiMutantSquirmbag,
 
 	/// <summary>
@@ -743,6 +832,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	Whale,
 
 	/// <summary>
@@ -752,6 +842,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FinnedWhale,
 
 	/// <summary>
@@ -761,6 +852,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SashimiWhale,
 
 	/// <summary>
@@ -768,6 +860,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedWhale,
 
 	/// <summary>
@@ -775,6 +868,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiWhale,
 
 	/// <summary>
@@ -783,6 +877,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0334")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FrankenWhale,
 
 	/// <summary>
@@ -791,12 +886,14 @@ public enum Technique
 	[HodokuTechniquePrefix("0344")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FinnedFrankenWhale,
 
 	/// <summary>
 	/// Indicates sashimi franken whale.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SashimiFrankenWhale,
 
 	/// <summary>
@@ -804,6 +901,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseFinnedFrankenWhale,
 
 	/// <summary>
@@ -811,6 +909,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseSashimiFrankenWhale,
 
 	/// <summary>
@@ -819,6 +918,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0354")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantWhale,
 
 	/// <summary>
@@ -827,24 +927,28 @@ public enum Technique
 	[HodokuTechniquePrefix("0364")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FinnedMutantWhale,
 
 	/// <summary>
 	/// Indicates sashimi mutant whale.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SashimiMutantWhale,
 
 	/// <summary>
 	/// Indicates Siamese finned mutant whale.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseFinnedMutantWhale,
 
 	/// <summary>
 	/// Indicates Siamese sashimi mutant whale.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseSashimiMutantWhale,
 
 	/// <summary>
@@ -854,6 +958,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	Leviathan,
 
 	/// <summary>
@@ -863,6 +968,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FinnedLeviathan,
 
 	/// <summary>
@@ -872,6 +978,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SashimiLeviathan,
 
 	/// <summary>
@@ -879,6 +986,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedLeviathan,
 
 	/// <summary>
@@ -886,6 +994,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiLeviathan,
 
 	/// <summary>
@@ -894,6 +1003,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0335")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FrankenLeviathan,
 
 	/// <summary>
@@ -902,12 +1012,14 @@ public enum Technique
 	[HodokuTechniquePrefix("0345")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FinnedFrankenLeviathan,
 
 	/// <summary>
 	/// Indicates sashimi franken leviathan.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SashimiFrankenLeviathan,
 
 	/// <summary>
@@ -915,6 +1027,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseFinnedFrankenLeviathan,
 
 	/// <summary>
@@ -922,6 +1035,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseSashimiFrankenLeviathan,
 
 	/// <summary>
@@ -930,6 +1044,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0355")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantLeviathan,
 
 	/// <summary>
@@ -938,12 +1053,14 @@ public enum Technique
 	[HodokuTechniquePrefix("0365")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FinnedMutantLeviathan,
 
 	/// <summary>
 	/// Indicates sashimi mutant leviathan.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SashimiMutantLeviathan,
 
 	/// <summary>
@@ -951,6 +1068,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseFinnedMutantLeviathan,
 
 	/// <summary>
@@ -958,6 +1076,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseSashimiMutantLeviathan,
 	#endregion
 
@@ -972,6 +1091,7 @@ public enum Technique
 	[HodokuDifficultyRating(160, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.2)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	XyWing,
 
 	/// <summary>
@@ -981,6 +1101,7 @@ public enum Technique
 	[HodokuDifficultyRating(180, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.4)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	XyzWing,
 
 	/// <summary>
@@ -989,6 +1110,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0802")]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	WxyzWing,
 
 	/// <summary>
@@ -997,6 +1119,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	VwxyzWing,
 
 	/// <summary>
@@ -1005,6 +1128,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UvwxyzWing,
 
 	/// <summary>
@@ -1013,6 +1137,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	TuvwxyzWing,
 
 	/// <summary>
@@ -1021,6 +1146,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	StuvwxyzWing,
 
 	/// <summary>
@@ -1029,18 +1155,21 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	RstuvwxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete WXYZ-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	IncompleteWxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete VWXYZ-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	IncompleteVwxyzWing,
 
 	/// <summary>
@@ -1048,6 +1177,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	IncompleteUvwxyzWing,
 
 	/// <summary>
@@ -1055,6 +1185,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	IncompleteTuvwxyzWing,
 
 	/// <summary>
@@ -1062,6 +1193,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	IncompleteStuvwxyzWing,
 
 	/// <summary>
@@ -1069,6 +1201,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	IncompleteRstuvwxyzWing,
 
 	/// <summary>
@@ -1078,12 +1211,14 @@ public enum Technique
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.4, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	WWing,
 
 	/// <summary>
 	/// Indicates Multi-Branch W-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	MultiBranchWWing,
 
 	/// <summary>
@@ -1091,6 +1226,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	MWing,
 
 	/// <summary>
@@ -1098,6 +1234,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	LocalWing,
 
 	/// <summary>
@@ -1105,6 +1242,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SplitWing,
 
 	/// <summary>
@@ -1112,6 +1250,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	HybridWing,
 
 	/// <summary>
@@ -1119,6 +1258,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	GroupedXyWing,
 
 	/// <summary>
@@ -1126,6 +1266,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	GroupedWWing,
 
 	/// <summary>
@@ -1133,6 +1274,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	GroupedMWing,
 
 	/// <summary>
@@ -1140,6 +1282,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedLocalWing,
 
 	/// <summary>
@@ -1147,6 +1290,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedSplitWing,
 
 	/// <summary>
@@ -1154,6 +1298,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedHybridWing,
 	#endregion
 
@@ -1169,6 +1314,7 @@ public enum Technique
 	[HodokuAliasedNames("Uniqueness Test 1")]
 	[SudokuExplainerDifficultyRating(4.5)]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangleType1,
 
 	/// <summary>
@@ -1180,6 +1326,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.5)]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangleType2,
 
 	/// <summary>
@@ -1191,6 +1338,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.5, 4.8)]
 	[SudokuExplainerDifficultyRating(4.6, 4.9, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangleType3,
 
 	/// <summary>
@@ -1202,6 +1350,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.5)]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangleType4,
 
 	/// <summary>
@@ -1212,6 +1361,7 @@ public enum Technique
 	[HodokuAliasedNames("Uniqueness Test 5")]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangleType5,
 
 	/// <summary>
@@ -1222,6 +1372,7 @@ public enum Technique
 	[HodokuAliasedNames("Uniqueness Test 6")]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangleType6,
 
 	/// <summary>
@@ -1233,6 +1384,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.8, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[Abbreviation("HUR")]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	HiddenUniqueRectangle,
 
 	/// <summary>
@@ -1240,18 +1392,21 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle2D,
 
 	/// <summary>
 	/// Indicates unique rectangle + 2B / 1SL.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle2B1,
 
 	/// <summary>
 	/// Indicates unique rectangle + 2D / 1SL.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle2D1,
 
 	/// <summary>
@@ -1259,162 +1414,189 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle3X,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3x / 1SL.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle3X1L,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3X / 1SL.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle3X1U,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3X / 2SL.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle3X2,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3N / 2SL.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle3N2,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3U / 2SL.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle3U2,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3E / 2SL.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle3E2,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4x / 1SL.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle4X1L,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4X / 1SL.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle4X1U,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4x / 2SL.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle4X2L,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4X / 2SL.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle4X2U,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4X / 3SL.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle4X3,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4C / 3SL.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle4C3,
 
 	/// <summary>
 	/// Indicates unique rectangle-XY-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangleXyWing,
 
 	/// <summary>
 	/// Indicates unique rectangle-XYZ-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangleXyzWing,
 
 	/// <summary>
 	/// Indicates unique rectangle-WXYZ-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangleWxyzWing,
 
 	/// <summary>
 	/// Indicates unique rectangle sue de coq.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleSueDeCoq,
 
 	/// <summary>
 	/// Indicates unique rectangle baba grouping.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleBabaGrouping,
 
 	/// <summary>
 	/// Indicates unique rectangle external type 1.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalType1,
 
 	/// <summary>
 	/// Indicates unique rectangle external type 2.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalType2,
 
 	/// <summary>
 	/// Indicates unique rectangle external type 3.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalType3,
 
 	/// <summary>
 	/// Indicates unique rectangle external type 4.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalType4,
 
 	/// <summary>
 	/// Indicates unique rectangle external skyscraper.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalSkyscraper,
 
 	/// <summary>
 	/// Indicates unique rectangle external two-string kite.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalTwoStringKite,
 
 	/// <summary>
 	/// Indicates unique rectangle external turbot fish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalTurbotFish,
 
 	/// <summary>
 	/// Indicates unique rectangle external XY-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalXyWing,
 
 	/// <summary>
 	/// Indicates unique rectangle external almost locked sets XZ rule.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalAlmostLockedSetsXz,
 	#endregion
 
@@ -1429,6 +1611,7 @@ public enum Technique
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.7, IsAdvancedDefined = true)] // I think this difficulty may be a mistake.
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleType1,
 
 	/// <summary>
@@ -1438,18 +1621,21 @@ public enum Technique
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)] // I think this difficulty may be a mistake.
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleType2,
 
 	/// <summary>
 	/// Indicates avoidable rectangle type 3.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleType3,
 
 	/// <summary>
 	/// Indicates avoidable rectangle type 5.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleType5,
 
 	/// <summary>
@@ -1458,6 +1644,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[Abbreviation("HAR")]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	HiddenAvoidableRectangle,
 
 	/// <summary>
@@ -1465,6 +1652,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangle2D,
 
 	/// <summary>
@@ -1472,108 +1660,126 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangle3X,
 
 	/// <summary>
 	/// Indicates avoidable rectangle XY-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleXyWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle XYZ-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleXyzWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle WXYZ-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleWxyzWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle sue de coq.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleSueDeCoq,
 
 	/// <summary>
 	/// Indicates avoidable rectangle guardian.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleBrokenWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle hidden single in block.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleHiddenSingleBlock,
 
 	/// <summary>
 	/// Indicates avoidable rectangle hidden single in row.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleHiddenSingleRow,
 
 	/// <summary>
 	/// Indicates avoidable rectangle hidden single in column.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleHiddenSingleColumn,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external type 1.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalType1,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external type 2.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalType2,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external type 3.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalType3,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external type 4.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalType4,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external skyscraper.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalSkyscraper,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external two-string kite.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalTwoStringKite,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external turbot fish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalTurbotFish,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external XY-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalXyWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external almost locked sets XZ rule.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalAlmostLockedSetsXz,
 	#endregion
 
@@ -1586,6 +1792,7 @@ public enum Technique
 	/// </summary>
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueLoopType1,
 
 	/// <summary>
@@ -1594,6 +1801,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueLoopType2,
 
 	/// <summary>
@@ -1602,6 +1810,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueLoopType3,
 
 	/// <summary>
@@ -1610,6 +1819,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueLoopType4,
 	#endregion
 
@@ -1624,6 +1834,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0620")]
 #endif
 	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	ExtendedRectangleType1,
 
 	/// <summary>
@@ -1633,6 +1844,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0621")]
 #endif
 	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	ExtendedRectangleType2,
 
 	/// <summary>
@@ -1642,6 +1854,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0622")]
 #endif
 	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	ExtendedRectangleType3,
 
 	/// <summary>
@@ -1651,6 +1864,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0623")]
 #endif
 	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	ExtendedRectangleType4,
 	#endregion
 
@@ -1666,6 +1880,7 @@ public enum Technique
 	[HodokuAliasedNames("Bivalue Universal Grave + 1")]
 	[SudokuExplainerDifficultyRating(5.6)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	BivalueUniversalGraveType1,
 
 	/// <summary>
@@ -1673,6 +1888,7 @@ public enum Technique
 	/// </summary>
 	[SudokuExplainerDifficultyRating(5.7)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	BivalueUniversalGraveType2,
 
 	/// <summary>
@@ -1680,6 +1896,7 @@ public enum Technique
 	/// </summary>
 	[SudokuExplainerDifficultyRating(5.8, 6.1)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	BivalueUniversalGraveType3,
 
 	/// <summary>
@@ -1687,6 +1904,7 @@ public enum Technique
 	/// </summary>
 	[SudokuExplainerDifficultyRating(5.7)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	BivalueUniversalGraveType4,
 
 	/// <summary>
@@ -1694,18 +1912,21 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[Abbreviation("BUG + n")]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	BivalueUniversalGravePlusN,
 
 	/// <summary>
 	/// Indicates bi-value universal grave false candidate type.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	BivalueUniversalGraveFalseCandidateType,
 
 	/// <summary>
 	/// Indicates bi-value universal grave + n with forcing chains.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	BivalueUniversalGravePlusNForcingChains,
 
 	/// <summary>
@@ -1713,6 +1934,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[Abbreviation("BUG-XZ")]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	BivalueUniversalGraveXzRule,
 
 	/// <summary>
@@ -1720,6 +1942,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[Abbreviation("BUG-XY-Wing")]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	BivalueUniversalGraveXyWing,
 	#endregion
 
@@ -1731,24 +1954,28 @@ public enum Technique
 	/// Indicates reverse bi-value universal grave type 1.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ReverseBivalueUniversalGraveType1,
 
 	/// <summary>
 	/// Indicates reverse bi-value universal grave type 2.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ReverseBivalueUniversalGraveType2,
 
 	/// <summary>
 	/// Indicates reverse bi-value universal grave type 3.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ReverseBivalueUniversalGraveType3,
 
 	/// <summary>
 	/// Indicates reverse bi-value universal grave type 4.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ReverseBivalueUniversalGraveType4,
 	#endregion
 
@@ -1784,24 +2011,28 @@ public enum Technique
 	/// Indicates Borescoper's deadly pattern type 1.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	BorescoperDeadlyPatternType1,
 
 	/// <summary>
 	/// Indicates Borescoper's deadly pattern type 2.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	BorescoperDeadlyPatternType2,
 
 	/// <summary>
 	/// Indicates Borescoper's deadly pattern type 3.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	BorescoperDeadlyPatternType3,
 
 	/// <summary>
 	/// Indicates Borescoper's deadly pattern type 4.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	BorescoperDeadlyPatternType4,
 	#endregion
 
@@ -1814,6 +2045,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	QiuDeadlyPatternType1,
 
 	/// <summary>
@@ -1821,6 +2053,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	QiuDeadlyPatternType2,
 
 	/// <summary>
@@ -1828,6 +2061,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	QiuDeadlyPatternType3,
 
 	/// <summary>
@@ -1835,6 +2069,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	QiuDeadlyPatternType4,
 
 	/// <summary>
@@ -1842,6 +2077,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	LockedQiuDeadlyPattern,
 	#endregion
 
@@ -1854,6 +2090,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueMatrixType1,
 
 	/// <summary>
@@ -1861,6 +2098,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueMatrixType2,
 
 	/// <summary>
@@ -1868,6 +2106,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueMatrixType3,
 
 	/// <summary>
@@ -1875,6 +2114,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueMatrixType4,
 	#endregion
 
@@ -1890,6 +2130,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(5.0, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	[Abbreviation("SdC")]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SueDeCoq,
 
 	/// <summary>
@@ -1899,18 +2140,21 @@ public enum Technique
 	[HodokuDifficultyRating(250, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(5.0, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SueDeCoqIsolated,
 
 	/// <summary>
 	/// Indicates 3-dimensional sue de coq.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SueDeCoq3Dimension,
 
 	/// <summary>
 	/// Indicates sue de coq cannibalism.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SueDeCoqCannibalism,
 	#endregion
 
@@ -1923,6 +2167,7 @@ public enum Technique
 	/// </summary>
 	[HodokuTechniquePrefix("0705")]
 	[TechniqueGroup(TechniqueGroup.BrokenWing)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	BrokenWing,
 	#endregion
 
@@ -1934,12 +2179,14 @@ public enum Technique
 	/// Indicates bi-value oddagon type 2.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	BivalueOddagonType2,
 
 	/// <summary>
 	/// Indicates bi-value oddagon type 3.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	BivalueOddagonType3,
 
 	/// <summary>
@@ -1959,6 +2206,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ChromaticPatternType1,
 
 	/// <summary>
@@ -1966,6 +2214,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ChromaticPatternType2,
 
 	/// <summary>
@@ -1973,6 +2222,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ChromaticPatternType3,
 
 	/// <summary>
@@ -1980,6 +2230,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ChromaticPatternType4,
 
 	/// <summary>
@@ -1987,6 +2238,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ChromaticPatternXzRule,
 	#endregion
 
@@ -2004,6 +2256,7 @@ public enum Technique
 	[SudokuExplainerAliasNames("Turbot Fish")]
 #endif
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	Skyscraper,
 
 	/// <summary>
@@ -2016,6 +2269,7 @@ public enum Technique
 	[SudokuExplainerAliasNames("Turbot Fish")]
 #endif
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	TwoStringKite,
 
 	/// <summary>
@@ -2025,6 +2279,7 @@ public enum Technique
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(6.6)]
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	TurbotFish,
 	#endregion
 
@@ -2039,6 +2294,7 @@ public enum Technique
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
 	[TechniqueGroup(TechniqueGroup.EmptyRectangle)]
 	[Abbreviation("ER")]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	EmptyRectangle,
 	#endregion
 
@@ -2053,6 +2309,7 @@ public enum Technique
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(6.6, 6.9)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	XChain,
 
 	/// <summary>
@@ -2064,6 +2321,7 @@ public enum Technique
 #endif
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	YChain,
 
 	/// <summary>
@@ -2074,6 +2332,7 @@ public enum Technique
 	[SudokuExplainerAliasedNames("Bidirectional X-Cycle")]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FishyCycle,
 
 	/// <summary>
@@ -2083,6 +2342,7 @@ public enum Technique
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	XyChain,
 
 	/// <summary>
@@ -2090,6 +2350,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	XyCycle,
 
 	/// <summary>
@@ -2097,6 +2358,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	XyXChain,
 
 	/// <summary>
@@ -2106,6 +2368,7 @@ public enum Technique
 	[HodokuDifficultyRating(110, HodokuDifficultyLevel.Hard)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	RemotePair,
 
 	/// <summary>
@@ -2113,6 +2376,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	PurpleCow,
 
 	/// <summary>
@@ -2125,6 +2389,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[Abbreviation("DNL")]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	DiscontinuousNiceLoop,
 
 	/// <summary>
@@ -2136,6 +2401,7 @@ public enum Technique
 	[SudokuExplainerAliasedNames("Bidirectional Cycle")]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[Abbreviation("CNL")]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ContinuousNiceLoop,
 
 	/// <summary>
@@ -2145,6 +2411,7 @@ public enum Technique
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[Abbreviation("AIC")]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AlternatingInferenceChain,
 
 	/// <summary>
@@ -2152,6 +2419,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedXChain,
 
 	/// <summary>
@@ -2159,6 +2427,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedFishyCycle,
 
 	/// <summary>
@@ -2166,6 +2435,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedXyChain,
 
 	/// <summary>
@@ -2173,6 +2443,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedXyCycle,
 
 	/// <summary>
@@ -2180,6 +2451,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedXyXChain,
 
 	/// <summary>
@@ -2187,6 +2459,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedPurpleCow,
 
 	/// <summary>
@@ -2196,6 +2469,7 @@ public enum Technique
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedDiscontinuousNiceLoop,
 
 	/// <summary>
@@ -2205,6 +2479,7 @@ public enum Technique
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedContinuousNiceLoop,
 
 	/// <summary>
@@ -2214,6 +2489,7 @@ public enum Technique
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedAlternatingInferenceChain,
 
 	/// <summary>
@@ -2221,6 +2497,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	NodeCollision,
 	#endregion
 
@@ -2233,6 +2510,7 @@ public enum Technique
 	/// </summary>
 	[SudokuExplainerDifficultyRating(7.6, 8.1)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	NishioForcingChains,
 
 	/// <summary>
@@ -2242,6 +2520,7 @@ public enum Technique
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerDifficultyRating(8.2, 8.6)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	RegionForcingChains,
 
 	/// <summary>
@@ -2251,6 +2530,7 @@ public enum Technique
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerDifficultyRating(8.2, 8.6)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	CellForcingChains,
 
 	/// <summary>
@@ -2260,6 +2540,7 @@ public enum Technique
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerDifficultyRating(8.6, 9.4)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	DynamicRegionForcingChains,
 
 	/// <summary>
@@ -2269,6 +2550,7 @@ public enum Technique
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerDifficultyRating(8.6, 9.4)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	DynamicCellForcingChains,
 
 	/// <summary>
@@ -2278,6 +2560,7 @@ public enum Technique
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerDifficultyRating(8.8, 9.4)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	DynamicContradictionForcingChains,
 
 	/// <summary>
@@ -2287,12 +2570,14 @@ public enum Technique
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerDifficultyRating(8.8, 9.4)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	DynamicDoubleForcingChains,
 
 	/// <summary>
 	/// Indicates dynamic forcing chains.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	DynamicForcingChains,
 	#endregion
 
@@ -2304,6 +2589,7 @@ public enum Technique
 	/// Indicates blossom loop.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BlossomLoop)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	BlossomLoop,
 	#endregion
 
@@ -2317,6 +2603,7 @@ public enum Technique
 	[HodokuTechniquePrefix("1102")]
 	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
 	[Abbreviation("ESP")]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ExtendedSubsetPrinciple,
 	#endregion
 
@@ -2331,6 +2618,7 @@ public enum Technique
 	[Abbreviation("APE")]
 	[SudokuExplainerDifficultyRating(6.2)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AlignedPairExclusion,
 
 	/// <summary>
@@ -2340,6 +2628,7 @@ public enum Technique
 	[Abbreviation("ATE")]
 	[SudokuExplainerDifficultyRating(7.5)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AlignedTripleExclusion,
 
 	/// <summary>
@@ -2347,6 +2636,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AlignedQuadrupleExclusion,
 
 	/// <summary>
@@ -2354,6 +2644,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AlignedQuintupleExclusion,
 	#endregion
 
@@ -2369,6 +2660,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(7.5, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[Abbreviation("ALS-XZ")]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SinglyLinkedAlmostLockedSetsXzRule,
 
 	/// <summary>
@@ -2379,6 +2671,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(7.5, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[Abbreviation("ALS-XZ")]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	DoublyLinkedAlmostLockedSetsXzRule,
 
 	/// <summary>
@@ -2389,6 +2682,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(8.0, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[Abbreviation("ALS-XY-Wing")]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AlmostLockedSetsXyWing,
 
 	/// <summary>
@@ -2396,6 +2690,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[Abbreviation("ALS-W-Wing")]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AlmostLockedSetsWWing,
 
 	/// <summary>
@@ -2405,6 +2700,7 @@ public enum Technique
 	[HodokuDifficultyRating(340, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AlmostLockedSetsChain,
 	#endregion
 
@@ -2417,6 +2713,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.EmptyRectangleIntersectionPair)]
 	[Abbreviation("ERIP")]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	EmptyRectangleIntersectionPair,
 	#endregion
 
@@ -2432,6 +2729,7 @@ public enum Technique
 	[HodokuAliasedNames("Death Blossom")]
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	DeathBlossomCellType,
 
 	/// <summary>
@@ -2439,6 +2737,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	DeathBlossomHouseType,
 	#endregion
 
@@ -2452,6 +2751,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Symmetry)]
 	[Abbreviation("GSP")]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GurthSymmetricalPlacement,
 
 	/// <summary>
@@ -2459,6 +2759,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Symmetry)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	ExtendedGurthSymmetricalPlacement,
 	#endregion
 
@@ -2472,6 +2773,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[Abbreviation("JE")]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	JuniorExocet,
 
 	/// <summary>
@@ -2480,6 +2782,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[Abbreviation("SE")]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SeniorExocet,
 
 	/// <summary>
@@ -2487,6 +2790,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	ComplexSeniorExocet,
 
 	/// <summary>
@@ -2494,6 +2798,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseJuniorExocet,
 
 	/// <summary>
@@ -2501,6 +2806,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseSeniorExocet,
 	#endregion
 
@@ -2513,6 +2819,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.DominoLoop)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	DominoLoop,
 	#endregion
 
@@ -2526,6 +2833,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.MultisectorLockedSets)]
 	[Abbreviation("MSLS")]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MultisectorLockedSets,
 	#endregion
 
@@ -2539,6 +2847,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.PatternOverlay)]
 	[Abbreviation("POM")]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
+	[DifficultyLevel(DifficultyLevel.LastResort)]
 	PatternOverlay,
 	#endregion
 
@@ -2553,6 +2862,7 @@ public enum Technique
 	[HodokuDifficultyRating(10000, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.Templating)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
+	[DifficultyLevel(DifficultyLevel.LastResort)]
 	TemplateSet,
 
 	/// <summary>
@@ -2562,6 +2872,7 @@ public enum Technique
 	[HodokuDifficultyRating(10000, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.Templating)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
+	[DifficultyLevel(DifficultyLevel.LastResort)]
 	TemplateDelete,
 	#endregion
 
@@ -2574,6 +2885,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BowmanBingo)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
+	[DifficultyLevel(DifficultyLevel.LastResort)]
 	BowmanBingo,
 	#endregion
 
@@ -2589,6 +2901,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BruteForce)]
 	[Abbreviation("BF")]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.LastResort)]
 	BruteForce,
 	#endregion
 }
