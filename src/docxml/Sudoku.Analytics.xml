@@ -5510,6 +5510,11 @@ result ^= expression;
             </summary>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearcherPool.ThisAssembly">
+            <summary>
+            Indicates the current assembly.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)">
             <summary>
             Indicates an array of all built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s that are defined in this assembly.

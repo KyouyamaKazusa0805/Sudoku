@@ -7,6 +7,12 @@ namespace Sudoku.Analytics;
 public abstract class StepSearcherPool
 {
 	/// <summary>
+	/// Indicates the current assembly.
+	/// </summary>
+	private static readonly Assembly ThisAssembly = typeof(StepSearcherPool).Assembly;
+
+
+	/// <summary>
 	/// Indicates an array of all built-in <see cref="StepSearcher"/>s that are defined in this assembly.
 	/// </summary>
 	/// <param name="separated">
@@ -18,7 +24,7 @@ public abstract class StepSearcherPool
 	public static StepSearcher[] Default(bool separated = true)
 	{
 		var result = new SortedList<int, StepSearcher>();
-		foreach (var type in typeof(StepSearcherPool).Assembly.GetDerivedTypes(typeof(StepSearcher)))
+		foreach (var type in ThisAssembly.GetDerivedTypes(typeof(StepSearcher)))
 		{
 			if (!type.IsDefined(typeof(StepSearcherAttribute)))
 			{
@@ -55,8 +61,7 @@ public abstract class StepSearcherPool
 		{
 			case { Length: var length and not 0 } separatedAttributes when separated:
 			{
-				var i = 0;
-				var stepSearcherArray = new StepSearcher[length];
+				var (i, stepSearcherArray) = (0, new StepSearcher[length]);
 
 				// If the step searcher is marked 'SeparatedAttribute', we should sort them via priority at first.
 				Array.Sort(separatedAttributes, static (a, b) => a.Priority.CompareTo(b.Priority));
@@ -81,7 +86,7 @@ public abstract class StepSearcherPool
 					// We should use reflection to set value because keyword used of the property is 'init', rather than 'set'.
 					type.GetProperty(nameof(instance.SeparatedPriority))!
 						.GetSetMethod(true)!
-						.Invoke(instance, new object[] { separatedAttribute.Priority });
+						.Invoke(instance, new[] { (object)separatedAttribute.Priority });
 
 					stepSearcherArray[i++] = instance;
 				}
