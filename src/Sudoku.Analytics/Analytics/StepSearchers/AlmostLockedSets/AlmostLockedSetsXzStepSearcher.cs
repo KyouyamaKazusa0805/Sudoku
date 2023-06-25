@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Doubly-linked Almost Locked Sets XZ Rule</item>
 /// </list>
 /// </summary>
-[StepSearcher(new[] { DifficultyLevel.Fiendish })]
+[StepSearcher(DifficultyLevel.Fiendish)]
 public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 {
 	/// <summary>

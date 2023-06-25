@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Empty Rectangle</item>
 /// </list>
 /// </summary>
-[StepSearcher(new[] { DifficultyLevel.Hard })]
+[StepSearcher(DifficultyLevel.Hard)]
 public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

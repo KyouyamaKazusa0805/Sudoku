@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Almost Locked Quadruple (Maybe unnecessary)</item>
 /// </list>
 /// </summary>
-[StepSearcher(new[] { DifficultyLevel.Hard })]
+[StepSearcher(DifficultyLevel.Hard)]
 public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 {
 	/// <summary>

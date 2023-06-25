@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Metadata;
 /// <param name="difficultyLevelRange">Indicates what difficulty level the current step searcher can produce.</param>
 /// <seealso cref="StepSearcher"/>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] DifficultyLevel[] difficultyLevelRange) : StepSearcherMetadataAttribute
+public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] DifficultyLevel difficultyLevelRange) : StepSearcherMetadataAttribute
 {
 	/// <summary>
 	/// Indicates the searching logic only uses cached fields in type <see cref="CachedFields"/>,

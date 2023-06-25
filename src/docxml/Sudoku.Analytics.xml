@@ -3584,7 +3584,7 @@
             <param name="difficultyLevelRange">Indicates what difficulty level the current step searcher can produce.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
-        <member name="M:Sudoku.Analytics.Metadata.StepSearcherAttribute.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel[])">
+        <member name="M:Sudoku.Analytics.Metadata.StepSearcherAttribute.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel)">
             <summary>
             Indicates the type is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>

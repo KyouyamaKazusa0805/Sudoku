@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Almost Locked Sets W-Wing</item>
 /// </list>
 /// </summary>
-[StepSearcher(new[] { DifficultyLevel.Fiendish })]
+[StepSearcher(DifficultyLevel.Fiendish)]
 public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

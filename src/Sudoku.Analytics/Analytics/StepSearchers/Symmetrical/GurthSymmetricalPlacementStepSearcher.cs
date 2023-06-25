@@ -10,7 +10,7 @@ using unsafe SymmetricalPlacementChecker = delegate*</*scoped*/ in Grid, GurthSy
 /// <!--<item>Gurth's Symmetrical Placement (Shuffling Type)</item>-->
 /// </list>
 /// </summary>
-[StepSearcher(new[] { DifficultyLevel.Fiendish }, IsPure = true)]
+[StepSearcher(DifficultyLevel.Fiendish, IsPure = true)]
 public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 {
 	/// <summary>

@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Bowman's Bingo</item>
 /// </list>
 /// </summary>
-[StepSearcher(new[] { DifficultyLevel.LastResort })]
+[StepSearcher(DifficultyLevel.LastResort)]
 public sealed partial class BowmanBingoStepSearcher : StepSearcher
 {
 	/// <summary>

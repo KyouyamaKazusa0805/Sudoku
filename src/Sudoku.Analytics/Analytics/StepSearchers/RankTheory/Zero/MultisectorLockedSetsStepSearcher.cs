@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Multi-sector Locked Sets</item>
 /// </list>
 /// </summary>
-[StepSearcher(new[] { DifficultyLevel.Nightmare })]
+[StepSearcher(DifficultyLevel.Nightmare)]
 public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 {
 	/// <summary>

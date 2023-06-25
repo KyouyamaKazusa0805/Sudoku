@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Turbot Fish</item>
 /// </list>
 /// </summary>
-[StepSearcher(new[] { DifficultyLevel.Hard }, OnlyUsesCachedFields = true)]
+[StepSearcher(DifficultyLevel.Hard, OnlyUsesCachedFields = true)]
 public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

@@ -40,7 +40,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </item>
 /// </list>
 /// </summary>
-[StepSearcher(new[] { DifficultyLevel.Hard, DifficultyLevel.Fiendish }, ConditionalCases = ConditionalCase.Standard)]
+[StepSearcher(DifficultyLevel.Hard | DifficultyLevel.Fiendish, ConditionalCases = ConditionalCase.Standard)]
 public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 {
 	/// <summary>

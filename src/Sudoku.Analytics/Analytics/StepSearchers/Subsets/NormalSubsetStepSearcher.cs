@@ -29,7 +29,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </item>
 /// </list>
 /// </summary>
-[StepSearcher(new[] { DifficultyLevel.Moderate })]
+[StepSearcher(DifficultyLevel.Moderate)]
 public sealed partial class NormalSubsetStepSearcher : SubsetStepSearcher
 {
 	/// <inheritdoc/>

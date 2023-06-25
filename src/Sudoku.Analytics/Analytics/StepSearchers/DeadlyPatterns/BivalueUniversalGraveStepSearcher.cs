@@ -23,7 +23,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Bi-value Universal Grave False Candidate Type</item>
 /// </list>
 /// </summary>
-[StepSearcher(new[] { DifficultyLevel.Hard })]
+[StepSearcher(DifficultyLevel.Hard)]
 public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 {
 	/// <summary>
