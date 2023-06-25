@@ -482,7 +482,7 @@ partial class GridImageGenerator
 	{
 		using var brush = new SolidBrush(GetColor(identifier));
 		var (centerX, centerY) = calc.GetMousePointInCenter(cell);
-		foreach (var direction in directions.GetAllFlagsDistinct()!)
+		foreach (var direction in directions.GetAllFlags())
 		{
 			var points = direction switch
 			{
@@ -563,7 +563,7 @@ partial class GridImageGenerator
 		var p2 = new PointF(x + width / 2, y);
 		var p3 = new PointF(x, centerY - ch / 2);
 
-		foreach (var direction in directions.GetAllFlagsDistinct()!)
+		foreach (var direction in directions.GetAllFlags())
 		{
 			using var path = new GraphicsPath();
 			path.AddLine(p1, p2);
@@ -600,7 +600,7 @@ partial class GridImageGenerator
 		using var brush = new SolidBrush(GetColor(identifier));
 
 		var (centerX, centerY) = calc.GetMousePointInCenter(cell);
-		foreach (var direction in directions.GetAllFlagsDistinct()!)
+		foreach (var direction in directions.GetAllFlags())
 		{
 			var finalText = direction switch { Direction.Up => up, Direction.Down => down, Direction.Left => left, Direction.Right => right };
 			var (tw, th) = g.MeasureString(finalText, font);

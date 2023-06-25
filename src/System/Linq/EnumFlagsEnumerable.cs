@@ -20,7 +20,9 @@ public static class EnumFlagsEnumerable
 	/// </exception>
 	public static T[] Select<TEnum, T>(this TEnum @this, Func<TEnum, T> selector) where TEnum : unmanaged, Enum
 	{
-		var flags = @this.GetAllFlags() ?? throw new InvalidOperationException($"The enumeration type must be marked as '{nameof(FlagsAttribute)}'.");
+		var flags = @this.GetAllFlags() is not (var f and not [])
+			? throw new InvalidOperationException($"The enumeration type must be marked as '{nameof(FlagsAttribute)}'.")
+			: f;
 		var result = new T[flags.Length];
 		for (var i = 0; i < flags.Length; i++)
 		{

@@ -2021,19 +2021,6 @@
             All flags. If the enumeration field doesn't contain any flags, the return value will be <see langword="null"/>.
             </returns>
         </member>
-        <member name="M:System.EnumExtensions.GetAllFlagsDistinct``1(``0)">
-            <summary>
-            <para><inheritdoc cref="M:System.EnumExtensions.GetAllFlags``1(``0)" path="/summary"/></para>
-            <para>
-            Different with method <see cref="M:System.EnumExtensions.GetAllFlags``1(``0)"/>, this method is used when an enumeration type <typeparamref name="T"/>
-            contains duplicated values naming differently.
-            </para>
-            </summary>
-            <typeparam name="T"><inheritdoc cref="M:System.EnumExtensions.GetAllFlags``1(``0)" path="/typeparam[@name='T']"/></typeparam>
-            <param name="this"><inheritdoc cref="M:System.EnumExtensions.GetAllFlags``1(``0)" path="/param[@name='this']"/></param>
-            <returns><inheritdoc cref="M:System.EnumExtensions.GetAllFlags``1(``0)" path="/returns"/></returns>
-            <seealso cref="M:System.EnumExtensions.GetAllFlags``1(``0)"/>
-        </member>
         <member name="M:System.EnumExtensions.Flags``1(``0,``0)">
             <summary>
             Determines whether one or more bit fields are set in the current instance.

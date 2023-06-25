@@ -98,7 +98,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 		static ArrayList createFormatHandlers(SudokuFormatFlags flags)
 		{
 			var result = new ArrayList();
-			foreach (var flag in flags.GetAllFlags()!)
+			foreach (var flag in flags.GetAllFlags())
 			{
 				result.Add(flag.GetFormatter());
 			}

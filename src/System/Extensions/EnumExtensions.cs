@@ -1,4 +1,4 @@
-﻿namespace System;
+namespace System;
 
 /// <summary>
 /// Provides extension methods on <see cref="Enum"/>.
@@ -29,7 +29,7 @@ public static unsafe class EnumExtensions
 	/// <returns>
 	/// All flags. If the enumeration field doesn't contain any flags, the return value will be <see langword="null"/>.
 	/// </returns>
-	public static T[]? GetAllFlags<T>(this T @this) where T : unmanaged, Enum
+	public static T[] GetAllFlags<T>(this T @this) where T : unmanaged, Enum
 	{
 		// Create a buffer to record all possible flags.
 		var buffer = stackalloc T[Enum.GetValues<T>().Length];
@@ -41,7 +41,7 @@ public static unsafe class EnumExtensions
 
 		if (i == 0)
 		{
-			return null;
+			return Array.Empty<T>();
 		}
 
 		// Returns the instance and copy the values.
@@ -52,23 +52,8 @@ public static unsafe class EnumExtensions
 		}
 
 		// Returns the value.
-		return result;
+		return result.DistinctBy(static self => self).ToArray();
 	}
-
-	/// <summary>
-	/// <para><inheritdoc cref="GetAllFlags{T}(T)" path="/summary"/></para>
-	/// <para>
-	/// Different with method <see cref="GetAllFlags{T}(T)"/>, this method is used when an enumeration type <typeparamref name="T"/>
-	/// contains duplicated values naming differently.
-	/// </para>
-	/// </summary>
-	/// <typeparam name="T"><inheritdoc cref="GetAllFlags{T}(T)" path="/typeparam[@name='T']"/></typeparam>
-	/// <param name="this"><inheritdoc cref="GetAllFlags{T}(T)" path="/param[@name='this']"/></param>
-	/// <returns><inheritdoc cref="GetAllFlags{T}(T)" path="/returns"/></returns>
-	/// <seealso cref="GetAllFlags{T}(T)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static T[]? GetAllFlagsDistinct<T>(this T @this) where T : unmanaged, Enum
-		=> @this.GetAllFlags()?.DistinctBy(static self => self).ToArray();
 
 	/// <summary>
 	/// Determines whether one or more bit fields are set in the current instance.
