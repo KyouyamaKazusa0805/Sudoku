@@ -253,6 +253,17 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\12 全双值格致死结构数组类型，带隐性三数组.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\13 全双值格致死结构数组类型，带隐性四数组.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\14 全双值格致死结构共轭对类型.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\15 BUG+2.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\16 BUG+2，真数全在同一个单元格里.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\17 BUG+3.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\18 BUG+4.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\19 BUG+5.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\20 BUG+6.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\21 BUG+6，另外一个例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\22 BUG+7.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\23 BUG+7，另外一个例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\24 全双值格致死结构假数类型.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\25 全双值格致死结构假数类型，另外一个例子.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
   </ItemGroup>
   <ItemGroup>
