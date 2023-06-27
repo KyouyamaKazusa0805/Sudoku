@@ -9,63 +9,151 @@ public sealed class Generator : IIncrementalGenerator
 	/// <inheritdoc/>
 	public unsafe void Initialize(IncrementalGeneratorInitializationContext context)
 	{
-		//
 		// Elementary generators
-		//
-		#region Elementary generators
-		// Primary Constructors
-		{
-			const string name = "System.SourceGeneration.PrimaryConstructorParameterAttribute";
-			context.Register<PrimaryConstructorHandler, PrimaryConstructorCollectedResult>(name, SyntaxNodeTypePredicate<ParameterSyntax>);
-		}
+		PrimaryConstructor(context);
+		DefaultOverridden(context);
+		InstanceDeconstruction(context);
+		ImplicitField(context);
 
-		// Default Overridden
-		{
-			const string name = "System.SourceGeneration.GeneratedOverridingMemberAttribute";
-			context.Register(name, IsPartialMethodPredicate, EqualsOverriddenHandler.Transform, GetHashCodeOveriddenHandler.Transform, ToStringOverriddenHandler.Transform, DefaultOverriddenHandler.Output);
-		}
-
-		// Instance Deconstruction Methods
-		{
-			const string name = "System.SourceGeneration.DeconstructionMethodAttribute";
-			context.Register<InstanceDeconstructionMethodHandler, InstanceDeconstructionMethodCollectedResult>(name, IsPartialMethodPredicate);
-		}
-
-		// Implicit Fields
-		{
-			const string name = "System.SourceGeneration.ImplicitFieldAttribute";
-			context.Register<ImplicitFieldHandler, ImplicitFieldCollectedResult>(name, SyntaxNodeTypePredicate<PropertyDeclarationSyntax>);
-		}
-		#endregion
-
-		//
 		// Advanced generators
-		//
-		#region Advanced generators
-		// StepSearcher Default Imports
-		{
-			const string projectName = "Sudoku.Analytics";
-			context.Register<StepSearcherDefaultImportingHandler>(projectName);
-		}
+		StepSearcherImports(context);
+		SudokuStudioXamlBindings(context);
+	}
 
-		// SudokuStudio XAML Bindings
-		{
-			const string projectName = "SudokuStudio";
+	private void PrimaryConstructor(IncrementalGeneratorInitializationContext context)
+	{
+		var instance = new PrimaryConstructorHandler();
+		context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(
+					"System.SourceGeneration.PrimaryConstructorParameterAttribute",
+					SyntaxNodeTypePredicate<ParameterSyntax>,
+					instance.Transform
+				)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			instance.Output
+		);
+	}
 
-			const string name_Dependency = "SudokuStudio.ComponentModel.DependencyPropertyAttribute`1";
-			context.Register<DependencyPropertyHandler, DependencyPropertyCollectedResult>(name_Dependency, projectName, predicate_Dependency);
+	private void DefaultOverridden(IncrementalGeneratorInitializationContext context)
+	{
+		const string attributeName = "System.SourceGeneration.GeneratedOverridingMemberAttribute";
+		context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(attributeName, IsPartialMethodPredicate, EqualsOverriddenHandler.Transform)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect()
+				.Combine(
+					context.SyntaxProvider
+						.ForAttributeWithMetadataName(attributeName, IsPartialMethodPredicate, GetHashCodeOveriddenHandler.Transform)
+						.Where(NotNullPredicate)
+						.Select(NotNullSelector)
+						.Collect()
+						.Combine(
+							context.SyntaxProvider
+								.ForAttributeWithMetadataName(attributeName, IsPartialMethodPredicate, ToStringOverriddenHandler.Transform)
+								.Where(NotNullPredicate)
+								.Select(NotNullSelector)
+								.Collect()
+						)
+				)
+				.Select(static (v, _) => (v.Left.ToArray(), v.Right.Left.ToArray(), v.Right.Right.ToArray())),
+			DefaultOverriddenHandler.Output
+		);
+	}
 
-			const string name_Attached = "SudokuStudio.ComponentModel.AttachedPropertyAttribute`1";
-			context.Register<AttachedPropertyHandler, AttachedPropertyCollectedResult>(name_Attached, projectName, predicate_Attached);
+	private void InstanceDeconstruction(IncrementalGeneratorInitializationContext context)
+	{
+		var instance = new InstanceDeconstructionMethodHandler();
+		context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(
+					"System.SourceGeneration.DeconstructionMethodAttribute",
+					IsPartialMethodPredicate,
+					instance.Transform
+				)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			instance.Output
+		);
+	}
 
+	private void ImplicitField(IncrementalGeneratorInitializationContext context)
+	{
+		var instance = new ImplicitFieldHandler();
+		context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(
+					"System.SourceGeneration.ImplicitFieldAttribute",
+					SyntaxNodeTypePredicate<PropertyDeclarationSyntax>,
+					instance.Transform
+				)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			instance.Output
+		);
+	}
 
-			static bool predicate_Dependency(SyntaxNode n, CancellationToken _)
-				=> n is ClassDeclarationSyntax { TypeParameterList: null, Modifiers: var m and not [] } && m.Any(SyntaxKind.PartialKeyword);
+	private void StepSearcherImports(IncrementalGeneratorInitializationContext context)
+	{
+		var instance = new StepSearcherDefaultImportingHandler();
+		context.RegisterSourceOutput(
+			context.CompilationProvider,
+			(spc, c) => { if (c.AssemblyName == "Sudoku.Analytics") { instance.Output(spc, c); } }
+		);
+	}
 
-			static bool predicate_Attached(SyntaxNode n, CancellationToken _)
-				=> n is ClassDeclarationSyntax { TypeParameterList: null, Modifiers: var m and not [] }
-				&& m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword);
-		}
-		#endregion
+	private void SudokuStudioXamlBindings(IncrementalGeneratorInitializationContext context)
+	{
+		const string projectName = "SudokuStudio";
+
+		const string name_Dependency = "SudokuStudio.ComponentModel.DependencyPropertyAttribute`1";
+		var instance_Dependency = new DependencyPropertyHandler();
+		context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(
+					name_Dependency,
+					static (n, _) => n is ClassDeclarationSyntax
+					{
+						TypeParameterList: null,
+						Modifiers: var m and not []
+					} && m.Any(SyntaxKind.PartialKeyword),
+					instance_Dependency.Transform
+				)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Combine(context.CompilationProvider)
+				.Where(static pair => pair.Right.AssemblyName == projectName)
+				.Select(static (pair, _) => pair.Left)
+				.Collect(),
+			instance_Dependency.Output
+		);
+
+		const string name_Attached = "SudokuStudio.ComponentModel.AttachedPropertyAttribute`1";
+		var instance_Attached = new AttachedPropertyHandler();
+		context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(
+					name_Attached,
+					static (n, _) => n is ClassDeclarationSyntax
+					{
+						TypeParameterList: null,
+						Modifiers: var m and not []
+					} && m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword),
+					instance_Attached.Transform
+				)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Combine(context.CompilationProvider)
+				.Where(static pair => pair.Right.AssemblyName == projectName)
+				.Select(static (pair, _) => pair.Left)
+				.Collect(),
+			instance_Attached.Output
+		);
 	}
 }
