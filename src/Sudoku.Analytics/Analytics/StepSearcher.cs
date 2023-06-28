@@ -45,36 +45,31 @@ public abstract partial class StepSearcher(
 	/// <summary>
 	/// Determines whether the current step searcher is a pure one, which means it doesn't use cached fields.
 	/// </summary>
-	public bool IsPure => GetType().GetCustomAttribute<StepSearcherAttribute>()!.IsPure;
+	public bool IsPure => StepSearcherMetadataInfo.IsPure;
 
 	/// <summary>
 	/// Determines whether we can adjust the ordering of the current step searcher as a customized configuration option before solving a puzzle.
 	/// </summary>
-	public bool IsFixed => GetType().GetCustomAttribute<StepSearcherAttribute>()!.IsFixed;
+	public bool IsFixed => StepSearcherMetadataInfo.IsFixed;
 
 	/// <summary>
 	/// Determines whether the current step searcher is not supported for sukaku solving mode.
 	/// </summary>
-	public bool IsNotSupportedForSukaku
-		=> GetType().GetCustomAttribute<StepSearcherAttribute>()!.ConditionalCases is var cases && cases.Flags(ConditionalCase.Standard);
+	public bool IsNotSupportedForSukaku => StepSearcherMetadataInfo.ConditionalCases is var cases && cases.Flags(ConditionalCase.Standard);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
 	/// by option <see cref="ConditionalCase.UnlimitedTimeComplexity"/> being configured.
 	/// </summary>
 	/// <seealso cref="ConditionalCase.UnlimitedTimeComplexity"/>
-	public bool IsConfiguredSlow
-		=> GetType().GetCustomAttribute<StepSearcherAttribute>()!.ConditionalCases is var cases
-		&& cases.Flags(ConditionalCase.UnlimitedTimeComplexity);
+	public bool IsConfiguredSlow => StepSearcherMetadataInfo.ConditionalCases is var cases && cases.Flags(ConditionalCase.UnlimitedTimeComplexity);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
 	/// by option <see cref="ConditionalCase.UnlimitedSpaceComplexity"/> being configured.
 	/// </summary>
 	/// <seealso cref="ConditionalCase.UnlimitedSpaceComplexity"/>
-	public bool IsConfiguredHighAllocation
-		=> GetType().GetCustomAttribute<StepSearcherAttribute>()!.ConditionalCases is var cases
-		&& cases.Flags(ConditionalCase.UnlimitedSpaceComplexity);
+	public bool IsConfiguredHighAllocation => StepSearcherMetadataInfo.ConditionalCases is var cases && cases.Flags(ConditionalCase.UnlimitedSpaceComplexity);
 
 	/// <summary>
 	/// Indicates the separated priority. This value cannot be greater than 16 due to design of <see cref="SeparatedAttribute"/>.
@@ -98,12 +93,17 @@ public abstract partial class StepSearcher(
 	/// <summary>
 	/// Indicates the <see cref="DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
 	/// </summary>
-	public DifficultyLevel[] DifficultyLevelRange => GetType().GetCustomAttribute<StepSearcherAttribute>()!.DifficultyLevels.GetAllFlags();
+	public DifficultyLevel[] DifficultyLevelRange => StepSearcherMetadataInfo.DifficultyLevels.GetAllFlags();
 
 	/// <summary>
 	/// Indicates the final priority value ID of the step searcher. This property is used as comparison.
 	/// </summary>
 	private int PriorityId => Priority << 4 | SeparatedPriority;
+
+	/// <summary>
+	/// The internal information for the current step searcher instance.
+	/// </summary>
+	private StepSearcherAttribute StepSearcherMetadataInfo => GetType().GetCustomAttribute<StepSearcherAttribute>()!;
 
 
 	[GeneratedOverridingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]

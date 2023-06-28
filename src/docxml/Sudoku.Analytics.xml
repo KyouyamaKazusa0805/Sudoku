@@ -5436,6 +5436,11 @@ result ^= expression;
             Indicates the final priority value ID of the step searcher. This property is used as comparison.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearcher.StepSearcherMetadataInfo">
+            <summary>
+            The internal information for the current step searcher instance.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearcher.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
