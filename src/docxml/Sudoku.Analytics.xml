@@ -17818,6 +17818,12 @@ result ^= expression;
             Provides some methods that creates some facts for techniques.
             </summary>
         </member>
+        <member name="M:Sudoku.Facts.TechniqueFact.GetTechniquesCount">
+            <summary>
+            Try to get the number of all techniques that the current API set support.
+            </summary>
+            <returns>The number of techniques.</returns>
+        </member>
         <member name="M:Sudoku.Facts.TechniqueFact.GetSubsetName(System.Int32)">
             <summary>
             Try to get the real name for the specified size of subset.

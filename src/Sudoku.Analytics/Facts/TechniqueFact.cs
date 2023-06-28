@@ -6,6 +6,13 @@ namespace Sudoku.Facts;
 public static class TechniqueFact
 {
 	/// <summary>
+	/// Try to get the number of all techniques that the current API set support.
+	/// </summary>
+	/// <returns>The number of techniques.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetTechniquesCount() => Enum.GetValues<Technique>().Length;
+
+	/// <summary>
 	/// Try to get the real name for the specified size of subset.
 	/// </summary>
 	/// <param name="size">The number of cells used in a subset.</param>
