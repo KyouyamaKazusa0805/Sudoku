@@ -65,14 +65,10 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				var (count, resultCell, flag) = (0, -1, true);
 				foreach (var cell in HousesMap[house])
 				{
-					if (grid.GetStatus(cell) == CellStatus.Empty)
+					if (grid.GetStatus(cell) == CellStatus.Empty && (resultCell = cell) is var _ && ++count > 1)
 					{
-						resultCell = cell;
-						if (++count > 1)
-						{
-							flag = false;
-							break;
-						}
+						flag = false;
+						break;
 					}
 				}
 				if (!flag || count == 0)
@@ -80,8 +76,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var tempDigit = TrailingZeroCount(grid.GetCandidates(resultCell));
-				if (tempDigit != digit)
+				if (TrailingZeroCount(grid.GetCandidates(resultCell)) != digit)
 				{
 					continue;
 				}
