@@ -15,4 +15,4 @@ namespace Sudoku.Analytics.Metadata;
 public sealed partial class SeparatedAttribute(
 	[PrimaryConstructorParameter] int priority,
 	[PrimaryConstructorParameter] params object[] propertyNamesAndValues
-) : StepSearcherMetadataAttribute;
+) : Attribute;

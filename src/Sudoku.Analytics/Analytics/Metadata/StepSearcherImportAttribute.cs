@@ -10,8 +10,7 @@ namespace Sudoku.Analytics.Metadata;
 /// The value can be 0, 1, 2, 3 and 4.
 /// </param>
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true, Inherited = false)]
-public sealed partial class StepSearcherImportAttribute<T>([PrimaryConstructorParameter] int level) : StepSearcherMetadataAttribute
-	where T : StepSearcher
+public sealed partial class StepSearcherImportAttribute<T>([PrimaryConstructorParameter] int level) : Attribute where T : StepSearcher
 {
 	/// <summary>
 	/// Indicates the area that the step searcher can be used and available.

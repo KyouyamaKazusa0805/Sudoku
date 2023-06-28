@@ -6,4 +6,4 @@ namespace Sudoku.Analytics.Metadata;
 /// This attribute is also a "signal" to tell source generators not to create primary constructor invocation clause.
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed class PolymorphismAttribute : StepSearcherMetadataAttribute;
+public sealed class PolymorphismAttribute : Attribute;

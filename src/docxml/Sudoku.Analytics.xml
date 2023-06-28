@@ -3581,14 +3581,14 @@
             <summary>
             Indicates the type is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
-            <param name="difficultyLevelRange">Indicates what difficulty level the current step searcher can produce.</param>
+            <param name="difficultyLevels">Indicates what difficulty levels the current step searcher can produce.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="M:Sudoku.Analytics.Metadata.StepSearcherAttribute.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel)">
             <summary>
             Indicates the type is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
-            <param name="difficultyLevelRange">Indicates what difficulty level the current step searcher can produce.</param>
+            <param name="difficultyLevels">Indicates what difficulty levels the current step searcher can produce.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.OnlyUsesCachedFields">
@@ -3642,9 +3642,9 @@
             whether a candidate is having been removed before.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.DifficultyLevelRange">
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.DifficultyLevels">
             <summary>
-            The generated property declaration for parameter <c>difficultyLevelRange</c>.
+            The generated property declaration for parameter <c>difficultyLevels</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1">
@@ -3681,11 +3681,6 @@
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1.Level">
             <summary>
             The generated property declaration for parameter <c>level</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.StepSearcherMetadataAttribute">
-            <summary>
-            Represents a step searcher metadata attribute.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherRunningArea">

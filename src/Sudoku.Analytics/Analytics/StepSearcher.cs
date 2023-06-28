@@ -98,8 +98,7 @@ public abstract partial class StepSearcher(
 	/// <summary>
 	/// Indicates the <see cref="DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
 	/// </summary>
-	public DifficultyLevel[] DifficultyLevelRange
-		=> GetType().GetCustomAttribute<StepSearcherAttribute>()!.DifficultyLevelRange.GetAllFlags();
+	public DifficultyLevel[] DifficultyLevelRange => GetType().GetCustomAttribute<StepSearcherAttribute>()!.DifficultyLevels.GetAllFlags();
 
 	/// <summary>
 	/// Indicates the final priority value ID of the step searcher. This property is used as comparison.
