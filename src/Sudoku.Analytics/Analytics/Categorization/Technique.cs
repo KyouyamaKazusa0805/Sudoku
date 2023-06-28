@@ -1932,6 +1932,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	BivalueUniversalGravePlusNForcingChains,
 
 	/// <summary>

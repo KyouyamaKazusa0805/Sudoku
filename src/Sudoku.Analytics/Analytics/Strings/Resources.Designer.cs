@@ -583,7 +583,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Universal Grave + n Forcing Chains.
+        ///   Looks up a localized string similar to Bi-value Universal Grave Forcing Chains + n.
         /// </summary>
         public static string BivalueUniversalGravePlusNForcingChains {
             get {

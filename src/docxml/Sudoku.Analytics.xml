@@ -9557,7 +9557,25 @@ result ^= expression;
             <param name="trueCandidates">Indicates the true candidates.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.Name">
-            <inheritdoc/>
+            <summary>
+            <inheritdoc cref="P:Sudoku.Analytics.Step.Name" path="/summary"/>
+            </summary>
+            <remarks>
+            <para><inheritdoc cref="P:Sudoku.Analytics.Step.Name" path="//remarks"/></para>
+            <para>
+            In addition, the expression <c>..^4</c> means
+            we have cut the name part " + n" (4 characters in total) in the full name "Bivalue Universal Grave + n".
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.EnglishName">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Analytics.Step.EnglishName" path="/summary"/>
+            </summary>
+            <remarks>
+            <para><inheritdoc cref="P:Sudoku.Analytics.Step.EnglishName" path="//remarks"/></para>
+            <para><inheritdoc cref="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.Name" path="//remarks/para[2]"/></para>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.BaseDifficulty">
             <inheritdoc/>
@@ -14526,7 +14544,7 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.BivalueUniversalGravePlusNForcingChains">
             <summary>
-              Looks up a localized string similar to Bi-value Universal Grave + n Forcing Chains.
+              Looks up a localized string similar to Bi-value Universal Grave Forcing Chains + n.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.BivalueUniversalGraveType1">

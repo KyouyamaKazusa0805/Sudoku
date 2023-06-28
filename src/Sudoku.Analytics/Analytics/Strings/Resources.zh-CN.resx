@@ -1265,11 +1265,11 @@
     <comment>Technique Name</comment>
   </data>
   <data name="BivalueUniversalGravePlusN" xml:space="preserve">
-    <value>全双值格致死解法・多真数</value>
+    <value>全双值格致死解法 + n</value>
     <comment>Technique Name</comment>
   </data>
   <data name="BivalueUniversalGravePlusNForcingChains" xml:space="preserve">
-    <value>全双值格致死解法・强制链・多真数</value>
+    <value>全双值格致死解法・强制链 + n</value>
     <comment>Technique Name</comment>
   </data>
   <data name="BivalueUniversalGraveXzRule" xml:space="preserve">

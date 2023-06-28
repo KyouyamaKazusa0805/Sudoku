@@ -23,7 +23,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// <remarks>
 	/// <inheritdoc cref="Name" path="/remarks"/>
 	/// </remarks>
-	public string EnglishName => Code.GetEnglishName() ?? throw new ResourceNotFoundException(Code.ToString(), GetType().Assembly);
+	public virtual string EnglishName => Code.GetEnglishName() ?? throw new ResourceNotFoundException(Code.ToString(), GetType().Assembly);
 
 	/// <summary>s
 	/// Gets the format of the current instance.
