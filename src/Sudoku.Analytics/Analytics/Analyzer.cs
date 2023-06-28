@@ -73,7 +73,7 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 		{
 			try
 			{
-				return analyzing(puzzle, solution, isSukaku, result, progress, cancellationToken);
+				return analyzeInternal(puzzle, solution, isSukaku, result, progress, cancellationToken);
 			}
 			catch (Exception ex)
 			{
@@ -98,7 +98,7 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 		}
 
 
-		AnalyzerResult analyzing(
+		AnalyzerResult analyzeInternal(
 			scoped in Grid puzzle,
 			scoped in Grid solution,
 			bool isSukaku,
