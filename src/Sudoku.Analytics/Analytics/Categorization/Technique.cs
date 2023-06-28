@@ -115,7 +115,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[Abbreviation("ALP")]
-	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AlmostLockedPair,
 
 	/// <summary>
@@ -124,7 +124,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(5.2, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[Abbreviation("ALT")]
-	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AlmostLockedTriple,
 
 	/// <summary>
@@ -134,7 +134,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[Abbreviation("ALQ")]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
-	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	AlmostLockedQuadruple,
 	#endregion
 
@@ -750,6 +750,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	FrankenSquirmbag,
 
 	/// <summary>
@@ -791,6 +792,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	MutantSquirmbag,
 
 	/// <summary>
@@ -878,6 +880,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	FrankenWhale,
 
 	/// <summary>
@@ -919,6 +922,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	MutantWhale,
 
 	/// <summary>
@@ -1004,6 +1008,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	FrankenLeviathan,
 
 	/// <summary>
@@ -1045,6 +1050,7 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	MutantLeviathan,
 
 	/// <summary>
