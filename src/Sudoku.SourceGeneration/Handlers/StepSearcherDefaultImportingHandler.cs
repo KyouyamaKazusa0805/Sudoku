@@ -13,7 +13,7 @@ internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGenerato
 
 	private const string StepSearcherImportAttributeName = "global::Sudoku.Analytics.Metadata.StepSearcherImportAttribute<>";
 
-	private const string PolymorphismAttributeName = "Sudoku.Analytics.Metadata.PolymorphismAttribute";
+	private const string StepSearcherSourceGenerationAttributeName = "Sudoku.Analytics.Metadata.StepSearcherSourceGenerationAttribute";
 
 
 	/// <inheritdoc/>
@@ -80,8 +80,12 @@ internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGenerato
 			}
 
 			// Check whether the step searcher can be used for deriving.
-			var polymorphismAttributeType = compilation.GetTypeByMetadataName(PolymorphismAttributeName)!;
-			var isPolymorphism = stepSearcherType.GetAttributes().Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, polymorphismAttributeType));
+			var sourceGenerationAttributeType = compilation.GetTypeByMetadataName(StepSearcherSourceGenerationAttributeName)!;
+			var isPolymorphism = stepSearcherType.GetAttributes()
+				.Any(
+					a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, sourceGenerationAttributeType)
+						&& a.GetNamedArgument<bool>("CanDeriveTypes")
+				);
 
 			// Adds the necessary info into the collection.
 			foundAttributesData.Add(new(containingNamespace, baseType, priorityValue++, dl, stepSearcherName, namedArguments, isPolymorphism));
