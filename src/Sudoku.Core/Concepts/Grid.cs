@@ -82,24 +82,6 @@ public unsafe partial struct Grid :
 	public static readonly Grid Undefined;
 
 	/// <summary>
-	/// Indicates the minimum possible grid value that the current type can reach.
-	/// </summary>
-	/// <remarks>
-	/// This value is found out via backtracking algorithm. For more information, please visit type <see cref="BacktrackingSolver"/>.
-	/// </remarks>
-	/// <seealso cref="BacktrackingSolver"/>
-	public static readonly Grid MinValue;
-
-	/// <summary>
-	/// Indicates the maximum possible grid value that the current type can reach.
-	/// </summary>
-	/// <remarks>
-	/// This value is found out via backtracking algorithm. For more information, please visit type <see cref="BacktrackingSolver"/>.
-	/// </remarks>
-	/// <seealso cref="BacktrackingSolver"/>
-	public static readonly Grid MaxValue;
-
-	/// <summary>
 	/// Indicates the backing solver.
 	/// </summary>
 	private static readonly BitwiseSolver BackingSolver = new();
@@ -202,8 +184,6 @@ public unsafe partial struct Grid :
 
 		// Initializes special fields.
 		Undefined = default; // This field must be initialized after parsing the following two special fields.
-		MinValue = (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
-		MaxValue = (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
 
 
 		static void onRefreshingCandidates(ref Grid @this)
@@ -512,11 +492,23 @@ public unsafe partial struct Grid :
 	/// <inheritdoc/>
 	readonly int IReadOnlyCollection<Digit>.Count => 81;
 
-	/// <inheritdoc/>
-	static Grid IMinMaxValue<Grid>.MinValue => MinValue;
+	/// <summary>
+	/// Indicates the minimum possible grid value that the current type can reach.
+	/// </summary>
+	/// <remarks>
+	/// This value is found out via backtracking algorithm. For more information, please visit type <see cref="BacktrackingSolver"/>.
+	/// </remarks>
+	/// <seealso cref="BacktrackingSolver"/>
+	static Grid IMinMaxValue<Grid>.MinValue => (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
 
-	/// <inheritdoc/>
-	static Grid IMinMaxValue<Grid>.MaxValue => MaxValue;
+	/// <summary>
+	/// Indicates the maximum possible grid value that the current type can reach.
+	/// </summary>
+	/// <remarks>
+	/// This value is found out via backtracking algorithm. For more information, please visit type <see cref="BacktrackingSolver"/>.
+	/// </remarks>
+	/// <seealso cref="BacktrackingSolver"/>
+	static Grid IMinMaxValue<Grid>.MaxValue => (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
 
 
 	/// <summary>
