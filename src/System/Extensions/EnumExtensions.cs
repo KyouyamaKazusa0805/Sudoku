@@ -52,7 +52,7 @@ public static unsafe class EnumExtensions
 		}
 
 		// Returns the value.
-		return result.DistinctBy(static self => self).ToArray();
+		return result.Distinct().ToArray();
 	}
 
 	/// <summary>
