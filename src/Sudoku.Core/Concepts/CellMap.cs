@@ -11,11 +11,11 @@ namespace Sudoku.Concepts;
 /// If you want to add elements into it, you can use <see cref="Add(Cell)"/>, <see cref="AddRange(IEnumerable{Cell})"/>
 /// or just <see cref="op_Addition(in CellMap, Cell)"/> or <see cref="op_Addition(in CellMap, IEnumerable{Cell})"/>:
 /// <code><![CDATA[
-/// var cellMap = CellMap.Empty;
-/// cellMap += 0; // Adds 'r1c1' into the collection.
-/// cellMap.Add(1); // Adds 'r1c2' into the collection.
-/// cellMap.AddRange(stackalloc[] { 2, 3, 4 }); // Adds 'r1c345' into the collection.
-/// cellMap |= anotherCellMap; // Adds a list of another instance of type 'CellMap' into the current collection.
+/// var map = CellMap.Empty;
+/// map += 0; // Adds 'r1c1' into the collection.
+/// map.Add(1); // Adds 'r1c2' into the collection.
+/// map.AddRange([2, 3, 4]); // Adds 'r1c345' into the collection.
+/// map |= anotherMap; // Adds a list of another instance of type 'CellMap' into the current collection.
 /// ]]></code>
 /// If you want to learn more information about this type, please visit
 /// <see href="https://sunnieshine.github.io/Sudoku/data-structures/cells">this wiki page</see>.
