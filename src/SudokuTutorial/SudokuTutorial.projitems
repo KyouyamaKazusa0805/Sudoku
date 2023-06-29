@@ -269,6 +269,10 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\28 具有两种BUG取法的题目.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\28-1 第一种取法.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\04 致命结构\05 全双值格致死结构（BUG）\28-2 第二种取法.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\01 欠一数组\01 欠一数对.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\01 欠一数组\02 欠一数对，另外一个例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\01 欠一数组\03 欠一三数组.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\01 欠一数组\04 欠一三数组，另外一个例子.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
   </ItemGroup>
   <ItemGroup>
