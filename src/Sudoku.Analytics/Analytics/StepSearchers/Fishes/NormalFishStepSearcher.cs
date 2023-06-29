@@ -34,7 +34,17 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </item>
 /// </list>
 /// </summary>
-[StepSearcher(DifficultyLevel.Hard)]
+[StepSearcher(
+	Technique.XWing, Technique.Swordfish, Technique.Jellyfish,
+	Technique.Squirmbag, Technique.Whale, Technique.Leviathan,
+	Technique.FinnedXWing, Technique.FinnedSwordfish, Technique.FinnedJellyfish,
+	Technique.FinnedSquirmbag, Technique.FinnedWhale, Technique.FinnedLeviathan,
+	Technique.SashimiXWing, Technique.SashimiSwordfish, Technique.SashimiJellyfish,
+	Technique.SashimiSquirmbag, Technique.SashimiWhale, Technique.SashimiLeviathan,
+	Technique.SiameseFinnedXWing, Technique.SiameseFinnedSwordfish, Technique.SiameseFinnedJellyfish,
+	Technique.SiameseFinnedSquirmbag, Technique.SiameseFinnedWhale, Technique.SiameseFinnedLeviathan,
+	Technique.SiameseSashimiXWing, Technique.SiameseSashimiSwordfish, Technique.SiameseSashimiJellyfish,
+	Technique.SiameseSashimiSquirmbag, Technique.SiameseSashimiWhale, Technique.SiameseSashimiLeviathan)]
 public sealed partial class NormalFishStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

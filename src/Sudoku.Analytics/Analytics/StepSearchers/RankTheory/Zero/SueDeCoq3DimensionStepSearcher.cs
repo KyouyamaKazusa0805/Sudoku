@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>3-dimensional Sue de Coq</item>
 /// </list>
 /// </summary>
-[StepSearcher(DifficultyLevel.Fiendish)]
+[StepSearcher(Technique.SueDeCoq3Dimension)]
 public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

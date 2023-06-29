@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Almost Locked Sets XY-Wing</item>
 /// </list>
 /// </summary>
-[StepSearcher(DifficultyLevel.Fiendish)]
+[StepSearcher(Technique.AlmostLockedSetsXyWing)]
 public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 {
 	/// <summary>

@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Empty Rectangle Intersection Pair</item>
 /// </list>
 /// </summary>
-[StepSearcher(DifficultyLevel.Fiendish)]
+[StepSearcher(Technique.EmptyRectangleIntersectionPair)]
 public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

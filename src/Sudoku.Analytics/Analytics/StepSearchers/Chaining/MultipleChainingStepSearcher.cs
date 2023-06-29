@@ -27,7 +27,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// However unfortunately, I cannot find any sites available of the project.
 /// One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
 /// </remarks>
-[StepSearcher(DifficultyLevel.Nightmare)]
+[StepSearcher(
+	Technique.CellForcingChains, Technique.RegionForcingChains, Technique.NishioForcingChains,
+	Technique.DynamicCellForcingChains, Technique.DynamicRegionForcingChains,
+	Technique.DynamicContradictionForcingChains, Technique.DynamicDoubleForcingChains)]
 [StepSearcherSourceGeneration(CanDeriveTypes = true)]
 [SplitStepSearcher(0, nameof(AllowNishio), true, nameof(AllowDynamic), true)]
 [SplitStepSearcher(1, nameof(AllowMultiple), true)]

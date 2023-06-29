@@ -27,7 +27,9 @@ namespace Sudoku.Analytics.StepSearchers;
 /// For more information about a "chromatic pattern",
 /// please visit <see href="http://forum.enjoysudoku.com/chromatic-patterns-t39885.html">this link</see>.
 /// </remarks>
-[StepSearcher(DifficultyLevel.Fiendish)]
+[StepSearcher(
+	Technique.ChromaticPatternType1, Technique.ChromaticPatternType2, Technique.ChromaticPatternType3, Technique.ChromaticPatternType4,
+	Technique.ChromaticPatternXzRule)]
 public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 {
 	/// <summary>

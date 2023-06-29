@@ -10,7 +10,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Borescoper's Deadly Pattern Type 4</item>
 /// </list>
 /// </summary>
-[StepSearcher(DifficultyLevel.Hard, ConditionalCases = ConditionalCase.Standard)]
+[StepSearcher(
+	Technique.BorescoperDeadlyPatternType1, Technique.BorescoperDeadlyPatternType2,
+	Technique.BorescoperDeadlyPatternType3, Technique.BorescoperDeadlyPatternType4,
+	ConditionalCases = ConditionalCase.Standard)]
 public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 {
 	/// <summary>

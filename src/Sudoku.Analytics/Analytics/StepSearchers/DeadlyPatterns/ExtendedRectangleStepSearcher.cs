@@ -10,7 +10,9 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Extended Rectangle Type 4</item>
 /// </list>
 /// </summary>
-[StepSearcher(DifficultyLevel.Hard, ConditionalCases = ConditionalCase.Standard)]
+[StepSearcher(
+	Technique.ExtendedRectangleType1, Technique.ExtendedRectangleType2, Technique.ExtendedRectangleType3, Technique.ExtendedRectangleType4,
+	ConditionalCases = ConditionalCase.Standard)]
 public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 {
 	/// <summary>

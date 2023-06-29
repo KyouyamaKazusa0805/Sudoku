@@ -20,7 +20,28 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </item>
 /// </list>
 /// </summary>
-[StepSearcher(DifficultyLevel.Hard | DifficultyLevel.Fiendish | DifficultyLevel.Nightmare, ConditionalCases = ConditionalCase.UnlimitedTimeComplexity)]
+[StepSearcher(
+	Technique.FrankenXWing, Technique.FrankenSwordfish, Technique.FrankenJellyfish,
+	Technique.FrankenSquirmbag, Technique.FrankenWhale, Technique.FrankenLeviathan,
+	Technique.MutantXWing, Technique.MutantSwordfish, Technique.MutantJellyfish,
+	Technique.MutantSquirmbag, Technique.MutantWhale, Technique.MutantLeviathan,
+	Technique.FinnedFrankenXWing, Technique.FinnedFrankenSwordfish, Technique.FinnedFrankenJellyfish,
+	Technique.FinnedFrankenSquirmbag, Technique.FinnedFrankenWhale, Technique.FinnedFrankenLeviathan,
+	Technique.SashimiFrankenXWing, Technique.SashimiFrankenSwordfish, Technique.SashimiFrankenJellyfish,
+	Technique.SashimiFrankenSquirmbag, Technique.SashimiFrankenWhale, Technique.SashimiFrankenLeviathan,
+	Technique.SiameseFinnedFrankenXWing, Technique.SiameseFinnedFrankenSwordfish, Technique.SiameseFinnedFrankenJellyfish,
+	Technique.SiameseFinnedFrankenSquirmbag, Technique.SiameseFinnedFrankenWhale, Technique.SiameseFinnedFrankenLeviathan,
+	Technique.SiameseSashimiFrankenXWing, Technique.SiameseSashimiFrankenSwordfish, Technique.SiameseSashimiFrankenJellyfish,
+	Technique.SiameseSashimiFrankenSquirmbag, Technique.SiameseSashimiFrankenWhale, Technique.SiameseSashimiFrankenLeviathan,
+	Technique.FinnedMutantXWing, Technique.FinnedMutantSwordfish, Technique.FinnedMutantJellyfish,
+	Technique.FinnedMutantSquirmbag, Technique.FinnedMutantWhale, Technique.FinnedMutantLeviathan,
+	Technique.SashimiMutantXWing, Technique.SashimiMutantSwordfish, Technique.SashimiMutantJellyfish,
+	Technique.SashimiMutantSquirmbag, Technique.SashimiMutantWhale, Technique.SashimiMutantLeviathan,
+	Technique.SiameseFinnedMutantXWing, Technique.SiameseFinnedMutantSwordfish, Technique.SiameseFinnedMutantJellyfish,
+	Technique.SiameseFinnedMutantSquirmbag, Technique.SiameseFinnedMutantWhale, Technique.SiameseFinnedMutantLeviathan,
+	Technique.SiameseSashimiMutantXWing, Technique.SiameseSashimiMutantSwordfish, Technique.SiameseSashimiMutantJellyfish,
+	Technique.SiameseSashimiMutantSquirmbag, Technique.SiameseSashimiMutantWhale, Technique.SiameseSashimiMutantLeviathan,
+	ConditionalCases = ConditionalCase.UnlimitedTimeComplexity)]
 public sealed partial class ComplexFishStepSearcher : StepSearcher
 {
 	/// <summary>

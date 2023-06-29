@@ -12,7 +12,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// However unfortunately, I cannot find any sites available of the project.
 /// One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
 /// </remarks>
-[StepSearcher(DifficultyLevel.Fiendish)]
+[StepSearcher(
+	Technique.XChain, Technique.YChain, Technique.AlternatingInferenceChain, Technique.ContinuousNiceLoop, Technique.DiscontinuousNiceLoop,
+	Technique.XyXChain, Technique.XyChain, Technique.FishyCycle, Technique.MWing, Technique.LocalWing, Technique.SplitWing,
+	Technique.HybridWing, Technique.PurpleCow)]
 public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearcher
 {
 	/// <inheritdoc/>

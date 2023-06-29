@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>W-Wing (George Woods' Wing)</item>
 /// </list>
 /// </summary>
-[StepSearcher(DifficultyLevel.Hard)]
+[StepSearcher(Technique.WWing, Technique.GroupedWWing)]
 public sealed partial class WWingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

@@ -29,7 +29,9 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </item>
 /// </list>
 /// </summary>
-[StepSearcher(DifficultyLevel.Moderate)]
+[StepSearcher(
+	Technique.HiddenPair, Technique.HiddenTriple, Technique.HiddenQuadruple,
+	Technique.NakedPair, Technique.NakedTriple, Technique.NakedQuadruple)]
 public sealed partial class NormalSubsetStepSearcher : SubsetStepSearcher
 {
 	/// <inheritdoc/>

@@ -36,7 +36,13 @@ public sealed partial class SueDeCoqStep(
 	public override decimal BaseDifficulty => 5.0M;
 
 	/// <inheritdoc/>
-	public override Technique Code => IsCannibalistic ? Technique.SueDeCoqCannibalism : Technique.SueDeCoq;
+	public override Technique Code
+		=> (IsCannibalistic, IsolatedDigitsMask) switch
+		{
+			(true, _) => Technique.SueDeCoqCannibalism,
+			(_, not 0) => Technique.SueDeCoqIsolated,
+			_ => Technique.SueDeCoq
+		};
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases

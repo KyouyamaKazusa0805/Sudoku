@@ -9,7 +9,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Reverse Bivalue Universal Grave Type 4</item>
 /// </list>
 /// </summary>
-[StepSearcher(DifficultyLevel.Fiendish, ConditionalCases = ConditionalCase.Standard | ConditionalCase.UnlimitedTimeComplexity)]
+[StepSearcher(
+	Technique.ReverseBivalueUniversalGraveType1, Technique.ReverseBivalueUniversalGraveType2,
+	Technique.ReverseBivalueUniversalGraveType3, Technique.ReverseBivalueUniversalGraveType4,
+	ConditionalCases = ConditionalCase.Standard | ConditionalCase.UnlimitedTimeComplexity)]
 public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearcher
 {
 	/// <summary>

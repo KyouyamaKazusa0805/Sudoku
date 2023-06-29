@@ -40,7 +40,27 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </item>
 /// </list>
 /// </summary>
-[StepSearcher(DifficultyLevel.Hard | DifficultyLevel.Fiendish, ConditionalCases = ConditionalCase.Standard)]
+[StepSearcher(
+	Technique.UniqueRectangleType1, Technique.UniqueRectangleType2, Technique.UniqueRectangleType3, Technique.UniqueRectangleType4,
+	Technique.UniqueRectangleType5, Technique.UniqueRectangleType6,
+	Technique.UniqueRectangleExternalType1, Technique.UniqueRectangleExternalType2,
+	Technique.UniqueRectangleExternalType3, Technique.UniqueRectangleExternalType4, Technique.UniqueRectangleExternalXyWing,
+	Technique.UniqueRectangleExternalSkyscraper, Technique.UniqueRectangleExternalTwoStringKite, Technique.UniqueRectangleExternalTurbotFish,
+	Technique.UniqueRectangleExternalAlmostLockedSetsXz, Technique.UniqueRectangleBabaGrouping, Technique.UniqueRectangleSueDeCoq,
+	Technique.UniqueRectangleXyWing, Technique.UniqueRectangleXyzWing, Technique.UniqueRectangleWxyzWing,
+	Technique.UniqueRectangle2B1, Technique.UniqueRectangle2D, Technique.UniqueRectangle2D1, Technique.UniqueRectangle3E2,
+	Technique.UniqueRectangle3N2, Technique.UniqueRectangle3U2, Technique.UniqueRectangle3X, Technique.UniqueRectangle3X1L,
+	Technique.UniqueRectangle3X1U, Technique.UniqueRectangle3X2, Technique.UniqueRectangle4C3, Technique.UniqueRectangle4X1L,
+	Technique.UniqueRectangle4X1U, Technique.UniqueRectangle4X2L, Technique.UniqueRectangle4X2U, Technique.UniqueRectangle4X3,
+	Technique.AvoidableRectangleType1, Technique.AvoidableRectangleType2, Technique.AvoidableRectangleType3, Technique.AvoidableRectangleType5,
+	Technique.AvoidableRectangleExternalType1, Technique.AvoidableRectangleExternalType2, Technique.AvoidableRectangleExternalType3,
+	Technique.AvoidableRectangleExternalType4, Technique.AvoidableRectangleExternalXyWing, Technique.AvoidableRectangleExternalSkyscraper,
+	Technique.AvoidableRectangleExternalTwoStringKite, Technique.AvoidableRectangleExternalTurbotFish,
+	Technique.AvoidableRectangleExternalAlmostLockedSetsXz, Technique.AvoidableRectangle2D, Technique.AvoidableRectangle3X,
+	Technique.AvoidableRectangleBrokenWing, Technique.AvoidableRectangleHiddenSingleBlock, Technique.AvoidableRectangleHiddenSingleRow,
+	Technique.AvoidableRectangleHiddenSingleColumn, Technique.AvoidableRectangleSueDeCoq,
+	Technique.AvoidableRectangleXyWing, Technique.AvoidableRectangleXyzWing, Technique.AvoidableRectangleWxyzWing,
+	ConditionalCases = ConditionalCase.Standard)]
 public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 {
 	/// <summary>

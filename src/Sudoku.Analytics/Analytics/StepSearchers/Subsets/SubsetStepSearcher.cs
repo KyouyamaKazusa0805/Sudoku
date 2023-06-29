@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <param name="runningArea">
 /// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
 /// </param>
-public abstract partial class SubsetStepSearcher(
+public abstract class SubsetStepSearcher(
 	int priority,
 	int level,
 	StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering

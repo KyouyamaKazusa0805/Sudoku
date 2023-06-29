@@ -11,7 +11,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Qiu's Deadly Pattern Locked Type</item>
 /// </list>
 /// </summary>
-[StepSearcher(DifficultyLevel.Hard, ConditionalCases = ConditionalCase.Standard)]
+[StepSearcher(
+	Technique.QiuDeadlyPatternType1, Technique.QiuDeadlyPatternType2,
+	Technique.QiuDeadlyPatternType3, Technique.QiuDeadlyPatternType4, Technique.LockedQiuDeadlyPattern,
+	ConditionalCases = ConditionalCase.Standard)]
 public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 {
 	/// <summary>
