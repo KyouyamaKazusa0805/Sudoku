@@ -29,9 +29,9 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </remarks>
 [StepSearcher(DifficultyLevel.Nightmare)]
 [StepSearcherSourceGeneration(CanDeriveTypes = true)]
-[Separated(0, nameof(AllowNishio), true, nameof(AllowDynamic), true)]
-[Separated(1, nameof(AllowMultiple), true)]
-[Separated(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true)]
+[SplitStepSearcher(0, nameof(AllowNishio), true, nameof(AllowDynamic), true)]
+[SplitStepSearcher(1, nameof(AllowMultiple), true)]
+[SplitStepSearcher(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true)]
 public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 {
 	/// <summary>

@@ -15,13 +15,12 @@ public abstract class StepSearcherPool
 	/// <summary>
 	/// Indicates an array of all built-in <see cref="StepSearcher"/>s that are defined in this assembly.
 	/// </summary>
-	/// <param name="separated">
-	/// Indicates whether we should treat the type as separated one, which means it will be stored multiple times
-	/// if it has been marked <see cref="SeparatedAttribute"/>.
+	/// <param name="expandSplitStepSearchers">
+	/// Indicates whether we should expand split step searchers, creating multiple instances and inserting into the full collection.
 	/// </param>
 	/// <returns>An array of <see cref="StepSearcher"/> instances found.</returns>
-	/// <seealso cref="SeparatedAttribute"/>
-	public static StepSearcher[] Default(bool separated = true)
+	/// <seealso cref="SplitStepSearcherAttribute"/>
+	public static StepSearcher[] Default(bool expandSplitStepSearchers = true)
 	{
 		var result = new SortedList<int, StepSearcher>();
 		foreach (var type in ThisAssembly.GetDerivedTypes(typeof(StepSearcher)))
@@ -36,9 +35,9 @@ public abstract class StepSearcherPool
 				continue;
 			}
 
-			foreach (var stepSearcher in GetStepSearchers(type, separated))
+			foreach (var stepSearcher in GetStepSearchers(type, expandSplitStepSearchers))
 			{
-				result.Add(stepSearcher.Priority << 4 | stepSearcher.SeparatedPriority, stepSearcher);
+				result.Add(stepSearcher.Priority << 4 | stepSearcher.SplitPriority, stepSearcher);
 			}
 		}
 
@@ -49,25 +48,25 @@ public abstract class StepSearcherPool
 	/// The internal method to get all <see cref="StepSearcher"/> instances derived from <paramref name="type"/> defined in this assembly.
 	/// </summary>
 	/// <param name="type">The type of the step searcher.</param>
-	/// <param name="separated">
+	/// <param name="expandSplitStepSearchers">
 	/// <inheritdoc cref="Default(bool)" path="/param[@name='separated']"/>
 	/// </param>
 	/// <returns><inheritdoc cref="Default(bool)" path="/returns"/></returns>
-	/// <seealso cref="SeparatedAttribute"/>
-	public static StepSearcher[] GetStepSearchers(Type type, bool separated)
+	/// <seealso cref="SplitStepSearcherAttribute"/>
+	public static StepSearcher[] GetStepSearchers(Type type, bool expandSplitStepSearchers)
 	{
 		// Check whether the step searcher is marked 'SeparatedAttribute'.
-		switch (type.GetCustomAttributes<SeparatedAttribute>().ToArray())
+		switch (type.GetCustomAttributes<SplitStepSearcherAttribute>().ToArray())
 		{
-			case { Length: var length and not 0 } separatedAttributes when separated:
+			case { Length: var length and not 0 } splitAttributes when expandSplitStepSearchers:
 			{
 				var (i, stepSearcherArray) = (0, new StepSearcher[length]);
 
 				// If the step searcher is marked 'SeparatedAttribute', we should sort them via priority at first.
-				Array.Sort(separatedAttributes, static (a, b) => a.Priority.CompareTo(b.Priority));
+				Array.Sort(splitAttributes, static (a, b) => a.Priority.CompareTo(b.Priority));
 
 				// Then assign property values via reflection.
-				foreach (var separatedAttribute in separatedAttributes)
+				foreach (var separatedAttribute in splitAttributes)
 				{
 					var instance = (StepSearcher)Activator.CreateInstance(type)!;
 					foreach (var (name, value) in separatedAttribute.PropertyNamesAndValues.EnumerateAsPair<object, string, object>())
@@ -82,9 +81,9 @@ public abstract class StepSearcherPool
 						}
 					}
 
-					// Sets the separated priority value.
+					// Sets the split priority value.
 					// We should use reflection to set value because keyword used of the property is 'init', rather than 'set'.
-					type.GetProperty(nameof(instance.SeparatedPriority))!
+					type.GetProperty(nameof(instance.SplitPriority))!
 						.GetSetMethod(true)!
 						.Invoke(instance, new[] { (object)separatedAttribute.Priority });
 

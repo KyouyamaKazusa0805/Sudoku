@@ -37,10 +37,10 @@ public abstract partial class StepSearcher(
 ) : IEquatable<StepSearcher>
 {
 	/// <summary>
-	/// Determines whether the current step searcher is separated one,
-	/// meaning it can be created as many possible instances in a same step searchers pool.
+	/// Determines whether the current step searcher contains split configuration,
+	/// meaning it can be created as multiple instances in a same step searchers collection.
 	/// </summary>
-	public bool IsSeparated => GetType().GetCustomAttribute<SeparatedAttribute>() is not null;
+	public bool IsSplit => GetType().GetCustomAttribute<SplitStepSearcherAttribute>() is not null;
 
 	/// <summary>
 	/// Determines whether the current step searcher is a pure one, which means it doesn't use cached fields.
@@ -72,22 +72,22 @@ public abstract partial class StepSearcher(
 	public bool IsConfiguredHighAllocation => StepSearcherMetadataInfo.ConditionalCases is var cases && cases.Flags(ConditionalCase.UnlimitedSpaceComplexity);
 
 	/// <summary>
-	/// Indicates the separated priority. This value cannot be greater than 16 due to design of <see cref="SeparatedAttribute"/>.
+	/// Indicates the split priority. This value cannot be greater than 16 due to design of <see cref="SplitStepSearcherAttribute"/>.
 	/// </summary>
 	/// <value>The value to be set. The value must be between 0 and 16 (i.e. <![CDATA[>= 0 and < 16]]>).</value>
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when <see langword="value"/> is below 0, greater than 16 or equal to 16.
 	/// </exception>
-	/// <seealso cref="SeparatedAttribute"/>
+	/// <seealso cref="SplitStepSearcherAttribute"/>
 	[ImplicitField(RequiredReadOnlyModifier = false)]
-	public int SeparatedPriority
+	public int SplitPriority
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _separatedPriority;
+		get => _splitPriority;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[RequiresUnreferencedCode("This setter can only be invoked by reflection.")]
-		internal init => _separatedPriority = value is >= 0 and < 16 ? value : throw new ArgumentOutOfRangeException(nameof(value));
+		internal init => _splitPriority = value is >= 0 and < 16 ? value : throw new ArgumentOutOfRangeException(nameof(value));
 	}
 
 	/// <summary>
@@ -98,7 +98,7 @@ public abstract partial class StepSearcher(
 	/// <summary>
 	/// Indicates the final priority value ID of the step searcher. This property is used as comparison.
 	/// </summary>
-	private int PriorityId => Priority << 4 | SeparatedPriority;
+	private int PriorityId => Priority << 4 | SplitPriority;
 
 	/// <summary>
 	/// The internal information for the current step searcher instance.
