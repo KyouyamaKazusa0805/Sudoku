@@ -1,4 +1,4 @@
-﻿namespace System.Reflection;
+namespace System.Reflection;
 
 /// <summary>
 /// Provides with extension methods on <see cref="MemberInfo"/> instances.
@@ -27,7 +27,7 @@ public static class MemberInfoExtensions
 	/// </returns>
 	public static Attribute? GetCustomGenericAttribute<T>(this T @this, Type genericAttributeType) where T : MemberInfo
 	{
-		var customAttributes = @this.GetCustomAttributes();
+		var customAttributes = (Attribute[])@this.GetCustomAttributes();
 		return genericAttributeType switch
 		{
 			{ IsGenericType: true, FullName: { } genericTypeName }
@@ -35,7 +35,7 @@ public static class MemberInfoExtensions
 					from a in customAttributes
 					where a.GetType() is { IsGenericType: var g, FullName: { } f } && g && p(genericTypeName) == p(f)
 					select a
-				).ToArray() switch
+				) switch
 				{
 					[var attribute] => attribute,
 					_ => null

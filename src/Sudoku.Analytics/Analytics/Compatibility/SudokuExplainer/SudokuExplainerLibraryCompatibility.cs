@@ -51,7 +51,7 @@ public static class SudokuExplainerLibraryCompatibility// : ICompatibilityProvid
 	public static DifficultyRange? GetDifficultyRatingRange(this Technique @this)
 		=> @this == Technique.None || !Enum.IsDefined(@this)
 			? throw new ArgumentOutOfRangeException(nameof(@this))
-			: typeof(Technique).GetField(@this.ToString())!.GetCustomAttributes<SudokuExplainerDifficultyRatingAttribute>().ToArray() switch
+			: (SudokuExplainerDifficultyRatingAttribute[])typeof(Technique).GetField(@this.ToString())!.GetCustomAttributes<SudokuExplainerDifficultyRatingAttribute>() switch
 			{
 				[] => null,
 				[(var min, var max, false)] => (new(min, max ?? min), null),

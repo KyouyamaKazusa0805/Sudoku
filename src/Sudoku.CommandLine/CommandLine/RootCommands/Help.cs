@@ -101,7 +101,7 @@ public sealed class Help : IExecutable
 
 			// Display usage text.
 			var instanceType = instance.GetType();
-			var usageAttributes = instanceType.GetCustomAttributes<UsageAttribute>().ToArray();
+			var usageAttributes = (UsageAttribute[])instanceType.GetCustomAttributes<UsageAttribute>();
 			if (usageAttributes is [{ IsPattern: var firstIsPattern }, .. { Length: var otherArgsCount }])
 			{
 				// Output the title.

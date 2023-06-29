@@ -56,7 +56,7 @@ public abstract class StepSearcherPool
 	public static StepSearcher[] GetStepSearchers(Type type, bool expandSplitStepSearchers)
 	{
 		// Check whether the step searcher is marked 'SeparatedAttribute'.
-		switch (type.GetCustomAttributes<SplitStepSearcherAttribute>().ToArray())
+		switch ((SplitStepSearcherAttribute[])type.GetCustomAttributes<SplitStepSearcherAttribute>())
 		{
 			case { Length: var length and not 0 } splitAttributes when expandSplitStepSearchers:
 			{
