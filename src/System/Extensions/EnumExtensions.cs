@@ -74,24 +74,4 @@ public static unsafe class EnumExtensions
 			8 when As<T, long>(ref other) is var otherValue => (As<T, long>(ref @this) & otherValue) == otherValue,
 			_ => throw new ArgumentException("The parameter should be one of the values 1, 2, 4 or 8.", nameof(@this))
 		};
-
-	/// <summary>
-	/// Determines whether the instance has the flags specified as <paramref name="flags"/>.
-	/// </summary>
-	/// <typeparam name="T">The type of the enumeration field.</typeparam>
-	/// <param name="this">The instance.</param>
-	/// <param name="flags">All flags used.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	public static bool MultiFlags<T>(this T @this, T flags) where T : unmanaged, Enum
-	{
-		foreach (var flag in flags)
-		{
-			if (@this.Flags(flag))
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
 }

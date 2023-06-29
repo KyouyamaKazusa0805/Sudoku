@@ -91,6 +91,11 @@ public abstract partial class StepSearcher(
 	}
 
 	/// <summary>
+	/// Returns the real name of this instance.
+	/// </summary>
+	public string Name => GetType().Name switch { var rawTypeName => GetString($"StepSearcherName_{rawTypeName}") ?? rawTypeName };
+
+	/// <summary>
 	/// Indicates the <see cref="DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
 	/// </summary>
 	public DifficultyLevel[] DifficultyLevelRange => StepSearcherMetadataInfo.DifficultyLevels.GetAllFlags();
@@ -120,11 +125,7 @@ public abstract partial class StepSearcher(
 	/// </summary>
 	/// <returns>Real name of this instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override string ToString()
-	{
-		var rawTypeName = GetType().Name;
-		return GetString($"StepSearcherName_{rawTypeName}") ?? rawTypeName;
-	}
+	public sealed override string ToString() => Name;
 
 	/// <summary>
 	/// Try to collect all available <see cref="Step"/>s using the current technique rule.

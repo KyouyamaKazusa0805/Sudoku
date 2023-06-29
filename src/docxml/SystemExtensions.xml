@@ -2034,15 +2034,6 @@
             </returns>
             <exception cref="T:System.ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
         </member>
-        <member name="M:System.EnumExtensions.MultiFlags``1(``0,``0)">
-            <summary>
-            Determines whether the instance has the flags specified as <paramref name="flags"/>.
-            </summary>
-            <typeparam name="T">The type of the enumeration field.</typeparam>
-            <param name="this">The instance.</param>
-            <param name="flags">All flags used.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="T:System.Int32Extensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Int32"/>.

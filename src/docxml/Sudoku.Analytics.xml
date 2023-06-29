@@ -5434,6 +5434,11 @@ result ^= expression;
             </exception>
             <seealso cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearcher.Name">
+            <summary>
+            Returns the real name of this instance.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.StepSearcher.DifficultyLevelRange">
             <summary>
             Indicates the <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
