@@ -2547,6 +2547,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(8.6, 9.4)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	DynamicRegionForcingChains,
 
 	/// <summary>
@@ -2557,6 +2558,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(8.6, 9.4)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	DynamicCellForcingChains,
 
 	/// <summary>
@@ -2567,6 +2569,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(8.8, 9.4)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	DynamicContradictionForcingChains,
 
 	/// <summary>
@@ -2577,6 +2580,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(8.8, 9.4)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	DynamicDoubleForcingChains,
 
 	/// <summary>
@@ -2596,6 +2600,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BlossomLoop)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	BlossomLoop,
 	#endregion
 
@@ -2906,7 +2911,7 @@ public enum Technique
 	[SudokuExplainerAliasedNames("Try & Error")]
 	[TechniqueGroup(TechniqueGroup.BruteForce)]
 	[Abbreviation("BF")]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[DifficultyLevel(DifficultyLevel.LastResort)]
 	BruteForce,
 	#endregion

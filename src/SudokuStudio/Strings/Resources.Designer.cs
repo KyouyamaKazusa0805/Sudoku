@@ -3408,11 +3408,29 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Very Rare.
+        /// </summary>
+        internal static string TechniqueFeature_HardToBeGeneratedShort {
+            get {
+                return ResourceManager.GetString("TechniqueFeature_HardToBeGeneratedShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This technique hasn&apos;t be implemented by author. Please wait for implementation with patience..
         /// </summary>
         internal static string TechniqueFeature_NotImplemented {
             get {
                 return ResourceManager.GetString("TechniqueFeature_NotImplemented", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Impl&apos;ed.
+        /// </summary>
+        internal static string TechniqueFeature_NotImplementedShort {
+            get {
+                return ResourceManager.GetString("TechniqueFeature_NotImplementedShort", resourceCulture);
             }
         }
         
@@ -3426,11 +3444,29 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot Appear.
+        /// </summary>
+        internal static string TechniqueFeature_OnlyExistInTheoryShort {
+            get {
+                return ResourceManager.GetString("TechniqueFeature_OnlyExistInTheoryShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This technique will be replaced with other techniques..
         /// </summary>
         internal static string TechniqueFeature_WillBeReplacedByOtherTechnique {
             get {
                 return ResourceManager.GetString("TechniqueFeature_WillBeReplacedByOtherTechnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Will Be Replaced.
+        /// </summary>
+        internal static string TechniqueFeature_WillBeReplacedByOtherTechniqueShort {
+            get {
+                return ResourceManager.GetString("TechniqueFeature_WillBeReplacedByOtherTechniqueShort", resourceCulture);
             }
         }
         
@@ -3530,15 +3566,6 @@ namespace SudokuStudio.Strings {
         internal static string TechniqueSelector_NoTechniqueSelected {
             get {
                 return ResourceManager.GetString("TechniqueSelector_NoTechniqueSelected", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Not recommend.
-        /// </summary>
-        internal static string TechniqueSelector_NotRecommend {
-            get {
-                return ResourceManager.GetString("TechniqueSelector_NotRecommend", resourceCulture);
             }
         }
         

@@ -1182,16 +1182,28 @@
     <value>纵轴对称</value>
   </data>
   <data name="TechniqueFeature_HardToBeGenerated" xml:space="preserve">
-    <value>该技巧不能通过生成功能出出来。</value>
+    <value>该技巧不能或几乎不可能通过生成功能出出来。</value>
+  </data>
+  <data name="TechniqueFeature_HardToBeGeneratedShort" xml:space="preserve">
+    <value>较为罕见</value>
   </data>
   <data name="TechniqueFeature_NotImplemented" xml:space="preserve">
     <value>该技巧尚未在代码里实现。请耐心等待。</value>
   </data>
+  <data name="TechniqueFeature_NotImplementedShort" xml:space="preserve">
+    <value>未实现</value>
+  </data>
   <data name="TechniqueFeature_OnlyExistInTheory" xml:space="preserve">
     <value>该技巧只可能出现在理论层面里，在做题期间是遇不到的。</value>
   </data>
+  <data name="TechniqueFeature_OnlyExistInTheoryShort" xml:space="preserve">
+    <value>无法复现</value>
+  </data>
   <data name="TechniqueFeature_WillBeReplacedByOtherTechnique" xml:space="preserve">
     <value>该技巧会被其他技巧所代替。</value>
+  </data>
+  <data name="TechniqueFeature_WillBeReplacedByOtherTechniqueShort" xml:space="preserve">
+    <value>会被代替掉</value>
   </data>
   <data name="TechniqueGalleryPage_Intersections" xml:space="preserve">
     <value>区块</value>
@@ -1225,9 +1237,6 @@
   </data>
   <data name="TechniqueSelector_NoTechniqueSelected" xml:space="preserve">
     <value>未选择技巧</value>
-  </data>
-  <data name="TechniqueSelector_NotRecommend" xml:space="preserve">
-    <value>不推荐选择</value>
   </data>
   <data name="TechniqueSelector_ShouleBePearlPuzzle" xml:space="preserve">
     <value>是否为珍珠题：</value>

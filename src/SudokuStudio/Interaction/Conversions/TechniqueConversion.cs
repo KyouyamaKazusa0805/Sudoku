@@ -8,7 +8,14 @@ internal static class TechniqueConversion
 	public static int GetDisplayNameColumnSpan(TechniqueFeature feature) => feature == TechniqueFeature.None ? 2 : 1;
 
 	public static string GetStringResourceViaFeature(TechniqueFeature feature)
-		=> feature != TechniqueFeature.None ? GetString("TechniqueSelector_NotRecommend") : string.Empty;
+		=> feature switch
+		{
+			TechniqueFeature.HardToBeGenerated => GetString("TechniqueFeature_HardToBeGeneratedShort"),
+			TechniqueFeature.WillBeReplacedByOtherTechnique => GetString("TechniqueFeature_WillBeReplacedByOtherTechniqueShort"),
+			TechniqueFeature.OnlyExistInTheory => GetString("TechniqueFeature_OnlyExistInTheoryShort"),
+			TechniqueFeature.NotImplemented => GetString("TechniqueFeature_NotImplementedShort"),
+			_ => string.Empty
+		};
 
 	public static string? GetStringTooltipViaFeature(TechniqueFeature feature)
 		=> feature switch
