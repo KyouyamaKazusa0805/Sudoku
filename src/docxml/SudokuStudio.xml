@@ -2946,6 +2946,33 @@ if (student is (name: var name, age: >= 18))
             Indicates the failed reason is the program cannot unsnap.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.StepSearcherListViewItemSelectedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepAppliedEventHandler"/>.
+            </summary>
+            <param name="selectedSearcherInfo">The selected searcher's information.</param>
+            <seealso cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepAppliedEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.StepSearcherListViewItemSelectedEventArgs.#ctor(SudokuStudio.Configuration.StepSearcherInfo)">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepAppliedEventHandler"/>.
+            </summary>
+            <param name="selectedSearcherInfo">The selected searcher's information.</param>
+            <seealso cref="T:SudokuStudio.Interaction.TechniqueGroupViewStepAppliedEventHandler"/>
+        </member>
+        <member name="P:SudokuStudio.Interaction.StepSearcherListViewItemSelectedEventArgs.SelectedSearcherInfo">
+            <summary>
+            The generated property declaration for parameter <c>selectedSearcherInfo</c>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.StepSearcherListViewItemSelectedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.StepSearcherListView.ItemSelected"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.StepSearcherListView.ItemSelected"/>
+        </member>
         <member name="T:SudokuStudio.Interaction.StepTooltipDisplayItems">
             <summary>
             Defines a display item that will be displayed on tooltip to describe a data unit of a <see cref="T:Sudoku.Analytics.Step"/>.
@@ -6511,6 +6538,11 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.StepSearcherListView.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.StepSearcherListView"/> instance.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.StepSearcherListView.ItemSelected">
+            <summary>
+            Indicates the event triggered when an item is selected.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.StepSearcherListView.StepSearcherSerializationDataStringPattern">

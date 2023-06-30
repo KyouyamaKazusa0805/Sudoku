@@ -13,6 +13,12 @@ public sealed partial class StepSearcherListView : UserControl
 	public StepSearcherListView() => InitializeComponent();
 
 
+	/// <summary>
+	/// Indicates the event triggered when an item is selected.
+	/// </summary>
+	public event StepSearcherListViewItemSelectedEventHandler? ItemSelected;
+
+
 	private void MainListView_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
 	{
 		if (e is not { Data: var dataPackage, Items: [StepSearcherInfo stepSearcherSerializationData] })
@@ -65,6 +71,10 @@ public sealed partial class StepSearcherListView : UserControl
 
 	[GeneratedRegex("""IsEnabled\s*=\s*([Tt]rue|[Ff]alse),\s*Name\s*=\s*([^,]+),\s*TypeName\s*=\s*(\w+)""", RegexOptions.Compiled, 5000)]
 	private static partial Regex StepSearcherSerializationDataStringPattern();
+
+
+	private void MainListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		=> ItemSelected?.Invoke(this, new((StepSearcherInfo)MainListView.SelectedItem));
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
