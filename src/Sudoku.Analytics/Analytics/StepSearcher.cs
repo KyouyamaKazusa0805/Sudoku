@@ -95,6 +95,9 @@ public abstract partial class StepSearcher(
 	/// </summary>
 	public string Name => GetType().Name switch { var rawTypeName => GetString($"StepSearcherName_{rawTypeName}") ?? rawTypeName };
 
+	/// <inheritdoc cref="StepSearcherAttribute.SupportedTechniques"/>
+	public Technique[] SupportedTechniques => StepSearcherMetadataInfo.SupportedTechniques;
+
 	/// <summary>
 	/// Indicates the <see cref="DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
 	/// </summary>

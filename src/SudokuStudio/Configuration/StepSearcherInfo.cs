@@ -12,6 +12,5 @@ public sealed partial class StepSearcherInfo : DependencyObject
 	/// Creates a list of <see cref="StepSearcher"/> instances.
 	/// </summary>
 	/// <returns>A list of <see cref="StepSearcher"/> instances.</returns>
-	public StepSearcher[] CreateStepSearchers()
-		=> StepSearcherPool.GetStepSearchers(typeof(StepSearcher).Assembly.GetType($"Sudoku.Analytics.StepSearchers.{TypeName}")!, true);
+	public StepSearcher[] CreateStepSearchers() => StepSearcherPool.GetStepSearchers(TypeName, true);
 }

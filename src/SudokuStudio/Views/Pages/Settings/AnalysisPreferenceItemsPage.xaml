@@ -172,9 +172,24 @@
 					Header="{m:R Key=SettingsPage_StepSearcherOrdering}"
 					Description="{m:R Key=SettingsPage_StepSearcherOrderingDescription}">
 					<w:SettingsExpander.Items>
-						<c:StepSearcherListView
-							Margin="40,10" Width="300" HorizontalAlignment="Left"
-							StepSearchers="{x:Bind ((z:App)y:Application.Current).Preference.StepSearcherOrdering.StepSearchersOrder,Mode=TwoWay}" />
+						<StackPanel Orientation="Horizontal" Spacing="36">
+							<ScrollViewer>
+								<c:StepSearcherListView
+									x:Name="StepSearcherView" Margin="40,10" Width="300" Height="500" HorizontalAlignment="Left"
+									BorderBrush="DimGray" BorderThickness="1" CornerRadius="6"
+									StepSearchers="{x:Bind ((z:App)y:Application.Current).Preference.StepSearcherOrdering.StepSearchersOrder,Mode=TwoWay}"
+									ItemSelected="StepSearcherView_ItemSelected" />
+							</ScrollViewer>
+							<ScrollViewer x:Name="StepSearcherDetailsDisplayer" VerticalScrollBarVisibility="Hidden" MaxWidth="600" Height="500">
+								<StackPanel
+									Orientation="Vertical" Spacing="24" CornerRadius="6"
+									BorderBrush="DimGray" BorderThickness="1" Padding="24">
+									<TextBlock x:Name="StepSearcherNameDisplayer" TextWrapping="WrapWholeWords" />
+									<TextBlock x:Name="StepSearcherDifficultyLevelRangeDisplayer" TextWrapping="WrapWholeWords" />
+									<TextBlock x:Name="StepSearcherSupportedTechniquesDisplayer" TextWrapping="WrapWholeWords" />
+								</StackPanel>
+							</ScrollViewer>
+						</StackPanel>
 					</w:SettingsExpander.Items>
 				</w:SettingsExpander>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps}">

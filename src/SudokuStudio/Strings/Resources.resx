@@ -180,6 +180,15 @@
   <data name="AboutPage_Version" xml:space="preserve">
     <value>Version</value>
   </data>
+  <data name="AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange" xml:space="preserve">
+    <value>Difficulty levels supported: {0}</value>
+  </data>
+  <data name="AnalysisPreferenceItemsPage_StepSearcherName" xml:space="preserve">
+    <value>Name: {0}</value>
+  </data>
+  <data name="AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques" xml:space="preserve">
+    <value>Techniques supported: {0}</value>
+  </data>
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>All Available Steps</value>
   </data>
@@ -1294,5 +1303,8 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="_Token_Colon" xml:space="preserve">
     <value>: </value>
+  </data>
+  <data name="_Token_Comma" xml:space="preserve">
+    <value>, </value>
   </data>
 </root>

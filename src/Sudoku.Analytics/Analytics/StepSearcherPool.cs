@@ -45,11 +45,29 @@ public abstract class StepSearcherPool
 	}
 
 	/// <summary>
+	/// <inheritdoc cref="GetStepSearchers(Type, bool)" path="/summary"/>
+	/// </summary>
+	/// <param name="typeName">The raw type name. Please note that the string text shouldn't contain its containing namespace.</param>
+	/// <param name="expandSplitStepSearchers">
+	/// <inheritdoc cref="GetStepSearchers(Type, bool)" path="/param[@name='expandSplitStepSearchers']"/>
+	/// </param>
+	/// <returns><inheritdoc cref="GetStepSearchers(Type, bool)" path="/returns"/></returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the corresponding <see cref="Type"/> reflection result is not found.
+	/// </exception>
+	public static StepSearcher[] GetStepSearchers(string typeName, bool expandSplitStepSearchers)
+		=> GetStepSearchers(
+			typeof(StepSearcher).Assembly.GetType($"Sudoku.Analytics.StepSearchers.{typeName}")
+				?? throw new InvalidOperationException("The target reflection type is not found."),
+			expandSplitStepSearchers
+		);
+
+	/// <summary>
 	/// The internal method to get all <see cref="StepSearcher"/> instances derived from <paramref name="type"/> defined in this assembly.
 	/// </summary>
 	/// <param name="type">The type of the step searcher.</param>
 	/// <param name="expandSplitStepSearchers">
-	/// <inheritdoc cref="Default(bool)" path="/param[@name='separated']"/>
+	/// <inheritdoc cref="Default(bool)" path="/param[@name='expandSplitStepSearchers']"/>
 	/// </param>
 	/// <returns><inheritdoc cref="Default(bool)" path="/returns"/></returns>
 	/// <seealso cref="SplitStepSearcherAttribute"/>

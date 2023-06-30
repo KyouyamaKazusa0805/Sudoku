@@ -232,6 +232,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to , .
+        /// </summary>
+        internal static string _Token_Comma {
+            get {
+                return ResourceManager.GetString("_Token_Comma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Author.
         /// </summary>
         internal static string AboutPage_Author {
@@ -417,6 +426,33 @@ namespace SudokuStudio.Strings {
         internal static string AboutPage_Version {
             get {
                 return ResourceManager.GetString("AboutPage_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty levels supported: {0}.
+        /// </summary>
+        internal static string AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange {
+            get {
+                return ResourceManager.GetString("AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name: {0}.
+        /// </summary>
+        internal static string AnalysisPreferenceItemsPage_StepSearcherName {
+            get {
+                return ResourceManager.GetString("AnalysisPreferenceItemsPage_StepSearcherName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Techniques supported: {0}.
+        /// </summary>
+        internal static string AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques {
+            get {
+                return ResourceManager.GetString("AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques", resourceCulture);
             }
         }
         

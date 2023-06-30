@@ -5439,6 +5439,9 @@ result ^= expression;
             Returns the real name of this instance.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearcher.SupportedTechniques">
+            <inheritdoc cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportedTechniques"/>
+        </member>
         <member name="P:Sudoku.Analytics.StepSearcher.DifficultyLevelRange">
             <summary>
             Indicates the <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
@@ -5549,13 +5552,26 @@ result ^= expression;
             <returns>An array of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances found.</returns>
             <seealso cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.String,System.Boolean)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.Type,System.Boolean)" path="/summary"/>
+            </summary>
+            <param name="typeName">The raw type name. Please note that the string text shouldn't contain its containing namespace.</param>
+            <param name="expandSplitStepSearchers">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.Type,System.Boolean)" path="/param[@name='expandSplitStepSearchers']"/>
+            </param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.Type,System.Boolean)" path="/returns"/></returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the corresponding <see cref="T:System.Type"/> reflection result is not found.
+            </exception>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.Type,System.Boolean)">
             <summary>
             The internal method to get all <see cref="T:Sudoku.Analytics.StepSearcher"/> instances derived from <paramref name="type"/> defined in this assembly.
             </summary>
             <param name="type">The type of the step searcher.</param>
             <param name="expandSplitStepSearchers">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)" path="/param[@name='separated']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)" path="/param[@name='expandSplitStepSearchers']"/>
             </param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)" path="/returns"/></returns>
             <seealso cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>

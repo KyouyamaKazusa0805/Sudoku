@@ -180,6 +180,15 @@
   <data name="AboutPage_Version" xml:space="preserve">
     <value>版本</value>
   </data>
+  <data name="AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange" xml:space="preserve">
+    <value>支持分析的难度级别：{0}</value>
+  </data>
+  <data name="AnalysisPreferenceItemsPage_StepSearcherName" xml:space="preserve">
+    <value>名称：{0}</value>
+  </data>
+  <data name="AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques" xml:space="preserve">
+    <value>支持分析的技巧：{0}</value>
+  </data>
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>所有可用步骤</value>
   </data>
@@ -1294,5 +1303,8 @@
   </data>
   <data name="_Token_Colon" xml:space="preserve">
     <value>：</value>
+  </data>
+  <data name="_Token_Comma" xml:space="preserve">
+    <value>、</value>
   </data>
 </root>

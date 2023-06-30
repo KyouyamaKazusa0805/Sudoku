@@ -3823,6 +3823,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to : .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources._Token_Comma">
+            <summary>
+              Looks up a localized string similar to , .
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.AboutPage_Author">
             <summary>
               Looks up a localized string similar to Author.
@@ -3926,6 +3931,21 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.AboutPage_Version">
             <summary>
               Looks up a localized string similar to Version.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange">
+            <summary>
+              Looks up a localized string similar to Difficulty levels supported: {0}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalysisPreferenceItemsPage_StepSearcherName">
+            <summary>
+              Looks up a localized string similar to Name: {0}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques">
+            <summary>
+              Looks up a localized string similar to Techniques supported: {0}.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_AllStepsInCurrentGrid">
