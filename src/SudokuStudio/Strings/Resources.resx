@@ -181,13 +181,10 @@
     <value>Version</value>
   </data>
   <data name="AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange" xml:space="preserve">
-    <value>Difficulty levels supported: {0}</value>
-  </data>
-  <data name="AnalysisPreferenceItemsPage_StepSearcherName" xml:space="preserve">
-    <value>Name: {0}</value>
+    <value>Difficulty levels supported</value>
   </data>
   <data name="AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques" xml:space="preserve">
-    <value>Techniques supported: {0}</value>
+    <value>Techniques supported</value>
   </data>
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>All Available Steps</value>
@@ -1255,6 +1252,9 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="_DifficultyLevel_Hard" xml:space="preserve">
     <value>Hard</value>
+  </data>
+  <data name="_DifficultyLevel_LastResort" xml:space="preserve">
+    <value>Last Resort</value>
   </data>
   <data name="_DifficultyLevel_Moderate" xml:space="preserve">
     <value>Moderate</value>

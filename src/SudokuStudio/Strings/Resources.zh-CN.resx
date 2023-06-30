@@ -181,13 +181,10 @@
     <value>版本</value>
   </data>
   <data name="AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange" xml:space="preserve">
-    <value>支持分析的难度级别：{0}</value>
-  </data>
-  <data name="AnalysisPreferenceItemsPage_StepSearcherName" xml:space="preserve">
-    <value>名称：{0}</value>
+    <value>支持分析的难度级别</value>
   </data>
   <data name="AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques" xml:space="preserve">
-    <value>支持分析的技巧：{0}</value>
+    <value>支持分析的技巧</value>
   </data>
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>所有可用步骤</value>
@@ -1258,6 +1255,9 @@
   </data>
   <data name="_DifficultyLevel_Hard" xml:space="preserve">
     <value>困难</value>
+  </data>
+  <data name="_DifficultyLevel_LastResort" xml:space="preserve">
+    <value>暴力破解</value>
   </data>
   <data name="_DifficultyLevel_Moderate" xml:space="preserve">
     <value>一般</value>

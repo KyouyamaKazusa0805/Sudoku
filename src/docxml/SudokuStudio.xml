@@ -267,6 +267,21 @@
             Indicates the step details.
             </summary>
         </member>
+        <member name="T:SudokuStudio.BindableSource.StepSearcherSupportedTechniqueBindableSource">
+            <summary>
+            Represents a bindable source for step searcher supported techniques.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.StepSearcherSupportedTechniqueBindableSource.Techniques">
+            <summary>
+            Indicates the supported techniques.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.StepSearcherSupportedTechniqueBindableSource.DifficultyLevels">
+            <summary>
+            Indicates the supported difficulty levels.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.BindableSource.TechniqueBindableSource">
             <summary>
             Indicates the techique bindable source.
@@ -2204,6 +2219,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:SudokuStudio.Views.Pages.SingleCountingPracticingPage"/>
         </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.StepSearcherListViewConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about <see cref="T:SudokuStudio.Views.Controls.StepSearcherListView"/> instances.
+            </summary>
+            <seealso cref="T:SudokuStudio.Views.Controls.StepSearcherListView"/>
+        </member>
         <member name="T:SudokuStudio.Interaction.Conversions.SudokuGridConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about puzzle details displayed.
@@ -3743,6 +3764,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Hard.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources._DifficultyLevel_LastResort">
+            <summary>
+              Looks up a localized string similar to Last Resort.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources._DifficultyLevel_Moderate">
             <summary>
               Looks up a localized string similar to Moderate.
@@ -3935,17 +3961,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange">
             <summary>
-              Looks up a localized string similar to Difficulty levels supported: {0}.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Strings.Resources.AnalysisPreferenceItemsPage_StepSearcherName">
-            <summary>
-              Looks up a localized string similar to Name: {0}.
+              Looks up a localized string similar to Difficulty levels supported.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques">
             <summary>
-              Looks up a localized string similar to Techniques supported: {0}.
+              Looks up a localized string similar to Techniques supported.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_AllStepsInCurrentGrid">
@@ -8605,6 +8626,17 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.CurrentSelectedStepSearcherProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.CurrentSelectedStepSearcher"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.CurrentSelectedStepSearcher"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.CurrentSelectedStepSearcher">
+            <summary>
+            Indicates the currently selected step searcher and its details.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage">

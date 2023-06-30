@@ -88,6 +88,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Resort.
+        /// </summary>
+        internal static string _DifficultyLevel_LastResort {
+            get {
+                return ResourceManager.GetString("_DifficultyLevel_LastResort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Moderate.
         /// </summary>
         internal static string _DifficultyLevel_Moderate {
@@ -430,7 +439,7 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Difficulty levels supported: {0}.
+        ///   Looks up a localized string similar to Difficulty levels supported.
         /// </summary>
         internal static string AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange {
             get {
@@ -439,16 +448,7 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name: {0}.
-        /// </summary>
-        internal static string AnalysisPreferenceItemsPage_StepSearcherName {
-            get {
-                return ResourceManager.GetString("AnalysisPreferenceItemsPage_StepSearcherName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Techniques supported: {0}.
+        ///   Looks up a localized string similar to Techniques supported.
         /// </summary>
         internal static string AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques {
             get {
