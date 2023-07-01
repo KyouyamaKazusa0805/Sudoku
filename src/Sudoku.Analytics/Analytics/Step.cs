@@ -176,19 +176,15 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// <returns>The string instance.</returns>
 	public sealed override string ToString()
 	{
+		const StringComparison casingOption = StringComparison.CurrentCultureIgnoreCase;
 		var currentCultureName = CultureInfo.CurrentCulture.Name;
-		var formatArgs = FormatInterpolatedParts?.FirstOrDefault(cultureSelector).Value;
 		var colonToken = GetString("Colon");
-		return (Format, formatArgs) switch
+		return (Format, FormatInterpolatedParts?.FirstOrDefault(kvp => currentCultureName.StartsWith(kvp.Key, casingOption)).Value) switch
 		{
 			(null, _) => ToSimpleString(),
 			(_, null) => $"{Name}{colonToken}{Format} => {ConclusionText}",
-			_ => $"{Name}{colonToken}{string.Format(Format, formatArgs)} => {ConclusionText}"
+			(_, var formatArgs) => $"{Name}{colonToken}{string.Format(Format, formatArgs)} => {ConclusionText}"
 		};
-
-
-		bool cultureSelector(KeyValuePair<string, string[]?> kvp)
-			=> currentCultureName.StartsWith(kvp.Key, StringComparison.CurrentCultureIgnoreCase);
 	}
 
 	/// <inheritdoc/>
