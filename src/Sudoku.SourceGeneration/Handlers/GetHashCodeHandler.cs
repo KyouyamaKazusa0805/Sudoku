@@ -13,12 +13,13 @@ internal static class GetHashCodeHandler
 					ContainingNamespace: var @namespace,
 					TypeParameters: var typeParameters,
 					TypeKind: var kind and (TypeKind.Class or TypeKind.Struct),
-					IsRecord: false,
+					IsRecord: var isRecord,
 					IsReadOnly: var isReadOnly,
 					IsRefLikeType: var isRefStruct,
 					ContainingType: null
 				} type,
-				TargetNode: TypeDeclarationSyntax { ParameterList: var parameterList } and (ClassDeclarationSyntax or StructDeclarationSyntax),
+				TargetNode: TypeDeclarationSyntax { ParameterList: var parameterList }
+					and (RecordDeclarationSyntax or ClassDeclarationSyntax or StructDeclarationSyntax),
 				SemanticModel: { Compilation: var compilation } semanticModel
 			})
 		{
@@ -125,10 +126,12 @@ internal static class GetHashCodeHandler
 			_ => throw new InvalidOperationException("Invalid status.")
 		};
 
-		var kindString = kind switch
+		var kindString = (isRecord, kind) switch
 		{
-			TypeKind.Class => "class",
-			TypeKind.Struct => "struct",
+			(true, TypeKind.Class) => "record",
+			(true, TypeKind.Struct) => "record struct",
+			(_, TypeKind.Class) => "class",
+			(_, TypeKind.Struct) => "struct",
 			_ => throw new InvalidOperationException("Invalid status.")
 		};
 		var attributesMarked = isRefStruct

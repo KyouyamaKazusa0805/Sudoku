@@ -4,7 +4,8 @@ namespace SudokuStudio.Input;
 /// Defines a converter instance that calculates for cursor pointers.
 /// </summary>
 /// <param name="Grid">Indicates the grid layout.</param>
-internal readonly partial record struct SudokuPanePositionConverter(GridLayout Grid)
+[GetHashCode]
+internal readonly partial record struct SudokuPanePositionConverter([property: HashCodeMember] GridLayout Grid)
 {
 	/// <summary>
 	/// Indicates the first cell top-left position.
@@ -83,9 +84,6 @@ internal readonly partial record struct SudokuPanePositionConverter(GridLayout G
 
 	/// <inheritdoc/>
 	public bool Equals(SudokuPanePositionConverter other) => GridSize == other.GridSize;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Grid))]
-	public override partial int GetHashCode();
 
 	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(GridWidthString), nameof(GridHeightString))]
 	public override partial string ToString();

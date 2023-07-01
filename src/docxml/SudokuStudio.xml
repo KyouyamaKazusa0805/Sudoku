@@ -2045,9 +2045,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.Equals(SudokuStudio.Input.SudokuPanePositionConverter)">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -2066,6 +2063,9 @@ if (student is (name: var name, age: >= 18))
             </exception>
             <seealso cref="T:Windows.Foundation.Point"/>
             <seealso cref="T:SudokuStudio.Input.Position"/>
+        </member>
+        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:SudokuStudio.Input.VirtualKeyModifierStatus">
             <summary>
