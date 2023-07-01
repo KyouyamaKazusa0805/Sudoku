@@ -187,7 +187,10 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 		};
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Gets the string representation for the current step, describing only its technique name and conclusions.
+	/// </summary>
+	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToSimpleString() => $"{Name} => {ConclusionText}";
 }

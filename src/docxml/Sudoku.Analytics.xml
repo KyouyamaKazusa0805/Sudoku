@@ -5226,7 +5226,10 @@ result ^= expression;
             <returns>The string instance.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Step.ToSimpleString">
-            <inheritdoc/>
+            <summary>
+            Gets the string representation for the current step, describing only its technique name and conclusions.
+            </summary>
+            <returns>The string value.</returns>
         </member>
         <member name="P:Sudoku.Analytics.Step.Conclusions">
             <summary>
