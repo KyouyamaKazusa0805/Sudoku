@@ -57,6 +57,13 @@ internal static class PrimaryConstructor
 			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, primaryConstructorParameterAttributeSymbol);
 	}
 
+	/// <summary>
+	/// Try to get target member name via according named arguments.
+	/// </summary>
+	/// <param name="namedArgs">The named arguments.</param>
+	/// <param name="parameterName">The parameter name.</param>
+	/// <param name="defaultPattern">The default pattern to convert the naming.</param>
+	/// <returns>The referenced member name.</returns>
 	public static string GetTargetMemberName(NamedArgs namedArgs, string parameterName, string defaultPattern)
 		=> namedArgs.TryGetValueOrDefault<string>("GeneratedMemberName", out var customizedFieldName)
 		&& customizedFieldName is not null

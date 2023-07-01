@@ -306,6 +306,15 @@
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>A list of values (member names and extra data).</returns>
         </member>
+        <member name="M:Sudoku.SourceGeneration.PrimaryConstructor.GetTargetMemberName(System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}},System.String,System.String)">
+            <summary>
+            Try to get target member name via according named arguments.
+            </summary>
+            <param name="namedArgs">The named arguments.</param>
+            <param name="parameterName">The parameter name.</param>
+            <param name="defaultPattern">The default pattern to convert the naming.</param>
+            <returns>The referenced member name.</returns>
+        </member>
         <member name="T:Sudoku.SourceGeneration.Extensions">
             <target name="class" when="extension">
 				<summary>
