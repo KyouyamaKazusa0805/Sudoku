@@ -5,6 +5,7 @@ namespace System.Collections.Generic;
 /// </summary>
 /// <typeparam name="T">The type of the enumeration type, that is marked the attribute <see cref="FlagsAttribute"/>.</typeparam>
 [Equals]
+[GetHashCode]
 public ref partial struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, Enum
 {
 	/// <summary>
@@ -41,9 +42,6 @@ public ref partial struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, E
 	/// <inheritdoc cref="IEnumerator{T}.Current"/>
 	public T Current { get; private set; } = default;
 
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
-	public override readonly partial int GetHashCode();
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
 	public unsafe bool MoveNext()

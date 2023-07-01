@@ -5,7 +5,8 @@ namespace Sudoku.Text.Parsing;
 /// </summary>
 /// <param name="mask">Indicates the mask.</param>
 [Equals]
-public readonly partial struct CellRange([PrimaryConstructorParameter(MemberKinds.Field)] Mask mask) :
+[GetHashCode]
+public readonly partial struct CellRange([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IEquatable<CellRange>,
 	IEqualityOperators<CellRange, CellRange, bool>,
 	ISimpleParsable<CellRange>
@@ -63,9 +64,6 @@ public readonly partial struct CellRange([PrimaryConstructorParameter(MemberKind
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(CellRange other) => _mask == other._mask;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, "_mask")]
-	public override partial int GetHashCode();
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

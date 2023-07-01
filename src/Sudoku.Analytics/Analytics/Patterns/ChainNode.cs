@@ -11,7 +11,8 @@ namespace Sudoku.Analytics.Patterns;
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayString)}},nq}""")]
 [StructLayout(LayoutKind.Auto)]
 [Equals]
-public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKinds.Field)] Mask mask) :
+[GetHashCode]
+public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IEquatable<ChainNode>,
 	IEqualityOperators<ChainNode, ChainNode, bool>
 {
@@ -163,9 +164,6 @@ public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKind
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(ChainNode other) => _mask == other._mask;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, "_mask")]
-	public override partial int GetHashCode();
 
 	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(CandidateString), nameof(IsOn))]
 	public override partial string ToString();

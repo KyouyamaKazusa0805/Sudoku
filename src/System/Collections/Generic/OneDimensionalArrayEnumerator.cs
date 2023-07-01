@@ -5,6 +5,7 @@ namespace System.Collections.Generic;
 /// </summary>
 /// <typeparam name="T">The type of the element.</typeparam>
 [Equals]
+[GetHashCode]
 public ref partial struct OneDimensionalArrayEnumerator<T>
 {
 	/// <summary>
@@ -42,9 +43,6 @@ public ref partial struct OneDimensionalArrayEnumerator<T>
 		get => _innerArray[_index];
 	}
 
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
-	public override readonly partial int GetHashCode();
 
 	/// <summary>
 	/// Gets the enumerator to iterate on each elements that is with the <see langword="ref"/> keyword.

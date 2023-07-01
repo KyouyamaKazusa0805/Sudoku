@@ -434,9 +434,6 @@
         <member name="P:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
@@ -445,6 +442,9 @@
         </member>
         <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1">
             <summary>
@@ -480,9 +480,6 @@
             Indicates the current instance being iterated. Please note that the value is returned by reference.
             </summary>
         </member>
-        <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.GetEnumerator">
             <summary>
             Gets the enumerator to iterate on each elements that is with the <see langword="ref"/> keyword.
@@ -501,6 +498,9 @@
         </member>
         <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1">
             <summary>
@@ -535,9 +535,6 @@
             Indicates the current instance being iterated. Please note that the value is returned by reference.
             </summary>
         </member>
-        <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1.GetEnumerator">
             <summary>
             Gets the enumerator to iterate on each elements that is with
@@ -557,6 +554,9 @@
         </member>
         <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:System.Collections.Generic.ReverseEnumerator`1">
             <summary>
@@ -2561,9 +2561,6 @@ fixed (short* ptr = instance)
             </param>
             <seealso cref="P:System.Text.StringHandler.Length"/>
         </member>
-        <member name="M:System.Text.StringHandler.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:System.Text.StringHandler.ToString">
             <inheritdoc/>
         </member>
@@ -3200,6 +3197,9 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.Text.StringHandler.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Text.StringHandler.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:System.Text.StringHandlerRefAppender`1">
             <summary>
@@ -4456,6 +4456,64 @@ fixed (short* ptr = instance)
             ]]></code>
             </remarks>
         </member>
+        <member name="T:System.SourceGeneration.GetHashCodeAttribute">
+            <summary>
+            Represents an attribute type that allows source generators controlling behaviors on generating <see cref="M:System.Object.GetHashCode"/> method.
+            </summary>
+            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
+            <seealso cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.SourceGeneration.GetHashCodeAttribute.#ctor(System.SourceGeneration.GetHashCodeBehavior)">
+            <summary>
+            Represents an attribute type that allows source generators controlling behaviors on generating <see cref="M:System.Object.GetHashCode"/> method.
+            </summary>
+            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
+            <seealso cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="P:System.SourceGeneration.GetHashCodeAttribute.OtherModifiers">
+            <summary>
+            <para>
+            Indicates the other modifiers should be modified. For example, if the method should be <see langword="sealed"/>
+            in a <see langword="class"/> type, assign <c>"Sealed"</c> or <c>"sealed"</c> to this property. Casing are ignored.
+            Multiple modifiers should be separated by whitespaces.
+            </para>
+            <para>By default, this property is <see langword="null"/>.</para>
+            </summary>
+            <remarks>
+            Please note, sometimes some extra keywords will be automatically added into signature without manually assigning them to this property.
+            For example, in a non-<see langword="readonly struct"/>, due to the implementation not caring
+            about its <see langword="readonly"/>-ability, a <see langword="readonly"/> modifier will be implicitly added.
+            </remarks>
+        </member>
+        <member name="P:System.SourceGeneration.GetHashCodeAttribute.Behavior">
+            <summary>
+            The generated property declaration for parameter <c>behavior</c>.
+            </summary>
+        </member>
+        <member name="T:System.SourceGeneration.GetHashCodeBehavior">
+            <summary>
+            Defines a behavior by source generator on generating <see cref="M:System.Object.GetHashCode"/> overridden methods.
+            </summary>
+            <seealso cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="F:System.SourceGeneration.GetHashCodeBehavior.Intelligent">
+            <summary>
+            Indicates the soure generator will adopt an intelligent way to generate hashing expression.
+            If none of all data members in a type marked <see cref="T:System.SourceGeneration.HashCodeMemberAttribute"/>, a <see cref="T:System.NotSupportedException"/>
+            will be thrown; if one member is marked and its type can be directly converted into an <see cref="T:System.Int32"/>, then use itself;
+            otherwise, call <see cref="M:System.HashCode.Combine``1(``0)"/> method set or use <see cref="M:System.HashCode.Add``1(``0)"/>.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.GetHashCodeBehavior.ThrowNotSupportedException">
+            <summary>
+            Indicates throws <see cref="T:System.NotSupportedException"/>.
+            </summary>
+        </member>
+        <member name="T:System.SourceGeneration.HashCodeMemberAttribute">
+            <summary>
+            Indicates the marked member will participate hashing operation.
+            </summary>
+        </member>
         <member name="T:System.SourceGeneration.ImplicitFieldAttribute">
             <summary>
             Indicates the source generator should generate its backing field without compiler controlling.
@@ -4724,9 +4782,6 @@ fixed (short* ptr = instance)
             Determines whether the current stopwatch is currently active.
             </summary>
         </member>
-        <member name="M:System.Timers.ValueStopwatch.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:System.Timers.ValueStopwatch.GetElapsedTime">
             <summary>
             Try to get the elapsed time.
@@ -4744,6 +4799,9 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.Timers.ValueStopwatch.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Timers.ValueStopwatch.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:System.Utf8Char">
             <summary>
@@ -4814,9 +4872,6 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.Utf8Char.Equals(System.Utf8Char)">
             <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8Char.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:System.Utf8Char.CompareTo(System.Utf8Char)">
             <inheritdoc/>
@@ -4914,6 +4969,9 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.Utf8Char.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Utf8Char.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:System.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>

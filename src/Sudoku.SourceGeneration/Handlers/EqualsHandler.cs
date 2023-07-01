@@ -42,10 +42,12 @@ internal static class EqualsHandler
 			};
 		var otherModifiers = attribute.GetNamedArgument<string>("OtherModifiers") switch
 		{
-			{ } str => new(str.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)),
-			_ => new List<string>()
+			{ } str => str.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries),
+			_ => Array.Empty<string>()
 		};
-		var typeArgumentsString = typeParameters is [] ? string.Empty : $"<{string.Join(", ", typeParameters)}>";
+		var typeArgumentsString = typeParameters is []
+			? string.Empty
+			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
 		var typeNameString = $"{typeName}{typeArgumentsString}";
 		var fullTypeNameString = $"{namespaceString}.{typeNameString}";
 		var expressionString = behavior switch
@@ -53,7 +55,7 @@ internal static class EqualsHandler
 			Behavior.ReturnFalse => "false",
 			Behavior.IsCast => $"obj is {fullTypeNameString} comparer && Equals(comparer)",
 			Behavior.AsCast => $"Equals(obj as {fullTypeNameString})",
-			Behavior.Throw => """throw new NotSupportedException("This method is not supported or disallowed by author.")""",
+			Behavior.Throw => """throw new global::System.NotSupportedException("This method is not supported or disallowed by author.")""",
 			_ => throw new InvalidOperationException("Invalid status.")
 		};
 		var attributesMarked = isRefStruct
@@ -75,14 +77,14 @@ internal static class EqualsHandler
 			TypeKind.Struct => "struct",
 			_ => throw new InvalidOperationException("Invalid status.")
 		};
-		var otherModifiersString = otherModifiers.Count == 0 ? string.Empty : $"{string.Join(" ", otherModifiers)} ";
+		var otherModifiersString = otherModifiers.Length == 0 ? string.Empty : $"{string.Join(" ", otherModifiers)} ";
 		var isDeprecated = attributesMarked.Contains("ObsoleteAttribute");
 		var suppress0809 = isDeprecated
 			? "#pragma warning disable CS0809\r\n\t"
 			: "\t";
 		var enable0809 = isDeprecated
 			? "#pragma warning restore CS0809\r\n\t"
-			: string.Empty;
+			: "\t";
 		return new(
 			$$"""
 			namespace {{namespaceString}}

@@ -27,6 +27,7 @@ namespace Sudoku.Concepts;
 [JsonConverter(typeof(Converter))]
 [StructLayout(LayoutKind.Auto)]
 [Equals]
+[GetHashCode]
 public unsafe partial struct CellMap :
 	IAdditionOperators<CellMap, Cell, CellMap>,
 	IAdditionOperators<CellMap, IEnumerable<Cell>, CellMap>,
@@ -62,6 +63,7 @@ public unsafe partial struct CellMap :
 	/// </item>
 	/// </list>
 	/// </summary>
+	[HashCodeMember]
 	internal long _high, _low;
 
 
@@ -560,9 +562,6 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(scoped in CellMap other) => _low == other._low && _high == other._high;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(_low), nameof(_high))]
-	public override readonly partial int GetHashCode();
 
 	/// <summary>
 	/// <inheritdoc cref="IComparable{TSelf}.CompareTo(TSelf)" path="/summary"/>

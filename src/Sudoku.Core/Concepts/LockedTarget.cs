@@ -11,8 +11,12 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [StructLayout(LayoutKind.Auto)]
 [Equals]
+[GetHashCode]
 [method: JsonConstructor]
-public readonly partial struct LockedTarget([PrimaryConstructorParameter] Digit digit, [PrimaryConstructorParameter] CellMap cells) :
+public readonly partial struct LockedTarget(
+	[PrimaryConstructorParameter, HashCodeMember] Digit digit,
+	[PrimaryConstructorParameter, HashCodeMember] CellMap cells
+) :
 	IEquatable<LockedTarget>,
 	IEqualityOperators<LockedTarget, LockedTarget, bool>
 {
@@ -45,9 +49,6 @@ public readonly partial struct LockedTarget([PrimaryConstructorParameter] Digit 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(scoped in LockedTarget other) => Digit == other.Digit && Cells == other.Cells;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, "Cells", "Digit")]
-	public override partial int GetHashCode();
 
 	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(DigitString), "Cells")]
 	public override partial string ToString();

@@ -23,7 +23,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 				{
 					case [{ ConstructorArguments: [{ Value: LocalMemberKinds.Field }], NamedArguments: var namedArgs }]:
 					{
-						var targetMemberName = getTargetMemberName(namedArgs, parameterName, "_<@");
+						var targetMemberName = PrimaryConstructor.GetTargetMemberName(namedArgs, parameterName, "_<@");
 						var accessibilityModifiers = getAccessibilityModifiers(namedArgs, "private ");
 						var readonlyModifier = getReadOnlyModifier(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, true);
 						var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, true);
@@ -57,7 +57,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 					}
 					case [{ ConstructorArguments: [{ Value: LocalMemberKinds.Property }], NamedArguments: var namedArgs }]:
 					{
-						var targetMemberName = getTargetMemberName(namedArgs, parameterName, ">@");
+						var targetMemberName = PrimaryConstructor.GetTargetMemberName(namedArgs, parameterName, ">@");
 						var accessibilityModifiers = getAccessibilityModifiers(namedArgs, "public ");
 						var readonlyModifier = getReadOnlyModifier(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, false);
 						var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, false);
@@ -117,14 +117,6 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 				"""
 			);
 
-			static string getTargetMemberName(NamedArgs namedArgs, string parameterName, string defaultPattern)
-				=> namedArgs.TryGetValueOrDefault<string>("GeneratedMemberName", out var customizedFieldName)
-				&& customizedFieldName is not null
-					? customizedFieldName
-					: namedArgs.TryGetValueOrDefault<string>("NamingRule", out var namingRule) && namingRule is not null
-						? namingRule.InternalHandle(parameterName)
-						: defaultPattern.InternalHandle(parameterName);
-
 			static string getAccessibilityModifiers(NamedArgs namedArgs, string @default)
 				=> namedArgs.TryGetValueOrDefault<string>("Accessibility", out var a) && a is not null ? $"{a.Trim().ToLower()} " : @default;
 
@@ -164,7 +156,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 				{
 					null or "" => null,
 					_ => string.Join(
-						Environment.NewLine,
+						"\r\n",
 						from line in comment.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries) select $"/// {line.Trim()}"
 					)
 				};
@@ -230,20 +222,4 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 				),
 			_ => null
 		};
-}
-
-/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
-file static class Extensions
-{
-	/// <summary>
-	/// Internal handle the naming rule, converting it into a valid identifier via specified parameter name.
-	/// </summary>
-	/// <param name="this">The naming rule.</param>
-	/// <param name="parameterName">The parameter name.</param>
-	/// <returns>The final identifier.</returns>
-	public static string InternalHandle(this string @this, string parameterName)
-		=> @this
-			.Replace("<@", parameterName.ToCamelCasing())
-			.Replace(">@", parameterName.ToPascalCasing())
-			.Replace("@", parameterName);
 }

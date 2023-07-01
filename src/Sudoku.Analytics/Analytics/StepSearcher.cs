@@ -31,6 +31,7 @@ namespace Sudoku.Analytics;
 /// </param>
 /// <seealso cref="Step"/>
 [Equals]
+[GetHashCode]
 public abstract partial class StepSearcher(
 	[PrimaryConstructorParameter] int priority,
 	[PrimaryConstructorParameter] int level,
@@ -107,6 +108,7 @@ public abstract partial class StepSearcher(
 	/// <summary>
 	/// Indicates the final priority value ID of the step searcher. This property is used as comparison.
 	/// </summary>
+	[HashCodeMember]
 	private int PriorityId => Priority << 4 | SplitPriority;
 
 	/// <summary>
@@ -117,9 +119,6 @@ public abstract partial class StepSearcher(
 
 	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] StepSearcher? other) => other is not null && PriorityId == other.PriorityId;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(PriorityId))]
-	public override partial int GetHashCode();
 
 	/// <summary>
 	/// Returns the real name of this instance.

@@ -287,6 +287,26 @@
             <param name="this">The field.</param>
             <returns>The name of the field.</returns>
         </member>
+        <member name="T:Sudoku.SourceGeneration.PrimaryConstructor">
+            <summary>
+            Provides with primary constructor operations.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Extensions.InternalHandle(System.String,System.String)">
+            <summary>
+            Internal handle the naming rule, converting it into a valid identifier via specified parameter name.
+            </summary>
+            <param name="this">The naming rule.</param>
+            <param name="parameterName">The parameter name.</param>
+            <returns>The final identifier.</returns>
+        </member>
         <member name="T:Sudoku.SourceGeneration.Generator">
             <summary>
             Represents a source generator type that runs multiple different usage of source output services on compiling code.
@@ -466,21 +486,6 @@
         </member>
         <member name="M:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.Extensions.InternalHandle(System.String,System.String)">
-            <summary>
-            Internal handle the naming rule, converting it into a valid identifier via specified parameter name.
-            </summary>
-            <param name="this">The naming rule.</param>
-            <param name="parameterName">The parameter name.</param>
-            <returns>The final identifier.</returns>
         </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler">
             <summary>

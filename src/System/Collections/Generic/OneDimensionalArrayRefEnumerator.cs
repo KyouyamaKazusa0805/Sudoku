@@ -4,6 +4,7 @@ namespace System.Collections.Generic;
 /// Defines an enumerator that iterates the one-dimensional array.
 /// </summary>
 [Equals]
+[GetHashCode]
 public ref partial struct OneDimensionalArrayRefEnumerator<T>
 {
 	/// <summary>
@@ -41,9 +42,6 @@ public ref partial struct OneDimensionalArrayRefEnumerator<T>
 		get => ref _innerArray[_index];
 	}
 
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
-	public override readonly partial int GetHashCode();
 
 	/// <summary>
 	/// Gets the enumerator to iterate on each elements that is with

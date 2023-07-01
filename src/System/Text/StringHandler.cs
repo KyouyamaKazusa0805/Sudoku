@@ -38,6 +38,7 @@ namespace System.Text;
 /// <seealso cref="IFormatProvider"/>
 [InterpolatedStringHandler]
 [Equals]
+[GetHashCode]
 public unsafe ref partial struct StringHandler
 {
 #if USE_NEWER_CONSTANT_VALUES
@@ -264,9 +265,6 @@ public unsafe ref partial struct StringHandler
 
 		return ref MemoryMarshal.GetReference(_chars);
 	}
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
-	public override readonly partial int GetHashCode();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

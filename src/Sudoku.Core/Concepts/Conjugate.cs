@@ -9,6 +9,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 /// <param name="mask">Indicates the target mask.</param>
 [Equals]
+[GetHashCode]
 public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKinds.Field)] int mask) :
 	IEquatable<Conjugate>,
 	IEqualityOperators<Conjugate, Conjugate, bool>
@@ -57,6 +58,7 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	/// <summary>
 	/// Indicates the digit used.
 	/// </summary>
+	[HashCodeMember]
 	public Digit Digit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -85,6 +87,7 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	/// <summary>
 	/// Indicates the whole map.
 	/// </summary>
+	[HashCodeMember]
 	public CellMap Map
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -102,9 +105,6 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Conjugate other) => Map == other.Map && Digit == other.Digit;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Map), nameof(Digit))]
-	public override partial int GetHashCode();
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

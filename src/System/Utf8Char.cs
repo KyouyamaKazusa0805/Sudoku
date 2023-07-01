@@ -5,6 +5,7 @@ namespace System;
 /// </summary>
 [JsonConverter(typeof(JsonConverter))]
 [Equals]
+[GetHashCode]
 public readonly partial struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,
@@ -31,6 +32,7 @@ public readonly partial struct Utf8Char :
 	/// <summary>
 	/// Indicates the inner character.
 	/// </summary>
+	[HashCodeMember]
 	private readonly byte _char;
 
 
@@ -93,9 +95,6 @@ public readonly partial struct Utf8Char :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Utf8Char other) => _char == other._char;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(_char))]
-	public override partial int GetHashCode();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

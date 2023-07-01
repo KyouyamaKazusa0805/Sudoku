@@ -4212,9 +4212,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Patterns.ChainNode.Equals(Sudoku.Analytics.Patterns.ChainNode)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Patterns.ChainNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:Sudoku.Analytics.Patterns.ChainNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -4231,6 +4228,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.Patterns.ChainNode.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Analytics.Patterns.ComplexFishFinKind">
             <summary>
@@ -5457,9 +5457,6 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearcher.Equals(Sudoku.Analytics.StepSearcher)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearcher.ToString">
             <summary>
             Returns the real name of this instance.
@@ -5521,6 +5518,9 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="F:Sudoku.Analytics.StepSearcher._splitPriority">
             <summary>

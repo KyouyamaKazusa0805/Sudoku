@@ -78,6 +78,16 @@ public sealed class Generator : IIncrementalGenerator
 			EqualsHandler.Output
 		);
 
+		const string getHashCodeAttributeName = "System.SourceGeneration.GetHashCodeAttribute";
+		context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(getHashCodeAttributeName, IsPartialTypePredicate, GetHashCodeHandler.Transform)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			GetHashCodeHandler.Output
+		);
+
 
 	}
 

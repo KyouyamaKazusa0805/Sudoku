@@ -683,10 +683,13 @@
             <summary>
             Encapsulates a font data to be serialized.
             </summary>
+            <param name="fontName">The font name.</param>
+            <param name="fontSize">The font size.</param>
+            <param name="fontStyle">The font style.</param>
         </member>
         <member name="M:Sudoku.Gdip.FontData.#ctor(System.String,System.Single,System.Drawing.FontStyle)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Gdip.FontData"/> instance.
+            Encapsulates a font data to be serialized.
             </summary>
             <param name="fontName">The font name.</param>
             <param name="fontSize">The font size.</param>
@@ -757,9 +760,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Gdip.FontData.Equals(Sudoku.Gdip.FontData)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Gdip.FontData.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:Sudoku.Gdip.FontData.CreateFont">
             <summary>
             Creates a <see cref="T:System.Drawing.Font"/> instance via the current <see cref="T:Sudoku.Gdip.FontData"/> instance.
@@ -774,6 +774,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Gdip.FontData.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Gdip.FontData.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Gdip.GridImageGenerator">
             <summary>
