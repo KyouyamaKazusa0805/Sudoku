@@ -4371,13 +4371,6 @@ fixed (short* ptr = instance)
             <seealso cref="T:System.Object"/>
             <seealso cref="T:System.ValueType"/>
         </member>
-        <member name="M:System.SourceGeneration.GeneratedOverridingMemberAttribute.#ctor(System.SourceGeneration.GeneratedEqualsBehavior)">
-            <summary>
-            Initializes a <see cref="T:System.SourceGeneration.GeneratedOverridingMemberAttribute"/> instance via the specified behavior on generating
-            <see cref="M:System.Object.Equals(System.Object)"/>.
-            </summary>
-            <param name="overridingEqualsBehavior">The behavior.</param>
-        </member>
         <member name="M:System.SourceGeneration.GeneratedOverridingMemberAttribute.#ctor(System.SourceGeneration.GeneratedGetHashCodeBehavior,System.Object[])">
             <summary>
             Initializes a <see cref="T:System.SourceGeneration.GeneratedOverridingMemberAttribute"/> instance via the specified behavior on generating

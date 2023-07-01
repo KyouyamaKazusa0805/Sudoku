@@ -20,15 +20,6 @@ public sealed class GeneratedOverridingMemberAttribute : Attribute
 {
 	/// <summary>
 	/// Initializes a <see cref="GeneratedOverridingMemberAttribute"/> instance via the specified behavior on generating
-	/// <see cref="object.Equals(object?)"/>.
-	/// </summary>
-	/// <param name="overridingEqualsBehavior">The behavior.</param>
-	public GeneratedOverridingMemberAttribute(GeneratedEqualsBehavior overridingEqualsBehavior)
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="GeneratedOverridingMemberAttribute"/> instance via the specified behavior on generating
 	/// <see cref="object.GetHashCode"/>, with the specified array as extra arguments.
 	/// </summary>
 	/// <param name="overridingGetHashCodeBehavior">The behavior.</param>
