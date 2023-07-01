@@ -47,11 +47,12 @@ internal static class GetHashCodeHandler
 			return null;
 		}
 
-		var members = type.GetMembers().ToArray();
+		var members = type.GetAllMembers().ToArray();
 		var baseMembers =
 			from member in members
 			where member is IFieldSymbol or IPropertySymbol && member.GetAttributes().Any(hashCodeMemberAttributeMatcher)
-			select member.Name;
+			let needCombine = mayNotInvokeHashCodeCombine(member)
+			select (member.Name, NeedCombine: needCombine);
 		var referencedMembers = parameterList is null
 			? baseMembers.ToArray()
 			: (
@@ -68,7 +69,8 @@ internal static class GetHashCodeHandler
 				let namedArguments = primaryConstructorParameterAttributeData.NamedArguments
 				let parameterName = parameterSymbol.Name
 				let referencedMemberName = PrimaryConstructor.GetTargetMemberName(namedArguments, parameterName, memberConversion)
-				select referencedMemberName
+				let needCombine = mayNotInvokeHashCodeCombine(parameterSymbol)
+				select (Name: referencedMemberName, NeedCombine: needCombine)
 			).Concat(baseMembers).ToArray();
 
 		var behavior = (isRefStruct, attribute) switch
@@ -79,6 +81,8 @@ internal static class GetHashCodeHandler
 				0 => referencedMembers switch
 				{
 					[] => Behavior.ReturnNegativeOne,
+					[(_, true)] => Behavior.Direct,
+					[(_, false)] => Behavior.EnumExplicitCast,
 					{ Length: > 8 } => Behavior.HashCodeAdd,
 					_ => Behavior.Specified
 				},
@@ -94,9 +98,17 @@ internal static class GetHashCodeHandler
 				=> """
 					=> -1;
 				""",
+			Behavior.Direct
+				=> $"""
+					=> {referencedMembers[0].Name};
+				""",
+			Behavior.EnumExplicitCast
+				=> $"""
+					=> (int){referencedMembers[0].Name};
+				""",
 			Behavior.Specified
 				=> $"""
-					=> global::System.HashCode.Combine({string.Join(", ", referencedMembers)});
+					=> global::System.HashCode.Combine({string.Join(", ", from pair in referencedMembers select pair.Name)});
 				""",
 			Behavior.Throw
 				=> """
@@ -106,7 +118,7 @@ internal static class GetHashCodeHandler
 				=> $$"""
 					{
 						var hashCode = new global::System.HashCode();
-						{{string.Join("\r\n\r\n", from member in referencedMembers select $"hashCode.Add({member});")}}
+						{{string.Join("\r\n\r\n", from member in referencedMembers select $"hashCode.Add({member.Name});")}}
 						return hashCode.ToHashCode();
 					}
 				""",
@@ -169,6 +181,18 @@ internal static class GetHashCodeHandler
 
 		bool hashCodeMemberAttributeMatcher(AttributeData a)
 			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, hashCodeMemberAttributeSymbol);
+
+		static bool? mayNotInvokeHashCodeCombine(ISymbol symbol)
+			=> symbol switch
+			{
+				IFieldSymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
+				IFieldSymbol { Type.SpecialType: System_Enum } => false,
+				IPropertySymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
+				IPropertySymbol { Type.SpecialType: System_Enum } => false,
+				IParameterSymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
+				IParameterSymbol { Type.SpecialType: System_Enum } => false,
+				_ => null
+			};
 	}
 
 	public static void Output(SourceProductionContext spc, ImmutableArray<GetHashCodeCollectedResult_NewStyled> value)
@@ -187,6 +211,8 @@ internal static class GetHashCodeHandler
 file enum Behavior
 {
 	ReturnNegativeOne,
+	Direct,
+	EnumExplicitCast,
 	Specified,
 	Throw,
 	HashCodeAdd
