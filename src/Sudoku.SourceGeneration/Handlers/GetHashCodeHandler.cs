@@ -57,11 +57,11 @@ internal static class GetHashCodeHandler
 			static symbol => symbol switch
 			{
 				IFieldSymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
-				IFieldSymbol { Type.SpecialType: System_Enum } => false,
+				IFieldSymbol { Type.TypeKind: TypeKind.Enum } => false,
 				IPropertySymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
-				IPropertySymbol { Type.SpecialType: System_Enum } => false,
+				IPropertySymbol { Type.TypeKind: TypeKind.Enum } => false,
 				IParameterSymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
-				IParameterSymbol { Type.SpecialType: System_Enum } => false,
+				IParameterSymbol { Type.TypeKind: TypeKind.Enum } => false,
 				_ => default(bool?)
 			},
 			cancellationToken
