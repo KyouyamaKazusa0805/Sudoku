@@ -48,31 +48,24 @@ internal static class GetHashCodeHandler
 			return null;
 		}
 
-		var members = type.GetAllMembers().ToArray();
-		var baseMembers =
-			from member in members
-			where member is IFieldSymbol or IPropertySymbol && member.GetAttributes().Any(hashCodeMemberAttributeMatcher)
-			let needCombine = mayNotInvokeHashCodeCombine(member)
-			select (member.Name, NeedCombine: needCombine);
-		var referencedMembers = parameterList is null
-			? baseMembers.ToArray()
-			: (
-				from parameter in parameterList.Parameters
-				select semanticModel.GetDeclaredSymbol(parameter, cancellationToken) into parameterSymbol
-				where !parameterSymbol.Type.IsRefLikeType // Ref structs cannot participate in the hashing.
-				let attributesData = parameterSymbol.GetAttributes()
-				where attributesData.Any(hashCodeMemberAttributeMatcher)
-				let primaryConstructorParameterAttributeData = attributesData.FirstOrDefault(primaryConstructorParameterAttributeMatcher)
-				where primaryConstructorParameterAttributeData is { ConstructorArguments: [{ Value: string }] }
-				let parameterKind = (string)primaryConstructorParameterAttributeData.ConstructorArguments[0].Value!
-				where parameterKind is Property or Field
-				let memberConversion = parameterKind switch { Property => ">@", Field => "_<@", _ => "@" }
-				let namedArguments = primaryConstructorParameterAttributeData.NamedArguments
-				let parameterName = parameterSymbol.Name
-				let referencedMemberName = PrimaryConstructor.GetTargetMemberName(namedArguments, parameterName, memberConversion)
-				let needCombine = mayNotInvokeHashCodeCombine(parameterSymbol)
-				select (Name: referencedMemberName, NeedCombine: needCombine)
-			).Concat(baseMembers).ToArray();
+		var referencedMembers = PrimaryConstructor.GetCorrespondingMemberNames(
+			type,
+			semanticModel,
+			parameterList,
+			primaryConstructorParameterAttributeSymbol,
+			a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, hashCodeMemberAttributeSymbol),
+			static symbol => symbol switch
+			{
+				IFieldSymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
+				IFieldSymbol { Type.SpecialType: System_Enum } => false,
+				IPropertySymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
+				IPropertySymbol { Type.SpecialType: System_Enum } => false,
+				IParameterSymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
+				IParameterSymbol { Type.SpecialType: System_Enum } => false,
+				_ => default(bool?)
+			},
+			cancellationToken
+		);
 
 		var behavior = (isRefStruct, attribute) switch
 		{
@@ -177,25 +170,6 @@ internal static class GetHashCodeHandler
 			""";
 
 		return new(finalString);
-
-
-		bool primaryConstructorParameterAttributeMatcher(AttributeData a)
-			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, primaryConstructorParameterAttributeSymbol);
-
-		bool hashCodeMemberAttributeMatcher(AttributeData a)
-			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, hashCodeMemberAttributeSymbol);
-
-		static bool? mayNotInvokeHashCodeCombine(ISymbol symbol)
-			=> symbol switch
-			{
-				IFieldSymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
-				IFieldSymbol { Type.SpecialType: System_Enum } => false,
-				IPropertySymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
-				IPropertySymbol { Type.SpecialType: System_Enum } => false,
-				IParameterSymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
-				IParameterSymbol { Type.SpecialType: System_Enum } => false,
-				_ => null
-			};
 	}
 
 	public static void Output(SourceProductionContext spc, ImmutableArray<GetHashCodeCollectedResult_NewStyled> value)
