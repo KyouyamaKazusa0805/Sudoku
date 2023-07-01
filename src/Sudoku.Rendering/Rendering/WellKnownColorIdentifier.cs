@@ -4,8 +4,9 @@ namespace Sudoku.Rendering;
 /// Defines a <see cref="ColorIdentifier"/> derived type that uses well-known kinds to distinct with colors.
 /// </summary>
 /// <param name="kind">The well-known identifier kind to be assigned.</param>
+[GetHashCode]
 [method: JsonConstructor]
-public sealed partial class WellKnownColorIdentifier([PrimaryConstructorParameter] WellKnownColorIdentifierKind kind) : ColorIdentifier
+public sealed partial class WellKnownColorIdentifier([PrimaryConstructorParameter, HashCodeMember] WellKnownColorIdentifierKind kind) : ColorIdentifier
 {
 	/// <inheritdoc cref="WellKnownColorIdentifierKind.Normal"/>
 	public static readonly ColorIdentifier Normal = WellKnownColorIdentifierKind.Normal;
@@ -60,9 +61,6 @@ public sealed partial class WellKnownColorIdentifier([PrimaryConstructorParamete
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ColorIdentifier? other)
 		=> other is WellKnownColorIdentifier comparer && Kind == comparer.Kind;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, "Kind")]
-	public override partial int GetHashCode();
 
 	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, "Kind")]
 	public override partial string ToString();

@@ -7,6 +7,7 @@ namespace Sudoku.Rendering;
 /// <param name="r">Indicates the color red raw values to be assigned.</param>
 /// <param name="g">Indicates the color green raw values to be assigned.</param>
 /// <param name="b">Indicates the color blue raw values to be assigned.</param>
+[GetHashCode]
 [method: JsonConstructor]
 public sealed partial class ColorColorIdentifier(
 	[PrimaryConstructorParameter] byte a,
@@ -18,6 +19,7 @@ public sealed partial class ColorColorIdentifier(
 	/// <summary>
 	/// Indicates the raw value.
 	/// </summary>
+	[HashCodeMember]
 	private int RawValue => A << 24 | R << 16 | G << 8 | B;
 
 
@@ -31,9 +33,6 @@ public sealed partial class ColorColorIdentifier(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ColorIdentifier? other)
 		=> other is ColorColorIdentifier comparer && RawValue == comparer.RawValue;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.SimpleField, nameof(RawValue))]
-	public override partial int GetHashCode();
 
 	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, "A", "R", "G", "B")]
 	public override partial string ToString();

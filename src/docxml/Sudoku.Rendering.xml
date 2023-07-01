@@ -137,9 +137,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.ColorColorIdentifier.Equals(Sudoku.Rendering.ColorIdentifier)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Rendering.ColorColorIdentifier.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:Sudoku.Rendering.ColorColorIdentifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -162,6 +159,9 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>b</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Rendering.ColorColorIdentifier.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.ColorIdentifier">
             <summary>
@@ -2119,9 +2119,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier.Equals(Sudoku.Rendering.ColorIdentifier)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -2129,6 +2126,9 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>value</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.RenderingMode">
             <summary>
@@ -2421,9 +2421,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.WellKnownColorIdentifier.Equals(Sudoku.Rendering.ColorIdentifier)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Rendering.WellKnownColorIdentifier.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:Sudoku.Rendering.WellKnownColorIdentifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -2431,6 +2428,9 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>kind</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Rendering.WellKnownColorIdentifier.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.WellKnownColorIdentifierKind">
             <summary>
