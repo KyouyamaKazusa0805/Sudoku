@@ -55,7 +55,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// public override IDictionary<string, string[]?> FormatInterpolatedParts
 	///     => ["en-US": [CellsStr, DigitsStr], "zh-CN": [CellsStr, DigitsStr]];
 	/// ]]></code>
-	/// via the feature "<see href="https://github.com/dotnet/csharplang/issues/5354">Collection Literals</see>" introduced in C# 12.
+	/// via the feature "<see href="https://github.com/dotnet/csharplang/issues/5354">Collection Literals</see>" introduced in C# 13.
 	/// If you cannot decide the real name of the culture name, just use suffix instead like <c>"en"</c> and <c>"zh"</c>, ignoring cases.
 	/// </para>
 	/// <para>
