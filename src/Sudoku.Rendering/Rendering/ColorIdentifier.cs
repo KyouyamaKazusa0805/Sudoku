@@ -8,11 +8,9 @@ namespace Sudoku.Rendering;
 [JsonDerivedType(typeof(ColorColorIdentifier), 0)]
 [JsonDerivedType(typeof(WellKnownColorIdentifier), 1)]
 [JsonDerivedType(typeof(PaletteIdColorIdentifier), 2)]
+[Equals]
 public abstract partial class ColorIdentifier : IEquatable<ColorIdentifier>, IEqualityOperators<ColorIdentifier, ColorIdentifier, bool>
 {
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
-	public sealed override partial bool Equals(object? obj);
-
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] ColorIdentifier? other);
 

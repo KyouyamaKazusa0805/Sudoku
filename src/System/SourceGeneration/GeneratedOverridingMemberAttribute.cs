@@ -15,6 +15,7 @@ namespace System.SourceGeneration;
 /// <seealso cref="object"/>
 /// <seealso cref="ValueType"/>
 [AttributeUsage(AttributeTargets.Method, Inherited = false)]
+[Obsolete($"This attribute will be replaced with another attribute types, e.g. '{nameof(EqualsAttribute)}'.", false)]
 public sealed class GeneratedOverridingMemberAttribute : Attribute
 {
 	/// <summary>

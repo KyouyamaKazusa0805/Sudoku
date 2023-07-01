@@ -12,6 +12,7 @@ public sealed class Generator : IIncrementalGenerator
 		// Elementary generators
 		PrimaryConstructor(context);
 		DefaultOverridden(context);
+		ObjectOverridden(context);
 		InstanceDeconstruction(context);
 		ImplicitField(context);
 
@@ -63,6 +64,21 @@ public sealed class Generator : IIncrementalGenerator
 				.Select(static (v, _) => (v.Left.ToArray(), v.Right.Left.ToArray(), v.Right.Right.ToArray())),
 			DefaultOverriddenHandler.Output
 		);
+	}
+
+	private void ObjectOverridden(IncrementalGeneratorInitializationContext context)
+	{
+		const string equalsAttributeName = "System.SourceGeneration.EqualsAttribute";
+		context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(equalsAttributeName, IsPartialTypePredicate, EqualsHandler.Transform)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			EqualsHandler.Output
+		);
+
+
 	}
 
 	private void InstanceDeconstruction(IncrementalGeneratorInitializationContext context)

@@ -10,6 +10,7 @@ namespace Sudoku.IO;
 /// Throws when the argument <paramref name="ignoreOption"/> is not defined in enumeration type.
 /// </exception>
 /// <seealso cref="Grid"/>
+[Equals]
 public sealed partial class GridLibrary(string filePath, GridLibraryIgnoringOption ignoreOption = GridLibraryIgnoringOption.Never) :
 	IAsyncEnumerable<Grid>,
 	IEquatable<GridLibrary>,
@@ -38,9 +39,6 @@ public sealed partial class GridLibrary(string filePath, GridLibraryIgnoringOpti
 	public GridLibraryIgnoringOption IgnoringOption { get; } =
 		Enum.IsDefined(ignoreOption) ? ignoreOption : throw new ArgumentOutOfRangeException(nameof(ignoreOption));
 
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
-	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

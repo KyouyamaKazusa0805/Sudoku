@@ -10,6 +10,7 @@ namespace Sudoku.Analytics.Patterns;
 /// </remarks>
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayString)}},nq}""")]
 [StructLayout(LayoutKind.Auto)]
+[Equals]
 public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKinds.Field)] Mask mask) :
 	IEquatable<ChainNode>,
 	IEqualityOperators<ChainNode, ChainNode, bool>
@@ -158,9 +159,6 @@ public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKind
 
 	[DeconstructionMethod]
 	public partial void Deconstruct(out byte cell, out byte digit, out bool isOn);
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
-	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

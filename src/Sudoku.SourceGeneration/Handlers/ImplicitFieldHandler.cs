@@ -24,6 +24,8 @@ internal sealed class ImplicitFieldHandler : IIncrementalGeneratorAttributeHandl
 							/// Indicates the backing field of property <see cref="{{property.Name}}"/>.
 							/// </summary>
 							/// <seealso cref="{{property.Name}}"/>
+							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{Value}}")]
+							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 							private {{readOnlyKeyword}}{{property.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}}{{nullableToken}} {{property.Name.ToCamelCase()}};
 					"""
 				);

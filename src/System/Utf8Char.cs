@@ -4,6 +4,7 @@ namespace System;
 /// Represents a character as a UTF-8 code unit.
 /// </summary>
 [JsonConverter(typeof(JsonConverter))]
+[Equals]
 public readonly partial struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,
@@ -88,9 +89,6 @@ public readonly partial struct Utf8Char :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool IsLetterOrDigit() => IsLetter() || IsDigit();
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
-	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

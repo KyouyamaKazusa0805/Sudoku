@@ -412,9 +412,6 @@
             </summary>
             <param name="colors">The initial colors.</param>
         </member>
-        <member name="M:SudokuStudio.Collection.ColorPalette.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:SudokuStudio.Collection.ColorPalette.Equals(SudokuStudio.Collection.ColorPalette)">
             <inheritdoc/>
         </member>
@@ -429,6 +426,9 @@
         </member>
         <member name="M:SudokuStudio.Collection.ColorPalette.op_Inequality(SudokuStudio.Collection.ColorPalette,SudokuStudio.Collection.ColorPalette)">
             <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Collection.ColorPalette.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="T:SudokuStudio.Collection.DashArray">
             <summary>
@@ -462,9 +462,6 @@
             <summary>
             Indicates the number of values.
             </summary>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:SudokuStudio.Collection.DashArray.Equals(SudokuStudio.Collection.DashArray)">
             <inheritdoc/>
@@ -523,6 +520,9 @@
         </member>
         <member name="M:SudokuStudio.Collection.DashArray.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="T:SudokuStudio.Collection.Converter">
             <summary>

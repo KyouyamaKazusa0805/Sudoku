@@ -7,6 +7,7 @@ namespace System.Timers;
 /// <summary>
 /// Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/> to optimize the performance.
 /// </summary>
+[Equals]
 public readonly ref partial struct ValueStopwatch
 {
 	/// <summary>
@@ -38,9 +39,6 @@ public readonly ref partial struct ValueStopwatch
 		get => _startTimestamp != 0;
 	}
 
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.RefStructDefault)]
-	public override partial bool Equals(object? obj);
 
 	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
 	public override partial int GetHashCode();

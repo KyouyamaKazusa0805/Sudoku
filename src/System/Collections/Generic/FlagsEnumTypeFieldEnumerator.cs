@@ -1,9 +1,10 @@
-﻿namespace System.Collections.Generic;
+namespace System.Collections.Generic;
 
 /// <summary>
 /// Defines an enumerator that iterates the possible fields of an enumeration type.
 /// </summary>
 /// <typeparam name="T">The type of the enumeration type, that is marked the attribute <see cref="FlagsAttribute"/>.</typeparam>
+[Equals]
 public ref partial struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, Enum
 {
 	/// <summary>
@@ -40,9 +41,6 @@ public ref partial struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, E
 	/// <inheritdoc cref="IEnumerator{T}.Current"/>
 	public T Current { get; private set; } = default;
 
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.RefStructDefault)]
-	public override readonly partial bool Equals(object? obj);
 
 	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
 	public override readonly partial int GetHashCode();

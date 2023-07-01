@@ -9,6 +9,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
+[Equals]
 public unsafe partial struct Grid :
 	IEnumerable<Candidate>,
 	IEqualityOperators<Grid, Grid, bool>,
@@ -635,9 +636,6 @@ public unsafe partial struct Grid :
 		}
 	}
 
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
-	public override readonly partial bool Equals(object? obj);
 
 	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values as the current instance.

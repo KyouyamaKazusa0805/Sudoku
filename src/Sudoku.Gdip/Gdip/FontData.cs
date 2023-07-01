@@ -3,6 +3,7 @@ namespace Sudoku.Gdip;
 /// <summary>
 /// Encapsulates a font data to be serialized.
 /// </summary>
+[Equals]
 public sealed partial class FontData : IEquatable<FontData>
 {
 	/// <summary>
@@ -34,9 +35,6 @@ public sealed partial class FontData : IEquatable<FontData>
 
 	[DeconstructionMethod]
 	public partial void Deconstruct(out string fontName, out float fontSize, out FontStyle fontStyle);
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
-	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

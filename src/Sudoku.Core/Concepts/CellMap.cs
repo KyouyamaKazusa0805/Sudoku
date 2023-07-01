@@ -26,6 +26,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [StructLayout(LayoutKind.Auto)]
+[Equals]
 public unsafe partial struct CellMap :
 	IAdditionOperators<CellMap, Cell, CellMap>,
 	IAdditionOperators<CellMap, IEnumerable<Cell>, CellMap>,
@@ -555,9 +556,6 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Contains(Cell offset) => ((offset < Shifting ? _low : _high) >> offset % Shifting & 1) != 0;
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
-	public override readonly partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

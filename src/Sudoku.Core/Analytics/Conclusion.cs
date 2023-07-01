@@ -20,6 +20,7 @@ namespace Sudoku.Analytics;
 /// ]]></code>
 /// </param>
 [JsonConverter(typeof(Converter))]
+[Equals]
 public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field)] int mask) :
 	IComparable<Conclusion>,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
@@ -93,9 +94,6 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 
 	[DeconstructionMethod]
 	public partial void Deconstruct(out ConclusionType conclusionType, out Cell cell, out Digit digit);
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
-	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

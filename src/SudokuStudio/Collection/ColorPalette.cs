@@ -3,6 +3,7 @@ namespace SudokuStudio.Collection;
 /// <summary>
 /// Represents a color palette that contains a list of <see cref="Color"/> instances that can be used in UI binding.
 /// </summary>
+[Equals]
 public sealed partial class ColorPalette :
 	ObservableCollection<Color>,
 	IEquatable<ColorPalette>,
@@ -26,9 +27,6 @@ public sealed partial class ColorPalette :
 
 	private string ElementsString => $"[{string.Join(", ", this)}]";
 
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
-	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] ColorPalette? other)

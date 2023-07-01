@@ -11,6 +11,7 @@ namespace Sudoku.Rendering;
 [JsonDerivedType(typeof(ChuteViewNode), 3)]
 [JsonDerivedType(typeof(BabaGroupViewNode), 4)]
 [JsonDerivedType(typeof(LinkViewNode), 5)]
+[Equals]
 public abstract partial class ViewNode(ColorIdentifier identifier) :
 	ICloneable<ViewNode>,
 	IEquatable<ViewNode>,
@@ -27,9 +28,6 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 	/// <seealso cref="ViewNode"/>
 	protected string TypeIdentifier => GetType().Name;
 
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
-	public sealed override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] ViewNode? other);

@@ -24,6 +24,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [StructLayout(LayoutKind.Auto)]
+[Equals]
 public unsafe partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, Candidate, CandidateMap>,
 	IAdditionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>,
@@ -252,9 +253,6 @@ public unsafe partial struct CandidateMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Contains(Candidate offset) => (_bits[offset >> 6] >> (offset & 63) & 1) != 0;
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
-	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	public readonly bool Equals(scoped in CandidateMap other)

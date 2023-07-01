@@ -10,6 +10,7 @@ namespace Sudoku.Concepts;
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
 /// </remarks>
 [StructLayout(LayoutKind.Auto)]
+[Equals]
 [method: JsonConstructor]
 public readonly partial struct LockedTarget([PrimaryConstructorParameter] Digit digit, [PrimaryConstructorParameter] CellMap cells) :
 	IEquatable<LockedTarget>,
@@ -40,9 +41,6 @@ public readonly partial struct LockedTarget([PrimaryConstructorParameter] Digit 
 
 	[DeconstructionMethod]
 	public partial void Deconstruct(out CellMap cells, out Digit digit);
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
-	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

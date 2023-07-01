@@ -37,6 +37,7 @@ namespace System.Text;
 /// <seealso cref="DefaultInterpolatedStringHandler"/>
 /// <seealso cref="IFormatProvider"/>
 [InterpolatedStringHandler]
+[Equals]
 public unsafe ref partial struct StringHandler
 {
 #if USE_NEWER_CONSTANT_VALUES
@@ -231,9 +232,6 @@ public unsafe ref partial struct StringHandler
 	/// <param name="handler">The collection.</param>
 	public readonly void CopyTo(scoped ref StringHandler handler)
 		=> CopyBlock(ref AsByteRef(ref handler._chars[0]), ref AsByteRef(ref _chars[0]), (uint)(sizeof(char) * Length));
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.RefStructDefault)]
-	public override readonly partial bool Equals(object? obj);
 
 	/// <summary>
 	/// Determine whether the specified <see cref="StringHandler"/> instance hold a same character set

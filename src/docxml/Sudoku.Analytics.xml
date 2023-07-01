@@ -4209,9 +4209,6 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
-        <member name="M:Sudoku.Analytics.Patterns.ChainNode.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:Sudoku.Analytics.Patterns.ChainNode.Equals(Sudoku.Analytics.Patterns.ChainNode)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
@@ -4231,6 +4228,9 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated field declaration for parameter <c>mask</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="T:Sudoku.Analytics.Patterns.ComplexFishFinKind">
             <summary>
@@ -5202,15 +5202,6 @@ result ^= expression;
             Indicates the string representation of the conclusions of the step.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Step.Equals(System.Object)">
-            <inheritdoc/>
-            <remarks><b><i>
-            It's an unexpected use on comparing them, except it having implemented <see cref="T:Sudoku.Analytics.Steps.IEquatableStep`1"/> type;
-            therefore, I disallow you calling this method.
-            </i></b></remarks>
-            <exception cref="T:System.NotSupportedException">Always throws this exception.</exception>
-            <seealso cref="T:Sudoku.Analytics.Steps.IEquatableStep`1"/>
-        </member>
         <member name="M:Sudoku.Analytics.Step.GetHashCode">
             <inheritdoc/>
             <remarks>
@@ -5240,6 +5231,9 @@ result ^= expression;
             <summary>
             The generated property declaration for parameter <c>views</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="T:Sudoku.Analytics.StepCollector">
             <summary>
@@ -5460,9 +5454,6 @@ result ^= expression;
             The internal information for the current step searcher instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearcher.Equals(Sudoku.Analytics.StepSearcher)">
             <inheritdoc/>
         </member>
@@ -5527,6 +5518,9 @@ result ^= expression;
             <summary>
             The generated property declaration for parameter <c>runningArea</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="F:Sudoku.Analytics.StepSearcher._splitPriority">
             <summary>

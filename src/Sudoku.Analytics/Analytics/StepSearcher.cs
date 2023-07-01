@@ -30,6 +30,7 @@ namespace Sudoku.Analytics;
 /// </para>
 /// </param>
 /// <seealso cref="Step"/>
+[Equals]
 public abstract partial class StepSearcher(
 	[PrimaryConstructorParameter] int priority,
 	[PrimaryConstructorParameter] int level,
@@ -113,9 +114,6 @@ public abstract partial class StepSearcher(
 	/// </summary>
 	private StepSearcherAttribute StepSearcherMetadataInfo => GetType().GetCustomAttribute<StepSearcherAttribute>()!;
 
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.AsCastAndCallingOverloading)]
-	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] StepSearcher? other) => other is not null && PriorityId == other.PriorityId;

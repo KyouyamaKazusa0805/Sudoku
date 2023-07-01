@@ -1,8 +1,9 @@
-﻿namespace System.Collections.Generic;
+namespace System.Collections.Generic;
 
 /// <summary>
 /// Defines an enumerator that iterates the one-dimensional array.
 /// </summary>
+[Equals]
 public ref partial struct OneDimensionalArrayRefEnumerator<T>
 {
 	/// <summary>
@@ -40,9 +41,6 @@ public ref partial struct OneDimensionalArrayRefEnumerator<T>
 		get => ref _innerArray[_index];
 	}
 
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.RefStructDefault)]
-	public override readonly partial bool Equals(object? obj);
 
 	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
 	public override readonly partial int GetHashCode();

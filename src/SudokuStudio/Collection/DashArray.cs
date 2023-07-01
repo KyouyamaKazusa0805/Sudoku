@@ -6,6 +6,7 @@ namespace SudokuStudio.Collection;
 /// </summary>
 /// <seealso cref="Shape.StrokeDashArray"/>
 [JsonConverter(typeof(Converter))]
+[Equals]
 public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashArray>, IEqualityOperators<DashArray, DashArray, bool>
 {
 	/// <summary>
@@ -48,9 +49,6 @@ public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashA
 	[JsonIgnore]
 	private string ValuesString => $"[{string.Join(", ", _doubles)}]";
 
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
-	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	public bool Equals(DashArray other)

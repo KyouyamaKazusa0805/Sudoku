@@ -169,9 +169,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <completionlist cref="T:Sudoku.Rendering.WellKnownColorIdentifier"/>
         </member>
-        <member name="M:Sudoku.Rendering.ColorIdentifier.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:Sudoku.Rendering.ColorIdentifier.Equals(Sudoku.Rendering.ColorIdentifier)">
             <inheritdoc/>
         </member>
@@ -198,6 +195,9 @@ if (student is (name: var name, age: >= 18))
             Implicit cast from <see cref="T:Sudoku.Rendering.WellKnownColorIdentifierKind"/> to <see cref="T:Sudoku.Rendering.ColorIdentifier"/>.
             </summary>
             <param name="kind">The <see cref="T:Sudoku.Rendering.WellKnownColorIdentifierKind"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Rendering.ColorIdentifier.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="T:Sudoku.Rendering.IRenderable">
             <summary>
@@ -2337,9 +2337,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Rendering.ViewNode"/>
         </member>
-        <member name="M:Sudoku.Rendering.ViewNode.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:Sudoku.Rendering.ViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
@@ -2357,6 +2354,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.ViewNode.op_Inequality(Sudoku.Rendering.ViewNode,Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.ViewNode.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="T:Sudoku.Rendering.WellKnownColorIdentifier">
             <summary>

@@ -4,6 +4,7 @@ namespace Sudoku.Text.Parsing;
 /// Defines a range of cells.
 /// </summary>
 /// <param name="mask">Indicates the mask.</param>
+[Equals]
 public readonly partial struct CellRange([PrimaryConstructorParameter(MemberKinds.Field)] Mask mask) :
 	IEquatable<CellRange>,
 	IEqualityOperators<CellRange, CellRange, bool>,
@@ -58,9 +59,6 @@ public readonly partial struct CellRange([PrimaryConstructorParameter(MemberKind
 
 	[DeconstructionMethod]
 	public partial void Deconstruct(out Cell minValue, out Cell maxValue);
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
-	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

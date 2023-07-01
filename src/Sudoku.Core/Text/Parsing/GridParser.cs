@@ -12,6 +12,7 @@ namespace Sudoku.Text.Parsing;
 /// </param>
 /// <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
 [StructLayout(LayoutKind.Auto)]
+[Equals]
 public unsafe ref partial struct GridParser(string parsingValue, [PrimaryConstructorParameter] bool compatibleFirst, bool shortenSusser)
 {
 	/// <summary>
@@ -102,9 +103,6 @@ public unsafe ref partial struct GridParser(string parsingValue, [PrimaryConstru
 	/// <seealso cref="ParsingValue"/>
 	private readonly bool ContainsTab => ParsingValue.Contains('\t');
 
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.RefStructDefault)]
-	public override readonly partial bool Equals(object? obj);
 
 	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.RefStructDefault)]
 	public override readonly partial int GetHashCode();

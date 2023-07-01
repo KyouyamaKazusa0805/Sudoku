@@ -190,6 +190,15 @@
             <param name="_"/>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.SourceGeneration.CommonMethods.IsPartialTypePredicate``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            Determine whether the specified type declaration syntax node contains a <see langword="partial"/> modifier.
+            </summary>
+            <typeparam name="T">The type of the declaration syntax node.</typeparam>
+            <param name="node">The node to be determined.</param>
+            <param name="_"/>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.SourceGeneration.CommonMethods.IsPartialMethodPredicate(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
             <summary>
             Determine whether the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> is a <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax"/>,

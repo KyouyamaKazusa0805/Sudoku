@@ -8,6 +8,7 @@ namespace Sudoku.Concepts;
 /// two position can fill this candidate.
 /// </remarks>
 /// <param name="mask">Indicates the target mask.</param>
+[Equals]
 public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKinds.Field)] int mask) :
 	IEquatable<Conjugate>,
 	IEqualityOperators<Conjugate, Conjugate, bool>
@@ -97,9 +98,6 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 
 	[DeconstructionMethod]
 	public partial void Deconstruct([DeconstructionMethodArgument(nameof(FromCandidate))] out Candidate fromCand, [DeconstructionMethodArgument(nameof(ToCandidate))] out Candidate toCand);
-
-	[GeneratedOverridingMember(GeneratedEqualsBehavior.TypeCheckingAndCallingOverloading)]
-	public override partial bool Equals(object? obj);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -434,9 +434,6 @@
         <member name="P:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -445,6 +442,9 @@
         </member>
         <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1">
             <summary>
@@ -480,9 +480,6 @@
             Indicates the current instance being iterated. Please note that the value is returned by reference.
             </summary>
         </member>
-        <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -501,6 +498,9 @@
             Returns <see langword="false"/> when the last iteration is for the last element,
             and now there's no elements to be iterated.
             </returns>
+        </member>
+        <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="T:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1">
             <summary>
@@ -535,9 +535,6 @@
             Indicates the current instance being iterated. Please note that the value is returned by reference.
             </summary>
         </member>
-        <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -557,6 +554,9 @@
             Returns <see langword="false"/> when the last iteration is for the last element,
             and now there's no elements to be iterated.
             </returns>
+        </member>
+        <member name="M:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="T:System.Collections.Generic.ReverseEnumerator`1">
             <summary>
@@ -2507,9 +2507,6 @@
             </summary>
             <param name="handler">The collection.</param>
         </member>
-        <member name="M:System.Text.StringHandler.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:System.Text.StringHandler.Equals(System.Text.StringHandler)">
             <summary>
             Determine whether the specified <see cref="T:System.Text.StringHandler"/> instance hold a same character set
@@ -3200,6 +3197,9 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.Text.StringHandler.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="T:System.Text.StringHandlerRefAppender`1">
             <summary>
@@ -4106,6 +4106,61 @@ fixed (short* ptr = instance)
             Defines an attribute that specifies a deconstrution method.
             </summary>
         </member>
+        <member name="T:System.SourceGeneration.EqualsAttribute">
+            <summary>
+            Represents an attribute type that allows source generators controlling behaviors on generating <see cref="M:System.Object.Equals(System.Object)"/> method.
+            </summary>
+            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
+            <seealso cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.SourceGeneration.EqualsAttribute.#ctor(System.SourceGeneration.EqualsBehavior)">
+            <summary>
+            Represents an attribute type that allows source generators controlling behaviors on generating <see cref="M:System.Object.Equals(System.Object)"/> method.
+            </summary>
+            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
+            <seealso cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="P:System.SourceGeneration.EqualsAttribute.OtherModifiers">
+            <summary>
+            <para>
+            Indicates the other modifiers should be modified. For example, if the method should be <see langword="sealed"/>
+            in a <see langword="class"/> type, assign <c>"Sealed"</c> or <c>"sealed"</c> to this property. Casing are ignored.
+            Multiple modifiers should be separated by whitespaces.
+            </para>
+            <para>By default, this property is <see langword="null"/>.</para>
+            </summary>
+            <remarks>
+            Please note, sometimes some extra keywords will be automatically added into signature without manually assigning them to this property.
+            For example, in a non-<see langword="readonly struct"/>, due to the implementation not caring
+            about its <see langword="readonly"/>-ability, a <see langword="readonly"/> modifier will be implicitly added.
+            </remarks>
+        </member>
+        <member name="P:System.SourceGeneration.EqualsAttribute.Behavior">
+            <summary>
+            The generated property declaration for parameter <c>behavior</c>.
+            </summary>
+        </member>
+        <member name="T:System.SourceGeneration.EqualsBehavior">
+            <summary>
+            Defines a behavior by source generator on generating <see cref="M:System.Object.Equals(System.Object)"/> overridden methods.
+            </summary>
+            <seealso cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="F:System.SourceGeneration.EqualsBehavior.Intelligent">
+            <summary>
+            Indicates the source generator will automatically adopt a case for an overridden unit.
+            <list type="bullet">
+            <item>For <see langword="ref struct"/>s, return <see langword="false"/> because there is implicitly box and unbox operation</item>
+            <item>For <see langword="class"/>es, use <see langword="as"/> casting and call overloadded <c>Equals</c> method</item>
+            <item>For <see langword="struct"/>s, use <see langword="is"/> casting and call overloadded <c>Equals</c> method</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.EqualsBehavior.ThrowNotSupportedException">
+            <summary>
+            Indicates the method always throws <see cref="T:System.NotSupportedException"/>.
+            </summary>
+        </member>
         <member name="T:System.SourceGeneration.GeneralizedAccessibility">
             <summary>
             Defines a kind of accessibility that is defined in C#.
@@ -4676,9 +4731,6 @@ fixed (short* ptr = instance)
             Determines whether the current stopwatch is currently active.
             </summary>
         </member>
-        <member name="M:System.Timers.ValueStopwatch.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:System.Timers.ValueStopwatch.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -4696,6 +4748,9 @@ fixed (short* ptr = instance)
             Try to get a new <see cref="T:System.Timers.ValueStopwatch"/> that is running now.
             </summary>
             <returns>An instance of type <see cref="T:System.Timers.ValueStopwatch"/> that is running now.</returns>
+        </member>
+        <member name="M:System.Timers.ValueStopwatch.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="T:System.Utf8Char">
             <summary>
@@ -4763,9 +4818,6 @@ fixed (short* ptr = instance)
             Determines whether a character is a letter or a digit.
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Utf8Char.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:System.Utf8Char.Equals(System.Utf8Char)">
             <inheritdoc/>
@@ -4867,6 +4919,9 @@ fixed (short* ptr = instance)
             </summary>
             <param name="byteValue">The <see cref="T:System.Byte"/> instance.</param>
         </member>
+        <member name="M:System.Utf8Char.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
         <member name="M:System.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
@@ -4933,9 +4988,6 @@ fixed (short* ptr = instance)
         </member>
         <member name="P:System.Utf8String.System#Collections#Generic#IReadOnlyList{System#Utf8Char}#Item(System.Int32)">
             <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8String.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:System.Utf8String.Equals(System.Utf8String)">
             <inheritdoc/>
@@ -5123,6 +5175,9 @@ fixed (short* ptr = instance)
             Implicitly cast from <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Byte"/> to <see cref="T:System.Utf8String"/>.
             </summary>
             <param name="underlyingArray">The underlying array.</param>
+        </member>
+        <member name="M:System.Utf8String.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
     </members>
 </doc>
