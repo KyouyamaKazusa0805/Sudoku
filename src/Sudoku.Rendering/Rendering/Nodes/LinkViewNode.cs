@@ -7,12 +7,14 @@ namespace Sudoku.Rendering.Nodes;
 /// <param name="start">Indicates the start point.</param>
 /// <param name="end">Indicates the end point.</param>
 /// <param name="inference">Indicates the inference type.</param>
+[GetHashCode]
+[ToString]
 [method: JsonConstructor]
 public sealed partial class LinkViewNode(
 	ColorIdentifier identifier,
-	[PrimaryConstructorParameter] LockedTarget start,
-	[PrimaryConstructorParameter] LockedTarget end,
-	[PrimaryConstructorParameter] Inference inference
+	[PrimaryConstructorParameter, HashCodeMember, StringMember] LockedTarget start,
+	[PrimaryConstructorParameter, HashCodeMember, StringMember] LockedTarget end,
+	[PrimaryConstructorParameter, StringMember] Inference inference
 ) : BasicViewNode(identifier)
 {
 	[DeconstructionMethod]
@@ -22,12 +24,6 @@ public sealed partial class LinkViewNode(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is LinkViewNode comparer && Start == comparer.Start && End == comparer.End;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), "Start", "End")]
-	public override partial int GetHashCode();
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), "Start", "End", "Inference")]
-	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

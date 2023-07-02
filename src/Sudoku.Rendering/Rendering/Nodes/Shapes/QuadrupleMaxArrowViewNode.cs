@@ -3,6 +3,8 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a quadruple max arrow view node.
 /// </summary>
+[GetHashCode]
+[ToString]
 public sealed partial class QuadrupleMaxArrowViewNode(ColorIdentifier identifier, scoped in CellMap cells, Direction arrowDirection) :
 	QuadrupleCellMarkViewNode(identifier, cells)
 {
@@ -22,6 +24,7 @@ public sealed partial class QuadrupleMaxArrowViewNode(ColorIdentifier identifier
 	/// <summary>
 	/// Indicates the arrow direction.
 	/// </summary>
+	[StringMember]
 	public Direction ArrowDirection { get; } =
 		arrowDirection is Direction.TopLeft or Direction.TopRight or Direction.BottomLeft or Direction.BottomRight
 			? arrowDirection
@@ -31,12 +34,6 @@ public sealed partial class QuadrupleMaxArrowViewNode(ColorIdentifier identifier
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is QuadrupleMaxArrowViewNode comparer && Cells == comparer.Cells;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cells))]
-	public override partial int GetHashCode();
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cells), nameof(ArrowDirection))]
-	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

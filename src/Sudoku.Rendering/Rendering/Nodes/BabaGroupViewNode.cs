@@ -7,24 +7,26 @@ namespace Sudoku.Rendering.Nodes;
 /// <param name="cell">Indicates the cell used.</param>
 /// <param name="digitsMask">Indicates a mask that hold digits used.</param>
 /// <param name="unknownValueChar">Indicates the character that represents the baba group name.</param>
+[GetHashCode]
+[ToString]
 [method: JsonConstructor]
 public sealed partial class BabaGroupViewNode(
 	ColorIdentifier identifier,
-	[PrimaryConstructorParameter] Cell cell,
-	[PrimaryConstructorParameter] Utf8Char unknownValueChar,
+	[PrimaryConstructorParameter, HashCodeMember] Cell cell,
+	[PrimaryConstructorParameter, StringMember] Utf8Char unknownValueChar,
 	[PrimaryConstructorParameter] Mask digitsMask
 ) : BasicViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates the cell string.
 	/// </summary>
-	[ToStringIdentifier(nameof(Cell))]
+	[StringMember(nameof(Cell))]
 	private string CellString => CellsMap[Cell].ToString();
 
 	/// <summary>
 	/// Indicates the digits mask string.
 	/// </summary>
-	[ToStringIdentifier(nameof(DigitsMask))]
+	[StringMember(nameof(DigitsMask))]
 	private string DigitsMaskString => Convert.ToString(DigitsMask, 2).ToString();
 
 
@@ -37,12 +39,6 @@ public sealed partial class BabaGroupViewNode(
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is BabaGroupViewNode comparer && Cell == comparer.Cell;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
-	public override partial int GetHashCode();
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, "Identifier", "CellString", "DigitsMaskString", "UnknownValueChar")]
-	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -20,12 +20,16 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 	/// <summary>
 	/// Indicates an instance providing with data for describing coloring.
 	/// </summary>
+	[HashCodeMember]
+	[StringMember]
 	public ColorIdentifier Identifier { get; } = identifier;
 
 	/// <summary>
 	/// Indicates the inner identifier to distinct the different types that is derived from <see cref="ViewNode"/>.
 	/// </summary>
 	/// <seealso cref="ViewNode"/>
+	[HashCodeMember]
+	[StringMember("EqualityContract")]
 	protected string TypeIdentifier => GetType().Name;
 
 

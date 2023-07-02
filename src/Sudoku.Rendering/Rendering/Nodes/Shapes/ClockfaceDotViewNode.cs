@@ -3,8 +3,18 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a clockface dot view node.
 /// </summary>
-public sealed partial class ClockfaceDotViewNode(ColorIdentifier identifier, scoped in CellMap cells, bool isClockwise) :
-	QuadrupleCellMarkViewNode(identifier, cells)
+/// <param name="identifier"><inheritdoc/></param>
+/// <param name="cells"><inheritdoc/></param>
+/// <param name="isClockwise">
+/// Indicates whether the dot is marked as clockwise. If <see langword="true"/>, clockwise; otherwise, counterclockwise.
+/// </param>
+[GetHashCode]
+[ToString]
+public sealed partial class ClockfaceDotViewNode(
+	ColorIdentifier identifier,
+	scoped in CellMap cells,
+	[PrimaryConstructorParameter, StringMember] bool isClockwise
+) : QuadrupleCellMarkViewNode(identifier, cells)
 {
 	/// <summary>
 	/// Initializes a <see cref="ClockfaceDotViewNode"/> instance via the specified values.
@@ -19,20 +29,8 @@ public sealed partial class ClockfaceDotViewNode(ColorIdentifier identifier, sco
 	}
 
 
-	/// <summary>
-	/// Indicates whether the dot is marked as clockwise. If <see langword="true"/>, clockwise; otherwise, counterclockwise.
-	/// </summary>
-	public bool IsClockwise { get; } = isClockwise;
-
-
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is ClockfaceDotViewNode comparer && Cells == comparer.Cells;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cells))]
-	public override partial int GetHashCode();
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cells), nameof(IsClockwise))]
-	public override partial string ToString();
 
 	/// <inheritdoc/>
 	public override ClockfaceDotViewNode Clone() => new(Identifier, Cells, IsClockwise);

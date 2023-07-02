@@ -3,6 +3,8 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a battenburg view node.
 /// </summary>
+[GetHashCode]
+[ToString]
 public sealed partial class BattenburgViewNode(ColorIdentifier identifier, scoped in CellMap cells) : QuadrupleCellMarkViewNode(identifier, cells)
 {
 	/// <summary>
@@ -20,12 +22,6 @@ public sealed partial class BattenburgViewNode(ColorIdentifier identifier, scope
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is BattenburgViewNode comparer && Cells[0] == comparer.Cells[0];
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cells))]
-	public override partial int GetHashCode();
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cells))]
-	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

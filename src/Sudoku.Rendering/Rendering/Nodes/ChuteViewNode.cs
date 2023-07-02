@@ -5,8 +5,13 @@ namespace Sudoku.Rendering.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc/></param>
 /// <param name="chuteIndex">Indicates the chute index. The value can be between 0 and 5.</param>
+[GetHashCode]
+[ToString]
 [method: JsonConstructor]
-public sealed partial class ChuteViewNode(ColorIdentifier identifier, [PrimaryConstructorParameter] int chuteIndex) : BasicViewNode(identifier)
+public sealed partial class ChuteViewNode(
+	ColorIdentifier identifier,
+	[PrimaryConstructorParameter, HashCodeMember, StringMember] int chuteIndex
+) : BasicViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates whether the chute is in a row.
@@ -35,12 +40,6 @@ public sealed partial class ChuteViewNode(ColorIdentifier identifier, [PrimaryCo
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is ChuteViewNode comparer && ChuteIndex == comparer.ChuteIndex;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), "ChuteIndex")]
-	public override partial int GetHashCode();
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), "ChuteIndex")]
-	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

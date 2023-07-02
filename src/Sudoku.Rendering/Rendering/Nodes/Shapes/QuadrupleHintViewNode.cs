@@ -3,8 +3,13 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a quadruple hint view node.
 /// </summary>
-public sealed partial class QuadrupleHintViewNode(ColorIdentifier identifier, scoped in CellMap cells, string s) :
-	QuadrupleCellMarkViewNode(identifier, cells)
+[GetHashCode]
+[ToString]
+public sealed partial class QuadrupleHintViewNode(
+	ColorIdentifier identifier,
+	scoped in CellMap cells,
+	[PrimaryConstructorParameter(GeneratedMemberName = "Hint"), StringMember] string s
+) : QuadrupleCellMarkViewNode(identifier, cells)
 {
 	/// <summary>
 	/// Initializes a <see cref="QuadrupleHintViewNode"/> instance via the specified values.
@@ -19,21 +24,9 @@ public sealed partial class QuadrupleHintViewNode(ColorIdentifier identifier, sc
 	}
 
 
-	/// <summary>
-	/// The hint string.
-	/// </summary>
-	public string Hint { get; } = s;
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is QuadrupleHintViewNode comparer && Cells == comparer.Cells;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cells))]
-	public override partial int GetHashCode();
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cells), nameof(Hint))]
-	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

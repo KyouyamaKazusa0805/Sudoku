@@ -339,12 +339,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.Clone">
             <inheritdoc/>
         </member>
@@ -362,6 +356,12 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.ToString">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.BasicViewNode">
             <summary>
@@ -444,12 +444,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.CandidateViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Rendering.Nodes.CandidateViewNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.CandidateViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Rendering.Nodes.CandidateViewNode.Clone">
             <inheritdoc/>
         </member>
@@ -457,6 +451,12 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>candidate</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.CandidateViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.CandidateViewNode.ToString">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.CellViewNode">
             <summary>
@@ -533,12 +533,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.CellViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Rendering.Nodes.CellViewNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.CellViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Rendering.Nodes.CellViewNode.Clone">
             <inheritdoc/>
         </member>
@@ -546,6 +540,12 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>cell</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.CellViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.CellViewNode.ToString">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.ChuteViewNode">
             <summary>
@@ -628,12 +628,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.ChuteViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Rendering.Nodes.ChuteViewNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.ChuteViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Rendering.Nodes.ChuteViewNode.Clone">
             <inheritdoc/>
         </member>
@@ -641,6 +635,12 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>chuteIndex</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.ChuteViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.ChuteViewNode.ToString">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.CircleViewNode">
             <summary>
@@ -686,22 +686,22 @@ if (student is (name: var name, age: >= 18))
             Defines a capsule view node.
             </summary>
         </member>
-        <member name="P:Sudoku.Rendering.Nodes.Grouped.CapsuleViewNode.IsHorizontal">
-            <summary>
-            Indicates whether the view node is horizontal.
-            </summary>
-        </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.CapsuleViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.Grouped.CapsuleViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.Grouped.CapsuleViewNode.IsHorizontal">
+            <summary>
+            The generated property declaration for parameter <c>isHorizontal</c>.
+            </summary>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.CapsuleViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.CapsuleViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Grouped.CapsuleViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Grouped.DiagonalLinesViewNode">
             <summary>
@@ -716,41 +716,34 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Grouped.DiagonalLinesViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Grouped.DiagonalLinesViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.DiagonalLinesViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.DiagonalLinesViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Grouped.DiagonalLinesViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Grouped.GroupedViewNode">
             <summary>
             Defines a grouped view node.
             </summary>
             <param name="identifier">The identifier.</param>
-            <param name="headCell">The head cell.</param>
-            <param name="cells">The cells.</param>
+            <param name="headCell">Indicates the head cell. If the node does not use this property, assign -1.</param>
+            <param name="cells">
+            Indicates the cells used. If the node does not use this property, assign <see cref="F:System.Collections.Immutable.ImmutableArray`1.Empty"/>.
+            </param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.GroupedViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Collections.Immutable.ImmutableArray{System.Int32})">
             <summary>
             Defines a grouped view node.
             </summary>
             <param name="identifier">The identifier.</param>
-            <param name="headCell">The head cell.</param>
-            <param name="cells">The cells.</param>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.Grouped.GroupedViewNode.HeadCell">
-            <summary>
-            Indicates the head cell. If the node does not use this property, assign -1.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.Grouped.GroupedViewNode.Cells">
-            <summary>
+            <param name="headCell">Indicates the head cell. If the node does not use this property, assign -1.</param>
+            <param name="cells">
             Indicates the cells used. If the node does not use this property, assign <see cref="F:System.Collections.Immutable.ImmutableArray`1.Empty"/>.
-            </summary>
-            <seealso cref="F:System.Collections.Immutable.ImmutableArray`1.Empty"/>
+            </param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.GroupedViewNode.Deconstruct(System.Int32@,System.Collections.Immutable.ImmutableArray{System.Int32}@)">
             <target name="method">
@@ -799,37 +792,55 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
+        <member name="P:Sudoku.Rendering.Nodes.Grouped.GroupedViewNode.HeadCell">
+            <summary>
+            The generated property declaration for parameter <c>headCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.Grouped.GroupedViewNode.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Rendering.Nodes.Grouped.LeverViewNode">
             <summary>
             Defines a lever view node.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="headCell"><inheritdoc/></param>
+            <param name="tailCell">Indicates the tail cell.</param>
+            <param name="centerCell">Indicates the center cell.</param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.LeverViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Int32,System.Int32)">
             <summary>
             Defines a lever view node.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="headCell"><inheritdoc/></param>
+            <param name="tailCell">Indicates the tail cell.</param>
+            <param name="centerCell">Indicates the center cell.</param>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.Grouped.LeverViewNode.Equals(Sudoku.Rendering.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.Grouped.LeverViewNode.Clone">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.Grouped.LeverViewNode.TailCell">
             <summary>
-            Indicates the tail cell.
+            The generated property declaration for parameter <c>tailCell</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.Grouped.LeverViewNode.CenterCell">
             <summary>
-            Indicates the center cell.
+            The generated property declaration for parameter <c>centerCell</c>.
             </summary>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Grouped.LeverViewNode.Equals(Sudoku.Rendering.ViewNode)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.LeverViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.LeverViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Grouped.LeverViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Grouped.ObliqueLineViewNode">
             <summary>
@@ -841,22 +852,22 @@ if (student is (name: var name, age: >= 18))
             Defines an oblique line view node.
             </summary>
         </member>
-        <member name="P:Sudoku.Rendering.Nodes.Grouped.ObliqueLineViewNode.TailCell">
-            <summary>
-            Indicates the last cell.
-            </summary>
-        </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.ObliqueLineViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.Grouped.ObliqueLineViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.Grouped.ObliqueLineViewNode.TailCell">
+            <summary>
+            The generated property declaration for parameter <c>lastCell</c>.
+            </summary>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.ObliqueLineViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.ObliqueLineViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Grouped.ObliqueLineViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Grouped.PyramidViewNode">
             <summary>
@@ -871,14 +882,14 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Grouped.PyramidViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Grouped.PyramidViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.PyramidViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.PyramidViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Grouped.PyramidViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Grouped.WindokuViewNode">
             <summary>
@@ -893,14 +904,14 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Grouped.WindokuViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Grouped.WindokuViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.WindokuViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Grouped.WindokuViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Grouped.WindokuViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.HeartViewNode">
             <summary>
@@ -983,12 +994,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.HouseViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Rendering.Nodes.HouseViewNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.HouseViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Rendering.Nodes.HouseViewNode.Clone">
             <inheritdoc/>
         </member>
@@ -996,6 +1001,12 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>house</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.HouseViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.HouseViewNode.ToString">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.IconViewNode">
             <summary>
@@ -1010,11 +1021,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="identifier"><inheritdoc cref="M:Sudoku.Rendering.ViewNode.#ctor(Sudoku.Rendering.ColorIdentifier)"/></param>
             <param name="cell">The cell.</param>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.IconViewNode.Cell">
-            <summary>
-            Indicates the cell used.
-            </summary>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.IconViewNode.Deconstruct(System.Int32@)">
             <target name="method">
@@ -1066,11 +1072,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.IconViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Rendering.Nodes.IconViewNode.Cell">
+            <summary>
+            The generated property declaration for parameter <c>cell</c>.
+            </summary>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.IconViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.IconViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.LinkViewNode">
             <summary>
@@ -1140,12 +1151,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.LinkViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Rendering.Nodes.LinkViewNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.LinkViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Rendering.Nodes.LinkViewNode.Clone">
             <inheritdoc/>
         </member>
@@ -1164,30 +1169,32 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>inference</c>.
             </summary>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.LinkViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.LinkViewNode.ToString">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.AdjacentCellMarkViewNode">
             <summary>
             Represents a view node that describes a shape that is a mark, displayed between two adjacent cells.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell1">Indicates the first cell used.</param>
+            <param name="cell2">Indicates the second cell used. This cell should be adjacent with <see cref="P:Sudoku.Rendering.Nodes.Shapes.AdjacentCellMarkViewNode.Cell1"/></param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.AdjacentCellMarkViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Int32)">
             <summary>
             Represents a view node that describes a shape that is a mark, displayed between two adjacent cells.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell1">Indicates the first cell used.</param>
+            <param name="cell2">Indicates the second cell used. This cell should be adjacent with <see cref="P:Sudoku.Rendering.Nodes.Shapes.AdjacentCellMarkViewNode.Cell1"/></param>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.Shapes.AdjacentCellMarkViewNode.IsRow">
             <summary>
             Indicates whether two cells <see cref="P:Sudoku.Rendering.Nodes.Shapes.AdjacentCellMarkViewNode.Cell1"/> and <see cref="P:Sudoku.Rendering.Nodes.Shapes.AdjacentCellMarkViewNode.Cell2"/> are adjacent by row.
             If <see langword="true"/>, row; otherwise, column.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.Shapes.AdjacentCellMarkViewNode.Cell1">
-            <summary>
-            Indicates the first cell used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.Shapes.AdjacentCellMarkViewNode.Cell2">
-            <summary>
-            Indicates the second cell used. This cell should be adjacent with <see cref="P:Sudoku.Rendering.Nodes.Shapes.AdjacentCellMarkViewNode.Cell1"/>.
             </summary>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.AdjacentCellMarkViewNode.Deconstruct(System.Int32@,System.Int32@)">
@@ -1284,32 +1291,48 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
+        <member name="P:Sudoku.Rendering.Nodes.Shapes.AdjacentCellMarkViewNode.Cell1">
+            <summary>
+            The generated property declaration for parameter <c>cell1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.Shapes.AdjacentCellMarkViewNode.Cell2">
+            <summary>
+            The generated property declaration for parameter <c>cell2</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.AverageBarViewNode">
             <summary>
             Defines an average bar view node.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="isHorizontal">Indicates whether the view node is for horizontal one.</param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.AverageBarViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Boolean)">
             <summary>
             Defines an average bar view node.
             </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.Shapes.AverageBarViewNode.IsHorizontal">
-            <summary>
-            Indicates whether the view node is for horizontal one.
-            </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="isHorizontal">Indicates whether the view node is for horizontal one.</param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.AverageBarViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.AverageBarViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.Shapes.AverageBarViewNode.IsHorizontal">
+            <summary>
+            The generated property declaration for parameter <c>isHorizontal</c>.
+            </summary>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.AverageBarViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.AverageBarViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.AverageBarViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.BattenburgViewNode">
             <summary>
@@ -1331,14 +1354,14 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Shapes.BattenburgViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.BattenburgViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.BattenburgViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.BattenburgViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.BattenburgViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.BorderBarViewNode">
             <summary>
@@ -1363,14 +1386,14 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Shapes.BorderBarViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.BorderBarViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.BorderBarViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.BorderBarViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.BorderBarViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.CellArrowViewNode">
             <summary>
@@ -1385,14 +1408,14 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Shapes.CellArrowViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.CellArrowViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.CellArrowViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.CellArrowViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.CellArrowViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.CellCornerArrowViewNode">
             <summary>
@@ -1407,14 +1430,14 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Shapes.CellCornerArrowViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.CellCornerArrowViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.CellCornerArrowViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.CellCornerArrowViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.CellCornerArrowViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.CellCornerTriangleViewNode">
             <summary>
@@ -1436,11 +1459,21 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a clockface dot view node.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="isClockwise">
+            Indicates whether the dot is marked as clockwise. If <see langword="true"/>, clockwise; otherwise, counterclockwise.
+            </param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.ClockfaceDotViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Defines a clockface dot view node.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="isClockwise">
+            Indicates whether the dot is marked as clockwise. If <see langword="true"/>, clockwise; otherwise, counterclockwise.
+            </param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.ClockfaceDotViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Boolean)">
             <summary>
@@ -1450,22 +1483,22 @@ if (student is (name: var name, age: >= 18))
             <param name="topLeftCell">The top-left cell.</param>
             <param name="isClockwise">Indicates whether the dot is marked as clockwise.</param>
         </member>
-        <member name="P:Sudoku.Rendering.Nodes.Shapes.ClockfaceDotViewNode.IsClockwise">
-            <summary>
-            Indicates whether the dot is marked as clockwise. If <see langword="true"/>, clockwise; otherwise, counterclockwise.
-            </summary>
-        </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.ClockfaceDotViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.ClockfaceDotViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.Shapes.ClockfaceDotViewNode.IsClockwise">
+            <summary>
+            The generated property declaration for parameter <c>isClockwise</c>.
+            </summary>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.ClockfaceDotViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.ClockfaceDotViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.ClockfaceDotViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.Direction">
             <summary>
@@ -1585,11 +1618,6 @@ if (student is (name: var name, age: >= 18))
             Represents with a greater-than sign view node.
             </summary>
         </member>
-        <member name="P:Sudoku.Rendering.Nodes.Shapes.GreaterThanSignViewNode.IsGreaterThan">
-            <summary>
-            Indicates whether the current sign is a greater-than sign.
-            </summary>
-        </member>
         <member name="P:Sudoku.Rendering.Nodes.Shapes.GreaterThanSignViewNode.Cell1String">
             <summary>
             Indicates the cell 1 string.
@@ -1603,14 +1631,19 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Shapes.GreaterThanSignViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.GreaterThanSignViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.Shapes.GreaterThanSignViewNode.IsGreaterThan">
+            <summary>
+            The generated property declaration for parameter <c>isGreaterThan</c>.
+            </summary>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.GreaterThanSignViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.GreaterThanSignViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.GreaterThanSignViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.KropkiDotViewNode">
             <summary>
@@ -1620,11 +1653,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Shapes.KropkiDotViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Represents with a Kropki dot view node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.Shapes.KropkiDotViewNode.IsSolid">
-            <summary>
-            Indicates whether the dot will be displayed as solid one.
             </summary>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.Shapes.KropkiDotViewNode.Cell1String">
@@ -1640,66 +1668,88 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Shapes.KropkiDotViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.KropkiDotViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.Shapes.KropkiDotViewNode.IsSolid">
+            <summary>
+            The generated property declaration for parameter <c>isSolid</c>.
+            </summary>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.KropkiDotViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.KropkiDotViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.KropkiDotViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.NeighborSignViewNode">
             <summary>
             Defines a neighbor sign view node.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="isFourDirections">
+            Indicates whether the sign only records for 4 directions (top-left, top-right, bottom-left and bottom-right).
+            If <see langword="true"/>, 4 directions; otherwise, 8 directions.
+            </param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.NeighborSignViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Boolean)">
             <summary>
             Defines a neighbor sign view node.
             </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.Shapes.NeighborSignViewNode.IsFourDirections">
-            <summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="isFourDirections">
             Indicates whether the sign only records for 4 directions (top-left, top-right, bottom-left and bottom-right).
             If <see langword="true"/>, 4 directions; otherwise, 8 directions.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.Shapes.NeighborSignViewNode.CellString">
-            <summary>
-            Indicates the cell string.
-            </summary>
+            </param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.NeighborSignViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.NeighborSignViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.Shapes.NeighborSignViewNode.IsFourDirections">
+            <summary>
+            The generated property declaration for parameter <c>isFourDirections</c>.
+            </summary>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.NeighborSignViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.NeighborSignViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.NeighborSignViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.NumberLabelViewNode">
             <summary>
             Defines a number label view node.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell1"><inheritdoc/></param>
+            <param name="cell2"><inheritdoc/></param>
+            <param name="label">
+            <para>Indicates the target value you want to display.</para>
+            <para><i>
+            Please note that the target value is a <see cref="T:System.String"/> value. We don't limit you only input numbers <b>on purpose</b>.
+            You can use instances of the current type to display what you want to display.
+            </i></para>
+            </param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.NumberLabelViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Int32,System.String)">
             <summary>
             Defines a number label view node.
             </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.Shapes.NumberLabelViewNode.Label">
-            <summary>
-            Indicates the target value you want to display.
-            </summary>
-            <remarks><i>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell1"><inheritdoc/></param>
+            <param name="cell2"><inheritdoc/></param>
+            <param name="label">
+            <para>Indicates the target value you want to display.</para>
+            <para><i>
             Please note that the target value is a <see cref="T:System.String"/> value. We don't limit you only input numbers <b>on purpose</b>.
             You can use instances of the current type to display what you want to display.
-            </i></remarks>
+            </i></para>
+            </param>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.Shapes.NumberLabelViewNode.Cell1String">
             <summary>
@@ -1714,14 +1764,19 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Shapes.NumberLabelViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.NumberLabelViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.Shapes.NumberLabelViewNode.Label">
+            <summary>
+            The generated property declaration for parameter <c>label</c>.
+            </summary>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.NumberLabelViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.NumberLabelViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.NumberLabelViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.PencilMarkViewNode">
             <summary>
@@ -1741,14 +1796,14 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Shapes.PencilMarkViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.PencilMarkViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.PencilMarkViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.PencilMarkViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.PencilMarkViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.QuadrupleCellMarkViewNode">
             <summary>
@@ -1790,22 +1845,22 @@ if (student is (name: var name, age: >= 18))
             <param name="topLeftCell">The top-left cell.</param>
             <param name="s">The string.</param>
         </member>
-        <member name="P:Sudoku.Rendering.Nodes.Shapes.QuadrupleHintViewNode.Hint">
-            <summary>
-            The hint string.
-            </summary>
-        </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.QuadrupleHintViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.QuadrupleHintViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.Shapes.QuadrupleHintViewNode.Hint">
+            <summary>
+            The generated property declaration for parameter <c>s</c>.
+            </summary>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.QuadrupleHintViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.QuadrupleHintViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.QuadrupleHintViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.QuadrupleMaxArrowViewNode">
             <summary>
@@ -1833,14 +1888,14 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Shapes.QuadrupleMaxArrowViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.QuadrupleMaxArrowViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.QuadrupleMaxArrowViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.QuadrupleMaxArrowViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.QuadrupleMaxArrowViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.ShapeViewNode">
             <summary>
@@ -1931,7 +1986,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.SingleCellMarkViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.StarProductStarViewNode">
             <summary>
@@ -1946,14 +2001,14 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Shapes.StarProductStarViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.StarProductStarViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.StarProductStarViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.StarProductStarViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.StarProductStarViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.TriangleSumViewNode">
             <summary>
@@ -1973,63 +2028,73 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Shapes.TriangleSumViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.TriangleSumViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.TriangleSumViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.TriangleSumViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.TriangleSumViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.WheelViewNode">
             <summary>
             Defines a wheel view node.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digits">
+            The digit string. The string is of length 4, as a four-number digit,
+            describing 4 digits surrounding with the target cell in clockwise order.
+            The first one is displayed on the top cell.
+            </param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.WheelViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.String)">
             <summary>
             Defines a wheel view node.
             </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.Shapes.WheelViewNode.DigitString">
-            <summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digits">
             The digit string. The string is of length 4, as a four-number digit,
             describing 4 digits surrounding with the target cell in clockwise order.
             The first one is displayed on the top cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.Shapes.WheelViewNode.CellString">
-            <summary>
-            Indicates the cell string.
-            </summary>
+            </param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.WheelViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.WheelViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.Shapes.WheelViewNode.DigitString">
+            <summary>
+            The generated property declaration for parameter <c>digits</c>.
+            </summary>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.WheelViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.WheelViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.WheelViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.Shapes.XvSignViewNode">
             <summary>
             Defines a XV sign view node.
             </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell1"><inheritdoc/></param>
+            <param name="cell2"><inheritdoc/></param>
+            <param name="isX">Indicates whether the mark is <c>X</c>. If <see langword="true"/>, <c>X</c>; otherwise, <c>V</c>.</param>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.XvSignViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Defines a XV sign view node.
             </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.Nodes.Shapes.XvSignViewNode.IsX">
-            <summary>
-            Indicates whether the mark is <c>X</c>. If <see langword="true"/>, <c>X</c>; otherwise, <c>V</c>.
-            </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="cell1"><inheritdoc/></param>
+            <param name="cell2"><inheritdoc/></param>
+            <param name="isX">Indicates whether the mark is <c>X</c>. If <see langword="true"/>, <c>X</c>; otherwise, <c>V</c>.</param>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.Shapes.XvSignViewNode.Cell1String">
             <summary>
@@ -2044,14 +2109,19 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.Shapes.XvSignViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.Shapes.XvSignViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Rendering.Nodes.Shapes.XvSignViewNode.IsX">
+            <summary>
+            The generated property declaration for parameter <c>isX</c>.
+            </summary>
+        </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.XvSignViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.Shapes.XvSignViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Rendering.Nodes.Shapes.XvSignViewNode.Clone">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.SquareViewNode">
             <summary>

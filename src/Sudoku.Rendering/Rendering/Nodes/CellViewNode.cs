@@ -5,8 +5,10 @@ namespace Sudoku.Rendering.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc/></param>
 /// <param name="cell">Indicates the cell highlighted.</param>
+[GetHashCode]
+[ToString]
 [method: JsonConstructor]
-public sealed partial class CellViewNode(ColorIdentifier identifier, [PrimaryConstructorParameter] Cell cell) : BasicViewNode(identifier)
+public sealed partial class CellViewNode(ColorIdentifier identifier, [PrimaryConstructorParameter, HashCodeMember] Cell cell) : BasicViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates the mode that the bound view node will be displayed.
@@ -17,7 +19,7 @@ public sealed partial class CellViewNode(ColorIdentifier identifier, [PrimaryCon
 	/// <summary>
 	/// Indicates the cell string.
 	/// </summary>
-	[ToStringIdentifier(nameof(Cell))]
+	[StringMember(nameof(Cell))]
 	private string CellString => CellsMap[Cell].ToString();
 
 
@@ -27,12 +29,6 @@ public sealed partial class CellViewNode(ColorIdentifier identifier, [PrimaryCon
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is CellViewNode comparer && Cell == comparer.Cell;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
-	public override partial int GetHashCode();
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CellString))]
-	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

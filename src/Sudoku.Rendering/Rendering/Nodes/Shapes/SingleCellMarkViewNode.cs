@@ -3,11 +3,15 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a single-cell mark view node.
 /// </summary>
+[GetHashCode]
+[ToString]
 public abstract partial class SingleCellMarkViewNode(ColorIdentifier identifier, Cell cell, Direction directions) : ShapeViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates the cell used.
 	/// </summary>
+	[HashCodeMember]
+	[StringMember]
 	public Cell Cell { get; } = cell is >= 0 and < 81 ? cell : throw new ArgumentOutOfRangeException(nameof(cell));
 
 	/// <summary>
@@ -16,21 +20,16 @@ public abstract partial class SingleCellMarkViewNode(ColorIdentifier identifier,
 	/// to combine multiple directions.
 	/// </summary>
 	/// <seealso cref="Direction.None"/>
+	[StringMember]
 	public Direction Directions { get; } = directions;
 
 	/// <summary>
 	/// Indicates the cell string.
 	/// </summary>
-	[ToStringIdentifier(nameof(Cell))]
-	private string CellString => CellsMap[Cell].ToString();
+	[StringMember(nameof(Cell))]
+	protected string CellString => CellsMap[Cell].ToString();
 
 
 	[DeconstructionMethod]
 	public partial void Deconstruct(out Cell cell, out Direction directions);
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(Identifier), nameof(Cell))]
-	public override partial int GetHashCode();
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(CellString), nameof(Directions))]
-	public override partial string ToString();
 }

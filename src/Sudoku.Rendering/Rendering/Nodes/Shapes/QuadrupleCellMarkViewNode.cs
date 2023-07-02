@@ -20,6 +20,7 @@ public abstract class QuadrupleCellMarkViewNode(ColorIdentifier identifier, scop
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
+	[HashCodeMember, StringMember]
 	public CellMap Cells { get; } =
 		cells.Count == 4 ? cells : throw new ArgumentException($"The argument '{nameof(cells)}' must hold 4 cells.", nameof(cells));
 }

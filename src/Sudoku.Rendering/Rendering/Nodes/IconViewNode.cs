@@ -5,24 +5,14 @@ namespace Sudoku.Rendering.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc cref="ViewNode(ColorIdentifier)"/></param>
 /// <param name="cell">The cell.</param>
-public abstract partial class IconViewNode(ColorIdentifier identifier, Cell cell) : ViewNode(identifier)
+[GetHashCode]
+[ToString]
+public abstract partial class IconViewNode(ColorIdentifier identifier, [PrimaryConstructorParameter, HashCodeMember, StringMember] Cell cell) : ViewNode(identifier)
 {
-	/// <summary>
-	/// Indicates the cell used.
-	/// </summary>
-	public Cell Cell { get; } = cell;
-
-
 	[DeconstructionMethod]
 	public partial void Deconstruct(out Cell cell);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public sealed override bool Equals([NotNullWhen(true)] ViewNode? other) => other is IconViewNode comparer && Cell == comparer.Cell;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
-	public sealed override partial int GetHashCode();
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell))]
-	public sealed override partial string ToString();
 }

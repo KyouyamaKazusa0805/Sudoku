@@ -3,31 +3,24 @@ namespace Sudoku.Rendering.Nodes.Grouped;
 /// <summary>
 /// Defines a lever view node.
 /// </summary>
-public sealed partial class LeverViewNode(ColorIdentifier identifier, Cell headCell, Cell tailCell, Cell centerCell) :
-	GroupedViewNode(identifier, headCell, ImmutableArray<Cell>.Empty)
+/// <param name="identifier"><inheritdoc/></param>
+/// <param name="headCell"><inheritdoc/></param>
+/// <param name="tailCell">Indicates the tail cell.</param>
+/// <param name="centerCell">Indicates the center cell.</param>
+[GetHashCode]
+[ToString]
+public sealed partial class LeverViewNode(
+	ColorIdentifier identifier,
+	Cell headCell,
+	[PrimaryConstructorParameter, HashCodeMember, StringMember] Cell tailCell,
+	[PrimaryConstructorParameter, HashCodeMember, StringMember] Cell centerCell
+) : GroupedViewNode(identifier, headCell, ImmutableArray<Cell>.Empty)
 {
-	/// <summary>
-	/// Indicates the tail cell.
-	/// </summary>
-	public Cell TailCell { get; } = tailCell;
-
-	/// <summary>
-	/// Indicates the center cell.
-	/// </summary>
-	public Cell CenterCell { get; } = centerCell;
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is LeverViewNode comparer
 		&& HeadCell == comparer.HeadCell && TailCell == comparer.TailCell && CenterCell == comparer.CenterCell;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(HeadCell), nameof(TailCell), nameof(CenterCell))]
-	public override partial int GetHashCode();
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(HeadCell), nameof(TailCell), nameof(CenterCell))]
-	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -3,6 +3,8 @@ namespace Sudoku.Rendering.Nodes.Shapes;
 /// <summary>
 /// Defines a triangle-sum view node.
 /// </summary>
+[GetHashCode]
+[ToString]
 public sealed partial class TriangleSumViewNode(ColorIdentifier identifier, Cell cell, Direction directions) :
 	SingleCellMarkViewNode(identifier, cell, directions)
 {
@@ -15,12 +17,6 @@ public sealed partial class TriangleSumViewNode(ColorIdentifier identifier, Cell
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is TriangleSumViewNode comparer && Cell == comparer.Cell;
-
-	[GeneratedOverridingMember(GeneratedGetHashCodeBehavior.CallingHashCodeCombine, nameof(TypeIdentifier), nameof(Cell))]
-	public override partial int GetHashCode();
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(Identifier), nameof(Cell), nameof(Directions))]
-	public override partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
