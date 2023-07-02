@@ -2,7 +2,7 @@ namespace Sudoku.SourceGeneration.Handlers;
 
 internal static class ToStringHandler
 {
-	public static ToStringCollectedResult_NewStyled? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	public static ToStringCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 	{
 		if (gasc is not
 			{
@@ -164,7 +164,7 @@ internal static class ToStringHandler
 			select $$"""{{displayName ?? $$"""{nameof({{name}})}"""}} = {{{name}}}""";
 	}
 
-	public static void Output(SourceProductionContext spc, ImmutableArray<ToStringCollectedResult_NewStyled> value)
+	public static void Output(SourceProductionContext spc, ImmutableArray<ToStringCollectedResult> value)
 		=> spc.AddSource(
 			"ToString.g.cs",
 			$"""

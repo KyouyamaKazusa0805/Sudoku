@@ -11,7 +11,6 @@ public sealed class Generator : IIncrementalGenerator
 	{
 		// Elementary generators
 		PrimaryConstructor(context);
-		DefaultOverridden(context);
 		ObjectOverridden(context);
 		InstanceDeconstruction(context);
 		ImplicitField(context);
@@ -35,34 +34,6 @@ public sealed class Generator : IIncrementalGenerator
 				.Select(NotNullSelector)
 				.Collect(),
 			instance.Output
-		);
-	}
-
-	private void DefaultOverridden(IncrementalGeneratorInitializationContext context)
-	{
-		const string attributeName = "System.SourceGeneration.GeneratedOverridingMemberAttribute";
-		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(attributeName, IsPartialMethodPredicate, EqualsOverriddenHandler.Transform)
-				.Where(NotNullPredicate)
-				.Select(NotNullSelector)
-				.Collect()
-				.Combine(
-					context.SyntaxProvider
-						.ForAttributeWithMetadataName(attributeName, IsPartialMethodPredicate, GetHashCodeOveriddenHandler.Transform)
-						.Where(NotNullPredicate)
-						.Select(NotNullSelector)
-						.Collect()
-						.Combine(
-							context.SyntaxProvider
-								.ForAttributeWithMetadataName(attributeName, IsPartialMethodPredicate, ToStringOverriddenHandler.Transform)
-								.Where(NotNullPredicate)
-								.Select(NotNullSelector)
-								.Collect()
-						)
-				)
-				.Select(static (v, _) => (v.Left.ToArray(), v.Right.Left.ToArray(), v.Right.Right.ToArray())),
-			DefaultOverriddenHandler.Output
 		);
 	}
 

@@ -2,7 +2,7 @@ namespace Sudoku.SourceGeneration.Handlers;
 
 internal static class GetHashCodeHandler
 {
-	public static GetHashCodeCollectedResult_NewStyled? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	public static GetHashCodeCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 	{
 		if (gasc is not
 			{
@@ -171,7 +171,7 @@ internal static class GetHashCodeHandler
 		return new(finalString);
 	}
 
-	public static void Output(SourceProductionContext spc, ImmutableArray<GetHashCodeCollectedResult_NewStyled> value)
+	public static void Output(SourceProductionContext spc, ImmutableArray<GetHashCodeCollectedResult> value)
 		=> spc.AddSource(
 			"GetHashCode.g.cs",
 			$"""
