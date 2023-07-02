@@ -84,11 +84,7 @@ internal static class ToStringHandler
 		{
 			Behavior.ReturnTypeName => fullTypeNameString,
 			Behavior.CallOverload => "ToString(default(string))",
-			Behavior.Specified => referencedMembers[0] switch
-			{
-				{ ExtraData: { } displayName } => displayName,
-				{ Name: var name } => name
-			},
+			Behavior.Specified => referencedMembers[0].Name,
 			Behavior.Throw => """throw new global::System.NotSupportedException("This method is not supported or disallowed by author.")""",
 			Behavior.RecordLike
 				=> $$$"""
