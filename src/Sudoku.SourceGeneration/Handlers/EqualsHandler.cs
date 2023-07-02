@@ -84,7 +84,7 @@ internal static class EqualsHandler
 			: "\t";
 		var enable0809 = isDeprecated
 			? "#pragma warning restore CS0809\r\n\t"
-			: "\t";
+			: string.Empty;
 		return new(
 			$$"""
 			namespace {{namespaceString}}
