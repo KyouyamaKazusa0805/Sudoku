@@ -20,7 +20,6 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 	/// <summary>
 	/// Indicates an instance providing with data for describing coloring.
 	/// </summary>
-	[HashCodeMember]
 	[StringMember]
 	public ColorIdentifier Identifier { get; } = identifier;
 
