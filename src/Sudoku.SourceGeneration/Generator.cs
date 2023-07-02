@@ -88,7 +88,15 @@ public sealed class Generator : IIncrementalGenerator
 			GetHashCodeHandler.Output
 		);
 
-
+		const string toStringAttributeName = "System.SourceGeneration.ToStringAttribute";
+		context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(toStringAttributeName, IsPartialTypePredicate, ToStringHandler.Transform)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			ToStringHandler.Output
+		);
 	}
 
 	private void InstanceDeconstruction(IncrementalGeneratorInitializationContext context)

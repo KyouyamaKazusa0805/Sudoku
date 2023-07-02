@@ -10,6 +10,7 @@ namespace Sudoku.Concepts;
 [JsonConverter(typeof(Converter))]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [Equals]
+[ToString]
 public unsafe partial struct Grid :
 	IEnumerable<Candidate>,
 	IEqualityOperators<Grid, Grid, bool>,
@@ -1211,9 +1212,6 @@ public unsafe partial struct Grid :
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='custom-fixed']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly ref readonly Mask GetPinnableReference() => ref _values[0];
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.CallOverloadWithNull)]
-	public override readonly partial string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

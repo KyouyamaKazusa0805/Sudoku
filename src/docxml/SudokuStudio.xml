@@ -418,9 +418,6 @@
         <member name="M:SudokuStudio.Collection.ColorPalette.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Collection.ColorPalette.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:SudokuStudio.Collection.ColorPalette.op_Equality(SudokuStudio.Collection.ColorPalette,SudokuStudio.Collection.ColorPalette)">
             <inheritdoc/>
         </member>
@@ -429,6 +426,9 @@
         </member>
         <member name="M:SudokuStudio.Collection.ColorPalette.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:SudokuStudio.Collection.ColorPalette.ToString">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:SudokuStudio.Collection.DashArray">
             <summary>
@@ -468,9 +468,6 @@
         </member>
         <member name="M:SudokuStudio.Collection.DashArray.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:SudokuStudio.Collection.DashArray.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
@@ -523,6 +520,9 @@
         </member>
         <member name="M:SudokuStudio.Collection.DashArray.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.ToString">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:SudokuStudio.Collection.Converter">
             <summary>
@@ -2045,9 +2045,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.Equals(SudokuStudio.Input.SudokuPanePositionConverter)">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.GetPosition(System.Int32,SudokuStudio.Input.Position)">
             <summary>
             Try to get the position <see cref="T:Windows.Foundation.Point"/> of the target candidate.
@@ -2065,6 +2062,9 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:SudokuStudio.Input.Position"/>
         </member>
         <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.ToString">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:SudokuStudio.Input.VirtualKeyModifierStatus">

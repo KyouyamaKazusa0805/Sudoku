@@ -5,6 +5,7 @@ namespace SudokuStudio.Input;
 /// </summary>
 /// <param name="Grid">Indicates the grid layout.</param>
 [GetHashCode]
+[ToString]
 internal readonly partial record struct SudokuPanePositionConverter([property: HashCodeMember] GridLayout Grid)
 {
 	/// <summary>
@@ -69,10 +70,10 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 		}
 	}
 
-	[ToStringIdentifier("GridWidth")]
+	[StringMember("GridWidth")]
 	private string GridWidthString => ((int)GridSize.Width).ToString();
 
-	[ToStringIdentifier("GridHeight")]
+	[StringMember("GridHeight")]
 	private string GridHeightString => ((int)GridSize.Height).ToString();
 
 
@@ -84,9 +85,6 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 
 	/// <inheritdoc/>
 	public bool Equals(SudokuPanePositionConverter other) => GridSize == other.GridSize;
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(GridWidthString), nameof(GridHeightString))]
-	public override partial string ToString();
 
 	/// <summary>
 	/// Try to get the position <see cref="Point"/> of the target candidate.

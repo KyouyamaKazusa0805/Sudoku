@@ -4,6 +4,7 @@ namespace SudokuStudio.Collection;
 /// Represents a color palette that contains a list of <see cref="Color"/> instances that can be used in UI binding.
 /// </summary>
 [Equals]
+[ToString]
 public sealed partial class ColorPalette :
 	ObservableCollection<Color>,
 	IEquatable<ColorPalette>,
@@ -25,6 +26,7 @@ public sealed partial class ColorPalette :
 	}
 
 
+	[StringMember]
 	private string ElementsString => $"[{string.Join(", ", this)}]";
 
 
@@ -63,9 +65,6 @@ public sealed partial class ColorPalette :
 
 		return result.ToHashCode();
 	}
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.SimpleMember, nameof(ElementsString))]
-	public override partial string ToString();
 
 
 	/// <inheritdoc/>

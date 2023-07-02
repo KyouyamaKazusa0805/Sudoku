@@ -5,8 +5,9 @@ namespace Sudoku.Rendering;
 /// </summary>
 /// <param name="kind">The well-known identifier kind to be assigned.</param>
 [GetHashCode]
+[ToString(ToStringBehavior.RecordLike)]
 [method: JsonConstructor]
-public sealed partial class WellKnownColorIdentifier([PrimaryConstructorParameter, HashCodeMember] WellKnownColorIdentifierKind kind) : ColorIdentifier
+public sealed partial class WellKnownColorIdentifier([PrimaryConstructorParameter, HashCodeMember, StringMember] WellKnownColorIdentifierKind kind) : ColorIdentifier
 {
 	/// <inheritdoc cref="WellKnownColorIdentifierKind.Normal"/>
 	public static readonly ColorIdentifier Normal = WellKnownColorIdentifierKind.Normal;
@@ -61,7 +62,4 @@ public sealed partial class WellKnownColorIdentifier([PrimaryConstructorParamete
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ColorIdentifier? other)
 		=> other is WellKnownColorIdentifier comparer && Kind == comparer.Kind;
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, "Kind")]
-	public override partial string ToString();
 }

@@ -22,6 +22,7 @@ namespace Sudoku.Analytics;
 [JsonConverter(typeof(Converter))]
 [Equals]
 [GetHashCode]
+[ToString]
 public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] int mask) :
 	IComparable<Conclusion>,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
@@ -87,6 +88,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 		get => (ConclusionType)(_mask >> 10 & 1);
 	}
 
+	[StringMember]
 	private string OutputString => $"{CellsMap[Cell]}{ConclusionType.Notation()}{Digit + 1}";
 
 
@@ -103,9 +105,6 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(Conclusion other) => _mask.CompareTo(_mask);
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.SimpleMember, nameof(OutputString))]
-	public override partial string ToString();
 
 
 	/// <inheritdoc/>

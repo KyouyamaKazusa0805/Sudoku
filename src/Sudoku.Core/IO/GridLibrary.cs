@@ -12,6 +12,7 @@ namespace Sudoku.IO;
 /// <seealso cref="Grid"/>
 [Equals]
 [GetHashCode]
+[ToString(ToStringBehavior.RecordLike)]
 public sealed partial class GridLibrary(string filePath, GridLibraryIgnoringOption ignoreOption = GridLibraryIgnoringOption.Never) :
 	IAsyncEnumerable<Grid>,
 	IEquatable<GridLibrary>,
@@ -32,6 +33,7 @@ public sealed partial class GridLibrary(string filePath, GridLibraryIgnoringOpti
 	/// Indicates the file path.
 	/// </summary>
 	[HashCodeMember]
+	[StringMember]
 	public string FilePath { get; } =
 		File.Exists(filePath) ? filePath : throw new ArgumentException("Specified file does not exist.", nameof(filePath));
 
@@ -45,9 +47,6 @@ public sealed partial class GridLibrary(string filePath, GridLibraryIgnoringOpti
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] GridLibrary? other) => other is not null && FilePath == other.FilePath;
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(FilePath))]
-	public override partial string ToString();
 
 	/// <inheritdoc/>
 	public async IAsyncEnumerator<Grid> GetAsyncEnumerator(CancellationToken cancellationToken = default)

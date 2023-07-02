@@ -5,14 +5,12 @@ namespace Sudoku.Rendering;
 /// </summary>
 /// <param name="value">The palette color ID value to be assigned. The color palette requires implementation of target projects.</param>
 [GetHashCode]
+[ToString(ToStringBehavior.RecordLike)]
 [method: JsonConstructor]
-public sealed partial class PaletteIdColorIdentifier([PrimaryConstructorParameter, HashCodeMember] int value) : ColorIdentifier
+public sealed partial class PaletteIdColorIdentifier([PrimaryConstructorParameter, HashCodeMember, StringMember] int value) : ColorIdentifier
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ColorIdentifier? other)
 		=> other is PaletteIdColorIdentifier comparer && Value == comparer.Value;
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, "Value")]
-	public override partial string ToString();
 }

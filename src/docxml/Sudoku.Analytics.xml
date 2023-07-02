@@ -4212,9 +4212,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Patterns.ChainNode.Equals(Sudoku.Analytics.Patterns.ChainNode)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Patterns.ChainNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Analytics.Patterns.ChainNode.op_Equality(Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode)">
             <inheritdoc/>
         </member>
@@ -4230,6 +4227,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Analytics.Patterns.ChainNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Patterns.ChainNode.ToString">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Analytics.Patterns.ComplexFishFinKind">

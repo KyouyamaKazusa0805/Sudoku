@@ -6,6 +6,7 @@ namespace System;
 [JsonConverter(typeof(JsonConverter))]
 [Equals]
 [GetHashCode]
+[ToString]
 public readonly partial struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,
@@ -47,6 +48,7 @@ public readonly partial struct Utf8Char :
 	/// <summary>
 	/// Indicates the character string.
 	/// </summary>
+	[StringMember]
 	private string CharString => ((char)_char).ToString();
 
 
@@ -99,9 +101,6 @@ public readonly partial struct Utf8Char :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(Utf8Char other) => _char.CompareTo(_char);
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.SimpleMember, nameof(CharString))]
-	public override partial string ToString();
 
 	/// <summary>
 	/// Converts the current character to the upper-casing letter.

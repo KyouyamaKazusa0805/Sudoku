@@ -19,6 +19,7 @@ namespace System.Collections.Generic;
 /// ]]></code>
 /// </remarks>
 [StructLayout(LayoutKind.Auto)]
+[ToString(ToStringBehavior.CallOverload)]
 public unsafe ref partial struct ValueList<T>([PrimaryConstructorParameter(MemberKinds.Field)] byte capacity) where T : notnull
 {
 	/// <summary>
@@ -165,9 +166,6 @@ public unsafe ref partial struct ValueList<T>([PrimaryConstructorParameter(Membe
 
 		return false;
 	}
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.CallOverloadWithNull)]
-	public override readonly partial string ToString();
 
 	/// <summary>
 	/// Returns a string that represents the current object with the custom format string.

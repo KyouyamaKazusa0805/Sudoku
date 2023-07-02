@@ -12,6 +12,7 @@ namespace Sudoku.Analytics.Patterns;
 [StructLayout(LayoutKind.Auto)]
 [Equals]
 [GetHashCode]
+[ToString]
 public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IEquatable<ChainNode>,
 	IEqualityOperators<ChainNode, ChainNode, bool>
@@ -51,6 +52,7 @@ public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKind
 	/// <summary>
 	/// Indicates whether the node is on.
 	/// </summary>
+	[StringMember]
 	public bool IsOn => _mask >= 729;
 
 	/// <summary>
@@ -146,7 +148,7 @@ public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKind
 	/// <summary>
 	/// Indicates the candidate string representation.
 	/// </summary>
-	[ToStringIdentifier(nameof(Candidate))]
+	[StringMember(nameof(Candidate))]
 	private string CandidateString => $"{CellsMap[Cell]}({Digit + 1})";
 
 	/// <summary>
@@ -164,9 +166,6 @@ public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKind
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(ChainNode other) => _mask == other._mask;
-
-	[GeneratedOverridingMember(GeneratedToStringBehavior.RecordLike, nameof(CandidateString), nameof(IsOn))]
-	public override partial string ToString();
 
 
 	/// <inheritdoc/>

@@ -1,8 +1,8 @@
 namespace Sudoku.SourceGeneration.Handlers;
 
-internal static class GetHashCodeHandler
+internal static class ToStringHandler
 {
-	public static GetHashCodeCollectedResult_NewStyled? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	public static ToStringCollectedResult_NewStyled? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 	{
 		if (gasc is not
 			{
@@ -33,6 +33,12 @@ internal static class GetHashCodeHandler
 		var typeNameString = $"{typeName}{typeParametersString}";
 		var fullTypeNameString = $"{namespaceString}.{typeNameString}";
 
+		var simpleFormattableTypeName = "System.ISimpleFormattable";
+		if (compilation.GetTypeByMetadataName(simpleFormattableTypeName) is not { } simpleFormattableTypeSymbol)
+		{
+			return null;
+		}
+
 		const string primaryConstructorParameterAttributeTypeName = "System.SourceGeneration.PrimaryConstructorParameterAttribute";
 		var primaryConstructorParameterAttributeSymbol = compilation.GetTypeByMetadataName(primaryConstructorParameterAttributeTypeName);
 		if (primaryConstructorParameterAttributeSymbol is null)
@@ -40,9 +46,9 @@ internal static class GetHashCodeHandler
 			return null;
 		}
 
-		const string hashCodeMemberAttributeTypeName = "System.SourceGeneration.HashCodeMemberAttribute";
-		var hashCodeMemberAttributeSymbol = compilation.GetTypeByMetadataName(hashCodeMemberAttributeTypeName);
-		if (hashCodeMemberAttributeSymbol is null)
+		const string stringMemberAttributeName = "System.SourceGeneration.StringMemberAttribute";
+		var stringMemberAttributeSymbol = compilation.GetTypeByMetadataName(stringMemberAttributeName);
+		if (stringMemberAttributeSymbol is null)
 		{
 			return null;
 		}
@@ -52,68 +58,41 @@ internal static class GetHashCodeHandler
 			semanticModel,
 			parameterList,
 			primaryConstructorParameterAttributeSymbol,
-			a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, hashCodeMemberAttributeSymbol),
-			static symbol => symbol switch
-			{
-				IFieldSymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
-				IFieldSymbol { Type.TypeKind: TypeKind.Enum } => false,
-				IPropertySymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
-				IPropertySymbol { Type.TypeKind: TypeKind.Enum } => false,
-				IParameterSymbol { Type.SpecialType: System_Byte or System_SByte or System_Int16 or System_UInt16 or System_Int32 } => true,
-				IParameterSymbol { Type.TypeKind: TypeKind.Enum } => false,
-				_ => default(bool?)
-			},
+			a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, stringMemberAttributeSymbol),
+			symbol => (string?)symbol.GetAttributes().First(stringMemberAttirbuteMatcher).ConstructorArguments[0].Value ?? symbol.Name,
 			cancellationToken
 		);
 
-		var behavior = (isRefStruct, attribute) switch
+		var behavior = (int)attribute.ConstructorArguments[0].Value! switch
 		{
-			(true, _) => Behavior.Throw,
-			(_, { ConstructorArguments: [{ Value: int behaviorRawValue }] }) => behaviorRawValue switch
+			0 => (isRefStruct, referencedMembers) switch
 			{
-				0 => referencedMembers switch
-				{
-					[] => Behavior.ReturnNegativeOne,
-					[(_, true)] => Behavior.Direct,
-					[(_, false)] => Behavior.EnumExplicitCast,
-					{ Length: > 8 } => Behavior.HashCodeAdd,
-					_ => Behavior.Specified
-				},
-				1 => Behavior.Throw,
-				_ => throw new InvalidOperationException("Invalid status.")
+				(true, _) => Behavior.Throw,
+				_ when hasImpledFormattable(type) => Behavior.CallOverload,
+				(_, []) => Behavior.RecordLike,
+				(_, { Length: 1 }) => Behavior.Specified,
+				_ => Behavior.RecordLike
 			},
-			_ => throw new InvalidOperationException("Invalid status.")
+			1 => Behavior.CallOverload,
+			2 when referencedMembers.Length == 1 => Behavior.Specified,
+			3 when referencedMembers.Length != 0 => Behavior.RecordLike,
+			4 => Behavior.Throw,
+			_ => Behavior.ReturnTypeName
 		};
 
-		var codeBlock = behavior switch
+		var expression = behavior switch
 		{
-			Behavior.ReturnNegativeOne
-				=> """
-					=> -1;
-				""",
-			Behavior.Direct
-				=> $"""
-					=> {referencedMembers[0].Name};
-				""",
-			Behavior.EnumExplicitCast
-				=> $"""
-					=> (int){referencedMembers[0].Name};
-				""",
-			Behavior.Specified
-				=> $"""
-					=> global::System.HashCode.Combine({string.Join(", ", from pair in referencedMembers select pair.Name)});
-				""",
-			Behavior.Throw
-				=> """
-					=> throw new global::System.NotSupportedException("This method is not supported or disallowed by author.");
-				""",
-			Behavior.HashCodeAdd
-				=> $$"""
-					{
-						var hashCode = new global::System.HashCode();
-						{{string.Join("\r\n\r\n", from member in referencedMembers select $"hashCode.Add({member.Name});")}}
-						return hashCode.ToHashCode();
-					}
+			Behavior.ReturnTypeName => fullTypeNameString,
+			Behavior.CallOverload => "ToString(default(string))",
+			Behavior.Specified => referencedMembers[0] switch
+			{
+				{ ExtraData: { } displayName } => displayName,
+				{ Name: var name } => name
+			},
+			Behavior.Throw => """throw new global::System.NotSupportedException("This method is not supported or disallowed by author.")""",
+			Behavior.RecordLike
+				=> $$$"""
+				$"{{{typeName}}} {{ {{{string.Join(", ", f(referencedMembers))}}} }}"
 				""",
 			_ => throw new InvalidOperationException("Invalid status.")
 		};
@@ -126,8 +105,8 @@ internal static class GetHashCodeHandler
 			(_, TypeKind.Struct) => "struct",
 			_ => throw new InvalidOperationException("Invalid status.")
 		};
-		var attributesMarked = isRefStruct
-			? behavior == Behavior.ReturnNegativeOne
+		var attributesMarked = isRefStruct && behavior is Behavior.Throw or Behavior.ReturnTypeName
+			? behavior == Behavior.ReturnTypeName
 				? """
 				[global::System.ObsoleteAttribute("Calling this method is unexpected because author disallow you call this method on purpose.", true)]
 				"""
@@ -162,18 +141,32 @@ internal static class GetHashCodeHandler
 					{{attributesMarked}}
 					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(GetHashCodeHandler).FullName}}", "{{Value}}")]
 					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-					public {{otherModifiersString}}override {{readOnlyModifier}}int GetHashCode()
-					{{codeBlock}}
+					public {{otherModifiersString}}override {{readOnlyModifier}}string ToString()
+						=> {{expression}};
 			{{enable0809}}}
 			}
 			""";
 
 		return new(finalString);
+
+
+		bool hasImpledFormattable(INamedTypeSymbol type)
+			=> type.AllInterfaces.Contains(simpleFormattableTypeSymbol, SymbolEqualityComparer.Default);
+
+		bool stringMemberAttirbuteMatcher(AttributeData a)
+			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, stringMemberAttributeSymbol);
+
+		static IEnumerable<string> f((string Name, string ExtraData)[] referencedMembers)
+			=>
+			from referencedMember in referencedMembers
+			let displayName = referencedMember.ExtraData
+			let name = referencedMember.Name
+			select $$"""{{displayName ?? $$"""{nameof({{name}})}"""}} = {{{name}}}""";
 	}
 
-	public static void Output(SourceProductionContext spc, ImmutableArray<GetHashCodeCollectedResult_NewStyled> value)
+	public static void Output(SourceProductionContext spc, ImmutableArray<ToStringCollectedResult_NewStyled> value)
 		=> spc.AddSource(
-			"GetHashCode.g.cs",
+			"ToString.g.cs",
 			$"""
 			// <auto-generated/>
 
@@ -186,10 +179,10 @@ internal static class GetHashCodeHandler
 
 file enum Behavior
 {
-	ReturnNegativeOne,
-	Direct,
-	EnumExplicitCast,
-	Specified,
 	Throw,
-	HashCodeAdd
+	ReturnTypeName,
+	CallOverload,
+	Specified,
+	RecordLike
 }
+

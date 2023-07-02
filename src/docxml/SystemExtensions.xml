@@ -714,9 +714,6 @@
             <param name="predicate">A method that defines whether two instances are considered equal.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:System.Collections.Generic.ValueList`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:System.Collections.Generic.ValueList`1.ToString(System.String)">
             <summary>
             Returns a string that represents the current object with the custom format string.
@@ -777,6 +774,9 @@
             <summary>
             The generated field declaration for parameter <c>capacity</c>.
             </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.ToString">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:System.Collections.Generic.CollectionExtensions">
             <summary>
@@ -4498,7 +4498,7 @@ fixed (short* ptr = instance)
         </member>
         <member name="F:System.SourceGeneration.GetHashCodeBehavior.Intelligent">
             <summary>
-            Indicates the soure generator will adopt an intelligent way to generate hashing expression.
+            Indicates the source generator will adopt an intelligent way to generate hashing expression.
             If none of all data members in a type marked <see cref="T:System.SourceGeneration.HashCodeMemberAttribute"/>, a <see cref="T:System.NotSupportedException"/>
             will be thrown; if one member is marked and its type can be directly converted into an <see cref="T:System.Int32"/>, then use itself;
             otherwise, call <see cref="M:System.HashCode.Combine``1(``0)"/> method set or use <see cref="M:System.HashCode.Add``1(``0)"/>.
@@ -4744,6 +4744,98 @@ fixed (short* ptr = instance)
             </para>
             </remarks>
         </member>
+        <member name="T:System.SourceGeneration.StringMemberAttribute">
+            <summary>
+            Indicates the marked member will participate to-string operation.
+            </summary>
+            <param name="displayName">
+            Indicates the display name of the field or property to be changed.
+            By default the value is <see langword="null"/>, which means no conversion will be existing here.
+            </param>
+        </member>
+        <member name="M:System.SourceGeneration.StringMemberAttribute.#ctor(System.String)">
+            <summary>
+            Indicates the marked member will participate to-string operation.
+            </summary>
+            <param name="displayName">
+            Indicates the display name of the field or property to be changed.
+            By default the value is <see langword="null"/>, which means no conversion will be existing here.
+            </param>
+        </member>
+        <member name="P:System.SourceGeneration.StringMemberAttribute.DisplayName">
+            <summary>
+            The generated property declaration for parameter <c>displayName</c>.
+            </summary>
+        </member>
+        <member name="T:System.SourceGeneration.ToStringAttribute">
+            <summary>
+            Represents an attribute type that allows source generators controlling behaviors on generating <see cref="M:System.Object.ToString"/> method.
+            </summary>
+            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
+            <seealso cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.SourceGeneration.ToStringAttribute.#ctor(System.SourceGeneration.ToStringBehavior)">
+            <summary>
+            Represents an attribute type that allows source generators controlling behaviors on generating <see cref="M:System.Object.ToString"/> method.
+            </summary>
+            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
+            <seealso cref="M:System.Object.ToString"/>
+        </member>
+        <member name="P:System.SourceGeneration.ToStringAttribute.OtherModifiers">
+            <summary>
+            <para>
+            Indicates the other modifiers should be modified. For example, if the method should be <see langword="sealed"/>
+            in a <see langword="class"/> type, assign <c>"Sealed"</c> or <c>"sealed"</c> to this property. Casing are ignored.
+            Multiple modifiers should be separated by whitespaces.
+            </para>
+            <para>By default, this property is <see langword="null"/>.</para>
+            </summary>
+            <remarks>
+            Please note, sometimes some extra keywords will be automatically added into signature without manually assigning them to this property.
+            For example, in a non-<see langword="readonly struct"/>, due to the implementation not caring
+            about its <see langword="readonly"/>-ability, a <see langword="readonly"/> modifier will be implicitly added.
+            </remarks>
+        </member>
+        <member name="P:System.SourceGeneration.ToStringAttribute.Behavior">
+            <summary>
+            The generated property declaration for parameter <c>behavior</c>.
+            </summary>
+        </member>
+        <member name="T:System.SourceGeneration.ToStringBehavior">
+            <summary>
+            Defines a behavior by source generator on generating <see cref="M:System.Object.GetHashCode"/> overridden methods.
+            </summary>
+            <seealso cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="F:System.SourceGeneration.ToStringBehavior.Intelligent">
+            <summary>
+            Indicates the source generator will automatically determine which expression to be output.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.ToStringBehavior.CallOverload">
+            <summary>
+            Indicates the source generator will generate an expression
+            to call overload <see cref="M:System.ISimpleFormattable.ToString(System.String)"/> method.
+            </summary>
+            <seealso cref="M:System.ISimpleFormattable.ToString(System.String)"/>
+        </member>
+        <member name="F:System.SourceGeneration.ToStringBehavior.Specified">
+            <summary>
+            Indicates the source generator will generate an expression
+            to output a string whose value is directly from a property or field result.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.ToStringBehavior.RecordLike">
+            <summary>
+            Indicates the source generator will generate an expression
+            like a <see langword="record"/> or <see langword="record struct"/> default output.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.ToStringBehavior.ThrowNotSupportedException">
+            <summary>
+            Indicates throws <see cref="T:System.NotSupportedException"/>.
+            </summary>
+        </member>
         <member name="T:System.SourceGeneration.ToStringIdentifierAttribute">
             <summary>
             Indicates the identifier name displayed in generated code for <c>ToString</c> method.
@@ -4876,9 +4968,6 @@ fixed (short* ptr = instance)
         <member name="M:System.Utf8Char.CompareTo(System.Utf8Char)">
             <inheritdoc/>
         </member>
-        <member name="M:System.Utf8Char.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:System.Utf8Char.ToUpper">
             <summary>
             Converts the current character to the upper-casing letter.
@@ -4971,6 +5060,9 @@ fixed (short* ptr = instance)
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:System.Utf8Char.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Utf8Char.ToString">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:System.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
