@@ -6,6 +6,7 @@ namespace Sudoku.Analytics;
 /// <param name="conclusions"><inheritdoc cref="IRenderable.Conclusions" path="/summary"/></param>
 /// <param name="views"><inheritdoc cref="IRenderable.Views" path="/summary"/></param>
 [Equals(OtherModifiers = "sealed")]
+[GetHashCode(GetHashCodeBehavior.ThrowNotSupportedException, OtherModifiers = "sealed")]
 public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] conclusions, [PrimaryConstructorParameter] View[]? views) :
 	IRenderable
 {
@@ -149,16 +150,6 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// </summary>
 	protected string ConclusionText => ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
 
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// <inheritdoc cref="Equals(object?)" path="/remarks"/>
-	/// </remarks>
-	/// <exception cref="NotSupportedException">Always throws this exception.</exception>
-	/// <seealso cref="IEquatableStep{TSelf}"/>
-	[DoesNotReturn]
-	[Obsolete("This method cannot be used for this type, because it is an unexpected use on comparing them, except it having implemented 'IEquatableStep<>' type.", true)]
-	public sealed override int GetHashCode() => throw new NotSupportedException();
 
 	/// <summary>
 	/// Returns a string that only contains the name and the basic description.

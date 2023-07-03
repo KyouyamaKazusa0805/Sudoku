@@ -126,18 +126,22 @@ internal static class GetHashCodeHandler
 			(_, TypeKind.Struct) => "struct",
 			_ => throw new InvalidOperationException("Invalid status.")
 		};
-		var attributesMarked = isRefStruct
-			? behavior == Behavior.ReturnNegativeOne
-				? """
-				[global::System.ObsoleteAttribute("Calling this method is unexpected because author disallow you call this method on purpose.", true)]
-				"""
-				: """
+		var attributesMarked = (isRefStruct, behavior) switch
+		{
+			(true, not Behavior.ReturnNegativeOne) or (_, Behavior.Throw)
+				=> """
 				[global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
 						[global::System.ObsoleteAttribute("Calling this method is unexpected because author disallow you call this method on purpose.", true)]
+				""",
+			(true, _)
+				=> """
+				[global::System.ObsoleteAttribute("Calling this method is unexpected because author disallow you call this method on purpose.", true)]
+				""",
+			_
+				=> """
+				[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 				"""
-			: """
-			[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-			""";
+		};
 		var readOnlyModifier = kind == TypeKind.Struct && !isReadOnly ? "readonly " : string.Empty;
 		var isDeprecated = attributesMarked.Contains("ObsoleteAttribute");
 		var suppress0809 = isDeprecated
