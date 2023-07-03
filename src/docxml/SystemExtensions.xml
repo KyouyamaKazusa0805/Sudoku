@@ -4168,6 +4168,12 @@ fixed (short* ptr = instance)
             </summary>
             <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
         </member>
+        <member name="P:System.SourceGeneration.EqualityOperatorsAttribute.NullabilityPrefer">
+            <summary>
+            Indicates an extra option to tell source generators which case of nullability should be preferred.
+            By default, not null for value types and including null for reference types.
+            </summary>
+        </member>
         <member name="P:System.SourceGeneration.EqualityOperatorsAttribute.Behavior">
             <summary>
             The generated property declaration for parameter <c>behavior</c>.
@@ -4307,6 +4313,10 @@ fixed (short* ptr = instance)
             Represents an attribute that can tell source generators the type is a large structure,
             meaning the source generators will always append <see langword="scoped ref readonly"/> modifiers onto target-typed parameters.
             </summary>
+            <remarks>
+            Please note that the type can be also consumed by interfaces. Such cases mean the target structure types implemented is a large structure.
+            However, if the interface types having marked this attribute have been implemented by class types, it'll be meaningless.
+            </remarks>
         </member>
         <member name="T:System.SourceGeneration.MemberKinds">
             <summary>
@@ -4321,6 +4331,27 @@ fixed (short* ptr = instance)
         <member name="F:System.SourceGeneration.MemberKinds.Property">
             <summary>
             Indicates the member kind is property.
+            </summary>
+        </member>
+        <member name="T:System.SourceGeneration.NullabilityPrefer">
+            <summary>
+            Represents an enumeration type that tells source generators which case of nullability should be preferred.
+            By default, <see langword="not null"/> for value types and including <see langword="null"/> for reference types.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.NullabilityPrefer.Default">
+            <summary>
+            Indicates the preferring is default.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.NullabilityPrefer.NotNull">
+            <summary>
+            Indicates the source generator will prefer <see langword="not null"/>.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.NullabilityPrefer.IncludeNull">
+            <summary>
+            Indicates the source generator will prefer including <see langword="null"/>.
             </summary>
         </member>
         <member name="T:System.SourceGeneration.PatternOverriddenAttribute">

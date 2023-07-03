@@ -9,6 +9,7 @@ namespace Sudoku.Rendering;
 [JsonDerivedType(typeof(WellKnownColorIdentifier), 1)]
 [JsonDerivedType(typeof(PaletteIdColorIdentifier), 2)]
 [Equals]
+[EqualityOperators]
 public abstract partial class ColorIdentifier : IEquatable<ColorIdentifier>, IEqualityOperators<ColorIdentifier, ColorIdentifier, bool>
 {
 	/// <inheritdoc/>
@@ -19,16 +20,6 @@ public abstract partial class ColorIdentifier : IEquatable<ColorIdentifier>, IEq
 
 	/// <inheritdoc/>
 	public abstract override string ToString();
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(ColorIdentifier? left, ColorIdentifier? right)
-		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(ColorIdentifier? left, ColorIdentifier? right) => !(left == right);
 
 
 	/// <summary>

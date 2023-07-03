@@ -28,8 +28,10 @@ internal static class EqualityOperatorsHandler
 			return null;
 		}
 
-		if (kind == TypeKind.Interface
-			&& (typeParameters is not [{ ConstraintTypes: var constraintTypes }] || !constraintTypes.Contains(type, SymbolEqualityComparer.Default)))
+		var hasSelfTypeArgument = kind == TypeKind.Interface
+			? typeParameters is not [{ ConstraintTypes: var constraintTypes }] || !constraintTypes.Contains(type, SymbolEqualityComparer.Default)
+			: default(bool?);
+		if (hasSelfTypeArgument is false)
 		{
 			// If the type is an interface, we should check for whether its first type parameter is a self type parameter,
 			// which means it should implement its containing interface type.
@@ -79,6 +81,22 @@ internal static class EqualityOperatorsHandler
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
 		var typeNameString = $"{typeName}{typeArgumentsString}";
 		var fullTypeNameString = $"{namespaceString}.{typeNameString}";
+		const string nullableToken = "?";
+		var nullabilityToken = (attribute.GetNamedArgument<int>("NullabilityPrefer"), kind) switch
+		{
+			(0, TypeKind.Class) or (2, _) => nullableToken,
+			(0, TypeKind.Struct) or (1, _) => string.Empty,
+			(0, TypeKind.Interface) => typeParameters[0] switch
+			{
+				{ HasNotNullConstraint: true } => nullableToken, // Unknown T.
+				{ HasUnmanagedTypeConstraint: true } or { HasValueTypeConstraint: true } => string.Empty,
+				{ HasReferenceTypeConstraint: true } => nullableToken,
+				{ ReferenceTypeConstraintNullableAnnotation: Annotated } => nullableToken, // Reference type inferred.
+				{ ConstraintNullableAnnotations: var annotations } when annotations.Contains(Annotated) => nullableToken, // Reference type inferred.
+				_ => string.Empty
+			},
+			_ => throw new InvalidOperationException("Invalid status.")
+		};
 		var attributesMarked = behavior switch
 		{
 			Behavior.StaticAbstract
@@ -93,6 +111,11 @@ internal static class EqualityOperatorsHandler
 				[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 				"""
 		};
+		var (i1, i2) = nullabilityToken switch
+		{
+			nullableToken => ("(left, right) switch { (null, null) => true, ({ } a, { } b) => a.Equals(b), _ => false }", "!(left == right)"),
+			_ => ("left.Equals(right)", "!(left == right)")
+		};
 
 		var operatorDeclaration = behavior switch
 		{
@@ -100,59 +123,59 @@ internal static class EqualityOperatorsHandler
 				=> $$"""
 				/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 						{{attributesMarked}}
-						public static bool operator ==({{fullTypeNameString}} left, {{fullTypeNameString}} right)
-							=> left.Equals(right);
+						public static bool operator ==({{fullTypeNameString}}{{nullabilityToken}} left, {{fullTypeNameString}}{{nullabilityToken}} right)
+							=> {{i1}};
 
 						/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
-						public static bool operator !=({{fullTypeNameString}} left, {{fullTypeNameString}} right)
-							=> !left.Equals(right);
+						public static bool operator !=({{fullTypeNameString}}{{nullabilityToken}} left, {{fullTypeNameString}}{{nullabilityToken}} right)
+							=> {{i2}};
 				""",
 			Behavior.WithScopedIn or Behavior.WithScopedInButDeprecated
 				=> $$"""
 				/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 						{{attributesMarked}}
-						public static bool operator ==(scoped in {{fullTypeNameString}} left, scoped in {{fullTypeNameString}} right)
-							=> left.Equals(right);
+						public static bool operator ==(scoped in {{fullTypeNameString}}{{nullabilityToken}} left, scoped in {{fullTypeNameString}}{{nullabilityToken}} right)
+							=> {{i1}};
 
 						/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
-						public static bool operator !=(scoped in {{fullTypeNameString}} left, scoped in {{fullTypeNameString}} right)
-							=> !left.Equals(right);
+						public static bool operator !=(scoped in {{fullTypeNameString}}{{nullabilityToken}} left, scoped in {{fullTypeNameString}}{{nullabilityToken}} right)
+							=> {{i2}};
 				""",
 			Behavior.WithScopedRefReadOnly or Behavior.WithScopedRefReadOnlyButDeprecated
 				=> $$"""
 				/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 						{{attributesMarked}}
-						public static bool operator ==(scoped ref readonly {{fullTypeNameString}} left, scoped ref readonly {{fullTypeNameString}} right)
-							=> left.Equals(right);
+						public static bool operator ==(scoped ref readonly {{fullTypeNameString}}{{nullabilityToken}} left, scoped ref readonly {{fullTypeNameString}}{{nullabilityToken}} right)
+							=> {{i1}};
 
 						/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
-						public static bool operator !=(scoped ref readonly {{fullTypeNameString}} left, scoped ref readonly {{fullTypeNameString}} right)
-							=> !left.Equals(right);
+						public static bool operator !=(scoped ref readonly {{fullTypeNameString}}{{nullabilityToken}} left, scoped ref readonly {{fullTypeNameString}}{{nullabilityToken}} right)
+							=> {{i2}};
 				""",
 			Behavior.StaticVirtual when typeParameters is [{ Name: var selfTypeParameterName }]
 				=> $$"""
 				/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 						{{attributesMarked}}
 						static virtual bool operator ==({{selfTypeParameterName}} left, {{selfTypeParameterName}} right)
-							=> left.Equals(right);
+							=> {{i1}};
 
 						/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
 						static virtual bool operator !=({{selfTypeParameterName}} left, {{selfTypeParameterName}} right)
-							=> !left.Equals(right);
+							=> {{i2}};
 				""",
 			Behavior.StaticAbstract when typeParameters is [{ Name: var selfTypeParameterName }]
 				=> $$"""
 				/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 						{{attributesMarked}}
-						static abstract bool operator ==({{selfTypeParameterName}} left, {{selfTypeParameterName}} right);
+						static abstract bool operator ==({{selfTypeParameterName}}{{nullabilityToken}} left, {{selfTypeParameterName}}{{nullabilityToken}} right);
 
 						/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
-						static virtual bool operator !=({{selfTypeParameterName}} left, {{selfTypeParameterName}} right) => !(left == right);
+						static virtual bool operator !=({{selfTypeParameterName}}{{nullabilityToken}} left, {{selfTypeParameterName}}{{nullabilityToken}} right) => {{i2}};
 				""",
 			_ => null
 		};

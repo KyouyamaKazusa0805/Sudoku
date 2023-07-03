@@ -12,6 +12,7 @@ namespace Sudoku.Rendering;
 [JsonDerivedType(typeof(BabaGroupViewNode), 4)]
 [JsonDerivedType(typeof(LinkViewNode), 5)]
 [Equals]
+[EqualityOperators]
 public abstract partial class ViewNode(ColorIdentifier identifier) :
 	ICloneable<ViewNode>,
 	IEquatable<ViewNode>,
@@ -48,14 +49,4 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 
 	/// <inheritdoc/>
 	public abstract ViewNode Clone();
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(ViewNode? left, ViewNode? right)
-		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(ViewNode? left, ViewNode? right) => !(left == right);
 }

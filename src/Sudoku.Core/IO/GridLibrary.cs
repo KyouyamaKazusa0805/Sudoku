@@ -13,6 +13,7 @@ namespace Sudoku.IO;
 [Equals]
 [GetHashCode]
 [ToString(ToStringBehavior.RecordLike)]
+[EqualityOperators]
 public sealed partial class GridLibrary(string filePath, GridLibraryIgnoringOption ignoreOption = GridLibraryIgnoringOption.Never) :
 	IAsyncEnumerable<Grid>,
 	IEquatable<GridLibrary>,
@@ -93,14 +94,4 @@ public sealed partial class GridLibrary(string filePath, GridLibraryIgnoringOpti
 			failedCallback?.Invoke();
 		}
 	}
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(GridLibrary? left, GridLibrary? right)
-		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(GridLibrary? left, GridLibrary? right) => !(left == right);
 }

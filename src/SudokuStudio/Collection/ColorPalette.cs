@@ -5,6 +5,7 @@ namespace SudokuStudio.Collection;
 /// </summary>
 [Equals]
 [ToString]
+[EqualityOperators]
 public sealed partial class ColorPalette :
 	ObservableCollection<Color>,
 	IEquatable<ColorPalette>,
@@ -65,14 +66,4 @@ public sealed partial class ColorPalette :
 
 		return result.ToHashCode();
 	}
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(ColorPalette? left, ColorPalette? right)
-		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(ColorPalette? left, ColorPalette? right) => !(left == right);
 }
