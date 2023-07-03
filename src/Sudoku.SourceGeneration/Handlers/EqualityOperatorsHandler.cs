@@ -14,7 +14,8 @@ internal static class EqualityOperatorsHandler
 					ContainingType: null,
 					IsRecord: var isRecord,
 					TypeKind: var kind and (TypeKind.Class or TypeKind.Struct or TypeKind.Interface),
-					TypeParameters: var typeParameters
+					TypeParameters: var typeParameters,
+					IsRefLikeType: var isRefStruct
 				} type,
 				SemanticModel.Compilation: var compilation
 			})
@@ -97,6 +98,7 @@ internal static class EqualityOperatorsHandler
 			},
 			_ => throw new InvalidOperationException("Invalid status.")
 		};
+		var scopedKeywordString = isRefStruct ? "scoped " : string.Empty;
 		var attributesMarked = behavior switch
 		{
 			Behavior.StaticAbstract
@@ -123,36 +125,36 @@ internal static class EqualityOperatorsHandler
 				=> $$"""
 				/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 						{{attributesMarked}}
-						public static bool operator ==({{fullTypeNameString}}{{nullabilityToken}} left, {{fullTypeNameString}}{{nullabilityToken}} right)
+						public static bool operator ==({{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i1}};
 
 						/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
-						public static bool operator !=({{fullTypeNameString}}{{nullabilityToken}} left, {{fullTypeNameString}}{{nullabilityToken}} right)
+						public static bool operator !=({{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i2}};
 				""",
 			Behavior.WithScopedIn or Behavior.WithScopedInButDeprecated
 				=> $$"""
 				/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 						{{attributesMarked}}
-						public static bool operator ==(scoped in {{fullTypeNameString}}{{nullabilityToken}} left, scoped in {{fullTypeNameString}}{{nullabilityToken}} right)
+						public static bool operator ==(scoped in {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, scoped in {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i1}};
 
 						/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
-						public static bool operator !=(scoped in {{fullTypeNameString}}{{nullabilityToken}} left, scoped in {{fullTypeNameString}}{{nullabilityToken}} right)
+						public static bool operator !=(scoped in {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, scoped in {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i2}};
 				""",
 			Behavior.WithScopedRefReadOnly or Behavior.WithScopedRefReadOnlyButDeprecated
 				=> $$"""
 				/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 						{{attributesMarked}}
-						public static bool operator ==(scoped ref readonly {{fullTypeNameString}}{{nullabilityToken}} left, scoped ref readonly {{fullTypeNameString}}{{nullabilityToken}} right)
+						public static bool operator ==(scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i1}};
 
 						/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
-						public static bool operator !=(scoped ref readonly {{fullTypeNameString}}{{nullabilityToken}} left, scoped ref readonly {{fullTypeNameString}}{{nullabilityToken}} right)
+						public static bool operator !=(scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i2}};
 				""",
 			Behavior.StaticVirtual when typeParameters is [{ Name: var selfTypeParameterName }]

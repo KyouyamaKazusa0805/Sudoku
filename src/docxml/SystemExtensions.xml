@@ -3151,12 +3151,6 @@ fixed (short* ptr = instance)
             <seealso cref="!:AppendRangeWithSeparatorUnsafe&lt;T&gt;(in T, int, delegate*&lt;in T, string?&gt;, string)"/>
             <seealso cref="M:System.Text.StringHandler.AppendRangeWithSeparatorRef``1(``0@,System.Int32,System.Text.StringHandlerRefAppender{``0},System.String)"/>
         </member>
-        <member name="M:System.Text.StringHandler.op_Equality(System.Text.StringHandler,System.Text.StringHandler)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Text.StringHandler.op_Inequality(System.Text.StringHandler,System.Text.StringHandler)">
-            <inheritdoc/>
-        </member>
         <member name="T:System.Text.StringHandler.Enumerator">
             <summary>
             Encapsulates the enumerator of this collection.
@@ -3200,6 +3194,12 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.Text.StringHandler.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Text.StringHandler.op_Equality(System.Text.StringHandler,System.Text.StringHandler)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:System.Text.StringHandler.op_Inequality(System.Text.StringHandler,System.Text.StringHandler)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:System.Text.StringHandlerRefAppender`1">
             <summary>
