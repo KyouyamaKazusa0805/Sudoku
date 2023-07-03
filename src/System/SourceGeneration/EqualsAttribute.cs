@@ -6,20 +6,4 @@ namespace System.SourceGeneration;
 /// <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
 /// <seealso cref="object.Equals(object?)"/>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false)]
-public sealed partial class EqualsAttribute([PrimaryConstructorParameter] EqualsBehavior behavior = EqualsBehavior.Intelligent) : Attribute
-{
-	/// <summary>
-	/// <para>
-	/// Indicates the other modifiers should be modified. For example, if the method should be <see langword="sealed"/>
-	/// in a <see langword="class"/> type, assign <c>"Sealed"</c> or <c>"sealed"</c> to this property. Casing are ignored.
-	/// Multiple modifiers should be separated by whitespaces.
-	/// </para>
-	/// <para>By default, this property is <see langword="null"/>.</para>
-	/// </summary>
-	/// <remarks>
-	/// Please note, sometimes some extra keywords will be automatically added into signature without manually assigning them to this property.
-	/// For example, in a non-<see langword="readonly struct"/>, due to the implementation not caring
-	/// about its <see langword="readonly"/>-ability, a <see langword="readonly"/> modifier will be implicitly added.
-	/// </remarks>
-	public string? OtherModifiers { get; init; }
-}
+public sealed partial class EqualsAttribute([PrimaryConstructorParameter] EqualsBehavior behavior = EqualsBehavior.Intelligent) : PatternOverriddenAttribute;
