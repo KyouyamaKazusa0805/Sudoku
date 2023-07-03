@@ -109,11 +109,8 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 		{
 			var playground = puzzle;
 			var totalCandidatesCount = playground.CandidatesCount;
-			var recordedSteps = new List<Step>(100);
-			var stepGrids = new List<Grid>(100);
-			var stepSearchers = ResultStepSearchers;
+			var (recordedSteps, stepGrids, stepSearchers) = (new List<Step>(100), new List<Grid>(100), ResultStepSearchers);
 			var progressedStepSearcherName = default(string);
-
 			scoped var stopwatch = ValueStopwatch.StartNew();
 
 		Again:
