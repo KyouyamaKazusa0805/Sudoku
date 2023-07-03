@@ -7,6 +7,7 @@ namespace System;
 [Equals]
 [GetHashCode]
 [ToString]
+[EqualityOperators]
 public readonly partial struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,
@@ -123,14 +124,6 @@ public readonly partial struct Utf8Char :
 			? CompareTo(comparer)
 			: throw new ArgumentException("Cannot operate because the argument is not a UTF-8 formatted character.", nameof(obj));
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Utf8Char left, Utf8Char right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Utf8Char left, Utf8Char right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

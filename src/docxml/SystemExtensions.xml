@@ -4151,6 +4151,51 @@ fixed (short* ptr = instance)
             Defines an attribute that specifies a deconstrution method.
             </summary>
         </member>
+        <member name="T:System.SourceGeneration.DuckTypingAttribute">
+            <summary>
+            Represents an attribute type that can be used as a duck-typing implementation by source generators.
+            </summary>
+        </member>
+        <member name="T:System.SourceGeneration.EqualityOperatorsAttribute">
+            <summary>
+            Represents an attribute type that allows source generators generating for equality operators if the specified types marked this attribute.
+            </summary>
+            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
+        </member>
+        <member name="M:System.SourceGeneration.EqualityOperatorsAttribute.#ctor(System.SourceGeneration.EqualityOperatorsBehavior)">
+            <summary>
+            Represents an attribute type that allows source generators generating for equality operators if the specified types marked this attribute.
+            </summary>
+            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
+        </member>
+        <member name="P:System.SourceGeneration.EqualityOperatorsAttribute.Behavior">
+            <summary>
+            The generated property declaration for parameter <c>behavior</c>.
+            </summary>
+        </member>
+        <member name="T:System.SourceGeneration.EqualityOperatorsBehavior">
+            <summary>
+            Defines a behavior by source generator on generating <see langword="operator"/> <c>==</c> and <see langword="operator"/> <c>!=</c>
+            overloading operators.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.EqualityOperatorsBehavior.Intelligent">
+            <summary>
+            Indicates the source generator will choose a suitable way to implement equality operators.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.EqualityOperatorsBehavior.MakeVirtual">
+            <summary>
+            Indicates the operators will be made to be <see langword="virtual"/>.
+            This option can only be used for interfaces implementing operators.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.EqualityOperatorsBehavior.MakeAbstract">
+            <summary>
+            Indicates the operators will be made to be <see langword="abstract"/>.
+            This option can only be used for interfaces implementing operators.
+            </summary>
+        </member>
         <member name="T:System.SourceGeneration.EqualsAttribute">
             <summary>
             Represents an attribute type that allows source generators controlling behaviors on generating <see cref="M:System.Object.Equals(System.Object)"/> method.
@@ -4255,6 +4300,12 @@ fixed (short* ptr = instance)
             <summary>
             Indiactes whether the generated field automatically appends a <see langword="readonly"/> modifier.
             The value is <see langword="true"/> by default.
+            </summary>
+        </member>
+        <member name="T:System.SourceGeneration.LargeStructureAttribute">
+            <summary>
+            Represents an attribute that can tell source generators the type is a large structure,
+            meaning the source generators will always append <see langword="scoped ref readonly"/> modifiers onto target-typed parameters.
             </summary>
         </member>
         <member name="T:System.SourceGeneration.MemberKinds">
@@ -4696,12 +4747,6 @@ fixed (short* ptr = instance)
         <member name="M:System.Utf8Char.System#IComparable#CompareTo(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:System.Utf8Char.op_Equality(System.Utf8Char,System.Utf8Char)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8Char.op_Inequality(System.Utf8Char,System.Utf8Char)">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Utf8Char.op_GreaterThan(System.Utf8Char,System.Utf8Char)">
             <inheritdoc/>
         </member>
@@ -4777,6 +4822,12 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.Utf8Char.ToString">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Utf8Char.op_Equality(System.Utf8Char,System.Utf8Char)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:System.Utf8Char.op_Inequality(System.Utf8Char,System.Utf8Char)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="M:System.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
@@ -4968,12 +5019,6 @@ fixed (short* ptr = instance)
             However, C# not.
             </remarks>
         </member>
-        <member name="M:System.Utf8String.op_Equality(System.Utf8String,System.Utf8String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8String.op_Inequality(System.Utf8String,System.Utf8String)">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Utf8String.op_GreaterThan(System.Utf8String,System.Utf8String)">
             <inheritdoc/>
         </member>
@@ -5034,6 +5079,12 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.Utf8String.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Utf8String.op_Equality(System.Utf8String,System.Utf8String)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:System.Utf8String.op_Inequality(System.Utf8String,System.Utf8String)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
     </members>
 </doc>

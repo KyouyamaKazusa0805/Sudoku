@@ -6,6 +6,7 @@ namespace Sudoku.Text.Parsing;
 /// <param name="mask">Indicates the mask.</param>
 [Equals]
 [GetHashCode]
+[EqualityOperators]
 public readonly partial struct CellRange([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IEquatable<CellRange>,
 	IEqualityOperators<CellRange, CellRange, bool>,
@@ -122,15 +123,6 @@ public readonly partial struct CellRange([PrimaryConstructorParameter(MemberKind
 			return false;
 		}
 	}
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(CellRange left, CellRange right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(CellRange left, CellRange right) => !left.Equals(right);
 
 
 	/// <summary>

@@ -4,7 +4,9 @@ namespace Sudoku.Concepts;
 /// Extracts a base type that describes status table from elements of <typeparamref name="TSelf"/> type.
 /// </summary>
 /// <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
-public interface IBitStatusMap<TSelf> :
+[LargeStructure]
+[EqualityOperators(EqualityOperatorsBehavior.MakeVirtual)]
+public partial interface IBitStatusMap<TSelf> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
 	ICollection<int>,
@@ -455,14 +457,6 @@ public interface IBitStatusMap<TSelf> :
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static virtual bool operator false(scoped in TSelf cells) => cells.Count == 0;
-
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual bool operator ==(scoped in TSelf left, scoped in TSelf right) => left.Equals(right);
-
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual bool operator !=(scoped in TSelf left, scoped in TSelf right) => !(left == right);
 
 	/// <summary>
 	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,

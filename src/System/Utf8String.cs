@@ -8,6 +8,7 @@ namespace System;
 /// Represents text as a sequence of UTF-8 code units.
 /// </summary>
 [Equals]
+[EqualityOperators]
 public readonly unsafe partial struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
 	IComparable<Utf8String>,
@@ -390,14 +391,6 @@ public readonly unsafe partial struct Utf8String :
 		return result;
 	}
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Utf8String left, Utf8String right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Utf8String left, Utf8String right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

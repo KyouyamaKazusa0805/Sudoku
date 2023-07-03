@@ -13,6 +13,7 @@ namespace Sudoku.Analytics.Patterns;
 [Equals]
 [GetHashCode]
 [ToString]
+[EqualityOperators]
 public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IEquatable<ChainNode>,
 	IEqualityOperators<ChainNode, ChainNode, bool>
@@ -166,13 +167,4 @@ public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKind
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(ChainNode other) => _mask == other._mask;
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(ChainNode left, ChainNode right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(ChainNode left, ChainNode right) => !(left == right);
 }

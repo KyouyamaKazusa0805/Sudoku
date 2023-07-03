@@ -9,8 +9,10 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
+[LargeStructure]
 [Equals]
 [ToString]
+[EqualityOperators]
 public unsafe partial struct Grid :
 	IEnumerable<Candidate>,
 	IEqualityOperators<Grid, Grid, bool>,
@@ -1749,14 +1751,6 @@ public unsafe partial struct Grid :
 	static bool IParsable<Grid>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out Grid result)
 		=> s is not null && TryParse(s, out result);
 
-
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(scoped in Grid left, scoped in Grid right) => left.Equals(right);
-
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(scoped in Grid left, scoped in Grid right) => !left.Equals(right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

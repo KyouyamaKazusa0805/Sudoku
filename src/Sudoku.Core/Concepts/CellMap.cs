@@ -26,9 +26,11 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [StructLayout(LayoutKind.Auto)]
+[LargeStructure]
 [Equals]
 [GetHashCode]
 [ToString]
+[EqualityOperators]
 public unsafe partial struct CellMap :
 	IAdditionOperators<CellMap, Cell, CellMap>,
 	IAdditionOperators<CellMap, IEnumerable<Cell>, CellMap>,
@@ -893,14 +895,6 @@ public unsafe partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator ~(scoped in CellMap offsets)
 		=> CreateByBits(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(scoped in CellMap left, scoped in CellMap right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(scoped in CellMap left, scoped in CellMap right) => !left.Equals(right);
 
 	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -12,6 +12,7 @@ public sealed class Generator : IIncrementalGenerator
 		// Elementary generators
 		PrimaryConstructor(context);
 		ObjectOverridden(context);
+		DuckTyping(context);
 		InstanceDeconstruction(context);
 		ImplicitField(context);
 
@@ -67,6 +68,19 @@ public sealed class Generator : IIncrementalGenerator
 				.Select(NotNullSelector)
 				.Collect(),
 			ToStringHandler.Output
+		);
+	}
+
+	private void DuckTyping(IncrementalGeneratorInitializationContext context)
+	{
+		const string equalityOperatorsAttributeName = "System.SourceGeneration.EqualityOperatorsAttribute";
+		context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(equalityOperatorsAttributeName, IsPartialTypePredicate, EqualityOperatorsHandler.Transform)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			EqualityOperatorsHandler.Output
 		);
 	}
 

@@ -8,6 +8,7 @@ namespace SudokuStudio.Collection;
 [JsonConverter(typeof(Converter))]
 [Equals]
 [ToString]
+[EqualityOperators]
 public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashArray>, IEqualityOperators<DashArray, DashArray, bool>
 {
 	/// <summary>
@@ -95,15 +96,6 @@ public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashA
 
 	/// <inheritdoc/>
 	IEnumerator<double> IEnumerable<double>.GetEnumerator() => ((IEnumerable<double>)_doubles).GetEnumerator();
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(DashArray left, DashArray right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(DashArray left, DashArray right) => !(left == right);
 }
 
 /// <summary>

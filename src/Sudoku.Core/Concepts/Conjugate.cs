@@ -10,6 +10,7 @@ namespace Sudoku.Concepts;
 /// <param name="mask">Indicates the target mask.</param>
 [Equals]
 [GetHashCode]
+[EqualityOperators]
 public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKinds.Field)] int mask) :
 	IEquatable<Conjugate>,
 	IEqualityOperators<Conjugate, Conjugate, bool>
@@ -109,13 +110,4 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => $"{CellsMap[From]} == {RxCyNotation.ToCandidateString(To * 9 + Digit)}";
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Conjugate left, Conjugate right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Conjugate left, Conjugate right) => !left.Equals(right);
 }
