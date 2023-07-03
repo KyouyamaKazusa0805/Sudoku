@@ -1,9 +1,9 @@
 namespace System.SourceGeneration;
 
 /// <summary>
-/// Defines a kind of accessibility that is defined in C#.
+/// Defines a kind of accessibility being defined in C#.
 /// </summary>
-public enum GeneralizedAccessibility
+public enum Accessibility
 {
 	/// <summary>
 	/// Indicates the accessibility is invalid and not defined in this type.
@@ -12,7 +12,7 @@ public enum GeneralizedAccessibility
 	None,
 
 	/// <summary>
-	/// Indicates the accessibility is <see langword="file"/>-scoped.
+	/// Indicates the accessibility is <see langword="file"/>-local, which means it can be accessed only in a whole file.
 	/// </summary>
 	File,
 

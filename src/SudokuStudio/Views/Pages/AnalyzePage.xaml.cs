@@ -3,18 +3,18 @@ namespace SudokuStudio.Views.Pages;
 /// <summary>
 /// Defines a new page that stores a set of controls to analyze a sudoku grid.
 /// </summary>
-[DependencyProperty<bool>("IsAnalyzerLaunched", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the analyzer is launched.")]
-[DependencyProperty<bool>("IsGathererLaunched", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the gatherer is launched.")]
-[DependencyProperty<bool>("IsGeneratorLaunched", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the generator is launched.")]
-[DependencyProperty<double>("ProgressPercent", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the progress percent value.")]
-[DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"IRenderable.Views\"/> displayed.")]
-[DependencyProperty<int>("SelectedColorIndex", DefaultValue = -1, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the selected color index.")]
-[DependencyProperty<string>("BabaGroupNameInput", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the input character that is used as a baba group variable.")]
-[DependencyProperty<DrawingMode>("SelectedMode", DefaultValue = DrawingMode.Cell, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the selected drawing mode.")]
-[DependencyProperty<Inference>("LinkKind", DefaultValue = Inference.Strong, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the link type.")]
-[DependencyProperty<AnalyzerResult>("AnalysisResultCache", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the analysis result cache.")]
-[DependencyProperty<ColorPalette>("UserDefinedPalette", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the user-defined colors.")]
-[DependencyProperty<IRenderable>("VisualUnit", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the visual unit.")]
+[DependencyProperty<bool>("IsAnalyzerLaunched", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the analyzer is launched.")]
+[DependencyProperty<bool>("IsGathererLaunched", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the gatherer is launched.")]
+[DependencyProperty<bool>("IsGeneratorLaunched", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the generator is launched.")]
+[DependencyProperty<double>("ProgressPercent", Accessibility = Accessibility.Internal, DocSummary = "Indicates the progress percent value.")]
+[DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = Accessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"IRenderable.Views\"/> displayed.")]
+[DependencyProperty<int>("SelectedColorIndex", DefaultValue = -1, Accessibility = Accessibility.Internal, DocSummary = "Indicates the selected color index.")]
+[DependencyProperty<string>("BabaGroupNameInput", IsNullable = true, Accessibility = Accessibility.Internal, DocSummary = "Indicates the input character that is used as a baba group variable.")]
+[DependencyProperty<DrawingMode>("SelectedMode", DefaultValue = DrawingMode.Cell, Accessibility = Accessibility.Internal, DocSummary = "Indicates the selected drawing mode.")]
+[DependencyProperty<Inference>("LinkKind", DefaultValue = Inference.Strong, Accessibility = Accessibility.Internal, DocSummary = "Indicates the link type.")]
+[DependencyProperty<AnalyzerResult>("AnalysisResultCache", IsNullable = true, Accessibility = Accessibility.Internal, DocSummary = "Indicates the analysis result cache.")]
+[DependencyProperty<ColorPalette>("UserDefinedPalette", Accessibility = Accessibility.Internal, DocSummary = "Indicates the user-defined colors.")]
+[DependencyProperty<IRenderable>("VisualUnit", IsNullable = true, Accessibility = Accessibility.Internal, DocSummary = "Indicates the visual unit.")]
 public sealed partial class AnalyzePage : Page
 {
 	[DefaultValue]

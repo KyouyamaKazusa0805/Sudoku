@@ -15,11 +15,11 @@ public sealed class DependencyPropertyAttribute<T>(string propertyName) : XamlBi
 	public string[]? MembersNotNullWhenReturnsTrue { get; init; }
 
 	/// <summary>
-	/// Indicates the property accessibility. The default value is <see cref="GeneralizedAccessibility.Public"/>.
+	/// Indicates the property accessibility. The default value is <see cref="Accessibility.Public"/>.
 	/// </summary>
 	/// <remarks>
 	/// This property only works with dependency properties.
 	/// </remarks>
-	/// <seealso cref="GeneralizedAccessibility.Public"/>
-	public GeneralizedAccessibility Accessibility { get; init; }
+	/// <seealso cref="Accessibility.Public"/>
+	public Accessibility Accessibility { get; init; }
 }

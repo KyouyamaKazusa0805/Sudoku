@@ -3,7 +3,7 @@ namespace SudokuStudio.Views.Pages.Settings;
 /// <summary>
 /// Represents an analysis preference items page.
 /// </summary>
-[DependencyProperty<StepSearcherInfo>("CurrentSelectedStepSearcher", IsNullable = true, Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates the currently selected step searcher and its details.")]
+[DependencyProperty<StepSearcherInfo>("CurrentSelectedStepSearcher", IsNullable = true, Accessibility = Accessibility.Internal, DocSummary = "Indicates the currently selected step searcher and its details.")]
 public sealed partial class AnalysisPreferenceItemsPage : Page
 {
 	/// <summary>

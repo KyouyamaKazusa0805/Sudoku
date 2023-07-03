@@ -3,7 +3,7 @@ namespace SudokuStudio.Views.Pages;
 /// <summary>
 /// Represents a page that provides with practise tool to allow you practicing counting logic for technique Naked Single and Full House.
 /// </summary>
-[DependencyProperty<bool>("IsRunning", Accessibility = GeneralizedAccessibility.Internal, DocSummary = "Indicates whether the game is running.")]
+[DependencyProperty<bool>("IsRunning", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the game is running.")]
 [DependencyProperty<int>("SelectedMode", DefaultValue = -1)]
 [DependencyProperty<int>("TestedPuzzlesCount", DefaultValue = 10)]
 public sealed partial class SingleCountingPracticingPage : Page

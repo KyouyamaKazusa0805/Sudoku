@@ -4089,6 +4089,51 @@ fixed (short* ptr = instance)
             by JSON serializer handling.
             </summary>
         </member>
+        <member name="T:System.SourceGeneration.Accessibility">
+            <summary>
+            Defines a kind of accessibility being defined in C#.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.Accessibility.None">
+            <summary>
+            Indicates the accessibility is invalid and not defined in this type.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.Accessibility.File">
+            <summary>
+            Indicates the accessibility is <see langword="file"/>-local, which means it can be accessed only in a whole file.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.Accessibility.Private">
+            <summary>
+            Indicates the accessibility is <see langword="private"/>.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.Accessibility.Protected">
+            <summary>
+            Indicates the accessibility is <see langword="protected"/>.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.Accessibility.PrivateProtected">
+            <summary>
+            Indicates the accessibility is <see langword="private protected"/>.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.Accessibility.Internal">
+            <summary>
+            Indicates the accessibility is <see langword="internal"/>.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.Accessibility.ProtectedInternal">
+            <summary>
+            Indicates the accessibility is <see langword="protected internal"/>.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.Accessibility.Public">
+            <summary>
+            Indicates the accessibility is <see langword="public"/>.
+            </summary>
+        </member>
         <member name="T:System.SourceGeneration.DeconstructionMethodArgumentAttribute">
             <summary>
             Defines an attribute that specifies a parameter used by a deconstruction method.
@@ -4159,51 +4204,6 @@ fixed (short* ptr = instance)
         <member name="F:System.SourceGeneration.EqualsBehavior.ThrowNotSupportedException">
             <summary>
             Indicates the method always throws <see cref="T:System.NotSupportedException"/>.
-            </summary>
-        </member>
-        <member name="T:System.SourceGeneration.GeneralizedAccessibility">
-            <summary>
-            Defines a kind of accessibility that is defined in C#.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.GeneralizedAccessibility.None">
-            <summary>
-            Indicates the accessibility is invalid and not defined in this type.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.GeneralizedAccessibility.File">
-            <summary>
-            Indicates the accessibility is <see langword="file"/>-scoped.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.GeneralizedAccessibility.Private">
-            <summary>
-            Indicates the accessibility is <see langword="private"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.GeneralizedAccessibility.Protected">
-            <summary>
-            Indicates the accessibility is <see langword="protected"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.GeneralizedAccessibility.PrivateProtected">
-            <summary>
-            Indicates the accessibility is <see langword="private protected"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.GeneralizedAccessibility.Internal">
-            <summary>
-            Indicates the accessibility is <see langword="internal"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.GeneralizedAccessibility.ProtectedInternal">
-            <summary>
-            Indicates the accessibility is <see langword="protected internal"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.GeneralizedAccessibility.Public">
-            <summary>
-            Indicates the accessibility is <see langword="public"/>.
             </summary>
         </member>
         <member name="T:System.SourceGeneration.GetHashCodeAttribute">
