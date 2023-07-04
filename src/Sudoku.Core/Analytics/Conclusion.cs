@@ -24,6 +24,7 @@ namespace Sudoku.Analytics;
 [GetHashCode]
 [ToString]
 [EqualityOperators]
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] int mask) :
 	IComparable<Conclusion>,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
