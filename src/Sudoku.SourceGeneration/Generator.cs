@@ -82,6 +82,16 @@ public sealed class Generator : IIncrementalGenerator
 				.Collect(),
 			EqualityOperatorsHandler.Output
 		);
+
+		const string comparisonOperatorsAttributeName = "System.SourceGeneration.ComparisonOperatorsAttribute";
+		context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(comparisonOperatorsAttributeName, IsPartialTypePredicate, ComparisonOperatorsHandler.Transform)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			ComparisonOperatorsHandler.Output
+		);
 	}
 
 	private void InstanceDeconstruction(IncrementalGeneratorInitializationContext context)

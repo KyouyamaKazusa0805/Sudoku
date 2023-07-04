@@ -31,6 +31,7 @@ namespace Sudoku.Concepts;
 [GetHashCode]
 [ToString]
 [EqualityOperators]
+[ComparisonOperators]
 public unsafe partial struct CellMap :
 	IAdditionOperators<CellMap, Cell, CellMap>,
 	IAdditionOperators<CellMap, IEnumerable<Cell>, CellMap>,
@@ -896,22 +897,6 @@ public unsafe partial struct CellMap :
 	public static CellMap operator ~(scoped in CellMap offsets)
 		=> CreateByBits(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
 
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) > 0;
-
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >=(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) >= 0;
-
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) < 0;
-
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <=(scoped in CellMap left, scoped in CellMap right) => left.CompareTo(right) <= 0;
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator +(scoped in CellMap collection, Cell offset)
@@ -1182,22 +1167,6 @@ public unsafe partial struct CellMap :
 		Argument.ThrowIfFalse(right is >= 0 and < 27);
 		return left / right;
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >(CellMap left, CellMap right) => left > right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <(CellMap left, CellMap right) => left < right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >=(CellMap left, CellMap right) => left >= right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <=(CellMap left, CellMap right) => left <= right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
