@@ -123,7 +123,7 @@ internal static class EqualityOperatorsHandler
 		var equalityOperatorsType = compilation.GetTypeByMetadataName("System.Numerics.IEqualityOperators`3")!
 			.Construct(type, type, compilation.GetSpecialType(System_Boolean));
 		if (behavior is Behavior.WithScopedIn or Behavior.WithScopedInButDeprecated or Behavior.WithScopedRefReadOnly or Behavior.WithScopedRefReadOnlyButDeprecated
-			&& type.AllInterfaces.Any(t => SymbolEqualityComparer.Default.Equals(t, equalityOperatorsType)))
+			&& type.AllInterfaces.Contains(equalityOperatorsType, SymbolEqualityComparer.Default))
 		{
 			explicitImplementation =
 				$$"""
