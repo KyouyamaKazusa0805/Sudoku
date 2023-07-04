@@ -2023,24 +2023,6 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Technique Gallery.
-        /// </summary>
-        internal static string MainWindow_TechniqueGallery {
-            get {
-                return ResourceManager.GetString("MainWindow_TechniqueGallery", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Technique Gallery.
-        /// </summary>
-        internal static string MainWindow_TechniqueGalleryPageTitle {
-            get {
-                return ResourceManager.GetString("MainWindow_TechniqueGalleryPageTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Maximum number of cell permutation in aligned exclusion.
         /// </summary>
         internal static string SettingsPage_AlignedExclusionMaxSearchingSize {

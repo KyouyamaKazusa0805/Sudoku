@@ -711,12 +711,6 @@
   <data name="MainWindow_SingleCountingPracticingPageTitle" xml:space="preserve">
     <value>唯余数数练习</value>
   </data>
-  <data name="MainWindow_TechniqueGallery" xml:space="preserve">
-    <value>技巧博物馆</value>
-  </data>
-  <data name="MainWindow_TechniqueGalleryPageTitle" xml:space="preserve">
-    <value>技巧博物馆</value>
-  </data>
   <data name="SettingsPage_AlignedExclusionMaxSearchingSize" xml:space="preserve">
     <value>均衡数组的最大枚举空格数量</value>
   </data>

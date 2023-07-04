@@ -708,12 +708,6 @@
   <data name="MainWindow_SingleCountingPracticingPageTitle" xml:space="preserve">
     <value>Single Counting Practicing</value>
   </data>
-  <data name="MainWindow_TechniqueGallery" xml:space="preserve">
-    <value>Technique Gallery</value>
-  </data>
-  <data name="MainWindow_TechniqueGalleryPageTitle" xml:space="preserve">
-    <value>Technique Gallery</value>
-  </data>
   <data name="SettingsPage_AlignedExclusionMaxSearchingSize" xml:space="preserve">
     <value>Maximum number of cell permutation in aligned exclusion</value>
   </data>

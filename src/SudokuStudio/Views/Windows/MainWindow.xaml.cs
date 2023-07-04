@@ -103,8 +103,7 @@ public sealed partial class MainWindow : Window
 		{
 			{ container => container == AnalyzePageItem, typeof(AnalyzePage) },
 			{ container => container == AboutPageItem, typeof(AboutPage) },
-			{ container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage) },
-			{ container => container == TechniqueGalleryPageItem, typeof(TechniqueGalleryPage) }
+			{ container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage) }
 		};
 
 	/// <summary>

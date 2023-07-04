@@ -109,9 +109,6 @@
 		<Page Update="Views\Pages\Operation\ShuffleOperation.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Views\Pages\TechniqueGalleryPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
 		<Page Update="Views\Controls\StepSearcherListView.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

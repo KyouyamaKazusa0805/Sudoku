@@ -63,7 +63,6 @@
 				</NavigationViewItem>
 			</NavigationView.MenuItems>
 			<NavigationView.FooterMenuItems>
-				<NavigationViewItem x:Name="TechniqueGalleryPageItem" Icon="Bookmarks" Content="{m:R Key=MainWindow_TechniqueGallery}" />
 				<NavigationViewItem x:Name="AboutPageItem" Content="{m:R Key=MainWindow_About}" Icon="People" />
 			</NavigationView.FooterMenuItems>
 

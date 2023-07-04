@@ -4839,16 +4839,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Single Counting Practicing.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Strings.Resources.MainWindow_TechniqueGallery">
-            <summary>
-              Looks up a localized string similar to Technique Gallery.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Strings.Resources.MainWindow_TechniqueGalleryPageTitle">
-            <summary>
-              Looks up a localized string similar to Technique Gallery.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AlignedExclusionMaxSearchingSize">
             <summary>
               Looks up a localized string similar to Maximum number of cell permutation in aligned exclusion.
@@ -5748,17 +5738,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="tokenName">The name of the token, such as <c>Colon</c>.</param>
             <returns>The token string.</returns>
-        </member>
-        <member name="T:SudokuStudio.TechniqueGalleryData">
-            <summary>
-            Provides with a field that stores the techniques data used by page <see cref="T:SudokuStudio.Views.Pages.TechniqueGalleryPage"/>.
-            </summary>
-            <seealso cref="T:SudokuStudio.Views.Pages.TechniqueGalleryPage"/>
-        </member>
-        <member name="F:SudokuStudio.TechniqueGalleryData.RoutingGroups">
-            <summary>
-            The routing groups.
-            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Attached.AnalyzerProperties">
             <summary>
@@ -8861,38 +8840,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.FullHouse"/>
             <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.NakedSingle"/>
-        </member>
-        <member name="T:SudokuStudio.Views.Pages.TechniqueGalleryPage">
-            <summary>
-            The hub page of introduction of techniques.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.TechniqueGalleryPage"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.GetMainWindow">
-            <summary>
-            Gets the main window.
-            </summary>
-            <returns>The main window.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the base window cannot be found.</exception>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage">
             <summary>
