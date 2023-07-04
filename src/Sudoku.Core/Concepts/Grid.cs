@@ -1752,15 +1752,6 @@ public unsafe partial struct Grid :
 		=> s is not null && TryParse(s, out result);
 
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<Grid, Grid, bool>.operator ==(Grid left, Grid right) => left == right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<Grid, Grid, bool>.operator !=(Grid left, Grid right) => left != right;
-
-
 	/// <summary>
 	/// Implicit cast from <see cref="string"/> code to its equivalent <see cref="Grid"/> instance representation.
 	/// </summary>

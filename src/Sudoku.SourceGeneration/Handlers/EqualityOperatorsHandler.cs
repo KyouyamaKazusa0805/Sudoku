@@ -119,17 +119,43 @@ internal static class EqualityOperatorsHandler
 			_ => ("left.Equals(right)", "!(left == right)")
 		};
 
+		var explicitImplementation = string.Empty;
+		var equalityOperatorsType = compilation.GetTypeByMetadataName("System.Numerics.IEqualityOperators`3")!
+			.Construct(type, type, compilation.GetSpecialType(System_Boolean));
+		if (behavior is Behavior.WithScopedIn or Behavior.WithScopedInButDeprecated or Behavior.WithScopedRefReadOnly or Behavior.WithScopedRefReadOnlyButDeprecated
+			&& type.AllInterfaces.Any(t => SymbolEqualityComparer.Default.Equals(t, equalityOperatorsType)))
+		{
+			explicitImplementation =
+				$$"""
+				/// <inheritdoc/>
+						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
+						static bool global::System.Numerics.IEqualityOperators<{{fullTypeNameString}}, {{fullTypeNameString}}, bool>.operator ==({{fullTypeNameString}} left, {{fullTypeNameString}} right) => left == right;
+
+						/// <inheritdoc/>
+						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
+						static bool global::System.Numerics.IEqualityOperators<{{fullTypeNameString}}, {{fullTypeNameString}}, bool>.operator !=({{fullTypeNameString}} left, {{fullTypeNameString}} right) => left != right;
+				""";
+		}
+
 		var operatorDeclaration = behavior switch
 		{
 			Behavior.Default or Behavior.DefaultButDeprecated
 				=> $$"""
 				/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator ==({{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i1}};
 
 						/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator !=({{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i2}};
 				""",
@@ -137,35 +163,51 @@ internal static class EqualityOperatorsHandler
 				=> $$"""
 				/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator ==(scoped in {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, scoped in {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i1}};
 
 						/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator !=(scoped in {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, scoped in {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i2}};
+
+						{{explicitImplementation}}
 				""",
 			Behavior.WithScopedRefReadOnly or Behavior.WithScopedRefReadOnlyButDeprecated
 				=> $$"""
 				/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator ==(scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i1}};
 
 						/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator !=(scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i2}};
+
+						{{explicitImplementation}}
 				""",
 			Behavior.StaticVirtual when typeParameters is [{ Name: var selfTypeParameterName }]
 				=> $$"""
 				/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
 						static virtual bool operator ==({{selfTypeParameterName}} left, {{selfTypeParameterName}} right)
 							=> {{i1}};
 
 						/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
 						static virtual bool operator !=({{selfTypeParameterName}} left, {{selfTypeParameterName}} right)
 							=> {{i2}};
 				""",
@@ -173,10 +215,14 @@ internal static class EqualityOperatorsHandler
 				=> $$"""
 				/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
 						static abstract bool operator ==({{selfTypeParameterName}}{{nullabilityToken}} left, {{selfTypeParameterName}}{{nullabilityToken}} right);
 
 						/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
 						static virtual bool operator !=({{selfTypeParameterName}}{{nullabilityToken}} left, {{selfTypeParameterName}}{{nullabilityToken}} right) => {{i2}};
 				""",
 			_ => null
