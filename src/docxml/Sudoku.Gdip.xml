@@ -683,32 +683,17 @@
             <summary>
             Encapsulates a font data to be serialized.
             </summary>
-            <param name="fontName">The font name.</param>
-            <param name="fontSize">The font size.</param>
-            <param name="fontStyle">The font style.</param>
+            <param name="fontName">Indicates the name of the font.</param>
+            <param name="fontSize">Indicates the font size.</param>
+            <param name="fontStyle">Indicates the font style.</param>
         </member>
         <member name="M:Sudoku.Gdip.FontData.#ctor(System.String,System.Single,System.Drawing.FontStyle)">
             <summary>
             Encapsulates a font data to be serialized.
             </summary>
-            <param name="fontName">The font name.</param>
-            <param name="fontSize">The font size.</param>
-            <param name="fontStyle">The font style.</param>
-        </member>
-        <member name="P:Sudoku.Gdip.FontData.FontName">
-            <summary>
-            Indicates the name of the font.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.FontData.FontSize">
-            <summary>
-            Indicates the font size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.FontData.FontStyle">
-            <summary>
-            Indicates the font style.
-            </summary>
+            <param name="fontName">Indicates the name of the font.</param>
+            <param name="fontSize">Indicates the font size.</param>
+            <param name="fontStyle">Indicates the font style.</param>
         </member>
         <member name="M:Sudoku.Gdip.FontData.Deconstruct(System.String@,System.Single@,System.Drawing.FontStyle@)">
             <target name="method">
@@ -771,6 +756,21 @@ if (student is (name: var name, age: >= 18))
             using var font = data.CreateFont();
             ]]></code>
             </returns>
+        </member>
+        <member name="P:Sudoku.Gdip.FontData.FontName">
+            <summary>
+            The generated property declaration for parameter <c>fontName</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.FontData.FontSize">
+            <summary>
+            The generated property declaration for parameter <c>fontSize</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Gdip.FontData.FontStyle">
+            <summary>
+            The generated property declaration for parameter <c>fontStyle</c>.
+            </summary>
         </member>
         <member name="M:Sudoku.Gdip.FontData.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

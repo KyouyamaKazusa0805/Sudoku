@@ -3,33 +3,18 @@ namespace Sudoku.Gdip;
 /// <summary>
 /// Encapsulates a font data to be serialized.
 /// </summary>
-/// <param name="fontName">The font name.</param>
-/// <param name="fontSize">The font size.</param>
-/// <param name="fontStyle">The font style.</param>
+/// <param name="fontName">Indicates the name of the font.</param>
+/// <param name="fontSize">Indicates the font size.</param>
+/// <param name="fontStyle">Indicates the font style.</param>
 [Equals]
 [GetHashCode]
 [method: SetsRequiredMembers]
-public sealed partial class FontData(string fontName, float fontSize, FontStyle fontStyle) : IEquatable<FontData>
+public sealed partial class FontData(
+	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] string fontName,
+	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] float fontSize,
+	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] FontStyle fontStyle
+) : IEquatable<FontData>
 {
-	/// <summary>
-	/// Indicates the name of the font.
-	/// </summary>
-	[HashCodeMember]
-	public required string FontName { get; set; } = fontName;
-
-	/// <summary>
-	/// Indicates the font size.
-	/// </summary>
-	[HashCodeMember]
-	public required float FontSize { get; set; } = fontSize;
-
-	/// <summary>
-	/// Indicates the font style.
-	/// </summary>
-	[HashCodeMember]
-	public required FontStyle FontStyle { get; set; } = fontStyle;
-
-
 	[DeconstructionMethod]
 	public partial void Deconstruct(out string fontName, out float fontSize, out FontStyle fontStyle);
 

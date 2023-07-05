@@ -4461,6 +4461,14 @@ fixed (short* ptr = instance)
             <para>If you want to learn more information about this attribute type, please visit the metadata of the type.</para>
             </remarks>
         </member>
+        <member name="P:System.SourceGeneration.PrimaryConstructorParameterAttribute.SetterExpression">
+            <summary>
+            Indicates the extra setter expression. The expression is same declaration as auto-implemented properties.
+            For example, if the property is declared as <c>public object? Property { get; private set; }</c>,
+            the setter expression will be "<c>private set</c>". By default, this value will be <see langword="null"/>,
+            which means the target property does not contain a setter.
+            </summary>
+        </member>
         <member name="P:System.SourceGeneration.PrimaryConstructorParameterAttribute.NamingRule">
             <summary>
             Indicates the naming rule of the generated member name.

@@ -44,6 +44,14 @@ namespace System.SourceGeneration;
 public sealed class PrimaryConstructorParameterAttribute(string memberKind = MemberKinds.Property) : Attribute
 {
 	/// <summary>
+	/// Indicates the extra setter expression. The expression is same declaration as auto-implemented properties.
+	/// For example, if the property is declared as <c>public object? Property { get; private set; }</c>,
+	/// the setter expression will be "<c>private set</c>". By default, this value will be <see langword="null"/>,
+	/// which means the target property does not contain a setter.
+	/// </summary>
+	public string? SetterExpression { get; init; }
+
+	/// <summary>
 	/// Indicates the naming rule of the generated member name.
 	/// </summary>
 	/// <remarks>

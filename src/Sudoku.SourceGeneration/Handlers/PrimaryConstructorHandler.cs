@@ -77,6 +77,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 									
 							"""
 							: string.Empty;
+						var setter = namedArgs.TryGetValueOrDefault<string>("SetterExpression", out var setterExpression) ? $" {setterExpression};" : string.Empty;
 
 						propertyDeclarations.Add(
 							$$"""
@@ -85,7 +86,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 									/// </summary>
 									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{Value}}")]
 									[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-									{{memberNotNullAttribute}}{{accessibilityModifiers}}{{readonlyModifier}}{{refModifiers}}{{parameterTypeName}}{{targetMemberName}} { get; } = {{assigning}};
+									{{memberNotNullAttribute}}{{accessibilityModifiers}}{{readonlyModifier}}{{refModifiers}}{{parameterTypeName}}{{targetMemberName}} { get;{{setter}} } = {{assigning}};
 							"""
 						);
 
