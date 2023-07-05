@@ -49,6 +49,7 @@ public sealed class PrimaryConstructorParameterAttribute(string memberKind = Mem
 	/// the setter expression will be "<c>private set</c>". By default, this value will be <see langword="null"/>,
 	/// which means the target property does not contain a setter.
 	/// </summary>
+	[DisallowNull]
 	public string? SetterExpression { get; init; }
 
 	/// <summary>
@@ -85,6 +86,7 @@ public sealed class PrimaryConstructorParameterAttribute(string memberKind = Mem
 	/// By default, the naming rule is <c><![CDATA["_<@"]]></c> for fields, and <c><![CDATA[">@"]]></c> for properties.
 	/// </para>
 	/// </remarks>
+	[DisallowNull]
 	public string? NamingRule { get; init; }
 
 	/// <summary>
@@ -105,11 +107,13 @@ public sealed class PrimaryConstructorParameterAttribute(string memberKind = Mem
 	/// ]]></code>
 	/// where <c>property1</c> and <c>property2</c> are supposed to be two parameters marked this attribute.
 	/// </remarks>
+	[DisallowNull]
 	public string? MembersNotNull { get; init; }
 
 	/// <summary>
 	/// Indicates the name of the generated member.
 	/// </summary>
+	[DisallowNull]
 	public string? GeneratedMemberName { get; init; }
 
 	/// <summary>
@@ -126,6 +130,7 @@ public sealed class PrimaryConstructorParameterAttribute(string memberKind = Mem
 	/// </para>
 	/// <para>By default, the accessibility is <see langword="private"/> for fields and <see langword="public"/> for properties.</para>
 	/// </remarks>
+	[DisallowNull]
 	public string? Accessibility { get; init; }
 
 	/// <summary>
@@ -159,5 +164,6 @@ public sealed class PrimaryConstructorParameterAttribute(string memberKind = Mem
 	/// If you want to set <see langword="ref readonly"/>, you should manually set this property with value <c>"ref readonly"</c> value.
 	/// </para>
 	/// </remarks>
+	[DisallowNull]
 	public string? RefKind { get; init; }
 }
