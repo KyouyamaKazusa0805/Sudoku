@@ -9,8 +9,6 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	/// Creates an empty <see cref="View"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[Obsolete($"Please use '{nameof(Empty)}' instead.", false)]
-	[RequiresUnreferencedCode("This constructor can only be called by JSON serializer.")]
 	public View() : base()
 	{
 	}
@@ -20,9 +18,7 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	/// </summary>
 	/// <param name="nodes">The list as the raw value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[Obsolete($"Please use '{nameof(Empty)}' instead.", false)]
-	[RequiresUnreferencedCode("This constructor can only be called by JSON serializer.")]
-	public View(HashSet<ViewNode> nodes) : base(nodes)
+	private View(HashSet<ViewNode> nodes) : base(nodes)
 	{
 	}
 
@@ -51,10 +47,25 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	/// <summary>
 	/// Indicates the empty instance.
 	/// </summary>
-#pragma warning disable CS0618
 	public static View Empty => new();
-#pragma warning restore CS0618
 
+
+	/// <summary>
+	/// Appends a new <see cref="ViewNode"/> into the current collection if the specified argument isn't <see langword="null"/>.
+	/// </summary>
+	/// <param name="node">A possible node to be appended. If the value is <see langword="null"/>, it will be ignored.</param>
+	/// <remarks>
+	/// The reason why the parameter <paramref name="node"/> is nullable is that C# 12 feature "Collection Literals" use this method
+	/// to append elements.
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public new void Add(ViewNode? node)
+	{
+		if (node is not null)
+		{
+			base.Add(node);
+		}
+	}
 
 	/// <summary>
 	/// Adds a list of <see cref="ViewNode"/>s into the collection.
@@ -101,9 +112,7 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public View Clone()
 	{
-#pragma warning disable CS0618
 		return Count == 0 ? Empty : new(cloneNodes());
-#pragma warning restore CS0618
 
 
 		HashSet<ViewNode> cloneNodes()
@@ -132,11 +141,7 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static View operator |(View originalView, ViewNode? newNode)
 	{
-		if (newNode is not null)
-		{
-			originalView.Add(newNode);
-		}
-
+		originalView.Add(newNode);
 		return originalView;
 	}
 

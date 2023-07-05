@@ -2266,6 +2266,16 @@ if (student is (name: var name, age: >= 18))
             Indicates the empty instance.
             </summary>
         </member>
+        <member name="M:Sudoku.Rendering.View.Add(Sudoku.Rendering.ViewNode)">
+            <summary>
+            Appends a new <see cref="T:Sudoku.Rendering.ViewNode"/> into the current collection if the specified argument isn't <see langword="null"/>.
+            </summary>
+            <param name="node">A possible node to be appended. If the value is <see langword="null"/>, it will be ignored.</param>
+            <remarks>
+            The reason why the parameter <paramref name="node"/> is nullable is that C# 12 feature "Collection Literals" use this method
+            to append elements.
+            </remarks>
+        </member>
         <member name="M:Sudoku.Rendering.View.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
             <summary>
             Adds a list of <see cref="T:Sudoku.Rendering.ViewNode"/>s into the collection.
