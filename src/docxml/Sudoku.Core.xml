@@ -7181,26 +7181,34 @@ if (student is (name: var name, age: >= 18))
             Encapsulates a grid parser that can parse a string value and convert it
             into a valid <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.
             </summary>
-            <param name="parsingValue">The string to be parsed.</param>
+            <param name="parsingValue">Indicates a string to be parsed.</param>
             <param name="compatibleFirst">
             Indicates whether the parser will change the execution order of PM grid.
             If the value is <see langword="true"/>, the parser will check compatible one
             first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
             </param>
-            <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
+            <param name="shortenSusser">
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </param>
         </member>
         <member name="M:Sudoku.Text.Parsing.GridParser.#ctor(System.String,System.Boolean,System.Boolean)">
             <summary>
             Encapsulates a grid parser that can parse a string value and convert it
             into a valid <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.
             </summary>
-            <param name="parsingValue">The string to be parsed.</param>
+            <param name="parsingValue">Indicates a string to be parsed.</param>
             <param name="compatibleFirst">
             Indicates whether the parser will change the execution order of PM grid.
             If the value is <see langword="true"/>, the parser will check compatible one
             first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
             </param>
-            <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
+            <param name="shortenSusser">
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </param>
         </member>
         <member name="F:Sudoku.Text.Parsing.GridParser.ParseFunctions">
             <summary>
@@ -7241,18 +7249,6 @@ if (student is (name: var name, age: >= 18))
 			</para>
 		</summary>
 	</static-constructor>
-        </member>
-        <member name="P:Sudoku.Text.Parsing.GridParser.ParsingValue">
-            <summary>
-            The string value to parse.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Parsing.GridParser.ShortenSusserFormat">
-            <summary>
-            Indicates whether the parser will use shorten mode to parse a susser format grid.
-            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
-            <c>.</c>s or <c>0</c>s to a <c>*</c>.
-            </summary>
         </member>
         <member name="P:Sudoku.Text.Parsing.GridParser.ContainsMultilineLimits">
             <summary>
@@ -7335,9 +7331,19 @@ if (student is (name: var name, age: >= 18))
             </param>
             <returns>The result.</returns>
         </member>
+        <member name="P:Sudoku.Text.Parsing.GridParser.ParsingValue">
+            <summary>
+            The generated property declaration for parameter <c>parsingValue</c>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Text.Parsing.GridParser.CompatibleFirst">
             <summary>
             The generated property declaration for parameter <c>compatibleFirst</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsing.GridParser.ShortenSusserFormat">
+            <summary>
+            The generated property declaration for parameter <c>shortenSusser</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Text.Parsing.GridParser.Equals(System.Object)">

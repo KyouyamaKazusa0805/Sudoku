@@ -4,17 +4,25 @@ namespace Sudoku.Text.Parsing;
 /// Encapsulates a grid parser that can parse a string value and convert it
 /// into a valid <see cref="Grid"/> instance as the result.
 /// </summary>
-/// <param name="parsingValue">The string to be parsed.</param>
+/// <param name="parsingValue">Indicates a string to be parsed.</param>
 /// <param name="compatibleFirst">
 /// Indicates whether the parser will change the execution order of PM grid.
 /// If the value is <see langword="true"/>, the parser will check compatible one
 /// first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
 /// </param>
-/// <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
+/// <param name="shortenSusser">
+/// Indicates whether the parser will use shorten mode to parse a susser format grid.
+/// If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+/// <c>.</c>s or <c>0</c>s to a <c>*</c>.
+/// </param>
 [StructLayout(LayoutKind.Auto)]
 [Equals]
 [GetHashCode]
-public unsafe ref partial struct GridParser(string parsingValue, [PrimaryConstructorParameter] bool compatibleFirst, bool shortenSusser)
+public unsafe ref partial struct GridParser(
+	[PrimaryConstructorParameter(SetterExpression = "private set")] string parsingValue,
+	[PrimaryConstructorParameter] bool compatibleFirst,
+	[PrimaryConstructorParameter(GeneratedMemberName = "ShortenSusserFormat", SetterExpression = "private set")] bool shortenSusser
+)
 {
 	/// <summary>
 	/// The list of all methods to parse.
@@ -79,18 +87,6 @@ public unsafe ref partial struct GridParser(string parsingValue, [PrimaryConstru
 		static Grid onParsingSusser_2(ref GridParser @this) => OnParsingSusser(ref @this, @this.ShortenSusserFormat);
 	}
 
-
-	/// <summary>
-	/// The string value to parse.
-	/// </summary>
-	public string ParsingValue { get; private set; } = parsingValue;
-
-	/// <summary>
-	/// Indicates whether the parser will use shorten mode to parse a susser format grid.
-	/// If the value is <see langword="true"/>, the parser will omit the continuous empty notation
-	/// <c>.</c>s or <c>0</c>s to a <c>*</c>.
-	/// </summary>
-	public bool ShortenSusserFormat { get; private set; } = shortenSusser;
 
 	/// <summary>
 	/// Indicates whether the property <see cref="ParsingValue"/> of this instance contains multiline limits.
@@ -443,17 +439,12 @@ public unsafe ref partial struct GridParser(string parsingValue, [PrimaryConstru
 	/// <returns>The result.</returns>
 	private static Grid OnParsingSusser(ref GridParser parser, bool shortenSusser)
 	{
-		var match = (
-			shortenSusser ? GridParserPatterns.ShortenedSusserPattern() : GridParserPatterns.SusserPattern()
-		).Match(parser.ParsingValue).Value;
+		var match = (shortenSusser ? GridParserPatterns.ShortenedSusserPattern() : GridParserPatterns.SusserPattern()).Match(parser.ParsingValue).Value;
 
-		switch (shortenSusser)
+		if (!shortenSusser && match is not { Length: <= 405 }
+			|| shortenSusser && (match is not { Length: <= 81 } || !expandCode(match, out match)))
 		{
-			case false when match is not { Length: <= 405 }:
-			case true when match is not { Length: <= 81 } || !expandCode(match, out match):
-			{
-				return Grid.Undefined;
-			}
+			return Grid.Undefined;
 		}
 
 		// Step 1: fills all digits.

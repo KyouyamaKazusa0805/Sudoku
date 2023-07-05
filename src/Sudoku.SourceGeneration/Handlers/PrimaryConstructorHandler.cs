@@ -25,7 +25,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 					{
 						var targetMemberName = PrimaryConstructor.GetTargetMemberName(namedArgs, parameterName, "_<@");
 						var accessibilityModifiers = getAccessibilityModifiers(namedArgs, "private ");
-						var readonlyModifier = getReadOnlyModifier(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, true);
+						var readonlyModifier = getReadOnlyModifier(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, true, true);
 						var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, true);
 						var docComments = getDocComments(comment);
 						var parameterTypeName = getParameterType(parameterType, nullableAnnotation);
@@ -59,7 +59,10 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 					{
 						var targetMemberName = PrimaryConstructor.GetTargetMemberName(namedArgs, parameterName, ">@");
 						var accessibilityModifiers = getAccessibilityModifiers(namedArgs, "public ");
-						var readonlyModifier = getReadOnlyModifier(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, false);
+						var setter = namedArgs.TryGetValueOrDefault<string>("SetterExpression", out var setterExpression)
+							? $" {setterExpression};"
+							: string.Empty;
+						var readonlyModifier = getReadOnlyModifier(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, false, setter is []);
 						var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, false);
 						var docComments = getDocComments(comment);
 						var parameterTypeString = parameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
@@ -77,8 +80,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 									
 							"""
 							: string.Empty;
-						var setter = namedArgs.TryGetValueOrDefault<string>("SetterExpression", out var setterExpression) ? $" {setterExpression};" : string.Empty;
-
+						
 						propertyDeclarations.Add(
 							$$"""
 							/// <summary>
@@ -121,13 +123,13 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 			static string getAccessibilityModifiers(NamedArgs namedArgs, string @default)
 				=> namedArgs.TryGetValueOrDefault<string>("Accessibility", out var a) && a is not null ? $"{a.Trim().ToLower()} " : @default;
 
-			static string getReadOnlyModifier(NamedArgs namedArgs, ScopedKind scopedKind, RefKind refKind, TypeKind typeKind, bool isRefStruct, bool isReadOnly, bool isField)
-				=> (scopedKind, refKind, typeKind, isReadOnly, isRefStruct, isField) switch
+			static string getReadOnlyModifier(NamedArgs namedArgs, ScopedKind scopedKind, RefKind refKind, TypeKind typeKind, bool isRefStruct, bool isReadOnly, bool isField, bool setterIsEmpty)
+				=> (scopedKind, refKind, typeKind, isReadOnly, isRefStruct, isField, setterIsEmpty) switch
 				{
-					(0, RefKind.In, TypeKind.Struct, false, true, _) => "readonly ",
-					(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false, true, _) => "readonly ",
-					(_, _, TypeKind.Struct, _, _, true) => "readonly ",
-					(_, _, TypeKind.Struct, false, _, _) => "readonly ",
+					(0, RefKind.In, TypeKind.Struct, false, true, _, true) => "readonly ",
+					(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false, true, _, true) => "readonly ",
+					(_, _, TypeKind.Struct, _, _, true, true) => "readonly ",
+					(_, _, TypeKind.Struct, false, _, _, true) => "readonly ",
 					_ => string.Empty
 				};
 
