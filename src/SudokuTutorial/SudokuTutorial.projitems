@@ -278,6 +278,20 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\01 欠一数组\07 欠一四数组明数类型.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\01 欠一数组\08 欠一四数组明数类型，带两个明数.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\01 欠一数组\09 欠一四数组明数类型，带两个明数，另外一个例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\02 融合待定数组\01 第一个例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\02 融合待定数组\02 第二个例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\02 融合待定数组\03 第三个例子，练习.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\02 融合待定数组\04 孤立区块类型.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\02 融合待定数组\05 孤立区块类型，练习.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\02 融合待定数组\06 自噬类型.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\02 融合待定数组\07 自噬类型，另外一个例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\02 融合待定数组\08 自噬类型，练习.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\02 融合待定数组\09-1 显性视角.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\02 融合待定数组\09-2 隐性视角.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\03 跨区数组\01 跨区数组基本例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\03 跨区数组\02 同一个题目里的另外一个跨区数组.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\03 跨区数组\03 伪数组.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\03 跨区数组\04 伪数组，练习.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
   </ItemGroup>
   <ItemGroup>
