@@ -292,6 +292,23 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\03 跨区数组\02 同一个题目里的另外一个跨区数组.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\03 跨区数组\03 伪数组.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\03 跨区数组\04 伪数组，练习.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\01 均衡数对-总示意图.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\01-1 第一种情况.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\01-2 第二种情况.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\01-3 第三种情况.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\01-4 第四种情况.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\01-5 第五种情况.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\01-6 第六种情况.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\01-7 第七种情况.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\01-8 第八种情况.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\01-9 第九种情况.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\02 均衡三数组.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\03 均衡四数组.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\04 均衡数对和伪数组的关联.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\05-1 另外一个均衡数对的例子.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\05-2 转换为残缺WXYZ-Wing的情况.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\06-1 更多枚举情况的均衡数对.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第3部分 非直观类技巧\05 待定数组（ALS）\04 均衡数组\06-2 残缺VWXYZ-Wing.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
   </ItemGroup>
   <ItemGroup>
