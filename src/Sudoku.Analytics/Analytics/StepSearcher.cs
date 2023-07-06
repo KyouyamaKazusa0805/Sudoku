@@ -32,6 +32,7 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Step"/>
 [Equals]
 [GetHashCode]
+[ToString(OtherModifiers = "sealed")]
 public abstract partial class StepSearcher(
 	[PrimaryConstructorParameter] int priority,
 	[PrimaryConstructorParameter] int level,
@@ -95,6 +96,7 @@ public abstract partial class StepSearcher(
 	/// <summary>
 	/// Returns the real name of this instance.
 	/// </summary>
+	[StringMember]
 	public string Name => GetType().Name switch { var rawTypeName => GetString($"StepSearcherName_{rawTypeName}") ?? rawTypeName };
 
 	/// <inheritdoc cref="StepSearcherAttribute.SupportedTechniques"/>
@@ -119,13 +121,6 @@ public abstract partial class StepSearcher(
 
 	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] StepSearcher? other) => other is not null && PriorityId == other.PriorityId;
-
-	/// <summary>
-	/// Returns the real name of this instance.
-	/// </summary>
-	/// <returns>Real name of this instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override string ToString() => Name;
 
 	/// <summary>
 	/// Try to collect all available <see cref="Step"/>s using the current technique rule.

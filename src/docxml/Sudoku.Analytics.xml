@@ -5452,12 +5452,6 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearcher.Equals(Sudoku.Analytics.StepSearcher)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.ToString">
-            <summary>
-            Returns the real name of this instance.
-            </summary>
-            <returns>Real name of this instance.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <summary>
             Try to collect all available <see cref="T:Sudoku.Analytics.Step"/>s using the current technique rule.
@@ -5515,6 +5509,9 @@ result ^= expression;
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.ToString">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="F:Sudoku.Analytics.StepSearcher._splitPriority">
