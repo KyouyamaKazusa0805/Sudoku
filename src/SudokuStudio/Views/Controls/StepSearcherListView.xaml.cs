@@ -36,7 +36,7 @@ public sealed partial class StepSearcherListView : UserControl
 
 	private async void MainListView_DropAsync(object sender, DragEventArgs e)
 	{
-		if (sender is not ListView { Name: "MainListView" } target)
+		if (sender is not ListView { Name: nameof(MainListView) } target)
 		{
 			return;
 		}
