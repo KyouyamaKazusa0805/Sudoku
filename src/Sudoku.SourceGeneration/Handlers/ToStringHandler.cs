@@ -31,7 +31,7 @@ internal static class ToStringHandler
 			? string.Empty
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
 		var typeNameString = $"{typeName}{typeParametersString}";
-		var fullTypeNameString = $"{namespaceString}.{typeNameString}";
+		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
 
 		var simpleFormattableTypeName = "System.ISimpleFormattable";
 		if (compilation.GetTypeByMetadataName(simpleFormattableTypeName) is not { } simpleFormattableTypeSymbol)

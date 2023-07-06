@@ -81,7 +81,7 @@ internal static class EqualityOperatorsHandler
 			? string.Empty
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
 		var typeNameString = $"{typeName}{typeArgumentsString}";
-		var fullTypeNameString = $"{namespaceString}.{typeNameString}";
+		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
 		const string nullableToken = "?";
 		var nullabilityToken = (attribute.GetNamedArgument<int>("NullabilityPrefer"), kind) switch
 		{

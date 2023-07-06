@@ -63,7 +63,7 @@ internal static class ComparisonOperatorsHandler
 			? string.Empty
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
 		var typeNameString = $"{typeName}{typeArgumentsString}";
-		var fullTypeNameString = $"{namespaceString}.{typeNameString}";
+		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
 		var scopedKeywordString = isRefStruct ? "scoped " : string.Empty;
 		var attributesMarked = behavior switch
 		{

@@ -31,7 +31,7 @@ internal static class GetHashCodeHandler
 			? string.Empty
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
 		var typeNameString = $"{typeName}{typeParametersString}";
-		var fullTypeNameString = $"{namespaceString}.{typeNameString}";
+		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
 
 		const string primaryConstructorParameterAttributeTypeName = "System.SourceGeneration.PrimaryConstructorParameterAttribute";
 		var primaryConstructorParameterAttributeSymbol = compilation.GetTypeByMetadataName(primaryConstructorParameterAttributeTypeName);

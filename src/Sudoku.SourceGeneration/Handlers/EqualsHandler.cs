@@ -49,7 +49,7 @@ internal static class EqualsHandler
 			? string.Empty
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
 		var typeNameString = $"{typeName}{typeArgumentsString}";
-		var fullTypeNameString = $"{namespaceString}.{typeNameString}";
+		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
 		var expressionString = behavior switch
 		{
 			Behavior.ReturnFalse => "false",
