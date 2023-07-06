@@ -144,7 +144,7 @@ public static class CommonReadOnlies
 	{
 		scoped var r = (stackalloc[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 });
 		scoped var c = (stackalloc[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 });
-		var dic = new Dictionary<HousePair, HouseCellsTuple>(new ValueTupleComparer());
+		var dic = new Dictionary<HousePair, HouseCellsTuple>(new HousePairComparer());
 		for (byte bs = 9; bs < 27; bs++)
 		{
 			for (byte j = 0; j < 3; j++)
@@ -164,7 +164,7 @@ public static class CommonReadOnlies
 /// <summary>
 /// Represents a comparer instance that compares two tuples.
 /// </summary>
-file sealed class ValueTupleComparer : IEqualityComparer<HousePair>
+file sealed class HousePairComparer : IEqualityComparer<HousePair>
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

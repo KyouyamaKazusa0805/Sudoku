@@ -17826,15 +17826,15 @@ result ^= expression;
 		</summary>
 	</static-constructor>
         </member>
-        <member name="T:Sudoku.Analytics.ValueTupleComparer">
+        <member name="T:Sudoku.Analytics.HousePairComparer">
             <summary>
             Represents a comparer instance that compares two tuples.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.ValueTupleComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
+        <member name="M:Sudoku.Analytics.HousePairComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
+        <member name="M:Sudoku.Analytics.HousePairComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">

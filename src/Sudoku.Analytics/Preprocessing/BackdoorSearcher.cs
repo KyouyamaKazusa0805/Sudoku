@@ -27,34 +27,28 @@ public static class BackdoorSearcher
 			);
 		}
 
-		var assignmentBackdoors = new List<Conclusion>(81);
-		var eliminationBackdoors = new List<Conclusion>(729);
-		var solution = grid.SolutionGrid;
+		var (assignmentBackdoors, eliminationBackdoors, solution) = (new List<Conclusion>(81), new List<Conclusion>(729), grid.SolutionGrid);
 		foreach (var cell in grid.EmptyCells)
 		{
 			// Case 1: Assignments.
 			var case1Playground = grid;
 			case1Playground[cell] = solution[cell];
 
-			if (!sstsOnly.Analyze(case1Playground).IsSolved)
+			if (sstsOnly.Analyze(case1Playground).IsSolved)
 			{
-				continue;
-			}
+				assignmentBackdoors.Add(new(Assignment, cell, solution[cell]));
 
-			assignmentBackdoors.Add(new(Assignment, cell, solution[cell]));
-
-			// Case 2: Eliminations.
-			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~(1 << solution[cell])))
-			{
-				var case2Playground = grid;
-				case2Playground[cell, digit] = false;
-
-				if (!sstsOnly.Analyze(case2Playground).IsSolved)
+				// Case 2: Eliminations.
+				foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~(1 << solution[cell])))
 				{
-					continue;
-				}
+					var case2Playground = grid;
+					case2Playground[cell, digit] = false;
 
-				eliminationBackdoors.Add(new(Elimination, cell, digit));
+					if (sstsOnly.Analyze(case2Playground).IsSolved)
+					{
+						eliminationBackdoors.Add(new(Elimination, cell, digit));
+					}
+				}
 			}
 		}
 
