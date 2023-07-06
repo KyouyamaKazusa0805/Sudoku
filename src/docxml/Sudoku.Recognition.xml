@@ -39,18 +39,21 @@
             Provides a grid field recognizer. If you want to know what is a <b>field</b>,
             please see the 'remark' part of <see cref="T:Sudoku.Recognition.InternalServiceProvider"/>.
             </summary>
+            <param name="photo">Indicates the photo to be assigned.</param>
+            <seealso cref="T:Sudoku.Recognition.InternalServiceProvider"/>
+        </member>
+        <member name="M:Sudoku.Recognition.GridRecognizer.#ctor(System.Drawing.Bitmap)">
+            <summary>
+            Provides a grid field recognizer. If you want to know what is a <b>field</b>,
+            please see the 'remark' part of <see cref="T:Sudoku.Recognition.InternalServiceProvider"/>.
+            </summary>
+            <param name="photo">Indicates the photo to be assigned.</param>
             <seealso cref="T:Sudoku.Recognition.InternalServiceProvider"/>
         </member>
         <member name="F:Sudoku.Recognition.GridRecognizer._image">
             <summary>
             The image.
             </summary>
-        </member>
-        <member name="M:Sudoku.Recognition.GridRecognizer.#ctor(System.Drawing.Bitmap)">
-            <summary>
-            Initializes an instance with the specified photo.
-            </summary>
-            <param name="photo">The photo.</param>
         </member>
         <member name="M:Sudoku.Recognition.GridRecognizer.Dispose">
             <inheritdoc/>
@@ -117,6 +120,7 @@
             To correct the orientation.
             </summary>
             <param name="this">The bitmap.</param>
+            <returns>Returns argument <paramref name="this"/> itself.</returns>
         </member>
         <member name="M:Sudoku.Recognition.ImageHandler.ToImage``2(System.Drawing.Bitmap)">
             <summary>

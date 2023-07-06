@@ -15,12 +15,7 @@ public sealed class RecognitionServiceProvider : IDisposable
 	/// Initializes a default <see cref="RecognitionServiceProvider"/> instance.
 	/// </summary>
 	public RecognitionServiceProvider()
-	{
-		var folder = $"""{Directory.GetCurrentDirectory()}\tessdata""";
-
-		_recognizingServiceProvider = new();
-		_recognizingServiceProvider.InitTesseract(folder);
-	}
+		=> (_recognizingServiceProvider = new()).InitTesseract($"""{Directory.GetCurrentDirectory()}\tessdata""");
 
 
 	/// <summary>

@@ -4,24 +4,14 @@ namespace Sudoku.Recognition;
 /// Provides a grid field recognizer. If you want to know what is a <b>field</b>,
 /// please see the 'remark' part of <see cref="InternalServiceProvider"/>.
 /// </summary>
+/// <param name="photo">Indicates the photo to be assigned.</param>
 /// <seealso cref="InternalServiceProvider"/>
-internal sealed class GridRecognizer : IDisposable
+internal sealed class GridRecognizer(Bitmap photo) : IDisposable
 {
 	/// <summary>
 	/// The image.
 	/// </summary>
-	private Field _image;
-
-
-	/// <summary>
-	/// Initializes an instance with the specified photo.
-	/// </summary>
-	/// <param name="photo">The photo.</param>
-	public GridRecognizer(Bitmap photo)
-	{
-		photo.CorrectOrientation();
-		_image = photo.ToImage<Bgr, byte>();
-	}
+	private Field _image = photo.CorrectOrientation().ToImage<Bgr, byte>();
 
 
 	/// <inheritdoc/>
@@ -87,11 +77,7 @@ internal sealed class GridRecognizer : IDisposable
 		// |  |
 		// 3--4
 
-		var corners = new PointF[4];
-		var maxSum = 0;
-		var maxDiff = 0;
-		var minSum = -1;
-		var minDiff = 0;
+		var (corners, maxSum, maxDiff, minSum, minDiff) = (new PointF[4], 0, 0, -1, 0);
 		foreach (var point in points)
 		{
 			var sum = point.X + point.Y;

@@ -66,7 +66,8 @@ public static class ImageHandler
 	/// To correct the orientation.
 	/// </summary>
 	/// <param name="this">The bitmap.</param>
-	public static void CorrectOrientation(this Bitmap @this)
+	/// <returns>Returns argument <paramref name="this"/> itself.</returns>
+	public static Bitmap CorrectOrientation(this Bitmap @this)
 	{
 		if (Array.IndexOf(@this.PropertyIdList, 274) != -1)
 		{
@@ -91,6 +92,8 @@ public static class ImageHandler
 			// This EXIF data is now invalid and should be removed.
 			@this.RemovePropertyItem(274);
 		}
+
+		return @this;
 	}
 
 	/// <summary>
