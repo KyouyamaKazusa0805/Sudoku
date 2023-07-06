@@ -21,12 +21,12 @@ public sealed partial class StepSearcherListView : UserControl
 
 	private void MainListView_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
 	{
-		if (e is not { Data: var dataPackage, Items: [StepSearcherInfo stepSearcherSerializationData] })
+		if (e is not { Data: var dataPackage, Items: [StepSearcherInfo stepSearcherInfo] })
 		{
 			return;
 		}
 
-		dataPackage.SetText(stepSearcherSerializationData.ToString());
+		dataPackage.SetText(stepSearcherInfo.ToString());
 		dataPackage.RequestedOperation = DataPackageOperation.Move;
 	}
 
