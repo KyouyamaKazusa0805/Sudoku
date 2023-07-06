@@ -21,13 +21,11 @@ public sealed partial class StepSearcherListView : UserControl
 
 	private void MainListView_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
 	{
-		if (e is not { Data: var dataPackage, Items: [StepSearcherInfo stepSearcherInfo] })
+		if (e is { Data: var dataPackage, Items: [StepSearcherInfo stepSearcherInfo] })
 		{
-			return;
+			dataPackage.SetText(Serialize(stepSearcherInfo));
+			dataPackage.RequestedOperation = DataPackageOperation.Move;
 		}
-
-		dataPackage.SetText(stepSearcherInfo.ToString());
-		dataPackage.RequestedOperation = DataPackageOperation.Move;
 	}
 
 	private void MainListView_DragOver(object sender, DragEventArgs e) => e.AcceptedOperation = DataPackageOperation.Move;
@@ -47,18 +45,9 @@ public sealed partial class StepSearcherListView : UserControl
 		}
 
 		var def = e.GetDeferral();
-		var s = await e.DataView.GetTextAsync();
-
-		var capture = StepSearcherSerializationDataStringPattern().Match(s);
-		if (capture is not { Groups: [{ Value: var isEnabledRaw }, { Value: var nameRaw }, { Value: var typeNameRaw }] })
+		if (Deserialize<StepSearcherInfo>(await e.DataView.GetTextAsync()) is not { TypeName: var typeName } instance
+			|| StepSearcherPool.GetStepSearchers(typeName, false)[0].IsFixed)
 		{
-			return;
-		}
-
-		var instance = new StepSearcherInfo { IsEnabled = bool.Parse(isEnabledRaw), Name = nameRaw, TypeName = typeNameRaw };
-		if (StepSearcherPool.GetStepSearchers(instance.TypeName, false)[0].IsFixed)
-		{
-			// Cannot re-order for fixed step searchers.
 			return;
 		}
 
@@ -72,10 +61,6 @@ public sealed partial class StepSearcherListView : UserControl
 		e.AcceptedOperation = DataPackageOperation.Move;
 		def.Complete();
 	}
-
-
-	[GeneratedRegex("""IsEnabled\s*=\s*([Tt]rue|[Ff]alse),\s*Name\s*=\s*([^,]+),\s*TypeName\s*=\s*(\w+)""", RegexOptions.Compiled, 5000)]
-	private static partial Regex StepSearcherSerializationDataStringPattern();
 
 
 	private void MainListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
