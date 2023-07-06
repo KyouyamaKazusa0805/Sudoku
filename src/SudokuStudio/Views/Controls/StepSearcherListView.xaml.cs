@@ -56,6 +56,11 @@ public sealed partial class StepSearcherListView : UserControl
 		}
 
 		var instance = new StepSearcherInfo { IsEnabled = bool.Parse(isEnabledRaw), Name = nameRaw, TypeName = typeNameRaw };
+		if (StepSearcherPool.GetStepSearchers(instance.TypeName, false)[0].IsFixed)
+		{
+			// Cannot re-order for fixed step searchers.
+			return;
+		}
 
 		// Important step: Drag & drop behavior cannot get the target element's index.
 		// We should get the target insertion index via cursor point.
