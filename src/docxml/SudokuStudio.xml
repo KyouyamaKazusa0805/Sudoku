@@ -1077,6 +1077,9 @@
             </summary>
             <returns>A list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.</returns>
         </member>
+        <member name="M:SudokuStudio.Configuration.StepSearcherInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="F:SudokuStudio.Configuration.StepSearcherInfo.IsEnabledProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherInfo.IsEnabled"/>.

@@ -13,4 +13,9 @@ public sealed partial class StepSearcherInfo : DependencyObject
 	/// </summary>
 	/// <returns>A list of <see cref="StepSearcher"/> instances.</returns>
 	public StepSearcher[] CreateStepSearchers() => StepSearcherPool.GetStepSearchers(TypeName, true);
+
+
+	/// <inheritdoc/>
+	public override string ToString()
+		=> $$"""{{nameof(StepSearcherInfo)}} { {{nameof(IsEnabled)}} = {{IsEnabled}}, {{nameof(Name)}} = {{Name}}, {{nameof(TypeName)}} = {{TypeName}} }""";
 }
