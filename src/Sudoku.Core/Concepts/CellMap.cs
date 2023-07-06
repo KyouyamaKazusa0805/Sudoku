@@ -682,8 +682,7 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	public readonly CellMap Slice(int start, int count)
 	{
-		var result = Empty;
-		var offsets = Offsets;
+		var (result, offsets) = (Empty, Offsets);
 		for (int i = start, end = start + count; i < end; i++)
 		{
 			result.Add(offsets[i]);
@@ -701,8 +700,7 @@ public unsafe partial struct CellMap :
 	/// <returns>An array of <typeparamref name="TResult"/> elements.</returns>
 	public readonly TResult[] Select<TResult>(Func<Cell, TResult> selector)
 	{
-		var result = new TResult[_count];
-		var i = 0;
+		var (result, i) = (new TResult[_count], 0);
 		foreach (var cell in Offsets)
 		{
 			result[i++] = selector(cell);
