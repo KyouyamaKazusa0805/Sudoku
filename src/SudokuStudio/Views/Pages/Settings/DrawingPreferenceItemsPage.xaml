@@ -19,6 +19,10 @@
 			<Setter Property="HorizontalAlignment" Value="Right" />
 			<Setter Property="Width" Value="76" />
 		</Style>
+		<Style x:Key="SettingCardItemStyle" TargetType="w:SettingsCard">
+			<Setter Property="ContentAlignment" Value="Left" />
+			<Setter Property="Padding" Value="0,12" />
+		</Style>
 	</Page.Resources>
 
 	<Grid ColumnDefinitions="*,Auto" Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
@@ -90,128 +94,154 @@
 					</w:SettingsCard>
 					<w:SettingsExpander Header="{m:R Key=SettingsPage_AuxiliaryColors}" Description="{m:R Key=SettingsPage_AuxiliaryColorsDescription}">
 						<w:SettingsExpander.Items>
-							<RelativePanel Margin="40,10,0,0">
-								<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors1SelectorTitle" Text="#1:" />
-								<c:ColorSelector
-									RelativePanel.RightOf="AuxiliaryColors1SelectorTitle"
-									RelativePanel.AlignVerticalCenterWith="AuxiliaryColors1SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[0],Mode=TwoWay}" />
-							</RelativePanel>
-							<RelativePanel Margin="40,0,0,0">
-								<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors2SelectorTitle" Text="#2:" />
-								<c:ColorSelector
-									RelativePanel.RightOf="AuxiliaryColors2SelectorTitle"
-									RelativePanel.AlignVerticalCenterWith="AuxiliaryColors2SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[1],Mode=TwoWay}" />
-							</RelativePanel>
-							<RelativePanel Margin="40,0,0,0">
-								<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors3SelectorTitle" Text="#3:" />
-								<c:ColorSelector
-									RelativePanel.RightOf="AuxiliaryColors3SelectorTitle"
-									RelativePanel.AlignVerticalCenterWith="AuxiliaryColors3SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[2],Mode=TwoWay}" />
-							</RelativePanel>
+							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+								<RelativePanel Margin="40,10,0,0">
+									<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors1SelectorTitle" Text="#1:" />
+									<c:ColorSelector
+										RelativePanel.RightOf="AuxiliaryColors1SelectorTitle"
+										RelativePanel.AlignVerticalCenterWith="AuxiliaryColors1SelectorTitle" Margin="10,0,0,0"
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[0],Mode=TwoWay}" />
+								</RelativePanel>
+							</w:SettingsCard>
+							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+								<RelativePanel Margin="40,0,0,0">
+									<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors2SelectorTitle" Text="#2:" />
+									<c:ColorSelector
+										RelativePanel.RightOf="AuxiliaryColors2SelectorTitle"
+										RelativePanel.AlignVerticalCenterWith="AuxiliaryColors2SelectorTitle" Margin="10,0,0,0"
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[1],Mode=TwoWay}" />
+								</RelativePanel>
+							</w:SettingsCard>
+							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+								<RelativePanel Margin="40,0,0,0">
+									<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors3SelectorTitle" Text="#3:" />
+									<c:ColorSelector
+										RelativePanel.RightOf="AuxiliaryColors3SelectorTitle"
+										RelativePanel.AlignVerticalCenterWith="AuxiliaryColors3SelectorTitle" Margin="10,0,0,0"
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[2],Mode=TwoWay}" />
+								</RelativePanel>
+							</w:SettingsCard>
 						</w:SettingsExpander.Items>
 					</w:SettingsExpander>
 					<w:SettingsExpander Header="{m:R Key=SettingsPage_AlmostLockedSetsColors}">
 						<w:SettingsExpander.Items>
-							<RelativePanel Margin="40,10,0,0">
-								<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors1SelectorTitle" Text="#1:" />
-								<c:ColorSelector
-									RelativePanel.RightOf="AlmostLockedSetsColors1SelectorTitle"
-									RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors1SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[0],Mode=TwoWay}" />
-							</RelativePanel>
-							<RelativePanel Margin="40,0,0,0">
-								<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors2SelectorTitle" Text="#2:" />
-								<c:ColorSelector
-									RelativePanel.RightOf="AlmostLockedSetsColors2SelectorTitle"
-									RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors2SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[1],Mode=TwoWay}" />
-							</RelativePanel>
-							<RelativePanel Margin="40,0,0,0">
-								<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors3SelectorTitle" Text="#3:" />
-								<c:ColorSelector
-									RelativePanel.RightOf="AlmostLockedSetsColors3SelectorTitle"
-									RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors3SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[2],Mode=TwoWay}" />
-							</RelativePanel>
-							<RelativePanel Margin="40,0,0,0">
-								<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors4SelectorTitle" Text="#4:" />
-								<c:ColorSelector
-									RelativePanel.RightOf="AlmostLockedSetsColors4SelectorTitle"
-									RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors4SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[3],Mode=TwoWay}" />
-							</RelativePanel>
-							<RelativePanel Margin="40,0,0,0">
-								<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors5SelectorTitle" Text="#5:" />
-								<c:ColorSelector
-									RelativePanel.RightOf="AlmostLockedSetsColors5SelectorTitle"
-									RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors5SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[4],Mode=TwoWay}" />
-							</RelativePanel>
+							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+								<RelativePanel Margin="40,10,0,0">
+									<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors1SelectorTitle" Text="#1:" />
+									<c:ColorSelector
+										RelativePanel.RightOf="AlmostLockedSetsColors1SelectorTitle"
+										RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors1SelectorTitle" Margin="10,0,0,0"
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[0],Mode=TwoWay}" />
+								</RelativePanel>
+							</w:SettingsCard>
+							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+								<RelativePanel Margin="40,0,0,0">
+									<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors2SelectorTitle" Text="#2:" />
+									<c:ColorSelector
+										RelativePanel.RightOf="AlmostLockedSetsColors2SelectorTitle"
+										RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors2SelectorTitle" Margin="10,0,0,0"
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[1],Mode=TwoWay}" />
+								</RelativePanel>
+							</w:SettingsCard>
+							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+								<RelativePanel Margin="40,0,0,0">
+									<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors3SelectorTitle" Text="#3:" />
+									<c:ColorSelector
+										RelativePanel.RightOf="AlmostLockedSetsColors3SelectorTitle"
+										RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors3SelectorTitle" Margin="10,0,0,0"
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[2],Mode=TwoWay}" />
+								</RelativePanel>
+							</w:SettingsCard>
+							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+								<RelativePanel Margin="40,0,0,0">
+									<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors4SelectorTitle" Text="#4:" />
+									<c:ColorSelector
+										RelativePanel.RightOf="AlmostLockedSetsColors4SelectorTitle"
+										RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors4SelectorTitle" Margin="10,0,0,0"
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[3],Mode=TwoWay}" />
+								</RelativePanel>
+							</w:SettingsCard>
+							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+								<RelativePanel Margin="40,0,0,0">
+									<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors5SelectorTitle" Text="#5:" />
+									<c:ColorSelector
+										RelativePanel.RightOf="AlmostLockedSetsColors5SelectorTitle"
+										RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors5SelectorTitle" Margin="10,0,0,0"
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[4],Mode=TwoWay}" />
+								</RelativePanel>
+							</w:SettingsCard>
 						</w:SettingsExpander.Items>
 					</w:SettingsExpander>
 				</w:SettingsGroup>
 				<w:SettingsGroup Header="{m:R Key=SettingsPage_Fonts}">
 					<w:SettingsExpander Header="{m:R Key=SettingsPage_GivenFontData}">
 						<w:SettingsExpander.Items>
-							<c:FontPicker
-								x:Name="GivenFontPicker" Margin="40,10"
-								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName}"
-								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontScale}"
-								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontColor}"
-								SelectedFontChanged="GivenFontPicker_SelectedFontChanged"
-								SelectedFontScaleChanged="GivenFontPicker_SelectedFontScaleChanged"
-								SelectedFontColorChanged="GivenFontPicker_SelectedFontColorChanged" />
+							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+								<c:FontPicker
+									x:Name="GivenFontPicker" Margin="40,10"
+									SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName}"
+									SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontScale}"
+									SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontColor}"
+									SelectedFontChanged="GivenFontPicker_SelectedFontChanged"
+									SelectedFontScaleChanged="GivenFontPicker_SelectedFontScaleChanged"
+									SelectedFontColorChanged="GivenFontPicker_SelectedFontColorChanged" />
+							</w:SettingsCard>
 						</w:SettingsExpander.Items>
 					</w:SettingsExpander>
 					<w:SettingsExpander Header="{m:R Key=SettingsPage_ModifiableFontData}">
 						<w:SettingsExpander.Items>
-							<c:FontPicker
-								x:Name="ModifiableFontPicker" Margin="40,10"
-								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName}"
-								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontScale}"
-								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontColor}"
-								SelectedFontChanged="ModifiableFontPicker_SelectedFontChanged"
-								SelectedFontScaleChanged="ModifiableFontPicker_SelectedFontScaleChanged"
-								SelectedFontColorChanged="ModifiableFontPicker_SelectedFontColorChanged" />
+							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+								<c:FontPicker
+									x:Name="ModifiableFontPicker" Margin="40,10"
+									SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName}"
+									SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontScale}"
+									SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontColor}"
+									SelectedFontChanged="ModifiableFontPicker_SelectedFontChanged"
+									SelectedFontScaleChanged="ModifiableFontPicker_SelectedFontScaleChanged"
+									SelectedFontColorChanged="ModifiableFontPicker_SelectedFontColorChanged" />
+							</w:SettingsCard>
 						</w:SettingsExpander.Items>
 					</w:SettingsExpander>
 					<w:SettingsExpander Header="{m:R Key=SettingsPage_CandidateFontData}">
 						<w:SettingsExpander.Items>
-							<c:FontPicker
-								x:Name="PencilmarkFontPicker" Margin="40,10"
-								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontName}"
-								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontScale}"
-								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontColor}"
-								SelectedFontChanged="PencilmarkFontPicker_SelectedFontChanged"
-								SelectedFontScaleChanged="PencilmarkFontPicker_SelectedFontScaleChanged"
-								SelectedFontColorChanged="PencilmarkFontPicker_SelectedFontColorChanged" />
+							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+								<c:FontPicker
+									x:Name="PencilmarkFontPicker" Margin="40,10"
+									SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontName}"
+									SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontScale}"
+									SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontColor}"
+									SelectedFontChanged="PencilmarkFontPicker_SelectedFontChanged"
+									SelectedFontScaleChanged="PencilmarkFontPicker_SelectedFontScaleChanged"
+									SelectedFontColorChanged="PencilmarkFontPicker_SelectedFontColorChanged" />
+							</w:SettingsCard>
 						</w:SettingsExpander.Items>
 					</w:SettingsExpander>
 					<w:SettingsExpander Header="{m:R Key=SettingsPage_CoordinateLabelFontData}">
 						<w:SettingsExpander.Items>
-							<c:FontPicker
-								x:Name="CoordinateFontPicker" Margin="40,10"
-								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontName}"
-								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontScale}"
-								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontColor}"
-								SelectedFontChanged="CoordinateFontPicker_SelectedFontChanged"
-								SelectedFontScaleChanged="CoordinateFontPicker_SelectedFontScaleChanged"
-								SelectedFontColorChanged="CoordinateFontPicker_SelectedFontColorChanged" />
+							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+								<c:FontPicker
+									x:Name="CoordinateFontPicker" Margin="40,10"
+									SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontName}"
+									SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontScale}"
+									SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontColor}"
+									SelectedFontChanged="CoordinateFontPicker_SelectedFontChanged"
+									SelectedFontScaleChanged="CoordinateFontPicker_SelectedFontScaleChanged"
+									SelectedFontColorChanged="CoordinateFontPicker_SelectedFontColorChanged" />
+							</w:SettingsCard>
 						</w:SettingsExpander.Items>
 					</w:SettingsExpander>
 					<w:SettingsExpander Header="{m:R Key=SettingsPage_BabaGroupFontData}">
 						<w:SettingsExpander.Items>
-							<c:FontPicker
-								x:Name="BabaGroupingFontPicker" Margin="40,10"
-								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontName}"
-								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontScale}"
-								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontColor}"
-								SelectedFontChanged="BabaGroupingFontPicker_SelectedFontChanged"
-								SelectedFontScaleChanged="BabaGroupingFontPicker_SelectedFontScaleChanged"
-								SelectedFontColorChanged="BabaGroupingFontPicker_SelectedFontColorChanged" />
+							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+								<c:FontPicker
+									x:Name="BabaGroupingFontPicker" Margin="40,10"
+									SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontName}"
+									SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontScale}"
+									SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontColor}"
+									SelectedFontChanged="BabaGroupingFontPicker_SelectedFontChanged"
+									SelectedFontScaleChanged="BabaGroupingFontPicker_SelectedFontScaleChanged"
+									SelectedFontColorChanged="BabaGroupingFontPicker_SelectedFontColorChanged" />
+							</w:SettingsCard>
 						</w:SettingsExpander.Items>
 
 						<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

@@ -21,6 +21,10 @@
 			<Setter Property="HorizontalAlignment" Value="Right" />
 			<Setter Property="Width" Value="76" />
 		</Style>
+		<Style x:Key="SettingCardItemStyle" TargetType="w:SettingsCard">
+			<Setter Property="ContentAlignment" Value="Left" />
+			<Setter Property="Padding" Value="0,12" />
+		</Style>
 		<vcvt:StepTooltipDisplayItemToBooleanConverter x:Key="StepDisplayItemConverter" />
 	</Page.Resources>
 
@@ -102,70 +106,94 @@
 			<w:SettingsGroup Header="{m:R Key=SettingsPage_StepsColoring}">
 				<w:SettingsExpander Header="{m:R Key=SettingsPage_DifficultyLevelForegrounds}">
 					<w:SettingsExpander.Items>
-						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Easy}" VerticalAlignment="Center" />
-							<c:ColorSelector
-								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[0],Mode=TwoWay}" />
-						</StackPanel>
-						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Moderate}" VerticalAlignment="Center" />
-							<c:ColorSelector
-								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[1],Mode=TwoWay}" />
-						</StackPanel>
-						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Hard}" VerticalAlignment="Center"/>
-							<c:ColorSelector
-								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[2],Mode=TwoWay}" />
-						</StackPanel>
-						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Fiendish}" VerticalAlignment="Center" />
-							<c:ColorSelector
-								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[3],Mode=TwoWay}" />
-						</StackPanel>
-						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Nightmare}" VerticalAlignment="Center" />
-							<c:ColorSelector
-								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[4],Mode=TwoWay}" />
-						</StackPanel>
-						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Unknown}" VerticalAlignment="Center" />
-							<c:ColorSelector
-								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[5],Mode=TwoWay}" />
-						</StackPanel>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
+								<TextBlock Text="{m:R Key=_DifficultyLevel_Easy}" VerticalAlignment="Center" />
+								<c:ColorSelector
+									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[0],Mode=TwoWay}" />
+							</StackPanel>
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
+								<TextBlock Text="{m:R Key=_DifficultyLevel_Moderate}" VerticalAlignment="Center" />
+								<c:ColorSelector
+									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[1],Mode=TwoWay}" />
+							</StackPanel>
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
+								<TextBlock Text="{m:R Key=_DifficultyLevel_Hard}" VerticalAlignment="Center"/>
+								<c:ColorSelector
+									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[2],Mode=TwoWay}" />
+							</StackPanel>
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
+								<TextBlock Text="{m:R Key=_DifficultyLevel_Fiendish}" VerticalAlignment="Center" />
+								<c:ColorSelector
+									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[3],Mode=TwoWay}" />
+							</StackPanel>
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
+								<TextBlock Text="{m:R Key=_DifficultyLevel_Nightmare}" VerticalAlignment="Center" />
+								<c:ColorSelector
+									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[4],Mode=TwoWay}" />
+							</StackPanel>
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
+								<TextBlock Text="{m:R Key=_DifficultyLevel_Unknown}" VerticalAlignment="Center" />
+								<c:ColorSelector
+									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[5],Mode=TwoWay}" />
+							</StackPanel>
+						</w:SettingsCard>
 					</w:SettingsExpander.Items>
 				</w:SettingsExpander>
 				<w:SettingsExpander Header="{m:R Key=SettingsPage_DifficultyLevelBackgrounds}">
 					<w:SettingsExpander.Items>
-						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Easy}" VerticalAlignment="Center" />
-							<c:ColorSelector
-								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[0],Mode=TwoWay}" />
-						</StackPanel>
-						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Moderate}" VerticalAlignment="Center" />
-							<c:ColorSelector
-								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[1],Mode=TwoWay}" />
-						</StackPanel>
-						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Hard}" VerticalAlignment="Center" />
-							<c:ColorSelector
-								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[2],Mode=TwoWay}" />
-						</StackPanel>
-						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Fiendish}" VerticalAlignment="Center" />
-							<c:ColorSelector
-								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[3],Mode=TwoWay}" />
-						</StackPanel>
-						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Nightmare}" VerticalAlignment="Center" />
-							<c:ColorSelector
-								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[4],Mode=TwoWay}" />
-						</StackPanel>
-						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Unknown}" VerticalAlignment="Center" />
-							<c:ColorSelector
-								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[5],Mode=TwoWay}" />
-						</StackPanel>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
+								<TextBlock Text="{m:R Key=_DifficultyLevel_Easy}" VerticalAlignment="Center" />
+								<c:ColorSelector
+									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[0],Mode=TwoWay}" />
+							</StackPanel>
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
+								<TextBlock Text="{m:R Key=_DifficultyLevel_Moderate}" VerticalAlignment="Center" />
+								<c:ColorSelector
+									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[1],Mode=TwoWay}" />
+							</StackPanel>
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
+								<TextBlock Text="{m:R Key=_DifficultyLevel_Hard}" VerticalAlignment="Center" />
+								<c:ColorSelector
+									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[2],Mode=TwoWay}" />
+							</StackPanel>
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
+								<TextBlock Text="{m:R Key=_DifficultyLevel_Fiendish}" VerticalAlignment="Center" />
+								<c:ColorSelector
+									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[3],Mode=TwoWay}" />
+							</StackPanel>
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
+								<TextBlock Text="{m:R Key=_DifficultyLevel_Nightmare}" VerticalAlignment="Center" />
+								<c:ColorSelector
+									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[4],Mode=TwoWay}" />
+							</StackPanel>
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,10">
+								<TextBlock Text="{m:R Key=_DifficultyLevel_Unknown}" VerticalAlignment="Center" />
+								<c:ColorSelector
+									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[5],Mode=TwoWay}" />
+							</StackPanel>
+						</w:SettingsCard>
 					</w:SettingsExpander.Items>
 				</w:SettingsExpander>
 			</w:SettingsGroup>
@@ -174,60 +202,62 @@
 					Header="{m:R Key=SettingsPage_StepSearcherOrdering}"
 					Description="{m:R Key=SettingsPage_StepSearcherOrderingDescription}">
 					<w:SettingsExpander.Items>
-						<StackPanel Orientation="Horizontal" Spacing="36">
-							<ScrollViewer>
-								<c:StepSearcherListView
-									x:Name="StepSearcherView" Margin="40,10" Width="300" Height="500" HorizontalAlignment="Left"
-									BorderBrush="DimGray" BorderThickness="1" CornerRadius="6"
-									StepSearchers="{x:Bind ((z:App)y:Application.Current).Preference.StepSearcherOrdering.StepSearchersOrder,Mode=TwoWay}"
-									ItemSelected="StepSearcherView_ItemSelected" />
-							</ScrollViewer>
-							<ScrollViewer
-								VerticalScrollBarVisibility="Auto" Height="500" MaxWidth="600"
-								Visibility="{x:Bind cvt:StepSearcherListViewConversion.GetDisplayerVisibility(CurrentSelectedStepSearcher),Mode=OneWay}">
-								<StackPanel Orientation="Vertical" Spacing="6" CornerRadius="6" BorderBrush="DimGray" BorderThickness="1" Padding="24">
-									<TextBlock
-										FontSize="24" FontWeight="Bold"
-										Text="{x:Bind cvt:StepSearcherListViewConversion.GetStepSearcherName(CurrentSelectedStepSearcher),Mode=OneWay}" />
-									<TextBlock Text="{m:R Key=AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange}" />
-									<ItemsRepeater
-										ItemsSource="{x:Bind cvt:StepSearcherListViewConversion.GetStepSearcherSupportedDifficultyLevelCollection(CurrentSelectedStepSearcher),Mode=OneWay}">
-										<ItemsRepeater.ItemTemplate>
-											<DataTemplate x:DataType="categorization:DifficultyLevel">
-												<Border
-													CornerRadius="5" Padding="6"
-													Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor((categorization:DifficultyLevel))}">
-													<TextBlock
-														Text="{x:Bind cvt:DifficultyLevelConversion.GetName((categorization:DifficultyLevel))}" Margin="10,0"
-														Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor((categorization:DifficultyLevel))}" />
-												</Border>
-											</DataTemplate>
-										</ItemsRepeater.ItemTemplate>
-										<ItemsRepeater.Layout>
-											<ColumnMajorUniformToLargestGridLayout MaxColumns="6" RowSpacing="6" ColumnSpacing="6" />
-										</ItemsRepeater.Layout>
-									</ItemsRepeater>
-									<TextBlock Text="{m:R Key=AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques}" />
-									<ItemsRepeater
-										ItemsSource="{x:Bind cvt:StepSearcherListViewConversion.GetStepSearcherSupportedTechniqueCollection(CurrentSelectedStepSearcher),Mode=OneWay}">
-										<ItemsRepeater.ItemTemplate>
-											<DataTemplate x:DataType="categorization:Technique">
-												<Border
-													CornerRadius="5" Padding="6"
-													Background="{x:Bind cvt:StepSearcherListViewConversion.GetTechniqueBackground((categorization:Technique))}">
-													<TextBlock
-														Text="{x:Bind cvt:StepSearcherListViewConversion.GetTechniqueName((categorization:Technique))}" Margin="10,0"
-														Foreground="{x:Bind cvt:StepSearcherListViewConversion.GetTechniqueForeground((categorization:Technique))}" />
-												</Border>
-											</DataTemplate>
-										</ItemsRepeater.ItemTemplate>
-										<ItemsRepeater.Layout>
-											<ColumnMajorUniformToLargestGridLayout MaxColumns="6" RowSpacing="6" ColumnSpacing="6" />
-										</ItemsRepeater.Layout>
-									</ItemsRepeater>
-								</StackPanel>
-							</ScrollViewer>
-						</StackPanel>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<StackPanel Orientation="Horizontal" Spacing="36">
+								<ScrollViewer>
+									<c:StepSearcherListView
+										x:Name="StepSearcherView" Margin="40,10" Width="300" Height="500" HorizontalAlignment="Left"
+										BorderBrush="DimGray" BorderThickness="1" CornerRadius="6"
+										StepSearchers="{x:Bind ((z:App)y:Application.Current).Preference.StepSearcherOrdering.StepSearchersOrder,Mode=TwoWay}"
+										ItemSelected="StepSearcherView_ItemSelected" />
+								</ScrollViewer>
+								<ScrollViewer
+									VerticalScrollBarVisibility="Auto" Height="500" MaxWidth="600"
+									Visibility="{x:Bind cvt:StepSearcherListViewConversion.GetDisplayerVisibility(CurrentSelectedStepSearcher),Mode=OneWay}">
+									<StackPanel Orientation="Vertical" Spacing="6" CornerRadius="6" BorderBrush="DimGray" BorderThickness="1" Padding="24">
+										<TextBlock
+											FontSize="24" FontWeight="Bold"
+											Text="{x:Bind cvt:StepSearcherListViewConversion.GetStepSearcherName(CurrentSelectedStepSearcher),Mode=OneWay}" />
+										<TextBlock Text="{m:R Key=AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange}" />
+										<ItemsRepeater
+											ItemsSource="{x:Bind cvt:StepSearcherListViewConversion.GetStepSearcherSupportedDifficultyLevelCollection(CurrentSelectedStepSearcher),Mode=OneWay}">
+											<ItemsRepeater.ItemTemplate>
+												<DataTemplate x:DataType="categorization:DifficultyLevel">
+													<Border
+														CornerRadius="5" Padding="6"
+														Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor((categorization:DifficultyLevel))}">
+														<TextBlock
+															Text="{x:Bind cvt:DifficultyLevelConversion.GetName((categorization:DifficultyLevel))}" Margin="10,0"
+															Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor((categorization:DifficultyLevel))}" />
+													</Border>
+												</DataTemplate>
+											</ItemsRepeater.ItemTemplate>
+											<ItemsRepeater.Layout>
+												<ColumnMajorUniformToLargestGridLayout MaxColumns="6" RowSpacing="6" ColumnSpacing="6" />
+											</ItemsRepeater.Layout>
+										</ItemsRepeater>
+										<TextBlock Text="{m:R Key=AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques}" />
+										<ItemsRepeater
+											ItemsSource="{x:Bind cvt:StepSearcherListViewConversion.GetStepSearcherSupportedTechniqueCollection(CurrentSelectedStepSearcher),Mode=OneWay}">
+											<ItemsRepeater.ItemTemplate>
+												<DataTemplate x:DataType="categorization:Technique">
+													<Border
+														CornerRadius="5" Padding="6"
+														Background="{x:Bind cvt:StepSearcherListViewConversion.GetTechniqueBackground((categorization:Technique))}">
+														<TextBlock
+															Text="{x:Bind cvt:StepSearcherListViewConversion.GetTechniqueName((categorization:Technique))}" Margin="10,0"
+															Foreground="{x:Bind cvt:StepSearcherListViewConversion.GetTechniqueForeground((categorization:Technique))}" />
+													</Border>
+												</DataTemplate>
+											</ItemsRepeater.ItemTemplate>
+											<ItemsRepeater.Layout>
+												<ColumnMajorUniformToLargestGridLayout MaxColumns="6" RowSpacing="6" ColumnSpacing="6" />
+											</ItemsRepeater.Layout>
+										</ItemsRepeater>
+									</StackPanel>
+								</ScrollViewer>
+							</StackPanel>
+						</w:SettingsCard>
 					</w:SettingsExpander.Items>
 				</w:SettingsExpander>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps}">
@@ -243,48 +273,50 @@
 				</w:SettingsGroup.Resources>
 				<w:SettingsExpander Header="{m:R Key=SettingsPage_StepDisplayItems}" Description="{m:R Key=SettingsPage_StepDisplayItemsDescription}">
 					<w:SettingsExpander.Items>
-						<ListView Margin="40,10" SelectionMode="None">
-							<ListViewItem>
-								<CheckBox
-									Content="{m:R Key=SettingsPage_StepDisplayItem_TechniqueName}"
-									IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
-										Mode=TwoWay,
-										Converter={StaticResource StepDisplayItemConverter},
-										ConverterParameter='TechniqueName'}" />
-							</ListViewItem>
-							<ListViewItem>
-								<CheckBox
-									Content="{m:R Key=SettingsPage_StepDisplayItem_TechniqueIndex}"
-									IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
-										Mode=TwoWay,
-										Converter={StaticResource StepDisplayItemConverter},
-										ConverterParameter='TechniqueIndex'}" />
-							</ListViewItem>
-							<ListViewItem>
-								<CheckBox
-									Content="{m:R Key=SettingsPage_StepDisplayItem_SimpleDescription}"
-									IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
-										Mode=TwoWay,
-										Converter={StaticResource StepDisplayItemConverter},
-										ConverterParameter='SimpleDescription'}" />
-							</ListViewItem>
-							<ListViewItem>
-								<CheckBox
-									Content="{m:R Key=SettingsPage_StepDisplayItem_DifficultyRating}"
-									IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
-										Mode=TwoWay,
-										Converter={StaticResource StepDisplayItemConverter},
-										ConverterParameter='DifficultyRating'}" />
-							</ListViewItem>
-							<ListViewItem>
-								<CheckBox
-									Content="{m:R Key=SettingsPage_StepDisplayItem_ExtraDifficultyCases}"
-									IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
-										Mode=TwoWay,
-										Converter={StaticResource StepDisplayItemConverter},
-										ConverterParameter='ExtraDifficultyCases'}" />
-							</ListViewItem>
-						</ListView>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<ListView Margin="40,10" SelectionMode="None">
+								<ListViewItem>
+									<CheckBox
+										Content="{m:R Key=SettingsPage_StepDisplayItem_TechniqueName}"
+										IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
+											Mode=TwoWay,
+											Converter={StaticResource StepDisplayItemConverter},
+											ConverterParameter='TechniqueName'}" />
+								</ListViewItem>
+								<ListViewItem>
+									<CheckBox
+										Content="{m:R Key=SettingsPage_StepDisplayItem_TechniqueIndex}"
+										IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
+											Mode=TwoWay,
+											Converter={StaticResource StepDisplayItemConverter},
+											ConverterParameter='TechniqueIndex'}" />
+								</ListViewItem>
+								<ListViewItem>
+									<CheckBox
+										Content="{m:R Key=SettingsPage_StepDisplayItem_SimpleDescription}"
+										IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
+											Mode=TwoWay,
+											Converter={StaticResource StepDisplayItemConverter},
+											ConverterParameter='SimpleDescription'}" />
+								</ListViewItem>
+								<ListViewItem>
+									<CheckBox
+										Content="{m:R Key=SettingsPage_StepDisplayItem_DifficultyRating}"
+										IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
+											Mode=TwoWay,
+											Converter={StaticResource StepDisplayItemConverter},
+											ConverterParameter='DifficultyRating'}" />
+								</ListViewItem>
+								<ListViewItem>
+									<CheckBox
+										Content="{m:R Key=SettingsPage_StepDisplayItem_ExtraDifficultyCases}"
+										IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
+											Mode=TwoWay,
+											Converter={StaticResource StepDisplayItemConverter},
+											ConverterParameter='ExtraDifficultyCases'}" />
+								</ListViewItem>
+							</ListView>
+						</w:SettingsCard>
 					</w:SettingsExpander.Items>
 				</w:SettingsExpander>
 			</w:SettingsGroup>

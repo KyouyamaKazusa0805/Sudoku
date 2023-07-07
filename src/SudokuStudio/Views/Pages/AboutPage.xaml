@@ -62,24 +62,26 @@
 			<w:SettingsExpander Header="{m:R Key=AboutPage_SpecialThanks}" Description="{m:R Key=AboutPage_SpecialThanksDescription}">
 				<w:SettingsExpander.ItemTemplate>
 					<DataTemplate x:DataType="bs:RepositoryInfoBindableSource">
-						<Grid RowDefinitions="*,*,*" ColumnDefinitions="Auto,Auto,*">
-							<PersonPicture
-								Grid.RowSpan="3" Width="48" Height="48" Margin="46,6,12,6"
-								HorizontalAlignment="Center" Initials="{x:Bind Initials}"
-								VerticalAlignment="Center" ProfilePicture="{x:Bind IconPath}" />
-							<TextBlock
-								Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,6,0,0"
-								Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
-							<TextBlock
-								Grid.Row="1" Grid.Column="1" Margin="12,6,0,0" Style="{StaticResource BodyTextBlockStyle}"
-								Text="{x:Bind cvt:CompilationConversion.License(OpenSourceLicense)}" />
-							<TextBlock
-								Grid.Row="1" Grid.Column="2" Margin="12,6,0,0" Style="{StaticResource BaseTextBlockStyle}"
-								Text="{x:Bind cvt:CompilationConversion.ForReference(IsForReference)}" />
-							<HyperlinkButton Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,0,0,6" NavigateUri="{x:Bind Site}">
-								<SymbolIcon Symbol="Link" />
-							</HyperlinkButton>
-						</Grid>
+						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+							<Grid RowDefinitions="*,*,*" ColumnDefinitions="Auto,Auto,*">
+								<PersonPicture
+									Grid.RowSpan="3" Width="48" Height="48" Margin="46,6,12,6"
+									HorizontalAlignment="Center" Initials="{x:Bind Initials}"
+									VerticalAlignment="Center" ProfilePicture="{x:Bind IconPath}" />
+								<TextBlock
+									Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,6,0,0"
+									Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
+								<TextBlock
+									Grid.Row="1" Grid.Column="1" Margin="12,6,0,0" Style="{StaticResource BodyTextBlockStyle}"
+									Text="{x:Bind cvt:CompilationConversion.License(OpenSourceLicense)}" />
+								<TextBlock
+									Grid.Row="1" Grid.Column="2" Margin="12,6,0,0" Style="{StaticResource BaseTextBlockStyle}"
+									Text="{x:Bind cvt:CompilationConversion.ForReference(IsForReference)}" />
+								<HyperlinkButton Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,0,0,6" NavigateUri="{x:Bind Site}">
+									<SymbolIcon Symbol="Link" />
+								</HyperlinkButton>
+							</Grid>
+						</w:SettingsCard>
 					</DataTemplate>
 				</w:SettingsExpander.ItemTemplate>
 				<w:SettingsExpander.Items>
