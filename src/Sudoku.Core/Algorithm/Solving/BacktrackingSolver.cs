@@ -55,7 +55,7 @@ public sealed class BacktrackingSolver : ISolver
 	/// </returns>
 	public bool? Solve(scoped in Grid grid, out Grid result)
 	{
-		var resultArray = default(Digit[]?);
+		var resultArray = default(Digit[]);
 		try
 		{
 			var solutionsCount = 0;
