@@ -15,7 +15,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <summary>
 	/// The buffer length of a solution puzzle.
 	/// </summary>
-	internal const int BufferLength = 82;
+	private const int BufferLength = 82;
 
 	/// <summary>
 	/// All pencil marks set - 27 bits per band.
