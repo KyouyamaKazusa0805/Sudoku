@@ -1,4 +1,4 @@
-﻿namespace System.Text;
+namespace System.Text;
 
 /// <summary>
 /// Provides the extension methods on <see cref="StringHandler"/>.
@@ -34,8 +34,11 @@ public static class StringHandlerExtensions
 	/// <param name="separator">The separator.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe void AppendRangeWithSeparatorUnsafe<T>(
-		this scoped ref StringHandler @this, T enumFlags, delegate*<T, string> converter, string separator)
-		where T : unmanaged, Enum
+		this scoped ref StringHandler @this,
+		T enumFlags,
+		delegate*<T, string> converter,
+		string separator
+	) where T : unmanaged, Enum
 	{
 		foreach (var enumFlag in enumFlags)
 		{

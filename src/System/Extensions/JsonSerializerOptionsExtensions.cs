@@ -1,4 +1,4 @@
-﻿namespace System.Text.Json;
+namespace System.Text.Json;
 
 /// <summary>
 /// Provides extension methods on <see cref="JsonSerializerOptions"/>.
@@ -23,7 +23,6 @@ public static class JsonSerializerOptionsExtensions
 	/// </returns>
 	/// <seealso cref="JsonSerializerOptions.Converters"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static JsonConverter<T> GetConverter<T, TConverter>(this JsonSerializerOptions @this)
-		where TConverter : JsonConverter<T>, new()
+	public static JsonConverter<T> GetConverter<T, TConverter>(this JsonSerializerOptions @this) where TConverter : JsonConverter<T>, new()
 		=> (JsonConverter<T>?)@this.GetConverter(typeof(T)) ?? new TConverter();
 }

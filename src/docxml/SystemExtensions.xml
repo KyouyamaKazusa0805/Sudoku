@@ -785,17 +785,6 @@
             <seealso cref="T:System.Collections.Generic.ICollection`1"/>
             <seealso cref="T:System.Collections.Generic.IReadOnlyCollection`1"/>
         </member>
-        <member name="M:System.Collections.Generic.CollectionExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Immutable.ImmutableArray{``0})">
-            <summary>
-            Adds the elements of the specified collection to the end of the
-            <see cref="T:System.Collections.Generic.ICollection`1"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The collection.</param>
-            <param name="values">
-            The values you want to add to the end of the collection.
-            </param>
-        </member>
         <member name="M:System.Collections.Generic.CollectionExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Adds the elements of the specified collection to the end of the
@@ -2034,33 +2023,6 @@
             </returns>
             <exception cref="T:System.ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
         </member>
-        <member name="T:System.Int32Extensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Int32"/>.
-            </summary>
-            <seealso cref="T:System.Int32"/>
-        </member>
-        <member name="M:System.Int32Extensions.Seconds(System.Int32)">
-            <summary>
-            Gets the equivalent seconds of type <see cref="T:System.TimeSpan"/> from current integer value.
-            </summary>
-            <param name="this">The integer value.</param>
-            <returns>The equivalent <see cref="T:System.TimeSpan"/> result.</returns>
-        </member>
-        <member name="M:System.Int32Extensions.Minutes(System.Int32)">
-            <summary>
-            Gets the equivalent minutes of type <see cref="T:System.TimeSpan"/> from current integer value.
-            </summary>
-            <param name="this">The integer value.</param>
-            <returns>The equivalent <see cref="T:System.TimeSpan"/> result.</returns>
-        </member>
-        <member name="M:System.Int32Extensions.Days(System.Int32)">
-            <summary>
-            Gets the equivalent days of type <see cref="T:System.TimeSpan"/> from current integer value.
-            </summary>
-            <param name="this">The integer value.</param>
-            <returns>The equivalent <see cref="T:System.TimeSpan"/> result.</returns>
-        </member>
         <member name="T:System.Text.Json.JsonSerializerOptionsExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Text.Json.JsonSerializerOptions"/>.
@@ -3209,20 +3171,6 @@ fixed (short* ptr = instance)
             <param name="refFirstElement">A reference that reference to the collection.</param>
             <returns>The converted string result.</returns>
         </member>
-        <member name="T:System.LazyExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Lazy`1"/>.
-            </summary>
-            <seealso cref="T:System.Lazy`1"/>
-        </member>
-        <member name="M:System.LazyExtensions.DoIfValueCreated``1(System.Lazy{``0},System.Action{``0})">
-            <summary>
-            Operate with inner value if <see cref="T:System.Lazy`1"/> value is created.
-            </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="this">The lazy data structure.</param>
-            <param name="action">The action to handle the value.</param>
-        </member>
         <member name="T:System.MathExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Math"/>.
@@ -3246,22 +3194,6 @@ fixed (short* ptr = instance)
             <param name="b">The second value.</param>
             <param name="c">The third value.</param>
             <returns>Which is the maximum value.</returns>
-        </member>
-        <member name="T:System.RandomExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Random"/>.
-            </summary>
-            <seealso cref="T:System.Random"/>
-        </member>
-        <member name="M:System.RandomExtensions.NextInArray``1(System.Random,``0[],System.Int32@)">
-            <summary>
-            Try to get the random element in the specified array.
-            </summary>
-            <typeparam name="T">The type of the array.</typeparam>
-            <param name="this">The random number generator.</param>
-            <param name="array">The array.</param>
-            <param name="index">The index generated.</param>
-            <returns>The random element fetched.</returns>
         </member>
         <member name="T:System.SingleExtensions">
             <summary>
