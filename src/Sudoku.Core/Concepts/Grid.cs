@@ -190,7 +190,7 @@ public unsafe partial struct Grid :
 		Undefined = default; // This field must be initialized after parsing the following two special fields.
 
 
-		static void onRefreshingCandidates(ref Grid @this)
+		static void onRefreshingCandidates(scoped ref Grid @this)
 		{
 			for (var i = 0; i < 81; i++)
 			{
@@ -211,7 +211,7 @@ public unsafe partial struct Grid :
 			}
 		}
 
-		static void onValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
+		static void onValueChanged(scoped ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
 		{
 			if (setValue != -1)
 			{
