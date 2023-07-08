@@ -4,7 +4,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// Provides with an <b>Aligned Exclusion</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>Aligned Exclusion</item>
+/// <item>Aligned Pair Exclusion</item>
+/// <item>Aligned Triple Exclusion</item>
+/// <item>Aligned Quadruple Exclusion</item>
+/// <item>Aligned Quintuple Exclusion</item>
 /// </list>
 /// </summary>
 [StepSearcher(
@@ -14,7 +17,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// Indicates the maximum searching size. This value must be greater than 2 and less than 5. The default value is 3.
+	/// Indicates the maximum searching size. This value must be 3, 4 or 5. The default value is 3.
 	/// </summary>
 	[RuntimeIdentifier(RuntimeIdentifier.AlignedExclusionMaxSearchingSize)]
 	public int MaxSearchingSize { get; set; } = 3;
@@ -28,16 +31,15 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 		{
 			if (IsPow2(grid.GetCandidates(cell)))
 			{
-				// This technique cannot be used for a grid containing naked singles.
+				// This technique shouldn't be used for a grid containing naked singles.
 				return null;
 			}
 		}
 
-		for (var size = 3; size < MaxSearchingSize; size++)
+		for (var size = 3; size <= MaxSearchingSize; size++)
 		{
 			// Search for "base" cells that can participate to an exclusion set. For each candidate, collect the potentially excluding cells.
-			var candidateList = CellMap.Empty;
-			var cellExcluders = new Dictionary<Cell, CellMap>();
+			var (candidateList, cellExcluders) = (CellMap.Empty, new Dictionary<Cell, CellMap>());
 			foreach (var cell in EmptyCells)
 			{
 				if (PopCount((uint)grid.GetCandidates(cell)) < 2)
@@ -50,7 +52,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 				foreach (var excludingCell in Peers[cell])
 				{
 					var count = PopCount((uint)grid.GetCandidates(excludingCell));
-					if (count >= 2 && count < size)
+					if (count >= 2 && count <= size)
 					{
 						excludingCells.Add(excludingCell);
 					}
@@ -78,13 +80,11 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 			foreach (var cellPair in candidateList & 2)
 			{
 				// Setup the first two cells.
-				var cell1 = cellPair[0];
-				var cell2 = cellPair[1];
-				var cell1Count = PopCount((uint)grid.GetCandidates(cell1));
-				var cell2Count = PopCount((uint)grid.GetCandidates(cell2));
+				var (cell1, cell2) = (cellPair[0], cellPair[1]);
+				var (cell1Count, cell2Count) = (PopCount((uint)grid.GetCandidates(cell1)), PopCount((uint)grid.GetCandidates(cell2)));
 
 				// Create the twin area: set of cells visible by one of the two first cells.
-				var twinArea = (cellExcluders[cell1] | cellExcluders[cell2]) - candidateList - cell1 - cell2;
+				var twinArea = ((cellExcluders[cell1] | cellExcluders[cell2]) & candidateList) - cell1 - cell2;
 
 				// Check if we have enough cells in the twin Area.
 				if (twinArea.Count < size - 2)
@@ -95,23 +95,19 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 				var tailCells = twinArea;
 
 				// Iterate on remaining cells using the twinArea.
-				foreach (Mask tailCombinationMask in new MaskCombinationsGenerator(tailCells.Count, size - 2))
+				foreach (Cell[] tIndices in tailCells & size - 2)
 				{
-					var cells = new Cell[size];
-					var cadinalities = new int[size];
+					var (cells, cardinalities) = (new Cell[size], new int[size]);
 
 					// Copy the first two cells.
-					cells[0] = cell1;
-					cells[1] = cell2;
-					cadinalities[0] = cell1Count;
-					cadinalities[1] = cell2Count;
+					(cells[0], cells[1]) = (cell1, cell2);
+					(cardinalities[0], cardinalities[1]) = (cell1Count, cell2Count);
 
 					// Add the tail cells.
-					scoped var tIndices = tailCombinationMask.GetAllSets();
 					for (var i = 0; i < tIndices.Length; i++)
 					{
-						cells[i + 2] = tailCells[tIndices[i]];
-						cadinalities[i + 2] = PopCount((uint)grid.GetCandidates(cells[i + 2]));
+						cells[i + 2] = tIndices[i];
+						cardinalities[i + 2] = PopCount((uint)grid.GetCandidates(cells[i + 2]));
 					}
 
 					// Build the list of common excluding cells for the base cells 'cells'.
@@ -138,7 +134,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 
 					// Iterate on combinations of candidates across the base cells.
 					var allowedCombinations = new List<Digit[]>();
-					var lockedCombinations = new Dictionary<Digit[], Cell>();
+					var lockedCombinations = new List<(Digit[], Cell)>();
 					bool isFinished;
 					do
 					{
@@ -150,7 +146,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 							if (potentialIndices[z] == 0)
 							{
 								rollOver = true;
-								potentialIndices[z] = cadinalities[z] - 1;
+								potentialIndices[z] = cardinalities[z] - 1;
 								z++;
 							}
 							else
@@ -225,7 +221,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 						}
 						else
 						{
-							lockedCombinations.Add(potentials, lockingCell);
+							lockedCombinations.Add((potentials, lockingCell));
 						}
 
 						// Check if last combination of candidates from the base cells has been reached.
@@ -267,6 +263,10 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 							}
 						}
 					}
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
 
 					// Get all highlighted candidates.
 					var candidateOffsets = new List<CandidateViewNode>();
@@ -292,7 +292,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 						{
 							if (!conclusionCandidates.Contains(cell * 9 + digit))
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 							}
 						}
 					}
@@ -302,7 +302,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 						conclusions.ToArray(),
 						new[] { View.Empty | candidateOffsets },
 						(CellMap)cells,
-						lockedCombinations
+						lockedCombinations.ToArray()
 					);
 					if (context.OnlyFindOne)
 					{
@@ -318,52 +318,18 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// Test if the given combination of digits for the cells are relavent for this rule.
-	/// A combination is relavent if it includes one of the conclusion.
-	/// </summary>
-	/// <param name="combination">The combination of digits.</param>
-	/// <param name="conclusions">All conclusions.</param>
-	/// <param name="cells">The cells used.</param>
-	/// <returns>Whether this combination is relavent.</returns>
-	private bool IsRelavent(Digit[] combination, List<Conclusion> conclusions, Cell[] cells)
-	{
-		Debug.Assert(combination.Length == cells.Length);
-		for (var i = 0; i < combination.Length; i++)
-		{
-			var cell = cells[i];
-			var digit = combination[i];
-
-			var flag = false;
-			foreach (var conclusion in conclusions)
-			{
-				if (conclusion.Cell == cell && conclusion.Digit == digit)
-				{
-					flag = true;
-					break;
-				}
-			}
-			if (flag)
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/// <summary>
 	/// Get all possible relavent combination digits.
 	/// </summary>
 	/// <param name="lockedCombinations">The all locked combinations.</param>
 	/// <param name="conclusions">All conclusions.</param>
 	/// <param name="cells">The cells used.</param>
 	/// <returns>A mask of digits for relavent ones.</returns>
-	private Mask GetRelaventCombinationValues(Dictionary<Digit[], Cell> lockedCombinations, List<Conclusion> conclusions, Cell[] cells)
+	private Mask GetRelaventCombinationValues(List<(Digit[], Cell)> lockedCombinations, List<Conclusion> conclusions, Cell[] cells)
 	{
 		var result = (Mask)0;
 		foreach (var (combination, _) in lockedCombinations)
 		{
-			if (IsRelavent(combination, conclusions, cells))
+			if (isRelavent(combination, conclusions, cells))
 			{
 				foreach (var digit in combination)
 				{
@@ -373,5 +339,29 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 		}
 
 		return result;
+
+
+		static bool isRelavent(Digit[] combination, List<Conclusion> conclusions, Cell[] cells)
+		{
+			Debug.Assert(combination.Length == cells.Length);
+			for (var i = 0; i < combination.Length; i++)
+			{
+				var (cell, digit, flag) = (cells[i], combination[i], false);
+				foreach (var conclusion in conclusions)
+				{
+					if (conclusion.Cell == cell && conclusion.Digit == digit)
+					{
+						flag = true;
+						break;
+					}
+				}
+				if (flag)
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
 	}
 }

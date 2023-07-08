@@ -8007,29 +8007,22 @@ result ^= expression;
             Provides with an <b>Aligned Exclusion</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>Aligned Exclusion</item>
+            <item>Aligned Pair Exclusion</item>
+            <item>Aligned Triple Exclusion</item>
+            <item>Aligned Quadruple Exclusion</item>
+            <item>Aligned Quintuple Exclusion</item>
             </list>
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.MaxSearchingSize">
             <summary>
-            Indicates the maximum searching size. This value must be greater than 2 and less than 5. The default value is 3.
+            Indicates the maximum searching size. This value must be 3, 4 or 5. The default value is 3.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.IsRelavent(System.Int32[],System.Collections.Generic.List{Sudoku.Analytics.Conclusion},System.Int32[])">
-            <summary>
-            Test if the given combination of digits for the cells are relavent for this rule.
-            A combination is relavent if it includes one of the conclusion.
-            </summary>
-            <param name="combination">The combination of digits.</param>
-            <param name="conclusions">All conclusions.</param>
-            <param name="cells">The cells used.</param>
-            <returns>Whether this combination is relavent.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.GetRelaventCombinationValues(System.Collections.Generic.Dictionary{System.Int32[],System.Int32},System.Collections.Generic.List{Sudoku.Analytics.Conclusion},System.Int32[])">
+        <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.GetRelaventCombinationValues(System.Collections.Generic.List{System.ValueTuple{System.Int32[],System.Int32}},System.Collections.Generic.List{Sudoku.Analytics.Conclusion},System.Int32[])">
             <summary>
             Get all possible relavent combination digits.
             </summary>
@@ -12883,7 +12876,7 @@ result ^= expression;
             <param name="cells">Indicates the target cells used in the pattern.</param>
             <param name="lockedCombinations">Indicates all locked combinations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlignedExclusionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Collections.Generic.IReadOnlyDictionary{System.Int32[],System.Int32})">
+        <member name="M:Sudoku.Analytics.Steps.AlignedExclusionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.ValueTuple{System.Int32[],System.Int32}[])">
             <summary>
             Provides with a step that is an <b>Aligned Exclusion</b> technique.
             </summary>
@@ -12901,6 +12894,9 @@ result ^= expression;
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.FormatInterpolatedParts">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Cells">

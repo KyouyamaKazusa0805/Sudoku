@@ -11,7 +11,7 @@ public sealed partial class AlignedExclusionStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	[PrimaryConstructorParameter] scoped in CellMap cells,
-	[PrimaryConstructorParameter] IReadOnlyDictionary<Digit[], Cell> lockedCombinations
+	[PrimaryConstructorParameter] (Digit[], Cell)[] lockedCombinations
 ) : Step(conclusions, views)
 {
 	/// <inheritdoc/>
@@ -37,4 +37,10 @@ public sealed partial class AlignedExclusionStep(
 			>= 2 and <= 5 => Technique.AlignedPairExclusion + (short)(Size - 2),
 			_ => throw new NotSupportedException("The subset is too complex to be calculated.")
 		};
+
+	/// <inheritdoc/>
+	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
+		=> new Dictionary<string, string[]?> { { ChineseLanguage, new[] { CellsStr } }, { EnglishLanguage, new[] { CellsStr } } };
+
+	private string CellsStr => Cells.ToString();
 }

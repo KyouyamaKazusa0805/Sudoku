@@ -28,7 +28,7 @@
 [assembly: StepSearcherImport<NonMultipleChainingStepSearcher>(2)]
 [assembly: StepSearcherImport<AlmostLockedSetsXzStepSearcher>(1)]
 [assembly: StepSearcherImport<AlmostLockedSetsXyWingStepSearcher>(1)]
-[assembly: StepSearcherImport<AlignedExclusionStepSearcher>(2)]
+[assembly: StepSearcherImport<AlignedExclusionStepSearcher>(1)]
 [assembly: StepSearcherImport<AlmostLockedSetsWWingStepSearcher>(1)]
 [assembly: StepSearcherImport<GuardianStepSearcher>(2)]
 [assembly: StepSearcherImport<ComplexFishStepSearcher>(2)]
