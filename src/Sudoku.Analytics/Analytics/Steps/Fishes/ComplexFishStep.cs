@@ -138,8 +138,4 @@ public sealed partial class ComplexFishStep(
 		=> left.Digit == right.Digit
 		&& left.BaseSetsMask == right.BaseSetsMask && left.CoverSetsMask == right.CoverSetsMask
 		&& left.Exofins == right.Exofins && left.Endofins == right.Endofins;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEquatableStep<ComplexFishStep>.operator !=(ComplexFishStep left, ComplexFishStep right) => !(left == right);
 }

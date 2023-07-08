@@ -45,8 +45,4 @@ public sealed partial class GuardianStep(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEquatableStep<GuardianStep>.operator ==(GuardianStep left, GuardianStep right)
 		=> (left.Digit, left.LoopCells, left.Guardians) == (right.Digit, right.LoopCells, right.Guardians);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEquatableStep<GuardianStep>.operator !=(GuardianStep left, GuardianStep right) => !(left == right);
 }

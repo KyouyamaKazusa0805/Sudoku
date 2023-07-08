@@ -119,6 +119,8 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Chromatic Pattern (i.e. Tri-value Oddagon)
   * Symmetrical Placements
     * Gurth's Symmetrical Placements
+  * Permutations
+    * Aligned Exclusion
   * Last Resorts
     * Bowman's Bingo
     * Computer Algorithms

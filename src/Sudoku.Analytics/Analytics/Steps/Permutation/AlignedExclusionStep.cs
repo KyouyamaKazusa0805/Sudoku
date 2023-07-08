@@ -12,7 +12,7 @@ public sealed partial class AlignedExclusionStep(
 	View[]? views,
 	[PrimaryConstructorParameter] scoped in CellMap cells,
 	[PrimaryConstructorParameter] (Digit[], Cell)[] lockedCombinations
-) : Step(conclusions, views)
+) : Step(conclusions, views), IEquatableStep<AlignedExclusionStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty
@@ -49,4 +49,10 @@ public sealed partial class AlignedExclusionStep(
 	private string CellsStr => Cells.ToString();
 
 	private string ConclusionNegatedStr => ConclusionFormatter.Format(from c in Conclusions select ~c, ", ", true);
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEquatableStep<AlignedExclusionStep>.operator ==(AlignedExclusionStep left, AlignedExclusionStep right)
+		=> left.Cells == right.Cells;
 }

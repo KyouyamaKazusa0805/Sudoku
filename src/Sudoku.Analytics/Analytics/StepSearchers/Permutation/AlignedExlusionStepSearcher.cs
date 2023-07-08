@@ -27,6 +27,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
+		var tempAccumulator = new List<AlignedExclusionStep>();
 		foreach (var cell in EmptyCells)
 		{
 			if (IsPow2(grid.GetCandidates(cell)))
@@ -117,7 +118,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 						var excludingCells = cellExcluders[cells[i]];
 						if (i == 0)
 						{
-							commonExcluders |= excludingCells;
+							commonExcluders = excludingCells;
 						}
 						else
 						{
@@ -161,10 +162,10 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 						for (var i = 0; i < size; i++)
 						{
 							var values = grid.GetCandidates(cells[i]);
-							var p = values.GetNextSet(0);
+							var p = TrailingZeroCount(values);
 							for (var j = 0; j < potentialIndices[i]; j++)
 							{
-								p = values.GetNextSet(p + 1);
+								p = values.GetNextSet(p);
 							}
 
 							potentials[i] = p;
@@ -204,7 +205,6 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 								{
 									values &= (Mask)~(1 << potentials[i]);
 								}
-
 								if (values == 0)
 								{
 									lockingCell = excludingCell;
@@ -308,11 +308,12 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 						return step;
 					}
 
-					context.Accumulator.Add(step);
+					tempAccumulator.Add(step);
 				}
 			}
 		}
 
+		context.Accumulator!.AddRange(tempAccumulator.Distinct());
 		return null;
 	}
 
