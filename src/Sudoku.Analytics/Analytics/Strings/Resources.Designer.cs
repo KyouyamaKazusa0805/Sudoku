@@ -4678,7 +4678,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enumerate possible combinations of cells {0}.
+        ///   Looks up a localized string similar to Enumerate possible combinations of cells {0}, then all possible cases with {1} are wrong.
         /// </summary>
         public static string TechniqueFormat_AlignedExclusionStep {
             get {

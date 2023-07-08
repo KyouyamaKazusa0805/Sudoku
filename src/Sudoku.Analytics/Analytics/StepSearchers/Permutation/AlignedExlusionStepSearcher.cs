@@ -254,7 +254,6 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 									break;
 								}
 							}
-
 							if (!isValueAllowed)
 							{
 								// Yeah, value p can be excluded from cell.

@@ -16829,7 +16829,7 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_AlignedExclusionStep">
             <summary>
-              Looks up a localized string similar to Enumerate possible combinations of cells {0}.
+              Looks up a localized string similar to Enumerate possible combinations of cells {0}, then all possible cases with {1} are wrong.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_AlmostLockedCandidatesStep">

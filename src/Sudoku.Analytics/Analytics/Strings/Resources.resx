@@ -2125,7 +2125,7 @@
     <value>Aligned Triple Exclusion</value>
   </data>
   <data name="TechniqueFormat_AlignedExclusionStep" xml:space="preserve">
-    <value>Enumerate possible combinations of cells {0}</value>
+    <value>Enumerate possible combinations of cells {0}, then all possible cases with {1} are wrong</value>
   </data>
   <data name="StepSearcherName_AlignedExclusionStepSearcher" xml:space="preserve">
     <value>Aligned Exclusion</value>

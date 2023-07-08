@@ -1095,6 +1095,14 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Conclusion.CompareTo(Sudoku.Analytics.Conclusion)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Conclusion.op_OnesComplement(Sudoku.Analytics.Conclusion)">
+            <summary>
+            Negates the current conclusion instance, changing the conclusion type from <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/> to <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/>,
+            or from <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/> to <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/>.
+            </summary>
+            <param name="current">The current conclusion instance to be negated.</param>
+            <returns>The negation.</returns>
+        </member>
         <member name="F:Sudoku.Analytics.Conclusion._mask">
             <summary>
             The generated field declaration for parameter <c>mask</c>.

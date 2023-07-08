@@ -2248,7 +2248,7 @@
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_AlignedExclusionStep" xml:space="preserve">
-    <value>排列出单元格 {0} 的所有填数情况</value>
+    <value>排列出单元格 {0} 的所有填数情况，而当 {1} 时的全部情况均会造成矛盾</value>
   </data>
   <data name="StepSearcherName_AlignedExclusionStepSearcher" xml:space="preserve">
     <value>均衡数组</value>

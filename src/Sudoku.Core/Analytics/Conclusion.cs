@@ -107,6 +107,17 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(Conclusion other) => _mask.CompareTo(_mask);
+
+
+	/// <summary>
+	/// Negates the current conclusion instance, changing the conclusion type from <see cref="Assignment"/> to <see cref="Elimination"/>,
+	/// or from <see cref="Elimination"/> to <see cref="Assignment"/>.
+	/// </summary>
+	/// <param name="current">The current conclusion instance to be negated.</param>
+	/// <returns>The negation.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Conclusion operator ~(Conclusion current)
+		=> new(current.ConclusionType == Assignment ? Elimination : Assignment, current.Candidate);
 }
 
 /// <summary>
