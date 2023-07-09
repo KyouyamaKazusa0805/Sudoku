@@ -1687,6 +1687,20 @@
             <param name="foreground">The foreground color.</param>
             <param name="background">The background color.</param>
         </member>
+        <member name="T:System.CommonMethods">
+            <summary>
+            Represents a set of methods to be used as method groups.
+            </summary>
+        </member>
+        <member name="M:System.CommonMethods.EnumFlagMerger``1(``0,``0)">
+            <summary>
+            Merges two flags of type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of the enumeration.</typeparam>
+            <param name="left">The first instance to be merged.</param>
+            <param name="right">The second instance to be merged.</param>
+            <returns>A merged result.</returns>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.StringSyntax">
             <summary>
             Represents a list of <see cref="T:System.String"/> constants being used by <see cref="T:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute"/>.

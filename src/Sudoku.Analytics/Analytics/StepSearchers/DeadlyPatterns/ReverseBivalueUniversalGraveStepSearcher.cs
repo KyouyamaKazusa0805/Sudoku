@@ -263,7 +263,6 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			return null;
 		}
 
-		var conclusions = from cell in elimMap select new Conclusion(Elimination, cell, extraDigit);
 		var cellOffsets = new List<CellViewNode>(completePattern.Count);
 		foreach (var cell in completePattern)
 		{
@@ -277,7 +276,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		}
 
 		var step = new ReverseBivalueUniversalGraveType2Step(
-			conclusions,
+			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
 			new[] { View.Empty | cellOffsets | candidateOffsets },
 			d1,
 			d2,

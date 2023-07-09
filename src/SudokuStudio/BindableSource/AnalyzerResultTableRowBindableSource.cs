@@ -64,7 +64,7 @@ internal sealed class AnalyzerResultTableRowBindableSource : IBindableSource
 			{
 				TechniqueName = stepGroup.Key,
 				CountOfSteps = stepGroupArray.Length,
-				DifficultyLevel = difficultyLevels.Aggregate(static (interim, next) => interim | next),
+				DifficultyLevel = difficultyLevels.Aggregate(CommonMethods.EnumFlagMerger),
 				TotalDifficulty = stepGroupArray.Sum(static step => step.Difficulty),
 				MaximumDifficulty = stepGroupArray.Max(static step => step.Difficulty)
 			};

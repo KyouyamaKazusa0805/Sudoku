@@ -63,5 +63,5 @@ public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] 
 	/// Indicates what difficulty levels the current step searcher can produce.
 	/// </summary>
 	public DifficultyLevel DifficultyLevels
-		=> (from technique in SupportedTechniques select technique.GetDifficultyLevel()).Aggregate(static (interim, next) => interim | next);
+		=> (from technique in SupportedTechniques select technique.GetDifficultyLevel()).Aggregate(CommonMethods.EnumFlagMerger);
 }
