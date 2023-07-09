@@ -33,10 +33,7 @@ public static class AnalyzerFactory
 	{
 		@this.StepSearchers = level == 0
 			? stepSearchers
-			:
-			from stepSearcher in stepSearchers
-			where Array.Exists(stepSearcher.DifficultyLevelRange, l => l <= level)
-			select stepSearcher;
+			: from stepSearcher in stepSearchers where Array.Exists(stepSearcher.DifficultyLevelRange, l => l <= level) select stepSearcher;
 		return @this;
 	}
 
