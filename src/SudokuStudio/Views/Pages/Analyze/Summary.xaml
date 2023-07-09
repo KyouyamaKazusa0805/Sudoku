@@ -50,7 +50,7 @@
 									CornerRadius="5" Margin="24,3">
 									<TextBlock
 										Text="{x:Bind cvt:DifficultyLevelConversion.GetName(DifficultyLevel)}" Style="{StaticResource LabelStyle}"
-										Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(DifficultyLevel)}" />
+										HorizontalAlignment="Center" Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(DifficultyLevel)}" />
 								</Border>
 							</DataTemplate>
 						</c:DataGridTemplateColumn.CellTemplate>
