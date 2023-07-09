@@ -2783,7 +2783,6 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[Abbreviation("JE")]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	JuniorExocet,
 
@@ -2792,7 +2791,6 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[Abbreviation("SE")]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SeniorExocet,
 
@@ -2800,7 +2798,6 @@ public enum Technique
 	/// Indicates complex senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	ComplexSeniorExocet,
 

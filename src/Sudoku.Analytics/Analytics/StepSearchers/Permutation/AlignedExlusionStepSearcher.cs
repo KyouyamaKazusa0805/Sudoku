@@ -313,7 +313,11 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 			}
 		}
 
-		context.Accumulator!.AddRange(tempAccumulator.Distinct());
+		if (tempAccumulator.Count != 0)
+		{
+			context.Accumulator!.AddRange(tempAccumulator.Distinct());
+		}
+
 		return null;
 	}
 
