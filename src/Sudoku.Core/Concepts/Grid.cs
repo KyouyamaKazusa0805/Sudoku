@@ -1587,8 +1587,7 @@ public unsafe partial struct Grid :
 	/// <param name="gridValues">The array of grid values.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Create(Digit[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
-		=> new(gridValues[0], creatingOption);
+	public static Grid Create(Digit[] gridValues, GridCreatingOption creatingOption = 0) => new(gridValues[0], creatingOption);
 
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance with the specified mask array.
@@ -1613,7 +1612,7 @@ public unsafe partial struct Grid :
 	/// <param name="gridValues">The list of cell digits.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Create(scoped ReadOnlySpan<Digit> gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
+	public static Grid Create(scoped ReadOnlySpan<Digit> gridValues, GridCreatingOption creatingOption = 0)
 		=> new(gridValues[0], creatingOption);
 
 	/// <inheritdoc/>
