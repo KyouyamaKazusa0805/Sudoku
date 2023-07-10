@@ -309,6 +309,7 @@
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 候选数技巧\05 待定数组（ALS）\04 均衡数组\05-2 转换为残缺WXYZ-Wing的情况.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 候选数技巧\05 待定数组（ALS）\04 均衡数组\06-1 更多枚举情况的均衡数对.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\第3部分 候选数技巧\05 待定数组（ALS）\04 均衡数组\06-2 残缺VWXYZ-Wing.sst" />
+    <None Include="$(MSBuildThisFileDirectory)图片\第4部分 链\01 双强链\01 摩天楼.sst" />
     <None Include="$(MSBuildThisFileDirectory)图片\附录\文本格式示例图.sst" />
   </ItemGroup>
   <ItemGroup>
