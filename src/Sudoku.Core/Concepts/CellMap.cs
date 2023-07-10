@@ -857,9 +857,11 @@ public unsafe partial struct CellMap :
 	public static bool operator !(scoped in CellMap offsets) => offsets ? false : true;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator true(scoped in CellMap value) => value._count != 0;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator false(scoped in CellMap value) => value._count == 0;
 
 	/// <inheritdoc/>
