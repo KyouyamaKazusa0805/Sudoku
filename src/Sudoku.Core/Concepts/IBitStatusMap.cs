@@ -94,13 +94,6 @@ public partial interface IBitStatusMap<TSelf> :
 	new void Add(int offset);
 
 	/// <summary>
-	/// Set the specified offset as <see langword="true"/> value, with range check.
-	/// </summary>
-	/// <param name="offset">The offset.</param>
-	/// <exception cref="ArgumentOutOfRangeException">Throws when the specified offset is invalid.</exception>
-	void AddChecked(int offset);
-
-	/// <summary>
 	/// Set the specified offsets as <see langword="true"/> value.
 	/// </summary>
 	/// <param name="offsets">The offsets to add.</param>
@@ -115,28 +108,11 @@ public partial interface IBitStatusMap<TSelf> :
 	/// <inheritdoc cref="AddRange(ReadOnlySpan{int})"/>
 	void AddRange(IEnumerable<int> offsets);
 
-	/// <inheritdoc cref="AddRange(ReadOnlySpan{int})"/>
-	/// <remarks>
-	/// Different with the method <see cref="AddRange(IEnumerable{int})"/>, this method
-	/// also checks for the validity of each offsets.
-	/// If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
-	/// this method will throw an exception to report about this.
-	/// </remarks>
-	/// <exception cref="InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
-	void AddRangeChecked(IEnumerable<int> offsets);
-
 	/// <summary>
 	/// Set the specified offset as <see langword="false"/> value.
 	/// </summary>
 	/// <param name="offset">The offset.</param>
 	new void Remove(int offset);
-
-	/// <summary>
-	/// Set the specified offset as <see langword="false"/> value, with range check.
-	/// </summary>
-	/// <param name="offset">The offset.</param>
-	/// <exception cref="ArgumentOutOfRangeException">Throws when the specified offset is invalid.</exception>
-	void RemoveChecked(int offset);
 
 	/// <summary>
 	/// Set the specified offsets as <see langword="false"/> value.
@@ -159,16 +135,6 @@ public partial interface IBitStatusMap<TSelf> :
 	/// </remarks>
 	/// <exception cref="InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
 	void RemoveRange(IEnumerable<int> offsets);
-
-	/// <inheritdoc cref="RemoveRange(ReadOnlySpan{int})"/>
-	/// <remarks>
-	/// Different with the method <see cref="AddRange(IEnumerable{int})"/>, this method
-	/// also checks for the validity of each offsets.
-	/// If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
-	/// this method will throw an exception to report about this.
-	/// </remarks>
-	/// <exception cref="InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
-	void RemoveRangeChecked(IEnumerable<int> offsets);
 
 	/// <summary>
 	/// Clear all bits.
@@ -468,16 +434,6 @@ public partial interface IBitStatusMap<TSelf> :
 	static abstract TSelf operator +(scoped in TSelf collection, int offset);
 
 	/// <summary>
-	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
-	/// and returns the added result.
-	/// This operator will check the validity of the argument <paramref name="offset"/>.
-	/// </summary>
-	/// <param name="collection">The collection.</param>
-	/// <param name="offset">The offset to be added.</param>
-	/// <returns>The result collection.</returns>
-	static abstract TSelf operator checked +(scoped in TSelf collection, int offset);
-
-	/// <summary>
 	/// Adds the specified list of <paramref name="offsets"/> to the <paramref name="collection"/>,
 	/// and returns the added result.
 	/// </summary>
@@ -485,16 +441,6 @@ public partial interface IBitStatusMap<TSelf> :
 	/// <param name="offsets">A list of cells to be added.</param>
 	/// <returns>The result collection.</returns>
 	static abstract TSelf operator +(scoped in TSelf collection, IEnumerable<int> offsets);
-
-	/// <summary>
-	/// Adds the specified list of <paramref name="offsets"/> to the <paramref name="collection"/>,
-	/// and returns the added result.
-	/// This operator will check the validity of the argument <paramref name="offsets"/>.
-	/// </summary>
-	/// <param name="collection">The collection.</param>
-	/// <param name="offsets">A list of cells to be added.</param>
-	/// <returns>The result collection.</returns>
-	static abstract TSelf operator checked +(scoped in TSelf collection, IEnumerable<int> offsets);
 
 	/// <summary>
 	/// Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
@@ -506,15 +452,6 @@ public partial interface IBitStatusMap<TSelf> :
 	static abstract TSelf operator -(scoped in TSelf collection, int offset);
 
 	/// <summary>
-	/// Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
-	/// and returns the removed result. This operator will check the validity of the argument <paramref name="offset"/>.
-	/// </summary>
-	/// <param name="collection">The collection.</param>
-	/// <param name="offset">The offset to be removed.</param>
-	/// <returns>The result collection.</returns>
-	static abstract TSelf operator checked -(scoped in TSelf collection, int offset);
-
-	/// <summary>
 	/// Get a <typeparamref name="TSelf"/> that contains all <paramref name="collection"/> instance
 	/// but not in <paramref name="offsets"/> instance.
 	/// </summary>
@@ -522,16 +459,6 @@ public partial interface IBitStatusMap<TSelf> :
 	/// <param name="offsets">The right instance.</param>
 	/// <returns>The result.</returns>
 	static abstract TSelf operator -(scoped in TSelf collection, IEnumerable<int> offsets);
-
-	/// <summary>
-	/// Get a <typeparamref name="TSelf"/> that contains all <paramref name="collection"/> instance
-	/// but not in <paramref name="offsets"/> instance.
-	/// This operator will check the validity of each element in the argument <paramref name="offsets"/>.
-	/// </summary>
-	/// <param name="collection">The left instance.</param>
-	/// <param name="offsets">The right instance.</param>
-	/// <returns>The result.</returns>
-	static abstract TSelf operator checked -(scoped in TSelf collection, IEnumerable<int> offsets);
 
 	/// <summary>
 	/// Get a <typeparamref name="TSelf"/> that contains all <paramref name="left"/> instance
@@ -742,25 +669,6 @@ public partial interface IBitStatusMap<TSelf> :
 		foreach (var offset in offsets)
 		{
 			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Explicit cast from <see cref="int"/>[] to <typeparamref name="TSelf"/>, with cell range check.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when a certain element in the argument <paramref name="offsets"/>
-	/// is not a valid value to represent a cell offset.
-	/// </exception>
-	static virtual explicit operator checked TSelf(int[] offsets)
-	{
-		var result = TSelf.Empty;
-		foreach (var offset in offsets)
-		{
-			result.AddChecked(offset);
 		}
 
 		return result;
