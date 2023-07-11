@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Cli</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Cli.Commands.GenerateCommand">
+            <summary>
+            Indicates a command that creates puzzles.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Cli.Commands.GenerateCommand.#ctor">
+            <summary>
+            Creates a <see cref="T:Sudoku.Cli.Commands.GenerateCommand"/> instance.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Cli.Commands.ICommand`1">
+            <summary>
+            Represents a command.
+            </summary>
+            <typeparam name="TSelf">the type itself.</typeparam>
+        </member>
+        <member name="M:Sudoku.Cli.Commands.ICommand`1.CreateCommand">
+            <summary>
+            Creates a (an) <typeparamref name="TSelf"/> instance.
+            </summary>
+            <returns>A (An) <typeparamref name="TSelf"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Cli.Options.DifficultyLevelOption">
+            <summary>
+            Represents a difficulty level option.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Cli.Options.DifficultyLevelOption.Description">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Cli.Options.DifficultyLevelOption.Aliases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Cli.Options.DifficultyLevelOption.DefaultValue">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Cli.Options.IOption`2">
+            <summary>
+            Represents an option to be used by a <see cref="T:System.CommandLine.Command"/>.
+            </summary>
+            <typeparam name="TSelf">The type of option instance itself.</typeparam>
+            <typeparam name="T">The type of the default value of the current option.</typeparam>
+            <seealso cref="T:System.CommandLine.Command"/>
+        </member>
+        <member name="P:Sudoku.Cli.Options.IOption`2.Description">
+            <summary>
+            Indicates the description to be used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Cli.Options.IOption`2.Aliases">
+            <summary>
+            Indicates the aliases to be used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Cli.Options.IOption`2.DefaultValue">
+            <summary>
+            Indicates the default value to be used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Cli.Options.IOption`2.CreateOption">
+            <summary>
+            Create an <see cref="T:System.CommandLine.Option`1"/> instance.
+            </summary>
+            <returns>An <see cref="T:System.CommandLine.Option`1"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Cli.Options.SymmetricTypeOption">
+            <summary>
+            Represents a symmetric type option.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Cli.Options.SymmetricTypeOption.Description">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Cli.Options.SymmetricTypeOption.Aliases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Cli.Options.SymmetricTypeOption.DefaultValue">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Cli.Options.TechniqueOption">
+            <summary>
+            Represents a technique option.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Cli.Options.TechniqueOption.Description">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Cli.Options.TechniqueOption.Aliases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Cli.Options.TechniqueOption.DefaultValue">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

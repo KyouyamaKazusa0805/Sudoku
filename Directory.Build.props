@@ -94,6 +94,9 @@
 		<Using Include="Microsoft.CodeAnalysis.CSharp.Syntax" />
 		<Using Include="Microsoft.CodeAnalysis.Text" />
 	</ItemGroup>
+	<ItemGroup Condition="'$(MSBuildProjectFile.Contains(`Sudoku.Cli`))'=='true'">
+		<Using Remove="System.Runtime.CompilerServices.Unsafe2" />
+	</ItemGroup>
 
 	<!--
 	SOURCE GENEARTOR PROJECTS CONFIGURATION
