@@ -111,5 +111,18 @@
         <member name="P:Sudoku.Cli.Options.TechniqueOption.DefaultValue">
             <inheritdoc/>
         </member>
+        <member name="T:System.CommandLine.RootCommandExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.CommandLine.RootCommand"/>.
+            </summary>
+            <seealso cref="T:System.CommandLine.RootCommand"/>
+        </member>
+        <member name="M:System.CommandLine.RootCommandExtensions.AddCommand``1(System.CommandLine.RootCommand)">
+            <summary>
+            Adds a (an) <typeparamref name="T"/> instance as a subcommand to the command.
+            </summary>
+            <typeparam name="T">The type of the command.</typeparam>
+            <param name="this">The current <see cref="T:System.CommandLine.RootCommand"/> instance.</param>
+        </member>
     </members>
 </doc>
