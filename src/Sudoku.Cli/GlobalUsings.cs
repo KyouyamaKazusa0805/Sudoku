@@ -1,5 +1,6 @@
 extern alias sysex;
 global using System.CommandLine;
+global using System.CommandLine.Parsing;
 global using Sudoku.Algorithm.Generating;
 global using Sudoku.Analytics;
 global using Sudoku.Analytics.Categorization;

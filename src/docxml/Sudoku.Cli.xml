@@ -93,6 +93,24 @@
             </summary>
             <returns>An <see cref="T:System.CommandLine.Option`1"/> instance.</returns>
         </member>
+        <member name="M:Sudoku.Cli.Options.IOption`2.CreateOption(System.CommandLine.Parsing.ParseArgument{`1},System.Boolean,System.Boolean)">
+            <summary>
+            Create an <see cref="T:System.CommandLine.Option`1"/> instance, via the specified parser callback,
+            and a <see cref="T:System.Boolean"/> value indicating whether the option is a default one.
+            </summary>
+            <param name="parseArgument">
+            <inheritdoc cref="M:System.CommandLine.Option`1.#ctor(System.String,System.CommandLine.Parsing.ParseArgument{`0},System.Boolean,System.String)" path="/param[@name='parseArgument']"/>
+            </param>
+            <param name="isDefault">
+            <inheritdoc cref="M:System.CommandLine.Option`1.#ctor(System.String,System.CommandLine.Parsing.ParseArgument{`0},System.Boolean,System.String)" path="/param[@name='isDefault']"/>
+            </param>
+            <param name="isRequired">
+            <inheritdoc cref="P:System.CommandLine.Option.IsRequired" path="/summary"/>
+            </param>
+            <returns>
+            <inheritdoc cref="M:Sudoku.Cli.Options.IOption`2.CreateOption" path="/returns"/>
+            </returns>
+        </member>
         <member name="T:Sudoku.Cli.Options.LimitCountOption">
             <summary>
             Represents a limit count option.

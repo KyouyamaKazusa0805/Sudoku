@@ -10,29 +10,32 @@ public sealed class AnalyzeCommand : Command, ICommand<AnalyzeCommand>
 	/// </summary>
 	public AnalyzeCommand() : base("analyze", "To analyze a puzzle.")
 	{
-		var gridOption = IOption<GridOption, string>.CreateOption();
-		gridOption.IsRequired = true;
-		gridOption.AddValidator(static optionResult =>
+		var gridOption = IOption<GridOption, Grid>.CreateOption(static argumentResult =>
 		{
-			var str = optionResult.GetValueOrDefault<string?>();
+			var str = argumentResult.Tokens.First(static token => token.Type == TokenType.Argument).Value;
 			if (string.IsNullOrWhiteSpace(str))
 			{
-				optionResult.ErrorMessage = "The target argument should not be an empty string or only contain whitespaces.";
+				argumentResult.ErrorMessage = "The target argument should not be an empty string or only contain whitespaces.";
+				return Grid.Undefined;
 			}
 			else if (!Grid.TryParse(str, out var s))
 			{
-				optionResult.ErrorMessage = "The target argument must be a valid sudoku text string.";
+				argumentResult.ErrorMessage = "The target argument must be a valid sudoku text string.";
+				return Grid.Undefined;
 			}
-		});
+			else
+			{
+				return s;
+			}
+		}, true, true);
 
 		var techniqueOption = IOption<TechniqueOption, Technique>.CreateOption();
 		AddOption(gridOption);
 		AddOption(techniqueOption);
 		this.SetHandler(static (grid, technique) =>
 		{
-			var gridResolved = Grid.Parse(grid);
 			var analyzer = PredefinedAnalyzers.Balanced;
-			switch (technique, analyzer.Analyze(gridResolved))
+			switch (technique, analyzer.Analyze(grid))
 			{
 				case (0, var analyzerResult):
 				{
