@@ -69,6 +69,20 @@
             </summary>
             <returns>An <see cref="T:System.CommandLine.Option`1"/> instance.</returns>
         </member>
+        <member name="T:Sudoku.Cli.Options.LimitCountOption">
+            <summary>
+            Represents a limit count option.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Cli.Options.LimitCountOption.Description">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Cli.Options.LimitCountOption.Aliases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Cli.Options.LimitCountOption.DefaultValue">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Cli.Options.SymmetricTypeOption">
             <summary>
             Represents a symmetric type option.
