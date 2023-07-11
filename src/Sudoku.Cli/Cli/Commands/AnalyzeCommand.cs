@@ -12,7 +12,7 @@ public sealed class AnalyzeCommand : Command, ICommand<AnalyzeCommand>
 	{
 		var gridOption = IOption<GridOption, string>.CreateOption();
 		gridOption.IsRequired = true;
-		gridOption.AddValidator(optionResult =>
+		gridOption.AddValidator(static optionResult =>
 		{
 			var str = optionResult.GetValueOrDefault<string?>();
 			if (string.IsNullOrWhiteSpace(str))
@@ -28,41 +28,39 @@ public sealed class AnalyzeCommand : Command, ICommand<AnalyzeCommand>
 		var techniqueOption = IOption<TechniqueOption, Technique>.CreateOption();
 		AddOption(gridOption);
 		AddOption(techniqueOption);
-		this.SetHandler(
-			static (grid, technique) =>
+		this.SetHandler(static (grid, technique) =>
+		{
+			var gridResolved = Grid.Parse(grid);
+			var analyzer = PredefinedAnalyzers.Balanced;
+			switch (technique, analyzer.Analyze(gridResolved))
 			{
-				var gridResolved = Grid.Parse(grid);
-				var analyzer = PredefinedAnalyzers.Balanced;
-				var analyzerResult = analyzer.Analyze(gridResolved);
-				if (technique == 0)
+				case (0, var analyzerResult):
 				{
 					Console.WriteLine(analyzerResult.ToString());
+					break;
 				}
-				else
+				case (_, { IsSolved: true, SolvingPath: var path }):
 				{
-					if (!analyzerResult.IsSolved)
+					var firstFoundStep = path.FirstOrDefault(path => path.Step.Code == technique);
+					if (firstFoundStep == default)
 					{
-						Console.ForegroundColor = ConsoleColor.Red;
-						Console.WriteLine(analyzerResult.ToString());
-						Console.ResetColor();
+						Console.WriteLine("Sorry. The step whose technique used is specified one is not found.");
 					}
 					else
 					{
-						var firstFoundStep = analyzerResult.SolvingPath.FirstOrDefault(path => path.Step.Code == technique);
-						if (firstFoundStep == default)
-						{
-							Console.WriteLine("Sorry. The step whose technique used is specified one is not found.");
-						}
-						else
-						{
-							Console.WriteLine(firstFoundStep.SteppingGrid.ToString(new PencilMarkFormat()));
-							Console.WriteLine(firstFoundStep.Step.ToString());
-						}
+						Console.WriteLine(firstFoundStep.SteppingGrid.ToString(new PencilMarkFormat()));
+						Console.WriteLine(firstFoundStep.Step.ToString());
 					}
+					break;
 				}
-			},
-			gridOption,
-			techniqueOption
-		);
+				case (_, var analyzerResult):
+				{
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine(analyzerResult.ToString());
+					Console.ResetColor();
+					break;
+				}
+			}
+		}, gridOption, techniqueOption);
 	}
 }

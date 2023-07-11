@@ -18,28 +18,22 @@ public sealed class GenerateCommand : Command, ICommand<GenerateCommand>
 		AddOption(difficultyLevelOption);
 		AddOption(techniqueOption);
 		AddOption(limitCountOption);
-		this.SetHandler(
-			static (symmetricType, difficultyLevel, technique, limitCount) =>
+		this.SetHandler(static (symmetricType, difficultyLevel, technique, limitCount) =>
+		{
+			limitCount = limitCount == 0 ? int.MaxValue : limitCount;
+			for (var (count, analyzer) = (0, PredefinedAnalyzers.Balanced); count < limitCount; count++)
 			{
-				limitCount = limitCount == 0 ? int.MaxValue : limitCount;
-				for (var (count, analyzer) = (0, PredefinedAnalyzers.Balanced); count < limitCount; count++)
+				var puzzle = HodokuPuzzleGenerator.Generate(symmetricType);
+				if (analyzer.Analyze(puzzle) is { IsSolved: true, DifficultyLevel: var dl, Steps: var steps }
+					&& (difficultyLevel != 0 && dl == difficultyLevel || difficultyLevel == 0)
+					&& (technique != 0 && Array.Exists(steps, step => step.Code == technique) || technique == 0))
 				{
-					var puzzle = HodokuPuzzleGenerator.Generate(symmetricType);
-					if (analyzer.Analyze(puzzle) is { IsSolved: true, DifficultyLevel: var dl, Steps: var steps }
-						&& (difficultyLevel != 0 && dl == difficultyLevel || difficultyLevel == 0)
-						&& (technique != 0 && Array.Exists(steps, step => step.Code == technique) || technique == 0))
-					{
-						Console.WriteLine(puzzle.ToString());
-						return;
-					}
+					Console.WriteLine(puzzle.ToString());
+					return;
 				}
+			}
 
-				Console.WriteLine("Failed to create puzzles.");
-			},
-			symmetricTypeOption,
-			difficultyLevelOption,
-			techniqueOption,
-			limitCountOption
-		);
+			Console.WriteLine("Failed to create puzzles.");
+		}, symmetricTypeOption, difficultyLevelOption, techniqueOption, limitCountOption);
 	}
 }
