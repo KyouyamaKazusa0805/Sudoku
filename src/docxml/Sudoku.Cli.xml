@@ -4,6 +4,16 @@
         <name>Sudoku.Cli</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Cli.Commands.AnalyzeCommand">
+            <summary>
+            Represents an analyze command.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Cli.Commands.AnalyzeCommand.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Cli.Commands.AnalyzeCommand"/> instance.
+            </summary>
+        </member>
         <member name="T:Sudoku.Cli.Commands.GenerateCommand">
             <summary>
             Indicates a command that creates puzzles.
@@ -38,6 +48,20 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Cli.Options.DifficultyLevelOption.DefaultValue">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Cli.Options.GridOption">
+            <summary>
+            Represents a grid option.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Cli.Options.GridOption.Description">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Cli.Options.GridOption.Aliases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Cli.Options.GridOption.DefaultValue">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Cli.Options.IOption`2">
