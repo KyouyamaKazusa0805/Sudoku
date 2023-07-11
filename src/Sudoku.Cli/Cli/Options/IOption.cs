@@ -46,11 +46,7 @@ public interface IOption<TSelf, out T> where TSelf : class, IOption<TSelf, T>, n
 	/// <returns>
 	/// <inheritdoc cref="CreateOption()" path="/returns"/>
 	/// </returns>
-	static Option<T> CreateOption(
-		ParseArgument<T> parseArgument,
-		bool isDefault = false,
-		bool isRequired = false
-	)
+	static Option<T> CreateOption(ParseArgument<T> parseArgument, bool isDefault = false, bool isRequired = false)
 	{
 		var result = new Option<T>(TSelf.Aliases, parseArgument, isDefault, TSelf.Description);
 		result.SetDefaultValue(TSelf.DefaultValue);
