@@ -10,25 +10,7 @@ public sealed class AnalyzeCommand : Command, ICommand<AnalyzeCommand>
 	/// </summary>
 	public AnalyzeCommand() : base("analyze", "To analyze a puzzle.")
 	{
-		var gridOption = IOption<GridOption, Grid>.CreateOption(static argumentResult =>
-		{
-			var str = argumentResult.Tokens.First(static token => token.Type == TokenType.Argument).Value;
-			if (string.IsNullOrWhiteSpace(str))
-			{
-				argumentResult.ErrorMessage = "The target argument should not be an empty string or only contain whitespaces.";
-				return Grid.Undefined;
-			}
-			else if (!Grid.TryParse(str, out var s))
-			{
-				argumentResult.ErrorMessage = "The target argument must be a valid sudoku text string.";
-				return Grid.Undefined;
-			}
-			else
-			{
-				return s;
-			}
-		}, true, true);
-
+		var gridOption = IOption<GridOption, Grid>.CreateOption(GridArgumentConverter.ConvertValue);
 		var techniqueOption = IOption<TechniqueOption, Technique>.CreateOption();
 		AddOption(gridOption);
 		AddOption(techniqueOption);

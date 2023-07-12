@@ -6,6 +6,12 @@ namespace Sudoku.Cli.Options;
 public sealed class GridOption : IOption<GridOption, Grid>
 {
 	/// <inheritdoc/>
+	public static bool IsDefault => true;
+
+	/// <inheritdoc/>
+	public static bool IsRequired => true;
+
+	/// <inheritdoc/>
 	public static string Description => "Indicates the target grid to be analyzed.";
 
 	/// <inheritdoc/>

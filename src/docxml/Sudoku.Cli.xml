@@ -36,6 +36,38 @@
             </summary>
             <returns>A (An) <typeparamref name="TSelf"/> instance.</returns>
         </member>
+        <member name="T:Sudoku.Cli.Converters.GridArgumentConverter">
+            <summary>
+            Defines a converter that converts the argument into a <see cref="T:Sudoku.Concepts.Grid"/> result.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Cli.Converters.GridArgumentConverter.ErrorMessage_OnlyWhitespaces">
+            <summary>
+            Indicates the error message displayed when the argument text are whitespaces only.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Cli.Converters.GridArgumentConverter.ErrorMessage_InvalidGridText">
+            <summary>
+            Indicates the error message displayed when the specified argument text cannot be parsed as a valid <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Cli.Converters.GridArgumentConverter.ConvertValue(System.CommandLine.Parsing.ArgumentResult)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Cli.Converters.IArgumentConverter`2">
+            <summary>
+            Represents a type that supports converting from the <see cref="T:System.String"/> raw argument to the specified type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="TSelf">The type of the converter type itself.</typeparam>
+            <typeparam name="T">The type of the final converted value.</typeparam>
+        </member>
+        <member name="M:Sudoku.Cli.Converters.IArgumentConverter`2.ConvertValue(System.CommandLine.Parsing.ArgumentResult)">
+            <summary>
+            Converts the specified argument raw data (tokens and error handler) into the target instance of type <typeparamref name="T"/>.
+            </summary>
+            <param name="argumentResult">The argument instance.</param>
+            <returns>The result instance having parsed.</returns>
+        </member>
         <member name="T:Sudoku.Cli.Options.DifficultyLevelOption">
             <summary>
             Represents a difficulty level option.
@@ -55,6 +87,12 @@
             Represents a grid option.
             </summary>
         </member>
+        <member name="P:Sudoku.Cli.Options.GridOption.IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Cli.Options.GridOption.IsRequired">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Cli.Options.GridOption.Description">
             <inheritdoc/>
         </member>
@@ -72,6 +110,19 @@
             <typeparam name="T">The type of the default value of the current option.</typeparam>
             <seealso cref="T:System.CommandLine.Command"/>
         </member>
+        <member name="P:Sudoku.Cli.Options.IOption`2.IsDefault">
+            <summary>
+            <inheritdoc cref="M:System.CommandLine.Option`1.#ctor(System.String,System.CommandLine.Parsing.ParseArgument{`0},System.Boolean,System.String)" path="/param[@name='isDefault']"/>
+            </summary>
+            <remarks>This property is <see langword="false"/> by default.</remarks>
+        </member>
+        <member name="P:Sudoku.Cli.Options.IOption`2.IsRequired">
+            <summary>
+            <para><inheritdoc cref="P:System.CommandLine.Option.IsRequired" path="/summary"/></para>
+            <para><inheritdoc cref="P:System.CommandLine.Option.IsRequired" path="/remarks"/></para>
+            </summary>
+            <remarks>This property is <see langword="false"/> by default.</remarks>
+        </member>
         <member name="P:Sudoku.Cli.Options.IOption`2.Description">
             <summary>
             Indicates the description to be used.
@@ -87,29 +138,14 @@
             Indicates the default value to be used.
             </summary>
         </member>
-        <member name="M:Sudoku.Cli.Options.IOption`2.CreateOption">
+        <member name="M:Sudoku.Cli.Options.IOption`2.CreateOption(System.CommandLine.Parsing.ParseArgument{`1})">
             <summary>
             Create an <see cref="T:System.CommandLine.Option`1"/> instance.
-            </summary>
-            <returns>An <see cref="T:System.CommandLine.Option`1"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Cli.Options.IOption`2.CreateOption(System.CommandLine.Parsing.ParseArgument{`1},System.Boolean,System.Boolean)">
-            <summary>
-            Create an <see cref="T:System.CommandLine.Option`1"/> instance, via the specified parser callback,
-            and a <see cref="T:System.Boolean"/> value indicating whether the option is a default one.
             </summary>
             <param name="parseArgument">
             <inheritdoc cref="M:System.CommandLine.Option`1.#ctor(System.String,System.CommandLine.Parsing.ParseArgument{`0},System.Boolean,System.String)" path="/param[@name='parseArgument']"/>
             </param>
-            <param name="isDefault">
-            <inheritdoc cref="M:System.CommandLine.Option`1.#ctor(System.String,System.CommandLine.Parsing.ParseArgument{`0},System.Boolean,System.String)" path="/param[@name='isDefault']"/>
-            </param>
-            <param name="isRequired">
-            <inheritdoc cref="P:System.CommandLine.Option.IsRequired" path="/summary"/>
-            </param>
-            <returns>
-            <inheritdoc cref="M:Sudoku.Cli.Options.IOption`2.CreateOption" path="/returns"/>
-            </returns>
+            <returns>An <see cref="T:System.CommandLine.Option`1"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Cli.Options.LimitCountOption">
             <summary>

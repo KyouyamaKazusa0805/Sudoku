@@ -5,6 +5,7 @@ global using Sudoku.Algorithm.Generating;
 global using Sudoku.Analytics;
 global using Sudoku.Analytics.Categorization;
 global using Sudoku.Cli.Commands;
+global using Sudoku.Cli.Converters;
 global using Sudoku.Cli.Options;
 global using Sudoku.Text.Formatting;
 global using sysex::System;
