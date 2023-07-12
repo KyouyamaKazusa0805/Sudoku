@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<RootNamespace>Sudoku</RootNamespace>
 		<Description>The project that provides with an environment called command line to play with sudoku. The environment can also be used as the debugging one.</Description>
 		<DocumentationFile>..\docxml\Sudoku.Cli.xml</DocumentationFile>
