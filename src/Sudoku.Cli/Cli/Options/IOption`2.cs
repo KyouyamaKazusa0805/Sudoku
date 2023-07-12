@@ -9,12 +9,6 @@ namespace Sudoku.Cli.Options;
 public interface IOption<TSelf, out T> where TSelf : class, IOption<TSelf, T>, new()
 {
 	/// <summary>
-	/// <inheritdoc cref="Option{T}.Option(string, ParseArgument{T}, bool, string?)" path="/param[@name='isDefault']"/>
-	/// </summary>
-	/// <remarks>This property is <see langword="false"/> by default.</remarks>
-	static virtual bool IsDefault { get; } = false;
-
-	/// <summary>
 	/// <para><inheritdoc cref="Option.IsRequired" path="/summary"/></para>
 	/// <para><inheritdoc cref="Option.IsRequired" path="/remarks"/></para>
 	/// </summary>
@@ -40,15 +34,10 @@ public interface IOption<TSelf, out T> where TSelf : class, IOption<TSelf, T>, n
 	/// <summary>
 	/// Create an <see cref="Option{T}"/> instance.
 	/// </summary>
-	/// <param name="parseArgument">
-	/// <inheritdoc cref="Option{T}(string, ParseArgument{T}, bool, string?)" path="/param[@name='parseArgument']"/>
-	/// </param>
 	/// <returns>An <see cref="Option{T}"/> instance.</returns>
-	static Option<T> CreateOption(ParseArgument<T>? parseArgument = null)
+	static Option<T> CreateOption()
 	{
-		var result = parseArgument is null
-			? new Option<T>(TSelf.Aliases, TSelf.Description) { IsRequired = TSelf.IsRequired }
-			: new Option<T>(TSelf.Aliases, parseArgument, TSelf.IsDefault, TSelf.Description) { IsRequired = TSelf.IsRequired };
+		var result = new Option<T>(TSelf.Aliases, TSelf.Description) { IsRequired = TSelf.IsRequired };
 		result.SetDefaultValue(TSelf.DefaultValue);
 
 		return result;

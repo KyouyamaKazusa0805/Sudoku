@@ -10,7 +10,7 @@ public sealed class AnalyzeCommand : Command, ICommand<AnalyzeCommand>
 	/// </summary>
 	public AnalyzeCommand() : base("analyze", "To analyze a puzzle.")
 	{
-		var gridOption = IOption<GridOption, Grid>.CreateOption(GridArgumentConverter.ConvertValue);
+		var gridOption = IOption<GridOption, Grid, GridArgumentConverter>.CreateOption();
 		var techniqueOption = IOption<TechniqueOption, Technique>.CreateOption();
 		AddOption(gridOption);
 		AddOption(techniqueOption);

@@ -3,7 +3,7 @@ namespace Sudoku.Cli.Options;
 /// <summary>
 /// Represents a grid option.
 /// </summary>
-public sealed class GridOption : IOption<GridOption, Grid>
+public sealed class GridOption : IOption<GridOption, Grid, GridArgumentConverter>
 {
 	/// <inheritdoc/>
 	public static bool IsDefault => true;
