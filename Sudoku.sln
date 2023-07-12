@@ -12,8 +12,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Core", "src\Sudoku.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemExtensions", "src\System\SystemExtensions.csproj", "{5BF11834-ABCF-4BB8-BFA2-17B072D56A2C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CommandLine", "src\Sudoku.CommandLine\Sudoku.CommandLine.csproj", "{53AA4AE8-2517-4D85-9215-9ABB53FC751E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "License", "License", "{84B6F2B7-13D6-496B-8CAF-608E0CC0DEA0}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE-CODE = LICENSE-CODE
@@ -62,7 +60,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RootLevelSourceGeneration",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuStudio", "src\SudokuStudio\SudokuStudio.csproj", "{88EAFE6C-050B-4F43-B768-0C564D48CC3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Cli", "src\Sudoku.Cli\Sudoku.Cli.csproj", "{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Cli", "src\Sudoku.Cli\Sudoku.Cli.csproj", "{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -143,36 +141,6 @@ Global
 		{5BF11834-ABCF-4BB8-BFA2-17B072D56A2C}.Release|x64.Build.0 = Release|Any CPU
 		{5BF11834-ABCF-4BB8-BFA2-17B072D56A2C}.Release|x86.ActiveCfg = Release|Any CPU
 		{5BF11834-ABCF-4BB8-BFA2-17B072D56A2C}.Release|x86.Build.0 = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|Any CPU.ActiveCfg = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|Any CPU.Build.0 = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|ARM.ActiveCfg = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|ARM.Build.0 = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|ARM64.ActiveCfg = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|ARM64.Build.0 = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|x64.ActiveCfg = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|x64.Build.0 = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|x86.ActiveCfg = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|x86.Build.0 = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|ARM.Build.0 = Debug|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|x64.Build.0 = Debug|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|x86.Build.0 = Debug|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Release|ARM.ActiveCfg = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Release|ARM.Build.0 = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Release|ARM64.Build.0 = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Release|x64.ActiveCfg = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Release|x64.Build.0 = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Release|x86.ActiveCfg = Release|Any CPU
-		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Release|x86.Build.0 = Release|Any CPU
 		{F58C1FEB-CA1A-4D70-82D5-6B5CC257F379}.Build|Any CPU.ActiveCfg = Debug|Any CPU
 		{F58C1FEB-CA1A-4D70-82D5-6B5CC257F379}.Build|Any CPU.Build.0 = Debug|Any CPU
 		{F58C1FEB-CA1A-4D70-82D5-6B5CC257F379}.Build|ARM.ActiveCfg = Debug|Any CPU
@@ -440,9 +408,9 @@ Global
 		{B33F37B0-E19F-4CD2-993A-94C4571248AD} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\SudokuTutorial\SudokuTutorial.projitems*{597d5691-2e11-43c7-ae3b-826e979450da}*SharedItemsImports = 13
