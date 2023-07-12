@@ -434,7 +434,7 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	public static CandidateMap Parse(string str) => (CandidateMap)RxCyNotation.ParseCandidates(str);
+	public static CandidateMap Parse(string str) => RxCyNotation.ParseCandidates(str);
 
 	/// <inheritdoc/>
 	static bool IParsable<CandidateMap>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CandidateMap result)
