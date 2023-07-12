@@ -1,5 +1,4 @@
 global using System.Buffers;
-global using System.CommandLine.Annotations;
 global using System.ComponentModel;
 global using System.Runtime.Intrinsics;
 global using System.Runtime.Messages;
