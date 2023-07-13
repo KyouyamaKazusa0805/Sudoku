@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BivalueUniversalGraveMultipleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] IReadOnlyList<Candidate> trueCandidates
+	[PrimaryConstructorParameter] scoped in CandidateMap trueCandidates
 ) : BivalueUniversalGraveStep(conclusions, views)
 {
 	/// <summary>
@@ -46,5 +46,5 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { CandidatesStr } }, { ChineseLanguage, new[] { CandidatesStr } } };
 
-	private string CandidatesStr => (CandidateMap.Empty + TrueCandidates).ToString();
+	private string CandidatesStr => TrueCandidates.ToString();
 }

@@ -19,7 +19,6 @@ public partial interface IBitStatusMap<TSelf> :
 	IModulusOperators<TSelf, TSelf, TSelf>,
 	IParsable<TSelf>,
 	IReadOnlyCollection<int>,
-	IReadOnlyList<int>,
 	IReadOnlySet<int>,
 	ISet<int>,
 	ISimpleFormattable,
@@ -77,10 +76,7 @@ public partial interface IBitStatusMap<TSelf> :
 	/// <returns>
 	/// The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
 	/// </returns>
-	new int this[int index] { get; }
-
-	/// <inheritdoc/>
-	int IReadOnlyList<int>.this[int index] => this[index];
+	int this[int index] { get; }
 
 
 	/// <inheritdoc/>

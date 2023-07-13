@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BivalueUniversalGraveType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] IReadOnlyList<Candidate> trueCandidates,
+	[PrimaryConstructorParameter] scoped in CandidateMap trueCandidates,
 	[PrimaryConstructorParameter] Mask subsetDigitsMask,
 	[PrimaryConstructorParameter] scoped in CellMap cells,
 	[PrimaryConstructorParameter] bool isNaked
@@ -38,7 +38,7 @@ public sealed partial class BivalueUniversalGraveType3Step(
 	/// </summary>
 	private int Size => PopCount((uint)SubsetDigitsMask);
 
-	private string TrueCandidatesStr => (CandidateMap.Empty + TrueCandidates).ToString();
+	private string TrueCandidatesStr => TrueCandidates.ToString();
 
 	private string SubsetTypeStr => GetString(IsNaked ? "NakedKeyword" : "HiddenKeyword")!;
 
