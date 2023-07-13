@@ -38,7 +38,7 @@ public sealed class AnalyzeCommand : Command, ICommand<AnalyzeCommand>
 					}
 					break;
 				}
-				case (_, var analyzerResult):
+				case var (_, analyzerResult):
 				{
 					Console.ForegroundColor = ConsoleColor.Red;
 					Console.WriteLine(analyzerResult.ToString());
