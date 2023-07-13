@@ -120,7 +120,7 @@ public sealed partial class AnalyzePage : Page
 			return;
 		}
 
-		if (SudokuPane.Puzzle is var puzzle and ({ IsUndefined: true } or { IsEmpty: true }))
+		if (SudokuPane.Puzzle is not { IsUndefined: false, IsEmpty: false } puzzle)
 		{
 			return;
 		}

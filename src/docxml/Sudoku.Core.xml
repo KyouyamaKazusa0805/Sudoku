@@ -3142,13 +3142,6 @@ if (student is (name: var name, age: >= 18))
             This array. All elements are between 0 and 9, where 0 means the cell is <see cref="F:Sudoku.Concepts.CellStatus.Empty"/> now.
             </returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.GetMask(System.Int32)">
-            <summary>
-            Get a mask at the specified cell.
-            </summary>
-            <param name="cell">The cell you want to get.</param>
-            <returns>The mask.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.GetCandidates(System.Int32)">
             <summary>
             Get the candidate mask part of the specified cell.
@@ -3205,43 +3198,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="cells">The list of cells to gather the usages on all digits.</param>
             <returns>A mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.GetPinnableReference">
-            <target name="method">
-				<summary>
-					Returns a reference as the fixed position of the current instance.
-					For example, the return value will be the pointer value that points to the zero-indexed
-					place in an array.
-				</summary>
-				<returns>A reference as the fixed position of the current instance.</returns>
-				<remarks>
-					Beginning with C# 7, we can customize the return value type of a <see langword="fixed" /> variable
-					if we implement a parameterless method called <c>GetPinnableReference</c>, returning by
-					<see langword="ref" /> or <see langword="ref readonly" />. For example, if we hold a fixed buffer
-					of element type:
-					<code>
-<![CDATA[
-class ExampleType
-{
-    private fixed short _maskList[100];
-
-    public ref readonly short GetPinnableReference() => ref _maskList[0];
-}
-]]>
-					</code>
-					We can use <see langword="fixed" /> statement to define a variable of type <see langword="short" />*
-					as the left-value.
-					<code>
-<![CDATA[
-var instance = new ExampleType();
-fixed (short* ptr = instance)
-{
-    // Operation here.
-}
-]]>
-					</code>
-				</remarks>
-			</target>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ToString(System.String)">
             <inheritdoc/>
@@ -3451,27 +3407,6 @@ fixed (short* ptr = instance)
             The case you want to set. <see langword="false"/> means that this candidate
             doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
             </param>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.GetMaskRef(System.Int32)">
-            <summary>
-            Gets the mask at the specified cell. This method returns the reference of the mask.
-            </summary>
-            <param name="cell">The desired cell.</param>
-            <returns>The reference to the mask that you want to get.</returns>
-            <remarks>
-            This method returns the reference, which means you can use this method as an l-value.
-            For example, if you want to use bitwise-or operator to update the value, you can use:
-            <code><![CDATA[
-            // Update the mask.
-            Mask mask = ...;
-            grid.GetMaskRefAt(0) |= mask;
-            ]]></code>
-            The expression <c>grid.GetMaskRefAt(0) |= mask</c> is equivalent to
-            <c>grid.GetMaskRefAt(0) = grid.GetMaskRefAt(0) | mask</c>, and it can be replaced
-            with the expression <c>grid._values[0] = grid._values[0] | mask</c>,
-            meaning we update the mask at the first place (i.e. <c>r1c1</c>).
-            </remarks>
-            <seealso cref="M:Sudoku.Concepts.Grid.GetPinnableReference"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -3869,6 +3804,14 @@ fixed (short* ptr = instance)
             This method will return the reference that is same as the argument <paramref name="this"/>,
             in order to inline multiple transformation operations.
             </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.GridTransformations.Swap``1(``0@,``0@)">
+            <summary>
+            Swaps the two elements.
+            </summary>
+            <typeparam name="T">The type of two elements.</typeparam>
+            <param name="left">The left-side instance to be swapped.</param>
+            <param name="right">The right-side instance to be swapped.</param>
         </member>
         <member name="T:Sudoku.Concepts.HouseType">
             <summary>

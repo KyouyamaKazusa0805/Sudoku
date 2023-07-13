@@ -65,7 +65,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 					{
 						for (var j = i + 1; j < length; j++)
 						{
-							if (grid.GetMask(cells[i]) == grid.GetMask(cells[j]))
+							if (grid[cells[i]] == grid[cells[j]])
 							{
 								flag = true;
 								goto CheckWhetherTwoCellsContainSameCandidateKind;

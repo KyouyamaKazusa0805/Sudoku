@@ -75,14 +75,11 @@ public static unsafe class GridTransformations
 	/// </remarks>
 	public static ref Grid MirrorLeftRight(this ref Grid @this)
 	{
-		fixed (Mask* p = @this)
+		for (var i = 0; i < 9; i++)
 		{
-			for (var i = 0; i < 9; i++)
+			for (var j = 0; j < 9; j++)
 			{
-				for (var j = 0; j < 9; j++)
-				{
-					PointerOperations.Swap(p + (i * 9 + j), p + (i * 9 + (8 - j)));
-				}
+				Swap(ref @this[i * 9 + j], ref @this[i * 9 + (8 - j)]);
 			}
 		}
 
@@ -100,14 +97,11 @@ public static unsafe class GridTransformations
 	/// </remarks>
 	public static ref Grid MirrorTopBottom(this ref Grid @this)
 	{
-		fixed (Mask* p = @this)
+		for (var i = 0; i < 9; i++)
 		{
-			for (var i = 0; i < 9; i++)
+			for (var j = 0; j < 9; j++)
 			{
-				for (var j = 0; j < 9; j++)
-				{
-					PointerOperations.Swap(p + (i * 9 + j), p + ((8 - i) * 9 + j));
-				}
+				Swap(ref @this[i * 9 + j], ref @this[(8 - i) * 9 + j]);
 			}
 		}
 
@@ -125,14 +119,11 @@ public static unsafe class GridTransformations
 	/// </remarks>
 	public static ref Grid MirrorDiagonal(this ref Grid @this)
 	{
-		fixed (Mask* p = @this)
+		for (var i = 0; i < 9; i++)
 		{
-			for (var i = 0; i < 9; i++)
+			for (var j = 0; j < 9; j++)
 			{
-				for (var j = 0; j < 9; j++)
-				{
-					PointerOperations.Swap(p + (i * 9 + j), p + (j * 9 + i));
-				}
+				Swap(ref @this[i * 9 + j], ref @this[j * 9 + i]);
 			}
 		}
 
@@ -162,14 +153,11 @@ public static unsafe class GridTransformations
 	/// </remarks>
 	public static ref Grid MirrorAntidiagonal(this ref Grid @this)
 	{
-		fixed (Mask* p = @this)
+		for (var i = 0; i < 9; i++)
 		{
-			for (var i = 0; i < 9; i++)
+			for (var j = 0; j < 9; j++)
 			{
-				for (var j = 0; j < 9; j++)
-				{
-					PointerOperations.Swap(p + (i * 9 + j), p + ((8 - j) * 9 + (8 - i)));
-				}
+				Swap(ref @this[i * 9 + j], ref @this[(8 - j) * 9 + (8 - i)]);
 			}
 		}
 
@@ -188,12 +176,9 @@ public static unsafe class GridTransformations
 	public static ref Grid RotateClockwise(this ref Grid @this)
 	{
 		var result = Grid.Undefined;
-		fixed (Mask* pThis = @this, pResult = result)
+		for (var cell = 0; cell < 81; cell++)
 		{
-			for (var cell = 0; cell < 81; cell++)
-			{
-				pResult[cell] = pThis[ClockwiseTable[cell]];
-			}
+			result[cell] = @this[ClockwiseTable[cell]];
 		}
 
 		@this = result;
@@ -212,12 +197,9 @@ public static unsafe class GridTransformations
 	public static ref Grid RotateCounterclockwise(this ref Grid @this)
 	{
 		var result = Grid.Undefined;
-		fixed (Mask* pThis = @this, pResult = result)
+		for (var cell = 0; cell < 81; cell++)
 		{
-			for (var cell = 0; cell < 81; cell++)
-			{
-				pResult[cell] = pThis[CounterclockwiseTable[cell]];
-			}
+			result[cell] = @this[CounterclockwiseTable[cell]];
 		}
 
 		@this = result;
@@ -236,12 +218,9 @@ public static unsafe class GridTransformations
 	public static ref Grid RotatePi(this ref Grid @this)
 	{
 		var result = Grid.Undefined;
-		fixed (Mask* pThis = @this, pResult = result)
+		for (var cell = 0; cell < 81; cell++)
 		{
-			for (var cell = 0; cell < 81; cell++)
-			{
-				pResult[cell] = pThis[PiRotateTable[cell]];
-			}
+			result[cell] = @this[PiRotateTable[cell]];
 		}
 
 		@this = result;
@@ -268,19 +247,26 @@ public static unsafe class GridTransformations
 		Argument.ThrowIfFalse(houseIndex1 is >= 9 and < 27, "The specified argument is out of valid range.");
 		Argument.ThrowIfFalse(houseIndex2 is >= 9 and < 27, "The specified argument is out of valid range.");
 		Argument.ThrowIfFalse(houseIndex1.ToHouseType() == houseIndex2.ToHouseType(), "Two houses should be the same house type.");
-		Argument.ThrowIfFalse(Array.Exists(SwappableHouses, predicate));
+		Argument.ThrowIfFalse(Array.Exists(SwappableHouses, pair => pair == (houseIndex1, houseIndex2) || pair == (houseIndex2, houseIndex1)));
 
-		fixed (Mask* p = @this)
+		for (var i = 0; i < 9; i++)
 		{
-			for (var i = 0; i < 9; i++)
-			{
-				PointerOperations.Swap(p + HouseCells[houseIndex1][i], p + HouseCells[houseIndex2][i]);
-			}
+			Swap(ref @this[HouseCells[houseIndex1][i]], ref @this[HouseCells[houseIndex2][i]]);
 		}
 
 		return ref @this;
+	}
 
-
-		bool predicate((House, House) pair) => pair == (houseIndex1, houseIndex2) || pair == (houseIndex2, houseIndex1);
+	/// <summary>
+	/// Swaps the two elements.
+	/// </summary>
+	/// <typeparam name="T">The type of two elements.</typeparam>
+	/// <param name="left">The left-side instance to be swapped.</param>
+	/// <param name="right">The right-side instance to be swapped.</param>
+	private static void Swap<T>(scoped ref T left, scoped ref T right)
+	{
+		var temp = left;
+		left = right;
+		right = temp;
 	}
 }

@@ -9,6 +9,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
+[InlineArray(81)]
 [LargeStructure]
 [Equals]
 [ToString]
@@ -127,7 +128,7 @@ public unsafe partial struct Grid :
 	/// </list>
 	/// </remarks>
 	/// <seealso cref="CellStatus"/>
-	private fixed Mask _values[81];
+	private Mask _values;
 
 
 	/// <summary>
@@ -176,7 +177,7 @@ public unsafe partial struct Grid :
 	{
 		// Initializes the empty grid.
 		Empty = default;
-		scoped ref var firstElement = ref Empty.GetMaskRef(0);
+		scoped ref var firstElement = ref Empty[0];
 		for (var i = 0; i < 81; i++)
 		{
 			AddByteOffset(ref firstElement, (nuint)(i * sizeof(Mask))) = DefaultMask;
@@ -206,7 +207,7 @@ public unsafe partial struct Grid :
 						}
 					}
 
-					@this._values[i] = (Mask)(EmptyMask | mask);
+					@this[i] = (Mask)(EmptyMask | mask);
 				}
 			}
 		}
@@ -222,7 +223,7 @@ public unsafe partial struct Grid :
 						// You can't do this because of being invoked recursively.
 						//@this[peerCell, setValue] = false;
 
-						@this._values[peerCell] &= (Mask)~(1 << setValue);
+						@this[peerCell] &= (Mask)~(1 << setValue);
 					}
 				}
 			}
@@ -523,7 +524,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(scoped in Grid other)
 	{
-		return e(ref AsByteRef(ref AsRef(_values[0])), ref AsByteRef(ref AsRef(other._values[0])), sizeof(Mask) * 81);
+		return e(ref AsByteRef(ref AsRef(this[0])), ref AsByteRef(ref AsRef(other[0])), sizeof(Mask) * 81);
 
 
 #pragma warning disable CS1587
@@ -908,7 +909,7 @@ public unsafe partial struct Grid :
 	/// <param name="digit"><inheritdoc cref="SetCandidateIsOn(int, int, bool)" path="/param[@name='digit']"/></param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool GetCandidateIsOn(Cell cell, Digit digit) => (_values[cell] >> digit & 1) != 0;
+	public readonly bool GetCandidateIsOn(Cell cell, Digit digit) => (this[cell] >> digit & 1) != 0;
 
 	/// <summary>
 	/// Indicates whether the current grid contains the specified candidate offset.
@@ -991,14 +992,6 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
-	/// Get a mask at the specified cell.
-	/// </summary>
-	/// <param name="cell">The cell you want to get.</param>
-	/// <returns>The mask.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Mask GetMask(Cell cell) => _values[cell];
-
-	/// <summary>
 	/// Get the candidate mask part of the specified cell.
 	/// </summary>
 	/// <param name="cell">The cell offset you want to get.</param>
@@ -1023,7 +1016,7 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Mask GetCandidates(Cell cell) => (Mask)(_values[cell] & MaxCandidatesMask);
+	public readonly Mask GetCandidates(Cell cell) => (Mask)(this[cell] & MaxCandidatesMask);
 
 	/// <inheritdoc cref="GetDigitsUnion(in CellMap)"/>
 	public readonly Mask GetDigitsUnion(Cell[] cells)
@@ -1031,7 +1024,7 @@ public unsafe partial struct Grid :
 		var result = (Mask)0;
 		for (var i = 0; i < cells.Length; i++)
 		{
-			result |= _values[cells[i]];
+			result |= this[cells[i]];
 		}
 
 		return (Mask)(result & MaxCandidatesMask);
@@ -1048,7 +1041,7 @@ public unsafe partial struct Grid :
 		var result = (Mask)0;
 		foreach (var cell in cells)
 		{
-			result |= _values[cell];
+			result |= this[cell];
 		}
 
 		return (Mask)(result & MaxCandidatesMask);
@@ -1070,7 +1063,7 @@ public unsafe partial struct Grid :
 		{
 			if (!withValueCells && GetStatus(cell) != CellStatus.Empty || withValueCells)
 			{
-				result |= _values[cell];
+				result |= this[cell];
 			}
 		}
 
@@ -1089,15 +1082,11 @@ public unsafe partial struct Grid :
 		var result = MaxCandidatesMask;
 		foreach (var cell in cells)
 		{
-			result &= (Mask)~_values[cell];
+			result &= (Mask)~this[cell];
 		}
 
 		return result;
 	}
-
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='custom-fixed']/target[@name='method']"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ref readonly Mask GetPinnableReference() => ref _values[0];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1193,7 +1182,7 @@ public unsafe partial struct Grid :
 	/// <param name="cell">The cell.</param>
 	/// <returns>The cell status.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CellStatus GetStatus(Cell cell) => MaskToStatus(_values[cell]);
+	public readonly CellStatus GetStatus(Cell cell) => MaskToStatus(this[cell]);
 
 	/// <summary>
 	/// Try to get the digit filled in the specified cell.
@@ -1208,7 +1197,7 @@ public unsafe partial struct Grid :
 		=> GetStatus(cell) switch
 		{
 			CellStatus.Empty => -1,
-			CellStatus.Modifiable or CellStatus.Given => TrailingZeroCount(_values[cell]),
+			CellStatus.Modifiable or CellStatus.Given => TrailingZeroCount(this[cell]),
 			_ => throw new InvalidOperationException("The grid cannot keep invalid cell status value.")
 		};
 
@@ -1227,7 +1216,7 @@ public unsafe partial struct Grid :
 	/// to iterate all possible candidates in the current grid.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidateEnumerator EnumerateCandidates() => new(ref AsRef(_values[0]));
+	public readonly CandidateEnumerator EnumerateCandidates() => new(ref AsRef(this[0]));
 
 	/// <summary>
 	/// Try to enumerate the mask table of the current grid.
@@ -1254,7 +1243,7 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly MaskEnumerator EnumerateMasks() => new(ref AsRef(_values[0]));
+	public readonly MaskEnumerator EnumerateMasks() => new(ref AsRef(this[0]));
 
 	/// <summary>
 	/// Projects each element of a sequence into a new form.
@@ -1364,7 +1353,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetStatus(Cell cell, CellStatus status)
 	{
-		scoped ref var mask = ref _values[cell];
+		scoped ref var mask = ref this[cell];
 		var copied = mask;
 		mask = (Mask)((int)status << 9 | mask & MaxCandidatesMask);
 
@@ -1379,7 +1368,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetMask(Cell cell, Mask mask)
 	{
-		scoped ref var m = ref _values[cell];
+		scoped ref var m = ref this[cell];
 		var copied = m;
 		m = mask;
 
@@ -1410,7 +1399,7 @@ public unsafe partial struct Grid :
 			{
 				// If 'value' is -1, we should reset the grid.
 				// Note that reset candidates may not trigger the event.
-				_values[cell] = DefaultMask;
+				this[cell] = DefaultMask;
 
 				RefreshingCandidates(ref this);
 
@@ -1418,7 +1407,7 @@ public unsafe partial struct Grid :
 			}
 			case >= 0 and < 9:
 			{
-				scoped ref var result = ref _values[cell];
+				scoped ref var result = ref this[cell];
 				var copied = result;
 
 				// Set cell status to 'CellStatus.Modifiable'.
@@ -1446,43 +1435,20 @@ public unsafe partial struct Grid :
 	{
 		if (cell is >= 0 and < 81 && digit is >= 0 and < 9)
 		{
-			var copied = _values[cell];
+			var copied = this[cell];
 			if (isOn)
 			{
-				_values[cell] |= (Mask)(1 << digit);
+				this[cell] |= (Mask)(1 << digit);
 			}
 			else
 			{
-				_values[cell] &= (Mask)~(1 << digit);
+				this[cell] &= (Mask)~(1 << digit);
 			}
 
 			// To trigger the event.
-			ValueChanged(ref this, cell, copied, _values[cell], -1);
+			ValueChanged(ref this, cell, copied, this[cell], -1);
 		}
 	}
-
-	/// <summary>
-	/// Gets the mask at the specified cell. This method returns the reference of the mask.
-	/// </summary>
-	/// <param name="cell">The desired cell.</param>
-	/// <returns>The reference to the mask that you want to get.</returns>
-	/// <remarks>
-	/// This method returns the reference, which means you can use this method as an l-value.
-	/// For example, if you want to use bitwise-or operator to update the value, you can use:
-	/// <code><![CDATA[
-	/// // Update the mask.
-	/// Mask mask = ...;
-	/// grid.GetMaskRefAt(0) |= mask;
-	/// ]]></code>
-	/// The expression <c>grid.GetMaskRefAt(0) |= mask</c> is equivalent to
-	/// <c>grid.GetMaskRefAt(0) = grid.GetMaskRefAt(0) | mask</c>, and it can be replaced
-	/// with the expression <c>grid._values[0] = grid._values[0] | mask</c>,
-	/// meaning we update the mask at the first place (i.e. <c>r1c1</c>).
-	/// </remarks>
-	/// <seealso cref="GetPinnableReference"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
-	public ref Mask GetMaskRef(Cell cell) => ref _values[cell];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1575,7 +1541,7 @@ public unsafe partial struct Grid :
 		Argument.ThrowIfNotEqual(masks.Length, 81, nameof(masks));
 
 		var result = Empty;
-		CopyBlock(ref AsByteRef(ref result._values[0]), ref AsByteRef(ref masks[0]), sizeof(Mask) * 81);
+		CopyBlock(ref AsByteRef(ref result[0]), ref AsByteRef(ref masks[0]), sizeof(Mask) * 81);
 
 		return result;
 	}
@@ -1723,7 +1689,10 @@ public unsafe partial struct Grid :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IParsable<Grid>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out Grid result)
-		=> s is not null && TryParse(s, out result);
+	{
+		result = Undefined;
+		return s is not null && TryParse(s, out result);
+	}
 
 
 	/// <summary>

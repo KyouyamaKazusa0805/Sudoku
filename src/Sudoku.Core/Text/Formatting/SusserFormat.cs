@@ -129,7 +129,7 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 			{
 				// Check if the value has been set 'true' and the value has already deleted at the grid
 				// with only givens and modifiables.
-				foreach (var i in (Mask)(originalGrid.GetMask(c) & Grid.MaxCandidatesMask))
+				foreach (var i in (Mask)(originalGrid[c] & Grid.MaxCandidatesMask))
 				{
 					if (!grid.GetCandidateIsOn(c, i))
 					{

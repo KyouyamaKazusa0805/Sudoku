@@ -382,7 +382,7 @@ public abstract partial class ChainingStep(
 				if (!isOn)
 				{
 					// Remove deductions of the container chain.
-					nestedGrid.GetMaskRef(cell) &= (Mask)(1 << digit);
+					nestedGrid[cell] &= (Mask)(1 << digit);
 				}
 			}
 

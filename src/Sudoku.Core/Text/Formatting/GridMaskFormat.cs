@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Represents with a grid mask formatter.
@@ -33,7 +33,7 @@ public sealed record GridMaskFormat(string Separator = ", ") : IGridFormatter
 	public unsafe string ToString(scoped in Grid grid)
 	{
 		scoped var sb = new StringHandler(400);
-		sb.AppendRangeWithSeparatorRef(grid.GetMaskRef(0), 81, &StringHandler.ElementToStringConverter, Separator);
+		sb.AppendRangeWithSeparatorRef(grid[0], 81, &StringHandler.ElementToStringConverter, Separator);
 
 		return sb.ToStringAndClear();
 	}

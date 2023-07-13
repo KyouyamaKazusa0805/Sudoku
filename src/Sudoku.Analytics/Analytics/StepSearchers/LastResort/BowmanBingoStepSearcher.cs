@@ -184,7 +184,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 			list.Add(c * 9 + digit);
 		}
 
-		return (list, grid.GetMask(cell));
+		return (list, grid[cell]);
 	}
 
 	/// <summary>
