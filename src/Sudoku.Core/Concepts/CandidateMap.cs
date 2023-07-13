@@ -52,7 +52,7 @@ public unsafe partial struct CandidateMap :
 	/// Indicates the internal bits. 12 is for floor(729 / <see langword="sizeof"/>(<see cref="long"/>) <![CDATA[<<]]> 6).
 	/// </summary>
 	/// <seealso cref="IBitStatusMap{TSelf, TElement}.Shifting"/>
-	private fixed long _bits[12];
+	private InternalBuffer _bits;
 
 
 	/// <summary>
@@ -854,6 +854,21 @@ public unsafe partial struct CandidateMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static explicit IBitStatusMap<CandidateMap, Candidate>.operator ReadOnlySpan<Candidate>(scoped in CandidateMap offsets) => offsets.Offsets;
+
+
+	/// <summary>
+	/// Indicates the internal buffer type.
+	/// </summary>
+	[InlineArray(12)]
+	private struct InternalBuffer
+	{
+		/// <summary>
+		/// Indicates the first element of the whole buffer.
+		/// </summary>
+		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
+		[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+		private long _firstElement;
+	}
 }
 
 /// <summary>

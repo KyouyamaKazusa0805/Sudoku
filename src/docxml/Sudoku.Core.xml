@@ -1792,6 +1792,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#op_Explicit(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.CandidateMap.InternalBuffer">
+            <summary>
+            Indicates the internal buffer type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.CandidateMap.InternalBuffer._firstElement">
+            <summary>
+            Indicates the first element of the whole buffer.
+            </summary>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
