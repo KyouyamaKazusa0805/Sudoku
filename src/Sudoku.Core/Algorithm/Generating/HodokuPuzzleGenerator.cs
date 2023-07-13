@@ -324,12 +324,12 @@ public ref struct HodokuPuzzleGenerator
 				}
 
 				// Try the next candidate.
-				var nextCand = _stack[level].Candidates.SetAt(_stack[level].CandidateIndex++);
+				var nextCandidate = _stack[level].Candidates.SetAt(_stack[level].CandidateIndex++);
 
 				// Start with a fresh sudoku.
 				scoped ref var targetGrid = ref _stack[level].SudokuGrid;
 				targetGrid = _stack[level - 1].SudokuGrid;
-				targetGrid[_stack[level].Cell] = nextCand;
+				targetGrid[_stack[level].Cell] = nextCandidate;
 				if (!checkValidityOnDuplicate(targetGrid, _stack[level].Cell))
 				{
 					// Invalid -> try next candidate.
