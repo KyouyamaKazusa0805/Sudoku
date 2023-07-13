@@ -516,59 +516,6 @@ public unsafe partial struct Grid :
 
 
 	/// <summary>
-	/// Gets a list of <see cref="Digit"/> values that are created via raw usages from <see cref="GetDigit(int)"/>.
-	/// </summary>
-	/// <param name="cells">The cell indices.</param>
-	/// <returns>A list of digits selected.</returns>
-	/// <seealso cref="GetDigit(int)"/>
-	public readonly Digit[] this[scoped in CellMap cells]
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			var @this = this;
-			return from cell in cells select @this.GetDigit(cell);
-		}
-	}
-
-	/// <summary>
-	/// Gets or sets a candidate existence case with a <see cref="bool"/> value.
-	/// </summary>
-	/// <param name="cell">The cell offset between 0 and 80.</param>
-	/// <param name="digit">The digit between 0 and 8.</param>
-	/// <value>
-	/// The case you want to set. <see langword="false"/> means that this candidate
-	/// doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
-	/// </value>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public bool this[Cell cell, Digit digit]
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		readonly get => (_values[cell] >> digit & 1) != 0;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			if (cell is >= 0 and < 81 && digit is >= 0 and < 9)
-			{
-				var copied = _values[cell];
-				if (value)
-				{
-					_values[cell] |= (Mask)(1 << digit);
-				}
-				else
-				{
-					_values[cell] &= (Mask)~(1 << digit);
-				}
-
-				// To trigger the event.
-				ValueChanged(ref this, cell, copied, _values[cell], -1);
-			}
-		}
-	}
-
-
-	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values as the current instance.
 	/// </summary>
 	/// <param name="other">The instance to compare.</param>
@@ -955,6 +902,15 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
+	/// Sets a candidate existence case with a <see cref="bool"/> value.
+	/// </summary>
+	/// <param name="cell"><inheritdoc cref="SetCandidate(int, int, bool)" path="/param[@name='cell']"/></param>
+	/// <param name="digit"><inheritdoc cref="SetCandidate(int, int, bool)" path="/param[@name='digit']"/></param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool GetCandidate(Cell cell, Digit digit) => (_values[cell] >> digit & 1) != 0;
+
+	/// <summary>
 	/// Indicates whether the current grid contains the specified candidate offset.
 	/// </summary>
 	/// <param name="candidate">The candidate offset.</param>
@@ -1003,13 +959,13 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// <para>
 	/// In addition, because the type is <see cref="bool"/>? rather than <see cref="bool"/>,
-	/// the result case will be more precisely than the indexer <see cref="this[Cell, Digit]"/>,
+	/// the result case will be more precisely than the indexer <see cref="GetCandidate(Cell, Digit)"/>,
 	/// which is the main difference between this method and that indexer.
 	/// </para>
 	/// </remarks>
-	/// <seealso cref="this[Cell, Digit]"/>
+	/// <seealso cref="GetCandidate(Cell, Digit)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool? Exists(Cell cell, Digit digit) => GetStatus(cell) == CellStatus.Empty ? this[cell, digit] : null;
+	public readonly bool? Exists(Cell cell, Digit digit) => GetStatus(cell) == CellStatus.Empty ? GetCandidate(cell, digit) : null;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1383,7 +1339,7 @@ public unsafe partial struct Grid :
 			}
 			case Elimination:
 			{
-				this[cell, digit] = false;
+				SetCandidate(cell, digit, false);
 				break;
 			}
 		}
@@ -1474,6 +1430,35 @@ public unsafe partial struct Grid :
 
 				break;
 			}
+		}
+	}
+
+	/// <summary>
+	/// Sets the target candidate status.
+	/// </summary>
+	/// <param name="cell">The cell offset between 0 and 80.</param>
+	/// <param name="digit">The digit between 0 and 8.</param>
+	/// <param name="isOn">
+	/// The case you want to set. <see langword="false"/> means that this candidate
+	/// doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
+	/// </param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetCandidate(Cell cell, Digit digit, bool isOn)
+	{
+		if (cell is >= 0 and < 81 && digit is >= 0 and < 9)
+		{
+			var copied = _values[cell];
+			if (isOn)
+			{
+				_values[cell] |= (Mask)(1 << digit);
+			}
+			else
+			{
+				_values[cell] &= (Mask)~(1 << digit);
+			}
+
+			// To trigger the event.
+			ValueChanged(ref this, cell, copied, _values[cell], -1);
 		}
 	}
 

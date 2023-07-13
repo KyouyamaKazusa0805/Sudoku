@@ -81,7 +81,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 			return;
 		}
 
-		modified[cell, digit] = false;
+		modified.SetCandidate(cell, digit, false);
 		BasePane.SetPuzzleInternal(modified);
 
 		BasePane.TriggerGridUpdated(GridUpdatedBehavior.Elimination, cell * 9 + digit);

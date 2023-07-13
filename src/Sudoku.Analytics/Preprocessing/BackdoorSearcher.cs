@@ -42,7 +42,7 @@ public static class BackdoorSearcher
 				foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~(1 << solution.GetDigit(cell))))
 				{
 					var case2Playground = grid;
-					case2Playground[cell, digit] = false;
+					case2Playground.SetCandidate(cell, digit, false);
 
 					if (sstsOnly.Analyze(case2Playground).IsSolved)
 					{

@@ -105,7 +105,7 @@ public sealed partial record SukakuFormat(bool Multiline = false) : IGridFormatt
 
 			for (var i = 0; i < 729; i++)
 			{
-				if (!grid[i / 9, i % 9])
+				if (!grid.GetCandidate(i / 9, i % 9))
 				{
 					sb[i] = Placeholder;
 				}

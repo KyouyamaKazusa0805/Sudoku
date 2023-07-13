@@ -196,9 +196,9 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="mask">The mask.</param>
 	private static void UndoGrid(scoped ref Grid grid, List<Candidate> list, Cell cell, Mask mask)
 	{
-		foreach (var cand in list)
+		foreach (var candidate in list)
 		{
-			grid[cand / 9, cand % 9] = true;
+			grid.SetCandidate(candidate / 9, candidate % 9, true);
 		}
 
 		grid.SetMask(cell, mask);

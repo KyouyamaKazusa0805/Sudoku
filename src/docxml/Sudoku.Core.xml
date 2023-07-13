@@ -3004,26 +3004,6 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="T:Sudoku.Algorithm.Solving.BacktrackingSolver"/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Gets a list of <see cref="T:System.Int32"/> values that are created via raw usages from <see cref="M:Sudoku.Concepts.Grid.GetDigit(System.Int32)"/>.
-            </summary>
-            <param name="cells">The cell indices.</param>
-            <returns>A list of digits selected.</returns>
-            <seealso cref="M:Sudoku.Concepts.Grid.GetDigit(System.Int32)"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.Item(System.Int32,System.Int32)">
-            <summary>
-            Gets or sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
-            </summary>
-            <param name="cell">The cell offset between 0 and 80.</param>
-            <param name="digit">The digit between 0 and 8.</param>
-            <value>
-            The case you want to set. <see langword="false"/> means that this candidate
-            doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
-            </value>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)">
             <summary>
             Determine whether the specified <see cref="T:Sudoku.Concepts.Grid"/> instance hold the same values as the current instance.
@@ -3088,6 +3068,14 @@ if (student is (name: var name, age: >= 18))
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.GetCandidate(System.Int32,System.Int32)">
+            <summary>
+            Sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Concepts.Grid.SetCandidate(System.Int32,System.Int32,System.Boolean)" path="/param[@name='cell']"/></param>
+            <param name="digit"><inheritdoc cref="M:Sudoku.Concepts.Grid.SetCandidate(System.Int32,System.Int32,System.Boolean)" path="/param[@name='digit']"/></param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.Exists(System.Int32)">
             <summary>
             Indicates whether the current grid contains the specified candidate offset.
@@ -3137,11 +3125,11 @@ if (student is (name: var name, age: >= 18))
             </para>
             <para>
             In addition, because the type is <see cref="T:System.Boolean"/>? rather than <see cref="T:System.Boolean"/>,
-            the result case will be more precisely than the indexer <see cref="P:Sudoku.Concepts.Grid.Item(System.Int32,System.Int32)"/>,
+            the result case will be more precisely than the indexer <see cref="M:Sudoku.Concepts.Grid.GetCandidate(System.Int32,System.Int32)"/>,
             which is the main difference between this method and that indexer.
             </para>
             </remarks>
-            <seealso cref="P:Sudoku.Concepts.Grid.Item(System.Int32,System.Int32)"/>
+            <seealso cref="M:Sudoku.Concepts.Grid.GetCandidate(System.Int32,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetHashCode">
             <inheritdoc/>
@@ -3451,6 +3439,17 @@ fixed (short* ptr = instance)
             If the cell contains a digit, it will be covered when it is a modifiable value.
             If the cell is a given cell, the setter will do nothing.
             </para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.SetCandidate(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Sets the target candidate status.
+            </summary>
+            <param name="cell">The cell offset between 0 and 80.</param>
+            <param name="digit">The digit between 0 and 8.</param>
+            <param name="isOn">
+            The case you want to set. <see langword="false"/> means that this candidate
+            doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
             </param>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMaskRef(System.Int32)">

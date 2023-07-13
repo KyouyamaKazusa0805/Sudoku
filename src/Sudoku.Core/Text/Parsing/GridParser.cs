@@ -398,7 +398,7 @@ public unsafe ref partial struct GridParser(
 				{
 					for (var digit = 0; digit < 9; digit++)
 					{
-						result[cell, digit] = (mask >> digit & 1) != 0;
+						result.SetCandidate(cell, digit, (mask >> digit & 1) != 0);
 					}
 				}
 			}
@@ -529,7 +529,7 @@ public unsafe ref partial struct GridParser(
 			foreach (var candidate in EliminationNotation.ParseCandidates(elimMatch))
 			{
 				// Set the candidate with false to eliminate the candidate.
-				result[candidate / 9, candidate % 9] = false;
+				result.SetCandidate(candidate / 9, candidate % 9, false);
 			}
 		}
 
@@ -644,7 +644,7 @@ public unsafe ref partial struct GridParser(
 
 				if (c is '0' or '.')
 				{
-					result[i / 9, i % 9] = false;
+					result.SetCandidate(i / 9, i % 9, false);
 				}
 			}
 
@@ -682,13 +682,13 @@ public unsafe ref partial struct GridParser(
 				// We don't need to set the value as a given because the current parsing if for Sukakus, rather than normal sudokus.
 				//if (IsPow2(mask))
 				//{
-				//	result[offset] = TrailingZeroCount(mask);
+				//	result.SetDigit(cell, TrailingZeroCount(mask));
 				//	result.SetStatus(offset, CellStatus.Given);
 				//}
 
 				for (var digit = 0; digit < 9; digit++)
 				{
-					result[offset, digit] = (mask >> digit & 1) != 0;
+					result.SetCandidate(offset, digit, (mask >> digit & 1) != 0);
 				}
 			}
 
