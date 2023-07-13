@@ -153,7 +153,7 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 						case { WithModifiables: true, ShortenSusser: false }:
 						{
 							sb.Append(ModifiablePrefix);
-							sb.Append(grid[c] + 1);
+							sb.Append(grid.GetDigit(c) + 1);
 							break;
 						}
 						case { Placeholder: var p }:
@@ -167,7 +167,7 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 				}
 				case CellStatus.Given:
 				{
-					sb.Append(grid[c] + 1);
+					sb.Append(grid.GetDigit(c) + 1);
 					break;
 				}
 				default:

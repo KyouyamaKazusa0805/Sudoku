@@ -58,7 +58,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 				{
 					invalidPos[digit].Add(cell);
 				}
-				else if (grid[cell] == digit)
+				else if (grid.GetDigit(cell) == digit)
 				{
 					mustPos[digit].Add(cell);
 				}

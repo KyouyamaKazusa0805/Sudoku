@@ -108,11 +108,7 @@ public abstract class SubsetStepSearcher(
 					continue;
 				}
 
-				var mask = Grid.MaxCandidatesMask;
-				foreach (var cell in traversingMap)
-				{
-					mask &= (Mask)~(1 << grid[cell]);
-				}
+				var mask = grid.GetDigitsIntersection(traversingMap);
 				foreach (var digits in mask.GetAllSets().GetSubsets(size))
 				{
 					var (tempMask, digitsMask, map) = (mask, (Mask)0, CellMap.Empty);

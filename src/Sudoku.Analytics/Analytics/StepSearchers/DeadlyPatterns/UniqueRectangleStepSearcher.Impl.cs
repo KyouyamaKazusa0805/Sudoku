@@ -4462,14 +4462,14 @@ partial class UniqueRectangleStepSearcher
 	)
 	{
 		if (grid.GetStatus(corner1) != CellStatus.Modifiable || grid.GetStatus(corner2) != CellStatus.Modifiable
-			|| grid[corner1] != grid[corner2] || grid[corner1] != d1 && grid[corner1] != d2)
+			|| grid.GetDigit(corner1) != grid.GetDigit(corner2) || grid.GetDigit(corner1) != d1 && grid.GetDigit(corner1) != d2)
 		{
 			return;
 		}
 
 		// Get the base digit ('a') and the other digit ('b').
 		// Here 'b' is the digit that we should check the possible hidden single.
-		var baseDigit = grid[corner1];
+		var baseDigit = grid.GetDigit(corner1);
 		var otherDigit = baseDigit == d1 ? d2 : d1;
 		var cellsThatTwoOtherCellsBothCanSee = otherCellsMap.PeerIntersection & CandidatesMap[otherDigit];
 

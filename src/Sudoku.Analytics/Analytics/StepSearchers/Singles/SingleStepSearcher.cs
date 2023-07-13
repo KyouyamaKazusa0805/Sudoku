@@ -347,7 +347,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			var digitCount = 0;
 			for (var i = 0; i < 81; i++)
 			{
-				if (grid[i] == digit)
+				if (grid.GetDigit(i) == digit)
 				{
 					digitCount++;
 					cellOffsets.Add(new(WellKnownColorIdentifier.Normal, i) { RenderingMode = RenderingMode.BothDirectAndPencilmark });
@@ -417,7 +417,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		{
 			foreach (var otherCell in Peers[cell])
 			{
-				if (grid[otherCell] == otherDigit)
+				if (grid.GetDigit(otherCell) == otherDigit)
 				{
 					result[i++] = new(WellKnownColorIdentifier.Normal, otherCell) { RenderingMode = RenderingMode.DirectModeOnly };
 					break;

@@ -3006,43 +3006,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
             <summary>
-            Gets a list of <see cref="T:System.Int32"/> values that are created via raw usages from <see cref="P:Sudoku.Concepts.Grid.Item(System.Int32)"/>.
+            Gets a list of <see cref="T:System.Int32"/> values that are created via raw usages from <see cref="M:Sudoku.Concepts.Grid.GetDigit(System.Int32)"/>.
             </summary>
             <param name="cells">The cell indices.</param>
             <returns>A list of digits selected.</returns>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.Item(System.Int32)">
-            <summary>
-            Gets or sets the digit that has been filled in the specified cell.
-            </summary>
-            <param name="cell">The cell you want to get or set a value.</param>
-            <value>
-            <para>
-            The value you want to set. The value should be between 0 and 8.
-            If assigning -1, the grid will execute an implicit behavior that candidates in <b>all</b> empty cells will be re-computed.
-            </para>
-            <para>
-            The values set into the grid will be regarded as the modifiable values.
-            If the cell contains a digit, it will be covered when it is a modifiable value.
-            If the cell is a given cell, the setter will do nothing.
-            </para>
-            </value>
-            <returns>
-            The value that the cell filled with. The possible values are:
-            <list type="table">
-            <item>
-            <term>-1</term>
-            <description>The status of the specified cell is <see cref="F:Sudoku.Concepts.CellStatus.Empty"/>.</description>
-            </item>
-            <item>
-            <term><![CDATA[>= 0 and < 9]]></term>
-            <description>The actual value that the cell filled with. 0 is for the digit 1, 1 is for the digit 2, etc..</description>
-            </item>
-            </list>
-            </returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified cell keeps a wrong cell status value. For example, <see cref="F:Sudoku.Concepts.CellStatus.Undefined"/>.
-            </exception>
+            <seealso cref="M:Sudoku.Concepts.Grid.GetDigit(System.Int32)"/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Item(System.Int32,System.Int32)">
             <summary>
@@ -3355,6 +3323,16 @@ fixed (short* ptr = instance)
             <param name="cell">The cell.</param>
             <returns>The cell status.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.GetDigit(System.Int32)">
+            <summary>
+            Try to get the digit filled in the specified cell.
+            </summary>
+            <param name="cell">The cell used.</param>
+            <returns>The digit that the current cell filled. If the cell is empty, return -1.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified cell keeps a wrong cell status value. For example, <see cref="F:Sudoku.Concepts.CellStatus.Undefined"/>.
+            </exception>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.GetEnumerator">
             <summary>
             Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
@@ -3457,6 +3435,23 @@ fixed (short* ptr = instance)
             </summary>
             <param name="cell">The cell.</param>
             <param name="mask">The mask to set.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.SetDigit(System.Int32,System.Int32)">
+            <summary>
+            Set the specified digit into the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">
+            <para>
+            The value you want to set. The value should be between 0 and 8.
+            If assigning -1, the grid will execute an implicit behavior that candidates in <b>all</b> empty cells will be re-computed.
+            </para>
+            <para>
+            The values set into the grid will be regarded as the modifiable values.
+            If the cell contains a digit, it will be covered when it is a modifiable value.
+            If the cell is a given cell, the setter will do nothing.
+            </para>
+            </param>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMaskRef(System.Int32)">
             <summary>

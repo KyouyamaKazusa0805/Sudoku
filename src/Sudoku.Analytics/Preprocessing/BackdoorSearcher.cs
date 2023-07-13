@@ -32,14 +32,14 @@ public static class BackdoorSearcher
 		{
 			// Case 1: Assignments.
 			var case1Playground = grid;
-			case1Playground[cell] = solution[cell];
+			case1Playground.SetDigit(cell, solution.GetDigit(cell));
 
 			if (sstsOnly.Analyze(case1Playground).IsSolved)
 			{
-				assignmentBackdoors.Add(new(Assignment, cell, solution[cell]));
+				assignmentBackdoors.Add(new(Assignment, cell, solution.GetDigit(cell)));
 
 				// Case 2: Eliminations.
-				foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~(1 << solution[cell])))
+				foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~(1 << solution.GetDigit(cell))))
 				{
 					var case2Playground = grid;
 					case2Playground[cell, digit] = false;

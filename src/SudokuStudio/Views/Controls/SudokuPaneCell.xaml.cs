@@ -55,7 +55,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 			return;
 		}
 
-		modified[cell] = digit;
+		modified.SetDigit(cell, digit);
 		BasePane.SetPuzzleInternal(modified);
 
 		BasePane.TriggerGridUpdated(GridUpdatedBehavior.Assignment, cell * 9 + digit);

@@ -220,7 +220,7 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 			{
 				foreach (var (t, c, d) in step.Conclusions)
 				{
-					var digit = solution[c];
+					var digit = solution.GetDigit(c);
 					if (t == Assignment && digit != d || t == Elimination && digit == d)
 					{
 						return false;

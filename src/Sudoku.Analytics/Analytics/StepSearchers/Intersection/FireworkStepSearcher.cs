@@ -604,7 +604,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		{
 			foreach (var cell in houseCellsExcluded)
 			{
-				switch (grid[cell])
+				switch (grid.GetDigit(cell))
 				{
 					case -1 when CandidatesMap[digit].Contains(cell):
 					case var cellValue when cellValue == digit:

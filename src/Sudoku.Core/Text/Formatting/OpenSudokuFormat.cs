@@ -71,7 +71,7 @@ public sealed record OpenSudokuFormat : IGridFormatter
 					case CellStatus.Modifiable:
 					case CellStatus.Given:
 					{
-						pResult[pos] = (char)(grid[i] + One);
+						pResult[pos] = (char)(grid.GetDigit(i) + One);
 						pResult[pos + 2] = Zero;
 						pResult[pos + 4] = Zero;
 

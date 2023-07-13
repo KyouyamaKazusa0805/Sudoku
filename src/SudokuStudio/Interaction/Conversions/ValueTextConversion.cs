@@ -26,7 +26,7 @@ internal static class ValueTextConversion
 		// Implicit behavior: argument 'solution' can be 'Grid.Undefined'.
 		// Therefore, we must check validity first.
 		return new SolidColorBrush(
-			!solution.IsUndefined && solution[cell] != digit && useDifferentColorToDisplayDeltaDigits
+			!solution.IsUndefined && solution.GetDigit(cell) != digit && useDifferentColorToDisplayDeltaDigits
 				? deltaColor
 				: grid.GetStatus(cell) == CellStatus.Modifiable ? modifiableColor : givenColor
 		);

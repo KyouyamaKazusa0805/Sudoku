@@ -161,7 +161,7 @@ public ref struct HodokuPuzzleGenerator
 			used.Add(cell);
 			usedCount--;
 
-			if (_newValidSudoku[cell] == -1)
+			if (_newValidSudoku.GetDigit(cell) == -1)
 			{
 				// Already deleted (symmetry).
 				continue;
@@ -171,7 +171,7 @@ public ref struct HodokuPuzzleGenerator
 
 			foreach (var tempCell in symmetricType.GetCells(cell / 9, cell % 9))
 			{
-				if (_newValidSudoku[tempCell] != -1)
+				if (_newValidSudoku.GetDigit(tempCell) != -1)
 				{
 					candidateCells.Add(tempCell);
 				}
@@ -185,7 +185,7 @@ public ref struct HodokuPuzzleGenerator
 			foreach (var candidateCell in candidateCells)
 			{
 				// Delete cell.
-				_newValidSudoku[candidateCell] = -1;
+				_newValidSudoku.SetDigit(candidateCell, -1);
 				used.Add(candidateCell);
 				remainingClues--;
 				if (candidateCell != cell)
@@ -199,7 +199,7 @@ public ref struct HodokuPuzzleGenerator
 				// If not unique, revert deletion.
 				foreach (var candidateCell in candidateCells)
 				{
-					_newValidSudoku[candidateCell] = _newFullSudoku[candidateCell];
+					_newValidSudoku.SetDigit(candidateCell, _newFullSudoku.GetDigit(candidateCell));
 					remainingClues++;
 				}
 			}
@@ -225,7 +225,7 @@ public ref struct HodokuPuzzleGenerator
 		{
 			if (!pattern.Contains(cell))
 			{
-				_newValidSudoku[cell] = -1;
+				_newValidSudoku.SetDigit(cell, -1);
 			}
 		}
 
@@ -329,7 +329,7 @@ public ref struct HodokuPuzzleGenerator
 				// Start with a fresh sudoku.
 				scoped ref var targetGrid = ref _stack[level].SudokuGrid;
 				targetGrid = _stack[level - 1].SudokuGrid;
-				targetGrid[_stack[level].Cell] = nextCandidate;
+				targetGrid.SetDigit(_stack[level].Cell, nextCandidate);
 				if (!checkValidityOnDuplicate(targetGrid, _stack[level].Cell))
 				{
 					// Invalid -> try next candidate.
@@ -355,8 +355,8 @@ public ref struct HodokuPuzzleGenerator
 		{
 			foreach (var peer in Peers[cell])
 			{
-				var digit = grid[peer];
-				if (digit == grid[cell] && digit != -1)
+				var digit = grid.GetDigit(peer);
+				if (digit == grid.GetDigit(cell) && digit != -1)
 				{
 					return false;
 				}
@@ -388,7 +388,7 @@ public ref struct HodokuPuzzleGenerator
 					{
 						// Hidden single.
 						var cell = HouseCells[house][TrailingZeroCount(houseMask)];
-						grid[cell] = digit;
+						grid.SetDigit(cell, digit);
 						if (!checkValidityOnDuplicate(grid, cell))
 						{
 							// Invalid.
@@ -404,7 +404,7 @@ public ref struct HodokuPuzzleGenerator
 				var mask = grid.GetCandidates(cell);
 				if (IsPow2(mask))
 				{
-					grid[cell] = TrailingZeroCount(mask);
+					grid.SetDigit(cell, TrailingZeroCount(mask));
 					if (!checkValidityOnDuplicate(grid, cell))
 					{
 						// Invalid.

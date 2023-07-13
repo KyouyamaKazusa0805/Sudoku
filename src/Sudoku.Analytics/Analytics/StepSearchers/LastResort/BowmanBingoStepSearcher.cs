@@ -46,7 +46,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 				var (candList, mask) = RecordUndoInfo(tempGrid, cell, digit);
 
 				// Try to fill this cell.
-				tempGrid[cell] = digit;
+				tempGrid.SetDigit(cell, digit);
 				var startCandidate = cell * 9 + digit;
 
 				if (IsValidGrid(grid, cell))
@@ -112,7 +112,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		_tempConclusions.Add(conclusion);
 		var (candList, mask) = RecordUndoInfo(grid, c, d);
 
-		grid[c] = d;
+		grid.SetDigit(c, d);
 		if (IsValidGrid(grid, c))
 		{
 			// Sounds good.
@@ -217,11 +217,14 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		foreach (var peerCell in Peers[cell])
 		{
 			var status = grid.GetStatus(peerCell);
-			if (!(status != CellStatus.Empty && grid[peerCell] != grid[cell] || status == CellStatus.Empty) || grid.GetCandidates(peerCell) == 0)
+			if ((status != CellStatus.Empty && grid.GetDigit(peerCell) != grid.GetDigit(cell) || status == CellStatus.Empty)
+				&& grid.GetCandidates(peerCell) != 0)
 			{
-				result = false;
-				break;
+				continue;
 			}
+
+			result = false;
+			break;
 		}
 
 		return result;

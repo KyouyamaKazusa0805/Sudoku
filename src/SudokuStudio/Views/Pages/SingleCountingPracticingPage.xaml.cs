@@ -236,7 +236,7 @@ file static class Generator
 				var i = 0;
 				foreach (var otherCell in HousesMap[house] - cell)
 				{
-					result[otherCell] = digits[i++];
+					result.SetDigit(otherCell, digits[i++]);
 				}
 
 				targetCandidate = cell * 9 + digits[^1];
@@ -264,7 +264,7 @@ file static class Generator
 				var i = 0;
 				foreach (var otherCell in cells - cells[Rng.Next(0, 9)])
 				{
-					result[otherCell] = digits[i++];
+					result.SetDigit(otherCell, digits[i++]);
 				}
 
 				targetCandidate = cell * 9 + digits[^1];

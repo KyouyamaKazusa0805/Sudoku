@@ -166,7 +166,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			foreach (var digit in grid.GetCandidates(cell))
 			{
 				var copied = grid;
-				copied[cell] = digit;
+				copied.SetDigit(cell, digit);
 
 				if (!formsDeadlyPattern(copied))
 				{

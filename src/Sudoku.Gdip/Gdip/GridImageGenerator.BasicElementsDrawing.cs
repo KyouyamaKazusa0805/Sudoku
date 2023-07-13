@@ -98,7 +98,7 @@ partial class GridImageGenerator
 					// Draw values.
 					var originalPoint = calc.GetMousePointInCenter(cell);
 					var point = originalPoint with { Y = originalPoint.Y + vOffsetValue };
-					g.DrawValue(puzzle[cell] + 1, f(status, fGiven, fModifiable), f(status, bGiven, bModifiable), point, StringLocating);
+					g.DrawValue(puzzle.GetDigit(cell) + 1, f(status, fGiven, fModifiable), f(status, bGiven, bModifiable), point, StringLocating);
 
 					break;
 

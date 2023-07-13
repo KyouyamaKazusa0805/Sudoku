@@ -193,7 +193,7 @@ public unsafe ref partial struct GridParser(
 			{
 				case [var match and not ('.' or '0')]:
 				{
-					result[i] = match - '1';
+					result.SetDigit(i, match - '1');
 					result.SetStatus(i, CellStatus.Given);
 
 					break;
@@ -211,7 +211,7 @@ public unsafe ref partial struct GridParser(
 					}
 					else
 					{
-						result[i] = match - '1';
+						result.SetDigit(i, match - '1');
 						result.SetStatus(i, CellStatus.Modifiable);
 					}
 
@@ -283,7 +283,7 @@ public unsafe ref partial struct GridParser(
 				}
 				case not '0' and var ch when whenClause(i * 6, match, "|0|0", "|0|0|"):
 				{
-					result[i] = ch - '1';
+					result.SetDigit(i, ch - '1');
 					result.SetStatus(i, CellStatus.Given);
 
 					break;
@@ -336,7 +336,7 @@ public unsafe ref partial struct GridParser(
 				{
 					if (s[1] is var c and >= '1' and <= '9')
 					{
-						result[cell] = c - '1';
+						result.SetDigit(cell, c - '1');
 						result.SetStatus(cell, CellStatus.Given);
 					}
 					else
@@ -358,7 +358,7 @@ public unsafe ref partial struct GridParser(
 				{
 					if (s[1] is var c and >= '1' and <= '9')
 					{
-						result[cell] = c - '1';
+						result.SetDigit(cell, c - '1');
 						result.SetStatus(cell, CellStatus.Modifiable);
 					}
 					else
@@ -391,7 +391,7 @@ public unsafe ref partial struct GridParser(
 
 				if ((mask & mask - 1) == 0)
 				{
-					result[cell] = TrailingZeroCount(mask);
+					result.SetDigit(cell, TrailingZeroCount(mask));
 					result.SetStatus(cell, CellStatus.Given);
 				}
 				else
@@ -467,8 +467,7 @@ public unsafe ref partial struct GridParser(
 						if (match[i + 1] is var nextChar and >= '1' and <= '9')
 						{
 							// Set value.
-							// Note that the subtractor is character '1', not '0'.
-							result[realPos] = nextChar - '1';
+							result.SetDigit(realPos, nextChar - '1');
 
 							// Add 2 on iteration variable to skip 2 characters
 							// (A plus sign '+' and a digit).
@@ -501,7 +500,7 @@ public unsafe ref partial struct GridParser(
 					// Digits are representing given values in the grid.
 					// Not the plus sign, but a placeholder '0' or '.'.
 					// Set value.
-					result[realPos] = c - '1';
+					result.SetDigit(realPos, c - '1');
 
 					// Set the cell status as 'CellStatus.Given'.
 					// If the code below doesn't make sense to you,

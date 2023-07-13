@@ -71,7 +71,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 
 		foreach (var cell in ~grid.EmptyCells)
 		{
-			cellOffsets.Add(new(colorIndices[grid[cell]], cell));
+			cellOffsets.Add(new(colorIndices[grid.GetDigit(cell)], cell));
 		}
 	}
 
@@ -116,8 +116,8 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 					continue;
 				}
 
-				var d1 = grid[c1];
-				var d2 = grid[c2];
+				var d1 = grid.GetDigit(c1);
+				var d2 = grid.GetDigit(c2);
 				if (d1 == d2)
 				{
 					var o1 = mapping[d1];
@@ -242,8 +242,8 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 					continue;
 				}
 
-				var d1 = grid[c1];
-				var d2 = grid[c2];
+				var d1 = grid.GetDigit(c1);
+				var d2 = grid.GetDigit(c2);
 				if (d1 == d2)
 				{
 					var o1 = mapping[d1];
@@ -351,8 +351,8 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 				continue;
 			}
 
-			var d1 = grid[cell];
-			var d2 = grid[anotherCell];
+			var d1 = grid.GetDigit(cell);
+			var d2 = grid.GetDigit(anotherCell);
 			if (d1 == d2)
 			{
 				var o1 = mapping[d1];

@@ -123,7 +123,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					var c2 = offsets[1];
 					if (!EmptyCells.Contains(c1))
 					{
-						var d1 = grid[c1];
+						var d1 = grid.GetDigit(c1);
 						distinctionMask ^= (Mask)(1 << d1);
 						appearedDigitsMask |= (Mask)(1 << d1);
 
@@ -131,7 +131,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					}
 					if (!EmptyCells.Contains(c2))
 					{
-						var d2 = grid[c2];
+						var d2 = grid.GetDigit(c2);
 						distinctionMask ^= (Mask)(1 << d2);
 						appearedDigitsMask |= (Mask)(1 << d2);
 

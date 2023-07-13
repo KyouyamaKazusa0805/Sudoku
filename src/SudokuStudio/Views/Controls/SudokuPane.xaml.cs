@@ -679,7 +679,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			case ({ AllFalse: true }, var cell, _, -1):
 			{
 				var modified = Puzzle;
-				modified[cell] = -1;
+				modified.SetDigit(cell, -1);
 
 				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Clear, cell));
 
@@ -707,10 +707,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				if (Puzzle.GetStatus(cell) == CellStatus.Modifiable)
 				{
 					// Temporarily re-compute candidates.
-					modified[cell] = -1;
+					modified.SetDigit(cell, -1);
 				}
 
-				modified[cell] = digit;
+				modified.SetDigit(cell, digit);
 
 				SetPuzzleInternal(modified);
 

@@ -20,7 +20,7 @@ public unsafe partial struct Grid :
 	IMinMaxValue<Grid>,
 	IParsable<Grid>,
 	IReadOnlyCollection<Digit>,
-	IReadOnlyList<Digit>,
+	//IReadOnlyList<Digit>,
 	ISimpleFormattable,
 	ISimpleParsable<Grid>
 {
@@ -162,7 +162,7 @@ public unsafe partial struct Grid :
 			if ((minusOneEnabled ? value - 1 : value) is var realValue and not -1)
 			{
 				// Calls the indexer to trigger the event (Clear the candidates in peer cells).
-				this[i] = realValue;
+				SetDigit(i, realValue);
 
 				// Set the status to 'CellStatus.Given'.
 				SetStatus(i, CellStatus.Given);
@@ -200,7 +200,7 @@ public unsafe partial struct Grid :
 					var mask = MaxCandidatesMask;
 					foreach (var cell in Peers[i])
 					{
-						if (@this[cell] is var digit and not -1)
+						if (@this.GetDigit(cell) is var digit and not -1)
 						{
 							mask &= (Mask)~(1 << digit);
 						}
@@ -252,10 +252,10 @@ public unsafe partial struct Grid :
 				{
 					case CellStatus.Given or CellStatus.Modifiable:
 					{
-						var curDigit = this[i];
+						var curDigit = GetDigit(i);
 						foreach (var cell in Peers[i])
 						{
-							if (curDigit == this[cell])
+							if (curDigit == GetDigit(cell))
 							{
 								return false;
 							}
@@ -516,90 +516,18 @@ public unsafe partial struct Grid :
 
 
 	/// <summary>
-	/// Gets a list of <see cref="Digit"/> values that are created via raw usages from <see cref="this[Cell]"/>.
+	/// Gets a list of <see cref="Digit"/> values that are created via raw usages from <see cref="GetDigit(int)"/>.
 	/// </summary>
 	/// <param name="cells">The cell indices.</param>
 	/// <returns>A list of digits selected.</returns>
+	/// <seealso cref="GetDigit(int)"/>
 	public readonly Digit[] this[scoped in CellMap cells]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
 			var @this = this;
-			return from cell in cells select @this[cell];
-		}
-	}
-
-	/// <summary>
-	/// Gets or sets the digit that has been filled in the specified cell.
-	/// </summary>
-	/// <param name="cell">The cell you want to get or set a value.</param>
-	/// <value>
-	/// <para>
-	/// The value you want to set. The value should be between 0 and 8.
-	/// If assigning -1, the grid will execute an implicit behavior that candidates in <b>all</b> empty cells will be re-computed.
-	/// </para>
-	/// <para>
-	/// The values set into the grid will be regarded as the modifiable values.
-	/// If the cell contains a digit, it will be covered when it is a modifiable value.
-	/// If the cell is a given cell, the setter will do nothing.
-	/// </para>
-	/// </value>
-	/// <returns>
-	/// The value that the cell filled with. The possible values are:
-	/// <list type="table">
-	/// <item>
-	/// <term>-1</term>
-	/// <description>The status of the specified cell is <see cref="CellStatus.Empty"/>.</description>
-	/// </item>
-	/// <item>
-	/// <term><![CDATA[>= 0 and < 9]]></term>
-	/// <description>The actual value that the cell filled with. 0 is for the digit 1, 1 is for the digit 2, etc..</description>
-	/// </item>
-	/// </list>
-	/// </returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the specified cell keeps a wrong cell status value. For example, <see cref="CellStatus.Undefined"/>.
-	/// </exception>
-	public Digit this[Cell cell]
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		readonly get => GetStatus(cell) switch
-		{
-			CellStatus.Empty => -1,
-			CellStatus.Modifiable or CellStatus.Given => TrailingZeroCount(_values[cell]),
-			_ => throw new InvalidOperationException("The grid cannot keep invalid cell status value.")
-		};
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			switch (value)
-			{
-				case -1 when GetStatus(cell) == CellStatus.Modifiable:
-				{
-					// If 'value' is -1, we should reset the grid.
-					// Note that reset candidates may not trigger the event.
-					_values[cell] = DefaultMask;
-
-					RefreshingCandidates(ref this);
-
-					break;
-				}
-				case >= 0 and < 9:
-				{
-					scoped ref var result = ref _values[cell];
-					var copied = result;
-
-					// Set cell status to 'CellStatus.Modifiable'.
-					result = (Mask)(ModifiableMask | 1 << value);
-
-					// To trigger the event, which is used for eliminate all same candidates in peer cells.
-					ValueChanged(ref this, cell, copied, result, value);
-
-					break;
-				}
-			}
+			return from cell in cells select @this.GetDigit(cell);
 		}
 	}
 
@@ -911,7 +839,7 @@ public unsafe partial struct Grid :
 	{
 		foreach (var tempCell in Peers[cell])
 		{
-			if (this[tempCell] == digit)
+			if (GetDigit(tempCell) == digit)
 			{
 				return true;
 			}
@@ -999,7 +927,7 @@ public unsafe partial struct Grid :
 			{
 				// Very special case: all cells are givens.
 				// The puzzle is considered not a minimal puzzle, because any one digit in the grid can be removed.
-				firstCandidateMakePuzzleNotMinimal = this[0];
+				firstCandidateMakePuzzleNotMinimal = GetDigit(0);
 				return false;
 			}
 			default:
@@ -1010,12 +938,12 @@ public unsafe partial struct Grid :
 				foreach (var cell in gridCanBeModified.ModifiableCells)
 				{
 					var newGrid = gridCanBeModified;
-					newGrid[cell] = -1;
+					newGrid.SetDigit(cell, -1);
 					newGrid.Fix();
 
 					if (newGrid.IsValid)
 					{
-						firstCandidateMakePuzzleNotMinimal = cell * 9 + this[cell];
+						firstCandidateMakePuzzleNotMinimal = cell * 9 + GetDigit(cell);
 						return false;
 					}
 				}
@@ -1099,8 +1027,8 @@ public unsafe partial struct Grid :
 		var result = new Digit[81];
 		for (var i = 0; i < 81; i++)
 		{
-			// 'this[i]' is always between -1 and 8 (-1 is empty, and 0 to 8 is 1 to 9 for human representation).
-			result[i] = this[i] + 1;
+			// -1..8 -> 0..9
+			result[i] = GetDigit(i) + 1;
 		}
 
 		return result;
@@ -1312,6 +1240,23 @@ public unsafe partial struct Grid :
 	public readonly CellStatus GetStatus(Cell cell) => MaskToStatus(_values[cell]);
 
 	/// <summary>
+	/// Try to get the digit filled in the specified cell.
+	/// </summary>
+	/// <param name="cell">The cell used.</param>
+	/// <returns>The digit that the current cell filled. If the cell is empty, return -1.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the specified cell keeps a wrong cell status value. For example, <see cref="CellStatus.Undefined"/>.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly Digit GetDigit(Cell cell)
+		=> GetStatus(cell) switch
+		{
+			CellStatus.Empty => -1,
+			CellStatus.Modifiable or CellStatus.Given => TrailingZeroCount(_values[cell]),
+			_ => throw new InvalidOperationException("The grid cannot keep invalid cell status value.")
+		};
+
+	/// <summary>
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
@@ -1388,7 +1333,7 @@ public unsafe partial struct Grid :
 		{
 			if (GetStatus(i) == CellStatus.Modifiable)
 			{
-				this[i] = -1; // Reset the cell, and then re-compute all candidates.
+				SetDigit(i, -1); // Reset the cell, and then re-compute all candidates.
 			}
 		}
 	}
@@ -1433,7 +1378,7 @@ public unsafe partial struct Grid :
 		{
 			case Assignment:
 			{
-				this[cell] = digit;
+				SetDigit(cell, digit);
 				break;
 			}
 			case Elimination:
@@ -1484,6 +1429,52 @@ public unsafe partial struct Grid :
 		m = mask;
 
 		ValueChanged(ref this, cell, copied, m, -1);
+	}
+
+	/// <summary>
+	/// Set the specified digit into the specified cell.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">
+	/// <para>
+	/// The value you want to set. The value should be between 0 and 8.
+	/// If assigning -1, the grid will execute an implicit behavior that candidates in <b>all</b> empty cells will be re-computed.
+	/// </para>
+	/// <para>
+	/// The values set into the grid will be regarded as the modifiable values.
+	/// If the cell contains a digit, it will be covered when it is a modifiable value.
+	/// If the cell is a given cell, the setter will do nothing.
+	/// </para>
+	/// </param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetDigit(Cell cell, Digit digit)
+	{
+		switch (digit)
+		{
+			case -1 when GetStatus(cell) == CellStatus.Modifiable:
+			{
+				// If 'value' is -1, we should reset the grid.
+				// Note that reset candidates may not trigger the event.
+				_values[cell] = DefaultMask;
+
+				RefreshingCandidates(ref this);
+
+				break;
+			}
+			case >= 0 and < 9:
+			{
+				scoped ref var result = ref _values[cell];
+				var copied = result;
+
+				// Set cell status to 'CellStatus.Modifiable'.
+				result = (Mask)(ModifiableMask | 1 << digit);
+
+				// To trigger the event, which is used for eliminate all same candidates in peer cells.
+				ValueChanged(ref this, cell, copied, result, digit);
+
+				break;
+			}
+		}
 	}
 
 	/// <summary>
@@ -1574,7 +1565,7 @@ public unsafe partial struct Grid :
 		var result = this;
 		foreach (var cell in ~pattern)
 		{
-			result[cell] = -1;
+			result.SetDigit(cell, -1);
 		}
 
 		return result;
@@ -1817,5 +1808,5 @@ file static class CellFilteringMethods
 
 	public static bool DigitsMap(scoped in Grid g, Cell cell, Digit digit) => (g.GetCandidates(cell) >> digit & 1) != 0;
 
-	public static bool ValuesMap(scoped in Grid g, Cell cell, Digit digit) => g[cell] == digit;
+	public static bool ValuesMap(scoped in Grid g, Cell cell, Digit digit) => g.GetDigit(cell) == digit;
 }

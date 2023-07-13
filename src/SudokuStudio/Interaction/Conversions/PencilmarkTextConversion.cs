@@ -27,7 +27,7 @@ internal static class PencilmarkTextConversion
 		return (displayCandidates, cellStatus) switch
 		{
 			(false, CellStatus.Empty)
-				=> (!solution.IsUndefined && solution[cell] == digit, candidatesMask >> digit & 1, useDifferentColorToDisplayDeltaDigits) switch
+				=> (!solution.IsUndefined && solution.GetDigit(cell) == digit, candidatesMask >> digit & 1, useDifferentColorToDisplayDeltaDigits) switch
 				{
 					(true, 0, true) when usedCandidates.Contains(cell * 9 + digit) => new SolidColorBrush(deltaColor),
 					(_, not 0, _) when usedCandidates.Contains(cell * 9 + digit) => new SolidColorBrush(pencilmarkColor),
@@ -38,7 +38,7 @@ internal static class PencilmarkTextConversion
 			(_, CellStatus.Given or CellStatus.Modifiable)
 				=> defaultBrush,
 			(_, CellStatus.Empty)
-				=> (!solution.IsUndefined && solution[cell] == digit, candidatesMask >> digit & 1, useDifferentColorToDisplayDeltaDigits) switch
+				=> (!solution.IsUndefined && solution.GetDigit(cell) == digit, candidatesMask >> digit & 1, useDifferentColorToDisplayDeltaDigits) switch
 				{
 					(true, 0, true) => new SolidColorBrush(deltaColor),
 					(_, not 0, _) => new SolidColorBrush(pencilmarkColor),

@@ -51,7 +51,7 @@ internal sealed class InternalServiceProvider : IDisposable
 						throw new FailedToFillValueException(cell, digit);
 					}
 
-					result[cell] = digit;
+					result.SetDigit(cell, digit);
 				}
 			}
 		}
