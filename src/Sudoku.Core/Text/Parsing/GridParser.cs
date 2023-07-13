@@ -398,7 +398,7 @@ public unsafe ref partial struct GridParser(
 				{
 					for (var digit = 0; digit < 9; digit++)
 					{
-						result.SetCandidate(cell, digit, (mask >> digit & 1) != 0);
+						result.SetCandidateIsOn(cell, digit, (mask >> digit & 1) != 0);
 					}
 				}
 			}
@@ -529,7 +529,7 @@ public unsafe ref partial struct GridParser(
 			foreach (var candidate in EliminationNotation.ParseCandidates(elimMatch))
 			{
 				// Set the candidate with false to eliminate the candidate.
-				result.SetCandidate(candidate / 9, candidate % 9, false);
+				result.SetCandidateIsOn(candidate / 9, candidate % 9, false);
 			}
 		}
 
@@ -644,7 +644,7 @@ public unsafe ref partial struct GridParser(
 
 				if (c is '0' or '.')
 				{
-					result.SetCandidate(i / 9, i % 9, false);
+					result.SetCandidateIsOn(i / 9, i % 9, false);
 				}
 			}
 
@@ -688,7 +688,7 @@ public unsafe ref partial struct GridParser(
 
 				for (var digit = 0; digit < 9; digit++)
 				{
-					result.SetCandidate(offset, digit, (mask >> digit & 1) != 0);
+					result.SetCandidateIsOn(offset, digit, (mask >> digit & 1) != 0);
 				}
 			}
 

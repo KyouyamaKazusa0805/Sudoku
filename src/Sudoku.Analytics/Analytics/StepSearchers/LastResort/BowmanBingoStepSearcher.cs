@@ -198,7 +198,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	{
 		foreach (var candidate in list)
 		{
-			grid.SetCandidate(candidate / 9, candidate % 9, true);
+			grid.SetCandidateIsOn(candidate / 9, candidate % 9, true);
 		}
 
 		grid.SetMask(cell, mask);

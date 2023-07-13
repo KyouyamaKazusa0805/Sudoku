@@ -904,11 +904,11 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Sets a candidate existence case with a <see cref="bool"/> value.
 	/// </summary>
-	/// <param name="cell"><inheritdoc cref="SetCandidate(int, int, bool)" path="/param[@name='cell']"/></param>
-	/// <param name="digit"><inheritdoc cref="SetCandidate(int, int, bool)" path="/param[@name='digit']"/></param>
+	/// <param name="cell"><inheritdoc cref="SetCandidateIsOn(int, int, bool)" path="/param[@name='cell']"/></param>
+	/// <param name="digit"><inheritdoc cref="SetCandidateIsOn(int, int, bool)" path="/param[@name='digit']"/></param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool GetCandidate(Cell cell, Digit digit) => (_values[cell] >> digit & 1) != 0;
+	public readonly bool GetCandidateIsOn(Cell cell, Digit digit) => (_values[cell] >> digit & 1) != 0;
 
 	/// <summary>
 	/// Indicates whether the current grid contains the specified candidate offset.
@@ -959,13 +959,13 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// <para>
 	/// In addition, because the type is <see cref="bool"/>? rather than <see cref="bool"/>,
-	/// the result case will be more precisely than the indexer <see cref="GetCandidate(Cell, Digit)"/>,
+	/// the result case will be more precisely than the indexer <see cref="GetCandidateIsOn(Cell, Digit)"/>,
 	/// which is the main difference between this method and that indexer.
 	/// </para>
 	/// </remarks>
-	/// <seealso cref="GetCandidate(Cell, Digit)"/>
+	/// <seealso cref="GetCandidateIsOn(Cell, Digit)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool? Exists(Cell cell, Digit digit) => GetStatus(cell) == CellStatus.Empty ? GetCandidate(cell, digit) : null;
+	public readonly bool? Exists(Cell cell, Digit digit) => GetStatus(cell) == CellStatus.Empty ? GetCandidateIsOn(cell, digit) : null;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1339,7 +1339,7 @@ public unsafe partial struct Grid :
 			}
 			case Elimination:
 			{
-				SetCandidate(cell, digit, false);
+				SetCandidateIsOn(cell, digit, false);
 				break;
 			}
 		}
@@ -1443,7 +1443,7 @@ public unsafe partial struct Grid :
 	/// doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetCandidate(Cell cell, Digit digit, bool isOn)
+	public void SetCandidateIsOn(Cell cell, Digit digit, bool isOn)
 	{
 		if (cell is >= 0 and < 81 && digit is >= 0 and < 9)
 		{
