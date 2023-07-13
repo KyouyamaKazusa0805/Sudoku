@@ -33,9 +33,9 @@ public unsafe partial struct CandidateMap :
 	IDivisionOperators<CandidateMap, Digit, CellMap>,
 	ISubtractionOperators<CandidateMap, Candidate, CandidateMap>,
 	ISubtractionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>,
-	IBitStatusMap<CandidateMap>
+	IBitStatusMap<CandidateMap, Candidate>
 {
-	/// <inheritdoc cref="IBitStatusMap{T}.Empty"/>
+	/// <inheritdoc cref="IBitStatusMap{T, TElement}.Empty"/>
 	public static readonly CandidateMap Empty;
 
 	/// <inheritdoc cref="IMinMaxValue{TSelf}.MaxValue"/>
@@ -51,7 +51,7 @@ public unsafe partial struct CandidateMap :
 	/// <summary>
 	/// Indicates the internal bits. 12 is for floor(729 / <see langword="sizeof"/>(<see cref="long"/>) <![CDATA[<<]]> 6).
 	/// </summary>
-	/// <seealso cref="IBitStatusMap{TSelf}.Shifting"/>
+	/// <seealso cref="IBitStatusMap{TSelf, TElement}.Shifting"/>
 	private fixed long _bits[12];
 
 
@@ -172,10 +172,10 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	readonly int IBitStatusMap<CandidateMap>.Shifting => sizeof(long) << 3;
+	readonly int IBitStatusMap<CandidateMap, Candidate>.Shifting => sizeof(long) << 3;
 
 	/// <inheritdoc/>
-	readonly Candidate[] IBitStatusMap<CandidateMap>.Offsets => Offsets;
+	readonly Candidate[] IBitStatusMap<CandidateMap, Candidate>.Offsets => Offsets;
 
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
@@ -204,7 +204,7 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	static CandidateMap IBitStatusMap<CandidateMap>.Empty => Empty;
+	static CandidateMap IBitStatusMap<CandidateMap, Candidate>.Empty => Empty;
 
 	/// <inheritdoc/>
 	static CandidateMap IMinMaxValue<CandidateMap>.MaxValue => MaxValue;
@@ -403,19 +403,20 @@ public unsafe partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CandidateMap>.ExceptWith(IEnumerable<Candidate> other) => this -= other;
+	void IBitStatusMap<CandidateMap, Candidate>.ExceptWith(IEnumerable<Candidate> other) => this -= other;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CandidateMap>.IntersectWith(IEnumerable<Candidate> other) => this &= Empty + other;
+	void IBitStatusMap<CandidateMap, Candidate>.IntersectWith(IEnumerable<Candidate> other) => this &= Empty + other;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CandidateMap>.SymmetricExceptWith(IEnumerable<Candidate> other) => this = (this - other) | (Empty + other - this);
+	void IBitStatusMap<CandidateMap, Candidate>.SymmetricExceptWith(IEnumerable<Candidate> other)
+		=> this = (this - other) | (Empty + other - this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CandidateMap>.UnionWith(IEnumerable<Candidate> other) => this += other;
+	void IBitStatusMap<CandidateMap, Candidate>.UnionWith(IEnumerable<Candidate> other) => this += other;
 
 
 	/// <inheritdoc/>
@@ -811,7 +812,7 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	static implicit IBitStatusMap<CandidateMap>.operator CandidateMap(scoped Span<Candidate> offsets)
+	static implicit IBitStatusMap<CandidateMap, Candidate>.operator CandidateMap(scoped Span<Candidate> offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
@@ -823,7 +824,7 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	static implicit IBitStatusMap<CandidateMap>.operator CandidateMap(scoped ReadOnlySpan<Candidate> offsets)
+	static implicit IBitStatusMap<CandidateMap, Candidate>.operator CandidateMap(scoped ReadOnlySpan<Candidate> offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
@@ -835,7 +836,7 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	static explicit IBitStatusMap<CandidateMap>.operator CandidateMap(Candidate[] offsets)
+	static explicit IBitStatusMap<CandidateMap, Candidate>.operator CandidateMap(Candidate[] offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
@@ -848,11 +849,11 @@ public unsafe partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static explicit IBitStatusMap<CandidateMap>.operator Span<Candidate>(scoped in CandidateMap offsets) => offsets.Offsets;
+	static explicit IBitStatusMap<CandidateMap, Candidate>.operator Span<Candidate>(scoped in CandidateMap offsets) => offsets.Offsets;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static explicit IBitStatusMap<CandidateMap>.operator ReadOnlySpan<Candidate>(scoped in CandidateMap offsets) => offsets.Offsets;
+	static explicit IBitStatusMap<CandidateMap, Candidate>.operator ReadOnlySpan<Candidate>(scoped in CandidateMap offsets) => offsets.Offsets;
 }
 
 /// <summary>

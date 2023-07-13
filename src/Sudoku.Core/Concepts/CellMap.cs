@@ -42,13 +42,13 @@ public unsafe partial struct CellMap :
 	IMultiplyOperators<CellMap, Digit, CandidateMap>,
 	ISubtractionOperators<CellMap, Cell, CellMap>,
 	ISubtractionOperators<CellMap, IEnumerable<Cell>, CellMap>,
-	IBitStatusMap<CellMap>
+	IBitStatusMap<CellMap, Cell>
 {
-	/// <inheritdoc cref="IBitStatusMap{TSelf}.Shifting"/>
+	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement}.Shifting"/>
 	private const int Shifting = 41;
 
 
-	/// <inheritdoc cref="IBitStatusMap{TSelf}.Empty"/>
+	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement}.Empty"/>
 	public static readonly CellMap Empty;
 
 
@@ -372,10 +372,10 @@ public unsafe partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	readonly int IBitStatusMap<CellMap>.Shifting => Shifting;
+	readonly int IBitStatusMap<CellMap, Cell>.Shifting => Shifting;
 
 	/// <inheritdoc/>
-	readonly Cell[] IBitStatusMap<CellMap>.Offsets => Offsets;
+	readonly Cell[] IBitStatusMap<CellMap, Cell>.Offsets => Offsets;
 
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
@@ -418,7 +418,7 @@ public unsafe partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	static CellMap IBitStatusMap<CellMap>.Empty => Empty;
+	static CellMap IBitStatusMap<CellMap, Cell>.Empty => Empty;
 
 	/// <inheritdoc/>
 	static CellMap IMinMaxValue<CellMap>.MaxValue => ~Empty;
@@ -774,19 +774,19 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CellMap>.ExceptWith(IEnumerable<Cell> other) => this -= other;
+	void IBitStatusMap<CellMap, Cell>.ExceptWith(IEnumerable<Cell> other) => this -= other;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CellMap>.IntersectWith(IEnumerable<Cell> other) => this &= Empty + other;
+	void IBitStatusMap<CellMap, Cell>.IntersectWith(IEnumerable<Cell> other) => this &= Empty + other;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CellMap>.SymmetricExceptWith(IEnumerable<Cell> other) => this = (this - other) | (Empty + other - this);
+	void IBitStatusMap<CellMap, Cell>.SymmetricExceptWith(IEnumerable<Cell> other) => this = (this - other) | (Empty + other - this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CellMap>.UnionWith(IEnumerable<Cell> other) => this += other;
+	void IBitStatusMap<CellMap, Cell>.UnionWith(IEnumerable<Cell> other) => this += other;
 
 
 	/// <inheritdoc/>
@@ -1214,10 +1214,10 @@ public unsafe partial struct CellMap :
 	public static explicit operator checked CellMap(scoped in @llong llong)
 		=> llong >> 81 == 0
 			? CreateByInt128(llong)
-			: throw new OverflowException($"The base {nameof(@llong)} integer is greater than '{nameof(IBitStatusMap<CellMap>.MaxValue)}'.");
+			: throw new OverflowException($"The base {nameof(@llong)} integer is greater than '{nameof(IBitStatusMap<CellMap, Cell>.MaxValue)}'.");
 
 	/// <inheritdoc/>
-	static implicit IBitStatusMap<CellMap>.operator CellMap(scoped Span<Cell> offsets)
+	static implicit IBitStatusMap<CellMap, Cell>.operator CellMap(scoped Span<Cell> offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
@@ -1229,7 +1229,7 @@ public unsafe partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	static implicit IBitStatusMap<CellMap>.operator CellMap(scoped ReadOnlySpan<Cell> offsets)
+	static implicit IBitStatusMap<CellMap, Cell>.operator CellMap(scoped ReadOnlySpan<Cell> offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
@@ -1241,7 +1241,7 @@ public unsafe partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	static explicit IBitStatusMap<CellMap>.operator CellMap(Cell[] offsets)
+	static explicit IBitStatusMap<CellMap, Cell>.operator CellMap(Cell[] offsets)
 	{
 		var result = Empty;
 		foreach (var offset in offsets)
@@ -1254,11 +1254,11 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static explicit IBitStatusMap<CellMap>.operator Span<Cell>(scoped in CellMap offsets) => offsets.Offsets;
+	static explicit IBitStatusMap<CellMap, Cell>.operator Span<Cell>(scoped in CellMap offsets) => offsets.Offsets;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static explicit IBitStatusMap<CellMap>.operator ReadOnlySpan<Cell>(scoped in CellMap offsets) => offsets.Offsets;
+	static explicit IBitStatusMap<CellMap, Cell>.operator ReadOnlySpan<Cell>(scoped in CellMap offsets) => offsets.Offsets;
 }
 
 /// <summary>

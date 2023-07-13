@@ -4,27 +4,29 @@ namespace Sudoku.Concepts;
 /// Extracts a base type that describes status table from elements of <typeparamref name="TSelf"/> type.
 /// </summary>
 /// <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
+/// <typeparam name="TElement">The type of each element.</typeparam>
 [LargeStructure]
 [EqualityOperators(EqualityOperatorsBehavior.MakeVirtual)]
-public partial interface IBitStatusMap<TSelf> :
+public partial interface IBitStatusMap<TSelf, TElement> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
-	ICollection<int>,
+	ICollection<TElement>,
 	IEnumerable,
-	IEnumerable<int>,
+	IEnumerable<TElement>,
 	IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IFormattable,
 	IMinMaxValue<TSelf>,
 	IModulusOperators<TSelf, TSelf, TSelf>,
 	IParsable<TSelf>,
-	IReadOnlyCollection<int>,
-	IReadOnlySet<int>,
-	ISet<int>,
+	IReadOnlyCollection<TElement>,
+	IReadOnlySet<TElement>,
+	ISet<TElement>,
 	ISimpleFormattable,
 	ISimpleParsable<TSelf>,
 	ISubtractionOperators<TSelf, TSelf, TSelf>
-	where TSelf : unmanaged, IBitStatusMap<TSelf>
+	where TSelf : unmanaged, IBitStatusMap<TSelf, TElement>
+	where TElement : unmanaged, IBinaryInteger<TElement>
 {
 	/// <summary>
 	/// Indicates the size of each unit.
@@ -54,13 +56,13 @@ public partial interface IBitStatusMap<TSelf> :
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
-	protected abstract int[] Offsets { get; }
+	protected abstract TElement[] Offsets { get; }
 
 	/// <inheritdoc/>
-	bool ICollection<int>.IsReadOnly => false;
+	bool ICollection<TElement>.IsReadOnly => false;
 
 	/// <inheritdoc/>
-	int ICollection<int>.Count => Count;
+	int ICollection<TElement>.Count => Count;
 
 
 	/// <summary>
@@ -76,7 +78,7 @@ public partial interface IBitStatusMap<TSelf> :
 	/// <returns>
 	/// The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
 	/// </returns>
-	int this[int index] { get; }
+	TElement this[int index] { get; }
 
 
 	/// <inheritdoc/>
@@ -87,13 +89,13 @@ public partial interface IBitStatusMap<TSelf> :
 	/// Adds a new offset into the current collection.
 	/// </summary>
 	/// <param name="offset">The offset.</param>
-	new void Add(int offset);
+	new void Add(TElement offset);
 
 	/// <summary>
 	/// Set the specified offsets as <see langword="true"/> value.
 	/// </summary>
 	/// <param name="offsets">The offsets to add.</param>
-	sealed void AddRange(scoped ReadOnlySpan<int> offsets)
+	sealed void AddRange(scoped ReadOnlySpan<TElement> offsets)
 	{
 		foreach (var cell in offsets)
 		{
@@ -101,20 +103,20 @@ public partial interface IBitStatusMap<TSelf> :
 		}
 	}
 
-	/// <inheritdoc cref="AddRange(ReadOnlySpan{int})"/>
-	void AddRange(IEnumerable<int> offsets);
+	/// <inheritdoc cref="AddRange(ReadOnlySpan{TElement})"/>
+	void AddRange(IEnumerable<TElement> offsets);
 
 	/// <summary>
 	/// Set the specified offset as <see langword="false"/> value.
 	/// </summary>
 	/// <param name="offset">The offset.</param>
-	new void Remove(int offset);
+	new void Remove(TElement offset);
 
 	/// <summary>
 	/// Set the specified offsets as <see langword="false"/> value.
 	/// </summary>
 	/// <param name="offsets">The offsets to remove.</param>
-	sealed void RemoveRange(scoped ReadOnlySpan<int> offsets)
+	sealed void RemoveRange(scoped ReadOnlySpan<TElement> offsets)
 	{
 		foreach (var cell in offsets)
 		{
@@ -122,15 +124,15 @@ public partial interface IBitStatusMap<TSelf> :
 		}
 	}
 
-	/// <inheritdoc cref="RemoveRange(ReadOnlySpan{int})"/>
+	/// <inheritdoc cref="RemoveRange(ReadOnlySpan{TElement})"/>
 	/// <remarks>
-	/// Different with the method <see cref="RemoveRange(IEnumerable{int})"/>, this method
+	/// Different with the method <see cref="RemoveRange(IEnumerable{TElement})"/>, this method
 	/// also checks for the validity of each offsets.
 	/// If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
 	/// this method will throw an exception to report about this.
 	/// </remarks>
 	/// <exception cref="InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
-	void RemoveRange(IEnumerable<int> offsets);
+	void RemoveRange(IEnumerable<TElement> offsets);
 
 	/// <summary>
 	/// Clear all bits.
@@ -138,9 +140,9 @@ public partial interface IBitStatusMap<TSelf> :
 	new void Clear();
 
 	/// <summary>
-	/// Copies the current instance to the target array specified as an <see cref="int"/>*.
+	/// Copies the current instance to the target array specified as an <typeparamref name="TElement"/>*.
 	/// </summary>
-	/// <param name="arr">The pointer that points to an array of type <see cref="int"/>.</param>
+	/// <param name="arr">The pointer that points to an array of type <typeparamref name="TElement"/>.</param>
 	/// <param name="length">The length of that array.</param>
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="arr"/> is <see langword="null"/>.
@@ -148,12 +150,12 @@ public partial interface IBitStatusMap<TSelf> :
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the capacity isn't enough to store all values.
 	/// </exception>
-	unsafe void CopyTo(int* arr, int length);
+	unsafe void CopyTo(TElement* arr, int length);
 
 	/// <inheritdoc cref="ICollection{T}.CopyTo(T[], int)"/>
-	new unsafe void CopyTo(int[] array, int arrayIndex)
+	new unsafe void CopyTo(TElement[] array, int arrayIndex)
 	{
-		fixed (int* pArray = array)
+		fixed (TElement* pArray = array)
 		{
 			CopyTo(pArray + arrayIndex, Count - arrayIndex);
 		}
@@ -166,9 +168,9 @@ public partial interface IBitStatusMap<TSelf> :
 	/// The target <see cref="Span{T}"/> instance.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed unsafe void CopyTo(scoped Span<int> span)
+	sealed unsafe void CopyTo(scoped Span<TElement> span)
 	{
-		fixed (int* ptr = span)
+		fixed (TElement* ptr = span)
 		{
 			CopyTo(ptr, span.Length);
 		}
@@ -178,26 +180,26 @@ public partial interface IBitStatusMap<TSelf> :
 	/// Iterates on each element in this collection.
 	/// </summary>
 	/// <param name="action">The visitor that handles for each element in this collection.</param>
-	void ForEach(Action<int> action);
+	void ForEach(Action<TElement> action);
 
 	/// <inheritdoc cref="ISet{T}.ExceptWith(IEnumerable{T})"/>
-	new void ExceptWith(IEnumerable<int> other);
+	new void ExceptWith(IEnumerable<TElement> other);
 
 	/// <inheritdoc cref="ISet{T}.IntersectWith(IEnumerable{T})"/>
-	new void IntersectWith(IEnumerable<int> other);
+	new void IntersectWith(IEnumerable<TElement> other);
 
 	/// <inheritdoc cref="ISet{T}.SymmetricExceptWith(IEnumerable{T})"/>
-	new void SymmetricExceptWith(IEnumerable<int> other);
+	new void SymmetricExceptWith(IEnumerable<TElement> other);
 
 	/// <inheritdoc cref="ISet{T}.UnionWith(IEnumerable{T})"/>
-	new void UnionWith(IEnumerable<int> other);
+	new void UnionWith(IEnumerable<TElement> other);
 
 	/// <summary>
 	/// Determine whether the map contains the specified offset.
 	/// </summary>
 	/// <param name="offset">The offset.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	new bool Contains(int offset);
+	new bool Contains(TElement offset);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	bool Equals(scoped in TSelf other);
@@ -206,7 +208,7 @@ public partial interface IBitStatusMap<TSelf> :
 	/// Get all offsets whose bits are set <see langword="true"/>.
 	/// </summary>
 	/// <returns>An array of offsets.</returns>
-	int[] ToArray();
+	TElement[] ToArray();
 
 	/// <summary>
 	/// Slices the current instance, and get the new instance with some of elements between two indices.
@@ -220,35 +222,35 @@ public partial interface IBitStatusMap<TSelf> :
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
-	new OneDimensionalArrayEnumerator<int> GetEnumerator();
+	new OneDimensionalArrayEnumerator<TElement> GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ICollection<int>.Clear() => Clear();
+	void ICollection<TElement>.Clear() => Clear();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ICollection<int>.CopyTo(int[] array, int arrayIndex) => CopyTo(array, arrayIndex);
+	void ICollection<TElement>.CopyTo(TElement[] array, int arrayIndex) => CopyTo(array, arrayIndex);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<int>.ExceptWith(IEnumerable<int> other) => ExceptWith(other);
+	void ISet<TElement>.ExceptWith(IEnumerable<TElement> other) => ExceptWith(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<int>.IntersectWith(IEnumerable<int> other) => IntersectWith(other);
+	void ISet<TElement>.IntersectWith(IEnumerable<TElement> other) => IntersectWith(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<int>.SymmetricExceptWith(IEnumerable<int> other) => SymmetricExceptWith(other);
+	void ISet<TElement>.SymmetricExceptWith(IEnumerable<TElement> other) => SymmetricExceptWith(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<int>.UnionWith(IEnumerable<int> other) => UnionWith(other);
+	void ISet<TElement>.UnionWith(IEnumerable<TElement> other) => UnionWith(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<int>.Add(int item)
+	bool ISet<TElement>.Add(TElement item)
 	{
 		Add(item);
 		return true;
@@ -256,7 +258,7 @@ public partial interface IBitStatusMap<TSelf> :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ICollection<int>.Remove(int item)
+	bool ICollection<TElement>.Remove(TElement item)
 	{
 		Remove(item);
 		return true;
@@ -264,7 +266,7 @@ public partial interface IBitStatusMap<TSelf> :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<int>.Contains(int item) => Contains(item);
+	bool IReadOnlySet<TElement>.Contains(TElement item) => Contains(item);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -273,7 +275,7 @@ public partial interface IBitStatusMap<TSelf> :
 	#region Not fully tested
 	/// <inheritdoc cref="ISet{T}.IsProperSubsetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	new sealed bool IsProperSubsetOf(IEnumerable<int> other)
+	new sealed bool IsProperSubsetOf(IEnumerable<TElement> other)
 	{
 		var otherCells = TSelf.Empty + other;
 		return (TSelf)this != otherCells && (otherCells & (TSelf)this) == (TSelf)this;
@@ -281,7 +283,7 @@ public partial interface IBitStatusMap<TSelf> :
 
 	/// <inheritdoc cref="ISet{T}.IsProperSupersetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	new sealed bool IsProperSupersetOf(IEnumerable<int> other)
+	new sealed bool IsProperSupersetOf(IEnumerable<TElement> other)
 	{
 		var otherCells = TSelf.Empty + other;
 		return (TSelf)this != otherCells && ((TSelf)this & otherCells) == otherCells;
@@ -289,11 +291,11 @@ public partial interface IBitStatusMap<TSelf> :
 
 	/// <inheritdoc cref="ISet{T}.IsSubsetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	new sealed bool IsSubsetOf(IEnumerable<int> other) => ((TSelf.Empty + other) & (TSelf)this) == (TSelf)this;
+	new sealed bool IsSubsetOf(IEnumerable<TElement> other) => ((TSelf.Empty + other) & (TSelf)this) == (TSelf)this;
 
 	/// <inheritdoc cref="ISet{T}.IsSupersetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	new sealed bool IsSupersetOf(IEnumerable<int> other)
+	new sealed bool IsSupersetOf(IEnumerable<TElement> other)
 	{
 		var otherCells = TSelf.Empty + other;
 		return ((TSelf)this & otherCells) == otherCells;
@@ -301,69 +303,69 @@ public partial interface IBitStatusMap<TSelf> :
 
 	/// <inheritdoc cref="ISet{T}.Overlaps(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	new sealed bool Overlaps(IEnumerable<int> other) => ((TSelf)this & (TSelf.Empty + other)) is not [];
+	new sealed bool Overlaps(IEnumerable<TElement> other) => ((TSelf)this & (TSelf.Empty + other)) is not [];
 
 	/// <inheritdoc cref="ISet{T}.SetEquals(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	new sealed bool SetEquals(IEnumerable<int> other) => (TSelf)this == TSelf.Empty + other;
+	new sealed bool SetEquals(IEnumerable<TElement> other) => (TSelf)this == TSelf.Empty + other;
 	#endregion
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<int>.IsProperSubsetOf(IEnumerable<int> other) => IsProperSubsetOf(other);
+	bool ISet<TElement>.IsProperSubsetOf(IEnumerable<TElement> other) => IsProperSubsetOf(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<int>.IsProperSupersetOf(IEnumerable<int> other) => IsProperSupersetOf(other);
+	bool ISet<TElement>.IsProperSupersetOf(IEnumerable<TElement> other) => IsProperSupersetOf(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<int>.IsSubsetOf(IEnumerable<int> other) => IsSubsetOf(other);
+	bool ISet<TElement>.IsSubsetOf(IEnumerable<TElement> other) => IsSubsetOf(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<int>.IsSupersetOf(IEnumerable<int> other) => IsSupersetOf(other);
+	bool ISet<TElement>.IsSupersetOf(IEnumerable<TElement> other) => IsSupersetOf(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<int>.Overlaps(IEnumerable<int> other) => Overlaps(other);
+	bool ISet<TElement>.Overlaps(IEnumerable<TElement> other) => Overlaps(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<int>.SetEquals(IEnumerable<int> other) => SetEquals(other);
+	bool ISet<TElement>.SetEquals(IEnumerable<TElement> other) => SetEquals(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<int>.IsProperSubsetOf(IEnumerable<int> other) => IsProperSubsetOf(other);
+	bool IReadOnlySet<TElement>.IsProperSubsetOf(IEnumerable<TElement> other) => IsProperSubsetOf(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<int>.IsProperSupersetOf(IEnumerable<int> other) => IsProperSupersetOf(other);
+	bool IReadOnlySet<TElement>.IsProperSupersetOf(IEnumerable<TElement> other) => IsProperSupersetOf(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<int>.IsSubsetOf(IEnumerable<int> other) => IsSubsetOf(other);
+	bool IReadOnlySet<TElement>.IsSubsetOf(IEnumerable<TElement> other) => IsSubsetOf(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<int>.IsSupersetOf(IEnumerable<int> other) => IsSupersetOf(other);
+	bool IReadOnlySet<TElement>.IsSupersetOf(IEnumerable<TElement> other) => IsSupersetOf(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<int>.Overlaps(IEnumerable<int> other) => Overlaps(other);
+	bool IReadOnlySet<TElement>.Overlaps(IEnumerable<TElement> other) => Overlaps(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<int>.SetEquals(IEnumerable<int> other) => SetEquals(other);
+	bool IReadOnlySet<TElement>.SetEquals(IEnumerable<TElement> other) => SetEquals(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<int>)this).GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<TElement>)this).GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<int> IEnumerable<int>.GetEnumerator()
+	IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator()
 	{
-		var collection = new List<int>();
+		var collection = new List<TElement>();
 		foreach (var element in this)
 		{
 			collection.Add(element);
@@ -427,7 +429,7 @@ public partial interface IBitStatusMap<TSelf> :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be added.</param>
 	/// <returns>The result collection.</returns>
-	static abstract TSelf operator +(scoped in TSelf collection, int offset);
+	static abstract TSelf operator +(scoped in TSelf collection, TElement offset);
 
 	/// <summary>
 	/// Adds the specified list of <paramref name="offsets"/> to the <paramref name="collection"/>,
@@ -436,7 +438,7 @@ public partial interface IBitStatusMap<TSelf> :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offsets">A list of cells to be added.</param>
 	/// <returns>The result collection.</returns>
-	static abstract TSelf operator +(scoped in TSelf collection, IEnumerable<int> offsets);
+	static abstract TSelf operator +(scoped in TSelf collection, IEnumerable<TElement> offsets);
 
 	/// <summary>
 	/// Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
@@ -445,7 +447,7 @@ public partial interface IBitStatusMap<TSelf> :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
-	static abstract TSelf operator -(scoped in TSelf collection, int offset);
+	static abstract TSelf operator -(scoped in TSelf collection, TElement offset);
 
 	/// <summary>
 	/// Get a <typeparamref name="TSelf"/> that contains all <paramref name="collection"/> instance
@@ -454,7 +456,7 @@ public partial interface IBitStatusMap<TSelf> :
 	/// <param name="collection">The left instance.</param>
 	/// <param name="offsets">The right instance.</param>
 	/// <returns>The result.</returns>
-	static abstract TSelf operator -(scoped in TSelf collection, IEnumerable<int> offsets);
+	static abstract TSelf operator -(scoped in TSelf collection, IEnumerable<TElement> offsets);
 
 	/// <summary>
 	/// Get a <typeparamref name="TSelf"/> that contains all <paramref name="left"/> instance
@@ -620,16 +622,16 @@ public partial interface IBitStatusMap<TSelf> :
 
 
 	/// <summary>
-	/// Implicit cast from <typeparamref name="TSelf"/> to <see cref="int"/>[].
+	/// Implicit cast from <typeparamref name="TSelf"/> to <typeparamref name="TElement"/>[].
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	static virtual implicit operator int[](scoped in TSelf offsets) => offsets.ToArray();
+	static virtual implicit operator TElement[](scoped in TSelf offsets) => offsets.ToArray();
 
 	/// <summary>
 	/// Implicit cast from <see cref="Span{T}"/> to <typeparamref name="TSelf"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	static virtual implicit operator TSelf(scoped Span<int> offsets)
+	static virtual implicit operator TSelf(scoped Span<TElement> offsets)
 	{
 		var result = TSelf.Empty;
 		foreach (var offset in offsets)
@@ -644,7 +646,7 @@ public partial interface IBitStatusMap<TSelf> :
 	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <typeparamref name="TSelf"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	static virtual implicit operator TSelf(scoped ReadOnlySpan<int> offsets)
+	static virtual implicit operator TSelf(scoped ReadOnlySpan<TElement> offsets)
 	{
 		var result = TSelf.Empty;
 		foreach (var offset in offsets)
@@ -656,10 +658,10 @@ public partial interface IBitStatusMap<TSelf> :
 	}
 
 	/// <summary>
-	/// Explicit cast from <see cref="int"/>[] to <typeparamref name="TSelf"/>.
+	/// Explicit cast from <typeparamref name="TElement"/>[] to <typeparamref name="TSelf"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	static virtual explicit operator TSelf(int[] offsets)
+	static virtual explicit operator TSelf(TElement[] offsets)
 	{
 		var result = TSelf.Empty;
 		foreach (var offset in offsets)
@@ -671,14 +673,14 @@ public partial interface IBitStatusMap<TSelf> :
 	}
 
 	/// <summary>
-	/// Explicit cast from <typeparamref name="TSelf"/> to <see cref="Span{T}"/> of element type <see cref="int"/>.
+	/// Explicit cast from <typeparamref name="TSelf"/> to <see cref="Span{T}"/> of element type <typeparamref name="TElement"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	static virtual explicit operator Span<int>(scoped in TSelf offsets) => offsets.ToArray();
+	static virtual explicit operator Span<TElement>(scoped in TSelf offsets) => offsets.ToArray();
 
 	/// <summary>
-	/// Explicit cast from <typeparamref name="TSelf"/> to <see cref="ReadOnlySpan{T}"/> of element type <see cref="int"/>.
+	/// Explicit cast from <typeparamref name="TSelf"/> to <see cref="ReadOnlySpan{T}"/> of element type <typeparamref name="TElement"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	static virtual explicit operator ReadOnlySpan<int>(scoped in TSelf offsets) => offsets.ToArray();
+	static virtual explicit operator ReadOnlySpan<TElement>(scoped in TSelf offsets) => offsets.ToArray();
 }

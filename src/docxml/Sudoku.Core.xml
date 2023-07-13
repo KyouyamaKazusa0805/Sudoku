@@ -1551,7 +1551,7 @@ if (student is (name: var name, age: >= 18))
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap.Empty">
-            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`1.Empty"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`2.Empty"/>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap.MaxValue">
             <inheritdoc cref="P:System.Numerics.IMinMaxValue`1.MaxValue"/>
@@ -1566,7 +1566,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the internal bits. 12 is for floor(729 / <see langword="sizeof"/>(<see cref="T:System.Int64"/>) <![CDATA[<<]]> 6).
             </summary>
-            <seealso cref="P:Sudoku.Concepts.IBitStatusMap`1.Shifting"/>
+            <seealso cref="P:Sudoku.Concepts.IBitStatusMap`2.Shifting"/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.#ctor(System.String[])">
             <summary>
@@ -1593,10 +1593,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.CandidateMap.PeerIntersection">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#Shifting">
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#Shifting">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#Offsets">
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#Offsets">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Offsets">
@@ -1604,7 +1604,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the cell offsets in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#Empty">
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#Empty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.System#Numerics#IMinMaxValue{Sudoku#Concepts#CandidateMap}#MaxValue">
@@ -1676,16 +1676,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.String,Sudoku.Concepts.CandidateMap@)">
@@ -1777,19 +1777,19 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CandidateMap">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_Implicit(System.Span{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#op_Implicit(System.Span{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_Implicit(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#op_Implicit(System.ReadOnlySpan{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_Explicit(System.Int32[])">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#op_Explicit(System.Int32[])">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_Explicit(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#op_Explicit(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap}#op_Explicit(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#op_Explicit(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Equals(System.Object)">
@@ -1861,10 +1861,10 @@ if (student is (name: var name, age: >= 18))
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.Shifting">
-            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`1.Shifting"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`2.Shifting"/>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.Empty">
-            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`1.Empty"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`2.Empty"/>
         </member>
         <member name="F:Sudoku.Concepts.CellMap._high">
             <summary>
@@ -1995,10 +1995,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.CellMap.PeerIntersection">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#Shifting">
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#Shifting">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#Offsets">
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#Offsets">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Offsets">
@@ -2006,7 +2006,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the cell offsets in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#Empty">
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#Empty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.System#Numerics#IMinMaxValue{Sudoku#Concepts#CellMap}#MaxValue">
@@ -2174,16 +2174,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.System#IComparable{Sudoku#Concepts#CellMap}#CompareTo(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,Sudoku.Concepts.CellMap@)">
@@ -2358,19 +2358,19 @@ if (student is (name: var name, age: >= 18))
             corresponding to <see cref="P:System.Numerics.IMinMaxValue`1.MaxValue"/>.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_Implicit(System.Span{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#op_Implicit(System.Span{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_Implicit(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#op_Implicit(System.ReadOnlySpan{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_Explicit(System.Int32[])">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#op_Explicit(System.Int32[])">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_Explicit(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#op_Explicit(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap}#op_Explicit(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#op_Explicit(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Equals(System.Object)">
@@ -3914,29 +3914,30 @@ if (student is (name: var name, age: >= 18))
             <returns>A character that represents a house type.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
         </member>
-        <member name="T:Sudoku.Concepts.IBitStatusMap`1">
+        <member name="T:Sudoku.Concepts.IBitStatusMap`2">
             <summary>
             Extracts a base type that describes status table from elements of <typeparamref name="TSelf"/> type.
             </summary>
             <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
+            <typeparam name="TElement">The type of each element.</typeparam>
         </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`1.Shifting">
+        <member name="P:Sudoku.Concepts.IBitStatusMap`2.Shifting">
             <summary>
             Indicates the size of each unit.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`1.Count">
+        <member name="P:Sudoku.Concepts.IBitStatusMap`2.Count">
             <summary>
             Indicates the number of the values stored in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`1.StringChunks">
+        <member name="P:Sudoku.Concepts.IBitStatusMap`2.StringChunks">
             <summary>
             Gets all chunks of the current collection, meaning a list of <see cref="T:System.String"/> values that can describe
             all cell and candidate indices, grouped with same row/column.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`1.PeerIntersection">
+        <member name="P:Sudoku.Concepts.IBitStatusMap`2.PeerIntersection">
             <summary>
             Indicates the peer intersection of the current instance.
             </summary>
@@ -3945,23 +3946,23 @@ if (student is (name: var name, age: >= 18))
             For more information please visit <see href="https://sunnieshine.github.io/Sudoku/terms/peer">this link</see>.
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`1.Offsets">
+        <member name="P:Sudoku.Concepts.IBitStatusMap`2.Offsets">
             <summary>
             Indicates the cell offsets in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ICollection{System#Int32}#IsReadOnly">
+        <member name="P:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ICollection{TElement}#IsReadOnly">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ICollection{System#Int32}#Count">
+        <member name="P:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ICollection{TElement}#Count">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`1.Empty">
+        <member name="P:Sudoku.Concepts.IBitStatusMap`2.Empty">
             <summary>
             Indicates the empty instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`1.Item(System.Int32)">
+        <member name="P:Sudoku.Concepts.IBitStatusMap`2.Item(System.Int32)">
             <summary>
             Get the offset at the specified position index.
             </summary>
@@ -3970,56 +3971,56 @@ if (student is (name: var name, age: >= 18))
             The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
             </returns>
         </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IAdditiveIdentity{TSelf,TSelf}#AdditiveIdentity">
+        <member name="P:Sudoku.Concepts.IBitStatusMap`2.System#Numerics#IAdditiveIdentity{TSelf,TSelf}#AdditiveIdentity">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.Add(System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.Add(`1)">
             <summary>
             Adds a new offset into the current collection.
             </summary>
             <param name="offset">The offset.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.AddRange(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.AddRange(System.ReadOnlySpan{`1})">
             <summary>
             Set the specified offsets as <see langword="true"/> value.
             </summary>
             <param name="offsets">The offsets to add.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.IBitStatusMap`1.AddRange(System.ReadOnlySpan{System.Int32})"/>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.AddRange(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStatusMap`2.AddRange(System.ReadOnlySpan{`1})"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.Remove(System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.Remove(`1)">
             <summary>
             Set the specified offset as <see langword="false"/> value.
             </summary>
             <param name="offset">The offset.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.RemoveRange(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.RemoveRange(System.ReadOnlySpan{`1})">
             <summary>
             Set the specified offsets as <see langword="false"/> value.
             </summary>
             <param name="offsets">The offsets to remove.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.IBitStatusMap`1.RemoveRange(System.ReadOnlySpan{System.Int32})"/>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.RemoveRange(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStatusMap`2.RemoveRange(System.ReadOnlySpan{`1})"/>
             <remarks>
-            Different with the method <see cref="M:Sudoku.Concepts.IBitStatusMap`1.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})"/>, this method
+            Different with the method <see cref="M:Sudoku.Concepts.IBitStatusMap`2.RemoveRange(System.Collections.Generic.IEnumerable{`1})"/>, this method
             also checks for the validity of each offsets.
             If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
             this method will throw an exception to report about this.
             </remarks>
             <exception cref="T:System.InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.Clear">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.Clear">
             <summary>
             Clear all bits.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.CopyTo(System.Int32*,System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.CopyTo(`1*,System.Int32)">
             <summary>
-            Copies the current instance to the target array specified as an <see cref="T:System.Int32"/>*.
+            Copies the current instance to the target array specified as an <typeparamref name="TElement"/>*.
             </summary>
-            <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
+            <param name="arr">The pointer that points to an array of type <typeparamref name="TElement"/>.</param>
             <param name="length">The length of that array.</param>
             <exception cref="T:System.ArgumentNullException">
             Throws when the argument <paramref name="arr"/> is <see langword="null"/>.
@@ -4028,10 +4029,10 @@ if (student is (name: var name, age: >= 18))
             Throws when the capacity isn't enough to store all values.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.CopyTo(System.Int32[],System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.CopyTo(`1[],System.Int32)">
             <inheritdoc cref="M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.CopyTo(System.Span{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.CopyTo(System.Span{`1})">
             <summary>
             Copies the current instance to the target <see cref="T:System.Span`1"/> instance.
             </summary>
@@ -4039,41 +4040,41 @@ if (student is (name: var name, age: >= 18))
             The target <see cref="T:System.Span`1"/> instance.
             </param>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.ForEach(System.Action{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.ForEach(System.Action{`1})">
             <summary>
             Iterates on each element in this collection.
             </summary>
             <param name="action">The visitor that handles for each element in this collection.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.ExceptWith(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc cref="M:System.Collections.Generic.ISet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.IntersectWith(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc cref="M:System.Collections.Generic.ISet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc cref="M:System.Collections.Generic.ISet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.UnionWith(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc cref="M:System.Collections.Generic.ISet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.Contains(System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.Contains(`1)">
             <summary>
             Determine whether the map contains the specified offset.
             </summary>
             <param name="offset">The offset.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.Equals(`0@)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.Equals(`0@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.ToArray">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.ToArray">
             <summary>
             Get all offsets whose bits are set <see langword="true"/>.
             </summary>
             <returns>An array of offsets.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.Slice(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.Slice(System.Int32,System.Int32)">
             <summary>
             Slices the current instance, and get the new instance with some of elements between two indices.
             </summary>
@@ -4081,106 +4082,106 @@ if (student is (name: var name, age: >= 18))
             <param name="count">The number of elements.</param>
             <returns>The target instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.GetEnumerator">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.GetEnumerator">
             <summary>
             Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ICollection{System#Int32}#Clear">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ICollection{TElement}#Clear">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ICollection{System#Int32}#CopyTo(System.Int32[],System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ICollection{TElement}#CopyTo(`1[],System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ISet{TElement}#ExceptWith(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ISet{TElement}#IntersectWith(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ISet{TElement}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ISet{TElement}#UnionWith(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#Add(System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ISet{TElement}#Add(`1)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ICollection{System#Int32}#Remove(System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ICollection{TElement}#Remove(`1)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlySet{System#Int32}#Contains(System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#IReadOnlySet{TElement}#Contains(`1)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#IEquatable{TSelf}#Equals(`0)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#IEquatable{TSelf}#Equals(`0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.IsSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.IsSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.IsSupersetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.Overlaps(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.Overlaps(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc cref="M:System.Collections.Generic.ISet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.SetEquals(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc cref="M:System.Collections.Generic.ISet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ISet{TElement}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ISet{TElement}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#IsSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ISet{TElement}#IsSubsetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#IsSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ISet{TElement}#IsSupersetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#Overlaps(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ISet{TElement}#Overlaps(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#ISet{System#Int32}#SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ISet{TElement}#SetEquals(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlySet{System#Int32}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#IReadOnlySet{TElement}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlySet{System#Int32}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#IReadOnlySet{TElement}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlySet{System#Int32}#IsSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#IReadOnlySet{TElement}#IsSubsetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlySet{System#Int32}#IsSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#IReadOnlySet{TElement}#IsSupersetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlySet{System#Int32}#Overlaps(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#IReadOnlySet{TElement}#Overlaps(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IReadOnlySet{System#Int32}#SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#IReadOnlySet{TElement}#SetEquals(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#IEnumerable{TElement}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_LogicalNot(`0@)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_LogicalNot(`0@)">
             <summary>
             Determines whether the current collection is empty.
             </summary>
@@ -4197,7 +4198,7 @@ if (student is (name: var name, age: >= 18))
             will invert the result of above expression. This is why I use <see langword="operator"/> <c>!</c> to determine on this.
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_OnesComplement(`0@)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_OnesComplement(`0@)">
             <summary>
             Reverse status for all offsets, which means all <see langword="true"/> bits
             will be set <see langword="false"/>, and all <see langword="false"/> bits
@@ -4206,21 +4207,21 @@ if (student is (name: var name, age: >= 18))
             <param name="offsets">The instance to negate.</param>
             <returns>The negative result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_True(`0@)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_True(`0@)">
             <summary>
             Determines whether the specified <typeparamref name="TSelf"/> collection is not empty.
             </summary>
             <param name="cells">The collection.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_False(`0@)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_False(`0@)">
             <summary>
             Determines whether the specified <typeparamref name="TSelf"/> collection is empty.
             </summary>
             <param name="cells">The collection.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Addition(`0@,System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Addition(`0@,`1)">
             <summary>
             Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
             and returns the added result.
@@ -4229,7 +4230,7 @@ if (student is (name: var name, age: >= 18))
             <param name="offset">The offset to be added.</param>
             <returns>The result collection.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Addition(`0@,System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Addition(`0@,System.Collections.Generic.IEnumerable{`1})">
             <summary>
             Adds the specified list of <paramref name="offsets"/> to the <paramref name="collection"/>,
             and returns the added result.
@@ -4238,7 +4239,7 @@ if (student is (name: var name, age: >= 18))
             <param name="offsets">A list of cells to be added.</param>
             <returns>The result collection.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Subtraction(`0@,System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Subtraction(`0@,`1)">
             <summary>
             Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
             and returns the removed result.
@@ -4247,7 +4248,7 @@ if (student is (name: var name, age: >= 18))
             <param name="offset">The offset to be removed.</param>
             <returns>The result collection.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Subtraction(`0@,System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Subtraction(`0@,System.Collections.Generic.IEnumerable{`1})">
             <summary>
             Get a <typeparamref name="TSelf"/> that contains all <paramref name="collection"/> instance
             but not in <paramref name="offsets"/> instance.
@@ -4256,7 +4257,7 @@ if (student is (name: var name, age: >= 18))
             <param name="offsets">The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Subtraction(`0@,`0@)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Subtraction(`0@,`0@)">
             <summary>
             Get a <typeparamref name="TSelf"/> that contains all <paramref name="left"/> instance
             but not in <paramref name="right"/> instance.
@@ -4265,7 +4266,7 @@ if (student is (name: var name, age: >= 18))
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_BitwiseAnd(`0@,`0@)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_BitwiseAnd(`0@,`0@)">
             <summary>
             Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
             </summary>
@@ -4273,7 +4274,7 @@ if (student is (name: var name, age: >= 18))
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_BitwiseOr(`0@,`0@)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_BitwiseOr(`0@,`0@)">
             <summary>
             Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
             and return the merged result.
@@ -4282,7 +4283,7 @@ if (student is (name: var name, age: >= 18))
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_ExclusiveOr(`0@,`0@)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_ExclusiveOr(`0@,`0@)">
             <summary>
             Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
             </summary>
@@ -4290,7 +4291,7 @@ if (student is (name: var name, age: >= 18))
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_BitwiseAnd(`0@,System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_BitwiseAnd(`0@,System.Int32)">
             <summary>
             Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
             </summary>
@@ -4328,7 +4329,7 @@ if (student is (name: var name, age: >= 18))
             will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_BitwiseOr(`0@,System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_BitwiseOr(`0@,System.Int32)">
             <summary>
             Gets all subsets of the current collection via the specified size
             indicating the <b>maximum</b> number of elements of the each subset.
@@ -4358,28 +4359,28 @@ if (student is (name: var name, age: >= 18))
             <c><![CDATA[cells & 2]]></c> and <c><![CDATA[cells & 3]]></c>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Equality(`0,`0)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Equality(`0,`0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Inequality(`0,`0)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Inequality(`0,`0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_OnesComplement(`0)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_OnesComplement(`0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#ISubtractionOperators{TSelf,TSelf,TSelf}#op_Subtraction(`0,`0)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Numerics#ISubtractionOperators{TSelf,TSelf,TSelf}#op_Subtraction(`0,`0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_BitwiseAnd(`0,`0)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_BitwiseAnd(`0,`0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_BitwiseOr(`0,`0)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_BitwiseOr(`0,`0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_ExclusiveOr(`0,`0)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_ExclusiveOr(`0,`0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.System#Numerics#IModulusOperators{TSelf,TSelf,TSelf}#op_Modulus(`0,`0)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Numerics#IModulusOperators{TSelf,TSelf,TSelf}#op_Modulus(`0,`0)">
             <summary>
             Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
             </summary>
@@ -4387,39 +4388,39 @@ if (student is (name: var name, age: >= 18))
             <param name="right">The template map that the base map to check and cover.</param>
             <returns>The result map.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Implicit(`0@)~System.Int32[]">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Implicit(`0@)~`1[]">
             <summary>
-            Implicit cast from <typeparamref name="TSelf"/> to <see cref="T:System.Int32"/>[].
+            Implicit cast from <typeparamref name="TSelf"/> to <typeparamref name="TElement"/>[].
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Implicit(System.Span{System.Int32})~`0">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Implicit(System.Span{`1})~`0">
             <summary>
             Implicit cast from <see cref="T:System.Span`1"/> to <typeparamref name="TSelf"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Implicit(System.ReadOnlySpan{System.Int32})~`0">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Implicit(System.ReadOnlySpan{`1})~`0">
             <summary>
             Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <typeparamref name="TSelf"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Explicit(System.Int32[])~`0">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Explicit(`1[])~`0">
             <summary>
-            Explicit cast from <see cref="T:System.Int32"/>[] to <typeparamref name="TSelf"/>.
+            Explicit cast from <typeparamref name="TElement"/>[] to <typeparamref name="TSelf"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Explicit(`0@)~System.Span{System.Int32}">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Explicit(`0@)~System.Span{`1}">
             <summary>
-            Explicit cast from <typeparamref name="TSelf"/> to <see cref="T:System.Span`1"/> of element type <see cref="T:System.Int32"/>.
+            Explicit cast from <typeparamref name="TSelf"/> to <see cref="T:System.Span`1"/> of element type <typeparamref name="TElement"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`1.op_Explicit(`0@)~System.ReadOnlySpan{System.Int32}">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Explicit(`0@)~System.ReadOnlySpan{`1}">
             <summary>
-            Explicit cast from <typeparamref name="TSelf"/> to <see cref="T:System.ReadOnlySpan`1"/> of element type <see cref="T:System.Int32"/>.
+            Explicit cast from <typeparamref name="TSelf"/> to <see cref="T:System.ReadOnlySpan`1"/> of element type <typeparamref name="TElement"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
