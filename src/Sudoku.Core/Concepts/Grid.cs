@@ -21,7 +21,6 @@ public unsafe partial struct Grid :
 	IMinMaxValue<Grid>,
 	IParsable<Grid>,
 	IReadOnlyCollection<Digit>,
-	//IReadOnlyList<Digit>,
 	ISimpleFormattable,
 	ISimpleParsable<Grid>
 {
