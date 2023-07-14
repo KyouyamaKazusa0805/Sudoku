@@ -61,6 +61,8 @@ using M = CoordinateLabelDisplayMode;
 [DependencyProperty<DashArray>("WeakLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle")]
 [DependencyProperty<DashArray>("CyclingCellLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle")]
 [DependencyProperty<DashArray>("OtherLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle")]
+[DependencyProperty<Grid>("LastGridPuzzle", DocSummary = "Indicates the last opened puzzle to be loaded or saved.")]
+[DependencyProperty<UserDefinedRenderable?>("LastRenderable", DocSummary = "Indicates the renderable items produced by last opened puzzle.")]
 [DependencyProperty<ColorPalette>("AuxiliaryColors", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors")]
 [DependencyProperty<ColorPalette>("DifficultyLevelForegrounds", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds")]
 [DependencyProperty<ColorPalette>("DifficultyLevelBackgrounds", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds")]
@@ -154,6 +156,9 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 
 	[DefaultValue]
 	private static readonly DashArray OtherLinkDashStyleDefaultValue = new(3, 3);
+
+	[DefaultValue]
+	private static readonly Grid LastGridPuzzleDefaultValue = Grid.Empty;
 
 	[DefaultValue]
 	private static readonly ColorPalette AuxiliaryColorsDefaultValue = new()

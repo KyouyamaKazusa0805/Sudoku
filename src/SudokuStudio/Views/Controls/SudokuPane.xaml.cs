@@ -540,6 +540,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 
 		pane.UpdateViewUnit(rawValue as ViewUnitBindableSource);
+
+		((App)Application.Current).Preference.UIPreferences.LastGridPuzzle = pane.Puzzle;
+		((App)Application.Current).Preference.UIPreferences.LastRenderable = rawValue switch
+		{
+			ViewUnitBindableSource { View: var view, Conclusions: var conclusions } => new() { Conclusions = conclusions, Views = new[] { view } },
+			_ => null
+		};
 	}
 
 	[Callback]

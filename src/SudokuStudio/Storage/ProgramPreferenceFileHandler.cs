@@ -9,7 +9,11 @@ public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<
 	/// <summary>
 	/// Indicates the default options to be used by <see cref="JsonSerializer"/>.
 	/// </summary>
-	private static readonly JsonSerializerOptions Options = new(CommonSerializerOptions.PascalCasing) { IncludeFields = true };
+	private static readonly JsonSerializerOptions Options = new(CommonSerializerOptions.PascalCasing)
+	{
+		IncludeFields = true,
+		IgnoreReadOnlyProperties = false
+	};
 
 
 	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]

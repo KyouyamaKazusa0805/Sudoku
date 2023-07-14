@@ -1462,6 +1462,18 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.OtherLinkDashStyle"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.LastGridPuzzleProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.LastGridPuzzle"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.LastGridPuzzle"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderableProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderable"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderable"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColorsProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors"/>.
@@ -1722,6 +1734,16 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.OtherLinkDashStyle">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.LastGridPuzzle">
+            <summary>
+            Indicates the last opened puzzle to be loaded or saved.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderable">
+            <summary>
+            Indicates the renderable items produced by last opened puzzle.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors"/>

@@ -12,7 +12,8 @@
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AnalyzePage}">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AnalyzePage}"
+	Loaded="Page_Loaded">
 	<Page.Resources>
 		<Style x:Key="MenuBarBorderStyle" TargetType="Border">
 			<Setter Property="CornerRadius" Value="5" />
@@ -189,7 +190,6 @@
 							UserDefinedColorPalette="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.UserDefinedColorPalette,Mode=OneWay}"
 							CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
 							CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}"
-							Puzzle="{m:Grid Text='..38......8..16...5..+3.29.+89.....23..2..3..4.+346.+2...7..72....1...46..8......15..:554'}"
 							a:SudokuPaneBindable.Analyzer="{x:Bind ((z:App)y:Application.Current).Analyzer}"
 							a:SudokuPaneBindable.StepCollector="{x:Bind ((z:App)y:Application.Current).StepCollector}"
 							a:AnalyzerProperties.EnableFullHouse="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableFullHouse,Mode=OneWay}"

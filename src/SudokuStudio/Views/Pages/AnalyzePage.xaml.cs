@@ -1272,4 +1272,13 @@ public sealed partial class AnalyzePage : Page
 	private void CancelOperationButton_Click(object sender, RoutedEventArgs e) => _ctsForAnalyzingRelatedOperations?.Cancel();
 
 	private void AutoSolveButton_Click(object sender, RoutedEventArgs e) => UpdatePuzzleViaSolutionGrid();
+
+	private void Page_Loaded(object sender, RoutedEventArgs e)
+	{
+		// This method is created to solve the problem that WinUI cannot cache navigation view pages due to internal error.
+		var pref = ((App)Application.Current).Preference.UIPreferences;
+
+		SudokuPane.Puzzle = pref.LastGridPuzzle;
+		SudokuPane.ViewUnit = pref.LastRenderable is ({ } conclusions, [var view, ..]) ? new() { Conclusions = conclusions, View = view } : null;
+	}
 }
