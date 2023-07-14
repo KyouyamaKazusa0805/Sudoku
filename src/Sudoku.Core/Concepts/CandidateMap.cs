@@ -3,6 +3,7 @@ namespace Sudoku.Concepts;
 
 /// <summary>
 /// Encapsulates a binary series of candidate status table.
+/// The internal buffer size 12 is equivalent to expression <c><![CDATA[floor(729 / sizeof(long) << 6)]]></c>.
 /// </summary>
 /// <remarks>
 /// <para>
@@ -24,6 +25,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [StructLayout(LayoutKind.Auto)]
+[InlineArrayField<long>("_bits", 12)]
 [LargeStructure]
 [Equals]
 [EqualityOperators]
@@ -46,13 +48,6 @@ public partial struct CandidateMap :
 	/// This value is equivalent to <see cref="Empty"/>.
 	/// </remarks>
 	public static readonly CandidateMap MinValue;
-
-
-	/// <summary>
-	/// Indicates the internal bits. 12 is for floor(729 / <see langword="sizeof"/>(<see cref="long"/>) <![CDATA[<<]]> 6).
-	/// </summary>
-	/// <seealso cref="IBitStatusMap{TSelf, TElement}.Shifting"/>
-	private InternalBuffer _bits;
 
 
 	/// <summary>

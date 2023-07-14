@@ -1522,6 +1522,7 @@ if (student is (name: var name, age: >= 18))
         <member name="T:Sudoku.Concepts.CandidateMap">
             <summary>
             Encapsulates a binary series of candidate status table.
+            The internal buffer size 12 is equivalent to expression <c><![CDATA[floor(729 / sizeof(long) << 6)]]></c>.
             </summary>
             <remarks>
             <para>
@@ -1561,12 +1562,6 @@ if (student is (name: var name, age: >= 18))
             <remarks>
             This value is equivalent to <see cref="F:Sudoku.Concepts.CandidateMap.Empty"/>.
             </remarks>
-        </member>
-        <member name="F:Sudoku.Concepts.CandidateMap._bits">
-            <summary>
-            Indicates the internal bits. 12 is for floor(729 / <see langword="sizeof"/>(<see cref="T:System.Int64"/>) <![CDATA[<<]]> 6).
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.IBitStatusMap`2.Shifting"/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.#ctor(System.String[])">
             <summary>
@@ -1792,34 +1787,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#op_Explicit(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.CandidateMap.InternalBuffer">
-            <summary>
-            Indicates the internal buffer type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.CandidateMap.InternalBuffer._firstElement">
-            <summary>
-            Indicates the first element of the whole buffer.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.InternalBuffer.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.InternalBuffer.Equals(Sudoku.Concepts.CandidateMap.InternalBuffer@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.InternalBuffer.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.InternalBuffer.System#IEquatable{Sudoku#Concepts#CandidateMap#InternalBuffer}#Equals(Sudoku.Concepts.CandidateMap.InternalBuffer)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.InternalBuffer.op_Equality(Sudoku.Concepts.CandidateMap.InternalBuffer@,Sudoku.Concepts.CandidateMap.InternalBuffer@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.InternalBuffer.op_Inequality(Sudoku.Concepts.CandidateMap.InternalBuffer@,Sudoku.Concepts.CandidateMap.InternalBuffer@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -1833,6 +1800,46 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IEqualityOperators{Sudoku#Concepts#CandidateMap,Sudoku#Concepts#CandidateMap,System#Boolean}#op_Inequality(Sudoku.Concepts.CandidateMap,Sudoku.Concepts.CandidateMap)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Concepts.CandidateMap._bits">
+            <summary>
+            Indicates the internal field that provides the visit entry for fixed-sized buffer type <see cref="T:Sudoku.Concepts.CandidateMap.__InternalBuffer"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap.__InternalBuffer"/>
+        </member>
+        <member name="T:Sudoku.Concepts.CandidateMap.__InternalBuffer">
+            <summary>
+            Indicates the internal buffer type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.CandidateMap.__InternalBuffer._firstElement">
+            <summary>
+            Indicates the first element of the whole buffer.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.__InternalBuffer.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.__InternalBuffer.Equals(Sudoku.Concepts.CandidateMap.__InternalBuffer@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.__InternalBuffer.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.__InternalBuffer.System#IEquatable{Sudoku#Concepts#CandidateMap#__InternalBuffer}#Equals(Sudoku.Concepts.CandidateMap.__InternalBuffer)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.__InternalBuffer.op_Equality(Sudoku.Concepts.CandidateMap.__InternalBuffer@,Sudoku.Concepts.CandidateMap.__InternalBuffer@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.__InternalBuffer.op_Inequality(Sudoku.Concepts.CandidateMap.__InternalBuffer@,Sudoku.Concepts.CandidateMap.__InternalBuffer@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.__InternalBuffer.System#Numerics#IEqualityOperators{Sudoku#Concepts#CandidateMap#__InternalBuffer,Sudoku#Concepts#CandidateMap#__InternalBuffer,System#Boolean}#op_Equality(Sudoku.Concepts.CandidateMap.__InternalBuffer,Sudoku.Concepts.CandidateMap.__InternalBuffer)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.__InternalBuffer.System#Numerics#IEqualityOperators{Sudoku#Concepts#CandidateMap#__InternalBuffer,Sudoku#Concepts#CandidateMap#__InternalBuffer,System#Boolean}#op_Inequality(Sudoku.Concepts.CandidateMap.__InternalBuffer,Sudoku.Concepts.CandidateMap.__InternalBuffer)">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap._count">

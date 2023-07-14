@@ -92,6 +92,16 @@ public sealed class Generator : IIncrementalGenerator
 				.Collect(),
 			ComparisonOperatorsHandler.Output
 		);
+
+		const string inlineArrayFieldAttributeName = "System.SourceGeneration.InlineArrayFieldAttribute`1";
+		context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(inlineArrayFieldAttributeName, IsPartialTypePredicate, InlineArrayFieldHandler.Transform)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			InlineArrayFieldHandler.Output
+		);
 	}
 
 	private void InstanceDeconstruction(IncrementalGeneratorInitializationContext context)
