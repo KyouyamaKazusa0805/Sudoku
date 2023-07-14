@@ -542,6 +542,54 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		pane.UpdateViewUnit(rawValue as ViewUnitBindableSource);
 	}
 
+	[Callback]
+	private static void BabaGroupLabelColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void LinkColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void NormalColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void AssignmentColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void OverlappedAssignmentColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void EliminationColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void CannibalismColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void ExofinColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void EndofinColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void BabaGroupLabelFontPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void AuxiliaryColorsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void UserDefinedColorPalettePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void AlmostLockedSetsColorsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
 
 	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e) => Focus(FocusState.Programmatic);
 
