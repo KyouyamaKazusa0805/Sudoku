@@ -27,7 +27,7 @@ namespace Sudoku.Concepts;
 [LargeStructure]
 [Equals]
 [EqualityOperators]
-public unsafe partial struct CandidateMap :
+public partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, Candidate, CandidateMap>,
 	IAdditionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>,
 	IDivisionOperators<CandidateMap, Digit, CellMap>,
@@ -238,7 +238,7 @@ public unsafe partial struct CandidateMap :
 
 
 	/// <inheritdoc/>
-	public readonly void CopyTo(Candidate* arr, int length)
+	public readonly unsafe void CopyTo(Candidate* arr, int length)
 	{
 		if (length < 729)
 		{
@@ -257,18 +257,7 @@ public unsafe partial struct CandidateMap :
 	public readonly bool Contains(Candidate offset) => (_bits[offset >> 6] >> (offset & 63) & 1) != 0;
 
 	/// <inheritdoc/>
-	public readonly bool Equals(scoped in CandidateMap other)
-	{
-		for (var i = 0; i < 12; i++)
-		{
-			if (_bits[i] != other._bits[i])
-			{
-				return false;
-			}
-		}
-
-		return true;
-	}
+	public readonly bool Equals(scoped in CandidateMap other) => _bits == other._bits;
 
 	/// <inheritdoc/>
 	public readonly void ForEach(Action<Candidate> action)
@@ -280,24 +269,8 @@ public unsafe partial struct CandidateMap :
 	}
 
 	/// <inheritdoc cref="object.GetHashCode"/>
-	public override readonly int GetHashCode()
-	{
-		var hashCode = new HashCode();
-		for (var i = 0; i < 12; i++)
-		{
-			if ((i & 1) != 0)
-			{
-				hashCode.Add(_bits[i]);
-			}
-			else
-			{
-				var bitBlock = _bits[i];
-				hashCode.Add(bitBlock >> 32 | bitBlock & int.MaxValue << 32);
-			}
-		}
-
-		return hashCode.ToHashCode();
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly int GetHashCode() => _bits.GetHashCode();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -663,7 +636,7 @@ public unsafe partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap[] operator &(scoped in CandidateMap offsets, int subsetSize)
+	public static unsafe CandidateMap[] operator &(scoped in CandidateMap offsets, int subsetSize)
 	{
 		if (subsetSize == 0 || subsetSize > offsets._count)
 		{
@@ -854,21 +827,6 @@ public unsafe partial struct CandidateMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static explicit IBitStatusMap<CandidateMap, Candidate>.operator ReadOnlySpan<Candidate>(scoped in CandidateMap offsets) => offsets.Offsets;
-
-
-	/// <summary>
-	/// Indicates the internal buffer type.
-	/// </summary>
-	[InlineArray(12)]
-	private struct InternalBuffer
-	{
-		/// <summary>
-		/// Indicates the first element of the whole buffer.
-		/// </summary>
-		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
-		[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-		private long _firstElement;
-	}
 }
 
 /// <summary>

@@ -1802,6 +1802,24 @@ if (student is (name: var name, age: >= 18))
             Indicates the first element of the whole buffer.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.InternalBuffer.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.InternalBuffer.Equals(Sudoku.Concepts.CandidateMap.InternalBuffer@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.InternalBuffer.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.InternalBuffer.System#IEquatable{Sudoku#Concepts#CandidateMap#InternalBuffer}#Equals(Sudoku.Concepts.CandidateMap.InternalBuffer)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.InternalBuffer.op_Equality(Sudoku.Concepts.CandidateMap.InternalBuffer@,Sudoku.Concepts.CandidateMap.InternalBuffer@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.InternalBuffer.op_Inequality(Sudoku.Concepts.CandidateMap.InternalBuffer@,Sudoku.Concepts.CandidateMap.InternalBuffer@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
