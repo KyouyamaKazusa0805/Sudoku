@@ -66,8 +66,14 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 
 
 	/// <inheritdoc/>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
 	public AnalyzerResult Analyze(scoped in Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
+		if (puzzle.IsSolved)
+		{
+			throw new InvalidOperationException("This puzzle has already been solved.");
+		}
+
 		var result = new AnalyzerResult(puzzle) { IsSolved = false };
 		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } isSukaku)
 		{

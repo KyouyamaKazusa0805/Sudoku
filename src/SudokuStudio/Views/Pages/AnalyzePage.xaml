@@ -108,7 +108,10 @@
 								IsEnabled="{x:Bind cvt:SudokuGridConversion.GetUnfixedButtonAvailability(SudokuPane.Puzzle),Mode=OneWay}"
 								Click="UnfixGridButton_Click" />
 							<AppBarSeparator />
-							<AppBarButton Icon="Flag" Label="{m:R Key=AnalyzePage_AutoSolve}" Click="AutoSolveButton_Click" />
+							<AppBarButton
+								Icon="Flag" Label="{m:R Key=AnalyzePage_AutoSolve}"
+								IsEnabled="{x:Bind cvt:AnalyzeConversion.GetIsEnabled(SudokuPane.Puzzle),Mode=OneWay}"
+								Click="AutoSolveButton_Click" />
 							<AppBarSeparator />
 							<AppBarButton
 								x:Name="AnalyzeButton" x:FieldModifier="internal" Icon="Find" Label="{m:R Key=AnalyzePage_AnalyzeButton}"

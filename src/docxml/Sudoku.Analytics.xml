@@ -131,6 +131,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
         </member>
         <member name="F:Sudoku.Analytics.Analyzer._stepSearchers">
             <summary>
