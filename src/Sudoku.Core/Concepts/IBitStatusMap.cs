@@ -125,13 +125,6 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	}
 
 	/// <inheritdoc cref="RemoveRange(ReadOnlySpan{TElement})"/>
-	/// <remarks>
-	/// Different with the method <see cref="RemoveRange(IEnumerable{TElement})"/>, this method
-	/// also checks for the validity of each offsets.
-	/// If the value is below 0 or greater than 80 (for cell offsets) or below 0 or greater than 728 (for candidate offsets),
-	/// this method will throw an exception to report about this.
-	/// </remarks>
-	/// <exception cref="InvalidOperationException">Throws when found at least one cell offset invalid.</exception>
 	void RemoveRange(IEnumerable<TElement> offsets);
 
 	/// <summary>
