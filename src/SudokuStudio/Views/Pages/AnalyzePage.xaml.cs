@@ -1227,6 +1227,9 @@ public sealed partial class AnalyzePage : Page
 		static IEnumerable<AppBarButton> getAppBarButtons(CommandBarFlyout flyout) => flyout.SecondaryCommands.OfType<AppBarButton>();
 	}
 
+	private void SudokuPane_CandidatesDisplayingToggled(SudokuPane sender, CandidatesDisplayingToggledEventArgs e)
+		=> ((App)Application.Current).Preference.UIPreferences.DisplayCandidates = sender.DisplayCandidates;
+
 	private void MainMenuFlyout_Closed(object sender, object e)
 	{
 		foreach (var element in MainMenuFlyout.SecondaryCommands.OfType<AppBarButton>())

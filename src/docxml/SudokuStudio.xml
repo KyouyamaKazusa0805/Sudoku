@@ -2161,6 +2161,20 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.op_Inequality(Windows.System.VirtualKeyModifiers,SudokuStudio.Input.VirtualKeyModifierStatus)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:SudokuStudio.Interaction.CandidatesDisplayingToggledEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.CandidatesDisplayingToggledEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Interaction.CandidatesDisplayingToggledEventHandler"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.CandidatesDisplayingToggledEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.CandidatesDisplayingToggled"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.CandidatesDisplayingToggled"/>
+        </member>
         <member name="T:SudokuStudio.Interaction.Conversions.AnalyzeConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about analyze tab pages.
@@ -6702,6 +6716,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the event that is triggered when a candidate is clicked.
             This event can be also used for checking the clicked cell, house, chute, etc..
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.SudokuPane.CandidatesDisplayingToggled">
+            <summary>
+            Indicates the event that is triggered when "displaying candidates" option is toggled.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UndoStep">

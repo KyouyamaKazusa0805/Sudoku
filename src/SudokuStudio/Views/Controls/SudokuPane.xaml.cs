@@ -327,6 +327,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	public event GridClickedEventHandler? Clicked;
 
+	/// <summary>
+	/// Indicates the event that is triggered when "displaying candidates" option is toggled.
+	/// </summary>
+	public event CandidatesDisplayingToggledEventHandler? CandidatesDisplayingToggled;
+
 
 	/// <summary>
 	/// Undo a step. This method requires member <see cref="EnableUndoRedoStacking"/> be <see langword="true"/>.
@@ -523,10 +528,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[Callback]
 	private static void DisplayCandidatesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is (SudokuPane pane, { NewValue: bool value }))
+		if (d is SudokuPane pane)
 		{
-			((App)Application.Current).Preference.UIPreferences.DisplayCandidates = value;
+			pane.CandidatesDisplayingToggled?.Invoke(pane, new());
 
+			// Update view nodes. This operation will be executed no matter whether the event is triggered.
 			pane.UpdateViewUnit();
 		}
 	}

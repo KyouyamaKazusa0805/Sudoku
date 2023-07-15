@@ -20,7 +20,8 @@
           "SudokuPaneMouseWheelChangedEventArgs.cs": [ "SudokuPaneMouseWheelChangedEventHandler.cs" ],
           "TechniqueGroupViewStepChosenEventArgs.cs": [ "TechniqueGroupViewStepChosenEventHandler.cs" ],
           "TechniqueGroupViewStepAppliedEventArgs.cs": [ "TechniqueGroupViewStepAppliedEventHandler.cs" ],
-          "StepSearcherListViewItemSelectedEventArgs.cs": [ "StepSearcherListViewItemSelectedEventHandler.cs" ]
+          "StepSearcherListViewItemSelectedEventArgs.cs": [ "StepSearcherListViewItemSelectedEventHandler.cs" ],
+          "CandidatesDisplayingToggledEventArgs.cs": [ "CandidatesDisplayingToggledEventHandler.cs" ]
         }
       }
     }

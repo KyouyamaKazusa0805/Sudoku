@@ -218,6 +218,7 @@
 							a:GathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=OneWay}"
 							a:GathererProperties.StepGathererMaxStepsGathered="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered,Mode=OneWay}"
 							Clicked="SudokuPane_Clicked" MouseWheelChanged="SudokuPane_MouseWheelChanged" GridUpdated="SudokuPane_GridUpdated"
+							CandidatesDisplayingToggled="SudokuPane_CandidatesDisplayingToggled"
 						/>
 					</Viewbox>
 					<Grid HorizontalAlignment="Center" ColumnDefinitions="Auto,*">
