@@ -48,5 +48,8 @@ public abstract partial class UniqueRectangleStep(
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEquatableStep<UniqueRectangleStep>.operator ==(UniqueRectangleStep left, UniqueRectangleStep right)
-		=> (left.Code, left.AbsoluteOffset, left.Digit1, left.Digit2) == (right.Code, right.AbsoluteOffset, right.Digit1, right.Digit2);
+		=> (left.Code, left.AbsoluteOffset, left.Digit1, left.Digit2) == (right.Code, right.AbsoluteOffset, right.Digit1, right.Digit2)
+		&& CandidateMap.Empty + (from conclusion in left.Conclusions select conclusion.Candidate) is var leftConclusion
+		&& CandidateMap.Empty + (from conclusion in right.Conclusions select conclusion.Candidate) is var rightConclusion
+		&& leftConclusion == rightConclusion;
 }
