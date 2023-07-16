@@ -36,6 +36,16 @@
             </summary>
             <returns>A (An) <typeparamref name="TSelf"/> instance.</returns>
         </member>
+        <member name="T:Sudoku.Cli.Commands.OutputCommand">
+            <summary>
+            Indicates a command that output puzzles to the local path.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Cli.Commands.OutputCommand.#ctor">
+            <summary>
+            Creates a <see cref="T:Sudoku.Cli.Commands.OutputCommand"/> instance.
+            </summary>
+        </member>
         <member name="T:Sudoku.Cli.Converters.GridArgumentConverter">
             <summary>
             Defines a converter that converts the argument into a <see cref="T:Sudoku.Concepts.Grid"/> result.
@@ -171,6 +181,20 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Cli.Options.LimitCountOption.DefaultValue">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Cli.Options.PathOption">
+            <summary>
+            Represents a path option.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Cli.Options.PathOption.Description">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Cli.Options.PathOption.Aliases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Cli.Options.PathOption.DefaultValue">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Cli.Options.SymmetricTypeOption">
