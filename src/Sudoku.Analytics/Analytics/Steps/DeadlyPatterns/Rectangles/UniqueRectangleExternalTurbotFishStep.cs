@@ -35,11 +35,8 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
-	public override string Format => GetString("TechniqueFormat_UniqueRectangleStep")!;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases =>
-		new[]
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> new[]
 		{
 			(ExtraDifficultyCaseNames.Guardian, A004526(GuardianCells.Count) * .1M),
 			(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
