@@ -3318,48 +3318,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.EnumerateCandidates">
-            <summary>
-            Try to enumerate all possible candidates in the current grid.
-            </summary>
-            <returns>
-            An enumerator that allows us using <see langword="foreach"/> statement
-            to iterate all possible candidates in the current grid.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.EnumerateMasks">
-            <summary>
-            Try to enumerate the mask table of the current grid.
-            </summary>
-            <returns>
-            An enumerator that allows us using <see langword="foreach" /> statement
-            to iterate all masks in the current grid. The mask list must contain 81 masks.
-            </returns>
-            <remarks>
-            <para>
-            Please note that the iterator will iterate all masks by reference, which means
-            you can apply <see langword="ref" /> and <see langword="ref readonly" /> modifier
-            onto the iteration variable:
-            <code><![CDATA[
-            // 'Mask' is a type alias for type 'short'.
-            foreach (ref readonly Mask mask in grid)
-            {
-                // Do something.
-            }
-            ]]></code>
-            </para>
-            <para>
-            <target name="foreach-variables">
-				<para>
-					<i>
-						Iteration variable are implicitly <see langword="scoped" />, which means you cannot return it outside the method
-						or other members that can return.
-					</i>
-				</para>
-			</target>
-            </para>
-            </remarks>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.Select``1(System.Func{System.Int32,``0})">
             <summary>
             Projects each element of a sequence into a new form.
@@ -3599,59 +3557,6 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
             <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>
             <seealso cref="M:System.ISimpleParsable`1.Parse(System.String)"/>
-        </member>
-        <member name="T:Sudoku.Concepts.Grid.MaskEnumerator">
-            <summary>
-            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the masks in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
-            </summary>
-            <param name="arr">The pointer to an array.</param>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.MaskEnumerator.#ctor(System.Int16@)">
-            <summary>
-            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the masks in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
-            </summary>
-            <param name="arr">The pointer to an array.</param>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.MaskEnumerator._refCurrent">
-            <summary>
-            The current pointer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.MaskEnumerator._currentIndex">
-            <summary>
-            The current index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.MaskEnumerator.Current">
-            <summary>
-            Gets the element in the collection at the current position of the enumerator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.MaskEnumerator.MoveNext">
-            <summary>
-            Advances the enumerator to the next element of the collection.
-            </summary>
-            <returns>
-            <list type="table">
-            <listheader>
-            <term>Return value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><see langword="true"/></term>
-            <description>If the enumerator was successfully advanced to the next element.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>If the enumerator has passed the end of the collection.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.MaskEnumerator.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

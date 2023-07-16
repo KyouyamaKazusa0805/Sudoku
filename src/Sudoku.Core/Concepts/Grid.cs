@@ -1205,44 +1205,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidateEnumerator GetEnumerator() => EnumerateCandidates();
-
-	/// <summary>
-	/// Try to enumerate all possible candidates in the current grid.
-	/// </summary>
-	/// <returns>
-	/// An enumerator that allows us using <see langword="foreach"/> statement
-	/// to iterate all possible candidates in the current grid.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidateEnumerator EnumerateCandidates() => new(ref AsRef(this[0]));
-
-	/// <summary>
-	/// Try to enumerate the mask table of the current grid.
-	/// </summary>
-	/// <returns>
-	/// An enumerator that allows us using <see langword="foreach"/> statement
-	/// to iterate all masks in the current grid. The mask list must contain 81 masks.
-	/// </returns>
-	/// <remarks>
-	/// <para>
-	/// Please note that the iterator will iterate all masks by reference, which means
-	/// you can apply <see langword="ref"/> and <see langword="ref readonly"/> modifier
-	/// onto the iteration variable:
-	/// <code><![CDATA[
-	/// // 'Mask' is a type alias for type 'short'.
-	/// foreach (ref readonly Mask mask in grid)
-	/// {
-	///     // Do something.
-	/// }
-	/// ]]></code>
-	/// </para>
-	/// <para>
-	/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="scoped-ref"]/target[@name="foreach-variables"]'/>
-	/// </para>
-	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly MaskEnumerator EnumerateMasks() => new(ref AsRef(this[0]));
+	public readonly CandidateEnumerator GetEnumerator() => new(ref AsRef(this[0]));
 
 	/// <summary>
 	/// Projects each element of a sequence into a new form.
