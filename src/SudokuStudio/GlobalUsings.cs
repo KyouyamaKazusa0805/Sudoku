@@ -61,7 +61,6 @@ global using SudokuStudio.Views.Pages.Analyze;
 global using SudokuStudio.Views.Pages.ContentDialogs;
 global using SudokuStudio.Views.Pages.Operation;
 global using SudokuStudio.Views.Pages.Settings;
-global using SudokuStudio.Views.Pages.Techniques.Singles;
 global using SudokuStudio.Views.Windows;
 global using Windows.ApplicationModel.Activation;
 global using Windows.ApplicationModel.DataTransfer;
