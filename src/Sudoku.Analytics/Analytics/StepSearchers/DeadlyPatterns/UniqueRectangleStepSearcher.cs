@@ -4125,12 +4125,11 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				}
 
 				var housesFullMap = HousesMap[houses[0]] | HousesMap[houses[1]];
+
+				// Gets the guardian cells in both houses.
+				//
+				// Here guardian cells may contain multiple cells. We don't check for it because it can be used as grouped turbot fish.
 				var guardianCells = (housesFullMap & CandidatesMap[guardianDigit]) - cells;
-				// Here guardian cells may be contain multiple cells. We don't check for it because it can be used as grouped turbot fish.
-				//if (guardianDigitGuardianCells.Count != 2)
-				//{
-				//	continue;
-				//}
 
 				// Then check whether the other digit is locked in the UR pattern.
 				var flag = true;
