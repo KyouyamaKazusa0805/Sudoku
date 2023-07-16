@@ -461,7 +461,7 @@ public abstract partial class ChainingStep(
 	/// Try to get nested chains, represented as <see cref="ChainingStep"/> instances.
 	/// </summary>
 	/// <returns>A list of <see cref="ChainingStep"/> instances.</returns>
-	private IEnumerable<ChainingStep> GetNestedChains()
+	private List<ChainingStep> GetNestedChains()
 	{
 		var result = new List<ChainingStep>();
 		var processed = new HashSet<ChainingStep>(Comparer.Instance);

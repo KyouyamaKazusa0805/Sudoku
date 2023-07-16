@@ -199,7 +199,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// </item>
 	/// </list>
 	/// </summary>
-	private Step? CheckType1(scoped ref AnalysisContext context, scoped in CellMap pattern, House[] blocks)
+	private ChromaticPatternType1Step? CheckType1(scoped ref AnalysisContext context, scoped in CellMap pattern, House[] blocks)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var extraCell in pattern)
@@ -263,7 +263,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// </item>
 	/// </list>
 	/// </summary>
-	private Step? CheckXz(scoped ref AnalysisContext context, scoped in CellMap pattern, House[] blocks)
+	private ChromaticPatternXzStep? CheckXz(scoped ref AnalysisContext context, scoped in CellMap pattern, House[] blocks)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var allDigitsMask = grid.GetDigitsUnion(pattern);

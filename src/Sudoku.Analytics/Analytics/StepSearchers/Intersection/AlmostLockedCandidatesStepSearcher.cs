@@ -77,7 +77,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	/// and the elimination is <c>z</c> (in ALP) and <c>y</c> and <c>z</c> (in ALT).
 	/// </para>
 	/// </remarks>
-	private static Step? Collect(
+	private static AlmostLockedCandidatesStep? Collect(
 		scoped ref AnalysisContext context,
 		int size,
 		House baseSet,

@@ -6397,7 +6397,7 @@ result ^= expression;
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.PatternInfos">
+        <member name="F:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.RawPatternData">
             <summary>
             Indicates all possible extended rectangle pattern combinations.
             </summary>
@@ -6630,7 +6630,7 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32[])">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueLoopStep},System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32[])">
             <summary>
             Check type 1.
             </summary>
@@ -6643,7 +6643,7 @@ result ^= expression;
             <param name="path">The path of the loop.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Int32[])">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Int32[])">
             <summary>
             Check type 2.
             </summary>
@@ -6658,7 +6658,7 @@ result ^= expression;
             <param name="path">The path of the loop.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Int32[])">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Int32[])">
             <summary>
             Check type 3.
             </summary>
@@ -6673,7 +6673,7 @@ result ^= expression;
             <param name="path">The path of the loop.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Int32[])">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Int32[])">
             <summary>
             Check type 4.
             </summary>
@@ -6826,7 +6826,7 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Collect(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Collect(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
             Get all possible hints from the grid.
             </summary>
@@ -6834,7 +6834,7 @@ result ^= expression;
             <param name="grid"><inheritdoc cref="P:Sudoku.Analytics.AnalysisContext.Grid" path="/summary"/></param>
             <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check type 1.
             </summary>
@@ -6857,7 +6857,7 @@ result ^= expression;
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check type 2.
             </summary>
@@ -6881,7 +6881,7 @@ result ^= expression;
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType3(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check type 3.
             </summary>
@@ -6907,7 +6907,7 @@ result ^= expression;
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check type 4.
             </summary>
@@ -6933,7 +6933,7 @@ result ^= expression;
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType5(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType5(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check type 5.
             </summary>
@@ -6956,7 +6956,7 @@ result ^= expression;
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType6(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType6(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check type 6.
             </summary>
@@ -6981,7 +6981,7 @@ result ^= expression;
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckHidden(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckHidden(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check hidden UR.
             </summary>
@@ -7004,7 +7004,7 @@ result ^= expression;
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check2D(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check2D(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 2D.
             </summary>
@@ -7029,7 +7029,7 @@ result ^= expression;
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check2B1SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check2B1SL(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 2B/1SL.
             </summary>
@@ -7056,7 +7056,7 @@ result ^= expression;
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check2D1SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check2D1SL(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 2D/1SL.
             </summary>
@@ -7084,7 +7084,7 @@ result ^= expression;
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3X(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3X(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 3X.
             </summary>
@@ -7108,7 +7108,7 @@ result ^= expression;
             Note: <c>z</c> is <c>x</c> or <c>y</c>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3X2SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3X2SL(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 3X/2SL.
             </summary>
@@ -7134,7 +7134,7 @@ result ^= expression;
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3N2SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3N2SL(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 3N/2SL.
             </summary>
@@ -7160,7 +7160,7 @@ result ^= expression;
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3U2SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3U2SL(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
              <summary>
              Check UR + 3U/2SL.
              </summary>
@@ -7186,7 +7186,7 @@ result ^= expression;
              ]]></code>
              </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3E2SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3E2SL(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
              <summary>
              Check UR + 3E/2SL.
              </summary>
@@ -7212,7 +7212,7 @@ result ^= expression;
              ]]></code>
              </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check4X3SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check4X3SL(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 4X/3SL.
             </summary>
@@ -7239,7 +7239,7 @@ result ^= expression;
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check4C3SL(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check4C3SL(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 4C/3SL.
             </summary>
@@ -7280,7 +7280,7 @@ result ^= expression;
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckRegularWing(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckRegularWing(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
             <summary>
             Check UR-XY-Wing, UR-XYZ-Wing, UR-WXYZ-Wing and AR-XY-Wing, AR-XYZ-Wing and AR-WXYZ-Wing.
             </summary>
@@ -7319,7 +7319,7 @@ result ^= expression;
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckSueDeCoq(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckSueDeCoq(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + SdC.
             </summary>
@@ -7346,7 +7346,7 @@ result ^= expression;
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckBabaGroupingUnique(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckBabaGroupingUnique(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
              <summary>
              Check UR + baba grouping.
              </summary>
@@ -7383,7 +7383,7 @@ result ^= expression;
              </para>
              </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalType1Or2(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalType1Or2(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             <para>Check UR/AR + Guardian (i.e. UR External Type 2) and UR External Type 1.</para>
             <para>
@@ -7398,7 +7398,7 @@ result ^= expression;
             <param name="index">The index.</param>
             <param name="arMode"></param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalType3(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalType3(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Check UR/AR + Guardian, with external subset (i.e. UR External Type 3).
             </summary>
@@ -7411,7 +7411,7 @@ result ^= expression;
             <param name="index">The index.</param>
             <param name="arMode"></param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalType4(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalType4(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Check UR/AR + Guardian, with external conjugate pair (i.e. UR External Type 4).
             </summary>
@@ -7424,7 +7424,7 @@ result ^= expression;
             <param name="index">The index.</param>
             <param name="arMode"></param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalTurbotFish(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalTurbotFish(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Check UR/AR + Guardian, with external turbot fish.
             </summary>
@@ -7437,7 +7437,7 @@ result ^= expression;
             <param name="index">The mask index.</param>
             <param name="arMode"></param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalXyWing(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalXyWing(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Check UR/AR + Guardian, with external XY-Wing.
             </summary>
@@ -7450,7 +7450,7 @@ result ^= expression;
             <param name="index">The mask index.</param>
             <param name="arMode"></param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalAlmostLockedSetsXz(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],Sudoku.Analytics.Patterns.AlmostLockedSet[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalAlmostLockedSetsXz(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],Sudoku.Analytics.Patterns.AlmostLockedSet[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Check UR/AR + Guardian, with external ALS-XZ rule.
             </summary>
@@ -7464,7 +7464,7 @@ result ^= expression;
             <param name="index">The mask index.</param>
             <param name="arMode"></param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckHiddenSingleAvoidable(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckHiddenSingleAvoidable(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check AR + Hidden single.
             </summary>
@@ -7604,7 +7604,7 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.Collect(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.ComplexFishStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.Collect(System.Collections.Generic.List{Sudoku.Analytics.Steps.ComplexFishStep},Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean)">
             <summary>
             Get all possible fish steps.
             </summary>
@@ -7660,7 +7660,7 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.Collect(System.Collections.Generic.ICollection{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Int32,System.Int32**,System.Int32**,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.Collect(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Int32,System.Int32**,System.Int32**,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Get all possible normal fishes.
             </summary>
@@ -7902,7 +7902,7 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.Collect(System.Collections.Generic.ICollection{Sudoku.Analytics.Steps.BowmanBingoStep},Sudoku.Concepts.Grid@,System.Boolean,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.Collect(System.Collections.Generic.List{Sudoku.Analytics.Steps.BowmanBingoStep},Sudoku.Concepts.Grid@,System.Boolean,System.Int32,System.Int32)">
             <summary>
             <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/summary"/>
             </summary>

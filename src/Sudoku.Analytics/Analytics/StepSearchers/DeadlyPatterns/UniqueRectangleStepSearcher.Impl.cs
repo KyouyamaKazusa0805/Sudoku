@@ -24,7 +24,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void CheckType1(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -120,7 +120,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void CheckType2(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -225,7 +225,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void CheckType3(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -374,7 +374,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void CheckType4(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -496,7 +496,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void CheckType5(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -595,7 +595,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void CheckType6(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -724,7 +724,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void CheckHidden(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -849,7 +849,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void Check2D(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -980,7 +980,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void Check2B1SL(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -1152,7 +1152,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void Check2D1SL(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -1322,7 +1322,7 @@ partial class UniqueRectangleStepSearcher
 	/// Note: <c>z</c> is <c>x</c> or <c>y</c>.
 	/// </remarks>
 	partial void Check3X(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -1460,7 +1460,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void Check3X2SL(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -1587,7 +1587,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void Check3N2SL(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -1719,7 +1719,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void Check3U2SL(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -1846,7 +1846,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void Check3E2SL(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -1974,7 +1974,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void Check4X3SL(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -2128,7 +2128,7 @@ partial class UniqueRectangleStepSearcher
 	/// </para>
 	/// </remarks>
 	partial void Check4C3SL(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -2284,7 +2284,7 @@ partial class UniqueRectangleStepSearcher
 	/// </para>
 	/// </remarks>
 	partial void CheckRegularWing(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -2696,7 +2696,7 @@ partial class UniqueRectangleStepSearcher
 	/// ]]></code>
 	/// </remarks>
 	partial void CheckSueDeCoq(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		bool arMode,
@@ -2845,7 +2845,7 @@ partial class UniqueRectangleStepSearcher
 
 
 		static void checkGeneralizedSdc(
-			ICollection<UniqueRectangleStep> accumulator,
+			List<UniqueRectangleStep> accumulator,
 			scoped in Grid grid,
 			bool arMode,
 			bool cannibalMode,
@@ -3031,7 +3031,7 @@ partial class UniqueRectangleStepSearcher
 	/// </para>
 	/// </remarks>
 	partial void CheckBabaGroupingUnique(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		Mask comparer,
@@ -3349,7 +3349,7 @@ partial class UniqueRectangleStepSearcher
 	/// <param name="index">The index.</param>
 	/// <param name="arMode"></param>
 	partial void CheckExternalType1Or2(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		Digit d1,
@@ -3468,7 +3468,7 @@ partial class UniqueRectangleStepSearcher
 	/// <param name="index">The index.</param>
 	/// <param name="arMode"></param>
 	partial void CheckExternalType3(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		Mask comparer,
@@ -3645,7 +3645,7 @@ partial class UniqueRectangleStepSearcher
 	/// <param name="index">The index.</param>
 	/// <param name="arMode"></param>
 	partial void CheckExternalType4(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		Mask comparer,
@@ -3815,7 +3815,7 @@ partial class UniqueRectangleStepSearcher
 	/// <param name="index">The mask index.</param>
 	/// <param name="arMode"></param>
 	partial void CheckExternalTurbotFish(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		Mask comparer,
@@ -3981,7 +3981,7 @@ partial class UniqueRectangleStepSearcher
 	/// <param name="index">The mask index.</param>
 	/// <param name="arMode"></param>
 	partial void CheckExternalXyWing(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		Mask comparer,
@@ -4260,7 +4260,7 @@ partial class UniqueRectangleStepSearcher
 	/// <param name="index">The mask index.</param>
 	/// <param name="arMode"></param>
 	partial void CheckExternalAlmostLockedSetsXz(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		AlmostLockedSet[] alses,
@@ -4450,7 +4450,7 @@ partial class UniqueRectangleStepSearcher
 	/// </para>
 	/// </remarks>
 	partial void CheckHiddenSingleAvoidable(
-		ICollection<UniqueRectangleStep> accumulator,
+		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
 		Cell[] urCells,
 		Digit d1,

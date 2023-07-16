@@ -101,7 +101,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 2.
 	/// </summary>
-	private Step? CheckType2(
+	private BivalueOddagonType2Step? CheckType2(
 		List<BivalueOddagonStep> accumulator,
 		scoped in Grid grid,
 		Digit d1,
@@ -156,7 +156,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 3.
 	/// </summary>
-	private Step? CheckType3(
+	private BivalueOddagonType3Step? CheckType3(
 		List<BivalueOddagonStep> accumulator,
 		scoped in Grid grid,
 		Digit d1,

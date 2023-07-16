@@ -132,7 +132,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 					}
 				}
 
-				// The following loop is used for appending new empty cells into the varible 'valuesMap'.
+				// The following loop is used for appending new empty cells into the variable 'valuesMap'.
 				// Reverse BUGs can be split into two parts: Reverse URs and Reverse ULs.
 				// Both of them are used cells, of length being a even number.
 				// If the variable 'valuesMap' holds an odd number of cells,
@@ -185,7 +185,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <param name="completePattern">The complete pattern.</param>
 	/// <param name="cellsChosen">The empty cells chosen.</param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private Step? CheckType1(
+	private ReverseBivalueUniversalGraveType1Step? CheckType1(
 		scoped ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
@@ -241,7 +241,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <param name="completePattern">The complete pattern.</param>
 	/// <param name="cellsChosen">The empty cells chosen.</param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private Step? CheckType2(
+	private ReverseBivalueUniversalGraveType2Step? CheckType2(
 		scoped ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
@@ -304,7 +304,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <param name="completePattern">The complete pattern.</param>
 	/// <param name="cellsChosen">The empty cells chosen.</param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private Step? CheckType4(
+	private ReverseBivalueUniversalGraveType4Step? CheckType4(
 		scoped ref AnalysisContext context,
 		Digit d1,
 		Digit d2,

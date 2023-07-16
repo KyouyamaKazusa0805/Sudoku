@@ -137,8 +137,8 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// </param>
 	/// <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
 	/// <returns>The first found step.</returns>
-	private unsafe Step? Collect(
-		ICollection<Step> accumulator,
+	private unsafe NormalFishStep? Collect(
+		List<Step> accumulator,
 		scoped in Grid grid,
 		int size,
 		int** r,

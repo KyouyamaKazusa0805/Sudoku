@@ -107,8 +107,8 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	/// <param name="pomElimsOfThisDigit">The possible eliminations to check.</param>
 	/// <param name="digit">The current digit used.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
-	private unsafe Step? Collect(
-		ICollection<ComplexFishStep> accumulator,
+	private unsafe ComplexFishStep? Collect(
+		List<ComplexFishStep> accumulator,
 		scoped in Grid grid,
 		scoped in CellMap pomElimsOfThisDigit,
 		Digit digit,

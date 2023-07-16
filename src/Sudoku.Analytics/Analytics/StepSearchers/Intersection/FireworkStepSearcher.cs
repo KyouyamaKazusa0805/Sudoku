@@ -147,7 +147,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <summary>
 	/// Checks for firework pair type 1 steps.
 	/// </summary>
-	private Step? CheckPairType1(
+	private FireworkPairType1Step? CheckPairType1(
 		List<Step> accumulator,
 		scoped in Grid grid,
 		bool onlyFindOne,
@@ -262,7 +262,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <summary>
 	/// Checks for firework triple steps.
 	/// </summary>
-	private Step? CheckTriple(
+	private FireworkTripleStep? CheckTriple(
 		List<Step> accumulator,
 		scoped in Grid grid,
 		bool onlyFindOne,
@@ -390,7 +390,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <summary>
 	/// Checks for firework quadruple steps.
 	/// </summary>
-	private Step? CheckQuadruple(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in Firework pattern)
+	private FireworkQuadrupleStep? CheckQuadruple(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in Firework pattern)
 	{
 		if (pattern is not { Map: [var c1, var c2, var c3, var c4] map })
 		{

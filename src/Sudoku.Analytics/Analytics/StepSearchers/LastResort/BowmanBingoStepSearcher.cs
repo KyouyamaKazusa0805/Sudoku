@@ -95,7 +95,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="startCand">The start candidate to be assumed.</param>
 	/// <param name="length">The whole length to be searched.</param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private Step? Collect(ICollection<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, Candidate startCand, int length)
+	private BowmanBingoStep? Collect(List<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, Candidate startCand, int length)
 	{
 		scoped var context = new AnalysisContext(null, grid, true);
 		if (length == 0 || SinglesSearcher.Collect(ref context) is not SingleStep singleInfo)
@@ -155,7 +155,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// Get links.
 	/// </summary>
 	/// <returns>The links.</returns>
-	private IList<LinkViewNode> GetLinks()
+	private List<LinkViewNode> GetLinks()
 	{
 		var result = new List<LinkViewNode>();
 		for (var i = 0; i < _tempConclusions.Count - 1; i++)

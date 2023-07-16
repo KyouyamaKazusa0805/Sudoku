@@ -149,7 +149,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private Step? CheckForFalseCandidateTypes(scoped ref AnalysisContext context)
+	private BivalueUniversalGraveFalseCandidateTypeStep? CheckForFalseCandidateTypes(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var multivalueCells = EmptyCells - BivalueCells;
@@ -230,7 +230,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 2.
 	/// </summary>
-	private Step? CheckType2(List<Step> accumulator, scoped in CandidateMap trueCandidates, bool onlyFindOne)
+	private BivalueUniversalGraveType2Step? CheckType2(List<Step> accumulator, scoped in CandidateMap trueCandidates, bool onlyFindOne)
 	{
 		scoped var cells = (stackalloc Cell[trueCandidates.Count]);
 		var i = 0;
@@ -276,7 +276,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 3 with naked subsets.
 	/// </summary>
-	private Step? CheckType3Naked(List<Step> accumulator, scoped in Grid grid, scoped in CandidateMap trueCandidates, bool onlyFindOne)
+	private BivalueUniversalGraveType3Step? CheckType3Naked(List<Step> accumulator, scoped in Grid grid, scoped in CandidateMap trueCandidates, bool onlyFindOne)
 	{
 		// Check whether all true candidates lie in a same house.
 		var map = CellMap.Empty + from c in trueCandidates group c by c / 9 into z select z.Key;
@@ -370,7 +370,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 4.
 	/// </summary>
-	private Step? CheckType4(List<Step> accumulator, scoped in CandidateMap trueCandidates, bool onlyFindOne)
+	private BivalueUniversalGraveType4Step? CheckType4(List<Step> accumulator, scoped in CandidateMap trueCandidates, bool onlyFindOne)
 	{
 		// Conjugate pairs should lie in two cells.
 		var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
@@ -499,7 +499,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for BUG + n.
 	/// </summary>
-	private Step? CheckMultiple(List<Step> accumulator, CandidateMap trueCandidates, bool onlyFindOne)
+	private BivalueUniversalGraveMultipleStep? CheckMultiple(List<Step> accumulator, CandidateMap trueCandidates, bool onlyFindOne)
 	{
 		if (trueCandidates.Count > 18)
 		{
@@ -548,7 +548,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for BUG-XZ.
 	/// </summary>
-	private Step? CheckXz(List<Step> accumulator, scoped in Grid grid, scoped in CandidateMap trueCandidates, bool onlyFindOne)
+	private BivalueUniversalGraveXzStep? CheckXz(List<Step> accumulator, scoped in Grid grid, scoped in CandidateMap trueCandidates, bool onlyFindOne)
 	{
 		if (trueCandidates is not [var cand1, var cand2])
 		{

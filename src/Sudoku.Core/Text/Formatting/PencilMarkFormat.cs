@@ -241,17 +241,6 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatVa
 	/// </summary>
 	/// <returns>The dictionary instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static IDictionary<int, List<Mask>> CreateTempDictionary()
-		=> new Dictionary<int, List<Mask>>
-		{
-			{ 0, new() },
-			{ 1, new() },
-			{ 2, new() },
-			{ 3, new() },
-			{ 4, new() },
-			{ 5, new() },
-			{ 6, new() },
-			{ 7, new() },
-			{ 8, new() }
-		};
+	private static Dictionary<int, List<Mask>> CreateTempDictionary()
+		=> new() { { 0, new() }, { 1, new() }, { 2, new() }, { 3, new() }, { 4, new() }, { 5, new() }, { 6, new() }, { 7, new() }, { 8, new() } };
 }

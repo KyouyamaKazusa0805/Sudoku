@@ -223,7 +223,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 1.
 	/// </summary>
-	private Step? CheckType1(
+	private QiuDeadlyPatternType1Step? CheckType1(
 		List<Step> accumulator,
 		scoped in Grid grid,
 		bool isRow,
@@ -309,7 +309,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 2.
 	/// </summary>
-	private Step? CheckType2(
+	private QiuDeadlyPatternType2Step? CheckType2(
 		List<Step> accumulator,
 		scoped in Grid grid,
 		bool isRow,
@@ -390,7 +390,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 3.
 	/// </summary>
-	private Step? CheckType3(
+	private QiuDeadlyPatternType3Step? CheckType3(
 		List<Step> accumulator,
 		scoped in Grid grid,
 		bool isRow,
@@ -496,7 +496,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 4.
 	/// </summary>
-	private Step? CheckType4(
+	private QiuDeadlyPatternType4Step? CheckType4(
 		List<Step> accumulator,
 		bool isRow,
 		scoped in CellMap pair,
@@ -593,7 +593,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for locked type.
 	/// </summary>
-	private Step? CheckLockedType(
+	private QiuDeadlyPatternLockedTypeStep? CheckLockedType(
 		List<Step> accumulator,
 		scoped in Grid grid,
 		bool isRow,

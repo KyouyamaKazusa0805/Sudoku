@@ -248,7 +248,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 1.
 	/// </summary>
-	private Step? CheckType1(
+	private BorescoperDeadlyPatternType1Step? CheckType1(
 		List<Step> accumulator,
 		scoped in Grid grid,
 		BorescoperDeadlyPattern pattern,
@@ -323,7 +323,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check type 2.
 	/// </summary>
-	private Step? CheckType2(
+	private BorescoperDeadlyPatternType2Step? CheckType2(
 		List<Step> accumulator,
 		scoped in Grid grid,
 		BorescoperDeadlyPattern pattern,
@@ -394,7 +394,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 3.
 	/// </summary>
-	private Step? CheckType3(
+	private BorescoperDeadlyPatternType3Step? CheckType3(
 		List<Step> accumulator,
 		scoped in Grid grid,
 		BorescoperDeadlyPattern pattern,
@@ -509,7 +509,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 4.
 	/// </summary>
-	private Step? CheckType4(
+	private BorescoperDeadlyPatternType4Step? CheckType4(
 		List<Step> accumulator,
 		scoped in Grid grid,
 		BorescoperDeadlyPattern pattern,

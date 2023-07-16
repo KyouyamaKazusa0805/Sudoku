@@ -114,8 +114,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <param name="path">The path of the loop.</param>
 	/// <returns>The step is worth.</returns>
-	private Step? CheckType1(
-		ICollection<UniqueLoopStep> accumulator,
+	private UniqueLoopType1Step? CheckType1(
+		List<UniqueLoopStep> accumulator,
 		Digit d1,
 		Digit d2,
 		scoped in CellMap loop,
@@ -177,8 +177,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <param name="path">The path of the loop.</param>
 	/// <returns>The step is worth.</returns>
-	private Step? CheckType2(
-		ICollection<UniqueLoopStep> accumulator,
+	private UniqueLoopType2Step? CheckType2(
+		List<UniqueLoopStep> accumulator,
 		scoped in Grid grid,
 		Digit d1,
 		Digit d2,
@@ -244,8 +244,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <param name="path">The path of the loop.</param>
 	/// <returns>The step is worth.</returns>
-	private Step? CheckType3(
-		ICollection<UniqueLoopStep> accumulator,
+	private UniqueLoopType3Step? CheckType3(
+		List<UniqueLoopStep> accumulator,
 		scoped in Grid grid,
 		Digit d1,
 		Digit d2,
@@ -468,8 +468,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
 	/// <param name="path">The path of the loop.</param>
 	/// <returns>The step is worth.</returns>
-	private unsafe Step? CheckType4(
-		ICollection<UniqueLoopStep> accumulator,
+	private UniqueLoopType4Step? CheckType4(
+		List<UniqueLoopStep> accumulator,
 		scoped in Grid grid,
 		Digit d1,
 		Digit d2,

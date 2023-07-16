@@ -36,7 +36,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	private static readonly List<(CellMap Cells, List<(Cell Left, Cell Right)> PairCells, int Size)> PatternInfos;
+	private static readonly List<(CellMap Cells, List<(Cell Left, Cell Right)> PairCells, int Size)> RawPatternData;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -70,7 +70,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			{ 45, 54 }, { 45, 63 }, { 45, 72 }
 		};
 
-		PatternInfos = new();
+		RawPatternData = new();
 
 		// Initializes fit types.
 		for (var j = 0; j < 3; j++)
@@ -83,7 +83,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				var c22 = c21 + 9;
 				var c13 = c11 + 18;
 				var c23 = c21 + 18;
-				PatternInfos.Add((CellsMap[c11] + c12 + c13 + c21 + c22 + c23, new() { (c11, c21), (c12, c22), (c13, c23) }, 3));
+				RawPatternData.Add((CellsMap[c11] + c12 + c13 + c21 + c22 + c23, new() { (c11, c21), (c12, c22), (c13, c23) }, 3));
 			}
 		}
 		for (var j = 0; j < 3; j++)
@@ -96,7 +96,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				var c22 = c21 + 1;
 				var c13 = c11 + 2;
 				var c23 = c21 + 2;
-				PatternInfos.Add((CellsMap[c11] + c12 + c13 + c21 + c22 + c23, new() { (c11, c21), (c12, c22), (c13, c23) }, 3));
+				RawPatternData.Add((CellsMap[c11] + c12 + c13 + c21 + c22 + c23, new() { (c11, c21), (c12, c22), (c13, c23) }, 3));
 			}
 		}
 
@@ -126,7 +126,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						pairs.Add((cell1, cell2));
 					}
 
-					PatternInfos.Add((map, pairs, size));
+					RawPatternData.Add((map, pairs, size));
 				}
 			}
 		}
@@ -139,7 +139,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
-		foreach (var (allCellsMap, pairs, size) in PatternInfos)
+		foreach (var (allCellsMap, pairs, size) in RawPatternData)
 		{
 			if ((EmptyCells & allCellsMap) != allCellsMap)
 			{
@@ -268,7 +268,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <param name="extraDigit">The extra digit.</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
-	private Step? CheckType1(
+	private ExtendedRectangleType1Step? CheckType1(
 		List<Step> accumulator,
 		scoped in Grid grid,
 		scoped in CellMap allCellsMap,
@@ -328,7 +328,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <param name="extraDigit">The extra digit.</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
-	private Step? CheckType2(
+	private ExtendedRectangleType2Step? CheckType2(
 		List<Step> accumulator,
 		scoped in Grid grid,
 		scoped in CellMap allCellsMap,
@@ -383,7 +383,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <param name="extraCellsMap">The map of extra cells.</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
-	private Step? CheckType3Naked(
+	private ExtendedRectangleType3Step? CheckType3Naked(
 		List<Step> accumulator,
 		scoped in Grid grid,
 		scoped in CellMap allCellsMap,
