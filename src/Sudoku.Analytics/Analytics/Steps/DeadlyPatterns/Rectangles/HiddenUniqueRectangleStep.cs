@@ -30,8 +30,4 @@ public sealed class HiddenUniqueRectangleStep(
 	isAvoidable,
 	conjugatePairs,
 	absoluteOffset
-)
-{
-	/// <inheritdoc/>
-	public override string Format => GetString("TechniqueFormat_UniqueRectangleWithConjugatePairStep")!;
-}
+);

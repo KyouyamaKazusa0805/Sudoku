@@ -10837,9 +10837,6 @@ result ^= expression;
             <param name="conjugatePairs"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenUniqueRectangleStep.Format">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep">
             <summary>
             Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
