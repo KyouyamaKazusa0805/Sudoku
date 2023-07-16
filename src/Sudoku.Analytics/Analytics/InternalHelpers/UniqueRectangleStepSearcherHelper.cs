@@ -193,8 +193,7 @@ internal static class UniqueRectangleStepSearcherHelper
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsIncomplete(bool allowIncomplete, List<CandidateViewNode> list)
-		=> !allowIncomplete
-		&& list.Count(static d => d.Identifier is WellKnownColorIdentifier { Kind: WellKnownColorIdentifierKind.Normal }) != 8;
+		=> allowIncomplete && list.Count(static d => d.Identifier is WellKnownColorIdentifier { Kind: WellKnownColorIdentifierKind.Normal }) != 8;
 
 	/// <summary>
 	/// Get a cell that can't see each other.

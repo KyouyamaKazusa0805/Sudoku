@@ -1570,20 +1570,6 @@ public enum Technique
 	UniqueRectangleExternalType4,
 
 	/// <summary>
-	/// Indicates unique rectangle external skyscraper.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	UniqueRectangleExternalSkyscraper,
-
-	/// <summary>
-	/// Indicates unique rectangle external two-string kite.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	UniqueRectangleExternalTwoStringKite,
-
-	/// <summary>
 	/// Indicates unique rectangle external turbot fish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
@@ -1751,27 +1737,6 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalType4,
-
-	/// <summary>
-	/// Indicates avoidable rectangle external skyscraper.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	AvoidableRectangleExternalSkyscraper,
-
-	/// <summary>
-	/// Indicates avoidable rectangle external two-string kite.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	AvoidableRectangleExternalTwoStringKite,
-
-	/// <summary>
-	/// Indicates avoidable rectangle external turbot fish.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	AvoidableRectangleExternalTurbotFish,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external XY-Wing.

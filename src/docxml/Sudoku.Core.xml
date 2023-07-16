@@ -4817,6 +4817,11 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int64)"/>
             <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt64)"/>
         </member>
+        <member name="F:Sudoku.SolutionWideReadOnlyFields.AllBlocksMask">
+            <summary>
+            Indicates the mask that means all blocks.
+            </summary>
+        </member>
         <member name="F:Sudoku.SolutionWideReadOnlyFields.AllRowsMask">
             <summary>
             Indicates the mask that means all rows.

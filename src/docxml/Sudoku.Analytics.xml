@@ -1703,16 +1703,6 @@
             Indicates unique rectangle external type 4.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleExternalSkyscraper">
-            <summary>
-            Indicates unique rectangle external skyscraper.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleExternalTwoStringKite">
-            <summary>
-            Indicates unique rectangle external two-string kite.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleExternalTurbotFish">
             <summary>
             Indicates unique rectangle external turbot fish.
@@ -1821,21 +1811,6 @@
         <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalType4">
             <summary>
             Indicates avoidable rectangle external type 4.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalSkyscraper">
-            <summary>
-            Indicates avoidable rectangle external skyscraper.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalTwoStringKite">
-            <summary>
-            Indicates avoidable rectangle external two-string kite.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalTurbotFish">
-            <summary>
-            Indicates avoidable rectangle external turbot fish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalXyWing">
@@ -7424,9 +7399,9 @@ result ^= expression;
             <param name="index">The index.</param>
             <param name="arMode"></param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalTurbotFish(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalTurbotFish(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Check UR/AR + Guardian, with external turbot fish.
+            Check UR + Guardian, with external turbot fish.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -7435,7 +7410,6 @@ result ^= expression;
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
             <param name="index">The mask index.</param>
-            <param name="arMode"></param>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalXyWing(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
@@ -10980,15 +10954,10 @@ result ^= expression;
             <param name="digit2"><inheritdoc/></param>
             <param name="cells"><inheritdoc/></param>
             <param name="guardianCells">Indicates the cells that the guardians lie in.</param>
-            <param name="cellPair">Indicates the cell pair.</param>
-            <param name="turbotFishDigit">Indicates the digit that the turbot fish used.</param>
-            <param name="baseHouse">Indicates the base house used.</param>
-            <param name="targetHouse">Indicates the target house used.</param>
-            <param name="isIncomplete">Indicates whether the rectangle is incomplete.</param>
-            <param name="isAvoidable"><inheritdoc/></param>
+            <param name="isIncomplete">Indicates whether the pattern is incomplete.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Turbot Fish</b> technique.
             </summary>
@@ -10998,12 +10967,7 @@ result ^= expression;
             <param name="digit2"><inheritdoc/></param>
             <param name="cells"><inheritdoc/></param>
             <param name="guardianCells">Indicates the cells that the guardians lie in.</param>
-            <param name="cellPair">Indicates the cell pair.</param>
-            <param name="turbotFishDigit">Indicates the digit that the turbot fish used.</param>
-            <param name="baseHouse">Indicates the base house used.</param>
-            <param name="targetHouse">Indicates the target house used.</param>
-            <param name="isIncomplete">Indicates whether the rectangle is incomplete.</param>
-            <param name="isAvoidable"><inheritdoc/></param>
+            <param name="isIncomplete">Indicates whether the pattern is incomplete.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.BaseDifficulty">
@@ -11021,26 +10985,6 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.GuardianCells">
             <summary>
             The generated property declaration for parameter <c>guardianCells</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.CellPair">
-            <summary>
-            The generated property declaration for parameter <c>cellPair</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.TurbotFishDigit">
-            <summary>
-            The generated property declaration for parameter <c>turbotFishDigit</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.BaseHouse">
-            <summary>
-            The generated property declaration for parameter <c>baseHouse</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.TargetHouse">
-            <summary>
-            The generated property declaration for parameter <c>targetHouse</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.IsIncomplete">
@@ -14420,21 +14364,6 @@ result ^= expression;
               Looks up a localized string similar to Avoidable Rectangle External Almost Locked Sets XZ Rule.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.AvoidableRectangleExternalSkyscraper">
-            <summary>
-              Looks up a localized string similar to Avoidable Rectangle External Skyscraper.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.AvoidableRectangleExternalTurbotFish">
-            <summary>
-              Looks up a localized string similar to Avoidable Rectangle External Turbot Fish.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.AvoidableRectangleExternalTwoStringKite">
-            <summary>
-              Looks up a localized string similar to Avoidable Rectangle External Two-String Kite.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.AvoidableRectangleExternalType1">
             <summary>
               Looks up a localized string similar to Avoidable Rectangle External Type 1.
@@ -17272,7 +17201,7 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_UniqueRectangleExternalTurbotFishStep">
             <summary>
-              Looks up a localized string similar to Digits {0} and {1} in {2} with guardian cells {3}, forming a turbot fish with cells {4} of digit {5}.
+              Looks up a localized string similar to Digits {0} and {1} in {2} with guardian cells {3}, forming a turbot fish.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_UniqueRectangleExternalType1Or2Step">
@@ -17500,19 +17429,9 @@ result ^= expression;
               Looks up a localized string similar to Unique Rectangle External Almost Locked Sets XZ Rule.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.UniqueRectangleExternalSkyscraper">
-            <summary>
-              Looks up a localized string similar to Unique Rectangle External Skyscraper.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.UniqueRectangleExternalTurbotFish">
             <summary>
               Looks up a localized string similar to Unique Rectangle External Turbot Fish.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.UniqueRectangleExternalTwoStringKite">
-            <summary>
-              Looks up a localized string similar to Unique Rectangle External Two-String Kite.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.UniqueRectangleExternalType1">

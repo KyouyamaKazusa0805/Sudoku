@@ -367,33 +367,6 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle External Skyscraper.
-        /// </summary>
-        public static string AvoidableRectangleExternalSkyscraper {
-            get {
-                return ResourceManager.GetString("AvoidableRectangleExternalSkyscraper", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle External Turbot Fish.
-        /// </summary>
-        public static string AvoidableRectangleExternalTurbotFish {
-            get {
-                return ResourceManager.GetString("AvoidableRectangleExternalTurbotFish", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle External Two-String Kite.
-        /// </summary>
-        public static string AvoidableRectangleExternalTwoStringKite {
-            get {
-                return ResourceManager.GetString("AvoidableRectangleExternalTwoStringKite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External Type 1.
         /// </summary>
         public static string AvoidableRectangleExternalType1 {
@@ -5497,7 +5470,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with guardian cells {3}, forming a turbot fish with cells {4} of digit {5}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with guardian cells {3}, forming a turbot fish.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleExternalTurbotFishStep {
             get {
@@ -5911,29 +5884,11 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle External Skyscraper.
-        /// </summary>
-        public static string UniqueRectangleExternalSkyscraper {
-            get {
-                return ResourceManager.GetString("UniqueRectangleExternalSkyscraper", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle External Turbot Fish.
         /// </summary>
         public static string UniqueRectangleExternalTurbotFish {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalTurbotFish", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle External Two-String Kite.
-        /// </summary>
-        public static string UniqueRectangleExternalTwoStringKite {
-            get {
-                return ResourceManager.GetString("UniqueRectangleExternalTwoStringKite", resourceCulture);
             }
         }
         

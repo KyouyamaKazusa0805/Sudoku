@@ -43,9 +43,8 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	Technique.UniqueRectangleType1, Technique.UniqueRectangleType2, Technique.UniqueRectangleType3, Technique.UniqueRectangleType4,
 	Technique.UniqueRectangleType5, Technique.UniqueRectangleType6,
-	Technique.UniqueRectangleExternalType1, Technique.UniqueRectangleExternalType2,
-	Technique.UniqueRectangleExternalType3, Technique.UniqueRectangleExternalType4, Technique.UniqueRectangleExternalXyWing,
-	Technique.UniqueRectangleExternalSkyscraper, Technique.UniqueRectangleExternalTwoStringKite, Technique.UniqueRectangleExternalTurbotFish,
+	Technique.UniqueRectangleExternalType1, Technique.UniqueRectangleExternalType2, Technique.UniqueRectangleExternalType3,
+	Technique.UniqueRectangleExternalType4, Technique.UniqueRectangleExternalXyWing, Technique.UniqueRectangleExternalTurbotFish,
 	Technique.UniqueRectangleExternalAlmostLockedSetsXz, Technique.UniqueRectangleBabaGrouping, Technique.UniqueRectangleSueDeCoq,
 	Technique.UniqueRectangleXyWing, Technique.UniqueRectangleXyzWing, Technique.UniqueRectangleWxyzWing,
 	Technique.UniqueRectangle2B1, Technique.UniqueRectangle2D, Technique.UniqueRectangle2D1, Technique.UniqueRectangle3E2,
@@ -54,8 +53,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.UniqueRectangle4X1U, Technique.UniqueRectangle4X2L, Technique.UniqueRectangle4X2U, Technique.UniqueRectangle4X3,
 	Technique.AvoidableRectangleType1, Technique.AvoidableRectangleType2, Technique.AvoidableRectangleType3, Technique.AvoidableRectangleType5,
 	Technique.AvoidableRectangleExternalType1, Technique.AvoidableRectangleExternalType2, Technique.AvoidableRectangleExternalType3,
-	Technique.AvoidableRectangleExternalType4, Technique.AvoidableRectangleExternalXyWing, Technique.AvoidableRectangleExternalSkyscraper,
-	Technique.AvoidableRectangleExternalTwoStringKite, Technique.AvoidableRectangleExternalTurbotFish,
+	Technique.AvoidableRectangleExternalType4, Technique.AvoidableRectangleExternalXyWing,
 	Technique.AvoidableRectangleExternalAlmostLockedSetsXz, Technique.AvoidableRectangle2D, Technique.AvoidableRectangle3X,
 	Technique.AvoidableRectangleBrokenWing, Technique.AvoidableRectangleHiddenSingleBlock, Technique.AvoidableRectangleHiddenSingleRow,
 	Technique.AvoidableRectangleHiddenSingleColumn, Technique.AvoidableRectangleSueDeCoq,
@@ -172,9 +170,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						CheckExternalType1Or2(gathered, grid, urCells, d1, d2, index, arMode);
 						CheckExternalType3(gathered, grid, urCells, comparer, d1, d2, index, arMode);
 						CheckExternalType4(gathered, grid, urCells, comparer, d1, d2, index, arMode);
-						CheckExternalTurbotFish(gathered, grid, urCells, comparer, d1, d2, index, arMode);
 						CheckExternalXyWing(gathered, grid, urCells, comparer, d1, d2, index, arMode);
 						CheckExternalAlmostLockedSetsXz(gathered, grid, urCells, alses, comparer, d1, d2, index, arMode);
+
+						if (!arMode)
+						{
+							CheckExternalTurbotFish(gathered, grid, urCells, comparer, d1, d2, index);
+						}
 					}
 
 					// Iterate on each corner of four cells.
@@ -4085,7 +4087,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// Check UR/AR + Guardian, with external turbot fish.
+	/// Check UR + Guardian, with external turbot fish.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
@@ -4094,7 +4096,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The mask index.</param>
-	/// <param name="arMode"></param>
 	private void CheckExternalTurbotFish(
 		List<UniqueRectangleStep> accumulator,
 		scoped in Grid grid,
@@ -4102,8 +4103,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Mask comparer,
 		Digit d1,
 		Digit d2,
-		int index,
-		bool arMode
+		int index
 	)
 	{
 		var cells = (CellMap)urCells;
@@ -4112,141 +4112,160 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			return;
 		}
 
-		if (!arMode && (EmptyCells & cells) != cells)
+		// Iterates on each digit, checking whether the current digit forms a guardian pattern but the other digit not.
+		foreach (var (guardianDigit, nonGuardianDigit) in stackalloc[] { (d1, d2), (d2, d1) })
 		{
-			return;
-		}
-
-		// Iterate on two houses used.
-		foreach (var houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
-		{
-			var guardianMap = HousesMap[houseCombination[0]] | HousesMap[houseCombination[1]];
-			if ((guardianMap & cells) != cells)
+			// Iterates on each pair of houses that the UR pattern laid in.
+			foreach (var houses in cells.Houses.GetAllSets().GetSubsets(2))
 			{
-				// The houses must contain all 4 UR cells.
-				continue;
-			}
-
-			var guardianCells = guardianMap - cells & (CandidatesMap[d1] | CandidatesMap[d2]);
-			if (guardianCells.Count != 2)
-			{
-				// Conjugate pair must be 2 cells.
-				continue;
-			}
-
-			if (!(HousesMap[houseCombination[0]] & guardianCells) || !(HousesMap[houseCombination[1]] & guardianCells))
-			{
-				// Guardian cells must appear from two houses.
-				continue;
-			}
-
-			var digit1IntersectionMap = guardianCells & CandidatesMap[d1];
-			var digit2IntersectionMap = guardianCells & CandidatesMap[d2];
-			if (digit1IntersectionMap && ~digit2IntersectionMap || ~digit1IntersectionMap && digit2IntersectionMap)
-			{
-				// For this type guardian cells can only hold one digit appeared in UR.
-				continue;
-			}
-
-			var guardianDigit = digit1IntersectionMap ? d1 : d2;
-			foreach (var coveredHouse in guardianCells.CoveredHouses)
-			{
-				for (var house = 0; house < 27; house++)
+				if (HousesMap[houses[0]] & HousesMap[houses[1]])
 				{
-					if (house == coveredHouse)
+					// Two houses iterated must contain no intersection.
+					continue;
+				}
+
+				var housesFullMap = HousesMap[houses[0]] | HousesMap[houses[1]];
+				var guardianCells = (housesFullMap & CandidatesMap[guardianDigit]) - cells;
+				// Here guardian cells may be contain multiple cells. We don't check for it because it can be used as grouped turbot fish.
+				//if (guardianDigitGuardianCells.Count != 2)
+				//{
+				//	continue;
+				//}
+
+				// Then check whether the other digit is locked in the UR pattern.
+				var flag = true;
+				foreach (var house in houses)
+				{
+					var tempMap = HousesMap[house] & CandidatesMap[nonGuardianDigit];
+					if ((cells & tempMap) != tempMap || tempMap.Count != 2)
 					{
+						// The current house may not form a valid conjugate pair
+						// because the current house may contain at least 3 cells can appear that digit.
+						flag = false;
+						break;
+					}
+				}
+				if (!flag)
+				{
+					continue;
+				}
+
+				if (guardianCells.CoveredHouses != 0)
+				{
+					// It is a UR type 4 because all possible guardian cells lie in a same house.
+					continue;
+				}
+
+				// Gets the last cell that the houses iterated don't contain.
+				// For example, if the houses iterated are a row and a column, then the houses may cover 3 cells in the UR pattern.
+				// Here we should get the cell uncovered, to check whether it is a bi-value cell and only contains the digits used by UR.
+				if ((cells - housesFullMap)[0] is var lastCell and not -1
+					&& (!BivalueCells.Contains(lastCell) || comparer != grid.GetCandidates(lastCell)))
+				{
+					continue;
+				}
+
+				// Check whether guardian cells cannot create links to form a turbot fish.
+				var (a, b) = (getAvailableHouses(houses[0], guardianCells), getAvailableHouses(houses[1], guardianCells));
+				if (a == 0 && b == 0)
+				{
+					continue;
+				}
+
+				foreach (var weakLinkHouse in a | b)
+				{
+					var otherCellsInWeakLinkHouse = (HousesMap[weakLinkHouse] & CandidatesMap[guardianDigit]) - guardianCells;
+					if (!otherCellsInWeakLinkHouse)
+					{
+						// Cannot continue the turbot fish.
 						continue;
 					}
 
-					if ((cells.Houses >> house & 1) != 0)
+					foreach (var otherCellInWeakLinkHouse in otherCellsInWeakLinkHouse)
 					{
-						// It's unnecessary to construct another strong link on houses that UR has already covered.
-						continue;
-					}
-
-					var potentialConjugatePairMap = HousesMap[house] & CandidatesMap[guardianDigit];
-					if (potentialConjugatePairMap.Count != 2)
-					{
-						// There is no conjugate pairs in the house.
-						continue;
-					}
-
-					if ((potentialConjugatePairMap.ExpandedPeers & guardianCells) is not [var guardianConnectedCell])
-					{
-						// They cannot be connected.
-						continue;
-					}
-
-					// Possible external turbot fish found.
-					var anotherHead = (potentialConjugatePairMap - (PeersMap[guardianConnectedCell] & potentialConjugatePairMap)[0])[0];
-					var guardianHead = (guardianCells - guardianConnectedCell)[0];
-					var elimMap = PeersMap[guardianHead] & PeersMap[anotherHead] & CandidatesMap[guardianDigit];
-					if (!elimMap)
-					{
-						// No eliminations found.
-						continue;
-					}
-
-					var candidateOffsets = new List<CandidateViewNode>();
-					var cellOffsets = new List<CellViewNode>();
-					foreach (var cell in urCells)
-					{
-						switch (grid.GetStatus(cell))
+						foreach (var strongLinkHouse in CellsMap[otherCellInWeakLinkHouse].Houses)
 						{
-							case CellStatus.Empty:
+							if ((HousesMap[strongLinkHouse] & CandidatesMap[guardianDigit]) - otherCellInWeakLinkHouse is not [var finalCell])
+							{
+								// No eliminations will exist in this case.
+								continue;
+							}
+
+							// A turbot fish found. Now check eliminations.
+							var elimMap = (guardianCells - (HousesMap[weakLinkHouse] & guardianCells)).PeerIntersection & PeersMap[finalCell] & CandidatesMap[guardianDigit];
+							if (!elimMap)
+							{
+								// No eliminations.
+								continue;
+							}
+
+							var candidateOffsets = new List<CandidateViewNode>();
+							foreach (var cell in cells)
 							{
 								foreach (var digit in (Mask)(grid.GetCandidates(cell) & comparer))
 								{
+									if (elimMap.Contains(cell) && digit == guardianDigit)
+									{
+										continue;
+									}
+
 									candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 								}
-
-								break;
 							}
-							case CellStatus.Modifiable:
+							foreach (var cell in guardianCells)
 							{
-								cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
-								break;
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + guardianDigit));
 							}
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, otherCellInWeakLinkHouse * 9 + guardianDigit));
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, finalCell * 9 + guardianDigit));
+
+							accumulator.Add(
+								new UniqueRectangleExternalTurbotFishStep(
+									from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit),
+									new[]
+									{
+										View.Empty
+											| candidateOffsets
+											| new HouseViewNode(WellKnownColorIdentifier.Normal, houses[0])
+											| new HouseViewNode(WellKnownColorIdentifier.Normal, houses[1])
+											| new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, weakLinkHouse)
+											| new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, strongLinkHouse)
+									},
+									d1,
+									d2,
+									cells,
+									guardianCells,
+									UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets),
+									index
+								)
+							);
 						}
 					}
-					foreach (var cell in guardianCells)
-					{
-						candidateOffsets.Add(
-							new(
-								cell == guardianHead ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Auxiliary2,
-								cell * 9 + guardianDigit
-							)
-						);
-					}
-					foreach (var cell in potentialConjugatePairMap)
-					{
-						candidateOffsets.Add(
-							new(
-								cell == anotherHead ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Auxiliary2,
-								cell * 9 + guardianDigit
-							)
-						);
-					}
-
-					accumulator.Add(
-						new UniqueRectangleExternalTurbotFishStep(
-							from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit),
-							new[] { View.Empty | cellOffsets | candidateOffsets },
-							d1,
-							d2,
-							cells,
-							guardianCells,
-							potentialConjugatePairMap,
-							guardianDigit,
-							coveredHouse,
-							house,
-							UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets),
-							arMode,
-							index
-						)
-					);
 				}
 			}
+		}
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static HouseMask getAvailableHouses(int house, scoped in CellMap guardianCells)
+		{
+			var intersection = guardianCells & HousesMap[house];
+			return house switch
+			{
+				< 9 => (TrailingZeroCount(intersection.RowMask), TrailingZeroCount(intersection.ColumnMask)) switch
+				{
+					(var a and not InvalidTrailingZeroCountMethodFallback, var b and not InvalidTrailingZeroCountMethodFallback)
+						=> 1 << a + 9 | 1 << b + 18,
+					(var a and not InvalidTrailingZeroCountMethodFallback, _) => 1 << a + 9,
+					(_, var b and not InvalidTrailingZeroCountMethodFallback) => 1 << b + 18,
+					_ => 0
+				},
+				_ => TrailingZeroCount(intersection.BlockMask) switch
+				{
+					var result and not InvalidTrailingZeroCountMethodFallback => 1 << result,
+					_ => 0
+				}
+			};
 		}
 	}
 

@@ -36,6 +36,11 @@ public static class SolutionWideReadOnlyFields
 	public const int InvalidTrailingZeroCountMethodFallbackLong = 64;
 
 	/// <summary>
+	/// Indicates the mask that means all blocks.
+	/// </summary>
+	public const HouseMask AllBlocksMask = 0b000_000_000__000_000_000__111_111_111;
+
+	/// <summary>
 	/// Indicates the mask that means all rows.
 	/// </summary>
 	public const HouseMask AllRowsMask = 0b000_000_000__111_111_111__000_000_000;
