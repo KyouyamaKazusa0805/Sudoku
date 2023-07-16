@@ -132,7 +132,7 @@ public sealed partial class StepCollector : IAnalyzerOrCollector
 								i = currentLevel;
 							}
 
-							bag.AddRange(count > MaxStepsGathered ? accumulator.Slice(0, MaxStepsGathered) : accumulator);
+							bag.AddRange(count > MaxStepsGathered ? accumulator[..MaxStepsGathered] : accumulator);
 
 							break;
 						}
