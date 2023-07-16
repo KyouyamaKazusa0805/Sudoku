@@ -70,7 +70,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
   * Subsets
     * Naked Subsets
       * Locked Subsets (Naked, Hidden)
-      * Semi-Locked Susbets
+      * Semi-Locked Subsets
       * Normal Naked Subsets
     * Hidden Subsets
   * Fishes (including finned types)
