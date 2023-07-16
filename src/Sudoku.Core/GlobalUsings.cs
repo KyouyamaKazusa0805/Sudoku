@@ -3,7 +3,6 @@ global using System.Buffers;
 global using System.ComponentModel;
 global using System.Globalization;
 global using System.Runtime.Intrinsics;
-global using System.Runtime.Messages;
 global using System.SourceGeneration;
 global using Sudoku.Algorithm.Solving;
 global using Sudoku.Analytics;

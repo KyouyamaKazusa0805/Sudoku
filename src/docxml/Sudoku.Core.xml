@@ -5934,7 +5934,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Text.Formatting.SusserFormat.LineLimit">
             <summary>
-            Indicates the line limitator character used by shortening Susser format.
+            Indicates the line separator character used by shortening Susser format.
             </summary>
         </member>
         <member name="F:Sudoku.Text.Formatting.SusserFormat.Star">

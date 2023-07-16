@@ -154,7 +154,6 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[Obsolete(RequiresCompilerInvocationMessage.CompilerInvocationOnly, false, DiagnosticId = "SCA0116")]
 	public StringHandler(int literalLength, int holeCount)
 		=> _chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(
 #if DECREASE_INITIALIZATION_MEMORY_ALLOCATION
@@ -181,7 +180,6 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[Obsolete(RequiresCompilerInvocationMessage.CompilerInvocationOnly, false, DiagnosticId = "SCA0116")]
 	public StringHandler(int literalLength, int holeCount, Span<char> initialBuffer)
 	{
 #if !DISCARD_INTERPOLATION_INFO

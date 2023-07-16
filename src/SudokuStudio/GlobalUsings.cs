@@ -2,7 +2,6 @@ global using System.Collections.ObjectModel;
 global using System.Collections.Specialized;
 global using System.ComponentModel;
 global using System.Runtime.InteropServices.WindowsRuntime;
-global using System.Runtime.Messages;
 global using System.Runtime.Versioning;
 global using System.SourceGeneration;
 global using Expressive.Exceptions;

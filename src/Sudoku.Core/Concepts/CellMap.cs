@@ -76,11 +76,7 @@ public unsafe partial struct CellMap :
 	/// </summary>
 	/// <param name="segments">The cell offsets, represented as a RxCy notation.</param>
 	/// <seealso cref="RxCyNotation"/>
-	[DebuggerHidden]
-	[EditorBrowsable(EditorBrowsableState.Never)]
 	[JsonConstructor]
-	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true)]
-	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly)]
 	public CellMap(string[] segments)
 	{
 		this = Empty;

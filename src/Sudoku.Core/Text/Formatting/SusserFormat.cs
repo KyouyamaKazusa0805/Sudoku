@@ -28,7 +28,7 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 	protected const char ModifiablePrefix = '+';
 
 	/// <summary>
-	/// Indicates the line limitator character used by shortening Susser format.
+	/// Indicates the line separator character used by shortening Susser format.
 	/// </summary>
 	private const char LineLimit = ',';
 

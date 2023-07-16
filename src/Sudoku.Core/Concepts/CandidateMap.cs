@@ -56,11 +56,7 @@ public partial struct CandidateMap :
 	/// </summary>
 	/// <param name="segments">The candidate offsets, represented as a RxCy notation.</param>
 	/// <seealso cref="RxCyNotation"/>
-	[DebuggerHidden]
-	[EditorBrowsable(EditorBrowsableState.Never)]
 	[JsonConstructor]
-	[Obsolete(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly, true)]
-	[RequiresUnreferencedCode(RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly)]
 	public CandidateMap(string[] segments)
 	{
 		this = Empty;

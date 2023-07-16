@@ -3154,67 +3154,6 @@ fixed (short* ptr = instance)
             using <see langword="ref readonly"/> as a combined parameter modifier.
             </param>
         </member>
-        <member name="T:System.Runtime.Messages.DeprecatedConstructorsMessage">
-            <summary>
-            Provides with a message that is represented as deprecated message for deprecated constructors.
-            </summary>
-        </member>
-        <member name="F:System.Runtime.Messages.DeprecatedConstructorsMessage.ConstructorIsMeaningless">
-            <summary>
-            Indicates the message that reports a warning that user cannot invoke this constructor because of meaninglessness.
-            </summary>
-        </member>
-        <member name="T:System.Runtime.Messages.ModuleInitializerMessage">
-            <summary>
-            Provides with a message that is represented as warning message used by module initializers.
-            </summary>
-        </member>
-        <member name="F:System.Runtime.Messages.ModuleInitializerMessage.ModuleInitializerCannotBeCalledManually">
-            <summary>
-            Indicates the message is telling user that module initializers cannot be used manually.
-            </summary>
-        </member>
-        <member name="T:System.Runtime.Messages.RefStructDefaultImplementationMessage">
-            <summary>
-            Provides with a message that is represented as deprecated message in default-overridden methods
-            of <see langword="ref struct"/>-typed instances.
-            </summary>
-        </member>
-        <member name="F:System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenEqualsMethod">
-            <summary>
-            Indicates the message is telling user that the method <c>Equals</c> will become invalid
-            in <see langword="ref struct"/> because the argument type is <see cref="T:System.Object"/>,
-            which is not able to be a target converted type for a <see langword="ref struct"/> instance.
-            </summary>
-        </member>
-        <member name="F:System.Runtime.Messages.RefStructDefaultImplementationMessage.OverriddenGetHashCodeMethod">
-            <summary>
-            Indicates the message is telling user that the method <c>GetHashCode</c> will become invalid
-            in <see langword="ref struct"/> because the argument type is <see cref="T:System.Object"/>,
-            which is not able to be a target converted type for a <see langword="ref struct"/> instance.
-            </summary>
-        </member>
-        <member name="T:System.Runtime.Messages.RequiresCompilerInvocationMessage">
-            <summary>
-            Provides with a message that is represented as deprecated message for compiler invocation.
-            </summary>
-        </member>
-        <member name="F:System.Runtime.Messages.RequiresCompilerInvocationMessage.CompilerInvocationOnly">
-            <summary>
-            Indicates the message that reports an error that user cannot use this constructor because of requirements on compiler invocation.
-            </summary>
-        </member>
-        <member name="T:System.Runtime.Messages.RequiresJsonSerializerDynamicInvocationMessage">
-            <summary>
-            Provides with a message that is represented as deprecated message in JSON serialization dynamic invocation.
-            </summary>
-        </member>
-        <member name="F:System.Runtime.Messages.RequiresJsonSerializerDynamicInvocationMessage.DynamicInvocationByJsonSerializerOnly">
-            <summary>
-            Indicates the message that reports an error that user cannot use this constructor because of requirements on dynamic invocation
-            by JSON serializer handling.
-            </summary>
-        </member>
         <member name="T:System.SourceGeneration.Accessibility">
             <summary>
             Defines a kind of accessibility being defined in C#.
