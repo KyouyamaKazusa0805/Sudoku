@@ -732,7 +732,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			default:
 			case (_, not (>= 0 and < 81), _, _):
-			case (_, var cell, _, _) when Puzzle.GetStatus(cell) == CellStatus.Given:
+			case var (_, cell, _, _) when Puzzle.GetStatus(cell) == CellStatus.Given:
 			case (_, _, _, -2):
 			{
 				return;
