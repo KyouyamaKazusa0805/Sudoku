@@ -12,14 +12,6 @@ public sealed class CountConclusionOperator : OperatorBase
 	public static readonly CountConclusionOperator Instance = new();
 
 
-	/// <summary>
-	/// Initializes a <see cref="CountConclusionOperator"/> instance.
-	/// </summary>
-	private CountConclusionOperator()
-	{
-	}
-
-
 	/// <inheritdoc/>
 	public override IEnumerable<string> Tags => new[] { "count" };
 

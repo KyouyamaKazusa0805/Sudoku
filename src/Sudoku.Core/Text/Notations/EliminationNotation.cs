@@ -7,10 +7,6 @@ namespace Sudoku.Text.Notations;
 /// </summary>
 public sealed class EliminationNotation : ICandidateNotation<EliminationNotation, EliminationNotationOptions>
 {
-	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
-	private EliminationNotation() => throw new NotSupportedException();
-
-
 	/// <inheritdoc/>
 	public static CandidateNotation CandidateNotation => CandidateNotation.SusserElimination;
 

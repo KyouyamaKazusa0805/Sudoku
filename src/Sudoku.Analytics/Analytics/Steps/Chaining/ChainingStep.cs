@@ -627,21 +627,13 @@ public abstract partial class ChainingStep(
 /// Defines a equality comparer used for comparison with two <see cref="ChainingStep"/> instances.
 /// </summary>
 /// <seealso cref="ChainingStep"/>
-file sealed class Comparer : IEqualityComparer<ChainingStep>
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
+file sealed class Comparer() : IEqualityComparer<ChainingStep>
 {
 	/// <summary>
 	/// Indicates the singleton instance.
 	/// </summary>
 	public static readonly Comparer Instance = new();
-
-
-	/// <summary>
-	/// Initializes a <see cref="Comparer"/> instance.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Comparer()
-	{
-	}
 
 
 	/// <inheritdoc/>

@@ -5,11 +5,6 @@ namespace Sudoku.Text.Formatting;
 /// </summary>
 public abstract class HouseFormatter : ICollectionFormatter<House>
 {
-	/// <exception cref="NotSupportedException"/>
-	[Obsolete("Do not use this constructor", true)]
-	private protected HouseFormatter() => throw new NotSupportedException();
-
-
 	/// <summary>
 	/// Gets a <see cref="string"/> value that can describes for a list of houses that is represented
 	/// as an <see cref="int"/> mask.

@@ -41,14 +41,6 @@ file sealed class LocalEqualityComparer<T> : IEqualityComparer<T> where T : Step
 	public static readonly LocalEqualityComparer<T> Instance = new();
 
 
-	/// <summary>
-	/// The parameterless constructor.
-	/// </summary>
-	private LocalEqualityComparer()
-	{
-	}
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(T x, T y) => x == y;

@@ -27,10 +27,6 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 	private static readonly char[] Letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'K' };
 
 
-	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
-	private K9Notation() => throw new NotSupportedException();
-
-
 	/// <inheritdoc/>
 	public static CellNotation CellNotation => CellNotation.K9;
 

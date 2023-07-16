@@ -277,16 +277,7 @@ file sealed class MatchLengthComparer : IEqualityComparer<Match>
 	/// <summary>
 	/// The singleton instance.
 	/// </summary>
-	public static readonly IEqualityComparer<Match> Instance = new MatchLengthComparer();
-
-
-	/// <summary>
-	/// Initializes a <see cref="MatchLengthComparer"/> instance.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private MatchLengthComparer()
-	{
-	}
+	public static readonly MatchLengthComparer Instance = new();
 
 
 	/// <inheritdoc/>

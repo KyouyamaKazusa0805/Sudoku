@@ -130,21 +130,13 @@ public sealed class NodeSet : HashSet<ChainNode>
 /// Defines an equality comparer that compares to <see cref="ChainNode"/> instances.
 /// </summary>
 /// <seealso cref="ChainNode"/>
-file sealed class EqualityComparer : IEqualityComparer<ChainNode>
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
+file sealed class EqualityComparer() : IEqualityComparer<ChainNode>
 {
 	/// <summary>
 	/// Indicates the singleton instance.
 	/// </summary>
 	public static readonly EqualityComparer Instance = new();
-
-
-	/// <summary>
-	/// Initializes a <see cref="EqualityComparer"/> instance.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private EqualityComparer()
-	{
-	}
 
 
 	/// <inheritdoc/>

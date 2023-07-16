@@ -6,11 +6,6 @@ namespace Sudoku.Text.Formatting;
 /// </summary>
 public abstract class ConclusionFormatter : ICollectionFormatter<Conclusion>
 {
-	/// <exception cref="NotSupportedException"/>
-	[Obsolete("Do not use this constructor", true)]
-	private protected ConclusionFormatter() => throw new NotSupportedException();
-
-
 	/// <summary>
 	/// Formats a list of conclusions as the string representation.
 	/// </summary>

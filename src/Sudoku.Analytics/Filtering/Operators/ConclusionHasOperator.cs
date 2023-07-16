@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Filtering.Operators;
+namespace Sudoku.Filtering.Operators;
 
 /// <summary>
 /// Indicates the conclusion matching operator <c>has</c>.
@@ -10,14 +10,6 @@ public sealed class ConclusionHasOperator : OperatorBase
 	/// Indicates the singleton instance.
 	/// </summary>
 	public static readonly ConclusionHasOperator Instance = new();
-
-
-	/// <summary>
-	/// Initializes a <see cref="ConclusionHasOperator"/> instance.
-	/// </summary>
-	private ConclusionHasOperator()
-	{
-	}
 
 
 	/// <inheritdoc/>

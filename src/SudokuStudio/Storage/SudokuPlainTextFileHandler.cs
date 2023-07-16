@@ -6,10 +6,6 @@ namespace SudokuStudio.Storage;
 /// <seealso cref="FileExtensions.PlainText"/>
 public sealed class SudokuPlainTextFileHandler : IProgramSupportedFileHandler<Grid>
 {
-	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
-	private SudokuPlainTextFileHandler() => throw new NotSupportedException();
-
-
 	/// <inheritdoc/>
 	public static string SupportedFileExtension => FileExtensions.PlainText;
 

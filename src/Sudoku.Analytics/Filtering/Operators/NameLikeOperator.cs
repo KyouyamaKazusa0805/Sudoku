@@ -12,14 +12,6 @@ public sealed class NameLikeOperator : OperatorBase
 	public static readonly NameLikeOperator Instance = new();
 
 
-	/// <summary>
-	/// Initializes a <see cref="NameLikeOperator"/> instance.
-	/// </summary>
-	private NameLikeOperator()
-	{
-	}
-
-
 	/// <inheritdoc/>
 	public override IEnumerable<string> Tags => new[] { "like" };
 

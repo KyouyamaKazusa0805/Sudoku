@@ -16,10 +16,6 @@ public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<
 	};
 
 
-	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
-	private ProgramPreferenceFileHandler() => throw new NotSupportedException();
-
-
 	/// <inheritdoc/>
 	public static string SupportedFileExtension => FileExtensions.UserPreference;
 

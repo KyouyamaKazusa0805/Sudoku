@@ -5,11 +5,6 @@ namespace Sudoku.Text.Formatting;
 /// </summary>
 public abstract class DigitMaskFormatter : ICollectionFormatter<Digit>
 {
-	/// <exception cref="NotSupportedException"/>
-	[Obsolete("Do not use this constructor", true)]
-	private protected DigitMaskFormatter() => throw new NotSupportedException();
-
-
 	/// <summary>
 	/// Gets a <see cref="string"/> value that can describes for a list of digits that is represented as a <see cref="Mask"/> mask.
 	/// </summary>

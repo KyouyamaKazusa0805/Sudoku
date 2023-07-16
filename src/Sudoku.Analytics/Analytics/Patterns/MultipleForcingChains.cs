@@ -112,19 +112,13 @@ public sealed partial class MultipleForcingChains :
 /// <summary>
 /// Defines a comparer that compares with inner key.
 /// </summary>
-file sealed class CellOrDigitComparer : IComparer<byte>
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
+file sealed class CellOrDigitComparer() : IComparer<byte>
 {
 	/// <summary>
 	/// Indicates the singleton instance.
 	/// </summary>
 	public static readonly CellOrDigitComparer Instance = new();
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private CellOrDigitComparer()
-	{
-	}
 
 
 	/// <inheritdoc/>

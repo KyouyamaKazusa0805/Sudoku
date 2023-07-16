@@ -17,14 +17,8 @@ namespace Sudoku.Text.Notations;
 /// <see href="http://sudopedia.enjoysudoku.com/Rncn.html">this link</see>.
 /// </para>
 /// </remarks>
-public sealed partial class RxCyNotation :
-	ICellNotation<RxCyNotation, RxCyNotationOptions>,
-	ICandidateNotation<RxCyNotation, RxCyNotationOptions>
+public sealed partial class RxCyNotation : ICellNotation<RxCyNotation, RxCyNotationOptions>, ICandidateNotation<RxCyNotation, RxCyNotationOptions>
 {
-	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
-	private RxCyNotation() => throw new NotSupportedException();
-
-
 	/// <inheritdoc/>
 	public static CellNotation CellNotation => CellNotation.RxCy;
 

@@ -1,4 +1,4 @@
-﻿namespace System.Text.Json;
+namespace System.Text.Json;
 
 /// <summary>
 /// Defines the pascal casing JSON naming policy.
@@ -9,14 +9,6 @@
 /// <seealso cref="PascalCase"/>
 public sealed class PascalCaseJsonNamingPolicy : JsonNamingPolicy
 {
-	/// <summary>
-	/// Initializes a <see cref="PascalCaseJsonNamingPolicy"/> instance.
-	/// </summary>
-	private PascalCaseJsonNamingPolicy()
-	{
-	}
-
-
 	/// <summary>
 	/// Gets the naming policy for pascal-casing.
 	/// </summary>

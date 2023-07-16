@@ -6,10 +6,6 @@ namespace SudokuStudio.Storage;
 /// <seealso cref="FileExtensions.GeneratingHistory"/>
 public sealed class PuzzleGeneratingHistoryFileHandler : IProgramSupportedFileHandler<PuzzleGenertingHistory>
 {
-	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
-	private PuzzleGeneratingHistoryFileHandler() => throw new NotSupportedException();
-
-
 	/// <inheritdoc/>
 	public static string SupportedFileExtension => FileExtensions.GeneratingHistory;
 

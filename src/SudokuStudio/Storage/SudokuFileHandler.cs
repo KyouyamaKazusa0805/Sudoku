@@ -12,10 +12,6 @@ public sealed class SudokuFileHandler : IProgramSupportedFileHandler<GridInfo[]>
 	private static readonly JsonSerializerOptions Options = new(CommonSerializerOptions.PascalCasing) { IgnoreReadOnlyProperties = false };
 
 
-	[Obsolete(DeprecatedConstructorsMessage.ConstructorIsMeaningless, false)]
-	private SudokuFileHandler() => throw new NotSupportedException();
-
-
 	/// <inheritdoc/>
 	public static string SupportedFileExtension => FileExtensions.Text;
 

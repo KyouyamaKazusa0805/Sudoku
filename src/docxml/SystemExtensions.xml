@@ -1361,11 +1361,6 @@
             </remarks>
             <seealso cref="P:System.Text.Json.PascalCaseJsonNamingPolicy.PascalCase"/>
         </member>
-        <member name="M:System.Text.Json.PascalCaseJsonNamingPolicy.#ctor">
-            <summary>
-            Initializes a <see cref="T:System.Text.Json.PascalCaseJsonNamingPolicy"/> instance.
-            </summary>
-        </member>
         <member name="P:System.Text.Json.PascalCaseJsonNamingPolicy.PascalCase">
             <summary>
             Gets the naming policy for pascal-casing.
