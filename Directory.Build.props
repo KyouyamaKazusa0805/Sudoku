@@ -27,6 +27,11 @@
 		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
 	</PropertyGroup>
 
+	<!--Enables for preview features-->
+	<PropertyGroup Condition="'$(TargetFramework.StartsWith(`netstandard`))'=='false'">
+		<Feature>InterceptorsPreview</Feature>
+	</PropertyGroup>
+
 	<!--Select the default configuration as 'DEBUG', and set the compilation symbols.-->
 	<Choose>
 		<When Condition="'$(Configuration)'==''">
