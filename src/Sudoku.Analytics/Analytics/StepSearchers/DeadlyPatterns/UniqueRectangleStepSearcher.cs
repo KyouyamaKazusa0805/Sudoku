@@ -4203,11 +4203,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							{
 								foreach (var digit in (Mask)(grid.GetCandidates(cell) & comparer))
 								{
-									if (elimMap.Contains(cell) && digit == guardianDigit)
-									{
-										continue;
-									}
-
 									candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 								}
 							}
