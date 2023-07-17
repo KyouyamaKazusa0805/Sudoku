@@ -8883,32 +8883,6 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.FullHouse"/>
             <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.NakedSingle"/>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage">
-            <summary>
-            Introduction page of technique <see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Techniques.Singles.FullHousePage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
             <summary>
             Provides with a <see cref="T:Microsoft.UI.Xaml.Window"/> instance that is running as main instance of the program.

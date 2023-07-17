@@ -166,9 +166,6 @@
 		<Page Update="Views\Pages\Settings\BasicPreferenceItemsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Views\Pages\Techniques\FullHousePage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
 		<Page Update="Views\Pages\Operation\AttributeCheckingOperation.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
