@@ -273,49 +273,30 @@
 				</w:SettingsGroup.Resources>
 				<w:SettingsExpander Header="{m:R Key=SettingsPage_StepDisplayItems}" Description="{m:R Key=SettingsPage_StepDisplayItemsDescription}">
 					<w:SettingsExpander.Items>
-						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
-							<ListView Margin="40,10" SelectionMode="None">
-								<ListViewItem>
-									<CheckBox
-										Content="{m:R Key=SettingsPage_StepDisplayItem_TechniqueName}"
-										IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
-											Mode=TwoWay,
-											Converter={StaticResource StepDisplayItemConverter},
-											ConverterParameter='TechniqueName'}" />
-								</ListViewItem>
-								<ListViewItem>
-									<CheckBox
-										Content="{m:R Key=SettingsPage_StepDisplayItem_TechniqueIndex}"
-										IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
-											Mode=TwoWay,
-											Converter={StaticResource StepDisplayItemConverter},
-											ConverterParameter='TechniqueIndex'}" />
-								</ListViewItem>
-								<ListViewItem>
-									<CheckBox
-										Content="{m:R Key=SettingsPage_StepDisplayItem_SimpleDescription}"
-										IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
-											Mode=TwoWay,
-											Converter={StaticResource StepDisplayItemConverter},
-											ConverterParameter='SimpleDescription'}" />
-								</ListViewItem>
-								<ListViewItem>
-									<CheckBox
-										Content="{m:R Key=SettingsPage_StepDisplayItem_DifficultyRating}"
-										IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
-											Mode=TwoWay,
-											Converter={StaticResource StepDisplayItemConverter},
-											ConverterParameter='DifficultyRating'}" />
-								</ListViewItem>
-								<ListViewItem>
-									<CheckBox
-										Content="{m:R Key=SettingsPage_StepDisplayItem_ExtraDifficultyCases}"
-										IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,
-											Mode=TwoWay,
-											Converter={StaticResource StepDisplayItemConverter},
-											ConverterParameter='ExtraDifficultyCases'}" />
-								</ListViewItem>
-							</ListView>
+						<w:SettingsCard ContentAlignment="Left">
+							<CheckBox
+								Content="{m:R Key=SettingsPage_StepDisplayItem_TechniqueName}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='TechniqueName'}" />
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left">
+							<CheckBox
+								Content="{m:R Key=SettingsPage_StepDisplayItem_TechniqueIndex}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='TechniqueIndex'}" />
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left">
+							<CheckBox
+								Content="{m:R Key=SettingsPage_StepDisplayItem_SimpleDescription}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='SimpleDescription'}" />
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left">
+							<CheckBox
+								Content="{m:R Key=SettingsPage_StepDisplayItem_DifficultyRating}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='DifficultyRating'}" />
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left">
+							<CheckBox
+								Content="{m:R Key=SettingsPage_StepDisplayItem_ExtraDifficultyCases}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='ExtraDifficultyCases'}" />
 						</w:SettingsCard>
 					</w:SettingsExpander.Items>
 				</w:SettingsExpander>
