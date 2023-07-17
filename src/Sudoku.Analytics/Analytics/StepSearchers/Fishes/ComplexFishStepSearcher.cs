@@ -77,13 +77,12 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		var tempList = new List<ComplexFishStep>();
 		for (var digit = 0; digit < 9; digit++)
 		{
-			if (pomElims[digit] is var pomElimsOfThisDigit and not [])
+			scoped ref readonly var pomElimsOfThisDigit = ref pomElims[digit];
+
+			// Create a background thread to work on searching for fishes of this digit.
+			if (pomElimsOfThisDigit is not [] && Collect(tempList, tempGrid, pomElimsOfThisDigit, digit, context.OnlyFindOne) is { } step)
 			{
-				// Create a background thread to work on searching for fishes of this digit.
-				if (Collect(tempList, tempGrid, pomElimsOfThisDigit, digit, context.OnlyFindOne) is { } step)
-				{
-					return step;
-				}
+				return step;
 			}
 		}
 
