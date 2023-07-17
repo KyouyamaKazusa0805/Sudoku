@@ -31,7 +31,7 @@ partial struct StringHandler
 		/// Initializes an instance with the specified character list specified as a <see cref="Span{T}"/>.
 		/// </summary>
 		/// <param name="chars">The characters.</param>
-		/// <exception cref="NullReferenceException">
+		/// <exception cref="ArgumentNullRefException">
 		/// Throws when the field <see cref="_chars"/> in argument <paramref name="chars"/>
 		/// is a <see langword="null"/> reference after having been invoked <see cref="Span{T}.GetPinnableReference()"/>.
 		/// </exception>
@@ -44,10 +44,7 @@ partial struct StringHandler
 			_index = -1;
 
 			ref var z = ref chars._chars.GetPinnableReference();
-			if (IsNullRef(ref z))
-			{
-				throw new NullReferenceException("The character block references to null.");
-			}
+			ArgumentNullRefException.ThrowIfNullRef(ref z);
 
 			_ptr = ref SubtractByteOffset(ref z, 1);
 		}

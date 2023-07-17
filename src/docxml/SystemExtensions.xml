@@ -2332,7 +2332,7 @@ fixed (short* ptr = instance)
             Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
             </summary>
             <param name="chars">The characters.</param>
-            <exception cref="T:System.NullReferenceException">
+            <exception cref="T:System.ArgumentNullRefException">
             Throws when the field <see cref="F:System.Text.StringHandler._chars"/> in argument <paramref name="chars"/>
             is a <see langword="null"/> reference after having been invoked <see cref="M:System.Span`1.GetPinnableReference"/>.
             </exception>
