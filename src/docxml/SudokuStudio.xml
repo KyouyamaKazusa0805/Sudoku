@@ -1210,6 +1210,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBePearl"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AutoCachePuzzleAndViewProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AutoCachePuzzleAndView"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AutoCachePuzzleAndView"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScaleProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale"/>.
@@ -1548,6 +1554,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBePearl">
             <summary>
             Indicates whether the generated puzzles should be pearl.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AutoCachePuzzleAndView">
+            <summary>
+            Indicates whether the last puzzle and its views should be cached to local path, in order to recover them after you re-start or launch the program.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale">
@@ -4933,6 +4944,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Assignments.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AutoCachePuzzleAndViews">
+            <summary>
+              Looks up a localized string similar to Cache puzzle and view.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AutoCachePuzzleAndViewsDescription">
+            <summary>
+              Looks up a localized string similar to This option will control the behavior of caching puzzles after you switched pages or closed the program. If the program is re-started, launched and analyzer page is displayed, this option will control whether the last puzzle and views should be displayed. This option can fast recover the analyzing environment..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AuxiliaryColors">
             <summary>
               Looks up a localized string similar to Auxiliary colors.
@@ -7645,6 +7666,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._navigatingData">
             <summary>
             The navigating data.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._isFirstLaunched">
+            <summary>
+            Indicates whether the current page is launched for the first time. This value is <see langword="false"/> after switching pages.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.#ctor">

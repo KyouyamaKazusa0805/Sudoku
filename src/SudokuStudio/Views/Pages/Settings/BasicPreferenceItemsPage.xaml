@@ -93,6 +93,11 @@
 						Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DesiredPictureSizeOnSaving,Mode=TwoWay}"
 						Minimum="500" Maximum="2000" SmallChange="10" LargeChange="50" />
 				</w:SettingsCard>
+				<w:SettingsCard
+					Header="{m:R Key=SettingsPage_AutoCachePuzzleAndViews}"
+					Description="{m:R Key=SettingsPage_AutoCachePuzzleAndViewsDescription}">
+					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AutoCachePuzzleAndView,Mode=TwoWay}" />
+				</w:SettingsCard>
 			</w:SettingsGroup>
 		</StackPanel>
 	</ScrollViewer>

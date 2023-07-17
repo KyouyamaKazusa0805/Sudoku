@@ -547,12 +547,14 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		pane.UpdateViewUnit(rawValue as ViewUnitBindableSource);
 
+		// Set as cached values.
+		// No matter whether the option 'AutoCachePuzzleAndView' is true or not,
+		// here we should save them because in a same program thread we may use the values to recover it.
 		((App)Application.Current).Preference.UIPreferences.LastGridPuzzle = pane.Puzzle;
-		((App)Application.Current).Preference.UIPreferences.LastRenderable = rawValue switch
-		{
-			ViewUnitBindableSource { View: var view, Conclusions: var conclusions } => new() { Conclusions = conclusions, Views = new[] { view } },
-			_ => null
-		};
+		((App)Application.Current).Preference.UIPreferences.LastRenderable =
+			rawValue is ViewUnitBindableSource { View: var view, Conclusions: var conclusions }
+				? new() { Conclusions = conclusions, Views = new[] { view } }
+				: null;
 	}
 
 	[Callback]

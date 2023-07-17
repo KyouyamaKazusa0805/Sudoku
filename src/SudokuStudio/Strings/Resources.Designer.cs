@@ -2122,6 +2122,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cache puzzle and view.
+        /// </summary>
+        internal static string SettingsPage_AutoCachePuzzleAndViews {
+            get {
+                return ResourceManager.GetString("SettingsPage_AutoCachePuzzleAndViews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This option will control the behavior of caching puzzles after you switched pages or closed the program. If the program is re-started, launched and analyzer page is displayed, this option will control whether the last puzzle and views should be displayed. This option can fast recover the analyzing environment..
+        /// </summary>
+        internal static string SettingsPage_AutoCachePuzzleAndViewsDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_AutoCachePuzzleAndViewsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auxiliary colors.
         /// </summary>
         internal static string SettingsPage_AuxiliaryColors {

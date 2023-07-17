@@ -744,6 +744,12 @@
   <data name="SettingsPage_AssignmentColor" xml:space="preserve">
     <value>出数</value>
   </data>
+  <data name="SettingsPage_AutoCachePuzzleAndViews" xml:space="preserve">
+    <value>自动缓存题目及视图</value>
+  </data>
+  <data name="SettingsPage_AutoCachePuzzleAndViewsDescription" xml:space="preserve">
+    <value>该选项控制程序保存题目和视图。当你重新启动程序、打开程序，并切换到分析页面的时候，该选项控制是否上一次分析的题目以及显示的视图是否需要恢复出来。该选项可以很快恢复上一次的分析环境。</value>
+  </data>
   <data name="SettingsPage_AuxiliaryColors" xml:space="preserve">
     <value>辅助配色</value>
   </data>

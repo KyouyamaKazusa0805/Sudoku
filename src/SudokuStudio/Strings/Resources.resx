@@ -741,6 +741,12 @@
   <data name="SettingsPage_AssignmentColor" xml:space="preserve">
     <value>Assignments</value>
   </data>
+  <data name="SettingsPage_AutoCachePuzzleAndViews" xml:space="preserve">
+    <value>Cache puzzle and view</value>
+  </data>
+  <data name="SettingsPage_AutoCachePuzzleAndViewsDescription" xml:space="preserve">
+    <value>This option will control the behavior of caching puzzles after you switched pages or closed the program. If the program is re-started, launched and analyzer page is displayed, this option will control whether the last puzzle and views should be displayed. This option can fast recover the analyzing environment.</value>
+  </data>
   <data name="SettingsPage_AuxiliaryColors" xml:space="preserve">
     <value>Auxiliary colors</value>
   </data>
