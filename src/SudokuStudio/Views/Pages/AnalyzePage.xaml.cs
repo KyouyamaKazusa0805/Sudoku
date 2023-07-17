@@ -1285,25 +1285,18 @@ public sealed partial class AnalyzePage : Page
 	private void Page_Loaded(object sender, RoutedEventArgs e)
 	{
 		// This method is created to solve the problem that WinUI cannot cache navigation view pages due to internal error.
-		var autoCaching = ((App)Application.Current).Preference.UIPreferences.AutoCachePuzzleAndView;
-		if (autoCaching)
-		{
-			setCachedValues(this);
-		}
-		else
-		{
-			_ = _isFirstLaunched ? (_isFirstLaunched = false) : setCachedValues(this);
-		}
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool setCachedValues(AnalyzePage @this)
+		if (((App)Application.Current).Preference.UIPreferences.AutoCachePuzzleAndView || !_isFirstLaunched)
 		{
 			var pref = ((App)Application.Current).Preference.UIPreferences;
 
-			@this.SudokuPane.Puzzle = pref.LastGridPuzzle;
-			@this.SudokuPane.ViewUnit = pref.LastRenderable is ({ } conclusions, [var view, ..]) ? new() { Conclusions = conclusions, View = view } : null;
-			return true;
+			SudokuPane.Puzzle = pref.LastGridPuzzle;
+			SudokuPane.ViewUnit = pref.LastRenderable is ({ } conclusions, [var view, ..])
+				? new() { Conclusions = conclusions, View = view }
+				: null;
+		}
+		else if (_isFirstLaunched)
+		{
+			_isFirstLaunched = false;
 		}
 	}
 }
