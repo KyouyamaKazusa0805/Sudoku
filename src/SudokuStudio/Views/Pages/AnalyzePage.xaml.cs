@@ -1285,7 +1285,7 @@ public sealed partial class AnalyzePage : Page
 	private void Page_Loaded(object sender, RoutedEventArgs e)
 	{
 		// This method is created to solve the problem that WinUI cannot cache navigation view pages due to internal error.
-		if (((App)Application.Current).Preference.UIPreferences.AutoCachePuzzleAndView || !_isFirstLaunched)
+		if (((App)Application.Current).Preference.UIPreferences.AutoCachePuzzleAndView && !_isFirstLaunched)
 		{
 			var pref = ((App)Application.Current).Preference.UIPreferences;
 
