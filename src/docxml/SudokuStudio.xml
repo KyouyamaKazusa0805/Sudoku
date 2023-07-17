@@ -3079,6 +3079,16 @@ if (student is (name: var name, age: >= 18))
             Indicates the extra difficulty cases.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayItems.Abbreviation">
+            <summary>
+            Indicates the abbreviation.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.StepTooltipDisplayItems.Aliases">
+            <summary>
+            Indicates the aliases.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.SudokuFormatFlags">
             <summary>
             Represents a format flag.
@@ -4017,6 +4027,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques">
             <summary>
               Looks up a localized string similar to Techniques supported.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_Abbreviation">
+            <summary>
+              Looks up a localized string similar to Abbreviation:.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_Aliases">
+            <summary>
+              Looks up a localized string similar to Aliases:.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_AllStepsInCurrentGrid">
@@ -5374,6 +5394,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SinglesGroup">
             <summary>
               Looks up a localized string similar to Singles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_StepDisplayItem_Abbreviation">
+            <summary>
+              Looks up a localized string similar to Abbreviation of technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_StepDisplayItem_Aliases">
+            <summary>
+              Looks up a localized string similar to Aliases of technique.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_StepDisplayItem_DifficultyRating">

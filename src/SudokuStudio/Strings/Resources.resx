@@ -186,6 +186,12 @@
   <data name="AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques" xml:space="preserve">
     <value>Techniques supported</value>
   </data>
+  <data name="AnalyzePage_Abbreviation" xml:space="preserve">
+    <value>Abbreviation:</value>
+  </data>
+  <data name="AnalyzePage_Aliases" xml:space="preserve">
+    <value>Aliases:</value>
+  </data>
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>All Available Steps</value>
   </data>
@@ -1006,6 +1012,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_StepDisplayItemsDescription" xml:space="preserve">
     <value>This option controls the tooltip content when you put your cursor onto a technique step.</value>
+  </data>
+  <data name="SettingsPage_StepDisplayItem_Abbreviation" xml:space="preserve">
+    <value>Abbreviation of technique</value>
+  </data>
+  <data name="SettingsPage_StepDisplayItem_Aliases" xml:space="preserve">
+    <value>Aliases of technique</value>
   </data>
   <data name="SettingsPage_StepDisplayItem_DifficultyRating" xml:space="preserve">
     <value>Difficulty rating</value>

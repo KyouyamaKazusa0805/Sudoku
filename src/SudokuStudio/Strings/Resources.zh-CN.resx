@@ -186,6 +186,12 @@
   <data name="AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques" xml:space="preserve">
     <value>支持分析的技巧</value>
   </data>
+  <data name="AnalyzePage_Abbreviation" xml:space="preserve">
+    <value>缩写：</value>
+  </data>
+  <data name="AnalyzePage_Aliases" xml:space="preserve">
+    <value>别名：</value>
+  </data>
   <data name="AnalyzePage_AllStepsInCurrentGrid" xml:space="preserve">
     <value>所有可用步骤</value>
   </data>
@@ -1009,6 +1015,12 @@
   </data>
   <data name="SettingsPage_StepDisplayItemsDescription" xml:space="preserve">
     <value>该项控制的是你在鼠标悬停在某一个技巧步骤之上时，看到的提示文字的显示内容。</value>
+  </data>
+  <data name="SettingsPage_StepDisplayItem_Abbreviation" xml:space="preserve">
+    <value>技巧缩写</value>
+  </data>
+  <data name="SettingsPage_StepDisplayItem_Aliases" xml:space="preserve">
+    <value>技巧别名</value>
   </data>
   <data name="SettingsPage_StepDisplayItem_DifficultyRating" xml:space="preserve">
     <value>难度系数</value>

@@ -52,7 +52,14 @@ internal static class AnalyzeConversion
 			{
 				Index: var index,
 				DisplayItems: var displayKind,
-				Step: { Name: var name, BaseDifficulty: var baseDifficulty, Difficulty: var difficulty, ExtraDifficultyCases: var cases } step
+				Step:
+				{
+					Name: var name,
+					Code: var technique,
+					BaseDifficulty: var baseDifficulty,
+					Difficulty: var difficulty,
+					ExtraDifficultyCases: var cases
+				} step
 			})
 		{
 			throw new ArgumentException($"The argument '{nameof(s)}' is invalid.", nameof(s));
@@ -74,6 +81,31 @@ internal static class AnalyzeConversion
 			result.Add(new Run { Text = GetString("AnalyzePage_TechniqueIndex") }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(new Run { Text = (index + 1).ToString() });
+		}
+
+		if (displayKind.Flags(StepTooltipDisplayItems.Abbreviation))
+		{
+			appendEmptyLinesIfNeed();
+
+			result.Add(new Run { Text = GetString("AnalyzePage_Abbreviation") }.SingletonSpan<Bold>());
+			result.Add(new LineBreak());
+			result.Add(new Run { Text = technique.GetAbbreviation() ?? GetString("AnalyzePage_None") });
+		}
+
+		if (displayKind.Flags(StepTooltipDisplayItems.Aliases))
+		{
+			appendEmptyLinesIfNeed();
+
+			result.Add(new Run { Text = GetString("AnalyzePage_Aliases") }.SingletonSpan<Bold>());
+			result.Add(new LineBreak());
+			result.Add(
+				new Run
+				{
+					Text = technique.GetAliases() is { } aliases and not []
+						? string.Join(GetString("_Token_Comma"), aliases)
+						: GetString("AnalyzePage_None")
+				}
+			);
 		}
 
 		if (displayKind.Flags(StepTooltipDisplayItems.DifficultyRating))

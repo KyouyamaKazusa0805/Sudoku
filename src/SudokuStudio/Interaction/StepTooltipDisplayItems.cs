@@ -34,5 +34,15 @@ public enum StepTooltipDisplayItems
 	/// <summary>
 	/// Indicates the extra difficulty cases.
 	/// </summary>
-	ExtraDifficultyCases = 1 << 4
+	ExtraDifficultyCases = 1 << 4,
+
+	/// <summary>
+	/// Indicates the abbreviation.
+	/// </summary>
+	Abbreviation = 1 << 5,
+
+	/// <summary>
+	/// Indicates the aliases.
+	/// </summary>
+	Aliases = 1 << 6
 }

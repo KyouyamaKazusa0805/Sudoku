@@ -285,6 +285,16 @@
 						</w:SettingsCard>
 						<w:SettingsCard ContentAlignment="Left">
 							<CheckBox
+								Content="{m:R Key=SettingsPage_StepDisplayItem_Abbreviation}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='Abbreviation'}" />
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left">
+							<CheckBox
+								Content="{m:R Key=SettingsPage_StepDisplayItem_Aliases}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='Aliases'}" />
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left">
+							<CheckBox
 								Content="{m:R Key=SettingsPage_StepDisplayItem_SimpleDescription}"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='SimpleDescription'}" />
 						</w:SettingsCard>

@@ -457,6 +457,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abbreviation:.
+        /// </summary>
+        internal static string AnalyzePage_Abbreviation {
+            get {
+                return ResourceManager.GetString("AnalyzePage_Abbreviation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aliases:.
+        /// </summary>
+        internal static string AnalyzePage_Aliases {
+            get {
+                return ResourceManager.GetString("AnalyzePage_Aliases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Available Steps.
         /// </summary>
         internal static string AnalyzePage_AllStepsInCurrentGrid {
@@ -2894,6 +2912,24 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_SinglesGroup {
             get {
                 return ResourceManager.GetString("SettingsPage_SinglesGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbreviation of technique.
+        /// </summary>
+        internal static string SettingsPage_StepDisplayItem_Abbreviation {
+            get {
+                return ResourceManager.GetString("SettingsPage_StepDisplayItem_Abbreviation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aliases of technique.
+        /// </summary>
+        internal static string SettingsPage_StepDisplayItem_Aliases {
+            get {
+                return ResourceManager.GetString("SettingsPage_StepDisplayItem_Aliases", resourceCulture);
             }
         }
         
