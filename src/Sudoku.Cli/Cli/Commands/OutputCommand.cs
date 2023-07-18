@@ -47,7 +47,11 @@ public sealed class OutputCommand : Command, ICommand<OutputCommand>
 				}
 				case ".jpg" or ".jpeg" or ".png" or ".bmp" or ".gif" or ".wmf":
 				{
-					ISudokuPainter.Create(1000, 20).WithGrid(grid).SaveTo(path);
+					ISudokuPainter.Create(1000, 20)
+						.WithGrid(grid)
+						.WithFontScale(1, .4M)
+						.SaveTo(path);
+
 					break;
 				}
 				case var extension:
