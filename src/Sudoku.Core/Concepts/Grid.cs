@@ -81,8 +81,11 @@ public unsafe partial struct Grid :
 	public static readonly Grid Empty;
 
 	/// <summary>
-	/// Indicates the default grid that all values are initialized 0.
+	/// Indicates the default grid that all values are initialized 0. This value is equivalent to <see langword="default"/>(<see cref="Grid"/>).
 	/// </summary>
+	/// <remarks>
+	/// This value can be used for non-candidate-based sudoku operations, e.g. a sudoku grid canvas.
+	/// </remarks>
 	public static readonly Grid Undefined;
 
 	/// <summary>
@@ -187,7 +190,7 @@ public unsafe partial struct Grid :
 		RefreshingCandidates = &onRefreshingCandidates;
 
 		// Initializes special fields.
-		Undefined = default; // This field must be initialized after parsing the following two special fields.
+		Undefined = default;
 
 
 		static void onRefreshingCandidates(scoped ref Grid @this)

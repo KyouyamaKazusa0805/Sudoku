@@ -2782,8 +2782,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Concepts.Grid.Undefined">
             <summary>
-            Indicates the default grid that all values are initialized 0.
+            Indicates the default grid that all values are initialized 0. This value is equivalent to <see langword="default"/>(<see cref="T:Sudoku.Concepts.Grid"/>).
             </summary>
+            <remarks>
+            This value can be used for non-candidate-based sudoku operations, e.g. a sudoku grid canvas.
+            </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.BackingSolver">
             <summary>
