@@ -3543,6 +3543,23 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Grid.System#IParsable{Sudoku#Concepts#Grid}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.op_Explicit(System.Int16[])~Sudoku.Concepts.Grid">
+            <summary>
+            Converts the specified array elements into the target <see cref="T:Sudoku.Concepts.Grid"/> instance, without any value boundary checking.
+            </summary>
+            <param name="maskArray">An array of the target mask. The array must be of length 81.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.op_CheckedExplicit(System.Int16[])~Sudoku.Concepts.Grid">
+            <summary>
+            Converts the specified array elements into the target <see cref="T:Sudoku.Concepts.Grid"/> instance, with value boundary checking.
+            </summary>
+            <param name="maskArray">
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.op_Explicit(System.Int16[])~Sudoku.Concepts.Grid" path="/param[@name='maskArray']"/>
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Throws when at least one element in the mask array is greater than 0b100__111_111_111 (i.e. 2559) or less than 0.
+            </exception>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.op_Explicit(System.String)~Sudoku.Concepts.Grid">
             <summary>
             Implicit cast from <see cref="T:System.String"/> code to its equivalent <see cref="T:Sudoku.Concepts.Grid"/> instance representation.

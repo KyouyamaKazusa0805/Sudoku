@@ -1506,15 +1506,7 @@ public unsafe partial struct Grid :
 	/// <param name="masks">The masks.</param>
 	/// <exception cref="ArgumentException">Throws when <see cref="Array.Length"/> is not 81.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Create(Mask[] masks)
-	{
-		Argument.ThrowIfNotEqual(masks.Length, 81, nameof(masks));
-
-		var result = Empty;
-		CopyBlock(ref AsByteRef(ref result[0]), ref AsByteRef(ref masks[0]), sizeof(Mask) * 81);
-
-		return result;
-	}
+	public static Grid Create(Mask[] masks) => checked((Grid)masks);
 
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance via the array of cell digits
@@ -1523,8 +1515,7 @@ public unsafe partial struct Grid :
 	/// <param name="gridValues">The list of cell digits.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Create(scoped ReadOnlySpan<Digit> gridValues, GridCreatingOption creatingOption = 0)
-		=> new(gridValues[0], creatingOption);
+	public static Grid Create(scoped ReadOnlySpan<Digit> gridValues, GridCreatingOption creatingOption = 0) => new(gridValues[0], creatingOption);
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -1664,6 +1655,43 @@ public unsafe partial struct Grid :
 		return s is not null && TryParse(s, out result);
 	}
 
+
+	/// <summary>
+	/// Converts the specified array elements into the target <see cref="Grid"/> instance, without any value boundary checking.
+	/// </summary>
+	/// <param name="maskArray">An array of the target mask. The array must be of length 81.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator Grid(Mask[] maskArray)
+	{
+		var result = Empty;
+		CopyBlock(ref AsByteRef(ref result[0]), ref AsByteRef(ref maskArray[0]), (uint)(sizeof(Mask) * maskArray.Length));
+
+		return result;
+	}
+
+	/// <summary>
+	/// Converts the specified array elements into the target <see cref="Grid"/> instance, with value boundary checking.
+	/// </summary>
+	/// <param name="maskArray">
+	/// <inheritdoc cref="op_Explicit(Mask[])" path="/param[@name='maskArray']"/>
+	/// </param>
+	/// <exception cref="ArgumentException">
+	/// Throws when at least one element in the mask array is greater than 0b100__111_111_111 (i.e. 2559) or less than 0.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator checked Grid(Mask[] maskArray)
+	{
+		Argument.ThrowIfNotEqual(maskArray.Length, 81, nameof(maskArray));
+		Argument.ThrowIfFalse(Array.TrueForAll(maskArray, maskMatcher), "Each element in this array must contain a valid cell status.");
+
+		var result = Empty;
+		CopyBlock(ref AsByteRef(ref result[0]), ref AsByteRef(ref maskArray[0]), sizeof(Mask) * 81);
+
+		return result;
+
+
+		static bool maskMatcher(Mask element) => element >> 9 is 0 or 1 or 2 or 4;
+	}
 
 	/// <summary>
 	/// Implicit cast from <see cref="string"/> code to its equivalent <see cref="Grid"/> instance representation.
