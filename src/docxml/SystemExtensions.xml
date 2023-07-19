@@ -239,52 +239,6 @@
             <exception cref="T:System.ArgumentNullRefException">Throws when <paramref name="argument"/> is <see langword="null"/>.</exception>
             <seealso cref="M:System.Runtime.CompilerServices.Unsafe.IsNullRef``1(``0@)"/>
         </member>
-        <member name="T:System.Casing">
-            <summary>
-            Provides a set of methods that handles for a <see cref="T:System.String"/>, to convert the value
-            into the specified case.
-            </summary>
-        </member>
-        <member name="M:System.Casing.IsValidIdentifier(System.String)">
-            <summary>
-            Checks whether the specified string value is a valid identifier name.
-            </summary>
-            <param name="str">The string to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Casing.ToCamelCase(System.String)">
-            <summary>
-            Converts the current string identifier into the camel-casing (like <c>camelCasingVariable</c>).
-            If the first character is the underscore, the return value will remove the underscore,
-            and treat the last characters as the identifier and converts into the camel-casing.
-            </summary>
-            <param name="str">The string to convert.</param>
-            <returns>The result string.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="str"/> is not an identifier.
-            </exception>
-        </member>
-        <member name="M:System.Casing.ToPascalCase(System.String)">
-            <summary>
-            Converts the current string identifier into the pascal-casing (like <c>PascalCasingVariable</c>).
-            If the first character is the underscore, the return value will remove the underscore,
-            and treat the last characters as the identifier and converts into the pascal-casing.
-            </summary>
-            <param name="str">The string to convert.</param>
-            <returns>The result string.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="str"/> is not an identifier.
-            </exception>
-        </member>
-        <member name="M:System.Casing.Utf8IdentifierPattern">
-            <remarks>
-            Pattern explanation:<br/>
-            <code>
-            ○ Match a character in the set [A-Z_a-z].<br/>
-            ○ Match a word character atomically any number of times.<br/>
-            </code>
-            </remarks>
-        </member>
         <member name="T:System.Collections.Generic.ArrayPairEnumerator`3">
             <summary>
             Defines an enumerator that iterates on elements, combined with two adjacent elements.
@@ -1435,73 +1389,32 @@
             <param name="selector">The selector that is used for conversion.</param>
             <returns>The array of target result elements.</returns>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Utf8IdentifierPattern_0">
-            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the Utf8IdentifierPattern method.</summary>
-        </member>
-        <member name="F:System.Text.RegularExpressions.Generated.Utf8IdentifierPattern_0.Instance">
-            <summary>Cached, thread-safe singleton instance.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utf8IdentifierPattern_0.#ctor">
-            <summary>Initializes the instance.</summary>
-        </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Utf8IdentifierPattern_0.RunnerFactory">
-            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utf8IdentifierPattern_0.RunnerFactory.CreateInstance">
-            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
-        </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Utf8IdentifierPattern_0.RunnerFactory.Runner">
-            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utf8IdentifierPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
-            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
-            <param name="inputSpan">The text being scanned by the regular expression.</param>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utf8IdentifierPattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
-            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
-            <param name="inputSpan">The text being scanned by the regular expression.</param>
-            <returns>true if a possible match was found; false if no more matches are possible.</returns>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utf8IdentifierPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
-            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
-            <param name="inputSpan">The text being scanned by the regular expression.</param>
-            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
-        </member>
-        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1">
+        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the NullLinesOrHeaderSpacesPattern method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_1.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
-        </member>
-        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
-            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IsWordChar(System.Char)">
-            <summary>Determines whether the character is part of the [\w] set.</summary>
-        </member>
-        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_ascii_FEFFFF87FEFFFF07">
-            <summary>Supports searching for characters in or not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz".</summary>
         </member>
         <member name="T:System.Text.StringHandler">
             <summary>
