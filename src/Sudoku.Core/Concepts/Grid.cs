@@ -5,7 +5,12 @@ namespace Sudoku.Concepts;
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
 /// <remarks>
-/// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
+/// <para><include file="../../global-doc-comments.xml" path="/g/large-structure"/></para>
+/// <para>
+/// Begin with C# 12, we can use feature "Inline Arrays" to access internal masks as raw values via indexers.
+/// For example, You can use <c>grid[cellIndex]</c> to get the raw mask at the index <c>cellIndex</c>, whose value is between 0 and 81
+/// (include 0 but not include 81).
+/// </para>
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
