@@ -5,7 +5,11 @@ VisualStudioVersion = 17.0.31410.414
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5A289988-A100-41DA-B297-F4A3DE001B78}"
 	ProjectSection(SolutionItems) = preProject
-		NuGet.config = NuGet.config
+		.editorconfig = .editorconfig
+		.filenesting.json = .filenesting.json
+		Directory.Build.props = Directory.Build.props
+		README-zh-cn.md = README-zh-cn.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Core", "src\Sudoku.Core\Sudoku.Core.csproj", "{FCD247BE-77B3-4091-BDB5-1EEB768938B7}"
@@ -23,12 +27,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code of Conduct", "Code of 
 		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReadMe", "ReadMe", "{382A5CF3-4638-4AEE-B0E3-36483B71924D}"
-	ProjectSection(SolutionItems) = preProject
-		README-zh-cn.md = README-zh-cn.md
-		README.md = README.md
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Recognition", "src\Sudoku.Recognition\Sudoku.Recognition.csproj", "{F58C1FEB-CA1A-4D70-82D5-6B5CC257F379}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contacts", "Contacts", "{18A31D32-6FC6-4380-891E-F783C04BF2CD}"
@@ -41,15 +39,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Gdip", "src\Sudoku.G
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Analytics", "src\Sudoku.Analytics\Sudoku.Analytics.csproj", "{D188748E-0794-445F-AAE5-08F3874FDF26}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution-wide Code Configuration", "Solution-wide Code Configuration", "{B33F37B0-E19F-4CD2-993A-94C4571248AD}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		.filenesting.json = .filenesting.json
-		Directory.Build.props = Directory.Build.props
-		global-doc-comments.xml = global-doc-comments.xml
-		misspelling-exclusion.dic = misspelling-exclusion.dic
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Rendering", "src\Sudoku.Rendering\Sudoku.Rendering.csproj", "{8B2F4BE6-A6CC-4262-B162-05D399244F72}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SudokuTutorial", "src\SudokuTutorial\SudokuTutorial.shproj", "{597D5691-2E11-43C7-AE3B-826E979450DA}"
@@ -61,6 +50,13 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuStudio", "src\SudokuStudio\SudokuStudio.csproj", "{88EAFE6C-050B-4F43-B768-0C564D48CC3E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Cli", "src\Sudoku.Cli\Sudoku.Cli.csproj", "{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Miscellaneous", "Miscellaneous", "{984A4BA8-BFA8-40DE-9C1E-E9FE2D765282}"
+	ProjectSection(SolutionItems) = preProject
+		global-doc-comments.xml = global-doc-comments.xml
+		misspelling-exclusion.dic = misspelling-exclusion.dic
+		NuGet.config = NuGet.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -403,14 +399,13 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{84B6F2B7-13D6-496B-8CAF-608E0CC0DEA0} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 		{B3EAA001-CAD9-46DA-B0FA-62B64007EA39} = {5A289988-A100-41DA-B297-F4A3DE001B78}
-		{382A5CF3-4638-4AEE-B0E3-36483B71924D} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 		{18A31D32-6FC6-4380-891E-F783C04BF2CD} = {5A289988-A100-41DA-B297-F4A3DE001B78}
-		{B33F37B0-E19F-4CD2-993A-94C4571248AD} = {5A289988-A100-41DA-B297-F4A3DE001B78}
+		{984A4BA8-BFA8-40DE-9C1E-E9FE2D765282} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		RESX_ShowErrorsInErrorList = False
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\SudokuTutorial\SudokuTutorial.projitems*{597d5691-2e11-43c7-ae3b-826e979450da}*SharedItemsImports = 13
