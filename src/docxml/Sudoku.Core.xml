@@ -3047,6 +3047,28 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="T:Sudoku.Algorithm.Solving.BacktrackingSolver"/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.Item(System.Int32[])">
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Creates a mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9,
+            ranged in a specified list of cells in the current sudoku grid.
+            </summary>
+            <param name="cells">The list of cells to gather the usages on all digits.</param>
+            <returns>A mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9.</returns>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@,System.Boolean)">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/summary"/>
+            </summary>
+            <param name="cells"><inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/param[@name='cells']"/></param>
+            <param name="withValueCells">
+            Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
+            If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
+            </param>
+            <returns><inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/returns"/></returns>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)">
             <summary>
             Determine whether the specified <see cref="T:Sudoku.Concepts.Grid"/> instance hold the same values as the current instance.
@@ -3210,28 +3232,6 @@ if (student is (name: var name, age: >= 18))
             the value will indicate the cell contains the digit 2, 4 and 9.
             </para>
             </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.GetDigitsUnion(System.Int32[])">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.GetDigitsUnion(Sudoku.Concepts.CellMap@)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.GetDigitsUnion(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Creates a mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9,
-            ranged in a specified list of cells in the current sudoku grid.
-            </summary>
-            <param name="cells">The list of cells to gather the usages on all digits.</param>
-            <returns>A mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.GetDigitsUnion(Sudoku.Concepts.CellMap@,System.Boolean)">
-            <summary>
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.GetDigitsUnion(Sudoku.Concepts.CellMap@)" path="/summary"/>
-            </summary>
-            <param name="cells"><inheritdoc cref="M:Sudoku.Concepts.Grid.GetDigitsUnion(Sudoku.Concepts.CellMap@)" path="/param[@name='cells']"/></param>
-            <param name="withValueCells">
-            Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
-            If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
-            </param>
-            <returns><inheritdoc cref="M:Sudoku.Concepts.Grid.GetDigitsUnion(Sudoku.Concepts.CellMap@)" path="/returns"/></returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetDigitsIntersection(Sudoku.Concepts.CellMap@)">
             <summary>

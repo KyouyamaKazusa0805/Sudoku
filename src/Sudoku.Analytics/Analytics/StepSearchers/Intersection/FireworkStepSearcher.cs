@@ -107,7 +107,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			}
 
 			// Checks for the number of kinds of digits in three cells.
-			var digitsMask = grid.GetDigitsUnion(pattern.Map);
+			var digitsMask = grid[pattern.Map];
 			if (PopCount((uint)digitsMask) < 3)
 			{
 				continue;
@@ -397,7 +397,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			return null;
 		}
 
-		var digitsMask = grid.GetDigitsUnion(map);
+		var digitsMask = grid[map];
 		if (PopCount((uint)digitsMask) < 4)
 		{
 			return null;
@@ -588,7 +588,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		var excluded1 = HousesMap[(CellsMap[c1] + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c1;
 		var excluded2 = HousesMap[(CellsMap[c2] + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c2;
 		var finalMask = (Mask)0;
-		foreach (var digit in grid.GetDigitsUnion(CellsMap[c1] + c2 + pivot))
+		foreach (var digit in grid[CellsMap[c1] + c2 + pivot])
 		{
 			if (isFireworkFor(digit, excluded1, grid) && isFireworkFor(digit, excluded2, grid))
 			{

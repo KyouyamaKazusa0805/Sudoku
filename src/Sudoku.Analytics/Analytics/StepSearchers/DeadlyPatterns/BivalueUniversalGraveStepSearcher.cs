@@ -306,7 +306,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			{
 				foreach (var cells in otherCellsMap & size)
 				{
-					var mask = (Mask)(digitsMask | grid.GetDigitsUnion(cells));
+					var mask = (Mask)(digitsMask | grid[cells]);
 					if (PopCount((uint)mask) != size + 1)
 					{
 						continue;

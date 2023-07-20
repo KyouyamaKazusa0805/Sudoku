@@ -523,6 +523,68 @@ public unsafe partial struct Grid :
 	static Grid IMinMaxValue<Grid>.MaxValue => (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
 
 
+	/// <inheritdoc cref="this[in CellMap]"/>
+	public readonly Mask this[Cell[] cells]
+	{
+		get
+		{
+			var result = (Mask)0;
+			foreach (var cell in cells)
+			{
+				result |= this[cell];
+			}
+
+			return (Mask)(result & MaxCandidatesMask);
+		}
+	}
+
+	/// <summary>
+	/// Creates a mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9,
+	/// ranged in a specified list of cells in the current sudoku grid.
+	/// </summary>
+	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
+	/// <returns>A mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9.</returns>
+	public readonly Mask this[scoped in CellMap cells]
+	{
+		get
+		{
+			var result = (Mask)0;
+			foreach (var cell in cells)
+			{
+				result |= this[cell];
+			}
+
+			return (Mask)(result & MaxCandidatesMask);
+		}
+	}
+
+	/// <summary>
+	/// <inheritdoc cref="this[in CellMap]" path="/summary"/>
+	/// </summary>
+	/// <param name="cells"><inheritdoc cref="this[in CellMap]" path="/param[@name='cells']"/></param>
+	/// <param name="withValueCells">
+	/// Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
+	/// If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
+	/// </param>
+	/// <returns><inheritdoc cref="this[in CellMap]" path="/returns"/></returns>
+	public readonly Mask this[scoped in CellMap cells, bool withValueCells]
+	{
+		get
+		{
+			var result = (Mask)0;
+			foreach (var cell in cells)
+			{
+				if (!withValueCells && GetStatus(cell) != CellStatus.Empty || withValueCells)
+				{
+					result |= this[cell];
+				}
+			}
+
+			return (Mask)(result & MaxCandidatesMask);
+		}
+	}
+
+
 	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values as the current instance.
 	/// </summary>
@@ -1024,58 +1086,6 @@ public unsafe partial struct Grid :
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Mask GetCandidates(Cell cell) => (Mask)(this[cell] & MaxCandidatesMask);
-
-	/// <inheritdoc cref="GetDigitsUnion(in CellMap)"/>
-	public readonly Mask GetDigitsUnion(Cell[] cells)
-	{
-		var result = (Mask)0;
-		for (var i = 0; i < cells.Length; i++)
-		{
-			result |= this[cells[i]];
-		}
-
-		return (Mask)(result & MaxCandidatesMask);
-	}
-
-	/// <summary>
-	/// Creates a mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9,
-	/// ranged in a specified list of cells in the current sudoku grid.
-	/// </summary>
-	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
-	/// <returns>A mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9.</returns>
-	public readonly Mask GetDigitsUnion(scoped in CellMap cells)
-	{
-		var result = (Mask)0;
-		foreach (var cell in cells)
-		{
-			result |= this[cell];
-		}
-
-		return (Mask)(result & MaxCandidatesMask);
-	}
-
-	/// <summary>
-	/// <inheritdoc cref="GetDigitsUnion(in CellMap)" path="/summary"/>
-	/// </summary>
-	/// <param name="cells"><inheritdoc cref="GetDigitsUnion(in CellMap)" path="/param[@name='cells']"/></param>
-	/// <param name="withValueCells">
-	/// Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
-	/// If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
-	/// </param>
-	/// <returns><inheritdoc cref="GetDigitsUnion(in CellMap)" path="/returns"/></returns>
-	public readonly Mask GetDigitsUnion(scoped in CellMap cells, bool withValueCells)
-	{
-		var result = (Mask)0;
-		foreach (var cell in cells)
-		{
-			if (!withValueCells && GetStatus(cell) != CellStatus.Empty || withValueCells)
-			{
-				result |= this[cell];
-			}
-		}
-
-		return (Mask)(result & MaxCandidatesMask);
-	}
 
 	/// <summary>
 	/// Creates a mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9,

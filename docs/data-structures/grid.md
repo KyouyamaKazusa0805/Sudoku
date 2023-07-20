@@ -32,8 +32,11 @@ public struct Grid :
 
     public Grid(short[] masks);
 
-    public int this[int cell] { readonly get; set; }
-    public bool this[int cell, int digit] { readonly get; set; }
+    public readonly short this[scoped in CellMap cells] { get; }
+    public readonly short this[scoped in CellMap cells, bool withValueCells] { get; }
+    public readonly short this[Cell[] cells] { get; }
+    public readonly ref short this[int cellIndex] { get; }
+    public readonly ref short this[Index cellIndex] { get; }
 
     public readonly Grid Solution { get; }
     public readonly Grid ResetGrid { get; }
@@ -64,7 +67,6 @@ public struct Grid :
     public static bool TryParse(string str, GridParsingOption option, out Grid result);
     public static bool TryParse(string str, out Grid result);
     public readonly CandidateCollectionEnumerator EnumerateCandidates();
-    public readonly MaskCollectionEnumerator EnumerateMasks();
     public override readonly bool Equals([NotNullWhen(true)] object? obj);
     public bool Equals(in Grid other);
     public readonly bool? Exists(int candidate);
@@ -77,9 +79,7 @@ public struct Grid :
     public readonly ref readonly short GetPinnableReference();
     public readonly CellStatus GetStatus(int cell);
     public void Reset();
-    public void SetMask(int cell, short mask);
     public void SetStatus(int cell, CellStatus status);
-    public readonly bool SimplyValidate();
     public readonly int[] ToArray();
     public readonly string ToMaskString();
     public override readonly string ToString();
@@ -92,14 +92,6 @@ public struct Grid :
     public static bool operator !=(scoped in Grid left, scoped in Grid right);
     public static explicit operator Grid(string? gridCode);
 
-    public ref struct MaskCollectionEnumerator
-    {
-        public readonly ref short Current { get; }
-
-        public readonly MaskCollectionEnumerator GetEnumerator();
-        public bool MoveNext();
-        public void Reset();
-    }
     public ref struct CandidateCollectionEnumerator
     {
         public readonly int Current { get; }

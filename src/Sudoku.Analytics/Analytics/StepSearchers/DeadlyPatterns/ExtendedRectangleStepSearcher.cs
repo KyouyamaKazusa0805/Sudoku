@@ -400,7 +400,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			{
 				foreach (var cells in otherCells & size)
 				{
-					var mask = grid.GetDigitsUnion(cells);
+					var mask = grid[cells];
 					if ((mask & extraDigits) != extraDigits || PopCount((uint)mask) != size + 1)
 					{
 						continue;

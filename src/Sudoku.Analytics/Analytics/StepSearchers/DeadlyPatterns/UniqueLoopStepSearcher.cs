@@ -189,7 +189,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		Cell[] path
 	)
 	{
-		var mask = (Mask)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
+		var mask = (Mask)(grid[extraCellsMap] & ~comparer);
 		if (!IsPow2(mask))
 		{
 			return null;
@@ -275,7 +275,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 		// Gather the union result of digits appeared, and check whether the result mask
 		// contains both digit 1 and 2.
-		var m = grid.GetDigitsUnion(extraCellsMap);
+		var m = grid[extraCellsMap];
 		if ((m & comparer) != comparer)
 		{
 			return null;
@@ -302,7 +302,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				{
 					foreach (var cells in otherCells & size)
 					{
-						var mask = grid.GetDigitsUnion(cells);
+						var mask = grid[cells];
 						if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
 						{
 							continue;
@@ -388,7 +388,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			{
 				foreach (var cells in otherCells & size)
 				{
-					var mask = grid.GetDigitsUnion(cells);
+					var mask = grid[cells];
 					if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
 					{
 						continue;

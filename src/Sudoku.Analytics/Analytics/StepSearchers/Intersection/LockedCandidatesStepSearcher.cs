@@ -57,9 +57,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 			}
 
 			// Gather the masks in cells A, B and C.
-			var maskA = grid.GetDigitsUnion(a);
-			var maskB = grid.GetDigitsUnion(b);
-			var maskC = grid.GetDigitsUnion(c);
+			var (maskA, maskB, maskC) = (grid[a], grid[b], grid[c]);
 
 			// Use the formula, and check whether the equation is correct.
 			// If so, the mask 'm' will hold the digits that form locked candidates structures.

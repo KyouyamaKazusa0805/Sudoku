@@ -147,7 +147,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				continue;
 			}
 
-			var pairMask = grid.GetDigitsUnion(pair);
+			var pairMask = grid[pair];
 
 			// Iterate on each combination.
 			for (var size = 2; size < PopCount((uint)pairMask); size++)
@@ -410,7 +410,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			{
 				foreach (var cells in allCellsMap & size)
 				{
-					var mask = grid.GetDigitsUnion(cells);
+					var mask = grid[cells];
 					if ((mask & comparer) != comparer || PopCount((uint)mask) != size + 1)
 					{
 						continue;

@@ -119,7 +119,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 				continue;
 			}
 
-			var baseCellsDigitsMask = grid.GetDigitsUnion(currentJe.BaseCellsMap);
+			var baseCellsDigitsMask = grid[currentJe.BaseCellsMap];
 			if (PopCount((uint)baseCellsDigitsMask) > 5)
 			{
 				// The number of kinds of digits should not be greater than 5.

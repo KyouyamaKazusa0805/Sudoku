@@ -63,7 +63,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 				// Iterate on each intersection combination.
 				foreach (var currentInterMap in list)
 				{
-					var selectedInterMask = grid.GetDigitsUnion(currentInterMap);
+					var selectedInterMask = grid[currentInterMap];
 					if (PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
 					{
 						// The intersection combination is an ALS or a normal subset,
@@ -80,7 +80,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 						// Iterate on each combination in block.
 						foreach (var currentBlockMap in blockMap & i)
 						{
-							var blockMask = grid.GetDigitsUnion(currentBlockMap);
+							var blockMask = grid[currentBlockMap];
 							var elimMapBlock = CellMap.Empty;
 
 							// Get the elimination map in the block.
@@ -96,7 +96,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 								// Iterate on each combination in line.
 								foreach (var currentLineMap in lineMap & j)
 								{
-									var lineMask = grid.GetDigitsUnion(currentLineMap);
+									var lineMask = grid[currentLineMap];
 									var elimMapLine = CellMap.Empty;
 
 									// Get the elimination map in the line.

@@ -76,7 +76,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				continue;
 			}
 
-			var mask = grid.GetDigitsUnion(pattern);
+			var mask = grid[pattern];
 			if (CheckType1(accumulator, grid, onlyFindOne, pattern, mask) is { } type1Step)
 			{
 				return type1Step;
@@ -245,7 +245,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				{
 					foreach (var cells in allCells & size)
 					{
-						var tempMask = grid.GetDigitsUnion(cells);
+						var tempMask = grid[cells];
 						if (PopCount((uint)tempMask) != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)
 						{
 							continue;

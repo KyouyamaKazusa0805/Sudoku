@@ -250,7 +250,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		scoped in CellMap cellsChosen
 	)
 	{
-		var lastDigitsMask = (Mask)(context.Grid.GetDigitsUnion(cellsChosen) & ~comparer);
+		var lastDigitsMask = (Mask)(context.Grid[cellsChosen] & ~comparer);
 		if (!IsPow2(lastDigitsMask))
 		{
 			return null;

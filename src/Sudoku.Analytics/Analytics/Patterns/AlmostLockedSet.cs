@@ -138,7 +138,7 @@ public sealed partial class AlmostLockedSet(
 					}
 
 					// Get all candidates in these cells.
-					var digitsMask = grid.GetDigitsUnion(map);
+					var digitsMask = grid[map];
 					if (PopCount((uint)digitsMask) - 1 != size)
 					{
 						continue;

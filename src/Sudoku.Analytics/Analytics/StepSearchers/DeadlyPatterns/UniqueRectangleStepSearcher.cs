@@ -137,7 +137,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			}
 
 			// Get all candidates that all four cells appeared.
-			var mask = grid.GetDigitsUnion(urCells);
+			var mask = grid[urCells];
 
 			// Iterate on each possible digit combination.
 			scoped var allDigitsInThem = mask.GetAllSets();
@@ -320,7 +320,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	)
 	{
 		// Get the summary mask.
-		var mask = grid.GetDigitsUnion(otherCellsMap);
+		var mask = grid[otherCellsMap];
 		if (mask != comparer)
 		{
 			return;
@@ -417,7 +417,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	)
 	{
 		// Get the summary mask.
-		var mask = grid.GetDigitsUnion(otherCellsMap);
+		var mask = grid[otherCellsMap];
 		if (mask != comparer)
 		{
 			return;
@@ -536,7 +536,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			return;
 		}
 
-		var mask = grid.GetDigitsUnion(otherCellsMap);
+		var mask = grid[otherCellsMap];
 		if ((mask & comparer) != comparer)
 		{
 			return;
@@ -555,7 +555,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			{
 				foreach (var iteratedCells in iterationMap & size)
 				{
-					var tempMask = grid.GetDigitsUnion(iteratedCells);
+					var tempMask = grid[iteratedCells];
 					if ((tempMask & comparer) != 0 || PopCount((uint)tempMask) - 1 != size || (tempMask & otherDigitsMask) != otherDigitsMask)
 					{
 						continue;
@@ -797,7 +797,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		// Get the summary mask.
-		var otherCellsMask = grid.GetDigitsUnion(otherCellsMap);
+		var otherCellsMask = grid[otherCellsMap];
 
 		// Degenerate to type 1.
 		var extraMask = (Mask)(otherCellsMask ^ comparer);
@@ -3060,7 +3060,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				// Iterate on each intersection combination.
 				foreach (var currentInterMap in list)
 				{
-					var selectedInterMask = grid.GetDigitsUnion(currentInterMap);
+					var selectedInterMask = grid[currentInterMap];
 					if (PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
 					{
 						// The intersection combination is an ALS or a normal subset,
@@ -3099,7 +3099,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							var elimMapLine = CellMap.Empty;
 
 							// Get the links of the block.
-							var blockMask = grid.GetDigitsUnion(selectedCellsInBlock);
+							var blockMask = grid[selectedCellsInBlock];
 
 							// Get the elimination map in the block.
 							foreach (var digit in blockMask)
@@ -3820,7 +3820,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					{
 						foreach (var otherCells in houseCells & size - 1)
 						{
-							var subsetDigitsMask = (Mask)(grid.GetDigitsUnion(otherCells) | comparer);
+							var subsetDigitsMask = (Mask)(grid[otherCells] | comparer);
 							if (PopCount((uint)subsetDigitsMask) != size)
 							{
 								// The subset cannot formed.
@@ -3990,7 +3990,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var possibleConjugatePairDigitsMask = (Mask)(grid.GetDigitsUnion(guardianCellPair) & ~comparer);
+				var possibleConjugatePairDigitsMask = (Mask)(grid[guardianCellPair] & ~comparer);
 				foreach (var house in houses)
 				{
 					foreach (var conjugatePairDigit in possibleConjugatePairDigitsMask)

@@ -61,7 +61,7 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 					var b2 = c2.ToHouseIndex(HouseType.Block);
 					var erMap = unionMap & HousesMap[b1] - interMap | unionMap & HousesMap[b2] - interMap;
 					var erCellsMap = houseMap & erMap;
-					var m = grid.GetDigitsUnion(erCellsMap);
+					var m = grid[erCellsMap];
 					if ((m & mask) != mask)
 					{
 						continue;
