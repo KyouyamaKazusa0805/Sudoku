@@ -425,7 +425,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !(scoped in CandidateMap offsets) => offsets ? false : true;
+	public static bool operator !(scoped in CandidateMap offsets) => offsets._count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

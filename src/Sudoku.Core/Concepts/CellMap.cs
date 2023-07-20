@@ -850,7 +850,7 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !(scoped in CellMap offsets) => offsets ? false : true;
+	public static bool operator !(scoped in CellMap offsets) => offsets._count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
