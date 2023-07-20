@@ -520,7 +520,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				var flag = false;
 				foreach (var d in otherDigitsMask)
 				{
-					if ((ValuesMap[d] & HousesMap[houseIndex]) is not [] || (HousesMap[houseIndex] & CandidatesMap[d]) != square)
+					if (!!(ValuesMap[d] & HousesMap[houseIndex]) || (HousesMap[houseIndex] & CandidatesMap[d]) != square)
 					{
 						flag = true;
 						break;

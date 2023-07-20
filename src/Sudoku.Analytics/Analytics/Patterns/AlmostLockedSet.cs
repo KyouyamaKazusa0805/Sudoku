@@ -88,7 +88,7 @@ public sealed partial class AlmostLockedSet(
 			}
 		}
 
-		return result is not [];
+		return !!result;
 	}
 
 	/// <inheritdoc/>

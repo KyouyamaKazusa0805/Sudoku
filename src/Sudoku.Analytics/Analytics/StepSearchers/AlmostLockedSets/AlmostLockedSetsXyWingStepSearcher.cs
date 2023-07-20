@@ -36,7 +36,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 				var map2 = als2.Cells;
 				var mask2 = als2.DigitsMask;
 				var map = map1 | map2;
-				if (map.InOneHouse || (map1 & map2) is not [])
+				if (map.InOneHouse || !!(map1 & map2))
 				{
 					continue;
 				}
@@ -102,7 +102,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (!AllowCollision && (aMap && bMap || aMap && cMap || bMap && cMap) is not [])
+				if (!AllowCollision && !!(aMap && bMap || aMap && cMap || bMap && cMap))
 				{
 					continue;
 				}

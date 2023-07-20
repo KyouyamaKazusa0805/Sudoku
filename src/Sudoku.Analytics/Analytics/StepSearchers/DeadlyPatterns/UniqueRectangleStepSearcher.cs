@@ -3169,7 +3169,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			}
 
 			if (currentInterMap.Count + i + j + 1 == PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)
-				&& (elimMapBlock | elimMapLine | elimMapIsolated) is not [])
+				&& !!(elimMapBlock | elimMapLine | elimMapIsolated))
 			{
 				// Check eliminations.
 				var conclusions = new List<Conclusion>(10);
@@ -3670,13 +3670,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				var guardianDigit = -1;
 				var targetElimMap = default(CellMap?);
 				var targetGuardianMap = default(CellMap?);
-				if (guardian1 is not [] && (guardian1.PeerIntersection & CandidatesMap[d1]) is var a and not [])
+				if (!!guardian1 && (guardian1.PeerIntersection & CandidatesMap[d1]) is var a and not [])
 				{
 					targetElimMap = a;
 					guardianDigit = d1;
 					targetGuardianMap = guardian1;
 				}
-				else if (guardian2 is not [] && (guardian2.PeerIntersection & CandidatesMap[d2]) is var b and not [])
+				else if (!!guardian2 && (guardian2.PeerIntersection & CandidatesMap[d2]) is var b and not [])
 				{
 					targetElimMap = b;
 					guardianDigit = d2;
@@ -4623,7 +4623,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							continue;
 						}
 
-						if ((alsMap & xDigitGuardianCells) is not [] || zDigitGuardianCells == (alsMap & CandidatesMap[zDigit]))
+						if (!!(alsMap & xDigitGuardianCells) || zDigitGuardianCells == (alsMap & CandidatesMap[zDigit]))
 						{
 							// The ALS cannot only use X or Z digits that all appears in guardian cells.
 							continue;

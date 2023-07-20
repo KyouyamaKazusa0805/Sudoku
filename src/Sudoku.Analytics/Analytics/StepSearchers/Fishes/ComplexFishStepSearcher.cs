@@ -65,7 +65,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 
 		// Gather the POM eliminations to get all possible fish eliminations.
 		var pomElims = GetPomEliminationsFirstly(grid);
-		if (!Array.Exists(pomElims, static map => map is not []))
+		if (!Array.Exists(pomElims, static map => !!map))
 		{
 			return null;
 		}
@@ -80,7 +80,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 			scoped ref readonly var pomElimsOfThisDigit = ref pomElims[digit];
 
 			// Create a background thread to work on searching for fishes of this digit.
-			if (pomElimsOfThisDigit is not [] && Collect(tempList, tempGrid, pomElimsOfThisDigit, digit, context.OnlyFindOne) is { } step)
+			if (!!pomElimsOfThisDigit && Collect(tempList, tempGrid, pomElimsOfThisDigit, digit, context.OnlyFindOne) is { } step)
 			{
 				return step;
 			}

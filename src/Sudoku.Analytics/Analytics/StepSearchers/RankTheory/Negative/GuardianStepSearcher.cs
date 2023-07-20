@@ -174,7 +174,7 @@ file static unsafe class Cached
 
 				var tempGuardians = (CandidatesMap[digit] & HousesMap[house]) - tempCell - lastCell;
 				if (tempCell == startCell && condition(currentLoop)
-					&& ((currentGuardians | tempGuardians).PeerIntersection & CandidatesMap[digit]) is not [])
+					&& !!((currentGuardians | tempGuardians).PeerIntersection & CandidatesMap[digit]))
 				{
 					result.Add(new(currentLoop, currentGuardians | tempGuardians, digit));
 
@@ -183,7 +183,7 @@ file static unsafe class Cached
 				}
 
 				if ((currentLoop | currentGuardians).Contains(tempCell)
-					|| ((currentGuardians | tempGuardians).PeerIntersection & CandidatesMap[digit]) is []
+					|| !((currentGuardians | tempGuardians).PeerIntersection & CandidatesMap[digit])
 					|| (HousesMap[house] & currentLoop).Count > 1)
 				{
 					continue;

@@ -45,7 +45,7 @@ public sealed class EliminationNotation : ICandidateNotation<EliminationNotation
 			sb.Append(separator);
 		}
 
-		if (candidates is not [])
+		if (candidates)
 		{
 			sb.RemoveFromEnd(separator.Length);
 		}

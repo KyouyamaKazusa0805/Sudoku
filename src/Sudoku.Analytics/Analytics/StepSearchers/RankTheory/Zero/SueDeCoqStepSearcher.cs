@@ -131,7 +131,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 									}
 
 									if (currentInterMap.Count + i + j == PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)
-										&& (elimMapBlock | elimMapLine | elimMapIsolated) is not [])
+										&& !!(elimMapBlock | elimMapLine | elimMapIsolated))
 									{
 										// Check eliminations.
 										var conclusions = new List<Conclusion>();

@@ -23,7 +23,7 @@ internal static class EmptyRectangleHelper
 		var c = block % 3 * 3 + 18;
 		for (var (i, count) = (r, 0); i < r + 3; i++)
 		{
-			if ((cells & HousesMap[i]) is not [] || ++count <= 1)
+			if (!!(cells & HousesMap[i]) || ++count <= 1)
 			{
 				continue;
 			}
@@ -34,7 +34,7 @@ internal static class EmptyRectangleHelper
 
 		for (var (i, count) = (c, 0); i < c + 3; i++)
 		{
-			if ((cells & HousesMap[i]) is not [] || ++count <= 1)
+			if (!!(cells & HousesMap[i]) || ++count <= 1)
 			{
 				continue;
 			}

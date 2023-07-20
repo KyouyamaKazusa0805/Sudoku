@@ -296,7 +296,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 	/// <inheritdoc cref="ISet{T}.Overlaps(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	new sealed bool Overlaps(IEnumerable<TElement> other) => ((TSelf)this & (TSelf.Empty + other)) is not [];
+	new sealed bool Overlaps(IEnumerable<TElement> other) => !!((TSelf)this & (TSelf.Empty + other));
 
 	/// <inheritdoc cref="ISet{T}.SetEquals(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -553,7 +553,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </remarks>
 	static virtual TSelf[] operator |(scoped in TSelf offsets, int subsetSize)
 	{
-		if (subsetSize == 0 || offsets is [])
+		if (subsetSize == 0 || !offsets)
 		{
 			return Array.Empty<TSelf>();
 		}

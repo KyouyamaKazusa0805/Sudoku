@@ -58,7 +58,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 				var xzMask = (Mask)(mask1 & mask2);
 				var map = map1 | map2;
 				var overlapMap = map1 & map2;
-				if (!AllowCollision && overlapMap is not [])
+				if (!AllowCollision && !!overlapMap)
 				{
 					continue;
 				}

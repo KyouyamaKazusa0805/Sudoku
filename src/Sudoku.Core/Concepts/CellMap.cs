@@ -1016,7 +1016,7 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	public static CellMap[] operator |(scoped in CellMap offsets, int subsetSize)
 	{
-		if (subsetSize == 0 || offsets is [])
+		if (subsetSize == 0 || !offsets)
 		{
 			return Array.Empty<CellMap>();
 		}

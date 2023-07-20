@@ -132,7 +132,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 											var rbCount = PopCount((uint)rbMaskOnlyInInter);
 											var cbCount = PopCount((uint)cbMaskOnlyInInter);
 											if (cbCurrentMap.Count + rbCurrentMap.Count + i + j + k - 1 == bCount + rCount + cCount + rbCount + cbCount
-												&& (elimMapRow | elimMapColumn | elimMapBlock) is not [])
+												&& !!(elimMapRow | elimMapColumn | elimMapBlock))
 											{
 												// Check eliminations.
 												var conclusions = new List<Conclusion>();
