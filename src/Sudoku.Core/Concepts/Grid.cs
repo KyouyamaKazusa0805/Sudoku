@@ -42,17 +42,17 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the empty mask, modifiable mask and given mask.
 	/// </summary>
-	public const Mask EmptyMask = (int)CellStatus.Empty << 9;
+	public const Mask EmptyMask = (Mask)CellStatus.Empty << 9;
 
 	/// <summary>
 	/// Indicates the modifiable mask.
 	/// </summary>
-	public const Mask ModifiableMask = (int)CellStatus.Modifiable << 9;
+	public const Mask ModifiableMask = (Mask)CellStatus.Modifiable << 9;
 
 	/// <summary>
 	/// Indicates the given mask.
 	/// </summary>
-	public const Mask GivenMask = (int)CellStatus.Given << 9;
+	public const Mask GivenMask = (Mask)CellStatus.Given << 9;
 
 
 	/// <summary>
