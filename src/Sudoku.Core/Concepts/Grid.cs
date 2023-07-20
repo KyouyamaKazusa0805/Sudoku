@@ -1297,14 +1297,15 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Apply(Conclusion conclusion)
 	{
-		switch (conclusion)
+		_ = conclusion is { Cell: var cell, Digit: var digit, ConclusionType: var type };
+		switch (type)
 		{
-			case { ConclusionType: Assignment, Cell: var cell, Digit: var digit }:
+			case Assignment:
 			{
 				SetDigit(cell, digit);
 				break;
 			}
-			case { ConclusionType: Elimination, Cell: var cell, Digit: var digit }:
+			case Elimination:
 			{
 				SetCandidateIsOn(cell, digit, false);
 				break;
