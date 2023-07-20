@@ -1021,9 +1021,7 @@ public unsafe partial struct CellMap :
 			return Array.Empty<CellMap>();
 		}
 
-		var n = offsets._count;
-
-		var desiredSize = 0;
+		var (n, desiredSize) = (offsets._count, 0);
 		var length = Min(n, subsetSize);
 		for (var i = 1; i <= length; i++)
 		{
