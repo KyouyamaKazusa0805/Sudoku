@@ -529,7 +529,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			pane.CandidatesDisplayingToggled?.Invoke(pane, new());
 
-			// Update view nodes. This operation will be executed no matter whether the event is triggered.
+			// Update view nodes. This operation should be executed no matter whether the event is triggered.
 			pane.UpdateViewUnit();
 		}
 	}
