@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	Technique.AlignedPairExclusion, Technique.AlignedTripleExclusion,
 	Technique.AlignedQuadrupleExclusion, Technique.AlignedQuintupleExclusion,
-	ConditionalCases = ConditionalCase.UnlimitedTimeComplexity)]
+	ConditionalCases = ConditionalCase.TimeComplexity)]
 public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 {
 	/// <summary>

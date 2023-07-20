@@ -62,17 +62,17 @@ public abstract partial class StepSearcher(
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
-	/// by option <see cref="ConditionalCase.UnlimitedTimeComplexity"/> being configured.
+	/// by option <see cref="ConditionalCase.TimeComplexity"/> being configured.
 	/// </summary>
-	/// <seealso cref="ConditionalCase.UnlimitedTimeComplexity"/>
-	public bool IsConfiguredSlow => StepSearcherMetadataInfo.ConditionalCases is var cases && cases.Flags(ConditionalCase.UnlimitedTimeComplexity);
+	/// <seealso cref="ConditionalCase.TimeComplexity"/>
+	public bool IsConfiguredSlow => StepSearcherMetadataInfo.ConditionalCases is var cases && cases.Flags(ConditionalCase.TimeComplexity);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
-	/// by option <see cref="ConditionalCase.UnlimitedSpaceComplexity"/> being configured.
+	/// by option <see cref="ConditionalCase.SpaceComplexity"/> being configured.
 	/// </summary>
-	/// <seealso cref="ConditionalCase.UnlimitedSpaceComplexity"/>
-	public bool IsConfiguredHighAllocation => StepSearcherMetadataInfo.ConditionalCases is var cases && cases.Flags(ConditionalCase.UnlimitedSpaceComplexity);
+	/// <seealso cref="ConditionalCase.SpaceComplexity"/>
+	public bool IsConfiguredHighAllocation => StepSearcherMetadataInfo.ConditionalCases is var cases && cases.Flags(ConditionalCase.SpaceComplexity);
 
 	/// <summary>
 	/// Indicates the split priority. This value cannot be greater than 16 due to design of <see cref="SplitStepSearcherAttribute"/>.

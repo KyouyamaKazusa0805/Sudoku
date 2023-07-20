@@ -166,7 +166,7 @@ public sealed class DictionaryQuerySolver : ISolver
 	public Dictionary<string, string>? ParseGrid(string gridStr)
 	{
 		var grid2 = from c in gridStr where "0.-123456789".Contains(c) select c;
-		var values = Coordinates.ToDictionary(static s => s, static s => Digits);
+		var values = Coordinates.ToDictionary(CommonMethods.ReturnSelf, static _ => Digits);
 
 		foreach (var sd in Zip(Coordinates, (from s in gridStr select s.ToString()).ToArray()))
 		{
@@ -254,7 +254,7 @@ public sealed class DictionaryQuerySolver : ISolver
 		foreach (var u in Houses[s])
 		{
 			var dPlaces = from s2 in u where values[s2].Contains(d) select s2;
-			if (!dPlaces.Any())
+			if (dPlaces.Length == 0)
 			{
 				return null;
 			}
@@ -262,7 +262,7 @@ public sealed class DictionaryQuerySolver : ISolver
 			if (dPlaces.HasOnlyOneElement())
 			{
 				// d can only be in one place in unit; assign it there.
-				if (Assign(values, dPlaces.First(), d) is null)
+				if (Assign(values, dPlaces[0], d) is null)
 				{
 					return null;
 				}

@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	Technique.ReverseBivalueUniversalGraveType1, Technique.ReverseBivalueUniversalGraveType2,
 	Technique.ReverseBivalueUniversalGraveType3, Technique.ReverseBivalueUniversalGraveType4,
-	ConditionalCases = ConditionalCase.Standard | ConditionalCase.UnlimitedTimeComplexity)]
+	ConditionalCases = ConditionalCase.Standard | ConditionalCase.TimeComplexity)]
 public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearcher
 {
 	/// <summary>

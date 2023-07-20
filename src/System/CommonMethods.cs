@@ -25,4 +25,13 @@ public static class CommonMethods
 				""".RemoveLineEndings()
 			)
 		};
+
+	/// <summary>
+	/// Returns the argument <paramref name="value"/>.
+	/// </summary>
+	/// <typeparam name="T">The type of the argument.</typeparam>
+	/// <param name="value">The value.</param>
+	/// <returns>The value itself.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static T ReturnSelf<T>(T value) => value;
 }

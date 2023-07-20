@@ -1,14 +1,16 @@
-﻿namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics.Metadata;
 
 /// <summary>
 /// Represents a list of cases that describes some cases that <see cref="StepSearcher"/> is partially allowed
-/// in searching or gathering operation.
+/// in searching or gathering operation. Fields in this type can be used
+/// by <see cref="StepSearcherAttribute.ConditionalCases"/> property assigning.
 /// </summary>
 /// <remarks><i>
 /// This type is marked <see cref="FlagsAttribute"/>, which means you can use
 /// <see cref="ConditionalCase"/>.<see langword="operator"/> | to combine multiple fields.
 /// </i></remarks>
 /// <seealso cref="StepSearcher"/>
+/// <seealso cref="StepSearcherAttribute.ConditionalCases"/>
 [Flags]
 public enum ConditionalCase
 {
@@ -29,13 +31,13 @@ public enum ConditionalCase
 	/// Indicates a <see cref="StepSearcher"/> will produce high time complexity,
 	/// meaning it will be disabled if a user want to disable high time-complexity algorithms.
 	/// </summary>
-	UnlimitedTimeComplexity = 1 << 1,
+	TimeComplexity = 1 << 1,
 
 	/// <summary>
 	/// Indicates the <see cref="StepSearcher"/> will produce high space complexity,
 	/// meaning it will be disabled if a user want to disable high space-complexity algorithms.
 	/// </summary>
-	UnlimitedSpaceComplexity = 1 << 2,
+	SpaceComplexity = 1 << 2,
 
 	/// <summary>
 	/// Indicates the reserved field. This field may be used for future considerations.

@@ -850,6 +850,14 @@
             <param name="right">The second instance to be merged.</param>
             <returns>A merged result.</returns>
         </member>
+        <member name="M:System.CommonMethods.ReturnSelf``1(``0)">
+            <summary>
+            Returns the argument <paramref name="value"/>.
+            </summary>
+            <typeparam name="T">The type of the argument.</typeparam>
+            <param name="value">The value.</param>
+            <returns>The value itself.</returns>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.StringSyntax">
             <summary>
             Represents a list of <see cref="T:System.String"/> constants being used by <see cref="T:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute"/>.

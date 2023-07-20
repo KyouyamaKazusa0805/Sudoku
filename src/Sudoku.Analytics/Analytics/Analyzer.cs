@@ -30,22 +30,22 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 	public bool IsFullApplying { get; set; }
 
 	/// <summary>
-	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="ConditionalCase.UnlimitedTimeComplexity"/>.
+	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="ConditionalCase.TimeComplexity"/>.
 	/// </summary>
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
-	/// <seealso cref="ConditionalCase.UnlimitedTimeComplexity"/>
+	/// <seealso cref="ConditionalCase.TimeComplexity"/>
 	public bool IgnoreSlowAlgorithms { get; internal set; }
 
 	/// <summary>
 	/// Indicates whether the solver will ignore slow step searchers being configured
-	/// <see cref="ConditionalCase.UnlimitedSpaceComplexity"/>.
+	/// <see cref="ConditionalCase.SpaceComplexity"/>.
 	/// </summary>
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
-	/// <seealso cref="ConditionalCase.UnlimitedSpaceComplexity"/>
+	/// <seealso cref="ConditionalCase.SpaceComplexity"/>
 	public bool IgnoreHighAllocationAlgorithms { get; internal set; }
 
 	/// <inheritdoc/>

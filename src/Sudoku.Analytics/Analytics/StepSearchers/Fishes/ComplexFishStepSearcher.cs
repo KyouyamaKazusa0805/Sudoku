@@ -41,7 +41,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.SiameseFinnedMutantSquirmbag, Technique.SiameseFinnedMutantWhale, Technique.SiameseFinnedMutantLeviathan,
 	Technique.SiameseSashimiMutantXWing, Technique.SiameseSashimiMutantSwordfish, Technique.SiameseSashimiMutantJellyfish,
 	Technique.SiameseSashimiMutantSquirmbag, Technique.SiameseSashimiMutantWhale, Technique.SiameseSashimiMutantLeviathan,
-	ConditionalCases = ConditionalCase.UnlimitedTimeComplexity)]
+	ConditionalCases = ConditionalCase.TimeComplexity)]
 public sealed partial class ComplexFishStepSearcher : StepSearcher
 {
 	/// <summary>

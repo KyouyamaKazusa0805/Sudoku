@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Guardian</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.BrokenWing, ConditionalCases = ConditionalCase.UnlimitedTimeComplexity | ConditionalCase.UnlimitedSpaceComplexity)]
+[StepSearcher(Technique.BrokenWing, ConditionalCases = ConditionalCase.TimeComplexity | ConditionalCase.SpaceComplexity)]
 public sealed partial class GuardianStepSearcher : StepSearcher
 {
 	/// <summary>

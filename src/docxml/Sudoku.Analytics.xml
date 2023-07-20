@@ -106,22 +106,22 @@
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.IgnoreSlowAlgorithms">
             <summary>
-            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Analytics.Metadata.ConditionalCase.UnlimitedTimeComplexity"/>.
+            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Analytics.Metadata.ConditionalCase.TimeComplexity"/>.
             </summary>
             <remarks>
             The default value is <see langword="false"/>.
             </remarks>
-            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.UnlimitedTimeComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.TimeComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms">
             <summary>
             Indicates whether the solver will ignore slow step searchers being configured
-            <see cref="F:Sudoku.Analytics.Metadata.ConditionalCase.UnlimitedSpaceComplexity"/>.
+            <see cref="F:Sudoku.Analytics.Metadata.ConditionalCase.SpaceComplexity"/>.
             </summary>
             <remarks>
             The default value is <see langword="false"/>.
             </remarks>
-            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.UnlimitedSpaceComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.SpaceComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.StepSearchers">
             <inheritdoc/>
@@ -3363,13 +3363,15 @@
         <member name="T:Sudoku.Analytics.Metadata.ConditionalCase">
             <summary>
             Represents a list of cases that describes some cases that <see cref="T:Sudoku.Analytics.StepSearcher"/> is partially allowed
-            in searching or gathering operation.
+            in searching or gathering operation. Fields in this type can be used
+            by <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.ConditionalCases"/> property assigning.
             </summary>
             <remarks><i>
             This type is marked <see cref="T:System.FlagsAttribute"/>, which means you can use
             <see cref="T:Sudoku.Analytics.Metadata.ConditionalCase"/>.<see langword="operator"/> | to combine multiple fields.
             </i></remarks>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.ConditionalCases"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.ConditionalCase.Default">
             <summary>
@@ -3384,13 +3386,13 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>
         </member>
-        <member name="F:Sudoku.Analytics.Metadata.ConditionalCase.UnlimitedTimeComplexity">
+        <member name="F:Sudoku.Analytics.Metadata.ConditionalCase.TimeComplexity">
             <summary>
             Indicates a <see cref="T:Sudoku.Analytics.StepSearcher"/> will produce high time complexity,
             meaning it will be disabled if a user want to disable high time-complexity algorithms.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Metadata.ConditionalCase.UnlimitedSpaceComplexity">
+        <member name="F:Sudoku.Analytics.Metadata.ConditionalCase.SpaceComplexity">
             <summary>
             Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> will produce high space complexity,
             meaning it will be disabled if a user want to disable high space-complexity algorithms.
@@ -5384,16 +5386,16 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.StepSearcher.IsConfiguredSlow">
             <summary>
             Determines whether the current step searcher is disabled
-            by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalCase.UnlimitedTimeComplexity"/> being configured.
+            by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalCase.TimeComplexity"/> being configured.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.UnlimitedTimeComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.TimeComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.StepSearcher.IsConfiguredHighAllocation">
             <summary>
             Determines whether the current step searcher is disabled
-            by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalCase.UnlimitedSpaceComplexity"/> being configured.
+            by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalCase.SpaceComplexity"/> being configured.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.UnlimitedSpaceComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.SpaceComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.StepSearcher.SplitPriority">
             <summary>
