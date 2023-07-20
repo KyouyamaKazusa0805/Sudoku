@@ -254,11 +254,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </remarks>
 	internal SudokuPaneCell[] _children;
 
-	/// <summary>
-	/// Indicates the target puzzle.
-	/// </summary>
-	private Grid _puzzle = Grid.Empty;
-
 
 	/// <summary>
 	/// Initializes a <see cref="SudokuPane"/> instance.
@@ -267,12 +262,15 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		InitializeComponent();
 		InitializeChildrenControls();
-		UpdateCellData(_puzzle);
+		UpdateCellData(_puzzle = Grid.Empty);
 		InitializeEvents();
 	}
 
 
-	/// <inheritdoc cref="_puzzle"/>
+	/// <summary>
+	/// Indicates the core-operating sudoku puzzle.
+	/// </summary>
+	[ImplicitField]
 	public Grid Puzzle
 	{
 		get => _puzzle;
@@ -280,7 +278,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		set
 		{
 			SetPuzzleInternal(value, true);
-
 			GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Replacing, value));
 		}
 	}
