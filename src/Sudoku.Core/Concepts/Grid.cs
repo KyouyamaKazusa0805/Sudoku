@@ -228,7 +228,7 @@ public unsafe partial struct Grid :
 					if (@this.GetStatus(peerCell) == CellStatus.Empty)
 					{
 						// You can't do this because of being invoked recursively.
-						//@this[peerCell, setValue] = false;
+						//@this.SetCandidateIsOn(peerCell, setValue, false);
 
 						@this[peerCell] &= (Mask)~(1 << setValue);
 					}
