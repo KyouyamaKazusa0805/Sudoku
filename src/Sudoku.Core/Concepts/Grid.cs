@@ -1239,8 +1239,7 @@ public unsafe partial struct Grid :
 	/// </returns>
 	public readonly TResult[] Select<TResult>(Func<Candidate, TResult> selector)
 	{
-		var result = new TResult[81];
-		var i = 0;
+		var (result, i) = (new TResult[81], 0);
 		foreach (var candidate in this)
 		{
 			result[i++] = selector(candidate);
