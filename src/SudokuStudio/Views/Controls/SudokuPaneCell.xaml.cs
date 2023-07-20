@@ -11,7 +11,11 @@ internal sealed partial class SudokuPaneCell : UserControl
 	/// <summary>
 	/// Initializes a <see cref="SudokuPaneCell"/> instance.
 	/// </summary>
-	public SudokuPaneCell() => InitializeComponent();
+	public SudokuPaneCell()
+	{
+		InitializeComponent();
+		InitializeAnimationFeedbackIfWorth();
+	}
 
 
 #nullable disable
@@ -25,6 +29,29 @@ internal sealed partial class SudokuPaneCell : UserControl
 	/// Indicates the cell index.
 	/// </summary>
 	internal Cell CellIndex { get; init; }
+
+
+	/// <summary>
+	/// Try to initialize for animation feedback if worth.
+	/// </summary>
+	private void InitializeAnimationFeedbackIfWorth()
+	{
+		if (!((App)Application.Current).Preference.UIPreferences.EnableAnimationFeedback)
+		{
+			return;
+		}
+
+		ValueTextBlock.OpacityTransition = new();
+		Candidate0TextBlock.OpacityTransition = new();
+		Candidate1TextBlock.OpacityTransition = new();
+		Candidate2TextBlock.OpacityTransition = new();
+		Candidate3TextBlock.OpacityTransition = new();
+		Candidate4TextBlock.OpacityTransition = new();
+		Candidate5TextBlock.OpacityTransition = new();
+		Candidate6TextBlock.OpacityTransition = new();
+		Candidate7TextBlock.OpacityTransition = new();
+		Candidate8TextBlock.OpacityTransition = new();
+	}
 
 
 	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e) => BasePane.SelectedCell = CellIndex;

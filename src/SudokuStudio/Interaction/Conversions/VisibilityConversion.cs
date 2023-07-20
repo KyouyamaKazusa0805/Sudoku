@@ -5,9 +5,9 @@ namespace SudokuStudio.Interaction.Conversions;
 /// </summary>
 internal static class VisibilityConversion
 {
-	public static Visibility CellStatusToValueTextBlockVisibility(CellStatus cellStatus)
-		=> cellStatus is CellStatus.Modifiable or CellStatus.Given ? Visibility.Visible : Visibility.Collapsed;
+	public static double CellStatusToValueTextBlockOpacity(CellStatus cellStatus)
+		=> cellStatus is CellStatus.Modifiable or CellStatus.Given ? 1 : 0;
 
-	public static Visibility CellStatusToCandidateTextBlockVisibility(CellStatus cellStatus, Mask candidatesMask, Digit digit)
-		=> cellStatus == CellStatus.Empty && (candidatesMask >> digit & 1) != 0 ? Visibility.Visible : Visibility.Collapsed;
+	public static double CellStatusToCandidateTextBlockOpacity(CellStatus cellStatus, Mask candidatesMask, Digit digit)
+		=> cellStatus == CellStatus.Empty && (candidatesMask >> digit & 1) != 0 ? 1 : 0;
 }

@@ -7494,6 +7494,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the cell index.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.InitializeAnimationFeedbackIfWorth">
+            <summary>
+            Try to initialize for animation feedback if worth.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.InitializeComponent">
             <summary>
             InitializeComponent()
