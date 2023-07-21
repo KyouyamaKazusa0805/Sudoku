@@ -9,15 +9,15 @@ namespace Sudoku.Analytics;
 /// if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
 /// </remarks>
 /// <param name="mask">
-/// Indicates the mask that holds the information for the cell, digit and the conclusion type.
-/// The bits distribution is like:
-/// <code><![CDATA[
-/// 16       8       0
-///  |-------|-------|
-///  |     |---------|
-/// 16    10         0
-///        |   used  |
-/// ]]></code>
+/// The field uses the mask table of length 81 to indicate the status and all possible candidates
+/// holding for each cell. Each mask uses a <see cref="Mask"/> value, but only uses 20 of 32 bits.
+/// <code>
+///  | 18-32 | 17  16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
+///  |-------|-------------------------------|---------------------------------------|
+///           \_____________________________/ \_____________________________________/
+///                       (2)                                     (1)
+/// </code>
+/// Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
 /// </param>
 [JsonConverter(typeof(Converter))]
 [Equals]
