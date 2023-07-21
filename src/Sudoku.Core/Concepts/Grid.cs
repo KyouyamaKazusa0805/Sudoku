@@ -106,12 +106,12 @@ public unsafe partial struct Grid :
 	/// The field uses the mask table of length 81 to indicate the status and all possible candidates
 	/// holding for each cell. Each mask uses a <see cref="Mask"/> value, but only uses 11 of 16 bits.
 	/// <code>
-	///  | 16  15  14  13  12  11  10  9   8   7   6   5   4   3   2   1   0 |
-	///  |-------------------|-----------|-----------------------------------|
-	///  |   |   |   |   |   | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
-	///  '-------------------|-----------|-----------------------------------'
-	///                       \_________/ \_________________________________/
-	///                           (2)                     (1)
+	/// | 16  15  14  13  12  11  10  9   8   7   6   5   4   3   2   1   0 |
+	/// |-------------------|-----------|-----------------------------------|
+	/// |   |   |   |   |   | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+	/// '-------------------|-----------|-----------------------------------'
+	///                      \_________/ \_________________________________/
+	///                          (2)                     (1)
 	/// </code>
 	/// Here the 9 bits in (1) indicate whether each digit is possible candidate in the current cell for each bit respectively,
 	/// and the higher 3 bits in (2) indicate the cell status. The possible cell status are:
