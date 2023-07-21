@@ -20,7 +20,6 @@ namespace Sudoku.Concepts;
 [ToString]
 [EqualityOperators]
 public unsafe partial struct Grid :
-	IEnumerable<Candidate>,
 	IEqualityOperators<Grid, Grid, bool>,
 	IFormattable,
 	IMinMaxValue<Grid>,

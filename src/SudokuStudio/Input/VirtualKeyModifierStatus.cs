@@ -10,7 +10,6 @@
 /// <param name="IsWindowsKeyDown">Indicates whether the windows key is input.</param>
 /// <seealso cref="VirtualKeyModifiers"/>
 public readonly record struct VirtualKeyModifierStatus(bool IsControlKeyDown, bool IsShiftKeyDown, bool IsAltKeyDown, bool IsWindowsKeyDown) :
-	IEquatable<VirtualKeyModifierStatus>,
 	IEqualityOperators<VirtualKeyModifierStatus, VirtualKeyModifierStatus, bool>
 {
 	/// <summary>

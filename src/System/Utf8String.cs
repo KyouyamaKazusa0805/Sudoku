@@ -14,10 +14,7 @@ public readonly unsafe partial struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
 	IComparable<Utf8String>,
 	IComparisonOperators<Utf8String, Utf8String, bool>,
-	IEnumerable<Utf8Char>,
-	IEqualityOperators<Utf8String, Utf8String, bool>,
 	IEquatable<Utf8String>,
-	IReadOnlyCollection<Utf8Char>,
 	IReadOnlyList<Utf8Char>
 {
 	/// <summary>

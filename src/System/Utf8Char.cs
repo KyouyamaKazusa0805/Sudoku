@@ -14,7 +14,6 @@ public readonly partial struct Utf8Char :
 	IComparable<Utf8Char>,
 	IComparisonOperators<Utf8Char, Utf8Char, bool>,
 	IEquatable<Utf8Char>,
-	IEqualityOperators<Utf8Char, Utf8Char, bool>,
 	IMinMaxValue<Utf8Char>,
 	IAdditionOperators<Utf8Char, byte, Utf8Char>,
 	ISubtractionOperators<Utf8Char, byte, Utf8Char>,

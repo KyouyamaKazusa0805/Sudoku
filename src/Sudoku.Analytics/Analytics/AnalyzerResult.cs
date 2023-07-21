@@ -4,7 +4,7 @@ namespace Sudoku.Analytics;
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
 /// </summary>
 /// <param name="Puzzle"><inheritdoc cref="IAnalyzerResult{TSolver, TSolverResult}.Puzzle" path="/summary"/></param>
-public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerResult<Analyzer, AnalyzerResult>, IEnumerable, IEnumerable<Step>
+public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerResult<Analyzer, AnalyzerResult>, IEnumerable<Step>
 {
 	/// <inheritdoc/>
 	[MemberNotNullWhen(true, nameof(Steps), nameof(StepGrids), nameof(SolvingPath), nameof(PearlStep), nameof(DiamondStep))]

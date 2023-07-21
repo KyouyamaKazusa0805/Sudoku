@@ -3,10 +3,7 @@ namespace Sudoku.Analytics.Patterns;
 /// <summary>
 /// Defines a multiple forcing chains.
 /// </summary>
-public sealed partial class MultipleForcingChains :
-	IEnumerable<(byte CellOrDigit, ChainNode Potential)>,
-	IReadOnlyCollection<(byte CellOrDigit, ChainNode Potential)>,
-	IReadOnlyList<(byte CellOrDigit, ChainNode Potential)>
+public sealed partial class MultipleForcingChains : IReadOnlyList<(byte CellOrDigit, ChainNode Potential)>
 {
 	/// <summary>
 	/// Indicates the internal dictionary.
