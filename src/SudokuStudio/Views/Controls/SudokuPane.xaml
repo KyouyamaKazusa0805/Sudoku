@@ -39,7 +39,7 @@
 		<!--Outside border-->
 		<Border
 			Grid.Row="1" Grid.Column="1" Grid.RowSpan="11" Grid.ColumnSpan="11" BorderThickness="4"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 
 		<!--Coordinate labels-->
 		<!--#region Upside-->
@@ -274,79 +274,79 @@
 		<!--#region Grid and cell borders-->
 		<Border
 			Grid.Row="2" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="0,0,2,2"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="2" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="2,0,2,2"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="2" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="2,0,0,2"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="5" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="0,2,2,2"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="5" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="2"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="5" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="2,2,0,2"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="8" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="0,2,2,0"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="8" Grid.Column="5" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="2,2,2,0"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="8" Grid.Column="8" Grid.RowSpan="3" Grid.ColumnSpan="3" BackgroundSizing="OuterBorderEdge" BorderThickness="2,2,0,0"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="9" BorderThickness="{StaticResource RowLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="2" Grid.Column="2" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="2" Grid.Column="3" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="2" Grid.Column="4" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="2" Grid.Column="5" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="2" Grid.Column="6" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="2" Grid.Column="7" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="2" Grid.Column="8" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<Border
 			Grid.Row="2" Grid.Column="9" Grid.RowSpan="9" BorderThickness="{StaticResource ColumnLinesBorderThickness}"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="1" />
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
 		<!--#endregion-->
 
 		<!--Cursors-->
