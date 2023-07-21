@@ -259,7 +259,7 @@ internal static class RenderableFactory
 	/// <param name="candidateNode">
 	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResults)" path="/param[@name='sudokuPane']"/>
 	/// </param>
-	/// <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalisms.</param>
+	/// <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalism.</param>
 	/// <param name="overlapped">
 	/// Indicates the collection that returns a possible <see cref="Conclusion"/> value indicating
 	/// what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
@@ -579,7 +579,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 	public IEnumerable<Path> CreateLinks(LinkViewNode[] nodes)
 	{
 		var points = getPoints(nodes);
-		_ = Converter is (var (ow, oh), _) and ((var cs, _), _, _, _);
+		_ = Converter is var ((ow, oh), _) and var ((cs, _), _, _, _);
 
 		// Iterate on each inference to draw the links and grouped nodes (if so).
 		foreach (var node in nodes)
@@ -736,7 +736,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							StrokeDashArray = dashArray,
 							Data = new GeometryGroup
 							{
-								Children = new GeometryCollection { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } }
+								Children = new() { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } }
 							},
 							Tag = nameof(RenderableFactory),
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
@@ -930,7 +930,7 @@ file static class Extensions
 
 	/// <summary>
 	/// <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
-	/// <para>This method is used for checking cannibalisms.</para>
+	/// <para>This method is used for checking cannibalism.</para>
 	/// </summary>
 	/// <param name="conclusions">The conclusion collection.</param>
 	/// <param name="candidate">The candidate to be determined.</param>
