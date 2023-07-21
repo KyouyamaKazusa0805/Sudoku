@@ -436,6 +436,25 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <seealso cref="SudokuPaneCell"/>
 	internal void SetPuzzleInternal(scoped in Grid value, bool clearStack = false) => SetPuzzleInternal(value, clearStack, false);
 
+	/// <inheritdoc cref="UpdateViewUnit(ViewUnitBindableSource?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void UpdateViewUnit() => UpdateViewUnit(ViewUnit);
+
+	/// <summary>
+	/// Update view unit (add view nodes or remove view nodes).
+	/// </summary>
+	/// <param name="viewUnit">The view unit bindable source.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void UpdateViewUnit(ViewUnitBindableSource? viewUnit)
+	{
+		RenderableFactory.RemoveViewUnitControls(this);
+
+		if (viewUnit is not null)
+		{
+			RenderableFactory.AddViewUnitControls(this, viewUnit);
+		}
+	}
+
 	/// <summary>
 	/// To initialize children controls for <see cref="_children"/>.
 	/// </summary>
