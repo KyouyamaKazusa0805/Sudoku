@@ -4,7 +4,7 @@ namespace SudokuStudio.BindableSource;
 /// Indicates a group of technique steps.
 /// </summary>
 /// <param name="elements">The elements.</param>
-public sealed class TechniqueGroupBindableSource(IEnumerable<object> elements) : List<object>(elements), IBindableSource
+public sealed class TechniqueGroupBindableSource(IEnumerable<object> elements) : List<object>(elements)
 {
 	/// <summary>
 	/// Indicates the key of the group.

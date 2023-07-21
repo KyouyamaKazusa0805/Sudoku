@@ -3,7 +3,7 @@ namespace SudokuStudio.BindableSource;
 /// <summary>
 /// Defines a path step in a whole solving path.
 /// </summary>
-public sealed class SolvingPathStepBindableSource : IBindableSource
+public sealed class SolvingPathStepBindableSource
 {
 	/// <summary>
 	/// Indicates the index of the step.

@@ -196,11 +196,6 @@
             Indicates the puzzles. The default value is empty list. This property is never <see langword="null"/>.
             </summary>
         </member>
-        <member name="T:SudokuStudio.BindableSource.IBindableSource">
-            <summary>
-            Represents a bindable source type. This type can be used for interaction with XAML.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.BindableSource.RepositoryInfoBindableSource">
             <summary>
             Represents a type that can be used for binding as source, for repository information

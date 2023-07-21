@@ -5,7 +5,7 @@ namespace SudokuStudio.BindableSource;
 /// using technique name to distinct them.
 /// </summary>
 /// <seealso cref="AnalyzerResult"/>
-internal sealed class AnalyzerResultTableRowBindableSource : IBindableSource
+internal sealed class AnalyzerResultTableRowBindableSource
 {
 	/// <summary>
 	/// Indicates the total difficulty of all steps.

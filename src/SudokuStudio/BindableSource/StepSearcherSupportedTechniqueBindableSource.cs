@@ -3,7 +3,7 @@ namespace SudokuStudio.BindableSource;
 /// <summary>
 /// Represents a bindable source for step searcher supported techniques.
 /// </summary>
-public sealed class StepSearcherSupportedTechniqueBindableSource : IBindableSource
+public sealed class StepSearcherSupportedTechniqueBindableSource
 {
 	/// <summary>
 	/// Indicates the supported techniques.
