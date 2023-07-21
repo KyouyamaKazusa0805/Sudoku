@@ -275,25 +275,23 @@ public ref struct HodokuPuzzleGenerator
 				_newFullSudoku = _stack[level].SudokuGrid;
 				return true;
 			}
-			else
-			{
-				var index = -1;
-				var actValues = _stack[level].SudokuGrid.ToArray();
-				for (var i = 0; i < 81; i++)
-				{
-					var actTry = _generateIndices[i];
-					if (actValues[actTry] == 0)
-					{
-						index = actTry;
-						break;
-					}
-				}
 
-				level++;
-				_stack[level].Cell = (short)index;
-				_stack[level].Candidates = _stack[level - 1].SudokuGrid.GetCandidates(index);
-				_stack[level].CandidateIndex = 0;
+			var index = -1;
+			var actValues = _stack[level].SudokuGrid.ToArray();
+			for (var i = 0; i < 81; i++)
+			{
+				var actTry = _generateIndices[i];
+				if (actValues[actTry] == 0)
+				{
+					index = actTry;
+					break;
+				}
 			}
+
+			level++;
+			_stack[level].Cell = (short)index;
+			_stack[level].Candidates = _stack[level - 1].SudokuGrid.GetCandidates(index);
+			_stack[level].CandidateIndex = 0;
 
 			// Not too many tries...
 			actTries++;

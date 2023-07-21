@@ -214,11 +214,9 @@ public sealed unsafe class BitwiseSolver : ISolver
 				solutionIfUnique = new Span<char>(result, BufferLength).ToString();
 				return true;
 			}
-			else
-			{
-				solutionIfUnique = null;
-				return false;
-			}
+
+			solutionIfUnique = null;
+			return false;
 		}
 	}
 

@@ -375,7 +375,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 			return null;
 		}
-		else
+
 		{
 			// Extra cells may not lie in a same house. However the type 3 can form in this case.
 			var otherCells = extraCellsMap.PeerIntersection - loop & EmptyCells;

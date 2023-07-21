@@ -149,10 +149,8 @@ public static class TrueCandidatesSearcher
 
 					return result;
 				}
-				else
-				{
-					currentIndex++;
-				}
+
+				currentIndex++;
 			}
 			else
 			{

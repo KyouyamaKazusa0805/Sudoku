@@ -98,10 +98,8 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 				};
 			}
 		}
-		else
-		{
-			return result with { IsSolved = false, FailedReason = AnalyzerFailedReason.PuzzleIsInvalid };
-		}
+
+		return result with { IsSolved = false, FailedReason = AnalyzerFailedReason.PuzzleIsInvalid };
 
 
 		AnalyzerResult analyzeInternal(

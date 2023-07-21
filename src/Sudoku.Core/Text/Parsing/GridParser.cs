@@ -209,11 +209,9 @@ public unsafe ref partial struct GridParser(
 						// '+0' or '+.'? Invalid combination.
 						return Grid.Undefined;
 					}
-					else
-					{
-						result.SetDigit(i, match - '1');
-						result.SetStatus(i, CellStatus.Modifiable);
-					}
+
+					result.SetDigit(i, match - '1');
+					result.SetStatus(i, CellStatus.Modifiable);
 
 					break;
 				}

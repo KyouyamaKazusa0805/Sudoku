@@ -222,7 +222,8 @@ public abstract class ChainingStepSearcher(
 						// Contradiction found.
 						return (pOnInSet, pOff); // Cannot be both on and off at the same time.
 					}
-					else if (!toOff.Contains(pOff))
+
+					if (!toOff.Contains(pOff))
 					{
 						// Not processed yet.
 						toOff.Add(pOff);
@@ -249,7 +250,8 @@ public abstract class ChainingStepSearcher(
 						// Contradiction found.
 						return (pOn, pOffInSet); // Cannot be both on and off at the same time.
 					}
-					else if (!toOn.Contains(pOn))
+
+					if (!toOn.Contains(pOn))
 					{
 						// Not processed yet.
 						toOn.Add(pOn);

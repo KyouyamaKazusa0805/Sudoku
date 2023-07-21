@@ -56,10 +56,8 @@ public sealed partial class GurthSymmetricalPlacementStep(
 				sb.RemoveFromEnd(separator.Length);
 				return sb.ToStringAndClear();
 			}
-			else
-			{
-				return GetString("NoMappingRelation")!;
-			}
+
+			return GetString("NoMappingRelation")!;
 		}
 	}
 }

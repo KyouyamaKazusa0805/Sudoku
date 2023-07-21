@@ -2947,10 +2947,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				}
 			}
 		}
-		else
-		{
-			// TODO: Check for subtype 2 on UR/AR Wings.
-		}
+		// TODO: Check for subtype 2 on UR/AR Wings.
 	}
 
 	/// <summary>

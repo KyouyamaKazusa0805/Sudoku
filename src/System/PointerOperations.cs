@@ -100,9 +100,7 @@ public static unsafe class PointerOperations
 
 			return result;
 		}
-		else
-		{
-			return GetArrayFromStart(ptr, length, index);
-		}
+
+		return GetArrayFromStart(ptr, length, index);
 	}
 }

@@ -968,17 +968,17 @@ public unsafe partial struct CellMap :
 				}
 			}
 		}
-		else if (n > 30 && subsetSize > 30)
+
 		{
-			throw new NotSupportedException(
-				"""
-				Both cells count and subset size is too large, which may cause potential out of memory exception. 
-				This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown.
-				""".RemoveLineEndings()
-			);
-		}
-		else
-		{
+			if (n > 30 && subsetSize > 30)
+			{
+				throw new NotSupportedException(
+					"""
+						Both cells count and subset size is too large, which may cause potential out of memory exception.
+						This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown.
+						""".RemoveLineEndings()
+				);
+			}
 			var result = new List<CellMap>();
 			f(subsetSize, n, subsetSize, offsets.Offsets);
 			return result.ToArray();

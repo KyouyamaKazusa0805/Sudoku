@@ -713,7 +713,8 @@ public unsafe partial struct Grid :
 					// This becomes a conditional jmp forward to not favor it.
 					goto NotEqual;
 				}
-				else if (length >= (nuint)Vector128<byte>.Count)
+
+				if (length >= (nuint)Vector128<byte>.Count)
 				{
 					var offset = (nuint)0;
 					var lengthToExamine = length - (nuint)Vector128<byte>.Count;
@@ -905,17 +906,15 @@ public unsafe partial struct Grid :
 			sukaku = false;
 			return true;
 		}
-		else if (BackingSolver.CheckValidity(ToString("~"), out solution))
+
+		if (BackingSolver.CheckValidity(ToString("~"), out solution))
 		{
 			solutionIfValid = Parse(solution);
 			sukaku = true;
 			return true;
 		}
-		else
-		{
-			sukaku = null;
-			return false;
-		}
+		sukaku = null;
+		return false;
 	}
 
 	/// <summary>

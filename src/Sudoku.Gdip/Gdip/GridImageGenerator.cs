@@ -165,11 +165,9 @@ public sealed partial class GridImageGenerator
 		{
 			return (result = palette.Length > value ? palette[value] : Color.Transparent) != Color.Transparent;
 		}
-		else
-		{
-			result = Color.Transparent;
-			return false;
-		}
+
+		result = Color.Transparent;
+		return false;
 	}
 
 	/// <summary>

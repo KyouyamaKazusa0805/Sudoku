@@ -25,14 +25,12 @@ public sealed class GridArgumentConverter : IArgumentConverter<GridArgumentConve
 			argumentResult.ErrorMessage = ErrorMessage_OnlyWhitespaces;
 			return Grid.Undefined;
 		}
-		else if (!Grid.TryParse(str, out var s))
+
+		if (!Grid.TryParse(str, out var s))
 		{
 			argumentResult.ErrorMessage = ErrorMessage_InvalidGridText;
 			return Grid.Undefined;
 		}
-		else
-		{
-			return s;
-		}
+		return s;
 	}
 }
