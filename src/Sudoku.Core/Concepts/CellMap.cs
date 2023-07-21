@@ -974,9 +974,9 @@ public unsafe partial struct CellMap :
 			{
 				throw new NotSupportedException(
 					"""
-						Both cells count and subset size is too large, which may cause potential out of memory exception.
-						This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown.
-						""".RemoveLineEndings()
+					Both cells count and subset size is too large, which may cause potential out of memory exception.
+					This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown.
+					""".RemoveLineEndings()
 				);
 			}
 			var result = new List<CellMap>();
