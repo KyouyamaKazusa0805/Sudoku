@@ -25,7 +25,7 @@ namespace Sudoku.Analytics;
 [ToString]
 [EqualityOperators]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] int mask) :
+public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IComparable<Conclusion>,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
 	IEquatable<Conclusion>
@@ -36,7 +36,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <param name="type">The conclusion type.</param>
 	/// <param name="candidate">The candidate offset.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conclusion(ConclusionType type, Candidate candidate) : this(((int)type << 10) + candidate)
+	public Conclusion(ConclusionType type, Candidate candidate) : this((Mask)(((int)type << 10) + candidate))
 	{
 	}
 
@@ -47,7 +47,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conclusion(ConclusionType type, Cell cell, Digit digit) : this(((int)type << 10) + cell * 9 + digit)
+	public Conclusion(ConclusionType type, Cell cell, Digit digit) : this((Mask)(((int)type << 10) + cell * 9 + digit))
 	{
 	}
 
@@ -76,7 +76,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	public Candidate Candidate
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _mask & (1 << 10) - 1;
+		get => _mask & 1023;
 	}
 
 	/// <summary>

@@ -937,7 +937,7 @@
             Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Conclusion.#ctor(System.Int32)">
+        <member name="M:Sudoku.Analytics.Conclusion.#ctor(System.Int16)">
             <summary>
             Defines a type that can describe a candidate is the correct or wrong digit.
             </summary>
