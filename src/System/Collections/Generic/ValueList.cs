@@ -84,20 +84,6 @@ public unsafe ref partial struct ValueList<T>([PrimaryConstructorParameter(Membe
 
 
 	/// <summary>
-	/// Adds a new element into the collection if the element does not exist in the collection.
-	/// </summary>
-	/// <param name="element">The element.</param>
-	/// <param name="predicate">The predicate checking whether two elements are same.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddIfNotContain(T element, delegate*<T, T, bool> predicate)
-	{
-		if (!Contains(element, predicate))
-		{
-			Add(element);
-		}
-	}
-
-	/// <summary>
 	/// Adds the element to the current list.
 	/// </summary>
 	/// <param name="element">The element.</param>
@@ -107,18 +93,6 @@ public unsafe ref partial struct ValueList<T>([PrimaryConstructorParameter(Membe
 		Argument.ThrowIfInvalid(_length < _capacity, "Cannot add because the collection is full.");
 
 		_startPtr[_length++] = element;
-	}
-
-	/// <summary>
-	/// Adds a list of elements into the collection.
-	/// </summary>
-	/// <param name="elements">A list of elements.</param>
-	public void AddRange(scoped in ValueList<T> elements)
-	{
-		foreach (var element in elements)
-		{
-			Add(element);
-		}
 	}
 
 	/// <summary>

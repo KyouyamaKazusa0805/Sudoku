@@ -621,24 +621,11 @@
         <member name="P:System.Collections.Generic.ValueList`1.Item(System.Index)">
             <inheritdoc cref="P:System.Collections.Generic.ValueList`1.Item(System.Byte)"/>
         </member>
-        <member name="M:System.Collections.Generic.ValueList`1.AddIfNotContain(`0,)">
-            <summary>
-            Adds a new element into the collection if the element does not exist in the collection.
-            </summary>
-            <param name="element">The element.</param>
-            <param name="predicate">The predicate checking whether two elements are same.</param>
-        </member>
         <member name="M:System.Collections.Generic.ValueList`1.Add(`0)">
             <summary>
             Adds the element to the current list.
             </summary>
             <param name="element">The element.</param>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.AddRange(System.Collections.Generic.ValueList{`0}@)">
-            <summary>
-            Adds a list of elements into the collection.
-            </summary>
-            <param name="elements">A list of elements.</param>
         </member>
         <member name="M:System.Collections.Generic.ValueList`1.Remove">
             <summary>
