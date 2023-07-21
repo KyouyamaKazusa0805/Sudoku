@@ -211,7 +211,7 @@ internal static class RenderableFactory
 
 				GridLayout.SetRowSpan(control, 3);
 				GridLayout.SetColumnSpan(control, 3);
-				Canvas.SetZIndex(control, -1);
+				Canvas.SetZIndex(control, -2);
 
 				if (sudokuPane.EnableAnimationFeedback)
 				{
@@ -233,7 +233,7 @@ internal static class RenderableFactory
 
 				GridLayout.SetRowSpan(control, 3);
 				GridLayout.SetColumnSpan(control, 3);
-				Canvas.SetZIndex(control, -1);
+				Canvas.SetZIndex(control, -2);
 
 				if (sudokuPane.EnableAnimationFeedback)
 				{
@@ -393,6 +393,7 @@ internal static class RenderableFactory
 		GridLayout.SetColumn(control, column);
 		GridLayout.SetRowSpan(control, rowSpan);
 		GridLayout.SetColumnSpan(control, columnSpan);
+		Canvas.SetZIndex(control, -3);
 
 		if (sudokuPane.EnableAnimationFeedback)
 		{
@@ -452,6 +453,7 @@ internal static class RenderableFactory
 		GridLayout.SetColumn(control, column);
 		GridLayout.SetRowSpan(control, rowSpan);
 		GridLayout.SetColumnSpan(control, columnSpan);
+		Canvas.SetZIndex(control, -4);
 
 		if (sudokuPane.EnableAnimationFeedback)
 		{
@@ -505,7 +507,7 @@ internal static class RenderableFactory
 
 		GridLayout.SetRowSpan(control, 3);
 		GridLayout.SetColumnSpan(control, 3);
-		Canvas.SetZIndex(control, -1);
+		Canvas.SetZIndex(control, -2);
 
 		if (sudokuPane.EnableAnimationFeedback)
 		{

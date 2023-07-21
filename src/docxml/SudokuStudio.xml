@@ -2810,7 +2810,7 @@ if (student is (name: var name, age: >= 18))
             <param name="candidateNode">
             <inheritdoc cref="M:SudokuStudio.Interaction.RenderableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CellViewNode,System.Collections.Generic.List{System.ValueTuple{System.Action,System.Action}})" path="/param[@name='sudokuPane']"/>
             </param>
-            <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalisms.</param>
+            <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalism.</param>
             <param name="overlapped">
             Indicates the collection that returns a possible <see cref="T:Sudoku.Analytics.Conclusion"/> value indicating
             what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
@@ -2970,7 +2970,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Interaction.Extensions.ConflictWith(Sudoku.Analytics.Conclusion[],System.Int32,System.Nullable{Sudoku.Analytics.Conclusion}@)">
             <summary>
             <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
-            <para>This method is used for checking cannibalisms.</para>
+            <para>This method is used for checking cannibalism.</para>
             </summary>
             <param name="conclusions">The conclusion collection.</param>
             <param name="candidate">The candidate to be determined.</param>
