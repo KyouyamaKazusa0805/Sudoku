@@ -857,14 +857,22 @@ public sealed unsafe class BitwiseSolver : ISolver
 							_g->Bands[band] ^= map;
 							_g++;
 							SetSolvedMask(band, map);
-							if (FullUpdate() != 0) Guess();
+							if (FullUpdate() != 0)
+							{
+								Guess();
+							}
+
 							_g--;
 						}
 						else
 						{
 							// Second of pair.
 							SetSolvedMask(band, map);
-							if (FullUpdate() != 0) Guess();
+							if (FullUpdate() != 0)
+							{
+								Guess();
+							}
+
 							return true;
 						}
 					}
@@ -900,7 +908,11 @@ public sealed unsafe class BitwiseSolver : ISolver
 					_g->Bands[band] ^= cellMask;
 					_g++;
 					SetSolvedMask(band, cellMask); // And try it out in a nested stack entry.
-					if (FullUpdate() != 0) Guess();
+					if (FullUpdate() != 0)
+					{
+						Guess();
+					}
+
 					_g--;
 				}
 			}
