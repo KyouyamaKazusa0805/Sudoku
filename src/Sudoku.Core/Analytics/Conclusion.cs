@@ -10,14 +10,19 @@ namespace Sudoku.Analytics;
 /// </remarks>
 /// <param name="mask">
 /// The field uses the mask table of length 81 to indicate the status and all possible candidates
-/// holding for each cell. Each mask uses a <see cref="Mask"/> value, but only uses 20 of 32 bits.
+/// holding for each cell. Each mask uses a <see cref="Mask"/> value, but only uses 11 of 16 bits.
 /// <code>
-///  | 18-32 | 17  16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
-///  |-------|-------------------------------|---------------------------------------|
-///           \_____________________________/ \_____________________________________/
-///                       (2)                                     (1)
+///  | 16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
+///  |-----------------------|---|---------------------------------------|
+///  |   |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
+///  |-----------------------|---|---------------------------------------|
+///                           \_/ \_____________________________________/
+///                           (2)                   (1)
 /// </code>
 /// Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
+/// Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1), but the real type
+/// <see cref="Analytics.ConclusionType"/> uses <see cref="byte"/> as its underlying numeric type because C# cannot set "A bit"
+/// to be the underlying type. The narrowest type is <see cref="byte"/>.
 /// </param>
 [JsonConverter(typeof(Converter))]
 [Equals]
