@@ -6,7 +6,7 @@ namespace SudokuStudio.Views.Controls.Shapes;
 [DependencyProperty<double>("StrokeThickness", DocSummary = "Indicates the stroke thickness.")]
 public sealed partial class Cross : UserControl
 {
-	[DefaultValue]
+	[Default]
 	private static readonly double StrokeThicknessDefaultValue = 6;
 
 

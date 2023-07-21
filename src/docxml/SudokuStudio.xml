@@ -616,7 +616,7 @@
             Defines an attribute that indicates the callback method of the bound dependency property or attached property.
             </summary>
         </member>
-        <member name="T:SudokuStudio.ComponentModel.DefaultValueAttribute">
+        <member name="T:SudokuStudio.ComponentModel.DefaultAttribute">
             <summary>
             Defines an attribute that indicates the default-value generator member, whose name is bound with a dependency property or attached property.
             </summary>
@@ -722,7 +722,7 @@
             <remarks>
             <para>This property will be used if the property <see cref="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue"/> cannot be assigned due to not being a constant.</para>
             <para>
-            <i>This property is being deprecated. Please use type <see cref="T:SudokuStudio.ComponentModel.DefaultValueAttribute"/> instead:</i>
+            <i>This property is being deprecated. Please use type <see cref="T:SudokuStudio.ComponentModel.DefaultAttribute"/> instead:</i>
             <code><![CDATA[
             [DefaultValue]
             private static readonly object DependencyPropertyNameDefaultValue = ...;

@@ -17,7 +17,7 @@ namespace SudokuStudio.Views.Pages;
 [DependencyProperty<IRenderable>("VisualUnit", IsNullable = true, Accessibility = Accessibility.Internal, DocSummary = "Indicates the visual unit.")]
 public sealed partial class AnalyzePage : Page
 {
-	[DefaultValue]
+	[Default]
 	private static readonly ColorPalette UserDefinedPaletteDefaultValue = ((App)Application.Current).Preference.UIPreferences.UserDefinedColorPalette;
 
 

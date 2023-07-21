@@ -39,7 +39,7 @@ public abstract class XamlBindingAttribute<T>(string propertyName) : Attribute
 	/// <remarks>
 	/// <para>This property will be used if the property <see cref="DefaultValue"/> cannot be assigned due to not being a constant.</para>
 	/// <para>
-	/// <i>This property is being deprecated. Please use type <see cref="DefaultValueAttribute"/> instead:</i>
+	/// <i>This property is being deprecated. Please use type <see cref="DefaultAttribute"/> instead:</i>
 	/// <code><![CDATA[
 	/// [DefaultValue]
 	/// private static readonly object DependencyPropertyNameDefaultValue = ...;
@@ -47,7 +47,7 @@ public abstract class XamlBindingAttribute<T>(string propertyName) : Attribute
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="DefaultValue"/>
-	[Obsolete($"Use attribute type '{nameof(DefaultValueAttribute)}' to mark target callback method instead.", false)]
+	[Obsolete($"Use attribute type '{nameof(DefaultAttribute)}' to mark target callback method instead.", false)]
 	public string? DefaultValueGeneratingMemberName { get; init; }
 
 	/// <summary>

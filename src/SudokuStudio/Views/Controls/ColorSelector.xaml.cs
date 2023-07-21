@@ -6,7 +6,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<Color>("SelectedColor", DocSummary = "Indicates the inner color.")]
 public sealed partial class ColorSelector : UserControl
 {
-	[DefaultValue]
+	[Default]
 	private static readonly Color SelectedColorDefaultValue = Colors.Transparent;
 
 

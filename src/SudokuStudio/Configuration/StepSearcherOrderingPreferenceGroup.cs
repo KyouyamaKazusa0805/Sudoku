@@ -8,7 +8,7 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<ObservableCollection<StepSearcherInfo>>("StepSearchersOrder")]
 public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGroup
 {
-	[DefaultValue]
+	[Default]
 	private static readonly ObservableCollection<StepSearcherInfo> StepSearchersOrderDefaultValue = new(
 		from searcher in StepSearcherPool.Default(false)
 		select new StepSearcherInfo

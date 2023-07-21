@@ -59,112 +59,112 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<ColorPalette>("AlmostLockedSetsColors", DocSummary = "Indicates the colors applied to technique structure Almost Locked Sets.")]
 public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 {
-	[DefaultValue]
+	[Default]
 	private static readonly decimal HighlightCandidateCircleScaleDefaultValue = .9M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly decimal HighlightBackgroundOpacityDefaultValue = .15M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly decimal ChainStrokeThicknessDefaultValue = 2.0M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly decimal GivenFontScaleDefaultValue = 1.0M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly decimal ModifiableFontScaleDefaultValue = 1.0M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly decimal PencilmarkFontScaleDefaultValue = .33M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly decimal BabaGroupLabelFontScaleDefaultValue = .6M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly decimal CoordinateLabelFontScaleDefaultValue = .4M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color GivenColorDefaultValue = Colors.Black;
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color ModifiableColorDefaultValue = Colors.Blue;
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color PencilmarkColorDefaultValue = new() { A = 255, R = 100, G = 100, B = 100 };
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color CoordinateLabelColorDefaultValue = new() { A = 255, R = 100, G = 100, B = 100 };
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color BabaGroupLabelColorDefaultValue = Colors.Red;
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color DeltaCandidateColorDefaultValue = Color.FromArgb(255, 255, 185, 185);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color DeltaCellColorDefaultValue = new() { A = 255, R = 255 };
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color BorderColorDefaultValue = Colors.Black;
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color CursorBackgroundColorDefaultValue = new() { A = 32, B = 255 };
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color LinkColorDefaultValue = Colors.Red;
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color NormalColorDefaultValue = Color.FromArgb(255, 63, 218, 101);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color AssignmentColorDefaultValue = Color.FromArgb(255, 63, 218, 101);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color OverlappedAssignmentColorDefaultValue = Color.FromArgb(255, 0, 255, 204);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color EliminationColorDefaultValue = Color.FromArgb(255, 255, 118, 132);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color CannibalismColorDefaultValue = new() { A = 255, R = 235 };
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color ExofinColorDefaultValue = Color.FromArgb(255, 127, 187, 255);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color EndofinColorDefaultValue = Color.FromArgb(255, 216, 178, 255);
 
-	[DefaultValue]
+	[Default]
 	private static readonly CandidateMap ViewUnitUsedCandidatesDefaultValue = CandidateMap.Empty;
 
-	[DefaultValue]
+	[Default]
 	private static readonly DashArray StrongLinkDashStyleDefaultValue = new();
 
-	[DefaultValue]
+	[Default]
 	private static readonly DashArray WeakLinkDashStyleDefaultValue = new(3, 1.5);
 
-	[DefaultValue]
+	[Default]
 	private static readonly DashArray CycleLikeLinkDashStyleDefaultValue = new();
 
-	[DefaultValue]
+	[Default]
 	private static readonly DashArray OtherLinkDashStyleDefaultValue = new(3, 3);
 
-	[DefaultValue]
+	[Default]
 	private static readonly FontFamily GivenFontDefaultValue = new("Tahoma");
 
-	[DefaultValue]
+	[Default]
 	private static readonly FontFamily ModifiableFontDefaultValue = new("Tahoma");
 
-	[DefaultValue]
+	[Default]
 	private static readonly FontFamily PencilmarkFontDefaultValue = new("Tahoma");
 
-	[DefaultValue]
+	[Default]
 	private static readonly FontFamily CoordinateLabelFontDefaultValue = new("Tahoma");
 
-	[DefaultValue]
+	[Default]
 	private static readonly FontFamily BabaGroupLabelFontDefaultValue = new("Times New Roman");
 
-	[DefaultValue]
+	[Default]
 	private static readonly ColorPalette AuxiliaryColorsDefaultValue = new()
 	{
 		Color.FromArgb(255, 255, 192,  89),
@@ -172,7 +172,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 216, 178, 255)
 	};
 
-	[DefaultValue]
+	[Default]
 	private static readonly ColorPalette DifficultyLevelForegroundsDefaultValue = new()
 	{
 		Color.FromArgb(255,   0,  51, 204),
@@ -183,7 +183,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Colors.Black
 	};
 
-	[DefaultValue]
+	[Default]
 	private static readonly ColorPalette DifficultyLevelBackgroundsDefaultValue = new()
 	{
 		Color.FromArgb(255, 204, 204, 255),
@@ -194,7 +194,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 220, 220, 220)
 	};
 
-	[DefaultValue]
+	[Default]
 	private static readonly ColorPalette UserDefinedColorPaletteDefaultValue = new()
 	{
 		Color.FromArgb(255,  63, 218, 101), // Green
@@ -214,7 +214,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 192, 192, 192) // Gray
 	};
 
-	[DefaultValue]
+	[Default]
 	private static readonly ColorPalette AlmostLockedSetsColorsDefaultValue = new()
 	{
 		Color.FromArgb(255, 255, 203, 203),

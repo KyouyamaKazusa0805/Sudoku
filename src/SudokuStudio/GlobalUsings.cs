@@ -93,7 +93,6 @@ global using VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment;
 global using PdfColors = QuestPDF.Helpers.Colors;
 global using PdfContainer = QuestPDF.Infrastructure.IContainer;
 global using Grid = Sudoku.Concepts.Grid;
-global using DefaultValueAttribute = SudokuStudio.ComponentModel.DefaultValueAttribute;
 global using SpecialFolder = System.Environment.SpecialFolder;
 global using SystemPath = System.IO.Path;
 global using Size = Windows.Foundation.Size;

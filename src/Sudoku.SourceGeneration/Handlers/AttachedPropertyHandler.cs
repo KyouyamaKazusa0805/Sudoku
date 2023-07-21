@@ -204,7 +204,7 @@ internal sealed class AttachedPropertyHandler : IIncrementalGeneratorAttributeHa
 			).FirstOrDefault();
 
 			const string defaultValueFieldSuffix = "DefaultValue";
-			var defaultValueAttribute = compilation.GetTypeByMetadataName("SudokuStudio.ComponentModel.DefaultValueAttribute")!;
+			var defaultValueAttribute = compilation.GetTypeByMetadataName("SudokuStudio.ComponentModel.DefaultAttribute")!;
 			defaultValueGenerator ??= (
 				from fieldSymbol in typeSymbol.GetMembers().OfType<IFieldSymbol>()
 				where fieldSymbol.IsStatic

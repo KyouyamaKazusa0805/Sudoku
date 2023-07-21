@@ -71,97 +71,97 @@ using M = CoordinateLabelDisplayMode;
 [DependencyProperty<ColorPalette>("AlmostLockedSetsColors", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors")]
 public sealed partial class UIPreferenceGroup : PreferenceGroup
 {
-	[DefaultValue]
+	[Default]
 	private static readonly decimal HighlightedPencilmarkBackgroundEllipseScaleDefaultValue = 0.9M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly decimal HighlightedBackgroundOpacityDefaultValue = .15M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly decimal ChainStrokeThicknessDefaultValue = 1.5M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly decimal GivenFontScaleDefaultValue = .85M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly decimal ModifiableFontScaleDefaultValue = .85M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly decimal PencilmarkFontScaleDefaultValue = .3M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly decimal BabaGroupingFontScaleDefaultValue = .6M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly decimal CoordinateLabelFontScaleDefaultValue = .4M;
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color GivenFontColorDefaultValue = Colors.Black;
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color ModifiableFontColorDefaultValue = Colors.Blue;
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color PencilmarkFontColorDefaultValue = Color.FromArgb(255, 100, 100, 100);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color BabaGroupingFontColorDefaultValue = Colors.Red;
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color CoordinateLabelFontColorDefaultValue = Color.FromArgb(255, 100, 100, 100);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color DeltaValueColorDefaultValue = Colors.Red;
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color DeltaPencilmarkColorDefaultValue = Color.FromArgb(255, 255, 185, 185);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color SudokuPaneBorderColorDefaultValue = Colors.Black;
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color CursorBackgroundColorDefaultValue = Colors.Blue with { A = 32 };
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color ChainColorDefaultValue = Colors.Red;
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color NormalColorDefaultValue = Color.FromArgb(255, 63, 218, 101);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color AssignmentColorDefaultValue = Color.FromArgb(255, 63, 218, 101);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color OverlappedAssignmentColorDefaultValue = Color.FromArgb(255, 0, 255, 204);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color EliminationColorDefaultValue = Color.FromArgb(255, 255, 118, 132);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color CannibalismColorDefaultValue = Color.FromArgb(255, 235, 0, 0);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color ExofinColorDefaultValue = Color.FromArgb(255, 127, 187, 255);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Color EndofinColorDefaultValue = Color.FromArgb(255, 216, 178, 255);
 
-	[DefaultValue]
+	[Default]
 	private static readonly DashArray StrongLinkDashStyleDefaultValue = new();
 
-	[DefaultValue]
+	[Default]
 	private static readonly DashArray WeakLinkDashStyleDefaultValue = new(3, 1.5);
 
-	[DefaultValue]
+	[Default]
 	private static readonly DashArray CyclingCellLinkDashStyleDefaultValue = new();
 
-	[DefaultValue]
+	[Default]
 	private static readonly DashArray OtherLinkDashStyleDefaultValue = new(3, 3);
 
-	[DefaultValue]
+	[Default]
 	private static readonly Grid LastGridPuzzleDefaultValue = Grid.Empty;
 
-	[DefaultValue]
+	[Default]
 	private static readonly ColorPalette AuxiliaryColorsDefaultValue = new()
 	{
 		Color.FromArgb(255, 255, 192, 89),
@@ -169,7 +169,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 		Color.FromArgb(255, 216, 178, 255)
 	};
 
-	[DefaultValue]
+	[Default]
 	private static readonly ColorPalette AlmostLockedSetsColorsDefaultValue = new()
 	{
 		Color.FromArgb(255, 255, 203, 203),
@@ -179,7 +179,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 		Color.FromArgb(255, 247, 222, 143)
 	};
 
-	[DefaultValue]
+	[Default]
 	private static readonly ColorPalette DifficultyLevelForegroundsDefaultValue = new()
 	{
 		Color.FromArgb(255, 0, 51, 204),
@@ -190,7 +190,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 		Colors.Black
 	};
 
-	[DefaultValue]
+	[Default]
 	private static readonly ColorPalette DifficultyLevelBackgroundsDefaultValue = new()
 	{
 		Color.FromArgb(255, 204, 204, 255),
@@ -201,7 +201,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 		Color.FromArgb(255, 220, 220, 220)
 	};
 
-	[DefaultValue]
+	[Default]
 	private static readonly ColorPalette UserDefinedColorPaletteDefaultValue = new()
 	{
 		Color.FromArgb(255, 63, 218, 101),
