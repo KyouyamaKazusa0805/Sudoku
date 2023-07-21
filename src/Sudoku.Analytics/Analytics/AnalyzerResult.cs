@@ -274,9 +274,9 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 				return null;
 			}
 
-			for (var i = 0; i < Steps.Length; i++)
+			foreach (var step in Steps)
 			{
-				if (Steps[i] is var step and not SingleStep)
+				if (step is not SingleStep)
 				{
 					return step;
 				}
