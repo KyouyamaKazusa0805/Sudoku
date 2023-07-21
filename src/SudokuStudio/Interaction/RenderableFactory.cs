@@ -1,7 +1,6 @@
 namespace SudokuStudio.Interaction;
 
 using AnimatedResults = List<(Action Animating, Action Adding)>;
-using Kind = WellKnownColorIdentifierKind;
 
 /// <summary>
 /// Defines a factory type that is used for creating a list of <see cref="FrameworkElement"/>
@@ -154,8 +153,8 @@ internal static class RenderableFactory
 			IdentifierConversion.GetColor(
 				type switch
 				{
-					Assignment => isOverlapped ? Kind.OverlappedAssignment : Kind.Assignment,
-					Elimination => isOverlapped ? Kind.Cannibalism : Kind.Elimination
+					Assignment => isOverlapped ? WellKnownColorIdentifierKind.OverlappedAssignment : WellKnownColorIdentifierKind.Assignment,
+					Elimination => isOverlapped ? WellKnownColorIdentifierKind.Cannibalism : WellKnownColorIdentifierKind.Elimination
 				}
 			),
 			candidate,
@@ -185,12 +184,22 @@ internal static class RenderableFactory
 
 		switch (sudokuPane.DisplayCandidates, cellNode)
 		{
+#pragma warning disable IDE0055
 			case (true, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.PencilmarkModeOnly }):
-			case (false,
-			{
-				RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly,
-				Identifier: WellKnownColorIdentifier { Kind: not (Kind.Normal or >= Kind.Auxiliary1 and <= Kind.Auxiliary3) }
-			}):
+			case (
+				false,
+				{
+					RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly,
+					Identifier: WellKnownColorIdentifier
+					{
+						Kind: not (
+							WellKnownColorIdentifierKind.Normal
+							or >= WellKnownColorIdentifierKind.Auxiliary1 and <= WellKnownColorIdentifierKind.Auxiliary3
+						)
+					}
+				}
+			):
+#pragma warning restore IDE0055
 			{
 				var control = new Border
 				{
