@@ -2,6 +2,23 @@ namespace SudokuStudio.Interaction.Conversions;
 
 internal static class SettingsPageConversion
 {
+	public static int GetSelectedIndexForEmptyCellCharacter(ComboBox comboBox)
+	{
+		var character = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
+		var i = 0;
+		foreach (var element in comboBox.Items.Cast<ComboBoxItem>())
+		{
+			if (element.Tag is string and [var ch] && ch == character)
+			{
+				return i;
+			}
+
+			i++;
+		}
+
+		return -1;
+	}
+
 	public static string GetDashArrayString(DashArray value) => value.ToString()[1..^1];
 
 	public static string GetSliderString(double value, string format) => value.ToString(format);

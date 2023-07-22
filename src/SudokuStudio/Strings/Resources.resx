@@ -864,6 +864,15 @@
   <data name="SettingsPage_EliminationColor" xml:space="preserve">
     <value>Eliminations</value>
   </data>
+  <data name="SettingsPage_EmptyCellCharacter" xml:space="preserve">
+    <value>Placeholder for empty cells in text</value>
+  </data>
+  <data name="SettingsPage_EmptyCellCharacter_Dot" xml:space="preserve">
+    <value>Dot ('.')</value>
+  </data>
+  <data name="SettingsPage_EmptyCellCharacter_Zero" xml:space="preserve">
+    <value>Digit 0 ('0')</value>
+  </data>
   <data name="SettingsPage_EnableAnimationFeedback" xml:space="preserve">
     <value>Enable animation feedback</value>
   </data>

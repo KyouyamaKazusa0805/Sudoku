@@ -98,6 +98,19 @@
 					Description="{m:R Key=SettingsPage_AutoCachePuzzleAndViewsDescription}">
 					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AutoCachePuzzleAndView,Mode=TwoWay}" />
 				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=SettingsPage_EmptyCellCharacter}">
+					<ComboBox
+						x:Name="EmptyCellCharacterSelector"
+						SelectedIndex="{x:Bind cvt:SettingsPageConversion.GetSelectedIndexForEmptyCellCharacter(EmptyCellCharacterSelector)}"
+						SelectionChanged="EmptyCellCharacterSelector_SelectionChanged">
+						<ComboBoxItem Content="{m:R Key=SettingsPage_EmptyCellCharacter_Zero}">
+							<ComboBoxItem.Tag>
+								<x:String>0</x:String>
+							</ComboBoxItem.Tag>
+						</ComboBoxItem>
+						<ComboBoxItem Content="{m:R Key=SettingsPage_EmptyCellCharacter_Dot}" Tag="." />
+					</ComboBox>
+				</w:SettingsCard>
 			</w:SettingsGroup>
 		</StackPanel>
 	</ScrollViewer>

@@ -2491,6 +2491,33 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Placeholder for empty cells in text.
+        /// </summary>
+        internal static string SettingsPage_EmptyCellCharacter {
+            get {
+                return ResourceManager.GetString("SettingsPage_EmptyCellCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dot (&apos;.&apos;).
+        /// </summary>
+        internal static string SettingsPage_EmptyCellCharacter_Dot {
+            get {
+                return ResourceManager.GetString("SettingsPage_EmptyCellCharacter_Dot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digit 0 (&apos;0&apos;).
+        /// </summary>
+        internal static string SettingsPage_EmptyCellCharacter_Zero {
+            get {
+                return ResourceManager.GetString("SettingsPage_EmptyCellCharacter_Zero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable animation feedback.
         /// </summary>
         internal static string SettingsPage_EnableAnimationFeedback {

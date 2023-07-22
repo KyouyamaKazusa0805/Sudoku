@@ -131,8 +131,9 @@ public sealed partial class AnalyzePage : Page
 			return;
 		}
 
+		var character = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-		dataPackage.SetText(puzzle.ToString(SusserFormat.Full));
+		dataPackage.SetText(puzzle.ToString($"#{character}"));
 
 		Clipboard.SetContent(dataPackage);
 	}

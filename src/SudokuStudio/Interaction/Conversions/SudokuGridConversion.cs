@@ -24,12 +24,15 @@ internal static class SudokuGridConversion
 		};
 
 	public static string GetPuzzleCode(Grid grid)
-		=> grid switch
+	{
+		var character = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
+		return grid switch
 		{
 			{ IsUndefined: true } => GetString("AnalyzePage_UndefinedGrid"),
 			{ IsEmpty: true } => GetString("AnalyzePage_EmptyGrid"),
-			_ => grid.ToString("#")
+			_ => grid.ToString($"#{character}")
 		};
+	}
 
 	public static unsafe string GetPuzzleUniqueness(Grid grid)
 	{
@@ -43,8 +46,9 @@ internal static class SudokuGridConversion
 			return GetString("AnalyzePage_PuzzleHasMultipleSolutions");
 		}
 
+		var character = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
 		var hasNoGivenCells = grid.GivensCount == 0;
-		var str = hasNoGivenCells ? grid.ToString("!") : grid.ToString();
+		var str = hasNoGivenCells ? grid.ToString($"!{character}") : grid.ToString();
 		return GetString(
 			Solver.Solve(str, null, 2) switch
 			{

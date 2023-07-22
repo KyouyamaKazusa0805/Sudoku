@@ -1211,6 +1211,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AutoCachePuzzleAndView"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacterProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacter"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacter"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScaleProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale"/>.
@@ -1554,6 +1560,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AutoCachePuzzleAndView">
             <summary>
             Indicates whether the last puzzle and its views should be cached to local path, in order to recover them after you re-start or launch the program.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacter">
+            <summary>
+            Indicates the default empty character you want to use. The value can be '0' or '.'.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale">
@@ -5152,6 +5163,21 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_EliminationColor">
             <summary>
               Looks up a localized string similar to Eliminations.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_EmptyCellCharacter">
+            <summary>
+              Looks up a localized string similar to Placeholder for empty cells in text.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_EmptyCellCharacter_Dot">
+            <summary>
+              Looks up a localized string similar to Dot (&apos;.&apos;).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_EmptyCellCharacter_Zero">
+            <summary>
+              Looks up a localized string similar to Digit 0 (&apos;0&apos;).
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_EnableAnimationFeedback">

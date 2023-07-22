@@ -13,11 +13,17 @@ public sealed partial class BasicPreferenceItemsPage : Page
 
 	private void BackdropSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		if (sender is not ComboBox { SelectedItem: ComboBoxItem { Tag: string s } } || !Enum.TryParse<BackdropKind>(s, out var value))
+		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: string s } } && Enum.TryParse<BackdropKind>(s, out var value))
 		{
-			return;
+			((App)Application.Current).Preference.UIPreferences.Backdrop = value;
 		}
+	}
 
-		((App)Application.Current).Preference.UIPreferences.Backdrop = value;
+	private void EmptyCellCharacterSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+	{
+		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: string and [var ch] } })
+		{
+			((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter = ch;
+		}
 	}
 }

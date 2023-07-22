@@ -20,6 +20,7 @@ using M = CoordinateLabelDisplayMode;
 [DependencyProperty<bool>("GeneratedPuzzleShouldBeMinimal", DefaultValue = false, DocSummary = "Indicates whether the generated puzzles should be minimal.")]
 [DependencyProperty<bool>("GeneratedPuzzleShouldBePearl", DefaultValue = false, DocSummary = "Indicates whether the generated puzzles should be pearl.")]
 [DependencyProperty<bool>("AutoCachePuzzleAndView", DefaultValue = false, DocSummary = "Indicates whether the last puzzle and its views should be cached to local path, in order to recover them after you re-start or launch the program.")]
+[DependencyProperty<char>("EmptyCellCharacter", DefaultValue = '0', DocSummary = "Indicates the default empty character you want to use. The value can be '0' or '.'.")]
 [DependencyProperty<decimal>("HighlightedPencilmarkBackgroundEllipseScale", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale")]
 [DependencyProperty<decimal>("HighlightedBackgroundOpacity", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity")]
 [DependencyProperty<decimal>("ChainStrokeThickness", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness")]

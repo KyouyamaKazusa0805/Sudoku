@@ -14,5 +14,9 @@ public sealed class SudokuPlainTextFileHandler : IProgramSupportedFileHandler<Gr
 	public static Grid Read(string filePath) => Grid.Parse(File.ReadAllText(filePath));
 
 	/// <inheritdoc/>
-	public static void Write(string filePath, Grid instance) => File.WriteAllText(filePath, instance.ToString("#"));
+	public static void Write(string filePath, Grid instance)
+	{
+		var character = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
+		File.WriteAllText(filePath, instance.ToString($"#{character}"));
+	}
 }

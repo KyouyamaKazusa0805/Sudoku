@@ -867,6 +867,15 @@
   <data name="SettingsPage_EliminationColor" xml:space="preserve">
     <value>删数</value>
   </data>
+  <data name="SettingsPage_EmptyCellCharacter" xml:space="preserve">
+    <value>文本里空格的占位符</value>
+  </data>
+  <data name="SettingsPage_EmptyCellCharacter_Dot" xml:space="preserve">
+    <value>小数点（'.'）</value>
+  </data>
+  <data name="SettingsPage_EmptyCellCharacter_Zero" xml:space="preserve">
+    <value>数字 0（'0'）</value>
+  </data>
   <data name="SettingsPage_EnableAnimationFeedback" xml:space="preserve">
     <value>启用动画反馈</value>
   </data>
