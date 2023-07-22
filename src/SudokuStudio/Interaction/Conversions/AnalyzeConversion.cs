@@ -154,7 +154,6 @@ internal static class AnalyzeConversion
 
 		return result;
 
-
 		static IEnumerable<Inline> appendExtraDifficultyCases(ExtraDifficultyCase[] cases)
 		{
 			for (var i = 0; i < cases.Length; i++)

@@ -114,7 +114,6 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	{
 		return Count == 0 ? Empty : new(cloneNodes());
 
-
 		HashSet<ViewNode> cloneNodes()
 		{
 			var result = new HashSet<ViewNode>(Count);

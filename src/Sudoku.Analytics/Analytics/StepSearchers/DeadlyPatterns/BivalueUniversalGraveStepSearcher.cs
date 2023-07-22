@@ -121,7 +121,6 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 		return null;
 
-
 		static bool checkForSingleDigit(scoped in CandidateMap trueCandidates)
 		{
 			var i = 0;
@@ -194,7 +193,6 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		}
 
 		return null;
-
 
 		static bool formsDeadlyPattern(scoped in Grid grid)
 		{

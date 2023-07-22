@@ -250,9 +250,7 @@ public readonly unsafe partial struct Utf8String :
 				j = next[j];
 			}
 		}
-
 		return j == s.Length ? i - j : -1;
-
 
 		static int[] getNext(Utf8String s)
 		{

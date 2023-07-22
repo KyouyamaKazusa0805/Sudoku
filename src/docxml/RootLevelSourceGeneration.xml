@@ -314,9 +314,21 @@
             int[] subArray2 = someArray[1..^0]; // { 2, 3, 4, 5 }
             </code>
             </remarks>
+            <remarks>Construct a Range object using the start and end indexes.</remarks>
+            <param name="start">Represent the inclusive start index of the range.</param>
+            <param name="end">Represent the exclusive end index of the range.</param>
         </member>
         <member name="M:System.Range.#ctor(System.Index,System.Index)">
-            <summary>Construct a Range object using the start and end indexes.</summary>
+            <summary>Represent a range has start and end indexes.</summary>
+            <remarks>
+            Range is used by the C# compiler to support the range syntax.
+            <code>
+            int[] someArray = new int[5] { 1, 2, 3, 4, 5 };
+            int[] subArray1 = someArray[0..2]; // { 1, 2 }
+            int[] subArray2 = someArray[1..^0]; // { 2, 3, 4, 5 }
+            </code>
+            </remarks>
+            <remarks>Construct a Range object using the start and end indexes.</remarks>
             <param name="start">Represent the inclusive start index of the range.</param>
             <param name="end">Represent the exclusive end index of the range.</param>
         </member>

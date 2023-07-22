@@ -1,4 +1,4 @@
-﻿#if NETSTANDARD
+#if NETSTANDARD
 namespace System;
 
 /// <summary>Represent a range has start and end indexes.</summary>
@@ -10,23 +10,16 @@ namespace System;
 /// int[] subArray2 = someArray[1..^0]; // { 2, 3, 4, 5 }
 /// </code>
 /// </remarks>
-internal readonly struct Range : IEquatable<Range>
+/// <remarks>Construct a Range object using the start and end indexes.</remarks>
+/// <param name="start">Represent the inclusive start index of the range.</param>
+/// <param name="end">Represent the exclusive end index of the range.</param>
+internal readonly struct Range(Index start, Index end) : IEquatable<Range>
 {
-	/// <summary>Construct a Range object using the start and end indexes.</summary>
-	/// <param name="start">Represent the inclusive start index of the range.</param>
-	/// <param name="end">Represent the exclusive end index of the range.</param>
-	public Range(Index start, Index end)
-	{
-		Start = start;
-		End = end;
-	}
-
-
 	/// <summary>Represent the inclusive start index of the Range.</summary>
-	public Index Start { get; }
+	public Index Start { get; } = start;
 
 	/// <summary>Represent the exclusive end index of the Range.</summary>
-	public Index End { get; }
+	public Index End { get; } = end;
 
 	/// <summary>Create a Range object starting from first element to the end.</summary>
 	public static Range All => new(Index.Start, Index.End);

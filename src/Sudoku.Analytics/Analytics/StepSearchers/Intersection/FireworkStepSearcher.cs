@@ -599,7 +599,6 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		(house1CellsExcluded, house2CellsExcluded) = (excluded1, excluded2);
 		return finalMask;
 
-
 		static bool isFireworkFor(Digit digit, scoped in CellMap houseCellsExcluded, scoped in Grid grid)
 		{
 			foreach (var cell in houseCellsExcluded)

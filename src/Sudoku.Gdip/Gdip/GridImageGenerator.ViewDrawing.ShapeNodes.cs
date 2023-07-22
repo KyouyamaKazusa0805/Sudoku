@@ -361,7 +361,6 @@ partial class GridImageGenerator
 
 		return true;
 
-
 		GraphicsPath createPath(float padding, Cell cell, Direction directions, bool isComplement)
 		{
 			var (cw, ch) = calc.CellSize;

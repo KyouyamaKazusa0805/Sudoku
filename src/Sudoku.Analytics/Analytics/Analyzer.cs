@@ -98,9 +98,7 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 				};
 			}
 		}
-
 		return result with { IsSolved = false, FailedReason = AnalyzerFailedReason.PuzzleIsInvalid };
-
 
 		AnalyzerResult analyzeInternal(
 			scoped in Grid puzzle,
@@ -218,7 +216,6 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 		ReportStatusAndSkipToTryAgain:
 			progress?.Report(new(progressedStepSearcherName, (double)(totalCandidatesCount - playground.CandidatesCount) / totalCandidatesCount));
 			goto Again;
-
 
 			static bool verifyConclusionValidity(scoped in Grid solution, Step step)
 			{

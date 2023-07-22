@@ -39,7 +39,6 @@ partial struct MaskCombinationsGenerator
 
 			return result;
 
-
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static bool hasNext(scoped ref Enumerator @this)
 			{

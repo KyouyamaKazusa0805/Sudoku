@@ -945,7 +945,6 @@ public unsafe partial struct CellMap :
 			f(subsetSize, n, subsetSize, offsets.Offsets);
 			return result;
 
-
 			void f(int size, int last, int index, Cell[] offsets)
 			{
 				for (var i = last; i >= index; i--)
@@ -982,7 +981,6 @@ public unsafe partial struct CellMap :
 			var result = new List<CellMap>();
 			f(subsetSize, n, subsetSize, offsets.Offsets);
 			return result.ToArray();
-
 
 			void f(int size, int last, int index, Cell[] offsets)
 			{

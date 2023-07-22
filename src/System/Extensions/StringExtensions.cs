@@ -254,6 +254,9 @@ public static unsafe partial class StringExtensions
 	/// </exception>
 	public static string Reserve(this string @this, [StringSyntax(StringSyntax.Regex), ConstantExpected] string reservePattern)
 	{
+		static bool isTab(char c) => c == '\t';
+		static bool isLetterDigitOrUnderscore(char c) => c == '_' || char.IsLetterOrDigit(c);
+
 		/*lang = regex*/
 		delegate*<char, bool> predicate = reservePattern switch
 		{
@@ -279,11 +282,6 @@ public static unsafe partial class StringExtensions
 		}
 
 		return new(ptr, 0, count);
-
-
-		static bool isTab(char c) => c == '\t';
-
-		static bool isLetterDigitOrUnderscore(char c) => c == '_' || char.IsLetterOrDigit(c);
 	}
 
 	/// <summary>

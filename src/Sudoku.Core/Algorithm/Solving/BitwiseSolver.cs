@@ -650,7 +650,6 @@ public sealed unsafe class BitwiseSolver : ISolver
 		}
 		return true;
 
-
 		// The core Update routine from Zhou Yundong.
 		// This copy has been optimized by champagne and JasonLion in minor ways.
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

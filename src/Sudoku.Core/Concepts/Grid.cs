@@ -483,7 +483,6 @@ public unsafe partial struct Grid :
 		{
 			return BackingSolver.Solve(this) is { IsUndefined: false } solution ? unfix(solution, GivenCells) : Undefined;
 
-
 			static Grid unfix(scoped in Grid solution, scoped in CellMap pattern)
 			{
 				var result = solution;
@@ -593,7 +592,6 @@ public unsafe partial struct Grid :
 	public readonly bool Equals(scoped in Grid other)
 	{
 		return e(ref AsByteRef(ref AsRef(this[0])), ref AsByteRef(ref AsRef(other[0])), sizeof(Mask) * 81);
-
 
 #pragma warning disable CS1587
 		/// <summary>
@@ -1689,6 +1687,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator checked Grid(Mask[] maskArray)
 	{
+		static bool maskMatcher(Mask element) => element >> 9 is 0 or 1 or 2 or 4;
 		Argument.ThrowIfNotEqual(maskArray.Length, 81, nameof(maskArray));
 		Argument.ThrowIfFalse(Array.TrueForAll(maskArray, maskMatcher), "Each element in this array must contain a valid cell status.");
 
@@ -1696,9 +1695,6 @@ public unsafe partial struct Grid :
 		CopyBlock(ref AsByteRef(ref result[0]), ref AsByteRef(ref maskArray[0]), sizeof(Mask) * 81);
 
 		return result;
-
-
-		static bool maskMatcher(Mask element) => element >> 9 is 0 or 1 or 2 or 4;
 	}
 
 	/// <summary>

@@ -1,4 +1,4 @@
-﻿namespace Microsoft.CodeAnalysis;
+namespace Microsoft.CodeAnalysis;
 
 /// <summary>
 /// Provides with extension methods on <see cref="INamespaceSymbol"/>.
@@ -15,9 +15,7 @@ internal static class INamespaceSymbolExtensions
 	{
 		var result = new List<INamedTypeSymbol>(@this.GetTypeMembers());
 		getAllNestedTypes(@this, result);
-
 		return result;
-
 
 		static void getAllNestedTypes(INamespaceSymbol @this, List<INamedTypeSymbol> result)
 		{

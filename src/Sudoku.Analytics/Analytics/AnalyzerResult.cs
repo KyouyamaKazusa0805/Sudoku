@@ -391,9 +391,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 					return pair;
 				}
 			}
-
 			return null;
-
 
 			bool nameEquality(string name) => name == techniqueName || name.Contains(techniqueName, StringComparison.OrdinalIgnoreCase);
 		}
@@ -653,9 +651,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 		}
 
 		a(ref sb, options.Flags(FormattingOptions.ShowSeparators));
-
 		return sb.ToStringAndClear();
-
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void a(scoped ref StringHandler sb, bool showSeparator)

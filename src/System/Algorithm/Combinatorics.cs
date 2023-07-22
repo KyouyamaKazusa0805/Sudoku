@@ -22,7 +22,6 @@ public static class Combinatorics
 		g(@this.Length, count, count, stackalloc int[count], @this, result);
 		return result.ToArray();
 
-
 		static void g(int last, int count, int index, scoped Span<int> tempArray, scoped Span<T> @this, List<T[]> resultList)
 		{
 			for (var i = last; i >= index; i--)
@@ -62,7 +61,6 @@ public static class Combinatorics
 		var result = new List<T[]>();
 		g(@this.Length, count, count, stackalloc int[count], @this, result);
 		return result.ToArray();
-
 
 		static void g(int last, int count, int index, scoped Span<int> tempArray, scoped ReadOnlySpan<T> @this, List<T[]> resultList)
 		{
@@ -145,7 +143,6 @@ public static class Combinatorics
 		var result = new List<T[]>();
 		g(@this.Length, count, count, stackalloc int[count], @this, result);
 		return result.ToArray();
-
 
 		static void g(int last, int count, int index, scoped Span<int> tempArray, T[] @this, List<T[]> resultList)
 		{

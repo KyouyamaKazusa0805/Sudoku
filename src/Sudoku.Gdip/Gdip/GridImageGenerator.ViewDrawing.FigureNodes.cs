@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Gdip;
+namespace Sudoku.Gdip;
 
 partial class GridImageGenerator
 {
@@ -148,7 +148,6 @@ partial class GridImageGenerator
 					path.AddLine(points[^1], points[0]);
 
 					return path;
-
 
 					static float[] getAngles(float startAngle)
 					{

@@ -649,7 +649,6 @@ public partial struct CandidateMap :
 			f(subsetSize, n, subsetSize, offsets.Offsets);
 			return result;
 
-
 			void f(int size, int last, int index, Candidate[] offsets)
 			{
 				for (var i = last; i >= index; i--)
@@ -686,7 +685,6 @@ public partial struct CandidateMap :
 			var result = new List<CandidateMap>();
 			f(subsetSize, n, subsetSize, offsets.Offsets);
 			return result.ToArray();
-
 
 			void f(int size, int last, int index, Candidate[] offsets)
 			{
