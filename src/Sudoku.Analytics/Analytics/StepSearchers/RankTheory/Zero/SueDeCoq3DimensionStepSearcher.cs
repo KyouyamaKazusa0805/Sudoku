@@ -63,7 +63,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 					// Iterate on the number of the cells that should be selected in block.
 					for (var i = 1; i < blockMap.Count; i++)
 					{
-						foreach (var selectedBlockCells in blockMap & i)
+						foreach (var selectedBlockCells in blockMap.GetSubsets(i))
 						{
 							var blockMask = grid[selectedBlockCells];
 							var elimMapBlock = CellMap.Empty;
@@ -77,7 +77,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 
 							for (var j = 1; j < MathExtensions.Min(9 - i - selectedBlockCells.Count, rowMap.Count, columnMap.Count); j++)
 							{
-								foreach (var selectedRowCells in rowMap & j)
+								foreach (var selectedRowCells in rowMap.GetSubsets(j))
 								{
 									var rowMask = grid[selectedRowCells];
 									var elimMapRow = CellMap.Empty;
@@ -90,7 +90,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 
 									for (var k = 1; k <= MathExtensions.Min(9 - i - j - selectedBlockCells.Count - selectedRowCells.Count, rowMap.Count, columnMap.Count); k++)
 									{
-										foreach (var selectedColumnCells in columnMap & k)
+										foreach (var selectedColumnCells in columnMap.GetSubsets(k))
 										{
 											var columnMask = grid[selectedColumnCells];
 											var elimMapColumn = CellMap.Empty;

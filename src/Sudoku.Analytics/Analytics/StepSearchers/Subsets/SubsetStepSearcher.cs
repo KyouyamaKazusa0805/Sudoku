@@ -39,7 +39,7 @@ public abstract class SubsetStepSearcher(
 				}
 
 				// Iterate on each combination.
-				foreach (var cells in currentEmptyMap & size)
+				foreach (var cells in currentEmptyMap.GetSubsets(size))
 				{
 					var digitsMask = grid[cells];
 					if (PopCount((uint)digitsMask) != size)

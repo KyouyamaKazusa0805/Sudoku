@@ -687,6 +687,119 @@ public unsafe partial struct CellMap :
 		return result;
 	}
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly CellMap[] GetSubsets(int subsetSize)
+	{
+		if (subsetSize == 0 || subsetSize > _count)
+		{
+			return Array.Empty<CellMap>();
+		}
+
+		if (subsetSize == _count)
+		{
+			return new[] { this };
+		}
+
+		var n = _count;
+		var buffer = stackalloc int[subsetSize];
+		if (n <= 30 && subsetSize <= 30)
+		{
+			// Optimization: Use table to get the total number of result elements.
+			var totalIndex = 0;
+			var result = new CellMap[Combinatorial[n - 1, subsetSize - 1]];
+			enumerateWithLimit(subsetSize, n, subsetSize, Offsets);
+			return result;
+
+			void enumerateWithLimit(int size, int last, int index, Cell[] offsets)
+			{
+				for (var i = last; i >= index; i--)
+				{
+					buffer[index - 1] = i - 1;
+					if (index > 1)
+					{
+						enumerateWithLimit(size, i - 1, index - 1, offsets);
+					}
+					else
+					{
+						var temp = new Cell[size];
+						for (var j = 0; j < size; j++)
+						{
+							temp[j] = offsets[buffer[j]];
+						}
+
+						result[totalIndex++] = (CellMap)temp;
+					}
+				}
+			}
+		}
+		else
+		{
+			if (n > 30 && subsetSize > 30)
+			{
+				throw new NotSupportedException(
+					"""
+					Both cells count and subset size is too large, which may cause potential out of memory exception.
+					This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown.
+					""".RemoveLineEndings()
+				);
+			}
+			var result = new List<CellMap>();
+			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
+			return result.ToArray();
+
+			void enumerateWithoutLimit(int size, int last, int index, Cell[] offsets)
+			{
+				for (var i = last; i >= index; i--)
+				{
+					buffer[index - 1] = i - 1;
+					if (index > 1)
+					{
+						enumerateWithoutLimit(size, i - 1, index - 1, offsets);
+					}
+					else
+					{
+						var temp = new Cell[size];
+						for (var j = 0; j < size; j++)
+						{
+							temp[j] = offsets[buffer[j]];
+						}
+
+						result.Add((CellMap)temp);
+					}
+				}
+			}
+		}
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly CellMap[] GetAllSubsets() => GetAllSubsets(_count);
+
+	/// <inheritdoc/>
+	public readonly CellMap[] GetAllSubsets(int limitSubsetSize)
+	{
+		if (limitSubsetSize == 0 || !this)
+		{
+			return Array.Empty<CellMap>();
+		}
+
+		var (n, desiredSize) = (_count, 0);
+		var length = Min(n, limitSubsetSize);
+		for (var i = 1; i <= length; i++)
+		{
+			desiredSize += Combinatorial[n - 1, i - 1];
+		}
+
+		var result = new List<CellMap>(desiredSize);
+		for (var i = 1; i <= length; i++)
+		{
+			result.AddRange(GetSubsets(i));
+		}
+
+		return result.ToArray();
+	}
+
 	/// <summary>
 	/// Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
 	/// using the specified function to convert.
@@ -923,118 +1036,8 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap[] operator &(scoped in CellMap offsets, int subsetSize)
-	{
-		if (subsetSize == 0 || subsetSize > offsets._count)
-		{
-			return Array.Empty<CellMap>();
-		}
-
-		if (subsetSize == offsets._count)
-		{
-			return new[] { offsets };
-		}
-
-		var n = offsets._count;
-		var buffer = stackalloc int[subsetSize];
-		if (n <= 30 && subsetSize <= 30)
-		{
-			// Optimization: Use table to get the total number of result elements.
-			var totalIndex = 0;
-			var result = new CellMap[Combinatorial[n - 1, subsetSize - 1]];
-			f(subsetSize, n, subsetSize, offsets.Offsets);
-			return result;
-
-			void f(int size, int last, int index, Cell[] offsets)
-			{
-				for (var i = last; i >= index; i--)
-				{
-					buffer[index - 1] = i - 1;
-					if (index > 1)
-					{
-						f(size, i - 1, index - 1, offsets);
-					}
-					else
-					{
-						var temp = new Cell[size];
-						for (var j = 0; j < size; j++)
-						{
-							temp[j] = offsets[buffer[j]];
-						}
-
-						result[totalIndex++] = (CellMap)temp;
-					}
-				}
-			}
-		}
-
-		{
-			if (n > 30 && subsetSize > 30)
-			{
-				throw new NotSupportedException(
-					"""
-					Both cells count and subset size is too large, which may cause potential out of memory exception.
-					This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown.
-					""".RemoveLineEndings()
-				);
-			}
-			var result = new List<CellMap>();
-			f(subsetSize, n, subsetSize, offsets.Offsets);
-			return result.ToArray();
-
-			void f(int size, int last, int index, Cell[] offsets)
-			{
-				for (var i = last; i >= index; i--)
-				{
-					buffer[index - 1] = i - 1;
-					if (index > 1)
-					{
-						f(size, i - 1, index - 1, offsets);
-					}
-					else
-					{
-						var temp = new Cell[size];
-						for (var j = 0; j < size; j++)
-						{
-							temp[j] = offsets[buffer[j]];
-						}
-
-						result.Add((CellMap)temp);
-					}
-				}
-			}
-		}
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator &(scoped in CellMap left, scoped in CellMap right)
 		=> CreateByBits(left._high & right._high, left._low & right._low);
-
-	/// <inheritdoc/>
-	public static CellMap[] operator |(scoped in CellMap offsets, int subsetSize)
-	{
-		if (subsetSize == 0 || !offsets)
-		{
-			return Array.Empty<CellMap>();
-		}
-
-		var (n, desiredSize) = (offsets._count, 0);
-		var length = Min(n, subsetSize);
-		for (var i = 1; i <= length; i++)
-		{
-			var target = Combinatorial[n - 1, i - 1];
-			desiredSize += target;
-		}
-
-		var result = new List<CellMap>(desiredSize);
-		for (var i = 1; i <= length; i++)
-		{
-			result.AddRange(offsets & i);
-		}
-
-		return result.ToArray();
-	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

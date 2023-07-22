@@ -1660,6 +1660,15 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.Slice(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.GetSubsets(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.GetAllSubsets">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.GetAllSubsets(System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)">
             <inheritdoc/>
         </member>
@@ -1751,9 +1760,6 @@ if (student is (name: var name, age: >= 18))
             <param name="base">The base map.</param>
             <param name="template">The template map that the base map to check and cover.</param>
             <returns>The result map.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_BitwiseAnd(Sudoku.Concepts.CandidateMap@,System.Int32)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IDivisionOperators{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CellMap}#op_Division(Sudoku.Concepts.CandidateMap,System.Int32)">
             <inheritdoc/>
@@ -2189,6 +2195,15 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.Slice(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.GetSubsets(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.GetAllSubsets">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.GetAllSubsets(System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.Select``1(System.Func{System.Int32,``0})">
             <summary>
             Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
@@ -2291,13 +2306,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.op_Subtraction(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_BitwiseAnd(Sudoku.Concepts.CellMap@,System.Int32)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.op_BitwiseAnd(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_BitwiseOr(Sudoku.Concepts.CellMap@,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_BitwiseOr(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
@@ -4050,6 +4059,79 @@ if (student is (name: var name, age: >= 18))
             <param name="count">The number of elements.</param>
             <returns>The target instance.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.GetSubsets(System.Int32)">
+            <summary>
+            Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
+            </summary>
+            <param name="subsetSize">The size to get.</param>
+            <returns>
+            All possible subsets. If:
+            <list type="table">
+            <listheader>
+            <term>Condition</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><c><paramref name="subsetSize"/> &gt; Count</c></term>
+            <description>Will return an empty array</description>
+            </item>
+            <item>
+            <term><c><paramref name="subsetSize"/> == Count</c></term>
+            <description>
+            Will return an array that contains only one element, same as the current instance.
+            </description>
+            </item>
+            <item>
+            <term>Other cases</term>
+            <description>The valid combinations.</description>
+            </item>
+            </list>
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+            Throws when both the count of the current instance and <paramref name="subsetSize"/> are greater than 30.
+            </exception>
+            <remarks>
+            For example, if the current instance is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
+            and the argument <paramref name="subsetSize"/> is 2, the expression <c><![CDATA[cells & 2]]></c>
+            will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.GetAllSubsets">
+            <summary>
+            Equivalent to <c>GetAllSubsets(Count)</c>.
+            </summary>
+            <returns>All subsets of the current instance.</returns>
+            <seealso cref="M:Sudoku.Concepts.IBitStatusMap`2.GetAllSubsets(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.GetAllSubsets(System.Int32)">
+            <summary>
+            Gets all subsets of the current collection via the specified size
+            indicating the <b>maximum</b> number of elements of the each subset.
+            </summary>
+            <param name="limitSubsetSize">The size to get.</param>
+            <returns>
+            All possible subsets. If:
+            <list type="table">
+            <listheader>
+            <term>Condition</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><c><paramref name="limitSubsetSize"/> &gt; Count</c></term>
+            <description>Will return an empty array</description>
+            </item>
+            <item>
+            <term>Other cases</term>
+            <description>The valid combinations.</description>
+            </item>
+            </list>
+            </returns>
+            <remarks>
+            For example, the expression <c>cells | 3</c> is equivalent to all possible cases
+            coming from <c><![CDATA[cells & 1]]></c>,
+            <c><![CDATA[cells & 2]]></c> and <c><![CDATA[cells & 3]]></c>.
+            </remarks>
+        </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.GetEnumerator">
             <summary>
             Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
@@ -4258,74 +4340,6 @@ if (student is (name: var name, age: >= 18))
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_BitwiseAnd(`0@,System.Int32)">
-            <summary>
-            Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
-            </summary>
-            <param name="offsets">Indicates the base template cells.</param>
-            <param name="subsetSize">The size to get.</param>
-            <returns>
-            All possible subsets. If:
-            <list type="table">
-            <listheader>
-            <term>Condition</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><c><paramref name="subsetSize"/> &gt; <paramref name="offsets"/>.Count</c></term>
-            <description>Will return an empty array</description>
-            </item>
-            <item>
-            <term><c><paramref name="subsetSize"/> == <paramref name="offsets"/>.Count</c></term>
-            <description>
-            Will return an array that contains only one element, same as the argument <paramref name="offsets"/>.
-            </description>
-            </item>
-            <item>
-            <term>Other cases</term>
-            <description>The valid combinations.</description>
-            </item>
-            </list>
-            </returns>
-            <exception cref="T:System.NotSupportedException">
-            Throws when both <paramref name="offsets"/> count and <paramref name="subsetSize"/> are greater than 30.
-            </exception>
-            <remarks>
-            For example, if the argument <paramref name="offsets"/> is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
-            and the argument <paramref name="subsetSize"/> is 2, the expression <c><![CDATA[cells & 2]]></c>
-            will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_BitwiseOr(`0@,System.Int32)">
-            <summary>
-            Gets all subsets of the current collection via the specified size
-            indicating the <b>maximum</b> number of elements of the each subset.
-            </summary>
-            <param name="offsets">Indicates the base template cells.</param>
-            <param name="subsetSize">The size to get.</param>
-            <returns>
-            All possible subsets. If:
-            <list type="table">
-            <listheader>
-            <term>Condition</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><c><paramref name="subsetSize"/> &gt; <paramref name="offsets"/>.Count</c></term>
-            <description>Will return an empty array</description>
-            </item>
-            <item>
-            <term>Other cases</term>
-            <description>The valid combinations.</description>
-            </item>
-            </list>
-            </returns>
-            <remarks>
-            For example, the expression <c>cells | 3</c> is equivalent to all possible cases
-            coming from <c><![CDATA[cells & 1]]></c>,
-            <c><![CDATA[cells & 2]]></c> and <c><![CDATA[cells & 3]]></c>.
-            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Equality(`0,`0)">
             <inheritdoc/>

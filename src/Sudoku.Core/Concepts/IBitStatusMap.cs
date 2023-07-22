@@ -208,6 +208,102 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	TSelf Slice(int start, int count);
 
 	/// <summary>
+	/// Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
+	/// </summary>
+	/// <param name="subsetSize">The size to get.</param>
+	/// <returns>
+	/// All possible subsets. If:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Condition</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term><c><paramref name="subsetSize"/> &gt; Count</c></term>
+	/// <description>Will return an empty array</description>
+	/// </item>
+	/// <item>
+	/// <term><c><paramref name="subsetSize"/> == Count</c></term>
+	/// <description>
+	/// Will return an array that contains only one element, same as the current instance.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term>Other cases</term>
+	/// <description>The valid combinations.</description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	/// <exception cref="NotSupportedException">
+	/// Throws when both the count of the current instance and <paramref name="subsetSize"/> are greater than 30.
+	/// </exception>
+	/// <remarks>
+	/// For example, if the current instance is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
+	/// and the argument <paramref name="subsetSize"/> is 2, the expression <c><![CDATA[cells & 2]]></c>
+	/// will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
+	/// </remarks>
+	TSelf[] GetSubsets(int subsetSize);
+
+	/// <summary>
+	/// Equivalent to <c>GetAllSubsets(Count)</c>.
+	/// </summary>
+	/// <returns>All subsets of the current instance.</returns>
+	/// <seealso cref="GetAllSubsets(int)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	TSelf[] GetAllSubsets() => GetAllSubsets(Count);
+
+	/// <summary>
+	/// Gets all subsets of the current collection via the specified size
+	/// indicating the <b>maximum</b> number of elements of the each subset.
+	/// </summary>
+	/// <param name="limitSubsetSize">The size to get.</param>
+	/// <returns>
+	/// All possible subsets. If:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Condition</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term><c><paramref name="limitSubsetSize"/> &gt; Count</c></term>
+	/// <description>Will return an empty array</description>
+	/// </item>
+	/// <item>
+	/// <term>Other cases</term>
+	/// <description>The valid combinations.</description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	/// <remarks>
+	/// For example, the expression <c>cells | 3</c> is equivalent to all possible cases
+	/// coming from <c><![CDATA[cells & 1]]></c>,
+	/// <c><![CDATA[cells & 2]]></c> and <c><![CDATA[cells & 3]]></c>.
+	/// </remarks>
+	TSelf[] GetAllSubsets(int limitSubsetSize)
+	{
+		if (limitSubsetSize == 0 || Count == 0)
+		{
+			return Array.Empty<TSelf>();
+		}
+
+		var (n, desiredSize) = (Count, 0);
+		var length = Min(n, limitSubsetSize);
+		for (var i = 1; i <= length; i++)
+		{
+			var target = Combinatorial[n - 1, i - 1];
+			desiredSize += target;
+		}
+
+		var result = new List<TSelf>(desiredSize);
+		for (var i = 1; i <= length; i++)
+		{
+			result.AddRange(GetSubsets(i));
+		}
+
+		return result.ToArray();
+	}
+
+	/// <summary>
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
@@ -480,97 +576,6 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	static abstract TSelf operator ^(scoped in TSelf left, scoped in TSelf right);
-
-	/// <summary>
-	/// Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
-	/// </summary>
-	/// <param name="offsets">Indicates the base template cells.</param>
-	/// <param name="subsetSize">The size to get.</param>
-	/// <returns>
-	/// All possible subsets. If:
-	/// <list type="table">
-	/// <listheader>
-	/// <term>Condition</term>
-	/// <description>Meaning</description>
-	/// </listheader>
-	/// <item>
-	/// <term><c><paramref name="subsetSize"/> &gt; <paramref name="offsets"/>.Count</c></term>
-	/// <description>Will return an empty array</description>
-	/// </item>
-	/// <item>
-	/// <term><c><paramref name="subsetSize"/> == <paramref name="offsets"/>.Count</c></term>
-	/// <description>
-	/// Will return an array that contains only one element, same as the argument <paramref name="offsets"/>.
-	/// </description>
-	/// </item>
-	/// <item>
-	/// <term>Other cases</term>
-	/// <description>The valid combinations.</description>
-	/// </item>
-	/// </list>
-	/// </returns>
-	/// <exception cref="NotSupportedException">
-	/// Throws when both <paramref name="offsets"/> count and <paramref name="subsetSize"/> are greater than 30.
-	/// </exception>
-	/// <remarks>
-	/// For example, if the argument <paramref name="offsets"/> is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
-	/// and the argument <paramref name="subsetSize"/> is 2, the expression <c><![CDATA[cells & 2]]></c>
-	/// will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
-	/// </remarks>
-	static abstract TSelf[] operator &(scoped in TSelf offsets, int subsetSize);
-
-	/// <summary>
-	/// Gets all subsets of the current collection via the specified size
-	/// indicating the <b>maximum</b> number of elements of the each subset.
-	/// </summary>
-	/// <param name="offsets">Indicates the base template cells.</param>
-	/// <param name="subsetSize">The size to get.</param>
-	/// <returns>
-	/// All possible subsets. If:
-	/// <list type="table">
-	/// <listheader>
-	/// <term>Condition</term>
-	/// <description>Meaning</description>
-	/// </listheader>
-	/// <item>
-	/// <term><c><paramref name="subsetSize"/> &gt; <paramref name="offsets"/>.Count</c></term>
-	/// <description>Will return an empty array</description>
-	/// </item>
-	/// <item>
-	/// <term>Other cases</term>
-	/// <description>The valid combinations.</description>
-	/// </item>
-	/// </list>
-	/// </returns>
-	/// <remarks>
-	/// For example, the expression <c>cells | 3</c> is equivalent to all possible cases
-	/// coming from <c><![CDATA[cells & 1]]></c>,
-	/// <c><![CDATA[cells & 2]]></c> and <c><![CDATA[cells & 3]]></c>.
-	/// </remarks>
-	static virtual TSelf[] operator |(scoped in TSelf offsets, int subsetSize)
-	{
-		if (subsetSize == 0 || !offsets)
-		{
-			return Array.Empty<TSelf>();
-		}
-
-		var n = offsets.Count;
-		var desiredSize = 0;
-		var length = Min(n, subsetSize);
-		for (var i = 1; i <= length; i++)
-		{
-			var target = Combinatorial[n - 1, i - 1];
-			desiredSize += target;
-		}
-
-		var result = new List<TSelf>(desiredSize);
-		for (var i = 1; i <= length; i++)
-		{
-			result.AddRange(offsets & i);
-		}
-
-		return result.ToArray();
-	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

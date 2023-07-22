@@ -408,7 +408,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			var allCellsMap = (HousesMap[houseIndex] & EmptyCells) - pair;
 			for (var (size, length) = (PopCount((uint)otherDigitsMask) - 1, allCellsMap.Count); size < length; size++)
 			{
-				foreach (var cells in allCellsMap & size)
+				foreach (var cells in allCellsMap.GetSubsets(size))
 				{
 					var mask = grid[cells];
 					if ((mask & comparer) != comparer || PopCount((uint)mask) != size + 1)

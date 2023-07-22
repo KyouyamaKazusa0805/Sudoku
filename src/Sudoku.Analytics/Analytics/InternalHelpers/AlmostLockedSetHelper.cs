@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.InternalHelpers;
+namespace Sudoku.Analytics.InternalHelpers;
 
 /// <summary>
 /// Represents a helper type that operates with <see cref="AlmostLockedSet"/> instances.
@@ -27,7 +27,7 @@ internal static class AlmostLockedSetHelper
 
 			for (var size = 2; size <= tempMap.Count - 1; size++)
 			{
-				foreach (var map in tempMap & size)
+				foreach (var map in tempMap.GetSubsets(size))
 				{
 					var blockMask = map.BlockMask;
 					if (IsPow2(blockMask) && houseIndex >= 9)

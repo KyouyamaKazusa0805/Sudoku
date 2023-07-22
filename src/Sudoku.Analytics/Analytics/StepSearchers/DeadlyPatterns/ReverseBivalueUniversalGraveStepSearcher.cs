@@ -146,7 +146,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 					incrementStep += 2
 				)
 				{
-					foreach (var cellsChosen in emptyCells & incrementStep)
+					foreach (var cellsChosen in emptyCells.GetSubsets(incrementStep))
 					{
 						var completePattern = valuesMap | cellsChosen;
 						if (!UniqueLoopStepSearcherHelper.IsGeneralizedUniqueLoop(completePattern))

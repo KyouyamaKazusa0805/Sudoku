@@ -553,7 +553,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var iterationMap = (HousesMap[houseIndex] & EmptyCells) - otherCellsMap;
 			for (var size = PopCount((uint)otherDigitsMask) - 1; size < iterationMap.Count; size++)
 			{
-				foreach (var iteratedCells in iterationMap & size)
+				foreach (var iteratedCells in iterationMap.GetSubsets(size))
 				{
 					var tempMask = grid[iteratedCells];
 					if ((tempMask & comparer) != 0 || PopCount((uint)tempMask) - 1 != size || (tempMask & otherDigitsMask) != otherDigitsMask)
@@ -3072,7 +3072,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					for (var i = 1; i <= blockMap.Count - 1; i++)
 					{
 						// Iterate on each combination in block.
-						foreach (var selectedCellsInBlock in blockMap & i)
+						foreach (var selectedCellsInBlock in blockMap.GetSubsets(i))
 						{
 							var flag = false;
 							foreach (var digit in otherDigitsMask)
@@ -3781,7 +3781,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			}
 
 			var guardianCells = guardianMap - cells & EmptyCells;
-			foreach (var guardianCellPair in guardianCells & 2)
+			foreach (var guardianCellPair in guardianCells.GetSubsets(2))
 			{
 				var c1 = guardianCellPair[0];
 				var c2 = guardianCellPair[1];
@@ -3815,7 +3815,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					var houseCells = HousesMap[house] - cells - guardianCellPair & EmptyCells;
 					for (var size = 2; size <= houseCells.Count; size++)
 					{
-						foreach (var otherCells in houseCells & size - 1)
+						foreach (var otherCells in houseCells.GetSubsets(size - 1))
 						{
 							var subsetDigitsMask = (Mask)(grid[otherCells] | comparer);
 							if (PopCount((uint)subsetDigitsMask) != size)
@@ -3958,7 +3958,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			}
 
 			var guardianCells = guardianMap - cells & EmptyCells;
-			foreach (var guardianCellPair in guardianCells & 2)
+			foreach (var guardianCellPair in guardianCells.GetSubsets(2))
 			{
 				var c1 = guardianCellPair[0];
 				var c2 = guardianCellPair[1];
@@ -4433,7 +4433,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 		void forBothExoLeaves(scoped in Grid grid, scoped in CellMap cellsToEnumerate, scoped in CellMap guardianCells)
 		{
-			foreach (var cellPair in cellsToEnumerate & 2)
+			foreach (var cellPair in cellsToEnumerate.GetSubsets(2))
 			{
 				var (cell1, cell2) = (cellPair[0], cellPair[1]);
 				var (mask1, mask2) = (grid.GetCandidates(cell1), grid.GetCandidates(cell2));

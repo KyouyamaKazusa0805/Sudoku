@@ -78,7 +78,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 					for (var i = 1; i < blockMap.Count; i++)
 					{
 						// Iterate on each combination in block.
-						foreach (var currentBlockMap in blockMap & i)
+						foreach (var currentBlockMap in blockMap.GetSubsets(i))
 						{
 							var blockMask = grid[currentBlockMap];
 							var elimMapBlock = CellMap.Empty;
@@ -94,7 +94,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 							for (var j = 1; j <= 9 - i - currentInterMap.Count && j <= lineMap.Count; j++)
 							{
 								// Iterate on each combination in line.
-								foreach (var currentLineMap in lineMap & j)
+								foreach (var currentLineMap in lineMap.GetSubsets(j))
 								{
 									var lineMask = grid[currentLineMap];
 									var elimMapLine = CellMap.Empty;

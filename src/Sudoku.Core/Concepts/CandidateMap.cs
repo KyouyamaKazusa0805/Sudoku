@@ -311,6 +311,119 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly unsafe CandidateMap[] GetSubsets(int subsetSize)
+	{
+		if (subsetSize == 0 || subsetSize > _count)
+		{
+			return Array.Empty<CandidateMap>();
+		}
+
+		if (subsetSize == _count)
+		{
+			return new[] { this };
+		}
+
+		var n = _count;
+		var buffer = stackalloc int[subsetSize];
+		if (n <= 30 && subsetSize <= 30)
+		{
+			// Optimization: Use table to get the total number of result elements.
+			var totalIndex = 0;
+			var result = new CandidateMap[Combinatorial[n - 1, subsetSize - 1]];
+			enumerateWithLimit(subsetSize, n, subsetSize, Offsets);
+			return result;
+
+			void enumerateWithLimit(int size, int last, int index, Candidate[] offsets)
+			{
+				for (var i = last; i >= index; i--)
+				{
+					buffer[index - 1] = i - 1;
+					if (index > 1)
+					{
+						enumerateWithLimit(size, i - 1, index - 1, offsets);
+					}
+					else
+					{
+						var temp = new Candidate[size];
+						for (var j = 0; j < size; j++)
+						{
+							temp[j] = offsets[buffer[j]];
+						}
+
+						result[totalIndex++] = (CandidateMap)temp;
+					}
+				}
+			}
+		}
+		else
+		{
+			if (n > 30 && subsetSize > 30)
+			{
+				throw new NotSupportedException(
+					"""
+					Both cells count and subset size is too large, which may cause potential out of memory exception.
+					This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown.
+					""".RemoveLineEndings()
+				);
+			}
+			var result = new List<CandidateMap>();
+			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
+			return result.ToArray();
+
+			void enumerateWithoutLimit(int size, int last, int index, Candidate[] offsets)
+			{
+				for (var i = last; i >= index; i--)
+				{
+					buffer[index - 1] = i - 1;
+					if (index > 1)
+					{
+						enumerateWithoutLimit(size, i - 1, index - 1, offsets);
+					}
+					else
+					{
+						var temp = new Candidate[size];
+						for (var j = 0; j < size; j++)
+						{
+							temp[j] = offsets[buffer[j]];
+						}
+
+						result.Add((CandidateMap)temp);
+					}
+				}
+			}
+		}
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly CandidateMap[] GetAllSubsets() => GetAllSubsets(_count);
+
+	/// <inheritdoc/>
+	public readonly CandidateMap[] GetAllSubsets(int limitSubsetSize)
+	{
+		if (limitSubsetSize == 0 || !this)
+		{
+			return Array.Empty<CandidateMap>();
+		}
+
+		var (n, desiredSize) = (_count, 0);
+		var length = Min(n, limitSubsetSize);
+		for (var i = 1; i <= length; i++)
+		{
+			desiredSize += Combinatorial[n - 1, i - 1];
+		}
+
+		var result = new List<CandidateMap>(desiredSize);
+		for (var i = 1; i <= length; i++)
+		{
+			result.AddRange(GetSubsets(i));
+		}
+
+		return result.ToArray();
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(Candidate offset)
 	{
 		scoped ref var v = ref _bits[offset >> 6];
@@ -624,91 +737,6 @@ public partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator %(scoped in CandidateMap @base, scoped in CandidateMap template)
 		=> (@base & template).PeerIntersection & template;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe CandidateMap[] operator &(scoped in CandidateMap offsets, int subsetSize)
-	{
-		if (subsetSize == 0 || subsetSize > offsets._count)
-		{
-			return Array.Empty<CandidateMap>();
-		}
-
-		if (subsetSize == offsets._count)
-		{
-			return new[] { offsets };
-		}
-
-		var n = offsets._count;
-		var buffer = stackalloc int[subsetSize];
-		if (n <= 30 && subsetSize <= 30)
-		{
-			// Optimization: Use table to get the total number of result elements.
-			var totalIndex = 0;
-			var result = new CandidateMap[Combinatorial[n - 1, subsetSize - 1]];
-			f(subsetSize, n, subsetSize, offsets.Offsets);
-			return result;
-
-			void f(int size, int last, int index, Candidate[] offsets)
-			{
-				for (var i = last; i >= index; i--)
-				{
-					buffer[index - 1] = i - 1;
-					if (index > 1)
-					{
-						f(size, i - 1, index - 1, offsets);
-					}
-					else
-					{
-						var temp = new Candidate[size];
-						for (var j = 0; j < size; j++)
-						{
-							temp[j] = offsets[buffer[j]];
-						}
-
-						result[totalIndex++] = (CandidateMap)temp;
-					}
-				}
-			}
-		}
-
-		{
-			if (n > 30 && subsetSize > 30)
-			{
-				throw new NotSupportedException(
-					"""
-						Both cells count and subset size is too large, which may cause potential out of memory exception.
-						This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown.
-						""".RemoveLineEndings()
-				);
-			}
-			var result = new List<CandidateMap>();
-			f(subsetSize, n, subsetSize, offsets.Offsets);
-			return result.ToArray();
-
-			void f(int size, int last, int index, Candidate[] offsets)
-			{
-				for (var i = last; i >= index; i--)
-				{
-					buffer[index - 1] = i - 1;
-					if (index > 1)
-					{
-						f(size, i - 1, index - 1, offsets);
-					}
-					else
-					{
-						var temp = new Candidate[size];
-						for (var j = 0; j < size; j++)
-						{
-							temp[j] = offsets[buffer[j]];
-						}
-
-						result.Add((CandidateMap)temp);
-					}
-				}
-			}
-		}
-	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
