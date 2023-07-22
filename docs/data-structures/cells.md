@@ -69,6 +69,9 @@ public struct CellMap :
     public readonly void CopyTo(scoped ref Span<int> span);
     public override readonly bool Equals([NotNullWhen(true)] object? obj);
     public readonly bool Equals(scoped in CellMap other);
+    public readonly CellMap[] GetSubsets(int subsetSize);
+    public readonly CellMap[] GetAllSubsets();
+    public readonly CellMap[] GetAllSubsets(int limitSubsetSize);
     public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider);
     public readonly int CompareTo(scoped in CellMap other);
     public readonly OneDimensionalArrayEnumerator<int> GetEnumerator();
@@ -101,8 +104,6 @@ public struct CellMap :
     public static CellMap operator &(scoped in CellMap left, scoped in CellMap right);
     public static CellMap operator |(scoped in CellMap left, scoped in CellMap right);
     public static CellMap operator ^(scoped in CellMap left, scoped in CellMap right);
-    public static CellMap[] operator &(scoped in CellMap cell, int subsetSize);
-    public static CellMap[] operator |(scoped in CellMap cell, int subsetSize);
     public static Candidates operator *(in CellMap @base, int digit);
     public static CellMap operator checked +(scoped in CellMap collection, int offset);
     public static CellMap operator checked +(scoped in CellMap collection, IEnumerable<int> offsets);
@@ -395,6 +396,10 @@ foreach (int cell in cells)
 }
 ```
 
+#### 方法 `GetSubsets(int)`、`GetAllSubsets` 和 `GetAllSubsets(int)`
+
+这三个方法取的是整个集合的所有元素在进行枚举的所有排列。比如说 r1c1、r1c2、r1c3 三个单元格的排列可以是 r1c1、r1c2、r1c3 三个单元格自己，也可以是 r1c12、r1c13 和 r1c23 三个每次取两个单元格的情况，也可以是整个三个单元格全算作一个整体的 r1c123，一共七种情况。`GetAllSubsets` 便是这个操作；带有参数的则表示取出它的子集里长度不超过指定参数的所有子集；`GetSubsets(int)` 则只会取出等长度的所有子集。
+
 #### 静态方法 `CreateByBits(long, long)` 和 `CreateByBits(int, int, int)`
 
 这两个构造器用来以比特位的形式初始化序列。其中带有 `long` 的构造器是直接按比特位序列进行初始化，初始化的模式和前文描述设计原理时的那个初始化行为完全一致。
@@ -448,10 +453,6 @@ public CellMap(int high, int mid, int low) :
 从这个角度来说，`left - right` 从代码的语义上等价于 `left & ~right`。
 
 因此，对这个集合来说，位异或运算符等价于数学概念的差集。
-
-#### 枚举运算 `&(in CellMap, int)` 和 `|(in CellMap, int)`
-
-这两种运算符用于枚举这个集合里的全部排列情况。其中 `&` 只为指定个数的集合进行枚举，而 `|` 会枚举所有组合，每个组合的元素个数是从 1 到这个数的。比如，`map & 3` 只枚举 `map` 里所有的排列情况，其情况的元素数是 3；而 `map | 3` 等价于 `map & 1`、`map & 2` 和 `map & 3` 的全部情况。
 
 #### 加减法运算符 `+(CellMap, int)` 和 `-(CellMap, int)`
 
