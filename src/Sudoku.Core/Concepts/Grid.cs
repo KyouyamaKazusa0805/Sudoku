@@ -582,6 +582,57 @@ public unsafe partial struct Grid :
 		}
 	}
 
+	/// <summary>
+	/// <inheritdoc cref="this[in CellMap]" path="/summary"/>
+	/// </summary>
+	/// <param name="cells"><inheritdoc cref="this[in CellMap]" path="/param[@name='cells']"/></param>
+	/// <param name="withValueCells">
+	/// <inheritdoc cref="this[in CellMap, bool]" path="/param[@name='withValueCells']"/>
+	/// </param>
+	/// <param name="mergingMethod">
+	/// </param>
+	/// <returns><inheritdoc cref="this[in CellMap]" path="/returns"/></returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
+	public readonly Mask this[scoped in CellMap cells, bool withValueCells, GridMaskMergingMethod mergingMethod]
+	{
+		get
+		{
+			switch (mergingMethod)
+			{
+				case GridMaskMergingMethod.AndNot:
+				{
+					var result = MaxCandidatesMask;
+					foreach (var cell in cells)
+					{
+						if (!withValueCells && GetStatus(cell) != CellStatus.Empty || withValueCells)
+						{
+							result &= (Mask)~this[cell];
+						}
+					}
+
+					return result;
+				}
+				case GridMaskMergingMethod.Or:
+				{
+					var result = (Mask)0;
+					foreach (var cell in cells)
+					{
+						if (!withValueCells && GetStatus(cell) != CellStatus.Empty || withValueCells)
+						{
+							result |= this[cell];
+						}
+					}
+
+					return (Mask)(result & MaxCandidatesMask);
+				}
+				default:
+				{
+					throw new ArgumentOutOfRangeException(nameof(mergingMethod));
+				}
+			}
+		}
+	}
+
 
 	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values as the current instance.
@@ -839,8 +890,7 @@ public unsafe partial struct Grid :
 		static nuint load_nuint2(scoped ref byte start, nuint offset) => ReadUnaligned<nuint>(ref AddByteOffset(ref start, offset));
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static Vector<byte> load_Vector(scoped ref byte start, nuint offset)
-			=> ReadUnaligned<Vector<byte>>(ref AddByteOffset(ref start, offset));
+		static Vector<byte> load_Vector(scoped ref byte start, nuint offset) => ReadUnaligned<Vector<byte>>(ref AddByteOffset(ref start, offset));
 	}
 
 	/// <summary>
@@ -939,18 +989,18 @@ public unsafe partial struct Grid :
 			case { IsSolved: true, GivenCells.Count: 81 }:
 			{
 				// Very special case: all cells are givens.
-				// The puzzle is considered not a minimal puzzle, because any one digit in the grid can be removed.
+				// The puzzle is considered not a minimal puzzle, because any digit in the grid can be removed.
 				firstCandidateMakePuzzleNotMinimal = GetDigit(0);
 				return false;
 			}
 			default:
 			{
-				var gridCanBeModified = this;
-				gridCanBeModified.Unfix();
+				var gridCopied = this;
+				gridCopied.Unfix();
 
-				foreach (var cell in gridCanBeModified.ModifiableCells)
+				foreach (var cell in gridCopied.ModifiableCells)
 				{
-					var newGrid = gridCanBeModified;
+					var newGrid = gridCopied;
 					newGrid.SetDigit(cell, -1);
 					newGrid.Fix();
 
@@ -1082,24 +1132,6 @@ public unsafe partial struct Grid :
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Mask GetCandidates(Cell cell) => (Mask)(this[cell] & MaxCandidatesMask);
-
-	/// <summary>
-	/// Creates a mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9,
-	/// ranged in a specified list of cells in the current sudoku grid,
-	/// to determine which digits are not used.
-	/// </summary>
-	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
-	/// <returns>A mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9.</returns>
-	public readonly Mask GetDigitsIntersection(scoped in CellMap cells)
-	{
-		var result = MaxCandidatesMask;
-		foreach (var cell in cells)
-		{
-			result &= (Mask)~this[cell];
-		}
-
-		return result;
-	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
