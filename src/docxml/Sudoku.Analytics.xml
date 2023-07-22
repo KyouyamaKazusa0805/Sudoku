@@ -3994,7 +3994,7 @@ if (student is (name: var name, age: >= 18))
             <param name="mask">The internal mask.</param>
             <remarks>
             This type corresponds to the concept of Sudoku Explainer's logic
-            "<see href="https://sunnieshine.github.io/Sudoku/terms/node">Potential</see>".
+            "<see href="http://sudopedia.enjoysudoku.com/Node.html">Potential</see>".
             </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Patterns.ChainNode.#ctor(System.Int16)">
@@ -4004,7 +4004,7 @@ if (student is (name: var name, age: >= 18))
             <param name="mask">The internal mask.</param>
             <remarks>
             This type corresponds to the concept of Sudoku Explainer's logic
-            "<see href="https://sunnieshine.github.io/Sudoku/terms/node">Potential</see>".
+            "<see href="http://sudopedia.enjoysudoku.com/Node.html">Potential</see>".
             </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Patterns.ChainNode.#ctor(System.Int32,System.Boolean)">
@@ -5625,7 +5625,7 @@ result ^= expression;
             <para>
             This algorithm uses a concept called Restricted Common Candidate (abbr. RCC) to limit the implementation.
             If you don't know that is an RCC,
-            <see href="https://sunnieshine.github.io/Sudoku/terms/restricted-common-candidate">this link</see>
+            <see href="http://sudopedia.enjoysudoku.com/Restricted_common.html">this link</see>
             will tell you what is it.
             </para>
             </remarks>
@@ -8332,10 +8332,6 @@ result ^= expression;
             <summary>
             Indicates whether the solver uses ittoryu mode to solve a puzzle.
             </summary>
-            <remarks>
-            For more information about what is an ittoryu puzzle, please visit
-            <see href="https://sunnieshine.github.io/Sudoku/terms/ittouryu-puzzle">this link</see>.
-            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>

@@ -45,7 +45,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </summary>
 	/// <remarks>
 	/// A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
-	/// For more information please visit <see href="https://sunnieshine.github.io/Sudoku/terms/peer">this link</see>.
+	/// For more information please visit <see href="http://sudopedia.enjoysudoku.com/Peer.html">this link</see>.
 	/// </remarks>
 	TSelf PeerIntersection { get; }
 

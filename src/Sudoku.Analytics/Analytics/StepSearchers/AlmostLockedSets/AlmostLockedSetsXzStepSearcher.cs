@@ -32,7 +32,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 	/// <para>
 	/// This algorithm uses a concept called Restricted Common Candidate (abbr. RCC) to limit the implementation.
 	/// If you don't know that is an RCC,
-	/// <see href="https://sunnieshine.github.io/Sudoku/terms/restricted-common-candidate">this link</see>
+	/// <see href="http://sudopedia.enjoysudoku.com/Restricted_common.html">this link</see>
 	/// will tell you what is it.
 	/// </para>
 	/// </remarks>

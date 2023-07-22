@@ -36,10 +36,6 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether the solver uses ittoryu mode to solve a puzzle.
 	/// </summary>
-	/// <remarks>
-	/// For more information about what is an ittoryu puzzle, please visit
-	/// <see href="https://sunnieshine.github.io/Sudoku/terms/ittouryu-puzzle">this link</see>.
-	/// </remarks>
 	[RuntimeIdentifier(RuntimeIdentifier.AnalyzerUseIttoryuMode)]
 	public bool UseIttoryuMode { get; set; }
 

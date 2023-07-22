@@ -1,7 +1,7 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents a <see href="https://sunnieshine.github.io/Sudoku/terms/conjugate-pair">conjugate pair</see>.
+/// Represents a <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">conjugate pair</see>.
 /// </summary>
 /// <remarks>
 /// A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only

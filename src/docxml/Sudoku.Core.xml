@@ -1895,8 +1895,6 @@ if (student is (name: var name, age: >= 18))
             map.AddRange([2, 3, 4]); // Adds 'r1c345' into the collection.
             map |= anotherMap; // Adds a list of another instance of type 'CellMap' into the current collection.
             ]]></code>
-            If you want to learn more information about this type, please visit
-            <see href="https://sunnieshine.github.io/Sudoku/data-structures/cells">this wiki page</see>.
             </para>
             <para>
             <large-structure>
@@ -2516,7 +2514,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Concepts.Conjugate">
             <summary>
-            Represents a <see href="https://sunnieshine.github.io/Sudoku/terms/conjugate-pair">conjugate pair</see>.
+            Represents a <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">conjugate pair</see>.
             </summary>
             <remarks>
             A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
@@ -2526,7 +2524,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.#ctor(System.Int32)">
             <summary>
-            Represents a <see href="https://sunnieshine.github.io/Sudoku/terms/conjugate-pair">conjugate pair</see>.
+            Represents a <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">conjugate pair</see>.
             </summary>
             <remarks>
             A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
@@ -3799,7 +3797,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Concepts.HouseType">
             <summary>
-            Represents a <see href="https://sunnieshine.github.io/Sudoku/terms/house">house type</see>.
+            Represents a <see href="http://sudopedia.enjoysudoku.com/House.html">house type</see>.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.HouseType.Block">
@@ -3927,7 +3925,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <remarks>
             A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
-            For more information please visit <see href="https://sunnieshine.github.io/Sudoku/terms/peer">this link</see>.
+            For more information please visit <see href="http://sudopedia.enjoysudoku.com/Peer.html">this link</see>.
             </remarks>
         </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`2.Offsets">

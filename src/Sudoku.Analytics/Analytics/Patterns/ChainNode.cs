@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Patterns;
 /// <param name="mask">The internal mask.</param>
 /// <remarks>
 /// This type corresponds to the concept of Sudoku Explainer's logic
-/// "<see href="https://sunnieshine.github.io/Sudoku/terms/node">Potential</see>".
+/// "<see href="http://sudopedia.enjoysudoku.com/Node.html">Potential</see>".
 /// </remarks>
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayString)}},nq}""")]
 [StructLayout(LayoutKind.Auto)]

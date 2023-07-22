@@ -17,8 +17,6 @@ namespace Sudoku.Concepts;
 /// map.AddRange([2, 3, 4]); // Adds 'r1c345' into the collection.
 /// map |= anotherMap; // Adds a list of another instance of type 'CellMap' into the current collection.
 /// ]]></code>
-/// If you want to learn more information about this type, please visit
-/// <see href="https://sunnieshine.github.io/Sudoku/data-structures/cells">this wiki page</see>.
 /// </para>
 /// <para>
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
