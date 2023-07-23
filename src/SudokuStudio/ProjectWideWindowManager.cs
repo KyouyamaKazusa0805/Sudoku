@@ -4,7 +4,7 @@ namespace SudokuStudio;
 /// <para>Provides with a project-wide window manager type, as a helper class type.</para>
 /// <para>
 /// This helper class to allow the app to find the Window that contains an arbitrary <see cref="UIElement"/> (GetWindowForElement).
-/// To do this, we keep trackof all active <see cref="Window"/>s.
+/// To do this, we keep track of all active <see cref="Window"/>s.
 /// </para>
 /// <para>
 /// The app code must call <see cref="CreateWindow{TWindow}"/> rather than "<see langword="new"/> <see cref="Window"/>()" expression

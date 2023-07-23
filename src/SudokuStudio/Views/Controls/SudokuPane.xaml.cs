@@ -199,9 +199,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		Color.FromArgb(255,  63, 218, 101), // Green
 		Color.FromArgb(255, 255, 192,  89), // Orange
-		Color.FromArgb(255, 127, 187, 255), // Skyblue
+		Color.FromArgb(255, 127, 187, 255), // Sky-blue
 		Color.FromArgb(255, 216, 178, 255), // Purple
-		Color.FromArgb(255, 197, 232, 140), // Yellowgreen
+		Color.FromArgb(255, 197, 232, 140), // Yellow-green
 		Color.FromArgb(255, 255, 203, 203), // Light red
 		Color.FromArgb(255, 178, 223, 223), // Blue green
 		Color.FromArgb(255, 252, 220, 165), // Light orange
@@ -209,7 +209,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 247, 222, 143), // Golden yellow
 		Color.FromArgb(255, 220, 212, 252), // Purple
 		Color.FromArgb(255, 255, 118, 132), // Red
-		Color.FromArgb(255, 206, 251, 237), // Light skyblue
+		Color.FromArgb(255, 206, 251, 237), // Light sky-blue
 		Color.FromArgb(255, 215, 255, 215), // Light green
 		Color.FromArgb(255, 192, 192, 192) // Gray
 	};

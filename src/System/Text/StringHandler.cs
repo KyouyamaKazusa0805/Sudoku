@@ -13,7 +13,7 @@ namespace System.Text;
 /// <list type="bullet">
 /// <item>By the language compiler to process interpolated strings into <see cref="string"/> instances.</item>
 /// <item>
-/// As a <see cref="string"/> builder to append and catenate multiple <see cref="string"/>s to a whole one.
+/// As a <see cref="string"/> builder to append and concatenate multiple <see cref="string"/>s to a whole one.
 /// </item>
 /// </list>
 /// </para>

@@ -1111,7 +1111,7 @@
         <member name="M:System.Linq.MaskEnumerable.Select``1(System.Int16,System.Func{System.Int32,``0})">
             <summary>
             Projects each bit from a specified mask, converting it into a (an) <typeparamref name="T"/> instance,
-            with specified method to be calleed.
+            with specified method to be called.
             </summary>
             <typeparam name="T">The target type of values for each bit converted.</typeparam>
             <param name="this">A mask instance.</param>
@@ -1418,7 +1418,7 @@
             <list type="bullet">
             <item>By the language compiler to process interpolated strings into <see cref="T:System.String"/> instances.</item>
             <item>
-            As a <see cref="T:System.String"/> builder to append and catenate multiple <see cref="T:System.String"/>s to a whole one.
+            As a <see cref="T:System.String"/> builder to append and concatenate multiple <see cref="T:System.String"/>s to a whole one.
             </item>
             </list>
             </para>
@@ -3126,7 +3126,7 @@ fixed (short* ptr = instance)
         </member>
         <member name="T:System.SourceGeneration.DeconstructionMethodAttribute">
             <summary>
-            Defines an attribute that specifies a deconstrution method.
+            Defines an attribute that specifies a deconstruction method.
             </summary>
         </member>
         <member name="T:System.SourceGeneration.DuckTypingAttribute">
@@ -3210,8 +3210,8 @@ fixed (short* ptr = instance)
             Indicates the source generator will automatically adopt a case for an overridden unit.
             <list type="bullet">
             <item>For <see langword="ref struct"/>s, return <see langword="false"/> because there is implicitly box and unbox operation</item>
-            <item>For <see langword="class"/>es, use <see langword="as"/> casting and call overloadded <c>Equals</c> method</item>
-            <item>For <see langword="struct"/>s, use <see langword="is"/> casting and call overloadded <c>Equals</c> method</item>
+            <item>For <see langword="class"/>es, use <see langword="as"/> casting and call overloaded <c>Equals</c> method</item>
+            <item>For <see langword="struct"/>s, use <see langword="is"/> casting and call overloaded <c>Equals</c> method</item>
             </list>
             </summary>
         </member>
@@ -3282,7 +3282,7 @@ fixed (short* ptr = instance)
         </member>
         <member name="P:System.SourceGeneration.ImplicitFieldAttribute.RequiredReadOnlyModifier">
             <summary>
-            Indiactes whether the generated field automatically appends a <see langword="readonly"/> modifier.
+            Indicates whether the generated field automatically appends a <see langword="readonly"/> modifier.
             The value is <see langword="true"/> by default.
             </summary>
         </member>
@@ -4043,10 +4043,10 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.Utf8String.op_Addition(System.Utf8String,System.Utf8String)">
             <summary>
-            Catenate two <see cref="T:System.Utf8String"/> instances.
+            Concatenate two <see cref="T:System.Utf8String"/> instances.
             </summary>
-            <param name="left">The left-side instance to be catenated.</param>
-            <param name="right">The right-side instance to be catenated.</param>
+            <param name="left">The left-side instance to be concatenated.</param>
+            <param name="right">The right-side instance to be concatenated.</param>
             <returns>The final string.</returns>
         </member>
         <member name="M:System.Utf8String.StringLengthOf(System.Utf8Char*)">

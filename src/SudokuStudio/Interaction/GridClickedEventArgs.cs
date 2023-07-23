@@ -46,7 +46,7 @@ public sealed class GridClickedEventArgs : EventArgs
 
 
 	/// <summary>
-	/// Try to calculate house indices for a candiate.
+	/// Try to calculate house indices for a candidate.
 	/// </summary>
 	/// <param name="candidate">The candidate.</param>
 	/// <returns>

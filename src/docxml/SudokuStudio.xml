@@ -279,7 +279,7 @@
         </member>
         <member name="T:SudokuStudio.BindableSource.TechniqueBindableSource">
             <summary>
-            Indicates the techique bindable source.
+            Indicates the technique bindable source.
             </summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.TechniqueBindableSource.Technique">
@@ -1528,7 +1528,7 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SavePuzzleGeneratingHistory">
             <summary>
-            Indicates whether the program saves for puzzle-generting history.
+            Indicates whether the program saves for puzzle-generating history.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableDoubleTapFillingForSudokuPane">
@@ -1806,7 +1806,7 @@
         </member>
         <member name="M:SudokuStudio.StepSearcherCollectionExtensions.GetStepSearchers(SudokuStudio.App)">
             <summary>
-            Try to get <see cref="T:Sudoku.Analytics.StepSearcher"/> instances via configruation for the specified application.
+            Try to get <see cref="T:Sudoku.Analytics.StepSearcher"/> instances via configuration for the specified application.
             </summary>
             <param name="this">The application.</param>
             <returns>A list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.</returns>
@@ -2547,7 +2547,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Interaction.GridClickedEventArgs.GetHouse(System.Int32)">
             <summary>
-            Try to calculate house indices for a candiate.
+            Try to calculate house indices for a candidate.
             </summary>
             <param name="candidate">The candidate.</param>
             <returns>
@@ -2588,7 +2588,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Interaction.GridUpdatedBehavior.Assignment">
             <summary>
-            Indicates the behavior is assiging a digit into a cell with the specified grid.
+            Indicates the behavior is assigning a digit into a cell with the specified grid.
             </summary>
         </member>
         <member name="F:SudokuStudio.Interaction.GridUpdatedBehavior.Clear">
@@ -2751,7 +2751,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Interaction.OpenFileFailedReason.FileIsTooLarge">
             <summary>
-            Indicates the failed reason is the target file is oversized.
+            Indicates the failed reason is the target file is over-sized.
             </summary>
         </member>
         <member name="F:SudokuStudio.Interaction.OpenFileFailedReason.FileCannotBeParsed">
@@ -3423,7 +3423,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.ProjectWideConstants.AnalyzingRelatedSyncRoot">
             <summary>
-            Indicates the instance that is used for synchronization for asynchronized environment,
+            Indicates the instance that is used for synchronization for asynchronous environment,
             used for the operations that is analyzing a puzzle, or gathering steps.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Step"/>
@@ -3444,7 +3444,7 @@ if (student is (name: var name, age: >= 18))
             <para>Provides with a project-wide window manager type, as a helper class type.</para>
             <para>
             This helper class to allow the app to find the Window that contains an arbitrary <see cref="T:Microsoft.UI.Xaml.UIElement"/> (GetWindowForElement).
-            To do this, we keep trackof all active <see cref="T:Microsoft.UI.Xaml.Window"/>s.
+            To do this, we keep track of all active <see cref="T:Microsoft.UI.Xaml.Window"/>s.
             </para>
             <para>
             The app code must call <see cref="M:SudokuStudio.ProjectWideWindowManager.CreateWindow``1"/> rather than "<see langword="new"/> <see cref="T:Microsoft.UI.Xaml.Window"/>()" expression
@@ -3719,7 +3719,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Reads and handles the file via its path, and returns the target parsed instance.
             </summary>
-            <param name="filePath">The fsile path.</param>
+            <param name="filePath">The file path.</param>
             <returns>The parsed instance.</returns>
         </member>
         <member name="M:SudokuStudio.Storage.IProgramSupportedFileHandler`1.Write(System.String,`0)">
@@ -7257,7 +7257,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput">
             <summary>
-            Indicates whether the pane prevent the simple confliction, which means, if you input a digit that is conflict with the digits in its containing houses, this pane will do nothing by this value being <see langword="true"/>. If not, the pane won't check for any confliction and always allow you inputting the digit regardless of possible confliction.
+            Indicates whether the pane prevent the simple conflict, which means, if you input a digit that is conflict with the digits in its containing houses, this pane will do nothing by this value being <see langword="true"/>. If not, the pane won't check for any conflict and always allow you inputting the digit regardless of possible conflict.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking">

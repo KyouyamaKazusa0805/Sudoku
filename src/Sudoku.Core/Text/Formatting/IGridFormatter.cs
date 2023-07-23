@@ -2,7 +2,7 @@ namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// <para>
-/// Defines a grid formatter that can convert the current <see cref="Grid"/> instance into a valid and parsable <see cref="string"/> text value
+/// Defines a grid formatter that can convert the current <see cref="Grid"/> instance into a valid and parseable <see cref="string"/> text value
 /// representing this instance. This type is used as arguments being passed in method <see cref="Grid.ToString(IGridFormatter)"/>.
 /// </para>
 /// <!--THE FOLLOWING COMMENT BLOCK IS TEMPORARILY DISABLED! THE TEXT ARE TOO LONG TO BE DISPLAYED ONTO TOOLTIP IN VISUAL STUDIO!-->

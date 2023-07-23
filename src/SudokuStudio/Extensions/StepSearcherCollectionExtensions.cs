@@ -6,7 +6,7 @@ namespace SudokuStudio;
 public static class StepSearcherCollectionExtensions
 {
 	/// <summary>
-	/// Try to get <see cref="StepSearcher"/> instances via configruation for the specified application.
+	/// Try to get <see cref="StepSearcher"/> instances via configuration for the specified application.
 	/// </summary>
 	/// <param name="this">The application.</param>
 	/// <returns>A list of <see cref="StepSearcher"/> instances.</returns>

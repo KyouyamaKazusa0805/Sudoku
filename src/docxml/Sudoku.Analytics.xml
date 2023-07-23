@@ -644,7 +644,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Buffers.CachedFields">
             <summary>
-            <para>Represents cached fields used by solving and analyzation for a sudoku puzzle, reducing repeated and redundant calculations.</para>
+            <para>Represents cached fields used by solving and analyzing for a sudoku puzzle, reducing repeated and redundant calculations.</para>
             <para>
             All names of fields given in this type can also be found in type <see cref="T:Sudoku.Concepts.Grid"/>, but those values are defined as instant properties,
             which means the value will be calculated after you invoke them.
@@ -920,7 +920,7 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.LockedHiddenPair">
             <summary>
-            Indicates locked hiden pair.
+            Indicates locked hidden pair.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.NakedTriple">
@@ -3175,7 +3175,7 @@
             |   x | x   |
             '-----'-----'
             ]]></code>
-            <i>This pattern isn't a valid unique loop, because the pattern has no suitable way to filling digits, without confliction.</i>
+            <i>This pattern isn't a valid unique loop, because the pattern has no suitable way to filling digits, without conflict.</i>
             </para>
             <para>
             This method can also check for separated ones, e.g.:
@@ -5151,7 +5151,7 @@ result ^= expression;
             during generating puzzles.
             </remarks>
             <exception cref="T:System.InvalidOperationException">
-            Throws when the target diffculty level is <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown"/>.
+            Throws when the target difficulty level is <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown"/>.
             </exception>
             <seealso cref="T:System.FlagsAttribute"/>
         </member>
@@ -8002,14 +8002,14 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.GetRelaventCombinationValues(System.Collections.Generic.List{System.ValueTuple{System.Int32[],System.Int32}},System.Collections.Generic.List{Sudoku.Analytics.Conclusion},System.Int32[])">
+        <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.GetRelevantCombinationValues(System.Collections.Generic.List{System.ValueTuple{System.Int32[],System.Int32}},System.Collections.Generic.List{Sudoku.Analytics.Conclusion},System.Int32[])">
             <summary>
-            Get all possible relavent combination digits.
+            Get all possible relevant combination digits.
             </summary>
             <param name="lockedCombinations">The all locked combinations.</param>
             <param name="conclusions">All conclusions.</param>
             <param name="cells">The cells used.</param>
-            <returns>A mask of digits for relavent ones.</returns>
+            <returns>A mask of digits for relevant ones.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher">
             <summary>
@@ -9945,7 +9945,7 @@ result ^= expression;
             <param name="views"><inheritdoc/></param>
             <param name="cells"><inheritdoc/></param>
             <param name="digitsMask"><inheritdoc/></param>
-            <param name="conjugateHouse">Indicates the cells used as generialized conjugate.</param>
+            <param name="conjugateHouse">Indicates the cells used as generalized conjugate.</param>
             <param name="extraDigitsMask">Indicates the mask of extra digits used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
@@ -9956,7 +9956,7 @@ result ^= expression;
             <param name="views"><inheritdoc/></param>
             <param name="cells"><inheritdoc/></param>
             <param name="digitsMask"><inheritdoc/></param>
-            <param name="conjugateHouse">Indicates the cells used as generialized conjugate.</param>
+            <param name="conjugateHouse">Indicates the cells used as generalized conjugate.</param>
             <param name="extraDigitsMask">Indicates the mask of extra digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.BaseDifficulty">
@@ -13544,7 +13544,7 @@ result ^= expression;
             <param name="digit"><inheritdoc/></param>
             <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
             <param name="enableAndIsLastDigit">
-            Indicates whether currently options enable "Last Digit" technqiue, and the current instance is a real Last Digit.
+            Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
             </param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32,System.Boolean)">
@@ -13557,7 +13557,7 @@ result ^= expression;
             <param name="digit"><inheritdoc/></param>
             <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
             <param name="enableAndIsLastDigit">
-            Indicates whether currently options enable "Last Digit" technqiue, and the current instance is a real Last Digit.
+            Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
             </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseDifficulty">

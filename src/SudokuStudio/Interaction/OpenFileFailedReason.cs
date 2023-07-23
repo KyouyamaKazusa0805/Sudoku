@@ -16,7 +16,7 @@ public enum OpenFileFailedReason
 	FileIsEmpty,
 
 	/// <summary>
-	/// Indicates the failed reason is the target file is oversized.
+	/// Indicates the failed reason is the target file is over-sized.
 	/// </summary>
 	FileIsTooLarge,
 

@@ -269,7 +269,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 
 					// Get all highlighted candidates.
 					var candidateOffsets = new List<CandidateViewNode>();
-					var relaventCandidates = GetRelaventCombinationValues(lockedCombinations, conclusions, cells);
+					var relaventCandidates = GetRelevantCombinationValues(lockedCombinations, conclusions, cells);
 					foreach (var (_, cell) in lockedCombinations)
 					{
 						if (cell != -1)
@@ -322,18 +322,18 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// Get all possible relavent combination digits.
+	/// Get all possible relevant combination digits.
 	/// </summary>
 	/// <param name="lockedCombinations">The all locked combinations.</param>
 	/// <param name="conclusions">All conclusions.</param>
 	/// <param name="cells">The cells used.</param>
-	/// <returns>A mask of digits for relavent ones.</returns>
-	private Mask GetRelaventCombinationValues(List<(Digit[], Cell)> lockedCombinations, List<Conclusion> conclusions, Cell[] cells)
+	/// <returns>A mask of digits for relevant ones.</returns>
+	private Mask GetRelevantCombinationValues(List<(Digit[], Cell)> lockedCombinations, List<Conclusion> conclusions, Cell[] cells)
 	{
 		var result = (Mask)0;
 		foreach (var (combination, _) in lockedCombinations)
 		{
-			if (isRelavent(combination, conclusions, cells))
+			if (isRelevant(combination, conclusions, cells))
 			{
 				foreach (var digit in combination)
 				{
@@ -344,7 +344,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 
 		return result;
 
-		static bool isRelavent(Digit[] combination, List<Conclusion> conclusions, Cell[] cells)
+		static bool isRelevant(Digit[] combination, List<Conclusion> conclusions, Cell[] cells)
 		{
 			Debug.Assert(combination.Length == cells.Length);
 			for (var i = 0; i < combination.Length; i++)

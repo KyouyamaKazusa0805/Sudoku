@@ -156,7 +156,7 @@
 			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelHorizontalStyle2}" />
 		<!--#endregion-->
 
-		<!--#region Leftside-->
+		<!--#region Left-side-->
 		<TextBlock
 			Grid.Row="2" Grid.Column="0" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,0,x:False),Mode=OneWay}"
@@ -213,7 +213,7 @@
 			FontFamily="{x:Bind CoordinateLabelFont,Mode=OneWay}" Style="{StaticResource CoordinateLabelVerticalStyle}" />
 		<!--#endregion-->
 
-		<!--#region Rightside-->
+		<!--#region Right-side-->
 		<TextBlock
 			Grid.Row="2" Grid.Column="12" Foreground="{x:Bind cvt:CoordinateLabelConversion.GetBrush(CoordinateLabelColor),Mode=OneWay}"
 			Text="{x:Bind cvt:CoordinateLabelConversion.ToCoordinateLabelText(CoordinateLabelDisplayKind,0,x:False),Mode=OneWay}"

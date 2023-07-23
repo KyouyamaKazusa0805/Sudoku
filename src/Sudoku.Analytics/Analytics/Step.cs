@@ -106,7 +106,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// during generating puzzles.
 	/// </remarks>
 	/// <exception cref="InvalidOperationException">
-	/// Throws when the target diffculty level is <see cref="DifficultyLevel.Unknown"/>.
+	/// Throws when the target difficulty level is <see cref="DifficultyLevel.Unknown"/>.
 	/// </exception>
 	/// <seealso cref="FlagsAttribute"/>
 	public DifficultyLevel DifficultyLevel

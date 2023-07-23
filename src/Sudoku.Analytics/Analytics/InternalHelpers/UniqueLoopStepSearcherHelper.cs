@@ -82,7 +82,7 @@ internal static class UniqueLoopStepSearcherHelper
 	/// |   x | x   |
 	/// '-----'-----'
 	/// ]]></code>
-	/// <i>This pattern isn't a valid unique loop, because the pattern has no suitable way to filling digits, without confliction.</i>
+	/// <i>This pattern isn't a valid unique loop, because the pattern has no suitable way to filling digits, without conflict.</i>
 	/// </para>
 	/// <para>
 	/// This method can also check for separated ones, e.g.:

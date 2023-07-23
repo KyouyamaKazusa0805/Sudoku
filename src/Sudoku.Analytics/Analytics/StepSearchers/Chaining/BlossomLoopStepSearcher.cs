@@ -143,7 +143,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 			cellsAllBranchesContain &= tempCells;
 		}
 
-		// Itertes on all possible target cells.
+		// Iterates on all possible target cells.
 		foreach (byte targetCell in cellsAllBranchesContain)
 		{
 			// Records chain nodes from each branch, ending with target cell.
@@ -172,7 +172,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 
 			// Due to the design of the chaining rule, we cannot determine the connection between each branch
 			// and its corresponding cell from starting house.
-			// We should manually check for this, and determine whether the correspoding relations are "1 to 1".
+			// We should manually check for this, and determine whether the corresponding relations are "1 to 1".
 			if (!IsOneToOneRelationBetweenStartAndEndNodes(selectedPotentials, potentialPositions, baseDigit, out var projectedStartNodes))
 			{
 				continue;

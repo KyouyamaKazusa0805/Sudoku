@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit"><inheritdoc/></param>
 /// <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
 /// <param name="enableAndIsLastDigit">
-/// Indicates whether currently options enable "Last Digit" technqiue, and the current instance is a real Last Digit.
+/// Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
 /// </param>
 public sealed partial class HiddenSingleStep(
 	Conclusion[] conclusions,

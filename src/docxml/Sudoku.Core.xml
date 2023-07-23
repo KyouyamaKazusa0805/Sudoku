@@ -5486,7 +5486,7 @@ if (student is (name: var name, age: >= 18))
         <member name="T:Sudoku.Text.Formatting.IGridFormatter">
             <summary>
             <para>
-            Defines a grid formatter that can convert the current <see cref="T:Sudoku.Concepts.Grid"/> instance into a valid and parsable <see cref="T:System.String"/> text value
+            Defines a grid formatter that can convert the current <see cref="T:Sudoku.Concepts.Grid"/> instance into a valid and parseable <see cref="T:System.String"/> text value
             representing this instance. This type is used as arguments being passed in method <see cref="M:Sudoku.Concepts.Grid.ToString(Sudoku.Text.Formatting.IGridFormatter)"/>.
             </para>
             <!--THE FOLLOWING COMMENT BLOCK IS TEMPORARILY DISABLED! THE TEXT ARE TOO LONG TO BE DISPLAYED ONTO TOOLTIP IN VISUAL STUDIO!-->

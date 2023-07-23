@@ -10,8 +10,8 @@ public enum EqualsBehavior
 	/// Indicates the source generator will automatically adopt a case for an overridden unit.
 	/// <list type="bullet">
 	/// <item>For <see langword="ref struct"/>s, return <see langword="false"/> because there is implicitly box and unbox operation</item>
-	/// <item>For <see langword="class"/>es, use <see langword="as"/> casting and call overloadded <c>Equals</c> method</item>
-	/// <item>For <see langword="struct"/>s, use <see langword="is"/> casting and call overloadded <c>Equals</c> method</item>
+	/// <item>For <see langword="class"/>es, use <see langword="as"/> casting and call overloaded <c>Equals</c> method</item>
+	/// <item>For <see langword="struct"/>s, use <see langword="is"/> casting and call overloaded <c>Equals</c> method</item>
 	/// </list>
 	/// </summary>
 	Intelligent,

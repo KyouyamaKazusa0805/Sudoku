@@ -8,7 +8,7 @@ public static class MaskEnumerable
 {
 	/// <summary>
 	/// Projects each bit from a specified mask, converting it into a (an) <typeparamref name="T"/> instance,
-	/// with specified method to be calleed.
+	/// with specified method to be called.
 	/// </summary>
 	/// <typeparam name="T">The target type of values for each bit converted.</typeparam>
 	/// <param name="this">A mask instance.</param>

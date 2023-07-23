@@ -223,7 +223,7 @@ public enum Technique
 	HiddenPair,
 
 	/// <summary>
-	/// Indicates locked hiden pair.
+	/// Indicates locked hidden pair.
 	/// </summary>
 	[HodokuTechniquePrefix("0110-2")]
 	[TechniqueGroup(TechniqueGroup.Subset)]

@@ -15,11 +15,11 @@ namespace System.SourceGeneration;
 /// ]]></code>
 /// You may not write code to create field <c>_property</c>. This attribute will make source generators generate it.
 /// </remarks>
-[AttributeUsage(AttributeTargets.Property, Inherited = false)]
+[AttributeUsage(AttributeTargets.Property)]
 public sealed class ImplicitFieldAttribute : Attribute
 {
 	/// <summary>
-	/// Indiactes whether the generated field automatically appends a <see langword="readonly"/> modifier.
+	/// Indicates whether the generated field automatically appends a <see langword="readonly"/> modifier.
 	/// The value is <see langword="true"/> by default.
 	/// </summary>
 	public bool RequiredReadOnlyModifier { get; init; } = true;

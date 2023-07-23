@@ -93,7 +93,7 @@ public abstract class StepSearcherPool
 						{
 							// Assigns the property with attribute-configured value.
 							// Please note that C# 9 feature "init-only" property is a compiler feature, rather than runtime one,
-							// which means we can use flection to set value to that property
+							// which means we can use reflection to set value to that property
 							// no matter what the setter keyword is 'get' or 'init'.
 							propertyInfo.SetValue(instance, value);
 						}

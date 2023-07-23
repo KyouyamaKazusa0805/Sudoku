@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Buffers;
 
 /// <summary>
-/// <para>Represents cached fields used by solving and analyzation for a sudoku puzzle, reducing repeated and redundant calculations.</para>
+/// <para>Represents cached fields used by solving and analyzing for a sudoku puzzle, reducing repeated and redundant calculations.</para>
 /// <para>
 /// All names of fields given in this type can also be found in type <see cref="Grid"/>, but those values are defined as instant properties,
 /// which means the value will be calculated after you invoke them.

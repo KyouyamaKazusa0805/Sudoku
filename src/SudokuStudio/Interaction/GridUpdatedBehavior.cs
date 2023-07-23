@@ -18,7 +18,7 @@ public enum GridUpdatedBehavior
 	EliminationMultiple,
 
 	/// <summary>
-	/// Indicates the behavior is assiging a digit into a cell with the specified grid.
+	/// Indicates the behavior is assigning a digit into a cell with the specified grid.
 	/// </summary>
 	Assignment,
 

@@ -16,7 +16,7 @@ public interface IProgramSupportedFileHandler<T> where T : notnull
 	/// <summary>
 	/// Reads and handles the file via its path, and returns the target parsed instance.
 	/// </summary>
-	/// <param name="filePath">The fsile path.</param>
+	/// <param name="filePath">The file path.</param>
 	/// <returns>The parsed instance.</returns>
 	static abstract T? Read(string filePath);
 

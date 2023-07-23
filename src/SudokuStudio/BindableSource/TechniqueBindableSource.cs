@@ -1,7 +1,7 @@
 namespace SudokuStudio.BindableSource;
 
 /// <summary>
-/// Indicates the techique bindable source.
+/// Indicates the technique bindable source.
 /// </summary>
 public sealed class TechniqueBindableSource
 {
