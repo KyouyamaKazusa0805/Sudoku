@@ -2675,14 +2675,12 @@ if (student is (name: var name, age: >= 18))
             Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
             <param name="arr">The reference to an array.</param>
-            <see cref="T:Sudoku.Concepts.Grid"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.CandidateEnumerator.#ctor(System.Int16@)">
             <summary>
             Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
             <param name="arr">The reference to an array.</param>
-            <see cref="T:Sudoku.Concepts.Grid"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.CandidateEnumerator._start">
             <summary>
