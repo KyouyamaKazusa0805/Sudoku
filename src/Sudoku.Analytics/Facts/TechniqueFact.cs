@@ -31,7 +31,7 @@ public static class TechniqueFact
 		=> size switch
 		{
 			3 => isIncomplete ? "XY-Wing" : "XYZ-Wing",
-			>= 4 and < 9 when size switch
+			>= 4 and <= 9 when size switch
 			{
 				4 => "WXYZ-Wing",
 				5 => "VWXYZ-Wing",
@@ -53,7 +53,7 @@ public static class TechniqueFact
 		=> size switch
 		{
 			0 => throw new ArgumentOutOfRangeException(nameof(size)),
-			1 => "Cyclopsfish",
+			1 => "Cyclops fish",
 			2 => "X-Wing",
 			3 => "Swordfish",
 			4 => "Jellyfish",

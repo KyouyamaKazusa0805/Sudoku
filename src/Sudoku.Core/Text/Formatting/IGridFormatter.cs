@@ -144,7 +144,7 @@ public interface IGridFormatter : IFormatProvider, ICustomFormatter
 			(_, Grid targetGrid, { } targetFormatter) => targetFormatter.GetFormat(GetType()) switch
 			{
 				IGridFormatter gridFormatter => gridFormatter.ToString(targetGrid),
-				_ => throw new FormatException("Unexpected error has been encountered due to not awared of target formatter type instance."),
+				_ => throw new FormatException("Unexpected error has been encountered due to not aware of target formatter type instance."),
 			},
 			(_, Grid targetGrid, null) => GridFormatterFactory.GetBuiltInFormatter(format) switch
 			{

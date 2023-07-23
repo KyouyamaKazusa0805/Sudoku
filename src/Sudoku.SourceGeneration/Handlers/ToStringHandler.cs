@@ -33,7 +33,7 @@ internal static class ToStringHandler
 		var typeNameString = $"{typeName}{typeParametersString}";
 		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
 
-		var simpleFormattableTypeName = "System.ISimpleFormattable";
+		const string simpleFormattableTypeName = "System.ISimpleFormattable";
 		if (compilation.GetTypeByMetadataName(simpleFormattableTypeName) is not { } simpleFormattableTypeSymbol)
 		{
 			return null;

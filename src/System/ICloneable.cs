@@ -13,5 +13,5 @@ public interface ICloneable<out TSelf> : ICloneable where TSelf : class?, IClone
 	/// <exception cref="InvalidOperationException">Throws when method <see cref="Clone"/> returns <see langword="null"/>.</exception>
 	/// <seealso cref="Clone"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	object ICloneable.Clone() => Clone() ?? throw new InvalidOperationException("Target cloneation is invalid.");
+	object ICloneable.Clone() => Clone() ?? throw new InvalidOperationException($"Implementation for the clone method '{nameof(Clone)}' is invalid.");
 }

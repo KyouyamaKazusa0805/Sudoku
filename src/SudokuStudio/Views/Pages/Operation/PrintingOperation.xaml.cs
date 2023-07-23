@@ -228,5 +228,5 @@ file static class Extensions
 					)
 			);
 
-	public static TextStyle SupportChineseCharacters(this TextStyle @this) => @this.Fallback(static f => f.FontFamily("Microsoft Yahei UI"));
+	public static TextStyle SupportChineseCharacters(this TextStyle @this) => @this.Fallback(static f => f.FontFamily("Microsoft YaHei UI"));
 }

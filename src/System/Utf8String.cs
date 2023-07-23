@@ -326,10 +326,10 @@ public readonly unsafe partial struct Utf8String :
 
 
 	/// <summary>
-	/// Catenate two <see cref="Utf8String"/> instances.
+	/// Concatenate two <see cref="Utf8String"/> instances.
 	/// </summary>
-	/// <param name="left">The left-side instance to be catenated.</param>
-	/// <param name="right">The right-side instance to be catenated.</param>
+	/// <param name="left">The left-side instance to be concatenated.</param>
+	/// <param name="right">The right-side instance to be concatenated.</param>
 	/// <returns>The final string.</returns>
 	public static Utf8String operator +(/*[ConstantExpected]*/ Utf8String left, /*[ConstantExpected]*/ Utf8String right)
 	{

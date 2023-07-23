@@ -19,7 +19,7 @@ public sealed class OutputCommand : Command, ICommand<OutputCommand>
 			if (File.Exists(path))
 			{
 				Console.ForegroundColor = ConsoleColor.Red;
-				Console.WriteLine($"Sorry. The path '{path}' alreay exists. Please check the path and retry later.");
+				Console.WriteLine($"Sorry. The path '{path}' already exists. Please check the path and retry later.");
 				Console.ResetColor();
 				return;
 			}
