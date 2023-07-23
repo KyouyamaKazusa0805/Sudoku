@@ -1251,7 +1251,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidateEnumerator GetEnumerator() => new(ref AsRef(this[0]));
+	public readonly CandidateEnumerator EnumerateCandidates() => new(ref AsRef(this[0]));
 
 	/// <summary>
 	/// Projects each element of a sequence into a new form.
@@ -1268,7 +1268,7 @@ public unsafe partial struct Grid :
 	public readonly TResult[] Select<TResult>(Func<Candidate, TResult> selector)
 	{
 		var (result, i) = (new TResult[81], 0);
-		foreach (var candidate in this)
+		foreach (var candidate in EnumerateCandidates())
 		{
 			result[i++] = selector(candidate);
 		}
