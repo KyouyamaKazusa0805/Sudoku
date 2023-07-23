@@ -687,6 +687,9 @@
   <data name="MainWindow_AnalyzePageTitle" xml:space="preserve">
     <value>解题与分析</value>
   </data>
+  <data name="MainWindow_BasicFunctions" xml:space="preserve">
+    <value>基本功能</value>
+  </data>
   <data name="MainWindow_BasicPreferenceItemsPageTitle" xml:space="preserve">
     <value>程序基本设置</value>
   </data>

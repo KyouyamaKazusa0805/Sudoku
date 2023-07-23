@@ -47,19 +47,13 @@
 			Loaded="NavigationView_Loaded" SelectionChanged="MainNavigationView_SelectionChanged" ItemInvoked="NavigationView_ItemInvoked"
 			BackRequested="MainNavigationView_BackRequested">
 			<NavigationView.MenuItems>
+				<NavigationViewItemHeader Content="{m:R Key=MainWindow_BasicFunctions}" />
 				<NavigationViewItem x:Name="AnalyzePageItem" Icon="Edit" Content="{m:R Key=MainWindow_Analyze}" />
-				<NavigationViewItemSeparator />
-				<NavigationViewItem Content="{m:R Key=MainWindow_ExtraFunctions}">
+				<NavigationViewItemHeader Content="{m:R Key=MainWindow_ExtraFunctions}" />
+				<NavigationViewItem x:Name="SingleCountingPageItem" Content="{m:R Key=MainWindow_SingleCountingPracticing}">
 					<NavigationViewItem.Icon>
-						<FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE710;" />
+						<FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7FC;" />
 					</NavigationViewItem.Icon>
-					<NavigationViewItem.MenuItems>
-						<NavigationViewItem x:Name="SingleCountingPageItem" Content="{m:R Key=MainWindow_SingleCountingPracticing}">
-							<NavigationViewItem.Icon>
-								<FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7FC;" />
-							</NavigationViewItem.Icon>
-						</NavigationViewItem>
-					</NavigationViewItem.MenuItems>
 				</NavigationViewItem>
 			</NavigationView.MenuItems>
 			<NavigationView.FooterMenuItems>

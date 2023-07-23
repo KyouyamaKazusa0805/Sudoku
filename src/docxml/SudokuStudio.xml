@@ -4865,6 +4865,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Solving &amp; Analysis.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_BasicFunctions">
+            <summary>
+              Looks up a localized string similar to Basic Functions.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_BasicPreferenceItemsPageTitle">
             <summary>
               Looks up a localized string similar to Program Basic Options.

@@ -684,6 +684,9 @@
   <data name="MainWindow_AnalyzePageTitle" xml:space="preserve">
     <value>Solving &amp; Analysis</value>
   </data>
+  <data name="MainWindow_BasicFunctions" xml:space="preserve">
+    <value>Basic Functions</value>
+  </data>
   <data name="MainWindow_BasicPreferenceItemsPageTitle" xml:space="preserve">
     <value>Program Basic Options</value>
   </data>

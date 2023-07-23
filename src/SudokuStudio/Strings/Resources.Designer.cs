@@ -1951,6 +1951,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Basic Functions.
+        /// </summary>
+        internal static string MainWindow_BasicFunctions {
+            get {
+                return ResourceManager.GetString("MainWindow_BasicFunctions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Program Basic Options.
         /// </summary>
         internal static string MainWindow_BasicPreferenceItemsPageTitle {
