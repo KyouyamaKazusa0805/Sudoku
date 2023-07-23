@@ -1484,8 +1484,8 @@ public unsafe partial struct Grid :
 			var offset = length & 2;
 			if (offset != 0)
 			{
-				differentBits = load_ushort(ref first);
-				differentBits -= load_ushort(ref second);
+				differentBits = loadUshort(ref first);
+				differentBits -= loadUshort(ref second);
 			}
 			if ((length & 1) != 0)
 			{
@@ -1500,8 +1500,8 @@ public unsafe partial struct Grid :
 		else
 		{
 			var offset = length - sizeof(uint);
-			var differentBits = load_uint(ref first) - load_uint(ref second);
-			differentBits |= load_uint2(ref first, offset) - load_uint2(ref second, offset);
+			var differentBits = loadUint(ref first) - loadUint(ref second);
+			differentBits |= loadUint2(ref first, offset) - loadUint2(ref second, offset);
 			result = differentBits == 0;
 
 			goto Result;
@@ -1602,7 +1602,7 @@ public unsafe partial struct Grid :
 			{
 				do
 				{
-					if (load_Vector(ref first, offset) != load_Vector(ref second, offset))
+					if (loadVector(ref first, offset) != loadVector(ref second, offset))
 					{
 						goto NotEqual;
 					}
@@ -1612,7 +1612,7 @@ public unsafe partial struct Grid :
 			}
 
 			// Do final compare as Vector<byte>.Count from end rather than start.
-			if (load_Vector(ref first, lengthToExamine) == load_Vector(ref second, lengthToExamine))
+			if (loadVector(ref first, lengthToExamine) == loadVector(ref second, lengthToExamine))
 			{
 				// C# compiler inverts this test, making the outer goto the conditional jmp.
 				goto Equal;
@@ -1628,8 +1628,8 @@ public unsafe partial struct Grid :
 			Debug.Assert(length <= (nuint)sizeof(nuint) * 2);
 
 			var offset = length - (nuint)sizeof(nuint);
-			var differentBits = load_nuint(ref first) - load_nuint(ref second);
-			differentBits |= load_uint2(ref first, offset) - load_uint2(ref second, offset);
+			var differentBits = loadNuint(ref first) - loadNuint(ref second);
+			differentBits |= loadUint2(ref first, offset) - loadUint2(ref second, offset);
 			result = differentBits == 0;
 			goto Result;
 		}
@@ -1647,7 +1647,7 @@ public unsafe partial struct Grid :
 				do
 				{
 					// Compare unsigned so not do a sign extend mov on 64 bit.
-					if (load_nuint2(ref first, offset) != load_nuint2(ref second, offset))
+					if (loadNuint2(ref first, offset) != loadNuint2(ref second, offset))
 					{
 						goto NotEqual;
 					}
@@ -1656,7 +1656,7 @@ public unsafe partial struct Grid :
 			}
 
 			// Do final compare as sizeof(nuint) from end rather than start.
-			result = load_nuint2(ref first, lengthToExamine) == load_nuint2(ref second, lengthToExamine);
+			result = loadNuint2(ref first, lengthToExamine) == loadNuint2(ref second, lengthToExamine);
 			goto Result;
 		}
 
@@ -1669,24 +1669,24 @@ public unsafe partial struct Grid :
 		return false;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static ushort load_ushort(scoped ref byte start) => ReadUnaligned<ushort>(ref start);
+		static ushort loadUshort(scoped ref byte start) => ReadUnaligned<ushort>(ref start);
 
 #if TARGET_64BIT
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static uint load_uint(scoped ref byte start) => ReadUnaligned<uint>(ref start);
+		static uint loadUint(scoped ref byte start) => ReadUnaligned<uint>(ref start);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static uint load_uint2(scoped ref byte start, nuint offset) => ReadUnaligned<uint>(ref AddByteOffset(ref start, offset));
+		static uint loadUint2(scoped ref byte start, nuint offset) => ReadUnaligned<uint>(ref AddByteOffset(ref start, offset));
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static nuint load_nuint(scoped ref byte start) => ReadUnaligned<nuint>(ref start);
+		static nuint loadNuint(scoped ref byte start) => ReadUnaligned<nuint>(ref start);
 #endif
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static nuint load_nuint2(scoped ref byte start, nuint offset) => ReadUnaligned<nuint>(ref AddByteOffset(ref start, offset));
+		static nuint loadNuint2(scoped ref byte start, nuint offset) => ReadUnaligned<nuint>(ref AddByteOffset(ref start, offset));
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static Vector<byte> load_Vector(scoped ref byte start, nuint offset) => ReadUnaligned<Vector<byte>>(ref AddByteOffset(ref start, offset));
+		static Vector<byte> loadVector(scoped ref byte start, nuint offset) => ReadUnaligned<Vector<byte>>(ref AddByteOffset(ref start, offset));
 	}
 
 
