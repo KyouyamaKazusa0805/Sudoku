@@ -28,7 +28,7 @@ public readonly partial struct Utf8Char :
 	/// <summary>
 	/// Indicates the maximum-valued instance of the current type.
 	/// </summary>
-	public static readonly Utf8Char MaxValue = (Utf8Char)byte.MaxValue;
+	public static readonly Utf8Char MaxValue = byte.MaxValue;
 
 
 	/// <summary>
@@ -127,19 +127,19 @@ public readonly partial struct Utf8Char :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Utf8Char operator +(Utf8Char @char, byte offset) => (Utf8Char)(byte)(@char._char + offset);
+	public static Utf8Char operator +(Utf8Char @char, byte offset) => (byte)(@char._char + offset);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Utf8Char operator checked +(Utf8Char @char, byte offset) => (Utf8Char)checked((byte)(@char._char + offset));
+	public static Utf8Char operator checked +(Utf8Char @char, byte offset) => checked((byte)(@char._char + offset));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Utf8Char operator -(Utf8Char @char, byte offset) => (Utf8Char)(byte)(@char._char - offset);
+	public static Utf8Char operator -(Utf8Char @char, byte offset) => (byte)(@char._char - offset);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Utf8Char operator checked -(Utf8Char @char, byte offset) => (Utf8Char)checked((byte)(@char._char - offset));
+	public static Utf8Char operator checked -(Utf8Char @char, byte offset) => checked((byte)(@char._char - offset));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
