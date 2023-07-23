@@ -52,7 +52,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
-	protected abstract TElement[] Offsets { get; }
+	protected TElement[] Offsets { get; }
 
 	/// <inheritdoc/>
 	bool ICollection<TElement>.IsReadOnly => false;
