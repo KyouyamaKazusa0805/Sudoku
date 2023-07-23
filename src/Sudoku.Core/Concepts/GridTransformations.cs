@@ -263,10 +263,5 @@ public static unsafe class GridTransformations
 	/// <typeparam name="T">The type of two elements.</typeparam>
 	/// <param name="left">The left-side instance to be swapped.</param>
 	/// <param name="right">The right-side instance to be swapped.</param>
-	private static void Swap<T>(scoped ref T left, scoped ref T right)
-	{
-		var temp = left;
-		left = right;
-		right = temp;
-	}
+	private static void Swap<T>(scoped ref T left, scoped ref T right) => (left, right) = (right, left);
 }

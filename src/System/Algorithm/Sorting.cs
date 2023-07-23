@@ -33,9 +33,7 @@ public static unsafe class Sorting
 						break;
 					}
 
-					var temp = @this[i];
-					@this[i] = @this[j];
-					@this[j] = temp;
+					(@this[i], @this[j]) = (@this[j], @this[i]);
 
 					if (comparer(@this[i], @this[j]) == 0) { j--; }
 				}
@@ -79,9 +77,7 @@ public static unsafe class Sorting
 						break;
 					}
 
-					var temp = @this[i];
-					@this[i] = @this[j];
-					@this[j] = temp;
+					(@this[i], @this[j]) = (@this[j], @this[i]);
 
 					if (comparer(@this[i], @this[j]) == 0) { j--; }
 				}
