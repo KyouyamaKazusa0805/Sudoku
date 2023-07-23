@@ -3562,6 +3562,28 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Grid.System#IParsable{Sudoku#Concepts#Grid}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.InternalEqualsByRef(System.Byte@,System.Byte@,System.UIntPtr)">
+            <summary>
+            Determines whether two sequences are considered equal on respective bits.
+            </summary>
+            <param name="first">The first sequence.</param>
+            <param name="second">The second sequence.</param>
+            <param name="length">
+            The total bits of the sequence to be compared. Please note that two sequences
+            <paramref name="first"/> and <paramref name="second"/> must hold a same length.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether they are considered equal.</returns>
+            <remarks>
+            Optimized byte-based <c>SequenceEquals</c>.
+            The <paramref name="length"/> parameter for this one is declared a <see langword="nuint"/> rather than <see cref="T:System.Int32"/>
+            as we also use it for types other than <see cref="T:System.Byte"/> where the length can exceed 2Gb once scaled by <see langword="sizeof"/>(T).
+            </remarks>
+            <!--
+            Licensed to the .NET Foundation under one or more agreements.
+            The .NET Foundation licenses this file to you under the MIT license.
+            https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
+            -->
+        </member>
         <member name="M:Sudoku.Concepts.Grid.op_Explicit(System.Int16[])~Sudoku.Concepts.Grid">
             <summary>
             Converts the specified array elements into the target <see cref="T:Sudoku.Concepts.Grid"/> instance, without any value boundary checking.
@@ -3635,13 +3657,61 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.CellFilteringMethods">
+        <member name="T:Sudoku.Concepts.GridCellPredicates">
             <summary>
             Represents a list of methods to filter the cells, used by <see cref="M:Sudoku.Concepts.Grid.GetMap()"/>
             or <see cref="M:Sudoku.Concepts.Grid.GetMaps()"/>.
             </summary>
             <seealso cref="M:Sudoku.Concepts.Grid.GetMap()"/>
             <seealso cref="M:Sudoku.Concepts.Grid.GetMaps()"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridCellPredicates.GivenCells(Sudoku.Concepts.Grid@,System.Int32)">
+            <summary>
+            Determines whether the specified cell in the specified grid is a given cell.
+            </summary>
+            <param name="g">The grid.</param>
+            <param name="cell">The cell to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.GridCellPredicates.ModifiableCells(Sudoku.Concepts.Grid@,System.Int32)">
+            <summary>
+            Determines whether the specified cell in the specified grid is a modifiable cell.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Concepts.GridCellPredicates.GivenCells(Sudoku.Concepts.Grid@,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridCellPredicates.EmptyCells(Sudoku.Concepts.Grid@,System.Int32)">
+            <summary>
+            Determines whether the specified cell in the specified grid is an empty cell.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Concepts.GridCellPredicates.GivenCells(Sudoku.Concepts.Grid@,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridCellPredicates.BivalueCells(Sudoku.Concepts.Grid@,System.Int32)">
+            <summary>
+            Determines whether the specified cell in the specified grid is a bi-value cell, which means the cell is an empty cell,
+            and contains and only contains 2 candidates.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Concepts.GridCellPredicates.GivenCells(Sudoku.Concepts.Grid@,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridCellPredicates.CandidatesMap(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Checks the existence of the specified digit in the specified cell.
+            </summary>
+            <param name="g">The grid.</param>
+            <param name="cell">The cell to be checked.</param>
+            <param name="digit">The digit to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.GridCellPredicates.DigitsMap(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Checks the existence of the specified digit in the specified cell, or whether the cell is a value cell, being filled by the digit.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Concepts.GridCellPredicates.CandidatesMap(Sudoku.Concepts.Grid@,System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridCellPredicates.ValuesMap(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Checks whether the cell is a value cell, being filled by the digit.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Concepts.GridCellPredicates.CandidatesMap(Sudoku.Concepts.Grid@,System.Int32,System.Int32)"/>
         </member>
         <member name="T:Sudoku.Concepts.GridCreatingOption">
             <summary>
