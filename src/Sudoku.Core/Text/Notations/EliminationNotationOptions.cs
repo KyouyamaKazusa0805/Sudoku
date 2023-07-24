@@ -17,5 +17,5 @@ public readonly record struct EliminationNotationOptions(bool DigitFirst = true,
 	/// <summary>
 	/// Indicates the default instance.
 	/// </summary>
-	public static EliminationNotationOptions Default => new(true, " ");
+	public static EliminationNotationOptions Default => new(true);
 }

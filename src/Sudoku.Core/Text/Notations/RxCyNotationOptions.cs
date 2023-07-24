@@ -19,5 +19,5 @@ public readonly record struct RxCyNotationOptions(bool UpperCasing = false, stri
 	/// <summary>
 	/// Indicates the default instance.
 	/// </summary>
-	public static RxCyNotationOptions Default => new(false, ", ");
+	public static RxCyNotationOptions Default => new(false);
 }

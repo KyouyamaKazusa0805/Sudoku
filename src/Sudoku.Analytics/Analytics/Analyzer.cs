@@ -60,7 +60,7 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 
 	/// <inheritdoc/>
 	public StepSearcher[] ResultStepSearchers { get; private set; } =
-		from searcher in StepSearcherPool.Default(true)
+		from searcher in StepSearcherPool.Default()
 		where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
 		select searcher;
 
@@ -112,7 +112,7 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 			var playground = puzzle;
 			var totalCandidatesCount = playground.CandidatesCount;
 			var (recordedSteps, stepGrids, stepSearchers) = (new List<Step>(100), new List<Grid>(100), ResultStepSearchers);
-			var progressedStepSearcherName = default(string);
+			string progressedStepSearcherName;
 			scoped var stopwatch = ValueStopwatch.StartNew();
 
 		Again:

@@ -33,7 +33,7 @@ public sealed partial class StepCollector : IAnalyzerOrCollector
 
 	/// <inheritdoc/>
 	public StepSearcher[] ResultStepSearchers { get; private set; } =
-		from searcher in StepSearcherPool.Default(true)
+		from searcher in StepSearcherPool.Default()
 		where searcher.RunningArea.Flags(StepSearcherRunningArea.Gathering)
 		select searcher;
 

@@ -26,5 +26,5 @@ public readonly record struct K9NotationOptions(
 	/// <summary>
 	/// Indicates the default instance.
 	/// </summary>
-	public static K9NotationOptions Default => new(false, false, ", ");
+	public static K9NotationOptions Default => new(false);
 }

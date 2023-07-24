@@ -406,7 +406,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Try to update grid status.
 	/// </summary>
 	/// <param name="newGrid">The new grid to be used for assigning to the target.</param>
-	public void UpdateGrid(scoped in Grid newGrid) => SetPuzzleInternal(newGrid, false);
+	public void UpdateGrid(scoped in Grid newGrid) => SetPuzzleInternal(newGrid);
 
 	/// <summary>
 	/// <para>Triggers <see cref="GridUpdated"/> event.</para>
