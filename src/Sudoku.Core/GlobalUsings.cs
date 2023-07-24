@@ -12,7 +12,7 @@ global using Sudoku.Text.Parsing;
 global using static System.Algorithm.Sequences;
 global using static System.Algorithm.Sorting;
 global using static System.Math;
-global using static Sudoku.Runtime.MaskServices.MaskOperations;
+global using static Sudoku.Operations.MaskOperations;
 global using Chute = (Sudoku.Concepts.CellMap Cells, bool IsRow, /*Mask*/ short HousesMask);
 global using MatrixRow = (Sudoku.Algorithm.Solving.DancingLinkNode Cell, Sudoku.Algorithm.Solving.DancingLinkNode Row, Sudoku.Algorithm.Solving.DancingLinkNode Column, Sudoku.Algorithm.Solving.DancingLinkNode Block);
 global using unsafe RefreshingCandidatesMethodPtr = delegate*</*scoped*/ ref Sudoku.Concepts.Grid, void>;
