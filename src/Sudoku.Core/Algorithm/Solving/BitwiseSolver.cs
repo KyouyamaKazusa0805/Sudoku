@@ -70,7 +70,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 
 		var puzzleStr = grid.ToString("0");
 		var solutionStr = stackalloc char[BufferLength];
-		var solutions = 0L;
+		long solutions;
 		fixed (char* pPuzzleStr = puzzleStr)
 		{
 			solutions = InternalSolve(pPuzzleStr, solutionStr, 2);
