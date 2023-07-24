@@ -7,6 +7,7 @@ namespace Sudoku.Algorithm.Solving;
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
 /// </remarks>
 /// <seealso cref="BitwiseSolver"/>
+[LargeStructure]
 public unsafe struct BitwiseSolverState
 {
 	/// <summary>
