@@ -42,8 +42,8 @@
 		<!--Navigation view-->
 		<NavigationView
 			x:Name="MainNavigationView" Grid.Row="1" SelectionFollowsFocus="Disabled" IsPaneOpen="True" IsPaneToggleButtonVisible="False"
-			IsSettingsVisible="True" IsBackButtonVisible="Auto" IsTabStop="False" IsBackEnabled="True" AlwaysShowHeader="True"
-			PaneTitle="{m:R Key=MainWindow_Menu}"
+			IsSettingsVisible="True" IsBackButtonVisible="Auto" IsTabStop="False" AlwaysShowHeader="True" PaneTitle="{m:R Key=MainWindow_Menu}"
+			IsBackEnabled="{x:Bind NavigationViewFrame.CanGoBack,Mode=OneWay}"
 			Loaded="NavigationView_Loaded" SelectionChanged="MainNavigationView_SelectionChanged" ItemInvoked="NavigationView_ItemInvoked"
 			BackRequested="MainNavigationView_BackRequested">
 			<NavigationView.MenuItems>
@@ -55,10 +55,9 @@
 						<FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7FC;" />
 					</NavigationViewItem.Icon>
 				</NavigationViewItem>
-			</NavigationView.MenuItems>
-			<NavigationView.FooterMenuItems>
+				<NavigationViewItemHeader Content="{m:R Key=MainWindow_ProgramManual}" />
 				<NavigationViewItem x:Name="AboutPageItem" Content="{m:R Key=MainWindow_About}" Icon="People" />
-			</NavigationView.FooterMenuItems>
+			</NavigationView.MenuItems>
 
 			<Frame x:Name="NavigationViewFrame" />
 		</NavigationView>

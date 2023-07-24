@@ -705,6 +705,9 @@
   <data name="MainWindow_Menu" xml:space="preserve">
     <value>菜单</value>
   </data>
+  <data name="MainWindow_ProgramManual" xml:space="preserve">
+    <value>程序手册</value>
+  </data>
   <data name="MainWindow_Search" xml:space="preserve">
     <value>搜索……</value>
   </data>

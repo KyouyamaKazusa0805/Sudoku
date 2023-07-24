@@ -4895,6 +4895,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Menu.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_ProgramManual">
+            <summary>
+              Looks up a localized string similar to Program Manual.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_Search">
             <summary>
               Looks up a localized string similar to Search....

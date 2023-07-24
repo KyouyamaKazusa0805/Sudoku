@@ -702,6 +702,9 @@
   <data name="MainWindow_Menu" xml:space="preserve">
     <value>Menu</value>
   </data>
+  <data name="MainWindow_ProgramManual" xml:space="preserve">
+    <value>Program Manual</value>
+  </data>
   <data name="MainWindow_Search" xml:space="preserve">
     <value>Search...</value>
   </data>

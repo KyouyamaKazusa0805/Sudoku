@@ -2005,6 +2005,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Program Manual.
+        /// </summary>
+        internal static string MainWindow_ProgramManual {
+            get {
+                return ResourceManager.GetString("MainWindow_ProgramManual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search....
         /// </summary>
         internal static string MainWindow_Search {

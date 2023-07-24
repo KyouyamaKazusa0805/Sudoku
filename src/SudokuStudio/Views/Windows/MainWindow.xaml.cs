@@ -392,7 +392,6 @@ public sealed partial class MainWindow : Window
 		if (NavigationViewFrame is { CanGoBack: true, BackStack: [.., { SourcePageType: var lastPageType }] })
 		{
 			NavigationViewFrame.GoBack();
-
 			SetFrameDisplayTitle(lastPageType);
 		}
 	}
