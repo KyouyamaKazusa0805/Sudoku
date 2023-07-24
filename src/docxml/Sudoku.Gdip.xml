@@ -389,119 +389,9 @@
             Indicates the block line width of the sudoku grid to render.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.BorderBarWidth">
-            <summary>
-            Indicates the border bar width.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.KropkiDotBorderWidth">
-            <summary>
-            Indicates the border width of Kropki dots.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.ClockfaceDotBorderWidth">
-            <summary>
-            Indicates the border width of clockface dots.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.NeighborSignsWidth">
-            <summary>
-            Indicates the width of neighbor signs.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.WheelWidth">
-            <summary>
-            Indicates the width of wheel.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.DiagonalLinesWidth">
-            <summary>
-            Indicates the width of diagonal lines.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.KropkiDotSize">
-            <summary>
-            Indicates the size of Kropki dots.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.BattenburgSize">
-            <summary>
-            Indicates the size of battenburg.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.ClockfaceDotSize">
-            <summary>
-            Indicates the size of clockface dot.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.QuadrupleMaxArrowSize">
-            <summary>
-            Indicates the size of quadruple max arrows.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.CellCornerTriangleSize">
-            <summary>
-            Indicates the size of cell corner triangles.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.AverageBarWidth">
-            <summary>
-            Indicates the width of average bars.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.CellCornerArrowWidth">
-            <summary>
-            Indicates the width of cell corner arrows.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.CapsuleWidth">
-            <summary>
-            Indicates the width of capsules.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.ObliqueLineWidth">
-            <summary>
-            Indicates the width of oblique lines.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.LeverBarWidth">
-            <summary>
-            Indicates the width of lever bars.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.LeverPivotWidth">
-            <summary>
-            Indicates the width of lever pivots.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.NeighborSignCellPadding">
-            <summary>
-            Indicates the padding of neighbor signs.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.TriangleSumCellPadding">
-            <summary>
-            Indicates the padding of triangle sums.
-            </summary>
-        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.FigurePadding">
             <summary>
             Indicates the padding of figures.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.CellCornerTriangleCellPadding">
-            <summary>
-            Indicates the padding of cell corner triangles.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.CapsulePadding">
-            <summary>
-            Indicates the padding of capsules.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.LeverBarPadding">
-            <summary>
-            Indicates the padding of lever bars.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontName">
@@ -559,11 +449,6 @@
             Indicates the candidate digits to render.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.FocusedCellColor">
-            <summary>
-            Indicates the color used for painting for focused cells.
-            </summary>
-        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.EliminationColor">
             <summary>
             Indicates the elimination color.
@@ -594,39 +479,14 @@
             Indicates the block line color of the sudoku grid to render.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.CrosshatchingOutlineColor">
-            <summary>
-            Indicates the color of the crosshatching outline.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.CrosshatchingInnerColor">
-            <summary>
-            Indicates the color of the crosshatching inner.
-            </summary>
-        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.UnknownIdentifierColor">
             <summary>
             Indicates the color of the unknown identifier color.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.CrossSignColor">
-            <summary>
-            Indicates the color of the cross sign.
-            </summary>
-        </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextColor">
             <summary>
             Indicates footer text color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.WheelTextColor">
-            <summary>
-            Indicates wheel text color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.PencilmarkTextColor">
-            <summary>
-            Indicates pencilmark text color.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.ColorPalette">
@@ -637,46 +497,6 @@
         <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextFont">
             <summary>
             Indicates the font of footer text.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.GreaterThanSignFont">
-            <summary>
-            Indicates the font of greater-than signs.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.XvSignFont">
-            <summary>
-            Indicates the font of XV signs.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.NumberLabelFont">
-            <summary>
-            Indicates the font of number labels.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.QuadrupleHintFont">
-            <summary>
-            Indicates the font of quadruple hint.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.WheelFont">
-            <summary>
-            Indicates the font of wheel text.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.PencilmarkFont">
-            <summary>
-            Indicates the font of pencilmarks.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.StarProductStarFont">
-            <summary>
-            Indicates the font of star product star.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.EmbeddedSkyscraperArrowFont">
-            <summary>
-            Indicates the font of embedded skyscraper arrow.
             </summary>
         </member>
         <member name="T:Sudoku.Gdip.FontData">
@@ -978,35 +798,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawShapeNodes(System.Drawing.Graphics)">
-            <summary>
-            Draw <see cref="T:Sudoku.Rendering.Nodes.Shapes.ShapeViewNode"/> instances.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawGroupedNodes(System.Drawing.Graphics)">
-            <summary>
-            Draw <see cref="T:Sudoku.Rendering.Nodes.Grouped.GroupedViewNode"/> instances.
-            </summary>
-            <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
         <member name="M:Sudoku.Gdip.GridImageGenerator.DrawFigure(System.Drawing.Graphics)">
             <summary>
             Draw figures.
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
-        </member>
-        <member name="T:Sudoku.Gdip.Constants">
-            <target name="class" when="constant">
-				<summary>
-					Provides with constants and read-only values used by code in the current file.
-				</summary>
-			</target>
-        </member>
-        <member name="F:Sudoku.Gdip.Constants.PyramidStatusTable">
-            <summary>
-            The pyramid status table.
-            </summary>
         </member>
         <member name="T:Sudoku.Gdip.PointCalculator">
             <summary>

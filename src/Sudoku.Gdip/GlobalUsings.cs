@@ -10,7 +10,5 @@ global using Sudoku.Gdip;
 global using Sudoku.Operations;
 global using Sudoku.Rendering;
 global using Sudoku.Rendering.Nodes;
-global using Sudoku.Rendering.Nodes.Grouped;
-global using Sudoku.Rendering.Nodes.Shapes;
 global using static System.MathF;
 global using static Sudoku.Drawing.ProjectWideConstants;

@@ -33,16 +33,6 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	/// </summary>
 	public OfTypeEnumerator<IconViewNode> FigureNodes => OfType<IconViewNode>();
 
-	/// <summary>
-	/// Indicates the shape view nodes.
-	/// </summary>
-	public OfTypeEnumerator<ShapeViewNode> ShapeViewNodes => OfType<ShapeViewNode>();
-
-	/// <summary>
-	/// Indicates the grouped view nodes.
-	/// </summary>
-	public OfTypeEnumerator<GroupedViewNode> GroupedViewNodes => OfType<GroupedViewNode>();
-
 
 	/// <summary>
 	/// Indicates the empty instance.

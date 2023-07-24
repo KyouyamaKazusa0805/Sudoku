@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Gdip;
+namespace Sudoku.Gdip;
 
 /// <summary>
 /// Represents with a preference type that stores the configurations on drawing.
@@ -41,119 +41,9 @@ public sealed class DrawingConfigurations
 	public float BlockLineWidth { get; set; } = 3F;
 
 	/// <summary>
-	/// Indicates the border bar width.
-	/// </summary>
-	public float BorderBarWidth { get; set; } = 6F;
-
-	/// <summary>
-	/// Indicates the border width of Kropki dots.
-	/// </summary>
-	public float KropkiDotBorderWidth { get; set; } = 3F;
-
-	/// <summary>
-	/// Indicates the border width of clockface dots.
-	/// </summary>
-	public float ClockfaceDotBorderWidth { get; set; } = 3F;
-
-	/// <summary>
-	/// Indicates the width of neighbor signs.
-	/// </summary>
-	public float NeighborSignsWidth { get; set; } = 3F;
-
-	/// <summary>
-	/// Indicates the width of wheel.
-	/// </summary>
-	public float WheelWidth { get; set; } = 6F;
-
-	/// <summary>
-	/// Indicates the width of diagonal lines.
-	/// </summary>
-	public float DiagonalLinesWidth { get; set; } = 6F;
-
-	/// <summary>
-	/// Indicates the size of Kropki dots.
-	/// </summary>
-	public float KropkiDotSize { get; set; } = 6F;
-
-	/// <summary>
-	/// Indicates the size of battenburg.
-	/// </summary>
-	public float BattenburgSize { get; set; } = 6F;
-
-	/// <summary>
-	/// Indicates the size of clockface dot.
-	/// </summary>
-	public float ClockfaceDotSize { get; set; } = 6F;
-
-	/// <summary>
-	/// Indicates the size of quadruple max arrows.
-	/// </summary>
-	public float QuadrupleMaxArrowSize { get; set; } = 6F;
-
-	/// <summary>
-	/// Indicates the size of cell corner triangles.
-	/// </summary>
-	public float CellCornerTriangleSize { get; set; } = 6F;
-
-	/// <summary>
-	/// Indicates the width of average bars.
-	/// </summary>
-	public float AverageBarWidth { get; set; } = 6F;
-
-	/// <summary>
-	/// Indicates the width of cell corner arrows.
-	/// </summary>
-	public float CellCornerArrowWidth { get; set; } = 6F;
-
-	/// <summary>
-	/// Indicates the width of capsules.
-	/// </summary>
-	public float CapsuleWidth { get; set; } = 6F;
-
-	/// <summary>
-	/// Indicates the width of oblique lines.
-	/// </summary>
-	public float ObliqueLineWidth { get; set; } = 6F;
-
-	/// <summary>
-	/// Indicates the width of lever bars.
-	/// </summary>
-	public float LeverBarWidth { get; set; } = 5F;
-
-	/// <summary>
-	/// Indicates the width of lever pivots.
-	/// </summary>
-	public float LeverPivotWidth { get; set; } = 2F;
-
-	/// <summary>
-	/// Indicates the padding of neighbor signs.
-	/// </summary>
-	public float NeighborSignCellPadding { get; set; } = 5F;
-
-	/// <summary>
-	/// Indicates the padding of triangle sums.
-	/// </summary>
-	public float TriangleSumCellPadding { get; set; } = 5F;
-
-	/// <summary>
 	/// Indicates the padding of figures.
 	/// </summary>
 	public float FigurePadding { get; set; } = 5F;
-
-	/// <summary>
-	/// Indicates the padding of cell corner triangles.
-	/// </summary>
-	public float CellCornerTriangleCellPadding { get; set; } = 5F;
-
-	/// <summary>
-	/// Indicates the padding of capsules.
-	/// </summary>
-	public float CapsulePadding { get; set; } = 5F;
-
-	/// <summary>
-	/// Indicates the padding of lever bars.
-	/// </summary>
-	public float LeverBarPadding { get; set; } = 5F;
 
 	/// <summary>
 	/// Indicates the font of given digits to render.
@@ -211,11 +101,6 @@ public sealed class DrawingConfigurations
 	public Color CandidateColor { get; set; } = Color.DimGray;
 
 	/// <summary>
-	/// Indicates the color used for painting for focused cells.
-	/// </summary>
-	public Color FocusedCellColor { get; set; } = Color.FromArgb(32, Color.Yellow);
-
-	/// <summary>
 	/// Indicates the elimination color.
 	/// </summary>
 	public Color EliminationColor { get; set; } = Color.FromArgb(255, 118, 132);
@@ -246,39 +131,14 @@ public sealed class DrawingConfigurations
 	public Color BlockLineColor { get; set; } = Color.Black;
 
 	/// <summary>
-	/// Indicates the color of the crosshatching outline.
-	/// </summary>
-	public Color CrosshatchingOutlineColor { get; set; } = Color.FromArgb(192, Color.Black);
-
-	/// <summary>
-	/// Indicates the color of the crosshatching inner.
-	/// </summary>
-	public Color CrosshatchingInnerColor { get; set; } = Color.Transparent;
-
-	/// <summary>
 	/// Indicates the color of the unknown identifier color.
 	/// </summary>
 	public Color UnknownIdentifierColor { get; set; } = Color.FromArgb(192, Color.Red);
 
 	/// <summary>
-	/// Indicates the color of the cross sign.
-	/// </summary>
-	public Color CrossSignColor { get; set; } = Color.FromArgb(192, Color.Black);
-
-	/// <summary>
 	/// Indicates footer text color.
 	/// </summary>
 	public Color FooterTextColor { get; set; } = Color.Black;
-
-	/// <summary>
-	/// Indicates wheel text color.
-	/// </summary>
-	public Color WheelTextColor { get; set; } = Color.Black;
-
-	/// <summary>
-	/// Indicates pencilmark text color.
-	/// </summary>
-	public Color PencilmarkTextColor { get; set; } = Color.DimGray;
 
 	/// <summary>
 	/// The color palette. This property stores a list of customized colors to be used as user-defined colors.
@@ -306,44 +166,4 @@ public sealed class DrawingConfigurations
 	/// Indicates the font of footer text.
 	/// </summary>
 	public FontData FooterTextFont { get; set; } = new("MiSans", 24F, FontStyle.Bold);
-
-	/// <summary>
-	/// Indicates the font of greater-than signs.
-	/// </summary>
-	public FontData GreaterThanSignFont { get; set; } = new("Consolas", 24F, FontStyle.Bold);
-
-	/// <summary>
-	/// Indicates the font of XV signs.
-	/// </summary>
-	public FontData XvSignFont { get; set; } = new("Consolas", 24F, FontStyle.Bold);
-
-	/// <summary>
-	/// Indicates the font of number labels.
-	/// </summary>
-	public FontData NumberLabelFont { get; set; } = new("Consolas", 24F, FontStyle.Bold);
-
-	/// <summary>
-	/// Indicates the font of quadruple hint.
-	/// </summary>
-	public FontData QuadrupleHintFont { get; set; } = new("MiSans", 24F, FontStyle.Regular);
-
-	/// <summary>
-	/// Indicates the font of wheel text.
-	/// </summary>
-	public FontData WheelFont { get; set; } = new("MiSans", 12F, FontStyle.Regular);
-
-	/// <summary>
-	/// Indicates the font of pencilmarks.
-	/// </summary>
-	public FontData PencilmarkFont { get; set; } = new("Segoe UI", 12F, FontStyle.Regular);
-
-	/// <summary>
-	/// Indicates the font of star product star.
-	/// </summary>
-	public FontData StarProductStarFont { get; set; } = new("Times New Roman", 12F, FontStyle.Regular);
-
-	/// <summary>
-	/// Indicates the font of embedded skyscraper arrow.
-	/// </summary>
-	public FontData EmbeddedSkyscraperArrowFont { get; set; } = new("Times New Roman", 12F, FontStyle.Bold);
 }
