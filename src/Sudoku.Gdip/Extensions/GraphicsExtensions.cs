@@ -1,4 +1,4 @@
-﻿namespace System.Drawing;
+namespace System.Drawing;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Graphics"/>.
@@ -36,9 +36,9 @@ internal static class GraphicsExtensions
 	/// </exception>
 	public static void DrawHollowArrow(this Graphics g, Brush brush, PointF center, float length, float width, float height, float angle)
 	{
-		Argument.ThrowIfFalse(length > 0, $"Argument '{nameof(length)}' cannot be negative or 0.");
-		Argument.ThrowIfFalse(width > 0, $"Argument '{nameof(width)}' cannot be negative or 0.");
-		Argument.ThrowIfFalse(height > 0, $"Argument '{nameof(height)}' cannot be negative or 0.");
+		ArgumentOutOfRangeException.ThrowIfNegative(length);
+		ArgumentOutOfRangeException.ThrowIfNegative(width);
+		ArgumentOutOfRangeException.ThrowIfNegative(height);
 
 		var halfWidth = width / 2;
 		var totalHeight = height + length;
@@ -122,10 +122,7 @@ internal static class GraphicsExtensions
 	{
 		_ = rectangle is var (x, y, w, h) and var (l, _);
 
-		if (circleRadius > Max(w, h))
-		{
-			throw new ArgumentOutOfRangeException(nameof(circleRadius));
-		}
+		ArgumentOutOfRangeException.ThrowIfGreaterThan(circleRadius, Max(w, h));
 
 		PointF p1, p2, p3, p4, p5, p6, p7, p8;
 		p8 = p7 = p6 = p5 = p4 = p3 = p2 = p1 = l;

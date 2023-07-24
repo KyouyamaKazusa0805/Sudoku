@@ -90,7 +90,7 @@ public unsafe ref partial struct ValueList<T>([PrimaryConstructorParameter(Membe
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(T element)
 	{
-		Argument.ThrowIfInvalid(_length < _capacity, "Cannot add because the collection is full.");
+		ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(_length, _capacity);
 
 		_startPtr[_length++] = element;
 	}

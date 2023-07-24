@@ -244,10 +244,10 @@ public static unsafe class GridTransformations
 	/// </remarks>
 	public static ref Grid SwapTwoHouses(this ref Grid @this, House houseIndex1, House houseIndex2)
 	{
-		Argument.ThrowIfFalse(houseIndex1 is >= 9 and < 27, "The specified argument is out of valid range.");
-		Argument.ThrowIfFalse(houseIndex2 is >= 9 and < 27, "The specified argument is out of valid range.");
-		Argument.ThrowIfFalse(houseIndex1.ToHouseType() == houseIndex2.ToHouseType(), "Two houses should be the same house type.");
-		Argument.ThrowIfFalse(Array.Exists(SwappableHouses, pair => pair == (houseIndex1, houseIndex2) || pair == (houseIndex2, houseIndex1)));
+		ArgumentOutOfRangeException.ThrowIfNotEqual(houseIndex1 is >= 9 and < 27, true);
+		ArgumentOutOfRangeException.ThrowIfNotEqual(houseIndex2 is >= 9 and < 27, true);
+		ArgumentOutOfRangeException.ThrowIfNotEqual((byte)houseIndex1.ToHouseType(), (byte)houseIndex2.ToHouseType());
+		ArgumentOutOfRangeException.ThrowIfNotEqual(Array.Exists(SwappableHouses, houseIndexChecker), true);
 
 		for (var i = 0; i < 9; i++)
 		{
@@ -255,6 +255,9 @@ public static unsafe class GridTransformations
 		}
 
 		return ref @this;
+
+
+		bool houseIndexChecker((int, int) pair) => pair == (houseIndex1, houseIndex2) || pair == (houseIndex2, houseIndex1);
 	}
 
 	/// <summary>

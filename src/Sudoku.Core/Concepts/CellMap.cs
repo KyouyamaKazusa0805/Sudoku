@@ -469,7 +469,7 @@ public unsafe partial struct CellMap :
 			return;
 		}
 
-		Argument.ThrowIfInvalid(_count <= length, "The capacity is not enough.");
+		ArgumentOutOfRangeException.ThrowIfGreaterThan(_count, length);
 
 		long value;
 		int i, pos = 0;

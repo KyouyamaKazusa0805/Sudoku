@@ -1716,8 +1716,8 @@ public unsafe partial struct Grid :
 	public static explicit operator checked Grid(Mask[] maskArray)
 	{
 		static bool maskMatcher(Mask element) => element >> 9 is 0 or 1 or 2 or 4;
-		Argument.ThrowIfNotEqual(maskArray.Length, 81, nameof(maskArray));
-		Argument.ThrowIfFalse(Array.TrueForAll(maskArray, maskMatcher), "Each element in this array must contain a valid cell status.");
+		ArgumentOutOfRangeException.ThrowIfNotEqual(maskArray.Length, 81);
+		ArgumentOutOfRangeException.ThrowIfNotEqual(Array.TrueForAll(maskArray, maskMatcher), true);
 
 		var result = Empty;
 		CopyBlock(ref AsByteRef(ref result[0]), ref AsByteRef(ref maskArray[0]), sizeof(Mask) * 81);
