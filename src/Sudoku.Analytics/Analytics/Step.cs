@@ -164,7 +164,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 		{
 			(null, _) => ToSimpleString(),
 			(_, null) => $"{Name}{colonToken}{Format} => {ConclusionText}",
-			(_, var formatArgs) => $"{Name}{colonToken}{string.Format(Format, formatArgs)} => {ConclusionText}"
+			var (_, formatArgs) => $"{Name}{colonToken}{string.Format(Format, formatArgs)} => {ConclusionText}"
 		};
 	}
 

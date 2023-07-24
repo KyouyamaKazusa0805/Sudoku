@@ -77,7 +77,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 		}
 
 		SkipInit(out result);
-		(_, var @return) = solutions switch
+		var (_, @return) = solutions switch
 		{
 			0 => (Grid.Undefined, null),
 			1 => (result = Grid.Parse(new ReadOnlySpan<char>(solutionStr, BufferLength)), true),

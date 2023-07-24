@@ -120,7 +120,7 @@ internal static class GraphicsExtensions
 	/// </exception>
 	public static void DrawRoundedRectangle(this Graphics @this, Pen pen, RectangleF rectangle, float circleRadius)
 	{
-		_ = rectangle is var (x, y, w, h) and (var l, _);
+		_ = rectangle is var (x, y, w, h) and var (l, _);
 
 		if (circleRadius > Max(w, h))
 		{
@@ -175,7 +175,7 @@ internal static class GraphicsExtensions
 	/// </exception>
 	public static void FillRoundedRectangle(this Graphics @this, Brush brush, RectangleF rectangle, float circleRadius)
 	{
-		_ = rectangle is var (x, y, w, h) and (var l, _);
+		_ = rectangle is var (x, y, w, h) and var (l, _);
 
 		if (circleRadius >= Max(w, h))
 		{

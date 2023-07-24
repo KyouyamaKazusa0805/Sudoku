@@ -282,7 +282,7 @@ public sealed partial class RxCyNotation : ICellNotation<RxCyNotation, RxCyNotat
 		return candidates switch
 		{
 			[] => "{ }",
-			[var a] when (a / 9, a % 9) is (var c, var d) => $"r{c / 9 + 1}c{c % 9 + 1}({d + 1})",
+			[var a] when (a / 9, a % 9) is var (c, d) => $"r{c / 9 + 1}c{c % 9 + 1}({d + 1})",
 			_ => f(candidates.ToArray(), options)
 		};
 

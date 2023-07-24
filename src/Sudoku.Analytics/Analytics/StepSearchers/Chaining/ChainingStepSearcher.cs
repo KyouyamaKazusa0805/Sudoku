@@ -207,7 +207,7 @@ public abstract class ChainingStepSearcher(
 	protected (ChainNode On, ChainNode Off)? DoChaining(Grid grid, NodeSet toOn, NodeSet toOff, bool allowNishio, bool allowDynamic)
 	{
 		scoped ref readonly var originalGrid = ref grid;
-		(var pendingOn, var pendingOff) = (new NodeList(toOn), new NodeList(toOff));
+		var (pendingOn, pendingOff) = (new NodeList(toOn), new NodeList(toOff));
 		while (pendingOn.Count > 0 || pendingOff.Count > 0)
 		{
 			if (pendingOn.Count > 0)
