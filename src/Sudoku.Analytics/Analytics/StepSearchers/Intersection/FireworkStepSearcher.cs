@@ -580,8 +580,8 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		Cell c2,
 		Cell pivot,
 		scoped in Grid grid,
-		scoped out CellMap house1CellsExcluded,
-		scoped out CellMap house2CellsExcluded
+		out CellMap house1CellsExcluded,
+		out CellMap house2CellsExcluded
 	)
 	{
 		var pivotCellBlock = pivot.ToHouseIndex(HouseType.Block);
