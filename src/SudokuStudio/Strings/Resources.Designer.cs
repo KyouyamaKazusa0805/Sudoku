@@ -1906,6 +1906,294 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear a cell.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ClearCell {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ClearCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That means, the function will clear the cell, making the cell be the empty state. If the cell is a given cell (which means the initial sudoku puzzle uses this cell as a hint), the program will do nothing no matter whether you have triggered the hotkey.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ClearCellDescription {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ClearCellDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ClearCellValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ClearCellValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear all rendered items.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ClearRenderedItems {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ClearRenderedItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Esc Key.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ClearRenderedItemsValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ClearRenderedItemsValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy code for grid at current state.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_CopyCurrentGridCode {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_CopyCurrentGridCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ctrl + C.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_CopyCurrentGridCodeValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_CopyCurrentGridCodeValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy picture for grid at current state.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_CopyCurrentGridPicture {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_CopyCurrentGridPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ctrl + Shift + C.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_CopyCurrentGridPictureValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_CopyCurrentGridPictureValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page lists the hotkeys that the functions that the program will use. You can use the following hotkeys to achieve some functions without clicking buttons..
+        /// </summary>
+        internal static string HotkeyCheatTablePage_Description {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input a digit.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_DigitInput {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_DigitInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1-9 (Including Keys in Number Pad).
+        /// </summary>
+        internal static string HotkeyCheatTablePage_DigitInputValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_DigitInputValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eliminate a candidate.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_EliminateCandidate {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_EliminateCandidate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shift + 1-9.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_EliminateCandidateValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_EliminateCandidateValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste code to the program.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_PasteCodeToProgram {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_PasteCodeToProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ctrl + V.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_PasteCodeToProgramValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_PasteCodeToProgramValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redo.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_Redo {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_Redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ctrl + Y.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_RedoValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_RedoValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save puzzle to the local path.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_SavePuzzleToLocalPath {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_SavePuzzleToLocalPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ctrl + S.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_SavePuzzleToLocalPathValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_SavePuzzleToLocalPathValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_Undo {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_Undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ctrl + Z.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_UndoValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_UndoValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View the first view.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ViewFirstView {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ViewFirstView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home Key.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ViewFirstViewValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ViewFirstViewValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View the last view.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ViewLastView {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ViewLastView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End Key.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ViewLastViewValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ViewLastViewValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View the next view.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ViewNextView {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ViewNextView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Equals Sign (=).
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ViewNextViewValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ViewNextViewValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View the previous view.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ViewPreviousView {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ViewPreviousView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minus Sign (-).
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ViewPreviousViewValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ViewPreviousViewValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View solution.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ViewSolution {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ViewSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ctrl + R.
+        /// </summary>
+        internal static string HotkeyCheatTablePage_ViewSolutionValue {
+            get {
+                return ResourceManager.GetString("HotkeyCheatTablePage_ViewSolutionValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         internal static string MainWindow_About {
@@ -1992,6 +2280,24 @@ namespace SudokuStudio.Strings {
         internal static string MainWindow_ExtraFunctions {
             get {
                 return ResourceManager.GetString("MainWindow_ExtraFunctions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hotkeys.
+        /// </summary>
+        internal static string MainWindow_HotkeyCheatTable {
+            get {
+                return ResourceManager.GetString("MainWindow_HotkeyCheatTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hotkey Cheat Table.
+        /// </summary>
+        internal static string MainWindow_HotkeyCheatTablePageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_HotkeyCheatTablePageTitle", resourceCulture);
             }
         }
         

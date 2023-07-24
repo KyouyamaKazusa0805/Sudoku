@@ -669,6 +669,102 @@
   <data name="FontPicker_SelectFontPlaceholder" xml:space="preserve">
     <value>Select a font</value>
   </data>
+  <data name="HotkeyCheatTablePage_ClearCell" xml:space="preserve">
+    <value>Clear a cell</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ClearCellDescription" xml:space="preserve">
+    <value>That means, the function will clear the cell, making the cell be the empty state. If the cell is a given cell (which means the initial sudoku puzzle uses this cell as a hint), the program will do nothing no matter whether you have triggered the hotkey</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ClearCellValue" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ClearRenderedItems" xml:space="preserve">
+    <value>Clear all rendered items</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ClearRenderedItemsValue" xml:space="preserve">
+    <value>Esc Key</value>
+  </data>
+  <data name="HotkeyCheatTablePage_CopyCurrentGridCode" xml:space="preserve">
+    <value>Copy code for grid at current state</value>
+  </data>
+  <data name="HotkeyCheatTablePage_CopyCurrentGridCodeValue" xml:space="preserve">
+    <value>Ctrl + C</value>
+  </data>
+  <data name="HotkeyCheatTablePage_CopyCurrentGridPicture" xml:space="preserve">
+    <value>Copy picture for grid at current state</value>
+  </data>
+  <data name="HotkeyCheatTablePage_CopyCurrentGridPictureValue" xml:space="preserve">
+    <value>Ctrl + Shift + C</value>
+  </data>
+  <data name="HotkeyCheatTablePage_Description" xml:space="preserve">
+    <value>This page lists the hotkeys that the functions that the program will use. You can use the following hotkeys to achieve some functions without clicking buttons.</value>
+  </data>
+  <data name="HotkeyCheatTablePage_DigitInput" xml:space="preserve">
+    <value>Input a digit</value>
+  </data>
+  <data name="HotkeyCheatTablePage_DigitInputValue" xml:space="preserve">
+    <value>1-9 (Including Keys in Number Pad)</value>
+  </data>
+  <data name="HotkeyCheatTablePage_EliminateCandidate" xml:space="preserve">
+    <value>Eliminate a candidate</value>
+  </data>
+  <data name="HotkeyCheatTablePage_EliminateCandidateValue" xml:space="preserve">
+    <value>Shift + 1-9</value>
+  </data>
+  <data name="HotkeyCheatTablePage_PasteCodeToProgram" xml:space="preserve">
+    <value>Paste code to the program</value>
+  </data>
+  <data name="HotkeyCheatTablePage_PasteCodeToProgramValue" xml:space="preserve">
+    <value>Ctrl + V</value>
+  </data>
+  <data name="HotkeyCheatTablePage_Redo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="HotkeyCheatTablePage_RedoValue" xml:space="preserve">
+    <value>Ctrl + Y</value>
+  </data>
+  <data name="HotkeyCheatTablePage_SavePuzzleToLocalPath" xml:space="preserve">
+    <value>Save puzzle to the local path</value>
+  </data>
+  <data name="HotkeyCheatTablePage_SavePuzzleToLocalPathValue" xml:space="preserve">
+    <value>Ctrl + S</value>
+  </data>
+  <data name="HotkeyCheatTablePage_Undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="HotkeyCheatTablePage_UndoValue" xml:space="preserve">
+    <value>Ctrl + Z</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewFirstView" xml:space="preserve">
+    <value>View the first view</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewFirstViewValue" xml:space="preserve">
+    <value>Home Key</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewLastView" xml:space="preserve">
+    <value>View the last view</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewLastViewValue" xml:space="preserve">
+    <value>End Key</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewNextView" xml:space="preserve">
+    <value>View the next view</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewNextViewValue" xml:space="preserve">
+    <value>Equals Sign (=)</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewPreviousView" xml:space="preserve">
+    <value>View the previous view</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewPreviousViewValue" xml:space="preserve">
+    <value>Minus Sign (-)</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewSolution" xml:space="preserve">
+    <value>View solution</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewSolutionValue" xml:space="preserve">
+    <value>Ctrl + R</value>
+  </data>
   <data name="MainWindow_About" xml:space="preserve">
     <value>About</value>
   </data>
@@ -698,6 +794,12 @@
   </data>
   <data name="MainWindow_ExtraFunctions" xml:space="preserve">
     <value>Extra Functions</value>
+  </data>
+  <data name="MainWindow_HotkeyCheatTable" xml:space="preserve">
+    <value>Hotkeys</value>
+  </data>
+  <data name="MainWindow_HotkeyCheatTablePageTitle" xml:space="preserve">
+    <value>Hotkey Cheat Table</value>
   </data>
   <data name="MainWindow_Menu" xml:space="preserve">
     <value>Menu</value>

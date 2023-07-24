@@ -56,6 +56,7 @@
 					</NavigationViewItem.Icon>
 				</NavigationViewItem>
 				<NavigationViewItemHeader Content="{m:R Key=MainWindow_ProgramManual}" />
+				<NavigationViewItem x:Name="HotkeyCheatTablePage" Content="{m:R Key=MainWindow_HotkeyCheatTable}" Icon="List" />
 				<NavigationViewItem x:Name="AboutPageItem" Content="{m:R Key=MainWindow_About}" Icon="People" />
 			</NavigationView.MenuItems>
 

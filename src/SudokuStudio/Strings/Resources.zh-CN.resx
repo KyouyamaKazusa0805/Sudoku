@@ -672,6 +672,102 @@
   <data name="FontPicker_SelectFontPlaceholder" xml:space="preserve">
     <value>选择一个字体</value>
   </data>
+  <data name="HotkeyCheatTablePage_ClearCell" xml:space="preserve">
+    <value>清除单元格填数</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ClearCellDescription" xml:space="preserve">
+    <value>该功能表示，你将会清除当前单元格的填数，使得它回归空格的状态。如果该单元格为提示数单元格（也就是题目初盘就会用到它来作为提示信息的一部分）的话，即使触发热键也不会有任何操作执行</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ClearCellValue" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ClearRenderedItems" xml:space="preserve">
+    <value>清除当前显示的所有视图节点</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ClearRenderedItemsValue" xml:space="preserve">
+    <value>Esc 键</value>
+  </data>
+  <data name="HotkeyCheatTablePage_CopyCurrentGridCode" xml:space="preserve">
+    <value>复制当前盘面的盘面代码</value>
+  </data>
+  <data name="HotkeyCheatTablePage_CopyCurrentGridCodeValue" xml:space="preserve">
+    <value>Ctrl + C</value>
+  </data>
+  <data name="HotkeyCheatTablePage_CopyCurrentGridPicture" xml:space="preserve">
+    <value>复制当前盘面的盘面对应图</value>
+  </data>
+  <data name="HotkeyCheatTablePage_CopyCurrentGridPictureValue" xml:space="preserve">
+    <value>Ctrl + Shift + C</value>
+  </data>
+  <data name="HotkeyCheatTablePage_Description" xml:space="preserve">
+    <value>该页面列举的是一些程序会用到的快捷键。你可以使用快捷键来快速达成一些操作，来避免去点击按钮。</value>
+  </data>
+  <data name="HotkeyCheatTablePage_DigitInput" xml:space="preserve">
+    <value>数字输入</value>
+  </data>
+  <data name="HotkeyCheatTablePage_DigitInputValue" xml:space="preserve">
+    <value>1-9（含小键盘）</value>
+  </data>
+  <data name="HotkeyCheatTablePage_EliminateCandidate" xml:space="preserve">
+    <value>删除候选数</value>
+  </data>
+  <data name="HotkeyCheatTablePage_EliminateCandidateValue" xml:space="preserve">
+    <value>Shift + 1-9</value>
+  </data>
+  <data name="HotkeyCheatTablePage_PasteCodeToProgram" xml:space="preserve">
+    <value>粘贴盘面代码</value>
+  </data>
+  <data name="HotkeyCheatTablePage_PasteCodeToProgramValue" xml:space="preserve">
+    <value>Ctrl + V</value>
+  </data>
+  <data name="HotkeyCheatTablePage_Redo" xml:space="preserve">
+    <value>还原撤销的步骤</value>
+  </data>
+  <data name="HotkeyCheatTablePage_RedoValue" xml:space="preserve">
+    <value>Ctrl + Y</value>
+  </data>
+  <data name="HotkeyCheatTablePage_SavePuzzleToLocalPath" xml:space="preserve">
+    <value>将当前盘面保存到本地</value>
+  </data>
+  <data name="HotkeyCheatTablePage_SavePuzzleToLocalPathValue" xml:space="preserve">
+    <value>Ctrl + S</value>
+  </data>
+  <data name="HotkeyCheatTablePage_Undo" xml:space="preserve">
+    <value>撤销</value>
+  </data>
+  <data name="HotkeyCheatTablePage_UndoValue" xml:space="preserve">
+    <value>Ctrl + Z</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewFirstView" xml:space="preserve">
+    <value>查看第一个视图</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewFirstViewValue" xml:space="preserve">
+    <value>Home 键</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewLastView" xml:space="preserve">
+    <value>查看最后一个视图</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewLastViewValue" xml:space="preserve">
+    <value>End 键</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewNextView" xml:space="preserve">
+    <value>查看下一个视图</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewNextViewValue" xml:space="preserve">
+    <value>等号（=）</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewPreviousView" xml:space="preserve">
+    <value>查看上一个视图</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewPreviousViewValue" xml:space="preserve">
+    <value>减号（-）</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewSolution" xml:space="preserve">
+    <value>查看终盘（即答案）</value>
+  </data>
+  <data name="HotkeyCheatTablePage_ViewSolutionValue" xml:space="preserve">
+    <value>Ctrl + R</value>
+  </data>
   <data name="MainWindow_About" xml:space="preserve">
     <value>关于</value>
   </data>
@@ -701,6 +797,12 @@
   </data>
   <data name="MainWindow_ExtraFunctions" xml:space="preserve">
     <value>额外功能</value>
+  </data>
+  <data name="MainWindow_HotkeyCheatTable" xml:space="preserve">
+    <value>热键表</value>
+  </data>
+  <data name="MainWindow_HotkeyCheatTablePageTitle" xml:space="preserve">
+    <value>快捷键参照表</value>
   </data>
   <data name="MainWindow_Menu" xml:space="preserve">
     <value>菜单</value>

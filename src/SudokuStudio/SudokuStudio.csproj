@@ -20,6 +20,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Views\Controls\TechniqueSelector.xaml" />
+	  <None Remove="Views\Pages\Manuals\HotkeyCheatTablePage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -196,6 +197,11 @@
 	-->
 	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
 		<ProjectCapability Include="Msix" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Views\Pages\Manuals\HotkeyCheatTablePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 
 	<!--

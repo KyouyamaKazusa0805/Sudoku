@@ -1,0 +1,75 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.Manuals.HotkeyCheatTablePage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:p="using:SudokuStudio.Views.Pages.Manuals"
+	xmlns:w="using:WinUICommunity"
+	mc:Ignorable="d"
+	d:DataContext="{d:DesignInstance Type=p:HotkeyCheatTablePage}">
+
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="36">
+			<TextBlock Text="{m:R Key=HotkeyCheatTablePage_Description}" />
+			<StackPanel>
+				<StackPanel.Resources>
+					<Style TargetType="TextBlock">
+						<Setter Property="FontFamily" Value="Consolas" />
+						<Setter Property="FontSize" Value="14" />
+						<Setter Property="FontWeight" Value="Bold" />
+					</Style>
+				</StackPanel.Resources>
+
+				<w:SettingsCard Header="{m:R Key=HotkeyCheatTablePage_DigitInput}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_DigitInputValue}" />
+				</w:SettingsCard>
+				<w:SettingsCard
+					Header="{m:R Key=HotkeyCheatTablePage_ClearCell}"
+					Description="{m:R Key=HotkeyCheatTablePage_ClearCellDescription}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_ClearCellValue}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=HotkeyCheatTablePage_EliminateCandidate}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_EliminateCandidateValue}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=HotkeyCheatTablePage_Undo}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_UndoValue}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=HotkeyCheatTablePage_Redo}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_RedoValue}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=HotkeyCheatTablePage_CopyCurrentGridCode}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_CopyCurrentGridCodeValue}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=HotkeyCheatTablePage_CopyCurrentGridPicture}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_CopyCurrentGridPictureValue}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=HotkeyCheatTablePage_PasteCodeToProgram}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_PasteCodeToProgramValue}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=HotkeyCheatTablePage_ViewSolution}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_ViewSolutionValue}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=HotkeyCheatTablePage_SavePuzzleToLocalPath}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_SavePuzzleToLocalPathValue}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=HotkeyCheatTablePage_ViewPreviousView}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_ViewPreviousViewValue}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=HotkeyCheatTablePage_ViewNextView}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_ViewNextViewValue}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=HotkeyCheatTablePage_ViewFirstView}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_ViewFirstViewValue}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=HotkeyCheatTablePage_ViewLastView}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_ViewLastViewValue}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=HotkeyCheatTablePage_ClearRenderedItems}">
+					<TextBlock Text="{m:R Key=HotkeyCheatTablePage_ClearRenderedItemsValue}" />
+				</w:SettingsCard>
+			</StackPanel>
+		</StackPanel>
+	</ScrollViewer>
+</Page>

@@ -58,6 +58,7 @@ global using SudokuStudio.Views.Controls.Shapes;
 global using SudokuStudio.Views.Pages;
 global using SudokuStudio.Views.Pages.Analyze;
 global using SudokuStudio.Views.Pages.ContentDialogs;
+global using SudokuStudio.Views.Pages.Manuals;
 global using SudokuStudio.Views.Pages.Operation;
 global using SudokuStudio.Views.Pages.Settings;
 global using SudokuStudio.Views.Windows;

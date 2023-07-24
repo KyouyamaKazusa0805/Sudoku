@@ -4840,6 +4840,166 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Select a font.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ClearCell">
+            <summary>
+              Looks up a localized string similar to Clear a cell.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ClearCellDescription">
+            <summary>
+              Looks up a localized string similar to That means, the function will clear the cell, making the cell be the empty state. If the cell is a given cell (which means the initial sudoku puzzle uses this cell as a hint), the program will do nothing no matter whether you have triggered the hotkey.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ClearCellValue">
+            <summary>
+              Looks up a localized string similar to 0.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ClearRenderedItems">
+            <summary>
+              Looks up a localized string similar to Clear all rendered items.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ClearRenderedItemsValue">
+            <summary>
+              Looks up a localized string similar to Esc Key.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_CopyCurrentGridCode">
+            <summary>
+              Looks up a localized string similar to Copy code for grid at current state.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_CopyCurrentGridCodeValue">
+            <summary>
+              Looks up a localized string similar to Ctrl + C.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_CopyCurrentGridPicture">
+            <summary>
+              Looks up a localized string similar to Copy picture for grid at current state.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_CopyCurrentGridPictureValue">
+            <summary>
+              Looks up a localized string similar to Ctrl + Shift + C.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_Description">
+            <summary>
+              Looks up a localized string similar to This page lists the hotkeys that the functions that the program will use. You can use the following hotkeys to achieve some functions without clicking buttons..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_DigitInput">
+            <summary>
+              Looks up a localized string similar to Input a digit.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_DigitInputValue">
+            <summary>
+              Looks up a localized string similar to 1-9 (Including Keys in Number Pad).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_EliminateCandidate">
+            <summary>
+              Looks up a localized string similar to Eliminate a candidate.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_EliminateCandidateValue">
+            <summary>
+              Looks up a localized string similar to Shift + 1-9.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_PasteCodeToProgram">
+            <summary>
+              Looks up a localized string similar to Paste code to the program.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_PasteCodeToProgramValue">
+            <summary>
+              Looks up a localized string similar to Ctrl + V.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_Redo">
+            <summary>
+              Looks up a localized string similar to Redo.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_RedoValue">
+            <summary>
+              Looks up a localized string similar to Ctrl + Y.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_SavePuzzleToLocalPath">
+            <summary>
+              Looks up a localized string similar to Save puzzle to the local path.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_SavePuzzleToLocalPathValue">
+            <summary>
+              Looks up a localized string similar to Ctrl + S.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_Undo">
+            <summary>
+              Looks up a localized string similar to Undo.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_UndoValue">
+            <summary>
+              Looks up a localized string similar to Ctrl + Z.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ViewFirstView">
+            <summary>
+              Looks up a localized string similar to View the first view.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ViewFirstViewValue">
+            <summary>
+              Looks up a localized string similar to Home Key.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ViewLastView">
+            <summary>
+              Looks up a localized string similar to View the last view.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ViewLastViewValue">
+            <summary>
+              Looks up a localized string similar to End Key.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ViewNextView">
+            <summary>
+              Looks up a localized string similar to View the next view.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ViewNextViewValue">
+            <summary>
+              Looks up a localized string similar to Equals Sign (=).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ViewPreviousView">
+            <summary>
+              Looks up a localized string similar to View the previous view.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ViewPreviousViewValue">
+            <summary>
+              Looks up a localized string similar to Minus Sign (-).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ViewSolution">
+            <summary>
+              Looks up a localized string similar to View solution.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ViewSolutionValue">
+            <summary>
+              Looks up a localized string similar to Ctrl + R.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_About">
             <summary>
               Looks up a localized string similar to About.
@@ -4888,6 +5048,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_ExtraFunctions">
             <summary>
               Looks up a localized string similar to Extra Functions.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_HotkeyCheatTable">
+            <summary>
+              Looks up a localized string similar to Hotkeys.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_HotkeyCheatTablePageTitle">
+            <summary>
+              Looks up a localized string similar to Hotkey Cheat Table.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_Menu">
@@ -8327,6 +8497,31 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.ContentDialogs.ExceptionThrownOnAnalyzingContent.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Manuals.HotkeyCheatTablePage">
+            <summary>
+            The cheat table page for hotkeys.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Manuals.HotkeyCheatTablePage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Manuals.HotkeyCheatTablePage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Manuals.HotkeyCheatTablePage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Manuals.HotkeyCheatTablePage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Manuals.HotkeyCheatTablePage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
