@@ -59,7 +59,7 @@ internal static class SudokuGridConversion
 		);
 	}
 
-	public static unsafe string GetIsMinimal(Grid grid)
+	public static string GetIsMinimal(Grid grid)
 	{
 		if (grid is { IsUndefined: true } or { IsEmpty: true })
 		{
