@@ -108,25 +108,15 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		{
 			switch (await Task.Run(() =>
 			{
-				var progress = new Progress<AnalyzerProgress>(progressReporter);
 				lock (AnalyzingRelatedSyncRoot)
 				{
-					return collector.Search(grid, progress, cts.Token);
-				}
-
-
-				void progressReporter(AnalyzerProgress progress)
-				{
-					DispatcherQueue.TryEnqueue(callback);
-
-
-					void callback()
+					return collector.Search(grid, new Progress<AnalyzerProgress>(progress => DispatcherQueue.TryEnqueue(() =>
 					{
 						var (stepSearcherName, percent) = progress;
 						BasePage.ProgressPercent = percent * 100;
 						BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
 						BasePage.AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
-					}
+					})), cts.Token);
 				}
 			}))
 			{

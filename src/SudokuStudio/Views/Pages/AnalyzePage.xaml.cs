@@ -1099,25 +1099,15 @@ public sealed partial class AnalyzePage : Page
 		{
 			switch (await Task.Run(() =>
 			{
-				var progress = new Progress<AnalyzerProgress>(progressReporter);
 				lock (AnalyzingRelatedSyncRoot)
 				{
-					return analyzer.Analyze(puzzle, progress, cts.Token);
-				}
-
-
-				void progressReporter(AnalyzerProgress progress)
-				{
-					DispatcherQueue.TryEnqueue(callback);
-
-
-					void callback()
+					return analyzer.Analyze(puzzle, new Progress<AnalyzerProgress>(progress => DispatcherQueue.TryEnqueue(() =>
 					{
 						var (stepSearcherName, percent) = progress;
 						ProgressPercent = progress.Percent * 100;
 						AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
 						AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
-					}
+					})), cts.Token);
 				}
 			}))
 			{
