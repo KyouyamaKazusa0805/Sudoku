@@ -204,7 +204,7 @@ internal static class RenderableFactory
 				var control = new Border
 				{
 					BorderThickness = new(0),
-					Tag = nameof(RenderableFactory),
+					Tag = $"{nameof(RenderableFactory)}: cell {RxCyNotation.ToCellString(cell)}",
 					Opacity = 0,
 					Background = new SolidColorBrush(IdentifierConversion.GetColor(id))
 				};
@@ -250,7 +250,7 @@ internal static class RenderableFactory
 					=> new T
 					{
 						BorderThickness = new(0),
-						Tag = nameof(RenderableFactory),
+						Tag = $"{nameof(RenderableFactory)}: cell {RxCyNotation.ToCellString(cell)}",
 						Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 						Opacity = 0,
 						Margin = new(6)
@@ -324,7 +324,7 @@ internal static class RenderableFactory
 			HorizontalAlignment = HorizontalAlignment.Center,
 			VerticalAlignment = VerticalAlignment.Center,
 			Fill = new SolidColorBrush(color),
-			Tag = nameof(RenderableFactory),
+			Tag = $"{nameof(RenderableFactory)}: candidate {RxCyNotation.ToCandidateString(candidate)}",
 			Opacity = paneCellControl.BasePane.EnableAnimationFeedback ? 0 : 1
 		};
 
@@ -376,7 +376,7 @@ internal static class RenderableFactory
 		var control = new Border
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = nameof(RenderableFactory),
+			Tag = $"{nameof(RenderableFactory)}: house {HouseFormatter.Format(1 << house)}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Margin = house switch
 			{
@@ -437,7 +437,7 @@ internal static class RenderableFactory
 		var control = new Border
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = nameof(RenderableFactory),
+			Tag = $"{nameof(RenderableFactory)}: chute m{(chute < 3 ? 'r' : 'c')}{chute % 3 + 1}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Margin = chute switch
 			{
@@ -488,7 +488,7 @@ internal static class RenderableFactory
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
-			Tag = nameof(RenderableFactory),
+			Tag = $"{nameof(RenderableFactory)}: baba group {RxCyNotation.ToCellString(cell)}, {@char}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : 1,
 			Child = new TextBlock
 			{
@@ -595,7 +595,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		// Iterate on each inference to draw the links and grouped nodes (if so).
 		foreach (var node in nodes)
 		{
-			if (node is not (_, ([var startCell, ..], var startDigit), ([var endCell, ..], var endDigit), var inference))
+			if (node is not (_, ([var startCell, ..], var startDigit) start, ([var endCell, ..], var endDigit) end, var inference))
 			{
 				continue;
 			}
@@ -625,7 +625,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						StrokeThickness = (double)Pane.ChainStrokeThickness,
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup { Children = new() { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
-						Tag = nameof(RenderableFactory),
+						Tag = $"{nameof(RenderableFactory)}: cell link {start} -> {end}",
 						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 					};
 
@@ -723,7 +723,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 									}
 								}
 							},
-							Tag = nameof(RenderableFactory),
+							Tag = $"{nameof(RenderableFactory)}: curve segment {start} -> {end}",
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						};
 						yield return new()
@@ -731,7 +731,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-							Tag = nameof(RenderableFactory)
+							Tag = $"{nameof(RenderableFactory)}: line segment {start} -> {end}"
 						};
 					}
 					else
@@ -749,7 +749,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							{
 								Children = new() { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } }
 							},
-							Tag = nameof(RenderableFactory),
+							Tag = $"{nameof(RenderableFactory)}: arrow cap {start} -> {end}",
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						};
 						yield return new()
@@ -757,7 +757,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-							Tag = nameof(RenderableFactory),
+							Tag = $"{nameof(RenderableFactory)}: arrow cap {start} -> {end}",
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						};
 					}
@@ -924,16 +924,10 @@ file static class Extensions
 	/// <param name="this">The collection.</param>
 	public static void RemoveAllViewUnitControls(this UIElementCollection @this)
 	{
-		var gathered = new List<FrameworkElement>();
-		foreach (var element in @this.OfType<FrameworkElement>())
-		{
-			if (element.Tag is nameof(RenderableFactory))
-			{
-				gathered.Add(element);
-			}
-		}
-
-		foreach (var element in gathered)
+		foreach (var element in
+			from element in @this.OfType<FrameworkElement>()
+			where element.Tag is string s && s.StartsWith(nameof(RenderableFactory))
+			select element)
 		{
 			@this.Remove(element);
 		}

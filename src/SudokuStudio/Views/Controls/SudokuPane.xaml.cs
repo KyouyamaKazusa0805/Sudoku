@@ -437,14 +437,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	internal void SetPuzzleInternal(scoped in Grid value, bool clearStack = false) => SetPuzzleInternal(value, clearStack, false);
 
 	/// <inheritdoc cref="UpdateViewUnit(ViewUnitBindableSource?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void UpdateViewUnit() => UpdateViewUnit(ViewUnit);
 
 	/// <summary>
 	/// Update view unit (add view nodes or remove view nodes).
 	/// </summary>
 	/// <param name="viewUnit">The view unit bindable source.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void UpdateViewUnit(ViewUnitBindableSource? viewUnit)
 	{
 		RenderableFactory.RemoveViewUnitControls(this);
@@ -556,19 +554,19 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[Callback]
 	private static void ViewUnitPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (SudokuPane pane, { NewValue: var rawValue and (null or ViewUnitBindableSource) }))
+		if (d is not SudokuPane pane)
 		{
 			return;
 		}
 
-		pane.UpdateViewUnit(rawValue as ViewUnitBindableSource);
+		pane.UpdateViewUnit();
 
 		// Set as cached values.
 		// No matter whether the option 'AutoCachePuzzleAndView' is true or not,
 		// here we should save them because in a same program thread we may use the values to recover it.
 		((App)Application.Current).Preference.UIPreferences.LastGridPuzzle = pane.Puzzle;
 		((App)Application.Current).Preference.UIPreferences.LastRenderable =
-			rawValue is ViewUnitBindableSource { View: var view, Conclusions: var conclusions }
+			pane.ViewUnit is ViewUnitBindableSource { View: var view, Conclusions: var conclusions }
 				? new() { Conclusions = conclusions, Views = new[] { view } }
 				: null;
 	}

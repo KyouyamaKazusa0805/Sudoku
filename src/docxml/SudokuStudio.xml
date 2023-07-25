@@ -8945,6 +8945,11 @@ if (student is (name: var name, age: >= 18))
             Represents drawing preferences page.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage._defaultViewUnit">
+            <summary>
+            The default view unit.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage"/> instance.

@@ -6,6 +6,25 @@ namespace SudokuStudio.Views.Pages.Settings;
 public sealed partial class DrawingPreferenceItemsPage : Page
 {
 	/// <summary>
+	/// The default view unit.
+	/// </summary>
+	private readonly ViewUnitBindableSource _defaultViewUnit = new()
+	{
+		View = View.Empty
+			| new CandidateViewNode[]
+			{
+				new(WellKnownColorIdentifier.Normal, 3),
+				new(WellKnownColorIdentifier.Normal, 4),
+				new(WellKnownColorIdentifier.Normal, 5),
+				new(WellKnownColorIdentifier.Normal, 6),
+				new(WellKnownColorIdentifier.Normal, 7),
+				new(WellKnownColorIdentifier.Normal, 8)
+			},
+		Conclusions = new Conclusion[] { new(Elimination, 40, 4) }
+	};
+
+
+	/// <summary>
 	/// Initializes a <see cref="DrawingPreferenceItemsPage"/> instance.
 	/// </summary>
 	public DrawingPreferenceItemsPage() => InitializeComponent();
