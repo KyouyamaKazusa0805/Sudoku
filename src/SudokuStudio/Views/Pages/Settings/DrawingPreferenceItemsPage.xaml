@@ -245,21 +245,9 @@
 						</w:SettingsExpander.Items>
 
 						<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-							<Image>
-								<Image.Source>
-									<BitmapImage AutoPlay="True" UriSource="/Assets/images/baba.gif" />
-								</Image.Source>
-							</Image>
-							<Image>
-								<Image.Source>
-									<BitmapImage AutoPlay="True" UriSource="/Assets/images/is.gif" />
-								</Image.Source>
-							</Image>
-							<Image>
-								<Image.Source>
-									<BitmapImage AutoPlay="True" UriSource="/Assets/images/group.gif" />
-								</Image.Source>
-							</Image>
+							<Image Source="{m:Image UriSource='/Assets/images/baba.gif',AutoPlay=true}" />
+							<Image Source="{m:Image UriSource='/Assets/images/is.gif',AutoPlay=True}" />
+							<Image Source="{m:Image UriSource='/Assets/images/group.gif',AutoPlay=True}" />
 						</StackPanel>
 					</w:SettingsExpander>
 				</w:SettingsGroup>

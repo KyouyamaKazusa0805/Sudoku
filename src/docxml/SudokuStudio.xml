@@ -3364,6 +3364,24 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Markup.GridExtension.ProvideValue">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Markup.ImageExtension">
+            <summary>
+            Represents a bitmap markup that can be used for creating a <see cref="T:Microsoft.UI.Xaml.Media.Imaging.BitmapImage"/> instance without nesting declaration in XAML.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Markup.ImageExtension.AutoPlay">
+            <summary>
+            Indicates whether the image is a GIF and should be automatically played.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Markup.ImageExtension.UriSource">
+            <summary>
+            Indicates the URI source.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Markup.ImageExtension.ProvideValue">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Markup.Int32Extension">
             <summary>
             Defines a markup extension that can parse a <see cref="T:System.String"/> value, converting it into a valid <see cref="T:System.Int32"/>
