@@ -17,6 +17,12 @@ public sealed partial class ColorSelector : UserControl
 
 
 	/// <summary>
+	/// Indicates the event triggered when the selected color is changed.
+	/// </summary>
+	public event EventHandler<Color>? ColorChanged;
+
+
+	/// <summary>
 	/// Triggers when the item is being clicked.
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
@@ -28,9 +34,9 @@ public sealed partial class ColorSelector : UserControl
 			return;
 		}
 
-		SelectedColor = color;
-
 		SplitButton.Flyout.Hide();
+		
+		ColorChanged?.Invoke(this, SelectedColor = color);
 	}
 
 	/// <summary>
@@ -38,7 +44,8 @@ public sealed partial class ColorSelector : UserControl
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="args">The event arguments provided.</param>
-	private void ColorPicker_ColorChanged(ColorPicker sender, ColorChangedEventArgs args) => SelectedColor = args.NewColor;
+	private void ColorPicker_ColorChanged(ColorPicker sender, ColorChangedEventArgs args)
+		=> ColorChanged?.Invoke(this, SelectedColor = args.NewColor);
 
 	/// <summary>
 	/// Triggers when the "More" button is clicked.

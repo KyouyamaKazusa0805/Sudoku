@@ -6596,6 +6596,11 @@ if (student is (name: var name, age: >= 18))
             Initializes a <see cref="T:SudokuStudio.Views.Controls.ColorSelector"/> instance.
             </summary>
         </member>
+        <member name="E:SudokuStudio.Views.Controls.ColorSelector.ColorChanged">
+            <summary>
+            Indicates the event triggered when the selected color is changed.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.ColorSelector.GridView_ItemClick(System.Object,Microsoft.UI.Xaml.Controls.ItemClickEventArgs)">
             <summary>
             Triggers when the item is being clicked.
@@ -6651,6 +6656,11 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.DashArrayTextBox.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.DashArrayTextBox"/> instance.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.DashArrayTextBox.DashArrayChanged">
+            <summary>
+            Indicates the event triggered when the dash array is changed.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.DashArrayTextBox.InitializeComponent">
@@ -8939,6 +8949,14 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage"/> instance.
             </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.ChangeColor(SudokuStudio.Collection.ColorPalette,System.Int32,Windows.UI.Color)">
+            <summary>
+            Try to set color to the specified <see cref="T:SudokuStudio.Collection.ColorPalette"/> instance.
+            </summary>
+            <param name="palette">The instance.</param>
+            <param name="index">The index to be set.</param>
+            <param name="newColor">The new color to be set.</param>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.InitializeComponent">
             <summary>

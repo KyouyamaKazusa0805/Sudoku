@@ -33,64 +33,76 @@
 					<w:SettingsCard Header="{m:R Key=SettingsPage_DeltaCellColor}" Description="{m:R Key=SettingsPage_DeltaCellColorDescription}">
 						<c:ColorSelector
 							x:Name="DeltaCellColorSelector"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaValueColor,Mode=TwoWay}" />
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaValueColor}"
+							ColorChanged="DeltaCellColorSelector_ColorChanged" />
 					</w:SettingsCard>
 					<w:SettingsCard Header="{m:R Key=SettingsPage_DeltaCandidateColor}" Description="{m:R Key=SettingsPage_DeltaCandidateColorDescription}">
 						<c:ColorSelector
 							x:Name="DeltaCandidateColorSelector"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaPencilmarkColor,Mode=TwoWay}" />
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaPencilmarkColor}"
+							ColorChanged="DeltaCandidateColorSelector_ColorChanged" />
 					</w:SettingsCard>
 				</w:SettingsGroup>
 				<w:SettingsGroup Header="{m:R Key=SettingsPage_Colors}">
 					<w:SettingsCard Header="{m:R Key=SettingsPage_BorderColor}">
 						<c:ColorSelector
 							x:Name="BorderColorSelector"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,Mode=TwoWay}" />
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor}"
+							ColorChanged="BorderColorSelector_ColorChanged" />
 					</w:SettingsCard>
 					<w:SettingsCard Header="{m:R Key=SettingsPage_CursorBackgroundColor}">
 						<c:ColorSelector
 							x:Name="CursorBackgroundColorSelector"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CursorBackgroundColor,Mode=TwoWay}" />
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CursorBackgroundColor}"
+							ColorChanged="CursorBackgroundColorSelector_ColorChanged" />
 					</w:SettingsCard>
 					<w:SettingsCard Header="{m:R Key=SettingsPage_ChainColor}">
 						<c:ColorSelector
 							x:Name="ChainColorSelector"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainColor,Mode=TwoWay}" />
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainColor}"
+							ColorChanged="ChainColorSelector_ColorChanged" />
 					</w:SettingsCard>
 					<w:SettingsCard Header="{m:R Key=SettingsPage_NormalColor}">
 						<c:ColorSelector
 							x:Name="NormalColorSelector"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.NormalColor,Mode=TwoWay}" />
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.NormalColor}"
+							ColorChanged="NormalColorSelector_ColorChanged" />
 					</w:SettingsCard>
 					<w:SettingsCard Header="{m:R Key=SettingsPage_AssignmentColor}">
 						<c:ColorSelector
 							x:Name="AssignmentColorSelector"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentColor,Mode=TwoWay}" />
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentColor}"
+							ColorChanged="AssignmentColorSelector_ColorChanged" />
 					</w:SettingsCard>
 					<w:SettingsCard Header="{m:R Key=SettingsPage_OverlappedAssignmentColor}">
 						<c:ColorSelector
 							x:Name="OverlappedAssignmentColorSelector"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.OverlappedAssignmentColor,Mode=TwoWay}" />
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.OverlappedAssignmentColor}"
+							ColorChanged="OverlappedAssignmentColorSelector_ColorChanged" />
 					</w:SettingsCard>
 					<w:SettingsCard Header="{m:R Key=SettingsPage_EliminationColor}">
 						<c:ColorSelector
 							x:Name="EliminationColorSelector"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationColor,Mode=TwoWay}" />
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationColor}"
+							ColorChanged="EliminationColorSelector_ColorChanged" />
 					</w:SettingsCard>
 					<w:SettingsCard Header="{m:R Key=SettingsPage_CannibalismColor}">
 						<c:ColorSelector
 							x:Name="CannibalismColorSelector"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CannibalismColor,Mode=TwoWay}" />
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CannibalismColor}"
+							ColorChanged="CannibalismColorSelector_ColorChanged" />
 					</w:SettingsCard>
 					<w:SettingsCard Header="{m:R Key=SettingsPage_ExofinColor}">
 						<c:ColorSelector
 							x:Name="ExofinColorSelector"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ExofinColor,Mode=TwoWay}" />
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ExofinColor}"
+							ColorChanged="ExofinColorSelector_ColorChanged" />
 					</w:SettingsCard>
 					<w:SettingsCard Header="{m:R Key=SettingsPage_EndofinColor}">
 						<c:ColorSelector
 							x:Name="EndofinColorSelector"
-							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EndofinColor,Mode=TwoWay}" />
+							SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EndofinColor}"
+							ColorChanged="EndofinColorSelector_ColorChanged" />
 					</w:SettingsCard>
 					<w:SettingsExpander Header="{m:R Key=SettingsPage_AuxiliaryColors}" Description="{m:R Key=SettingsPage_AuxiliaryColorsDescription}">
 						<w:SettingsExpander.Items>
@@ -100,7 +112,8 @@
 									<c:ColorSelector
 										RelativePanel.RightOf="AuxiliaryColors1SelectorTitle"
 										RelativePanel.AlignVerticalCenterWith="AuxiliaryColors1SelectorTitle" Margin="10,0,0,0"
-										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[0],Mode=TwoWay}" />
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[0]}"
+										ColorChanged="AuxiliaryColor1Selector_ColorChanged" />
 								</RelativePanel>
 							</w:SettingsCard>
 							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
@@ -109,7 +122,8 @@
 									<c:ColorSelector
 										RelativePanel.RightOf="AuxiliaryColors2SelectorTitle"
 										RelativePanel.AlignVerticalCenterWith="AuxiliaryColors2SelectorTitle" Margin="10,0,0,0"
-										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[1],Mode=TwoWay}" />
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[1]}"
+										ColorChanged="AuxiliaryColor2Selector_ColorChanged" />
 								</RelativePanel>
 							</w:SettingsCard>
 							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
@@ -118,7 +132,8 @@
 									<c:ColorSelector
 										RelativePanel.RightOf="AuxiliaryColors3SelectorTitle"
 										RelativePanel.AlignVerticalCenterWith="AuxiliaryColors3SelectorTitle" Margin="10,0,0,0"
-										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[2],Mode=TwoWay}" />
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[2]}"
+										ColorChanged="AuxiliaryColor3Selector_ColorChanged" />
 								</RelativePanel>
 							</w:SettingsCard>
 						</w:SettingsExpander.Items>
@@ -131,7 +146,8 @@
 									<c:ColorSelector
 										RelativePanel.RightOf="AlmostLockedSetsColors1SelectorTitle"
 										RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors1SelectorTitle" Margin="10,0,0,0"
-										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[0],Mode=TwoWay}" />
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[0]}"
+										ColorChanged="AlmostLockedSetsColor1Selector_ColorChanged" />
 								</RelativePanel>
 							</w:SettingsCard>
 							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
@@ -140,7 +156,8 @@
 									<c:ColorSelector
 										RelativePanel.RightOf="AlmostLockedSetsColors2SelectorTitle"
 										RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors2SelectorTitle" Margin="10,0,0,0"
-										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[1],Mode=TwoWay}" />
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[1]}"
+										ColorChanged="AlmostLockedSetsColor2Selector_ColorChanged" />
 								</RelativePanel>
 							</w:SettingsCard>
 							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
@@ -149,7 +166,8 @@
 									<c:ColorSelector
 										RelativePanel.RightOf="AlmostLockedSetsColors3SelectorTitle"
 										RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors3SelectorTitle" Margin="10,0,0,0"
-										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[2],Mode=TwoWay}" />
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[2]}"
+										ColorChanged="AlmostLockedSetsColor3Selector_ColorChanged" />
 								</RelativePanel>
 							</w:SettingsCard>
 							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
@@ -158,7 +176,8 @@
 									<c:ColorSelector
 										RelativePanel.RightOf="AlmostLockedSetsColors4SelectorTitle"
 										RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors4SelectorTitle" Margin="10,0,0,0"
-										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[3],Mode=TwoWay}" />
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[3]}"
+										ColorChanged="AlmostLockedSetsColor4Selector_ColorChanged" />
 								</RelativePanel>
 							</w:SettingsCard>
 							<w:SettingsCard ContentAlignment="Left" Padding="0,12">
@@ -167,7 +186,8 @@
 									<c:ColorSelector
 										RelativePanel.RightOf="AlmostLockedSetsColors5SelectorTitle"
 										RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors5SelectorTitle" Margin="10,0,0,0"
-										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[4],Mode=TwoWay}" />
+										SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[4]}"
+										ColorChanged="AlmostLockedSetsColor5Selector_ColorChanged" />
 								</RelativePanel>
 							</w:SettingsCard>
 						</w:SettingsExpander.Items>
@@ -256,17 +276,20 @@
 						Header="{m:R Key=SettingsPage_StrongLinkDashStyle}">
 						<c:DashArrayTextBox
 							x:Name="StrongLinkDashStyleBox" Width="150"
-							DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StrongLinkDashStyle,Mode=TwoWay}" />
+							DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StrongLinkDashStyle}"
+							DashArrayChanged="StrongLinkDashStyleBox_DashArrayChanged" />
 					</w:SettingsCard>
 					<w:SettingsCard Header="{m:R Key=SettingsPage_WeakLinkDashStyle}">
 						<c:DashArrayTextBox
 							x:Name="WeakLinkDashStyleBox" Width="150"
-							DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.WeakLinkDashStyle,Mode=TwoWay}" />
+							DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.WeakLinkDashStyle}"
+							DashArrayChanged="WeakLinkDashStyleBox_DashArrayChanged" />
 					</w:SettingsCard>
 					<w:SettingsCard Header="{m:R Key=SettingsPage_CyclingCellLinkDashStyle}">
 						<c:DashArrayTextBox
 							x:Name="CycleLikeCellLinkDashStyleBox" Width="150"
-							DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CyclingCellLinkDashStyle,Mode=TwoWay}" />
+							DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CyclingCellLinkDashStyle}"
+							DashArrayChanged="CycleLikeCellLinkDashStyleBox_DashArrayChanged" />
 					</w:SettingsCard>
 				</w:SettingsGroup>
 				<w:SettingsGroup Header="{m:R Key=SettingsPage_Others}">

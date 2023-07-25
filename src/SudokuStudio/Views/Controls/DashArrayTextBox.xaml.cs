@@ -12,6 +12,12 @@ public sealed partial class DashArrayTextBox : UserControl
 	public DashArrayTextBox() => InitializeComponent();
 
 
+	/// <summary>
+	/// Indicates the event triggered when the dash array is changed.
+	/// </summary>
+	public event EventHandler<DashArray>? DashArrayChanged;
+
+
 	private void CoreBox_KeyDown(object sender, KeyRoutedEventArgs e)
 	{
 		if (e.Key != VirtualKey.Enter)
@@ -19,21 +25,20 @@ public sealed partial class DashArrayTextBox : UserControl
 			return;
 		}
 
-		var values =
-			from element in CoreBox.Text.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-			select double.TryParse(element, out var r) && r is >= 0 and <= 10 ? r : 0;
+		const StringSplitOptions splitOptions = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries;
+		var values = from element in CoreBox.Text.Split(',', splitOptions) select double.TryParse(element, out var r) && r is >= 0 and <= 10 ? r : 0;
 		if (Array.FindAll(values, static value => value == 0).Length >= 2)
 		{
-			DashArray = new();
+			DashArrayChanged?.Invoke(this, DashArray = new());
 			return;
 		}
 
 		if (values.Length >= 2 && Array.IndexOf(values, 0) != -1)
 		{
-			DashArray = new();
+			DashArrayChanged?.Invoke(this, DashArray = new());
 			return;
 		}
 
-		DashArray = new(values);
+		DashArrayChanged?.Invoke(this, DashArray = new(values));
 	}
 }
