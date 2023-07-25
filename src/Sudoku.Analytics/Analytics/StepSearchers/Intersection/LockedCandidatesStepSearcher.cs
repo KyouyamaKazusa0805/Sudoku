@@ -126,7 +126,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 	private CellViewNode[] GetCrosshatchBaseCells(scoped in Grid grid, Digit digit, House house, scoped in CellMap cells)
 	{
 		var info = Crosshatching.GetCrosshatchingInfo(grid, digit, house, cells);
-		if (info is not ({ } combination, var emptyCellsShouldBeCovered, var emptyCellsNotNeedToBeCovered))
+		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
 		{
 			return Array.Empty<CellViewNode>();
 		}

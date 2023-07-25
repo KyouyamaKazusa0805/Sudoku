@@ -380,7 +380,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	private CellViewNode[] GetCrosshatchBaseCells(scoped in Grid grid, Digit digit, House house, Cell cell)
 	{
 		var info = Crosshatching.GetCrosshatchingInfo(grid, digit, house, CellsMap[cell]);
-		if (info is not ({ } combination, var emptyCellsShouldBeCovered, var emptyCellsNotNeedToBeCovered))
+		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
 		{
 			return Array.Empty<CellViewNode>();
 		}

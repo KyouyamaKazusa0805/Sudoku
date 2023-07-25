@@ -211,7 +211,7 @@ internal sealed class DependencyPropertyHandler : IIncrementalGeneratorAttribute
 						accessibility = (Accessibility)v;
 						break;
 					}
-					case ("MembersNotNullWhenReturnsTrue", { Values: { } rawValues }):
+					case ("MembersNotNullWhenReturnsTrue", { Values: var rawValues }):
 					{
 						membersNotNullWhenReturnsTrue = (from rawValue in rawValues select (string)rawValue.Value!).ToArray();
 						break;
