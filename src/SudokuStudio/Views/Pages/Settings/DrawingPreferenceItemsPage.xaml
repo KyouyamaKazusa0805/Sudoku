@@ -11,7 +11,8 @@
 	xmlns:w="using:WinUICommunity"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ps:DrawingPreferenceItemsPage}">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ps:DrawingPreferenceItemsPage}"
+	Loaded="Page_Loaded">
 	<Page.Resources>
 		<Style TargetType="ToggleSwitch">
 			<Setter Property="OnContent" Value="{m:R Key=SettingsPage_OnContent}" />
@@ -332,9 +333,10 @@
 
 		<!--Sample grid-->
 		<c:SudokuPane
-			x:Name="SampleSudokuGrid" Grid.Column="1" Margin="30,0,0,0" Width="610" Height="610"
-			HorizontalAlignment="Center" VerticalAlignment="Center" DisplayCursors="True" SelectedCell="-1" DisableFlyout="True"
-			EnableUndoRedoStacking="False" EnableRightTapRemoving="False" EnableDoubleTapFilling="False" CoordinateLabelDisplayMode="None"
+			x:Name="SampleSudokuGrid" Grid.Column="1" Margin="30,0,0,0" Width="610" Height="610" DisableFlyout="True"
+			HorizontalAlignment="Center" VerticalAlignment="Center" 
+			DisplayCursors="True" SelectedCell="-1" CoordinateLabelDisplayMode="None" TransparentBackground="True"
+			EnableUndoRedoStacking="False" EnableRightTapRemoving="False" EnableDoubleTapFilling="False"
 			Puzzle="{m:Grid Text='000001230123004+5604+5600789078900+1000000000000000+9001230123004+5604+5600789078900000'}"
 			GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
 			ModifiableFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
@@ -371,7 +373,6 @@
 			StrongLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StrongLinkDashStyle,Mode=OneWay}"
 			WeakLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.WeakLinkDashStyle,Mode=OneWay}"
 			CycleLikeLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CyclingCellLinkDashStyle,Mode=OneWay}"
-			ViewUnit="{x:Bind _defaultViewUnit}"
 		/>
 	</Grid>
 </Page>
