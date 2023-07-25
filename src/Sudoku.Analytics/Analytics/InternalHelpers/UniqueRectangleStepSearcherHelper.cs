@@ -128,7 +128,6 @@ internal static class UniqueRectangleStepSearcherHelper
 			var mask1 = grid.GetCandidates(urCells[a]);
 			var mask2 = grid.GetCandidates(urCells[b]);
 			var gatheredMask = (Mask)(mask1 | mask2);
-			var intersectedMask = (Mask)(mask1 & mask2);
 			if ((gatheredMask >> d1 & 1) == 0 || (gatheredMask >> d2 & 1) == 0)
 			{
 				return false;

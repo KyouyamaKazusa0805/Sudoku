@@ -46,7 +46,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			}
 
 			var comparer = (Mask)(1 << d1 | 1 << d2);
-			foreach (var (loop, path, digitsMask) in patterns)
+			foreach (var (loop, path, _) in patterns)
 			{
 				var extraCellsMap = loop - BivalueCells;
 				switch (extraCellsMap.Count)

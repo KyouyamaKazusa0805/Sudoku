@@ -19,7 +19,7 @@ public sealed partial class SolvingPath : Page, IAnalyzeTabPage
 	[Callback]
 	private static void AnalysisResultPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is (SolvingPath { SolvingPathList: var pathListView } path, { NewValue: var value and (null or AnalyzerResult) }))
+		if ((d, e) is (SolvingPath { SolvingPathList: var pathListView }, { NewValue: var value and (null or AnalyzerResult) }))
 		{
 			pathListView.ItemsSource = value is AnalyzerResult analyzerResult
 				? SolvingPathStepCollection.Create(analyzerResult, ((App)Application.Current).Preference.UIPreferences.StepDisplayItems)

@@ -165,12 +165,12 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// </summary>
 	public Dictionary<string, string>? ParseGrid(string gridStr)
 	{
-		var grid2 = from c in gridStr where "0.-123456789".Contains(c) select c;
+		//var grid2 = from c in gridStr where "0.-123456789".Contains(c) select c;
 		var values = Coordinates.ToDictionary(CommonMethods.ReturnSelf, static _ => Digits);
 
 		foreach (var sd in Zip(Coordinates, (from s in gridStr select s.ToString()).ToArray()))
 		{
-			string s = sd[0], d = sd[1];
+			var (s, d) = (sd[0], sd[1]);
 			if (Digits.Contains(d) && Assign(values, s, d) is null)
 			{
 				return null;

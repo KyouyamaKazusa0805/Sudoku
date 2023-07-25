@@ -6,7 +6,7 @@ internal static class ComparisonOperatorsHandler
 	{
 		if (gasc is not
 			{
-				Attributes: [var attribute],
+				Attributes.Length: 1,
 				TargetSymbol: INamedTypeSymbol
 				{
 					Name: var typeName,
@@ -54,11 +54,6 @@ internal static class ComparisonOperatorsHandler
 			_ => throw new InvalidOperationException("Invalid status.")
 		};
 		var namespaceString = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
-		var otherModifiers = attribute.GetNamedArgument<string>("OtherModifiers") switch
-		{
-			{ } str => str.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries),
-			_ => Array.Empty<string>()
-		};
 		var typeArgumentsString = typeParameters is []
 			? string.Empty
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";

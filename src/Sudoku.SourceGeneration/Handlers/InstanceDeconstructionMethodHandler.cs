@@ -29,14 +29,7 @@ internal sealed class InstanceDeconstructionMethodHandler : IIncrementalGenerato
 			var codeSnippets = new List<string>();
 			foreach (var element in group)
 			{
-				if (element is not
-					{
-						Method: { DeclaredAccessibility: var methodAccessibility } method,
-						Parameters: var parameters,
-						Modifiers: var modifiers,
-						AttributeType: var attributeType,
-						AssemblyName: var assemblyName
-					})
+				if (element is not { Parameters: var parameters, Modifiers: var modifiers, AttributeType: var attributeType })
 				{
 					continue;
 				}

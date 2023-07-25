@@ -40,7 +40,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 		var resultAccumulator = new List<GuardianStep>();
 		for (var digit = 0; digit < 9; digit++)
 		{
-			if (eliminationMaps[digit] is not (var baseElimMap and not []))
+			if (!eliminationMaps[digit])
 			{
 				// Using global view, we cannot find any eliminations for this digit.
 				// Just skip to the next loop.

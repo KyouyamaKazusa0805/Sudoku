@@ -15,7 +15,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 			foreach (
 				var (
 					parameterName, typeKind, refKind, scopedKind, nullableAnnotation, parameterType, typeSymbol, isReadOnly,
-					namespaceString, typeName, isRecord, attributesData, comment
+					_, _, _, attributesData, comment
 				) in valuesGrouped
 			)
 			{
@@ -65,7 +65,6 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 						var readonlyModifier = getReadOnlyModifier(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, false, setter is []);
 						var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, false);
 						var docComments = getDocComments(comment);
-						var parameterTypeString = parameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 						var parameterTypeName = getParameterType(parameterType, nullableAnnotation);
 						var assigning = getAssigningExpression(refModifiers, parameterName);
 						var memberNotNullAttribute = namedArgs.TryGetValueOrDefault<string>("MembersNotNull", out var memberNotNullExpr)

@@ -49,7 +49,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 				continue;
 			}
 
-			foreach (var (currentLoop, digitsMask) in foundData)
+			foreach (var (currentLoop, _) in foundData)
 			{
 				var extraCellsMap = currentLoop - BivalueCells;
 				switch (extraCellsMap.Count)

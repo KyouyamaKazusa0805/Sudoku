@@ -121,7 +121,7 @@ public sealed partial class GridImageGenerator
 	public Image RenderTo()
 	{
 		using var data = GetFooterTextRenderingData();
-		var (font, extraHeight, alignment) = data;
+		var (_, extraHeight, _) = data;
 
 		// There is a little bug that this method ignores the case when the text is too long.
 		// However, I don't want to handle on this case. If the text is too long, it will be overflown, as default case to be kept;

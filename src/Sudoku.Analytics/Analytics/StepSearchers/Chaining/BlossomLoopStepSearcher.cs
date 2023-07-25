@@ -285,7 +285,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 
 		foreach (var potential in selectedPotentials)
 		{
-			if (potential.ChainPotentials is not [.., var (branchStartCell, branchStartDigit, _)] branch)
+			if (potential.ChainPotentials is not [.., var (branchStartCell, branchStartDigit, _)])
 			{
 				projectedStartNodes = null;
 				return false;

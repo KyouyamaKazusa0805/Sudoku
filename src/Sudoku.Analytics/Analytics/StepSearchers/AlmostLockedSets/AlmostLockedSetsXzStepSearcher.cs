@@ -130,7 +130,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 							continue;
 						}
 
-						if ((zMap.PeerIntersection & CandidatesMap[elimDigit] & map2) is not (var elimMap and not []))
+						if (!(zMap.PeerIntersection & CandidatesMap[elimDigit] & map2))
 						{
 							continue;
 						}

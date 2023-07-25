@@ -3040,7 +3040,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					case { Count: 2 }:
 					{
 						list.Add(emptyCellsInInterMap);
-
 						break;
 					}
 					case [var i, var j, var k]:
@@ -3049,7 +3048,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						list.Add(CellsMap[j] + k);
 						list.Add(CellsMap[i] + k);
 						list.Add(emptyCellsInInterMap);
-
 						break;
 					}
 				}
@@ -4601,113 +4599,109 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			{
 				var xDigitGuardianCells = CandidatesMap[xDigit] & guardianCells;
 				var zDigitGuardianCells = CandidatesMap[zDigit] & guardianCells;
-				foreach (var connectedXDigitHouse in xDigitGuardianCells.CoveredHouses)
+				foreach (var als in alses)
 				{
-					foreach (var als in alses)
+					var alsHouse = als.House;
+					var alsMask = als.DigitsMask;
+					var alsMap = als.Cells;
+					if ((cells.Houses >> alsHouse & 1) != 0)
 					{
-						var alsHouse = als.House;
-						var alsMask = als.DigitsMask;
-						var alsMap = als.Cells;
-						if ((cells.Houses >> alsHouse & 1) != 0)
-						{
-							// The current ALS cannot lie in the house that UR cells covered.
-							continue;
-						}
-
-						if ((alsMask >> d1 & 1) == 0 || (alsMask >> d2 & 1) == 0)
-						{
-							// The ALS must uses both two digits.
-							continue;
-						}
-
-						if (!!(alsMap & xDigitGuardianCells) || zDigitGuardianCells == (alsMap & CandidatesMap[zDigit]))
-						{
-							// The ALS cannot only use X or Z digits that all appears in guardian cells.
-							continue;
-						}
-
-						var elimMap = (alsMap | zDigitGuardianCells) % CandidatesMap[zDigit];
-						if (!elimMap)
-						{
-							// No eliminations found.
-							continue;
-						}
-
-						var xDigitMap = (alsMap | xDigitGuardianCells) & CandidatesMap[xDigit];
-						if (!xDigitMap.InOneHouse)
-						{
-							// The X digit must be connected.
-							continue;
-						}
-
-						// ALS-XZ formed.
-						var candidateOffsets = new List<CandidateViewNode>();
-						var cellOffsets = new List<CellViewNode>();
-						foreach (var urCell in urCells)
-						{
-							switch (grid.GetStatus(urCell))
-							{
-								case CellStatus.Empty:
-								{
-									foreach (var digit in comparer)
-									{
-										if (CandidatesMap[digit].Contains(urCell))
-										{
-											candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, urCell * 9 + digit));
-										}
-									}
-
-									break;
-								}
-								case CellStatus.Modifiable:
-								{
-									cellOffsets.Add(new(WellKnownColorIdentifier.Normal, urCell));
-									break;
-								}
-							}
-						}
-						foreach (var xDigitCell in xDigitGuardianCells)
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, xDigitCell * 9 + xDigit));
-						}
-						foreach (var zDigitCell in zDigitGuardianCells)
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, zDigitCell * 9 + zDigit));
-						}
-						foreach (var alsCell in alsMap)
-						{
-							foreach (var digit in grid.GetCandidates(alsCell))
-							{
-								candidateOffsets.Add(
-									new(
-										digit == d1 || digit == d2 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.AlmostLockedSet1,
-										alsCell * 9 + digit
-									)
-								);
-							}
-						}
-
-						accumulator.Add(
-							new UniqueRectangleExternalAlmostLockedSetsXzStep(
-								from cell in elimMap select new Conclusion(Elimination, cell, zDigit),
-								new[]
-								{
-									View.Empty
-										| candidateOffsets
-										| cellOffsets
-										| new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet1, alsHouse)
-								},
-								d1,
-								d2,
-								cells,
-								guardianCells,
-								als,
-								UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets),
-								arMode,
-								index
-							)
-						);
+						// The current ALS cannot lie in the house that UR cells covered.
+						continue;
 					}
+
+					if ((alsMask >> d1 & 1) == 0 || (alsMask >> d2 & 1) == 0)
+					{
+						// The ALS must uses both two digits.
+						continue;
+					}
+
+					if (!!(alsMap & xDigitGuardianCells) || zDigitGuardianCells == (alsMap & CandidatesMap[zDigit]))
+					{
+						// The ALS cannot only use X or Z digits that all appears in guardian cells.
+						continue;
+					}
+
+					var elimMap = (alsMap | zDigitGuardianCells) % CandidatesMap[zDigit];
+					if (!elimMap)
+					{
+						// No eliminations found.
+						continue;
+					}
+
+					var xDigitMap = (alsMap | xDigitGuardianCells) & CandidatesMap[xDigit];
+					if (!xDigitMap.InOneHouse)
+					{
+						// The X digit must be connected.
+						continue;
+					}
+
+					// ALS-XZ formed.
+					var candidateOffsets = new List<CandidateViewNode>();
+					var cellOffsets = new List<CellViewNode>();
+					foreach (var urCell in urCells)
+					{
+						switch (grid.GetStatus(urCell))
+						{
+							case CellStatus.Empty:
+							{
+								foreach (var digit in comparer)
+								{
+									if (CandidatesMap[digit].Contains(urCell))
+									{
+										candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, urCell * 9 + digit));
+									}
+								}
+								break;
+							}
+							case CellStatus.Modifiable:
+							{
+								cellOffsets.Add(new(WellKnownColorIdentifier.Normal, urCell));
+								break;
+							}
+						}
+					}
+					foreach (var xDigitCell in xDigitGuardianCells)
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, xDigitCell * 9 + xDigit));
+					}
+					foreach (var zDigitCell in zDigitGuardianCells)
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, zDigitCell * 9 + zDigit));
+					}
+					foreach (var alsCell in alsMap)
+					{
+						foreach (var digit in grid.GetCandidates(alsCell))
+						{
+							candidateOffsets.Add(
+								new(
+									digit == d1 || digit == d2 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.AlmostLockedSet1,
+									alsCell * 9 + digit
+								)
+							);
+						}
+					}
+
+					accumulator.Add(
+						new UniqueRectangleExternalAlmostLockedSetsXzStep(
+							from cell in elimMap select new Conclusion(Elimination, cell, zDigit),
+							new[]
+							{
+								View.Empty
+									| candidateOffsets
+									| cellOffsets
+									| new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet1, alsHouse)
+							},
+							d1,
+							d2,
+							cells,
+							guardianCells,
+							als,
+							UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets),
+							arMode,
+							index
+						)
+					);
 				}
 			}
 		}
