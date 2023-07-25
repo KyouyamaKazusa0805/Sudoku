@@ -12275,7 +12275,7 @@ result ^= expression;
             <param name="left">The left-side value to be compared.</param>
             <param name="right">The right-side value to be compared.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating which is greater.</returns>
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Collections.Generic.IComparer`1.Compare(`0,`0)"/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.IComparableStep`1.op_GreaterThan(`0,`0)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>

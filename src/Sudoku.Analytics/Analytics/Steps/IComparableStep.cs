@@ -13,7 +13,7 @@ public interface IComparableStep<in TSelf> where TSelf : Step, IComparableStep<T
 	/// <param name="left">The left-side value to be compared.</param>
 	/// <param name="right">The right-side value to be compared.</param>
 	/// <returns>An <see cref="int"/> value indicating which is greater.</returns>
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IComparer{T}.Compare(T, T)"/>
 	static abstract int Compare(TSelf left, TSelf right);
 
 
