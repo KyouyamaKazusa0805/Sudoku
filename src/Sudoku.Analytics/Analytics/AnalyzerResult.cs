@@ -533,7 +533,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 						(true, true) => $"{s}, {d}) ",
 						(true, false) => $"{s} ",
 						(false, true) => $"{d}) ",
-						_ => string.Empty,
+						_ => string.Empty
 					};
 
 					sb.Append(labelInfo);

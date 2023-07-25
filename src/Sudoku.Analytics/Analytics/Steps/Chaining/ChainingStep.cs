@@ -73,7 +73,7 @@ public abstract partial class ChainingStep(
 					RegionForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{GetString("HouseChains")!}",
 					BinaryForcingChainsStep { IsNishio: true } => GetString("NishioChains")!,
 					BinaryForcingChainsStep { IsAbsurd: true } => GetString("AbsurdChains")!,
-					BinaryForcingChainsStep => GetString("DoubleChains")!,
+					BinaryForcingChainsStep => GetString("DoubleChains")!
 				};
 		}
 	}

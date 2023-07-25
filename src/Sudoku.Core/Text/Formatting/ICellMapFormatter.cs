@@ -32,7 +32,7 @@ public interface ICellMapFormatter : IFormatProvider, ICustomFormatter
 			(_, CellMap target, { } targetFormatter) => targetFormatter.GetFormat(GetType()) switch
 			{
 				ICellMapFormatter cellMapFormatter => cellMapFormatter.ToString(target),
-				_ => throw new FormatException("Unexpected error has been encountered due to not aware of target formatter type instance."),
+				_ => throw new FormatException("Unexpected error has been encountered due to not aware of target formatter type instance.")
 			},
 			(_, CellMap target, null) => CellMapFormatterFactory.GetBuiltInFormatter(format) switch
 			{

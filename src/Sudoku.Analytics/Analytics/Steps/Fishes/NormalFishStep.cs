@@ -44,7 +44,7 @@ public sealed partial class NormalFishStep(
 		=> new[]
 		{
 			(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => 0.6M, 4 => 2.0M }),
-			(ExtraDifficultyCaseNames.Sashimi, IsSashimi switch { true => Size switch { 2 or 3 => .3M, 4 => .4M, }, false => .2M, _ => 0 })
+			(ExtraDifficultyCaseNames.Sashimi, IsSashimi switch { true => Size switch { 2 or 3 => .3M, 4 => .4M }, false => .2M, _ => 0 })
 		};
 
 	/// <inheritdoc/>

@@ -66,7 +66,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				new[] { q1, q2, q3 }, // (0, 1) and (0, 2) is same house.
 				new[] { q2, q1, q4 }, // (0, 1) and (1, 3) is same house.
 				new[] { q3, q1, q4 }, // (0, 2) and (2, 3) is same house.
-				new[] { q4, q2, q3 }, // (1, 3) and (2, 3) is same house.
+				new[] { q4, q2, q3 } // (1, 3) and (2, 3) is same house.
 			};
 
 			for (var j = 0; j < 4; j++)
