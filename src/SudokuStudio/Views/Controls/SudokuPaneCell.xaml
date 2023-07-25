@@ -40,7 +40,7 @@
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,BasePane.DeltaCandidateColor,Status,BasePane.Solution,CellIndex,CandidatesMask,0,BasePane.DisplayCandidates,BasePane.UseDifferentColorToDisplayDeltaDigits,BasePane.ViewUnitUsedCandidates),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSizeSimple(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,CandidatesMask,0),Mode=OneWay}"
+			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,BasePane.DisplayCandidates),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" Tapped="TextBlock_Tapped"
 			DoubleTapped="TextBlock_DoubleTapped" RightTapped="TextBlock_RightTapped" />
 		<TextBlock
@@ -48,7 +48,7 @@
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,BasePane.DeltaCandidateColor,Status,BasePane.Solution,CellIndex,CandidatesMask,1,BasePane.DisplayCandidates,BasePane.UseDifferentColorToDisplayDeltaDigits,BasePane.ViewUnitUsedCandidates),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSizeSimple(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,CandidatesMask,1),Mode=OneWay}"
+			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,BasePane.DisplayCandidates),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" Tapped="TextBlock_Tapped"
 			DoubleTapped="TextBlock_DoubleTapped" RightTapped="TextBlock_RightTapped" />
 		<TextBlock
@@ -56,7 +56,7 @@
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,BasePane.DeltaCandidateColor,Status,BasePane.Solution,CellIndex,CandidatesMask,2,BasePane.DisplayCandidates,BasePane.UseDifferentColorToDisplayDeltaDigits,BasePane.ViewUnitUsedCandidates),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSizeSimple(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,CandidatesMask,2),Mode=OneWay}"
+			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,BasePane.DisplayCandidates),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" Tapped="TextBlock_Tapped"
 			DoubleTapped="TextBlock_DoubleTapped" RightTapped="TextBlock_RightTapped" />
 		<TextBlock
@@ -64,7 +64,7 @@
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,BasePane.DeltaCandidateColor,Status,BasePane.Solution,CellIndex,CandidatesMask,3,BasePane.DisplayCandidates,BasePane.UseDifferentColorToDisplayDeltaDigits,BasePane.ViewUnitUsedCandidates),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSizeSimple(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,CandidatesMask,3),Mode=OneWay}"
+			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,BasePane.DisplayCandidates),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" Tapped="TextBlock_Tapped"
 			DoubleTapped="TextBlock_DoubleTapped" RightTapped="TextBlock_RightTapped" />
 		<TextBlock
@@ -72,7 +72,7 @@
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,BasePane.DeltaCandidateColor,Status,BasePane.Solution,CellIndex,CandidatesMask,4,BasePane.DisplayCandidates,BasePane.UseDifferentColorToDisplayDeltaDigits,BasePane.ViewUnitUsedCandidates),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSizeSimple(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,CandidatesMask,4),Mode=OneWay}"
+			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,BasePane.DisplayCandidates),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" Tapped="TextBlock_Tapped"
 			DoubleTapped="TextBlock_DoubleTapped" RightTapped="TextBlock_RightTapped" />
 		<TextBlock
@@ -80,7 +80,7 @@
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,BasePane.DeltaCandidateColor,Status,BasePane.Solution,CellIndex,CandidatesMask,5,BasePane.DisplayCandidates,BasePane.UseDifferentColorToDisplayDeltaDigits,BasePane.ViewUnitUsedCandidates),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSizeSimple(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,CandidatesMask,5),Mode=OneWay}"
+			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,BasePane.DisplayCandidates),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" Tapped="TextBlock_Tapped"
 			DoubleTapped="TextBlock_DoubleTapped" RightTapped="TextBlock_RightTapped" />
 		<TextBlock
@@ -88,7 +88,7 @@
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,BasePane.DeltaCandidateColor,Status,BasePane.Solution,CellIndex,CandidatesMask,6,BasePane.DisplayCandidates,BasePane.UseDifferentColorToDisplayDeltaDigits,BasePane.ViewUnitUsedCandidates),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSizeSimple(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,CandidatesMask,6),Mode=OneWay}"
+			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,BasePane.DisplayCandidates),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" Tapped="TextBlock_Tapped"
 			DoubleTapped="TextBlock_DoubleTapped" RightTapped="TextBlock_RightTapped" />
 		<TextBlock
@@ -96,7 +96,7 @@
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,BasePane.DeltaCandidateColor,Status,BasePane.Solution,CellIndex,CandidatesMask,7,BasePane.DisplayCandidates,BasePane.UseDifferentColorToDisplayDeltaDigits,BasePane.ViewUnitUsedCandidates),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSizeSimple(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,CandidatesMask,7),Mode=OneWay}"
+			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,BasePane.DisplayCandidates),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" Tapped="TextBlock_Tapped"
 			DoubleTapped="TextBlock_DoubleTapped" RightTapped="TextBlock_RightTapped" />
 		<TextBlock
@@ -104,7 +104,7 @@
 			FontFamily="{x:Bind BasePane.PencilmarkFont,Mode=OneWay}"
 			Foreground="{x:Bind cvt:PencilmarkTextConversion.GetBrush(BasePane.PencilmarkColor,BasePane.DeltaCandidateColor,Status,BasePane.Solution,CellIndex,CandidatesMask,8,BasePane.DisplayCandidates,BasePane.UseDifferentColorToDisplayDeltaDigits,BasePane.ViewUnitUsedCandidates),Mode=OneWay}"
 			FontSize="{x:Bind cvt:PencilmarkTextConversion.GetFontSizeSimple(BasePane.ApproximateCellWidth,BasePane.PencilmarkFontScale),Mode=OneWay}"
-			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,CandidatesMask,8),Mode=OneWay}"
+			Opacity="{x:Bind cvt:VisibilityConversion.CellStatusToCandidateTextBlockOpacity(Status,BasePane.DisplayCandidates),Mode=OneWay}"
 			PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" Tapped="TextBlock_Tapped"
 			DoubleTapped="TextBlock_DoubleTapped" RightTapped="TextBlock_RightTapped" />
 	</Grid>

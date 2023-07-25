@@ -23,29 +23,36 @@ internal static class PencilmarkTextConversion
 		CandidateMap usedCandidates
 	)
 	{
-		var defaultBrush = new SolidColorBrush();
-		return (displayCandidates, cellStatus) switch
+		// Special case: If the candidate is rendered by a view node, display it.
+		if (cellStatus == CellStatus.Empty && usedCandidates.Contains(cell * 9 + digit))
 		{
-			(false, CellStatus.Empty)
-				=> (!solution.IsUndefined && solution.GetDigit(cell) == digit, candidatesMask >> digit & 1, useDifferentColorToDisplayDeltaDigits) switch
-				{
-					(true, 0, true) when usedCandidates.Contains(cell * 9 + digit) => new SolidColorBrush(deltaColor),
-					(_, not 0, _) when usedCandidates.Contains(cell * 9 + digit) => new SolidColorBrush(pencilmarkColor),
-					_ => defaultBrush
-				},
-			(false, _)
-				=> defaultBrush,
-			(_, CellStatus.Given or CellStatus.Modifiable)
-				=> defaultBrush,
-			(_, CellStatus.Empty)
-				=> (!solution.IsUndefined && solution.GetDigit(cell) == digit, candidatesMask >> digit & 1, useDifferentColorToDisplayDeltaDigits) switch
-				{
-					(true, 0, true) => new SolidColorBrush(deltaColor),
-					(_, not 0, _) => new SolidColorBrush(pencilmarkColor),
-					_ => defaultBrush
-				},
-			_
-				=> throw new ArgumentOutOfRangeException(nameof(cellStatus))
-		};
+			return new SolidColorBrush(pencilmarkColor);
+		}
+
+		var defaultBrush = new SolidColorBrush();
+
+		// If the cell is not empty, don't display it.
+		if (cellStatus is CellStatus.Given or CellStatus.Modifiable)
+		{
+			return defaultBrush;
+		}
+
+		// If candidates should be hidden, don't display it.
+		if (!displayCandidates)
+		{
+			return defaultBrush;
+		}
+
+		var solutionHasThatCandidate = !solution.IsUndefined && solution.GetDigit(cell) == digit;
+		var candidatesContainThatDigit = (candidatesMask >> digit & 1) != 0;
+		
+		// If the candidate has been already deleted, just display it in a wrong color or normal color if not enabled "Display Delta Digits".
+		if (solutionHasThatCandidate && !candidatesContainThatDigit)
+		{
+			return new SolidColorBrush(useDifferentColorToDisplayDeltaDigits ? deltaColor : pencilmarkColor);
+		}
+
+		// Display it in a normal color.
+		return candidatesContainThatDigit ? new SolidColorBrush(pencilmarkColor) : defaultBrush;
 	}
 }
