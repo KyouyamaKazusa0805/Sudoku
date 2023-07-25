@@ -7000,6 +7000,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the event that is triggered when "displaying candidates" option is toggled.
             </summary>
         </member>
+        <member name="E:SudokuStudio.Views.Controls.SudokuPane.Caching">
+            <summary>
+            Indicates the event that is triggered when caching.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UndoStep">
             <summary>
             Undo a step. This method requires member <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/> be <see langword="true"/>.

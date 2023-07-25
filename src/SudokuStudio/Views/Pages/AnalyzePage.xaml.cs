@@ -1238,6 +1238,24 @@ public sealed partial class AnalyzePage : Page
 	private void SudokuPane_CandidatesDisplayingToggled(SudokuPane sender, CandidatesDisplayingToggledEventArgs e)
 		=> ((App)Application.Current).Preference.UIPreferences.DisplayCandidates = sender.DisplayCandidates;
 
+	private void SudokuPane_Caching(object sender, EventArgs e)
+	{
+		if (SudokuPane is not { Puzzle: var puzzle, ViewUnit: var viewUnit })
+		{
+			return;
+		}
+
+		// Set as cached values.
+		// No matter whether the option 'AutoCachePuzzleAndView' is true or not,
+		// here we should save them because in a same program thread we may use the values to recover it.
+		((App)Application.Current).Preference.UIPreferences.LastGridPuzzle = puzzle;
+		((App)Application.Current).Preference.UIPreferences.LastRenderable = viewUnit switch
+		{
+			ViewUnitBindableSource { View: var view, Conclusions: var conclusions } => new() { Conclusions = conclusions, Views = new[] { view } },
+			_ => null
+		};
+	}
+
 	private void MainMenuFlyout_Closed(object sender, object e)
 	{
 		foreach (var element in MainMenuFlyout.SecondaryCommands.OfType<AppBarButton>())

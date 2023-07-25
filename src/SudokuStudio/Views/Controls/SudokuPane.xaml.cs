@@ -329,6 +329,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	public event CandidatesDisplayingToggledEventHandler? CandidatesDisplayingToggled;
 
+	/// <summary>
+	/// Indicates the event that is triggered when caching.
+	/// </summary>
+	public event EventHandler? Caching;
+
 
 	/// <summary>
 	/// Undo a step. This method requires member <see cref="EnableUndoRedoStacking"/> be <see langword="true"/>.
@@ -561,14 +566,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		pane.UpdateViewUnit();
 
-		// Set as cached values.
-		// No matter whether the option 'AutoCachePuzzleAndView' is true or not,
-		// here we should save them because in a same program thread we may use the values to recover it.
-		((App)Application.Current).Preference.UIPreferences.LastGridPuzzle = pane.Puzzle;
-		((App)Application.Current).Preference.UIPreferences.LastRenderable =
-			pane.ViewUnit is ViewUnitBindableSource { View: var view, Conclusions: var conclusions }
-				? new() { Conclusions = conclusions, Views = new[] { view } }
-				: null;
+		pane.Caching?.Invoke(pane, EventArgs.Empty);
 	}
 
 	[Callback]
