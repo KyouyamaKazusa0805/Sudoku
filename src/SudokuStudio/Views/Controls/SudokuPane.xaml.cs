@@ -617,6 +617,34 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private static void AlmostLockedSetsColorsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> ((SudokuPane)d).UpdateViewUnit();
 
+	[Callback]
+	private static void StrongLinkDashStylePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void WeakLinkDashStylePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void CycleLikeLinkDashStylePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void OtherLinkDashStylePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void HighlightCandidateCircleScalePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void HighlightBackgroundOpacityPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void ChainStrokeThicknessPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
 
 	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e) => Focus(FocusState.Programmatic);
 
