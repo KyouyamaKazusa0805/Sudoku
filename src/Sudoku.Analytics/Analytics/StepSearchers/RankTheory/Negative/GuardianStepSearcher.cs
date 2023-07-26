@@ -125,7 +125,7 @@ file static unsafe class Cached
 			DepthFirstSearching_Guardian(cell, cell, 0, CellsMap[cell], CellMap.Empty, digit, condition, result);
 		}
 
-		return result.Distinct().ToArray();
+		return [.. result.Distinct()];
 	}
 
 	/// <summary>

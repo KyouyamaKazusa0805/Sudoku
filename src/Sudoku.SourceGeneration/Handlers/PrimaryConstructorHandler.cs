@@ -9,7 +9,10 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 	public void Output(SourceProductionContext spc, ImmutableArray<PrimaryConstructorCollectedResult> values)
 	{
 		var types = new List<string>();
-		foreach (var valuesGrouped in from tuple in values group tuple by $"{tuple.Namesapce}.{tuple.Type}" into @group select @group.ToArray())
+		foreach (var valuesGrouped in
+			from tuple in values
+			group tuple by $"{tuple.Namesapce}.{tuple.Type}" into @group
+			select (PrimaryConstructorCollectedResult[])[.. @group])
 		{
 			var (namespaceName, fieldDeclarations, propertyDeclarations) = (valuesGrouped[0].Namesapce, new List<string>(), new List<string>());
 			foreach (
@@ -71,7 +74,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 							&& (memberNotNullExpr?.Contains(':') ?? false)
 							&& memberNotNullExpr.Split(':') is [var booleanExpr, var memberNamesExpr]
 							&& booleanExpr.Trim().ToCamelCasing() is var finalBooleanStringValue and ("true" or "false")
-							&& (from memberName in memberNamesExpr.Split(',') select memberName.Trim()).ToArray() is var memberNamesArray and not []
+							&& (string[])[.. from memberName in memberNamesExpr.Split(',') select memberName.Trim()] is var memberNamesArray and not []
 							&& (from memberName in memberNamesArray select $"nameof({memberName})") is var nameOfExpressionList
 							&& string.Join(", ", nameOfExpressionList) is var nameOfExpressions
 							? $"""
@@ -79,7 +82,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 									
 							"""
 							: string.Empty;
-						
+
 						propertyDeclarations.Add(
 							$$"""
 							/// <summary>
@@ -217,7 +220,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 					@namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..],
 					typeName,
 					isRecord,
-					attributesData.ToArray(),
+					[.. attributesData],
 					// Gets the documentation comments.
 					// Please note that Roslyn may contain a bug that primary constructor parameters don't contain any documentation comments,
 					// so the result value of this variable may be string.Empty ("").

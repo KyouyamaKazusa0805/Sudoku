@@ -88,12 +88,12 @@ public sealed partial class ComplexFishStep(
 	/// <summary>
 	/// Indicates the base houses.
 	/// </summary>
-	private House[] BaseHouses => BaseSetsMask.GetAllSets().ToArray();
+	private House[] BaseHouses => [.. BaseSetsMask.GetAllSets()];
 
 	/// <summary>
 	/// Indicates the cover houses.
 	/// </summary>
-	private House[] CoverHouses => CoverSetsMask.GetAllSets().ToArray();
+	private House[] CoverHouses => [.. CoverSetsMask.GetAllSets()];
 
 	private string DigitStr => (Digit + 1).ToString();
 

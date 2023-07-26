@@ -14,7 +14,7 @@ namespace System.Collections.Generic;
 ///     using scoped var list = new ValueList<int>(10);
 ///     list.Add(3);
 ///     list.Add(6);
-///     return list.ToArray();
+///     return [.. list];
 /// }
 /// ]]></code>
 /// </remarks>

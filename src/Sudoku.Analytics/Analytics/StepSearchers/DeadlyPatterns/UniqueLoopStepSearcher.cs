@@ -595,7 +595,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				if (loopPath[0] == next && loopPath.Count >= 6 && UniqueLoopStepSearcherHelper.IsValidLoop(loopPath))
 				{
 					// Yeah. The loop is closed.
-					result.Add(new(loopMap, loopPath.ToArray(), (Mask)(1 << d1 | 1 << d2)));
+					result.Add(new(loopMap, [.. loopPath], (Mask)(1 << d1 | 1 << d2)));
 				}
 				else if (!loopMap.Contains(next))
 				{

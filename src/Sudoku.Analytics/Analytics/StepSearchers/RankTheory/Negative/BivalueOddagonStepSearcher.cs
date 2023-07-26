@@ -299,7 +299,7 @@ file static unsafe class Cached
 			DepthFirstSearching_BivalueOddagon(cell, cell, 0, CellsMap[cell], digitsMask, CandidatesMap[d1] & CandidatesMap[d2], condition, result);
 		}
 
-		return result.Distinct().ToArray();
+		return [.. result.Distinct()];
 	}
 
 	/// <summary>

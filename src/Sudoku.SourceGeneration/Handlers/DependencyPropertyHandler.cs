@@ -213,7 +213,7 @@ internal sealed class DependencyPropertyHandler : IIncrementalGeneratorAttribute
 					}
 					case ("MembersNotNullWhenReturnsTrue", { Values: var rawValues }):
 					{
-						membersNotNullWhenReturnsTrue = (from rawValue in rawValues select (string)rawValue.Value!).ToArray();
+						membersNotNullWhenReturnsTrue = [.. from rawValue in rawValues select (string)rawValue.Value!];
 						break;
 					}
 				}

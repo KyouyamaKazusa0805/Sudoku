@@ -268,8 +268,7 @@ file sealed class SudokuPainter(int defaultSize, int defaultOffset) : ISudokuPai
 			goto ReturnThis;
 		}
 
-		var nodes = view.ToArray();
-		foreach (var node in nodes)
+		foreach (var node in (ViewNode[])[.. view])
 		{
 			if (predicate(node))
 			{

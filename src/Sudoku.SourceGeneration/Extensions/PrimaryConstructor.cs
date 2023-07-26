@@ -28,14 +28,15 @@ internal static class PrimaryConstructor
 	)
 	{
 		const string Property = nameof(Property), Field = nameof(Field);
-		var members = @this.GetAllMembers().ToArray();
+		var members = (ISymbol[])[.. @this.GetAllMembers()];
 		var baseMembers =
 			from member in members
 			where member is IFieldSymbol or IPropertySymbol && member.GetAttributes().Any(attributeMatcher)
 			select (member.Name, extraDataSelector(member));
 		return parameterList is null
-			? baseMembers.ToArray()
-			: (
+			? [.. baseMembers]
+			: [
+				..
 				from parameter in parameterList.Parameters
 				select model.GetDeclaredSymbol(parameter, cancellationToken) into parameterSymbol
 				where !parameterSymbol.Type.IsRefLikeType // Ref structs cannot participate in the hashing.
@@ -49,8 +50,9 @@ internal static class PrimaryConstructor
 				let namedArguments = primaryConstructorParameterAttributeData.NamedArguments
 				let parameterName = parameterSymbol.Name
 				let referencedMemberName = GetTargetMemberName(namedArguments, parameterName, memberConversion)
-				select (referencedMemberName, extraDataSelector(parameterSymbol))
-			).Concat(baseMembers).ToArray();
+				select (referencedMemberName, extraDataSelector(parameterSymbol)),
+				.. baseMembers
+			];
 
 
 		bool primaryConstructorParameterAttributeMatcher(AttributeData a)

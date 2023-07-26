@@ -33,6 +33,6 @@ public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGrou
 			return;
 		}
 
-		analyzer.WithStepSearchers((from s in stepSearchers from stepSearcher in s.CreateStepSearchers() select stepSearcher).ToArray());
+		analyzer.WithStepSearchers([.. from s in stepSearchers from stepSearcher in s.CreateStepSearchers() select stepSearcher]);
 	}
 }

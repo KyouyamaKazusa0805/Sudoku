@@ -41,7 +41,7 @@ public abstract class StepSearcherPool
 			}
 		}
 
-		return result.Values.ToArray();
+		return [.. result.Values];
 	}
 
 	/// <summary>

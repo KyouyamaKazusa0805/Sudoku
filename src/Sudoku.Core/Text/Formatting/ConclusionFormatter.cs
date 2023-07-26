@@ -28,7 +28,7 @@ public abstract class ConclusionFormatter : ICollectionFormatter<Conclusion>
 
 		string f(scoped Span<Conclusion> c)
 		{
-			var conclusions = c.ToArray(); // This operation will copy the inner data.
+			var conclusions = (Conclusion[])[.. c]; // This operation will copy the inner data.
 			scoped var sb = new StringHandler(50);
 			if (shouldSort)
 			{
@@ -96,9 +96,9 @@ public abstract class ConclusionFormatter : ICollectionFormatter<Conclusion>
 
 	/// <inheritdoc/>
 	static string ICollectionFormatter<Conclusion>.Format(IEnumerable<Conclusion> elements, string separator)
-		=> Format(elements.ToArray(), separator, false);
+		=> Format([.. elements], separator, false);
 
 	/// <inheritdoc/>
 	static string ICollectionFormatter<Conclusion>.Format(IEnumerable<Conclusion> elements, FormattingMode formattingMode)
-		=> Format(elements.ToArray(), formattingMode);
+		=> Format([.. elements], formattingMode);
 }

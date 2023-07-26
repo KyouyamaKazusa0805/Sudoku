@@ -37,7 +37,7 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// <summary>
 	/// Indicates all possible coordinates.
 	/// </summary>
-	private static readonly string[] Coordinates = (from r in Rows from c in Columns select $"{r}{c}").ToArray();
+	private static readonly string[] Coordinates = [.. from r in Rows from c in Columns select $"{r}{c}"];
 
 	/// <summary>
 	/// Indicates the peers.
@@ -53,15 +53,15 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor'/>
 	static DictionaryQuerySolver()
 	{
-		var houseList = (
-			from c in Columns select (from r in Rows from p in c.ToString() select $"{r}{p}").ToArray()
-		).Concat(
-			from r in Rows select (from p in r.ToString() from c in Columns select $"{p}{c}").ToArray()
-		).Concat(
+		var houseList = (IEnumerable<string[]>)
+		[
+			.. from c in Columns select (string[])[.. from r in Rows from p in c.ToString() select $"{r}{p}"],
+			.. from r in Rows select (string[])[.. from p in r.ToString() from c in Columns select $"{p}{c}"],
+			..
 			from rs in (string[])["ABC", "DEF", "GHI"]
 			from cs in (string[])["123", "456", "789"]
-			select (from r in rs from c in cs select $"{r}{c}").ToArray()
-		);
+			select (string[])[.. from r in rs from c in cs select $"{r}{c}"]
+		];
 
 		Houses = (from s in Coordinates from u in houseList where u.Contains(s) group u by s).ToDictionary(static g => g.Key);
 		Peers = (from s in Coordinates from u in Houses[s] from s2 in u where s2 != s group s2 by s)
@@ -168,7 +168,7 @@ public sealed class DictionaryQuerySolver : ISolver
 		//var grid2 = from c in gridStr where "0.-123456789".Contains(c) select c;
 		var values = Coordinates.ToDictionary(CommonMethods.ReturnSelf, static _ => Digits);
 
-		foreach (var sd in Zip(Coordinates, (from s in gridStr select s.ToString()).ToArray()))
+		foreach (var sd in Zip(Coordinates, [.. from s in gridStr select s.ToString()]))
 		{
 			var (s, d) = (sd[0], sd[1]);
 			if (Digits.Contains(d) && Assign(values, s, d) is null)

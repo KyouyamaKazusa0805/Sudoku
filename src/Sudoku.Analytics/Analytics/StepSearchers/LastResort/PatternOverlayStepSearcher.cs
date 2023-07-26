@@ -13,7 +13,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 	/// <summary>
 	/// The pre-defined template cell maps.
 	/// </summary>
-	private static readonly CellMap[] TemplateCellMaps = GetTemplates().ToArray();
+	private static readonly CellMap[] TemplateCellMaps = [.. GetTemplates()];
 
 
 	/// <inheritdoc/>

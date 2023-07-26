@@ -33,7 +33,7 @@ public static class StepCollectorFactory
 	/// <inheritdoc cref="WithStepSearchers(StepCollector, StepSearcher[])"/>
 	public static StepCollector WithStepSearchers(this StepCollector @this, IEnumerable<StepSearcher> stepSearchers)
 	{
-		@this.StepSearchers = stepSearchers.ToArray();
+		@this.StepSearchers = [.. stepSearchers];
 		return @this;
 	}
 

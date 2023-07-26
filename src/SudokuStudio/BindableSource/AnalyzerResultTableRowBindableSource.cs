@@ -53,7 +53,7 @@ internal sealed class AnalyzerResultTableRowBindableSource
 			from step in steps
 			orderby step.DifficultyLevel, step.Code
 			group step by step.Name into stepGroup
-			let stepGroupArray = stepGroup.ToArray()
+			let stepGroupArray = (Step[])[.. stepGroup]
 			let difficultyLevels =
 				from step in stepGroupArray
 				group step by step.DifficultyLevel into stepGroupedByDifficultyLevel
