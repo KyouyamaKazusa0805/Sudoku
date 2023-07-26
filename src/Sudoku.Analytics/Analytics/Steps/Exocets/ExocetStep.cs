@@ -12,7 +12,7 @@ public abstract partial class ExocetStep(
 	[PrimaryConstructorParameter] Exocet exocet,
 	[PrimaryConstructorParameter] Mask digitsMask,
 	ExocetElimination[] eliminations
-) : Step((from e in eliminations from c in e.Conclusions select c).ToArray(), views)
+) : Step(from e in eliminations from c in e.Conclusions select c, views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 9.4M;

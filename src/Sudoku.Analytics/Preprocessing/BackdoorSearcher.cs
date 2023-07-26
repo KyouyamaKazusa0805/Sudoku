@@ -52,6 +52,6 @@ public static class BackdoorSearcher
 			}
 		}
 
-		return assignmentBackdoors.Concat(eliminationBackdoors).ToArray();
+		return [.. assignmentBackdoors, .. eliminationBackdoors];
 	}
 }
