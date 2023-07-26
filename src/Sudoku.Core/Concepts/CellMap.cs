@@ -1143,7 +1143,7 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Cell[](scoped in CellMap offsets) => offsets.ToArray();
+	public static implicit operator Cell[](scoped in CellMap offsets) => offsets.Offsets;
 
 	/// <summary>
 	/// Implicit cast from <see cref="CellMap"/> to <see cref="@llong"/>.
@@ -1172,50 +1172,6 @@ public unsafe partial struct CellMap :
 		=> llong >> 81 == 0
 			? CreateByInt128(llong)
 			: throw new OverflowException($"The base {nameof(@llong)} integer is greater than '{nameof(IBitStatusMap<CellMap, Cell>.MaxValue)}'.");
-
-	/// <inheritdoc/>
-	static implicit IBitStatusMap<CellMap, Cell>.operator CellMap(scoped Span<Cell> offsets)
-	{
-		var result = Empty;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
-	static implicit IBitStatusMap<CellMap, Cell>.operator CellMap(scoped ReadOnlySpan<Cell> offsets)
-	{
-		var result = Empty;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
-	static explicit IBitStatusMap<CellMap, Cell>.operator CellMap(Cell[] offsets)
-	{
-		var result = Empty;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static explicit IBitStatusMap<CellMap, Cell>.operator Span<Cell>(scoped in CellMap offsets) => offsets.Offsets;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static explicit IBitStatusMap<CellMap, Cell>.operator ReadOnlySpan<Cell>(scoped in CellMap offsets) => offsets.Offsets;
 }
 
 /// <summary>

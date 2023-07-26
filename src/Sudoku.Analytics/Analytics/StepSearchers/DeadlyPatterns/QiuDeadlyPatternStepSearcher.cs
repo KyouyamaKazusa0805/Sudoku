@@ -118,7 +118,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				)
 				{
 					var flag = false;
-					var offsets = map.ToArray();
+					var offsets = (Cell[])[.. map];
 					var c1 = offsets[0];
 					var c2 = offsets[1];
 					if (!EmptyCells.Contains(c1))

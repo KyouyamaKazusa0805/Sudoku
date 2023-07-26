@@ -728,7 +728,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var offsets = otherCellsMap.ToArray();
+				var offsets = (Cell[])[.. otherCellsMap];
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
 						conclusions,
@@ -2564,11 +2564,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		if ((CellsMap[corner1] + corner2).AllSetsAreInOneHouse(out var house) && house < 9)
 		{
 			// Subtype 1.
-			var offsets = otherCellsMap.ToArray();
-			var otherCell1 = offsets[0];
-			var otherCell2 = offsets[1];
-			var mask1 = grid.GetCandidates(otherCell1);
-			var mask2 = grid.GetCandidates(otherCell2);
+			var offsets = (Cell[])[.. otherCellsMap];
+			var (otherCell1, otherCell2) = (offsets[0], offsets[1]);
+			var (mask1, mask2) = (grid.GetCandidates(otherCell1), grid.GetCandidates(otherCell2));
 			var mask = (Mask)(mask1 | mask2);
 
 			if (PopCount((uint)mask) != 2 + size || (mask & comparer) != comparer || mask1 == comparer || mask2 == comparer)
@@ -2584,7 +2582,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 			var testMap = (CellsMap[otherCell1] + otherCell2).PeerIntersection;
 			var extraDigitsMask = (Mask)(mask ^ comparer);
-			var cells = map.ToArray();
+			var cells = (Cell[])[.. map];
 			for (var (i1, length) = (0, cells.Length); i1 < length - size + 1; i1++)
 			{
 				var c1 = cells[i1];

@@ -63,12 +63,12 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 						{
 							SkLoopTable[n][pos++] = cell;
 						}
-						var cells = (all & HousesMap[b]).ToArray();
+						var cells = (Cell[])[.. all & HousesMap[b]];
 						SkLoopTable[n][pos++] = cells[2];
 						SkLoopTable[n][pos++] = cells[3];
 						SkLoopTable[n][pos++] = cells[0];
 						SkLoopTable[n][pos++] = cells[1];
-						cells = (all & HousesMap[c]).ToArray();
+						cells = [.. all & HousesMap[c]];
 						SkLoopTable[n][pos++] = cells[2];
 						SkLoopTable[n][pos++] = cells[3];
 						SkLoopTable[n][pos++] = cells[0];

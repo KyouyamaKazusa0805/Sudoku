@@ -91,15 +91,6 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// Set the specified offsets as <see langword="true"/> value.
 	/// </summary>
 	/// <param name="offsets">The offsets to add.</param>
-	sealed void AddRange(scoped ReadOnlySpan<TElement> offsets)
-	{
-		foreach (var cell in offsets)
-		{
-			Add(cell);
-		}
-	}
-
-	/// <inheritdoc cref="AddRange(ReadOnlySpan{TElement})"/>
 	void AddRange(IEnumerable<TElement> offsets);
 
 	/// <summary>
@@ -619,62 +610,5 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// Implicit cast from <typeparamref name="TSelf"/> to <typeparamref name="TElement"/>[].
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	static virtual implicit operator TElement[](scoped in TSelf offsets) => offsets.ToArray();
-
-	/// <summary>
-	/// Implicit cast from <see cref="Span{T}"/> to <typeparamref name="TSelf"/>.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
-	static virtual implicit operator TSelf(scoped Span<TElement> offsets)
-	{
-		var result = TSelf.Empty;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <typeparamref name="TSelf"/>.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
-	static virtual implicit operator TSelf(scoped ReadOnlySpan<TElement> offsets)
-	{
-		var result = TSelf.Empty;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Explicit cast from <typeparamref name="TElement"/>[] to <typeparamref name="TSelf"/>.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
-	static virtual explicit operator TSelf(TElement[] offsets)
-	{
-		var result = TSelf.Empty;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Explicit cast from <typeparamref name="TSelf"/> to <see cref="Span{T}"/> of element type <typeparamref name="TElement"/>.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
-	static virtual explicit operator Span<TElement>(scoped in TSelf offsets) => offsets.ToArray();
-
-	/// <summary>
-	/// Explicit cast from <typeparamref name="TSelf"/> to <see cref="ReadOnlySpan{T}"/> of element type <typeparamref name="TElement"/>.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
-	static virtual explicit operator ReadOnlySpan<TElement>(scoped in TSelf offsets) => offsets.ToArray();
+	static virtual implicit operator TElement[](scoped in TSelf offsets) => offsets.Offsets;
 }

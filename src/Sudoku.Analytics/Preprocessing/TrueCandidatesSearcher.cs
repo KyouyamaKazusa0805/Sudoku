@@ -66,7 +66,7 @@ public static class TrueCandidatesSearcher
 		// The comments will help you to understand the processing.
 		SkipInit(out Mask mask);
 		var pairs = new Mask[multivalueCellsCount, (1 + 8) * 8 / 2 + 1];
-		var multivalueCells = (grid.EmptyCells - grid.BivalueCells).ToArray();
+		var multivalueCells = (Cell[])[.. grid.EmptyCells - grid.BivalueCells];
 		for (var i = 0; i < multivalueCells.Length; i++)
 		{
 			// e.g. [2, 4, 6] (42)
