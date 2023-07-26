@@ -77,7 +77,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 				resultAccumulator.Add(
 					new GuardianStep(
 						from c in elimMap select new Conclusion(Elimination, c, digit),
-						new[] { View.Empty | candidateOffsets },
+						[[.. candidateOffsets]],
 						digit,
 						loop,
 						guardians

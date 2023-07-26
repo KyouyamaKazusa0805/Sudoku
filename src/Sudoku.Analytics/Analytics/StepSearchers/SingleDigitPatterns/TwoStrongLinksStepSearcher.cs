@@ -82,18 +82,15 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 
 					var step = new TwoStrongLinksStep(
 						from cell in elimMap select new Conclusion(Elimination, cell, digit),
-						new[]
-						{
-							View.Empty
-								| new CandidateViewNode[]
-								{
-									new(WellKnownColorIdentifier.Normal, cellsList1[c1Index] * 9 + digit),
-									new(WellKnownColorIdentifier.Normal, cellsList2[c2Index] * 9 + digit),
-									new(WellKnownColorIdentifier.Normal, head * 9 + digit),
-									new(WellKnownColorIdentifier.Normal, tail * 9 + digit)
-								}
-								| new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, sameHouse)
-						},
+						[
+							[
+								new CandidateViewNode(WellKnownColorIdentifier.Normal, cellsList1[c1Index] * 9 + digit),
+								new CandidateViewNode(WellKnownColorIdentifier.Normal, cellsList2[c2Index] * 9 + digit),
+								new CandidateViewNode(WellKnownColorIdentifier.Normal, head * 9 + digit),
+								new CandidateViewNode(WellKnownColorIdentifier.Normal, tail * 9 + digit),
+								new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, sameHouse)
+							]
+						],
 						digit,
 						h1,
 						h2

@@ -87,17 +87,14 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 				var intersection = c & candidatesMap;
 				var step = new LockedCandidatesStep(
 					from cell in elimMap select new Conclusion(Elimination, cell, digit),
-					new[]
-					{
-						View.Empty
-							| (from cell in intersection select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit))
-							| new HouseViewNode[]
-							{
-								new(WellKnownColorIdentifier.Normal, realBaseSet),
-								new(WellKnownColorIdentifier.Auxiliary1, realCoverSet)
-							}
-							| GetCrosshatchBaseCells(grid, digit, realBaseSet, intersection)
-					},
+					[
+						[
+							.. from cell in intersection select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
+							new HouseViewNode(WellKnownColorIdentifier.Normal, realBaseSet),
+							new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, realCoverSet),
+							.. GetCrosshatchBaseCells(grid, digit, realBaseSet, intersection)
+						]
+					],
 					digit,
 					realBaseSet,
 					realCoverSet

@@ -364,13 +364,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 		accumulator.Add(
 			new UniqueRectangleType1Step(
-				conclusions.ToArray(),
-				new[]
-				{
-					View.Empty
-						| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-						| (arMode ? null : candidateOffsets)
-				},
+				[.. conclusions],
+				[[.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [], .. arMode ? [] : candidateOffsets]],
 				d1,
 				d2,
 				(CellMap)urCells,
@@ -465,7 +460,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		accumulator.Add(
 			new UniqueRectangleType2Step(
 				from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-				new[] { View.Empty | (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null) | candidateOffsets },
+				[[.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [], .. candidateOffsets]],
 				d1,
 				d2,
 				(arMode, isType5) switch
@@ -609,14 +604,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 					accumulator.Add(
 						new UniqueRectangleType3Step(
-							conclusions.ToArray(),
-							new[]
-							{
-								View.Empty
-									| (arMode ? cellOffsets : null)
-									| candidateOffsets
-									| new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)
-							},
+							[.. conclusions],
+							[
+								[
+									.. arMode ? cellOffsets : [],
+									.. candidateOffsets,
+									new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)
+								]
+							],
 							d1,
 							d2,
 							(CellMap)urCells,
@@ -737,19 +732,19 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
 						conclusions,
-						new[]
-						{
-							View.Empty
-								| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-								| candidateOffsets
-								| new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)
-						},
+						[
+							[
+								.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [],
+								.. candidateOffsets,
+								new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)
+							]
+						],
 						Technique.UniqueRectangleType4,
 						d1,
 						d2,
 						(CellMap)urCells,
 						arMode,
-						new Conjugate[] { new(offsets[0], offsets[1], digit) },
+						[new(offsets[0], offsets[1], digit)],
 						index
 					)
 				);
@@ -842,7 +837,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		accumulator.Add(
 			new UniqueRectangleType2Step(
 				from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-				new[] { View.Empty | (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null) | candidateOffsets },
+				[[.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [], .. candidateOffsets]],
 				d1,
 				d2,
 				arMode ? Technique.AvoidableRectangleType5 : Technique.UniqueRectangleType5,
@@ -962,23 +957,20 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			accumulator.Add(
 				new UniqueRectangleWithConjugatePairStep(
 					conclusions,
-					new[]
-					{
-						View.Empty
-							| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-							| candidateOffsets
-							| new HouseViewNode[]
-							{
-								new(WellKnownColorIdentifier.Normal, house1),
-								new(WellKnownColorIdentifier.Normal, house2)
-							}
-					},
+					[
+						[
+							.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [],
+							.. candidateOffsets,
+							new HouseViewNode(WellKnownColorIdentifier.Normal, house1),
+							new HouseViewNode(WellKnownColorIdentifier.Normal, house2)
+						]
+					],
 					Technique.UniqueRectangleType6,
 					d1,
 					d2,
 					(CellMap)urCells,
 					false,
-					new Conjugate[] { new(corner1, isRow ? o1 : o2, digit), new(corner2, isRow ? o2 : o1, digit) },
+					[new(corner1, isRow ? o1 : o2, digit), new(corner2, isRow ? o2 : o1, digit)],
 					index
 				)
 			);
@@ -1089,19 +1081,20 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 			accumulator.Add(
 				new HiddenUniqueRectangleStep(
-					new[] { new Conclusion(Elimination, abzCell, elimDigit) },
-					new[]
-					{
-						View.Empty
-							| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-							| candidateOffsets
-							| new HouseViewNode[] { new(WellKnownColorIdentifier.Normal, r), new(WellKnownColorIdentifier.Normal, c) }
-					},
+					[new(Elimination, abzCell, elimDigit)],
+					[
+						[
+							.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [],
+							.. candidateOffsets,
+							new HouseViewNode(WellKnownColorIdentifier.Normal, r),
+							new HouseViewNode(WellKnownColorIdentifier.Normal, c)
+						]
+					],
 					d1,
 					d2,
 					(CellMap)urCells,
 					arMode,
-					new Conjugate[] { new(abzCell, abxCell, digit), new(abzCell, abyCell, digit) },
+					[new(abzCell, abxCell, digit), new(abzCell, abyCell, digit)],
 					index
 				)
 			);
@@ -1221,8 +1214,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 			accumulator.Add(
 				new UniqueRectangle2DOr3XStep(
-					conclusions.ToArray(),
-					new[] { View.Empty | (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null) | candidateOffsets },
+					[.. conclusions],
+					[[.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [], .. candidateOffsets]],
 					arMode ? Technique.AvoidableRectangle2D : Technique.UniqueRectangle2D,
 					d1,
 					d2,
@@ -1385,20 +1378,20 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 						accumulator.Add(
 							new UniqueRectangleWithConjugatePairStep(
-								conclusions.ToArray(),
-								new[]
-								{
-									View.Empty
-										| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-										| candidateOffsets
-										| new HouseViewNode(WellKnownColorIdentifier.Normal, house)
-								},
+								[.. conclusions],
+								[
+									[
+										.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [],
+										.. candidateOffsets,
+										new HouseViewNode(WellKnownColorIdentifier.Normal, house)
+									]
+								],
 								Technique.UniqueRectangle2B1,
 								d1,
 								d2,
 								(CellMap)urCells,
 								arMode,
-								new Conjugate[] { new(cell, otherCell, digit) },
+								[new(cell, otherCell, digit)],
 								index
 							)
 						);
@@ -1559,20 +1552,20 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 						accumulator.Add(
 							new UniqueRectangleWithConjugatePairStep(
-								conclusions.ToArray(),
-								new[]
-								{
-									View.Empty
-										| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-										| candidateOffsets
-										| new HouseViewNode(WellKnownColorIdentifier.Normal, house)
-								},
+								[.. conclusions],
+								[
+									[
+										.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [],
+										.. candidateOffsets,
+										new HouseViewNode(WellKnownColorIdentifier.Normal, house)
+									]
+								],
 								Technique.UniqueRectangle2D1,
 								d1,
 								d2,
 								(CellMap)urCells,
 								arMode,
-								new Conjugate[] { new(cell, otherCell, digit) },
+								[new(cell, otherCell, digit)],
 								index
 							)
 						);
@@ -1702,8 +1695,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 			accumulator.Add(
 				new UniqueRectangle2DOr3XStep(
-					conclusions.ToArray(),
-					new[] { View.Empty | (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null) | candidateOffsets },
+					[.. conclusions],
+					[[.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [], .. candidateOffsets]],
 					arMode ? Technique.AvoidableRectangle3X : Technique.UniqueRectangle3X,
 					d1,
 					d2,
@@ -1821,24 +1814,21 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 			accumulator.Add(
 				new UniqueRectangleWithConjugatePairStep(
-					conclusions.ToArray(),
-					new[]
-					{
-						View.Empty
-							| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-							| candidateOffsets
-							| new HouseViewNode[]
-							{
-								new(WellKnownColorIdentifier.Normal, map1.CoveredLine),
-								new(WellKnownColorIdentifier.Auxiliary1, map2.CoveredLine)
-							}
-					},
+					[.. conclusions],
+					[
+						[
+							.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [],
+							.. candidateOffsets,
+							new HouseViewNode(WellKnownColorIdentifier.Normal, map1.CoveredLine),
+							new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, map2.CoveredLine)
+						]
+					],
 					Technique.UniqueRectangle3X2,
 					d1,
 					d2,
 					(CellMap)urCells,
 					arMode,
-					new Conjugate[] { new(abxCell, abzCell, b), new(abyCell, abzCell, a) },
+					[new(abxCell, abzCell, b), new(abyCell, abzCell, a)],
 					index
 				)
 			);
@@ -1949,21 +1939,18 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var conjugatePairs = new Conjugate[] { new(cornerCell, begin, a), new(begin, abzCell, b) };
+				var conjugatePairs = (Conjugate[])[new(cornerCell, begin, a), new(begin, abzCell, b)];
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						new[] { new Conclusion(Elimination, end, a) },
-						new[]
-						{
-							View.Empty
-								| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-								| candidateOffsets
-								| new HouseViewNode[]
-								{
-									new(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
-									new(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
-								}
-						},
+						[new(Elimination, end, a)],
+						[
+							[
+								.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [],
+								.. candidateOffsets,
+								new HouseViewNode(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
+								new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
+							]
+						],
 						Technique.UniqueRectangle3N2,
 						d1,
 						d2,
@@ -2076,21 +2063,18 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var conjugatePairs = new Conjugate[] { new(cornerCell, end, a), new(begin, abzCell, b) };
+				var conjugatePairs = (Conjugate[])[new(cornerCell, end, a), new(begin, abzCell, b)];
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						new[] { new Conclusion(Elimination, begin, a) },
-						new[]
-						{
-							View.Empty
-								| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-								| candidateOffsets
-								| new HouseViewNode[]
-								{
-									new(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
-									new(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
-								}
-						},
+						[new(Elimination, begin, a)],
+						[
+							[
+								.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [],
+								.. candidateOffsets,
+								new HouseViewNode(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
+								new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
+							]
+						],
 						Technique.UniqueRectangle3U2,
 						d1,
 						d2,
@@ -2203,21 +2187,18 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var conjugatePairs = new Conjugate[] { new(cornerCell, end, a), new(begin, abzCell, a) };
+				var conjugatePairs = (Conjugate[])[new(cornerCell, end, a), new(begin, abzCell, a)];
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						new[] { new Conclusion(Elimination, abzCell, b) },
-						new[]
-						{
-							View.Empty
-								| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-								| candidateOffsets
-								| new HouseViewNode[]
-								{
-									new(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
-									new(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
-								}
-						},
+						[new(Elimination, abzCell, b)],
+						[
+							[
+								.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [],
+								.. candidateOffsets,
+								new HouseViewNode(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
+								new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
+							]
+						],
 						Technique.UniqueRectangle3E2,
 						d1,
 						d2,
@@ -2342,22 +2323,19 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var conjugatePairs = new Conjugate[] { new(head, begin, a), new(begin, end, b), new(end, extra, a) };
+				var conjugatePairs = (Conjugate[])[new(head, begin, a), new(begin, end, b), new(end, extra, a)];
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						conclusions.ToArray(),
-						new[]
-						{
-							View.Empty
-								| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-								| candidateOffsets
-								| new HouseViewNode[]
-								{
-									new(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
-									new(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line),
-									new(WellKnownColorIdentifier.Normal, conjugatePairs[2].Line)
-								}
-						},
+						[.. conclusions],
+						[
+							[
+								.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [],
+								.. candidateOffsets,
+								new HouseViewNode(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
+								new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line),
+								new HouseViewNode(WellKnownColorIdentifier.Normal, conjugatePairs[2].Line)
+							]
+						],
 						Technique.UniqueRectangle4X3,
 						d1,
 						d2,
@@ -2499,22 +2477,19 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						continue;
 					}
 
-					var conjugatePairs = new Conjugate[] { new(abx, aby, a), new(aby, abw, a), new(linkMap[0], linkMap[1], b) };
+					var conjugatePairs = (Conjugate[])[new(abx, aby, a), new(aby, abw, a), new(linkMap[0], linkMap[1], b)];
 					accumulator.Add(
 						new UniqueRectangleWithConjugatePairStep(
-							new[] { new Conclusion(Elimination, aby, b) },
-							new[]
-							{
-								View.Empty
-									| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-									| candidateOffsets
-									| new HouseViewNode[]
-									{
-										new(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
-										new(WellKnownColorIdentifier.Normal, conjugatePairs[1].Line),
-										new(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[2].Line)
-									}
-							},
+							[new(Elimination, aby, b)],
+							[
+								[
+									.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [],
+									.. candidateOffsets,
+									new HouseViewNode(WellKnownColorIdentifier.Normal, conjugatePairs[0].Line),
+									new HouseViewNode(WellKnownColorIdentifier.Normal, conjugatePairs[1].Line),
+									new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[2].Line)
+								]
+							],
 							Technique.UniqueRectangle4C3,
 							d1,
 							d2,
@@ -2698,12 +2673,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						accumulator.Add(
 							new UniqueRectangleWithWingStep(
 								from cell in elimMap select new Conclusion(Elimination, cell, elimDigit),
-								new[]
-								{
-									View.Empty
-										| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-										| candidateOffsets
-								},
+								[[.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [], .. candidateOffsets]],
 								arMode ? Technique.AvoidableRectangleXyWing : Technique.UniqueRectangleXyWing,
 								d1,
 								d2,
@@ -2800,12 +2770,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								accumulator.Add(
 									new UniqueRectangleWithWingStep(
 										from cell in elimMap select new Conclusion(Elimination, cell, elimDigit),
-										new[]
-										{
-											View.Empty
-												| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-												| candidateOffsets
-										},
+										[[.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [], .. candidateOffsets]],
 										arMode ? Technique.AvoidableRectangleXyzWing : Technique.UniqueRectangleXyzWing,
 										d1,
 										d2,
@@ -2923,12 +2888,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									accumulator.Add(
 										new UniqueRectangleWithWingStep(
 											from cell in elimMap select new Conclusion(Elimination, cell, elimDigit),
-											new[]
-											{
-												View.Empty
-													| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-													| candidateOffsets
-											},
+											[[.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [], .. candidateOffsets]],
 											arMode ? Technique.AvoidableRectangleWxyzWing : Technique.UniqueRectangleWxyzWing,
 											d1,
 											d2,
@@ -3240,18 +3200,15 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleWithSueDeCoqStep(
-						conclusions.ToArray(),
-						new[]
-						{
-							View.Empty
-								| (arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : null)
-								| candidateOffsets
-								| new HouseViewNode[]
-								{
-									new(WellKnownColorIdentifier.Normal, block),
-									new(WellKnownColorIdentifier.Auxiliary2, line)
-								}
-						},
+						[.. conclusions],
+						[
+							[
+								.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [],
+								.. candidateOffsets,
+								new HouseViewNode(WellKnownColorIdentifier.Normal, block),
+								new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, line)
+							]
+						],
 						digit1,
 						digit2,
 						(CellMap)urCells,
@@ -3452,32 +3409,24 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						var extraDigitMask = (Mask)(1 << extraDigit);
 						accumulator.Add(
 							new UniqueRectangleWithBabaGroupingStep(
-								conclusions.ToArray(),
-								new[]
-								{
-									View.Empty
-										| new CellViewNode(WellKnownColorIdentifier.Normal, targetCell)
-										| candidateOffsets
-										| new HouseViewNode[]
-										{
-											new(WellKnownColorIdentifier.Normal, block),
-											new(WellKnownColorIdentifier.Auxiliary1, line)
-										},
-									View.Empty
-										| new CandidateViewNode[]
-										{
-											new(WellKnownColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit),
-											new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit)
-										}
-										| new BabaGroupViewNode[]
-										{
-											new(WellKnownColorIdentifier.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask),
-											new(WellKnownColorIdentifier.Normal, targetCell, (byte)'x', _xOr_yMask),
-											new(WellKnownColorIdentifier.Normal, urCellInSameBlock, extraDigitId, extraDigitMask),
-											new(WellKnownColorIdentifier.Normal, anotherCell, (byte)'x', _xOr_yMask),
-											new(WellKnownColorIdentifier.Normal, resultCell, extraDigitId, extraDigitMask)
-										}
-								},
+								[.. conclusions],
+								[
+									[
+										new CellViewNode(WellKnownColorIdentifier.Normal, targetCell),
+										.. candidateOffsets,
+										new HouseViewNode(WellKnownColorIdentifier.Normal, block),
+										new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, line)
+									],
+									[
+										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit),
+										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit),
+										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask),
+										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, targetCell, (byte)'x', _xOr_yMask),
+										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, urCellInSameBlock, extraDigitId, extraDigitMask),
+										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, anotherCell, (byte)'x', _xOr_yMask),
+										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, resultCell, extraDigitId, extraDigitMask)
+									]
+								],
 								d1,
 								d2,
 								(CellMap)urCells,
@@ -3569,29 +3518,24 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						var extraDigitMask2 = (Mask)(1 << extraDigit);
 						accumulator.Add(
 							new UniqueRectangleWithBabaGroupingStep(
-								conclusionsAnotherSubType.ToArray(),
-								new[]
-								{
-									View.Empty
-										| new CellViewNode(WellKnownColorIdentifier.Normal, targetCell)
-										| candidateOffsetsAnotherSubtype
-										| new HouseViewNode[]
-										{
-											new(WellKnownColorIdentifier.Normal, block),
-											new(WellKnownColorIdentifier.Auxiliary1, line),
-											new(WellKnownColorIdentifier.Auxiliary1, anotherLine)
-										},
-									View.Empty
-										| candidateOffsetsAnotherSubtypeLighter
-										| new BabaGroupViewNode[]
-										{
-											new(WellKnownColorIdentifier.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask2),
-											new(WellKnownColorIdentifier.Normal, targetCell, (byte)'x', _xOr_yMask2),
-											new(WellKnownColorIdentifier.Normal, urCellInSameBlock, extraDigitId2, extraDigitMask2),
-											new(WellKnownColorIdentifier.Normal, anotherCell, (byte)'x', _xOr_yMask2),
-											new(WellKnownColorIdentifier.Normal, resultCell, extraDigitId2, extraDigitMask2)
-										}
-								},
+								[.. conclusionsAnotherSubType],
+								[
+									[
+										new CellViewNode(WellKnownColorIdentifier.Normal, targetCell),
+										.. candidateOffsetsAnotherSubtype,
+										new HouseViewNode(WellKnownColorIdentifier.Normal, block),
+										new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, line),
+										new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, anotherLine)
+									],
+									[
+										.. candidateOffsetsAnotherSubtypeLighter,
+										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask2),
+										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, targetCell, (byte)'x', _xOr_yMask2),
+										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, urCellInSameBlock, extraDigitId2, extraDigitMask2),
+										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, anotherCell, (byte)'x', _xOr_yMask2),
+										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, resultCell, extraDigitId2, extraDigitMask2)
+									]
+								],
 								d1,
 								d2,
 								(CellMap)urCells,
@@ -3709,17 +3653,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				accumulator.Add(
 					new UniqueRectangleExternalType1Or2Step(
 						from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit),
-						new[]
-						{
-							View.Empty
-								| cellOffsets
-								| candidateOffsets
-								| new HouseViewNode[]
-								{
-									new(WellKnownColorIdentifier.Normal, houseCombination[0]),
-									new(WellKnownColorIdentifier.Normal, houseCombination[1])
-								}
-						},
+						[
+							[
+								.. cellOffsets,
+								.. candidateOffsets,
+								new HouseViewNode(WellKnownColorIdentifier.Normal, houseCombination[0]),
+								new HouseViewNode(WellKnownColorIdentifier.Normal, houseCombination[1])
+							]
+						],
 						d1,
 						d2,
 						(CellMap)urCells,
@@ -3880,19 +3821,16 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 							accumulator.Add(
 								new UniqueRectangleExternalType3Step(
-									conclusions.ToArray(),
-									new[]
-									{
-										View.Empty
-											| cellOffsets
-											| candidateOffsets
-											| new HouseViewNode[]
-											{
-												new(WellKnownColorIdentifier.Normal, house),
-												new(WellKnownColorIdentifier.Auxiliary2, houseCombination[0]),
-												new(WellKnownColorIdentifier.Auxiliary2, houseCombination[1])
-											}
-									},
+									[.. conclusions],
+									[
+										[
+											.. cellOffsets,
+											.. candidateOffsets,
+											new HouseViewNode(WellKnownColorIdentifier.Normal, house),
+											new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, houseCombination[0]),
+											new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, houseCombination[1])
+										]
+									],
 									d1,
 									d2,
 									cells,
@@ -4052,19 +3990,16 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 						accumulator.Add(
 							new UniqueRectangleExternalType4Step(
-								conclusions.ToArray(),
-								new[]
-								{
-									View.Empty
-										| cellOffsets
-										| candidateOffsets
-										| new HouseViewNode[]
-										{
-											new(WellKnownColorIdentifier.Normal, house),
-											new(WellKnownColorIdentifier.Auxiliary2, houseCombination[0]),
-											new(WellKnownColorIdentifier.Auxiliary2, houseCombination[1])
-										}
-								},
+								[.. conclusions],
+								[
+									[
+										.. cellOffsets,
+										.. candidateOffsets,
+										new HouseViewNode(WellKnownColorIdentifier.Normal, house),
+										new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, houseCombination[0]),
+										new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, houseCombination[1])
+									]
+								],
 								d1,
 								d2,
 								cells,
@@ -4211,15 +4146,15 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							accumulator.Add(
 								new UniqueRectangleExternalTurbotFishStep(
 									from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit),
-									new[]
-									{
-										View.Empty
-											| candidateOffsets
-											| new HouseViewNode(WellKnownColorIdentifier.Normal, houses[0])
-											| new HouseViewNode(WellKnownColorIdentifier.Normal, houses[1])
-											| new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, weakLinkHouse)
-											| new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, strongLinkHouse)
-									},
+									[
+										[
+											.. candidateOffsets,
+											new HouseViewNode(WellKnownColorIdentifier.Normal, houses[0]),
+											new HouseViewNode(WellKnownColorIdentifier.Normal, houses[1]),
+											new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, weakLinkHouse),
+											new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, strongLinkHouse)
+										]
+									],
 									d1,
 									d2,
 									cells,
@@ -4412,8 +4347,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 					accumulator.Add(
 						new UniqueRectangleExternalXyWingStep(
-							new[] { new Conclusion(Elimination, cell1, elimDigit) },
-							new[] { View.Empty | cellOffsets | candidateOffsets },
+							[new(Elimination, cell1, elimDigit)],
+							[[.. cellOffsets, .. candidateOffsets]],
 							d1,
 							d2,
 							cells,
@@ -4521,7 +4456,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				accumulator.Add(
 					new UniqueRectangleExternalXyWingStep(
 						from cell in elimMap select new Conclusion(Elimination, cell, elimDigit),
-						new[] { View.Empty | cellOffsets | candidateOffsets },
+						[[.. cellOffsets, .. candidateOffsets]],
 						d1,
 						d2,
 						cells,
@@ -4685,13 +4620,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					accumulator.Add(
 						new UniqueRectangleExternalAlmostLockedSetsXzStep(
 							from cell in elimMap select new Conclusion(Elimination, cell, zDigit),
-							new[]
-							{
-								View.Empty
-									| candidateOffsets
-									| cellOffsets
-									| new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet1, alsHouse)
-							},
+							[[.. candidateOffsets, .. cellOffsets, new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet1, alsHouse)]],
 							d1,
 							d2,
 							cells,
@@ -4807,8 +4736,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 					accumulator.Add(
 						new AvoidableRectangleWithHiddenSingleStep(
-							new[] { new Conclusion(Elimination, baseCell, otherDigit) },
-							new[] { View.Empty | cellOffsets | candidateOffsets | new HouseViewNode(WellKnownColorIdentifier.Normal, sameHouse) },
+							[new(Elimination, baseCell, otherDigit)],
+							[[.. cellOffsets, .. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, sameHouse)]],
 							d1,
 							d2,
 							(CellMap)urCells,

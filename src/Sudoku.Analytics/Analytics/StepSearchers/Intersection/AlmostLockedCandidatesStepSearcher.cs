@@ -194,14 +194,15 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 
 			var hasValueCell = valueCells.Count != 0;
 			var step = new AlmostLockedCandidatesStep(
-				conclusions.ToArray(),
-				new[]
-				{
-					View.Empty
-						| (hasValueCell ? valueCells : null)
-						| candidateOffsets
-						| new HouseViewNode[] { new(WellKnownColorIdentifier.Normal, baseSet), new(WellKnownColorIdentifier.Auxiliary2, coverSet) }
-				},
+				[.. conclusions],
+				[
+					[
+						.. hasValueCell ? valueCells : [],
+						.. candidateOffsets,
+						new HouseViewNode(WellKnownColorIdentifier.Normal, baseSet),
+						new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, coverSet)
+					]
+				],
 				mask,
 				cells,
 				ahsCells,

@@ -79,8 +79,8 @@ public abstract class SubsetStepSearcher(
 					if (isLocked is true && OnlySearchingForLocked || !OnlySearchingForLocked)
 					{
 						var step = new NakedSubsetStep(
-							conclusions.ToArray(),
-							new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifier.Normal, house) },
+							[.. conclusions],
+							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
 							house,
 							cells,
 							digitsMask,
@@ -179,14 +179,14 @@ public abstract class SubsetStepSearcher(
 						}
 
 						var step = new HiddenSubsetStep(
-							conclusions.ToArray(),
-							new[]
-							{
-								View.Empty
-									| candidateOffsets
-									| new HouseViewNode(WellKnownColorIdentifier.Normal, house)
-									| cellOffsets
-							},
+							[.. conclusions],
+							[
+								[
+									.. candidateOffsets,
+									new HouseViewNode(WellKnownColorIdentifier.Normal, house),
+									.. cellOffsets
+								]
+							],
 							house,
 							map,
 							digitsMask,

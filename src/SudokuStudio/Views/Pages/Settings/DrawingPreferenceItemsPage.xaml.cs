@@ -10,51 +10,47 @@ public sealed partial class DrawingPreferenceItemsPage : Page
 	/// </summary>
 	private readonly ViewUnitBindableSource _defaultViewUnit = new()
 	{
-		View = View.Empty
-			| new CandidateViewNode[]
-			{
-				new(WellKnownColorIdentifier.Normal, 8),
-				new(WellKnownColorIdentifier.Normal, 17),
-				new(WellKnownColorIdentifier.Exofin, 49 * 9 + 7),
-				new(WellKnownColorIdentifier.Exofin, 50 * 9 + 7),
-				new(WellKnownColorIdentifier.Endofin, 30 * 9 + 1),
-				new(WellKnownColorIdentifier.Endofin, 31 * 9 + 1),
-				new(WellKnownColorIdentifier.Auxiliary1, 8 * 9 + 3),
-				new(WellKnownColorIdentifier.Auxiliary2, 17 * 9 + 6),
-				new(WellKnownColorIdentifier.Auxiliary3, 26 * 9 + 0),
-				new(WellKnownColorIdentifier.AlmostLockedSet1, 58 * 9 + 6),
-				new(WellKnownColorIdentifier.AlmostLockedSet1, 58 * 9 + 7),
-				new(WellKnownColorIdentifier.AlmostLockedSet2, 67 * 9 + 0),
-				new(WellKnownColorIdentifier.AlmostLockedSet2, 67 * 9 + 1),
-				new(WellKnownColorIdentifier.AlmostLockedSet3, 76 * 9 + 0),
-				new(WellKnownColorIdentifier.AlmostLockedSet3, 76 * 9 + 1),
-				new(WellKnownColorIdentifier.AlmostLockedSet4, 77 * 9 + 1),
-				new(WellKnownColorIdentifier.AlmostLockedSet4, 77 * 9 + 4),
-				new(WellKnownColorIdentifier.AlmostLockedSet5, 72 * 9 + 2),
-				new(WellKnownColorIdentifier.AlmostLockedSet5, 72 * 9 + 5),
-				new(WellKnownColorIdentifier.Auxiliary1, 36 * 9 + 2),
-				new(WellKnownColorIdentifier.Normal, 37 * 9 + 2),
-				new(WellKnownColorIdentifier.Auxiliary1, 44 * 9 + 6),
-				new(WellKnownColorIdentifier.Normal, 43 * 9 + 6),
-				new(WellKnownColorIdentifier.Normal, 45 * 9 + 5),
-				new(WellKnownColorIdentifier.Auxiliary1, 46 * 9 + 5),
-				new(WellKnownColorIdentifier.Normal, 35 * 9 + 3),
-				new(WellKnownColorIdentifier.Auxiliary1, 34 * 9 + 3)
-			}
-			| new LinkViewNode[]
-			{
-				new(WellKnownColorIdentifier.Normal, new(2, 36), new(2, 37), Inference.Strong),
-				new(WellKnownColorIdentifier.Normal, new(6, 44), new(6, 43), Inference.Strong),
-				new(WellKnownColorIdentifier.Normal, new(5, 45), new(5, 46), Inference.Weak),
-				new(WellKnownColorIdentifier.Normal, new(3, 35), new(3, 34), Inference.Weak)
-			},
-		Conclusions = new Conclusion[]
-		{
+		View =
+		[
+			new CandidateViewNode(WellKnownColorIdentifier.Normal, 8),
+			new CandidateViewNode(WellKnownColorIdentifier.Normal, 17),
+			new CandidateViewNode(WellKnownColorIdentifier.Exofin, 49 * 9 + 7),
+			new CandidateViewNode(WellKnownColorIdentifier.Exofin, 50 * 9 + 7),
+			new CandidateViewNode(WellKnownColorIdentifier.Endofin, 30 * 9 + 1),
+			new CandidateViewNode(WellKnownColorIdentifier.Endofin, 31 * 9 + 1),
+			new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, 8 * 9 + 3),
+			new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, 17 * 9 + 6),
+			new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, 26 * 9 + 0),
+			new CandidateViewNode(WellKnownColorIdentifier.AlmostLockedSet1, 58 * 9 + 6),
+			new CandidateViewNode(WellKnownColorIdentifier.AlmostLockedSet1, 58 * 9 + 7),
+			new CandidateViewNode(WellKnownColorIdentifier.AlmostLockedSet2, 67 * 9 + 0),
+			new CandidateViewNode(WellKnownColorIdentifier.AlmostLockedSet2, 67 * 9 + 1),
+			new CandidateViewNode(WellKnownColorIdentifier.AlmostLockedSet3, 76 * 9 + 0),
+			new CandidateViewNode(WellKnownColorIdentifier.AlmostLockedSet3, 76 * 9 + 1),
+			new CandidateViewNode(WellKnownColorIdentifier.AlmostLockedSet4, 77 * 9 + 1),
+			new CandidateViewNode(WellKnownColorIdentifier.AlmostLockedSet4, 77 * 9 + 4),
+			new CandidateViewNode(WellKnownColorIdentifier.AlmostLockedSet5, 72 * 9 + 2),
+			new CandidateViewNode(WellKnownColorIdentifier.AlmostLockedSet5, 72 * 9 + 5),
+			new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, 36 * 9 + 2),
+			new CandidateViewNode(WellKnownColorIdentifier.Normal, 37 * 9 + 2),
+			new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, 44 * 9 + 6),
+			new CandidateViewNode(WellKnownColorIdentifier.Normal, 43 * 9 + 6),
+			new CandidateViewNode(WellKnownColorIdentifier.Normal, 45 * 9 + 5),
+			new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, 46 * 9 + 5),
+			new CandidateViewNode(WellKnownColorIdentifier.Normal, 35 * 9 + 3),
+			new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, 34 * 9 + 3),
+			new LinkViewNode(WellKnownColorIdentifier.Normal, new(2, 36), new(2, 37), Inference.Strong),
+			new LinkViewNode(WellKnownColorIdentifier.Normal, new(6, 44), new(6, 43), Inference.Strong),
+			new LinkViewNode(WellKnownColorIdentifier.Normal, new(5, 45), new(5, 46), Inference.Weak),
+			new LinkViewNode(WellKnownColorIdentifier.Normal, new(3, 35), new(3, 34), Inference.Weak)
+		],
+		Conclusions =
+		[
 			new(Assignment, 1, 8),
 			new(Assignment, 79, 0),
 			new(Elimination, 0, 8),
 			new(Elimination, 80, 0)
-		}
+		]
 	};
 
 

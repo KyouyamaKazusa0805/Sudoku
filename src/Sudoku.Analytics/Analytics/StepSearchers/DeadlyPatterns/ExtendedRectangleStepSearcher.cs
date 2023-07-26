@@ -305,7 +305,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			goto ReturnNull;
 		}
 
-		var step = new ExtendedRectangleType1Step(conclusions.ToArray(), new[] { View.Empty | candidateOffsets }, allCellsMap, normalDigits);
+		var step = new ExtendedRectangleType1Step([.. conclusions], [[.. candidateOffsets]], allCellsMap, normalDigits);
 		if (onlyFindOne)
 		{
 			return step;
@@ -356,7 +356,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 		var step = new ExtendedRectangleType2Step(
 			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-			new[] { View.Empty | candidateOffsets },
+			[[.. candidateOffsets]],
 			allCellsMap,
 			normalDigits,
 			extraDigit
@@ -454,8 +454,8 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					}
 
 					var step = new ExtendedRectangleType3Step(
-						conclusions.ToArray(),
-						new[] { View.Empty | candidateOffsets | new HouseViewNode(0, houseIndex) },
+						[.. conclusions],
+						[[.. candidateOffsets, new HouseViewNode(0, houseIndex)]],
 						allCellsMap,
 						normalDigits,
 						cells,
@@ -532,7 +532,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					}
 				}
 
-				var step = new ExtendedRectangleType1Step(conclusions.ToArray(), new[] { View.Empty | candidateOffsets }, allCellsMap, normalDigits);
+				var step = new ExtendedRectangleType1Step([.. conclusions], [[.. candidateOffsets]], allCellsMap, normalDigits);
 				if (onlyFindOne)
 				{
 					return step;
@@ -591,8 +591,8 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						}
 
 						var step = new ExtendedRectangleType4Step(
-							conclusions.ToArray(),
-							new[] { View.Empty | candidateOffsets | new HouseViewNode(0, houseIndex) },
+							[.. conclusions],
+							[[.. candidateOffsets, new HouseViewNode(0, houseIndex)]],
 							allCellsMap,
 							normalDigits,
 							new(extraCellsMap, conjugateDigit)

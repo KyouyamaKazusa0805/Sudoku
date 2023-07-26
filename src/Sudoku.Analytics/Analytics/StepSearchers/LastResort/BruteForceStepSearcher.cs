@@ -24,10 +24,7 @@ public sealed partial class BruteForceStepSearcher : StepSearcher
 			if (grid.GetStatus(offset) == CellStatus.Empty)
 			{
 				var cand = offset * 9 + Solution.GetDigit(offset);
-				var step = new BruteForceStep(
-					new[] { new Conclusion(Assignment, cand) },
-					new[] { View.Empty | new CandidateViewNode(WellKnownColorIdentifier.Normal, cand) }
-				);
+				var step = new BruteForceStep([new(Assignment, cand)], [[new CandidateViewNode(WellKnownColorIdentifier.Normal, cand)]]);
 				if (context.OnlyFindOne)
 				{
 					return step;

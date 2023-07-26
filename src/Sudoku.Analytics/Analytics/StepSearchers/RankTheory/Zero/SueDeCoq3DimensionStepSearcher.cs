@@ -186,18 +186,15 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 												}
 
 												var step = new SueDeCoq3DimensionStep(
-													conclusions.ToArray(),
-													new[]
-													{
-														View.Empty
-															| candidateOffsets
-															| new HouseViewNode[]
-															{
-																new(WellKnownColorIdentifier.Normal, r),
-																new(WellKnownColorIdentifier.Auxiliary2, c),
-																new(WellKnownColorIdentifier.Auxiliary3, b)
-															}
-													},
+													[.. conclusions],
+													[
+														[
+															.. candidateOffsets,
+															new HouseViewNode(WellKnownColorIdentifier.Normal, r),
+															new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, c),
+															new HouseViewNode(WellKnownColorIdentifier.Auxiliary3, b)
+														]
+													],
 													rowMask,
 													columnMask,
 													blockMask,

@@ -64,9 +64,9 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 
 					tempAccumulator.Add(
 						new BowmanBingoStep(
-							new[] { new Conclusion(Elimination, startCandidate) },
-							new[] { View.Empty | candidateOffsets | GetLinks() },
-							_tempConclusions.ToArray()
+							[new(Elimination, startCandidate)],
+							[[.. candidateOffsets, .. GetLinks()]],
+							[.. _tempConclusions]
 						)
 					);
 				}
@@ -130,11 +130,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 				candidateOffsets[i++] = new(WellKnownColorIdentifier.Normal, candidate);
 			}
 
-			var step = new BowmanBingoStep(
-				new[] { new Conclusion(Elimination, startCand) },
-				new[] { View.Empty | candidateOffsets | GetLinks() },
-				_tempConclusions.ToArray()
-			);
+			var step = new BowmanBingoStep([new(Elimination, startCand)], [[.. candidateOffsets, .. GetLinks()]], [.. _tempConclusions]);
 			if (onlyFindOne)
 			{
 				return step;

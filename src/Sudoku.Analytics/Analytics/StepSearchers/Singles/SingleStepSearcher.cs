@@ -81,8 +81,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				}
 
 				var step = new FullHouseStep(
-					new[] { new Conclusion(Assignment, resultCell, digit) },
-					new[] { View.Empty | new HouseViewNode(WellKnownColorIdentifier.Normal, house) },
+					[new(Assignment, resultCell, digit)],
+					[[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
 					resultCell,
 					digit
 				);
@@ -132,12 +132,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var step = new NakedSingleStep(
-					new[] { new Conclusion(Assignment, cell, digit) },
-					new[] { View.Empty | GetNakedSingleExcluders(grid, cell, digit) },
-					cell,
-					digit
-				);
+				var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. GetNakedSingleExcluders(grid, cell, digit)]], cell, digit);
 				if (context.OnlyFindOne)
 				{
 					context.PreviousSetDigit = digit;
@@ -187,12 +182,11 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 			var digit = TrailingZeroCount(grid.GetCandidates(resultCell));
 			var step = new FullHouseStep(
-				new[] { new Conclusion(Assignment, resultCell, digit) },
-				new[] { View.Empty | new HouseViewNode(WellKnownColorIdentifier.Normal, house) },
+				[new(Assignment, resultCell, digit)],
+				[[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
 				resultCell,
 				digit
 			);
-
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -280,12 +274,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			}
 
 			var digit = TrailingZeroCount(mask);
-			var step = new NakedSingleStep(
-				new[] { new Conclusion(Assignment, cell, digit) },
-				new[] { View.Empty | GetNakedSingleExcluders(grid, cell, digit) },
-				cell,
-				digit
-			);
+			var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. GetNakedSingleExcluders(grid, cell, digit)]], cell, digit);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -353,15 +342,15 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			enableAndIsLastDigit = digitCount == 8;
 		}
 
-		return new HiddenSingleStep(
-			new[] { new Conclusion(Assignment, resultCell, digit) },
-			new[]
-			{
-				View.Empty
-					| (enableAndIsLastDigit ? cellOffsets : null)
-					| (enableAndIsLastDigit ? null : GetCrosshatchBaseCells(grid, digit, house, resultCell))
-					| (enableAndIsLastDigit ? null : new HouseViewNode(WellKnownColorIdentifier.Normal, house))
-			},
+		return new(
+			[new(Assignment, resultCell, digit)],
+			[
+				[
+					.. enableAndIsLastDigit ? cellOffsets : [],
+					.. enableAndIsLastDigit ? [] : GetCrosshatchBaseCells(grid, digit, house, resultCell),
+					enableAndIsLastDigit ? null : new HouseViewNode(WellKnownColorIdentifier.Normal, house)
+				]
+			],
 			resultCell,
 			digit,
 			house,

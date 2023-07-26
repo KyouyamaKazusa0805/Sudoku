@@ -41,8 +41,8 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ChromaticPatternStepSearcher()
 	{
-		var diagonalCases = new[] { new[] { 0, 10, 20 }, new[] { 1, 11, 18 }, new[] { 2, 9, 19 } };
-		var antidiagonalCases = new[] { new[] { 0, 11, 19 }, new[] { 1, 9, 20 }, new[] { 2, 10, 18 } };
+		var diagonalCases = (int[][])[[0, 10, 20], [1, 11, 18], [2, 9, 19]];
+		var antidiagonalCases = (int[][])[[0, 11, 19], [1, 9, 20], [2, 10, 18]];
 		var patternOffsetsList = new List<(int[], int[], int[], int[])>();
 		foreach (var (aCase, bCase, cCase, dCase) in stackalloc[]
 		{
@@ -233,8 +233,8 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 			}
 
 			var step = new ChromaticPatternType1Step(
-				conclusions.ToArray(),
-				new[] { View.Empty | candidateOffsets | from house in blocks select new HouseViewNode(WellKnownColorIdentifier.Normal, house) },
+				[.. conclusions],
+				[[.. candidateOffsets, .. from house in blocks select new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
 				blocks,
 				pattern,
 				extraCell,
@@ -327,14 +327,14 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 				}
 
 				var step = new ChromaticPatternXzStep(
-					conclusions.ToArray(),
-					new[]
-					{
-						View.Empty
-							| candidateOffsets
-							| new CellViewNode(WellKnownColorIdentifier.Normal, extraCell)
-							| from block in blocks select new HouseViewNode(WellKnownColorIdentifier.Normal, block)
-					},
+					[.. conclusions],
+					[
+						[
+							.. candidateOffsets,
+							new CellViewNode(WellKnownColorIdentifier.Normal, extraCell),
+							.. from block in blocks select new HouseViewNode(WellKnownColorIdentifier.Normal, block)
+						]
+					],
 					blocks,
 					pattern,
 					otherDigitsCells,

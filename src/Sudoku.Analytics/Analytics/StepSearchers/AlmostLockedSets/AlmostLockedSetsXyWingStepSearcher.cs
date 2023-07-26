@@ -202,18 +202,15 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 						}
 
 						var step = new AlmostLockedSetsXyWingStep(
-							conclusions.ToArray(),
-							new[]
-							{
-								View.Empty
-									| candidateOffsets
-									| new HouseViewNode[]
-									{
-										new(WellKnownColorIdentifier.AlmostLockedSet1, aHouse),
-										new(WellKnownColorIdentifier.AlmostLockedSet2, bHouse),
-										new(WellKnownColorIdentifier.AlmostLockedSet3, cHouse)
-									}
-							},
+							[.. conclusions],
+							[
+								[
+									.. candidateOffsets,
+									new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet1, aHouse),
+									new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet2, bHouse),
+									new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet3, cHouse)
+								]
+							],
 							a,
 							b,
 							c,

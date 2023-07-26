@@ -241,13 +241,14 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 				}
 
 				var step = new AlmostLockedSetsXzStep(
-					conclusions.ToArray(),
-					new[]
-					{
-						View.Empty
-							| candidateOffsets
-							| (isEsp ? null : new HouseViewNode[] { new(WellKnownColorIdentifier.Normal, house1), new(WellKnownColorIdentifier.Auxiliary1, house2) })
-					},
+					[.. conclusions],
+					[
+						[
+							.. candidateOffsets,
+							isEsp ? null : new HouseViewNode(WellKnownColorIdentifier.Normal, house1),
+							isEsp ? null : new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house2)
+						]
+					],
 					als1,
 					als2,
 					rccMask,

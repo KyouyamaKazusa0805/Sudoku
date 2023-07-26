@@ -102,8 +102,8 @@ public sealed partial class MultiBranchWWingStepSearcher : StepSearcher
 								}
 
 								var step = new MultiBranchWWingStep(
-									conclusions.ToArray(),
-									new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house) },
+									[.. conclusions],
+									[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house)]],
 									cells,
 									emptyCellsInThisHouse,
 									emptyCellsInThisHouse.CoveredLine

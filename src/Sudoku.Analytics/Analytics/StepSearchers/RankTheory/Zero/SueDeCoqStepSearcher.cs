@@ -217,17 +217,14 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 										}
 
 										var step = new SueDeCoqStep(
-											conclusions.ToArray(),
-											new[]
-											{
-												View.Empty
-													| candidateOffsets
-													| new HouseViewNode[]
-													{
-														new(WellKnownColorIdentifier.Normal, coverSet),
-														new(WellKnownColorIdentifier.Auxiliary2, baseSet)
-													}
-											},
+											[.. conclusions],
+											[
+												[
+													.. candidateOffsets,
+													new HouseViewNode(WellKnownColorIdentifier.Normal, coverSet),
+													new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, baseSet)
+												]
+											],
 											coverSet,
 											baseSet,
 											blockMask,

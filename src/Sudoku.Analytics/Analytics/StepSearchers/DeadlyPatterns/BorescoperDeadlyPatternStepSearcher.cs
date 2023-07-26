@@ -28,12 +28,18 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static BorescoperDeadlyPatternStepSearcher()
 	{
-		var quads = new[]
-		{
-			new[] { 0, 1, 3, 4 }, new[] { 1, 2, 4, 5 }, new[] { 3, 4, 6, 7 }, new[] { 4, 5, 7, 8 },
-			new[] { 0, 2, 3, 5 }, new[] { 3, 5, 6, 8 }, new[] { 0, 1, 6, 7 }, new[] { 1, 2, 7, 8 },
-			new[] { 0, 2, 6, 8 }
-		};
+		var quads = (int[][])
+		[
+			[0, 1, 3, 4],
+			[1, 2, 4, 5],
+			[3, 4, 6, 7],
+			[4, 5, 7, 8],
+			[0, 2, 3, 5],
+			[3, 5, 6, 8],
+			[0, 1, 6, 7],
+			[1, 2, 7, 8],
+			[0, 2, 6, 8]
+		];
 
 		var count = 0;
 		for (var block = 0; block < 9; block++)
@@ -61,13 +67,13 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				return;
 			}
 
-			var triplets = new[]
-			{
-				new[] { q1, q2, q3 }, // (0, 1) and (0, 2) is same house.
-				new[] { q2, q1, q4 }, // (0, 1) and (1, 3) is same house.
-				new[] { q3, q1, q4 }, // (0, 2) and (2, 3) is same house.
-				new[] { q4, q2, q3 } // (1, 3) and (2, 3) is same house.
-			};
+			var triplets = (int[][])
+			[
+				[q1, q2, q3], // (0, 1) and (0, 2) is same house.
+				[q2, q1, q4], // (0, 1) and (1, 3) is same house.
+				[q3, q1, q4], // (0, 2) and (2, 3) is same house.
+				[q4, q2, q3] // (1, 3) and (2, 3) is same house.
+			];
 
 			for (var j = 0; j < 4; j++)
 			{
@@ -307,7 +313,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				}
 			}
 
-			var step = new BorescoperDeadlyPatternType1Step(conclusions.ToArray(), new[] { View.Empty | candidateOffsets }, map, tempMask);
+			var step = new BorescoperDeadlyPatternType1Step([.. conclusions], [[.. candidateOffsets]], map, tempMask);
 			if (findOnlyOne)
 			{
 				return step;
@@ -372,13 +378,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				}
 			}
 
-			var step = new BorescoperDeadlyPatternType2Step(
-				conclusions.ToArray(),
-				new[] { View.Empty | candidateOffsets },
-				map,
-				tempMask,
-				otherDigit
-			);
+			var step = new BorescoperDeadlyPatternType2Step([.. conclusions], [[.. candidateOffsets]], map, tempMask, otherDigit);
 			if (findOnlyOne)
 			{
 				return step;
@@ -485,8 +485,8 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 						}
 
 						var step = new BorescoperDeadlyPatternType3Step(
-							conclusions.ToArray(),
-							new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex) },
+							[.. conclusions],
+							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)]],
 							map,
 							tempMask,
 							combination,
@@ -617,8 +617,8 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 					}
 
 					var step = new BorescoperDeadlyPatternType4Step(
-						conclusions.ToArray(),
-						new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex) },
+						[.. conclusions],
+						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)]],
 						map,
 						otherMask,
 						currentMap,

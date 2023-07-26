@@ -362,8 +362,7 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 	private ForcingChainStep CreateAicStep(scoped in Grid grid, ChainNode target, bool isX, bool isY)
 	{
 		var (candidate, isOn) = target;
-		var conclusion = new[] { new Conclusion(isOn ? Assignment : Elimination, candidate) };
-		var result = new ForcingChainStep(conclusion, target, isX, isY);
+		var result = new ForcingChainStep([new(isOn ? Assignment : Elimination, candidate)], target, isX, isY);
 		return new(result, result.CreateViews(grid));
 	}
 }

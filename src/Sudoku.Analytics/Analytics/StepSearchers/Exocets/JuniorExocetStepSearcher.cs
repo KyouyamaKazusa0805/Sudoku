@@ -39,7 +39,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 			{ 9, 18, 11, 20 }, { 0, 18, 2, 20 }, { 0, 9, 2, 11 },
 			{ 9, 18, 10, 19 }, { 0, 18, 1, 19 }, { 0, 9, 1, 10 }
 		};
-		var bb = new[] { 0, 3, 6, 27, 30, 33, 54, 57, 60, 0, 27, 54, 3, 30, 57, 6, 33, 60 };
+		var bb = (int[])[0, 3, 6, 27, 30, 33, 54, 57, 60, 0, 27, 54, 3, 30, 57, 6, 33, 60];
 		var bc = new[,]
 		{
 			{ 1, 2 }, { 0, 2 }, { 0, 1 }, { 4, 5 }, { 3, 5 }, { 3, 4 }, { 7, 8 }, { 6, 8 }, { 6, 7 },
@@ -186,7 +186,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 				continue;
 			}
 
-			var step = new JuniorExocetStep(new[] { View.Empty | cellOffsets | candidateOffsets }, currentJe, baseCellsDigitsMask, eliminations.ToArray());
+			var step = new JuniorExocetStep([[.. cellOffsets, .. candidateOffsets]], currentJe, baseCellsDigitsMask, [.. eliminations]);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -198,7 +198,6 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 			void gatherEliminations(Cell targetCell, Mask baseCellsDigits, Mask otherDigits, scoped in Grid grid)
 			{
 				var elimDigitsMask = (Mask)(grid.GetCandidates(targetCell) & ~(baseCellsDigits | otherDigits));
-
 				if (EmptyCells.Contains(targetCell))
 				{
 					// Check existence of eliminations.
@@ -206,12 +205,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 					{
 						foreach (var elimDigit in elimDigitsMask)
 						{
-							eliminations.Add(
-								new(
-									new Conclusion[] { new(Elimination, targetCell, elimDigit) },
-									ExocetEliminatedReason.Basic
-								)
-							);
+							eliminations.Add(new([new(Elimination, targetCell, elimDigit)], ExocetEliminatedReason.Basic));
 						}
 					}
 

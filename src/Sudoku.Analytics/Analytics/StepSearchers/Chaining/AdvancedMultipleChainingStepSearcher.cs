@@ -126,18 +126,17 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 		{
 			{
 				1,
-				new StepSearcher[]
-				{
+				[
 					new LockedCandidatesStepSearcher(),
 					new LockedSubsetStepSearcher(),
 					new NormalFishStepSearcher(),
 					new NormalSubsetStepSearcher()
-				}
+				]
 			},
-			{ 2, new StepSearcher[] { new NonMultipleChainingStepSearcher() } },
-			{ 3, new StepSearcher[] { new MultipleChainingStepSearcher { AllowMultiple = true } } },
-			{ 4, new StepSearcher[] { new MultipleChainingStepSearcher { AllowDynamic = true, AllowMultiple = true } } },
-			{ 5, new StepSearcher[] { new AdvancedMultipleChainingStepSearcher { DynamicNestingLevel = DynamicNestingLevel - 3 } } }
+			{ 2, [new NonMultipleChainingStepSearcher()] },
+			{ 3, [new MultipleChainingStepSearcher { AllowMultiple = true }] },
+			{ 4, [new MultipleChainingStepSearcher { AllowDynamic = true, AllowMultiple = true }] },
+			{ 5, [new AdvancedMultipleChainingStepSearcher { DynamicNestingLevel = DynamicNestingLevel - 3 }] }
 		};
 
 		var result = new NodeList();
@@ -150,7 +149,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private BinaryForcingChainsStep CreateChainingOnStep(scoped in Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
 	{
-		var conclusion = new[] { new Conclusion(Assignment, target.Candidate) };
+		var conclusion = (Conclusion[])[new(Assignment, target.Candidate)];
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
 		return new(result, result.CreateViews(grid));
 	}
@@ -161,7 +160,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private BinaryForcingChainsStep CreateChainingOffStep(scoped in Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
 	{
-		var conclusion = new[] { new Conclusion(Elimination, target.Candidate) };
+		var conclusion = (Conclusion[])[new(Elimination, target.Candidate)];
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
 		return new(result, result.CreateViews(grid));
 	}
@@ -173,7 +172,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	private CellForcingChainsStep CreateCellForcingStep(scoped in Grid grid, byte srcCell, ChainNode target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
-		var conclusion = new[] { new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit) };
+		var conclusion = (Conclusion[])[new(targetIsOn ? Assignment : Elimination, targetCell, targetDigit)];
 
 		// Build chains.
 		var chains = new MultipleForcingChains();
@@ -197,7 +196,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	private RegionForcingChainsStep CreateHouseForcingStep(scoped in Grid grid, House houseIndex, byte digit, ChainNode target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
-		var conclusions = new[] { new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit) };
+		var conclusions = (Conclusion[])[new(targetIsOn ? Assignment : Elimination, targetCell, targetDigit)];
 
 		// Build chains.
 		var chains = new MultipleForcingChains();

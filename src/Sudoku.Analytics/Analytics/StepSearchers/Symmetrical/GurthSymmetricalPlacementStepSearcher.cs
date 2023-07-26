@@ -193,12 +193,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 
 		return conclusions.Count == 0
 			? null
-			: new GurthSymmetricalPlacementStep(
-				conclusions.ToArray(),
-				new[] { View.Empty | cellOffsets | candidateOffsets },
-				SymmetricType.Diagonal,
-				mapping
-			);
+			: new GurthSymmetricalPlacementStep([.. conclusions], [[.. cellOffsets, .. candidateOffsets]], SymmetricType.Diagonal, mapping);
 	}
 
 	/// <summary>
@@ -319,7 +314,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 
 		return conclusions.Count == 0
 			? null
-			: new(conclusions.ToArray(), new[] { View.Empty | cellOffsets | candidateOffsets }, SymmetricType.AntiDiagonal, mapping);
+			: new([.. conclusions], [[.. cellOffsets, .. candidateOffsets]], SymmetricType.AntiDiagonal, mapping);
 	}
 
 	/// <summary>
@@ -402,8 +397,8 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			RecordHighlightCells(grid, cellOffsets, mapping);
 
 			return new(
-				new[] { new Conclusion(Assignment, 40, digit) },
-				new[] { View.Empty | cellOffsets | new CandidateViewNode(WellKnownColorIdentifier.Normal, 360 + digit) },
+				[new(Assignment, 40, digit)],
+				[[.. cellOffsets, new CandidateViewNode(WellKnownColorIdentifier.Normal, 360 + digit)]],
 				SymmetricType.Central,
 				mapping
 			);

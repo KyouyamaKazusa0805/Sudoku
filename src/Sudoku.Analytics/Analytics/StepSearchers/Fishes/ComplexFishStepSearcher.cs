@@ -415,8 +415,8 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 
 								// Add into the 'accumulator'.
 								var step = new ComplexFishStep(
-									conclusions.ToArray(),
-									new[] { View.Empty | candidateOffsets | houseOffsets },
+									[.. conclusions],
+									[[.. candidateOffsets, .. houseOffsets]],
 									digit,
 									baseSetsMask,
 									coverSetsMask,

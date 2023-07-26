@@ -396,7 +396,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 		bool isAbsurd
 	)
 	{
-		var conclusion = new[] { new Conclusion(Assignment, target.Candidate) };
+		var conclusion = (Conclusion[])[new(Assignment, target.Candidate)];
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio);
 		return new(result, result.CreateViews(grid));
 	}
@@ -413,7 +413,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 		bool isAbsurd
 	)
 	{
-		var conclusion = new[] { new Conclusion(Elimination, target.Candidate) };
+		var conclusion = (Conclusion[])[new(Elimination, target.Candidate)];
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio);
 		return new(result, result.CreateViews(grid));
 	}
@@ -424,7 +424,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	private CellForcingChainsStep CreateCellForcingStep(scoped in Grid grid, byte srcCell, ChainNode target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
-		var conclusion = new[] { new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit) };
+		var conclusion = (Conclusion[])[new(targetIsOn ? Assignment : Elimination, targetCell, targetDigit)];
 
 		// Build chains.
 		var chains = new MultipleForcingChains();
@@ -453,7 +453,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
-		var conclusions = new[] { new Conclusion(targetIsOn ? Assignment : Elimination, targetCell, targetDigit) };
+		var conclusions = (Conclusion[])[new(targetIsOn ? Assignment : Elimination, targetCell, targetDigit)];
 
 		// Build chains.
 		var chains = new MultipleForcingChains();

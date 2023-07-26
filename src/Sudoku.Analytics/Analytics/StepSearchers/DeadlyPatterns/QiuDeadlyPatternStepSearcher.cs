@@ -285,14 +285,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 		var offset = isRow ? 9 : 18;
 		var step = new QiuDeadlyPatternType1Step(
-			conclusions.ToArray(),
-			new[]
-			{
-				View.Empty
-					| cellOffsets
-					| candidateOffsets
-					| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
-			},
+			[.. conclusions],
+			[
+				[
+					.. cellOffsets,
+					.. candidateOffsets,
+					.. from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
+				]
+			],
 			pattern,
 			elimCell * 9 + extraDigit
 		);
@@ -366,14 +366,8 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 		var offset = isRow ? 9 : 18;
 		var step = new QiuDeadlyPatternType2Step(
-			conclusions.ToArray(),
-			new[]
-			{
-				View.Empty
-					| cellOffsets
-					| candidateOffsets
-					| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
-			},
+			[.. conclusions],
+			[[.. cellOffsets, .. candidateOffsets, .. from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)]],
 			pattern,
 			extraDigit
 		);
@@ -467,14 +461,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 					var offset = isRow ? 9 : 18;
 					var step = new QiuDeadlyPatternType3Step(
-						conclusions.ToArray(),
-						new[]
-						{
-							View.Empty
-								| cellOffsets
-								| candidateOffsets
-								| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
-						},
+						[.. conclusions],
+						[
+							[
+								.. cellOffsets,
+								.. candidateOffsets,
+								.. from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
+							]
+						],
 						pattern,
 						cells,
 						mask,
@@ -567,14 +561,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 				var offset = isRow ? 9 : 18;
 				var step = new QiuDeadlyPatternType4Step(
-					conclusions.ToArray(),
-					new[]
-					{
-						View.Empty
-							| cellOffsets
-							| candidateOffsets
-							| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
-					},
+					[.. conclusions],
+					[
+						[
+							.. cellOffsets,
+							.. candidateOffsets,
+							.. from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
+						]
+					],
 					pattern,
 					new(pair, digit)
 				);
@@ -694,14 +688,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 		var offset = isRow ? 9 : 18;
 		var step = new QiuDeadlyPatternLockedTypeStep(
-			conclusions.ToArray(),
-			new[]
-			{
-				View.Empty
-					| cellOffsets
-					| candidateOffsets
-					| from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
-			},
+			[.. conclusions],
+			[
+				[
+					.. cellOffsets,
+					.. candidateOffsets,
+					.. from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
+				]
+			],
 			pattern,
 			candidates
 		);

@@ -29,12 +29,18 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static FireworkStepSearcher()
 	{
-		var houses = new[]
-		{
-			new[] { 0, 1, 3, 4 }, new[] { 0, 2, 3, 5 }, new[] { 1, 2, 4, 5 },
-			new[] { 0, 1, 6, 7 }, new[] { 0, 2, 6, 8 }, new[] { 1, 2, 7, 8 },
-			new[] { 3, 4, 6, 7 }, new[] { 3, 5, 6, 8 }, new[] { 4, 5, 7, 8 }
-		};
+		var houses = (int[][])
+		[
+			[0, 1, 3, 4],
+			[0, 2, 3, 5],
+			[1, 2, 4, 5],
+			[0, 1, 6, 7],
+			[0, 2, 6, 8],
+			[1, 2, 7, 8],
+			[3, 4, 6, 7],
+			[3, 5, 6, 8],
+			[4, 5, 7, 8]
+		];
 
 		var i = 0;
 		foreach (var houseQuad in houses)
@@ -239,8 +245,8 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					}
 
 					var step = new FireworkPairType1Step(
-						conclusions.ToArray(),
-						new[] { View.Empty | candidateOffsets, View.Empty | candidateOffsets | cellOffsets },
+						[.. conclusions],
+						[[.. candidateOffsets], [.. candidateOffsets, .. cellOffsets]],
 						map,
 						currentDigitsMask,
 						extraCell1,
@@ -359,20 +365,17 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			}
 
 			var step = new FireworkTripleStep(
-				conclusions.ToArray(),
-				new[]
-				{
-					View.Empty | candidateOffsets,
-					View.Empty
-						| cellOffsets
-						| unknowns
-						| new BabaGroupViewNode[]
-						{
-							new(WellKnownColorIdentifier.Normal, pivot, (Utf8Char)'z', (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)),
-							new(WellKnownColorIdentifier.Normal, cell1, (Utf8Char)'x', (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)),
-							new(WellKnownColorIdentifier.Normal, cell2, (Utf8Char)'y', (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
-						}
-				},
+				[.. conclusions],
+				[
+					[.. candidateOffsets],
+					[
+						.. cellOffsets,
+						.. unknowns,
+						new BabaGroupViewNode(WellKnownColorIdentifier.Normal, pivot, (Utf8Char)'z', (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)),
+						new BabaGroupViewNode(WellKnownColorIdentifier.Normal, cell1, (Utf8Char)'x', (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)),
+						new BabaGroupViewNode(WellKnownColorIdentifier.Normal, cell2, (Utf8Char)'y', (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
+					]
+				],
 				pattern.Map,
 				currentDigitsMask
 			);
@@ -533,13 +536,8 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					}
 
 					var step = new FireworkQuadrupleStep(
-						conclusions.ToArray(),
-						new[]
-						{
-							View.Empty | candidateOffsets,
-							View.Empty | cellOffsets1 | candidateOffsetsView2,
-							View.Empty | cellOffsets2 | candidateOffsetsView3
-						},
+						[.. conclusions],
+						[[.. candidateOffsets], [.. cellOffsets1, .. candidateOffsetsView2], [.. cellOffsets2, .. candidateOffsetsView3]],
 						map,
 						fourDigitsMask
 					);

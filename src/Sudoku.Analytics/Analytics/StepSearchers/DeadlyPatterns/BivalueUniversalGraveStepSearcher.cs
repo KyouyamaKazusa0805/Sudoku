@@ -70,8 +70,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			{
 				// BUG + 1 found.
 				var step = new BivalueUniversalGraveType1Step(
-					new[] { new Conclusion(Assignment, trueCandidate) },
-					new[] { View.Empty | new CandidateViewNode(WellKnownColorIdentifier.Normal, trueCandidate) }
+					[new(Assignment, trueCandidate)],
+					[[new CandidateViewNode(WellKnownColorIdentifier.Normal, trueCandidate)]]
 				);
 				if (context.OnlyFindOne)
 				{
@@ -179,8 +179,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				}
 
 				var step = new BivalueUniversalGraveFalseCandidateTypeStep(
-					new[] { new Conclusion(Elimination, cell, digit) },
-					new[] { View.Empty | cellOffsets },
+					[new(Elimination, cell, digit)],
+					[[.. cellOffsets]],
 					cell * 9 + digit
 				);
 				if (context.OnlyFindOne)
@@ -260,7 +260,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		}
 
 		// BUG type 2.
-		var step = new BivalueUniversalGraveType2Step(conclusions.ToArray(), new[] { View.Empty | candidateOffsets }, digit, (CellMap)cells);
+		var step = new BivalueUniversalGraveType2Step([.. conclusions], [[.. candidateOffsets]], digit, (CellMap)cells);
 		if (onlyFindOne)
 		{
 			return step;
@@ -345,8 +345,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					}
 
 					var step = new BivalueUniversalGraveType3Step(
-						conclusions.ToArray(),
-						new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifier.Normal, house) },
+						[.. conclusions],
+						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
 						trueCandidates,
 						digitsMask,
 						cells,
@@ -476,8 +476,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				}
 
 				var step = new BivalueUniversalGraveType4Step(
-					conclusions.ToArray(),
-					new[] { View.Empty | candidateOffsets | new HouseViewNode(WellKnownColorIdentifier.Normal, house) },
+					[.. conclusions],
+					[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
 					digitsMask,
 					CellMap.Empty + cells,
 					new(c1, c2, conjugatePairDigit)
@@ -532,7 +532,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		}
 
 		// BUG + n.
-		var step = new BivalueUniversalGraveMultipleStep(conclusions.ToArray(), new[] { View.Empty | candidateOffsets }, trueCandidates);
+		var step = new BivalueUniversalGraveMultipleStep([.. conclusions], [[.. candidateOffsets]], trueCandidates);
 		if (onlyFindOne)
 		{
 			return step;
@@ -589,8 +589,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			}
 
 			var step = new BivalueUniversalGraveXzStep(
-				conclusions.ToArray(),
-				new[] { View.Empty | new CellViewNode(WellKnownColorIdentifier.Normal, cell) | candidateOffsets },
+				[.. conclusions],
+				[[new CellViewNode(WellKnownColorIdentifier.Normal, cell), .. candidateOffsets]],
 				mask,
 				CellsMap[c1] + c2,
 				cell

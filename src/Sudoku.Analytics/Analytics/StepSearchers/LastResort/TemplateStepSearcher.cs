@@ -41,7 +41,7 @@ public sealed partial class TemplateStepSearcher : StepSearcher
 					candidateOffsets[z++] = new(WellKnownColorIdentifier.Normal, candidate);
 				}
 
-				var templateSetStep = new TemplateStep(templateSetConclusions, new[] { View.Empty | candidateOffsets }, false);
+				var templateSetStep = new TemplateStep(templateSetConclusions, [[.. candidateOffsets]], false);
 				if (context.OnlyFindOne)
 				{
 					return templateSetStep;

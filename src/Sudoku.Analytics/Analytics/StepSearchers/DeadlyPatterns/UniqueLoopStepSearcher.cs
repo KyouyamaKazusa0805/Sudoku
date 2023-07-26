@@ -147,8 +147,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		}
 
 		var step = new UniqueLoopType1Step(
-			conclusions.ToArray(),
-			new[] { View.Empty | candidateOffsets | UniqueLoopStepSearcherHelper.GetLoopLinks(path) },
+			[.. conclusions],
+			[[.. candidateOffsets, .. UniqueLoopStepSearcherHelper.GetLoopLinks(path)]],
 			d1,
 			d2,
 			loop
@@ -213,7 +213,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 		var step = new UniqueLoopType2Step(
 			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-			new[] { View.Empty | candidateOffsets | UniqueLoopStepSearcherHelper.GetLoopLinks(path) },
+			[[.. candidateOffsets, .. UniqueLoopStepSearcherHelper.GetLoopLinks(path)]],
 			d1,
 			d2,
 			loop,
@@ -348,14 +348,14 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						}
 
 						var step = new UniqueLoopType3Step(
-							conclusions.ToArray(),
-							new[]
-							{
-								View.Empty
-									| candidateOffsets
-									| new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)
-									| UniqueLoopStepSearcherHelper.GetLoopLinks(path)
-							},
+							[.. conclusions],
+							[
+								[
+									.. candidateOffsets,
+									new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex),
+									.. UniqueLoopStepSearcherHelper.GetLoopLinks(path)
+								]
+							],
 							d1,
 							d2,
 							loop,
@@ -434,8 +434,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					}
 
 					var step = new UniqueLoopType3Step(
-						conclusions.ToArray(),
-						new[] { View.Empty | candidateOffsets | UniqueLoopStepSearcherHelper.GetLoopLinks(path) },
+						[.. conclusions],
+						[[.. candidateOffsets, .. UniqueLoopStepSearcherHelper.GetLoopLinks(path)]],
 						d1,
 						d2,
 						loop,
@@ -525,14 +525,14 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				}
 
 				var step = new UniqueLoopType4Step(
-					conclusions.ToArray(),
-					new[]
-					{
-						View.Empty
-							| candidateOffsets
-							| new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)
-							| UniqueLoopStepSearcherHelper.GetLoopLinks(path)
-					},
+					[.. conclusions],
+					[
+						[
+							.. candidateOffsets,
+							new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex),
+							.. UniqueLoopStepSearcherHelper.GetLoopLinks(path)
+						]
+					],
 					d1,
 					d2,
 					loop,

@@ -206,8 +206,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		}
 
 		var step = new ReverseBivalueUniversalGraveType1Step(
-			new[] { conclusion },
-			new[] { View.Empty | cellOffsets },
+			[conclusion],
+			[[.. cellOffsets]],
 			d1,
 			d2,
 			completePattern,
@@ -268,7 +268,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 
 		var step = new ReverseBivalueUniversalGraveType2Step(
 			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-			new[] { View.Empty | cellOffsets | candidateOffsets },
+			[[.. cellOffsets, .. candidateOffsets]],
 			d1,
 			d2,
 			extraDigit,
@@ -359,17 +359,17 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			var lockedTargetOuter = new LockedTarget(selectedDigit, conjugatePairCellOuterPattern);
 			var anotherLockedTarget = new LockedTarget(selectedDigit, anotherCell);
 			var step = new ReverseBivalueUniversalGraveType4Step(
-				new[] { conclusion },
-				new[]
-				{
-					View.Empty
-						| cellOffsets
-						| new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairCellInnerPattern * 9 + selectedDigit)
-						| new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairCellOuterPattern * 9 + selectedDigit)
-						| new HouseViewNode(WellKnownColorIdentifier.Normal, house)
-						| new LinkViewNode(WellKnownColorIdentifier.Normal, lockedTargetInner, anotherLockedTarget, Inference.Weak)
-						| new LinkViewNode(WellKnownColorIdentifier.Normal, lockedTargetOuter, anotherLockedTarget, Inference.Weak)
-				},
+				[conclusion],
+				[
+					[
+						.. cellOffsets,
+						new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairCellInnerPattern * 9 + selectedDigit),
+						new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairCellOuterPattern * 9 + selectedDigit),
+						new HouseViewNode(WellKnownColorIdentifier.Normal, house),
+						new LinkViewNode(WellKnownColorIdentifier.Normal, lockedTargetInner, anotherLockedTarget, Inference.Weak),
+						new LinkViewNode(WellKnownColorIdentifier.Normal, lockedTargetOuter, anotherLockedTarget, Inference.Weak)
+					]
+				],
 				d1,
 				d2,
 				completePattern,
