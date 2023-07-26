@@ -114,7 +114,7 @@ public sealed partial class AlmostLockedSet(
 		var result = new List<AlmostLockedSet>();
 		foreach (var cell in bivalueMap)
 		{
-			result.Add(new(grid.GetCandidates(cell), CellsMap[cell], PeersMap[cell] & emptyMap));
+			result.Add(new(grid.GetCandidates(cell), [cell], PeersMap[cell] & emptyMap));
 		}
 
 		// Get all non-bi-value-cell ALSes.

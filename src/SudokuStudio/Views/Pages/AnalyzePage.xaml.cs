@@ -873,8 +873,8 @@ public sealed partial class AnalyzePage : Page
 				}
 				else
 				{
-					var lt1 = new LockedTarget(candidate1 % 9, CellsMap[candidate1 / 9]);
-					var lt2 = new LockedTarget(candidate2 % 9, CellsMap[candidate2 / 9]);
+					var lt1 = new LockedTarget(candidate1 % 9, [candidate1 / 9]);
+					var lt2 = new LockedTarget(candidate2 % 9, [candidate2 / 9]);
 					view.View.Add(new LinkViewNode(default!, lt1, lt2, LinkKind)); // Link nodes don't use identifier to display colors.
 				}
 

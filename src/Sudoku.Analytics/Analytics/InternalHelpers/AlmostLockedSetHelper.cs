@@ -14,7 +14,7 @@ internal static class AlmostLockedSetHelper
 		var result = new List<AlmostLockedSet>();
 		foreach (var cell in BivalueCells)
 		{
-			result.Add(new(@this.GetCandidates(cell), CellsMap[cell], PeersMap[cell] & EmptyCells));
+			result.Add(new(@this.GetCandidates(cell), [cell], PeersMap[cell] & EmptyCells));
 		}
 
 		// Get all non-bi-value-cell ALSes.

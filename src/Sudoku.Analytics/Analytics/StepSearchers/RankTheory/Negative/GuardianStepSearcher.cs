@@ -122,7 +122,7 @@ file static unsafe class Cached
 		var result = new List<Guardian>();
 		foreach (var cell in CandidatesMap[digit])
 		{
-			DepthFirstSearching_Guardian(cell, cell, 0, CellsMap[cell], CellMap.Empty, digit, condition, result);
+			DepthFirstSearching_Guardian(cell, cell, 0, [cell], CellMap.Empty, digit, condition, result);
 		}
 
 		return [.. result.Distinct()];
