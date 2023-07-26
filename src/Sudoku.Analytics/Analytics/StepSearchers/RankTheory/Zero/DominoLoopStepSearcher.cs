@@ -193,7 +193,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 				linkHouse[6] = cells[12].ToHouseIndex(HouseType.Column);
 				linkHouse[7] = cells[14].ToHouseIndex(HouseType.Block);
 				var conclusions = new List<Conclusion>();
-				var map = (CellMap)cells & EmptyCells;
+				var map = [.. cells] & EmptyCells;
 				for (k = 0; k < 8; k++)
 				{
 					if ((HousesMap[linkHouse[k]] & EmptyCells) - map is not (var elimMap and not []))
@@ -247,7 +247,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 				}
 
 				// Gather the result.
-				var step = new DominoLoopStep([.. conclusions], [[.. candidateOffsets]], (CellMap)cells);
+				var step = new DominoLoopStep([.. conclusions], [[.. candidateOffsets]], [.. cells]);
 				if (context.OnlyFindOne)
 				{
 					return step;

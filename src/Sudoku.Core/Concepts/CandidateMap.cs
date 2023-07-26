@@ -350,7 +350,7 @@ public partial struct CandidateMap :
 							temp[j] = offsets[buffer[j]];
 						}
 
-						result[totalIndex++] = (CandidateMap)temp;
+						result[totalIndex++] = [.. temp];
 					}
 				}
 			}
@@ -387,7 +387,7 @@ public partial struct CandidateMap :
 							temp[j] = offsets[buffer[j]];
 						}
 
-						result.Add((CandidateMap)temp);
+						result.Add([.. temp]);
 					}
 				}
 			}
@@ -764,42 +764,6 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Candidate[](scoped in CandidateMap offsets) => offsets.Offsets;
-
-	/// <inheritdoc/>
-	public static implicit operator CandidateMap(scoped Span<Candidate> offsets)
-	{
-		var result = Empty;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
-	public static implicit operator CandidateMap(scoped ReadOnlySpan<Candidate> offsets)
-	{
-		var result = Empty;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
-	public static explicit operator CandidateMap(Candidate[] offsets)
-	{
-		var result = Empty;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
 
 	/// <inheritdoc/>
 	static implicit IBitStatusMap<CandidateMap, Candidate>.operator CandidateMap(scoped Span<Candidate> offsets)

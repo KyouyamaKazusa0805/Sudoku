@@ -183,7 +183,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					for (var c1 = 0; c1 < 4; c1++)
 					{
 						var corner1 = urCells[c1];
-						var otherCellsMap = (CellMap)urCells - corner1;
+						var otherCellsMap = (CellMap)([.. urCells]) - corner1;
 
 						CheckType1(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
 						CheckType5(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
@@ -368,7 +368,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				[[.. arMode ? UniqueRectangleStepSearcherHelper.GetHighlightCells(urCells) : [], .. arMode ? [] : candidateOffsets]],
 				d1,
 				d2,
-				(CellMap)urCells,
+				[.. urCells],
 				arMode,
 				index
 			)
@@ -470,7 +470,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					(false, true) => Technique.UniqueRectangleType5,
 					_ => Technique.UniqueRectangleType2
 				},
-				(CellMap)urCells,
+				[.. urCells],
 				arMode,
 				extraDigit,
 				index
@@ -614,7 +614,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							],
 							d1,
 							d2,
-							(CellMap)urCells,
+							[.. urCells],
 							iteratedCells,
 							otherDigitsMask,
 							houseIndex,
@@ -742,7 +742,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						Technique.UniqueRectangleType4,
 						d1,
 						d2,
-						(CellMap)urCells,
+						[.. urCells],
 						arMode,
 						[new(offsets[0], offsets[1], digit)],
 						index
@@ -841,7 +841,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				d1,
 				d2,
 				arMode ? Technique.AvoidableRectangleType5 : Technique.UniqueRectangleType5,
-				(CellMap)urCells,
+				[.. urCells],
 				arMode,
 				extraDigit,
 				index
@@ -968,7 +968,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					Technique.UniqueRectangleType6,
 					d1,
 					d2,
-					(CellMap)urCells,
+					[.. urCells],
 					false,
 					[new(corner1, isRow ? o1 : o2, digit), new(corner2, isRow ? o2 : o1, digit)],
 					index
@@ -1092,7 +1092,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					],
 					d1,
 					d2,
-					(CellMap)urCells,
+					[.. urCells],
 					arMode,
 					[new(abzCell, abxCell, digit), new(abzCell, abyCell, digit)],
 					index
@@ -1156,7 +1156,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var xyMask = (Mask)(o ^ comparer);
 		var x = TrailingZeroCount(xyMask);
 		var y = xyMask.GetNextSet(x);
-		var inter = otherCellsMap.PeerIntersection - (CellMap)urCells;
+		var inter = otherCellsMap.PeerIntersection - [.. urCells];
 		foreach (var possibleXyCell in inter)
 		{
 			if (grid.GetCandidates(possibleXyCell) != xyMask)
@@ -1219,7 +1219,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					arMode ? Technique.AvoidableRectangle2D : Technique.UniqueRectangle2D,
 					d1,
 					d2,
-					(CellMap)urCells,
+					[.. urCells],
 					arMode,
 					x,
 					y,
@@ -1389,7 +1389,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								Technique.UniqueRectangle2B1,
 								d1,
 								d2,
-								(CellMap)urCells,
+								[.. urCells],
 								arMode,
 								[new(cell, otherCell, digit)],
 								index
@@ -1563,7 +1563,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								Technique.UniqueRectangle2D1,
 								d1,
 								d2,
-								(CellMap)urCells,
+								[.. urCells],
 								arMode,
 								[new(cell, otherCell, digit)],
 								index
@@ -1634,7 +1634,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var xyMask = (Mask)(mask ^ comparer);
 		var x = TrailingZeroCount(xyMask);
 		var y = xyMask.GetNextSet(x);
-		var inter = otherCellsMap.PeerIntersection - (CellMap)urCells;
+		var inter = otherCellsMap.PeerIntersection - [.. urCells];
 		foreach (var possibleXyCell in inter)
 		{
 			if (grid.GetCandidates(possibleXyCell) != xyMask)
@@ -1700,7 +1700,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					arMode ? Technique.AvoidableRectangle3X : Technique.UniqueRectangle3X,
 					d1,
 					d2,
-					(CellMap)urCells,
+					[.. urCells],
 					arMode,
 					x,
 					y,
@@ -1826,7 +1826,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					Technique.UniqueRectangle3X2,
 					d1,
 					d2,
-					(CellMap)urCells,
+					[.. urCells],
 					arMode,
 					[new(abxCell, abzCell, b), new(abyCell, abzCell, a)],
 					index
@@ -1954,7 +1954,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						Technique.UniqueRectangle3N2,
 						d1,
 						d2,
-						(CellMap)urCells,
+						[.. urCells],
 						arMode,
 						conjugatePairs,
 						index
@@ -2078,7 +2078,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						Technique.UniqueRectangle3U2,
 						d1,
 						d2,
-						(CellMap)urCells,
+						[.. urCells],
 						arMode,
 						conjugatePairs,
 						index
@@ -2202,7 +2202,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						Technique.UniqueRectangle3E2,
 						d1,
 						d2,
-						(CellMap)urCells,
+						[.. urCells],
 						arMode,
 						conjugatePairs,
 						index
@@ -2339,7 +2339,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						Technique.UniqueRectangle4X3,
 						d1,
 						d2,
-						(CellMap)urCells,
+						[.. urCells],
 						arMode,
 						conjugatePairs,
 						index
@@ -2493,7 +2493,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							Technique.UniqueRectangle4C3,
 							d1,
 							d2,
-							(CellMap)urCells,
+							[.. urCells],
 							arMode,
 							conjugatePairs,
 							index
@@ -3211,7 +3211,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						],
 						digit1,
 						digit2,
-						(CellMap)urCells,
+						[.. urCells],
 						arMode,
 						block,
 						line,
@@ -3283,7 +3283,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 		void checkType1(scoped in Grid grid)
 		{
-			var cells = (CellMap)urCells;
+			var cells = (CellMap)([.. urCells]);
 
 			// Check all cells are empty.
 			var containsValueCells = false;
@@ -3429,7 +3429,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								],
 								d1,
 								d2,
-								(CellMap)urCells,
+								[.. urCells],
 								targetCell,
 								extraDigit,
 								index
@@ -3538,7 +3538,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								],
 								d1,
 								d2,
-								(CellMap)urCells,
+								[.. urCells],
 								targetCell,
 								extraDigit,
 								index
@@ -3580,7 +3580,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		bool arMode
 	)
 	{
-		var cells = (CellMap)urCells;
+		var cells = (CellMap)([.. urCells]);
 
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
@@ -3663,7 +3663,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						],
 						d1,
 						d2,
-						(CellMap)urCells,
+						[.. urCells],
 						guardianMap,
 						guardianDigit,
 						UniqueRectangleStepSearcherHelper.IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets),
@@ -3697,7 +3697,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		bool arMode
 	)
 	{
-		var cells = (CellMap)urCells;
+		var cells = (CellMap)([.. urCells]);
 
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
@@ -3871,7 +3871,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		bool arMode
 	)
 	{
-		var cells = (CellMap)urCells;
+		var cells = (CellMap)([.. urCells]);
 
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
@@ -4036,7 +4036,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		int index
 	)
 	{
-		var cells = (CellMap)urCells;
+		var cells = (CellMap)([.. urCells]);
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
@@ -4215,7 +4215,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		bool arMode
 	)
 	{
-		var cells = (CellMap)urCells;
+		var cells = (CellMap)([.. urCells]);
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
@@ -4495,7 +4495,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		bool arMode
 	)
 	{
-		var cells = (CellMap)urCells;
+		var cells = (CellMap)([.. urCells]);
 
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
@@ -4740,7 +4740,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							[[.. cellOffsets, .. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, sameHouse)]],
 							d1,
 							d2,
-							(CellMap)urCells,
+							[.. urCells],
 							baseCell,
 							anotherCell,
 							sameHouse,

@@ -236,7 +236,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		{
 			cells[i++] = candidate / 9;
 		}
-		if (((CellMap)cells).PeerIntersection is not (var map and not []))
+
+		if (((CellMap)([.. cells])).PeerIntersection is not (var map and not []))
 		{
 			return null;
 		}
@@ -260,7 +261,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		}
 
 		// BUG type 2.
-		var step = new BivalueUniversalGraveType2Step([.. conclusions], [[.. candidateOffsets]], digit, (CellMap)cells);
+		var step = new BivalueUniversalGraveType2Step([.. conclusions], [[.. candidateOffsets]], digit, [.. cells]);
 		if (onlyFindOne)
 		{
 			return step;
@@ -277,7 +278,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	private BivalueUniversalGraveType3Step? CheckType3Naked(List<Step> accumulator, scoped in Grid grid, scoped in CandidateMap trueCandidates, bool onlyFindOne)
 	{
 		// Check whether all true candidates lie in a same house.
-		var map = CellMap.Empty + from c in trueCandidates group c by c / 9 into z select z.Key;
+		var map = (CellMap)([.. from c in trueCandidates group c by c / 9 into z select z.Key]);
 		if (!map.InOneHouse)
 		{
 			return null;

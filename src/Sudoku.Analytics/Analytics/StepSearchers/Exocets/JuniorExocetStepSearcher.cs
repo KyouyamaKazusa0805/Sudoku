@@ -87,7 +87,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 							bb[bc[i, 0]] + rq[k, 1],
 							tr1,
 							bb[bc[i, 1]] + rq[l, 1],
-							(CellMap)crossline[7..],
+							[.. crossline[7..]],
 							[bb[bc[i, 1]] + m[l, 2], bb[bc[i, 1]] + m[l, 3]],
 							[bb[bc[i, 1]] + m[l, 0], bb[bc[i, 1]] + m[l, 1]],
 							[bb[bc[i, 0]] + m[k, 2], bb[bc[i, 0]] + m[k, 3]],

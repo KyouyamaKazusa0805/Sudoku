@@ -726,7 +726,7 @@ public unsafe partial struct CellMap :
 							temp[j] = offsets[buffer[j]];
 						}
 
-						result[totalIndex++] = (CellMap)temp;
+						result[totalIndex++] = [.. temp];
 					}
 				}
 			}
@@ -763,7 +763,7 @@ public unsafe partial struct CellMap :
 							temp[j] = offsets[buffer[j]];
 						}
 
-						result.Add((CellMap)temp);
+						result.Add([.. temp]);
 					}
 				}
 			}
@@ -1144,42 +1144,6 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Cell[](scoped in CellMap offsets) => offsets.ToArray();
-
-	/// <inheritdoc/>
-	public static implicit operator CellMap(scoped Span<Cell> offsets)
-	{
-		var result = Empty;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
-	public static implicit operator CellMap(scoped ReadOnlySpan<Cell> offsets)
-	{
-		var result = Empty;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
-	public static explicit operator CellMap(Cell[] offsets)
-	{
-		var result = Empty;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
 
 	/// <summary>
 	/// Implicit cast from <see cref="CellMap"/> to <see cref="@llong"/>.

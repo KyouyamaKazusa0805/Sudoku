@@ -331,7 +331,7 @@ public static class SolutionWideReadOnlyFields
 		PeersMap = new CellMap[81];
 		for (var i = 0; i < 81; i++)
 		{
-			PeersMap[i] = (CellMap)Peers[i];
+			PeersMap[i] = [.. Peers[i]];
 		}
 
 		CellsMap = new CellMap[81];
@@ -343,7 +343,7 @@ public static class SolutionWideReadOnlyFields
 		HousesMap = new CellMap[27];
 		for (var i = 0; i < 27; i++)
 		{
-			HousesMap[i] = (CellMap)HouseCells[i];
+			HousesMap[i] = [.. HouseCells[i]];
 		}
 
 		Chutes = new Chute[6];
