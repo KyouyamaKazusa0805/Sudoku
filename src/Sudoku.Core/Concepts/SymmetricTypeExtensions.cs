@@ -17,16 +17,15 @@ public static class SymmetricTypeExtensions
 	public static ReadOnlySpan<Cell> GetCells(this SymmetricType @this, int row, int column)
 		=> @this switch
 		{
-			SymmetricType.Central => new[] { row * 9 + column, (8 - row) * 9 + 8 - column },
-			SymmetricType.Diagonal => new[] { row * 9 + column, column * 9 + row },
-			SymmetricType.AntiDiagonal => new[] { row * 9 + column, (8 - column) * 9 + 8 - row },
-			SymmetricType.XAxis => new[] { row * 9 + column, (8 - row) * 9 + column },
-			SymmetricType.YAxis => new[] { row * 9 + column, row * 9 + 8 - column },
-			SymmetricType.DiagonalBoth => new[] { row * 9 + column, column * 9 + row, (8 - column) * 9 + 8 - row, (8 - row) * 9 + 8 - column },
-			SymmetricType.AxisBoth => new[] { row * 9 + column, (8 - row) * 9 + column, row * 9 + 8 - column, (8 - row) * 9 + 8 - column },
+			SymmetricType.Central => [row * 9 + column, (8 - row) * 9 + 8 - column],
+			SymmetricType.Diagonal => [row * 9 + column, column * 9 + row],
+			SymmetricType.AntiDiagonal => [row * 9 + column, (8 - column) * 9 + 8 - row],
+			SymmetricType.XAxis => [row * 9 + column, (8 - row) * 9 + column],
+			SymmetricType.YAxis => [row * 9 + column, row * 9 + 8 - column],
+			SymmetricType.DiagonalBoth => [row * 9 + column, column * 9 + row, (8 - column) * 9 + 8 - row, (8 - row) * 9 + 8 - column],
+			SymmetricType.AxisBoth => [row * 9 + column, (8 - row) * 9 + column, row * 9 + 8 - column, (8 - row) * 9 + 8 - column],
 			SymmetricType.All
-				=> new[]
-				{
+				=> [
 					row * 9 + column,
 					row * 9 + (8 - column),
 					(8 - row) * 9 + column,
@@ -35,8 +34,8 @@ public static class SymmetricTypeExtensions
 					column * 9 + (8 - row),
 					(8 - column) * 9 + row,
 					(8 - column) * 9 + (8 - row)
-				},
-			SymmetricType.None => new[] { row * 9 + column },
+				],
+			SymmetricType.None => [row * 9 + column],
 			_ => Array.Empty<Cell>()
 		};
 }

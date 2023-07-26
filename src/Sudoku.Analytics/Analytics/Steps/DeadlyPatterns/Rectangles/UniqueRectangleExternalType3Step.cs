@@ -42,19 +42,18 @@ public sealed partial class UniqueRectangleExternalType3Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[]
-		{
+		=> [
 			(ExtraDifficultyCaseNames.Size, PopCount((uint)SubsetDigitsMask) * .1M),
 			(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
 			(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
-		};
+		];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, SubsetCellsStr, DigitsStr } },
-			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, DigitsStr, SubsetCellsStr } }
+			{ EnglishLanguage, [D1Str, D2Str, CellsStr, SubsetCellsStr, DigitsStr] },
+			{ ChineseLanguage, [D1Str, D2Str, CellsStr, DigitsStr, SubsetCellsStr] }
 		};
 
 	private string DigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);

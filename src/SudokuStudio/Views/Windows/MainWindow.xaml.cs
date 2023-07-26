@@ -260,7 +260,7 @@ public sealed partial class MainWindow : Window
 			dragRectR.Height = (int)(AppTitleBar.ActualHeight * scaleAdjustment);
 			dragRectR.Width = (int)(RightDragColumn.ActualWidth * scaleAdjustment);
 
-			appWindow.TitleBar.SetDragRectangles(new[] { dragRectL, dragRectR });
+			appWindow.TitleBar.SetDragRectangles([dragRectL, dragRectR]);
 #else
 			var scaleAdjustment = GetScaleAdjustment();
 
@@ -269,7 +269,7 @@ public sealed partial class MainWindow : Window
 			rect.Y = 0;
 			rect.Width = (int)(AppTitleBarWithoutAutoSuggestBox.ActualWidth * scaleAdjustment);
 			rect.Height = (int)(AppTitleBarWithoutAutoSuggestBox.ActualHeight * scaleAdjustment);
-			appWindow.TitleBar.SetDragRectangles(new[] { rect });
+			appWindow.TitleBar.SetDragRectangles([rect]);
 #endif
 		}
 	}

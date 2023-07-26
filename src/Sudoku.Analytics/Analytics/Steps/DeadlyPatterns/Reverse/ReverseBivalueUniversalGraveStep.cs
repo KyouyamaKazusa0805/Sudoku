@@ -36,7 +36,7 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[] { (ExtraDifficultyCaseNames.Length, A002024(CompletePattern.Count) * .1M) };
+		=> [(ExtraDifficultyCaseNames.Length, A002024(CompletePattern.Count) * .1M)];
 
 	/// <summary>
 	/// Indicates the last cells used that are not empty.

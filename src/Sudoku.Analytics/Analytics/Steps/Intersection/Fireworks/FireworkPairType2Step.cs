@@ -28,8 +28,8 @@ public sealed partial class FireworkPairType2Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { Firework1Str, Firework2Str, DigitsStr, ExtraCellStr } },
-			{ ChineseLanguage, new[] { Firework1Str, Firework2Str, DigitsStr, ExtraCellStr } }
+			{ EnglishLanguage, [Firework1Str, Firework2Str, DigitsStr, ExtraCellStr] },
+			{ ChineseLanguage, [Firework1Str, Firework2Str, DigitsStr, ExtraCellStr] }
 		};
 
 	private string ExtraCellStr => RxCyNotation.ToCellString(ExtraCell);

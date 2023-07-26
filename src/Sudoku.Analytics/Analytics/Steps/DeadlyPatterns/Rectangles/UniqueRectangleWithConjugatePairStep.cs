@@ -29,14 +29,14 @@ public partial class UniqueRectangleWithConjugatePairStep(
 
 	/// <inheritdoc/>
 	public sealed override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[] { (ExtraDifficultyCaseNames.ConjugatePair, ConjugatePairs.Length * .2M) };
+		=> [(ExtraDifficultyCaseNames.ConjugatePair, ConjugatePairs.Length * .2M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, Prefix, Suffix, ConjPairsStr } },
-			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, ConjPairsStr } }
+			{ EnglishLanguage, [D1Str, D2Str, CellsStr, Prefix, Suffix, ConjPairsStr] },
+			{ ChineseLanguage, [D1Str, D2Str, CellsStr, ConjPairsStr] }
 		};
 
 	private string ConjPairsStr

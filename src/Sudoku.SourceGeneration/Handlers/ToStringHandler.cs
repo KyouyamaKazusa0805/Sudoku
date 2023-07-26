@@ -123,7 +123,7 @@ internal static class ToStringHandler
 			: "\t";
 		var otherModifiers = attribute.GetNamedArgument<string>("OtherModifiers") switch
 		{
-			{ } str => str.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries),
+			{ } str => str.Split((char[])[' '], StringSplitOptions.RemoveEmptyEntries),
 			_ => Array.Empty<string>()
 		};
 		var otherModifiersString = otherModifiers.Length == 0 ? string.Empty : $"{string.Join(" ", otherModifiers)} ";

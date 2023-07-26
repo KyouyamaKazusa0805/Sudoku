@@ -69,8 +69,7 @@ public sealed partial class RegularWingStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[]
-		{
+		=> [
 			(
 				ExtraDifficultyCaseNames.WingSize,
 				Size switch { 3 => 0, 4 => .2M, 5 => .4M, 6 => .7M, 7 => 1.0M, 8 => 1.3M, 9 => 1.6M, _ => 2.0M }
@@ -79,14 +78,14 @@ public sealed partial class RegularWingStep(
 				ExtraDifficultyCaseNames.Incompleteness,
 				(Code, IsIncomplete) switch { (Technique.XyWing, _) => 0, (Technique.XyzWing, _) => .2M, (_, true) => .1M, _ => 0 }
 			)
-		};
+		];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { DigitsStr, PivotCellStr, CellsStr } },
-			{ ChineseLanguage, new[] { DigitsStr, PivotCellStr, CellsStr } }
+			{ EnglishLanguage, [DigitsStr, PivotCellStr, CellsStr] },
+			{ ChineseLanguage, [DigitsStr, PivotCellStr, CellsStr] }
 		};
 
 	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);

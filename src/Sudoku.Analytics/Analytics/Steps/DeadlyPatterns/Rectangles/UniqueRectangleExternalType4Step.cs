@@ -40,18 +40,17 @@ public sealed partial class UniqueRectangleExternalType4Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[]
-		{
+		=> [
 			(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
 			(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
-		};
+		];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, ConjugatePairStr } },
-			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, ConjugatePairStr } }
+			{ EnglishLanguage, [D1Str, D2Str, CellsStr, ConjugatePairStr] },
+			{ ChineseLanguage, [D1Str, D2Str, CellsStr, ConjugatePairStr] }
 		};
 
 	private string ConjugatePairStr => ConjugatePair.ToString();

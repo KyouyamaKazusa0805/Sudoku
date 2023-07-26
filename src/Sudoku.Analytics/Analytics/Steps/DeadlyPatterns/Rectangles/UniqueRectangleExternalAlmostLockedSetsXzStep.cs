@@ -37,19 +37,18 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 {
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[]
-		{
+		=> [
 			(ExtraDifficultyCaseNames.Guardian, A004526(GuardianCells.Count) * .1M),
 			(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
 			(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
-		};
+		];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, AnotherAlsStr } },
-			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, AnotherAlsStr } }
+			{ EnglishLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr, AnotherAlsStr] },
+			{ ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr, AnotherAlsStr] }
 		};
 
 	private string GuardianCellsStr => GuardianCells.ToString();

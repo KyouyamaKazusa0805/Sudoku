@@ -15,7 +15,7 @@ public sealed class GridOption : IOption<GridOption, Grid, GridArgumentConverter
 	public static string Description => "Indicates the target grid to be analyzed.";
 
 	/// <inheritdoc/>
-	public static string[] Aliases => new[] { "--grid", "-g" };
+	public static string[] Aliases => ["--grid", "-g"];
 
 	/// <inheritdoc/>
 	public static Grid DefaultValue => Grid.Undefined;

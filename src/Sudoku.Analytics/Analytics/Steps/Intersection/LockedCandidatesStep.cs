@@ -26,8 +26,8 @@ public sealed partial class LockedCandidatesStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { DigitStr, BaseSetStr, CoverSetStr } },
-			{ ChineseLanguage, new[] { DigitStr, BaseSetStr, CoverSetStr } }
+			{ EnglishLanguage, [DigitStr, BaseSetStr, CoverSetStr] },
+			{ ChineseLanguage, [DigitStr, BaseSetStr, CoverSetStr] }
 		};
 
 	private string DigitStr => (Digit + 1).ToString();

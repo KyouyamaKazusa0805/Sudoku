@@ -104,7 +104,7 @@ public abstract partial class ChainingStep(
 		};
 
 	/// <inheritdoc/>
-	public sealed override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Length, LengthDifficulty) };
+	public sealed override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.Length, LengthDifficulty)];
 
 	/// <summary>
 	/// Indicates an <see cref="int"/> value indicating the ordering priority of the chain. Greater is heavier.
@@ -125,11 +125,11 @@ public abstract partial class ChainingStep(
 	protected internal ChainNode[] ChainsTargets
 		=> this switch
 		{
-			ForcingChainStep { Target: var target } => new[] { target },
-			BidirectionalCycleStep { DestinationOn: var target } => new[] { target },
-			CellForcingChainsStep { Chains.Potentials: var targets } => ((List<ChainNode>)targets).ToArray(),
-			RegionForcingChainsStep { Chains.Potentials: var targets } => ((List<ChainNode>)targets).ToArray(),
-			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => new[] { on, off },
+			ForcingChainStep { Target: var target } => [target],
+			BidirectionalCycleStep { DestinationOn: var target } => [target],
+			CellForcingChainsStep { Chains.Potentials: var targets } => [.. targets],
+			RegionForcingChainsStep { Chains.Potentials: var targets } => [.. targets],
+			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => [on, off],
 			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
 		};
 

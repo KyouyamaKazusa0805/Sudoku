@@ -29,14 +29,14 @@ public sealed partial class MultiBranchWWingStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[] { (ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .3M, 4 => .6M, 5 => 1.0M, _ => 1.4M }) };
+		=> [(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .3M, 4 => .6M, 5 => 1.0M, _ => 1.4M })];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { LeavesStr, RootStr, HouseStr } },
-			{ ChineseLanguage, new[] { RootStr, HouseStr, LeavesStr } }
+			{ EnglishLanguage, [LeavesStr, RootStr, HouseStr] },
+			{ ChineseLanguage, [RootStr, HouseStr, LeavesStr] }
 		};
 
 	private string LeavesStr => RxCyNotation.ToCellsString(Leaves);

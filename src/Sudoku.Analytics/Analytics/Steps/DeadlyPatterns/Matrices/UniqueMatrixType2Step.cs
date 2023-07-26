@@ -20,14 +20,14 @@ public sealed partial class UniqueMatrixType2Step(
 	public override int Type => 2;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.ExtraDigit, .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.ExtraDigit, .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { DigitsStr, CellsStr, ExtraDigitStr } },
-			{ ChineseLanguage, new[] { ExtraDigitStr, CellsStr, DigitsStr } }
+			{ EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitStr] },
+			{ ChineseLanguage, [ExtraDigitStr, CellsStr, DigitsStr] }
 		};
 
 	private string ExtraDigitStr => (ExtraDigit + 1).ToString();

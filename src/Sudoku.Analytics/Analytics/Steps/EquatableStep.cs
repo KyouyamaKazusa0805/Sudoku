@@ -22,8 +22,8 @@ public static class EquatableStep
 		=> steps switch
 		{
 			[] => Array.Empty<TSelf>(),
-			[var firstElement] => new[] { firstElement },
-			[var a, var b] => a == b ? new[] { a } : new[] { a, b },
+			[var firstElement] => [firstElement],
+			[var a, var b] => a == b ? [a] : [a, b],
 			_ => new HashSet<TSelf>(steps, LocalEqualityComparer<TSelf>.Instance)
 		};
 }

@@ -29,13 +29,13 @@ public static class ImageHandler
 			return false;
 		}
 
-		var sides = new LineSegment2DF[]
-		{
+		var sides = (LineSegment2DF[])
+		[
 			new(contour[0], contour[1]),
 			new(contour[1], contour[3]),
 			new(contour[2], contour[3]),
 			new(contour[0], contour[2])
-		};
+		];
 
 		// Check angles between common sides.
 		for (var j = 0; j < 4; j++)
@@ -121,7 +121,7 @@ public static class ImageHandler
 				var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
 				using var mat = new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0);
-				Cv.MixChannels(mat, image, new[] { 0, 0, 1, 1, 2, 2 });
+				Cv.MixChannels(mat, image, [0, 0, 1, 1, 2, 2]);
 
 				bitmap.UnlockBits(data);
 
@@ -158,7 +158,7 @@ public static class ImageHandler
 				var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 				using var indexValue = new Image<Gray, byte>(size.Width, size.Height, data.Stride, data.Scan0);
 				using Mat a = new(), r = new(), g = new(), b = new();
-				using var mv = new VectorOfMat(new[] { b, g, r, a });
+				using var mv = new VectorOfMat([b, g, r, a]);
 				try
 				{
 					Cv.LUT(indexValue, bTable, b);

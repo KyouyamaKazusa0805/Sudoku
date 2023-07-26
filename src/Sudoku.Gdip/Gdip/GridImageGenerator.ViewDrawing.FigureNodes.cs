@@ -151,7 +151,7 @@ partial class GridImageGenerator
 
 					static float[] getAngles(float startAngle)
 					{
-						var result = new[] { startAngle, default, default, default, default };
+						var result = (float[])[startAngle, default, default, default, default];
 						for (var i = 1; i < 5; i++)
 						{
 							result[i] = result[i - 1] + 2 * PI / 5;

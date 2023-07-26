@@ -22,14 +22,14 @@ public sealed partial class BorescoperDeadlyPatternType3Step(
 	public override int Type => 3;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Size, SubsetCells.Count * .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.Size, SubsetCells.Count * .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { DigitsStr, CellsStr, ExtraDigitsStr, ExtraCellsStr } },
-			{ ChineseLanguage, new[] { DigitsStr, CellsStr, ExtraCellsStr, ExtraDigitsStr } }
+			{ EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitsStr, ExtraCellsStr] },
+			{ ChineseLanguage, [DigitsStr, CellsStr, ExtraCellsStr, ExtraDigitsStr] }
 		};
 
 	private string ExtraDigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);

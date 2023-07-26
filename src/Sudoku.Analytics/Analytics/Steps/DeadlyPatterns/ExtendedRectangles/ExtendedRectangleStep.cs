@@ -26,7 +26,7 @@ public abstract partial class ExtendedRectangleStep(
 	public sealed override Technique Code => Enum.Parse<Technique>($"ExtendedRectangleType{Type}");
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Size, (A004526(Cells.Count) - 2) * .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.Size, (A004526(Cells.Count) - 2) * .1M)];
 
 	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 

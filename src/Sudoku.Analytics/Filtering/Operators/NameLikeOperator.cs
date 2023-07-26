@@ -13,7 +13,7 @@ public sealed class NameLikeOperator : OperatorBase
 
 
 	/// <inheritdoc/>
-	public override IEnumerable<string> Tags => new[] { "like" };
+	public override IEnumerable<string> Tags => ["like"];
 
 
 	/// <inheritdoc/>

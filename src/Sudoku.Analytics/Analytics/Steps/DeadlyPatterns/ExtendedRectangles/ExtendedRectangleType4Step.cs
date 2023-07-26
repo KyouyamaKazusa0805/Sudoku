@@ -20,15 +20,14 @@ public sealed partial class ExtendedRectangleType4Step(
 	public override int Type => 4;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[] { base.ExtraDifficultyCases[0], (ExtraDifficultyCaseNames.ConjugatePair, .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [.. base.ExtraDifficultyCases, (ExtraDifficultyCaseNames.ConjugatePair, .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { DigitsStr, CellsStr, ConjStr } },
-			{ ChineseLanguage, new[] { DigitsStr, CellsStr, ConjStr } }
+			{ EnglishLanguage, [DigitsStr, CellsStr, ConjStr] },
+			{ ChineseLanguage, [DigitsStr, CellsStr, ConjStr] }
 		};
 
 	private string ConjStr => ConjugatePair.ToString();

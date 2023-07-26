@@ -18,14 +18,14 @@ public sealed partial class QiuDeadlyPatternLockedTypeStep(
 	public override int Type => 5;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.LockedDigit, .2M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.LockedDigit, .2M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { PatternStr, Quantifier, Number, SingularOrPlural, CandidateStr, BeVerb } },
-			{ ChineseLanguage, new[] { Number, PatternStr } }
+			{ EnglishLanguage, [PatternStr, Quantifier, Number, SingularOrPlural, CandidateStr, BeVerb] },
+			{ ChineseLanguage, [Number, PatternStr] }
 		};
 
 	private string CandidateStr => (CandidateMap.Empty + CandidatesLocked).ToString();

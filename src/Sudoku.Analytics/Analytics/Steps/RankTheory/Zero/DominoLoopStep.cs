@@ -20,7 +20,7 @@ public sealed partial class DominoLoopStep(
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { CellsCountStr, CellsStr } }, { ChineseLanguage, new[] { CellsCountStr, CellsStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, [CellsCountStr, CellsStr] }, { ChineseLanguage, [CellsCountStr, CellsStr] } };
 
 	private string CellsCountStr => Cells.Count.ToString();
 

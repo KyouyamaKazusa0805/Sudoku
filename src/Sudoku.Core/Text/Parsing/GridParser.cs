@@ -60,8 +60,8 @@ public unsafe ref partial struct GridParser(
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static GridParser()
 	{
-		ParseFunctions = new ParserMethodPtr[]
-		{
+		ParseFunctions =
+		[
 			&OnParsingSimpleTable,
 			&OnParsingSimpleMultilineGrid,
 			&OnParsingPencilMarked,
@@ -71,14 +71,14 @@ public unsafe ref partial struct GridParser(
 			&OnParsingOpenSudoku,
 			&onParsingSukaku_1,
 			&onParsingSukaku_2
-		};
+		];
 
 #if GITHUB_ISSUE_216
 		// Cannot apply Range syntax '1..3' onto pointer-typed array.
 		// Array slicing on pointer type cannot be available for AnyCPU.
 		MultilineParseFunctions = ParseFunctions[1..3];
 #else
-		MultilineParseFunctions = new ParserMethodPtr[] { &OnParsingSimpleMultilineGrid, &OnParsingPencilMarked };
+		MultilineParseFunctions = [&OnParsingSimpleMultilineGrid, &OnParsingPencilMarked];
 #endif
 
 		static Grid onParsingSukaku_1(ref GridParser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
@@ -240,7 +240,7 @@ public unsafe ref partial struct GridParser(
 			return Grid.Undefined;
 		}
 
-		var values = parsingValue.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+		var values = parsingValue.Split((char[])['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 		if (values.Length != 9)
 		{
 			return Grid.Undefined;
@@ -249,7 +249,7 @@ public unsafe ref partial struct GridParser(
 		scoped var sb = new StringHandler(81);
 		foreach (var value in values)
 		{
-			foreach (var digitString in value.Split(new[] { '\t' }))
+			foreach (var digitString in value.Split(['\t']))
 			{
 				sb.Append(string.IsNullOrEmpty(digitString) ? '.' : digitString[0]);
 			}

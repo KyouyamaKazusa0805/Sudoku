@@ -20,7 +20,7 @@ public sealed partial class BivalueUniversalGraveFalseCandidateTypeStep(
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { FalseCandidateStr } }, { ChineseLanguage, new[] { FalseCandidateStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, [FalseCandidateStr] }, { ChineseLanguage, [FalseCandidateStr] } };
 
 	private string FalseCandidateStr => RxCyNotation.ToCandidateString(FalseCandidate);
 }

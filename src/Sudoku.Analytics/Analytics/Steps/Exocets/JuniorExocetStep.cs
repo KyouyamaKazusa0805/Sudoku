@@ -27,13 +27,12 @@ public sealed partial class JuniorExocetStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[]
-		{
+		=> [
 			(ExtraDifficultyCaseNames.Mirror, Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.Mirror) ? .1M : 0),
 			(ExtraDifficultyCaseNames.BiBiPattern, Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.BiBiPattern) ? .3M : 0),
 			(ExtraDifficultyCaseNames.TargetPair, Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.TargetPair) ? .1M : 0),
 			(ExtraDifficultyCaseNames.GeneralizedSwordfish, Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.GeneralizedSwordfish) ? .2M : 0)
-		};
+		];
 
 #if false
 	/// <summary>

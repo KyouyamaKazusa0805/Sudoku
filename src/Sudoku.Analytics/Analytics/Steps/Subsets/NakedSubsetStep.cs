@@ -50,15 +50,14 @@ public sealed partial class NakedSubsetStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[]
-		{
+		=> [
 			(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M }),
 			(ExtraDifficultyCaseNames.Locked, IsLocked switch { true => Size switch { 2 => -1.0M, 3 => -1.1M }, false => .1M, _ => 0 })
-		};
+		];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { DigitsStr, HouseStr } }, { ChineseLanguage, new[] { DigitsStr, HouseStr, SubsetName } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, [DigitsStr, HouseStr] }, { ChineseLanguage, [DigitsStr, HouseStr, SubsetName] } };
 
 	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 

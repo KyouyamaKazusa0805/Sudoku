@@ -23,14 +23,14 @@ public sealed partial class BivalueUniversalGraveType3Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[] { (ExtraDifficultyCaseNames.Size, Size * .1M), (ExtraDifficultyCaseNames.Hidden, isNaked ? 0 : .1M) };
+		=> [(ExtraDifficultyCaseNames.Size, Size * .1M), (ExtraDifficultyCaseNames.Hidden, isNaked ? 0 : .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { TrueCandidatesStr, SubsetTypeStr, SizeStr, ExtraDigitsStr, CellsStr } },
-			{ ChineseLanguage, new[] { TrueCandidatesStr, SubsetTypeStr, SizeStr, CellsStr, ExtraDigitsStr } }
+			{ EnglishLanguage, [TrueCandidatesStr, SubsetTypeStr, SizeStr, ExtraDigitsStr, CellsStr] },
+			{ ChineseLanguage, [TrueCandidatesStr, SubsetTypeStr, SizeStr, CellsStr, ExtraDigitsStr] }
 		};
 
 	/// <summary>

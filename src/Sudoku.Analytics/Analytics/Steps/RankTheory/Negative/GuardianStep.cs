@@ -24,14 +24,14 @@ public sealed partial class GuardianStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[] { (ExtraDifficultyCaseNames.Size, A004526(LoopCells.Count + A004526(Guardians.Count)) * .1M) };
+		=> [(ExtraDifficultyCaseNames.Size, A004526(LoopCells.Count + A004526(Guardians.Count)) * .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { CellsStr, GuardianSingularOrPlural, GuardianStr } },
-			{ ChineseLanguage, new[] { CellsStr, GuardianSingularOrPlural, GuardianStr } }
+			{ EnglishLanguage, [CellsStr, GuardianSingularOrPlural, GuardianStr] },
+			{ ChineseLanguage, [CellsStr, GuardianSingularOrPlural, GuardianStr] }
 		};
 
 	private string CellsStr => LoopCells.ToString();

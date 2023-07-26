@@ -117,26 +117,26 @@ public static class CommonReadOnlies
 	/// </summary>
 	/// <seealso cref="IntersectionMaps"/>
 	internal static readonly byte[][] IntersectionBlockTable =
-	{
-		new byte[] {  1,  2 }, new byte[] {  0,  2 }, new byte[] {  0,  1 },
-		new byte[] {  1,  2 }, new byte[] {  0,  2 }, new byte[] {  0,  1 },
-		new byte[] {  1,  2 }, new byte[] {  0,  2 }, new byte[] {  0,  1 },
-		new byte[] {  4,  5 }, new byte[] {  3,  5 }, new byte[] {  3,  4 },
-		new byte[] {  4,  5 }, new byte[] {  3,  5 }, new byte[] {  3,  4 },
-		new byte[] {  4,  5 }, new byte[] {  3,  5 }, new byte[] {  3,  4 },
-		new byte[] {  7,  8 }, new byte[] {  6,  8 }, new byte[] {  6,  7 },
-		new byte[] {  7,  8 }, new byte[] {  6,  8 }, new byte[] {  6,  7 },
-		new byte[] {  7,  8 }, new byte[] {  6,  8 }, new byte[] {  6,  7 },
-		new byte[] {  3,  6 }, new byte[] {  0,  6 }, new byte[] {  0,  3 },
-		new byte[] {  3,  6 }, new byte[] {  0,  6 }, new byte[] {  0,  3 },
-		new byte[] {  3,  6 }, new byte[] {  0,  6 }, new byte[] {  0,  3 },
-		new byte[] {  4,  7 }, new byte[] {  1,  7 }, new byte[] {  1,  4 },
-		new byte[] {  4,  7 }, new byte[] {  1,  7 }, new byte[] {  1,  4 },
-		new byte[] {  4,  7 }, new byte[] {  1,  7 }, new byte[] {  1,  4 },
-		new byte[] {  5,  8 }, new byte[] {  2,  8 }, new byte[] {  2,  5 },
-		new byte[] {  5,  8 }, new byte[] {  2,  8 }, new byte[] {  2,  5 },
-		new byte[] {  5,  8 }, new byte[] {  2,  8 }, new byte[] {  2,  5 }
-	};
+	[
+		[1, 2], [0, 2], [0, 1],
+		[1, 2], [0, 2], [0, 1],
+		[1, 2], [0, 2], [0, 1],
+		[4, 5], [3, 5], [3, 4],
+		[4, 5], [3, 5], [3, 4],
+		[4, 5], [3, 5], [3, 4],
+		[7, 8], [6, 8], [6, 7],
+		[7, 8], [6, 8], [6, 7],
+		[7, 8], [6, 8], [6, 7],
+		[3, 6], [0, 6], [0, 3],
+		[3, 6], [0, 6], [0, 3],
+		[3, 6], [0, 6], [0, 3],
+		[4, 7], [1, 7], [1, 4],
+		[4, 7], [1, 7], [1, 4],
+		[4, 7], [1, 7], [1, 4],
+		[5, 8], [2, 8], [2, 5],
+		[5, 8], [2, 8], [2, 5],
+		[5, 8], [2, 8], [2, 5]
+	];
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />

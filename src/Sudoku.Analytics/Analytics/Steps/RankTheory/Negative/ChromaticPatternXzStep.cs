@@ -26,14 +26,14 @@ public sealed partial class ChromaticPatternXzStep(
 	public override Technique Code => Technique.ChromaticPatternXzRule;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.ExtraDigit, .2M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.ExtraDigit, .2M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { DigitsStr, CellsStr, BlocksStr, ExtraCellStr } },
-			{ ChineseLanguage, new[] { BlocksStr, CellsStr, DigitsStr, ExtraCellStr } }
+			{ EnglishLanguage, [DigitsStr, CellsStr, BlocksStr, ExtraCellStr] },
+			{ ChineseLanguage, [BlocksStr, CellsStr, DigitsStr, ExtraCellStr] }
 		};
 
 	private string ExtraCellStr => RxCyNotation.ToCellString(ExtraCell);

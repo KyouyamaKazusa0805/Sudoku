@@ -40,8 +40,8 @@ public sealed partial class AvoidableRectangleWithHiddenSingleStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, BaseCellStr, HouseStr, TargetCellStr } },
-			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, BaseCellStr, HouseStr, TargetCellStr } }
+			{ EnglishLanguage, [D1Str, D2Str, CellsStr, BaseCellStr, HouseStr, TargetCellStr] },
+			{ ChineseLanguage, [D1Str, D2Str, CellsStr, BaseCellStr, HouseStr, TargetCellStr] }
 		};
 
 	private string BaseCellStr => RxCyNotation.ToCellString(BaseCell);

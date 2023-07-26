@@ -36,7 +36,7 @@ public sealed partial class CellForcingChainsStep(
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { SourceCellStr } }, { ChineseLanguage, new[] { SourceCellStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, [SourceCellStr] }, { ChineseLanguage, [SourceCellStr] } };
 
 	private string SourceCellStr => RxCyNotation.ToCellString(SourceCell);
 

@@ -157,7 +157,7 @@ internal sealed class GridRecognizer(Bitmap photo) : IDisposable
 		Cv.WarpPerspective(
 			_image,
 			resultField,
-			Cv.GetPerspectiveTransform(field, new PointF[] { new(0, 0), new(RSize, 0), new(0, RSize), new(RSize, RSize) }),
+			Cv.GetPerspectiveTransform(field, [new(0, 0), new(RSize, 0), new(0, RSize), new(RSize, RSize)]),
 			new(RSize, RSize)
 		);
 

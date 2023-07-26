@@ -31,18 +31,17 @@ public sealed partial class AlmostLockedCandidatesStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[]
-		{
+		=> [
 			(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .7M, 4 => 1.2M }),
 			(ExtraDifficultyCaseNames.ValueCell, HasValueCell ? Size switch { 2 or 3 => .1M, 4 => .2M } : 0)
-		};
+		];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { DigitsStr, BaseCellsStr, TargetCellsStr } },
-			{ ChineseLanguage, new[] { DigitsStr, BaseCellsStr, TargetCellsStr } }
+			{ EnglishLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr] },
+			{ ChineseLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr] }
 		};
 
 	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);

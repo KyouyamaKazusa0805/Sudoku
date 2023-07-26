@@ -56,20 +56,19 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[]
-		{
+		=> [
 			(ExtraDifficultyCaseNames.Size, (LineCells | BlockCells).Count * .1M),
 			(ExtraDifficultyCaseNames.Isolated, !IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0),
 			(ExtraDifficultyCaseNames.Cannibalism, IsCannibalistic ? .1M : 0),
 			(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0)
-		};
+		];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, MergedCellsStr, DigitsStr } },
-			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, MergedCellsStr, DigitsStr } }
+			{ EnglishLanguage, [D1Str, D2Str, CellsStr, MergedCellsStr, DigitsStr] },
+			{ ChineseLanguage, [D1Str, D2Str, CellsStr, MergedCellsStr, DigitsStr] }
 		};
 
 	private string MergedCellsStr => (LineCells | BlockCells).ToString();

@@ -58,8 +58,7 @@ public sealed partial class ComplexFishStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[]
-		{
+		=> [
 			(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M, 5 => 3.3M, 6 => 4.5M, 7 => 5.6M, _ => 6.6M }),
 			(
 				ExtraDifficultyCaseNames.Sashimi,
@@ -76,14 +75,14 @@ public sealed partial class ComplexFishStep(
 					? Size switch { 2 => 0, 3 or 4 => 1.1M, 5 or 6 or 7 => 1.2M, _ => 1.3M }
 					: Size switch { 2 => 0, 3 or 4 => 1.4M, 5 or 6 => 1.6M, 7 => 1.7M, _ => 2.0M }
 			)
-		};
+		];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { DigitStr, BaseSetsStr, CoverSetsStr, ExofinsStr, EndofinsStr } },
-			{ ChineseLanguage, new[] { BaseSetsStr, CoverSetsStr, DigitStr, ExofinsStr, EndofinsStr } }
+			{ EnglishLanguage, [DigitStr, BaseSetsStr, CoverSetsStr, ExofinsStr, EndofinsStr] },
+			{ ChineseLanguage, [BaseSetsStr, CoverSetsStr, DigitStr, ExofinsStr, EndofinsStr] }
 		};
 
 	/// <summary>

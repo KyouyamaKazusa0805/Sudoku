@@ -24,14 +24,14 @@ public sealed partial class BivalueOddagonType3Step(
 	public override int Type => 3;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Size, (ExtraCells.Count >> 1) * .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.Size, (ExtraCells.Count >> 1) * .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { LoopStr, Digit1Str, Digit2Str, DigitsStr, ExtraCellsStr } },
-			{ ChineseLanguage, new[] { Digit1Str, Digit2Str, LoopStr, ExtraCellsStr, DigitsStr } }
+			{ EnglishLanguage, [LoopStr, Digit1Str, Digit2Str, DigitsStr, ExtraCellsStr] },
+			{ ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ExtraCellsStr, DigitsStr] }
 		};
 
 	private string Digit1Str => (Digit1 + 1).ToString();

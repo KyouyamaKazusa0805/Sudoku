@@ -103,7 +103,7 @@ public abstract class StepSearcherPool
 					// We should use reflection to set value because keyword used of the property is 'init', rather than 'set'.
 					type.GetProperty(nameof(instance.SplitPriority))!
 						.GetSetMethod(true)!
-						.Invoke(instance, new[] { (object)separatedAttribute.Priority });
+						.Invoke(instance, [separatedAttribute.Priority]);
 
 					stepSearcherArray[i++] = instance;
 				}
@@ -112,7 +112,7 @@ public abstract class StepSearcherPool
 			}
 			default:
 			{
-				return new[] { (StepSearcher)Activator.CreateInstance(type)! };
+				return [(StepSearcher)Activator.CreateInstance(type)!];
 			}
 		}
 	}

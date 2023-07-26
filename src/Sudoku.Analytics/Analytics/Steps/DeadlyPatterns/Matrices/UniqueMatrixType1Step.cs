@@ -23,8 +23,8 @@ public sealed partial class UniqueMatrixType1Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { DigitsStr, CellsStr, CandidateStr } },
-			{ ChineseLanguage, new[] { CandidateStr, CellsStr, DigitsStr } }
+			{ EnglishLanguage, [DigitsStr, CellsStr, CandidateStr] },
+			{ ChineseLanguage, [CandidateStr, CellsStr, DigitsStr] }
 		};
 
 	private string CandidateStr => (CandidateMap.Empty + Candidate).ToString();

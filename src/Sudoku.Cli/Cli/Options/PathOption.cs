@@ -9,7 +9,7 @@ public sealed class PathOption : IOption<PathOption, string>
 	public static string Description => "Indicates the output path";
 
 	/// <inheritdoc/>
-	public static string[] Aliases => new[] { "--path", "-p" };
+	public static string[] Aliases => ["--path", "-p"];
 
 	/// <inheritdoc/>
 	public static string DefaultValue => string.Empty;

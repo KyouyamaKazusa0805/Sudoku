@@ -57,14 +57,14 @@ public sealed partial class AlmostLockedSetsXzStep(
 			{
 				EnglishLanguage,
 				IsDoublyLinked is null
-					? ZDigitsMask == 0 ? new[] { CellsStr } : new[] { EspDigitStr, CellsStr }
-					: new[] { Als1Str, Als2Str, XStr, ZResultStr }
+					? ZDigitsMask == 0 ? [CellsStr] : [EspDigitStr, CellsStr]
+					: [Als1Str, Als2Str, XStr, ZResultStr]
 			},
 			{
 				ChineseLanguage,
 				IsDoublyLinked is null
-					? ZDigitsMask == 0 ? new[] { CellsStr } : new[] { EspDigitStr, CellsStr }
-					: new[] { Als1Str, Als2Str, XStr, ZResultStr }
+					? ZDigitsMask == 0 ? [CellsStr] : [EspDigitStr, CellsStr]
+					: [Als1Str, Als2Str, XStr, ZResultStr]
 			}
 		};
 

@@ -13,7 +13,7 @@ public sealed class CountConclusionOperator : OperatorBase
 
 
 	/// <inheritdoc/>
-	public override IEnumerable<string> Tags => new[] { "count" };
+	public override IEnumerable<string> Tags => ["count"];
 
 
 	/// <inheritdoc/>

@@ -59,13 +59,12 @@ public static class PredefinedAnalyzers
 	public static Analyzer SstsOnly
 		=> Default
 			.WithStepSearchers(
-				new StepSearcher[]
-				{
+				[
 					new SingleStepSearcher(),
 					new LockedSubsetStepSearcher(),
 					new LockedCandidatesStepSearcher(),
 					new NormalSubsetStepSearcher()
-				}
+				]
 			)
 			.WithStepSearcherSetters<SingleStepSearcher>(
 				static s =>

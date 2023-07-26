@@ -40,19 +40,18 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[]
-		{
+		=> [
 			(ExtraDifficultyCaseNames.Guardian, A004526(GuardianCells.Count) * .1M),
 			(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
 			(ExtraDifficultyCaseNames.Incompleteness, isIncomplete ? .1M : 0)
-		};
+		];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr } },
-			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr } }
+			{ EnglishLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr] },
+			{ ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr] }
 		};
 
 	private string GuardianCellsStr => GuardianCells.ToString();

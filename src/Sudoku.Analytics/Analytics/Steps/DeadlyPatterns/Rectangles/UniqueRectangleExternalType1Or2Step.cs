@@ -43,19 +43,18 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 {
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[]
-		{
+		=> [
 			(ExtraDifficultyCaseNames.Guardian, A004526(GuardianCells.Count) * .1M),
 			(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
 			(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
-		};
+		];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, GuardianDigitStr, GuardianCellsStr } },
-			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, GuardianDigitStr, GuardianCellsStr } }
+			{ EnglishLanguage, [D1Str, D2Str, CellsStr, GuardianDigitStr, GuardianCellsStr] },
+			{ ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianDigitStr, GuardianCellsStr] }
 		};
 
 	private string GuardianDigitStr => (GuardianDigit + 1).ToString();

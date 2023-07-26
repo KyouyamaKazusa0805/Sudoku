@@ -159,7 +159,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 					null or "" => null,
 					_ => string.Join(
 						"\r\n",
-						from line in comment.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries) select $"/// {line.Trim()}"
+						from line in comment.Split((char[])['\r', '\n'], StringSplitOptions.RemoveEmptyEntries) select $"/// {line.Trim()}"
 					)
 				};
 		}

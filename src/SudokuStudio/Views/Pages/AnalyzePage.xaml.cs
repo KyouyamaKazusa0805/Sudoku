@@ -320,19 +320,18 @@ public sealed partial class AnalyzePage : Page
 					filePath,
 					gridFormatters switch
 					{
-						null => new GridInfo[]
-						{
+						null => [
 							new()
 							{
 								BaseGrid = grid,
 								RenderableData = viewUnit switch
 								{
-									{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = new[] { view } },
+									{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = [view] },
 									_ => null
 								},
 								ShowCandidates = displayCandidates
 							}
-						},
+						],
 						_
 							=>
 							from formatter in gridFormatters
@@ -343,7 +342,7 @@ public sealed partial class AnalyzePage : Page
 								GridString = gridString,
 								RenderableData = viewUnit switch
 								{
-									{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = new[] { view } },
+									{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = [view] },
 									_ => null
 								},
 								ShowCandidates = displayCandidates
@@ -1241,7 +1240,7 @@ public sealed partial class AnalyzePage : Page
 		((App)Application.Current).Preference.UIPreferences.LastGridPuzzle = puzzle;
 		((App)Application.Current).Preference.UIPreferences.LastRenderable = viewUnit switch
 		{
-			ViewUnitBindableSource { View: var view, Conclusions: var conclusions } => new() { Conclusions = conclusions, Views = new[] { view } },
+			ViewUnitBindableSource { View: var view, Conclusions: var conclusions } => new() { Conclusions = conclusions, Views = [view] },
 			_ => null
 		};
 	}

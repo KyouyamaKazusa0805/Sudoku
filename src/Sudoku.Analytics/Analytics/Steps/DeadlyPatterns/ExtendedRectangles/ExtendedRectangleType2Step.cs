@@ -21,14 +21,14 @@ public sealed partial class ExtendedRectangleType2Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[] { base.ExtraDifficultyCases[0], (ExtraDifficultyCaseNames.ExtraDigit, .1M) };
+		=> [.. base.ExtraDifficultyCases, (ExtraDifficultyCaseNames.ExtraDigit, .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { DigitsStr, CellsStr, ExtraDigitStr } },
-			{ ChineseLanguage, new[] { DigitsStr, CellsStr, ExtraDigitStr } }
+			{ EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitStr] },
+			{ ChineseLanguage, [DigitsStr, CellsStr, ExtraDigitStr] }
 		};
 
 	private string ExtraDigitStr => (ExtraDigit + 1).ToString();

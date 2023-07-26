@@ -35,8 +35,8 @@ public sealed partial class UniqueRectangle2DOr3XStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, XDigitStr, YDigitStr, XYCellsStr } },
-			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, XDigitStr, YDigitStr, XYCellsStr } }
+			{ EnglishLanguage, [D1Str, D2Str, CellsStr, XDigitStr, YDigitStr, XYCellsStr] },
+			{ ChineseLanguage, [D1Str, D2Str, CellsStr, XDigitStr, YDigitStr, XYCellsStr] }
 		};
 
 	private string XDigitStr => (XDigit + 1).ToString();

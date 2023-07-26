@@ -20,14 +20,14 @@ public sealed partial class BivalueUniversalGraveType4Step(
 	public override Technique Code => Technique.BivalueUniversalGraveType4;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.ConjugatePair, .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.ConjugatePair, .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { DigitsStr, CellsStr, ConjStr } },
-			{ ChineseLanguage, new[] { CellsStr, DigitsStr, ConjStr } }
+			{ EnglishLanguage, [DigitsStr, CellsStr, ConjStr] },
+			{ ChineseLanguage, [CellsStr, DigitsStr, ConjStr] }
 		};
 
 	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);

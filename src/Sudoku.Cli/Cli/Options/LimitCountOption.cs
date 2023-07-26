@@ -13,7 +13,7 @@ public sealed class LimitCountOption : IOption<LimitCountOption, int>
 		""".RemoveLineEndings();
 
 	/// <inheritdoc/>
-	public static string[] Aliases => new[] { "--limit-count", "-c" };
+	public static string[] Aliases => ["--limit-count", "-c"];
 
 	/// <inheritdoc/>
 	public static int DefaultValue => 0;

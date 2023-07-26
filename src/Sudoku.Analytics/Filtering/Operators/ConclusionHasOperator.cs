@@ -13,7 +13,7 @@ public sealed class ConclusionHasOperator : OperatorBase
 
 
 	/// <inheritdoc/>
-	public override IEnumerable<string> Tags => new[] { "has" };
+	public override IEnumerable<string> Tags => ["has"];
 
 
 	/// <inheritdoc/>

@@ -58,8 +58,8 @@ public sealed class DictionaryQuerySolver : ISolver
 		).Concat(
 			from r in Rows select (from p in r.ToString() from c in Columns select $"{p}{c}").ToArray()
 		).Concat(
-			from rs in new[] { "ABC", "DEF", "GHI" }
-			from cs in new[] { "123", "456", "789" }
+			from rs in (string[])["ABC", "DEF", "GHI"]
+			from cs in (string[])["123", "456", "789"]
 			select (from r in rs from c in cs select $"{r}{c}").ToArray()
 		);
 
@@ -153,7 +153,7 @@ public sealed class DictionaryQuerySolver : ISolver
 
 		for (var i = 0; i < n; i++)
 		{
-			sd[i] = new[] { a[i].ToString(), b[i].ToString() };
+			sd[i] = [a[i].ToString(), b[i].ToString()];
 		}
 
 		return sd;

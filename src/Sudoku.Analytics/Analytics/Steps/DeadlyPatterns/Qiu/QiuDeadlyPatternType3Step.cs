@@ -23,14 +23,14 @@ public sealed partial class QiuDeadlyPatternType3Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[] { (ExtraDifficultyCaseNames.Size, PopCount((uint)SubsetDigitsMask) * .1M) };
+		=> [(ExtraDifficultyCaseNames.Size, PopCount((uint)SubsetDigitsMask) * .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { PatternStr, DigitsStr, CellsStr, SubsetName } },
-			{ ChineseLanguage, new[] { PatternStr, DigitsStr, CellsStr, SubsetName } }
+			{ EnglishLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName] },
+			{ ChineseLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName] }
 		};
 
 	private string DigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);

@@ -107,7 +107,7 @@ public partial struct CandidateMap :
 			return this switch
 			{
 				{ _count: 0 } => Array.Empty<string>(),
-				[var a] => new[] { RxCyNotation.ToCandidateString(a) },
+				[var a] => [RxCyNotation.ToCandidateString(a)],
 				_ => f(Offsets)
 			};
 
@@ -320,7 +320,7 @@ public partial struct CandidateMap :
 
 		if (subsetSize == _count)
 		{
-			return new[] { this };
+			return [this];
 		}
 
 		var n = _count;

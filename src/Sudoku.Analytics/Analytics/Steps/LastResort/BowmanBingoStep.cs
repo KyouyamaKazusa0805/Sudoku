@@ -17,14 +17,14 @@ public sealed partial class BowmanBingoStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[] { (ExtraDifficultyCaseNames.Length, ChainDifficultyRating.GetExtraDifficultyByLength(ContradictionLinks.Length)) };
+		=> [(ExtraDifficultyCaseNames.Length, ChainDifficultyRating.GetExtraDifficultyByLength(ContradictionLinks.Length))];
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BowmanBingo;
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { ContradictionSeriesStr } }, { ChineseLanguage, new[] { ContradictionSeriesStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, [ContradictionSeriesStr] }, { ChineseLanguage, [ContradictionSeriesStr] } };
 
 	private string ContradictionSeriesStr => ConclusionFormatter.Format(ContradictionLinks, " -> ", false);
 }

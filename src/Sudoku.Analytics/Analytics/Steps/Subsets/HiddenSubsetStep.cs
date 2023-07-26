@@ -46,15 +46,14 @@ public sealed partial class HiddenSubsetStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[]
-		{
+		=> [
 			(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M }),
 			(ExtraDifficultyCaseNames.Locked, IsLocked ? .1M : 0)
-		};
+		];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { DigitStr, HouseStr } }, { ChineseLanguage, new[] { DigitStr, HouseStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, [DigitStr, HouseStr] }, { ChineseLanguage, [DigitStr, HouseStr] } };
 
 	private string DigitStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 

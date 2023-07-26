@@ -23,14 +23,14 @@ public sealed partial class UniqueMatrixType3Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[] { (ExtraDifficultyCaseNames.ExtraDigit, PopCount((uint)SubsetDigitsMask) * .1M) };
+		=> [(ExtraDifficultyCaseNames.ExtraDigit, PopCount((uint)SubsetDigitsMask) * .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { DigitsStr, CellsStr, ExtraDigitStr, ExtraCellsStr, SubsetName } },
-			{ ChineseLanguage, new[] { ExtraDigitStr, ExtraCellsStr, SubsetName, DigitsStr, CellsStr } }
+			{ EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitStr, ExtraCellsStr, SubsetName] },
+			{ ChineseLanguage, [ExtraDigitStr, ExtraCellsStr, SubsetName, DigitsStr, CellsStr] }
 		};
 
 	private string ExtraCellsStr => SubsetCells.ToString();

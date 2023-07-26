@@ -308,7 +308,7 @@ public unsafe partial struct CellMap :
 	[JsonInclude]
 	public readonly string[] StringChunks
 		=> this
-			? ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+			? ToString().Split((char[])[',', ' '], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
 			: Array.Empty<string>();
 
 	/// <summary>
@@ -696,7 +696,7 @@ public unsafe partial struct CellMap :
 
 		if (subsetSize == _count)
 		{
-			return new[] { this };
+			return [this];
 		}
 
 		var n = _count;

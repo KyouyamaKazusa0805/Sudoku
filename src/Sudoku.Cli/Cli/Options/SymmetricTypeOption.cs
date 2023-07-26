@@ -9,7 +9,7 @@ public sealed class SymmetricTypeOption : IOption<SymmetricTypeOption, Symmetric
 	public static string Description => "Indicates the symmetric type to be set.";
 
 	/// <inheritdoc/>
-	public static string[] Aliases => new[] { "--symmetric-type", "-s" };
+	public static string[] Aliases => ["--symmetric-type", "-s"];
 
 	/// <inheritdoc/>
 	public static SymmetricType DefaultValue => SymmetricType.Central;

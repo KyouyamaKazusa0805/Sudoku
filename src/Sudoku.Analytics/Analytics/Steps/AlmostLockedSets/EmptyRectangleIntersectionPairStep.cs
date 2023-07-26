@@ -30,8 +30,8 @@ public sealed partial class EmptyRectangleIntersectionPairStep(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr } },
-			{ ChineseLanguage, new[] { Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr } }
+			{ EnglishLanguage, [Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr] },
+			{ ChineseLanguage, [Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr] }
 		};
 
 	private string Digit1Str => (Digit1 + 1).ToString();

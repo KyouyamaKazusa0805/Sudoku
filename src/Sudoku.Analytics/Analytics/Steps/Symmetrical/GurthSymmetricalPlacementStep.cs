@@ -32,7 +32,11 @@ public sealed partial class GurthSymmetricalPlacementStep(
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { SymmetryTypeStr, MappingStr } }, { ChineseLanguage, new[] { SymmetryTypeStr, MappingStr } } };
+		=> new Dictionary<string, string[]?>
+		{
+			{ EnglishLanguage, [SymmetryTypeStr, MappingStr] },
+			{ ChineseLanguage, [SymmetryTypeStr, MappingStr] }
+		};
 
 	private string SymmetryTypeStr => GetString($"{SymmetricType}Symmetry")!;
 

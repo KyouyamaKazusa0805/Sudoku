@@ -25,14 +25,14 @@ public sealed partial class UniqueLoopType3Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[] { base.ExtraDifficultyCases[0], (ExtraDifficultyCaseNames.Size, SubsetCells.Count * .1M) };
+		=> [.. base.ExtraDifficultyCases, (ExtraDifficultyCaseNames.Size, SubsetCells.Count * .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { Digit1Str, Digit2Str, LoopStr, SubsetName, DigitsStr, SubsetCellsStr } },
-			{ ChineseLanguage, new[] { Digit1Str, Digit2Str, LoopStr, SubsetName, DigitsStr, SubsetCellsStr } }
+			{ EnglishLanguage, [Digit1Str, Digit2Str, LoopStr, SubsetName, DigitsStr, SubsetCellsStr] },
+			{ ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, SubsetName, DigitsStr, SubsetCellsStr] }
 		};
 
 	private string SubsetCellsStr => SubsetCells.ToString();

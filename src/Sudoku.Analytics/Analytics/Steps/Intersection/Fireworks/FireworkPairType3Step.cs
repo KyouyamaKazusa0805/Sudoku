@@ -26,8 +26,8 @@ public sealed partial class FireworkPairType3Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { CellsStr, DigitsStr, EmptyRectangleStr } },
-			{ ChineseLanguage, new[] { CellsStr, DigitsStr, EmptyRectangleStr } }
+			{ EnglishLanguage, [CellsStr, DigitsStr, EmptyRectangleStr] },
+			{ ChineseLanguage, [CellsStr, DigitsStr, EmptyRectangleStr] }
 		};
 
 	private string CellsStr => Cells.ToString();

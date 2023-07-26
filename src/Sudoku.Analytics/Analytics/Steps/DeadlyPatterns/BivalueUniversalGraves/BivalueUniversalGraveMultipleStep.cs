@@ -40,11 +40,11 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	public override Technique Code => Technique.BivalueUniversalGravePlusN;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.Size, A002024(TrueCandidates.Count) * .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.Size, A002024(TrueCandidates.Count) * .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { CandidatesStr } }, { ChineseLanguage, new[] { CandidatesStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, [CandidatesStr] }, { ChineseLanguage, [CandidatesStr] } };
 
 	private string CandidatesStr => TrueCandidates.ToString();
 }

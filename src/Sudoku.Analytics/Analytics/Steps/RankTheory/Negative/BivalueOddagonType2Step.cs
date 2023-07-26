@@ -22,11 +22,11 @@ public sealed partial class BivalueOddagonType2Step(
 	public override int Type => 2;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => new[] { (ExtraDifficultyCaseNames.ExtraDigit, .1M) };
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.ExtraDigit, .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { ExtraDigitStr, LoopStr } }, { ChineseLanguage, new[] { LoopStr, ExtraDigitStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, [ExtraDigitStr, LoopStr] }, { ChineseLanguage, [LoopStr, ExtraDigitStr] } };
 
 	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 }

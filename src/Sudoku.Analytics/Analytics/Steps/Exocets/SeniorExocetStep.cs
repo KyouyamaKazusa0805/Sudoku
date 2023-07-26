@@ -31,7 +31,7 @@ public sealed partial class SeniorExocetStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[] { (ExtraDifficultyCaseNames.ExtraHouse, ContainsExtraHouses ? 0 : .2M) };
+		=> [(ExtraDifficultyCaseNames.ExtraHouse, ContainsExtraHouses ? 0 : .2M)];
 
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private string AdditionalFormat

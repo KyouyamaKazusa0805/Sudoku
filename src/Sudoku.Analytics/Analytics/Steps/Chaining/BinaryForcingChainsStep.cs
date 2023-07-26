@@ -64,11 +64,11 @@ public sealed partial class BinaryForcingChainsStep(
 		{
 			{
 				EnglishLanguage,
-				IsAbsurd ? new[] { StartCandStr, StartCandOnOffStr, EndCandStr } : new[] { StartCandStr, StartCandOnOffStr, EndCandStr }
+				IsAbsurd ? [StartCandStr, StartCandOnOffStr, EndCandStr] : [StartCandStr, StartCandOnOffStr, EndCandStr]
 			},
 			{
 				ChineseLanguage,
-				IsAbsurd ? new[] { StartCandStr, StartCandOnOffStrZhCn, EndCandStr } : new[] { EndCandStr, StartCandStr, StartCandOnOffStrZhCn }
+				IsAbsurd ? [StartCandStr, StartCandOnOffStrZhCn, EndCandStr] : [EndCandStr, StartCandStr, StartCandOnOffStrZhCn]
 			}
 		};
 

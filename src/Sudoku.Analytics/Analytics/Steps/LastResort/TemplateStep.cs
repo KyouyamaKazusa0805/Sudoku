@@ -25,7 +25,7 @@ public sealed partial class TemplateStep(
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { DigitStr } }, { ChineseLanguage, new[] { DigitStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, [DigitStr] }, { ChineseLanguage, [DigitStr] } };
 
 	private string DigitStr => (Digit + 1).ToString();
 }

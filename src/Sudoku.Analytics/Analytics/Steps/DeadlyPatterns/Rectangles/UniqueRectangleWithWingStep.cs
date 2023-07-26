@@ -39,8 +39,7 @@ public sealed partial class UniqueRectangleWithWingStep(
 {
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> new[]
-		{
+		=> [
 			(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
 			(
 				ExtraDifficultyCaseNames.WingSize,
@@ -51,14 +50,14 @@ public sealed partial class UniqueRectangleWithWingStep(
 					Technique.UniqueRectangleWxyzWing or Technique.AvoidableRectangleWxyzWing => .5M
 				}
 			)
-		};
+		];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?>
 		{
-			{ EnglishLanguage, new[] { D1Str, D2Str, CellsStr, BranchesStr, DigitsStr } },
-			{ ChineseLanguage, new[] { D1Str, D2Str, CellsStr, BranchesStr, DigitsStr } }
+			{ EnglishLanguage, [D1Str, D2Str, CellsStr, BranchesStr, DigitsStr] },
+			{ ChineseLanguage, [D1Str, D2Str, CellsStr, BranchesStr, DigitsStr] }
 		};
 
 	private string BranchesStr => Branches.ToString();

@@ -22,7 +22,7 @@ public sealed partial class FireworkQuadrupleStep(
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, new[] { CellsStr, DigitsStr } }, { ChineseLanguage, new[] { CellsStr, DigitsStr } } };
+		=> new Dictionary<string, string[]?> { { EnglishLanguage, [CellsStr, DigitsStr] }, { ChineseLanguage, [CellsStr, DigitsStr] } };
 
 	private string CellsStr => Cells.ToString();
 

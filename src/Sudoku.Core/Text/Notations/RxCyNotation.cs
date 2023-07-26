@@ -226,7 +226,7 @@ public sealed partial class RxCyNotation : ICellNotation<RxCyNotation, RxCyNotat
 			}
 
 			result = CellMap.Empty;
-			foreach (var part in str.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+			foreach (var part in str.Split((char[])[','], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
 			{
 				var cCharacterIndex = part.IndexOf('C', StringComparison.OrdinalIgnoreCase);
 				var rows = part[1..cCharacterIndex];
@@ -345,7 +345,7 @@ public sealed partial class RxCyNotation : ICellNotation<RxCyNotation, RxCyNotat
 				goto ReturnInvalid;
 			}
 
-			if (s.Split(new[] { 'R', 'r', 'C', 'c' }) is not [var digits, var rows, var columns])
+			if (s.Split(['R', 'r', 'C', 'c']) is not [var digits, var rows, var columns])
 			{
 				goto ReturnInvalid;
 			}
@@ -377,7 +377,7 @@ public sealed partial class RxCyNotation : ICellNotation<RxCyNotation, RxCyNotat
 				goto ReturnInvalid;
 			}
 
-			if (s.Split(new[] { 'C', 'c', '(' }) is not [var rows, var columns, var digits])
+			if (s.Split(['C', 'c', '(']) is not [var rows, var columns, var digits])
 			{
 				goto ReturnInvalid;
 			}

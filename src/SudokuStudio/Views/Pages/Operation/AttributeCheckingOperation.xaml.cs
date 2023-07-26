@@ -89,7 +89,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 file sealed class BackdoorVisualUnit(View view) : IRenderable
 {
 	/// <inheritdoc/>
-	public View[]? Views { get; } = new[] { view };
+	public View[]? Views { get; } = [view];
 
 	/// <inheritdoc/>
 	Conclusion[] IRenderable.Conclusions { get; } = Array.Empty<Conclusion>();
@@ -102,7 +102,7 @@ file sealed class BackdoorVisualUnit(View view) : IRenderable
 file sealed class TrueCandidateVisualUnit(View view) : IRenderable
 {
 	/// <inheritdoc/>
-	public View[]? Views { get; } = new[] { view };
+	public View[]? Views { get; } = [view];
 
 	/// <inheritdoc/>
 	Conclusion[] IRenderable.Conclusions { get; } = Array.Empty<Conclusion>();
