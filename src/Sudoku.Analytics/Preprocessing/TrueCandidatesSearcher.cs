@@ -69,13 +69,13 @@ public static class TrueCandidatesSearcher
 		var multivalueCells = (grid.EmptyCells - grid.BivalueCells).ToArray();
 		for (var i = 0; i < multivalueCells.Length; i++)
 		{
-			// e.g. { 2, 4, 6 } (42)
+			// e.g. [2, 4, 6] (42)
 			mask = grid.GetCandidates(multivalueCells[i]);
 
-			// e.g. { 2, 4 }, { 4, 6 }, { 2, 6 } (10, 40, 34)
+			// e.g. [[2, 4], [4, 6], [2, 6]] ([10, 40, 34])
 			var pairList = MaskOperations.GetMaskSubsets(mask, 2);
 
-			// e.g. pairs[i, ..] = { 3, { 2, 4 }, { 4, 6 }, { 2, 6 } } ({ 3, 10, 40, 34 })
+			// e.g. pairs[i, ..] = [3, [2, 4], [4, 6], [2, 6]] ([3, 10, 40, 34])
 			pairs[i, 0] = (Mask)pairList.Length;
 			for (var z = 1; z <= pairList.Length; z++)
 			{

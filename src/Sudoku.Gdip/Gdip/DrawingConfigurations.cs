@@ -144,9 +144,9 @@ public sealed class DrawingConfigurations
 	/// The color palette. This property stores a list of customized colors to be used as user-defined colors.
 	/// </summary>
 	public Color[] ColorPalette { get; set; } =
-	{
-		Color.FromArgb( 63, 218, 101), // Green (normal)
-		Color.FromArgb(255, 192,  89), // Orange (auxiliary)
+	[
+		Color.FromArgb(63, 218, 101), // Green (normal)
+		Color.FromArgb(255, 192, 89), // Orange (auxiliary)
 		Color.FromArgb(127, 187, 255), // Sky-blue (exo-fin)
 		Color.FromArgb(216, 178, 255), // Purple (endo-fin)
 		Color.FromArgb(197, 232, 140), // Yellow-green
@@ -160,7 +160,7 @@ public sealed class DrawingConfigurations
 		Color.FromArgb(206, 251, 237), // Light sky-blue
 		Color.FromArgb(215, 255, 215), // Light green
 		Color.FromArgb(192, 192, 192) // Gray
-	};
+	];
 
 	/// <summary>
 	/// Indicates the font of footer text.

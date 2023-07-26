@@ -24,7 +24,7 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 	/// <summary>
 	/// Indicates all possible letters that used in the row notation.
 	/// </summary>
-	private static readonly char[] Letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'K' };
+	private static readonly char[] Letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'K'];
 
 
 	/// <inheritdoc/>

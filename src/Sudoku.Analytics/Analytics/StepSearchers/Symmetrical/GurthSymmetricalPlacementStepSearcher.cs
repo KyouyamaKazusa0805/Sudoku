@@ -14,7 +14,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 	/// <summary>
 	/// The methods.
 	/// </summary>
-	private static readonly SymmetricalPlacementChecker[] Methods = { &CheckDiagonal, &CheckAntiDiagonal, &CheckCentral };
+	private static readonly SymmetricalPlacementChecker[] Methods = [&CheckDiagonal, &CheckAntiDiagonal, &CheckCentral];
 
 
 	/// <inheritdoc/>

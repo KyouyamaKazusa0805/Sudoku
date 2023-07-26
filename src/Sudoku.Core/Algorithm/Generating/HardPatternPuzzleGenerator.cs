@@ -9,7 +9,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// <summary>
 	/// Indicates the block factor.
 	/// </summary>
-	private static readonly int[] BlockFactor = { 0, 6, 54, 60, 3, 27, 33, 57, 30 };
+	private static readonly int[] BlockFactor = [0, 6, 54, 60, 3, 27, 33, 57, 30];
 
 	/// <summary>
 	/// Indicates the swapping factor.

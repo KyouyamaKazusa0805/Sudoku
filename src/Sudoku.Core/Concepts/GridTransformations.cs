@@ -10,8 +10,8 @@ public static unsafe class GridTransformations
 	/// The table of clockwise rotation.
 	/// </summary>
 	private static readonly Cell[] ClockwiseTable =
-	{
-		72, 63, 54, 45, 36, 27, 18,  9, 0,
+	[
+		72, 63, 54, 45, 36, 27, 18, 9, 0,
 		73, 64, 55, 46, 37, 28, 19, 10, 1,
 		74, 65, 56, 47, 38, 29, 20, 11, 2,
 		75, 66, 57, 48, 39, 30, 21, 12, 3,
@@ -20,13 +20,13 @@ public static unsafe class GridTransformations
 		78, 69, 60, 51, 42, 33, 24, 15, 6,
 		79, 70, 61, 52, 43, 34, 25, 16, 7,
 		80, 71, 62, 53, 44, 35, 26, 17, 8
-	};
+	];
 
 	/// <summary>
 	/// The table of counter-clockwise rotation.
 	/// </summary>
 	private static readonly Cell[] CounterclockwiseTable =
-	{
+	[
 		8, 17, 26, 35, 44, 53, 62, 71, 80,
 		7, 16, 25, 34, 43, 52, 61, 70, 79,
 		6, 15, 24, 33, 42, 51, 60, 69, 78,
@@ -35,14 +35,14 @@ public static unsafe class GridTransformations
 		3, 12, 21, 30, 39, 48, 57, 66, 75,
 		2, 11, 20, 29, 38, 47, 56, 65, 74,
 		1, 10, 19, 28, 37, 46, 55, 64, 73,
-		0,  9, 18, 27, 36, 45, 54, 63, 72
-	};
+		0, 9, 18, 27, 36, 45, 54, 63, 72
+	];
 
 	/// <summary>
 	/// The table of pi-rotation.
 	/// </summary>
 	private static readonly Cell[] PiRotateTable =
-	{
+	[
 		80, 79, 78, 77, 76, 75, 74, 73, 72,
 		71, 70, 69, 68, 67, 66, 65, 64, 63,
 		62, 61, 60, 59, 58, 57, 56, 55, 54,
@@ -50,18 +50,18 @@ public static unsafe class GridTransformations
 		44, 43, 42, 41, 40, 39, 38, 37, 36,
 		35, 34, 33, 32, 31, 30, 29, 28, 27,
 		26, 25, 24, 23, 22, 21, 20, 19, 18,
-		17, 16, 15, 14, 13, 12, 11, 10,  9,
-		 8,  7,  6,  5,  4,  3,  2,  1,  0
-	};
+		17, 16, 15, 14, 13, 12, 11, 10, 9,
+		8, 7, 6, 5, 4, 3, 2, 1, 0
+	];
 
 	/// <summary>
 	/// Indicates the swappable pairs, which means the swappable houses.
 	/// </summary>
 	private static readonly (House, House)[] SwappableHouses =
-	{
+	[
 		(9, 10), (9, 11), (10, 11), (12, 13), (12, 14), (13, 14), (15, 16), (15, 17), (16, 17),
 		(18, 19), (18, 20), (19, 20), (21, 22), (21, 23), (22, 23), (24, 25), (24, 26), (25, 26)
-	};
+	];
 
 
 	/// <summary>
