@@ -88,6 +88,14 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	new void Add(TElement offset);
 
 	/// <summary>
+	/// Adds a list of offsets specified as the containing type <typeparamref name="TSelf"/> of this method into the current collection.
+	/// This method will be called when you use C# 12 feature "Collection Expression",
+	/// without a real appending operation with <see langword="foreach"/> loop.
+	/// </summary>
+	/// <param name="self">The instance whose type is the containing type.</param>
+	void Add(scoped in TSelf self);
+
+	/// <summary>
 	/// Set the specified offsets as <see langword="true"/> value.
 	/// </summary>
 	/// <param name="offsets">The offsets to add.</param>

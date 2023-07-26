@@ -830,6 +830,10 @@ public unsafe partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Add(scoped in CellMap self) => this |= self;
+
+	/// <inheritdoc/>
 	public void AddRange(IEnumerable<Cell> offsets)
 	{
 		foreach (var offset in offsets)

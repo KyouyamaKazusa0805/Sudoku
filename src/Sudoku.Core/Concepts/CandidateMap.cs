@@ -436,6 +436,10 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Add(scoped in CandidateMap self) => this |= self;
+
+	/// <inheritdoc/>
 	public void AddRange(IEnumerable<Candidate> offsets)
 	{
 		foreach (var element in offsets)
