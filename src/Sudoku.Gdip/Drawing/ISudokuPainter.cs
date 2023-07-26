@@ -229,7 +229,7 @@ file sealed class SudokuPainter(int defaultSize, int defaultOffset) : ISudokuPai
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter WithNodes(IEnumerable<ViewNode> nodes)
 	{
-		GridImageGenerator.View = View.Empty | nodes;
+		GridImageGenerator.View = [.. nodes];
 		return this;
 	}
 
@@ -237,7 +237,7 @@ file sealed class SudokuPainter(int defaultSize, int defaultOffset) : ISudokuPai
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ISudokuPainter AddNodes(IEnumerable<ViewNode> nodes)
 	{
-		GridImageGenerator.View ??= View.Empty;
+		GridImageGenerator.View ??= [];
 		GridImageGenerator.View.AddRange(nodes);
 
 		return this;

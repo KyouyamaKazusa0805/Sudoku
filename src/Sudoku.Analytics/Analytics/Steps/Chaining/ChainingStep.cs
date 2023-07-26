@@ -269,7 +269,7 @@ public abstract partial class ChainingStep(
 		var i = 0;
 		for (; i < FlatViewsCount; i++)
 		{
-			var view = View.Empty;
+			var view = new View();
 
 			GetOffPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, candidate)));
 			GetOnPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate)));
@@ -279,7 +279,7 @@ public abstract partial class ChainingStep(
 		}
 		for (; i < ViewsCount; i++)
 		{
-			var view = View.Empty;
+			var view = new View();
 
 			GetNestedOnPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate)));
 			GetNestedOffPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, candidate)));

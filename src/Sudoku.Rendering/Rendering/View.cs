@@ -35,12 +35,6 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 
 
 	/// <summary>
-	/// Indicates the empty instance.
-	/// </summary>
-	public static View Empty => new();
-
-
-	/// <summary>
 	/// Appends a new <see cref="ViewNode"/> into the current collection if the specified argument isn't <see langword="null"/>.
 	/// </summary>
 	/// <param name="node">A possible node to be appended. If the value is <see langword="null"/>, it will be ignored.</param>
@@ -100,78 +94,5 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View Clone()
-	{
-		return Count == 0 ? Empty : new(cloneNodes());
-
-		HashSet<ViewNode> cloneNodes()
-		{
-			var result = new HashSet<ViewNode>(Count);
-			foreach (var node in this)
-			{
-				result.Add(node.Clone());
-			}
-
-			return result;
-		}
-	}
-
-
-	/// <summary>
-	/// Adds a new node into the collection.
-	/// </summary>
-	/// <param name="originalView">The original view.</param>
-	/// <param name="newNode">The new item to be added.</param>
-	/// <returns>The reference that is same as the argument <paramref name="originalView"/>.</returns>
-	/// <remarks>
-	/// Please note that the operator is mutable one, which means the appending operation
-	/// is based on the argument <paramref name="originalView"/>.
-	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static View operator |(View originalView, ViewNode? newNode)
-	{
-		originalView.Add(newNode);
-		return originalView;
-	}
-
-	/// <inheritdoc cref="op_BitwiseOr(View, IEnumerable{ViewNode})"/>
-	public static View operator |(View originalView, ViewNode[]? highlightedItems)
-	{
-		if (highlightedItems is null)
-		{
-			return originalView;
-		}
-
-		foreach (var node in highlightedItems)
-		{
-			originalView.Add(node);
-		}
-
-		return originalView;
-	}
-
-	/// <summary>
-	/// Adds a serial of view nodes into the collection.
-	/// </summary>
-	/// <param name="originalView">The original view.</param>
-	/// <param name="highlightedItems">The highlighted items.</param>
-	/// <returns>The reference that is same as the argument <paramref name="originalView"/>.</returns>
-	/// <remarks>
-	/// Please note that the operator is mutable one, which means the appending operation
-	/// is based on the argument <paramref name="originalView"/>.
-	/// </remarks>
-	public static View operator |(View originalView, IEnumerable<ViewNode>? highlightedItems)
-	{
-		if (highlightedItems is null)
-		{
-			return originalView;
-		}
-
-		foreach (var node in highlightedItems)
-		{
-			originalView.Add(node);
-		}
-
-		return originalView;
-	}
+	public View Clone() => Count == 0 ? [] : new([.. from node in this select node.Clone()]);
 }

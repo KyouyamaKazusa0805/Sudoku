@@ -354,6 +354,6 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 			candidateOffsets!.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 		}
 
-		return View.Empty | cellOffsets | candidateOffsets;
+		return [.. cellOffsets, .. candidateOffsets ?? []];
 	}
 }

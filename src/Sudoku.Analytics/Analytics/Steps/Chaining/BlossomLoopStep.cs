@@ -55,12 +55,11 @@ public sealed partial class BlossomLoopStep(
 	/// <returns>The values.</returns>
 	internal View[]? CreateViews()
 	{
-		var full = View.Empty;
+		var full = new View();
 		var result = new List<View>(Chains.Count + 1) { full };
 		for (var i = 0; i < Chains.Count; i++)
 		{
-			var eachBranchView = View.Empty;
-
+			var eachBranchView = new View();
 			foreach (var candidate in GetOffPotentials(i))
 			{
 				eachBranchView.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, candidate));

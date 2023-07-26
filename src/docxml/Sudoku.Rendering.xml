@@ -1066,11 +1066,6 @@ if (student is (name: var name, age: >= 18))
             Indicates icon nodes that the current data type stores.
             </summary>
         </member>
-        <member name="P:Sudoku.Rendering.View.Empty">
-            <summary>
-            Indicates the empty instance.
-            </summary>
-        </member>
         <member name="M:Sudoku.Rendering.View.Add(Sudoku.Rendering.ViewNode)">
             <summary>
             Appends a new <see cref="T:Sudoku.Rendering.ViewNode"/> into the current collection if the specified argument isn't <see langword="null"/>.
@@ -1106,33 +1101,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.View.Clone">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Rendering.View.op_BitwiseOr(Sudoku.Rendering.View,Sudoku.Rendering.ViewNode)">
-            <summary>
-            Adds a new node into the collection.
-            </summary>
-            <param name="originalView">The original view.</param>
-            <param name="newNode">The new item to be added.</param>
-            <returns>The reference that is same as the argument <paramref name="originalView"/>.</returns>
-            <remarks>
-            Please note that the operator is mutable one, which means the appending operation
-            is based on the argument <paramref name="originalView"/>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Rendering.View.op_BitwiseOr(Sudoku.Rendering.View,Sudoku.Rendering.ViewNode[])">
-            <inheritdoc cref="M:Sudoku.Rendering.View.op_BitwiseOr(Sudoku.Rendering.View,System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})"/>
-        </member>
-        <member name="M:Sudoku.Rendering.View.op_BitwiseOr(Sudoku.Rendering.View,System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
-            <summary>
-            Adds a serial of view nodes into the collection.
-            </summary>
-            <param name="originalView">The original view.</param>
-            <param name="highlightedItems">The highlighted items.</param>
-            <returns>The reference that is same as the argument <paramref name="originalView"/>.</returns>
-            <remarks>
-            Please note that the operator is mutable one, which means the appending operation
-            is based on the argument <paramref name="originalView"/>.
-            </remarks>
         </member>
         <member name="T:Sudoku.Rendering.View.OfTypeEnumerator`1">
             <summary>

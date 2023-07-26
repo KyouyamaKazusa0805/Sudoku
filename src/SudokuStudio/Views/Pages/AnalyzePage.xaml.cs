@@ -39,7 +39,7 @@ public sealed partial class AnalyzePage : Page
 	/// <summary>
 	/// Defines a local view.
 	/// </summary>
-	internal ViewUnitBindableSource? _localView = new() { Conclusions = Array.Empty<Conclusion>(), View = View.Empty };
+	internal ViewUnitBindableSource? _localView = new() { Conclusions = Array.Empty<Conclusion>(), View = [] };
 
 	/// <summary>
 	/// Indicates the tab routing data.
@@ -985,7 +985,7 @@ public sealed partial class AnalyzePage : Page
 
 		page.SudokuPane.ViewUnit = visualUnit switch
 		{
-			{ Conclusions: var conclusions, Views: null or [] } => new() { Conclusions = conclusions, View = View.Empty },
+			{ Conclusions: var conclusions, Views: null or [] } => new() { Conclusions = conclusions, View = [] },
 			{ Conclusions: var conclusions, Views: var views } => new() { Conclusions = conclusions, View = views[value] },
 			_ => null
 		};
@@ -1134,7 +1134,7 @@ public sealed partial class AnalyzePage : Page
 						{
 							ErrorStepGrid = invalidGrid,
 							ErrorStepText = string.Format(GetString("AnalyzePage_ErrorStepDescription"), wrongStep),
-							ViewUnit = new() { View = views?[0] ?? View.Empty, Conclusions = conclusions }
+							ViewUnit = new() { View = views?[0] ?? [], Conclusions = conclusions }
 						}
 					}.ShowAsync();
 

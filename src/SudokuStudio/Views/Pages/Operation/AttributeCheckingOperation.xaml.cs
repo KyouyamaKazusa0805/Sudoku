@@ -27,7 +27,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		}
 
 		var backdoors = await Task.Run(getBackdoors);
-		var view = View.Empty;
+		var view = new View();
 		foreach (var (type, candidate) in backdoors)
 		{
 			view.Add(new CandidateViewNode(type == Assignment ? WellKnownColorIdentifierKind.Assignment : WellKnownColorIdentifierKind.Elimination, candidate));
@@ -53,7 +53,6 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		{
 			ErrorDialog_PuzzleIsInvalid.Target = TrueCandidateButton;
 			ErrorDialog_PuzzleIsInvalid.IsOpen = true;
-
 			return;
 		}
 
@@ -61,15 +60,12 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		if (trueCandidates.Length == 0)
 		{
 			ErrorDialog_PuzzleIsNotBugMultipleGrid.IsOpen = true;
-
 			return;
 		}
 
-		var view = View.Empty;
-		Array.ForEach(trueCandidates, candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifierKind.Assignment, candidate)));
-
-		var visualUnit = new TrueCandidateVisualUnit(view);
-		BasePage.VisualUnit = visualUnit;
+		BasePage.VisualUnit = new TrueCandidateVisualUnit(
+			[.. from candidate in trueCandidates select new CandidateViewNode(WellKnownColorIdentifierKind.Assignment, candidate)]
+		);
 
 
 		Candidate[] getTrueCandidates()
