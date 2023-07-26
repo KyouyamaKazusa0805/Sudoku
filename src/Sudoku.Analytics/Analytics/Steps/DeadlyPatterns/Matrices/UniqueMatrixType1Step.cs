@@ -27,5 +27,5 @@ public sealed partial class UniqueMatrixType1Step(
 			{ ChineseLanguage, [CandidateStr, CellsStr, DigitsStr] }
 		};
 
-	private string CandidateStr => (CandidateMap.Empty + Candidate).ToString();
+	private string CandidateStr => RxCyNotation.ToCandidateString(Candidate);
 }

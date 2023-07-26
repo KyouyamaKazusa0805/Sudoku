@@ -28,7 +28,7 @@ public sealed partial class QiuDeadlyPatternLockedTypeStep(
 			{ ChineseLanguage, [Number, PatternStr] }
 		};
 
-	private string CandidateStr => (CandidateMap.Empty + CandidatesLocked).ToString();
+	private string CandidateStr => CandidatesLocked.ToString();
 
 	private string Quantifier => CandidatesLocked.Count switch { 1 => string.Empty, 2 => " both", _ => " all" };
 

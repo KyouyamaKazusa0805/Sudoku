@@ -21,5 +21,5 @@ public sealed partial class QiuDeadlyPatternType1Step(
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
 		=> new Dictionary<string, string[]?> { { EnglishLanguage, [PatternStr, CandidateStr] }, { ChineseLanguage, [CandidateStr, PatternStr] } };
 
-	private string CandidateStr => (CandidateMap.Empty + Candidate).ToString();
+	private string CandidateStr => RxCyNotation.ToCandidateString(Candidate);
 }
