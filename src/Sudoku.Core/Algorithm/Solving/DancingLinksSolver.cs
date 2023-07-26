@@ -148,7 +148,7 @@ public sealed class DancingLinksSolver : ISolver
 	{
 		var idList = new List<int>(from k in answer select k.Id);
 		idList.Sort();
-		var gridArray = (int[])[.. from id in idList select id % 9 + 1];
+		var gridArray = (Digit[])[.. from id in idList select id % 9 + 1];
 		var grid = Grid.Create(gridArray, GridCreatingOption.MinusOne);
 		result = grid.IsValid ? grid : throw new InvalidOperationException("The puzzle has no possible solutions.");
 	}

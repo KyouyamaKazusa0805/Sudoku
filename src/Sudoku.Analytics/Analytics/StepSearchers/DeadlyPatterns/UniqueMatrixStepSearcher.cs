@@ -43,7 +43,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				var a = chuteIteratorValues[j, 0] + i * 27;
 				var b = chuteIteratorValues[j, 1] + i * 27;
 				var c = chuteIteratorValues[j, 2] + i * 27;
-				Patterns[n++] = [a, b, c, a + 9, b + 9, c + 9, a + 18, b + 18, c + 18];
+				Patterns[n++] = [CellsMap[a], b, c, a + 9, b + 9, c + 9, a + 18, b + 18, c + 18];
 			}
 		}
 
@@ -56,7 +56,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				var c = chuteIteratorValues[j, 2] * 9;
 				Patterns[n++] =
 				[
-					a + 3 * i, b + 3 * i, c + 3 * i,
+					CellsMap[a + 3 * i], b + 3 * i, c + 3 * i,
 					a + 1 + 3 * i, b + 1 + 3 * i, c + 1 + 3 * i,
 					a + 2 + 3 * i, b + 2 + 3 * i, c + 2 + 3 * i
 				];

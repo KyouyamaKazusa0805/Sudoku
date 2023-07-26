@@ -909,11 +909,11 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		void gather(scoped in Grid grid, scoped in CellMap otherCellsMap, bool isRow, Digit digit, House house1, House house2)
 		{
 			var precheck = isRow
-				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [corner1, o1], house1)
-				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [corner2, o2], house2)
+				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [CellsMap[corner1], o1], house1)
+				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [CellsMap[corner2], o2], house2)
 				|| !isRow
-				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [corner1, o2], house1)
-				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [corner2, o1], house2);
+				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [CellsMap[corner1], o2], house1)
+				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [CellsMap[corner2], o1], house2);
 			if (!precheck)
 			{
 				return;
@@ -1294,7 +1294,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					for (var digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
 						var digit = digits[digitIndex];
-						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [cell, otherCell], house))
+						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [CellsMap[cell], otherCell], house))
 						{
 							continue;
 						}
@@ -1466,7 +1466,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					for (var digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
 						var digit = digits[digitIndex];
-						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [cell, otherCell], house))
+						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [CellsMap[cell], otherCell], house))
 						{
 							continue;
 						}
@@ -3002,9 +3002,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					}
 					case [var i, var j, var k]:
 					{
-						list.Add([i + j]);
-						list.Add([j + k]);
-						list.Add([i + k]);
+						list.Add([CellsMap[i], j]);
+						list.Add([CellsMap[j], k]);
+						list.Add([CellsMap[i], k]);
 						list.Add(emptyCellsInInterMap);
 						break;
 					}
@@ -3437,7 +3437,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					SubType2:
 						// Sub-type 2.
 						// The extra digit should form a conjugate pair in that line.
-						var anotherMap = (CellMap)([urCellInSameBlock, anotherCell]);
+						var anotherMap = (CellMap)([CellsMap[urCellInSameBlock], anotherCell]);
 						var anotherLine = anotherMap.CoveredLine;
 						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(extraDigit, anotherMap, anotherLine))
 						{
@@ -4325,7 +4325,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						}
 					}
 
-					var cellPair = (CellMap)([cell1, cell2]);
+					var cellPair = (CellMap)([CellsMap[cell1], cell2]);
 					foreach (var cell in cellPair)
 					{
 						foreach (var digit in grid.GetCandidates(cell))

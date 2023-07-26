@@ -58,12 +58,12 @@ public readonly partial struct BorescoperDeadlyPattern([PrimaryConstructorParame
 	/// <summary>
 	/// Indicates the map of pair 1 cells.
 	/// </summary>
-	public CellMap Pair1Map => [Pair1.A, Pair1.B];
+	public CellMap Pair1Map => [CellsMap[Pair1.A], Pair1.B];
 
 	/// <summary>
 	/// Indicates the map of pair 2 cells.
 	/// </summary>
-	public CellMap Pair2Map => [Pair2.A, Pair2.B];
+	public CellMap Pair2Map => [CellsMap[Pair2.A], Pair2.B];
 
 	/// <summary>
 	/// The map of other three (or four) cells.
@@ -71,8 +71,8 @@ public readonly partial struct BorescoperDeadlyPattern([PrimaryConstructorParame
 	public CellMap CenterCellsMap
 		=> this switch
 		{
-			{ CenterCells: var (a, b, c, _), IsHeptagon: true } => [a, b, c],
-			{ CenterCells: var (a, b, c, d), IsHeptagon: false } => [a, b, c, d]
+			{ CenterCells: var (a, b, c, _), IsHeptagon: true } => [CellsMap[a], b, c],
+			{ CenterCells: var (a, b, c, d), IsHeptagon: false } => [CellsMap[a], b, c, d]
 		};
 
 	/// <summary>

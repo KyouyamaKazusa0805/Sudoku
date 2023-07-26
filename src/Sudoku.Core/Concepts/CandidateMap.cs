@@ -436,10 +436,6 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Add(scoped in CandidateMap self) => this |= self;
-
-	/// <inheritdoc/>
 	public void AddRange(IEnumerable<Candidate> offsets)
 	{
 		foreach (var element in offsets)
@@ -498,6 +494,10 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	void IBitStatusMap<CandidateMap, Candidate>.UnionWith(IEnumerable<Candidate> other) => this += other;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void IBitStatusMap<CandidateMap, int>.Add(scoped in CandidateMap self) => this |= self;
 
 
 	/// <inheritdoc/>

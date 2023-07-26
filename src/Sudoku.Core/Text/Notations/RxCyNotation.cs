@@ -68,7 +68,7 @@ public sealed partial class RxCyNotation : ICellNotation<RxCyNotation, RxCyNotat
 	/// <param name="cell">The cell.</param>
 	/// <returns>The <see cref="string"/> representation of a cell.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCellString(Cell cell) => ToCellsString([cell]);
+	public static string ToCellString(Cell cell) => ToCellsString(CellsMap[cell]);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

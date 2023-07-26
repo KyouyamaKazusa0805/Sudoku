@@ -296,7 +296,7 @@ file static unsafe class Cached
 		// This limitation will miss the incomplete structures, I may modify it later.
 		foreach (var cell in CandidatesMap[d1] & CandidatesMap[d2])
 		{
-			DepthFirstSearching_BivalueOddagon(cell, cell, 0, [cell], digitsMask, CandidatesMap[d1] & CandidatesMap[d2], condition, result);
+			DepthFirstSearching_BivalueOddagon(cell, cell, 0, CellsMap[cell], digitsMask, CandidatesMap[d1] & CandidatesMap[d2], condition, result);
 		}
 
 		return [.. result.Distinct()];

@@ -14,7 +14,8 @@ public static class StepSearcherCollectionExtensions
 	{
 		var disallowHighTimeComplexity = @this.Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms;
 		var disallowSpaceTimeComplexity = @this.Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms;
-		return [
+		return
+		[
 			..
 			from data in @this.Preference.StepSearcherOrdering.StepSearchersOrder
 			where data.IsEnabled

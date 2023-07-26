@@ -28,7 +28,7 @@ public readonly partial struct LockedTarget(
 	/// </summary>
 	/// <param name="digit">Indicates the digit used.</param>
 	/// <param name="cell">Indicates the cell used.</param>
-	public LockedTarget(Digit digit, Cell cell) : this(digit, [cell])
+	public LockedTarget(Digit digit, Cell cell) : this(digit, CellsMap[cell])
 	{
 	}
 

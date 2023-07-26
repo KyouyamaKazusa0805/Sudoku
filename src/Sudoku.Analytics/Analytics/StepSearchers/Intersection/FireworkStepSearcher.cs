@@ -56,19 +56,19 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						{
 							if ((CellsMap[a] + b).InOneHouse && (CellsMap[a] + c).InOneHouse)
 							{
-								Patterns[i++] = new([a, b, c], a);
+								Patterns[i++] = new([CellsMap[a], b, c], a);
 								continue;
 							}
 
 							if ((CellsMap[a] + b).InOneHouse && (CellsMap[b] + c).InOneHouse)
 							{
-								Patterns[i++] = new([a, b, c], b);
+								Patterns[i++] = new([CellsMap[a], b, c], b);
 								continue;
 							}
 
 							if ((CellsMap[a] + c).InOneHouse && (CellsMap[b] + c).InOneHouse)
 							{
-								Patterns[i++] = new([a, b, c], c);
+								Patterns[i++] = new([CellsMap[a], b, c], c);
 							}
 						}
 					}
@@ -90,7 +90,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 								continue;
 							}
 
-							Patterns[i++] = new([a, b, c, d], null);
+							Patterns[i++] = new([CellsMap[a], b, c, d], null);
 						}
 					}
 				}
@@ -586,7 +586,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		var excluded1 = HousesMap[(CellsMap[c1] + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c1;
 		var excluded2 = HousesMap[(CellsMap[c2] + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c2;
 		var finalMask = (Mask)0;
-		foreach (var digit in grid[[c1, c2, pivot]])
+		foreach (var digit in grid[[CellsMap[c1], c2, pivot]])
 		{
 			if (isFireworkFor(digit, excluded1, grid) && isFireworkFor(digit, excluded2, grid))
 			{

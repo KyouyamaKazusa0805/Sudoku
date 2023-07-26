@@ -178,7 +178,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static CellMap f(Cell[] offsets, Cell currentOffset)
-			=> [offsets[0] + currentOffset, offsets[1] + currentOffset, offsets[2] + currentOffset];
+			=> [CellsMap[offsets[0] + currentOffset], offsets[1] + currentOffset, offsets[2] + currentOffset];
 	}
 
 	/// <summary>
