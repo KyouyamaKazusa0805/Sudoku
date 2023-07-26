@@ -234,6 +234,6 @@ public abstract class SubsetStepSearcher(
 			result.Add(new(p, c) { RenderingMode = RenderingMode.DirectModeOnly });
 		}
 
-		return result.ToArray();
+		return [.. result];
 	}
 }

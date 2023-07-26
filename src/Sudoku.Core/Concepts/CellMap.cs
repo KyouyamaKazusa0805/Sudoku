@@ -744,7 +744,7 @@ public unsafe partial struct CellMap :
 			}
 			var result = new List<CellMap>();
 			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
-			return result.ToArray();
+			return [.. result];
 
 			void enumerateWithoutLimit(int size, int last, int index, Cell[] offsets)
 			{
@@ -795,7 +795,7 @@ public unsafe partial struct CellMap :
 			result.AddRange(GetSubsets(i));
 		}
 
-		return result.ToArray();
+		return [.. result];
 	}
 
 	/// <summary>

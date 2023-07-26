@@ -34,7 +34,7 @@ public static class MaskOperations
 			listOfResults.AddRange(maskSubset);
 		}
 
-		return listOfResults.ToArray();
+		return [.. listOfResults];
 	}
 
 	/// <summary>

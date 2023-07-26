@@ -83,7 +83,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 			}
 		}
 
-		PatternOffsets = patternOffsetsList.ToArray();
+		PatternOffsets = [.. patternOffsetsList];
 	}
 
 

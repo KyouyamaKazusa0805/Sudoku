@@ -122,7 +122,7 @@ internal static class RenderableFactory
 		// Finally, iterate on links.
 		// The links are special to be handled - they will create a list of line controls.
 		// We should handle it at last.
-		ForLinkNodes(sudokuPane, links.ToArray(), conclusions, controlAddingActions);
+		ForLinkNodes(sudokuPane, [.. links], conclusions, controlAddingActions);
 
 		controlAddingActions.ForEach(static pair => pair.Invoke());
 

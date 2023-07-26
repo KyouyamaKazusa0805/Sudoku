@@ -139,6 +139,6 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 			result.Add(new(p, c) { RenderingMode = RenderingMode.DirectModeOnly });
 		}
 
-		return result.ToArray();
+		return [.. result];
 	}
 }

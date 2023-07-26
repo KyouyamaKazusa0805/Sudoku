@@ -158,7 +158,7 @@ file sealed class Converter : JsonConverter<DashArray>
 		}
 
 	ReturnValue:
-		return new(targetCollection.ToArray());
+		return new([.. targetCollection]);
 	}
 
 	/// <inheritdoc/>

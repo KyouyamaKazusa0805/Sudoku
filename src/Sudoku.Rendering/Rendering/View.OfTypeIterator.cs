@@ -64,7 +64,7 @@ partial class View
 				result.Add(element);
 			}
 
-			return result.ToArray();
+			return [.. result];
 		}
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>

@@ -300,7 +300,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 			result.AddRange(GetSubsets(i));
 		}
 
-		return result.ToArray();
+		return [.. result];
 	}
 
 	/// <summary>

@@ -180,7 +180,7 @@ partial class GridImageGenerator
 
 		// Gather all points used.
 		var points = new HashSet<PointF>();
-		var linkArray = view.OfType<LinkViewNode>().ToArray();
+		var linkArray = (LinkViewNode[])[.. view.OfType<LinkViewNode>()];
 		foreach (var linkNode in linkArray)
 		{
 			points.Add(calc.GetMouseCenter(linkNode.Start));

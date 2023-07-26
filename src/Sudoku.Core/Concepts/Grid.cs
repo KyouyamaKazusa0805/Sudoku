@@ -463,7 +463,7 @@ public unsafe partial struct Grid :
 				}
 			}
 
-			return conjugatePairs.ToArray();
+			return [.. conjugatePairs];
 		}
 	}
 

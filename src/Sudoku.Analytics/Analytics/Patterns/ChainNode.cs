@@ -93,7 +93,7 @@ public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKind
 				result.Add(p);
 			}
 
-			return result.ToArray();
+			return [.. result];
 		}
 	}
 
@@ -123,7 +123,7 @@ public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKind
 				todo = next;
 			}
 
-			return result.ToArray();
+			return [.. result];
 		}
 	}
 

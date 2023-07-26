@@ -402,7 +402,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 			chains.Add((byte)(headCandidate / 9), branch);
 		}
 
-		var result = new BlossomLoopStep(conclusions.ToArray(), houseIndex, digit, chains);
+		var result = new BlossomLoopStep([.. conclusions], houseIndex, digit, chains);
 		return new(result, result.CreateViews());
 	}
 
@@ -441,7 +441,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 			chains.Add((byte)(headCandidate / 9), branch);
 		}
 
-		var result = new BlossomLoopStep(conclusions.ToArray(), houseIndex, digit, chains);
+		var result = new BlossomLoopStep([.. conclusions], houseIndex, digit, chains);
 		return new(result, result.CreateViews());
 	}
 }

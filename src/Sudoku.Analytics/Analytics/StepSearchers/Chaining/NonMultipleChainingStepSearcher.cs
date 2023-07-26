@@ -352,7 +352,7 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 			return null;
 		}
 
-		var result = new BidirectionalCycleStep(conclusions.ToArray(), dstOn, isX, isY);
+		var result = new BidirectionalCycleStep([.. conclusions], dstOn, isX, isY);
 		return new(result, result.CreateViews(grid));
 	}
 

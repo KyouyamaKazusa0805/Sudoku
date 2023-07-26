@@ -712,7 +712,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 			}
 		}
 
-		return result.ToArray();
+		return [.. result];
 	}
 
 	/// <summary>
@@ -737,7 +737,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 			}
 		}
 
-		return result.ToArray();
+		return [.. result];
 	}
 
 	/// <summary>
@@ -812,7 +812,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 			}
 		}
 
-		return list.ToArray();
+		return [.. list];
 	}
 
 	/// <inheritdoc/>

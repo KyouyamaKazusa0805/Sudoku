@@ -62,6 +62,6 @@ internal static class AlmostLockedSetHelper
 			}
 		}
 
-		return result.ToArray();
+		return [.. result];
 	}
 }

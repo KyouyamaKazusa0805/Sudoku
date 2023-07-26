@@ -78,7 +78,7 @@ public sealed partial class BlossomLoopStep(
 			result.Add(eachBranchView);
 		}
 
-		return result.ToArray();
+		return [.. result];
 	}
 
 	/// <inheritdoc cref="ChainingStep.GetOnPotentials(int)"/>

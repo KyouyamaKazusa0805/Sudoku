@@ -158,6 +158,6 @@ public sealed partial class AlmostLockedSet(
 			}
 		}
 
-		return result.ToArray();
+		return [.. result];
 	}
 }

@@ -47,7 +47,7 @@ public static class ArrayEnumerable
 			}
 		}
 
-		return result.ToArray();
+		return [.. result];
 	}
 
 	/// <summary>

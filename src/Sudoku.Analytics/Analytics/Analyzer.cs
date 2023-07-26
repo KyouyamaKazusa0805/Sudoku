@@ -209,8 +209,8 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 			{
 				FailedReason = AnalyzerFailedReason.PuzzleIsTooHard,
 				ElapsedTime = stopwatch.GetElapsedTime(),
-				Steps = recordedSteps.ToArray(),
-				StepGrids = stepGrids.ToArray()
+				Steps = [.. recordedSteps],
+				StepGrids = [.. stepGrids]
 			};
 
 		ReportStatusAndSkipToTryAgain:
@@ -271,8 +271,8 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 							IsSolved = true,
 							Solution = playground,
 							ElapsedTime = stopwatch.GetElapsedTime(),
-							Steps = steps.ToArray(),
-							StepGrids = stepGrids.ToArray()
+							Steps = [.. steps],
+							StepGrids = [.. stepGrids]
 						};
 						return true;
 					}
