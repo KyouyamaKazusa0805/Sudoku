@@ -337,7 +337,7 @@ public static class SolutionWideReadOnlyFields
 		CellsMap = new CellMap[81];
 		for (var i = 0; i < 81; i++)
 		{
-			CellsMap[i] = CellMap.Empty + i;
+			CellsMap[i] = [i];
 		}
 
 		HousesMap = new CellMap[27];

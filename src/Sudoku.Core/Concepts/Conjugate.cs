@@ -92,7 +92,7 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	public CellMap Map
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CellsMap[From] + To;
+		get => [From, To];
 	}
 
 	private Candidate FromCandidate => From * 9 + Digit;

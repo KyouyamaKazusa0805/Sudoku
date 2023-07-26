@@ -88,10 +88,10 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 							tr1,
 							bb[bc[i, 1]] + rq[l, 1],
 							(CellMap)crossline[7..],
-							CellsMap[bb[bc[i, 1]] + m[l, 2]] + (bb[bc[i, 1]] + m[l, 3]),
-							CellsMap[bb[bc[i, 1]] + m[l, 0]] + (bb[bc[i, 1]] + m[l, 1]),
-							CellsMap[bb[bc[i, 0]] + m[k, 2]] + (bb[bc[i, 0]] + m[k, 3]),
-							CellsMap[bb[bc[i, 0]] + m[k, 0]] + (bb[bc[i, 0]] + m[k, 1])
+							[bb[bc[i, 1]] + m[l, 2], bb[bc[i, 1]] + m[l, 3]],
+							[bb[bc[i, 1]] + m[l, 0], bb[bc[i, 1]] + m[l, 1]],
+							[bb[bc[i, 0]] + m[k, 2], bb[bc[i, 0]] + m[k, 3]],
+							[bb[bc[i, 0]] + m[k, 0], bb[bc[i, 0]] + m[k, 1]]
 						);
 					}
 				}

@@ -234,9 +234,9 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 				}
 				case [var i, var j, var k]:
 				{
-					list->Add(CellsMap[i] + j);
-					list->Add(CellsMap[i] + k);
-					list->Add(CellsMap[j] + k);
+					list->Add([i + j]);
+					list->Add([i + k]);
+					list->Add([j + k]);
 					break;
 				}
 			}

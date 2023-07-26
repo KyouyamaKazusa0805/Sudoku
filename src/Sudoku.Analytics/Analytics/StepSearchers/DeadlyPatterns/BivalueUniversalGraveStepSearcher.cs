@@ -479,7 +479,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					[.. conclusions],
 					[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
 					digitsMask,
-					CellMap.Empty + cells,
+					[.. cells],
 					new(c1, c2, conjugatePairDigit)
 				);
 				if (onlyFindOne)
@@ -592,7 +592,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				[.. conclusions],
 				[[new CellViewNode(WellKnownColorIdentifier.Normal, cell), .. candidateOffsets]],
 				mask,
-				CellsMap[c1] + c2,
+				[c1, c2],
 				cell
 			);
 			if (onlyFindOne)

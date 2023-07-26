@@ -1294,7 +1294,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					for (var digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
 						var digit = digits[digitIndex];
-						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, CellsMap[cell] + otherCell, house))
+						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [cell, otherCell], house))
 						{
 							continue;
 						}
@@ -1466,7 +1466,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					for (var digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
 						var digit = digits[digitIndex];
-						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, CellsMap[cell] + otherCell, house))
+						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [cell, otherCell], house))
 						{
 							continue;
 						}
@@ -2677,9 +2677,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								arMode ? Technique.AvoidableRectangleXyWing : Technique.UniqueRectangleXyWing,
 								d1,
 								d2,
-								(CellMap)urCells,
+								[.. urCells],
 								arMode,
-								CellsMap[c1] + c2,
+								[c1, c2],
 								otherCellsMap,
 								extraDigitsMask,
 								index
@@ -2774,9 +2774,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 										arMode ? Technique.AvoidableRectangleXyzWing : Technique.UniqueRectangleXyzWing,
 										d1,
 										d2,
-										(CellMap)urCells,
+										[.. urCells],
 										arMode,
-										CellsMap[c1] + c2 + c3,
+										[c1, c2, c3],
 										otherCellsMap,
 										extraDigitsMask,
 										index
@@ -2892,9 +2892,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 											arMode ? Technique.AvoidableRectangleWxyzWing : Technique.UniqueRectangleWxyzWing,
 											d1,
 											d2,
-											(CellMap)urCells,
+											[.. urCells],
 											arMode,
-											CellsMap[c1] + c2 + c3 + c4,
+											[c1, c2, c3, c4],
 											otherCellsMap,
 											extraDigitsMask,
 											index
@@ -3004,9 +3004,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					}
 					case [var i, var j, var k]:
 					{
-						list.Add(CellsMap[i] + j);
-						list.Add(CellsMap[j] + k);
-						list.Add(CellsMap[i] + k);
+						list.Add([i + j]);
+						list.Add([j + k]);
+						list.Add([i + k]);
 						list.Add(emptyCellsInInterMap);
 						break;
 					}
