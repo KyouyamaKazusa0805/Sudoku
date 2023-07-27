@@ -168,6 +168,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 		const BindingFlags staticMethodFlag = BindingFlags.NonPublic | BindingFlags.Static;
 
 		var equalityContract = GetType();
+		var currentTypeEqualityContract = typeof(Step);
 		if (obj?.GetType() != equalityContract)
 		{
 			goto ThrowExceptionOrReturnFalse;
@@ -175,14 +176,14 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 
 		if (equalityContract.IsGenericAssignableTo(typeof(IEquatableStep<>)))
 		{
-			return (bool)typeof(Step).GetMethod(nameof(EquatableStepEntry), staticMethodFlag)!
+			return (bool)currentTypeEqualityContract.GetMethod(nameof(EquatableStepEntry), staticMethodFlag)!
 				.MakeGenericMethod(equalityContract)
 				.Invoke(null, [this, obj])!;
 		}
 
 		if (equalityContract.IsGenericAssignableTo(typeof(IComparableStep<>)))
 		{
-			return (int)typeof(Step).GetMethod(nameof(ComparableStepEntry), staticMethodFlag)!
+			return (int)currentTypeEqualityContract.GetMethod(nameof(ComparableStepEntry), staticMethodFlag)!
 				.MakeGenericMethod(equalityContract)
 				.Invoke(null, [this, obj])! == 0;
 		}
