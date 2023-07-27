@@ -125,9 +125,9 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 			var level and not 0 => level,
 			_ => throw new InvalidOperationException(
 				$"""
-				The target level is unknown. 
-				If you see this exception thrown, 
-				please append '{typeof(DifficultyLevelAttribute).FullName}' onto the target technique code.
+				The target level is unknown. If you see this exception thrown, 
+				please append '{typeof(DifficultyLevelAttribute).FullName}' to the target technique code field 
+				defined in type '{typeof(Technique).FullName}'.
 				""".RemoveLineEndings()
 			)
 		};
@@ -158,7 +158,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// <summary>
 	/// Indicates the string representation of the conclusions of the step.
 	/// </summary>
-	protected string ConclusionText => ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
+	private protected string ConclusionText => ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
 
 
 	/// <inheritdoc/>
@@ -227,8 +227,13 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	public string ToSimpleString() => $"{Name} => {ConclusionText}";
 
 
-
+	/// <summary>
+	/// The entry method to visit operators defined in type <see cref="IEquatableStep{TSelf}"/>.
+	/// </summary>
 	private static bool EquatableStepEntry<T>(T left, T right) where T : Step, IEquatableStep<T> => left == right;
 
+	/// <summary>
+	/// The entry method to visit methods defined in type <see cref="IComparableStep{TSelf}"/>.
+	/// </summary>
 	private static int ComparableStepEntry<T>(T left, T right) where T : Step, IComparableStep<T> => T.Compare(left, right);
 }
