@@ -107,7 +107,7 @@ public static class CommonReadOnlies
 	/// In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
 	/// </para>
 	/// </summary>
-	public static readonly IReadOnlyDictionary<HousePair, HouseCellsTuple> IntersectionMaps;
+	public static readonly IReadOnlyDictionary<IntersectionBase, IntersectionResult> IntersectionMaps;
 
 	/// <summary>
 	/// <para>The table of all blocks to iterate for each blocks.</para>
@@ -144,7 +144,7 @@ public static class CommonReadOnlies
 	{
 		scoped var r = (ReadOnlySpan<byte>)[0, 1, 2, 3, 4, 5, 6, 7, 8];
 		scoped var c = (ReadOnlySpan<byte>)[0, 3, 6, 1, 4, 7, 2, 5, 8];
-		var dic = new Dictionary<HousePair, HouseCellsTuple>(new HousePairComparer());
+		var dic = new Dictionary<IntersectionBase, IntersectionResult>(new HousePairComparer());
 		for (var bs = (byte)9; bs < 27; bs++)
 		{
 			for (var j = (byte)0; j < 3; j++)
@@ -153,7 +153,7 @@ public static class CommonReadOnlies
 				scoped ref readonly var bm = ref HousesMap[bs];
 				scoped ref readonly var cm = ref HousesMap[cs];
 				var i = bm & cm;
-				dic.Add(new(bs, cs), (bm - i, cm - i, i, IntersectionBlockTable[(bs - 9) * 3 + j]));
+				dic.Add(new(bs, cs), new(bm - i, cm - i, i, IntersectionBlockTable[(bs - 9) * 3 + j]));
 			}
 		}
 
@@ -164,13 +164,13 @@ public static class CommonReadOnlies
 /// <summary>
 /// Represents a comparer instance that compares two tuples.
 /// </summary>
-file sealed class HousePairComparer : IEqualityComparer<HousePair>
+file sealed class HousePairComparer : IEqualityComparer<IntersectionBase>
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(HousePair x, HousePair y) => x == y;
+	public bool Equals(IntersectionBase x, IntersectionBase y) => x == y;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int GetHashCode(HousePair obj) => obj.Line << 5 | obj.Block;
+	public int GetHashCode(IntersectionBase obj) => obj.Line << 5 | obj.Block;
 }

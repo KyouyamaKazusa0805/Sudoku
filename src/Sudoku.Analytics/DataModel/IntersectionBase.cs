@@ -5,4 +5,4 @@ namespace Sudoku.DataModel;
 /// </summary>
 /// <param name="Line">The index of the line.</param>
 /// <param name="Block">The index of the block.</param>
-public readonly record struct HousePair(byte Line, byte Block);
+public readonly record struct IntersectionBase(byte Line, byte Block);

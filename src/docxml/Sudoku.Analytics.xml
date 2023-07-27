@@ -2880,7 +2880,7 @@
             <param name="this">The technique.</param>
             <returns>
             <para>
-            A <see cref="T:System.ValueTuple`2"/> value defined by the project Sudoku Explainer.
+            A <see cref="T:Sudoku.DataModel.SudokuExplainderDifficultyResult"/> value defined by the project Sudoku Explainer.
             </para>
             <para>
             If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.
@@ -17753,6 +17753,44 @@ result ^= expression;
         <member name="P:Sudoku.DataModel.ExtraDifficultyCase.Value">
             <summary>The rating value.</summary>
         </member>
+        <member name="T:Sudoku.DataModel.HouseCellsTuple">
+            <summary>
+            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/> property.
+            </summary>
+            <param name="LineMap">The map of the line.</param>
+            <param name="BlockMap">The map of the block.</param>
+            <param name="IntersectionMap">The map of the intersection.</param>
+            <param name="OtherBlocks">
+            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Empty Rectangle.
+            </param>
+            <seealso cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/>
+        </member>
+        <member name="M:Sudoku.DataModel.HouseCellsTuple.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Byte[])">
+            <summary>
+            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/> property.
+            </summary>
+            <param name="LineMap">The map of the line.</param>
+            <param name="BlockMap">The map of the block.</param>
+            <param name="IntersectionMap">The map of the intersection.</param>
+            <param name="OtherBlocks">
+            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Empty Rectangle.
+            </param>
+            <seealso cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/>
+        </member>
+        <member name="P:Sudoku.DataModel.HouseCellsTuple.LineMap">
+            <summary>The map of the line.</summary>
+        </member>
+        <member name="P:Sudoku.DataModel.HouseCellsTuple.BlockMap">
+            <summary>The map of the block.</summary>
+        </member>
+        <member name="P:Sudoku.DataModel.HouseCellsTuple.IntersectionMap">
+            <summary>The map of the intersection.</summary>
+        </member>
+        <member name="P:Sudoku.DataModel.HouseCellsTuple.OtherBlocks">
+            <summary>
+            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Empty Rectangle.
+            </summary>
+        </member>
         <member name="T:Sudoku.DataModel.HousePair">
             <summary>
             Defines a pair of houses that means the target pair can form an intersection by the specified line and block.
@@ -17772,6 +17810,28 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.DataModel.HousePair.Block">
             <summary>The index of the block.</summary>
+        </member>
+        <member name="T:Sudoku.DataModel.SudokuExplainderDifficultyResult">
+            <summary>
+            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange"/> instances indicating the result of difficulty rating
+            for the specified technique defined in application Sudoku Explainer.
+            </summary>
+            <param name="Original">The original difficulty rating of the technique.</param>
+            <param name="Advanced">The advanced difficulty rating of the technique.</param>
+        </member>
+        <member name="M:Sudoku.DataModel.SudokuExplainderDifficultyResult.#ctor(System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange},System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange})">
+            <summary>
+            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange"/> instances indicating the result of difficulty rating
+            for the specified technique defined in application Sudoku Explainer.
+            </summary>
+            <param name="Original">The original difficulty rating of the technique.</param>
+            <param name="Advanced">The advanced difficulty rating of the technique.</param>
+        </member>
+        <member name="P:Sudoku.DataModel.SudokuExplainderDifficultyResult.Original">
+            <summary>The original difficulty rating of the technique.</summary>
+        </member>
+        <member name="P:Sudoku.DataModel.SudokuExplainderDifficultyResult.Advanced">
+            <summary>The advanced difficulty rating of the technique.</summary>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>
