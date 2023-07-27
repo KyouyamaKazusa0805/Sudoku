@@ -30,7 +30,7 @@ public abstract partial class UniqueRectangleStep(
 	[PrimaryConstructorParameter] scoped in CellMap cells,
 	[PrimaryConstructorParameter] bool isAvoidable,
 	[PrimaryConstructorParameter] int absoluteOffset
-) : DeadlyPatternStep(conclusions, views), IEquatableStep<UniqueRectangleStep>
+) : DeadlyPatternStep(conclusions, views), IComparableStep<UniqueRectangleStep>, IEquatableStep<UniqueRectangleStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.5M;
@@ -58,4 +58,9 @@ public abstract partial class UniqueRectangleStep(
 		var r = (CandidateMap)([.. from conclusion in right.Conclusions select conclusion.Candidate]);
 		return l == r;
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static int IComparableStep<UniqueRectangleStep>.Compare(UniqueRectangleStep left, UniqueRectangleStep right)
+		=> Sign(left.Code - right.Code) switch { 0 => Sign(left.AbsoluteOffset - right.AbsoluteOffset), var result => result };
 }

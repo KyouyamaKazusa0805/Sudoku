@@ -24,7 +24,7 @@ public static class EquatableStep
 			[] => [],
 			[var firstElement] => [firstElement],
 			[var a, var b] => a == b ? [a] : [a, b],
-			_ => new HashSet<TSelf>(steps, LocalEqualityComparer<TSelf>.Instance)
+			_ => new HashSet<TSelf>(steps, new StepEqualityComparer<TSelf>())
 		};
 }
 
@@ -33,14 +33,8 @@ public static class EquatableStep
 /// The internal comparer type for <typeparamref name="T"/> instances.
 /// </summary>
 /// <typeparam name="T">The type of the step.</typeparam>
-file sealed class LocalEqualityComparer<T> : IEqualityComparer<T> where T : Step, IEquatableStep<T>
+file sealed class StepEqualityComparer<T> : IEqualityComparer<T> where T : Step, IEquatableStep<T>
 {
-	/// <summary>
-	/// The singleton instance.
-	/// </summary>
-	public static readonly LocalEqualityComparer<T> Instance = new();
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(T x, T y) => x == y;

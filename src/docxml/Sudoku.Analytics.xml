@@ -5054,6 +5054,11 @@ result ^= expression;
             <param name="conclusions"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Conclusions" path="/summary"/></param>
             <param name="views"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Views" path="/summary"/></param>
         </member>
+        <member name="F:Sudoku.Analytics.Step.HashCodeDefaultValue">
+            <summary>
+            The placeholder of the hash code.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Step.Name">
             <summary>
             Indicates the technique name.
@@ -5187,6 +5192,9 @@ result ^= expression;
             Indicates the string representation of the conclusions of the step.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Step.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Step.ToString">
             <summary>
             Returns a string that only contains the name and the basic description.
@@ -5208,9 +5216,6 @@ result ^= expression;
             <summary>
             The generated property declaration for parameter <c>views</c>.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Step.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Analytics.Step.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -11263,6 +11268,9 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#UniqueRectangleStep}#op_Equality(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.Sudoku#Analytics#Steps#IComparableStep{Sudoku#Analytics#Steps#UniqueRectangleStep}#Compare(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Digit1">
             <summary>
             The generated property declaration for parameter <c>digit1</c>.
@@ -11855,21 +11863,16 @@ result ^= expression;
             </remarks>
             <seealso cref="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Equality(`0,`0)"/>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.LocalEqualityComparer`1">
+        <member name="T:Sudoku.Analytics.Steps.StepEqualityComparer`1">
             <summary>
             The internal comparer type for <typeparamref name="T"/> instances.
             </summary>
             <typeparam name="T">The type of the step.</typeparam>
         </member>
-        <member name="F:Sudoku.Analytics.Steps.LocalEqualityComparer`1.Instance">
-            <summary>
-            The singleton instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.LocalEqualityComparer`1.Equals(`0,`0)">
+        <member name="M:Sudoku.Analytics.Steps.StepEqualityComparer`1.Equals(`0,`0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LocalEqualityComparer`1.GetHashCode(`0)">
+        <member name="M:Sudoku.Analytics.Steps.StepEqualityComparer`1.GetHashCode(`0)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ExocetStep">

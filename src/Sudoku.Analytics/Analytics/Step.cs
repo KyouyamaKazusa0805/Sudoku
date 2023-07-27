@@ -5,11 +5,17 @@ namespace Sudoku.Analytics;
 /// </summary>
 /// <param name="conclusions"><inheritdoc cref="IRenderable.Conclusions" path="/summary"/></param>
 /// <param name="views"><inheritdoc cref="IRenderable.Views" path="/summary"/></param>
-[Equals(OtherModifiers = "sealed")]
-[GetHashCode(GetHashCodeBehavior.ThrowNotSupportedException, OtherModifiers = "sealed")]
+[GetHashCode(OtherModifiers = "sealed")]
 public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] conclusions, [PrimaryConstructorParameter] View[]? views) :
 	IRenderable
 {
+	/// <summary>
+	/// The placeholder of the hash code.
+	/// </summary>
+	[HashCodeMember]
+	private const int HashCodeDefaultValue = 0;
+
+
 	/// <summary>
 	/// Indicates the technique name.
 	/// </summary>
@@ -155,6 +161,47 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	protected string ConclusionText => ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
 
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] object? obj)
+	{
+		const BindingFlags staticMethodFlag = BindingFlags.NonPublic | BindingFlags.Static;
+
+		var equalityContract = GetType();
+		if (obj?.GetType() != equalityContract)
+		{
+			goto ThrowExceptionOrReturnFalse;
+		}
+
+		if (equalityContract.IsGenericAssignableTo(typeof(IEquatableStep<>)))
+		{
+			return (bool)typeof(Step).GetMethod(nameof(EquatableStepEntry), staticMethodFlag)!
+				.MakeGenericMethod(equalityContract)
+				.Invoke(null, [this, obj])!;
+		}
+
+		if (equalityContract.IsGenericAssignableTo(typeof(IComparableStep<>)))
+		{
+			return (int)typeof(Step).GetMethod(nameof(ComparableStepEntry), staticMethodFlag)!
+				.MakeGenericMethod(equalityContract)
+				.Invoke(null, [this, obj])! == 0;
+		}
+
+	ThrowExceptionOrReturnFalse:
+#if true
+		return false;
+#else
+		throw new NotSupportedException(
+			$"""
+			Such type cannot be compared. If a step can be compared with the other step, it should:
+			  * implement '{typeof(IEquatableStep<>).Name}'
+			  * implement '{typeof(IComparableStep<>).Name}'
+			  * Two instances should be a same type.
+			"""
+		);
+#endif
+	}
+
 	/// <summary>
 	/// Returns a string that only contains the name and the basic description.
 	/// </summary>
@@ -178,4 +225,10 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToSimpleString() => $"{Name} => {ConclusionText}";
+
+
+
+	private static bool EquatableStepEntry<T>(T left, T right) where T : Step, IEquatableStep<T> => left == right;
+
+	private static int ComparableStepEntry<T>(T left, T right) where T : Step, IComparableStep<T> => T.Compare(left, right);
 }

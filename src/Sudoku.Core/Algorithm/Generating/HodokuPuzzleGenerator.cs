@@ -70,11 +70,10 @@ public ref struct HodokuPuzzleGenerator
 	[SuppressMessage("Performance", "CA1861:Avoid constant arrays as arguments", Justification = "<Pending>")]
 	public unsafe HodokuPuzzleGenerator()
 	{
+		static void callback(scoped ref RecursionStackEntry element) => element = new();
 		_generateIndices = new int[81];
-		(_stack = new RecursionStackEntry[82]).ForEachRefUnsafe(&callback);
-
-
-		static void callback(ref RecursionStackEntry element) => element = new();
+		_stack = new RecursionStackEntry[82];
+		_stack.ForEachRefUnsafe(&callback);
 	}
 
 
