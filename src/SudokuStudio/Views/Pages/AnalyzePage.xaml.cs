@@ -482,8 +482,8 @@ public sealed partial class AnalyzePage : Page
 	private void InitializeFields()
 	{
 		var thickness = new Thickness(10);
-		_tabsRoutingData = new()
-		{
+		_tabsRoutingData =
+		[
 			new()
 			{
 				Header = GetString("AnalyzePage_TechniquesTable"),
@@ -508,7 +508,7 @@ public sealed partial class AnalyzePage : Page
 				IconSource = new SymbolIconSource { Symbol = Symbol.Edit },
 				Page = new Drawing { Margin = thickness, BasePage = this }
 			}
-		};
+		];
 
 		_hotkeyFunctions = new()
 		{
