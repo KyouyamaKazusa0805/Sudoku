@@ -166,41 +166,22 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	public override bool Equals([NotNullWhen(true)] object? obj)
 	{
 		const BindingFlags staticMethodFlag = BindingFlags.NonPublic | BindingFlags.Static;
-
-		var equalityContract = GetType();
-		var currentTypeEqualityContract = typeof(Step);
-		if (obj?.GetType() != equalityContract)
+		var (equalityContract, currentTypeEqualityContract) = (GetType(), typeof(Step));
+		return (
+			obj?.GetType() != equalityContract,
+			equalityContract.IsGenericAssignableTo(typeof(IEquatableStep<>)),
+			equalityContract.IsGenericAssignableTo(typeof(IComparableStep<>))
+		) switch
 		{
-			goto ThrowExceptionOrReturnFalse;
-		}
-
-		if (equalityContract.IsGenericAssignableTo(typeof(IEquatableStep<>)))
-		{
-			return (bool)currentTypeEqualityContract.GetMethod(nameof(EquatableStepEntry), staticMethodFlag)!
+			(true, _, _) => false,
+			(_, true, _) => (bool)currentTypeEqualityContract.GetMethod(nameof(EquatableStepEntry), staticMethodFlag)!
 				.MakeGenericMethod(equalityContract)
-				.Invoke(null, [this, obj])!;
-		}
-
-		if (equalityContract.IsGenericAssignableTo(typeof(IComparableStep<>)))
-		{
-			return (int)currentTypeEqualityContract.GetMethod(nameof(ComparableStepEntry), staticMethodFlag)!
+				.Invoke(null, [this, obj])!,
+			(_, _, true) => (int)currentTypeEqualityContract.GetMethod(nameof(ComparableStepEntry), staticMethodFlag)!
 				.MakeGenericMethod(equalityContract)
-				.Invoke(null, [this, obj])! == 0;
-		}
-
-	ThrowExceptionOrReturnFalse:
-#if true
-		return false;
-#else
-		throw new NotSupportedException(
-			$"""
-			Such type cannot be compared. If a step can be compared with the other step, it should:
-			  * implement '{typeof(IEquatableStep<>).Name}'
-			  * implement '{typeof(IComparableStep<>).Name}'
-			  * Two instances should be a same type.
-			"""
-		);
-#endif
+				.Invoke(null, [this, obj])! == 0,
+			_ => false
+		};
 	}
 
 	/// <summary>
