@@ -2976,7 +2976,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var otherDigitsMask = (Mask)(mergedMaskInOtherCells & ~comparer);
 		var line = (byte)otherCellsMap.CoveredLine;
 		var block = (byte)TrailingZeroCount(otherCellsMap.CoveredHouses & ~(1 << line));
-		var (a, _, _, d) = IntersectionMaps[(line, block)];
+		var (a, _, _, d) = IntersectionMaps[new(line, block)];
 		using scoped var list = new ValueList<CellMap>(4);
 		foreach (var cannibalMode in stackalloc[] { false, true })
 		{

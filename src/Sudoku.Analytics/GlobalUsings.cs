@@ -42,4 +42,3 @@ global using unsafe SymmetricalPlacementChecker = delegate*</*scoped*/ in Sudoku
 global using ChainNodeListWithHeadCandidate = System.Collections.Generic.Dictionary<Sudoku.Analytics.Patterns.ChainNode, /*Candidate*/ int>;
 global using DifficultyRange = (Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange? Original, Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange? Advanced);
 global using HouseCellsTuple = (Sudoku.Concepts.CellMap LineMap, Sudoku.Concepts.CellMap BlockMap, Sudoku.Concepts.CellMap IntersectionMap, byte[] OtherBlocks);
-global using HousePair = (byte Line, byte Block);

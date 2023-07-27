@@ -17727,10 +17727,10 @@ result ^= expression;
             Represents a comparer instance that compares two tuples.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.HousePairComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
+        <member name="M:Sudoku.Analytics.HousePairComparer.Equals(Sudoku.DataModel.HousePair,Sudoku.DataModel.HousePair)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.HousePairComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
+        <member name="M:Sudoku.Analytics.HousePairComparer.GetHashCode(Sudoku.DataModel.HousePair)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.DataModel.ExtraDifficultyCase">
@@ -17752,6 +17752,26 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.DataModel.ExtraDifficultyCase.Value">
             <summary>The rating value.</summary>
+        </member>
+        <member name="T:Sudoku.DataModel.HousePair">
+            <summary>
+            Defines a pair of houses that means the target pair can form an intersection by the specified line and block.
+            </summary>
+            <param name="Line">The index of the line.</param>
+            <param name="Block">The index of the block.</param>
+        </member>
+        <member name="M:Sudoku.DataModel.HousePair.#ctor(System.Byte,System.Byte)">
+            <summary>
+            Defines a pair of houses that means the target pair can form an intersection by the specified line and block.
+            </summary>
+            <param name="Line">The index of the line.</param>
+            <param name="Block">The index of the block.</param>
+        </member>
+        <member name="P:Sudoku.DataModel.HousePair.Line">
+            <summary>The index of the line.</summary>
+        </member>
+        <member name="P:Sudoku.DataModel.HousePair.Block">
+            <summary>The index of the block.</summary>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>

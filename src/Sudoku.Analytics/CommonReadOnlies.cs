@@ -142,18 +142,18 @@ public static class CommonReadOnlies
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static CommonReadOnlies()
 	{
-		scoped var r = (stackalloc[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 });
-		scoped var c = (stackalloc[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 });
+		scoped var r = (ReadOnlySpan<byte>)[0, 1, 2, 3, 4, 5, 6, 7, 8];
+		scoped var c = (ReadOnlySpan<byte>)[0, 3, 6, 1, 4, 7, 2, 5, 8];
 		var dic = new Dictionary<HousePair, HouseCellsTuple>(new HousePairComparer());
-		for (byte bs = 9; bs < 27; bs++)
+		for (var bs = (byte)9; bs < 27; bs++)
 		{
-			for (byte j = 0; j < 3; j++)
+			for (var j = (byte)0; j < 3; j++)
 			{
-				var cs = (byte)(bs < 18 ? r[(bs - 9) / 3 * 3 + j] : c[(bs - 18) / 3 * 3 + j]);
+				var cs = bs < 18 ? r[(bs - 9) / 3 * 3 + j] : c[(bs - 18) / 3 * 3 + j];
 				scoped ref readonly var bm = ref HousesMap[bs];
 				scoped ref readonly var cm = ref HousesMap[cs];
 				var i = bm & cm;
-				dic.Add((bs, cs), (bm - i, cm - i, i, IntersectionBlockTable[(bs - 9) * 3 + j]));
+				dic.Add(new(bs, cs), (bm - i, cm - i, i, IntersectionBlockTable[(bs - 9) * 3 + j]));
 			}
 		}
 
