@@ -46,6 +46,7 @@
 											Style="{StaticResource BaseTextBlockStyle}" Text="{x:Bind Step.Name}" />
 										<TextBlock
 											Grid.Row="0" Grid.Column="3" FontSize="11" Style="{StaticResource BodyTextBlockStyle}"
+											Visibility="{x:Bind cvt:AnalyzeConversion.GetEnglishNameTextBlockVisibility()}"
 											Text="{x:Bind Step.EnglishName}" HorizontalAlignment="Right" VerticalAlignment="Center" />
 										<TextBlock
 											Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource BodyTextBlockStyle}"

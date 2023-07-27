@@ -2437,6 +2437,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Also display English name of the step.
+        /// </summary>
+        internal static string SettingsPage_AlsoDisplayEnglishNameOfTheStep {
+            get {
+                return ResourceManager.GetString("SettingsPage_AlsoDisplayEnglishNameOfTheStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Solving &amp; Analysis.
         /// </summary>
         internal static string SettingsPage_Analysis {

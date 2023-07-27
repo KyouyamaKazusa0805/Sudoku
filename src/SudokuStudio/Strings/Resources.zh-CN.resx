@@ -849,6 +849,9 @@
   <data name="SettingsPage_AlmostLockedSetsGroup" xml:space="preserve">
     <value>待定数组（ALS）</value>
   </data>
+  <data name="SettingsPage_AlsoDisplayEnglishNameOfTheStep" xml:space="preserve">
+    <value>同时显示分析后的步骤的技巧英文名</value>
+  </data>
   <data name="SettingsPage_Analysis" xml:space="preserve">
     <value>解题与分析</value>
   </data>

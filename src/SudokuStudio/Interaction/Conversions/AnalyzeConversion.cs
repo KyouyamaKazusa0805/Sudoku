@@ -46,6 +46,9 @@ internal static class AnalyzeConversion
 	public static Visibility GetViewPipsPagerVisibility(IRenderable? renderable)
 		=> renderable switch { { Views.Length: >= 2 } => Visibility.Visible, _ => Visibility.Collapsed };
 
+	public static Visibility GetEnglishNameTextBlockVisibility()
+		=> ((App)Application.Current).Preference.AnalysisPreferences.AlsoDisplayEnglishNameOfStep ? Visibility.Visible : Visibility.Collapsed;
+
 	public static IEnumerable<Inline> GetInlinesOfTooltip(SolvingPathStepBindableSource s)
 	{
 		if (s is not

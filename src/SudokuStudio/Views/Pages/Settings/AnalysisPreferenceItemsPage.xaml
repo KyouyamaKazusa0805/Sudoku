@@ -271,6 +271,7 @@
 						<Setter Property="IsThreeState" Value="False" />
 					</Style>
 				</w:SettingsGroup.Resources>
+
 				<w:SettingsExpander Header="{m:R Key=SettingsPage_StepDisplayItems}" Description="{m:R Key=SettingsPage_StepDisplayItemsDescription}">
 					<w:SettingsExpander.Items>
 						<w:SettingsCard ContentAlignment="Left">
@@ -310,6 +311,10 @@
 						</w:SettingsCard>
 					</w:SettingsExpander.Items>
 				</w:SettingsExpander>
+				<w:SettingsCard Header="{m:R Key=SettingsPage_AlsoDisplayEnglishNameOfTheStep}">
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AlsoDisplayEnglishNameOfStep,Mode=TwoWay}" />
+				</w:SettingsCard>
 			</w:SettingsGroup>
 		</StackPanel>
 	</ScrollViewer>

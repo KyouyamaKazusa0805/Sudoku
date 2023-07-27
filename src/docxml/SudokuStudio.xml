@@ -848,6 +848,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForReverseBugPartiallyUsedTypes"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlsoDisplayEnglishNameOfStepProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlsoDisplayEnglishNameOfStep"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlsoDisplayEnglishNameOfStep"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWingProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing"/>.
@@ -922,6 +928,11 @@
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForReverseBugPartiallyUsedTypes">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlsoDisplayEnglishNameOfStep">
+            <summary>
+            Indicates whether the step analyzed will also display its English name of the technique used.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.MaxSearchingPivotsCount"/>
@@ -5151,6 +5162,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AlmostLockedSetsGroup">
             <summary>
               Looks up a localized string similar to Almost Locked Sets (ALS).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AlsoDisplayEnglishNameOfTheStep">
+            <summary>
+              Looks up a localized string similar to Also display English name of the step.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Analysis">

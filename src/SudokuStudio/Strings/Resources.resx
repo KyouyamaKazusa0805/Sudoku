@@ -846,6 +846,9 @@
   <data name="SettingsPage_AlmostLockedSetsGroup" xml:space="preserve">
     <value>Almost Locked Sets (ALS)</value>
   </data>
+  <data name="SettingsPage_AlsoDisplayEnglishNameOfTheStep" xml:space="preserve">
+    <value>Also display English name of the step</value>
+  </data>
   <data name="SettingsPage_Analysis" xml:space="preserve">
     <value>Solving &amp; Analysis</value>
   </data>
