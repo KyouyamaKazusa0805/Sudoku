@@ -924,10 +924,20 @@ file static class Extensions
 	/// <param name="this">The collection.</param>
 	public static void RemoveAllViewUnitControls(this UIElementCollection @this)
 	{
-		foreach (var element in
-			from element in @this.OfType<FrameworkElement>()
-			where element.Tag is string s && s.StartsWith(nameof(RenderableFactory))
-			select element)
+		// Gather the UI elements.
+		// We should not use LINQ here because we should remove the elements from the control, where the control is itself.
+		// Modifying collection and iterating it synchronuously is worse.
+		var gathered = new List<FrameworkElement>();
+		foreach (var element in @this.OfType<FrameworkElement>())
+		{
+			if (element.Tag is string s && s.StartsWith(nameof(RenderableFactory)))
+			{
+				gathered.Add(element);
+			}
+		}
+
+		// Remove them.
+		foreach (var element in gathered)
 		{
 			@this.Remove(element);
 		}
