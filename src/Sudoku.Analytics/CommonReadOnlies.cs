@@ -144,7 +144,7 @@ public static class CommonReadOnlies
 	{
 		scoped var r = (ReadOnlySpan<byte>)[0, 1, 2, 3, 4, 5, 6, 7, 8];
 		scoped var c = (ReadOnlySpan<byte>)[0, 3, 6, 1, 4, 7, 2, 5, 8];
-		var dic = new Dictionary<IntersectionBase, IntersectionResult>(new HousePairComparer());
+		var dic = new Dictionary<IntersectionBase, IntersectionResult>(new IntersectionBaseComparer());
 		for (var bs = (byte)9; bs < 27; bs++)
 		{
 			for (var j = (byte)0; j < 3; j++)
@@ -164,7 +164,7 @@ public static class CommonReadOnlies
 /// <summary>
 /// Represents a comparer instance that compares two tuples.
 /// </summary>
-file sealed class HousePairComparer : IEqualityComparer<IntersectionBase>
+file sealed class IntersectionBaseComparer : IEqualityComparer<IntersectionBase>
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

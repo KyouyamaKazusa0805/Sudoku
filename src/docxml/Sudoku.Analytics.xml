@@ -17722,15 +17722,15 @@ result ^= expression;
 		</summary>
 	</static-constructor>
         </member>
-        <member name="T:Sudoku.Analytics.HousePairComparer">
+        <member name="T:Sudoku.Analytics.IntersectionBaseComparer">
             <summary>
             Represents a comparer instance that compares two tuples.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.HousePairComparer.Equals(Sudoku.DataModel.HousePair,Sudoku.DataModel.HousePair)">
+        <member name="M:Sudoku.Analytics.IntersectionBaseComparer.Equals(Sudoku.DataModel.IntersectionBase,Sudoku.DataModel.IntersectionBase)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.HousePairComparer.GetHashCode(Sudoku.DataModel.HousePair)">
+        <member name="M:Sudoku.Analytics.IntersectionBaseComparer.GetHashCode(Sudoku.DataModel.IntersectionBase)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.DataModel.ExtraDifficultyCase">
@@ -17753,63 +17753,63 @@ result ^= expression;
         <member name="P:Sudoku.DataModel.ExtraDifficultyCase.Value">
             <summary>The rating value.</summary>
         </member>
-        <member name="T:Sudoku.DataModel.HouseCellsTuple">
-            <summary>
-            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/> property.
-            </summary>
-            <param name="LineMap">The map of the line.</param>
-            <param name="BlockMap">The map of the block.</param>
-            <param name="IntersectionMap">The map of the intersection.</param>
-            <param name="OtherBlocks">
-            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Empty Rectangle.
-            </param>
-            <seealso cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/>
-        </member>
-        <member name="M:Sudoku.DataModel.HouseCellsTuple.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Byte[])">
-            <summary>
-            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/> property.
-            </summary>
-            <param name="LineMap">The map of the line.</param>
-            <param name="BlockMap">The map of the block.</param>
-            <param name="IntersectionMap">The map of the intersection.</param>
-            <param name="OtherBlocks">
-            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Empty Rectangle.
-            </param>
-            <seealso cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/>
-        </member>
-        <member name="P:Sudoku.DataModel.HouseCellsTuple.LineMap">
-            <summary>The map of the line.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.HouseCellsTuple.BlockMap">
-            <summary>The map of the block.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.HouseCellsTuple.IntersectionMap">
-            <summary>The map of the intersection.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.HouseCellsTuple.OtherBlocks">
-            <summary>
-            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Empty Rectangle.
-            </summary>
-        </member>
-        <member name="T:Sudoku.DataModel.HousePair">
+        <member name="T:Sudoku.DataModel.IntersectionBase">
             <summary>
             Defines a pair of houses that means the target pair can form an intersection by the specified line and block.
             </summary>
             <param name="Line">The index of the line.</param>
             <param name="Block">The index of the block.</param>
         </member>
-        <member name="M:Sudoku.DataModel.HousePair.#ctor(System.Byte,System.Byte)">
+        <member name="M:Sudoku.DataModel.IntersectionBase.#ctor(System.Byte,System.Byte)">
             <summary>
             Defines a pair of houses that means the target pair can form an intersection by the specified line and block.
             </summary>
             <param name="Line">The index of the line.</param>
             <param name="Block">The index of the block.</param>
         </member>
-        <member name="P:Sudoku.DataModel.HousePair.Line">
+        <member name="P:Sudoku.DataModel.IntersectionBase.Line">
             <summary>The index of the line.</summary>
         </member>
-        <member name="P:Sudoku.DataModel.HousePair.Block">
+        <member name="P:Sudoku.DataModel.IntersectionBase.Block">
             <summary>The index of the block.</summary>
+        </member>
+        <member name="T:Sudoku.DataModel.IntersectionResult">
+            <summary>
+            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/> property.
+            </summary>
+            <param name="LineMap">The map of the line.</param>
+            <param name="BlockMap">The map of the block.</param>
+            <param name="IntersectionMap">The map of the intersection.</param>
+            <param name="OtherBlocks">
+            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
+            </param>
+            <seealso cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/>
+        </member>
+        <member name="M:Sudoku.DataModel.IntersectionResult.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Byte[])">
+            <summary>
+            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/> property.
+            </summary>
+            <param name="LineMap">The map of the line.</param>
+            <param name="BlockMap">The map of the block.</param>
+            <param name="IntersectionMap">The map of the intersection.</param>
+            <param name="OtherBlocks">
+            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
+            </param>
+            <seealso cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/>
+        </member>
+        <member name="P:Sudoku.DataModel.IntersectionResult.LineMap">
+            <summary>The map of the line.</summary>
+        </member>
+        <member name="P:Sudoku.DataModel.IntersectionResult.BlockMap">
+            <summary>The map of the block.</summary>
+        </member>
+        <member name="P:Sudoku.DataModel.IntersectionResult.IntersectionMap">
+            <summary>The map of the intersection.</summary>
+        </member>
+        <member name="P:Sudoku.DataModel.IntersectionResult.OtherBlocks">
+            <summary>
+            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
+            </summary>
         </member>
         <member name="T:Sudoku.DataModel.SudokuExplainderDifficultyResult">
             <summary>
