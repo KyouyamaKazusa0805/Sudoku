@@ -20,7 +20,7 @@ public sealed partial class ExtendedRectangleType4Step(
 	public override int Type => 4;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [.. base.ExtraDifficultyCases, (ExtraDifficultyCaseNames.ConjugatePair, .1M)];
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [.. base.ExtraDifficultyCases, new(ExtraDifficultyCaseNames.ConjugatePair, .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

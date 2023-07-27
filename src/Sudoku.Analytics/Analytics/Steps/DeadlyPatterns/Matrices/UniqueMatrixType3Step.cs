@@ -23,7 +23,7 @@ public sealed partial class UniqueMatrixType3Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> [(ExtraDifficultyCaseNames.ExtraDigit, PopCount((uint)SubsetDigitsMask) * .1M)];
+		=> [new(ExtraDifficultyCaseNames.ExtraDigit, PopCount((uint)SubsetDigitsMask) * .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

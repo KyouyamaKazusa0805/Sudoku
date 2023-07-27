@@ -40,8 +40,8 @@ public sealed partial class UniqueRectangleWithWingStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> [
-			(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
-			(
+			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
+			new(
 				ExtraDifficultyCaseNames.WingSize,
 				Code switch
 				{

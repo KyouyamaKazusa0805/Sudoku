@@ -57,10 +57,10 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> [
-			(ExtraDifficultyCaseNames.Size, (LineCells | BlockCells).Count * .1M),
-			(ExtraDifficultyCaseNames.Isolated, !IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0),
-			(ExtraDifficultyCaseNames.Cannibalism, IsCannibalistic ? .1M : 0),
-			(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0)
+			new(ExtraDifficultyCaseNames.Size, (LineCells | BlockCells).Count * .1M),
+			new(ExtraDifficultyCaseNames.Isolated, !IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0),
+			new(ExtraDifficultyCaseNames.Cannibalism, IsCannibalistic ? .1M : 0),
+			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0)
 		];
 
 	/// <inheritdoc/>

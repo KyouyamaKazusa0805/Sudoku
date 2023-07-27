@@ -59,8 +59,8 @@ public sealed partial class ComplexFishStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> [
-			(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M, 5 => 3.3M, 6 => 4.5M, 7 => 5.6M, _ => 6.6M }),
-			(
+			new(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M, 5 => 3.3M, 6 => 4.5M, 7 => 5.6M, _ => 6.6M }),
+			new(
 				ExtraDifficultyCaseNames.Sashimi,
 				IsSashimi switch
 				{
@@ -69,7 +69,7 @@ public sealed partial class ComplexFishStep(
 					_ => 0
 				}
 			),
-			(
+			new(
 				ExtraDifficultyCaseNames.FishShape,
 				IsFranken
 					? Size switch { 2 => 0, 3 or 4 => 1.1M, 5 or 6 or 7 => 1.2M, _ => 1.3M }

@@ -20,7 +20,7 @@ public sealed partial class BivalueUniversalGraveType4Step(
 	public override Technique Code => Technique.BivalueUniversalGraveType4;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.ConjugatePair, .1M)];
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.ConjugatePair, .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

@@ -47,8 +47,8 @@ public sealed partial class SueDeCoqStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> [
-			(ExtraDifficultyCaseNames.Isolated, IsolatedDigitsMask != 0 ? .1M : 0),
-			(ExtraDifficultyCaseNames.Cannibalism, IsCannibalistic ? .2M : 0)
+			new(ExtraDifficultyCaseNames.Isolated, IsolatedDigitsMask != 0 ? .1M : 0),
+			new(ExtraDifficultyCaseNames.Cannibalism, IsCannibalistic ? .2M : 0)
 		];
 
 	/// <inheritdoc/>

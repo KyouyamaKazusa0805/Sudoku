@@ -23,7 +23,7 @@ public sealed partial class BivalueUniversalGraveType3Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> [(ExtraDifficultyCaseNames.Size, Size * .1M), (ExtraDifficultyCaseNames.Hidden, isNaked ? 0 : .1M)];
+		=> [new(ExtraDifficultyCaseNames.Size, Size * .1M), new(ExtraDifficultyCaseNames.Hidden, isNaked ? 0 : .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

@@ -26,7 +26,7 @@ public sealed partial class ChromaticPatternXzStep(
 	public override Technique Code => Technique.ChromaticPatternXzRule;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.ExtraDigit, .2M)];
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.ExtraDigit, .2M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

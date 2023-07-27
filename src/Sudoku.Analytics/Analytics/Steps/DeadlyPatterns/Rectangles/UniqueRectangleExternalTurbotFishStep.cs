@@ -37,8 +37,8 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> [
-			(ExtraDifficultyCaseNames.Guardian, A004526(GuardianCells.Count) * .1M),
-			(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
+			new(ExtraDifficultyCaseNames.Guardian, A004526(GuardianCells.Count) * .1M),
+			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
 		];
 
 	/// <inheritdoc/>

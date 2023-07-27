@@ -44,9 +44,9 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> [
-			(ExtraDifficultyCaseNames.Guardian, A004526(GuardianCells.Count) * .1M),
-			(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
-			(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
+			new(ExtraDifficultyCaseNames.Guardian, A004526(GuardianCells.Count) * .1M),
+			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
+			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
 		];
 
 	/// <inheritdoc/>

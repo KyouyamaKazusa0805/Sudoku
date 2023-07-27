@@ -23,7 +23,7 @@ public sealed partial class QiuDeadlyPatternType3Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> [(ExtraDifficultyCaseNames.Size, PopCount((uint)SubsetDigitsMask) * .1M)];
+		=> [new(ExtraDifficultyCaseNames.Size, PopCount((uint)SubsetDigitsMask) * .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

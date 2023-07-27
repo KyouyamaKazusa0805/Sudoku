@@ -25,7 +25,7 @@ public sealed partial class UniqueLoopType3Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> [.. base.ExtraDifficultyCases, (ExtraDifficultyCaseNames.Size, SubsetCells.Count * .1M)];
+		=> [.. base.ExtraDifficultyCases, new(ExtraDifficultyCaseNames.Size, SubsetCells.Count * .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

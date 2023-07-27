@@ -28,7 +28,7 @@ public abstract partial class UniqueLoopStep(
 	public sealed override Technique Code => Enum.Parse<Technique>($"UniqueLoopType{Type}");
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.Length, (A004526(Loop.Count) - 3) * .1M)];
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Length, (A004526(Loop.Count) - 3) * .1M)];
 
 	private protected string LoopStr => Loop.ToString();
 

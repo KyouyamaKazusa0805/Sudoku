@@ -19,7 +19,7 @@ public sealed partial class MultisectorLockedSetsStep(
 	public override Technique Code => Technique.MultisectorLockedSets;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.Size, A002024(Cells.Count) * .1M)];
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Size, A002024(Cells.Count) * .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

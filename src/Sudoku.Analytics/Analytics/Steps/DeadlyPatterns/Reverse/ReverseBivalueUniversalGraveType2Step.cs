@@ -24,8 +24,7 @@ public sealed partial class ReverseBivalueUniversalGraveType2Step(
 	public override int Type => 2;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> [.. base.ExtraDifficultyCases, (ExtraDifficultyCaseNames.ExtraDigit, .1M)];
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [.. base.ExtraDifficultyCases, new(ExtraDifficultyCaseNames.ExtraDigit, .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

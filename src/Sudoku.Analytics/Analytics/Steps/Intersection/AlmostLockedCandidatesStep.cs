@@ -32,8 +32,8 @@ public sealed partial class AlmostLockedCandidatesStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> [
-			(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .7M, 4 => 1.2M }),
-			(ExtraDifficultyCaseNames.ValueCell, HasValueCell ? Size switch { 2 or 3 => .1M, 4 => .2M } : 0)
+			new(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .7M, 4 => 1.2M }),
+			new(ExtraDifficultyCaseNames.ValueCell, HasValueCell ? Size switch { 2 or 3 => .1M, 4 => .2M } : 0)
 		];
 
 	/// <inheritdoc/>

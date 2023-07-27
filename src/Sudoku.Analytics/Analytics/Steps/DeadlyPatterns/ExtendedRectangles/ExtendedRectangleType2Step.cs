@@ -21,7 +21,7 @@ public sealed partial class ExtendedRectangleType2Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> [.. base.ExtraDifficultyCases, (ExtraDifficultyCaseNames.ExtraDigit, .1M)];
+		=> [.. base.ExtraDifficultyCases, new(ExtraDifficultyCaseNames.ExtraDigit, .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

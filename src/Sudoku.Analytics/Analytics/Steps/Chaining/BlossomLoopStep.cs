@@ -33,7 +33,7 @@ public sealed partial class BlossomLoopStep(
 	public override Technique Code => Technique.BlossomLoop;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.Length, LengthDifficulty)];
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Length, LengthDifficulty)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts

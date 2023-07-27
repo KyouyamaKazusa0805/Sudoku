@@ -18,7 +18,7 @@ public sealed partial class BivalueUniversalGraveType2Step(
 	public override Technique Code => Technique.BivalueUniversalGraveType2;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [(ExtraDifficultyCaseNames.ExtraDigit, A002024(Cells.Count) * .1M)];
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.ExtraDigit, A002024(Cells.Count) * .1M)];
 
 	/// <inheritdoc/>
 	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
