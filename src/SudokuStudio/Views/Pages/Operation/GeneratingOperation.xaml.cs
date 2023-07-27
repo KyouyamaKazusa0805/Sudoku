@@ -121,18 +121,12 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		{
 			try
 			{
-				return generatePuzzleCore(progress =>
+				return generatePuzzleCore(progress => DispatcherQueue.TryEnqueue(() =>
 				{
-					DispatcherQueue.TryEnqueue(progressCallback);
-
-
-					void progressCallback()
-					{
-						var count = progress.Count;
-						BasePage.AnalyzeProgressLabel.Text = processingText;
-						BasePage.AnalyzeStepSearcherNameLabel.Text = count.ToString();
-					}
-				}, details, cts.Token, analyzer) ?? Grid.Undefined;
+					var count = progress.Count;
+					BasePage.AnalyzeProgressLabel.Text = processingText;
+					BasePage.AnalyzeStepSearcherNameLabel.Text = count.ToString();
+				}), details, cts.Token, analyzer) ?? Grid.Undefined;
 			}
 			catch (TaskCanceledException)
 			{
