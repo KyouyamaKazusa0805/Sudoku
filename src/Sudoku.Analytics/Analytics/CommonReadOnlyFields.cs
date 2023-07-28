@@ -29,8 +29,7 @@ public static class CommonReadOnlyFields
 	/// </para>
 	/// </summary>
 	/// <seealso cref="IntersectionMaps"/>
-	private static readonly byte[][] IntersectionBlockTable =
-	[
+	private static readonly byte[][] IntersectionBlockTable = [
 		[1, 2], [0, 2], [0, 1],
 		[1, 2], [0, 2], [0, 1],
 		[1, 2], [0, 2], [0, 1],

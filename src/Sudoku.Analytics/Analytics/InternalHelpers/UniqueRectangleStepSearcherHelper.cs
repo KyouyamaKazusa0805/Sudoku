@@ -17,8 +17,7 @@ internal static class UniqueRectangleStepSearcherHelper
 	/// <summary>
 	/// The table of all <b>Unique Rectangle</b> cells.
 	/// </summary>
-	public static readonly Cell[][] UniqueRectanglePatterns =
-	[
+	public static readonly Cell[][] UniqueRectanglePatterns = [
 		[0, 3, 9, 12], [0, 4, 9, 13], [0, 5, 9, 14], [0, 6, 9, 15], [0, 7, 9, 16], [0, 8, 9, 17], [1, 3, 10, 12], [1, 4, 10, 13], [1, 5, 10, 14],
 		[1, 6, 10, 15], [1, 7, 10, 16], [1, 8, 10, 17], [2, 3, 11, 12], [2, 4, 11, 13], [2, 5, 11, 14], [2, 6, 11, 15], [2, 7, 11, 16], [2, 8, 11, 17],
 		[3, 6, 12, 15], [3, 7, 12, 16], [3, 8, 12, 17], [4, 6, 13, 15], [4, 7, 13, 16], [4, 8, 13, 17], [5, 6, 14, 15], [5, 7, 14, 16], [5, 8, 14, 17],

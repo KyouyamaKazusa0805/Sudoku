@@ -415,9 +415,8 @@ public sealed partial class AnalyzePage : Page
 					{
 						switch (SudokuFileHandler.Read(filePath))
 						{
-							case
+							case [
 #pragma warning disable format
-							[
 								{
 									BaseGrid: var g,
 									GridString: var gridStr,
@@ -425,7 +424,6 @@ public sealed partial class AnalyzePage : Page
 									RenderableData: var nullableRenderableData
 								}
 							]:
-#pragma warning restore format
 							{
 								SudokuPane.Puzzle = gridStr is not null && Grid.TryParse(gridStr, out var g2) ? g2 : g;
 
@@ -482,8 +480,7 @@ public sealed partial class AnalyzePage : Page
 	private void InitializeFields()
 	{
 		var thickness = new Thickness(10);
-		_tabsRoutingData =
-		[
+		_tabsRoutingData = [
 			new()
 			{
 				Header = GetString("AnalyzePage_TechniquesTable"),

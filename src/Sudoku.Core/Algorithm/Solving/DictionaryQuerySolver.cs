@@ -53,8 +53,7 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor'/>
 	static DictionaryQuerySolver()
 	{
-		var houseList = (IEnumerable<string[]>)
-		[
+		var houseList = (IEnumerable<string[]>)[
 			.. from c in Columns select (string[])[.. from r in Rows from p in c.ToString() select $"{r}{p}"],
 			.. from r in Rows select (string[])[.. from p in r.ToString() from c in Columns select $"{p}{c}"],
 			..

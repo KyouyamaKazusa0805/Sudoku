@@ -80,8 +80,7 @@ file static class Constants
 	/// <summary>
 	/// The length table. Indicates how many bits are set in the specified integer.
 	/// </summary>
-	public static readonly int[] LengthTable =
-	[
+	public static readonly int[] LengthTable = [
 		0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4,
 		1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
 		1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
@@ -104,8 +103,7 @@ file static class Constants
 	/// The bit position table. In other words, <c>BitPosTable[n]</c> means the n-th integer's (i.e. <c>n</c>'s) set bit positions
 	/// represented as indices.
 	/// </summary>
-	public static readonly int[][] BitPosTable =
-	[
+	public static readonly int[][] BitPosTable = [
 		[0, 0, 0, 0, 0, 0, 0, 0],
 		[1, 0, 0, 0, 0, 0, 0, 0],
 		[2, 0, 0, 0, 0, 0, 0, 0],

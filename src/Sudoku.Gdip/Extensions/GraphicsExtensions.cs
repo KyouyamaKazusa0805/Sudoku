@@ -45,8 +45,7 @@ internal static class GraphicsExtensions
 		var heightHalf = (height + length) / 2;
 		var arrowBarWidth = (width + height) / 4;
 		var (x, y) = center;
-		var points = (PointF[])
-		[
+		var points = (PointF[])[
 			new(x, y - (height + length) / 2),
 			new(x + halfWidth, y - (height + length) / 2 + height),
 			new(x + halfWidth - (width - arrowBarWidth) / 2, y - heightHalf + height),

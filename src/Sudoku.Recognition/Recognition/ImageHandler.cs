@@ -29,8 +29,7 @@ public static class ImageHandler
 			return false;
 		}
 
-		var sides = (LineSegment2DF[])
-		[
+		var sides = (LineSegment2DF[])[
 			new(contour[0], contour[1]),
 			new(contour[1], contour[3]),
 			new(contour[2], contour[3]),

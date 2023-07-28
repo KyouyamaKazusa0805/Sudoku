@@ -53,8 +53,7 @@ internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGenerato
 					AttributeClass:
 					{
 						IsGenericType: true,
-						TypeArguments:
-						[
+						TypeArguments: [
 							INamedTypeSymbol
 							{
 								IsRecord: false,

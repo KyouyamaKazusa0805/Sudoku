@@ -9,8 +9,7 @@ public static unsafe class GridTransformations
 	/// <summary>
 	/// The table of clockwise rotation.
 	/// </summary>
-	private static readonly Cell[] ClockwiseTable =
-	[
+	private static readonly Cell[] ClockwiseTable = [
 		72, 63, 54, 45, 36, 27, 18, 9, 0,
 		73, 64, 55, 46, 37, 28, 19, 10, 1,
 		74, 65, 56, 47, 38, 29, 20, 11, 2,
@@ -25,8 +24,7 @@ public static unsafe class GridTransformations
 	/// <summary>
 	/// The table of counter-clockwise rotation.
 	/// </summary>
-	private static readonly Cell[] CounterclockwiseTable =
-	[
+	private static readonly Cell[] CounterclockwiseTable = [
 		8, 17, 26, 35, 44, 53, 62, 71, 80,
 		7, 16, 25, 34, 43, 52, 61, 70, 79,
 		6, 15, 24, 33, 42, 51, 60, 69, 78,
@@ -41,8 +39,7 @@ public static unsafe class GridTransformations
 	/// <summary>
 	/// The table of pi-rotation.
 	/// </summary>
-	private static readonly Cell[] PiRotateTable =
-	[
+	private static readonly Cell[] PiRotateTable = [
 		80, 79, 78, 77, 76, 75, 74, 73, 72,
 		71, 70, 69, 68, 67, 66, 65, 64, 63,
 		62, 61, 60, 59, 58, 57, 56, 55, 54,
@@ -57,8 +54,7 @@ public static unsafe class GridTransformations
 	/// <summary>
 	/// Indicates the swappable pairs, which means the swappable houses.
 	/// </summary>
-	private static readonly (House, House)[] SwappableHouses =
-	[
+	private static readonly (House, House)[] SwappableHouses = [
 		(9, 10), (9, 11), (10, 11), (12, 13), (12, 14), (13, 14), (15, 16), (15, 17), (16, 17),
 		(18, 19), (18, 20), (19, 20), (21, 22), (21, 23), (22, 23), (24, 25), (24, 26), (25, 26)
 	];

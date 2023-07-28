@@ -10,8 +10,7 @@ public sealed partial class DrawingPreferenceItemsPage : Page
 	/// </summary>
 	private readonly ViewUnitBindableSource _defaultViewUnit = new()
 	{
-		View =
-		[
+		View = [
 			new CandidateViewNode(WellKnownColorIdentifier.Normal, 8),
 			new CandidateViewNode(WellKnownColorIdentifier.Normal, 17),
 			new CandidateViewNode(WellKnownColorIdentifier.Exofin, 49 * 9 + 7),
@@ -44,13 +43,7 @@ public sealed partial class DrawingPreferenceItemsPage : Page
 			new LinkViewNode(WellKnownColorIdentifier.Normal, new(5, 45), new(5, 46), Inference.Weak),
 			new LinkViewNode(WellKnownColorIdentifier.Normal, new(3, 35), new(3, 34), Inference.Weak)
 		],
-		Conclusions =
-		[
-			new(Assignment, 1, 8),
-			new(Assignment, 79, 0),
-			new(Elimination, 0, 8),
-			new(Elimination, 80, 0)
-		]
+		Conclusions = [new(Assignment, 1, 8), new(Assignment, 79, 0), new(Elimination, 0, 8), new(Elimination, 80, 0)]
 	};
 
 

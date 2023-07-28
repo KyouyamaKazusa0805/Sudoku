@@ -58,21 +58,12 @@ public static class PredefinedAnalyzers
 	/// <seealso cref="SubsetStepSearcher"/>
 	public static Analyzer SstsOnly
 		=> Default
-			.WithStepSearchers(
-				[
-					new SingleStepSearcher(),
-					new LockedSubsetStepSearcher(),
-					new LockedCandidatesStepSearcher(),
-					new NormalSubsetStepSearcher()
-				]
-			)
-			.WithStepSearcherSetters<SingleStepSearcher>(
-				static s =>
-				{
-					s.EnableFullHouse = true;
-					s.EnableLastDigit = true;
-					s.HiddenSinglesInBlockFirst = true;
-					s.UseIttoryuMode = false;
-				}
-			);
+			.WithStepSearchers([new SingleStepSearcher(), new LockedSubsetStepSearcher(), new LockedCandidatesStepSearcher(), new NormalSubsetStepSearcher()])
+			.WithStepSearcherSetters<SingleStepSearcher>(static s =>
+			{
+				s.EnableFullHouse = true;
+				s.EnableLastDigit = true;
+				s.HiddenSinglesInBlockFirst = true;
+				s.UseIttoryuMode = false;
+			});
 }

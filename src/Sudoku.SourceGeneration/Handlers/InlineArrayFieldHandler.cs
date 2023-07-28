@@ -6,8 +6,7 @@ internal static class InlineArrayFieldHandler
 	{
 		if (gasc is not
 			{
-				Attributes:
-				[
+				Attributes: [
 					{
 						ConstructorArguments: [{ Value: string fieldName and not [] }, { Value: int length and > 0 }],
 						AttributeClass.TypeArguments: [var fieldType]

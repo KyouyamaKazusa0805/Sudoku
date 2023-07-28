@@ -66,8 +66,7 @@ public static class SolutionWideReadOnlyFields
 	/// <example>
 	/// '<c>Peers[0]</c>': the array of peers for the cell 0 (row 1 column 1).
 	/// </example>
-	public static readonly Cell[][] Peers =
-	[
+	public static readonly Cell[][] Peers = [
 		[1, 2, 9, 10, 11, 18, 19, 20, 3, 4, 5, 6, 7, 8, 27, 36, 45, 54, 63, 72],
 		[2, 9, 10, 11, 18, 19, 20, 3, 4, 5, 6, 7, 8, 28, 37, 46, 55, 64, 73, 0],
 		[1, 9, 10, 11, 18, 19, 20, 3, 4, 5, 6, 7, 8, 29, 38, 47, 56, 65, 74, 0],
@@ -174,8 +173,7 @@ public static class SolutionWideReadOnlyFields
 	/// <example>
 	/// '<c>HouseCells[0]</c>': all cell offsets in the house 0 (block 1).
 	/// </example>
-	public static readonly Cell[][] HouseCells =
-	[
+	public static readonly Cell[][] HouseCells = [
 		[0, 1, 2, 9, 10, 11, 18, 19, 20],
 		[3, 4, 5, 12, 13, 14, 21, 22, 23],
 		[6, 7, 8, 15, 16, 17, 24, 25, 26],
@@ -237,8 +235,7 @@ public static class SolutionWideReadOnlyFields
 	/// <summary>
 	/// Indicates a block list that each cell belongs to.
 	/// </summary>
-	internal static readonly House[] BlockTable =
-	[
+	internal static readonly House[] BlockTable = [
 		0, 0, 0, 1, 1, 1, 2, 2, 2,
 		0, 0, 0, 1, 1, 1, 2, 2, 2,
 		0, 0, 0, 1, 1, 1, 2, 2, 2,
@@ -253,8 +250,7 @@ public static class SolutionWideReadOnlyFields
 	/// <summary>
 	/// Indicates a row list that each cell belongs to.
 	/// </summary>
-	internal static readonly House[] RowTable =
-	[
+	internal static readonly House[] RowTable = [
 		9, 9, 9, 9, 9, 9, 9, 9, 9,
 		10, 10, 10, 10, 10, 10, 10, 10, 10,
 		11, 11, 11, 11, 11, 11, 11, 11, 11,
@@ -269,8 +265,7 @@ public static class SolutionWideReadOnlyFields
 	/// <summary>
 	/// Indicates a column list that each cell belongs to.
 	/// </summary>
-	internal static readonly House[] ColumnTable =
-	[
+	internal static readonly House[] ColumnTable = [
 		18, 19, 20, 21, 22, 23, 24, 25, 26,
 		18, 19, 20, 21, 22, 23, 24, 25, 26,
 		18, 19, 20, 21, 22, 23, 24, 25, 26,

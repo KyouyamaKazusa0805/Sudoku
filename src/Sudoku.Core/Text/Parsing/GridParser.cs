@@ -60,8 +60,7 @@ public unsafe ref partial struct GridParser(
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static GridParser()
 	{
-		ParseFunctions =
-		[
+		ParseFunctions = [
 			&OnParsingSimpleTable,
 			&OnParsingSimpleMultilineGrid,
 			&OnParsingPencilMarked,
