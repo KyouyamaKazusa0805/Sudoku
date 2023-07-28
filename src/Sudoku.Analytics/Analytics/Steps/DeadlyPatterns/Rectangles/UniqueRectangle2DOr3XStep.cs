@@ -32,12 +32,11 @@ public sealed partial class UniqueRectangle2DOr3XStep(
 	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [D1Str, D2Str, CellsStr, XDigitStr, YDigitStr, XYCellsStr] },
-			{ ChineseLanguage, [D1Str, D2Str, CellsStr, XDigitStr, YDigitStr, XYCellsStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [D1Str, D2Str, CellsStr, XDigitStr, YDigitStr, XYCellsStr]),
+			new(ChineseLanguage, [D1Str, D2Str, CellsStr, XDigitStr, YDigitStr, XYCellsStr])
+		];
 
 	private string XDigitStr => (XDigit + 1).ToString();
 

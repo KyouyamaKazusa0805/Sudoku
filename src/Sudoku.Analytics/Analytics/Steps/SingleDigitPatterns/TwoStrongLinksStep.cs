@@ -30,12 +30,8 @@ public sealed partial class TwoStrongLinksStep(
 		};
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitStr, BaseHouseStr, TargetHouseStr] },
-			{ ChineseLanguage, [DigitStr, BaseHouseStr, TargetHouseStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [DigitStr, BaseHouseStr, TargetHouseStr]), new(ChineseLanguage, [DigitStr, BaseHouseStr, TargetHouseStr])];
 
 	private string DigitStr => (Digit + 1).ToString();
 

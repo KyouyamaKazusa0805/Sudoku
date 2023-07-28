@@ -26,12 +26,11 @@ public sealed partial class BivalueUniversalGraveType3Step(
 		=> [new(ExtraDifficultyCaseNames.Size, Size * .1M), new(ExtraDifficultyCaseNames.Hidden, isNaked ? 0 : .1M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [TrueCandidatesStr, SubsetTypeStr, SizeStr, ExtraDigitsStr, CellsStr] },
-			{ ChineseLanguage, [TrueCandidatesStr, SubsetTypeStr, SizeStr, CellsStr, ExtraDigitsStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [TrueCandidatesStr, SubsetTypeStr, SizeStr, ExtraDigitsStr, CellsStr]),
+			new(ChineseLanguage, [TrueCandidatesStr, SubsetTypeStr, SizeStr, CellsStr, ExtraDigitsStr])
+		];
 
 	/// <summary>
 	/// Indicates the size of the subset.

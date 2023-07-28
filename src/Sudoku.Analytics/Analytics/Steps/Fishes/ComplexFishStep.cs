@@ -78,12 +78,11 @@ public sealed partial class ComplexFishStep(
 		];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitStr, BaseSetsStr, CoverSetsStr, ExofinsStr, EndofinsStr] },
-			{ ChineseLanguage, [BaseSetsStr, CoverSetsStr, DigitStr, ExofinsStr, EndofinsStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [DigitStr, BaseSetsStr, CoverSetsStr, ExofinsStr, EndofinsStr]),
+			new(ChineseLanguage, [BaseSetsStr, CoverSetsStr, DigitStr, ExofinsStr, EndofinsStr])
+		];
 
 	/// <summary>
 	/// Indicates the base houses.

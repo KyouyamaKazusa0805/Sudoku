@@ -66,12 +66,11 @@ public sealed partial class NormalFishStep(
 	}
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitStr, BaseSetStr, CoverSetStr, FinsStr] },
-			{ ChineseLanguage, [DigitStr, BaseSetStr, CoverSetStr, FinsStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [DigitStr, BaseSetStr, CoverSetStr, FinsStr]),
+			new(ChineseLanguage, [DigitStr, BaseSetStr, CoverSetStr, FinsStr])
+		];
 
 	/// <summary>
 	/// Indicates the internal name.

@@ -51,18 +51,17 @@ public sealed partial class AlmostLockedSetsXzStep(
 		};
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(
 				EnglishLanguage,
 				IsDoublyLinked is null ? ZDigitsMask == 0 ? [CellsStr] : [EspDigitStr, CellsStr] : [Als1Str, Als2Str, XStr, ZResultStr]
-			},
-			{
+			),
+			new(
 				ChineseLanguage,
 				IsDoublyLinked is null ? ZDigitsMask == 0 ? [CellsStr] : [EspDigitStr, CellsStr] : [Als1Str, Als2Str, XStr, ZResultStr]
-			}
-		};
+			)
+		];
 
 	private string CellsStr => (FirstAls.Cells | SecondAls.Cells).ToString();
 

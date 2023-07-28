@@ -25,12 +25,8 @@ public sealed partial class UniqueLoopType4Step(
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [Digit1Str, Digit2Str, LoopStr, ConjStr] },
-			{ ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ConjStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [Digit1Str, Digit2Str, LoopStr, ConjStr]), new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ConjStr])];
 
 	private string ConjStr => ConjugatePair.ToString();
 }

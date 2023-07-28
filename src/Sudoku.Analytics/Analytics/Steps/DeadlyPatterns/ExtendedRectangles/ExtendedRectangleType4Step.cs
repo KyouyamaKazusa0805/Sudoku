@@ -23,12 +23,8 @@ public sealed partial class ExtendedRectangleType4Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [.. base.ExtraDifficultyCases, new(ExtraDifficultyCaseNames.ConjugatePair, .1M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitsStr, CellsStr, ConjStr] },
-			{ ChineseLanguage, [DigitsStr, CellsStr, ConjStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [DigitsStr, CellsStr, ConjStr]), new(ChineseLanguage, [DigitsStr, CellsStr, ConjStr])];
 
 	private string ConjStr => ConjugatePair.ToString();
 }

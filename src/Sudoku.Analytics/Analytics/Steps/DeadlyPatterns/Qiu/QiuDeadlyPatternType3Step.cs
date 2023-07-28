@@ -26,12 +26,11 @@ public sealed partial class QiuDeadlyPatternType3Step(
 		=> [new(ExtraDifficultyCaseNames.Size, PopCount((uint)SubsetDigitsMask) * .1M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName] },
-			{ ChineseLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName]),
+			new(ChineseLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName])
+		];
 
 	private string DigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
 

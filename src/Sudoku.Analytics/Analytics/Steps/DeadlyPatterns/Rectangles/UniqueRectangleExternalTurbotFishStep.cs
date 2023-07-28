@@ -42,12 +42,11 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 		];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr] },
-			{ ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr]),
+			new(ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr])
+		];
 
 	private string GuardianCellsStr => GuardianCells.ToString();
 }

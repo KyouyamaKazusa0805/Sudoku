@@ -18,8 +18,8 @@ public sealed partial class QiuDeadlyPatternType1Step(
 	public override int Type => 1;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [PatternStr, CandidateStr] }, { ChineseLanguage, [CandidateStr, PatternStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [PatternStr, CandidateStr]), new(ChineseLanguage, [CandidateStr, PatternStr])];
 
 	private string CandidateStr => RxCyNotation.ToCandidateString(Candidate);
 }

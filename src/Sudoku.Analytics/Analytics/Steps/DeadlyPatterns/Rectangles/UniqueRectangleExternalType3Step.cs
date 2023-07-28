@@ -49,12 +49,11 @@ public sealed partial class UniqueRectangleExternalType3Step(
 		];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [D1Str, D2Str, CellsStr, SubsetCellsStr, DigitsStr] },
-			{ ChineseLanguage, [D1Str, D2Str, CellsStr, DigitsStr, SubsetCellsStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [D1Str, D2Str, CellsStr, SubsetCellsStr, DigitsStr]),
+			new(ChineseLanguage, [D1Str, D2Str, CellsStr, DigitsStr, SubsetCellsStr])
+		];
 
 	private string DigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
 

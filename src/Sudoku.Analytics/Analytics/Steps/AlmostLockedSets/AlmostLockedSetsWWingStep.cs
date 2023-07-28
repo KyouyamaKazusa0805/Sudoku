@@ -27,12 +27,8 @@ public sealed partial class AlmostLockedSetsWWingStep(
 	public override Technique Code => Technique.AlmostLockedSetsWWing;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr] },
-			{ ChineseLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr]), new(ChineseLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr])];
 
 	private string Als1Str => FirstAls.ToString();
 

@@ -37,12 +37,11 @@ public sealed partial class UniqueRectangleType2Step(
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr] },
-			{ ChineseLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr]),
+			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr])
+		];
 
 	private string ExtraDigitStr => (extraDigit + 1).ToString();
 }

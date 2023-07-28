@@ -35,12 +35,11 @@ public sealed partial class UniqueRectangleWithBabaGroupingStep(
 	public override decimal BaseDifficulty => base.BaseDifficulty + .4M;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr] },
-			{ ChineseLanguage, [D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr]),
+			new(ChineseLanguage, [D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr])
+		];
 
 	private string TargetCellStr => RxCyNotation.ToCellString(TargetCell);
 

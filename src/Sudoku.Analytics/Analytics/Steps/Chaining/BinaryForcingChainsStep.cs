@@ -59,18 +59,17 @@ public sealed partial class BinaryForcingChainsStep(
 		=> (IsAbsurd ? GetString("TechniqueFormat_ContradictionForcingChainsStep") : GetString("TechniqueFormat_DoubleForcingChainsStep"))!;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(
 				EnglishLanguage,
 				IsAbsurd ? [StartCandStr, StartCandOnOffStr, EndCandStr] : [StartCandStr, StartCandOnOffStr, EndCandStr]
-			},
-			{
+			),
+			new(
 				ChineseLanguage,
 				IsAbsurd ? [StartCandStr, StartCandOnOffStrZhCn, EndCandStr] : [EndCandStr, StartCandStr, StartCandOnOffStrZhCn]
-			}
-		};
+			)
+		];
 
 	private string StartCandStr => RxCyNotation.ToCandidateString(SourcePotential.Candidate);
 

@@ -27,12 +27,11 @@ public sealed partial class EmptyRectangleIntersectionPairStep(
 	public override Technique Code => Technique.EmptyRectangleIntersectionPair;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr] },
-			{ ChineseLanguage, [Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr]),
+			new(ChineseLanguage, [Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr])
+		];
 
 	private string Digit1Str => (Digit1 + 1).ToString();
 

@@ -31,12 +31,11 @@ public sealed partial class HiddenSingleStep(
 		=> EnableAndIsLastDigit ? Technique.LastDigit : (Technique)((int)Technique.HiddenSingleBlock + (int)House.ToHouseType());
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr] },
-			{ ChineseLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr]),
+			new(ChineseLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr])
+		];
 
 	private string DigitStr => (Digit + 1).ToString();
 

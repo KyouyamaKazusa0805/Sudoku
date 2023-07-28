@@ -43,8 +43,8 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Size, A002024(TrueCandidates.Count) * .1M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [CandidatesStr] }, { ChineseLanguage, [CandidatesStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [CandidatesStr]), new(ChineseLanguage, [CandidatesStr])];
 
 	private string CandidatesStr => TrueCandidates.ToString();
 }

@@ -23,8 +23,8 @@ public sealed partial class BowmanBingoStep(
 	public override Technique Code => Technique.BowmanBingo;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [ContradictionSeriesStr] }, { ChineseLanguage, [ContradictionSeriesStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [ContradictionSeriesStr]), new(ChineseLanguage, [ContradictionSeriesStr])];
 
 	private string ContradictionSeriesStr => ConclusionFormatter.Format(ContradictionLinks, " -> ", false);
 }

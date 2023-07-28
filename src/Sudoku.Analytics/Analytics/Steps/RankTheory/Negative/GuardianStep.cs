@@ -27,12 +27,11 @@ public sealed partial class GuardianStep(
 		=> [new(ExtraDifficultyCaseNames.Size, A004526(LoopCells.Count + A004526(Guardians.Count)) * .1M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [CellsStr, GuardianSingularOrPlural, GuardianStr] },
-			{ ChineseLanguage, [CellsStr, GuardianSingularOrPlural, GuardianStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [CellsStr, GuardianSingularOrPlural, GuardianStr]),
+			new(ChineseLanguage, [CellsStr, GuardianSingularOrPlural, GuardianStr])
+		];
 
 	private string CellsStr => LoopCells.ToString();
 

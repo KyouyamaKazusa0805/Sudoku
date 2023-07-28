@@ -25,12 +25,11 @@ public sealed partial class BorescoperDeadlyPatternType3Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Size, SubsetCells.Count * .1M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitsStr, ExtraCellsStr] },
-			{ ChineseLanguage, [DigitsStr, CellsStr, ExtraCellsStr, ExtraDigitsStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitsStr, ExtraCellsStr]),
+			new(ChineseLanguage, [DigitsStr, CellsStr, ExtraCellsStr, ExtraDigitsStr])
+		];
 
 	private string ExtraDigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
 

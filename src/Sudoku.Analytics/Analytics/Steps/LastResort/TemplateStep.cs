@@ -24,8 +24,7 @@ public sealed partial class TemplateStep(
 	public override Technique Code => IsTemplateDeletion ? Technique.TemplateDelete : Technique.TemplateSet;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [DigitStr] }, { ChineseLanguage, [DigitStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts => [new(EnglishLanguage, [DigitStr]), new(ChineseLanguage, [DigitStr])];
 
 	private string DigitStr => (Digit + 1).ToString();
 }

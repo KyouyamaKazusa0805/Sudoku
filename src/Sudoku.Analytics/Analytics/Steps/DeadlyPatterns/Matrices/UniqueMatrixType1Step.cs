@@ -20,12 +20,8 @@ public sealed partial class UniqueMatrixType1Step(
 	public override int Type => 1;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitsStr, CellsStr, CandidateStr] },
-			{ ChineseLanguage, [CandidateStr, CellsStr, DigitsStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [DigitsStr, CellsStr, CandidateStr]), new(ChineseLanguage, [CandidateStr, CellsStr, DigitsStr])];
 
 	private string CandidateStr => RxCyNotation.ToCandidateString(Candidate);
 }

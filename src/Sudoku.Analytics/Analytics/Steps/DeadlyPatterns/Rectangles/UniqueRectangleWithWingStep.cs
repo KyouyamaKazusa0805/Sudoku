@@ -53,12 +53,11 @@ public sealed partial class UniqueRectangleWithWingStep(
 		];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [D1Str, D2Str, CellsStr, BranchesStr, DigitsStr] },
-			{ ChineseLanguage, [D1Str, D2Str, CellsStr, BranchesStr, DigitsStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [D1Str, D2Str, CellsStr, BranchesStr, DigitsStr]),
+			new(ChineseLanguage, [D1Str, D2Str, CellsStr, BranchesStr, DigitsStr])
+		];
 
 	private string BranchesStr => Branches.ToString();
 

@@ -21,8 +21,8 @@ public sealed partial class FireworkTripleStep(
 	public override Technique Code => Technique.FireworkTriple;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [CellsStr, DigitsStr] }, { ChineseLanguage, [CellsStr, DigitsStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [CellsStr, DigitsStr]), new(ChineseLanguage, [CellsStr, DigitsStr])];
 
 	private string CellsStr => Cells.ToString();
 

@@ -23,12 +23,8 @@ public sealed partial class FireworkPairType3Step(
 	public override Technique Code => Technique.FireworkPairType3;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [CellsStr, DigitsStr, EmptyRectangleStr] },
-			{ ChineseLanguage, [CellsStr, DigitsStr, EmptyRectangleStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [CellsStr, DigitsStr, EmptyRectangleStr]), new(ChineseLanguage, [CellsStr, DigitsStr, EmptyRectangleStr])];
 
 	private string CellsStr => Cells.ToString();
 

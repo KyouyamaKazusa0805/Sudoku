@@ -32,12 +32,11 @@ public partial class UniqueRectangleWithConjugatePairStep(
 		=> [new(ExtraDifficultyCaseNames.ConjugatePair, ConjugatePairs.Length * .2M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [D1Str, D2Str, CellsStr, Prefix, Suffix, ConjPairsStr] },
-			{ ChineseLanguage, [D1Str, D2Str, CellsStr, ConjPairsStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [D1Str, D2Str, CellsStr, Prefix, Suffix, ConjPairsStr]),
+			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ConjPairsStr])
+		];
 
 	private string ConjPairsStr
 	{
@@ -47,7 +46,6 @@ public partial class UniqueRectangleWithConjugatePairStep(
 
 			scoped var sb = new StringHandler(100);
 			sb.AppendRangeWithSeparator(ConjugatePairs, separator);
-
 			return sb.ToStringAndClear();
 		}
 	}

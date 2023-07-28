@@ -23,12 +23,8 @@ public sealed partial class LockedCandidatesStep(
 	public override Technique Code => BaseSet < 9 ? Technique.Pointing : Technique.Claiming;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitStr, BaseSetStr, CoverSetStr] },
-			{ ChineseLanguage, [DigitStr, BaseSetStr, CoverSetStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [DigitStr, BaseSetStr, CoverSetStr]), new(ChineseLanguage, [DigitStr, BaseSetStr, CoverSetStr])];
 
 	private string DigitStr => (Digit + 1).ToString();
 

@@ -21,12 +21,11 @@ public sealed partial class QiuDeadlyPatternLockedTypeStep(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.LockedDigit, .2M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [PatternStr, Quantifier, Number, SingularOrPlural, CandidateStr, BeVerb] },
-			{ ChineseLanguage, [Number, PatternStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [PatternStr, Quantifier, Number, SingularOrPlural, CandidateStr, BeVerb]),
+			new(ChineseLanguage, [Number, PatternStr])
+		];
 
 	private string CandidateStr => CandidatesLocked.ToString();
 

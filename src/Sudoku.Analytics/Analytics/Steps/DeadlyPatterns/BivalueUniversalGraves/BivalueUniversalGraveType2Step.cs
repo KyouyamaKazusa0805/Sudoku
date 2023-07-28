@@ -21,8 +21,8 @@ public sealed partial class BivalueUniversalGraveType2Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.ExtraDigit, A002024(Cells.Count) * .1M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [ExtraDigitStr, CellsStr] }, { ChineseLanguage, [CellsStr, ExtraDigitStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [ExtraDigitStr, CellsStr]), new(ChineseLanguage, [CellsStr, ExtraDigitStr])];
 
 	private string ExtraDigitStr => (digit + 1).ToString();
 

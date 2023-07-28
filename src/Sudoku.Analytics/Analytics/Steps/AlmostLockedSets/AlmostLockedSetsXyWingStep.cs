@@ -29,12 +29,11 @@ public sealed partial class AlmostLockedSetsXyWingStep(
 	public override Technique Code => Technique.AlmostLockedSetsXyWing;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr] },
-			{ ChineseLanguage, [Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr]),
+			new(ChineseLanguage, [Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr])
+		];
 
 	private string Als1Str => FirstAls.ToString();
 

@@ -37,12 +37,8 @@ public sealed partial class AlmostLockedCandidatesStep(
 		];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr] },
-			{ ChineseLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr]), new(ChineseLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr])];
 
 	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 

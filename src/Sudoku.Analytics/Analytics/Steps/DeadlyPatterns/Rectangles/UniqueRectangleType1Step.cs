@@ -30,6 +30,6 @@ public sealed class UniqueRectangleType1Step(
 )
 {
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [D1Str, D2Str, CellsStr] }, { ChineseLanguage, [D1Str, D2Str, CellsStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [D1Str, D2Str, CellsStr]), new(ChineseLanguage, [D1Str, D2Str, CellsStr])];
 }

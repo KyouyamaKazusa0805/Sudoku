@@ -27,8 +27,8 @@ public sealed partial class ForcingChainStep(
 
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [CandStr, OnOffStr] }, { ChineseLanguage, [CandStr, OnOffStrZhCn] } };
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [CandStr, OnOffStr]), new(ChineseLanguage, [CandStr, OnOffStrZhCn])];
 
 	private string CandStr => RxCyNotation.ToCandidateString(Target.Candidate);
 

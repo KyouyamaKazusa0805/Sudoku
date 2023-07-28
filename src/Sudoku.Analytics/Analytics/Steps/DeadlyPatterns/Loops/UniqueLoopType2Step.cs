@@ -25,12 +25,11 @@ public sealed partial class UniqueLoopType2Step(
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [Digit1Str, Digit2Str, LoopStr, ExtraDigitStr] },
-			{ ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ExtraDigitStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [Digit1Str, Digit2Str, LoopStr, ExtraDigitStr]),
+			new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ExtraDigitStr])
+		];
 
 	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 }

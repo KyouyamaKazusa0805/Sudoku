@@ -47,12 +47,11 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 		];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr] },
-			{ ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr]),
+			new(ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr])
+		];
 
 	private string GuardianCellsStr => GuardianCells.ToString();
 

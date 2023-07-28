@@ -23,12 +23,8 @@ public sealed partial class BorescoperDeadlyPatternType2Step(
 	public override int Type => 2;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitStr] },
-			{ ChineseLanguage, [DigitsStr, CellsStr, ExtraDigitStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitStr]), new(ChineseLanguage, [DigitsStr, CellsStr, ExtraDigitStr])];
 
 	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 }

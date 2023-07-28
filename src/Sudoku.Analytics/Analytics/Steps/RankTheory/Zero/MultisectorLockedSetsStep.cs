@@ -22,8 +22,8 @@ public sealed partial class MultisectorLockedSetsStep(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Size, A002024(Cells.Count) * .1M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [CellsCountStr, CellsStr] }, { ChineseLanguage, [CellsCountStr, CellsStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [CellsCountStr, CellsStr]), new(ChineseLanguage, [CellsCountStr, CellsStr])];
 
 	private string CellsCountStr => Cells.Count.ToString();
 

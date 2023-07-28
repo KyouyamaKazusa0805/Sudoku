@@ -28,8 +28,7 @@ public sealed partial class BidirectionalCycleStep(
 
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [CandsStr] }, { ChineseLanguage, [CandsStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts => [new(EnglishLanguage, [CandsStr]), new(ChineseLanguage, [CandsStr])];
 
 	private string CandsStr => RxCyNotation.ToCandidatesString([.. from element in Conclusions select element.Candidate]);
 

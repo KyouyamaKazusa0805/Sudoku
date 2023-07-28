@@ -21,12 +21,7 @@ public sealed class ReverseBivalueUniversalGraveType1Step(
 	/// <inheritdoc/>
 	public override int Type => 1;
 
-
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [Cell1Str, Cell2Str, PatternStr] },
-			{ ChineseLanguage, [PatternStr, Cell1Str, Cell2Str] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [Cell1Str, Cell2Str, PatternStr]), new(ChineseLanguage, [PatternStr, Cell1Str, Cell2Str])];
 }

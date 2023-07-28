@@ -21,8 +21,8 @@ public sealed partial class QiuDeadlyPatternType4Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.ConjugatePair, .2M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [PatternStr, ConjStr] }, { ChineseLanguage, [ConjStr, PatternStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [PatternStr, ConjStr]), new(ChineseLanguage, [ConjStr, PatternStr])];
 
 	private string ConjStr => ConjugatePair.ToString();
 }

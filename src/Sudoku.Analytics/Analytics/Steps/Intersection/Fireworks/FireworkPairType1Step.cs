@@ -22,12 +22,11 @@ public sealed partial class FireworkPairType1Step(
 	public override Technique Code => Technique.FireworkPairType1;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [CellsStr, DigitsStr, ExtraCell1Str, ExtraCell2Str] },
-			{ ChineseLanguage, [CellsStr, DigitsStr, ExtraCell1Str, ExtraCell2Str] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [CellsStr, DigitsStr, ExtraCell1Str, ExtraCell2Str]),
+			new(ChineseLanguage, [CellsStr, DigitsStr, ExtraCell1Str, ExtraCell2Str])
+		];
 
 	private string CellsStr => Cells.ToString();
 

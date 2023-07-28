@@ -23,12 +23,8 @@ public sealed partial class BivalueUniversalGraveXzStep(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.ExtraDigit, .2M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitStr, CellsStr, ExtraCellStr] },
-			{ ChineseLanguage, [DigitStr, CellsStr, ExtraCellStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [DigitStr, CellsStr, ExtraCellStr]), new(ChineseLanguage, [DigitStr, CellsStr, ExtraCellStr])];
 
 	private string DigitStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 

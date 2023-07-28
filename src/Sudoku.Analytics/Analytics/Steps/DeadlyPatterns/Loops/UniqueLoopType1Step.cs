@@ -15,10 +15,6 @@ public sealed class UniqueLoopType1Step(Conclusion[] conclusions, View[]? views,
 	public override int Type => 1;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [Digit1Str, Digit2Str, LoopStr] },
-			{ ChineseLanguage, [Digit1Str, Digit2Str, LoopStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [Digit1Str, Digit2Str, LoopStr]), new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr])];
 }

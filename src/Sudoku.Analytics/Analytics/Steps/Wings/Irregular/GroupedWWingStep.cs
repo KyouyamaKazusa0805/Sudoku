@@ -23,12 +23,8 @@ public sealed partial class GroupedWWingStep(
 	public override Technique Code => Technique.GroupedWWing;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [StartCellStr, EndCellStr, BridgeStr] },
-			{ ChineseLanguage, [StartCellStr, EndCellStr, BridgeStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [StartCellStr, EndCellStr, BridgeStr]), new(ChineseLanguage, [StartCellStr, EndCellStr, BridgeStr])];
 
 	private string StartCellStr => RxCyNotation.ToCellString(StartCell);
 

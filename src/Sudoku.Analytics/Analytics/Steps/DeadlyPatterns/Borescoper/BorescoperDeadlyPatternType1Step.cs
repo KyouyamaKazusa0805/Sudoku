@@ -14,6 +14,6 @@ public sealed class BorescoperDeadlyPatternType1Step(Conclusion[] conclusions, V
 	public override int Type => 1;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [DigitsStr, CellsStr] }, { ChineseLanguage, [DigitsStr, CellsStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [DigitsStr, CellsStr]), new(ChineseLanguage, [DigitsStr, CellsStr])];
 }

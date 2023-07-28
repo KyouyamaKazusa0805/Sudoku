@@ -39,12 +39,8 @@ public sealed partial class AlignedExclusionStep(
 		};
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ ChineseLanguage, [CellsStr, ConclusionNegatedStr] },
-			{ EnglishLanguage, [CellsStr, ConclusionNegatedStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(ChineseLanguage, [CellsStr, ConclusionNegatedStr]), new(EnglishLanguage, [CellsStr, ConclusionNegatedStr])];
 
 	private string CellsStr => Cells.ToString();
 

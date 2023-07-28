@@ -29,12 +29,11 @@ public sealed partial class ChromaticPatternXzStep(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.ExtraDigit, .2M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitsStr, CellsStr, BlocksStr, ExtraCellStr] },
-			{ ChineseLanguage, [BlocksStr, CellsStr, DigitsStr, ExtraCellStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [DigitsStr, CellsStr, BlocksStr, ExtraCellStr]),
+			new(ChineseLanguage, [BlocksStr, CellsStr, DigitsStr, ExtraCellStr])
+		];
 
 	private string ExtraCellStr => RxCyNotation.ToCellString(ExtraCell);
 }

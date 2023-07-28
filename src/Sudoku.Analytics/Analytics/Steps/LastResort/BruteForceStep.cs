@@ -14,8 +14,8 @@ public sealed class BruteForceStep(Conclusion[] conclusions, View[]? views) : La
 	public override Technique Code => Technique.BruteForce;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [AssignmentStr] }, { ChineseLanguage, [AssignmentStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [AssignmentStr]), new(ChineseLanguage, [AssignmentStr])];
 
 	private string AssignmentStr => ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
 }

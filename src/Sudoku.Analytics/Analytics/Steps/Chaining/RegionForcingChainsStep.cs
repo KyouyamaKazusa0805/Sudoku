@@ -38,8 +38,8 @@ public sealed partial class RegionForcingChainsStep(
 
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [DigitStr, HouseStr] }, { ChineseLanguage, [HouseStr, DigitStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [DigitStr, HouseStr]), new(ChineseLanguage, [HouseStr, DigitStr])];
 
 	private string DigitStr => (Digit + 1).ToString();
 

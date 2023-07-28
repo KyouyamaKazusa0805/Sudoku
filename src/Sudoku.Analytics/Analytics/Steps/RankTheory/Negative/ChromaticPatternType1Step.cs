@@ -19,12 +19,8 @@ public sealed partial class ChromaticPatternType1Step(
 ) : ChromaticPatternStep(conclusions, views, blocks, pattern, digitsMask)
 {
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [CellsStr, BlocksStr, DigitsStr] },
-			{ ChineseLanguage, [BlocksStr, CellsStr, DigitsStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [CellsStr, BlocksStr, DigitsStr]), new(ChineseLanguage, [BlocksStr, CellsStr, DigitsStr])];
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.ChromaticPatternType1;

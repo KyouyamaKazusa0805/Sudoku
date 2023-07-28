@@ -23,12 +23,8 @@ public sealed partial class UniqueMatrixType2Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.ExtraDigit, .1M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitStr] },
-			{ ChineseLanguage, [ExtraDigitStr, CellsStr, DigitsStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitStr]), new(ChineseLanguage, [ExtraDigitStr, CellsStr, DigitsStr])];
 
 	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 }

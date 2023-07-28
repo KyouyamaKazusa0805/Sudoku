@@ -47,7 +47,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// <code><![CDATA["Cells {0}, with digits {1}"]]></code>
 	/// </para>
 	/// <para>
-	/// Here the placeholder <c>{0}</c>, and <c>{1}</c> must be provided by property <see cref="FormatInterpolatedParts"/>.
+	/// Here the placeholder <c>{0}</c>, and <c>{1}</c> must be provided by property <see cref="FormatInterpolationParts"/>.
 	/// You should create 2 values that can be replaced with the placeholder <c>{0}</c> and <c>{1}</c>.
 	/// </para>
 	/// <para>
@@ -58,7 +58,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// ]]></code>
 	/// </para>
 	/// <para>
-	/// And then fill the blank via property <see cref="FormatInterpolatedParts"/>:
+	/// And then fill the blank via property <see cref="FormatInterpolationParts"/>:
 	/// <code><![CDATA[
 	/// public override IDictionary<string, string[]?> FormatInterpolatedParts
 	///     => new Dictionary<string, string[]?>
@@ -77,7 +77,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	/// <seealso cref="FormatInterpolatedParts"/>
+	/// <seealso cref="FormatInterpolationParts"/>
 	/// <seealso cref="GetString(string)"/>
 	public virtual string? Format => GetString($"TechniqueFormat_{GetType().Name}");
 
@@ -142,18 +142,9 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// Indicates the interpolated parts that is used for the format.
 	/// The formats will be interpolated into the property <see cref="Format"/> result.
 	/// </summary>
-	/// <remarks>
-	/// <para>
-	/// This property use a dictionary to merge format data of globalization.
-	/// The key type is <see cref="string"/>, which can be used for the comparison of the current culture via type <see cref="CultureInfo"/>,
-	/// for example, <c>"zh"</c> and <c>"en-US"</c>.
-	/// </para>
-	/// <para>For more backing implementation details, please visit method <see cref="ToString"/> in derived <see langword="class"/>es.</para>
-	/// </remarks>
 	/// <seealso cref="Format"/>
-	/// <seealso cref="CultureInfo"/>
-	/// <seealso cref="ToString"/>
-	public virtual IReadOnlyDictionary<string, string[]?>? FormatInterpolatedParts => null;
+	/// <seealso cref="FormatInterpolation"/>
+	public virtual FormatInterpolation[]? FormatInterpolationParts => null;
 
 	/// <summary>
 	/// Indicates the string representation of the conclusions of the step.
@@ -163,7 +154,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj)
+	public sealed override bool Equals([NotNullWhen(true)] object? obj)
 	{
 		const BindingFlags staticMethodFlag = BindingFlags.NonPublic | BindingFlags.Static;
 		var (equalityContract, currentTypeEqualityContract) = (GetType(), typeof(Step));
@@ -193,7 +184,8 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 		const StringComparison casingOption = StringComparison.CurrentCultureIgnoreCase;
 		var currentCultureName = CultureInfo.CurrentCulture.Name;
 		var colonToken = GetString("Colon");
-		return (Format, FormatInterpolatedParts?.FirstOrDefault(kvp => currentCultureName.StartsWith(kvp.Key, casingOption)).Value) switch
+		bool cultureMatcher(FormatInterpolation kvp) => currentCultureName.StartsWith(kvp.LanguageNameOrIdentifier, casingOption);
+		return (Format, FormatInterpolationParts?.FirstOrDefault(cultureMatcher).ResourcePlaceholderValues) switch
 		{
 			(null, _) => ToSimpleString(),
 			(_, null) => $"{Name}{colonToken}{Format} => {ConclusionText}",

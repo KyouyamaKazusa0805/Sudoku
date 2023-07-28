@@ -18,8 +18,7 @@ public sealed class PatternOverlayStep(Conclusion[] conclusions) : LastResortSte
 	public override Technique Code => Technique.PatternOverlay;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [DigitStr] }, { ChineseLanguage, [DigitStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts => [new(EnglishLanguage, [DigitStr]), new(ChineseLanguage, [DigitStr])];
 
 	private string DigitStr => (Digit + 1).ToString();
 }

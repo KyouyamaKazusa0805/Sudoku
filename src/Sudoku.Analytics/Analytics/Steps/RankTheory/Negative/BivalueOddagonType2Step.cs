@@ -25,8 +25,8 @@ public sealed partial class BivalueOddagonType2Step(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.ExtraDigit, .1M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [ExtraDigitStr, LoopStr] }, { ChineseLanguage, [LoopStr, ExtraDigitStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [ExtraDigitStr, LoopStr]), new(ChineseLanguage, [LoopStr, ExtraDigitStr])];
 
 	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 }

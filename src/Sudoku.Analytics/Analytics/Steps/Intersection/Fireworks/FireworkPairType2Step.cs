@@ -25,12 +25,11 @@ public sealed partial class FireworkPairType2Step(
 	public override Technique Code => Technique.FireworkPairType2;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [Firework1Str, Firework2Str, DigitsStr, ExtraCellStr] },
-			{ ChineseLanguage, [Firework1Str, Firework2Str, DigitsStr, ExtraCellStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [Firework1Str, Firework2Str, DigitsStr, ExtraCellStr]),
+			new(ChineseLanguage, [Firework1Str, Firework2Str, DigitsStr, ExtraCellStr])
+		];
 
 	private string ExtraCellStr => RxCyNotation.ToCellString(ExtraCell);
 

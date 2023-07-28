@@ -28,8 +28,8 @@ public sealed partial class ReverseBivalueUniversalGraveType4Step(
 		=> [.. base.ExtraDifficultyCases, new(ExtraDifficultyCaseNames.ConjugatePair, .3M)];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?> { { EnglishLanguage, [ConjugatePairStr] }, { ChineseLanguage, [ConjugatePairStr] } };
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [ConjugatePairStr]), new(ChineseLanguage, [ConjugatePairStr])];
 
 	/// <inheritdoc/>
 	private string ConjugatePairStr => ConjugatePair.ToString();

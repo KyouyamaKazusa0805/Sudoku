@@ -81,12 +81,8 @@ public sealed partial class RegularWingStep(
 		];
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitsStr, PivotCellStr, CellsStr] },
-			{ ChineseLanguage, [DigitsStr, PivotCellStr, CellsStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [DigitsStr, PivotCellStr, CellsStr]), new(ChineseLanguage, [DigitsStr, PivotCellStr, CellsStr])];
 
 	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 

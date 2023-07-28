@@ -23,12 +23,8 @@ public sealed partial class EmptyRectangleStep(
 	public override Technique Code => Technique.EmptyRectangle;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitStr, HouseStr, ConjStr] },
-			{ ChineseLanguage, [DigitStr, HouseStr, ConjStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [DigitStr, HouseStr, ConjStr]), new(ChineseLanguage, [DigitStr, HouseStr, ConjStr])];
 
 	private string DigitStr => (Digit + 1).ToString();
 

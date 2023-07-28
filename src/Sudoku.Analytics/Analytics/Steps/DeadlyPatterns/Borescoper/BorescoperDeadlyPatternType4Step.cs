@@ -25,12 +25,11 @@ public sealed partial class BorescoperDeadlyPatternType4Step(
 	public override int Type => 4;
 
 	/// <inheritdoc/>
-	public override IReadOnlyDictionary<string, string[]?> FormatInterpolatedParts
-		=> new Dictionary<string, string[]?>
-		{
-			{ EnglishLanguage, [DigitsStr, CellsStr, ConjHouseStr, ExtraCombStr] },
-			{ ChineseLanguage, [DigitsStr, CellsStr, ExtraCombStr, ConjHouseStr] }
-		};
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [DigitsStr, CellsStr, ConjHouseStr, ExtraCombStr]),
+			new(ChineseLanguage, [DigitsStr, CellsStr, ExtraCombStr, ConjHouseStr])
+		];
 
 	private string ExtraCombStr => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
 
