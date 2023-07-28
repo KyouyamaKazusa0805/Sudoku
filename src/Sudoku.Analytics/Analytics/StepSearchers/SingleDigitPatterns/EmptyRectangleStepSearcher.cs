@@ -10,6 +10,23 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(Technique.EmptyRectangle)]
 public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 {
+	/// <summary>
+	/// Indicates all houses iterating on the specified block forming an empty rectangle.
+	/// </summary>
+	private static readonly House[][] EmptyRectangleLinkIds =
+	[
+		[12, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26],
+		[12, 13, 14, 15, 16, 17, 18, 19, 20, 24, 25, 26],
+		[12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+		[9, 10, 11, 15, 16, 17, 21, 22, 23, 24, 25, 26],
+		[9, 10, 11, 15, 16, 17, 18, 19, 20, 24, 25, 26],
+		[9, 10, 11, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+		[9, 10, 11, 12, 13, 14, 21, 22, 23, 24, 25, 26],
+		[9, 10, 11, 12, 13, 14, 18, 19, 20, 24, 25, 26],
+		[9, 10, 11, 12, 13, 14, 18, 19, 20, 21, 22, 23]
+	];
+
+
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
@@ -28,7 +45,7 @@ public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 				// Search for conjugate pair.
 				for (var i = 0; i < 12; i++)
 				{
-					var linkMap = CandidatesMap[digit] & HousesMap[EmptyRectangleLinkIds[block, i]];
+					var linkMap = CandidatesMap[digit] & HousesMap[EmptyRectangleLinkIds[block][i]];
 					if (linkMap.Count != 2)
 					{
 						continue;

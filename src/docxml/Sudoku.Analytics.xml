@@ -2760,6 +2760,61 @@
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
             <returns>The abbreviation.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.CommonReadOnlyFields">
+            <summary>
+            Represents a type holding some common read-only fields used by runtime or compiling-time.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionMaps">
+            <summary>
+            <para>
+            Indicates all maps that forms the each intersection. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | C C C | A A A | A A A |
+            | B B B | . . . | . . . |
+            | B B B | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            </para>
+            <para>
+            In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionBlockTable">
+            <summary>
+            <para>The table of all blocks to iterate for each blocks.</para>
+            <para>
+            This field is only used for providing the data for another field <see cref="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionMaps"/>.
+            </para>
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionMaps"/>
+        </member>
+        <member name="M:Sudoku.Analytics.CommonReadOnlyFields.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="T:Sudoku.Analytics.IntersectionBaseComparer">
+            <summary>
+            Represents a comparer instance that compares two tuples.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.IntersectionBaseComparer.Equals(Sudoku.DataModel.IntersectionBase,Sudoku.DataModel.IntersectionBase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.IntersectionBaseComparer.GetHashCode(Sudoku.DataModel.IntersectionBase)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Compatibility.HodokuLibraryCompatibility">
             <summary>
             Represents some methods that are used for get the details supported and defined
@@ -6328,6 +6383,16 @@ result ^= expression;
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.BdpTemplatesSize3Count">
+            <summary>
+            Indicates the total number of Unique Polygon (Heptagon) possible templates of size 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.BdpTemplatesSize4Count">
+            <summary>
+            Indicates the total number of Unique Polygon (Octagon) possible templates of size 4.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Patterns">
             <summary>
             Indicates all possible patterns to iterate.
@@ -6487,6 +6552,11 @@ result ^= expression;
             <item>Qiu's Deadly Pattern Type 4</item>
             <item>Qiu's Deadly Pattern Locked Type</item>
             </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.QiuDeadlyPatternTemplatesCount">
+            <summary>
+            Indicates the total number of Qiu's deadly patterns.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Patterns">
@@ -6702,6 +6772,11 @@ result ^= expression;
             <item>Unique Matrix Type 3</item>
             <item>Unique Matrix Type 4</item>
             </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.UniqueMatrixTemplatesCount">
+            <summary>
+            Indicates the total number of unique matrix patterns.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.Patterns">
@@ -7488,6 +7563,11 @@ result ^= expression;
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.ExocetTemplatesCount">
+            <summary>
+            Indicates the total number of exocet patterns.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.Patterns">
             <summary>
             Indicates all patterns.
@@ -7745,6 +7825,16 @@ result ^= expression;
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.FireworkSubsetCount">
+            <summary>
+            Indicates the total number of firework subset patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.PairFireworksCount">
+            <summary>
+            Indicates the total number of pair fireworks.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Patterns">
             <summary>
             Indicates the patterns used.
@@ -7941,6 +8031,15 @@ result ^= expression;
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher.BruteForceTryAndErrorOrder">
+            <summary>
+            The order of cell offsets to get values.
+            </summary>
+            <remarks>
+            For example, the first value is 40, which means the first cell to be tried to be filled
+            is the 40th cell in the grid (i.e. the cell <c>r5c5</c>).
+            </remarks>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
@@ -8114,6 +8213,11 @@ result ^= expression;
             The possible pattern offsets.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.ChromaticPatternBlocksCombinations">
+            <summary>
+            All possible blocks combinations being reserved for chromatic pattern searcher's usages.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.#cctor">
             <static-constructor>
 		<summary>
@@ -8239,6 +8343,11 @@ result ^= expression;
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.MultisectorLockedSetsTemplatesCount">
+            <summary>
+            Indicates the total number of multi-sector locked sets possible templates.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.Patterns">
             <summary>
             Indicates the list initialized with the static constructor.
@@ -8293,6 +8402,11 @@ result ^= expression;
             <list type="bullet">
             <item>Empty Rectangle</item>
             </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.EmptyRectangleStepSearcher.EmptyRectangleLinkIds">
+            <summary>
+            Indicates all houses iterating on the specified block forming an empty rectangle.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
@@ -17623,120 +17737,6 @@ result ^= expression;
             The generated property declaration for parameter <c>wrongStep</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.CommonReadOnlies">
-            <summary>
-            Represents a type holding some common read-only fields used by runtime or compiling-time.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlies.UniqueSquareTemplatesCount">
-            <summary>
-            Indicates the total number of unique square patterns.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlies.QiuDeadlyPatternTemplatesCount">
-            <summary>
-            Indicates the total number of Qiu's deadly patterns.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlies.ExocetTemplatesCount">
-            <summary>
-            Indicates the total number of exocet patterns.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlies.FireworkSubsetCount">
-            <summary>
-            Indicates the total number of firework subset patterns.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlies.BdpTemplatesSize3Count">
-            <summary>
-            Indicates the total number of Unique Polygon (Heptagon) possible templates of size 3.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlies.BdpTemplatesSize4Count">
-            <summary>
-            Indicates the total number of Unique Polygon (Octagon) possible templates of size 4.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlies.PairFireworksCount">
-            <summary>
-            Indicates the total number of pair fireworks.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlies.MultisectorLockedSetsTemplatesCount">
-            <summary>
-            Indicates the total number of multi-sector locked sets possible templates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlies.EmptyRectangleLinkIds">
-            <summary>
-            Indicates all houses iterating on the specified block forming an empty rectangle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlies.ChromaticPatternBlocksCombinations">
-            <summary>
-            All possible blocks combinations being reserved for chromatic pattern searcher's usages.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlies.BruteForceTryAndErrorOrder">
-            <summary>
-            The order of cell offsets to get values.
-            </summary>
-            <remarks>
-            For example, the first value is 40, which means the first cell to be tried to be filled
-            is the 40th cell in the grid (i.e. the cell <c>r5c5</c>).
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps">
-            <summary>
-            <para>
-            Indicates all maps that forms the each intersection. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | C C C | A A A | A A A |
-            | B B B | . . . | . . . |
-            | B B B | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            </para>
-            <para>
-            In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlies.IntersectionBlockTable">
-            <summary>
-            <para>The table of all blocks to iterate for each blocks.</para>
-            <para>
-            This field is only used for providing the data for another field <see cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/>.
-            </para>
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/>
-        </member>
-        <member name="M:Sudoku.Analytics.CommonReadOnlies.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
-        <member name="T:Sudoku.Analytics.IntersectionBaseComparer">
-            <summary>
-            Represents a comparer instance that compares two tuples.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.IntersectionBaseComparer.Equals(Sudoku.DataModel.IntersectionBase,Sudoku.DataModel.IntersectionBase)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.IntersectionBaseComparer.GetHashCode(Sudoku.DataModel.IntersectionBase)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.DataModel.ExtraDifficultyCase">
             <summary>
             Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
@@ -17808,7 +17808,7 @@ result ^= expression;
         </member>
         <member name="T:Sudoku.DataModel.IntersectionResult">
             <summary>
-            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/> property.
+            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionMaps"/> property.
             </summary>
             <param name="LineMap">The map of the line.</param>
             <param name="BlockMap">The map of the block.</param>
@@ -17816,11 +17816,11 @@ result ^= expression;
             <param name="OtherBlocks">
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </param>
-            <seealso cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/>
+            <seealso cref="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionMaps"/>
         </member>
         <member name="M:Sudoku.DataModel.IntersectionResult.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Byte[])">
             <summary>
-            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/> property.
+            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionMaps"/> property.
             </summary>
             <param name="LineMap">The map of the line.</param>
             <param name="BlockMap">The map of the block.</param>
@@ -17828,7 +17828,7 @@ result ^= expression;
             <param name="OtherBlocks">
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </param>
-            <seealso cref="F:Sudoku.Analytics.CommonReadOnlies.IntersectionMaps"/>
+            <seealso cref="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionMaps"/>
         </member>
         <member name="P:Sudoku.DataModel.IntersectionResult.LineMap">
             <summary>The map of the line.</summary>

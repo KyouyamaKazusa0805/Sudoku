@@ -21,6 +21,17 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class FireworkStepSearcher : StepSearcher
 {
 	/// <summary>
+	/// Indicates the total number of firework subset patterns.
+	/// </summary>
+	public const int FireworkSubsetCount = 3645;
+
+	/// <summary>
+	/// Indicates the total number of pair fireworks.
+	/// </summary>
+	public const int PairFireworksCount = 103518;
+
+
+	/// <summary>
 	/// Indicates the patterns used.
 	/// </summary>
 	private static readonly Firework[] Patterns = new Firework[FireworkSubsetCount];

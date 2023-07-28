@@ -17,6 +17,17 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 {
 	/// <summary>
+	/// Indicates the total number of Unique Polygon (Heptagon) possible templates of size 3.
+	/// </summary>
+	public const int BdpTemplatesSize3Count = 14580;
+
+	/// <summary>
+	/// Indicates the total number of Unique Polygon (Octagon) possible templates of size 4.
+	/// </summary>
+	public const int BdpTemplatesSize4Count = 11664;
+
+
+	/// <summary>
 	/// Indicates all possible patterns to iterate.
 	/// </summary>
 	/// <remarks>

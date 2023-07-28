@@ -18,6 +18,12 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 {
 	/// <summary>
+	/// Indicates the total number of Qiu's deadly patterns.
+	/// </summary>
+	public const int QiuDeadlyPatternTemplatesCount = 972;
+
+
+	/// <summary>
 	/// All different patterns.
 	/// </summary>
 	private static readonly QiuDeadlyPattern[] Patterns = new QiuDeadlyPattern[QiuDeadlyPatternTemplatesCount];

@@ -16,9 +16,15 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 {
 	/// <summary>
+	/// Indicates the total number of unique matrix patterns.
+	/// </summary>
+	public const int UniqueMatrixTemplatesCount = 162;
+
+
+	/// <summary>
 	/// Indicates the patterns.
 	/// </summary>
-	private static readonly CellMap[] Patterns = new CellMap[UniqueSquareTemplatesCount];
+	private static readonly CellMap[] Patterns = new CellMap[UniqueMatrixTemplatesCount];
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />

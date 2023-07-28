@@ -11,6 +11,12 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class JuniorExocetStepSearcher : StepSearcher
 {
 	/// <summary>
+	/// Indicates the total number of exocet patterns.
+	/// </summary>
+	public const int ExocetTemplatesCount = 1458;
+
+
+	/// <summary>
 	/// Indicates all patterns.
 	/// </summary>
 	private static readonly Exocet[] Patterns = new Exocet[ExocetTemplatesCount];

@@ -11,6 +11,12 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 {
 	/// <summary>
+	/// Indicates the total number of multi-sector locked sets possible templates.
+	/// </summary>
+	public const int MultisectorLockedSetsTemplatesCount = 74601;
+
+
+	/// <summary>
 	/// Indicates the list initialized with the static constructor.
 	/// </summary>
 	private static readonly CellMap[] Patterns;
