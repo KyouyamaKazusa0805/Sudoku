@@ -249,7 +249,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <returns>The <see cref="bool"/> result.</returns>
 	private bool SetSolvedDigit(int cell, int digit)
 	{
-		int subBand = Cell2Floor[cell];
+		var subBand = (int)Cell2Floor[cell];
 		var band = Digit2BaseBand[digit] + subBand;
 		var mask = Cell2Mask[cell];
 		if ((_g->Bands[band] & mask) == 0)
