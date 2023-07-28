@@ -183,10 +183,9 @@ public unsafe partial struct Grid :
 	{
 		// Initializes the empty grid.
 		Empty = default;
-		scoped ref var firstElement = ref Empty[0];
 		for (var i = 0; i < 81; i++)
 		{
-			AddByteOffset(ref firstElement, (nuint)(i * sizeof(Mask))) = DefaultMask;
+			Empty[i] = DefaultMask;
 		}
 
 		// Initializes events.
