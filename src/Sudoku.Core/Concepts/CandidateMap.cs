@@ -106,7 +106,7 @@ public partial struct CandidateMap :
 		{
 			return this switch
 			{
-				{ _count: 0 } => Array.Empty<string>(),
+				{ _count: 0 } => [],
 				[var a] => [RxCyNotation.ToCandidateString(a)],
 				_ => f(Offsets)
 			};
@@ -177,7 +177,7 @@ public partial struct CandidateMap :
 		{
 			if (!this)
 			{
-				return Array.Empty<Candidate>();
+				return [];
 			}
 
 			var arr = new Candidate[_count];
@@ -315,7 +315,7 @@ public partial struct CandidateMap :
 	{
 		if (subsetSize == 0 || subsetSize > _count)
 		{
-			return Array.Empty<CandidateMap>();
+			return [];
 		}
 
 		if (subsetSize == _count)
@@ -403,7 +403,7 @@ public partial struct CandidateMap :
 	{
 		if (limitSubsetSize == 0 || !this)
 		{
-			return Array.Empty<CandidateMap>();
+			return [];
 		}
 
 		var (n, desiredSize) = (_count, 0);

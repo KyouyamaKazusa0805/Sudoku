@@ -43,7 +43,7 @@ internal static class EqualsHandler
 		var otherModifiers = attribute.GetNamedArgument<string>("OtherModifiers") switch
 		{
 			{ } str => str.Split((char[])[' '], StringSplitOptions.RemoveEmptyEntries),
-			_ => Array.Empty<string>()
+			_ => []
 		};
 		var typeArgumentsString = typeParameters is []
 			? string.Empty

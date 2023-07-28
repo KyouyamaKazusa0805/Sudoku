@@ -27,7 +27,7 @@ public static class EnumFlagsEnumerable
 
 		if (@this.GetAllFlags() is not (var flags and not []))
 		{
-			return Array.Empty<TResult>();
+			return [];
 		}
 
 		var result = new TResult[flags.Length];

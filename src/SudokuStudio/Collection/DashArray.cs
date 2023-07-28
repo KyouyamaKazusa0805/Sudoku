@@ -20,7 +20,7 @@ public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashA
 	/// <summary>
 	/// The double values.
 	/// </summary>
-	internal readonly double[] _doubles = Array.Empty<double>();
+	internal readonly double[] _doubles = [];
 
 
 	/// <summary>

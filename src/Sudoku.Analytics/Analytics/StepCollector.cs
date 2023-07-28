@@ -51,7 +51,7 @@ public sealed partial class StepCollector : IAnalyzerOrCollector
 	{
 		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out var isSukaku) || isSukaku is not { } sukaku)
 		{
-			return Array.Empty<Step>();
+			return [];
 		}
 
 		try

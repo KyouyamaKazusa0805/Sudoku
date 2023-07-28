@@ -800,7 +800,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 	{
 		if (Steps is null)
 		{
-			return Array.Empty<T>();
+			return [];
 		}
 
 		var list = new List<T>(SolvingStepsCount);
@@ -817,11 +817,11 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator IEnumerable.GetEnumerator() => (Steps ?? Array.Empty<Step>()).GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => (Steps ?? []).GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator<Step> IEnumerable<Step>.GetEnumerator() => ((IEnumerable<Step>)(Steps ?? Array.Empty<Step>())).GetEnumerator();
+	IEnumerator<Step> IEnumerable<Step>.GetEnumerator() => ((IEnumerable<Step>)(Steps ?? [])).GetEnumerator();
 
 	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).

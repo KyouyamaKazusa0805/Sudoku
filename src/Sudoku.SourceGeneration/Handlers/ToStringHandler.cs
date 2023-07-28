@@ -124,7 +124,7 @@ internal static class ToStringHandler
 		var otherModifiers = attribute.GetNamedArgument<string>("OtherModifiers") switch
 		{
 			{ } str => str.Split((char[])[' '], StringSplitOptions.RemoveEmptyEntries),
-			_ => Array.Empty<string>()
+			_ => []
 		};
 		var otherModifiersString = otherModifiers.Length == 0 ? string.Empty : $"{string.Join(" ", otherModifiers)} ";
 		var finalString =

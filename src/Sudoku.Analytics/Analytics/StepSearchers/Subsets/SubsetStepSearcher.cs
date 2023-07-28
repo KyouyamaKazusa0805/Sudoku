@@ -220,7 +220,7 @@ public abstract class SubsetStepSearcher(
 		var info = Crosshatching.GetCrosshatchingInfo(grid, digit, house, cells);
 		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
 		{
-			return Array.Empty<CellViewNode>();
+			return [];
 		}
 
 		var result = new List<CellViewNode>();

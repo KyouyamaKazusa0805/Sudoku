@@ -41,7 +41,7 @@ public static unsafe class EnumExtensions
 
 		if (i == 0)
 		{
-			return Array.Empty<T>();
+			return [];
 		}
 
 		// Returns the instance and copy the values.

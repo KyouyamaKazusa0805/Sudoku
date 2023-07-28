@@ -15,7 +15,7 @@ public static class Combinatorics
 	{
 		if (count == 0)
 		{
-			return Array.Empty<T[]>();
+			return [];
 		}
 
 		var result = new List<T[]>();
@@ -55,7 +55,7 @@ public static class Combinatorics
 	{
 		if (count == 0)
 		{
-			return Array.Empty<T[]>();
+			return [];
 		}
 
 		var result = new List<T[]>();
@@ -137,7 +137,7 @@ public static class Combinatorics
 	{
 		if (count == 0)
 		{
-			return Array.Empty<T[]>();
+			return [];
 		}
 
 		var result = new List<T[]>();

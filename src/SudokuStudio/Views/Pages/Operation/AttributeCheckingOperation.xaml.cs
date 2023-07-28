@@ -88,7 +88,7 @@ file sealed class BackdoorVisualUnit(View view) : IRenderable
 	public View[]? Views { get; } = [view];
 
 	/// <inheritdoc/>
-	Conclusion[] IRenderable.Conclusions { get; } = Array.Empty<Conclusion>();
+	Conclusion[] IRenderable.Conclusions { get; } = [];
 }
 
 /// <summary>
@@ -101,5 +101,5 @@ file sealed class TrueCandidateVisualUnit(View view) : IRenderable
 	public View[]? Views { get; } = [view];
 
 	/// <inheritdoc/>
-	Conclusion[] IRenderable.Conclusions { get; } = Array.Empty<Conclusion>();
+	Conclusion[] IRenderable.Conclusions { get; } = [];
 }

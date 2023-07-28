@@ -307,9 +307,7 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	[JsonInclude]
 	public readonly string[] StringChunks
-		=> this
-			? ToString().Split((char[])[',', ' '], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-			: Array.Empty<string>();
+		=> this ? ToString().Split((char[])[',', ' '], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) : [];
 
 	/// <summary>
 	/// Gets the expanded peers of the current map.
@@ -380,7 +378,7 @@ public unsafe partial struct CellMap :
 		{
 			if (!this)
 			{
-				return Array.Empty<Cell>();
+				return [];
 			}
 
 			long value;
@@ -691,7 +689,7 @@ public unsafe partial struct CellMap :
 	{
 		if (subsetSize == 0 || subsetSize > _count)
 		{
-			return Array.Empty<CellMap>();
+			return [];
 		}
 
 		if (subsetSize == _count)
@@ -779,7 +777,7 @@ public unsafe partial struct CellMap :
 	{
 		if (limitSubsetSize == 0 || !this)
 		{
-			return Array.Empty<CellMap>();
+			return [];
 		}
 
 		var (n, desiredSize) = (_count, 0);

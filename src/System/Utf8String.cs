@@ -20,7 +20,7 @@ public readonly unsafe partial struct Utf8String :
 	/// <summary>
 	/// Indicates the default instance.
 	/// </summary>
-	public static readonly Utf8String Empty = new(Array.Empty<Utf8Char>());
+	public static readonly Utf8String Empty = new((Utf8Char[])[]);
 
 
 	/// <summary>

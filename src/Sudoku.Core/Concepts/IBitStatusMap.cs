@@ -282,7 +282,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	{
 		if (limitSubsetSize == 0 || Count == 0)
 		{
-			return Array.Empty<TSelf>();
+			return [];
 		}
 
 		var (n, desiredSize) = (Count, 0);
