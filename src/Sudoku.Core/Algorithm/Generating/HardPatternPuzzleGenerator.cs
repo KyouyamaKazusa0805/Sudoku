@@ -14,7 +14,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// <summary>
 	/// Indicates the swapping factor.
 	/// </summary>
-	private static readonly int[,] SwappingFactor = { { 0, 1, 2 }, { 0, 2, 1 }, { 1, 0, 2 }, { 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 } };
+	private static readonly int[][] SwappingFactor = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
 
 	/// <summary>
 	/// Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
@@ -123,15 +123,14 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// <param name="pattern">The base pattern.</param>
 	private void CreatePattern(Cell* pattern)
 	{
-		var (a, b) = (54, 0);
-		for (var i = 0; i < 9; i++)
+		for (var (i, a, b) = (0, 54, 0); i < 9; i++)
 		{
 			var n = (int)(Rng.NextDouble() * 6);
 			for (var j = 0; j < 3; j++)
 			{
 				for (var k = 0; k < 3; k++)
 				{
-					pattern[(k == SwappingFactor[n, j] ? ref a : ref b)++] = BlockFactor[i] + j * 9 + k;
+					pattern[(k == SwappingFactor[n][j] ? ref a : ref b)++] = BlockFactor[i] + j * 9 + k;
 				}
 			}
 		}
