@@ -39,7 +39,7 @@ public sealed partial class AnalyzePage : Page
 	/// <summary>
 	/// Defines a local view.
 	/// </summary>
-	internal ViewUnitBindableSource? _localView = new() { Conclusions = Array.Empty<Conclusion>(), View = [] };
+	internal ViewUnitBindableSource? _localView = new([], []);
 
 	/// <summary>
 	/// Indicates the tab routing data.
@@ -49,12 +49,12 @@ public sealed partial class AnalyzePage : Page
 	/// <summary>
 	/// Defines a key-value pair of functions that is used for routing hotkeys.
 	/// </summary>
-	private Dictionary<Hotkey, Action> _hotkeyFunctions;
+	private List<(Hotkey Hotkey, Action Action)> _hotkeyFunctions;
 
 	/// <summary>
 	/// The navigating data.
 	/// </summary>
-	private Dictionary<Predicate<NavigationViewItemBase>, Type> _navigatingData;
+	private List<(Predicate<NavigationViewItemBase> PageChecker, Type PageType)> _navigatingData;
 
 
 	/// <summary>
@@ -507,34 +507,29 @@ public sealed partial class AnalyzePage : Page
 			}
 		];
 
-		_hotkeyFunctions = new()
-		{
-			{ new(VirtualKeyModifiers.Control, VirtualKey.Z), SudokuPane.UndoStep },
-			{ new(VirtualKeyModifiers.Control, VirtualKey.Y), SudokuPane.RedoStep },
-			{ new(VirtualKeyModifiers.Control, VirtualKey.C), () => CopySudokuGridText() },
-			{
-				new(VirtualKeyModifiers.Control | VirtualKeyModifiers.Shift, VirtualKey.C),
-				async () => await CopySudokuGridControlAsSnapshotAsync()
-			},
-			{ new(VirtualKeyModifiers.Control, VirtualKey.V), async () => await PasteCodeToSudokuGridAsync() },
-			{ new(VirtualKeyModifiers.Control, VirtualKey.O), async () => await OpenFileInternalAsync() },
-			{ new(VirtualKeyModifiers.Control, VirtualKey.R), UpdatePuzzleViaSolutionGrid },
-			{ new(VirtualKeyModifiers.Control, VirtualKey.S), async () => await SaveFileInternalAsync() },
-			{ new((VirtualKey)189), SetPreviousView }, // Minus sign
-			{ new((VirtualKey)187), SetNextView }, // Equals sign
-			{ new(VirtualKey.Home), SetHomeView },
-			{ new(VirtualKey.End), SetEndView },
-			{ new(VirtualKey.Escape), ClearView }
-		};
+		_hotkeyFunctions = [
+			(new(VirtualKeyModifiers.Control, VirtualKey.Z), SudokuPane.UndoStep),
+			(new(VirtualKeyModifiers.Control, VirtualKey.Y), SudokuPane.RedoStep),
+			(new(VirtualKeyModifiers.Control, VirtualKey.C), () => CopySudokuGridText()),
+			(new(VirtualKeyModifiers.Control | VirtualKeyModifiers.Shift, VirtualKey.C), async () => await CopySudokuGridControlAsSnapshotAsync()),
+			(new(VirtualKeyModifiers.Control, VirtualKey.V), async () => await PasteCodeToSudokuGridAsync()),
+			(new(VirtualKeyModifiers.Control, VirtualKey.O), async () => await OpenFileInternalAsync()),
+			(new(VirtualKeyModifiers.Control, VirtualKey.R), UpdatePuzzleViaSolutionGrid),
+			(new(VirtualKeyModifiers.Control, VirtualKey.S), async () => await SaveFileInternalAsync()),
+			(new((VirtualKey)189), SetPreviousView),
+			(new((VirtualKey)187), SetNextView),
+			(new(VirtualKey.Home), SetHomeView),
+			(new(VirtualKey.End), SetEndView),
+			(new(VirtualKey.Escape), ClearView)
+		];
 
-		_navigatingData = new()
-		{
-			{ container => container == BasicOperationBar, typeof(BasicOperation) },
-			{ container => container == AttributeCheckingOperationBar, typeof(AttributeCheckingOperation) },
-			{ container => container == PrintingOperationBar, typeof(PrintingOperation) },
-			{ container => container == ShuffleOperationBar, typeof(ShuffleOperation) },
-			{ container => container == GeneratingOperationBar, typeof(GeneratingOperation) }
-		};
+		_navigatingData = [
+			(container => container == BasicOperationBar, typeof(BasicOperation)),
+			(container => container == AttributeCheckingOperationBar, typeof(AttributeCheckingOperation)),
+			(container => container == PrintingOperationBar, typeof(PrintingOperation)),
+			(container => container == ShuffleOperationBar, typeof(ShuffleOperation)),
+			(container => container == GeneratingOperationBar, typeof(GeneratingOperation))
+		];
 	}
 
 	/// <summary>

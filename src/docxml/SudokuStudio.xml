@@ -369,6 +369,18 @@
             Represents a type that can be used for binding as source, for a view unit.
             </summary>
         </member>
+        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View)">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/> instance via the specified values.
+            </summary>
+            <param name="conclusions">The conclusions.</param>
+            <param name="view">The view.</param>
+        </member>
         <member name="F:SudokuStudio.BindableSource.ViewUnitBindableSource.ConclusionsProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Conclusions"/>.
