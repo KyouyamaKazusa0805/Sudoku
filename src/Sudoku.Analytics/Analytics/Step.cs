@@ -54,26 +54,21 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// The recommended implementation pattern is:
 	/// <code><![CDATA[
 	/// private string CellsStr => Cells.ToString();
-	/// private string DigitsStr => Digits.ToString(separator: R.EmitPunctuation(Punctuation.Comma));
+	/// private string DigitsStr => Digits.ToString(", ");
 	/// ]]></code>
 	/// </para>
 	/// <para>
 	/// And then fill the blank via property <see cref="FormatInterpolationParts"/>:
 	/// <code><![CDATA[
-	/// public override IDictionary<string, string[]?> FormatInterpolatedParts
-	///     => new Dictionary<string, string[]?>
-	///     {
-	///         { "en-US", [CellsStr, DigitsStr] },
-	///         { "zh-CN", [CellsStr, DigitsStr] }
-	///     };
+	/// public override FormatInterpolation FormatInterpolationParts
+	///     => [new("en-US", [CellsStr, DigitsStr]), new("zh-CN", [CellsStr, DigitsStr])];
 	/// ]]></code>
-	/// via the feature "<see href="https://github.com/dotnet/csharplang/issues/5354">Collection Expressions</see>" introduced in C# 12.
 	/// If you cannot decide the real name of the culture name, just use suffix instead like <c>"en"</c> and <c>"zh"</c>, ignoring cases.
 	/// </para>
 	/// <para>
 	/// If you want to use the values in the resource dictionary, you can just use method <see cref="GetString(string)"/>, for example:
 	/// <code><![CDATA[
-	/// public override string Format => Sudoku.Analytics.Strings.StringsAccessor.GetString("TheKeyYouWantToSearch");
+	/// public override string Format => GetString("TheKeyYouWantToSearch");
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
