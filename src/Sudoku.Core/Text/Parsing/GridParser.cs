@@ -27,12 +27,12 @@ public unsafe ref partial struct GridParser(
 	/// <summary>
 	/// The list of all methods to parse.
 	/// </summary>
-	private static readonly ParserMethodPtr[] ParseFunctions;
+	private static readonly delegate*</*scoped*/ ref GridParser, Grid>[] ParseFunctions;
 
 	/// <summary>
 	/// The list of all methods to parse multiple-line grid.
 	/// </summary>
-	private static readonly ParserMethodPtr[] MultilineParseFunctions;
+	private static readonly delegate*</*scoped*/ ref GridParser, Grid>[] MultilineParseFunctions;
 
 
 	/// <summary>

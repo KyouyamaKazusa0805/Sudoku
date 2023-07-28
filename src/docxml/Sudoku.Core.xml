@@ -740,7 +740,7 @@
             <param name="gridArray">The grid array.</param>
             <returns>The column node for the root node.</returns>
         </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLink.LinkRow(System.ValueTuple{Sudoku.Algorithm.Solving.DancingLinkNode,Sudoku.Algorithm.Solving.DancingLinkNode,Sudoku.Algorithm.Solving.DancingLinkNode,Sudoku.Algorithm.Solving.DancingLinkNode}@)">
+        <member name="M:Sudoku.Algorithm.Solving.DancingLink.LinkRow(Sudoku.Algorithm.Solving.MatrixRow@)">
             <summary>
             Links the row.
             </summary>
@@ -893,6 +893,16 @@
         </member>
         <member name="M:Sudoku.Algorithm.Solving.EnumerableQuerySolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Algorithm.Solving.MatrixRow">
+            <summary>
+            The matrix row.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Solving.MatrixRow.#ctor(Sudoku.Algorithm.Solving.DancingLinkNode,Sudoku.Algorithm.Solving.DancingLinkNode,Sudoku.Algorithm.Solving.DancingLinkNode,Sudoku.Algorithm.Solving.DancingLinkNode)">
+            <summary>
+            The matrix row.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerProgress">
             <summary>
@@ -3617,11 +3627,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Concepts.GridCellPredicates">
             <summary>
-            Represents a list of methods to filter the cells, used by <see cref="M:Sudoku.Concepts.Grid.GetMap()"/>
-            or <see cref="M:Sudoku.Concepts.Grid.GetMaps()"/>.
+            Represents a list of methods to filter the cells.
             </summary>
-            <seealso cref="M:Sudoku.Concepts.Grid.GetMap()"/>
-            <seealso cref="M:Sudoku.Concepts.Grid.GetMaps()"/>
         </member>
         <member name="M:Sudoku.Concepts.GridCellPredicates.GivenCells(Sudoku.Concepts.Grid@,System.Int32)">
             <summary>
@@ -4678,6 +4685,31 @@ if (student is (name: var name, age: >= 18))
             <param name="row">The row value.</param>
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
+        </member>
+        <member name="T:Sudoku.DataModel.Chute">
+            <summary>
+            Defines a chute.
+            </summary>
+            <param name="Cells">The cells used.</param>
+            <param name="IsRow">Indicates whether the chute is in a mega-row.</param>
+            <param name="HousesMask">Indicates the houses used.</param>
+        </member>
+        <member name="M:Sudoku.DataModel.Chute.#ctor(Sudoku.Concepts.CellMap@,System.Boolean,System.Int16)">
+            <summary>
+            Defines a chute.
+            </summary>
+            <param name="Cells">The cells used.</param>
+            <param name="IsRow">Indicates whether the chute is in a mega-row.</param>
+            <param name="HousesMask">Indicates the houses used.</param>
+        </member>
+        <member name="P:Sudoku.DataModel.Chute.Cells">
+            <summary>The cells used.</summary>
+        </member>
+        <member name="P:Sudoku.DataModel.Chute.IsRow">
+            <summary>Indicates whether the chute is in a mega-row.</summary>
+        </member>
+        <member name="P:Sudoku.DataModel.Chute.HousesMask">
+            <summary>Indicates the houses used.</summary>
         </member>
         <member name="T:Sudoku.Operations.MaskCombinationsGenerator">
             <summary>

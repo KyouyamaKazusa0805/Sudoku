@@ -277,7 +277,7 @@ file sealed class DancingLink(ColumnNode root)
 		var row = new DancingLinkNode(x * 81 + y * 9 + d, columns[81 + x * 9 + d]);
 		var column = new DancingLinkNode(x * 81 + y * 9 + d, columns[162 + y * 9 + d]);
 		var block = new DancingLinkNode(x * 81 + y * 9 + d, columns[243 + (3 * (x / 3) + y / 3) * 9 + d]);
-		var matrixRow = (MatrixRow)(cell, row, column, block);
+		var matrixRow = new MatrixRow(cell, row, column, block);
 
 		LinkRow(ref matrixRow);
 		LinkRowToColumn(matrixRow.Cell);

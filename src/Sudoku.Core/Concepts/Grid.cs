@@ -65,7 +65,7 @@ public unsafe partial struct Grid :
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/csharp9/feature[@name='function-pointer']"/>
 	/// </remarks>
-	public static readonly ValueChangedMethodPtr ValueChanged;
+	public static readonly delegate*</*scoped*/ ref Grid, int, short, short, int, void> ValueChanged;
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
@@ -73,7 +73,7 @@ public unsafe partial struct Grid :
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/csharp9/feature[@name='function-pointer']"/>
 	/// </remarks>
-	public static readonly RefreshingCandidatesMethodPtr RefreshingCandidates;
+	public static readonly delegate*</*scoped*/ ref Grid, void> RefreshingCandidates;
 
 	/// <summary>
 	/// The empty grid that is valid during implementation or running the program (all values are <see cref="DefaultMask"/>, i.e. empty cells).
@@ -1222,7 +1222,7 @@ public unsafe partial struct Grid :
 	/// <returns>The map.</returns>
 	/// <seealso cref="EmptyCells"/>
 	/// <seealso cref="BivalueCells"/>
-	private readonly CellMap GetMap(GridCellFilter predicate)
+	private readonly CellMap GetMap(delegate*</*scoped*/ in Grid, Cell, bool> predicate)
 	{
 		var result = CellMap.Empty;
 		for (var cell = 0; cell < 81; cell++)
@@ -1244,7 +1244,7 @@ public unsafe partial struct Grid :
 	/// <seealso cref="CandidatesMap"/>
 	/// <seealso cref="DigitsMap"/>
 	/// <seealso cref="ValuesMap"/>
-	private readonly CellMap[] GetMaps(GridCellDigitFilter predicate)
+	private readonly CellMap[] GetMaps(delegate*</*scoped*/ in Grid, Cell, Digit, bool> predicate)
 	{
 		var result = new CellMap[9];
 		for (var digit = 0; digit < 9; digit++)
@@ -1771,11 +1771,8 @@ file sealed class Converter : JsonConverter<Grid>
 }
 
 /// <summary>
-/// Represents a list of methods to filter the cells, used by <see cref="Grid.GetMap(GridCellFilter)"/>
-/// or <see cref="Grid.GetMaps(GridCellDigitFilter)"/>.
+/// Represents a list of methods to filter the cells.
 /// </summary>
-/// <seealso cref="Grid.GetMap(GridCellFilter)"/>
-/// <seealso cref="Grid.GetMaps(GridCellDigitFilter)"/>
 file static class GridCellPredicates
 {
 	/// <summary>
