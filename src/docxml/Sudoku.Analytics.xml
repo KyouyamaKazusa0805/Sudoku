@@ -5314,16 +5314,6 @@ result ^= expression;
             The result. If cancelled, the return value will be <see langword="null"/>; otherwise, a real list even though it may be empty.
             </returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepCollector.InternalSearch(System.Nullable{System.Boolean},System.IProgress{Sudoku.Analytics.AnalyzerProgress},Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            The core searching method.
-            </summary>
-            <param name="sukaku">Indicates whether the puzzle is a sukaku.</param>
-            <param name="progress">The progress reporter instance.</param>
-            <param name="puzzle">The puzzle.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-            <returns>The target result collection.</returns>
-        </member>
         <member name="F:Sudoku.Analytics.StepCollector._stepSearchers">
             <summary>
             Indicates the backing field of property <see cref="P:Sudoku.Analytics.StepCollector.StepSearchers"/>.

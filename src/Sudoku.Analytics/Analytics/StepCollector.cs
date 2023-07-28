@@ -47,107 +47,92 @@ public sealed partial class StepCollector : IAnalyzerOrCollector
 	/// <returns>
 	/// The result. If cancelled, the return value will be <see langword="null"/>; otherwise, a real list even though it may be empty.
 	/// </returns>
-	public IEnumerable<Step>? Search(
-		scoped in Grid puzzle,
-		IProgress<AnalyzerProgress>? progress = null,
-		CancellationToken cancellationToken = default
-	)
+	public IEnumerable<Step>? Search(scoped in Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
-		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out var sukaku))
+		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out var isSukaku) || isSukaku is not { } sukaku)
 		{
 			return Array.Empty<Step>();
 		}
 
 		try
 		{
-			return InternalSearch(sukaku, progress, puzzle, cancellationToken);
+			return searchInternal(sukaku, progress, puzzle, cancellationToken);
 		}
-		catch (OperationCanceledException ex) when (ex.CancellationToken == cancellationToken)
+		catch (Exception ex)
 		{
-			return null;
-		}
-		catch
-		{
+			if (ex is OperationCanceledException { CancellationToken: var c } && c == cancellationToken)
+			{
+				return null;
+			}
+
 			throw;
 		}
-	}
 
-	/// <summary>
-	/// The core searching method.
-	/// </summary>
-	/// <param name="sukaku">Indicates whether the puzzle is a sukaku.</param>
-	/// <param name="progress">The progress reporter instance.</param>
-	/// <param name="puzzle">The puzzle.</param>
-	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-	/// <returns>The target result collection.</returns>
-	private List<Step> InternalSearch(
-		[DisallowNull] bool? sukaku,
-		IProgress<AnalyzerProgress>? progress,
-		scoped in Grid puzzle,
-		CancellationToken cancellationToken
-	)
-	{
-		const int defaultLevelValue = int.MaxValue;
 
-		var possibleStepSearchers = ResultStepSearchers;
-		var totalSearchersCount = possibleStepSearchers.Length;
-
-		Initialize(puzzle, puzzle.SolutionGrid);
-
-		var (i, bag, currentSearcherIndex) = (defaultLevelValue, new List<Step>(), 0);
-		foreach (var searcher in possibleStepSearchers)
+		List<Step> searchInternal(bool sukaku, IProgress<AnalyzerProgress>? progress, scoped in Grid puzzle, CancellationToken cancellationToken)
 		{
-			switch (searcher)
+			const int defaultLevelValue = int.MaxValue;
+
+			var possibleStepSearchers = ResultStepSearchers;
+			var totalSearchersCount = possibleStepSearchers.Length;
+
+			Initialize(puzzle, puzzle.SolutionGrid);
+
+			var (i, bag, currentSearcherIndex) = (defaultLevelValue, new List<Step>(), 0);
+			foreach (var searcher in possibleStepSearchers)
 			{
-				case { RunningArea: var runningArea } when !runningArea.Flags(StepSearcherRunningArea.Gathering):
-				case { IsNotSupportedForSukaku: true } when sukaku.Value:
+				switch (searcher)
 				{
-					goto ReportProgress;
-				}
-				case { Level: var currentLevel }:
-				{
-					// If a searcher contains the upper level, it will be skipped.
-					if (OnlyShowSameLevelTechniquesInFindAllSteps && i != defaultLevelValue && i != currentLevel)
+					case { RunningArea: var runningArea } when !runningArea.Flags(StepSearcherRunningArea.Gathering):
+					case { IsNotSupportedForSukaku: true } when sukaku:
 					{
 						goto ReportProgress;
 					}
-
-					cancellationToken.ThrowIfCancellationRequested();
-
-					// Searching.
-					var accumulator = new List<Step>();
-					scoped var context = new AnalysisContext(accumulator, puzzle, false);
-					searcher.Collect(ref context);
-
-					switch (accumulator.Count)
+					case { Level: var currentLevel }:
 					{
-						case 0:
+						// If a searcher contains the upper level, it will be skipped.
+						if (OnlyShowSameLevelTechniquesInFindAllSteps && i != defaultLevelValue && i != currentLevel)
 						{
 							goto ReportProgress;
 						}
-						case var count:
+
+						cancellationToken.ThrowIfCancellationRequested();
+
+						// Searching.
+						var accumulator = new List<Step>();
+						scoped var context = new AnalysisContext(accumulator, puzzle, false);
+						searcher.Collect(ref context);
+
+						switch (accumulator.Count)
 						{
-							if (OnlyShowSameLevelTechniquesInFindAllSteps)
+							case 0:
 							{
-								i = currentLevel;
+								goto ReportProgress;
 							}
+							case var count:
+							{
+								if (OnlyShowSameLevelTechniquesInFindAllSteps)
+								{
+									i = currentLevel;
+								}
 
-							bag.AddRange(count > MaxStepsGathered ? accumulator[..MaxStepsGathered] : accumulator);
+								bag.AddRange(count > MaxStepsGathered ? accumulator[..MaxStepsGathered] : accumulator);
 
-							break;
+								break;
+							}
 						}
-					}
 
-					break;
+						break;
+					}
 				}
+
+			// Report the progress if worth.
+			ReportProgress:
+				progress?.Report(new(searcher.ToString(), ++currentSearcherIndex / (double)totalSearchersCount));
 			}
 
-		// Report the progress if worth.
-		ReportProgress:
-			progress?.Report(new(searcher.ToString(), ++currentSearcherIndex / (double)totalSearchersCount));
+			// Return the result.
+			return bag;
 		}
-
-		// Return the result.
-		return bag;
 	}
 }
