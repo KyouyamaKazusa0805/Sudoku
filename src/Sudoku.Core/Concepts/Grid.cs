@@ -474,21 +474,6 @@ public unsafe partial struct Grid :
 	static Grid IMinMaxValue<Grid>.MaxValue => (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
 
 
-	/// <inheritdoc cref="this[in CellMap]"/>
-	public readonly Mask this[Cell[] cells]
-	{
-		get
-		{
-			var result = (Mask)0;
-			foreach (var cell in cells)
-			{
-				result |= this[cell];
-			}
-
-			return (Mask)(result & MaxCandidatesMask);
-		}
-	}
-
 	/// <summary>
 	/// Creates a mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9,
 	/// ranged in a specified list of cells in the current sudoku grid.

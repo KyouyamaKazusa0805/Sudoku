@@ -96,7 +96,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 				var tailCells = twinArea;
 
 				// Iterate on remaining cells using the twinArea.
-				foreach (Cell[] tIndices in tailCells.GetSubsets(size - 2))
+				foreach (var tIndices in tailCells.GetSubsets(size - 2).ToArray())
 				{
 					var (cells, cardinalities) = (new Cell[size], new int[size]);
 
@@ -105,7 +105,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 					(cardinalities[0], cardinalities[1]) = (cell1Count, cell2Count);
 
 					// Add the tail cells.
-					for (var i = 0; i < tIndices.Length; i++)
+					for (var i = 0; i < tIndices.Count; i++)
 					{
 						cells[i + 2] = tIndices[i];
 						cardinalities[i + 2] = PopCount((uint)grid.GetCandidates(cells[i + 2]));

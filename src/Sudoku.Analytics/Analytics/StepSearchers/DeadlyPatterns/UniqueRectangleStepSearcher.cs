@@ -137,7 +137,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			}
 
 			// Get all candidates that all four cells appeared.
-			var mask = grid[urCells];
+			var mask = grid[[.. urCells]];
 
 			// Iterate on each possible digit combination.
 			scoped var allDigitsInThem = mask.GetAllSets();

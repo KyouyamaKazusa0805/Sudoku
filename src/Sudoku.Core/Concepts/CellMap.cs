@@ -1135,39 +1135,6 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CandidateMap IMultiplyOperators<CellMap, Digit, CandidateMap>.operator *(CellMap left, Digit right) => left * right;
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Cell[](scoped in CellMap offsets) => offsets.Offsets;
-
-	/// <summary>
-	/// Implicit cast from <see cref="CellMap"/> to <see cref="@llong"/>.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator @llong(scoped in CellMap offsets) => new((ulong)offsets._high, (ulong)offsets._low);
-
-	/// <summary>
-	/// Explicit cast from <see cref="@llong"/> to <see cref="CellMap"/>.
-	/// </summary>
-	/// <param name="llong">The <see cref="@llong"/> integer.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator CellMap(scoped in @llong llong) => CreateByInt128(llong);
-
-	/// <summary>
-	/// Explicit cast from <see cref="@llong"/> to <see cref="CellMap"/>.
-	/// </summary>
-	/// <param name="llong">The <see cref="@llong"/> integer.</param>
-	/// <exception cref="OverflowException">
-	/// Throws when the base argument <paramref name="llong"/> is greater than the maximum value
-	/// corresponding to <see cref="IMinMaxValue{TSelf}.MaxValue"/>.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator checked CellMap(scoped in @llong llong)
-		=> llong >> 81 == 0
-			? CreateByInt128(llong)
-			: throw new OverflowException($"The base {nameof(@llong)} integer is greater than '{nameof(IBitStatusMap<CellMap, Cell>.MaxValue)}'.");
 }
 
 /// <summary>

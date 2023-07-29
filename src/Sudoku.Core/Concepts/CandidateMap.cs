@@ -417,6 +417,19 @@ public partial struct CandidateMap :
 		return [.. result];
 	}
 
+	/// <inheritdoc cref="CellMap.Select{TResult}(Func{int, TResult})"/>
+	public readonly TResult[] Select<TResult>(Func<Candidate, TResult> selector)
+	{
+		var offsets = Offsets;
+		var result = new TResult[offsets.Length];
+		for (var i = 0; i < offsets.Length; i++)
+		{
+			result[i] = selector(offsets[i]);
+		}
+
+		return result;
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(Candidate offset)
@@ -758,11 +771,6 @@ public partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CandidateMap ISubtractionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>.operator -(CandidateMap left, IEnumerable<Candidate> right)
 		=> left - right;
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Candidate[](scoped in CandidateMap offsets) => offsets.Offsets;
 }
 
 /// <summary>

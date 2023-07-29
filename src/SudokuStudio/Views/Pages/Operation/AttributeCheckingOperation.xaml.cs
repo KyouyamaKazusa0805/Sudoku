@@ -57,7 +57,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		}
 
 		var trueCandidates = await Task.Run(getTrueCandidates);
-		if (trueCandidates.Length == 0)
+		if (trueCandidates.Count == 0)
 		{
 			ErrorDialog_PuzzleIsNotBugMultipleGrid.IsOpen = true;
 			return;
@@ -68,7 +68,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		);
 
 
-		Candidate[] getTrueCandidates()
+		CandidateMap getTrueCandidates()
 		{
 			lock (AnalyzingRelatedSyncRoot)
 			{

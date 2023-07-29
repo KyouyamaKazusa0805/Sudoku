@@ -597,7 +597,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		var excluded1 = HousesMap[(CellsMap[c1] + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c1;
 		var excluded2 = HousesMap[(CellsMap[c2] + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c2;
 		var finalMask = (Mask)0;
-		foreach (var digit in grid[[CellsMap[c1], c2, pivot]])
+		foreach (var digit in grid[CellsMap[c1] + c2 + pivot])
 		{
 			if (isFireworkFor(digit, excluded1, grid) && isFireworkFor(digit, excluded2, grid))
 			{

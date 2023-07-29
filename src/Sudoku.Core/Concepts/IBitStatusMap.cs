@@ -624,11 +624,4 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <returns>The result map.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static TSelf IModulusOperators<TSelf, TSelf, TSelf>.operator %(TSelf left, TSelf right) => (left & right).PeerIntersection & right;
-
-
-	/// <summary>
-	/// Implicit cast from <typeparamref name="TSelf"/> to <typeparamref name="TElement"/>[].
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
-	static virtual implicit operator TElement[](scoped in TSelf offsets) => offsets.Offsets;
 }

@@ -1679,6 +1679,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.GetAllSubsets(System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Select``1(System.Func{System.Int32,``0})">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMap.Select``1(System.Func{System.Int32,``0})"/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)">
             <inheritdoc/>
         </member>
@@ -1787,9 +1790,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CandidateMap,System#Collections#Generic#IEnumerable{System#Int32},Sudoku#Concepts#CandidateMap}#op_Subtraction(Sudoku.Concepts.CandidateMap,System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_Implicit(Sudoku.Concepts.CandidateMap@)~System.Int32[]">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Equals(System.Object)">
@@ -2367,31 +2367,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IMultiplyOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CandidateMap}#op_Multiply(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_Implicit(Sudoku.Concepts.CellMap@)~System.Int32[]">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(Sudoku.Concepts.CellMap@)~System.Int128">
-            <summary>
-            Implicit cast from <see cref="T:Sudoku.Concepts.CellMap"/> to <see cref="T:System.Int128"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Int128@)~Sudoku.Concepts.CellMap">
-            <summary>
-            Explicit cast from <see cref="T:System.Int128"/> to <see cref="T:Sudoku.Concepts.CellMap"/>.
-            </summary>
-            <param name="llong">The <see cref="T:System.Int128"/> integer.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_CheckedExplicit(System.Int128@)~Sudoku.Concepts.CellMap">
-            <summary>
-            Explicit cast from <see cref="T:System.Int128"/> to <see cref="T:Sudoku.Concepts.CellMap"/>.
-            </summary>
-            <param name="llong">The <see cref="T:System.Int128"/> integer.</param>
-            <exception cref="T:System.OverflowException">
-            Throws when the base argument <paramref name="llong"/> is greater than the maximum value
-            corresponding to <see cref="P:System.Numerics.IMinMaxValue`1.MaxValue"/>.
-            </exception>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -3029,9 +3004,6 @@ if (student is (name: var name, age: >= 18))
             This value is found out via backtracking algorithm. For more information, please visit type <see cref="T:Sudoku.Algorithm.Solving.BacktrackingSolver"/>.
             </remarks>
             <seealso cref="T:Sudoku.Algorithm.Solving.BacktrackingSolver"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.Item(System.Int32[])">
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)"/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
             <summary>
@@ -4887,12 +4859,6 @@ if (student is (name: var name, age: >= 18))
             <param name="left">The base map.</param>
             <param name="right">The template map that the base map to check and cover.</param>
             <returns>The result map.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Implicit(`0@)~`1[]">
-            <summary>
-            Implicit cast from <typeparamref name="TSelf"/> to <typeparamref name="TElement"/>[].
-            </summary>
-            <param name="offsets">The offsets.</param>
         </member>
         <member name="T:Sudoku.Concepts.Inference">
             <summary>
