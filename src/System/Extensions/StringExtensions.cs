@@ -211,6 +211,13 @@ public static unsafe partial class StringExtensions
 	public static string[] MatchAll(this string @this, [StringSyntax(StringSyntax.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
 		=> pattern.IsRegexPattern() ? from m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value : throw InvalidOperation;
 
+	/// <inheritdoc cref="string.Split(char[], StringSplitOptions)"/>
+	/// <param name="this">The array itself.</param>
+	/// <param name="separator">The separator characters.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string[] SplitBy(this string @this, char[] separator)
+		=> @this.Split(separator, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
 	/// <summary>
 	/// Remove all new-line sequences in the current string.
 	/// </summary>

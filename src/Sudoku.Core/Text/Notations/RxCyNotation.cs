@@ -226,7 +226,7 @@ public sealed partial class RxCyNotation : ICellNotation<RxCyNotation, RxCyNotat
 			}
 
 			result = CellMap.Empty;
-			foreach (var part in str.Split((char[])[','], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+			foreach (var part in str.SplitBy([',']))
 			{
 				var cCharacterIndex = part.IndexOf('C', StringComparison.OrdinalIgnoreCase);
 				var rows = part[1..cCharacterIndex];

@@ -2450,6 +2450,11 @@ fixed (short* ptr = instance)
             </exception>
             <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
         </member>
+        <member name="M:System.StringExtensions.SplitBy(System.String,System.Char[])">
+            <inheritdoc cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/>
+            <param name="this">The array itself.</param>
+            <param name="separator">The separator characters.</param>
+        </member>
         <member name="M:System.StringExtensions.RemoveLineEndings(System.String)">
             <summary>
             Remove all new-line sequences in the current string.

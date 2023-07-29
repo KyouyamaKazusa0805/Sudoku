@@ -222,7 +222,7 @@ public unsafe ref partial struct GridParser(
 			return Grid.Undefined;
 		}
 
-		var values = parsingValue.Split((char[])['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
+		var values = parsingValue.SplitBy(['\r', '\n']);
 		if (values.Length != 9)
 		{
 			return Grid.Undefined;
