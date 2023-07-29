@@ -34,7 +34,7 @@ global using Sudoku.Text.Notations;
 global using static System.Algorithm.Sequences;
 global using static System.Math;
 global using static Sudoku.Analytics.Buffers.CachedFields;
-global using static Sudoku.Analytics.CommonReadOnlyFields;
+global using static Sudoku.Analytics.InternalHelpers.SharedFields;
 global using static Sudoku.Analytics.Strings.StringsAccessor;
 global using ChainBranch = System.Collections.Generic.Dictionary<byte, Sudoku.Analytics.Patterns.NodeSet>;
 global using ChainNodeListWithHeadCandidate = System.Collections.Generic.Dictionary<Sudoku.Analytics.Patterns.ChainNode, /*Candidate*/ int>;

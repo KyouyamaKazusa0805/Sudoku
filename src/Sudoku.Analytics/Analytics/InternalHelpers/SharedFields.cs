@@ -1,9 +1,9 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Analytics.InternalHelpers;
 
 /// <summary>
-/// Represents a type holding some common read-only fields used by runtime or compiling-time.
+/// Defines a type that stores some fields as shared one.
 /// </summary>
-public static class CommonReadOnlyFields
+internal static class SharedFields
 {
 	/// <summary>
 	/// <para>
@@ -52,7 +52,7 @@ public static class CommonReadOnlyFields
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
-	static CommonReadOnlyFields()
+	static SharedFields()
 	{
 		scoped var r = (ReadOnlySpan<byte>)[0, 1, 2, 3, 4, 5, 6, 7, 8];
 		scoped var c = (ReadOnlySpan<byte>)[0, 3, 6, 1, 4, 7, 2, 5, 8];

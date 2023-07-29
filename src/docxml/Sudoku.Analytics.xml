@@ -2760,61 +2760,6 @@
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
             <returns>The abbreviation.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.CommonReadOnlyFields">
-            <summary>
-            Represents a type holding some common read-only fields used by runtime or compiling-time.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionMaps">
-            <summary>
-            <para>
-            Indicates all maps that forms the each intersection. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | C C C | A A A | A A A |
-            | B B B | . . . | . . . |
-            | B B B | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            </para>
-            <para>
-            In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionBlockTable">
-            <summary>
-            <para>The table of all blocks to iterate for each blocks.</para>
-            <para>
-            This field is only used for providing the data for another field <see cref="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionMaps"/>.
-            </para>
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionMaps"/>
-        </member>
-        <member name="M:Sudoku.Analytics.CommonReadOnlyFields.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
-        <member name="T:Sudoku.Analytics.IntersectionBaseComparer">
-            <summary>
-            Represents a comparer instance that compares two tuples.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.IntersectionBaseComparer.Equals(Sudoku.DataModel.IntersectionBase,Sudoku.DataModel.IntersectionBase)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.IntersectionBaseComparer.GetHashCode(Sudoku.DataModel.IntersectionBase)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Compatibility.HodokuLibraryCompatibility">
             <summary>
             Represents some methods that are used for get the details supported and defined
@@ -3178,6 +3123,61 @@
             <param name="name">The name.</param>
             <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> code instance.</returns>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="T:Sudoku.Analytics.InternalHelpers.SharedFields">
+            <summary>
+            Defines a type that stores some fields as shared one.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionMaps">
+            <summary>
+            <para>
+            Indicates all maps that forms the each intersection. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | C C C | A A A | A A A |
+            | B B B | . . . | . . . |
+            | B B B | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            </para>
+            <para>
+            In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionBlockTable">
+            <summary>
+            <para>The table of all blocks to iterate for each blocks.</para>
+            <para>
+            This field is only used for providing the data for another field <see cref="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionMaps"/>.
+            </para>
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionMaps"/>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.SharedFields.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="T:Sudoku.Analytics.InternalHelpers.IntersectionBaseComparer">
+            <summary>
+            Represents a comparer instance that compares two tuples.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.IntersectionBaseComparer.Equals(Sudoku.DataModel.IntersectionBase,Sudoku.DataModel.IntersectionBase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.InternalHelpers.IntersectionBaseComparer.GetHashCode(Sudoku.DataModel.IntersectionBase)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper">
             <summary>
@@ -17793,7 +17793,7 @@ result ^= expression;
         </member>
         <member name="T:Sudoku.DataModel.IntersectionResult">
             <summary>
-            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionMaps"/> property.
+            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionMaps"/> property.
             </summary>
             <param name="LineMap">The map of the line.</param>
             <param name="BlockMap">The map of the block.</param>
@@ -17801,11 +17801,11 @@ result ^= expression;
             <param name="OtherBlocks">
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </param>
-            <seealso cref="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionMaps"/>
+            <seealso cref="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionMaps"/>
         </member>
         <member name="M:Sudoku.DataModel.IntersectionResult.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Byte[])">
             <summary>
-            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionMaps"/> property.
+            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionMaps"/> property.
             </summary>
             <param name="LineMap">The map of the line.</param>
             <param name="BlockMap">The map of the block.</param>
@@ -17813,7 +17813,7 @@ result ^= expression;
             <param name="OtherBlocks">
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </param>
-            <seealso cref="F:Sudoku.Analytics.CommonReadOnlyFields.IntersectionMaps"/>
+            <seealso cref="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionMaps"/>
         </member>
         <member name="P:Sudoku.DataModel.IntersectionResult.LineMap">
             <summary>The map of the line.</summary>
