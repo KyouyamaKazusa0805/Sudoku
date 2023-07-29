@@ -1,4 +1,4 @@
-namespace SudokuStudio.Views.Pages;
+namespace SudokuStudio.Views.Pages.Manuals;
 
 /// <summary>
 /// Represents about page.
