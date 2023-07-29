@@ -113,7 +113,7 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 			var totalCandidatesCount = playground.CandidatesCount;
 			var (recordedSteps, stepGrids, stepSearchers) = (new List<Step>(100), new List<Grid>(100), ResultStepSearchers);
 			string progressedStepSearcherName;
-			scoped var stopwatch = ValueStopwatch.StartNew();
+			scoped var stopwatch = ValueStopwatch.NewInstance;
 
 		Again:
 			Initialize(playground, solution);
@@ -208,7 +208,7 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 			return resultBase with
 			{
 				FailedReason = AnalyzerFailedReason.PuzzleIsTooHard,
-				ElapsedTime = stopwatch.GetElapsedTime(),
+				ElapsedTime = stopwatch.ElapsedTime,
 				Steps = [.. recordedSteps],
 				StepGrids = [.. stepGrids]
 			};
@@ -270,7 +270,7 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 						{
 							IsSolved = true,
 							Solution = playground,
-							ElapsedTime = stopwatch.GetElapsedTime(),
+							ElapsedTime = stopwatch.ElapsedTime,
 							Steps = [.. steps],
 							StepGrids = [.. stepGrids]
 						};

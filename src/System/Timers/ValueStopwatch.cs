@@ -7,38 +7,23 @@ namespace System.Timers;
 /// <summary>
 /// Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/> to optimize the performance.
 /// </summary>
+/// <param name="startTimestamp">The timestamp value that is represented as a <see cref="long"/> value.</param>
 [Equals]
 [GetHashCode]
-public readonly ref partial struct ValueStopwatch
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
+public readonly ref partial struct ValueStopwatch([PrimaryConstructorParameter(MemberKinds.Field)] long startTimestamp)
 {
+	/// <summary>
+	/// The error information describing the type is uninitialized.
+	/// </summary>
+	private const string ErrorInfo_TypeIsUninitialized =
+		$"An uninitialized, or 'default({nameof(ValueStopwatch)})', {nameof(ValueStopwatch)} cannot be used for getting elapsed time.";
+
+
 	/// <summary>
 	/// The read-only value that indicates the formula converting from timestamp to ticks.
 	/// </summary>
 	private static readonly double TimestampToTicks = TimeSpan.TicksPerSecond / (double)Stopwatch.Frequency;
-
-
-	/// <summary>
-	/// The inner timestamp.
-	/// </summary>
-	private readonly long _startTimestamp;
-
-
-	/// <summary>
-	/// Initializes a <see cref="ValueStopwatch"/> instance via the current timestamp.
-	/// </summary>
-	/// <param name="startTimestamp">The timestamp value that is represented as a <see cref="long"/> value.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private ValueStopwatch(long startTimestamp) => _startTimestamp = startTimestamp;
-
-
-	/// <summary>
-	/// Determines whether the current stopwatch is currently active.
-	/// </summary>
-	public bool IsActive
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _startTimestamp != 0;
-	}
 
 
 	/// <summary>
@@ -48,22 +33,24 @@ public readonly ref partial struct ValueStopwatch
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the current stopwatch is not active at present.
 	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public TimeSpan GetElapsedTime()
-		=> IsActive
+	public TimeSpan ElapsedTime
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _startTimestamp != 0
 			? new((long)(TimestampToTicks * (Stopwatch.GetTimestamp() - _startTimestamp)))
-			// Start timestamp can't be zero in an initialized ValueStopwatch.
-			// It would have to be literally the first thing executed when the machine boots to be 0.
-			// So it being 0 is a clear indication of default(ValueStopwatch).
-			: throw new InvalidOperationException(
-				$"An uninitialized, or 'default({nameof(ValueStopwatch)})', {nameof(ValueStopwatch)} cannot be used to get elapsed time."
-			);
+			: throw new InvalidOperationException(ErrorInfo_TypeIsUninitialized);
+	}
 
 
 	/// <summary>
-	/// Try to get a new <see cref="ValueStopwatch"/> that is running now.
+	/// Indicates a new instance. Use this property to start a new stopwatch instead of expressions like
+	/// <see langword="new"/> <see cref="ValueStopwatch"/>(),
+	/// <see langword="default"/>(<see cref="ValueStopwatch"/>)
+	/// or so on.
 	/// </summary>
-	/// <returns>An instance of type <see cref="ValueStopwatch"/> that is running now.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ValueStopwatch StartNew() => new(Stopwatch.GetTimestamp());
+	public static ValueStopwatch NewInstance
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => new(Stopwatch.GetTimestamp());
+	}
 }

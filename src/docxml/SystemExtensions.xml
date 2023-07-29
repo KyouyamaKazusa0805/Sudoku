@@ -3626,29 +3626,25 @@ fixed (short* ptr = instance)
             <summary>
             Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/> to optimize the performance.
             </summary>
+            <param name="startTimestamp">The timestamp value that is represented as a <see cref="T:System.Int64"/> value.</param>
+        </member>
+        <member name="M:System.Timers.ValueStopwatch.#ctor(System.Int64)">
+            <summary>
+            Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/> to optimize the performance.
+            </summary>
+            <param name="startTimestamp">The timestamp value that is represented as a <see cref="T:System.Int64"/> value.</param>
+        </member>
+        <member name="F:System.Timers.ValueStopwatch.ErrorInfo_TypeIsUninitialized">
+            <summary>
+            The error information describing the type is uninitialized.
+            </summary>
         </member>
         <member name="F:System.Timers.ValueStopwatch.TimestampToTicks">
             <summary>
             The read-only value that indicates the formula converting from timestamp to ticks.
             </summary>
         </member>
-        <member name="F:System.Timers.ValueStopwatch._startTimestamp">
-            <summary>
-            The inner timestamp.
-            </summary>
-        </member>
-        <member name="M:System.Timers.ValueStopwatch.#ctor(System.Int64)">
-            <summary>
-            Initializes a <see cref="T:System.Timers.ValueStopwatch"/> instance via the current timestamp.
-            </summary>
-            <param name="startTimestamp">The timestamp value that is represented as a <see cref="T:System.Int64"/> value.</param>
-        </member>
-        <member name="P:System.Timers.ValueStopwatch.IsActive">
-            <summary>
-            Determines whether the current stopwatch is currently active.
-            </summary>
-        </member>
-        <member name="M:System.Timers.ValueStopwatch.GetElapsedTime">
+        <member name="P:System.Timers.ValueStopwatch.ElapsedTime">
             <summary>
             Try to get the elapsed time.
             </summary>
@@ -3657,11 +3653,18 @@ fixed (short* ptr = instance)
             Throws when the current stopwatch is not active at present.
             </exception>
         </member>
-        <member name="M:System.Timers.ValueStopwatch.StartNew">
+        <member name="P:System.Timers.ValueStopwatch.NewInstance">
             <summary>
-            Try to get a new <see cref="T:System.Timers.ValueStopwatch"/> that is running now.
+            Indicates a new instance. Use this property to start a new stopwatch instead of expressions like
+            <see langword="new"/> <see cref="T:System.Timers.ValueStopwatch"/>(),
+            <see langword="default"/>(<see cref="T:System.Timers.ValueStopwatch"/>)
+            or so on.
             </summary>
-            <returns>An instance of type <see cref="T:System.Timers.ValueStopwatch"/> that is running now.</returns>
+        </member>
+        <member name="F:System.Timers.ValueStopwatch._startTimestamp">
+            <summary>
+            The generated field declaration for parameter <c>startTimestamp</c>.
+            </summary>
         </member>
         <member name="M:System.Timers.ValueStopwatch.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
