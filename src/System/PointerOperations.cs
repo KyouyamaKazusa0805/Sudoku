@@ -1,4 +1,4 @@
-﻿namespace System;
+namespace System;
 
 /// <summary>
 /// Provides methods for pointer handling.
@@ -42,7 +42,7 @@ public static unsafe class PointerOperations
 	/// the parameter <paramref name="length"/> should keep the value 5 because the array contains
 	/// 5 elements in this case.
 	/// </remarks>
-	public static T[] GetArrayFromStart<T>(T* ptr, int length, int index)
+	public static T[] Slice<T>(T* ptr, int length, int index)
 	{
 		ArgumentNullException.ThrowIfNull(ptr);
 
@@ -63,7 +63,7 @@ public static unsafe class PointerOperations
 	/// <param name="index">The start index that you want to pick from.</param>
 	/// <param name="removeTrailingZeros">
 	/// Indicates whether the method will remove the trailing zeros. If <see langword="false"/>,
-	/// the method will be same as <see cref="GetArrayFromStart{T}(T*, int, int)"/>.
+	/// the method will be same as <see cref="Slice{T}(T*, int, int)"/>.
 	/// </param>
 	/// <returns>The array of elements.</returns>
 	/// <exception cref="ArgumentNullException">
@@ -75,8 +75,8 @@ public static unsafe class PointerOperations
 	/// the parameter <paramref name="length"/> should keep the value 5 because the array contains
 	/// 5 elements in this case.
 	/// </remarks>
-	/// <seealso cref="GetArrayFromStart{T}(T*, int, int)"/>
-	public static int[] GetArrayFromStart(int* ptr, int length, int index, bool removeTrailingZeros)
+	/// <seealso cref="Slice{T}(T*, int, int)"/>
+	public static int[] Slice(int* ptr, int length, int index, bool removeTrailingZeros)
 	{
 		ArgumentNullException.ThrowIfNull(ptr);
 
@@ -101,6 +101,6 @@ public static unsafe class PointerOperations
 			return result;
 		}
 
-		return GetArrayFromStart(ptr, length, index);
+		return Slice(ptr, length, index);
 	}
 }

@@ -63,6 +63,6 @@ internal static class FishStepSearcherHelper
 		}
 
 		// Parses via the buffer, and returns the result.
-		return Enum.Parse<Technique>(new string(PointerOperations.GetArrayFromStart(buffer, bufferLength, 0)));
+		return Enum.Parse<Technique>(new string(PointerOperations.Slice(buffer, bufferLength, 0)));
 	}
 }
