@@ -66,7 +66,7 @@ public abstract class HouseFormatter : ICollectionFormatter<House>
 				foreach (var house in housesMask)
 				{
 					var houseType = house.ToHouseType();
-					if (!dic.TryAdd(houseType, new() { house }))
+					if (!dic.TryAdd(houseType, [house]))
 					{
 						dic[houseType].Add(house);
 					}

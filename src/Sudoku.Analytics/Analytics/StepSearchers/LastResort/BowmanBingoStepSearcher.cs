@@ -19,7 +19,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <summary>
 	/// All temporary conclusions.
 	/// </summary>
-	private readonly List<Conclusion> _tempConclusions = new();
+	private readonly List<Conclusion> _tempConclusions = [];
 
 
 	/// <summary>

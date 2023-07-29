@@ -70,7 +70,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			{ 45, 54 }, { 45, 63 }, { 45, 72 }
 		};
 
-		RawPatternData = new();
+		RawPatternData = [];
 
 		// Initializes fit types.
 		for (var j = 0; j < 3; j++)

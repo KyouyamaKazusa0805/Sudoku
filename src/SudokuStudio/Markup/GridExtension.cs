@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Markup;
+namespace SudokuStudio.Markup;
 
 /// <summary>
 /// Defines a markup extension that can parse a <see cref="string"/> value, converting it into a valid <see cref="Grid"/>

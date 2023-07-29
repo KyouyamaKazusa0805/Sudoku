@@ -207,7 +207,7 @@ file static class Cached
 			{
 				if ((HousesMap[houseIndex] & CandidatesMap[digit]) is { Count: 2 } temp)
 				{
-					(conjugatePairs[digit] ??= new()).Add(new(temp, digit));
+					(conjugatePairs[digit] ??= []).Add(new(temp, digit));
 				}
 			}
 		}
