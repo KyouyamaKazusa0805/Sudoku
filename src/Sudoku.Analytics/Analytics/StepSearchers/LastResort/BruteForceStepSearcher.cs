@@ -52,6 +52,9 @@ public sealed partial class BruteForceStepSearcher : StepSearcher
 				}
 
 				context.Accumulator.Add(step);
+
+				// By design. The brute force method only gets the first answer on purpose.
+				goto ReturnNull;
 			}
 		}
 
