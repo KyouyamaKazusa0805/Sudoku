@@ -28,20 +28,19 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 		for (var (i, length) = (0, alses.Length); i < length - 1; i++)
 		{
 			var als1 = alses[i];
-			var map1 = als1.Cells;
-			var mask1 = als1.DigitsMask;
+			var (map1, mask1) = (als1.Cells, als1.DigitsMask);
 			for (var j = i + 1; j < length; j++)
 			{
 				var als2 = alses[j];
-				var map2 = als2.Cells;
-				var mask2 = als2.DigitsMask;
+				var (map2, mask2) = (als2.Cells, als2.DigitsMask);
+
 				var map = map1 | map2;
-				if (map.InOneHouse || !!(map1 & map2))
+				if (map.InOneHouse || !!(map1 && map2))
 				{
 					continue;
 				}
 
-				if ((mask1 & mask2) is var mask and not 0)
+				if ((Mask)(mask1 & mask2) is var mask and not 0)
 				{
 					var rccMask = (Mask)0;
 					foreach (var digit in mask)
@@ -88,14 +87,9 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 					_ => (als11, als21, als12)
 				};
 
-				var aHouse = a.House;
-				var bHouse = b.House;
-				var cHouse = c.House;
-				var aMask = a.DigitsMask;
-				var bMask = b.DigitsMask;
-				var aMap = a.Cells;
-				var bMap = b.Cells;
-				var cMap = c.Cells;
+				var (aHouse, bHouse, cHouse) = (a.House, b.House, c.House);
+				var (aMask, bMask) = (a.DigitsMask, b.DigitsMask);
+				var (aMap, bMap, cMap) = (a.Cells, b.Cells, c.Cells);
 				var map = aMap | bMap;
 				if (map == aMap || map == bMap)
 				{
@@ -116,21 +110,17 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 							continue;
 						}
 
-						var finalX = (Mask)(1 << digit1);
-						var finalY = (Mask)(1 << digit2);
-						var digitsMask = (Mask)(aMask & bMask & ~(finalX | finalY));
-						if (digitsMask == 0)
+						var (finalX, finalY) = ((Mask)(1 << digit1), (Mask)(1 << digit2));
+						if ((Mask)(aMask & bMask & ~(finalX | finalY)) is not (var digitsMask and not 0))
 						{
 							continue;
 						}
 
 						// Gather eliminations.
-						var finalZ = (Mask)0;
-						var conclusions = new List<Conclusion>();
+						var (finalZ, conclusions) = ((Mask)0, new List<Conclusion>());
 						foreach (var digit in digitsMask)
 						{
-							var elimMap = (aMap | bMap) % CandidatesMap[digit] - (aMap | bMap | cMap);
-							if (!elimMap)
+							if ((aMap | bMap) % CandidatesMap[digit] - (aMap | bMap | cMap) is not (var elimMap and not []))
 							{
 								continue;
 							}
@@ -152,8 +142,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 						{
 							var mask = grid.GetCandidates(cell);
 							var alsDigitsMask = (Mask)(mask & ~(finalX | finalZ));
-							var xDigitsMask = (Mask)(mask & finalX);
-							var zDigitsMask = (Mask)(mask & finalZ);
+							var (xDigitsMask, zDigitsMask) = ((Mask)(mask & finalX), (Mask)(mask & finalZ));
 							foreach (var digit in alsDigitsMask)
 							{
 								candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell * 9 + digit));
@@ -171,8 +160,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 						{
 							var mask = grid.GetCandidates(cell);
 							var alsDigitsMask = (Mask)(mask & ~(finalY | finalZ));
-							var yDigitsMask = (Mask)(mask & finalY);
-							var zDigitsMask = (Mask)(mask & finalZ);
+							var (yDigitsMask, zDigitsMask) = ((Mask)(mask & finalY), (Mask)(mask & finalZ));
 							foreach (var digit in alsDigitsMask)
 							{
 								candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell * 9 + digit));
