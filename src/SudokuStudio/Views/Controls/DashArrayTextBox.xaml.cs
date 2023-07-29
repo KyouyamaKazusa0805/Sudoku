@@ -39,6 +39,6 @@ public sealed partial class DashArrayTextBox : UserControl
 			return;
 		}
 
-		DashArrayChanged?.Invoke(this, DashArray = new(values));
+		DashArrayChanged?.Invoke(this, DashArray = [.. values]);
 	}
 }

@@ -151,13 +151,13 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly DashArray StrongLinkDashStyleDefaultValue = new();
 
 	[Default]
-	private static readonly DashArray WeakLinkDashStyleDefaultValue = new(3, 1.5);
+	private static readonly DashArray WeakLinkDashStyleDefaultValue = [3, 1.5];
 
 	[Default]
 	private static readonly DashArray CyclingCellLinkDashStyleDefaultValue = new();
 
 	[Default]
-	private static readonly DashArray OtherLinkDashStyleDefaultValue = new(3, 3);
+	private static readonly DashArray OtherLinkDashStyleDefaultValue = [3, 3];
 
 	[Default]
 	private static readonly Grid LastGridPuzzleDefaultValue = Grid.Empty;

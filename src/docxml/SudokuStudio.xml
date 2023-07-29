@@ -444,6 +444,13 @@
             </summary>
             <seealso cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeDashArray"/>
         </member>
+        <member name="M:SudokuStudio.Collection.DashArray.#ctor">
+            <summary>
+            Defines a dash array of <see cref="T:System.Double"/> values used by <see cref="T:Microsoft.UI.Xaml.Media.DoubleCollection"/>-typed properties in controls,
+            for example, <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeDashArray"/>.
+            </summary>
+            <seealso cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeDashArray"/>
+        </member>
         <member name="F:SudokuStudio.Collection.DashArray.InvalidValue">
             <summary>
             Indicates the invalid value.
@@ -454,21 +461,16 @@
             The double values.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Collection.DashArray.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Collection.DashArray"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.#ctor(System.Double[])">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Collection.DashArray"/> instance via the specified list of values.
-            </summary>
-            <param name="doubles">A list of values.</param>
-        </member>
         <member name="P:SudokuStudio.Collection.DashArray.Count">
             <summary>
             Indicates the number of values.
             </summary>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.Add(System.Double)">
+            <summary>
+            Adds a new value into the collection.
+            </summary>
+            <param name="value">The value.</param>
         </member>
         <member name="M:SudokuStudio.Collection.DashArray.Equals(SudokuStudio.Collection.DashArray)">
             <inheritdoc/>
@@ -497,7 +499,7 @@
             </summary>
             <param name="doubles">The double values.</param>
         </member>
-        <member name="M:SudokuStudio.Collection.DashArray.Enumerator.#ctor(System.Double[])">
+        <member name="M:SudokuStudio.Collection.DashArray.Enumerator.#ctor(System.Collections.Generic.List{System.Double})">
             <summary>
             Defines an enumerator of this type.
             </summary>

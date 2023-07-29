@@ -9,57 +9,39 @@ namespace SudokuStudio.Collection;
 [Equals]
 [ToString]
 [EqualityOperators]
-public readonly partial struct DashArray : IEnumerable<double>, IEquatable<DashArray>, IEqualityOperators<DashArray, DashArray, bool>
+public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<DashArray>, IEqualityOperators<DashArray, DashArray, bool>
 {
 	/// <summary>
 	/// Indicates the invalid value.
 	/// </summary>
-	public static readonly DashArray InvalidValue = new(0);
+	public static readonly DashArray InvalidValue = [0];
 
 
 	/// <summary>
 	/// The double values.
 	/// </summary>
-	internal readonly double[] _doubles = [];
-
-
-	/// <summary>
-	/// Initializes a <see cref="DashArray"/> instance.
-	/// </summary>
-	public DashArray()
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="DashArray"/> instance via the specified list of values.
-	/// </summary>
-	/// <param name="doubles">A list of values.</param>
-	public DashArray(params double[] doubles)
-	{
-		_doubles = new double[doubles.Length];
-
-		Array.Copy(doubles, 0, _doubles, 0, doubles.Length);
-	}
+	private readonly List<double> _doubles = [];
 
 
 	/// <summary>
 	/// Indicates the number of values.
 	/// </summary>
 	[JsonIgnore]
-	public int Count => _doubles.Length;
+	public int Count => _doubles.Count;
 
 	[JsonIgnore]
 	[StringMember]
 	private string ValuesString => $"[{string.Join(", ", _doubles)}]";
 
 
+	/// <summary>
+	/// Adds a new value into the collection.
+	/// </summary>
+	/// <param name="value">The value.</param>
+	public void Add(double value) => _doubles.Add(value);
+
 	/// <inheritdoc/>
-	public bool Equals(DashArray other)
-	{
-		scoped var l = _doubles.AsSpan();
-		scoped var r = other._doubles.AsSpan();
-		return l.SequenceEqual(r);
-	}
+	public bool Equals(DashArray other) => _doubles.SequenceEqual(other._doubles);
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	public override int GetHashCode()
@@ -158,14 +140,14 @@ file sealed class Converter : JsonConverter<DashArray>
 		}
 
 	ReturnValue:
-		return new([.. targetCollection]);
+		return [.. targetCollection];
 	}
 
 	/// <inheritdoc/>
 	public override void Write(Utf8JsonWriter writer, DashArray value, JsonSerializerOptions options)
 	{
 		writer.WriteStartArray();
-		foreach (var element in value._doubles)
+		foreach (var element in value)
 		{
 			switch (options)
 			{
