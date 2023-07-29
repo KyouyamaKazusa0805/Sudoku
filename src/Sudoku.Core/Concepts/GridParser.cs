@@ -1,4 +1,4 @@
-namespace Sudoku.Text.Parsing;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Encapsulates a grid parser that can parse a string value and convert it
@@ -27,12 +27,25 @@ public unsafe ref partial struct GridParser(
 	/// <summary>
 	/// The list of all methods to parse.
 	/// </summary>
-	private static readonly delegate*</*scoped*/ ref GridParser, Grid>[] ParseFunctions;
+	private static readonly delegate*</*scoped*/ ref GridParser, Grid>[] ParseFunctions = [
+		&OnParsingSimpleTable,
+		&OnParsingSimpleMultilineGrid,
+		&OnParsingPencilMarked,
+		&OnParsingSusserPhase1,
+		&OnParsingSusserPhase2,
+		&OnParsingExcel,
+		&OnParsingOpenSudoku,
+		&OnParsingSukakuPhase1,
+		&OnParsingSukakuPhase2
+	];
 
 	/// <summary>
 	/// The list of all methods to parse multiple-line grid.
 	/// </summary>
-	private static readonly delegate*</*scoped*/ ref GridParser, Grid>[] MultilineParseFunctions;
+	private static readonly delegate*</*scoped*/ ref GridParser, Grid>[] MultilineParseFunctions = [
+		&OnParsingSimpleMultilineGrid,
+		&OnParsingPencilMarked
+	];
 
 
 	/// <summary>
@@ -54,36 +67,6 @@ public unsafe ref partial struct GridParser(
 	/// <seealso cref="CompatibleFirst"/>
 	public GridParser(string parsingValue, bool compatibleFirst) : this(parsingValue, compatibleFirst, false)
 	{
-	}
-
-
-	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
-	static GridParser()
-	{
-		ParseFunctions = [
-			&OnParsingSimpleTable,
-			&OnParsingSimpleMultilineGrid,
-			&OnParsingPencilMarked,
-			&onParsingSusser_1,
-			&onParsingSusser_2,
-			&OnParsingExcel,
-			&OnParsingOpenSudoku,
-			&onParsingSukaku_1,
-			&onParsingSukaku_2
-		];
-
-#if GITHUB_ISSUE_216
-		// Cannot apply Range syntax '1..3' onto pointer-typed array.
-		// Array slicing on pointer type cannot be available for AnyCPU.
-		MultilineParseFunctions = ParseFunctions[1..3];
-#else
-		MultilineParseFunctions = [&OnParsingSimpleMultilineGrid, &OnParsingPencilMarked];
-#endif
-
-		static Grid onParsingSukaku_1(ref GridParser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
-		static Grid onParsingSukaku_2(ref GridParser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
-		static Grid onParsingSusser_1(ref GridParser @this) => OnParsingSusser(ref @this, !@this.ShortenSusserFormat);
-		static Grid onParsingSusser_2(ref GridParser @this) => OnParsingSusser(ref @this, @this.ShortenSusserFormat);
 	}
 
 
@@ -172,9 +155,9 @@ public unsafe ref partial struct GridParser(
 	/// <summary>
 	/// Parse the value using multi-line simple grid (without any candidates).
 	/// </summary>
-	/// <param name="parser">The parser.</param>
+	/// <param name="parser">The parser.</param>scoped 
 	/// <returns>The result.</returns>
-	private static Grid OnParsingSimpleMultilineGrid(ref GridParser parser)
+	private static Grid OnParsingSimpleMultilineGrid(scoped ref GridParser parser)
 	{
 		var matches = from match in GridParserPatterns.SusserDigitPattern().Matches(parser.ParsingValue) select match.Value;
 		var length = matches.Length;
@@ -231,7 +214,7 @@ public unsafe ref partial struct GridParser(
 	/// </summary>
 	/// <param name="parser">The parser.</param>
 	/// <returns>The result.</returns>
-	private static Grid OnParsingExcel(ref GridParser parser)
+	private static Grid OnParsingExcel(scoped ref GridParser parser)
 	{
 		var parsingValue = parser.ParsingValue;
 		if (!parsingValue.Contains('\t'))
@@ -262,7 +245,7 @@ public unsafe ref partial struct GridParser(
 	/// </summary>
 	/// <param name="parser">The parser.</param>
 	/// <returns>The result.</returns>
-	private static Grid OnParsingOpenSudoku(ref GridParser parser)
+	private static Grid OnParsingOpenSudoku(scoped ref GridParser parser)
 	{
 		if (GridParserPatterns.OpenSudokuPattern().Match(parser.ParsingValue) is not { Success: true, Value: var match })
 		{
@@ -305,7 +288,7 @@ public unsafe ref partial struct GridParser(
 	/// </summary>
 	/// <param name="parser">The parser.</param>
 	/// <returns>The result.</returns>
-	private static Grid OnParsingPencilMarked(ref GridParser parser)
+	private static Grid OnParsingPencilMarked(scoped ref GridParser parser)
 	{
 		// Older regular expression pattern:
 		if ((from m in GridParserPatterns.PencilmarkedPattern().Matches(parser.ParsingValue) select m.Value) is not { Length: 81 } matches)
@@ -413,7 +396,7 @@ public unsafe ref partial struct GridParser(
 	/// </summary>
 	/// <param name="parser">The parser.</param>
 	/// <returns>The grid.</returns>
-	private static Grid OnParsingSimpleTable(ref GridParser parser)
+	private static Grid OnParsingSimpleTable(scoped ref GridParser parser)
 	{
 		if (GridParserPatterns.SimpleMultilinePattern().Match(parser.ParsingValue) is not { Success: true, Value: var match })
 		{
@@ -433,7 +416,7 @@ public unsafe ref partial struct GridParser(
 	/// <param name="parser">The parser.</param>
 	/// <param name="shortenSusser">Indicates whether the parser will shorten the susser format.</param>
 	/// <returns>The result.</returns>
-	private static Grid OnParsingSusser(ref GridParser parser, bool shortenSusser)
+	private static Grid OnParsingSusser(scoped ref GridParser parser, bool shortenSusser)
 	{
 		var match = (shortenSusser ? GridParserPatterns.ShortenedSusserPattern() : GridParserPatterns.SusserPattern()).Match(parser.ParsingValue).Value;
 
@@ -616,7 +599,7 @@ public unsafe ref partial struct GridParser(
 	/// Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
 	/// </param>
 	/// <returns>The result.</returns>
-	private static Grid OnParsingSukaku(ref GridParser parser, bool compatibleFirst)
+	private static Grid OnParsingSukaku(scoped ref GridParser parser, bool compatibleFirst)
 	{
 		const int candidatesCount = 729;
 		if (compatibleFirst)
@@ -689,4 +672,12 @@ public unsafe ref partial struct GridParser(
 			return result;
 		}
 	}
+
+	private static Grid OnParsingSusserPhase2(scoped ref GridParser @this) => OnParsingSusser(ref @this, @this.ShortenSusserFormat);
+
+	private static Grid OnParsingSusserPhase1(scoped ref GridParser @this) => OnParsingSusser(ref @this, !@this.ShortenSusserFormat);
+
+	private static Grid OnParsingSukakuPhase2(scoped ref GridParser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
+
+	private static Grid OnParsingSukakuPhase1(scoped ref GridParser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
 }

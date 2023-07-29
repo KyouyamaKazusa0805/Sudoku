@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Parsing;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Provides with <see cref="Regex"/> patterns used by <see cref="GridParser"/>.
