@@ -28,7 +28,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 	/// <summary>
 	/// Indicates the cell index.
 	/// </summary>
-	internal Cell CellIndex { get; init; }
+	public Cell CellIndex { get; internal init; }
 
 
 	/// <summary>
