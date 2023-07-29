@@ -17,6 +17,16 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 
 
 	/// <summary>
+	/// The error information for difficulty level cannot be determined.
+	/// </summary>
+	private static readonly string ErrorInfo_TechniqueLevelCannotBeDetermined = $"""
+		The target level is unknown. If you see this exception thrown, 
+		please append '{typeof(DifficultyLevelAttribute).FullName}' to the target technique code field 
+		defined in type '{typeof(Technique).FullName}'.
+		""".RemoveLineEndings();
+
+
+	/// <summary>
 	/// Indicates the technique name.
 	/// </summary>
 	/// <remarks>
@@ -115,17 +125,9 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// </exception>
 	/// <seealso cref="FlagsAttribute"/>
 	public DifficultyLevel DifficultyLevel
-		=> Code.GetDifficultyLevel() switch
-		{
-			var level and not 0 => level,
-			_ => throw new InvalidOperationException(
-				$"""
-				The target level is unknown. If you see this exception thrown, 
-				please append '{typeof(DifficultyLevelAttribute).FullName}' to the target technique code field 
-				defined in type '{typeof(Technique).FullName}'.
-				""".RemoveLineEndings()
-			)
-		};
+		=> Code.GetDifficultyLevel() is var level and not 0
+			? level
+			: throw new InvalidOperationException(ErrorInfo_TechniqueLevelCannotBeDetermined);
 
 	/// <summary>
 	/// Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,

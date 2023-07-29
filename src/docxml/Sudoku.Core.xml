@@ -4410,6 +4410,14 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
             <typeparam name="TElement">The type of each element.</typeparam>
         </member>
+        <member name="F:Sudoku.Concepts.IBitStatusMap`2.ErrorInfo_SubsetsExceeded">
+            <summary>
+            Indicates the error information describing the case that the number of subsets calculated by methods
+            <see cref="M:Sudoku.Concepts.IBitStatusMap`2.GetSubsets(System.Int32)"/> and <see cref="M:Sudoku.Concepts.IBitStatusMap`2.GetAllSubsets(System.Int32)"/> is too large.
+            </summary>
+            <seealso cref="M:Sudoku.Concepts.IBitStatusMap`2.GetSubsets(System.Int32)"/>
+            <seealso cref="M:Sudoku.Concepts.IBitStatusMap`2.GetAllSubsets(System.Int32)"/>
+        </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`2.Shifting">
             <summary>
             Indicates the size of each unit.
