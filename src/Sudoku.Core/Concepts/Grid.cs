@@ -65,7 +65,7 @@ public unsafe partial struct Grid :
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/csharp9/feature[@name='function-pointer']"/>
 	/// </remarks>
-	public static readonly delegate*</*scoped*/ ref Grid, int, short, short, int, void> ValueChanged;
+	public static readonly delegate*</*scoped*/ ref Grid, int, short, short, int, void> ValueChanged = &OnValueChanged;
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
@@ -73,7 +73,7 @@ public unsafe partial struct Grid :
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/csharp9/feature[@name='function-pointer']"/>
 	/// </remarks>
-	public static readonly delegate*</*scoped*/ ref Grid, void> RefreshingCandidates;
+	public static readonly delegate*</*scoped*/ ref Grid, void> RefreshingCandidates = &OnRefreshingCandidates;
 
 	/// <summary>
 	/// The empty grid that is valid during implementation or running the program (all values are <see cref="DefaultMask"/>, i.e. empty cells).
@@ -186,52 +186,6 @@ public unsafe partial struct Grid :
 		for (var i = 0; i < 81; i++)
 		{
 			Empty[i] = DefaultMask;
-		}
-
-		// Initializes events.
-		ValueChanged = &onValueChanged;
-		RefreshingCandidates = &onRefreshingCandidates;
-
-		// Initializes special fields.
-		Undefined = default;
-
-
-		static void onRefreshingCandidates(scoped ref Grid @this)
-		{
-			for (var i = 0; i < 81; i++)
-			{
-				if (@this.GetStatus(i) == CellStatus.Empty)
-				{
-					// Remove all appeared digits.
-					var mask = MaxCandidatesMask;
-					foreach (var cell in Peers[i])
-					{
-						if (@this.GetDigit(cell) is var digit and not -1)
-						{
-							mask &= (Mask)~(1 << digit);
-						}
-					}
-
-					@this[i] = (Mask)(EmptyMask | mask);
-				}
-			}
-		}
-
-		static void onValueChanged(scoped ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
-		{
-			if (setValue != -1)
-			{
-				foreach (var peerCell in Peers[cell])
-				{
-					if (@this.GetStatus(peerCell) == CellStatus.Empty)
-					{
-						// You can't do this because of being invoked recursively.
-						//@this.SetCandidateIsOn(peerCell, setValue, false);
-
-						@this[peerCell] &= (Mask)~(1 << setValue);
-					}
-				}
-			}
 		}
 	}
 
@@ -1686,6 +1640,44 @@ public unsafe partial struct Grid :
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static Vector<byte> loadVector(scoped ref byte start, nuint offset) => ReadUnaligned<Vector<byte>>(ref AddByteOffset(ref start, offset));
+	}
+
+	private static void OnValueChanged(ref Grid @this, int cell, short oldMask, short newMask, int setValue)
+	{
+		if (setValue != -1)
+		{
+			foreach (var peerCell in Peers[cell])
+			{
+				if (@this.GetStatus(peerCell) == CellStatus.Empty)
+				{
+					// You can't do this because of being invoked recursively.
+					//@this.SetCandidateIsOn(peerCell, setValue, false);
+
+					@this[peerCell] &= (Mask)~(1 << setValue);
+				}
+			}
+		}
+	}
+
+	private static void OnRefreshingCandidates(ref Grid @this)
+	{
+		for (var i = 0; i < 81; i++)
+		{
+			if (@this.GetStatus(i) == CellStatus.Empty)
+			{
+				// Remove all appeared digits.
+				var mask = MaxCandidatesMask;
+				foreach (var cell in Peers[i])
+				{
+					if (@this.GetDigit(cell) is var digit and not -1)
+					{
+						mask &= (Mask)~(1 << digit);
+					}
+				}
+
+				@this[i] = (Mask)(EmptyMask | mask);
+			}
+		}
 	}
 
 
