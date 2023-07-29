@@ -7,7 +7,7 @@ global using System.SourceGeneration;
 global using Sudoku.Analytics;
 global using Sudoku.Drawing.TextRendering;
 global using Sudoku.Gdip;
-global using Sudoku.Operations;
+global using Sudoku.Meta;
 global using Sudoku.Rendering;
 global using Sudoku.Rendering.Nodes;
 global using static System.MathF;

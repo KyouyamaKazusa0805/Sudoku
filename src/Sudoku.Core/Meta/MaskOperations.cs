@@ -1,4 +1,4 @@
-namespace Sudoku.Operations;
+namespace Sudoku.Meta;
 
 /// <summary>
 /// Provides with a set of methods that operates with mask defined in basic sudoku concepts, as data structures.
@@ -28,13 +28,7 @@ public static class MaskOperations
 			maskSubsets[size - 1] = GetMaskSubsets(value, size);
 		}
 
-		var listOfResults = new List<Mask>();
-		foreach (var maskSubset in maskSubsets)
-		{
-			listOfResults.AddRange(maskSubset);
-		}
-
-		return [.. listOfResults];
+		return from maskSubset in maskSubsets from mask in maskSubset select mask;
 	}
 
 	/// <summary>

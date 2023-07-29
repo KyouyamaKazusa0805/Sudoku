@@ -5166,62 +5166,62 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.DataModel.Chute.HousesMask">
             <summary>Indicates the houses used.</summary>
         </member>
-        <member name="T:Sudoku.Operations.MaskCombinationsGenerator">
+        <member name="T:Sudoku.Meta.MaskCombinationsGenerator">
             <summary>
             Represents a combination generator that iterations each combination of bits for the specified number of bits, and how many 1's in it.
             </summary>
             <param name="bitCount">The number of bits.</param>
             <param name="oneCount">The number of <see langword="true"/> bits.</param>
         </member>
-        <member name="M:Sudoku.Operations.MaskCombinationsGenerator.#ctor(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Meta.MaskCombinationsGenerator.#ctor(System.Int32,System.Int32)">
             <summary>
             Represents a combination generator that iterations each combination of bits for the specified number of bits, and how many 1's in it.
             </summary>
             <param name="bitCount">The number of bits.</param>
             <param name="oneCount">The number of <see langword="true"/> bits.</param>
         </member>
-        <member name="M:Sudoku.Operations.MaskCombinationsGenerator.GetEnumerator">
+        <member name="M:Sudoku.Meta.MaskCombinationsGenerator.GetEnumerator">
             <summary>
             Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="T:Sudoku.Operations.MaskCombinationsGenerator.Enumerator">
+        <member name="T:Sudoku.Meta.MaskCombinationsGenerator.Enumerator">
             <summary>
             Indicates the enumerator of the current instance.
             </summary>
             <param name="bitCount">The number of bits.</param>
             <param name="oneCount">The number of <see langword="true"/> bits.</param>
         </member>
-        <member name="M:Sudoku.Operations.MaskCombinationsGenerator.Enumerator.#ctor(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Meta.MaskCombinationsGenerator.Enumerator.#ctor(System.Int32,System.Int32)">
             <summary>
             Indicates the enumerator of the current instance.
             </summary>
             <param name="bitCount">The number of bits.</param>
             <param name="oneCount">The number of <see langword="true"/> bits.</param>
         </member>
-        <member name="F:Sudoku.Operations.MaskCombinationsGenerator.Enumerator._mask">
+        <member name="F:Sudoku.Meta.MaskCombinationsGenerator.Enumerator._mask">
             <summary>
             The mask.
             </summary>
         </member>
-        <member name="F:Sudoku.Operations.MaskCombinationsGenerator.Enumerator._isLast">
+        <member name="F:Sudoku.Meta.MaskCombinationsGenerator.Enumerator._isLast">
             <summary>
             Indicates whether that the value is the last one.
             </summary>
         </member>
-        <member name="P:Sudoku.Operations.MaskCombinationsGenerator.Enumerator.Current">
+        <member name="P:Sudoku.Meta.MaskCombinationsGenerator.Enumerator.Current">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Operations.MaskCombinationsGenerator.Enumerator.MoveNext">
+        <member name="M:Sudoku.Meta.MaskCombinationsGenerator.Enumerator.MoveNext">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Operations.MaskOperations">
+        <member name="T:Sudoku.Meta.MaskOperations">
             <summary>
             Provides with a set of methods that operates with mask defined in basic sudoku concepts, as data structures.
             </summary>
         </member>
-        <member name="M:Sudoku.Operations.MaskOperations.MaskToStatus(System.Int16)">
+        <member name="M:Sudoku.Meta.MaskOperations.MaskToStatus(System.Int16)">
             <summary>
             To get the cell status for a mask value. The mask is an inner representation to describe a cell's state.
             For more information please visit the details of the design for type <see cref="T:Sudoku.Concepts.Grid"/>.
@@ -5230,14 +5230,14 @@ if (student is (name: var name, age: >= 18))
             <returns>The cell status.</returns>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Operations.MaskOperations.GetMaskSubsets(System.Int16)">
+        <member name="M:Sudoku.Meta.MaskOperations.GetMaskSubsets(System.Int16)">
             <summary>
             Get all mask combinations.
             </summary>
             <param name="value">The mask.</param>
             <returns>The result list.</returns>
         </member>
-        <member name="M:Sudoku.Operations.MaskOperations.GetMaskSubsets(System.Int16,System.Int32)">
+        <member name="M:Sudoku.Meta.MaskOperations.GetMaskSubsets(System.Int16,System.Int32)">
             <summary>
             Get all mask combinations.
             </summary>

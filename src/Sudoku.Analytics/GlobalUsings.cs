@@ -25,7 +25,7 @@ global using Sudoku.DataModel;
 global using Sudoku.Facts;
 global using Sudoku.Filtering.Expressions;
 global using Sudoku.Filtering.Operators;
-global using Sudoku.Operations;
+global using Sudoku.Meta;
 global using Sudoku.Preprocessing;
 global using Sudoku.Rendering;
 global using Sudoku.Rendering.Nodes;
