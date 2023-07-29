@@ -3437,7 +3437,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					SubType2:
 						// Sub-type 2.
 						// The extra digit should form a conjugate pair in that line.
-						var anotherMap = (CellMap)([CellsMap[urCellInSameBlock], anotherCell]);
+						var anotherMap = CellsMap[urCellInSameBlock] + anotherCell;
 						var anotherLine = anotherMap.CoveredLine;
 						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(extraDigit, anotherMap, anotherLine))
 						{
@@ -4325,7 +4325,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						}
 					}
 
-					var cellPair = (CellMap)([CellsMap[cell1], cell2]);
+					var cellPair = CellsMap[cell1] + cell2;
 					foreach (var cell in cellPair)
 					{
 						foreach (var digit in grid.GetCandidates(cell))
