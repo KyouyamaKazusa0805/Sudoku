@@ -64,7 +64,7 @@ public partial class App : Application
 	/// <seealso href="https://github.com/microsoft/WindowsAppSDK/discussions/1887">
 	/// Improved APIs for Picker/Dialog classes that implement <see cref="InitializeWithWindow"/>
 	/// </seealso>
-	internal ProjectWideWindowManager WindowManager { get; } = new();
+	internal WindowManager WindowManager { get; } = new();
 
 
 	/// <summary>

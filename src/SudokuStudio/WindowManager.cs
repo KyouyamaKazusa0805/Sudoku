@@ -14,7 +14,7 @@ namespace SudokuStudio;
 /// </summary>
 /// <seealso cref="Window"/>
 /// <seealso cref="UIElement"/>
-internal sealed class ProjectWideWindowManager
+internal sealed class WindowManager
 {
 	/// <summary>
 	/// Indicates the list of active windows.

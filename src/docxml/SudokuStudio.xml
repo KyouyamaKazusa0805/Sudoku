@@ -3482,53 +3482,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the default <see cref="T:Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo"/> instance that describes the details of data while switching pages.
             </summary>
         </member>
-        <member name="T:SudokuStudio.ProjectWideWindowManager">
-            <summary>
-            <para>Provides with a project-wide window manager type, as a helper class type.</para>
-            <para>
-            This helper class to allow the app to find the Window that contains an arbitrary <see cref="T:Microsoft.UI.Xaml.UIElement"/> (GetWindowForElement).
-            To do this, we keep track of all active <see cref="T:Microsoft.UI.Xaml.Window"/>s.
-            </para>
-            <para>
-            The app code must call <see cref="M:SudokuStudio.ProjectWideWindowManager.CreateWindow``1"/> rather than "<see langword="new"/> <see cref="T:Microsoft.UI.Xaml.Window"/>()" expression
-            so we can keep track of all the relevant windows.
-            </para>
-            <para>In the future, we would like to support this in platform APIs.</para>
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Window"/>
-            <seealso cref="T:Microsoft.UI.Xaml.UIElement"/>
-        </member>
-        <member name="F:SudokuStudio.ProjectWideWindowManager._activeWindows">
-            <summary>
-            Indicates the list of active windows.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ProjectWideWindowManager.ActiveWindows">
-            <summary>
-            Indicates the currently active windows.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.ProjectWideWindowManager.CreateWindow``1">
-            <summary>
-            Creates a new window, and records it into the property <see cref="P:SudokuStudio.ProjectWideWindowManager.ActiveWindows"/>.
-            </summary>
-            <typeparam name="TWindow">The type of the window.</typeparam>
-            <returns>The created window instance.</returns>
-            <seealso cref="P:SudokuStudio.ProjectWideWindowManager.ActiveWindows"/>
-        </member>
-        <member name="M:SudokuStudio.ProjectWideWindowManager.GetWindowForElement(Microsoft.UI.Xaml.UIElement)">
-            <summary>
-            Gets the target window that displays the current <see cref="T:Microsoft.UI.Xaml.UIElement"/>.
-            </summary>
-            <param name="element">The UI element.</param>
-            <returns>The target window. If none found, <see langword="null"/>.</returns>
-        </member>
-        <member name="M:SudokuStudio.ProjectWideWindowManager.TrackWindow(Microsoft.UI.Xaml.Window)">
-            <summary>
-            Try to track the window, recording it into the property <see cref="P:SudokuStudio.ProjectWideWindowManager.ActiveWindows"/>.
-            </summary>
-            <param name="window">The window.</param>
-        </member>
         <member name="T:SudokuStudio.Runtime.InteropServices.Interoperability">
             <summary>
             Provides with a set of methods that is defined as native methods (written by other programming languages such as C++).
@@ -9318,6 +9271,53 @@ if (student is (name: var name, age: >= 18))
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
+        </member>
+        <member name="T:SudokuStudio.WindowManager">
+            <summary>
+            <para>Provides with a project-wide window manager type, as a helper class type.</para>
+            <para>
+            This helper class to allow the app to find the Window that contains an arbitrary <see cref="T:Microsoft.UI.Xaml.UIElement"/> (GetWindowForElement).
+            To do this, we keep track of all active <see cref="T:Microsoft.UI.Xaml.Window"/>s.
+            </para>
+            <para>
+            The app code must call <see cref="M:SudokuStudio.WindowManager.CreateWindow``1"/> rather than "<see langword="new"/> <see cref="T:Microsoft.UI.Xaml.Window"/>()" expression
+            so we can keep track of all the relevant windows.
+            </para>
+            <para>In the future, we would like to support this in platform APIs.</para>
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Window"/>
+            <seealso cref="T:Microsoft.UI.Xaml.UIElement"/>
+        </member>
+        <member name="F:SudokuStudio.WindowManager._activeWindows">
+            <summary>
+            Indicates the list of active windows.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.WindowManager.ActiveWindows">
+            <summary>
+            Indicates the currently active windows.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.WindowManager.CreateWindow``1">
+            <summary>
+            Creates a new window, and records it into the property <see cref="P:SudokuStudio.WindowManager.ActiveWindows"/>.
+            </summary>
+            <typeparam name="TWindow">The type of the window.</typeparam>
+            <returns>The created window instance.</returns>
+            <seealso cref="P:SudokuStudio.WindowManager.ActiveWindows"/>
+        </member>
+        <member name="M:SudokuStudio.WindowManager.GetWindowForElement(Microsoft.UI.Xaml.UIElement)">
+            <summary>
+            Gets the target window that displays the current <see cref="T:Microsoft.UI.Xaml.UIElement"/>.
+            </summary>
+            <param name="element">The UI element.</param>
+            <returns>The target window. If none found, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:SudokuStudio.WindowManager.TrackWindow(Microsoft.UI.Xaml.Window)">
+            <summary>
+            Try to track the window, recording it into the property <see cref="P:SudokuStudio.WindowManager.ActiveWindows"/>.
+            </summary>
+            <param name="window">The window.</param>
         </member>
         <member name="T:SudokuStudio.Program">
             <summary>
