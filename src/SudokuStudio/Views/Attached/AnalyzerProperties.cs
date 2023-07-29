@@ -44,7 +44,7 @@ public static partial class AnalyzerProperties
 	/// Sets the specified property in a <see cref="StepSearcher"/> with the target value via attached properties
 	/// stored in type <see cref="AnalyzerProperties"/>.
 	/// </summary>
-	/// <typeparam name="T">The type of the instance. The type must implement <see cref="IAnalyzerOrCollector"/>.</typeparam>
+	/// <typeparam name="T">The type of the instance. The type must implement <see cref="AnalyzerOrCollector"/>.</typeparam>
 	/// <param name="this">The analyzer instance.</param>
 	/// <param name="attachedPropertyValue">The attached property.</param>
 	/// <param name="methodName">The name of the property <paramref name="attachedPropertyValue"/>.</param>
@@ -55,7 +55,7 @@ public static partial class AnalyzerProperties
 	/// <returns>The same reference as <paramref name="this"/>.</returns>
 	/// <seealso cref="AnalyzerProperties"/>
 	public static T WithRuntimeIdentifierSetter<T>(this T @this, object attachedPropertyValue, string methodName, out bool propertyMatched)
-		where T : class, IAnalyzerOrCollector
+		where T : AnalyzerOrCollector
 	{
 		var targetStepSearcherCollection = @this.ResultStepSearchers;
 		foreach (var searcher in targetStepSearcherCollection)
@@ -86,7 +86,7 @@ public static partial class AnalyzerProperties
 	/// <returns>The same reference with argument <paramref name="this"/>.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the matched property is invalid.</exception>
 	/// <seealso cref="WithRuntimeIdentifierSetter{T}(T, object, string?, out bool)"/>
-	public static T WithRuntimeIdentifierSetters<T>(this T @this, SudokuPane attachedPane) where T : class, IAnalyzerOrCollector
+	public static T WithRuntimeIdentifierSetters<T>(this T @this, SudokuPane attachedPane) where T : AnalyzerOrCollector
 	{
 		foreach (var methodInfo in typeof(AnalyzerProperties).GetMethods(BindingFlags.Static | BindingFlags.Public))
 		{

@@ -3,7 +3,7 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one status.
 /// </summary>
-public sealed partial class StepCollector : IAnalyzerOrCollector
+public sealed partial class StepCollector : AnalyzerOrCollector
 {
 	/// <summary>
 	/// Indicates whether the solver only displays the techniques with the same displaying level.
@@ -24,15 +24,15 @@ public sealed partial class StepCollector : IAnalyzerOrCollector
 	/// <inheritdoc/>
 	[DisallowNull]
 	[ImplicitField(RequiredReadOnlyModifier = false)]
-	public StepSearcher[]? StepSearchers
+	public override StepSearcher[]? StepSearchers
 	{
 		get => _stepSearchers;
 
-		internal set => ResultStepSearchers = IAnalyzerOrCollector.FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Gathering);
+		protected internal set => ResultStepSearchers = FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Gathering);
 	}
 
 	/// <inheritdoc/>
-	public StepSearcher[] ResultStepSearchers { get; private set; } =
+	public override StepSearcher[] ResultStepSearchers { get; protected internal set; } =
 		from searcher in StepSearcherPool.Default()
 		where searcher.RunningArea.Flags(StepSearcherRunningArea.Gathering)
 		select searcher;

@@ -3,7 +3,7 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Extracts a new type that represents an analyzer or a collector type.
 /// </summary>
-public interface IAnalyzerOrCollector
+public abstract class AnalyzerOrCollector
 {
 	/// <summary>
 	/// <para>
@@ -19,12 +19,12 @@ public interface IAnalyzerOrCollector
 	/// </summary>
 	/// <seealso cref="StepSearcherPool.Default(bool)"/>
 	[DisallowNull]
-	StepSearcher[]? StepSearchers { get; }
+	public abstract StepSearcher[]? StepSearchers { get; protected internal set; }
 
 	/// <summary>
 	/// Indicates the result step searchers used in the current analyzer or collector.
 	/// </summary>
-	StepSearcher[] ResultStepSearchers { get; }
+	public abstract StepSearcher[] ResultStepSearchers { get; protected internal set; }
 
 
 	/// <summary>

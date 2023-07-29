@@ -14,7 +14,7 @@ namespace Sudoku.Analytics;
 /// <seealso cref="AnalyzerFactory"/>
 /// <completionlist cref="PredefinedAnalyzers"/>
 [method: Obsolete($"This constructor may not produce some extra options. Please visit type '{nameof(PredefinedAnalyzers)}' to get a suitable instance.", false)]
-public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IAnalyzerOrCollector
+public sealed partial class Analyzer() : AnalyzerOrCollector, IAnalyzer<Analyzer, AnalyzerResult>
 {
 	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher,
@@ -51,15 +51,15 @@ public sealed partial class Analyzer() : IAnalyzer<Analyzer, AnalyzerResult>, IA
 	/// <inheritdoc/>
 	[DisallowNull]
 	[ImplicitField(RequiredReadOnlyModifier = false)]
-	public StepSearcher[]? StepSearchers
+	public override StepSearcher[]? StepSearchers
 	{
 		get => _stepSearchers;
 
-		internal set => ResultStepSearchers = IAnalyzerOrCollector.FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Searching);
+		protected internal set => ResultStepSearchers = FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Searching);
 	}
 
 	/// <inheritdoc/>
-	public StepSearcher[] ResultStepSearchers { get; private set; } =
+	public override StepSearcher[] ResultStepSearchers { get; protected internal set; } =
 		from searcher in StepSearcherPool.Default()
 		where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
 		select searcher;

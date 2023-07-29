@@ -6052,7 +6052,7 @@ if (student is (name: var name, age: >= 18))
             Sets the specified property in a <see cref="T:Sudoku.Analytics.StepSearcher"/> with the target value via attached properties
             stored in type <see cref="T:SudokuStudio.Views.Attached.AnalyzerProperties"/>.
             </summary>
-            <typeparam name="T">The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.IAnalyzerOrCollector"/>.</typeparam>
+            <typeparam name="T">The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.AnalyzerOrCollector"/>.</typeparam>
             <param name="this">The analyzer instance.</param>
             <param name="attachedPropertyValue">The attached property.</param>
             <param name="methodName">The name of the property <paramref name="attachedPropertyValue"/>.</param>
