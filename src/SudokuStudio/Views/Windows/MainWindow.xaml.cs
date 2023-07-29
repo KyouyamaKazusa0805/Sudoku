@@ -11,7 +11,7 @@ public sealed partial class MainWindow : Window
 	/// by control <see cref="NavigationViewFrame"/>.
 	/// </summary>
 	/// <seealso cref="NavigationViewFrame"/>
-	private Dictionary<Predicate<NavigationViewItemBase>, Type> _navigatingData;
+	private List<(Predicate<NavigationViewItemBase> PageChecker, Type PageType)> _navigatingData;
 
 
 	/// <summary>
@@ -77,13 +77,12 @@ public sealed partial class MainWindow : Window
 	/// </summary>
 	[MemberNotNull(nameof(_navigatingData))]
 	private void InitializeField()
-		=> _navigatingData = new()
-		{
-			{ container => container == AnalyzePageItem, typeof(AnalyzePage) },
-			{ container => container == AboutPageItem, typeof(AboutPage) },
-			{ container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage) },
-			{ container => container == HotkeyCheatTablePage, typeof(HotkeyCheatTablePage) }
-		};
+		=> _navigatingData = [
+			(container => container == AnalyzePageItem, typeof(AnalyzePage)),
+			(container => container == AboutPageItem, typeof(AboutPage)),
+			(container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage)),
+			(container => container == HotkeyCheatTablePage, typeof(HotkeyCheatTablePage))
+		];
 
 	/// <summary>
 	/// Saves for preferences.
