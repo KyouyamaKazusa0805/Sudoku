@@ -293,7 +293,6 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// <returns>The view.</returns>
 	private static View GetDirectView(Digit digit, House[] baseSets, House[] coverSets, scoped in CellMap fins, bool searchRow)
 	{
-		// Get the highlighted cells (necessary).
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = fins ? new List<CandidateViewNode>() : null;
 		foreach (var baseSet in baseSets)
