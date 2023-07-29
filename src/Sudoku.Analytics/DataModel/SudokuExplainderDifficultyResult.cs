@@ -6,7 +6,4 @@ namespace Sudoku.DataModel;
 /// </summary>
 /// <param name="Original">The original difficulty rating of the technique.</param>
 /// <param name="Advanced">The advanced difficulty rating of the technique.</param>
-public readonly record struct SudokuExplainderDifficultyResult(
-	SudokuExplainerDifficultyRatingRange? Original,
-	SudokuExplainerDifficultyRatingRange? Advanced
-);
+public readonly record struct SudokuExplainderDifficultyResult(SudokuExplainerDifficultyRatingRange? Original, SudokuExplainerDifficultyRatingRange? Advanced);
