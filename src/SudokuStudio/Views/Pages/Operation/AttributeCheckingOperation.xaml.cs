@@ -26,24 +26,21 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 			return;
 		}
 
-		var backdoors = await Task.Run(getBackdoors);
-		var view = new View();
-		foreach (var (type, candidate) in backdoors)
-		{
-			view.Add(new CandidateViewNode(type == Assignment ? WellKnownColorIdentifierKind.Assignment : WellKnownColorIdentifierKind.Elimination, candidate));
-		}
-
-		var visualUnit = new BackdoorVisualUnit(view);
-		BasePage.VisualUnit = visualUnit;
-
-
-		Conclusion[] getBackdoors()
+		var backdoors = await Task.Run(() =>
 		{
 			lock (AnalyzingRelatedSyncRoot)
 			{
 				return BackdoorSearcher.GetBackdoors(puzzle);
 			}
-		}
+		});
+
+		BasePage.VisualUnit = new BackdoorVisualUnit([
+			..
+			from backdoor in backdoors
+			let type = backdoor.ConclusionType
+			let candidate = backdoor.Candidate
+			select new CandidateViewNode(type == Assignment ? WellKnownColorIdentifierKind.Assignment : WellKnownColorIdentifierKind.Elimination, candidate)
+		]);
 	}
 
 	private async void TrueCandidateButton_ClickAsync(object sender, RoutedEventArgs e)
@@ -56,25 +53,24 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 			return;
 		}
 
-		var trueCandidates = await Task.Run(getTrueCandidates);
+		var trueCandidates = await Task.Run(() =>
+		{
+			lock (AnalyzingRelatedSyncRoot)
+			{
+				return TrueCandidatesSearcher.GetAllTrueCandidates(puzzle);
+			}
+		});
 		if (trueCandidates.Count == 0)
 		{
 			ErrorDialog_PuzzleIsNotBugMultipleGrid.IsOpen = true;
 			return;
 		}
 
-		BasePage.VisualUnit = new TrueCandidateVisualUnit(
-			[.. from candidate in trueCandidates select new CandidateViewNode(WellKnownColorIdentifierKind.Assignment, candidate)]
-		);
-
-
-		CandidateMap getTrueCandidates()
-		{
-			lock (AnalyzingRelatedSyncRoot)
-			{
-				return TrueCandidatesSearcher.GetAllTrueCandidates(puzzle);
-			}
-		}
+		BasePage.VisualUnit = new TrueCandidateVisualUnit([
+			..
+			from candidate in trueCandidates
+			select new CandidateViewNode(WellKnownColorIdentifierKind.Assignment, candidate)
+		]);
 	}
 }
 
