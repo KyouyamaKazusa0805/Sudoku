@@ -21,7 +21,7 @@ public sealed partial class BabaGroupViewNode(
 	/// Indicates the cell string.
 	/// </summary>
 	[StringMember(nameof(Cell))]
-	private string CellString => CellConceptNotation.ToString(Cell);
+	private string CellString => CellNotation.ToString(Cell);
 
 	/// <summary>
 	/// Indicates the digits mask string.

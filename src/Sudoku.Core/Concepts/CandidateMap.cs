@@ -62,7 +62,7 @@ public partial struct CandidateMap :
 		this = Empty;
 		foreach (var segment in segments)
 		{
-			this |= CandidateConceptNotation.ParseCollection(segment);
+			this |= CandidateNotation.ParseCollection(segment);
 		}
 	}
 
@@ -107,7 +107,7 @@ public partial struct CandidateMap :
 			return this switch
 			{
 				{ _count: 0 } => [],
-				[var a] => [CandidateConceptNotation.ToString(a)],
+				[var a] => [CandidateNotation.ToString(a)],
 				_ => f(Offsets)
 			};
 
@@ -128,7 +128,7 @@ public partial struct CandidateMap :
 						cells.Add(candidate / 9);
 					}
 
-					sb.Append(CellConceptNotation.ToCollectionString(cells));
+					sb.Append(CellNotation.ToCollectionString(cells));
 					sb.Append('(');
 					sb.Append(digitGroup.Key + 1);
 					sb.Append(')');
@@ -269,7 +269,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => CandidateConceptNotation.ToCollectionString(this);
+	public override readonly string ToString() => CandidateNotation.ToCollectionString(this);
 
 	/// <summary>
 	/// Gets <see cref="string"/> representation of the current <see cref="CandidateMap"/> instance, using pre-defined formatters.
@@ -524,7 +524,7 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	public static CandidateMap Parse(string str) => CandidateConceptNotation.ParseCollection(str);
+	public static CandidateMap Parse(string str) => CandidateNotation.ParseCollection(str);
 
 	/// <inheritdoc/>
 	static bool IParsable<CandidateMap>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CandidateMap result)
@@ -789,7 +789,7 @@ file sealed class Converter : JsonConverter<CandidateMap>
 		var parts = Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
 		foreach (var part in parts)
 		{
-			result |= CandidateConceptNotation.ParseCollection(part);
+			result |= CandidateNotation.ParseCollection(part);
 		}
 
 		return result;

@@ -3,7 +3,7 @@ namespace Sudoku.Text;
 /// <summary>
 /// Represents a notation that represents for a candidate or a list of candidates.
 /// </summary>
-public sealed class CandidateConceptNotation : ISudokuConceptNotation<CandidateConceptNotation, CandidateMap, Candidate, CandidateNotationKind>
+public sealed class CandidateNotation : INotation<CandidateNotation, CandidateMap, Candidate, CandidateNotationKind>
 {
 	/// <summary>
 	/// Try to parse the specified text, converting it into the target candidate value via RxCy Notation rule.
@@ -149,7 +149,7 @@ public sealed class CandidateConceptNotation : ISudokuConceptNotation<CandidateC
 					var cells = CellMap.Empty;
 					foreach (var match in NotationPatterns.CellOrCellListPattern_RxCy().Matches(s).Cast<Match>())
 					{
-						cells |= CellConceptNotation.ParseCollection(match.Value);
+						cells |= CellNotation.ParseCollection(match.Value);
 					}
 
 					var digits = s[..s.IndexOf('{')];
@@ -180,7 +180,7 @@ public sealed class CandidateConceptNotation : ISudokuConceptNotation<CandidateC
 					var cells = CellMap.Empty;
 					foreach (var match in NotationPatterns.CellOrCellListPattern_RxCy().Matches(s).Cast<Match>())
 					{
-						cells |= CellConceptNotation.ParseCollection(match.Value);
+						cells |= CellNotation.ParseCollection(match.Value);
 					}
 
 					var digits = s[(s.IndexOf('(') + 1)..s.IndexOf(')')];
@@ -283,7 +283,7 @@ public sealed class CandidateConceptNotation : ISudokuConceptNotation<CandidateC
 						cells.Add(candidate / 9);
 					}
 
-					sb.Append(CellConceptNotation.ToCollectionString(cells));
+					sb.Append(CellNotation.ToCollectionString(cells));
 					sb.Append('(');
 					sb.Append(digitGroup.Key + 1);
 					sb.Append(')');

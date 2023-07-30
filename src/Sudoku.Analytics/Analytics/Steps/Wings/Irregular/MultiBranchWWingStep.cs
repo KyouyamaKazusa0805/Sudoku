@@ -35,9 +35,9 @@ public sealed partial class MultiBranchWWingStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [LeavesStr, RootStr, HouseStr]), new(ChineseLanguage, [RootStr, HouseStr, LeavesStr])];
 
-	private string LeavesStr => CellConceptNotation.ToCollectionString(Leaves);
+	private string LeavesStr => CellNotation.ToCollectionString(Leaves);
 
-	private string RootStr => CellConceptNotation.ToCollectionString(Root);
+	private string RootStr => CellNotation.ToCollectionString(Root);
 
 	private string HouseStr => HouseFormatter.Format(House);
 }

@@ -20,7 +20,7 @@ public sealed partial class CellViewNode(ColorIdentifier identifier, [PrimaryCon
 	/// Indicates the cell string.
 	/// </summary>
 	[StringMember(nameof(Cell))]
-	private string CellString => CellConceptNotation.ToString(Cell);
+	private string CellString => CellNotation.ToString(Cell);
 
 
 	[DeconstructionMethod]

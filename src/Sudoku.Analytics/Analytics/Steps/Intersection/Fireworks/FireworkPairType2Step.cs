@@ -31,7 +31,7 @@ public sealed partial class FireworkPairType2Step(
 			new(ChineseLanguage, [Firework1Str, Firework2Str, DigitsStr, ExtraCellStr])
 		];
 
-	private string ExtraCellStr => CellConceptNotation.ToString(ExtraCell);
+	private string ExtraCellStr => CellNotation.ToString(ExtraCell);
 
 	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 

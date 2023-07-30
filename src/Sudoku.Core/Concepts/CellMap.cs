@@ -81,7 +81,7 @@ public unsafe partial struct CellMap :
 		this = Empty;
 		foreach (var segment in segments)
 		{
-			this |= CellConceptNotation.ParseCollection(segment);
+			this |= CellNotation.ParseCollection(segment);
 		}
 	}
 
@@ -943,7 +943,7 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap Parse(string str) => CellConceptNotation.ParseCollection(str);
+	public static CellMap Parse(string str) => CellNotation.ParseCollection(str);
 
 	/// <inheritdoc/>
 	static bool IParsable<CellMap>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CellMap result)
@@ -1165,7 +1165,7 @@ file sealed class Converter : JsonConverter<CellMap>
 		var parts = Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
 		foreach (var part in parts)
 		{
-			result |= CellConceptNotation.ParseCollection(part);
+			result |= CellNotation.ParseCollection(part);
 		}
 
 		return result;

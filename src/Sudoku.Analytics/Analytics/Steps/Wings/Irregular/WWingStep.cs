@@ -26,9 +26,9 @@ public sealed partial class WWingStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [StartCellStr, EndCellStr, ConjStr]), new(ChineseLanguage, [StartCellStr, EndCellStr, ConjStr])];
 
-	private string StartCellStr => CellConceptNotation.ToString(StartCell);
+	private string StartCellStr => CellNotation.ToString(StartCell);
 
-	private string EndCellStr => CellConceptNotation.ToString(EndCell);
+	private string EndCellStr => CellNotation.ToString(EndCell);
 
 	private string ConjStr => ConjugatePair.ToString();
 }

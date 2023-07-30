@@ -30,7 +30,7 @@ public sealed partial class ForcingChainStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [CandStr, OnOffStr]), new(ChineseLanguage, [CandStr, OnOffStrZhCn])];
 
-	private string CandStr => CandidateConceptNotation.ToString(Target.Candidate);
+	private string CandStr => CandidateNotation.ToString(Target.Candidate);
 
 	private string OnOffStr => Target.IsOn.ToString().ToLower();
 

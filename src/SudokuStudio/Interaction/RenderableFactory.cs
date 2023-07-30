@@ -204,7 +204,7 @@ internal static class RenderableFactory
 				var control = new Border
 				{
 					BorderThickness = new(0),
-					Tag = $"{nameof(RenderableFactory)}: cell {CellConceptNotation.ToString(cell)}",
+					Tag = $"{nameof(RenderableFactory)}: cell {CellNotation.ToString(cell)}",
 					Opacity = 0,
 					Background = new SolidColorBrush(IdentifierConversion.GetColor(id))
 				};
@@ -250,7 +250,7 @@ internal static class RenderableFactory
 					=> new T
 					{
 						BorderThickness = new(0),
-						Tag = $"{nameof(RenderableFactory)}: cell {CellConceptNotation.ToString(cell)}",
+						Tag = $"{nameof(RenderableFactory)}: cell {CellNotation.ToString(cell)}",
 						Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 						Opacity = 0,
 						Margin = new(6)
@@ -324,7 +324,7 @@ internal static class RenderableFactory
 			HorizontalAlignment = HorizontalAlignment.Center,
 			VerticalAlignment = VerticalAlignment.Center,
 			Fill = new SolidColorBrush(color),
-			Tag = $"{nameof(RenderableFactory)}: candidate {CandidateConceptNotation.ToString(candidate)}",
+			Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
 			Opacity = paneCellControl.BasePane.EnableAnimationFeedback ? 0 : 1
 		};
 
@@ -488,7 +488,7 @@ internal static class RenderableFactory
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
-			Tag = $"{nameof(RenderableFactory)}: baba group {CellConceptNotation.ToString(cell)}, {@char}",
+			Tag = $"{nameof(RenderableFactory)}: baba group {CellNotation.ToString(cell)}, {@char}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : 1,
 			Child = new TextBlock
 			{

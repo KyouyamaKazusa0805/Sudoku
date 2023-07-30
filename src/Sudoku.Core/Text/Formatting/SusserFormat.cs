@@ -177,7 +177,7 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 			}
 		}
 
-		var elimsStr = CandidateConceptNotation.ToCollectionString(eliminatedCandidates, CandidateNotationKind.HodokuTriplet);
+		var elimsStr = CandidateNotation.ToCollectionString(eliminatedCandidates, CandidateNotationKind.HodokuTriplet);
 		var @base = sb.ToStringAndClear();
 		return ShortenSusser
 			? shorten(@base, Placeholder)

@@ -20,10 +20,10 @@ public sealed record RxCyFormat : ICellMapFormatter, ICandidateMapFormatter
 
 
 	/// <inheritdoc/>
-	public string ToString(scoped in CellMap cellMap) => CellConceptNotation.ToCollectionString(cellMap);
+	public string ToString(scoped in CellMap cellMap) => CellNotation.ToCollectionString(cellMap);
 
 	/// <inheritdoc/>
-	public string ToString(scoped in CandidateMap candidateMap) => CandidateConceptNotation.ToCollectionString(candidateMap);
+	public string ToString(scoped in CandidateMap candidateMap) => CandidateNotation.ToCollectionString(candidateMap);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

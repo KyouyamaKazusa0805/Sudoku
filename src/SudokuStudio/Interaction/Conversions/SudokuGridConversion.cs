@@ -75,7 +75,7 @@ internal static class SudokuGridConversion
 		{
 			return string.Format(
 				GetString("AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved"),
-				CandidateConceptNotation.ToString(firstCandidateMakePuzzleNotMinimal)
+				CandidateNotation.ToString(firstCandidateMakePuzzleNotMinimal)
 			);
 		}
 

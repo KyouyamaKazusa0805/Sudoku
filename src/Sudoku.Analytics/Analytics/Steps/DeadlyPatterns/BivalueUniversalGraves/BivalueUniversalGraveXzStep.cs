@@ -30,5 +30,5 @@ public sealed partial class BivalueUniversalGraveXzStep(
 
 	private string CellsStr => Cells.ToString();
 
-	private string ExtraCellStr => CellConceptNotation.ToString(XzCell);
+	private string ExtraCellStr => CellNotation.ToString(XzCell);
 }

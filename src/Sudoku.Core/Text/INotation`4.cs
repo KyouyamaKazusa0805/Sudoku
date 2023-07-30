@@ -4,17 +4,17 @@ namespace Sudoku.Text;
 /// Represents a type that defines for various of sudoku notation, for collections.
 /// </summary>
 /// <typeparam name="TSelf">
-/// <inheritdoc cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}" path="/typeparam[@name='TSelf']"/>
+/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}" path="/typeparam[@name='TSelf']"/>
 /// </typeparam>
 /// <typeparam name="TCollection">The type of the collection of elements of type <typeparamref name="TElement"/>.</typeparam>
 /// <typeparam name="TElement">
 /// The type of the element after or before parsing, stored in the collection of type <typeparamref name="TCollection"/>.
 /// </typeparam>
 /// <typeparam name="TConceptKindPresenter">
-/// <inheritdoc cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}" path="/typeparam[@name='TConceptKindPresenter']"/>
+/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}" path="/typeparam[@name='TConceptKindPresenter']"/>
 /// </typeparam>
-public interface ISudokuConceptNotation<TSelf, TCollection, TElement, TConceptKindPresenter> : ISudokuConceptNotation<TSelf, TElement, TConceptKindPresenter>
-	where TSelf : notnull, ISudokuConceptNotation<TSelf, TElement, TConceptKindPresenter>
+public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter> : INotation<TSelf, TElement, TConceptKindPresenter>
+	where TSelf : notnull, INotation<TSelf, TElement, TConceptKindPresenter>
 	where TCollection : notnull, IEnumerable<TElement>, ISimpleParsable<TCollection>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TConceptKindPresenter : unmanaged, Enum
@@ -25,13 +25,13 @@ public interface ISudokuConceptNotation<TSelf, TCollection, TElement, TConceptKi
 	/// </summary>
 	/// <param name="text">
 	/// <inheritdoc
-	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)"
+	///     cref="INotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)"
 	///     path="/param[@name='text']"/>
 	/// </param>
 	/// <param name="notation">The notation kind to be used.</param>
 	/// <returns>
 	/// <inheritdoc
-	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)"
+	///     cref="INotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)"
 	///     path="/returns"/>
 	/// </returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
@@ -42,17 +42,17 @@ public interface ISudokuConceptNotation<TSelf, TCollection, TElement, TConceptKi
 	/// </summary>
 	/// <param name="collection">
 	/// <inheritdoc
-	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"
+	///     cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"
 	///     path="/param[@name='value']"/>
 	/// </param>
 	/// <param name="notation">
 	/// <inheritdoc
-	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"
+	///     cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"
 	///     path="/param[@name='notation']"/>
 	/// </param>
 	/// <returns>
 	/// <inheritdoc
-	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"
+	///     cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"
 	///     path="/returns"/>
 	/// </returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>

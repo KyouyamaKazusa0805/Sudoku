@@ -3,7 +3,7 @@ namespace Sudoku.Text;
 /// <summary>
 /// Represents a notation that represents for a cell or a list of cells.
 /// </summary>
-public sealed class CellConceptNotation : ISudokuConceptNotation<CellConceptNotation, CellMap, Cell, CellNotationKind>
+public sealed class CellNotation : INotation<CellNotation, CellMap, Cell, CellNotationKind>
 {
 	/// <summary>
 	/// Try to parse the specified text, converting it into the target cell value via RxCy Notation rule.

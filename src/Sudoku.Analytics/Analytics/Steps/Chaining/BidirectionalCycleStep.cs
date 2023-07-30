@@ -30,7 +30,7 @@ public sealed partial class BidirectionalCycleStep(
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts => [new(EnglishLanguage, [CandsStr]), new(ChineseLanguage, [CandsStr])];
 
-	private string CandsStr => CandidateConceptNotation.ToCollectionString([.. from element in Conclusions select element.Candidate]);
+	private string CandsStr => CandidateNotation.ToCollectionString([.. from element in Conclusions select element.Candidate]);
 
 
 	/// <inheritdoc/>

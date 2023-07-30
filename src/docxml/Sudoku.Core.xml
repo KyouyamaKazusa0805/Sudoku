@@ -5380,53 +5380,53 @@ if (student is (name: var name, age: >= 18))
 		</summary>
 	</static-constructor>
         </member>
-        <member name="T:Sudoku.Text.CandidateConceptNotation">
+        <member name="T:Sudoku.Text.CandidateNotation">
             <summary>
             Represents a notation that represents for a candidate or a list of candidates.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.CandidateConceptNotation.Parse(System.String)">
+        <member name="M:Sudoku.Text.CandidateNotation.Parse(System.String)">
             <summary>
             Try to parse the specified text, converting it into the target candidate value via RxCy Notation rule.
             </summary>
-            <param name="text"><inheritdoc cref="M:Sudoku.Text.CandidateConceptNotation.Parse(System.String,Sudoku.Text.CandidateNotationKind)" path="/param[@name='text']"/></param>
-            <returns><inheritdoc cref="M:Sudoku.Text.CandidateConceptNotation.Parse(System.String,Sudoku.Text.CandidateNotationKind)" path="/returns"/></returns>
+            <param name="text"><inheritdoc cref="M:Sudoku.Text.CandidateNotation.Parse(System.String,Sudoku.Text.CandidateNotationKind)" path="/param[@name='text']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Text.CandidateNotation.Parse(System.String,Sudoku.Text.CandidateNotationKind)" path="/returns"/></returns>
             <seealso cref="F:Sudoku.Text.CandidateNotationKind.RxCy"/>
         </member>
-        <member name="M:Sudoku.Text.CandidateConceptNotation.Parse(System.String,Sudoku.Text.CandidateNotationKind)">
+        <member name="M:Sudoku.Text.CandidateNotation.Parse(System.String,Sudoku.Text.CandidateNotationKind)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.CandidateConceptNotation.ParseCollection(System.String)">
+        <member name="M:Sudoku.Text.CandidateNotation.ParseCollection(System.String)">
             <summary>
             Try to parse the specified text using basic parsing rule, converting it into a collection of type <see cref="T:Sudoku.Concepts.CandidateMap"/>.
             </summary>
             <param name="text">The text to be parsed.</param>
             <returns>The target result instance of type <see cref="T:Sudoku.Concepts.CandidateMap"/>.</returns>
         </member>
-        <member name="M:Sudoku.Text.CandidateConceptNotation.ParseCollection(System.String,Sudoku.Text.CandidateNotationKind)">
+        <member name="M:Sudoku.Text.CandidateNotation.ParseCollection(System.String,Sudoku.Text.CandidateNotationKind)">
             <inheritdoc/>
             <exception cref="T:System.NotSupportedException">
             Throws when the argument <paramref name="notation"/> is <see cref="F:Sudoku.Text.CandidateNotationKind.K9"/>.
             </exception>
         </member>
-        <member name="M:Sudoku.Text.CandidateConceptNotation.ToString(System.Int32)">
+        <member name="M:Sudoku.Text.CandidateNotation.ToString(System.Int32)">
             <summary>
             Gets the text notation that can represent the specified value.
             </summary>
             <param name="value">The value.</param>
-            <returns><inheritdoc cref="M:Sudoku.Text.CandidateConceptNotation.ToString(System.Int32,Sudoku.Text.CandidateNotationKind)" path="/returns"/></returns>
+            <returns><inheritdoc cref="M:Sudoku.Text.CandidateNotation.ToString(System.Int32,Sudoku.Text.CandidateNotationKind)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Text.CandidateConceptNotation.ToString(System.Int32,Sudoku.Text.CandidateNotationKind)">
+        <member name="M:Sudoku.Text.CandidateNotation.ToString(System.Int32,Sudoku.Text.CandidateNotationKind)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.CandidateConceptNotation.ToCollectionString(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Text.CandidateNotation.ToCollectionString(Sudoku.Concepts.CandidateMap@)">
             <summary>
             Gets the text notation that can represent the specified collection.
             </summary>
-            <param name="collection"><inheritdoc cref="M:Sudoku.Text.CandidateConceptNotation.ToString(System.Int32)" path="/param[@name='value']"/></param>
-            <returns><inheritdoc cref="M:Sudoku.Text.CandidateConceptNotation.ToString(System.Int32)" path="/returns"/></returns>
+            <param name="collection"><inheritdoc cref="M:Sudoku.Text.CandidateNotation.ToString(System.Int32)" path="/param[@name='value']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Text.CandidateNotation.ToString(System.Int32)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Text.CandidateConceptNotation.ToCollectionString(Sudoku.Concepts.CandidateMap@,Sudoku.Text.CandidateNotationKind)">
+        <member name="M:Sudoku.Text.CandidateNotation.ToCollectionString(Sudoku.Concepts.CandidateMap@,Sudoku.Text.CandidateNotationKind)">
             <inheritdoc/>
             <exception cref="T:System.NotSupportedException">Throws when <paramref name="notation"/> is <see cref="F:Sudoku.Text.CandidateNotationKind.K9"/>.</exception>
         </member>
@@ -5474,50 +5474,50 @@ if (student is (name: var name, age: >= 18))
             For example, <c>123</c> means digit 1 in the cell at the row 2 and column 3.
             </remarks>
         </member>
-        <member name="T:Sudoku.Text.CellConceptNotation">
+        <member name="T:Sudoku.Text.CellNotation">
             <summary>
             Represents a notation that represents for a cell or a list of cells.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.CellConceptNotation.Parse(System.String)">
+        <member name="M:Sudoku.Text.CellNotation.Parse(System.String)">
             <summary>
             Try to parse the specified text, converting it into the target cell value via RxCy Notation rule.
             </summary>
-            <param name="text"><inheritdoc cref="M:Sudoku.Text.CellConceptNotation.Parse(System.String,Sudoku.Text.CellNotationKind)" path="/param[@name='text']"/></param>
-            <returns><inheritdoc cref="M:Sudoku.Text.CellConceptNotation.Parse(System.String,Sudoku.Text.CellNotationKind)" path="/returns"/></returns>
+            <param name="text"><inheritdoc cref="M:Sudoku.Text.CellNotation.Parse(System.String,Sudoku.Text.CellNotationKind)" path="/param[@name='text']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Text.CellNotation.Parse(System.String,Sudoku.Text.CellNotationKind)" path="/returns"/></returns>
             <seealso cref="F:Sudoku.Text.CellNotationKind.RxCy"/>
         </member>
-        <member name="M:Sudoku.Text.CellConceptNotation.Parse(System.String,Sudoku.Text.CellNotationKind)">
+        <member name="M:Sudoku.Text.CellNotation.Parse(System.String,Sudoku.Text.CellNotationKind)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.CellConceptNotation.ParseCollection(System.String)">
+        <member name="M:Sudoku.Text.CellNotation.ParseCollection(System.String)">
             <summary>
             Try to parse the specified text using basic parsing rule, converting it into a collection of type <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
             <param name="text">The text to be parsed.</param>
             <returns>The target result instance of type <see cref="T:Sudoku.Concepts.CellMap"/>.</returns>
         </member>
-        <member name="M:Sudoku.Text.CellConceptNotation.ParseCollection(System.String,Sudoku.Text.CellNotationKind)">
+        <member name="M:Sudoku.Text.CellNotation.ParseCollection(System.String,Sudoku.Text.CellNotationKind)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.CellConceptNotation.ToString(System.Int32)">
+        <member name="M:Sudoku.Text.CellNotation.ToString(System.Int32)">
             <summary>
             Gets the text notation that can represent the specified value.
             </summary>
             <param name="value">The value.</param>
-            <returns><inheritdoc cref="M:Sudoku.Text.CellConceptNotation.ToString(System.Int32,Sudoku.Text.CellNotationKind)" path="/returns"/></returns>
+            <returns><inheritdoc cref="M:Sudoku.Text.CellNotation.ToString(System.Int32,Sudoku.Text.CellNotationKind)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Text.CellConceptNotation.ToString(System.Int32,Sudoku.Text.CellNotationKind)">
+        <member name="M:Sudoku.Text.CellNotation.ToString(System.Int32,Sudoku.Text.CellNotationKind)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.CellConceptNotation.ToCollectionString(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Text.CellNotation.ToCollectionString(Sudoku.Concepts.CellMap@)">
             <summary>
             Gets the text notation that can represent the specified collection.
             </summary>
-            <param name="collection"><inheritdoc cref="M:Sudoku.Text.CellConceptNotation.ToString(System.Int32)" path="/param[@name='value']"/></param>
-            <returns><inheritdoc cref="M:Sudoku.Text.CellConceptNotation.ToString(System.Int32)" path="/returns"/></returns>
+            <param name="collection"><inheritdoc cref="M:Sudoku.Text.CellNotation.ToString(System.Int32)" path="/param[@name='value']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Text.CellNotation.ToString(System.Int32)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Text.CellConceptNotation.ToCollectionString(Sudoku.Concepts.CellMap@,Sudoku.Text.CellNotationKind)">
+        <member name="M:Sudoku.Text.CellNotation.ToCollectionString(Sudoku.Concepts.CellMap@,Sudoku.Text.CellNotationKind)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.CellNotationKind">
@@ -6679,22 +6679,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Formatting.SusserFormatTreatingValuesAsGivens.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.IOptionProvider`4">
-            <summary>
-            Represents for an option provider instance.
-            </summary>
-            <typeparam name="TSelf">The type of the option provider itself.</typeparam>
-            <typeparam name="TCollection">
-            <inheritdoc cref="T:Sudoku.Text.ISudokuConceptNotation`4" path="/typeparam[@name='TCollection']"/>
-            </typeparam>
-            <typeparam name="TElement">
-            <inheritdoc cref="T:Sudoku.Text.ISudokuConceptNotation`4" path="/typeparam[@name='TElement']"/>
-            </typeparam>
-            <typeparam name="TConceptKindPresenter">
-            <inheritdoc cref="T:Sudoku.Text.ISudokuConceptNotation`4" path="/typeparam[@name='TConceptKindPresenter']"/>
-            </typeparam>
-        </member>
-        <member name="T:Sudoku.Text.ISudokuConceptNotation`3">
+        <member name="T:Sudoku.Text.INotation`3">
             <summary>
             Represents a type that defines for various of sudoku notation.
             </summary>
@@ -6702,7 +6687,7 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="TElement">The type of the element after or before parsing.</typeparam>
             <typeparam name="TConceptKindPresenter">The type of the concept kind presenter.</typeparam>
         </member>
-        <member name="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)">
+        <member name="M:Sudoku.Text.INotation`3.Parse(System.String,`2)">
             <summary>
             Try to parse the specified text, converting it into the target cell value via the specified notation kind.
             </summary>
@@ -6712,193 +6697,192 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.InvalidOperationException">Throws when the argument <paramref name="text"/> cannot be parsed.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
         </member>
-        <member name="M:Sudoku.Text.ISudokuConceptNotation`3.ToString(`1,`2)">
+        <member name="M:Sudoku.Text.INotation`3.ToString(`1,`2)">
             <summary>
             Gets the text notation that can represent the specified value via the specified notation kind.
             </summary>
             <param name="value">The value.</param>
             <param name="notation">
-            <inheritdoc cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)" path="/param[@name='notation']"/>
+            <inheritdoc cref="M:Sudoku.Text.INotation`3.Parse(System.String,`2)" path="/param[@name='notation']"/>
             </param>
             <returns>The string representation of the value.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
         </member>
-        <member name="T:Sudoku.Text.ISudokuConceptNotation`4">
+        <member name="T:Sudoku.Text.INotation`4">
             <summary>
             Represents a type that defines for various of sudoku notation, for collections.
             </summary>
             <typeparam name="TSelf">
-            <inheritdoc cref="T:Sudoku.Text.ISudokuConceptNotation`3" path="/typeparam[@name='TSelf']"/>
+            <inheritdoc cref="T:Sudoku.Text.INotation`3" path="/typeparam[@name='TSelf']"/>
             </typeparam>
             <typeparam name="TCollection">The type of the collection of elements of type <typeparamref name="TElement"/>.</typeparam>
             <typeparam name="TElement">
             The type of the element after or before parsing, stored in the collection of type <typeparamref name="TCollection"/>.
             </typeparam>
             <typeparam name="TConceptKindPresenter">
-            <inheritdoc cref="T:Sudoku.Text.ISudokuConceptNotation`3" path="/typeparam[@name='TConceptKindPresenter']"/>
+            <inheritdoc cref="T:Sudoku.Text.INotation`3" path="/typeparam[@name='TConceptKindPresenter']"/>
             </typeparam>
         </member>
-        <member name="M:Sudoku.Text.ISudokuConceptNotation`4.ParseCollection(System.String,`3)">
+        <member name="M:Sudoku.Text.INotation`4.ParseCollection(System.String,`3)">
             <summary>
             Try to parse the specified text using the specified kind of the notation rule,
             converting it into a collection of type <typeparamref name="TCollection"/>.
             </summary>
             <param name="text">
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
+                cref="M:Sudoku.Text.INotation`3.Parse(System.String,`2)"
                 path="/param[@name='text']"/>
             </param>
             <param name="notation">The notation kind to be used.</param>
             <returns>
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
+                cref="M:Sudoku.Text.INotation`3.Parse(System.String,`2)"
                 path="/returns"/>
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
         </member>
-        <member name="M:Sudoku.Text.ISudokuConceptNotation`4.ToCollectionString(`1@,`3)">
+        <member name="M:Sudoku.Text.INotation`4.ToCollectionString(`1@,`3)">
             <summary>
             Gets the text notation that can represent the specified collection via the specified notation kind.
             </summary>
             <param name="collection">
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.ToString(`1,`2)"
+                cref="M:Sudoku.Text.INotation`3.ToString(`1,`2)"
                 path="/param[@name='value']"/>
             </param>
             <param name="notation">
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.ToString(`1,`2)"
+                cref="M:Sudoku.Text.INotation`3.ToString(`1,`2)"
                 path="/param[@name='notation']"/>
             </param>
             <returns>
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.ToString(`1,`2)"
+                cref="M:Sudoku.Text.INotation`3.ToString(`1,`2)"
                 path="/returns"/>
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
         </member>
-        <member name="T:Sudoku.Text.ISudokuConceptNotation`5">
+        <member name="T:Sudoku.Text.INotation`5">
             <summary>
             Represents a type that defines for various of sudoku notation, with option provider.
             </summary>
             <typeparam name="TSelf">
-            <inheritdoc cref="T:Sudoku.Text.ISudokuConceptNotation`3" path="/typeparam[@name='TSelf']"/>
+            <inheritdoc cref="T:Sudoku.Text.INotation`3" path="/typeparam[@name='TSelf']"/>
             </typeparam>
             <typeparam name="TCollection">
-            <inheritdoc cref="T:Sudoku.Text.ISudokuConceptNotation`4" path="/typeparam[@name='TCollection']"/>
+            <inheritdoc cref="T:Sudoku.Text.INotation`4" path="/typeparam[@name='TCollection']"/>
             </typeparam>
             <typeparam name="TElement">
             The type of the element after or before parsing, stored in the collection of type <typeparamref name="TCollection"/>.
             </typeparam>
             <typeparam name="TConceptKindPresenter">
-            <inheritdoc cref="T:Sudoku.Text.ISudokuConceptNotation`3" path="/typeparam[@name='TConceptKindPresenter']"/>
+            <inheritdoc cref="T:Sudoku.Text.INotation`3" path="/typeparam[@name='TConceptKindPresenter']"/>
             </typeparam>
             <typeparam name="TOptionProvider">
             The type of the option provider. The type should be a <see langword="record struct"/> or a normal <see langword="struct"/>
             in order to allow using <see langword="with"/> expressions.
             </typeparam>
         </member>
-        <member name="M:Sudoku.Text.ISudokuConceptNotation`5.Parse(System.String,`3,`4@)">
+        <member name="M:Sudoku.Text.INotation`5.Parse(System.String,`3,`4@)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)" path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Text.INotation`3.Parse(System.String,`2)" path="/summary"/>
             </summary>
             <param name="text">
-            <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
-                path="/param[@name='text']"/>
+            <inheritdoc cref="M:Sudoku.Text.INotation`3.Parse(System.String,`2)" path="/param[@name='text']"/>
             </param>
             <param name="notation">
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
+                cref="M:Sudoku.Text.INotation`3.Parse(System.String,`2)"
                 path="/param[@name='notation']"/>
             </param>
             <param name="option">The options to be used as extra controls.</param>
             <returns>
-            <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
-                path="/returns"/>
+            <inheritdoc cref="M:Sudoku.Text.INotation`3.Parse(System.String,`2)" path="/returns"/>
             </returns>
         </member>
-        <member name="M:Sudoku.Text.ISudokuConceptNotation`5.ParseCollection(System.String,`3,`4@)">
+        <member name="M:Sudoku.Text.INotation`5.ParseCollection(System.String,`3,`4@)">
             <summary>
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`4.ParseCollection(System.String,`3)"
+                cref="M:Sudoku.Text.INotation`4.ParseCollection(System.String,`3)"
                 path="/summary"/>
             </summary>
             <param name="text">
-            <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
-                path="/param[@name='text']"/>
+            <inheritdoc cref="M:Sudoku.Text.INotation`3.Parse(System.String,`2)" path="/param[@name='text']"/>
             </param>
             <param name="notation">
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
+                cref="M:Sudoku.Text.INotation`3.Parse(System.String,`2)"
                 path="/param[@name='notation']"/>
             </param>
             <param name="option">
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`5.Parse(System.String,`3,`4@)"
+                cref="M:Sudoku.Text.INotation`5.Parse(System.String,`3,`4@)"
                 path="/param[@name='option']"/>
             </param>
             <returns>
-            <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
-                path="/returns"/>
+            <inheritdoc cref="M:Sudoku.Text.INotation`3.Parse(System.String,`2)" path="/returns"/>
             </returns>
         </member>
-        <member name="M:Sudoku.Text.ISudokuConceptNotation`5.ToString(`2,`3,`4@)">
+        <member name="M:Sudoku.Text.INotation`5.ToString(`2,`3,`4@)">
             <summary>
-            <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.ToString(`1,`2)"
-                path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Text.INotation`3.ToString(`1,`2)" path="/summary"/>
             </summary>
             <param name="value">
-            <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.ToString(`1,`2)"
-                path="/param[@name='value']"/>
+            <inheritdoc cref="M:Sudoku.Text.INotation`3.ToString(`1,`2)" path="/param[@name='value']"/>
             </param>
             <param name="notation">
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.ToString(`1,`2)"
+                cref="M:Sudoku.Text.INotation`3.ToString(`1,`2)"
                 path="/param[@name='notation']"/>
             </param>
             <param name="option">
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`5.Parse(System.String,`3,`4@)"
+                cref="M:Sudoku.Text.INotation`5.Parse(System.String,`3,`4@)"
                 path="/param[@name='option']"/>
             </param>
             <returns>
-            <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
-                path="/returns"/>
+            <inheritdoc cref="M:Sudoku.Text.INotation`3.Parse(System.String,`2)" path="/returns"/>
             </returns>
         </member>
-        <member name="M:Sudoku.Text.ISudokuConceptNotation`5.ToCollectionString(`1@,`3,`4@)">
+        <member name="M:Sudoku.Text.INotation`5.ToCollectionString(`1@,`3,`4@)">
             <summary>
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`4.ToCollectionString(`1@,`3)"
+                cref="M:Sudoku.Text.INotation`4.ToCollectionString(`1@,`3)"
                 path="/summary"/>
             </summary>
             <param name="collection">
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`4.ToCollectionString(`1@,`3)"
+                cref="M:Sudoku.Text.INotation`4.ToCollectionString(`1@,`3)"
                 path="/param[@name='collection']"/>
             </param>
             <param name="notation">
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.ToString(`1,`2)"
+                cref="M:Sudoku.Text.INotation`3.ToString(`1,`2)"
                 path="/param[@name='notation']"/>
             </param>
             <param name="option">
             <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`5.Parse(System.String,`3,`4@)"
+                cref="M:Sudoku.Text.INotation`5.Parse(System.String,`3,`4@)"
                 path="/param[@name='option']"/>
             </param>
             <returns>
-            <inheritdoc
-                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
-                path="/returns"/>
+            <inheritdoc cref="M:Sudoku.Text.INotation`3.Parse(System.String,`2)" path="/returns"/>
             </returns>
+        </member>
+        <member name="T:Sudoku.Text.IOptionProvider`4">
+            <summary>
+            Represents for an option provider instance.
+            </summary>
+            <typeparam name="TSelf">The type of the option provider itself.</typeparam>
+            <typeparam name="TCollection">
+            <inheritdoc cref="T:Sudoku.Text.INotation`4" path="/typeparam[@name='TCollection']"/>
+            </typeparam>
+            <typeparam name="TElement">
+            <inheritdoc cref="T:Sudoku.Text.INotation`4" path="/typeparam[@name='TElement']"/>
+            </typeparam>
+            <typeparam name="TConceptKindPresenter">
+            <inheritdoc cref="T:Sudoku.Text.INotation`4" path="/typeparam[@name='TConceptKindPresenter']"/>
+            </typeparam>
         </member>
         <member name="T:Sudoku.Text.NotationPatterns">
             <summary>
