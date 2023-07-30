@@ -5707,16 +5707,17 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the extended format.
             </summary>
+            <param name="format">Indicates the extended format.</param>
         </member>
         <member name="M:Sudoku.Text.Formatting.ExtendedFormatAttribute.#ctor(System.String)">
             <summary>
-            Initializes an <see cref="T:Sudoku.Text.Formatting.ExtendedFormatAttribute"/> instance via the format.
+            Indicates the extended format.
             </summary>
-            <param name="format">The format.</param>
+            <param name="format">Indicates the extended format.</param>
         </member>
         <member name="P:Sudoku.Text.Formatting.ExtendedFormatAttribute.Format">
             <summary>
-            Indicates the extended format.
+            The generated property declaration for parameter <c>format</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Text.Formatting.FormattingMode">
