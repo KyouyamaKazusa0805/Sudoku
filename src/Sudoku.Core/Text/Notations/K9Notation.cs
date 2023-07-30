@@ -19,7 +19,7 @@ namespace Sudoku.Text.Notations;
 /// <see href="http://sudopedia.enjoysudoku.com/K9.html">this link</see>.
 /// </para>
 /// </remarks>
-public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOptions>
+public sealed class K9Notation : ICellNotation<K9Notation, K9NotationOptions>
 {
 	/// <summary>
 	/// Indicates all possible letters that used in the row notation.
@@ -136,7 +136,7 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 	public static unsafe CellMap ParseCells(string str)
 	{
 		// Check whether the match is successful.
-		if (CellOrCellListPattern().Matches(str) is not { Count: not 0 } matches)
+		if (NotationPatterns.CellOrCellListPattern_K9().Matches(str) is not { Count: not 0 } matches)
 		{
 			throw new FormatException("The specified string can't match any cell instance.");
 		}
@@ -223,7 +223,4 @@ public sealed partial class K9Notation : ICellNotation<K9Notation, K9NotationOpt
 			return false;
 		}
 	}
-
-	[GeneratedRegex("""[A-IKa-ik]{1,9}[1-9]{1,9}""", RegexOptions.Compiled, 5000)]
-	private static partial Regex CellOrCellListPattern();
 }

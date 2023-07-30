@@ -5379,6 +5379,83 @@ if (student is (name: var name, age: >= 18))
 		</summary>
 	</static-constructor>
         </member>
+        <member name="T:Sudoku.Text.CellConceptNotation">
+            <summary>
+            Represents a notation that represents for a cell or a list of cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.CellConceptNotation.Parse(System.String)">
+            <summary>
+            Try to parse the specified text, converting it into the target cell value via RxCy Notation rule.
+            </summary>
+            <param name="text"><inheritdoc cref="M:Sudoku.Text.CellConceptNotation.Parse(System.String,Sudoku.Text.CellNotationKind)" path="/param[@name='text']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Text.CellConceptNotation.Parse(System.String,Sudoku.Text.CellNotationKind)" path="/returns"/></returns>
+            <seealso cref="F:Sudoku.Text.CellNotationKind.RxCy"/>
+        </member>
+        <member name="M:Sudoku.Text.CellConceptNotation.Parse(System.String,Sudoku.Text.CellNotationKind)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.CellConceptNotation.ParseCollection(System.String)">
+            <summary>
+            Try to parse the specified text using basic parsing rule, converting it into a collection of type <see cref="T:Sudoku.Concepts.CellMap"/>.
+            </summary>
+            <param name="text">The text to be parsed.</param>
+            <returns>The target result instance of type <see cref="T:Sudoku.Concepts.CellMap"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Text.CellConceptNotation.ParseCollection(System.String,Sudoku.Text.CellNotationKind)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.CellConceptNotation.ToString(System.Int32)">
+            <summary>
+            Gets the text notation that can represent the specified value.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>
+            <inheritdoc cref="M:Sudoku.Text.ISudokuNotation`3.ToString(`1,`2)" path="/returns"/>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Text.CellConceptNotation.ToString(System.Int32,Sudoku.Text.CellNotationKind)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.CellConceptNotation.ToCollectionString(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Gets the text notation that can represent the specified collection.
+            </summary>
+            <param name="collection"><inheritdoc cref="M:Sudoku.Text.CellConceptNotation.ToString(System.Int32)" path="/param[@name='value']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Text.CellConceptNotation.ToString(System.Int32)" path="/returns"/></returns>
+        </member>
+        <member name="M:Sudoku.Text.CellConceptNotation.ToCollectionString(Sudoku.Concepts.CellMap@,Sudoku.Text.CellNotationKind)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.CellNotationKind">
+            <summary>
+            Represents a kind of the cell notation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.CellNotationKind.RxCy">
+            <summary>
+            Indicates the cell notation is <see href="http://sudopedia.enjoysudoku.com/Rncn.html">RxCy Notation</see>.
+            </summary>
+            <remarks>
+            The <b>RxCy notation</b> is a notation to describe a set of cells that uses letter
+            <c>R</c> (or its lower case <c>r</c>) to describe a row label, and uses the other letter
+            <c>C</c> (or its lower case <c>c</c>) to describe a column label. For example,
+            <c>R4C2</c> means the cell at row 4 and column 2.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Text.CellNotationKind.K9">
+            <summary>
+            Indicates the cell notation is <see href="http://sudopedia.enjoysudoku.com/K9.html">K9 Notation</see>.
+            </summary>
+            <remarks>
+            The <b>K9 notation</b> is a notation to describe a set of cells that uses letters
+            A, B, C, D, E, F, G, H and K to describe the row, and uses digits 1 to 9 to describe the column.
+            For example, <c>C8</c> means the cell at row 3 and column 8.
+            The letter I and J aren't used in this notation because they are confusing with digit 1.
+            However, they can also be used in Chinese notations, for example, <c>K8</c> in traditional notation
+            is same as <c>I8</c> in Chinese K9 notation rule.
+            </remarks>
+        </member>
         <member name="T:Sudoku.Text.Formatting.CellMapBinaryFormat">
             <summary>
             Defines a formatter that formats a <see cref="T:Sudoku.Concepts.CellMap"/>, converting into a <see cref="T:System.String"/> of a list of binary value
@@ -6508,6 +6585,320 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Formatting.SusserFormatTreatingValuesAsGivens.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Text.IOptionProvider`4">
+            <summary>
+            Represents for an option provider instance.
+            </summary>
+            <typeparam name="TSelf">The type of the option provider itself.</typeparam>
+            <typeparam name="TCollection">
+            <inheritdoc cref="T:Sudoku.Text.ISudokuNotation`4" path="/typeparam[@name='TCollection']"/>
+            </typeparam>
+            <typeparam name="TElement">
+            <inheritdoc cref="T:Sudoku.Text.ISudokuNotation`4" path="/typeparam[@name='TElement']"/>
+            </typeparam>
+            <typeparam name="TConceptKindPresenter">
+            <inheritdoc cref="T:Sudoku.Text.ISudokuNotation`4" path="/typeparam[@name='TConceptKindPresenter']"/>
+            </typeparam>
+        </member>
+        <member name="T:Sudoku.Text.ISudokuNotation`3">
+            <summary>
+            Represents a type that defines for various of sudoku notation.
+            </summary>
+            <typeparam name="TSelf">The type of the implementation.</typeparam>
+            <typeparam name="TElement">The type of the element after or before parsing.</typeparam>
+            <typeparam name="TConceptKindPresenter">The type of the concept kind presenter.</typeparam>
+        </member>
+        <member name="M:Sudoku.Text.ISudokuNotation`3.Parse(System.String,`2)">
+            <summary>
+            Try to parse the specified text, converting it into the target cell value via the specified notation kind.
+            </summary>
+            <param name="text">The text to be parsed.</param>
+            <param name="notation">The notation that limits the conversion rule of the notation.</param>
+            <returns>The converted result.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the argument <paramref name="text"/> cannot be parsed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
+        </member>
+        <member name="M:Sudoku.Text.ISudokuNotation`3.ToString(`1,`2)">
+            <summary>
+            Gets the text notation that can represent the specified value via the specified notation kind.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="notation">
+            <inheritdoc cref="M:Sudoku.Text.ISudokuNotation`3.Parse(System.String,`2)" path="/param[@name='notation']"/>
+            </param>
+            <returns>The string representation of the value.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
+        </member>
+        <member name="T:Sudoku.Text.ISudokuNotation`4">
+            <summary>
+            Represents a type that defines for various of sudoku notation, for collections.
+            </summary>
+            <typeparam name="TSelf">
+            <inheritdoc cref="T:Sudoku.Text.ISudokuNotation`3" path="/typeparam[@name='TSelf']"/>
+            </typeparam>
+            <typeparam name="TCollection">The type of the collection of elements of type <typeparamref name="TElement"/>.</typeparam>
+            <typeparam name="TElement">
+            The type of the element after or before parsing, stored in the collection of type <typeparamref name="TCollection"/>.
+            </typeparam>
+            <typeparam name="TConceptKindPresenter">
+            <inheritdoc cref="T:Sudoku.Text.ISudokuNotation`3" path="/typeparam[@name='TConceptKindPresenter']"/>
+            </typeparam>
+        </member>
+        <member name="M:Sudoku.Text.ISudokuNotation`4.ParseCollection(System.String,`3)">
+            <summary>
+            Try to parse the specified text using the specified kind of the notation rule,
+            converting it into a collection of type <typeparamref name="TCollection"/>.
+            </summary>
+            <param name="text">
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuNotation`3.Parse(System.String,`2)"
+                path="/param[@name='text']"/>
+            </param>
+            <param name="notation">The notation kind to be used.</param>
+            <returns>
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuNotation`3.Parse(System.String,`2)"
+                path="/returns"/>
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
+        </member>
+        <member name="M:Sudoku.Text.ISudokuNotation`4.ToCollectionString(`1@,`3)">
+            <summary>
+            Gets the text notation that can represent the specified collection via the specified notation kind.
+            </summary>
+            <param name="collection">
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuNotation`3.ToString(`1,`2)"
+                path="/param[@name='value']"/>
+            </param>
+            <param name="notation">
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuNotation`3.ToString(`1,`2)"
+                path="/param[@name='notation']"/>
+            </param>
+            <returns>
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuNotation`3.ToString(`1,`2)"
+                path="/returns"/>
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
+        </member>
+        <member name="T:Sudoku.Text.ISudokuNotation`5">
+            <summary>
+            Represents a type that defines for various of sudoku notation, with option provider.
+            </summary>
+            <typeparam name="TSelf">
+            <inheritdoc cref="T:Sudoku.Text.ISudokuNotation`3" path="/typeparam[@name='TSelf']"/>
+            </typeparam>
+            <typeparam name="TCollection">
+            <inheritdoc cref="T:Sudoku.Text.ISudokuNotation`4" path="/typeparam[@name='TCollection']"/>
+            </typeparam>
+            <typeparam name="TElement">
+            The type of the element after or before parsing, stored in the collection of type <typeparamref name="TCollection"/>.
+            </typeparam>
+            <typeparam name="TConceptKindPresenter">
+            <inheritdoc cref="T:Sudoku.Text.ISudokuNotation`3" path="/typeparam[@name='TConceptKindPresenter']"/>
+            </typeparam>
+            <typeparam name="TOptionProvider">
+            The type of the option provider. The type should be a <see langword="record struct"/> or a normal <see langword="struct"/>
+            in order to allow using <see langword="with"/> expressions.
+            </typeparam>
+        </member>
+        <member name="T:Sudoku.Text.NotationPatterns">
+            <summary>
+            The extracted type that contains a list of methods that provides with patterns of the notations to be parsed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.NotationPatterns.CellOrCellListPattern_RxCy">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'R'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'C'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'r'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'c'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.NotationPatterns.CellOrCellListPattern_K9">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match a character in the set [A-IKa-ik] atomically at least 1 and at most 9 times.<br/>
+            ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.NotationPatterns.ComplexCellOrCellListPattern_RxCy">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match '{'.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'R'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'C'.<br/>
+                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'r'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'c'.<br/>
+                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+            ○ Optional (greedy).<br/>
+                ○ 2nd capture group.<br/>
+                    ○ Match ','.<br/>
+                    ○ Match a whitespace character atomically any number of times.<br/>
+                    ○ 3rd capture group.<br/>
+                        ○ Match with 2 alternative expressions.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match 'R'.<br/>
+                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                ○ Match 'C'.<br/>
+                                ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match 'r'.<br/>
+                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                ○ Match 'c'.<br/>
+                                ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match '}'.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.NotationPatterns.Candidates_PrepositionalFormPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'R'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'C'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'r'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'c'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.NotationPatterns.Candidates_PostpositionalFormPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'R'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'C'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'r'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'c'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+            ○ Match '('.<br/>
+            ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+            ○ Match ')'.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.NotationPatterns.Candidates_ComplexPrepositionalFormPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+            ○ Match '{'.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'R'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'C'.<br/>
+                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'r'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'c'.<br/>
+                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+            ○ Optional (greedy).<br/>
+                ○ 2nd capture group.<br/>
+                    ○ Match ','.<br/>
+                    ○ Match a whitespace character atomically any number of times.<br/>
+                    ○ 3rd capture group.<br/>
+                        ○ Match with 2 alternative expressions.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match 'R'.<br/>
+                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                ○ Match 'C'.<br/>
+                                ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match 'r'.<br/>
+                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                ○ Match 'c'.<br/>
+                                ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match '}'.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.NotationPatterns.Candidates_ComplexPostpositionalFormPattern">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match '{'.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'R'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'C'.<br/>
+                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match 'r'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match 'c'.<br/>
+                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+            ○ Optional (greedy).<br/>
+                ○ 2nd capture group.<br/>
+                    ○ Match ','.<br/>
+                    ○ Match a whitespace character atomically any number of times.<br/>
+                    ○ 3rd capture group.<br/>
+                        ○ Match with 2 alternative expressions.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match 'R'.<br/>
+                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                ○ Match 'C'.<br/>
+                                ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match 'r'.<br/>
+                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                                ○ Match 'c'.<br/>
+                                ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "}(".<br/>
+            ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+            ○ Match ')'.<br/>
+            </code>
+            </remarks>
+        </member>
         <member name="T:Sudoku.Text.Notations.CandidateNotation">
             <summary>
             Represents a notation kind that describe a candidate list.
@@ -6791,15 +7182,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Notations.K9Notation.TryParseCells(System.String,Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Notations.K9Notation.CellOrCellListPattern">
-            <remarks>
-            Pattern explanation:<br/>
-            <code>
-            ○ Match a character in the set [A-IKa-ik] atomically at least 1 and at most 9 times.<br/>
-            ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-            </code>
-            </remarks>
-        </member>
         <member name="T:Sudoku.Text.Notations.K9NotationOptions">
             <summary>
             Provides with a type that is used for displaying a cell list, using K9 notation.
@@ -6937,187 +7319,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notations.RxCyNotation.ParseCandidates(System.String)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Notations.RxCyNotation.CellOrCellListPattern">
-            <remarks>
-            Pattern explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions, atomically.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match 'R'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                        ○ Match 'C'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match 'r'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                        ○ Match 'c'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Notations.RxCyNotation.ComplexCellOrCellListPattern">
-            <remarks>
-            Pattern explanation:<br/>
-            <code>
-            ○ Match '{'.<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match 'R'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                        ○ Match 'C'.<br/>
-                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match 'r'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                        ○ Match 'c'.<br/>
-                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
-            ○ Optional (greedy).<br/>
-                ○ 2nd capture group.<br/>
-                    ○ Match ','.<br/>
-                    ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ 3rd capture group.<br/>
-                        ○ Match with 2 alternative expressions.<br/>
-                            ○ Match a sequence of expressions.<br/>
-                                ○ Match 'R'.<br/>
-                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                                ○ Match 'C'.<br/>
-                                ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
-                            ○ Match a sequence of expressions.<br/>
-                                ○ Match 'r'.<br/>
-                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                                ○ Match 'c'.<br/>
-                                ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match '}'.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Notations.RxCyNotation.Candidates_PrepositionalFormPattern">
-            <remarks>
-            Pattern explanation:<br/>
-            <code>
-            ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-            ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions, atomically.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match 'R'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                        ○ Match 'C'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match 'r'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                        ○ Match 'c'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Notations.RxCyNotation.Candidates_PostpositionalFormPattern">
-            <remarks>
-            Pattern explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match 'R'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                        ○ Match 'C'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match 'r'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                        ○ Match 'c'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-            ○ Match '('.<br/>
-            ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-            ○ Match ')'.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Notations.RxCyNotation.Candidates_ComplexPrepositionalFormPattern">
-            <remarks>
-            Pattern explanation:<br/>
-            <code>
-            ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-            ○ Match '{'.<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match 'R'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                        ○ Match 'C'.<br/>
-                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match 'r'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                        ○ Match 'c'.<br/>
-                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
-            ○ Optional (greedy).<br/>
-                ○ 2nd capture group.<br/>
-                    ○ Match ','.<br/>
-                    ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ 3rd capture group.<br/>
-                        ○ Match with 2 alternative expressions.<br/>
-                            ○ Match a sequence of expressions.<br/>
-                                ○ Match 'R'.<br/>
-                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                                ○ Match 'C'.<br/>
-                                ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
-                            ○ Match a sequence of expressions.<br/>
-                                ○ Match 'r'.<br/>
-                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                                ○ Match 'c'.<br/>
-                                ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match '}'.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Notations.RxCyNotation.Candidates_ComplexPostpositionalFormPattern">
-            <remarks>
-            Pattern explanation:<br/>
-            <code>
-            ○ Match '{'.<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match 'R'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                        ○ Match 'C'.<br/>
-                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match 'r'.<br/>
-                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                        ○ Match 'c'.<br/>
-                        ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
-            ○ Optional (greedy).<br/>
-                ○ 2nd capture group.<br/>
-                    ○ Match ','.<br/>
-                    ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ 3rd capture group.<br/>
-                        ○ Match with 2 alternative expressions.<br/>
-                            ○ Match a sequence of expressions.<br/>
-                                ○ Match 'R'.<br/>
-                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                                ○ Match 'C'.<br/>
-                                ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
-                            ○ Match a sequence of expressions.<br/>
-                                ○ Match 'r'.<br/>
-                                ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                                ○ Match 'c'.<br/>
-                                ○ Match a character in the set [1-9] greedily at least 1 and at most 9 times.<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match the string "}(".<br/>
-            ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-            ○ Match ')'.<br/>
-            </code>
-            </remarks>
         </member>
         <member name="T:Sudoku.Text.Notations.RxCyNotationOptions">
             <summary>
@@ -7424,98 +7625,98 @@ if (student is (name: var name, age: >= 18))
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListPattern_8">
-            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the CellOrCellListPattern method.</summary>
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListPattern_RxCy_8">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the CellOrCellListPattern_RxCy method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.CellOrCellListPattern_8.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.CellOrCellListPattern_RxCy_8.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_8.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_RxCy_8.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListPattern_8.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListPattern_RxCy_8.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_8.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_RxCy_8.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListPattern_8.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListPattern_RxCy_8.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_8.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_RxCy_8.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_8.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_RxCy_8.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
             <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_8.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_RxCy_8.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListPattern_9">
-            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the CellOrCellListPattern method.</summary>
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListPattern_K9_9">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the CellOrCellListPattern_K9 method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.CellOrCellListPattern_9.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.CellOrCellListPattern_K9_9.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_9.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_K9_9.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListPattern_9.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListPattern_K9_9.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_9.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_K9_9.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListPattern_9.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.CellOrCellListPattern_K9_9.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_9.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_K9_9.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_9.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_K9_9.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
             <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_9.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.CellOrCellListPattern_K9_9.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_10">
-            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ComplexCellOrCellListPattern method.</summary>
+        <member name="T:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_RxCy_10">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ComplexCellOrCellListPattern_RxCy method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_10.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_RxCy_10.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_10.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_RxCy_10.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_10.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_RxCy_10.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_10.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_RxCy_10.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_10.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_RxCy_10.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_10.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_RxCy_10.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_10.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_RxCy_10.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
             <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_10.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.ComplexCellOrCellListPattern_RxCy_10.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>

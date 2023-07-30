@@ -167,7 +167,7 @@ public sealed partial class RxCyNotation : ICellNotation<RxCyNotation, RxCyNotat
 
 		static unsafe bool simpleForm(string s, out CellMap result)
 		{
-			if (CellOrCellListPattern().Matches(s) is not { Count: not 0 } matches)
+			if (NotationPatterns.CellOrCellListPattern_RxCy().Matches(s) is not { Count: not 0 } matches)
 			{
 				SkipInit(out result);
 				return false;
@@ -220,7 +220,7 @@ public sealed partial class RxCyNotation : ICellNotation<RxCyNotation, RxCyNotat
 
 		static bool complexForm(string s, out CellMap result)
 		{
-			if (ComplexCellOrCellListPattern().Match(s) is not { Success: true, Value: [_, .. var str, _] })
+			if (NotationPatterns.ComplexCellOrCellListPattern_RxCy().Match(s) is not { Success: true, Value: [_, .. var str, _] })
 			{
 				goto ReturnInvalid;
 			}
@@ -340,7 +340,7 @@ public sealed partial class RxCyNotation : ICellNotation<RxCyNotation, RxCyNotat
 
 		static bool prepositionalForm(string str, out CandidateMap result)
 		{
-			if (Candidates_PrepositionalFormPattern().Match(str) is not { Success: true, Value: var s })
+			if (NotationPatterns.Candidates_PrepositionalFormPattern().Match(str) is not { Success: true, Value: var s })
 			{
 				goto ReturnInvalid;
 			}
@@ -372,12 +372,12 @@ public sealed partial class RxCyNotation : ICellNotation<RxCyNotation, RxCyNotat
 
 		static bool postpositionalForm(string str, out CandidateMap result)
 		{
-			if (Candidates_PostpositionalFormPattern().Match(str) is not { Success: true, Value: [_, .. var s, _] })
+			if (NotationPatterns.Candidates_PostpositionalFormPattern().Match(str) is not { Success: true, Value: [_, .. var s, _] })
 			{
 				goto ReturnInvalid;
 			}
 
-			if (s.Split(['C', 'c', '(']) is not [var rows, var columns, var digits])
+			if (s.SplitBy(['C', 'c', '(']) is not [var rows, var columns, var digits])
 			{
 				goto ReturnInvalid;
 			}
@@ -404,13 +404,13 @@ public sealed partial class RxCyNotation : ICellNotation<RxCyNotation, RxCyNotat
 
 		static bool complexPrepositionalForm(string str, out CandidateMap result)
 		{
-			if (Candidates_ComplexPrepositionalFormPattern().Match(str) is not { Success: true, Value: var s })
+			if (NotationPatterns.Candidates_ComplexPrepositionalFormPattern().Match(str) is not { Success: true, Value: var s })
 			{
 				goto ReturnInvalid;
 			}
 
 			var cells = CellMap.Empty;
-			foreach (var match in CellOrCellListPattern().Matches(s).Cast<Match>())
+			foreach (var match in NotationPatterns.CellOrCellListPattern_RxCy().Matches(s).Cast<Match>())
 			{
 				cells |= ParseCells(match.Value);
 			}
@@ -435,13 +435,13 @@ public sealed partial class RxCyNotation : ICellNotation<RxCyNotation, RxCyNotat
 
 		static bool complexPostpositionalForm(string str, out CandidateMap result)
 		{
-			if (Candidates_ComplexPostpositionalFormPattern().Match(str) is not { Success: true, Value: var s })
+			if (NotationPatterns.Candidates_ComplexPostpositionalFormPattern().Match(str) is not { Success: true, Value: var s })
 			{
 				goto ReturnInvalid;
 			}
 
 			var cells = CellMap.Empty;
-			foreach (var match in CellOrCellListPattern().Matches(s).Cast<Match>())
+			foreach (var match in NotationPatterns.CellOrCellListPattern_RxCy().Matches(s).Cast<Match>())
 			{
 				cells |= ParseCells(match.Value);
 			}
@@ -464,22 +464,4 @@ public sealed partial class RxCyNotation : ICellNotation<RxCyNotation, RxCyNotat
 			return false;
 		}
 	}
-
-	[GeneratedRegex("""(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""", RegexOptions.Compiled, 5000)]
-	private static partial Regex CellOrCellListPattern();
-
-	[GeneratedRegex("""\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})(,\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}))?\s*\}""", RegexOptions.Compiled, 5000)]
-	private static partial Regex ComplexCellOrCellListPattern();
-
-	[GeneratedRegex("""[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""", RegexOptions.Compiled, 5000)]
-	private static partial Regex Candidates_PrepositionalFormPattern();
-
-	[GeneratedRegex("""(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})\([1-9]{1,9}\)""", RegexOptions.Compiled, 5000)]
-	private static partial Regex Candidates_PostpositionalFormPattern();
-
-	[GeneratedRegex("""[1-9]{1,9}\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})(,\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}))?\s*\}""", RegexOptions.Compiled, 5000)]
-	private static partial Regex Candidates_ComplexPrepositionalFormPattern();
-
-	[GeneratedRegex("""\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})(,\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}))?\s*\}\([1-9]{1,9}\)""", RegexOptions.Compiled, 5000)]
-	private static partial Regex Candidates_ComplexPostpositionalFormPattern();
 }
