@@ -68,8 +68,7 @@ public static class TechniqueExtensions
 	/// If the technique does not contain any aliases, the return value will be <see langword="null"/>.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[]? GetAliases(this Technique @this)
-		=> GetString($"TechniqueAlias_{@this}")?.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+	public static string[]? GetAliases(this Technique @this) => GetString($"TechniqueAlias_{@this}")?.SplitBy([';']);
 
 	/// <summary>
 	/// Try to get the group that the current <see cref="Technique"/> belongs to.

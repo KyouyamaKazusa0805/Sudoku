@@ -199,9 +199,7 @@ public sealed class CellConceptNotation : ISudokuConceptNotation<CellConceptNota
 	/// Gets the text notation that can represent the specified value.
 	/// </summary>
 	/// <param name="value">The value.</param>
-	/// <returns>
-	/// <inheritdoc cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)" path="/returns"/>
-	/// </returns>
+	/// <returns><inheritdoc cref="ToString(Cell, CellNotationKind)" path="/returns"/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToString(Cell value) => ToString(value, CellNotationKind.RxCy);
 

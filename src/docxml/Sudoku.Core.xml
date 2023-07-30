@@ -5379,6 +5379,100 @@ if (student is (name: var name, age: >= 18))
 		</summary>
 	</static-constructor>
         </member>
+        <member name="T:Sudoku.Text.CandidateConceptNotation">
+            <summary>
+            Represents a notation that represents for a candidate or a list of candidates.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.CandidateConceptNotation.Parse(System.String)">
+            <summary>
+            Try to parse the specified text, converting it into the target candidate value via RxCy Notation rule.
+            </summary>
+            <param name="text"><inheritdoc cref="M:Sudoku.Text.CandidateConceptNotation.Parse(System.String,Sudoku.Text.CandidateNotationKind)" path="/param[@name='text']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Text.CandidateConceptNotation.Parse(System.String,Sudoku.Text.CandidateNotationKind)" path="/returns"/></returns>
+            <seealso cref="F:Sudoku.Text.CandidateNotationKind.RxCy"/>
+        </member>
+        <member name="M:Sudoku.Text.CandidateConceptNotation.Parse(System.String,Sudoku.Text.CandidateNotationKind)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.CandidateConceptNotation.ParseCollection(System.String)">
+            <summary>
+            Try to parse the specified text using basic parsing rule, converting it into a collection of type <see cref="T:Sudoku.Concepts.CandidateMap"/>.
+            </summary>
+            <param name="text">The text to be parsed.</param>
+            <returns>The target result instance of type <see cref="T:Sudoku.Concepts.CandidateMap"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Text.CandidateConceptNotation.ParseCollection(System.String,Sudoku.Text.CandidateNotationKind)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the argument <paramref name="notation"/> is <see cref="F:Sudoku.Text.CandidateNotationKind.K9"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Text.CandidateConceptNotation.ToString(System.Int32)">
+            <summary>
+            Gets the text notation that can represent the specified value.
+            </summary>
+            <param name="value">The value.</param>
+            <returns><inheritdoc cref="M:Sudoku.Text.CandidateConceptNotation.ToString(System.Int32,Sudoku.Text.CandidateNotationKind)" path="/returns"/></returns>
+        </member>
+        <member name="M:Sudoku.Text.CandidateConceptNotation.ToString(System.Int32,Sudoku.Text.CandidateNotationKind)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.CandidateConceptNotation.ToCollectionString(Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Gets the text notation that can represent the specified collection.
+            </summary>
+            <param name="collection"><inheritdoc cref="M:Sudoku.Text.CandidateConceptNotation.ToString(System.Int32)" path="/param[@name='value']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Text.CandidateConceptNotation.ToString(System.Int32)" path="/returns"/></returns>
+        </member>
+        <member name="M:Sudoku.Text.CandidateConceptNotation.ToCollectionString(Sudoku.Concepts.CandidateMap@,Sudoku.Text.CandidateNotationKind)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Throws when <paramref name="notation"/> is <see cref="F:Sudoku.Text.CandidateNotationKind.K9"/>.</exception>
+        </member>
+        <member name="T:Sudoku.Text.CandidateNotationKind">
+            <summary>
+            Represents a kind of the candidate notation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.CandidateNotationKind.RxCy">
+            <summary>
+            Indicates the candidate notation is <see href="http://sudopedia.enjoysudoku.com/Rncn.html">RxCy Notation</see>.
+            </summary>
+            <remarks>
+            The <b>RxCy notation</b> is a notation to describe a set of cells that uses letter
+            <c>R</c> (or its lower case <c>r</c>) to describe a row label, and uses the other letter
+            <c>C</c> (or its lower case <c>c</c>) to describe a column label, and after the cell notation, with a brace surrounding.
+            For example, <c>R4C2(8)</c> means digit 8 in the cell at row 4 and column 2.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Text.CandidateNotationKind.K9">
+            <summary>
+            Indicates the candidate notation is <see href="http://sudopedia.enjoysudoku.com/K9.html">K9 Notation</see>.
+            </summary>
+            <remarks>
+            <para>
+            The <b>K9 notation</b> is a notation to describe a set of cells that uses letters
+            A, B, C, D, E, F, G, H and K to describe the row, and uses digits 1 to 9 to describe the column.
+            A digit will be used after the cell notation, with a dot before the digit.
+            For example, <c>C8.1</c> means digit 1 in the cell at row 3 and column 8.
+            </para>
+            <para>
+            The letter I and J aren't used in this notation because they are confusing with digit 1.
+            However, they can also be used in Chinese notations. For example, <c>K8.1</c> in traditional notation
+            is same as <c>I8.1</c> in Chinese K9 notation rule.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Text.CandidateNotationKind.HodokuTriplet">
+            <summary>
+            Indicates the candidate notation is Hodoku digit triplet notation.
+            </summary>
+            <remarks>
+            The <b>Triplet notation</b> is a notation to describe a single candidate using 3 digits without any spaces.
+            The ordering of three digits are <i>digit</i>, <i>row</i> and <i>column</i>.
+            For example, <c>123</c> means digit 1 in the cell at the row 2 and column 3.
+            </remarks>
+        </member>
         <member name="T:Sudoku.Text.CellConceptNotation">
             <summary>
             Represents a notation that represents for a cell or a list of cells.
@@ -5410,9 +5504,7 @@ if (student is (name: var name, age: >= 18))
             Gets the text notation that can represent the specified value.
             </summary>
             <param name="value">The value.</param>
-            <returns>
-            <inheritdoc cref="M:Sudoku.Text.ISudokuConceptNotation`3.ToString(`1,`2)" path="/returns"/>
-            </returns>
+            <returns><inheritdoc cref="M:Sudoku.Text.CellConceptNotation.ToString(System.Int32,Sudoku.Text.CellNotationKind)" path="/returns"/></returns>
         </member>
         <member name="M:Sudoku.Text.CellConceptNotation.ToString(System.Int32,Sudoku.Text.CellNotationKind)">
             <inheritdoc/>

@@ -56,7 +56,7 @@ public sealed class EliminationNotation : ICandidateNotation<EliminationNotation
 	/// <inheritdoc/>
 	public static CandidateMap ParseCandidates(string str)
 	{
-		var segments = str.Split(' ');
+		var segments = str.SplitBy([' ']);
 		if (Array.IndexOf(segments, string.Empty) != -1)
 		{
 			throw new FormatException("The string contains empty segment.");
