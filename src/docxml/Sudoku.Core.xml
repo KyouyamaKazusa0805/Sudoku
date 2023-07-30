@@ -5474,6 +5474,52 @@ if (student is (name: var name, age: >= 18))
             For example, <c>123</c> means digit 1 in the cell at the row 2 and column 3.
             </remarks>
         </member>
+        <member name="T:Sudoku.Text.CellMapNotation">
+            <summary>
+            Represents a notation that represents for a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.CellMapNotation.Parse(System.String)">
+            <inheritdoc cref="M:Sudoku.Text.CellNotation.Parse(System.String)"/>
+        </member>
+        <member name="M:Sudoku.Text.CellMapNotation.Parse(System.String,Sudoku.Text.CellMapNotationKind)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Throws when the argument <paramref name="notation"/> is not supported.</exception>
+        </member>
+        <member name="M:Sudoku.Text.CellMapNotation.ToString(Sudoku.Concepts.CellMap@)">
+            <inheritdoc cref="M:Sudoku.Text.CellNotation.ToCollectionString(Sudoku.Concepts.CellMap@)"/>
+            <param name="value"><inheritdoc cref="M:Sudoku.Text.CellNotation.ToCollectionString(Sudoku.Concepts.CellMap@)" path="/param[@name='collection']"/></param>
+        </member>
+        <member name="M:Sudoku.Text.CellMapNotation.ToString(Sudoku.Concepts.CellMap@,Sudoku.Text.CellMapNotationKind)">
+            <inheritdoc cref="M:Sudoku.Text.INotation`3.ToString(`1,`2)"/>
+        </member>
+        <member name="M:Sudoku.Text.CellMapNotation.Sudoku#Text#INotation{Sudoku#Text#CellMapNotation,Sudoku#Concepts#CellMap,Sudoku#Text#CellMapNotationKind}#ToString(Sudoku.Concepts.CellMap,Sudoku.Text.CellMapNotationKind)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.CellMapNotationKind">
+            <summary>
+            Represents a kind of output text mode for <see cref="T:Sudoku.Concepts.CellMap"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="F:Sudoku.Text.CellMapNotationKind.RxCy">
+            <inheritdoc cref="F:Sudoku.Text.CellNotationKind.RxCy"/>
+        </member>
+        <member name="F:Sudoku.Text.CellMapNotationKind.K9">
+            <inheritdoc cref="F:Sudoku.Text.CellNotationKind.K9"/>
+        </member>
+        <member name="F:Sudoku.Text.CellMapNotationKind.Binary">
+            <summary>
+            Indicates the notation kind is using binary format to output the cells. All values will be treated as a binary digit 0 or 1.
+            A <see cref="T:Sudoku.Concepts.CellMap"/> instance contains 81 bits, so 81 bits will be displayed no matter whether the bit is on.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.CellMapNotationKind.Table">
+            <summary>
+            Indicates the notation kind is using table format to output the cells. All values will be treated as a digit 0 or 1,
+            filled with a table.
+            </summary>
+        </member>
         <member name="T:Sudoku.Text.CellNotation">
             <summary>
             Represents a notation that represents for a cell or a list of cells.
@@ -5504,7 +5550,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Gets the text notation that can represent the specified value.
             </summary>
-            <param name="value">The value.</param>
+            <param name="value">The value to be output and converted into a <see cref="T:System.String"/> representation.</param>
             <returns><inheritdoc cref="M:Sudoku.Text.CellNotation.ToString(System.Int32,Sudoku.Text.CellNotationKind)" path="/returns"/></returns>
         </member>
         <member name="M:Sudoku.Text.CellNotation.ToString(System.Int32,Sudoku.Text.CellNotationKind)">

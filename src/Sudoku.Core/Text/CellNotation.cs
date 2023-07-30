@@ -198,7 +198,7 @@ public sealed class CellNotation : INotation<CellNotation, CellMap, Cell, CellNo
 	/// <summary>
 	/// Gets the text notation that can represent the specified value.
 	/// </summary>
-	/// <param name="value">The value.</param>
+	/// <param name="value">The value to be output and converted into a <see cref="string"/> representation.</param>
 	/// <returns><inheritdoc cref="ToString(Cell, CellNotationKind)" path="/returns"/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToString(Cell value) => ToString(value, CellNotationKind.RxCy);

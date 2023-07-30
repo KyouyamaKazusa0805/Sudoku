@@ -8,7 +8,7 @@ namespace Sudoku.Text;
 /// <typeparam name="TConceptKindPresenter">The type of the concept kind presenter.</typeparam>
 public interface INotation<TSelf, TElement, TConceptKindPresenter>
 	where TSelf : notnull, INotation<TSelf, TElement, TConceptKindPresenter>
-	where TElement : unmanaged, IBinaryInteger<TElement>
+	where TElement : notnull
 	where TConceptKindPresenter : unmanaged, Enum
 {
 	/// <summary>
