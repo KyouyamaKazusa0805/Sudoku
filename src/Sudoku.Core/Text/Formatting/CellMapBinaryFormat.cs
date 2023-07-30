@@ -10,14 +10,6 @@ namespace Sudoku.Text.Formatting;
 /// </param>
 public sealed record CellMapBinaryFormat(bool WithSeparator = true) : ICellMapFormatter
 {
-	/// <inheritdoc cref="ICellMapFormatter.Instance"/>
-	public static readonly CellMapBinaryFormat Default = new();
-
-
-	/// <inheritdoc/>
-	static ICellMapFormatter ICellMapFormatter.Instance => Default;
-
-
 	/// <inheritdoc/>
 	public string ToString(scoped in CellMap cellMap)
 	{

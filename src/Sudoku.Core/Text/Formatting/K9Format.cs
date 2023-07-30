@@ -8,17 +8,6 @@ namespace Sudoku.Text.Formatting;
 /// </remarks>
 public sealed record K9Format : ICellMapFormatter, ICandidateMapFormatter
 {
-	/// <inheritdoc cref="ICellMapFormatter.Instance"/>
-	public static readonly K9Format Default = new();
-
-
-	/// <inheritdoc/>
-	static ICellMapFormatter ICellMapFormatter.Instance => Default;
-
-	/// <inheritdoc/>
-	static ICandidateMapFormatter ICandidateMapFormatter.Instance => Default;
-
-
 	/// <inheritdoc/>
 	public string ToString(scoped in CellMap cellMap) => CellNotation.ToCollectionString(cellMap, CellNotationKind.K9);
 
@@ -33,7 +22,7 @@ public sealed record K9Format : ICellMapFormatter, ICandidateMapFormatter
 		if ((formatType?.IsAssignableTo(typeof(ICellMapFormatter)) ?? false)
 			|| (formatType?.IsAssignableTo(typeof(ICandidateMapFormatter)) ?? false))
 		{
-			return Default;
+			return new K9Format();
 		}
 
 		if (formatType == GetType())

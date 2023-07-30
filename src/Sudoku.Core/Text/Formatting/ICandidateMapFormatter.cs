@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Represents with a formatter type that formats and parses a <see cref="CandidateMap"/> instance,
@@ -7,10 +7,6 @@
 /// <seealso cref="CandidateMap"/>
 public interface ICandidateMapFormatter : IFormatProvider
 {
-	/// <inheritdoc cref="IGridFormatter.Instance"/>
-	static abstract ICandidateMapFormatter Instance { get; }
-
-
 	/// <summary>
 	/// Try to format a <see cref="CandidateMap"/> instance into the specified target-formatted <see cref="string"/> representation.
 	/// </summary>

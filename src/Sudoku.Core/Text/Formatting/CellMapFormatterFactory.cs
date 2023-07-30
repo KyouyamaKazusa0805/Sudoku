@@ -14,11 +14,11 @@ internal static class CellMapFormatterFactory
 	public static ICellMapFormatter? GetBuiltInFormatter(string? format)
 		=> format switch
 		{
-			null or "N" or "n" => RxCyFormat.Default,
-			"K" or "k" => K9Format.Default,
-			"T" or "t" => CellMapTableFormat.Default,
-			"B" or "b" or "B+" or "b+" => CellMapBinaryFormat.Default,
-			"B-" or "b-" => CellMapBinaryFormat.Default with { WithSeparator = false },
+			null or "N" or "n" => new RxCyFormat(),
+			"K" or "k" => new K9Format(),
+			"T" or "t" => new CellMapTableFormat(),
+			"B" or "b" or "B+" or "b+" => new CellMapBinaryFormat(),
+			"B-" or "b-" => new CellMapBinaryFormat(false),
 			_ => null
 		};
 }

@@ -8,17 +8,6 @@ namespace Sudoku.Text.Formatting;
 /// </remarks>
 public sealed record RxCyFormat : ICellMapFormatter, ICandidateMapFormatter
 {
-	/// <inheritdoc cref="ICellMapFormatter.Instance"/>
-	public static readonly RxCyFormat Default = new();
-
-
-	/// <inheritdoc/>
-	static ICellMapFormatter ICellMapFormatter.Instance => Default;
-
-	/// <inheritdoc/>
-	static ICandidateMapFormatter ICandidateMapFormatter.Instance => Default;
-
-
 	/// <inheritdoc/>
 	public string ToString(scoped in CellMap cellMap) => CellNotation.ToCollectionString(cellMap);
 
@@ -33,7 +22,7 @@ public sealed record RxCyFormat : ICellMapFormatter, ICandidateMapFormatter
 		if ((formatType?.IsAssignableTo(typeof(ICellMapFormatter)) ?? false)
 			|| (formatType?.IsAssignableTo(typeof(ICandidateMapFormatter)) ?? false))
 		{
-			return Default;
+			return new RxCyFormat();
 		}
 
 		if (formatType == GetType())

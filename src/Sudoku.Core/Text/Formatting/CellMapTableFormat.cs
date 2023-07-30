@@ -1,18 +1,10 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Defines a formatter that formats a <see cref="CellMap"/>, converting into a table <see cref="string"/> value to display all values.
 /// </summary>
 public sealed record CellMapTableFormat : ICellMapFormatter
 {
-	/// <inheritdoc cref="ICellMapFormatter.Instance"/>
-	public static readonly CellMapTableFormat Default = new();
-
-
-	/// <inheritdoc/>
-	static ICellMapFormatter ICellMapFormatter.Instance => Default;
-
-
 	/// <inheritdoc/>
 	public string ToString(scoped in CellMap cellMap)
 	{

@@ -659,12 +659,12 @@ public unsafe partial struct CellMap :
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
 		=> (format, formatProvider) switch
 		{
-			(null, null) => ToString(RxCyFormat.Default),
+			(null, null) => ToString(new RxCyFormat()),
 			(not null, _) => ToString(format),
 			(_, ICellMapFormatter formatter) => formatter.ToString(this),
 			(_, ICustomFormatter formatter) => formatter.Format(format, this, formatProvider),
-			(_, CultureInfo { Name: ['Z' or 'z', 'H' or 'h', ..] }) => ToString(K9Format.Default),
-			_ => ToString(RxCyFormat.Default)
+			(_, CultureInfo { Name: ['Z' or 'z', 'H' or 'h', ..] }) => ToString(new K9Format()),
+			_ => ToString(new RxCyFormat())
 		};
 
 	/// <inheritdoc/>

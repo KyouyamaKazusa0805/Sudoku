@@ -285,11 +285,11 @@ public partial struct CandidateMap :
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
 		=> (format, formatProvider) switch
 		{
-			(null, null) => ToString(RxCyFormat.Default),
+			(null, null) => ToString(new RxCyFormat()),
 			//(not null, _) => ToString(format),
 			(_, ICandidateMapFormatter formatter) => formatter.ToString(this),
-			(_, CultureInfo { Name: ['Z' or 'z', 'H' or 'h', ..] }) => ToString(K9Format.Default),
-			_ => ToString(RxCyFormat.Default)
+			(_, CultureInfo { Name: ['Z' or 'z', 'H' or 'h', ..] }) => ToString(new K9Format()),
+			_ => ToString(new RxCyFormat())
 		};
 
 	/// <inheritdoc/>

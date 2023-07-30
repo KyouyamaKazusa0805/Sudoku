@@ -5621,12 +5621,6 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="true"/>.</para>
             </summary>
         </member>
-        <member name="F:Sudoku.Text.Formatting.CellMapBinaryFormat.Default">
-            <inheritdoc cref="P:Sudoku.Text.Formatting.ICellMapFormatter.Instance"/>
-        </member>
-        <member name="P:Sudoku.Text.Formatting.CellMapBinaryFormat.Sudoku#Text#Formatting#ICellMapFormatter#Instance">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Text.Formatting.CellMapBinaryFormat.ToString(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
@@ -5647,12 +5641,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a formatter that formats a <see cref="T:Sudoku.Concepts.CellMap"/>, converting into a table <see cref="T:System.String"/> value to display all values.
             </summary>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.CellMapTableFormat.Default">
-            <inheritdoc cref="P:Sudoku.Text.Formatting.ICellMapFormatter.Instance"/>
-        </member>
-        <member name="P:Sudoku.Text.Formatting.CellMapTableFormat.Sudoku#Text#Formatting#ICellMapFormatter#Instance">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Formatting.CellMapTableFormat.ToString(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
@@ -5939,9 +5927,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
         </member>
-        <member name="P:Sudoku.Text.Formatting.ICandidateMapFormatter.Instance">
-            <inheritdoc cref="P:Sudoku.Text.Formatting.IGridFormatter.Instance"/>
-        </member>
         <member name="M:Sudoku.Text.Formatting.ICandidateMapFormatter.ToString(Sudoku.Concepts.CandidateMap@)">
             <summary>
             Try to format a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance into the specified target-formatted <see cref="T:System.String"/> representation.
@@ -5958,9 +5943,6 @@ if (student is (name: var name, age: >= 18))
             converting it into an equivalent <see cref="T:System.String"/> value.
             </summary>
             <seealso cref="T:Sudoku.Concepts.CellMap"/>
-        </member>
-        <member name="P:Sudoku.Text.Formatting.ICellMapFormatter.Instance">
-            <inheritdoc cref="P:Sudoku.Text.Formatting.IGridFormatter.Instance"/>
         </member>
         <member name="M:Sudoku.Text.Formatting.ICellMapFormatter.ToString(Sudoku.Concepts.CellMap@)">
             <summary>
@@ -6145,15 +6127,6 @@ if (student is (name: var name, age: >= 18))
             <remarks>
             <inheritdoc cref="F:Sudoku.Text.CellNotationKind.K9" path="/remarks"/>
             </remarks>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.K9Format.Default">
-            <inheritdoc cref="P:Sudoku.Text.Formatting.ICellMapFormatter.Instance"/>
-        </member>
-        <member name="P:Sudoku.Text.Formatting.K9Format.Sudoku#Text#Formatting#ICellMapFormatter#Instance">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Formatting.K9Format.Sudoku#Text#Formatting#ICandidateMapFormatter#Instance">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Formatting.K9Format.ToString(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
@@ -6421,15 +6394,6 @@ if (student is (name: var name, age: >= 18))
             <remarks>
             <inheritdoc cref="F:Sudoku.Text.CellNotationKind.RxCy" path="/remarks"/>
             </remarks>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.RxCyFormat.Default">
-            <inheritdoc cref="P:Sudoku.Text.Formatting.ICellMapFormatter.Instance"/>
-        </member>
-        <member name="P:Sudoku.Text.Formatting.RxCyFormat.Sudoku#Text#Formatting#ICellMapFormatter#Instance">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Formatting.RxCyFormat.Sudoku#Text#Formatting#ICandidateMapFormatter#Instance">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Formatting.RxCyFormat.ToString(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
