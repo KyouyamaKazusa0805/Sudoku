@@ -3,7 +3,7 @@ namespace Sudoku.Text;
 /// <summary>
 /// Represents a notation that represents for a cell or a list of cells.
 /// </summary>
-public sealed class CellConceptNotation : ISudokuNotation<CellConceptNotation, CellMap, Cell, CellNotationKind>
+public sealed class CellConceptNotation : ISudokuConceptNotation<CellConceptNotation, CellMap, Cell, CellNotationKind>
 {
 	/// <summary>
 	/// Try to parse the specified text, converting it into the target cell value via RxCy Notation rule.
@@ -200,7 +200,7 @@ public sealed class CellConceptNotation : ISudokuNotation<CellConceptNotation, C
 	/// </summary>
 	/// <param name="value">The value.</param>
 	/// <returns>
-	/// <inheritdoc cref="ISudokuNotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)" path="/returns"/>
+	/// <inheritdoc cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)" path="/returns"/>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToString(Cell value) => ToString(value, CellNotationKind.RxCy);

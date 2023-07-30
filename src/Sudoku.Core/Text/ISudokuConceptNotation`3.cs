@@ -6,8 +6,8 @@ namespace Sudoku.Text;
 /// <typeparam name="TSelf">The type of the implementation.</typeparam>
 /// <typeparam name="TElement">The type of the element after or before parsing.</typeparam>
 /// <typeparam name="TConceptKindPresenter">The type of the concept kind presenter.</typeparam>
-public interface ISudokuNotation<TSelf, TElement, TConceptKindPresenter>
-	where TSelf : notnull, ISudokuNotation<TSelf, TElement, TConceptKindPresenter>
+public interface ISudokuConceptNotation<TSelf, TElement, TConceptKindPresenter>
+	where TSelf : notnull, ISudokuConceptNotation<TSelf, TElement, TConceptKindPresenter>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TConceptKindPresenter : unmanaged, Enum
 {
