@@ -6689,9 +6689,14 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Formatting.SusserFormatTreatingValuesAsGivens.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Text.INotation">
+            <summary>
+            Represents a type that defines for a kind of notation for a concept in sudoku.
+            </summary>
+        </member>
         <member name="T:Sudoku.Text.INotation`3">
             <summary>
-            Represents a type that defines for various of sudoku notation.
+            <inheritdoc cref="T:Sudoku.Text.INotation" path="/summary"/>
             </summary>
             <typeparam name="TSelf">The type of the implementation.</typeparam>
             <typeparam name="TElement">The type of the element after or before parsing.</typeparam>
@@ -6720,7 +6725,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Text.INotation`4">
             <summary>
-            Represents a type that defines for various of sudoku notation, for collections.
+            Represents a type that defines for a kind of notation for a collection-based concept in sudoku.
             </summary>
             <typeparam name="TSelf">
             <inheritdoc cref="T:Sudoku.Text.INotation`3" path="/typeparam[@name='TSelf']"/>
@@ -6774,7 +6779,8 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Text.INotation`5">
             <summary>
-            Represents a type that defines for various of sudoku notation, with option provider.
+            Represents a type that defines for a kind of notation for a concept in sudoku,
+            with adjustment by passing <typeparamref name="TOptionProvider"/> values.
             </summary>
             <typeparam name="TSelf">
             <inheritdoc cref="T:Sudoku.Text.INotation`3" path="/typeparam[@name='TSelf']"/>

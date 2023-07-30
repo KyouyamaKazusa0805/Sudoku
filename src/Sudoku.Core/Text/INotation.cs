@@ -1,7 +1,105 @@
 namespace Sudoku.Text;
 
 /// <summary>
-/// Represents a type that defines for various of sudoku notation, with option provider.
+/// Represents a type that defines for a kind of notation for a concept in sudoku.
+/// </summary>
+public interface INotation;
+
+/// <summary>
+/// <inheritdoc cref="INotation" path="/summary"/>
+/// </summary>
+/// <typeparam name="TSelf">The type of the implementation.</typeparam>
+/// <typeparam name="TElement">The type of the element after or before parsing.</typeparam>
+/// <typeparam name="TConceptKindPresenter">The type of the concept kind presenter.</typeparam>
+public interface INotation<TSelf, TElement, TConceptKindPresenter> : INotation
+	where TSelf : notnull, INotation<TSelf, TElement, TConceptKindPresenter>
+	where TElement : notnull
+	where TConceptKindPresenter : unmanaged, Enum
+{
+	/// <summary>
+	/// Try to parse the specified text, converting it into the target cell value via the specified notation kind.
+	/// </summary>
+	/// <param name="text">The text to be parsed.</param>
+	/// <param name="notation">The notation that limits the conversion rule of the notation.</param>
+	/// <returns>The converted result.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the argument <paramref name="text"/> cannot be parsed.</exception>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
+	static abstract TElement Parse(string text, TConceptKindPresenter notation);
+
+	/// <summary>
+	/// Gets the text notation that can represent the specified value via the specified notation kind.
+	/// </summary>
+	/// <param name="value">The value.</param>
+	/// <param name="notation">
+	/// <inheritdoc cref="Parse(string, TConceptKindPresenter)" path="/param[@name='notation']"/>
+	/// </param>
+	/// <returns>The string representation of the value.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
+	static abstract string ToString(TElement value, TConceptKindPresenter notation);
+}
+
+/// <summary>
+/// Represents a type that defines for a kind of notation for a collection-based concept in sudoku.
+/// </summary>
+/// <typeparam name="TSelf">
+/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}" path="/typeparam[@name='TSelf']"/>
+/// </typeparam>
+/// <typeparam name="TCollection">The type of the collection of elements of type <typeparamref name="TElement"/>.</typeparam>
+/// <typeparam name="TElement">
+/// The type of the element after or before parsing, stored in the collection of type <typeparamref name="TCollection"/>.
+/// </typeparam>
+/// <typeparam name="TConceptKindPresenter">
+/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}" path="/typeparam[@name='TConceptKindPresenter']"/>
+/// </typeparam>
+public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter> : INotation<TSelf, TElement, TConceptKindPresenter>
+	where TSelf : notnull, INotation<TSelf, TElement, TConceptKindPresenter>
+	where TCollection : notnull, IEnumerable<TElement>, ISimpleParsable<TCollection>
+	where TElement : unmanaged, IBinaryInteger<TElement>
+	where TConceptKindPresenter : unmanaged, Enum
+{
+	/// <summary>
+	/// Try to parse the specified text using the specified kind of the notation rule,
+	/// converting it into a collection of type <typeparamref name="TCollection"/>.
+	/// </summary>
+	/// <param name="text">
+	/// <inheritdoc
+	///     cref="INotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)"
+	///     path="/param[@name='text']"/>
+	/// </param>
+	/// <param name="notation">The notation kind to be used.</param>
+	/// <returns>
+	/// <inheritdoc
+	///     cref="INotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)"
+	///     path="/returns"/>
+	/// </returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
+	static abstract TCollection ParseCollection(string text, TConceptKindPresenter notation);
+
+	/// <summary>
+	/// Gets the text notation that can represent the specified collection via the specified notation kind.
+	/// </summary>
+	/// <param name="collection">
+	/// <inheritdoc
+	///     cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"
+	///     path="/param[@name='value']"/>
+	/// </param>
+	/// <param name="notation">
+	/// <inheritdoc
+	///     cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"
+	///     path="/param[@name='notation']"/>
+	/// </param>
+	/// <returns>
+	/// <inheritdoc
+	///     cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"
+	///     path="/returns"/>
+	/// </returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
+	static abstract string ToCollectionString(scoped in TCollection collection, TConceptKindPresenter notation);
+}
+
+/// <summary>
+/// Represents a type that defines for a kind of notation for a concept in sudoku,
+/// with adjustment by passing <typeparamref name="TOptionProvider"/> values.
 /// </summary>
 /// <typeparam name="TSelf">
 /// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}" path="/typeparam[@name='TSelf']"/>
