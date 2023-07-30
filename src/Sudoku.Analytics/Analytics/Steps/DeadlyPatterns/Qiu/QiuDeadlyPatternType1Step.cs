@@ -21,5 +21,5 @@ public sealed partial class QiuDeadlyPatternType1Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [PatternStr, CandidateStr]), new(ChineseLanguage, [CandidateStr, PatternStr])];
 
-	private string CandidateStr => RxCyNotation.ToCandidateString(Candidate);
+	private string CandidateStr => CandidateConceptNotation.ToString(Candidate);
 }

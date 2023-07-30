@@ -41,7 +41,7 @@ public sealed partial class UniqueRectangleWithBabaGroupingStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr])
 		];
 
-	private string TargetCellStr => RxCyNotation.ToCellString(TargetCell);
+	private string TargetCellStr => CellConceptNotation.ToString(TargetCell);
 
 	private string DigitsStr => DigitMaskFormatter.Format((Mask)(1 << Digit1 | 1 << Digit2), GetString("OrKeywordWithSpaces")!);
 

@@ -38,7 +38,7 @@ public sealed partial class CellForcingChainsStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [SourceCellStr]), new(ChineseLanguage, [SourceCellStr])];
 
-	private string SourceCellStr => RxCyNotation.ToCellString(SourceCell);
+	private string SourceCellStr => CellConceptNotation.ToString(SourceCell);
 
 
 	/// <inheritdoc/>

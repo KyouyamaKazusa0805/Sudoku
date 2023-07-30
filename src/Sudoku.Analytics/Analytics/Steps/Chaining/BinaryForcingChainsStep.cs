@@ -71,13 +71,13 @@ public sealed partial class BinaryForcingChainsStep(
 			)
 		];
 
-	private string StartCandStr => RxCyNotation.ToCandidateString(SourcePotential.Candidate);
+	private string StartCandStr => CandidateConceptNotation.ToString(SourcePotential.Candidate);
 
 	private string StartCandOnOffStr => SourcePotential.IsOn.ToString().ToLower();
 
 	private string StartCandOnOffStrZhCn => (SourcePotential.IsOn ? GetString("TrueKeyword") : GetString("FalseKeyword"))!;
 
-	private string EndCandStr => RxCyNotation.ToCandidateString(FromOnPotential.Candidate);
+	private string EndCandStr => CandidateConceptNotation.ToString(FromOnPotential.Candidate);
 
 
 	/// <inheritdoc/>

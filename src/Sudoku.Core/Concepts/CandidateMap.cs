@@ -52,17 +52,17 @@ public partial struct CandidateMap :
 
 	/// <summary>
 	/// Initializes a <see cref="CandidateMap"/> instance via a list of candidate offsets
-	/// represented as a RxCy notation defined by <see cref="RxCyNotation"/>.
+	/// represented as a RxCy notation defined by <see cref="CellNotationKind.RxCy"/>.
 	/// </summary>
 	/// <param name="segments">The candidate offsets, represented as a RxCy notation.</param>
-	/// <seealso cref="RxCyNotation"/>
+	/// <seealso cref="CellNotationKind.RxCy"/>
 	[JsonConstructor]
 	public CandidateMap(string[] segments)
 	{
 		this = Empty;
 		foreach (var segment in segments)
 		{
-			this |= RxCyNotation.ParseCandidates(segment);
+			this |= CandidateConceptNotation.ParseCollection(segment);
 		}
 	}
 
@@ -107,7 +107,7 @@ public partial struct CandidateMap :
 			return this switch
 			{
 				{ _count: 0 } => [],
-				[var a] => [RxCyNotation.ToCandidateString(a)],
+				[var a] => [CandidateConceptNotation.ToString(a)],
 				_ => f(Offsets)
 			};
 
@@ -128,7 +128,7 @@ public partial struct CandidateMap :
 						cells.Add(candidate / 9);
 					}
 
-					sb.Append(RxCyNotation.ToCellsString(cells));
+					sb.Append(CellConceptNotation.ToCollectionString(cells));
 					sb.Append('(');
 					sb.Append(digitGroup.Key + 1);
 					sb.Append(')');
@@ -269,7 +269,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => RxCyNotation.ToCandidatesString(this);
+	public override readonly string ToString() => CandidateConceptNotation.ToCollectionString(this);
 
 	/// <summary>
 	/// Gets <see cref="string"/> representation of the current <see cref="CandidateMap"/> instance, using pre-defined formatters.
@@ -524,7 +524,7 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	public static CandidateMap Parse(string str) => RxCyNotation.ParseCandidates(str);
+	public static CandidateMap Parse(string str) => CandidateConceptNotation.ParseCollection(str);
 
 	/// <inheritdoc/>
 	static bool IParsable<CandidateMap>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CandidateMap result)
@@ -789,7 +789,7 @@ file sealed class Converter : JsonConverter<CandidateMap>
 		var parts = Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
 		foreach (var part in parts)
 		{
-			result |= RxCyNotation.ParseCandidates(part);
+			result |= CandidateConceptNotation.ParseCollection(part);
 		}
 
 		return result;

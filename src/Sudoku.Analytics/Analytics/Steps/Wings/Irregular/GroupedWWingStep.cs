@@ -26,9 +26,9 @@ public sealed partial class GroupedWWingStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [StartCellStr, EndCellStr, BridgeStr]), new(ChineseLanguage, [StartCellStr, EndCellStr, BridgeStr])];
 
-	private string StartCellStr => RxCyNotation.ToCellString(StartCell);
+	private string StartCellStr => CellConceptNotation.ToString(StartCell);
 
-	private string EndCellStr => RxCyNotation.ToCellString(EndCell);
+	private string EndCellStr => CellConceptNotation.ToString(EndCell);
 
-	private string BridgeStr => RxCyNotation.ToCellsString(Bridge);
+	private string BridgeStr => CellConceptNotation.ToCollectionString(Bridge);
 }

@@ -15,7 +15,7 @@ public sealed partial class CandidateViewNode(ColorIdentifier identifier, [Prima
 	/// Indicates the candidate string.
 	/// </summary>
 	[StringMember(nameof(Candidate))]
-	private string CandidateString => RxCyNotation.ToCandidateString(Candidate);
+	private string CandidateString => CandidateConceptNotation.ToString(Candidate);
 
 
 	[DeconstructionMethod]

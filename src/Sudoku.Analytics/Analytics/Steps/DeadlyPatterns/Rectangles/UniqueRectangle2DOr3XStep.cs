@@ -42,5 +42,5 @@ public sealed partial class UniqueRectangle2DOr3XStep(
 
 	private string YDigitStr => (YDigit + 1).ToString();
 
-	private string XYCellsStr => RxCyNotation.ToCellString(XyCell);
+	private string XYCellsStr => CellConceptNotation.ToString(XyCell);
 }

@@ -37,9 +37,9 @@ public sealed partial class EmptyRectangleIntersectionPairStep(
 
 	private string Digit2Str => (Digit2 + 1).ToString();
 
-	private string StartCellStr => RxCyNotation.ToCellString(StartCell);
+	private string StartCellStr => CellConceptNotation.ToString(StartCell);
 
-	private string EndCellStr => RxCyNotation.ToCellString(EndCell);
+	private string EndCellStr => CellConceptNotation.ToString(EndCell);
 
 	private string HouseStr => HouseFormatter.Format(1 << House);
 }

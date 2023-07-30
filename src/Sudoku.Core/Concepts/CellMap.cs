@@ -70,17 +70,18 @@ public unsafe partial struct CellMap :
 
 
 	/// <summary>
-	/// Initializes a <see cref="CellMap"/> instance via a list of offsets represented as a RxCy notation defined by <see cref="RxCyNotation"/>.
+	/// Initializes a <see cref="CellMap"/> instance via a list of offsets represented as a RxCy notation
+	/// defined by <see cref="CellNotationKind.RxCy"/>.
 	/// </summary>
 	/// <param name="segments">The cell offsets, represented as a RxCy notation.</param>
-	/// <seealso cref="RxCyNotation"/>
+	/// <seealso cref="CellNotationKind.RxCy"/>
 	[JsonConstructor]
 	public CellMap(string[] segments)
 	{
 		this = Empty;
 		foreach (var segment in segments)
 		{
-			this |= RxCyNotation.ParseCells(segment);
+			this |= CellConceptNotation.ParseCollection(segment);
 		}
 	}
 
@@ -893,8 +894,19 @@ public unsafe partial struct CellMap :
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool TryParse(string str, out CellMap result) => RxCyNotation.TryParseCells(str, out result);
+	public static bool TryParse(string str, out CellMap result)
+	{
+		try
+		{
+			result = Parse(str);
+			return true;
+		}
+		catch
+		{
+			result = Empty;
+			return false;
+		}
+	}
 
 	/// <summary>
 	/// Initializes an instance with two binary values.
@@ -931,7 +943,7 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap Parse(string str) => RxCyNotation.ParseCells(str);
+	public static CellMap Parse(string str) => CellConceptNotation.ParseCollection(str);
 
 	/// <inheritdoc/>
 	static bool IParsable<CellMap>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CellMap result)
@@ -1153,7 +1165,7 @@ file sealed class Converter : JsonConverter<CellMap>
 		var parts = Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
 		foreach (var part in parts)
 		{
-			result |= RxCyNotation.ParseCells(part);
+			result |= CellConceptNotation.ParseCollection(part);
 		}
 
 		return result;

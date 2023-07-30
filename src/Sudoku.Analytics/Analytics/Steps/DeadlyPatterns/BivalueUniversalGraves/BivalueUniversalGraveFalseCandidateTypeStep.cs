@@ -22,5 +22,5 @@ public sealed partial class BivalueUniversalGraveFalseCandidateTypeStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [FalseCandidateStr]), new(ChineseLanguage, [FalseCandidateStr])];
 
-	private string FalseCandidateStr => RxCyNotation.ToCandidateString(FalseCandidate);
+	private string FalseCandidateStr => CandidateConceptNotation.ToString(FalseCandidate);
 }

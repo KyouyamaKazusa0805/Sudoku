@@ -32,7 +32,7 @@ public sealed partial class FireworkPairType1Step(
 
 	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	private string ExtraCell1Str => RxCyNotation.ToCellString(ExtraCell1);
+	private string ExtraCell1Str => CellConceptNotation.ToString(ExtraCell1);
 
-	private string ExtraCell2Str => RxCyNotation.ToCellString(ExtraCell2);
+	private string ExtraCell2Str => CellConceptNotation.ToString(ExtraCell2);
 }

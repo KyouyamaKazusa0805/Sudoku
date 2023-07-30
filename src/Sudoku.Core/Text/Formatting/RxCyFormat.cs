@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Defines a formatter that uses <b>RxCy</b> rule to format a <see cref="CellMap"/> instance.
 /// </summary>
 /// <remarks>
-/// <inheritdoc cref="RxCyNotation" path="/remarks"/>
+/// <inheritdoc cref="CellNotationKind.RxCy" path="/remarks"/>
 /// </remarks>
 public sealed record RxCyFormat : ICellMapFormatter, ICandidateMapFormatter
 {
@@ -20,10 +20,10 @@ public sealed record RxCyFormat : ICellMapFormatter, ICandidateMapFormatter
 
 
 	/// <inheritdoc/>
-	public string ToString(scoped in CellMap cellMap) => RxCyNotation.ToCellsString(cellMap);
+	public string ToString(scoped in CellMap cellMap) => CellConceptNotation.ToCollectionString(cellMap);
 
 	/// <inheritdoc/>
-	public string ToString(scoped in CandidateMap candidateMap) => RxCyNotation.ToCandidatesString(candidateMap);
+	public string ToString(scoped in CandidateMap candidateMap) => CandidateConceptNotation.ToCollectionString(candidateMap);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

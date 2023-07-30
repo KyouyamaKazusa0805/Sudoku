@@ -109,5 +109,5 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{CellsMap[From]} == {RxCyNotation.ToCandidateString(To * 9 + Digit)}";
+	public override string ToString() => $"{CellsMap[From]} == {CellsMap[To]}{Digit + 1}";
 }

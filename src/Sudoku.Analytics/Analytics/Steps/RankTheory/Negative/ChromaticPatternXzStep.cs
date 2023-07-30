@@ -35,5 +35,5 @@ public sealed partial class ChromaticPatternXzStep(
 			new(ChineseLanguage, [BlocksStr, CellsStr, DigitsStr, ExtraCellStr])
 		];
 
-	private string ExtraCellStr => RxCyNotation.ToCellString(ExtraCell);
+	private string ExtraCellStr => CellConceptNotation.ToString(ExtraCell);
 }

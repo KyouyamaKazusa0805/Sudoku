@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interaction;
+namespace SudokuStudio.Interaction;
 
 /// <summary>
 /// Defines a kind of coordinate label to be displayed.
@@ -11,14 +11,14 @@ public enum CoordinateLabelDisplayKind
 	None,
 
 	/// <summary>
-	/// Indicates the coordinate labels will be displayed as <see cref="RxCyNotation">RxCy Notation</see>.
+	/// Indicates the coordinate labels will be displayed as <see cref="CellNotationKind.RxCy">RxCy Notation</see>.
 	/// </summary>
-	/// <seealso cref="RxCyNotation"/>
+	/// <seealso cref="CellNotationKind.RxCy"/>
 	RxCy,
 
 	/// <summary>
-	/// Indicates the coordinate labels will be displayed as <see cref="K9Notation">K9 Notation</see>.
+	/// Indicates the coordinate labels will be displayed as <see cref="CellNotationKind.K9">K9 Notation</see>.
 	/// </summary>
-	/// <seealso cref="K9Notation"/>
+	/// <seealso cref="CellNotationKind.K9"/>
 	K9
 }

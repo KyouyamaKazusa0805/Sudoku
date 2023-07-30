@@ -72,5 +72,5 @@ public sealed partial class SeniorExocetStep(
 		}
 	}
 
-	private string EndoTargetCellStr => RxCyNotation.ToCellString(EndoTargetCell);
+	private string EndoTargetCellStr => CellConceptNotation.ToString(EndoTargetCell);
 }

@@ -43,9 +43,9 @@ public sealed partial class AvoidableRectangleWithHiddenSingleStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, BaseCellStr, HouseStr, TargetCellStr])
 		];
 
-	private string BaseCellStr => RxCyNotation.ToCellString(BaseCell);
+	private string BaseCellStr => CellConceptNotation.ToString(BaseCell);
 
-	private string TargetCellStr => RxCyNotation.ToCellString(TargetCell);
+	private string TargetCellStr => CellConceptNotation.ToString(TargetCell);
 
 	private string HouseStr => HouseFormatter.Format(1 << House);
 }
