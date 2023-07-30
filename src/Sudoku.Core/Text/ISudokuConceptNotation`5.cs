@@ -25,4 +25,107 @@ public interface ISudokuConceptNotation<TSelf, TCollection, TElement, TConceptKi
 	where TCollection : notnull, IEnumerable<TElement>, ISimpleParsable<TCollection>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TConceptKindPresenter : unmanaged, Enum
-	where TOptionProvider : struct, IOptionProvider<TOptionProvider, TCollection, TElement, TConceptKindPresenter>;
+	where TOptionProvider : struct, IOptionProvider<TOptionProvider, TCollection, TElement, TConceptKindPresenter>
+{
+	/// <summary>
+	/// <inheritdoc cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)" path="/summary"/>
+	/// </summary>
+	/// <param name="text">
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)"
+	///     path="/param[@name='text']"/>
+	/// </param>
+	/// <param name="notation">
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)"
+	///     path="/param[@name='notation']"/>
+	/// </param>
+	/// <param name="option">The options to be used as extra controls.</param>
+	/// <returns>
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)"
+	///     path="/returns"/>
+	/// </returns>
+	static abstract TElement Parse(string text, TConceptKindPresenter notation, scoped in TOptionProvider option);
+
+	/// <summary>
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ParseCollection(string, TConceptKindPresenter)"
+	///     path="/summary"/>
+	/// </summary>
+	/// <param name="text">
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)"
+	///     path="/param[@name='text']"/>
+	/// </param>
+	/// <param name="notation">
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)"
+	///     path="/param[@name='notation']"/>
+	/// </param>
+	/// <param name="option">
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TCollection, TElement, TConceptKindPresenter, TOptionProvider}.Parse(string, TConceptKindPresenter, in TOptionProvider)"
+	///     path="/param[@name='option']"/>
+	/// </param>
+	/// <returns>
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)"
+	///     path="/returns"/>
+	/// </returns>
+	static abstract TCollection ParseCollection(string text, TConceptKindPresenter notation, scoped in TOptionProvider option);
+
+	/// <summary>
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"
+	///     path="/summary"/>
+	/// </summary>
+	/// <param name="value">
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"
+	///     path="/param[@name='value']"/>
+	/// </param>
+	/// <param name="notation">
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"
+	///     path="/param[@name='notation']"/>
+	/// </param>
+	/// <param name="option">
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TCollection, TElement, TConceptKindPresenter, TOptionProvider}.Parse(string, TConceptKindPresenter, in TOptionProvider)"
+	///     path="/param[@name='option']"/>
+	/// </param>
+	/// <returns>
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)"
+	///     path="/returns"/>
+	/// </returns>
+	static abstract string ToString(TElement value, TConceptKindPresenter notation, scoped in TOptionProvider option);
+
+	/// <summary>
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(in TCollection, TConceptKindPresenter)"
+	///     path="/summary"/>
+	/// </summary>
+	/// <param name="collection">
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(in TCollection, TConceptKindPresenter)"
+	///     path="/param[@name='collection']"/>
+	/// </param>
+	/// <param name="notation">
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"
+	///     path="/param[@name='notation']"/>
+	/// </param>
+	/// <param name="option">
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TCollection, TElement, TConceptKindPresenter, TOptionProvider}.Parse(string, TConceptKindPresenter, in TOptionProvider)"
+	///     path="/param[@name='option']"/>
+	/// </param>
+	/// <returns>
+	/// <inheritdoc
+	///     cref="ISudokuConceptNotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)"
+	///     path="/returns"/>
+	/// </returns>
+	static abstract string ToCollectionString(scoped in TCollection collection, TConceptKindPresenter notation, scoped in TOptionProvider option);
+}

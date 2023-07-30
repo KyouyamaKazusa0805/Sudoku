@@ -6798,6 +6798,108 @@ if (student is (name: var name, age: >= 18))
             in order to allow using <see langword="with"/> expressions.
             </typeparam>
         </member>
+        <member name="M:Sudoku.Text.ISudokuConceptNotation`5.Parse(System.String,`3,`4@)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)" path="/summary"/>
+            </summary>
+            <param name="text">
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
+                path="/param[@name='text']"/>
+            </param>
+            <param name="notation">
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
+                path="/param[@name='notation']"/>
+            </param>
+            <param name="option">The options to be used as extra controls.</param>
+            <returns>
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
+                path="/returns"/>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Text.ISudokuConceptNotation`5.ParseCollection(System.String,`3,`4@)">
+            <summary>
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`4.ParseCollection(System.String,`3)"
+                path="/summary"/>
+            </summary>
+            <param name="text">
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
+                path="/param[@name='text']"/>
+            </param>
+            <param name="notation">
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
+                path="/param[@name='notation']"/>
+            </param>
+            <param name="option">
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`5.Parse(System.String,`3,`4@)"
+                path="/param[@name='option']"/>
+            </param>
+            <returns>
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
+                path="/returns"/>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Text.ISudokuConceptNotation`5.ToString(`2,`3,`4@)">
+            <summary>
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`3.ToString(`1,`2)"
+                path="/summary"/>
+            </summary>
+            <param name="value">
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`3.ToString(`1,`2)"
+                path="/param[@name='value']"/>
+            </param>
+            <param name="notation">
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`3.ToString(`1,`2)"
+                path="/param[@name='notation']"/>
+            </param>
+            <param name="option">
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`5.Parse(System.String,`3,`4@)"
+                path="/param[@name='option']"/>
+            </param>
+            <returns>
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
+                path="/returns"/>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Text.ISudokuConceptNotation`5.ToCollectionString(`1@,`3,`4@)">
+            <summary>
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`4.ToCollectionString(`1@,`3)"
+                path="/summary"/>
+            </summary>
+            <param name="collection">
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`4.ToCollectionString(`1@,`3)"
+                path="/param[@name='collection']"/>
+            </param>
+            <param name="notation">
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`3.ToString(`1,`2)"
+                path="/param[@name='notation']"/>
+            </param>
+            <param name="option">
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`5.Parse(System.String,`3,`4@)"
+                path="/param[@name='option']"/>
+            </param>
+            <returns>
+            <inheritdoc
+                cref="M:Sudoku.Text.ISudokuConceptNotation`3.Parse(System.String,`2)"
+                path="/returns"/>
+            </returns>
+        </member>
         <member name="T:Sudoku.Text.NotationPatterns">
             <summary>
             The extracted type that contains a list of methods that provides with patterns of the notations to be parsed.
