@@ -1,4 +1,4 @@
-namespace Sudoku.Text;
+namespace Sudoku.Text.Notation;
 
 /// <summary>
 /// The extracted type that contains a list of methods that provides with patterns of the notations to be parsed.

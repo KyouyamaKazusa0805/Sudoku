@@ -1,4 +1,4 @@
-namespace Sudoku.Text;
+namespace Sudoku.Text.Notation;
 
 /// <summary>
 /// Represents a kind of output text mode for <see cref="CellMap"/> instances.

@@ -2358,15 +2358,15 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:SudokuStudio.Interaction.CoordinateLabelDisplayKind.RxCy">
             <summary>
-            Indicates the coordinate labels will be displayed as <see cref="F:Sudoku.Text.CellNotationKind.RxCy">RxCy Notation</see>.
+            Indicates the coordinate labels will be displayed as <see cref="F:Sudoku.Text.Notation.CellNotationKind.RxCy">RxCy Notation</see>.
             </summary>
-            <seealso cref="F:Sudoku.Text.CellNotationKind.RxCy"/>
+            <seealso cref="F:Sudoku.Text.Notation.CellNotationKind.RxCy"/>
         </member>
         <member name="F:SudokuStudio.Interaction.CoordinateLabelDisplayKind.K9">
             <summary>
-            Indicates the coordinate labels will be displayed as <see cref="F:Sudoku.Text.CellNotationKind.K9">K9 Notation</see>.
+            Indicates the coordinate labels will be displayed as <see cref="F:Sudoku.Text.Notation.CellNotationKind.K9">K9 Notation</see>.
             </summary>
-            <seealso cref="F:Sudoku.Text.CellNotationKind.K9"/>
+            <seealso cref="F:Sudoku.Text.Notation.CellNotationKind.K9"/>
         </member>
         <member name="T:SudokuStudio.Interaction.CoordinateLabelDisplayMode">
             <summary>

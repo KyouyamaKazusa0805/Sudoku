@@ -6,7 +6,7 @@ global using System.SourceGeneration;
 global using Sudoku.Algorithm.Solving;
 global using Sudoku.Analytics;
 global using Sudoku.DataModel;
-global using Sudoku.Text;
+global using Sudoku.Text.Notation;
 global using Sudoku.Text.Formatting;
 global using static System.Algorithm.Sequences;
 global using static System.Algorithm.Sorting;

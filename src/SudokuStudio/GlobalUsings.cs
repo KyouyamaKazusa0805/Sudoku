@@ -41,7 +41,7 @@ global using Sudoku.Filtering;
 global using Sudoku.Preprocessing;
 global using Sudoku.Rendering;
 global using Sudoku.Rendering.Nodes;
-global using Sudoku.Text;
+global using Sudoku.Text.Notation;
 global using Sudoku.Text.Formatting;
 global using SudokuStudio;
 global using SudokuStudio.BindableSource;

@@ -1,4 +1,4 @@
-namespace Sudoku.Text;
+namespace Sudoku.Text.Notation;
 
 /// <summary>
 /// Represents a notation that represents for a cell or a list of cells.

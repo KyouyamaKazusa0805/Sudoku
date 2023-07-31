@@ -1,4 +1,4 @@
-namespace Sudoku.Text;
+namespace Sudoku.Text.Notation;
 
 /// <summary>
 /// Represents a notation that represents for a <see cref="CellMap"/> instance.
