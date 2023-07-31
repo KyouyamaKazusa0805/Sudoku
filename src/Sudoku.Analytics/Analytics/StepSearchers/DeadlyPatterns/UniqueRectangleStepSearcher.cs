@@ -4215,7 +4215,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static HouseMask getAvailableHouses(int house, scoped in CellMap guardianCells)
+		static HouseMask getAvailableHouses(House house, scoped in CellMap guardianCells)
 		{
 			var intersection = guardianCells & HousesMap[house];
 			return house switch
@@ -4440,7 +4440,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static HouseMask getAvailableHouses(int house, scoped in CellMap guardianCells)
+		static HouseMask getAvailableHouses(House house, scoped in CellMap guardianCells)
 		{
 			var intersection = guardianCells & HousesMap[house];
 			return house switch
