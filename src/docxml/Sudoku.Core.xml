@@ -6474,6 +6474,33 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Formatting.SusserFormatTreatingValuesAsGivens.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Text.Notation.CandidateMapNotation">
+            <summary>
+            Represents a notation that represents for a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.CandidateMapNotation.Parse(System.String,Sudoku.Text.Notation.CandidateMapNotationKind)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.CandidateMapNotation.ToString(Sudoku.Concepts.CandidateMap@,Sudoku.Text.Notation.CandidateMapNotationKind)">
+            <inheritdoc cref="M:Sudoku.Text.Notation.INotation`3.ToString(`1,`2)"/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.CandidateMapNotation.Sudoku#Text#Notation#INotation{Sudoku#Text#Notation#CandidateMapNotation,Sudoku#Concepts#CandidateMap,Sudoku#Text#Notation#CandidateMapNotationKind}#ToString(Sudoku.Concepts.CandidateMap,Sudoku.Text.Notation.CandidateMapNotationKind)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Notation.CandidateMapNotationKind">
+            <summary>
+            Represents a kind of output text mode for <see cref="T:Sudoku.Concepts.CandidateMap"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
+        </member>
+        <member name="F:Sudoku.Text.Notation.CandidateMapNotationKind.RxCy">
+            <inheritdoc cref="F:Sudoku.Text.Notation.CandidateNotationKind.RxCy"/>
+        </member>
+        <member name="F:Sudoku.Text.Notation.CandidateMapNotationKind.K9">
+            <inheritdoc cref="F:Sudoku.Text.Notation.CandidateNotationKind.K9"/>
+        </member>
         <member name="T:Sudoku.Text.Notation.CandidateNotation">
             <summary>
             Represents a notation that represents for a candidate or a list of candidates.
@@ -6572,6 +6599,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a notation that represents for a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
             </summary>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
         </member>
         <member name="M:Sudoku.Text.Notation.CellMapNotation.Parse(System.String)">
             <inheritdoc cref="M:Sudoku.Text.Notation.CellNotation.Parse(System.String)"/>

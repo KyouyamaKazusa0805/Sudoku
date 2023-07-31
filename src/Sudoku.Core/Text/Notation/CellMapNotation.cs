@@ -3,6 +3,7 @@ namespace Sudoku.Text.Notation;
 /// <summary>
 /// Represents a notation that represents for a <see cref="CellMap"/> instance.
 /// </summary>
+/// <seealso cref="CellMap"/>
 public sealed class CellMapNotation : INotation<CellMapNotation, CellMap, CellMapNotationKind>
 {
 	/// <inheritdoc cref="CellNotation.Parse(string)"/>
