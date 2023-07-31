@@ -16,8 +16,8 @@ public sealed partial class CellMapNotation : INotation<CellMapNotation, CellMap
 	public static CellMap Parse(string text, Kind notation)
 		=> notation switch
 		{
-			Kind.RxCy => CellNotation.ParseCollection(text, CellNotationKind.RxCy),
-			Kind.K9 => CellNotation.ParseCollection(text, CellNotationKind.K9),
+			Kind.RxCy => CellNotation.ParseCollection(text, CellNotation.Kind.RxCy),
+			Kind.K9 => CellNotation.ParseCollection(text, CellNotation.Kind.K9),
 			Kind.Binary => throw new NotSupportedException("The binary format is not supported for parsing."),
 			Kind.Table => throw new NotSupportedException("The table format is not supported for parsing."),
 			_ => throw new ArgumentOutOfRangeException(nameof(notation))
@@ -35,11 +35,11 @@ public sealed partial class CellMapNotation : INotation<CellMapNotation, CellMap
 		{
 			case Kind.RxCy:
 			{
-				return CellNotation.ToCollectionString(value, CellNotationKind.RxCy);
+				return CellNotation.ToCollectionString(value, CellNotation.Kind.RxCy);
 			}
 			case Kind.K9:
 			{
-				return CellNotation.ToCollectionString(value, CellNotationKind.K9);
+				return CellNotation.ToCollectionString(value, CellNotation.Kind.K9);
 			}
 			case Kind.Binary:
 			{

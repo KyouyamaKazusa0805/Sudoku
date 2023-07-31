@@ -1586,10 +1586,10 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.#ctor(System.String[])">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance via a list of candidate offsets
-            represented as a RxCy notation defined by <see cref="F:Sudoku.Text.Notation.CellNotationKind.RxCy"/>.
+            represented as a RxCy notation defined by <see cref="F:Sudoku.Text.Notation.CellNotation.Kind.RxCy"/>.
             </summary>
             <param name="segments">The candidate offsets, represented as a RxCy notation.</param>
-            <seealso cref="F:Sudoku.Text.Notation.CellNotationKind.RxCy"/>
+            <seealso cref="F:Sudoku.Text.Notation.CellNotation.Kind.RxCy"/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.#ctor(System.Int32,System.Boolean)">
             <summary>
@@ -1941,10 +1941,10 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.#ctor(System.String[])">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.CellMap"/> instance via a list of offsets represented as a RxCy notation
-            defined by <see cref="F:Sudoku.Text.Notation.CellNotationKind.RxCy"/>.
+            defined by <see cref="F:Sudoku.Text.Notation.CellNotation.Kind.RxCy"/>.
             </summary>
             <param name="segments">The cell offsets, represented as a RxCy notation.</param>
-            <seealso cref="F:Sudoku.Text.Notation.CellNotationKind.RxCy"/>
+            <seealso cref="F:Sudoku.Text.Notation.CellNotation.Kind.RxCy"/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.InOneHouse">
             <summary>
@@ -5910,7 +5910,7 @@ if (student is (name: var name, age: >= 18))
             Defines a formatter that uses <b>K9</b> rule to format a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
             </summary>
             <remarks>
-            <inheritdoc cref="F:Sudoku.Text.Notation.CellNotationKind.K9" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Text.Notation.CellNotation.Kind.K9" path="/remarks"/>
             </remarks>
         </member>
         <member name="M:Sudoku.Text.Formatting.K9Format.ToString(Sudoku.Concepts.CellMap@)">
@@ -6177,7 +6177,7 @@ if (student is (name: var name, age: >= 18))
             Defines a formatter that uses <b>RxCy</b> rule to format a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
             </summary>
             <remarks>
-            <inheritdoc cref="F:Sudoku.Text.Notation.CellNotationKind.RxCy" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Text.Notation.CellNotation.Kind.RxCy" path="/remarks"/>
             </remarks>
         </member>
         <member name="M:Sudoku.Text.Formatting.RxCyFormat.ToString(Sudoku.Concepts.CellMap@)">
@@ -6628,10 +6628,10 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Concepts.CellMap"/>
         </member>
         <member name="F:Sudoku.Text.Notation.CellMapNotation.Kind.RxCy">
-            <inheritdoc cref="F:Sudoku.Text.Notation.CellNotationKind.RxCy"/>
+            <inheritdoc cref="F:Sudoku.Text.Notation.CellNotation.Kind.RxCy"/>
         </member>
         <member name="F:Sudoku.Text.Notation.CellMapNotation.Kind.K9">
-            <inheritdoc cref="F:Sudoku.Text.Notation.CellNotationKind.K9"/>
+            <inheritdoc cref="F:Sudoku.Text.Notation.CellNotation.Kind.K9"/>
         </member>
         <member name="F:Sudoku.Text.Notation.CellMapNotation.Kind.Binary">
             <summary>
@@ -6654,11 +6654,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Try to parse the specified text, converting it into the target cell value via RxCy Notation rule.
             </summary>
-            <param name="text"><inheritdoc cref="M:Sudoku.Text.Notation.CellNotation.Parse(System.String,Sudoku.Text.Notation.CellNotationKind)" path="/param[@name='text']"/></param>
-            <returns><inheritdoc cref="M:Sudoku.Text.Notation.CellNotation.Parse(System.String,Sudoku.Text.Notation.CellNotationKind)" path="/returns"/></returns>
-            <seealso cref="F:Sudoku.Text.Notation.CellNotationKind.RxCy"/>
+            <param name="text"><inheritdoc cref="M:Sudoku.Text.Notation.CellNotation.Parse(System.String,Sudoku.Text.Notation.CellNotation.Kind)" path="/param[@name='text']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Text.Notation.CellNotation.Parse(System.String,Sudoku.Text.Notation.CellNotation.Kind)" path="/returns"/></returns>
+            <seealso cref="F:Sudoku.Text.Notation.CellNotation.Kind.RxCy"/>
         </member>
-        <member name="M:Sudoku.Text.Notation.CellNotation.Parse(System.String,Sudoku.Text.Notation.CellNotationKind)">
+        <member name="M:Sudoku.Text.Notation.CellNotation.Parse(System.String,Sudoku.Text.Notation.CellNotation.Kind)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notation.CellNotation.ParseCollection(System.String)">
@@ -6668,7 +6668,7 @@ if (student is (name: var name, age: >= 18))
             <param name="text">The text to be parsed.</param>
             <returns>The target result instance of type <see cref="T:Sudoku.Concepts.CellMap"/>.</returns>
         </member>
-        <member name="M:Sudoku.Text.Notation.CellNotation.ParseCollection(System.String,Sudoku.Text.Notation.CellNotationKind)">
+        <member name="M:Sudoku.Text.Notation.CellNotation.ParseCollection(System.String,Sudoku.Text.Notation.CellNotation.Kind)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notation.CellNotation.ToString(System.Int32)">
@@ -6676,9 +6676,9 @@ if (student is (name: var name, age: >= 18))
             Gets the text notation that can represent the specified value.
             </summary>
             <param name="value">The value to be output and converted into a <see cref="T:System.String"/> representation.</param>
-            <returns><inheritdoc cref="M:Sudoku.Text.Notation.CellNotation.ToString(System.Int32,Sudoku.Text.Notation.CellNotationKind)" path="/returns"/></returns>
+            <returns><inheritdoc cref="M:Sudoku.Text.Notation.CellNotation.ToString(System.Int32,Sudoku.Text.Notation.CellNotation.Kind)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Text.Notation.CellNotation.ToString(System.Int32,Sudoku.Text.Notation.CellNotationKind)">
+        <member name="M:Sudoku.Text.Notation.CellNotation.ToString(System.Int32,Sudoku.Text.Notation.CellNotation.Kind)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Notation.CellNotation.ToCollectionString(Sudoku.Concepts.CellMap@)">
@@ -6688,15 +6688,15 @@ if (student is (name: var name, age: >= 18))
             <param name="collection"><inheritdoc cref="M:Sudoku.Text.Notation.CellNotation.ToString(System.Int32)" path="/param[@name='value']"/></param>
             <returns><inheritdoc cref="M:Sudoku.Text.Notation.CellNotation.ToString(System.Int32)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Text.Notation.CellNotation.ToCollectionString(Sudoku.Concepts.CellMap@,Sudoku.Text.Notation.CellNotationKind)">
+        <member name="M:Sudoku.Text.Notation.CellNotation.ToCollectionString(Sudoku.Concepts.CellMap@,Sudoku.Text.Notation.CellNotation.Kind)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.Notation.CellNotationKind">
+        <member name="T:Sudoku.Text.Notation.CellNotation.Kind">
             <summary>
             Represents a kind of the cell notation.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.Notation.CellNotationKind.RxCy">
+        <member name="F:Sudoku.Text.Notation.CellNotation.Kind.RxCy">
             <summary>
             Indicates the cell notation is <see href="http://sudopedia.enjoysudoku.com/Rncn.html">RxCy Notation</see>.
             </summary>
@@ -6707,7 +6707,7 @@ if (student is (name: var name, age: >= 18))
             <c>R4C2</c> means the cell at row 4 and column 2.
             </remarks>
         </member>
-        <member name="F:Sudoku.Text.Notation.CellNotationKind.K9">
+        <member name="F:Sudoku.Text.Notation.CellNotation.Kind.K9">
             <summary>
             Indicates the cell notation is <see href="http://sudopedia.enjoysudoku.com/K9.html">K9 Notation</see>.
             </summary>

@@ -4,12 +4,12 @@ namespace Sudoku.Text.Formatting;
 /// Defines a formatter that uses <b>K9</b> rule to format a <see cref="CellMap"/> instance.
 /// </summary>
 /// <remarks>
-/// <inheritdoc cref="CellNotationKind.K9" path="/remarks"/>
+/// <inheritdoc cref="CellNotation.Kind.K9" path="/remarks"/>
 /// </remarks>
 public sealed record K9Format : ICellMapFormatter, ICandidateMapFormatter
 {
 	/// <inheritdoc/>
-	public string ToString(scoped in CellMap cellMap) => CellNotation.ToCollectionString(cellMap, CellNotationKind.K9);
+	public string ToString(scoped in CellMap cellMap) => CellNotation.ToCollectionString(cellMap, CellNotation.Kind.K9);
 
 	/// <inheritdoc/>
 	public string ToString(scoped in CandidateMap candidateMap) => throw new NotImplementedException();

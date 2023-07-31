@@ -11,14 +11,14 @@ public enum CoordinateLabelDisplayKind
 	None,
 
 	/// <summary>
-	/// Indicates the coordinate labels will be displayed as <see cref="CellNotationKind.RxCy">RxCy Notation</see>.
+	/// Indicates the coordinate labels will be displayed as <see cref="CellNotation.Kind.RxCy">RxCy Notation</see>.
 	/// </summary>
-	/// <seealso cref="CellNotationKind.RxCy"/>
+	/// <seealso cref="CellNotation.Kind.RxCy"/>
 	RxCy,
 
 	/// <summary>
-	/// Indicates the coordinate labels will be displayed as <see cref="CellNotationKind.K9">K9 Notation</see>.
+	/// Indicates the coordinate labels will be displayed as <see cref="CellNotation.Kind.K9">K9 Notation</see>.
 	/// </summary>
-	/// <seealso cref="CellNotationKind.K9"/>
+	/// <seealso cref="CellNotation.Kind.K9"/>
 	K9
 }

@@ -3,26 +3,26 @@ namespace Sudoku.Text.Notation;
 /// <summary>
 /// Represents a notation that represents for a cell or a list of cells.
 /// </summary>
-public sealed class CellNotation : INotation<CellNotation, CellMap, Cell, CellNotationKind>
+public sealed partial class CellNotation : INotation<CellNotation, CellMap, Cell, CellNotation.Kind>
 {
 	/// <summary>
 	/// Try to parse the specified text, converting it into the target cell value via RxCy Notation rule.
 	/// </summary>
-	/// <param name="text"><inheritdoc cref="Parse(string, CellNotationKind)" path="/param[@name='text']"/></param>
-	/// <returns><inheritdoc cref="Parse(string, CellNotationKind)" path="/returns"/></returns>
-	/// <seealso cref="CellNotationKind.RxCy"/>
+	/// <param name="text"><inheritdoc cref="Parse(string, Kind)" path="/param[@name='text']"/></param>
+	/// <returns><inheritdoc cref="Parse(string, Kind)" path="/returns"/></returns>
+	/// <seealso cref="Kind.RxCy"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cell Parse(string text) => Parse(text, CellNotationKind.RxCy);
+	public static Cell Parse(string text) => Parse(text, Kind.RxCy);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cell Parse(string text, CellNotationKind notation)
+	public static Cell Parse(string text, Kind notation)
 		=> (notation, text) switch
 		{
-			(CellNotationKind.RxCy, ['R' or 'r', var r and >= '1' and <= '9', 'C' or 'c', var c and >= '1' and <= '9']) => (r - '1') * 9 + c - '1',
-			(CellNotationKind.RxCy, _) => throw new InvalidOperationException(),
-			(CellNotationKind.K9, [var r and (>= 'A' and <= 'I' or 'K'), var c and >= '1' and <= '9']) => (r == 'K' ? 8 : r - 'A') * 9 + c - '1',
-			(CellNotationKind.K9, _) => throw new InvalidOperationException(),
+			(Kind.RxCy, ['R' or 'r', var r and >= '1' and <= '9', 'C' or 'c', var c and >= '1' and <= '9']) => (r - '1') * 9 + c - '1',
+			(Kind.RxCy, _) => throw new InvalidOperationException(),
+			(Kind.K9, [var r and (>= 'A' and <= 'I' or 'K'), var c and >= '1' and <= '9']) => (r == 'K' ? 8 : r - 'A') * 9 + c - '1',
+			(Kind.K9, _) => throw new InvalidOperationException(),
 			_ => throw new ArgumentOutOfRangeException(nameof(notation))
 		};
 
@@ -32,14 +32,14 @@ public sealed class CellNotation : INotation<CellNotation, CellMap, Cell, CellNo
 	/// <param name="text">The text to be parsed.</param>
 	/// <returns>The target result instance of type <see cref="CellMap"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap ParseCollection(string text) => ParseCollection(text, CellNotationKind.RxCy);
+	public static CellMap ParseCollection(string text) => ParseCollection(text, Kind.RxCy);
 
 	/// <inheritdoc/>
-	public static unsafe CellMap ParseCollection(string text, CellNotationKind notation)
+	public static unsafe CellMap ParseCollection(string text, Kind notation)
 	{
 		switch (notation)
 		{
-			case CellNotationKind.RxCy:
+			case Kind.RxCy:
 			{
 				return simpleForm(text, out var r) || complexForm(text, out r)
 					? r
@@ -128,7 +128,7 @@ public sealed class CellNotation : INotation<CellNotation, CellMap, Cell, CellNo
 					return false;
 				}
 			}
-			case CellNotationKind.K9:
+			case Kind.K9:
 			{
 				// Check whether the match is successful.
 				if (NotationPatterns.CellOrCellListPattern_K9().Matches(text) is not { Count: not 0 } matches)
@@ -199,19 +199,19 @@ public sealed class CellNotation : INotation<CellNotation, CellMap, Cell, CellNo
 	/// Gets the text notation that can represent the specified value.
 	/// </summary>
 	/// <param name="value">The value to be output and converted into a <see cref="string"/> representation.</param>
-	/// <returns><inheritdoc cref="ToString(Cell, CellNotationKind)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="ToString(Cell, Kind)" path="/returns"/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToString(Cell value) => ToString(value, CellNotationKind.RxCy);
+	public static string ToString(Cell value) => ToString(value, Kind.RxCy);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToString(Cell value, CellNotationKind notation)
+	public static string ToString(Cell value, Kind notation)
 		=> value switch
 		{
 			>= 0 and < 81 => notation switch
 			{
-				CellNotationKind.RxCy => $"r{value / 9 + 1}c{value % 9 + 1}",
-				CellNotationKind.K9 => $"{value / 9 + 'A'}{value % 9 + 1}",
+				Kind.RxCy => $"r{value / 9 + 1}c{value % 9 + 1}",
+				Kind.K9 => $"{value / 9 + 'A'}{value % 9 + 1}",
 				_ => throw new ArgumentOutOfRangeException(nameof(notation))
 			},
 			_ => throw new ArgumentOutOfRangeException(nameof(value))
@@ -223,15 +223,15 @@ public sealed class CellNotation : INotation<CellNotation, CellMap, Cell, CellNo
 	/// <param name="collection"><inheritdoc cref="ToString(Cell)" path="/param[@name='value']"/></param>
 	/// <returns><inheritdoc cref="ToString(Cell)" path="/returns"/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCollectionString(scoped in CellMap collection) => ToCollectionString(collection, CellNotationKind.RxCy);
+	public static string ToCollectionString(scoped in CellMap collection) => ToCollectionString(collection, Kind.RxCy);
 
 	/// <inheritdoc/>
-	public static string ToCollectionString(scoped in CellMap collection, CellNotationKind notation)
+	public static string ToCollectionString(scoped in CellMap collection, Kind notation)
 	{
 		static string i(Digit v) => (v + 1).ToString();
 		switch (notation)
 		{
-			case CellNotationKind.RxCy:
+			case Kind.RxCy:
 			{
 				return collection switch
 				{
@@ -294,12 +294,12 @@ public sealed class CellNotation : INotation<CellNotation, CellMap, Cell, CellNo
 					return sbColumn.ToStringAndClear();
 				}
 			}
-			case CellNotationKind.K9:
+			case Kind.K9:
 			{
 				return collection switch
 				{
 					[] => string.Empty,
-					[var p] => ToString(p, CellNotationKind.K9),
+					[var p] => ToString(p, Kind.K9),
 					_ => r(collection) is var a && c(collection) is var b && a.Length <= b.Length ? a : b
 				};
 

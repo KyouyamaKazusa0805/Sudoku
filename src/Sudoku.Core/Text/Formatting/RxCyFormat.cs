@@ -4,7 +4,7 @@ namespace Sudoku.Text.Formatting;
 /// Defines a formatter that uses <b>RxCy</b> rule to format a <see cref="CellMap"/> instance.
 /// </summary>
 /// <remarks>
-/// <inheritdoc cref="CellNotationKind.RxCy" path="/remarks"/>
+/// <inheritdoc cref="CellNotation.Kind.RxCy" path="/remarks"/>
 /// </remarks>
 public sealed record RxCyFormat : ICellMapFormatter, ICandidateMapFormatter
 {

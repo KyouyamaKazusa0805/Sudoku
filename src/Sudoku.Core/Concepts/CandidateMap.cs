@@ -52,10 +52,10 @@ public partial struct CandidateMap :
 
 	/// <summary>
 	/// Initializes a <see cref="CandidateMap"/> instance via a list of candidate offsets
-	/// represented as a RxCy notation defined by <see cref="CellNotationKind.RxCy"/>.
+	/// represented as a RxCy notation defined by <see cref="CellNotation.Kind.RxCy"/>.
 	/// </summary>
 	/// <param name="segments">The candidate offsets, represented as a RxCy notation.</param>
-	/// <seealso cref="CellNotationKind.RxCy"/>
+	/// <seealso cref="CellNotation.Kind.RxCy"/>
 	[JsonConstructor]
 	public CandidateMap(string[] segments)
 	{

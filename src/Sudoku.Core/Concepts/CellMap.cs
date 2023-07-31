@@ -71,10 +71,10 @@ public unsafe partial struct CellMap :
 
 	/// <summary>
 	/// Initializes a <see cref="CellMap"/> instance via a list of offsets represented as a RxCy notation
-	/// defined by <see cref="CellNotationKind.RxCy"/>.
+	/// defined by <see cref="CellNotation.Kind.RxCy"/>.
 	/// </summary>
 	/// <param name="segments">The cell offsets, represented as a RxCy notation.</param>
-	/// <seealso cref="CellNotationKind.RxCy"/>
+	/// <seealso cref="CellNotation.Kind.RxCy"/>
 	[JsonConstructor]
 	public CellMap(string[] segments)
 	{

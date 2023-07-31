@@ -8,10 +8,10 @@ partial class CellMapNotation
 	/// <seealso cref="CellMap"/>
 	public enum Kind
 	{
-		/// <inheritdoc cref="CellNotationKind.RxCy"/>
+		/// <inheritdoc cref="CellNotation.Kind.RxCy"/>
 		RxCy,
 
-		/// <inheritdoc cref="CellNotationKind.K9"/>
+		/// <inheritdoc cref="CellNotation.Kind.K9"/>
 		K9,
 
 		/// <summary>
