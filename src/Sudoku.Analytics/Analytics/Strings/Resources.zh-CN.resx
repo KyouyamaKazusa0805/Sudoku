@@ -334,7 +334,7 @@
     <value>{Name}：可以通过强制链来证明得到 {0} 里的所有候选数全部为假 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_ComplexFishStep" xml:space="preserve">
-    <value>{0}\{1}({2}) {3}{4}</value>
+    <value>{0}</value>
   </data>
   <data name="TechniqueFormat_ContinuousNiceLoopStep" xml:space="preserve">
     <value>{Name}：环 {ChainStr} =&gt; {ElimStr}</value>
@@ -388,7 +388,7 @@
     <value>数字 {0} 位于区域 {1} 里有显性{2}结构</value>
   </data>
   <data name="TechniqueFormat_NormalFishStep" xml:space="preserve">
-    <value>数字 {0} 位于区域 {1}\{2} 里有鱼结构{3}</value>
+    <value>{0}</value>
   </data>
   <data name="TechniqueFormat_PatternOverlayStep" xml:space="preserve">
     <value>枚举数字 {DigitStr} 的所有排列情况</value>

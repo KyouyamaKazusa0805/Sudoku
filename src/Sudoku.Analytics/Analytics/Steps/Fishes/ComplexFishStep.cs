@@ -79,10 +79,7 @@ public sealed partial class ComplexFishStep(
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
-		=> [
-			new(EnglishLanguage, [DigitStr, BaseSetsStr, CoverSetsStr, ExofinsStr, EndofinsStr]),
-			new(ChineseLanguage, [BaseSetsStr, CoverSetsStr, DigitStr, ExofinsStr, EndofinsStr])
-		];
+		=> [new(EnglishLanguage, [NotationString]), new(ChineseLanguage, [NotationString])];
 
 	/// <summary>
 	/// Indicates the base houses.
@@ -94,15 +91,7 @@ public sealed partial class ComplexFishStep(
 	/// </summary>
 	private House[] CoverHouses => [.. CoverSetsMask.GetAllSets()];
 
-	private string DigitStr => (Digit + 1).ToString();
-
-	private string BaseSetsStr => HouseFormatter.Format(BaseHouses);
-
-	private string CoverSetsStr => HouseFormatter.Format(CoverHouses);
-
-	private string ExofinsStr => Exofins ? $"f{Exofins} " : string.Empty;
-
-	private string EndofinsStr => Endofins ? $"ef{Endofins} " : string.Empty;
+	private string NotationString => HobiwanFishNotation.ToString(this);
 
 	/// <summary>
 	/// The internal name.

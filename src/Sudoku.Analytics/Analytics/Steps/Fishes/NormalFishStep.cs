@@ -67,10 +67,7 @@ public sealed partial class NormalFishStep(
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
-		=> [
-			new(EnglishLanguage, [DigitStr, BaseSetStr, CoverSetStr, FinsStr]),
-			new(ChineseLanguage, [DigitStr, BaseSetStr, CoverSetStr, FinsStr])
-		];
+		=> [new(EnglishLanguage, [NotationString]), new(ChineseLanguage, [NotationString])];
 
 	/// <summary>
 	/// Indicates the internal name.
@@ -85,11 +82,5 @@ public sealed partial class NormalFishStep(
 		}
 	}
 
-	private string DigitStr => (Digit + 1).ToString();
-
-	private string BaseSetStr => HouseFormatter.Format(BaseSetsMask);
-
-	private string CoverSetStr => HouseFormatter.Format(CoverSetsMask);
-
-	private string FinsStr => Fins ? $"{GetString("Fin")!}{Fins}" : string.Empty;
+	private string NotationString => HobiwanFishNotation.ToString(this);
 }

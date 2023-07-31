@@ -10,7 +10,24 @@ public interface INotation;
 /// </summary>
 /// <typeparam name="TSelf">The type of the implementation.</typeparam>
 /// <typeparam name="TElement">The type of the element after or before parsing.</typeparam>
-/// <typeparam name="TConceptKindPresenter">The type of the concept kind presenter.</typeparam>
+public interface INotation<TSelf, TElement> : INotation where TSelf : notnull, INotation<TSelf, TElement> where TElement : notnull
+{
+	/// <summary>
+	/// Gets the text notation that can represent the specified value.
+	/// </summary>
+	/// <param name="value">The instance to be output.</param>
+	/// <returns>The string notation of the value.</returns>
+	static abstract string ToString(TElement value);
+}
+
+/// <summary>
+/// <inheritdoc cref="INotation" path="/summary"/>
+/// </summary>
+/// <typeparam name="TSelf"><inheritdoc cref="INotation{TSelf, TElement}" path="/typeparam[@name='TSelf']"/></typeparam>
+/// <typeparam name="TElement"><inheritdoc cref="INotation{TSelf, TElement}" path="/typeparam[@name='TElement']"/></typeparam>
+/// <typeparam name="TConceptKindPresenter">
+/// The type of the concept kind presenter. This type provides with an enumeration field representing a kind of notation behavior.
+/// </typeparam>
 public interface INotation<TSelf, TElement, TConceptKindPresenter> : INotation
 	where TSelf : notnull, INotation<TSelf, TElement, TConceptKindPresenter>
 	where TElement : notnull

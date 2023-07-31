@@ -328,7 +328,7 @@
     <value>{Name}: It can be proved using chains that all digits are false from {0} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_ComplexFishStep" xml:space="preserve">
-    <value>{0} in {1}\{2} {3}{4}</value>
+    <value>{0}</value>
   </data>
   <data name="TechniqueFormat_ContinuousNiceLoopStep" xml:space="preserve">
     <value>{Name}: Loop {ChainStr} =&gt; {ElimStr}</value>
@@ -382,7 +382,7 @@
     <value>{0} in {1}</value>
   </data>
   <data name="TechniqueFormat_NormalFishStep" xml:space="preserve">
-    <value>{0} in {1}\{2}{3}</value>
+    <value>{0}</value>
   </data>
   <data name="TechniqueFormat_PatternOverlayStep" xml:space="preserve">
     <value>Enumeration on digit {DigitStr}</value>

@@ -4876,7 +4876,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} in {1}\{2} {3}{4}.
+        ///   Looks up a localized string similar to {0}.
         /// </summary>
         public static string TechniqueFormat_ComplexFishStep {
             get {
@@ -5164,7 +5164,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} in {1}\{2}{3}.
+        ///   Looks up a localized string similar to {0}.
         /// </summary>
         public static string TechniqueFormat_NormalFishStep {
             get {
