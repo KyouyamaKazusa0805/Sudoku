@@ -1741,6 +1741,11 @@
             Indicates unique rectangle external turbot fish.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleExternalWWing">
+            <summary>
+            Indicates unique rectangle external W-Wing.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleExternalXyWing">
             <summary>
             Indicates unique rectangle external XY-Wing.
@@ -1849,6 +1854,11 @@
         <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalXyWing">
             <summary>
             Indicates avoidable rectangle external XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalWWing">
+            <summary>
+            Indicates avoidable rectangle external W-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleExternalAlmostLockedSetsXz">
@@ -6836,8 +6846,9 @@ result ^= expression;
             <list type="bullet">
             <item>Unique Rectangle External Type 1-4</item>
             <item>Unique Rectangle External Type with XY-Wing</item>
+            <item>Unique Rectangle External Type with W-Wing</item>
             <item>Unique Rectangle External Type with ALS-XZ</item>
-            <item>Unique Rectangle External Type with Skyscraper</item>
+            <item>Unique Rectangle External Type with Turbot Fish</item>
             </list>
             </item>
             <item>Avoidable Rectangle + Guardian (Sub-types are same like above)</item>
@@ -7479,6 +7490,18 @@ result ^= expression;
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalTurbotFish(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
             <summary>
             Check UR + Guardian, with external turbot fish.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="comparer">The comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="index">The mask index.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalWWing(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Check UR + Guardian, with external W-Wing.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -11264,6 +11287,60 @@ result ^= expression;
             The generated property declaration for parameter <c>isIncomplete</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External W-Wing</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="guardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="cellPair">Indicates the cell pair.</param>
+            <param name="isIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="isAvoidable"><inheritdoc/></param>
+            <param name="absoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle External W-Wing</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="guardianCells">Indicates the cells that the guardians lie in.</param>
+            <param name="cellPair">Indicates the cell pair.</param>
+            <param name="isIncomplete">Indicates whether the rectangle is incomplete.</param>
+            <param name="isAvoidable"><inheritdoc/></param>
+            <param name="absoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.GuardianCells">
+            <summary>
+            The generated property declaration for parameter <c>guardianCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.CellPair">
+            <summary>
+            The generated property declaration for parameter <c>cellPair</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.IsIncomplete">
+            <summary>
+            The generated property declaration for parameter <c>isIncomplete</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External XY-Wing</b> technique.
@@ -14488,6 +14565,11 @@ result ^= expression;
               Looks up a localized string similar to Avoidable Rectangle External Type 4.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.AvoidableRectangleExternalWWing">
+            <summary>
+              Looks up a localized string similar to Avoidable Rectangle External W-Wing.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.AvoidableRectangleExternalXyWing">
             <summary>
               Looks up a localized string similar to Avoidable Rectangle External XY-Wing.
@@ -17323,6 +17405,11 @@ result ^= expression;
               Looks up a localized string similar to Digits {0} and {1} in {2} with conjugate pair {3}.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_UniqueRectangleExternalWWingStep">
+            <summary>
+              Looks up a localized string similar to Digits {0} and {1} in {2} with a guardian in cells {3}, with external W-Wing, with cell pair {4}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_UniqueRectangleExternalXyWingStep">
             <summary>
               Looks up a localized string similar to Digits {0} and {1} in {2} with a guardian in cells {3}, with external XY-Wing, with cell pair {4}.
@@ -17556,6 +17643,11 @@ result ^= expression;
         <member name="P:Sudoku.Analytics.Strings.Resources.UniqueRectangleExternalType4">
             <summary>
               Looks up a localized string similar to Unique Rectangle External Type 4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.UniqueRectangleExternalWWing">
+            <summary>
+              Looks up a localized string similar to Unique Rectangle External W-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.UniqueRectangleExternalXyWing">

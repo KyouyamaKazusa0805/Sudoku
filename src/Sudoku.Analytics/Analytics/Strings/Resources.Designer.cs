@@ -403,6 +403,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle External W-Wing.
+        /// </summary>
+        public static string AvoidableRectangleExternalWWing {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleExternalWWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External XY-Wing.
         /// </summary>
         public static string AvoidableRectangleExternalXyWing {
@@ -5506,6 +5515,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with a guardian in cells {3}, with external W-Wing, with cell pair {4}.
+        /// </summary>
+        public static string TechniqueFormat_UniqueRectangleExternalWWingStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleExternalWWingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Digits {0} and {1} in {2} with a guardian in cells {3}, with external XY-Wing, with cell pair {4}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleExternalXyWingStep {
@@ -5925,6 +5943,15 @@ namespace Sudoku.Analytics.Strings {
         public static string UniqueRectangleExternalType4 {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle External W-Wing.
+        /// </summary>
+        public static string UniqueRectangleExternalWWing {
+            get {
+                return ResourceManager.GetString("UniqueRectangleExternalWWing", resourceCulture);
             }
         }
         

@@ -1577,6 +1577,13 @@ public enum Technique
 	UniqueRectangleExternalTurbotFish,
 
 	/// <summary>
+	/// Indicates unique rectangle external W-Wing.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	UniqueRectangleExternalWWing,
+
+	/// <summary>
 	/// Indicates unique rectangle external XY-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
@@ -1744,6 +1751,13 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalXyWing,
+
+	/// <summary>
+	/// Indicates avoidable rectangle external W-Wing.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	AvoidableRectangleExternalWWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external almost locked sets XZ rule.

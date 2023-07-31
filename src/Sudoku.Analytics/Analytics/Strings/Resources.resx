@@ -2145,4 +2145,13 @@
   <data name="DeathBlossomHouseType" xml:space="preserve">
     <value>Death Blossom House Type</value>
   </data>
+  <data name="TechniqueFormat_UniqueRectangleExternalWWingStep" xml:space="preserve">
+    <value>Digits {0} and {1} in {2} with a guardian in cells {3}, with external W-Wing, with cell pair {4}</value>
+  </data>
+  <data name="UniqueRectangleExternalWWing" xml:space="preserve">
+    <value>Unique Rectangle External W-Wing</value>
+  </data>
+  <data name="AvoidableRectangleExternalWWing" xml:space="preserve">
+    <value>Avoidable Rectangle External W-Wing</value>
+  </data>
 </root>

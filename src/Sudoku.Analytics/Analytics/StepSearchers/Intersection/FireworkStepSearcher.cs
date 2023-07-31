@@ -134,10 +134,12 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			{
 				case { } pivot when PopCount((uint)digitsMask) >= 3:
 				{
+#if false
 					if (CheckPairType1(accumulator, grid, onlyFindOne, pattern, pivot) is { } stepPairType1)
 					{
 						return stepPairType1;
 					}
+#endif
 
 					if (CheckTriple(accumulator, grid, onlyFindOne, pattern, digitsMask, pivot) is { } stepTriple)
 					{
