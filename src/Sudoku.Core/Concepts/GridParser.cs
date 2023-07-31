@@ -505,7 +505,7 @@ public unsafe ref partial struct GridParser(
 		// If we have met the colon sign ':', this loop would not be executed.
 		if (SusserFormatEliminationsOnly.EliminationPattern().Match(match) is { Success: true, Value: var elimMatch })
 		{
-			foreach (var candidate in CandidateNotation.ParseCollection(elimMatch, CandidateNotationKind.HodokuTriplet))
+			foreach (var candidate in CandidateNotation.ParseCollection(elimMatch, CandidateNotation.Kind.HodokuTriplet))
 			{
 				// Set the candidate with false to eliminate the candidate.
 				result.SetCandidateIsOn(candidate / 9, candidate % 9, false);

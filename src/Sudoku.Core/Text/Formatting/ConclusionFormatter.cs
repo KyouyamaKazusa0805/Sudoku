@@ -88,7 +88,11 @@ public abstract class ConclusionFormatter : ICollectionFormatter<Conclusion>
 	public static string Format(Conclusion[] conclusions, FormattingMode formattingMode)
 		=> formattingMode switch
 		{
-			FormattingMode.Simple => CandidateNotation.ToCollectionString([.. from c in conclusions select c.Cell * 9 + c.Digit], CandidateNotationKind.HodokuTriplet),
+			FormattingMode.Simple
+				=> CandidateNotation.ToCollectionString(
+					[.. from c in conclusions select c.Cell * 9 + c.Digit],
+					CandidateNotation.Kind.HodokuTriplet
+				),
 			FormattingMode.Normal => Format(conclusions, ", ", true),
 			FormattingMode.Full => throw new NotSupportedException("The full-formatting mode is not supported on conclusion collections."),
 			_ => throw new ArgumentOutOfRangeException(nameof(formattingMode))

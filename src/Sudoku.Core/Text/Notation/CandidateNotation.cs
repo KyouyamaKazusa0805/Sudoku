@@ -3,37 +3,37 @@ namespace Sudoku.Text.Notation;
 /// <summary>
 /// Represents a notation that represents for a candidate or a list of candidates.
 /// </summary>
-public sealed class CandidateNotation : INotation<CandidateNotation, CandidateMap, Candidate, CandidateNotationKind>
+public sealed partial class CandidateNotation : INotation<CandidateNotation, CandidateMap, Candidate, CandidateNotation.Kind>
 {
 	/// <summary>
 	/// Try to parse the specified text, converting it into the target candidate value via RxCy Notation rule.
 	/// </summary>
-	/// <param name="text"><inheritdoc cref="Parse(string, CandidateNotationKind)" path="/param[@name='text']"/></param>
-	/// <returns><inheritdoc cref="Parse(string, CandidateNotationKind)" path="/returns"/></returns>
-	/// <seealso cref="CandidateNotationKind.RxCy"/>
+	/// <param name="text"><inheritdoc cref="Parse(string, Kind)" path="/param[@name='text']"/></param>
+	/// <returns><inheritdoc cref="Parse(string, Kind)" path="/returns"/></returns>
+	/// <seealso cref="Kind.RxCy"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidate Parse(string text) => Parse(text, CandidateNotationKind.RxCy);
+	public static Candidate Parse(string text) => Parse(text, Kind.RxCy);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidate Parse(string text, CandidateNotationKind notation)
+	public static Candidate Parse(string text, Kind notation)
 		=> (notation, text) switch
 		{
 			(
-				CandidateNotationKind.RxCy,
+				Kind.RxCy,
 				['R' or 'r', var r and >= '1' and <= '9', 'C' or 'c', var c and >= '1' and <= '9', '(', var d and >= '1' and <= '9', ')']
 			) => ((r - '1') * 9 + (c - '1')) * 9 + (d - '1'),
-			(CandidateNotationKind.RxCy, _) => throw new InvalidOperationException(),
+			(Kind.RxCy, _) => throw new InvalidOperationException(),
 			(
-				CandidateNotationKind.K9,
+				Kind.K9,
 				[var r and (>= 'A' and <= 'I' or 'K'), var c and >= '1' and <= '9', '.', var d and >= '1' and <= '9']
 			) => ((r - '1') * 9 + (c - '1')) * 9 + (d - '1'),
-			(CandidateNotationKind.K9, _) => throw new InvalidOperationException(),
+			(Kind.K9, _) => throw new InvalidOperationException(),
 			(
-				CandidateNotationKind.HodokuTriplet,
+				Kind.HodokuTriplet,
 				[var r and >= '1' and <= '9', var c and >= '1' and <= '9', var d and >= '1' and <= '9']
 			) => ((r - '1') * 9 + (c - '1')) * 9 + (d - '1'),
-			(CandidateNotationKind.HodokuTriplet, _) => throw new InvalidOperationException(),
+			(Kind.HodokuTriplet, _) => throw new InvalidOperationException(),
 			_ => throw new ArgumentOutOfRangeException(nameof(notation))
 		};
 
@@ -43,17 +43,20 @@ public sealed class CandidateNotation : INotation<CandidateNotation, CandidateMa
 	/// <param name="text">The text to be parsed.</param>
 	/// <returns>The target result instance of type <see cref="CandidateMap"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap ParseCollection(string text) => ParseCollection(text, CandidateNotationKind.RxCy);
+	public static CandidateMap ParseCollection(string text) => ParseCollection(text, Kind.RxCy);
 
 	/// <inheritdoc/>
 	/// <exception cref="NotSupportedException">
-	/// Throws when the argument <paramref name="notation"/> is <see cref="CandidateNotationKind.K9"/>.
+	/// Throws when the argument <paramref name="notation"/> is <see cref="Kind.K9"/>.
 	/// </exception>
-	public static CandidateMap ParseCollection(string text, CandidateNotationKind notation)
+	/// <exception cref="FormatException">
+	/// Throws when the argument <paramref name="text"/> cannot be parsed as a valid <see cref="CandidateMap"/> result.
+	/// </exception>
+	public static CandidateMap ParseCollection(string text, Kind notation)
 	{
 		switch (notation)
 		{
-			case CandidateNotationKind.RxCy:
+			case Kind.RxCy:
 			{
 				if (prepositionalForm(text, out var r))
 				{
@@ -201,11 +204,11 @@ public sealed class CandidateNotation : INotation<CandidateNotation, CandidateMa
 					return false;
 				}
 			}
-			case CandidateNotationKind.K9:
+			case Kind.K9:
 			{
 				throw new NotSupportedException("Cannot parse collection via K9 notation.");
 			}
-			case CandidateNotationKind.HodokuTriplet:
+			case Kind.HodokuTriplet:
 			{
 				var segments = text.SplitBy([' ']);
 				if (Array.IndexOf(segments, string.Empty) != -1)
@@ -238,18 +241,18 @@ public sealed class CandidateNotation : INotation<CandidateNotation, CandidateMa
 	/// Gets the text notation that can represent the specified value.
 	/// </summary>
 	/// <param name="value">The value.</param>
-	/// <returns><inheritdoc cref="ToString(Candidate, CandidateNotationKind)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="ToString(Candidate, Kind)" path="/returns"/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToString(Candidate value) => ToString(value, CandidateNotationKind.RxCy);
+	public static string ToString(Candidate value) => ToString(value, Kind.RxCy);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToString(Candidate value, CandidateNotationKind notation)
+	public static string ToString(Candidate value, Kind notation)
 		=> notation switch
 		{
-			CandidateNotationKind.RxCy => $"{value / 9 / 9 + 1}{value / 9 % 9 + 1}{value % 9 + 1}",
-			CandidateNotationKind.K9 => $"{(char)(value / 9 / 9 + 'A')}{value / 9 % 9 + 1}.{value % 9 + 1}",
-			CandidateNotationKind.HodokuTriplet => $"{value / 9 / 9 + 1}{value / 9 % 9 + 1}{value % 9 + 1}",
+			Kind.RxCy => $"{value / 9 / 9 + 1}{value / 9 % 9 + 1}{value % 9 + 1}",
+			Kind.K9 => $"{(char)(value / 9 / 9 + 'A')}{value / 9 % 9 + 1}.{value % 9 + 1}",
+			Kind.HodokuTriplet => $"{value / 9 / 9 + 1}{value / 9 % 9 + 1}{value % 9 + 1}",
 			_ => throw new ArgumentOutOfRangeException(nameof(notation))
 		};
 
@@ -259,15 +262,15 @@ public sealed class CandidateNotation : INotation<CandidateNotation, CandidateMa
 	/// <param name="collection"><inheritdoc cref="ToString(Candidate)" path="/param[@name='value']"/></param>
 	/// <returns><inheritdoc cref="ToString(Candidate)" path="/returns"/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCollectionString(scoped in CandidateMap collection) => ToCollectionString(collection, CandidateNotationKind.RxCy);
+	public static string ToCollectionString(scoped in CandidateMap collection) => ToCollectionString(collection, Kind.RxCy);
 
 	/// <inheritdoc/>
-	/// <exception cref="NotSupportedException">Throws when <paramref name="notation"/> is <see cref="CandidateNotationKind.K9"/>.</exception>
-	public static string ToCollectionString(scoped in CandidateMap collection, CandidateNotationKind notation)
+	/// <exception cref="NotSupportedException">Throws when <paramref name="notation"/> is <see cref="Kind.K9"/>.</exception>
+	public static string ToCollectionString(scoped in CandidateMap collection, Kind notation)
 	{
 		switch (notation)
 		{
-			case CandidateNotationKind.RxCy:
+			case Kind.RxCy:
 			{
 				scoped var sb = new StringHandler(50);
 
@@ -293,11 +296,11 @@ public sealed class CandidateNotation : INotation<CandidateNotation, CandidateMa
 				sb.RemoveFromEnd(2);
 				return sb.ToStringAndClear();
 			}
-			case CandidateNotationKind.K9:
+			case Kind.K9:
 			{
 				throw new NotSupportedException("K9 Notation is not supported for K9 Notation.");
 			}
-			case CandidateNotationKind.HodokuTriplet:
+			case Kind.HodokuTriplet:
 			{
 				return collection switch
 				{

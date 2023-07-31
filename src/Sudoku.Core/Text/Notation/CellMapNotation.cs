@@ -4,22 +4,22 @@ namespace Sudoku.Text.Notation;
 /// Represents a notation that represents for a <see cref="CellMap"/> instance.
 /// </summary>
 /// <seealso cref="CellMap"/>
-public sealed class CellMapNotation : INotation<CellMapNotation, CellMap, CellMapNotationKind>
+public sealed partial class CellMapNotation : INotation<CellMapNotation, CellMap, CellMapNotation.Kind>
 {
 	/// <inheritdoc cref="CellNotation.Parse(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap Parse(string text) => Parse(text, CellMapNotationKind.RxCy);
+	public static CellMap Parse(string text) => Parse(text, Kind.RxCy);
 
 	/// <inheritdoc/>
 	/// <exception cref="NotSupportedException">Throws when the argument <paramref name="notation"/> is not supported.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap Parse(string text, CellMapNotationKind notation)
+	public static CellMap Parse(string text, Kind notation)
 		=> notation switch
 		{
-			CellMapNotationKind.RxCy => CellNotation.ParseCollection(text, CellNotationKind.RxCy),
-			CellMapNotationKind.K9 => CellNotation.ParseCollection(text, CellNotationKind.K9),
-			CellMapNotationKind.Binary => throw new NotSupportedException("The binary format is not supported for parsing."),
-			CellMapNotationKind.Table => throw new NotSupportedException("The table format is not supported for parsing."),
+			Kind.RxCy => CellNotation.ParseCollection(text, CellNotationKind.RxCy),
+			Kind.K9 => CellNotation.ParseCollection(text, CellNotationKind.K9),
+			Kind.Binary => throw new NotSupportedException("The binary format is not supported for parsing."),
+			Kind.Table => throw new NotSupportedException("The table format is not supported for parsing."),
 			_ => throw new ArgumentOutOfRangeException(nameof(notation))
 		};
 
@@ -29,19 +29,19 @@ public sealed class CellMapNotation : INotation<CellMapNotation, CellMap, CellMa
 	public static string ToString(scoped in CellMap value) => CellNotation.ToCollectionString(value);
 
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"/>
-	public static string ToString(scoped in CellMap value, CellMapNotationKind notation)
+	public static string ToString(scoped in CellMap value, Kind notation)
 	{
 		switch (notation)
 		{
-			case CellMapNotationKind.RxCy:
+			case Kind.RxCy:
 			{
 				return CellNotation.ToCollectionString(value, CellNotationKind.RxCy);
 			}
-			case CellMapNotationKind.K9:
+			case Kind.K9:
 			{
 				return CellNotation.ToCollectionString(value, CellNotationKind.K9);
 			}
-			case CellMapNotationKind.Binary:
+			case Kind.Binary:
 			{
 				var newLine = Environment.NewLine;
 				scoped var sb = new StringHandler((3 * 7 + newLine.Length) * 13 - newLine.Length);
@@ -78,7 +78,7 @@ public sealed class CellMapNotation : INotation<CellMapNotation, CellMap, CellMa
 				sb.RemoveFromEnd(newLine.Length);
 				return sb.ToStringAndClear();
 			}
-			case CellMapNotationKind.Table:
+			case Kind.Table:
 			{
 				scoped var sb = new StringHandler(81);
 				var (low, high) = (value._low, value._high);
@@ -116,6 +116,5 @@ public sealed class CellMapNotation : INotation<CellMapNotation, CellMap, CellMa
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static string INotation<CellMapNotation, CellMap, CellMapNotationKind>.ToString(CellMap value, CellMapNotationKind notation)
-		=> ToString(value, notation);
+	static string INotation<CellMapNotation, CellMap, Kind>.ToString(CellMap value, Kind notation) => ToString(value, notation);
 }
