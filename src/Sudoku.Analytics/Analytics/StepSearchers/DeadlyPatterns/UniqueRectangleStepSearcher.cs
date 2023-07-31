@@ -4364,14 +4364,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					foreach (var startCell in bivalueCellsFoundStart)
 					{
 						var startCellDigitsMask = grid.GetCandidates(startCell);
-						foreach (var endCell in bivalueCellsFoundEnd)
+						foreach (var endCell in bivalueCellsFoundEnd - startCell)
 						{
-							if (startCell == endCell)
-							{
-								// Cannot be a same cell.
-								continue;
-							}
-
 							var endCellDigitsMask = grid.GetCandidates(endCell);
 							if (startCellDigitsMask != endCellDigitsMask)
 							{

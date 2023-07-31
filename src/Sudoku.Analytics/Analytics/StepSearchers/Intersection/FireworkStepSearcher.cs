@@ -194,14 +194,8 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 
 			foreach (var extraCell1 in (HousesMap[cell1TheOtherLine] & EmptyCells) - cell1)
 			{
-				foreach (var extraCell2 in (HousesMap[cell2TheOtherLine] & EmptyCells) - cell2)
+				foreach (var extraCell2 in (HousesMap[cell2TheOtherLine] & EmptyCells) - cell2 - extraCell1)
 				{
-					if (extraCell1 == extraCell2)
-					{
-						// Cannot be a same cell.
-						continue;
-					}
-
 					if (grid.GetCandidates(extraCell1) != currentDigitsMask || grid.GetCandidates(extraCell2) != currentDigitsMask)
 					{
 						continue;
