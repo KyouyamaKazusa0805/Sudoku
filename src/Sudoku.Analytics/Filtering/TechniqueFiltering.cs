@@ -59,7 +59,7 @@ public static partial class TechniqueFiltering
 					{
 						RatingKeyword => $"{step.Difficulty}",
 						NameKeyword => $"'{step.Name}'",
-						ConclusionKeyword => $"'{ConclusionFormatter.Format(step.Conclusions, ", ", true)}'",
+						ConclusionKeyword => $"'{ConclusionNotation.ToCollectionString(step.Conclusions)}'",
 						_ => throw new NotSupportedException("The specified match is not supported to be replaced.")
 					}
 				),

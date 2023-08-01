@@ -146,7 +146,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// <summary>
 	/// Indicates the string representation of the conclusions of the step.
 	/// </summary>
-	private protected string ConclusionText => ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
+	private protected string ConclusionText => ConclusionNotation.ToCollectionString(Conclusions);
 
 
 	/// <inheritdoc/>

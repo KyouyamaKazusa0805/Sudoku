@@ -26,5 +26,15 @@ public sealed partial class BowmanBingoStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [ContradictionSeriesStr]), new(ChineseLanguage, [ContradictionSeriesStr])];
 
-	private string ContradictionSeriesStr => ConclusionFormatter.Format(ContradictionLinks, " -> ", false);
+	private unsafe string ContradictionSeriesStr
+	{
+		get
+		{
+			static string elementToString(Conclusion conclusion) => conclusion.ToString();
+			scoped var sb = new StringHandler();
+			sb.AppendRangeWithSeparator(ContradictionLinks, &elementToString, " -> ");
+
+			return sb.ToString();
+		}
+	}
 }

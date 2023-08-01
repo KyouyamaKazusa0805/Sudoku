@@ -16,5 +16,5 @@ namespace Sudoku.Text.Notation;
 public interface IOptionProvider<TSelf, TCollection, TElement, TConceptKindPresenter>
 	where TSelf : struct, IOptionProvider<TSelf, TCollection, TElement, TConceptKindPresenter>
 	where TCollection : notnull, IEnumerable<TElement>
-	where TElement : unmanaged, IBinaryInteger<TElement>
+	where TElement : notnull
 	where TConceptKindPresenter : unmanaged, Enum;

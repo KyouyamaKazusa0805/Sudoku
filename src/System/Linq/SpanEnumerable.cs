@@ -1,4 +1,4 @@
-﻿namespace System.Linq;
+namespace System.Linq;
 
 /// <summary>
 /// Provides LINQ-based extension methods on <see cref="Span{T}"/> and <see cref="ReadOnlySpan{T}"/>.
@@ -47,5 +47,21 @@ public static class SpanEnumerable
 		}
 
 		return result;
+	}
+
+	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
+	public static T[] Where<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
+	{
+		var result = new T[@this.Length];
+		var i = 0;
+		foreach (var element in @this)
+		{
+			if (predicate(element))
+			{
+				result[i++] = element;
+			}
+		}
+
+		return result[..i];
 	}
 }

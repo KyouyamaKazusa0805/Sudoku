@@ -1108,6 +1108,9 @@
             <param name="selector">The selector that is used for conversion.</param>
             <returns>The array of target result elements.</returns>
         </member>
+        <member name="M:System.Linq.SpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
         <member name="T:System.Linq.StringEnumerable">
             <summary>
             Provides with LINQ methods on a <see cref="T:System.String"/> value.
@@ -1120,6 +1123,18 @@
             <param name="this">The string to be split.</param>
             <param name="maxLength">The length to be split.</param>
             <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> instance with multiple parts of the string.</returns>
+        </member>
+        <member name="M:System.Linq.StringEnumerable.Select``1(System.String,System.Func{System.Char,``0})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
+            </summary>
+            <param name="this">The string instance.</param>
+            <param name="selector">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
+            </param>
+            <returns>
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/returns"/>
+            </returns>
         </member>
         <member name="T:System.EnumExtensions">
             <summary>

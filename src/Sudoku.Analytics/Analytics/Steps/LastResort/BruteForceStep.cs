@@ -17,5 +17,5 @@ public sealed class BruteForceStep(Conclusion[] conclusions, View[]? views) : La
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [AssignmentStr]), new(ChineseLanguage, [AssignmentStr])];
 
-	private string AssignmentStr => ConclusionFormatter.Format(Conclusions, FormattingMode.Normal);
+	private string AssignmentStr => ConclusionNotation.ToCollectionString(Conclusions);
 }

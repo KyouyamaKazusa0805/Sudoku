@@ -1,4 +1,4 @@
-﻿namespace System.Linq;
+namespace System.Linq;
 
 /// <summary>
 /// Provides with LINQ methods on a <see cref="string"/> value.
@@ -17,5 +17,27 @@ public static class StringEnumerable
 		{
 			yield return @this.Substring(index, Min(maxLength, @this.Length - index));
 		}
+	}
+
+	/// <summary>
+	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/summary"/>
+	/// </summary>
+	/// <param name="this">The string instance.</param>
+	/// <param name="selector">
+	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/param[@name='selector']"/>
+	/// </param>
+	/// <returns>
+	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/returns"/>
+	/// </returns>
+	public static ReadOnlySpan<TResult> Select<TResult>(this string @this, Func<char, TResult> selector)
+	{
+		var result = new TResult[@this.Length];
+		var i = 0;
+		foreach (var element in @this)
+		{
+			result[i++] = selector(element);
+		}
+
+		return result;
 	}
 }

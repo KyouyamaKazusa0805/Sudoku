@@ -44,7 +44,7 @@ public sealed partial class AlignedExclusionStep(
 
 	private string CellsStr => Cells.ToString();
 
-	private string ConclusionNegatedStr => ConclusionFormatter.Format(from c in Conclusions select ~c, ", ", true);
+	private string ConclusionNegatedStr => ConclusionNotation.ToCollectionString(from c in Conclusions select ~c);
 
 
 	/// <inheritdoc/>

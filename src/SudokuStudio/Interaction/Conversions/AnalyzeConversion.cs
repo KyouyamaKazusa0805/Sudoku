@@ -19,7 +19,7 @@ internal static class AnalyzeConversion
 
 	public static int GetCurrentViewIndexForViewPipsPager(int currentIndex) => currentIndex;
 
-	public static string GetEliminationString(Step step) => ConclusionFormatter.Format(step.Conclusions, FormattingMode.Normal);
+	public static string GetEliminationString(Step step) => ConclusionNotation.ToCollectionString(step.Conclusions);
 
 	public static string GetDifficultyRatingText(Step step) => step.Difficulty.ToString("0.0");
 

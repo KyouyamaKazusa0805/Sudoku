@@ -71,7 +71,7 @@ public interface INotation<TSelf, TElement, TConceptKindPresenter> : INotation
 public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter> : INotation<TSelf, TElement, TConceptKindPresenter>
 	where TSelf : notnull, INotation<TSelf, TElement, TConceptKindPresenter>
 	where TCollection : notnull, IEnumerable<TElement>
-	where TElement : unmanaged, IBinaryInteger<TElement>
+	where TElement : notnull
 	where TConceptKindPresenter : unmanaged, Enum
 {
 	/// <summary>
@@ -138,7 +138,7 @@ public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter, 
 	INotation<TSelf, TCollection, TElement, TConceptKindPresenter>
 	where TSelf : notnull, INotation<TSelf, TElement, TConceptKindPresenter>
 	where TCollection : notnull, IEnumerable<TElement>, ISimpleParsable<TCollection>
-	where TElement : unmanaged, IBinaryInteger<TElement>
+	where TElement : notnull
 	where TConceptKindPresenter : unmanaged, Enum
 	where TOptionProvider : struct, IOptionProvider<TOptionProvider, TCollection, TElement, TConceptKindPresenter>
 {

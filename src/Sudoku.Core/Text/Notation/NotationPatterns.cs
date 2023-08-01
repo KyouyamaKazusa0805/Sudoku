@@ -25,4 +25,10 @@ internal static partial class NotationPatterns
 
 	[GeneratedRegex("""\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})(,\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}))?\s*\}\([1-9]{1,9}\)""", RegexOptions.Compiled, 5000)]
 	public static partial Regex Candidates_ComplexPostpositionalFormPattern();
+
+	[GeneratedRegex("""[Rr]([1-9]+)[Cc]([1-9]+)\s*(==|!=|<>)\s*([1-9]+)""", RegexOptions.Compiled, 5000)]
+	public static partial Regex ConclusionPattern_RxCy();
+
+	[GeneratedRegex("""([A-IKa-ik]+)([1-9]+)\s*(==|!=|<>)\s*([1-9]+)""", RegexOptions.Compiled, 5000)]
+	public static partial Regex ConclusionPattern_K9();
 }
