@@ -17,37 +17,23 @@ public sealed partial class HobiwanFishNotation : INotation<HobiwanFishNotation,
 
 	/// <inheritdoc/>
 	public static string ToString(FishStep value, Kind notation)
-	{
-		return notation switch
+		=> notation switch
 		{
-			Kind.Normal => toNormalString(value),
-			Kind.CapitalOnly => toCapitalOnlyString(value),
+			Kind.Normal
+				when HouseFormatter.Format(value.BaseSetsMask) is var baseSets
+				&& HouseFormatter.Format(value.CoverSetsMask) is var coverSets
+				&& value switch
+				{
+					NormalFishStep { Fins: var f and not [] } => $"f{f} ",
+					ComplexFishStep { Exofins: var f and not [] } => $"f{f} ",
+					_ => string.Empty
+				} is var exofins
+				&& (value is ComplexFishStep { Endofins: var e and not [] } ? $"ef{e}" : string.Empty) is var endofins
+				=> $@"{value.Digit + 1} {baseSets}\{coverSets} {exofins}{endofins}",
+			Kind.CapitalOnly
+				when HouseFormatter.Format(value.BaseSetsMask, FormattingMode.Simple) is var baseSetLetters
+				&& HouseFormatter.Format(value.CoverSetsMask, FormattingMode.Simple) is var coverSetLetters
+				=> $@"{baseSetLetters}\{coverSetLetters}",
 			_ => throw new ArgumentOutOfRangeException(nameof(notation))
 		};
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static string toNormalString(FishStep value)
-		{
-			var baseSets = HouseFormatter.Format(value.BaseSetsMask);
-			var coverSets = HouseFormatter.Format(value.CoverSetsMask);
-			var exofins = value switch
-			{
-				NormalFishStep { Fins: var f and not [] } => $"f{f} ",
-				ComplexFishStep { Exofins: var f and not [] } => $"f{f} ",
-				_ => string.Empty
-			};
-			var endofins = value is ComplexFishStep { Endofins: var e and not [] } ? $"ef{e}" : string.Empty;
-
-			return $@"{value.Digit + 1} {baseSets}\{coverSets} {exofins}{endofins}";
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static string toCapitalOnlyString(FishStep value)
-		{
-			var baseSetLetters = HouseFormatter.Format(value.BaseSetsMask, FormattingMode.Simple);
-			var coverSetLetters = HouseFormatter.Format(value.CoverSetsMask, FormattingMode.Simple);
-			return $@"{baseSetLetters}\{coverSetLetters}";
-		}
-	}
 }
