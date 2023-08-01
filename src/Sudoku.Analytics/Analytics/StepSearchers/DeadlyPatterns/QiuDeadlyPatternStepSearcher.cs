@@ -340,12 +340,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			return null;
 		}
 
-		var conclusions = new List<Conclusion>();
-		foreach (var cell in elimMap)
-		{
-			conclusions.Add(new(Elimination, cell, extraDigit));
-		}
-
 		var cellMap = square | pair;
 		var cellOffsets = new CellViewNode[cellMap.Count];
 		var i = 0;
@@ -372,7 +366,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 		var offset = isRow ? 9 : 18;
 		var step = new QiuDeadlyPatternType2Step(
-			[.. conclusions],
+			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 			[[.. cellOffsets, .. candidateOffsets, .. from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)]],
 			pattern,
 			extraDigit

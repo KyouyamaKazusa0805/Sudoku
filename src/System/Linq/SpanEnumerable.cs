@@ -49,7 +49,14 @@ public static class SpanEnumerable
 		return result;
 	}
 
-	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
+	/// <summary>
+	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})" path="/summary"/>
+	/// </summary>
+	/// <param name="this">A <see cref="ReadOnlySpan{T}"/> to filter.</param>
+	/// <param name="predicate">
+	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})" path="/param[@name='predicate']"/>
+	/// </param>
+	/// <returns>A <typeparamref name="T"/>[] that contains elements form the input sequence that satisfy the condition.</returns>
 	public static T[] Where<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
 		var result = new T[@this.Length];

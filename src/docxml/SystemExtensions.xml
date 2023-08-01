@@ -1109,7 +1109,14 @@
             <returns>The array of target result elements.</returns>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/summary"/>
+            </summary>
+            <param name="this">A <see cref="T:System.ReadOnlySpan`1"/> to filter.</param>
+            <param name="predicate">
+            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/param[@name='predicate']"/>
+            </param>
+            <returns>A <typeparamref name="T"/>[] that contains elements form the input sequence that satisfy the condition.</returns>
         </member>
         <member name="T:System.Linq.StringEnumerable">
             <summary>
