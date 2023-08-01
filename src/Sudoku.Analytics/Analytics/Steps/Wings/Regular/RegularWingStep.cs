@@ -84,7 +84,7 @@ public sealed partial class RegularWingStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, PivotCellStr, CellsStr]), new(ChineseLanguage, [DigitsStr, PivotCellStr, CellsStr])];
 
-	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitNotation.ToString(DigitsMask);
 
 	private string PivotCellStr => CellNotation.ToString(Pivot);
 

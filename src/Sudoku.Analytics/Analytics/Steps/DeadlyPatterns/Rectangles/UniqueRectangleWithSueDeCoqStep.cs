@@ -72,5 +72,5 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 
 	private string MergedCellsStr => (LineCells | BlockCells).ToString();
 
-	private string DigitsStr => DigitMaskFormatter.Format((Mask)(LineMask | BlockMask), FormattingMode.Normal);
+	private string DigitsStr => DigitNotation.ToString((Mask)(LineMask | BlockMask));
 }

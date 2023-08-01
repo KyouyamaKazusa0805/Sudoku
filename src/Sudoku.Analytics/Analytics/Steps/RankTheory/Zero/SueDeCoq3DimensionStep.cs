@@ -37,13 +37,13 @@ public sealed partial class SueDeCoq3DimensionStep(
 
 	private string Cells1Str => RowCells.ToString();
 
-	private string Digits1Str => DigitMaskFormatter.Format(RowDigitsMask, FormattingMode.Normal);
+	private string Digits1Str => DigitNotation.ToString(RowDigitsMask);
 
 	private string Cells2Str => ColumnCells.ToString();
 
-	private string Digits2Str => DigitMaskFormatter.Format(ColumnDigitsMask, FormattingMode.Normal);
+	private string Digits2Str => DigitNotation.ToString(ColumnDigitsMask);
 
 	private string Cells3Str => BlockCells.ToString();
 
-	private string Digits3Str => DigitMaskFormatter.Format(BlockDigitsMask, FormattingMode.Normal);
+	private string Digits3Str => DigitNotation.ToString(BlockDigitsMask);
 }

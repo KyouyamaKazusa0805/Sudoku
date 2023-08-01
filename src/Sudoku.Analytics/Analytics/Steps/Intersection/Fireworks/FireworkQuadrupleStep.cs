@@ -26,5 +26,5 @@ public sealed partial class FireworkQuadrupleStep(
 
 	private string CellsStr => Cells.ToString();
 
-	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitNotation.ToString(DigitsMask);
 }

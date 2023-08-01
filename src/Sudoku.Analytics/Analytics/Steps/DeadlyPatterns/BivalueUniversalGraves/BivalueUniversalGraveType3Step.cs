@@ -43,7 +43,7 @@ public sealed partial class BivalueUniversalGraveType3Step(
 
 	private string SizeStr => TechniqueFact.GetSubsetName(Size);
 
-	private string ExtraDigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
+	private string ExtraDigitsStr => DigitNotation.ToString(SubsetDigitsMask);
 
 	private string CellsStr => Cells.ToString();
 }

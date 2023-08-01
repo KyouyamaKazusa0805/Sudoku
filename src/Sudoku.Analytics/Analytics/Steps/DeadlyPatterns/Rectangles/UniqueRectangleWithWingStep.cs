@@ -61,5 +61,5 @@ public sealed partial class UniqueRectangleWithWingStep(
 
 	private string BranchesStr => Branches.ToString();
 
-	private string DigitsStr => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitNotation.ToString(ExtraDigitsMask);
 }

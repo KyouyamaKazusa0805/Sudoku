@@ -53,7 +53,7 @@ public sealed partial class UniqueRectangleType3Step(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, DigitsStr, OnlyKeywordZhCn, HouseStr, CellsStr, AppearLimitKeyword])
 		];
 
-	private string DigitsStr => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitNotation.ToString(ExtraDigitsMask);
 
 	private string OnlyKeyword => IsNaked ? string.Empty : "only ";
 

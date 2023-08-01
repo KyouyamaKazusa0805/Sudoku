@@ -30,7 +30,7 @@ public sealed partial class FireworkPairType1Step(
 
 	private string CellsStr => Cells.ToString();
 
-	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitNotation.ToString(DigitsMask);
 
 	private string ExtraCell1Str => CellNotation.ToString(ExtraCell1);
 

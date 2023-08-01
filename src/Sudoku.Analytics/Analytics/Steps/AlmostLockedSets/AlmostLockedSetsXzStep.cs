@@ -71,10 +71,7 @@ public sealed partial class AlmostLockedSetsXzStep(
 
 	private string Als2Str => SecondAls.ToString();
 
-	private string XStr => DigitMaskFormatter.Format(XDigitsMask, FormattingMode.Normal);
+	private string XStr => DigitNotation.ToString(XDigitsMask);
 
-	private string ZResultStr
-		=> ZDigitsMask == 0
-			? string.Empty
-			: $"{GetString("Comma")!}Z = {DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal)}";
+	private string ZResultStr => ZDigitsMask == 0 ? string.Empty : $"{GetString("Comma")!}Z = {DigitNotation.ToString(ZDigitsMask)}";
 }

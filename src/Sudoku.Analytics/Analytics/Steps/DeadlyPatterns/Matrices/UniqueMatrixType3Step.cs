@@ -34,7 +34,7 @@ public sealed partial class UniqueMatrixType3Step(
 
 	private string ExtraCellsStr => SubsetCells.ToString();
 
-	private string ExtraDigitStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
+	private string ExtraDigitStr => DigitNotation.ToString(SubsetDigitsMask);
 
 	private string SubsetName => TechniqueFact.GetSubsetName(SubsetCells.Count);
 }

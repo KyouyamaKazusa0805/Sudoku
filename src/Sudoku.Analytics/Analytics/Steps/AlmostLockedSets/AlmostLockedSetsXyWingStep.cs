@@ -41,9 +41,9 @@ public sealed partial class AlmostLockedSetsXyWingStep(
 
 	private string Als2Str => SecondAls.ToString();
 
-	private string XStr => DigitMaskFormatter.Format(XDigitsMask, FormattingMode.Normal);
+	private string XStr => DigitNotation.ToString(XDigitsMask);
 
-	private string YStr => DigitMaskFormatter.Format(YDigitsMask, FormattingMode.Normal);
+	private string YStr => DigitNotation.ToString(YDigitsMask);
 
-	private string ZStr => DigitMaskFormatter.Format(ZDigitsMask, FormattingMode.Normal);
+	private string ZStr => DigitNotation.ToString(ZDigitsMask);
 }

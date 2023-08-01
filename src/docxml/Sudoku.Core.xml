@@ -5437,37 +5437,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Formatting.CellMapTableFormat.ToString(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.Formatting.DigitMaskFormatter">
-            <summary>
-            Provides with a formatter that can format a mask that represents for a list of digits.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.DigitMaskFormatter.Format(System.Int16,System.String)">
-            <summary>
-            Gets a <see cref="T:System.String"/> value that can describes for a list of digits that is represented as a <see cref="T:System.Int16"/> mask.
-            </summary>
-            <param name="digitsMask">The digits mask.</param>
-            <param name="separator">The separator used.</param>
-            <returns>The <see cref="T:System.String"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.DigitMaskFormatter.Format(System.Int16,Sudoku.Text.Formatting.FormattingMode)">
-            <inheritdoc cref="M:Sudoku.Text.Formatting.DigitMaskFormatter.Format(System.Int16,System.String)"/>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="formattingMode">The formatting mode.</param>
-            <returns><inheritdoc/></returns>
-            <exception cref="T:System.NotSupportedException">
-            Throws when the argument <paramref name="formattingMode"/> is <see cref="F:Sudoku.Text.Formatting.FormattingMode.Full"/>.
-            </exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="formattingMode"/> is not defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.DigitMaskFormatter.Sudoku#Text#Formatting#ICollectionFormatter{System#Int32}#Format(System.Collections.Generic.IEnumerable{System.Int32},System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.DigitMaskFormatter.Sudoku#Text#Formatting#ICollectionFormatter{System#Int32}#Format(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Text.Formatting.FormattingMode)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Text.Formatting.ExcelFormat">
             <summary>
             Represents with Excel formatter.
@@ -6683,6 +6652,36 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Text.Notation.ConclusionNotation.Kind.K9">
             <summary>
             Indicates the conclusion notation is <see href="http://sudopedia.enjoysudoku.com/K9.html">K9 Notation</see>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.Notation.DigitNotation">
+            <summary>
+            Represents a notation that formats digits specified as <see cref="T:System.Int16"/>.
+            </summary>
+            <seealso cref="T:System.Int16"/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.DigitNotation.Parse(System.String,Sudoku.Text.Notation.DigitNotation.Kind)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.DigitNotation.ToString(System.Int16)">
+            <inheritdoc cref="M:Sudoku.Text.Notation.DigitNotation.ToString(System.Int16,Sudoku.Text.Notation.DigitNotation.Kind)"/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.DigitNotation.ToString(System.Int16,Sudoku.Text.Notation.DigitNotation.Kind)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Notation.DigitNotation.Kind">
+            <summary>
+            Represents a kind of the notation for digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notation.DigitNotation.Kind.Separated">
+            <summary>
+            Indicates the notation kind is separated one.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notation.DigitNotation.Kind.Compact">
+            <summary>
+            Indicates the notation kind is compact one.
             </summary>
         </member>
         <member name="T:Sudoku.Text.Notation.HouseNotation">

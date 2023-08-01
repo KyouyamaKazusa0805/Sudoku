@@ -23,5 +23,5 @@ public abstract partial class ChromaticPatternStep(
 
 	private protected string CellsStr => Pattern.ToString();
 
-	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private protected string DigitsStr => DigitNotation.ToString(DigitsMask);
 }

@@ -36,7 +36,7 @@ public sealed partial class AlmostLockedSetsWWingStep(
 
 	private string ConjStr => ConjugatePair.ToString();
 
-	private string WStr => DigitMaskFormatter.Format(WDigitsMask, FormattingMode.Normal);
+	private string WStr => DigitNotation.ToString(WDigitsMask);
 
 	private string XStr => (XDigit + 1).ToString();
 }

@@ -43,7 +43,8 @@ public sealed partial class UniqueRectangleWithBabaGroupingStep(
 
 	private string TargetCellStr => CellNotation.ToString(TargetCell);
 
-	private string DigitsStr => DigitMaskFormatter.Format((Mask)(1 << Digit1 | 1 << Digit2), GetString("OrKeywordWithSpaces")!);
+	private string DigitsStr
+		=> string.Join(GetString("OrKeywordWithSpaces")!, from digit in ((Mask)(1 << Digit1 | 1 << Digit2)).GetAllSets() select (digit + 1).ToString());
 
 	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
 }

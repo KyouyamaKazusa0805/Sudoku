@@ -26,7 +26,7 @@ public sealed partial class BivalueUniversalGraveType4Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, CellsStr, ConjStr]), new(ChineseLanguage, [CellsStr, DigitsStr, ConjStr])];
 
-	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitNotation.ToString(DigitsMask);
 
 	private string CellsStr => Cells.ToString();
 

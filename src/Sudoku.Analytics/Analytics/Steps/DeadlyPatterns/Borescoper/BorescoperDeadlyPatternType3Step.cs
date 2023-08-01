@@ -31,7 +31,7 @@ public sealed partial class BorescoperDeadlyPatternType3Step(
 			new(ChineseLanguage, [DigitsStr, CellsStr, ExtraCellsStr, ExtraDigitsStr])
 		];
 
-	private string ExtraDigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
+	private string ExtraDigitsStr => DigitNotation.ToString(SubsetDigitsMask);
 
 	private string ExtraCellsStr => SubsetCells.ToString();
 }

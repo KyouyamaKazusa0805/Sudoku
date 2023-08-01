@@ -34,7 +34,7 @@ public sealed partial class ExtendedRectangleType3Step(
 			new(ChineseLanguage, [DigitsStr, CellsStr, HouseStr, ExtraCellsStr, ExtraDigitsStr])
 		];
 
-	private string ExtraDigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
+	private string ExtraDigitsStr => DigitNotation.ToString(SubsetDigitsMask);
 
 	private string ExtraCellsStr => SubsetCells.ToString();
 

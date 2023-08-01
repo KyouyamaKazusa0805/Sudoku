@@ -55,7 +55,7 @@ public sealed partial class UniqueRectangleExternalType3Step(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, DigitsStr, SubsetCellsStr])
 		];
 
-	private string DigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitNotation.ToString(SubsetDigitsMask);
 
 	private string SubsetCellsStr => SubsetCells.ToString();
 }

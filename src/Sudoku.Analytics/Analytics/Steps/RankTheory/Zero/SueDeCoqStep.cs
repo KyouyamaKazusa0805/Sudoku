@@ -60,13 +60,13 @@ public sealed partial class SueDeCoqStep(
 
 	private string IntersectionCellsStr => IntersectionCells.ToString();
 
-	private string IntersectionDigitsStr => DigitMaskFormatter.Format(IntersectionMask);
+	private string IntersectionDigitsStr => DigitNotation.ToString(IntersectionMask, DigitNotation.Kind.Compact);
 
 	private string BlockCellsStr => BlockCells.ToString();
 
-	private string BlockDigitsStr => DigitMaskFormatter.Format(BlockMask);
+	private string BlockDigitsStr => DigitNotation.ToString(BlockMask, DigitNotation.Kind.Compact);
 
 	private string LineCellsStr => LineCells.ToString();
 
-	private string LineDigitsStr => DigitMaskFormatter.Format(LineMask);
+	private string LineDigitsStr => DigitNotation.ToString(LineMask, DigitNotation.Kind.Compact);
 }

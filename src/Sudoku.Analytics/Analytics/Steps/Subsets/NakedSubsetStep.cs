@@ -59,7 +59,7 @@ public sealed partial class NakedSubsetStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, HouseStr]), new(ChineseLanguage, [DigitsStr, HouseStr, SubsetName])];
 
-	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitNotation.ToString(DigitsMask);
 
 	private string HouseStr => HouseNotation.ToString(House);
 

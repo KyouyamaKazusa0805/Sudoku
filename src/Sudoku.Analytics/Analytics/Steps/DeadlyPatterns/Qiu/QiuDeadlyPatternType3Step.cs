@@ -32,7 +32,7 @@ public sealed partial class QiuDeadlyPatternType3Step(
 			new(ChineseLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName])
 		];
 
-	private string DigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitNotation.ToString(SubsetDigitsMask);
 
 	private string CellsStr => SubsetCells.ToString();
 

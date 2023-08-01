@@ -37,7 +37,7 @@ public sealed partial class BivalueOddagonType3Step(
 
 	private string Digit2Str => (Digit2 + 1).ToString();
 
-	private string DigitsStr => DigitMaskFormatter.Format(ExtraDigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitNotation.ToString(ExtraDigitsMask);
 
 	private string ExtraCellsStr => ExtraCells.ToString();
 }

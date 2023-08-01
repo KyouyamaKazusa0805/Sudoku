@@ -36,7 +36,7 @@ public sealed partial class UniqueLoopType3Step(
 
 	private string SubsetCellsStr => SubsetCells.ToString();
 
-	private string DigitsStr => DigitMaskFormatter.Format(SubsetDigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitNotation.ToString(SubsetDigitsMask);
 
 	private string SubsetName => TechniqueFact.GetSubsetName(SubsetCells.Count);
 }

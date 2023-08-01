@@ -28,7 +28,7 @@ public abstract partial class BorescoperDeadlyPatternStep(
 	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"BorescoperDeadlyPatternType{Type}");
 
-	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private protected string DigitsStr => DigitNotation.ToString(DigitsMask);
 
 	private protected string CellsStr => Cells.ToString();
 }

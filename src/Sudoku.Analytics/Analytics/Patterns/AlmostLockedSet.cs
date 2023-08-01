@@ -95,7 +95,7 @@ public sealed partial class AlmostLockedSet(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		var digitsStr = DigitMaskFormatter.Format(DigitsMask);
+		var digitsStr = DigitNotation.ToString(DigitsMask, DigitNotation.Kind.Compact);
 		var houseStr = HouseNotation.ToString(House);
 		return IsBivalueCell ? $"{digitsStr}/{Cells}" : $"{digitsStr}/{Cells} {GetString("KeywordIn")} {houseStr}";
 	}

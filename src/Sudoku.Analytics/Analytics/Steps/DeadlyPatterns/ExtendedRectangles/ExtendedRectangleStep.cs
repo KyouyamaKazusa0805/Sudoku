@@ -28,7 +28,7 @@ public abstract partial class ExtendedRectangleStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Size, (A004526(Cells.Count) - 2) * .1M)];
 
-	private protected string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private protected string DigitsStr => DigitNotation.ToString(DigitsMask);
 
 	private protected string CellsStr => Cells.ToString();
 }

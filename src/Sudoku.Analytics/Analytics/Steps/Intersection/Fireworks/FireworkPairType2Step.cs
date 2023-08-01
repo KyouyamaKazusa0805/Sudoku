@@ -33,9 +33,9 @@ public sealed partial class FireworkPairType2Step(
 
 	private string ExtraCellStr => CellNotation.ToString(ExtraCell);
 
-	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitNotation.ToString(DigitsMask);
 
-	private string Firework1Str => $"{Pattern1.Map}({DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal)})";
+	private string Firework1Str => $"{Pattern1.Map}({DigitNotation.ToString(DigitsMask)})";
 
-	private string Firework2Str => $"{Pattern2.Map}({DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal)})";
+	private string Firework2Str => $"{Pattern2.Map}({DigitNotation.ToString(DigitsMask)})";
 }

@@ -28,7 +28,7 @@ public sealed partial class FireworkPairType3Step(
 
 	private string CellsStr => Cells.ToString();
 
-	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
+	private string DigitsStr => DigitNotation.ToString(DigitsMask);
 
 	private string EmptyRectangleStr => HouseNotation.ToString(EmptyRectangleBlock);
 }
