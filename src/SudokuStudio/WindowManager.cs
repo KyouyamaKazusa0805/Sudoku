@@ -19,7 +19,7 @@ internal sealed class WindowManager
 	/// <summary>
 	/// Indicates the list of active windows.
 	/// </summary>
-	private readonly List<Window> _activeWindows = new();
+	private readonly List<Window> _activeWindows = [];
 
 
 	/// <summary>

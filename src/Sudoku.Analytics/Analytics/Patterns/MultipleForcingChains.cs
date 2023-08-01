@@ -8,7 +8,7 @@ public sealed partial class MultipleForcingChains : IReadOnlyList<(byte CellOrDi
 	/// <summary>
 	/// Indicates the internal dictionary.
 	/// </summary>
-	private readonly SortedDictionary<byte, ChainNode> _internalDictionary = new(CellOrDigitComparer.Instance);
+	private readonly SortedDictionary<byte, ChainNode> _internalDictionary = new(new CellOrDigitComparer());
 
 	/// <summary>
 	/// Indicates the keys.
@@ -109,15 +109,8 @@ public sealed partial class MultipleForcingChains : IReadOnlyList<(byte CellOrDi
 /// <summary>
 /// Defines a comparer that compares with inner key.
 /// </summary>
-[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-file sealed class CellOrDigitComparer() : IComparer<byte>
+file sealed class CellOrDigitComparer : IComparer<byte>
 {
-	/// <summary>
-	/// Indicates the singleton instance.
-	/// </summary>
-	public static readonly CellOrDigitComparer Instance = new();
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int Compare(byte x, byte y) => Sign(x - y);

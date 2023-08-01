@@ -6,22 +6,6 @@ namespace SudokuStudio.Collection;
 public sealed class SolvingPathStepCollection : List<SolvingPathStepBindableSource>
 {
 	/// <summary>
-	/// Initializes a <see cref="SolvingPathStepCollection"/> instance.
-	/// </summary>
-	public SolvingPathStepCollection() : base()
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="SolvingPathStepCollection"/> instance via the specified collection of solving path steps.
-	/// </summary>
-	/// <param name="steps">The solving path steps.</param>
-	public SolvingPathStepCollection(IEnumerable<SolvingPathStepBindableSource> steps) : base(steps)
-	{
-	}
-
-
-	/// <summary>
 	/// Creates a <see cref="SolvingPathStepCollection"/> instance via the specified <see cref="AnalyzerResult"/> instance.
 	/// </summary>
 	/// <param name="analyzerResult">A <see cref="AnalyzerResult"/> instance.</param>
@@ -31,7 +15,7 @@ public sealed class SolvingPathStepCollection : List<SolvingPathStepBindableSour
 	{
 		if (analyzerResult is not { IsSolved: true, SolvingPath: { Length: var pathStepsCount } steps })
 		{
-			return new();
+			return [];
 		}
 
 		var collection = new List<SolvingPathStepBindableSource>();
@@ -41,6 +25,6 @@ public sealed class SolvingPathStepCollection : List<SolvingPathStepBindableSour
 			collection.Add(new() { Index = i, StepGrid = sGrid, Step = s, DisplayItems = displayItems });
 		}
 
-		return new(collection);
+		return [.. collection];
 	}
 }

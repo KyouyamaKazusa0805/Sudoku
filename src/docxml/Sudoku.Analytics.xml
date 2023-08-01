@@ -4641,16 +4641,6 @@ if (student is (name: var name, age: >= 18))
             Defines a comparer that compares with inner key.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Patterns.CellOrDigitComparer.#ctor">
-            <summary>
-            Defines a comparer that compares with inner key.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Patterns.CellOrDigitComparer.Instance">
-            <summary>
-            Indicates the singleton instance.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.Patterns.CellOrDigitComparer.Compare(System.Byte,System.Byte)">
             <inheritdoc/>
         </member>
@@ -4817,17 +4807,6 @@ result ^= expression;
             Defines an equality comparer that compares to <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Patterns.ChainNode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Patterns.EqualityComparer.#ctor">
-            <summary>
-            Defines an equality comparer that compares to <see cref="T:Sudoku.Analytics.Patterns.ChainNode"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Patterns.ChainNode"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Patterns.EqualityComparer.Instance">
-            <summary>
-            Indicates the singleton instance.
-            </summary>
         </member>
         <member name="M:Sudoku.Analytics.Patterns.EqualityComparer.Equals(Sudoku.Analytics.Patterns.ChainNode,Sudoku.Analytics.Patterns.ChainNode)">
             <inheritdoc/>
@@ -9495,17 +9474,6 @@ result ^= expression;
             Defines a equality comparer used for comparison with two <see cref="T:Sudoku.Analytics.Steps.ChainingStep"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Steps.ChainingStep"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.Comparer.#ctor">
-            <summary>
-            Defines a equality comparer used for comparison with two <see cref="T:Sudoku.Analytics.Steps.ChainingStep"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.ChainingStep"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.Comparer.Instance">
-            <summary>
-            Indicates the singleton instance.
-            </summary>
         </member>
         <member name="M:Sudoku.Analytics.Steps.Comparer.Equals(Sudoku.Analytics.Steps.ChainingStep,Sudoku.Analytics.Steps.ChainingStep)">
             <inheritdoc/>

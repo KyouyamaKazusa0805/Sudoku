@@ -18,5 +18,5 @@ public sealed class GridLibraryBindableSource
 	/// <summary>
 	/// Indicates the puzzles. The default value is empty list. This property is never <see langword="null"/>.
 	/// </summary>
-	public List<GridInfo> Puzzles { get; set; } = new();
+	public List<GridInfo> Puzzles { get; set; } = [];
 }

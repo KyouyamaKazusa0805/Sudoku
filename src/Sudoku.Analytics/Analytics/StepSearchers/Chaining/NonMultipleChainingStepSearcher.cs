@@ -111,10 +111,8 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 			return;
 		}
 
-		var cycles = new NodeList();
-		var chains = new NodeList();
-		var onToOn = new NodeSet { pOn };
-		var onToOff = new NodeSet();
+		var (cycles, chains) = (new NodeList(), new NodeList());
+		var (onToOn, onToOff) = (new NodeSet { pOn }, new NodeSet());
 
 		DoCycles(grid, onToOn, onToOff, isX, isY, cycles, pOn);
 
@@ -123,14 +121,14 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 			// Forcing Y-Chains do not exist (length must be both odd and even).
 
 			// Forcing chain with "off" implication.
-			onToOn = new() { pOn };
-			onToOff = new();
+			onToOn = [pOn];
+			onToOff = [];
 			DoForcingChains(grid, onToOn, onToOff, isY, chains, pOn);
 
 			// Forcing chain with "on" implication.
 			var pOff = new ChainNode(pOn, false);
-			onToOn = new();
-			onToOff = new() { pOff };
+			onToOn = [];
+			onToOff = [pOff];
 			DoForcingChains(grid, onToOn, onToOff, isY, chains, pOff);
 		}
 

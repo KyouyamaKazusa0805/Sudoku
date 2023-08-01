@@ -148,13 +148,13 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly Color EndofinColorDefaultValue = Color.FromArgb(255, 216, 178, 255);
 
 	[Default]
-	private static readonly DashArray StrongLinkDashStyleDefaultValue = new();
+	private static readonly DashArray StrongLinkDashStyleDefaultValue = [];
 
 	[Default]
 	private static readonly DashArray WeakLinkDashStyleDefaultValue = [3, 1.5];
 
 	[Default]
-	private static readonly DashArray CyclingCellLinkDashStyleDefaultValue = new();
+	private static readonly DashArray CyclingCellLinkDashStyleDefaultValue = [];
 
 	[Default]
 	private static readonly DashArray OtherLinkDashStyleDefaultValue = [3, 3];
@@ -163,48 +163,43 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly Grid LastGridPuzzleDefaultValue = Grid.Empty;
 
 	[Default]
-	private static readonly ColorPalette AuxiliaryColorsDefaultValue = new()
-	{
+	private static readonly ColorPalette AuxiliaryColorsDefaultValue = [
 		Color.FromArgb(255, 255, 192, 89),
 		Color.FromArgb(255, 127, 187, 255),
 		Color.FromArgb(255, 216, 178, 255)
-	};
+	];
 
 	[Default]
-	private static readonly ColorPalette AlmostLockedSetsColorsDefaultValue = new()
-	{
+	private static readonly ColorPalette AlmostLockedSetsColorsDefaultValue = [
 		Color.FromArgb(255, 255, 203, 203),
 		Color.FromArgb(255, 178, 223, 223),
 		Color.FromArgb(255, 252, 220, 165),
 		Color.FromArgb(255, 255, 255, 150),
 		Color.FromArgb(255, 247, 222, 143)
-	};
+	];
 
 	[Default]
-	private static readonly ColorPalette DifficultyLevelForegroundsDefaultValue = new()
-	{
+	private static readonly ColorPalette DifficultyLevelForegroundsDefaultValue = [
 		Color.FromArgb(255, 0, 51, 204),
 		Color.FromArgb(255, 0, 102, 0),
 		Color.FromArgb(255, 102, 51, 0),
 		Color.FromArgb(255, 102, 51, 0),
 		Color.FromArgb(255, 102, 0, 0),
 		Colors.Black
-	};
+	];
 
 	[Default]
-	private static readonly ColorPalette DifficultyLevelBackgroundsDefaultValue = new()
-	{
+	private static readonly ColorPalette DifficultyLevelBackgroundsDefaultValue = [
 		Color.FromArgb(255, 204, 204, 255),
 		Color.FromArgb(255, 100, 255, 100),
 		Color.FromArgb(255, 255, 255, 100),
 		Color.FromArgb(255, 255, 150, 80),
 		Color.FromArgb(255, 255, 100, 100),
 		Color.FromArgb(255, 220, 220, 220)
-	};
+	];
 
 	[Default]
-	private static readonly ColorPalette UserDefinedColorPaletteDefaultValue = new()
-	{
+	private static readonly ColorPalette UserDefinedColorPaletteDefaultValue = [
 		Color.FromArgb(255, 63, 218, 101),
 		Color.FromArgb(255, 255, 192, 89),
 		Color.FromArgb(255, 127, 187, 255),
@@ -220,7 +215,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 		Color.FromArgb(255, 206, 251, 237),
 		Color.FromArgb(255, 215, 255, 215),
 		Color.FromArgb(255, 192, 192, 192)
-	};
+	];
 
 
 	[Callback]

@@ -8,7 +8,7 @@ public sealed class DancingLinksSolver : ISolver
 	/// <summary>
 	/// Indicates the stack that stores the raw data for the solutions.
 	/// </summary>
-	private readonly Stack<DancingLinkNode> _answerNodesStack = new();
+	private readonly Stack<DancingLinkNode> _answerNodesStack = [];
 
 
 	/// <summary>

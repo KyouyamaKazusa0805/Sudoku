@@ -592,17 +592,6 @@
             Defines a solving path.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.#ctor(System.Collections.Generic.IEnumerable{SudokuStudio.BindableSource.SolvingPathStepBindableSource})">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance via the specified collection of solving path steps.
-            </summary>
-            <param name="steps">The solving path steps.</param>
-        </member>
         <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.Create(Sudoku.Analytics.AnalyzerResult,SudokuStudio.Interaction.StepTooltipDisplayItems)">
             <summary>
             Creates a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance via the specified <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.

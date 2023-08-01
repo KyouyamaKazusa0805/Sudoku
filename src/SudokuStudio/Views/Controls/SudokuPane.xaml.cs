@@ -138,13 +138,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private static readonly CandidateMap ViewUnitUsedCandidatesDefaultValue = CandidateMap.Empty;
 
 	[Default]
-	private static readonly DashArray StrongLinkDashStyleDefaultValue = new();
+	private static readonly DashArray StrongLinkDashStyleDefaultValue = [];
 
 	[Default]
 	private static readonly DashArray WeakLinkDashStyleDefaultValue = [3, 1.5];
 
 	[Default]
-	private static readonly DashArray CycleLikeLinkDashStyleDefaultValue = new();
+	private static readonly DashArray CycleLikeLinkDashStyleDefaultValue = [];
 
 	[Default]
 	private static readonly DashArray OtherLinkDashStyleDefaultValue = [3, 3];
@@ -165,40 +165,36 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private static readonly FontFamily BabaGroupLabelFontDefaultValue = new("Times New Roman");
 
 	[Default]
-	private static readonly ColorPalette AuxiliaryColorsDefaultValue = new()
-	{
-		Color.FromArgb(255, 255, 192,  89),
+	private static readonly ColorPalette AuxiliaryColorsDefaultValue = [
+		Color.FromArgb(255, 255, 192, 89),
 		Color.FromArgb(255, 127, 187, 255),
 		Color.FromArgb(255, 216, 178, 255)
-	};
+	];
 
 	[Default]
-	private static readonly ColorPalette DifficultyLevelForegroundsDefaultValue = new()
-	{
-		Color.FromArgb(255,   0,  51, 204),
-		Color.FromArgb(255,   0, 102,   0),
-		Color.FromArgb(255, 102,  51,   0),
-		Color.FromArgb(255, 102,  51,   0),
-		Color.FromArgb(255, 102,   0,   0),
+	private static readonly ColorPalette DifficultyLevelForegroundsDefaultValue = [
+		Color.FromArgb(255, 0, 51, 204),
+		Color.FromArgb(255, 0, 102, 0),
+		Color.FromArgb(255, 102, 51, 0),
+		Color.FromArgb(255, 102, 51, 0),
+		Color.FromArgb(255, 102, 0, 0),
 		Colors.Black
-	};
+	];
 
 	[Default]
-	private static readonly ColorPalette DifficultyLevelBackgroundsDefaultValue = new()
-	{
+	private static readonly ColorPalette DifficultyLevelBackgroundsDefaultValue = [
 		Color.FromArgb(255, 204, 204, 255),
 		Color.FromArgb(255, 100, 255, 100),
 		Color.FromArgb(255, 255, 255, 100),
-		Color.FromArgb(255, 255, 150,  80),
+		Color.FromArgb(255, 255, 150, 80),
 		Color.FromArgb(255, 255, 100, 100),
 		Color.FromArgb(255, 220, 220, 220)
-	};
+	];
 
 	[Default]
-	private static readonly ColorPalette UserDefinedColorPaletteDefaultValue = new()
-	{
-		Color.FromArgb(255,  63, 218, 101), // Green
-		Color.FromArgb(255, 255, 192,  89), // Orange
+	private static readonly ColorPalette UserDefinedColorPaletteDefaultValue = [
+		Color.FromArgb(255, 63, 218, 101), // Green
+		Color.FromArgb(255, 255, 192, 89), // Orange
 		Color.FromArgb(255, 127, 187, 255), // Sky-blue
 		Color.FromArgb(255, 216, 178, 255), // Purple
 		Color.FromArgb(255, 197, 232, 140), // Yellow-green
@@ -212,17 +208,16 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 206, 251, 237), // Light sky-blue
 		Color.FromArgb(255, 215, 255, 215), // Light green
 		Color.FromArgb(255, 192, 192, 192) // Gray
-	};
+	];
 
 	[Default]
-	private static readonly ColorPalette AlmostLockedSetsColorsDefaultValue = new()
-	{
+	private static readonly ColorPalette AlmostLockedSetsColorsDefaultValue = [
 		Color.FromArgb(255, 255, 203, 203),
 		Color.FromArgb(255, 178, 223, 223),
 		Color.FromArgb(255, 252, 220, 165),
 		Color.FromArgb(255, 255, 255, 150),
 		Color.FromArgb(255, 247, 222, 143)
-	};
+	];
 
 
 	/// <summary>
@@ -484,8 +479,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		if (EnableUndoRedoStacking)
 		{
-			(_undoStack = new()).Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_undoStack)));
-			(_redoStack = new()).Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_redoStack)));
+			(_undoStack = []).Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_undoStack)));
+			(_redoStack = []).Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_redoStack)));
 		}
 	}
 
