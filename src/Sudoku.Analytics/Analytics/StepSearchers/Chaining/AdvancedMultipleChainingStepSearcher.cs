@@ -46,7 +46,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	/// <summary>
 	/// Indicates the advanced step searchers.
 	/// </summary>
-	private Dictionary<int, StepSearcher[]>? _otherStepSearchers;
+	private List<(int Priority, StepSearcher[] StepSearchersInThisLevel)>? _otherStepSearchers;
 
 
 	/// <summary>
@@ -122,22 +122,13 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private NodeList GetAdvancedPotentials(scoped in Grid grid, scoped in Grid original, NodeSet offPotentials)
 	{
-		_otherStepSearchers ??= new()
-		{
-			{
-				1,
-				[
-					new LockedCandidatesStepSearcher(),
-					new LockedSubsetStepSearcher(),
-					new NormalFishStepSearcher(),
-					new NormalSubsetStepSearcher()
-				]
-			},
-			{ 2, [new NonMultipleChainingStepSearcher()] },
-			{ 3, [new MultipleChainingStepSearcher { AllowMultiple = true }] },
-			{ 4, [new MultipleChainingStepSearcher { AllowDynamic = true, AllowMultiple = true }] },
-			{ 5, [new AdvancedMultipleChainingStepSearcher { DynamicNestingLevel = DynamicNestingLevel - 3 }] }
-		};
+		_otherStepSearchers ??= [
+			(1, [new LockedCandidatesStepSearcher(), new LockedSubsetStepSearcher(), new NormalFishStepSearcher(), new NormalSubsetStepSearcher()]),
+			(2, [new NonMultipleChainingStepSearcher()]),
+			(3, [new MultipleChainingStepSearcher { AllowMultiple = true }]),
+			(4, [new MultipleChainingStepSearcher { AllowDynamic = true, AllowMultiple = true }]),
+			(5, [new AdvancedMultipleChainingStepSearcher { DynamicNestingLevel = DynamicNestingLevel - 3 }])
+		];
 
 		var result = new NodeList();
 		return result;
