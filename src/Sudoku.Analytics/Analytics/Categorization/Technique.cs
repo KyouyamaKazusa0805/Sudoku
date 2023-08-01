@@ -1757,6 +1757,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	AvoidableRectangleExternalWWing,
 
 	/// <summary>
