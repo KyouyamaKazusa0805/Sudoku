@@ -63,7 +63,7 @@ public sealed partial class HouseNotation : INotation<HouseNotation, House[], Ho
 
 			static string f(House[] collection)
 			{
-				var dic = new Dictionary<HouseType, List<int>>();
+				var dic = new Dictionary<HouseType, List<int>>(3);
 				foreach (var house in collection)
 				{
 					var houseType = house.ToHouseType();
