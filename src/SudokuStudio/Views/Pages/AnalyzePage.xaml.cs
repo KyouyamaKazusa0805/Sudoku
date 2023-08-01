@@ -460,7 +460,7 @@ public sealed partial class AnalyzePage : Page
 
 		// This method routes the hotkeys.
 		var modifierStatus = Keyboard.GetModifierStatusForCurrentThread();
-		foreach (var ((modifiers, key), action) in _hotkeyFunctions)
+		foreach (var ((key, modifiers), action) in _hotkeyFunctions)
 		{
 			if (modifierStatus == modifiers && e.Key == key)
 			{
@@ -509,14 +509,14 @@ public sealed partial class AnalyzePage : Page
 		];
 
 		_hotkeyFunctions = [
-			(new(VirtualKeyModifiers.Control, VirtualKey.Z), SudokuPane.UndoStep),
-			(new(VirtualKeyModifiers.Control, VirtualKey.Y), SudokuPane.RedoStep),
-			(new(VirtualKeyModifiers.Control, VirtualKey.C), () => CopySudokuGridText()),
-			(new(VirtualKeyModifiers.Control | VirtualKeyModifiers.Shift, VirtualKey.C), async () => await CopySudokuGridControlAsSnapshotAsync()),
-			(new(VirtualKeyModifiers.Control, VirtualKey.V), async () => await PasteCodeToSudokuGridAsync()),
-			(new(VirtualKeyModifiers.Control, VirtualKey.O), async () => await OpenFileInternalAsync()),
-			(new(VirtualKeyModifiers.Control, VirtualKey.R), UpdatePuzzleViaSolutionGrid),
-			(new(VirtualKeyModifiers.Control, VirtualKey.S), async () => await SaveFileInternalAsync()),
+			(new(VirtualKey.Z, VirtualKeyModifiers.Control), SudokuPane.UndoStep),
+			(new(VirtualKey.Y, VirtualKeyModifiers.Control), SudokuPane.RedoStep),
+			(new(VirtualKey.C, VirtualKeyModifiers.Control), () => CopySudokuGridText()),
+			(new(VirtualKey.C, VirtualKeyModifiers.Control | VirtualKeyModifiers.Shift), async () => await CopySudokuGridControlAsSnapshotAsync()),
+			(new(VirtualKey.V, VirtualKeyModifiers.Control), async () => await PasteCodeToSudokuGridAsync()),
+			(new(VirtualKey.O, VirtualKeyModifiers.Control), async () => await OpenFileInternalAsync()),
+			(new(VirtualKey.R, VirtualKeyModifiers.Control), UpdatePuzzleViaSolutionGrid),
+			(new(VirtualKey.S, VirtualKeyModifiers.Control), async () => await SaveFileInternalAsync()),
 			(new((VirtualKey)189), SetPreviousView),
 			(new((VirtualKey)187), SetNextView),
 			(new(VirtualKey.Home), SetHomeView),
