@@ -70,7 +70,7 @@ public interface INotation<TSelf, TElement, TConceptKindPresenter> : INotation
 /// </typeparam>
 public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter> : INotation<TSelf, TElement, TConceptKindPresenter>
 	where TSelf : notnull, INotation<TSelf, TElement, TConceptKindPresenter>
-	where TCollection : notnull, IEnumerable<TElement>, ISimpleParsable<TCollection>
+	where TCollection : notnull, IEnumerable<TElement>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TConceptKindPresenter : unmanaged, Enum
 {

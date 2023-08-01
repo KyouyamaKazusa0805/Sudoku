@@ -38,5 +38,5 @@ public sealed partial class ExtendedRectangleType3Step(
 
 	private string ExtraCellsStr => SubsetCells.ToString();
 
-	private string HouseStr => HouseFormatter.Format(1 << House);
+	private string HouseStr => HouseNotation.ToString(House);
 }

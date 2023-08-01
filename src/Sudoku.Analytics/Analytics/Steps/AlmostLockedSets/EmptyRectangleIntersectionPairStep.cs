@@ -41,5 +41,5 @@ public sealed partial class EmptyRectangleIntersectionPairStep(
 
 	private string EndCellStr => CellNotation.ToString(EndCell);
 
-	private string HouseStr => HouseFormatter.Format(1 << House);
+	private string HouseStr => HouseNotation.ToString(House);
 }

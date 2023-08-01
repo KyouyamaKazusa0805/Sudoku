@@ -39,5 +39,5 @@ public sealed partial class MultiBranchWWingStep(
 
 	private string RootStr => CellNotation.ToCollectionString(Root);
 
-	private string HouseStr => HouseFormatter.Format(House);
+	private string HouseStr => HouseNotation.ToString(House);
 }

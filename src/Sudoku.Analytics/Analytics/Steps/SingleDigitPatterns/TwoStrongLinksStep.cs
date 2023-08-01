@@ -35,7 +35,7 @@ public sealed partial class TwoStrongLinksStep(
 
 	private string DigitStr => (Digit + 1).ToString();
 
-	private string BaseHouseStr => HouseFormatter.Format(1 << baseHouse);
+	private string BaseHouseStr => HouseNotation.ToString(BaseHouse);
 
-	private string TargetHouseStr => HouseFormatter.Format(1 << targetHouse);
+	private string TargetHouseStr => HouseNotation.ToString(TargetHouse);
 }

@@ -53,7 +53,7 @@ public sealed partial class SeniorExocetStep(
 					}
 
 					sb.Append(digit + 1);
-					sb.Append(HouseFormatter.Format(mask));
+					sb.Append(HouseNotation.ToMaskString(mask));
 					sb.Append(separator);
 
 					count++;

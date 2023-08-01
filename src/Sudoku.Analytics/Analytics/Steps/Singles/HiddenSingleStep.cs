@@ -39,5 +39,5 @@ public sealed partial class HiddenSingleStep(
 
 	private string DigitStr => (Digit + 1).ToString();
 
-	private string HouseStr => HouseFormatter.Format(1 << House);
+	private string HouseStr => HouseNotation.ToString(House);
 }

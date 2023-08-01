@@ -47,5 +47,5 @@ public sealed partial class AvoidableRectangleWithHiddenSingleStep(
 
 	private string TargetCellStr => CellNotation.ToString(TargetCell);
 
-	private string HouseStr => HouseFormatter.Format(1 << House);
+	private string HouseStr => HouseNotation.ToString(House);
 }

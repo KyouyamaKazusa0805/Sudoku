@@ -57,5 +57,5 @@ public sealed partial class HiddenSubsetStep(
 
 	private string DigitStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	private string HouseStr => HouseFormatter.Format(1 << House);
+	private string HouseStr => HouseNotation.ToString(House);
 }

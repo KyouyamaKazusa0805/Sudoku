@@ -28,7 +28,7 @@ public sealed partial class LockedCandidatesStep(
 
 	private string DigitStr => (Digit + 1).ToString();
 
-	private string BaseSetStr => HouseFormatter.Format(1 << BaseSet);
+	private string BaseSetStr => HouseNotation.ToString(BaseSet);
 
-	private string CoverSetStr => HouseFormatter.Format(1 << CoverSet);
+	private string CoverSetStr => HouseNotation.ToString(CoverSet);
 }

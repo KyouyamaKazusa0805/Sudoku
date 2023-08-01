@@ -61,7 +61,7 @@ public sealed partial class NakedSubsetStep(
 
 	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	private string HouseStr => HouseFormatter.Format(1 << House);
+	private string HouseStr => HouseNotation.ToString(House);
 
 	private string SubsetName => GetString($"SubsetNamesSize{Size}")!;
 }

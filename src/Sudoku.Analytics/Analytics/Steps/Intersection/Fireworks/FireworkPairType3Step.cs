@@ -30,5 +30,5 @@ public sealed partial class FireworkPairType3Step(
 
 	private string DigitsStr => DigitMaskFormatter.Format(DigitsMask, FormattingMode.Normal);
 
-	private string EmptyRectangleStr => HouseFormatter.Format(1 << EmptyRectangleBlock);
+	private string EmptyRectangleStr => HouseNotation.ToString(EmptyRectangleBlock);
 }

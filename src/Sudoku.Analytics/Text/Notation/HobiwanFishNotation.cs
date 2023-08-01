@@ -20,8 +20,8 @@ public sealed partial class HobiwanFishNotation : INotation<HobiwanFishNotation,
 		=> notation switch
 		{
 			Kind.Normal
-				when HouseFormatter.Format(value.BaseSetsMask) is var baseSets
-				&& HouseFormatter.Format(value.CoverSetsMask) is var coverSets
+				when HouseNotation.ToMaskString(value.BaseSetsMask) is var baseSets
+				&& HouseNotation.ToMaskString(value.CoverSetsMask) is var coverSets
 				&& value switch
 				{
 					NormalFishStep { Fins: var f and not [] } => $"f{f} ",
@@ -31,8 +31,8 @@ public sealed partial class HobiwanFishNotation : INotation<HobiwanFishNotation,
 				&& (value is ComplexFishStep { Endofins: var e and not [] } ? $"ef{e}" : string.Empty) is var endofins
 				=> $@"{value.Digit + 1} {baseSets}\{coverSets} {exofins}{endofins}",
 			Kind.CapitalOnly
-				when HouseFormatter.Format(value.BaseSetsMask, FormattingMode.Simple) is var baseSetLetters
-				&& HouseFormatter.Format(value.CoverSetsMask, FormattingMode.Simple) is var coverSetLetters
+				when HouseNotation.ToMaskString(value.BaseSetsMask, HouseNotation.Kind.CapitalOnly) is var baseSetLetters
+				&& HouseNotation.ToMaskString(value.CoverSetsMask, HouseNotation.Kind.CapitalOnly) is var coverSetLetters
 				=> $@"{baseSetLetters}\{coverSetLetters}",
 			_ => throw new ArgumentOutOfRangeException(nameof(notation))
 		};

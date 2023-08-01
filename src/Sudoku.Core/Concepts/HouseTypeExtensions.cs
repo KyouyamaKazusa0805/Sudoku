@@ -131,4 +131,13 @@ public static class HouseTypeExtensions
 			HouseType.Block => 'b',
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
 		};
+
+	/// <summary>
+	/// Gets the ordering of the house type. The result value will be 0, 1 and 2.
+	/// </summary>
+	/// <param name="this">The house type.</param>
+	/// <returns>The program order.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal static int GetProgramOrder(this HouseType @this)
+		=> @this switch { HouseType.Block => 2, HouseType.Row => 0, HouseType.Column => 1 };
 }

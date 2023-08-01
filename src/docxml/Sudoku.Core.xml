@@ -4376,6 +4376,13 @@ if (student is (name: var name, age: >= 18))
             <returns>A character that represents a house type.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
         </member>
+        <member name="M:Sudoku.Concepts.HouseTypeExtensions.GetProgramOrder(Sudoku.Concepts.HouseType)">
+            <summary>
+            Gets the ordering of the house type. The result value will be 0, 1 and 2.
+            </summary>
+            <param name="this">The house type.</param>
+            <returns>The program order.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.IBitStatusMap`2">
             <summary>
             Extracts a base type that describes status table from elements of <typeparamref name="TSelf"/> type.
@@ -5653,58 +5660,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Formatting.HodokuLibraryFormat.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.Formatting.HouseFormatter">
-            <summary>
-            Provides with a formatter that can format a mask that represents for a list of houses.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.HouseFormatter.Format(System.Int32)">
-            <summary>
-            Gets a <see cref="T:System.String"/> value that can describes for a list of houses that is represented
-            as an <see cref="T:System.Int32"/> mask.
-            </summary>
-            <param name="housesMask">The houses mask.</param>
-            <returns>The <see cref="T:System.String"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.HouseFormatter.Format(System.Int32,Sudoku.Text.Formatting.FormattingMode)">
-            <inheritdoc cref="M:Sudoku.Text.Formatting.HouseFormatter.Format(System.Int32)"/>
-            <param name="houseMask"><inheritdoc/></param>
-            <param name="formattingMode">The formatting mode.</param>
-            <returns><inheritdoc/></returns>
-            <exception cref="T:System.NotSupportedException">
-            Throws when the argument <paramref name="formattingMode"/> is <see cref="F:Sudoku.Text.Formatting.FormattingMode.Full"/>.
-            </exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="formattingMode"/> is not defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.HouseFormatter.Format(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            <para>
-            Gets a <see cref="T:System.String"/> value that can describes for a list of houses that is represented
-            as a <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/> elements.
-            </para>
-            <para>
-            Although the argument <paramref name="houses"/> is of type <see cref="T:System.ReadOnlySpan`1"/>, you can still
-            pass an array of <see cref="T:System.Int32"/> elements as the value.
-            </para>
-            </summary>
-            <param name="houses">The houses.</param>
-            <returns>The <see cref="T:System.String"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.HouseFormatter.Sudoku#Text#Formatting#ICollectionFormatter{System#Int32}#Format(System.Collections.Generic.IEnumerable{System.Int32},System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.HouseFormatter.Sudoku#Text#Formatting#ICollectionFormatter{System#Int32}#Format(System.Collections.Generic.IEnumerable{System.Int32},Sudoku.Text.Formatting.FormattingMode)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.HouseFormatter.GetLabel(System.Int32)">
-            <summary>
-            Get the label of each house.
-            </summary>
-            <param name="houseIndex">The house index.</param>
-            <returns>The label.</returns>
-        </member>
         <member name="T:Sudoku.Text.Formatting.ICandidateMapFormatter">
             <summary>
             Represents with a formatter type that formats and parses a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance,
@@ -6719,6 +6674,58 @@ if (student is (name: var name, age: >= 18))
             However, they can also be used in Chinese notations, for example, <c>K8</c> in traditional notation
             is same as <c>I8</c> in Chinese K9 notation rule.
             </remarks>
+        </member>
+        <member name="T:Sudoku.Text.Notation.HouseNotation">
+            <summary>
+            Represents a type that can output notations for <see cref="T:System.Int32"/> values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Notation.HouseNotation.ToString(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Text.Notation.HouseNotation.ToString(System.Int32,Sudoku.Text.Notation.HouseNotation.Kind)"/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.HouseNotation.ToString(System.Int32,Sudoku.Text.Notation.HouseNotation.Kind)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.HouseNotation.ToMaskString(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Text.Notation.HouseNotation.ToCollectionString(System.Int32[]@,Sudoku.Text.Notation.HouseNotation.Kind)"/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.HouseNotation.ToMaskString(System.Int32,Sudoku.Text.Notation.HouseNotation.Kind)">
+            <inheritdoc cref="M:Sudoku.Text.Notation.HouseNotation.ToCollectionString(System.Int32[]@,Sudoku.Text.Notation.HouseNotation.Kind)"/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.HouseNotation.ToCollectionString(System.Int32[]@)">
+            <inheritdoc cref="M:Sudoku.Text.Notation.HouseNotation.ToCollectionString(System.Int32[]@,Sudoku.Text.Notation.HouseNotation.Kind)"/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.HouseNotation.ToCollectionString(System.Int32[]@,Sudoku.Text.Notation.HouseNotation.Kind)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.HouseNotation.Sudoku#Text#Notation#INotation{Sudoku#Text#Notation#HouseNotation,System#Int32,Sudoku#Text#Notation#HouseNotation#Kind}#Parse(System.String,Sudoku.Text.Notation.HouseNotation.Kind)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Throws always.</exception>
+        </member>
+        <member name="M:Sudoku.Text.Notation.HouseNotation.Sudoku#Text#Notation#INotation{Sudoku#Text#Notation#HouseNotation,System#Int32[],System#Int32,Sudoku#Text#Notation#HouseNotation#Kind}#ParseCollection(System.String,Sudoku.Text.Notation.HouseNotation.Kind)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.HouseNotation.GetLabel(System.Int32)">
+            <summary>
+            Get the label of each house.
+            </summary>
+            <param name="houseIndex">The house index.</param>
+            <returns>The label.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Notation.HouseNotation.Kind">
+            <summary>
+            Represents a kind of the house notation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notation.HouseNotation.Kind.Normal">
+            <summary>
+            Indicates the notation kind is normal.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notation.HouseNotation.Kind.CapitalOnly">
+            <summary>
+            Indicates the notation kind only output for letters <c>r</c>, <c>c</c> and <c>b</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Text.Notation.INotation">
             <summary>

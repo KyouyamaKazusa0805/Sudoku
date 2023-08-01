@@ -28,7 +28,7 @@ public sealed partial class EmptyRectangleStep(
 
 	private string DigitStr => (Digit + 1).ToString();
 
-	private string HouseStr => HouseFormatter.Format(1 << Block);
+	private string HouseStr => HouseNotation.ToString(Block);
 
 	private string ConjStr => ConjugatePair.ToString();
 }

@@ -376,7 +376,7 @@ internal static class RenderableFactory
 		var control = new Border
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = $"{nameof(RenderableFactory)}: house {HouseFormatter.Format(1 << house)}",
+			Tag = $"{nameof(RenderableFactory)}: house {HouseNotation.ToString(house)}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Margin = house switch
 			{
