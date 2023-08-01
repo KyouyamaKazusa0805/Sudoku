@@ -18,12 +18,10 @@ internal sealed partial class SudokuPaneCell : UserControl
 	}
 
 
-#nullable disable
 	/// <summary>
 	/// Indicates the base pane.
 	/// </summary>
-	public SudokuPane BasePane { get; set; }
-#nullable restore
+	public SudokuPane BasePane { get; set; } = null!;
 
 	/// <summary>
 	/// Indicates the cell index.
@@ -102,8 +100,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 
 		BasePane.TriggerClicked(MouseButton.Right, cell * 9 + digit);
 
-		if (!BasePane.EnableRightTapRemoving
-			|| modified.GetStatus(cell) != CellStatus.Empty || (modified.GetCandidates(cell) >> digit & 1) == 0)
+		if (!BasePane.EnableRightTapRemoving || modified.GetStatus(cell) != CellStatus.Empty || (modified.GetCandidates(cell) >> digit & 1) == 0)
 		{
 			return;
 		}

@@ -1830,8 +1830,8 @@
             Defines a hotkey.
             </summary>
             <param name="Modifiers">
-            Indicates the modifier keys. If you want to enable multiple modifiers of this hotkey, just use <see langword="operator"/> |
-            to combine flags.
+            Indicates the modifier keys. If you want to enable multiple modifiers of this hotkey,
+            just use <see cref="T:Windows.System.VirtualKeyModifiers"/>.<see langword="operator"/> <c>|</c> to combine flags.
             </param>
             <param name="Key">Indicates the key.</param>
         </member>
@@ -1840,15 +1840,15 @@
             Defines a hotkey.
             </summary>
             <param name="Modifiers">
-            Indicates the modifier keys. If you want to enable multiple modifiers of this hotkey, just use <see langword="operator"/> |
-            to combine flags.
+            Indicates the modifier keys. If you want to enable multiple modifiers of this hotkey,
+            just use <see cref="T:Windows.System.VirtualKeyModifiers"/>.<see langword="operator"/> <c>|</c> to combine flags.
             </param>
             <param name="Key">Indicates the key.</param>
         </member>
         <member name="P:SudokuStudio.Input.Hotkey.Modifiers">
             <summary>
-            Indicates the modifier keys. If you want to enable multiple modifiers of this hotkey, just use <see langword="operator"/> |
-            to combine flags.
+            Indicates the modifier keys. If you want to enable multiple modifiers of this hotkey,
+            just use <see cref="T:Windows.System.VirtualKeyModifiers"/>.<see langword="operator"/> <c>|</c> to combine flags.
             </summary>
         </member>
         <member name="P:SudokuStudio.Input.Hotkey.Key">

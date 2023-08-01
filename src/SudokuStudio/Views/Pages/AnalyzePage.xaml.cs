@@ -1184,6 +1184,7 @@ public sealed partial class AnalyzePage : Page
 			}
 			case { MouseButton: MouseButton.Right, Cell: var cell } when SudokuPane is { DisableFlyout: false, Puzzle: var puzzle }:
 			{
+				static IEnumerable<AppBarButton> getAppBarButtons(CommandBarFlyout flyout) => flyout.SecondaryCommands.OfType<AppBarButton>();
 				switch (puzzle.GetStatus(cell))
 				{
 					case CellStatus.Empty:
@@ -1212,9 +1213,6 @@ public sealed partial class AnalyzePage : Page
 				break;
 			}
 		}
-
-
-		static IEnumerable<AppBarButton> getAppBarButtons(CommandBarFlyout flyout) => flyout.SecondaryCommands.OfType<AppBarButton>();
 	}
 
 	private void SudokuPane_CandidatesDisplayingToggled(SudokuPane sender, CandidatesDisplayingToggledEventArgs e)
