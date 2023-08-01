@@ -264,7 +264,7 @@ public sealed partial class CandidateNotation : INotation<CandidateNotation, Can
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToCollectionString(scoped in CandidateMap collection) => ToCollectionString(collection, Kind.RxCy);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(TCollection, TConceptKindPresenter)"/>
 	/// <exception cref="NotSupportedException">Throws when <paramref name="notation"/> is <see cref="Kind.K9"/>.</exception>
 	public static string ToCollectionString(scoped in CandidateMap collection, Kind notation)
 	{
@@ -330,4 +330,9 @@ public sealed partial class CandidateNotation : INotation<CandidateNotation, Can
 			}
 		}
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static string INotation<CandidateNotation, CandidateMap, Candidate, Kind>.ToCollectionString(CandidateMap collection, Kind notation)
+		=> ToCollectionString(collection, notation);
 }

@@ -13,20 +13,20 @@ public sealed partial class HouseNotation : INotation<HouseNotation, House[], Ho
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToString(House value, Kind notation) => ToCollectionString([value], notation);
 
-	/// <inheritdoc cref="ToCollectionString(in House[], Kind)"/>
+	/// <inheritdoc cref="ToCollectionString(House[], Kind)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToMaskString(HouseMask value) => ToCollectionString([.. value.GetAllSets()], Kind.Normal);
 
-	/// <inheritdoc cref="ToCollectionString(in House[], Kind)"/>
+	/// <inheritdoc cref="ToCollectionString(House[], Kind)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToMaskString(HouseMask value, Kind notation) => ToCollectionString([.. value.GetAllSets()], Kind.Normal);
 
-	/// <inheritdoc cref="ToCollectionString(in House[], Kind)"/>
+	/// <inheritdoc cref="ToCollectionString(House[], Kind)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCollectionString(scoped in House[] collection) => ToCollectionString(collection, Kind.Normal);
+	public static string ToCollectionString(House[] collection) => ToCollectionString(collection, Kind.Normal);
 
 	/// <inheritdoc/>
-	public static string ToCollectionString(scoped in House[] collection, Kind notation)
+	public static string ToCollectionString(House[] collection, Kind notation)
 	{
 		return notation switch
 		{

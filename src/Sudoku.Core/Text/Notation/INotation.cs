@@ -111,7 +111,7 @@ public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter> 
 	///     path="/returns"/>
 	/// </returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
-	static abstract string ToCollectionString(scoped in TCollection collection, TConceptKindPresenter notation);
+	static abstract string ToCollectionString(TCollection collection, TConceptKindPresenter notation);
 }
 
 /// <summary>
@@ -157,7 +157,7 @@ public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter, 
 	/// <returns>
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)" path="/returns"/>
 	/// </returns>
-	static abstract TElement Parse(string text, TConceptKindPresenter notation, scoped in TOptionProvider option);
+	static abstract TElement Parse(string text, TConceptKindPresenter notation, TOptionProvider option);
 
 	/// <summary>
 	/// <inheritdoc
@@ -174,13 +174,13 @@ public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter, 
 	/// </param>
 	/// <param name="option">
 	/// <inheritdoc
-	///     cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter, TOptionProvider}.Parse(string, TConceptKindPresenter, in TOptionProvider)"
+	///     cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter, TOptionProvider}.Parse(string, TConceptKindPresenter, TOptionProvider)"
 	///     path="/param[@name='option']"/>
 	/// </param>
 	/// <returns>
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)" path="/returns"/>
 	/// </returns>
-	static abstract TCollection ParseCollection(string text, TConceptKindPresenter notation, scoped in TOptionProvider option);
+	static abstract TCollection ParseCollection(string text, TConceptKindPresenter notation, TOptionProvider option);
 
 	/// <summary>
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)" path="/summary"/>
@@ -195,22 +195,22 @@ public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter, 
 	/// </param>
 	/// <param name="option">
 	/// <inheritdoc
-	///     cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter, TOptionProvider}.Parse(string, TConceptKindPresenter, in TOptionProvider)"
+	///     cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter, TOptionProvider}.Parse(string, TConceptKindPresenter, TOptionProvider)"
 	///     path="/param[@name='option']"/>
 	/// </param>
 	/// <returns>
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)" path="/returns"/>
 	/// </returns>
-	static abstract string ToString(TElement value, TConceptKindPresenter notation, scoped in TOptionProvider option);
+	static abstract string ToString(TElement value, TConceptKindPresenter notation, TOptionProvider option);
 
 	/// <summary>
 	/// <inheritdoc
-	///     cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(in TCollection, TConceptKindPresenter)"
+	///     cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(TCollection, TConceptKindPresenter)"
 	///     path="/summary"/>
 	/// </summary>
 	/// <param name="collection">
 	/// <inheritdoc
-	///     cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(in TCollection, TConceptKindPresenter)"
+	///     cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(TCollection, TConceptKindPresenter)"
 	///     path="/param[@name='collection']"/>
 	/// </param>
 	/// <param name="notation">
@@ -220,11 +220,11 @@ public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter, 
 	/// </param>
 	/// <param name="option">
 	/// <inheritdoc
-	///     cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter, TOptionProvider}.Parse(string, TConceptKindPresenter, in TOptionProvider)"
+	///     cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter, TOptionProvider}.Parse(string, TConceptKindPresenter, TOptionProvider)"
 	///     path="/param[@name='option']"/>
 	/// </param>
 	/// <returns>
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)" path="/returns"/>
 	/// </returns>
-	static abstract string ToCollectionString(scoped in TCollection collection, TConceptKindPresenter notation, scoped in TOptionProvider option);
+	static abstract string ToCollectionString(TCollection collection, TConceptKindPresenter notation, TOptionProvider option);
 }

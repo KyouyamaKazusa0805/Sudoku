@@ -363,4 +363,9 @@ public sealed partial class CellNotation : INotation<CellNotation, CellMap, Cell
 			}
 		}
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static string INotation<CellNotation, CellMap, Cell, Kind>.ToCollectionString(CellMap collection, Kind notation)
+		=> ToCollectionString(collection, notation);
 }

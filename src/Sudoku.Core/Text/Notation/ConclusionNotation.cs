@@ -18,7 +18,7 @@ public sealed partial class ConclusionNotation : INotation<ConclusionNotation, C
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToString(Conclusion value) => ToString(value, Kind.RxCy);
 
-	/// <inheritdoc cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(in TCollection, TConceptKindPresenter)"/>
+	/// <inheritdoc cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(TCollection, TConceptKindPresenter)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToCollectionString(Conclusion[] collection) => ToCollectionString(collection, Kind.RxCy);
 
@@ -140,7 +140,7 @@ public sealed partial class ConclusionNotation : INotation<ConclusionNotation, C
 	public static string ToString(Conclusion value, Kind notation) => ToCollectionString([value], notation);
 
 	/// <inheritdoc/>
-	public static string ToCollectionString(scoped in Conclusion[] collection, Kind notation)
+	public static string ToCollectionString(Conclusion[] collection, Kind notation)
 	{
 		return collection switch
 		{
