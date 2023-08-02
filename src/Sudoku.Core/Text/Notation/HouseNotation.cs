@@ -38,7 +38,7 @@ public sealed partial class HouseNotation : INotation<HouseNotation, House[], Ho
 
 		static string formatSimple(House[] collection)
 		{
-			var houseMask = collection.Aggregate(static (interim, next) => interim | (1 << next));
+			var houseMask = collection.Aggregate(CommonMethods.BitMerger);
 			scoped var sb = new StringHandler(27);
 			for (var (houseIndex, i) = (9, 0); i < 27; i++, houseIndex = (houseIndex + 1) % 27)
 			{

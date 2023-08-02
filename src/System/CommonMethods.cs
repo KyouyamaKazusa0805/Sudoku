@@ -6,6 +6,23 @@ namespace System;
 public static class CommonMethods
 {
 	/// <summary>
+	/// Merges two integers by bits. This method will be used by LINQ method
+	/// <see cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>.
+	/// </summary>
+	/// <param name="interim">The interim value.</param>
+	/// <param name="next">The next value to be merged by its bits.</param>
+	/// <returns>The final value merged.</returns>
+	/// <seealso cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int BitMerger(int interim, int next) => interim | 1 << next;
+
+	/// <inheritdoc cref="BitMerger(int, int)"/>
+	/// <typeparam name="T">The type of the value. The value must be an integer type, and supports for shifting operators.</typeparam>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static T BitMerger<T>(T interim, T next) where T : IBinaryInteger<T>, IShiftOperators<T, T, T>
+		=> interim | T.MultiplicativeIdentity << next;
+
+	/// <summary>
 	/// Merges two flags of type <typeparamref name="T"/>.
 	/// </summary>
 	/// <typeparam name="T">The type of the enumeration.</typeparam>
