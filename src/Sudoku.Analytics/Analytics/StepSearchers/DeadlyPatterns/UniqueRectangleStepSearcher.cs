@@ -911,11 +911,11 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		void gather(scoped in Grid grid, scoped in CellMap otherCellsMap, bool isRow, Digit digit, House house1, House house2)
 		{
 			var precheck = isRow
-				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [CellsMap[corner1], o1], house1)
-				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [CellsMap[corner2], o2], house2)
+				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, CellsMap[corner1] + o1, house1)
+				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, CellsMap[corner2] + o2, house2)
 				|| !isRow
-				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [CellsMap[corner1], o2], house1)
-				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [CellsMap[corner2], o1], house2);
+				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, CellsMap[corner1] + o2, house1)
+				&& UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, CellsMap[corner2] + o1, house2);
 			if (!precheck)
 			{
 				return;
@@ -1296,7 +1296,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					for (var digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
 						var digit = digits[digitIndex];
-						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [CellsMap[cell], otherCell], house))
+						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, CellsMap[cell] + otherCell, house))
 						{
 							continue;
 						}
@@ -1468,7 +1468,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					for (var digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
 						var digit = digits[digitIndex];
-						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, [CellsMap[cell], otherCell], house))
+						if (!UniqueRectangleStepSearcherHelper.IsConjugatePair(digit, CellsMap[cell] + otherCell, house))
 						{
 							continue;
 						}
@@ -3004,9 +3004,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					}
 					case [var i, var j, var k]:
 					{
-						list.Add([CellsMap[i], j]);
-						list.Add([CellsMap[j], k]);
-						list.Add([CellsMap[i], k]);
+						list.Add(CellsMap[i] + j);
+						list.Add(CellsMap[j] + k);
+						list.Add(CellsMap[i] + k);
 						list.Add(emptyCellsInInterMap);
 						break;
 					}

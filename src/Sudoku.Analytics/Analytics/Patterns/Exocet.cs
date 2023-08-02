@@ -74,12 +74,12 @@ public sealed record Exocet(
 	/// <summary>
 	/// Indicates the base cells.
 	/// </summary>
-	public CellMap BaseCellsMap => [CellsMap[Base1], Base2];
+	public CellMap BaseCellsMap => CellsMap[Base1] + Base2;
 
 	/// <summary>
 	/// Indicates the target cells.
 	/// </summary>
-	public CellMap TargetCellsMap => [CellsMap[TargetQ1], TargetQ2, TargetR1, TargetR2];
+	public CellMap TargetCellsMap => CellsMap[TargetQ1] + TargetQ2 + TargetR1 + TargetR2;
 
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>

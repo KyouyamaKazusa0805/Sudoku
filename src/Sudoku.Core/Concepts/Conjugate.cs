@@ -92,7 +92,7 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	public CellMap Map
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => [CellsMap[From], To];
+		get => CellsMap[From] + To;
 	}
 
 	private Candidate FromCandidate => From * 9 + Digit;
@@ -109,5 +109,5 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{CellsMap[From]} == {CellsMap[To]}{Digit + 1}";
+	public override string ToString() => $"{CellsMap[From]} == {CellsMap[To]}({Digit + 1})";
 }

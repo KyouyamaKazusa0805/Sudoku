@@ -71,8 +71,8 @@ public readonly partial struct BorescoperDeadlyPattern([PrimaryConstructorParame
 	public CellMap CenterCellsMap
 		=> this switch
 		{
-			{ CenterCells: var (a, b, c, _), IsHeptagon: true } => [CellsMap[a], b, c],
-			{ CenterCells: var (a, b, c, d), IsHeptagon: false } => [CellsMap[a], b, c, d]
+			{ CenterCells: var (a, b, c, _), IsHeptagon: true } => CellsMap[a] + b + c,
+			{ CenterCells: var (a, b, c, d), IsHeptagon: false } => CellsMap[a] + b + c + d
 		};
 
 	/// <summary>

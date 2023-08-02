@@ -67,19 +67,19 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						{
 							if ((CellsMap[a] + b).InOneHouse && (CellsMap[a] + c).InOneHouse)
 							{
-								Patterns[i++] = new([CellsMap[a], b, c], a);
+								Patterns[i++] = new(CellsMap[a] + b + c, a);
 								continue;
 							}
 
 							if ((CellsMap[a] + b).InOneHouse && (CellsMap[b] + c).InOneHouse)
 							{
-								Patterns[i++] = new([CellsMap[a], b, c], b);
+								Patterns[i++] = new(CellsMap[a] + b + c, b);
 								continue;
 							}
 
 							if ((CellsMap[a] + c).InOneHouse && (CellsMap[b] + c).InOneHouse)
 							{
-								Patterns[i++] = new([CellsMap[a], b, c], c);
+								Patterns[i++] = new(CellsMap[a] + b + c, c);
 							}
 						}
 					}
@@ -101,7 +101,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 								continue;
 							}
 
-							Patterns[i++] = new([CellsMap[a], b, c, d], null);
+							Patterns[i++] = new(CellsMap[a] + b + c + d, null);
 						}
 					}
 				}

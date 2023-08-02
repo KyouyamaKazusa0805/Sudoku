@@ -51,9 +51,9 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 					}
 					case [var i, var j, var k]:
 					{
-						list.Add([CellsMap[i], j]);
-						list.Add([CellsMap[j], k]);
-						list.Add([CellsMap[i], k]);
+						list.Add(CellsMap[i] + j);
+						list.Add(CellsMap[j] + k);
+						list.Add(CellsMap[i] + k);
 						list.Add(emptyCellsInInterMap);
 
 						break;
