@@ -2381,6 +2381,18 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IMultiplyOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CandidateMap}#op_Multiply(Sudoku.Concepts.CellMap,System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_Implicit(Sudoku.Concepts.CellMap@)~System.Int128">
+            <summary>
+            Implicit cast from a <see cref="T:Sudoku.Concepts.CellMap"/> instance into a <see cref="T:System.Int128"/> result.
+            </summary>
+            <param name="this">A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_Implicit(System.Int128)~Sudoku.Concepts.CellMap">
+            <summary>
+            Implicit cast from a <see cref="T:System.Int128"/> value into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <param name="value">A <see cref="T:System.Int128"/> value.</param>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CellMap">
             <inheritdoc/>
         </member>
