@@ -1140,7 +1140,20 @@
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
             </param>
             <returns>
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/returns"/>
+            A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TResult"/> whose elements are the result of invoking the transfrom function
+            on each element of <paramref name="this"/>.
+            </returns>
+        </member>
+        <member name="M:System.Linq.StringEnumerable.Where(System.String,System.Func{System.Char,System.Boolean})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/summary"/>
+            </summary>
+            <param name="this">The string instance.</param>
+            <param name="predicate">
+            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/param[@name='selector']"/>
+            </param>
+            <returns>
+            A new <see cref="T:System.String"/> instance that contains characters from the input sequence that satisfy the condition.
             </returns>
         </member>
         <member name="T:System.EnumExtensions">

@@ -27,7 +27,8 @@ public static class StringEnumerable
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/param[@name='selector']"/>
 	/// </param>
 	/// <returns>
-	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/returns"/>
+	/// A <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TResult"/> whose elements are the result of invoking the transfrom function
+	/// on each element of <paramref name="this"/>.
 	/// </returns>
 	public static ReadOnlySpan<TResult> Select<TResult>(this string @this, Func<char, TResult> selector)
 	{
@@ -39,5 +40,30 @@ public static class StringEnumerable
 		}
 
 		return result;
+	}
+
+	/// <summary>
+	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})" path="/summary"/>
+	/// </summary>
+	/// <param name="this">The string instance.</param>
+	/// <param name="predicate">
+	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})" path="/param[@name='selector']"/>
+	/// </param>
+	/// <returns>
+	/// A new <see cref="string"/> instance that contains characters from the input sequence that satisfy the condition.
+	/// </returns>
+	public static string Where(this string @this, Func<char, bool> predicate)
+	{
+		var result = new char[@this.Length];
+		var i = 0;
+		foreach (var element in @this)
+		{
+			if (predicate(element))
+			{
+				result[i++] = element;
+			}
+		}
+
+		return new(result);
 	}
 }

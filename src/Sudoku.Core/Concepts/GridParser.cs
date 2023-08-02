@@ -405,7 +405,7 @@ public unsafe ref partial struct GridParser(
 
 		// Remove all '\r's and '\n's.
 		scoped var sb = new StringHandler(81 + (9 << 1));
-		sb.AppendCharacters(from @char in match where @char is not ('\r' or '\n') select @char);
+		sb.Append(from @char in match where @char is not ('\r' or '\n') select @char);
 		parser.ParsingValue = sb.ToStringAndClear();
 		return OnParsingSusser(ref parser, false);
 	}
