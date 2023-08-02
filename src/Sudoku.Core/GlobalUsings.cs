@@ -11,4 +11,4 @@ global using Sudoku.Text.Notation;
 global using static System.Algorithm.Sequences;
 global using static System.Algorithm.Sorting;
 global using static System.Math;
-global using static Sudoku.Meta.MaskOperations;
+global using static Sudoku.Runtime.MaskServices.MaskOperations;

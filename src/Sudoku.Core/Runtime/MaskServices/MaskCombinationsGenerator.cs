@@ -1,4 +1,4 @@
-namespace Sudoku.Meta;
+namespace Sudoku.Runtime.MaskServices;
 
 /// <summary>
 /// Represents a combination generator that iterations each combination of bits for the specified number of bits, and how many 1's in it.

@@ -1,4 +1,4 @@
-namespace Sudoku.Meta;
+namespace Sudoku.Runtime.MaskServices;
 
 partial struct MaskCombinationsGenerator
 {
