@@ -3841,6 +3841,30 @@ if (student is (name: var name, age: >= 18))
             </param>
             <returns>The result.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.GridParser.OnParsingSusserPhase1(Sudoku.Concepts.GridParser@)">
+            <summary>
+            Calls method <see cref="M:Sudoku.Concepts.GridParser.OnParsingSusser(Sudoku.Concepts.GridParser@,System.Boolean)"/> for the phase 1.
+            </summary>
+            <seealso cref="M:Sudoku.Concepts.GridParser.OnParsingSusser(Sudoku.Concepts.GridParser@,System.Boolean)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridParser.OnParsingSusserPhase2(Sudoku.Concepts.GridParser@)">
+            <summary>
+            Calls method <see cref="M:Sudoku.Concepts.GridParser.OnParsingSusser(Sudoku.Concepts.GridParser@,System.Boolean)"/> for the phase 2.
+            </summary>
+            <seealso cref="M:Sudoku.Concepts.GridParser.OnParsingSusser(Sudoku.Concepts.GridParser@,System.Boolean)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridParser.OnParsingSukakuPhase1(Sudoku.Concepts.GridParser@)">
+            <summary>
+            Calls method <see cref="M:Sudoku.Concepts.GridParser.OnParsingSukaku(Sudoku.Concepts.GridParser@,System.Boolean)"/> for the phase 1.
+            </summary>
+            <seealso cref="M:Sudoku.Concepts.GridParser.OnParsingSukaku(Sudoku.Concepts.GridParser@,System.Boolean)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridParser.OnParsingSukakuPhase2(Sudoku.Concepts.GridParser@)">
+            <summary>
+            Calls method <see cref="M:Sudoku.Concepts.GridParser.OnParsingSukaku(Sudoku.Concepts.GridParser@,System.Boolean)"/> for the phase 2.
+            </summary>
+            <seealso cref="M:Sudoku.Concepts.GridParser.OnParsingSukaku(Sudoku.Concepts.GridParser@,System.Boolean)"/>
+        </member>
         <member name="P:Sudoku.Concepts.GridParser.ParsingValue">
             <summary>
             The generated property declaration for parameter <c>parsingValue</c>.
