@@ -5189,6 +5189,13 @@ if (student is (name: var name, age: >= 18))
             Provides with a set of methods that operates with mask defined in basic sudoku concepts, as data structures.
             </summary>
         </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.MaskToDigits(System.Int16)">
+            <summary>
+            To get the digits that the current mask represents for. The mask must be between 0 and 512, and exclude 512.
+            </summary>
+            <param name="digitMask">The digit mask.</param>
+            <returns>The digits returned.</returns>
+        </member>
         <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.MaskToStatus(System.Int16)">
             <summary>
             To get the cell status for a mask value. The mask is an inner representation to describe a cell's state.

@@ -6,6 +6,25 @@ namespace Sudoku.Runtime.MaskServices;
 public static class MaskOperations
 {
 	/// <summary>
+	/// To get the digits that the current mask represents for. The mask must be between 0 and 512, and exclude 512.
+	/// </summary>
+	/// <param name="digitMask">The digit mask.</param>
+	/// <returns>The digits returned.</returns>
+	public static ReadOnlySpan<Digit> MaskToDigits(Mask digitMask)
+	{
+		var result = new Digit[PopCount((uint)digitMask)];
+		for (var (i, p) = (0, 0); i < 9; i++)
+		{
+			if ((digitMask >> i & 1) != 0)
+			{
+				result[p++] = i;
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// To get the cell status for a mask value. The mask is an inner representation to describe a cell's state.
 	/// For more information please visit the details of the design for type <see cref="Grid"/>.
 	/// </summary>
