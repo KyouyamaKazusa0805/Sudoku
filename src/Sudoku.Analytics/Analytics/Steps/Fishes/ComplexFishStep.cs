@@ -97,26 +97,18 @@ public sealed partial class ComplexFishStep(
 	/// The internal name.
 	/// </summary>
 	private string InternalName
-	{
-		get
-		{
-			var fin = FinModifier == ComplexFishFinKind.Normal ? null : $"{FinModifier} ";
-			var shape = ShapeModifier == ComplexFishShapeKind.Basic ? null : $"{ShapeModifier} ";
-			var sizeName = TechniqueFact.GetFishEnglishName(Size);
-			return $"{fin}{shape}{sizeName}";
-		}
-	}
-
-	/// <summary>
-	/// Indicates the fin modifier.
-	/// </summary>
-	private ComplexFishFinKind FinModifier
-		=> IsSashimi switch { true => ComplexFishFinKind.Sashimi, false => ComplexFishFinKind.Finned, _ => ComplexFishFinKind.Normal };
-
-	/// <summary>
-	/// The shape modifier.
-	/// </summary>
-	private ComplexFishShapeKind ShapeModifier => IsFranken ? ComplexFishShapeKind.Franken : ComplexFishShapeKind.Mutant;
+		=> $"{(
+			IsSashimi switch
+			{
+				true => ComplexFishFinKind.Sashimi,
+				false => ComplexFishFinKind.Finned,
+				_ => ComplexFishFinKind.Normal
+			} is var finModifier and not ComplexFishFinKind.Normal ? $"{finModifier} " : null
+		)}{(
+			(IsFranken ? ComplexFishShapeKind.Franken : ComplexFishShapeKind.Mutant) is var shapeModifier and not ComplexFishShapeKind.Basic
+				? $"{shapeModifier} "
+				: null
+		)}{TechniqueFact.GetFishEnglishName(Size)}";
 
 
 	/// <inheritdoc/>
@@ -125,4 +117,55 @@ public sealed partial class ComplexFishStep(
 		=> left.Digit == right.Digit
 		&& left.BaseSetsMask == right.BaseSetsMask && left.CoverSetsMask == right.CoverSetsMask
 		&& left.Exofins == right.Exofins && left.Endofins == right.Endofins;
+}
+
+/// <summary>
+/// Indicates a shape modifier that is used for a complex fish structure.
+/// </summary>
+[Flags]
+file enum ComplexFishShapeKind
+{
+	/// <summary>
+	/// Indicates the basic fish.
+	/// </summary>
+	Basic = 1,
+
+	/// <summary>
+	/// Indicates the franken fish.
+	/// </summary>
+	Franken = 1 << 1,
+
+	/// <summary>
+	/// Indicates the mutant fish.
+	/// </summary>
+	Mutant = 1 << 2
+}
+
+/// <summary>
+/// Indicates a fin modifier that is used for a complex fish structure.
+/// </summary>
+[Flags]
+file enum ComplexFishFinKind
+{
+	/// <summary>
+	/// Indicates the normal fish (i.e. no fins).
+	/// </summary>
+	Normal = 1,
+
+	/// <summary>
+	/// Indicates the finned fish
+	/// (i.e. contains fins, but the fish may be regular when the fins are removed).
+	/// </summary>
+	Finned = 1 << 1,
+
+	/// <summary>
+	/// Indicates the sashimi fish
+	/// (i.e. contains fins, and the fish may be degenerated to hidden singles when the fins are removed).
+	/// </summary>
+	Sashimi = 1 << 2,
+
+	/// <summary>
+	/// Indicates the siamese fish (i.e. two fish share same base sets, with different cover sets).
+	/// </summary>
+	Siamese = 1 << 3
 }
