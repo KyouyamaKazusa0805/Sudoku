@@ -65,7 +65,7 @@ public unsafe partial struct Grid :
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/csharp9/feature[@name='function-pointer']"/>
 	/// </remarks>
-	public static readonly delegate*</*scoped*/ ref Grid, int, short, short, int, void> ValueChanged = &OnValueChanged;
+	public static readonly delegate*</*scoped*/ ref Grid, Cell, Mask, Mask, Digit, void> ValueChanged = &OnValueChanged;
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
@@ -1627,7 +1627,7 @@ public unsafe partial struct Grid :
 		static Vector<byte> loadVector(scoped ref byte start, nuint offset) => ReadUnaligned<Vector<byte>>(ref AddByteOffset(ref start, offset));
 	}
 
-	private static void OnValueChanged(ref Grid @this, int cell, short oldMask, short newMask, int setValue)
+	private static void OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
 	{
 		if (setValue != -1)
 		{

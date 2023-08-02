@@ -159,7 +159,7 @@ public unsafe ref partial struct GridParser(
 	/// <returns>The result.</returns>
 	private static Grid OnParsingSimpleMultilineGrid(scoped ref GridParser parser)
 	{
-		var matches = from match in GridParserPatterns.SusserDigitPattern().Matches(parser.ParsingValue) select match.Value;
+		var matches = from match in NotationPatterns.GridSusserDigitPattern().Matches(parser.ParsingValue) select match.Value;
 		var length = matches.Length;
 		if (length is not (81 or 85))
 		{
@@ -247,7 +247,7 @@ public unsafe ref partial struct GridParser(
 	/// <returns>The result.</returns>
 	private static Grid OnParsingOpenSudoku(scoped ref GridParser parser)
 	{
-		if (GridParserPatterns.OpenSudokuPattern().Match(parser.ParsingValue) is not { Success: true, Value: var match })
+		if (NotationPatterns.GridOpenSudokuPattern().Match(parser.ParsingValue) is not { Success: true, Value: var match })
 		{
 			return Grid.Undefined;
 		}
@@ -291,7 +291,7 @@ public unsafe ref partial struct GridParser(
 	private static Grid OnParsingPencilMarked(scoped ref GridParser parser)
 	{
 		// Older regular expression pattern:
-		if ((from m in GridParserPatterns.PencilmarkedPattern().Matches(parser.ParsingValue) select m.Value) is not { Length: 81 } matches)
+		if ((from m in NotationPatterns.GridPencilmarkedPattern().Matches(parser.ParsingValue) select m.Value) is not { Length: 81 } matches)
 		{
 			return Grid.Undefined;
 		}
@@ -398,7 +398,7 @@ public unsafe ref partial struct GridParser(
 	/// <returns>The grid.</returns>
 	private static Grid OnParsingSimpleTable(scoped ref GridParser parser)
 	{
-		if (GridParserPatterns.SimpleMultilinePattern().Match(parser.ParsingValue) is not { Success: true, Value: var match })
+		if (NotationPatterns.GridSimpleMultilinePattern().Match(parser.ParsingValue) is not { Success: true, Value: var match })
 		{
 			return Grid.Undefined;
 		}
@@ -418,7 +418,7 @@ public unsafe ref partial struct GridParser(
 	/// <returns>The result.</returns>
 	private static Grid OnParsingSusser(scoped ref GridParser parser, bool shortenSusser)
 	{
-		var match = (shortenSusser ? GridParserPatterns.ShortenedSusserPattern() : GridParserPatterns.SusserPattern()).Match(parser.ParsingValue).Value;
+		var match = (shortenSusser ? NotationPatterns.GridShortenedSusserPattern() : NotationPatterns.GridSusserPattern()).Match(parser.ParsingValue).Value;
 
 		if (!shortenSusser && match is not { Length: <= 405 }
 			|| shortenSusser && (match is not { Length: <= 81 } || !expandCode(match, out match)))
@@ -629,7 +629,7 @@ public unsafe ref partial struct GridParser(
 		}
 		else
 		{
-			var matches = from m in GridParserPatterns.SukakuSegmentPattern().Matches(parser.ParsingValue) select m.Value;
+			var matches = from m in NotationPatterns.GridSukakuSegmentPattern().Matches(parser.ParsingValue) select m.Value;
 			if (matches is { Length: not 81 })
 			{
 				return Grid.Undefined;

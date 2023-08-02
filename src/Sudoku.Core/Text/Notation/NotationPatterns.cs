@@ -31,4 +31,25 @@ internal static partial class NotationPatterns
 
 	[GeneratedRegex("""([A-IKa-ik]+)([1-9]+)\s*(==|!=|<>)\s*([1-9]+)""", RegexOptions.Compiled, 5000)]
 	public static partial Regex ConclusionPattern_K9();
+
+	[GeneratedRegex("""(\+?\d|\.)""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridSusserDigitPattern();
+
+	[GeneratedRegex("""\d(\|\d){242}""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridOpenSudokuPattern();
+
+	[GeneratedRegex("""(\<\d\>|\*\d\*|\d*[\+\-]?\d+)""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridPencilmarkedPattern();
+
+	[GeneratedRegex("""([\d\.\+]{9}(\r|\n|\r\n)){8}[\d\.\+]{9}""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridSimpleMultilinePattern();
+
+	[GeneratedRegex("""[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridSusserPattern();
+
+	[GeneratedRegex("""[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridShortenedSusserPattern();
+
+	[GeneratedRegex("""\d*[\-\+]?\d+""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridSukakuSegmentPattern();
 }
