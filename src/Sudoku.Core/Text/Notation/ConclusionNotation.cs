@@ -145,7 +145,7 @@ public sealed partial class ConclusionNotation : INotation<ConclusionNotation, C
 		return collection switch
 		{
 			[] => string.Empty,
-			[var value] => value.ToString(),
+			[var value] => $"{CellsMap[value.Cell]}{value.ConclusionType.Notation()}{value.Digit + 1}",
 			_ => toString(collection)
 		};
 

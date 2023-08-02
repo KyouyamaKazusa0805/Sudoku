@@ -1115,6 +1115,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Conclusion.CompareTo(Sudoku.Analytics.Conclusion)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Conclusion.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="M:Sudoku.Analytics.Conclusion.op_OnesComplement(Sudoku.Analytics.Conclusion)">
             <summary>
             Negates the current conclusion instance, changing the conclusion type from <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/> to <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/>,
@@ -1132,9 +1135,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Analytics.Conclusion.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.ToString">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Analytics.Conclusion.op_Equality(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">

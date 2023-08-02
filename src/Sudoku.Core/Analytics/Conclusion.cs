@@ -27,7 +27,6 @@ namespace Sudoku.Analytics;
 [JsonConverter(typeof(Converter))]
 [Equals]
 [GetHashCode]
-[ToString]
 [EqualityOperators]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
@@ -95,9 +94,6 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 		get => (ConclusionType)(_mask >> 10 & 1);
 	}
 
-	[StringMember]
-	private string OutputString => $"{CellsMap[Cell]}{ConclusionType.Notation()}{Digit + 1}";
-
 
 	[DeconstructionMethod]
 	public partial void Deconstruct(out ConclusionType conclusionType, out Candidate candidate);
@@ -112,6 +108,10 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(Conclusion other) => _mask.CompareTo(_mask);
+
+	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override string ToString() => ConclusionNotation.ToString(this);
 
 
 	/// <summary>
