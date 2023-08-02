@@ -185,7 +185,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					for (var c1 = 0; c1 < 4; c1++)
 					{
 						var corner1 = urCells[c1];
-						var otherCellsMap = (CellMap)([.. urCells]) - corner1;
+						var otherCellsMap = (CellMap)urCells - corner1;
 
 						CheckType1(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
 						CheckType5(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
@@ -3283,7 +3283,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 		void checkType1(scoped in Grid grid)
 		{
-			var cells = (CellMap)([.. urCells]);
+			var cells = (CellMap)urCells;
 
 			// Check all cells are empty.
 			var containsValueCells = false;
@@ -3580,7 +3580,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		bool arMode
 	)
 	{
-		var cells = (CellMap)([.. urCells]);
+		var cells = (CellMap)urCells;
 
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
@@ -3703,7 +3703,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		bool arMode
 	)
 	{
-		var cells = (CellMap)([.. urCells]);
+		var cells = (CellMap)urCells;
 
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
@@ -3883,7 +3883,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		bool arMode
 	)
 	{
-		var cells = (CellMap)([.. urCells]);
+		var cells = (CellMap)urCells;
 
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
@@ -4054,7 +4054,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		int index
 	)
 	{
-		var cells = (CellMap)([.. urCells]);
+		var cells = (CellMap)urCells;
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
@@ -4288,7 +4288,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			return;
 		}
 
-		var cells = (CellMap)([.. urCells]);
+		var cells = (CellMap)urCells;
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
@@ -4478,7 +4478,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		bool arMode
 	)
 	{
-		var cells = (CellMap)([.. urCells]);
+		var cells = (CellMap)urCells;
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{
 			return;
@@ -4770,7 +4770,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		bool arMode
 	)
 	{
-		var cells = (CellMap)([.. urCells]);
+		var cells = (CellMap)urCells;
 
 		if (!UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
 		{

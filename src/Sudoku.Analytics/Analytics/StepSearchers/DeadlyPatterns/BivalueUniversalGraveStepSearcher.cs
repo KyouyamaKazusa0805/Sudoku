@@ -237,7 +237,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			cells[i++] = candidate / 9;
 		}
 
-		if (((CellMap)([.. cells])).PeerIntersection is not (var map and not []))
+		var cellsMap = (CellMap)(ReadOnlySpan<Cell>)cells;
+		if (cellsMap.PeerIntersection is not (var map and not []))
 		{
 			return null;
 		}
@@ -261,7 +262,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		}
 
 		// BUG type 2.
-		var step = new BivalueUniversalGraveType2Step([.. conclusions], [[.. candidateOffsets]], digit, [.. cells]);
+		var step = new BivalueUniversalGraveType2Step([.. conclusions], [[.. candidateOffsets]], digit, cellsMap);
 		if (onlyFindOne)
 		{
 			return step;

@@ -411,6 +411,9 @@ public unsafe partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
+	static Cell IBitStatusMap<CellMap, Cell>.MaxCount => 9 * 9;
+
+	/// <inheritdoc/>
 	static CellMap IBitStatusMap<CellMap, Cell>.Empty => Empty;
 
 	/// <inheritdoc/>
@@ -1148,6 +1151,15 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CandidateMap IMultiplyOperators<CellMap, Digit, CandidateMap>.operator *(CellMap left, Digit right) => left * right;
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator CellMap(Cell[] array) => [.. array];
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator CellMap(scoped ReadOnlySpan<Cell> values) => [.. values];
 }
 
 /// <summary>

@@ -78,6 +78,11 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </summary>
 	static abstract TSelf Empty { get; }
 
+	/// <summary>
+	/// Indicates the maximum number of elements that the collection can be reached.
+	/// </summary>
+	static abstract TElement MaxCount { get; }
+
 
 	/// <summary>
 	/// Get the offset at the specified position index.
@@ -624,4 +629,68 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <returns>The result map.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static TSelf IModulusOperators<TSelf, TSelf, TSelf>.operator %(TSelf left, TSelf right) => (left & right).PeerIntersection & right;
+
+
+	/// <summary>
+	/// Converts an array of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
+	/// </summary>
+	/// <param name="array">An array of element type <typeparamref name="TElement"/>.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static virtual explicit operator TSelf(TElement[] array) => [.. array];
+
+	/// <summary>
+	/// Converts an array of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance, with boundary checks.
+	/// </summary>
+	/// <param name="array">An array of element type <typeparamref name="TElement"/>.</param>
+	/// <exception cref="OverflowException">
+	/// Throws when at least one element in argument <paramref name="array"/> is greater than <see cref="MaxCount"/>.
+	/// </exception>
+	/// <seealso cref="MaxCount"/>
+	static virtual explicit operator checked TSelf(TElement[] array)
+	{
+		var result = TSelf.Empty;
+		foreach (var element in array)
+		{
+			if (element < default(TElement) || element >= TSelf.MaxCount)
+			{
+				throw new OverflowException($"The element value '{element}' is less than {default(TElement)} or greater than {TSelf.MaxCount}.");
+			}
+
+			result.Add(element);
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Converts an <see cref="ReadOnlySpan{T}"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
+	/// </summary>
+	/// <param name="values">An array of element type <typeparamref name="TElement"/>.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static virtual explicit operator TSelf(scoped ReadOnlySpan<TElement> values) => [.. values];
+
+	/// <summary>
+	/// Converts an <see cref="ReadOnlySpan{T}"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance, 
+	/// with boundary checks.
+	/// </summary>
+	/// <param name="values">An array of element type <typeparamref name="TElement"/>.</param>
+	/// <exception cref="OverflowException">
+	/// Throws when at least one element in argument <paramref name="values"/> is greater than <see cref="MaxCount"/>.
+	/// </exception>
+	/// <seealso cref="MaxCount"/>
+	static virtual explicit operator checked TSelf(scoped ReadOnlySpan<TElement> values)
+	{
+		var result = TSelf.Empty;
+		foreach (var element in values)
+		{
+			if (element < default(TElement) || element >= TSelf.MaxCount)
+			{
+				throw new OverflowException($"The element value '{element}' is less than {default(TElement)} or greater than {TSelf.MaxCount}.");
+			}
+
+			result.Add(element);
+		}
+
+		return result;
+	}
 }

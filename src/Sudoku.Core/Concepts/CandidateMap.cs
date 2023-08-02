@@ -195,6 +195,9 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
+	static Candidate IBitStatusMap<CandidateMap, Candidate>.MaxCount => 9 * 9 * 9;
+
+	/// <inheritdoc/>
 	static CandidateMap IBitStatusMap<CandidateMap, Candidate>.Empty => Empty;
 
 	/// <inheritdoc/>
@@ -771,6 +774,15 @@ public partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CandidateMap ISubtractionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>.operator -(CandidateMap left, IEnumerable<Candidate> right)
 		=> left - right;
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator CandidateMap(Candidate[] array) => [.. array];
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator CandidateMap(scoped ReadOnlySpan<Candidate> values) => [.. values];
 }
 
 /// <summary>

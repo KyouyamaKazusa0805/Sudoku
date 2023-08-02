@@ -1619,6 +1619,9 @@ if (student is (name: var name, age: >= 18))
             Indicates the cell offsets in this collection.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#MaxCount">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#Empty">
             <inheritdoc/>
         </member>
@@ -1790,6 +1793,12 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CandidateMap,System#Collections#Generic#IEnumerable{System#Int32},Sudoku#Concepts#CandidateMap}#op_Subtraction(Sudoku.Concepts.CandidateMap,System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CandidateMap">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.ReadOnlySpan{System.Int32})~Sudoku.Concepts.CandidateMap">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Equals(System.Object)">
@@ -2044,6 +2053,9 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the cell offsets in this collection.
             </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#MaxCount">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#Empty">
             <inheritdoc/>
@@ -2367,6 +2379,12 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IMultiplyOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CandidateMap}#op_Multiply(Sudoku.Concepts.CellMap,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CellMap">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.ReadOnlySpan{System.Int32})~Sudoku.Concepts.CellMap">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Equals(System.Object)">
@@ -4333,6 +4351,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the empty instance.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`2.MaxCount">
+            <summary>
+            Indicates the maximum number of elements that the collection can be reached.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`2.Item(System.Int32)">
             <summary>
             Get the offset at the specified position index.
@@ -4761,6 +4784,39 @@ if (student is (name: var name, age: >= 18))
             <param name="left">The base map.</param>
             <param name="right">The template map that the base map to check and cover.</param>
             <returns>The result map.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Explicit(`1[])~`0">
+            <summary>
+            Converts an array of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
+            </summary>
+            <param name="array">An array of element type <typeparamref name="TElement"/>.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_CheckedExplicit(`1[])~`0">
+            <summary>
+            Converts an array of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance, with boundary checks.
+            </summary>
+            <param name="array">An array of element type <typeparamref name="TElement"/>.</param>
+            <exception cref="T:System.OverflowException">
+            Throws when at least one element in argument <paramref name="array"/> is greater than <see cref="P:Sudoku.Concepts.IBitStatusMap`2.MaxCount"/>.
+            </exception>
+            <seealso cref="P:Sudoku.Concepts.IBitStatusMap`2.MaxCount"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Explicit(System.ReadOnlySpan{`1})~`0">
+            <summary>
+            Converts an <see cref="T:System.ReadOnlySpan`1"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
+            </summary>
+            <param name="values">An array of element type <typeparamref name="TElement"/>.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_CheckedExplicit(System.ReadOnlySpan{`1})~`0">
+            <summary>
+            Converts an <see cref="T:System.ReadOnlySpan`1"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance, 
+            with boundary checks.
+            </summary>
+            <param name="values">An array of element type <typeparamref name="TElement"/>.</param>
+            <exception cref="T:System.OverflowException">
+            Throws when at least one element in argument <paramref name="values"/> is greater than <see cref="P:Sudoku.Concepts.IBitStatusMap`2.MaxCount"/>.
+            </exception>
+            <seealso cref="P:Sudoku.Concepts.IBitStatusMap`2.MaxCount"/>
         </member>
         <member name="T:Sudoku.Concepts.Inference">
             <summary>
