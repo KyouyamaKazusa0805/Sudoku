@@ -13,7 +13,6 @@ namespace Sudoku.Analytics;
 /// <seealso cref="PredefinedAnalyzers"/>
 /// <seealso cref="AnalyzerFactory"/>
 /// <completionlist cref="PredefinedAnalyzers"/>
-[method: Obsolete($"This constructor may not produce some extra options. Please visit type '{nameof(PredefinedAnalyzers)}' to get a suitable instance.", false)]
 public sealed partial class Analyzer() : AnalyzerOrCollector, IAnalyzer<Analyzer, AnalyzerResult>
 {
 	/// <summary>
