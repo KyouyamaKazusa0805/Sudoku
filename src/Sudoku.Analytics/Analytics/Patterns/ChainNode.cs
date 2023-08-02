@@ -14,6 +14,7 @@ namespace Sudoku.Analytics.Patterns;
 [GetHashCode]
 [ToString]
 [EqualityOperators]
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IEquatable<ChainNode>,
 	IEqualityOperators<ChainNode, ChainNode, bool>
