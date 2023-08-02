@@ -5126,7 +5126,7 @@ result ^= expression;
             </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Step.Format">
-            <summary>s
+            <summary>
             Gets the format of the current instance.
             </summary>
             <returns>

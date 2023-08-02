@@ -43,7 +43,7 @@ public abstract partial class Step([PrimaryConstructorParameter] Conclusion[] co
 	/// </remarks>
 	public virtual string EnglishName => Code.GetEnglishName() ?? throw new ResourceNotFoundException(Code.ToString(), GetType().Assembly);
 
-	/// <summary>s
+	/// <summary>
 	/// Gets the format of the current instance.
 	/// </summary>
 	/// <returns>
