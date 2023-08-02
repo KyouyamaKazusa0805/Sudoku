@@ -112,6 +112,7 @@ file sealed class Converter : JsonConverter<DashArray>
 						break;
 					}
 
+					bool optionPredicate() => o.Flags(JsonNumberHandling.AllowNamedFloatingPointLiterals);
 					targetCollection.Add(
 						reader.GetString() switch
 						{
@@ -124,9 +125,6 @@ file sealed class Converter : JsonConverter<DashArray>
 					);
 
 					break;
-
-
-					bool optionPredicate() => o.Flags(JsonNumberHandling.AllowNamedFloatingPointLiterals);
 				}
 				case JsonTokenType.EndArray:
 				{
