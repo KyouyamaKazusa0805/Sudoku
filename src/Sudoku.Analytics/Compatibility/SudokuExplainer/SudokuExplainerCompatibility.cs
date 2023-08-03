@@ -1,13 +1,13 @@
-namespace Sudoku.Analytics.Compatibility;
+namespace Sudoku.Compatibility.SudokuExplainer;
 
 /// <summary>
 /// Represents some methods that are used for get the details supported and defined
 /// by another program called
 /// <see href="http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">Sudoku Explainer</see> (Broken link).
 /// </summary>
-public static class SudokuExplainerCompatibility// : ICompatibilityProvider
+public sealed class SudokuExplainerCompatibility : ICompatibilityProvider
 {
-	/// <inheritdoc cref="ICompatibilityProvider.ProgramName"/>
+	/// <inheritdoc/>
 	public static string ProgramName => "Sudoku Explainer";
 
 

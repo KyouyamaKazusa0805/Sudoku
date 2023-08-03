@@ -1,12 +1,12 @@
-namespace Sudoku.Analytics.Compatibility;
+namespace Sudoku.Compatibility.Hodoku;
 
 /// <summary>
 /// Represents some methods that are used for get the details supported and defined
 /// by another program called <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
 /// </summary>
-public static class HodokuLibraryCompatibility// : ICompatibilityProvider
+public sealed class HodokuLibraryCompatibility : ICompatibilityProvider
 {
-	/// <inheritdoc cref="ICompatibilityProvider.ProgramName"/>
+	/// <inheritdoc/>
 	public static string ProgramName => "Hodoku";
 
 

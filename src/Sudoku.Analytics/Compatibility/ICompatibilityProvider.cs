@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Compatibility;
+namespace Sudoku.Compatibility;
 
 /// <summary>
 /// Provides a way to provide compatibility items (concepts, solving ways, etc.) to a program that also analyzes sudoku puzzles.
