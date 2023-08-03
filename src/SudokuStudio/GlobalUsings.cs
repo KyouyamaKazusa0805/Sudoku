@@ -32,6 +32,7 @@ global using Sudoku.Algorithm.Generating;
 global using Sudoku.Algorithm.Solving;
 global using Sudoku.Analytics;
 global using Sudoku.Analytics.Categorization;
+global using Sudoku.Analytics.Compatibility;
 global using Sudoku.Analytics.Metadata;
 global using Sudoku.Analytics.Rating;
 global using Sudoku.Analytics.StepSearchers;

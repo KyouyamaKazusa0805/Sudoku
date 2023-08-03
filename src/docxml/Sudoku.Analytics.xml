@@ -2892,17 +2892,17 @@
             Indicates the program name of the current provider to be compatible.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Compatibility.SudokuExplainerLibraryCompatibility">
+        <member name="T:Sudoku.Analytics.Compatibility.SudokuExplainerCompatibility">
             <summary>
             Represents some methods that are used for get the details supported and defined
             by another program called
             <see href="http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">Sudoku Explainer</see> (Broken link).
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Compatibility.SudokuExplainerLibraryCompatibility.ProgramName">
+        <member name="P:Sudoku.Analytics.Compatibility.SudokuExplainerCompatibility.ProgramName">
             <inheritdoc cref="P:Sudoku.Analytics.Compatibility.ICompatibilityProvider.ProgramName"/>
         </member>
-        <member name="M:Sudoku.Analytics.Compatibility.SudokuExplainerLibraryCompatibility.GetAliases(Sudoku.Analytics.Categorization.Technique)">
+        <member name="M:Sudoku.Analytics.Compatibility.SudokuExplainerCompatibility.GetAliases(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Gets all possible aliased names that are defined by Sudoku Explainer.
             </summary>
@@ -2916,7 +2916,7 @@
             </exception>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
-        <member name="M:Sudoku.Analytics.Compatibility.SudokuExplainerLibraryCompatibility.GetDifficultyRatingRange(Sudoku.Analytics.Categorization.Technique)">
+        <member name="M:Sudoku.Analytics.Compatibility.SudokuExplainerCompatibility.GetDifficultyRatingRange(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to get difficulty rating of the specified technique.
             </summary>

@@ -1518,8 +1518,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange.#ctor(System.Half)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange"/> instance
-            via the specified difficulty rating value.
+            Initializes a <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange"/> instance via the specified difficulty rating value.
             </summary>
             <param name="min">The difficulty rating value.</param>
         </member>

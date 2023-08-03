@@ -22,7 +22,7 @@ public static class HodokuLibraryCompatibility// : ICompatibilityProvider
 	/// or the value is <see cref="Technique.None"/>.
 	/// </exception>
 	/// <seealso cref="Technique"/>
-	public static string[]? GetAliases(this Technique @this)
+	public static string[]? GetAliases(Technique @this)
 		=> (@this != Technique.None && Enum.IsDefined(@this))
 			? typeof(Technique).GetField(@this.ToString()) is { } fieldInfo
 				? fieldInfo.GetCustomAttribute<HodokuAliasedNamesAttribute>() is { Aliases: var aliases } ? aliases : null
@@ -64,7 +64,7 @@ public static class HodokuLibraryCompatibility// : ICompatibilityProvider
 	/// </exception>
 	/// <seealso cref="Technique"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? GetHodokuPrefix(this Technique @this)
+	public static string? GetHodokuPrefix(Technique @this)
 		=> (@this != Technique.None && Enum.IsDefined(@this))
 			? typeof(Technique).GetField(@this.ToString()) is { } fieldInfo
 				? fieldInfo.GetCustomAttribute<HodokuTechniquePrefixAttribute>() is { Prefix: var prefix } ? prefix : null
@@ -91,7 +91,7 @@ public static class HodokuLibraryCompatibility// : ICompatibilityProvider
 	/// <seealso cref="Technique"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[return: NotNullIfNotNull(nameof(difficultyLevel))]
-	public static int? GetDifficultyRating(this Technique @this, out HodokuDifficultyLevel? difficultyLevel)
+	public static int? GetDifficultyRating(Technique @this, out HodokuDifficultyLevel? difficultyLevel)
 	{
 		if (@this == Technique.None || !Enum.IsDefined(@this))
 		{

@@ -23,6 +23,19 @@ internal static class AnalyzeConversion
 
 	public static string GetDifficultyRatingText(Step step) => step.Difficulty.ToString("0.0");
 
+	public static string GetDifficultyRatingText_Hodoku(Step step)
+		=> HodokuLibraryCompatibility.GetDifficultyRating(step.Code, out _) is { } r ? r.ToString() : string.Empty;
+
+	public static string GetDifficultyRatingText_SudokuExplainer(Step step)
+		=> SudokuExplainerCompatibility.GetDifficultyRatingRange(step.Code) switch
+		{
+			({ IsRange: false, Min: var d }, _) => $"{d:0.0}",
+			({ IsRange: true, Min: var d1, Max: var d2 }, _) => $"{d1:0.0}-{d2:0.0}",
+			(_, { IsRange: false, Min: var d }) => $"{d:0.0}",
+			(_, { IsRange: true, Min: var d1, Max: var d2 }) => $"{d1:0.0}-{d2:0.0}",
+			_ => string.Empty
+		};
+
 	public static string GetIndexText(SolvingPathStepBindableSource step) => (step.Index + 1).ToString();
 
 	public static string GetViewIndexDisplayerString(IRenderable? visualUnit, int currentIndex)
