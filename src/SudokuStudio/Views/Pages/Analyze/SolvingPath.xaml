@@ -27,56 +27,57 @@
 											a:TextBlockBindable.Inlines="{x:Bind cvt:AnalyzeConversion.GetInlinesOfTooltip((bs:SolvingPathStepBindableSource))}" />
 									</ToolTipService.ToolTip>
 
-									<Grid RowDefinitions="*,*,*" ColumnDefinitions="20,Auto,40,60,*,*">
+									<Grid RowDefinitions="*,*" ColumnDefinitions="20,Auto,40,60,*,*">
 										<!--Step index-->
 										<TextBlock
-											Grid.RowSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center"
+											Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center"
 											Text="{x:Bind cvt:AnalyzeConversion.GetIndexText((bs:SolvingPathStepBindableSource))}" />
 
 										<!--Difficulty rating-->
 										<Ellipse
-											Grid.Column="1" Grid.RowSpan="3" Width="32" Height="32" Margin="12,0,0,0"
+											Grid.Column="1" Grid.RowSpan="2" Width="32" Height="32" Margin="12,0,0,0"
 											HorizontalAlignment="Center" VerticalAlignment="Center"
 											Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
 											Fill="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(Step.DifficultyLevel)}" />
 										<TextBlock
-											Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+											Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
 											Margin="12,0,0,0" Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
 											Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText(Step)}"
 											Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(Step.DifficultyLevel)}" />
 
 										<!--HoDoKu rating-->
 										<TextBlock
-											Grid.Column="2" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+											Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
 											Margin="12,0,0,0" Text="HR" Foreground="#DDD" />
 										<TextBlock
-											Grid.Column="2" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+											Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
 											Margin="12,0,0,0" Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText_Hodoku(Step)}" />
 
 										<!--SE rating-->
 										<TextBlock
-											Grid.Column="3" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+											Grid.Column="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
 											Margin="12,0,0,0" Text="SER" Foreground="#DDD" />
 										<TextBlock
-											Grid.Column="3" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+											Grid.Column="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
 											Margin="12,0,0,0" Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText_SudokuExplainer(Step)}" />
 
 										<!--Name-->
-										<TextBlock
-											Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" Margin="12,6,0,0"
-											Style="{StaticResource BaseTextBlockStyle}" Text="{x:Bind Step.Name}" />
-
-										<!--English name-->
-										<TextBlock
-											Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" FontSize="11"
-											Margin="12,0,0,6" Style="{StaticResource BodyTextBlockStyle}"
-											Visibility="{x:Bind cvt:AnalyzeConversion.GetEnglishNameTextBlockVisibility()}"
-											Text="{x:Bind Step.EnglishName}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+										<StackPanel
+											Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" Margin="12,0,0,0"
+											Orientation="Horizontal" Spacing="6">
+											<TextBlock
+												Style="{StaticResource BaseTextBlockStyle}" Text="{x:Bind Step.Name}"
+												HorizontalAlignment="Left" VerticalAlignment="Center" />
+											<TextBlock
+												FontSize="11" Style="{StaticResource BodyTextBlockStyle}"
+												Visibility="{x:Bind cvt:AnalyzeConversion.GetEnglishNameTextBlockVisibility()}"
+												Text="{x:Bind Step.EnglishName}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+										</StackPanel>
 
 										<!--Conclusions-->
 										<TextBlock
-											Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Style="{StaticResource BodyTextBlockStyle}"
-											Margin="12,0,0,6" Text="{x:Bind cvt:AnalyzeConversion.GetEliminationString(Step)}" />
+											Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Style="{StaticResource BodyTextBlockStyle}"
+											Margin="12,0,0,0" Text="{x:Bind cvt:AnalyzeConversion.GetEliminationString(Step)}" />
 									</Grid>
 								</ListViewItem>
 							</DataTemplate>
