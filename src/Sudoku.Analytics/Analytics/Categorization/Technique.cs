@@ -2335,6 +2335,7 @@ public enum Technique
 	/// Indicates XY-Cycle.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
+	[SudokuExplainerDifficultyRating(6.6, 7.0)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	XyCycle,
@@ -2395,6 +2396,7 @@ public enum Technique
 	/// </summary>
 	[HodokuTechniquePrefix("0708")]
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
+	[SudokuExplainerDifficultyRating(7.0, 7.6)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[Abbreviation("AIC")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
