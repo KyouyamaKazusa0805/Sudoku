@@ -7169,7 +7169,7 @@ if (student is (name: var name, age: >= 18))
             ○ Match a whitespace character atomically any number of times.<br/>
             ○ 3rd capture group.<br/>
                 ○ Match with 3 alternative expressions.<br/>
-                    ○ Match the string "==".<br/>
+                    ○ Match '='.<br/>
                     ○ Match the string "!=".<br/>
                     ○ Match the string "&lt;&gt;".<br/>
             ○ Match a whitespace character atomically any number of times.<br/>
@@ -7189,7 +7189,7 @@ if (student is (name: var name, age: >= 18))
             ○ Match a whitespace character atomically any number of times.<br/>
             ○ 3rd capture group.<br/>
                 ○ Match with 3 alternative expressions.<br/>
-                    ○ Match the string "==".<br/>
+                    ○ Match '='.<br/>
                     ○ Match the string "!=".<br/>
                     ○ Match the string "&lt;&gt;".<br/>
             ○ Match a whitespace character atomically any number of times.<br/>

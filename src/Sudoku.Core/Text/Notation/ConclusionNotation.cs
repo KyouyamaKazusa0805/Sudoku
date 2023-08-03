@@ -43,7 +43,7 @@ public sealed partial class ConclusionNotation : INotation<ConclusionNotation, C
 				scoped var columns = from column in c select column - '1';
 				scoped var digits = from digit in d select digit - '1';
 				var resultLength = rows.Length * columns.Length * digits.Length;
-				switch (k switch { "==" => Assignment, "<>" or "!=" => Elimination })
+				switch (k switch { "=" => Assignment, "<>" or "!=" => Elimination })
 				{
 					case Assignment when resultLength == 1:
 					{
@@ -90,7 +90,7 @@ public sealed partial class ConclusionNotation : INotation<ConclusionNotation, C
 				scoped var columns = from column in c select column - '1';
 				scoped var digits = from digit in d select digit - '1';
 				var resultLength = rows.Length * columns.Length * digits.Length;
-				switch (k switch { "==" => Assignment, "<>" or "!=" => Elimination })
+				switch (k switch { "=" => Assignment, "<>" or "!=" => Elimination })
 				{
 					case Assignment when resultLength == 1:
 					{
