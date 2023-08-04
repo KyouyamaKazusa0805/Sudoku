@@ -6,6 +6,16 @@ namespace SudokuStudio.BindableSource;
 public sealed class SolvingPathStepBindableSource
 {
 	/// <summary>
+	/// Indicates whether displaying HoDoKu difficulty.
+	/// </summary>
+	public bool ShowHodokuDifficulty { get; set; }
+
+	/// <summary>
+	/// Indicates whether displaying Sudoku Explainer difficulty.
+	/// </summary>
+	public bool ShowSudokuExplainerDifficulty { get; set; }
+
+	/// <summary>
 	/// Indicates the index of the step.
 	/// </summary>
 	public int Index { get; set; }

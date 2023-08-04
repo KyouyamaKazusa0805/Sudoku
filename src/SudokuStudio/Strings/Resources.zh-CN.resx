@@ -1221,6 +1221,21 @@
   <data name="SettingsPage_WeakLinkDashStyle" xml:space="preserve">
     <value>弱链的虚线周期</value>
   </data>
+  <data name="Settings_Compatibility" xml:space="preserve">
+    <value>兼容性</value>
+  </data>
+  <data name="Settings_DisplayDifficultyRatingForHodoku" xml:space="preserve">
+    <value>显示 HoDoKu 软件的评分</value>
+  </data>
+  <data name="Settings_DisplayDifficultyRatingForHodokuDescription" xml:space="preserve">
+    <value>该选项表示是否会将位于解题步骤选项卡里的各个步骤项的旁边也显示出该技巧在 HoDoKu 软件的评分。如果该技巧在 HoDoKu 里尚未定义，该位置会显示一个很淡的 HR 字母来占位</value>
+  </data>
+  <data name="Settings_DisplayDifficultyRatingForSudokuExplainer" xml:space="preserve">
+    <value>显示 Sudoku Explainer 软件的评分</value>
+  </data>
+  <data name="Settings_DisplayDifficultyRatingForSudokuExplainerDescription" xml:space="preserve">
+    <value>该选项表示是否会将位于解题步骤选项卡里的各个步骤项的旁边也显示出该技巧在 Sudoku Explainer 软件的评分。如果该技巧在 Sudoku Explainer 里尚未定义，该位置会显示一个很淡的 SER 字母来占位。如果 HoDoKu 评分也显示，则会显示在它的右侧。</value>
+  </data>
   <data name="SingleCountingPracticingPage_ComplexMode" xml:space="preserve">
     <value>两种都有</value>
   </data>

@@ -265,6 +265,20 @@
 						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=TwoWay}" />
 				</w:SettingsCard>
 			</w:SettingsGroup>
+			<w:SettingsGroup Header="{m:R Key=Settings_Compatibility}">
+				<w:SettingsCard
+					Header="{m:R Key=Settings_DisplayDifficultyRatingForHodoku}"
+					Description="{m:R Key=Settings_DisplayDifficultyRatingForHodokuDescription}">
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DisplayDifficultyRatingForHodoku,Mode=TwoWay}" />
+				</w:SettingsCard>
+				<w:SettingsCard
+					Header="{m:R Key=Settings_DisplayDifficultyRatingForSudokuExplainer}"
+					Description="{m:R Key=Settings_DisplayDifficultyRatingForSudokuExplainerDescription}">
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DisplayDifficultyRatingForSudokuExplainer,Mode=TwoWay}" />
+				</w:SettingsCard>
+			</w:SettingsGroup>
 			<w:SettingsGroup Header="{m:R Key=SettingsPage_MiscellaneousBehaviors}">
 				<w:SettingsGroup.Resources>
 					<Style TargetType="CheckBox">

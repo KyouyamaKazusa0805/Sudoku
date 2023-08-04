@@ -242,6 +242,16 @@
             Defines a path step in a whole solving path.
             </summary>
         </member>
+        <member name="P:SudokuStudio.BindableSource.SolvingPathStepBindableSource.ShowHodokuDifficulty">
+            <summary>
+            Indicates whether displaying HoDoKu difficulty.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.SolvingPathStepBindableSource.ShowSudokuExplainerDifficulty">
+            <summary>
+            Indicates whether displaying Sudoku Explainer difficulty.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.BindableSource.SolvingPathStepBindableSource.Index">
             <summary>
             Indicates the index of the step.
@@ -857,6 +867,18 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlsoDisplayEnglishNameOfStep"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisplayDifficultyRatingForHodokuProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisplayDifficultyRatingForHodoku"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisplayDifficultyRatingForHodoku"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisplayDifficultyRatingForSudokuExplainerProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisplayDifficultyRatingForSudokuExplainer"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisplayDifficultyRatingForSudokuExplainer"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWingProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing"/>.
@@ -935,6 +957,16 @@
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlsoDisplayEnglishNameOfStep">
             <summary>
             Indicates whether the step analyzed will also display its English name of the technique used.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisplayDifficultyRatingForHodoku">
+            <summary>
+            Indicates whether the step will display its corresponding rating defined in program HoDoKu.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisplayDifficultyRatingForSudokuExplainer">
+            <summary>
+            Indicates whether the step will be displayed its corresponding rating defined in program Sudoku Explainer.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing">
@@ -5172,6 +5204,31 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_SingleCountingPracticingPageTitle">
             <summary>
               Looks up a localized string similar to Single Counting Practicing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.Settings_Compatibility">
+            <summary>
+              Looks up a localized string similar to Compatibility.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.Settings_DisplayDifficultyRatingForHodoku">
+            <summary>
+              Looks up a localized string similar to Display rating for HoDoKu.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.Settings_DisplayDifficultyRatingForHodokuDescription">
+            <summary>
+              Looks up a localized string similar to Indicates whether the difficulty rating value defined by HoDoKu will be displayed in the step shown in solving path tab. If the current technique is not defined in HoDoKu, a string &quot;HR&quot; in light white will be displayed as a placeholder.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.Settings_DisplayDifficultyRatingForSudokuExplainer">
+            <summary>
+              Looks up a localized string similar to Display rating for Sudoku Explainer.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.Settings_DisplayDifficultyRatingForSudokuExplainerDescription">
+            <summary>
+              Looks up a localized string similar to Indicates whether the difficulty rating value defined by Sudoku Explainer will be displayed in the step shown in solving path tab. If the current technique is not defined in Sudoku Explainer, a string &quot;SER&quot; in light white will be displayed as a placeholder; if HoDoKu rating will be also displayed, Sudoku Explainer rating will be shown right-side of the HoDoKu rating.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AlignedExclusionMaxSearchingSize">

@@ -2365,6 +2365,51 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compatibility.
+        /// </summary>
+        internal static string Settings_Compatibility {
+            get {
+                return ResourceManager.GetString("Settings_Compatibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display rating for HoDoKu.
+        /// </summary>
+        internal static string Settings_DisplayDifficultyRatingForHodoku {
+            get {
+                return ResourceManager.GetString("Settings_DisplayDifficultyRatingForHodoku", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicates whether the difficulty rating value defined by HoDoKu will be displayed in the step shown in solving path tab. If the current technique is not defined in HoDoKu, a string &quot;HR&quot; in light white will be displayed as a placeholder.
+        /// </summary>
+        internal static string Settings_DisplayDifficultyRatingForHodokuDescription {
+            get {
+                return ResourceManager.GetString("Settings_DisplayDifficultyRatingForHodokuDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display rating for Sudoku Explainer.
+        /// </summary>
+        internal static string Settings_DisplayDifficultyRatingForSudokuExplainer {
+            get {
+                return ResourceManager.GetString("Settings_DisplayDifficultyRatingForSudokuExplainer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicates whether the difficulty rating value defined by Sudoku Explainer will be displayed in the step shown in solving path tab. If the current technique is not defined in Sudoku Explainer, a string &quot;SER&quot; in light white will be displayed as a placeholder; if HoDoKu rating will be also displayed, Sudoku Explainer rating will be shown right-side of the HoDoKu rating.
+        /// </summary>
+        internal static string Settings_DisplayDifficultyRatingForSudokuExplainerDescription {
+            get {
+                return ResourceManager.GetString("Settings_DisplayDifficultyRatingForSudokuExplainerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum number of cell permutation in aligned exclusion.
         /// </summary>
         internal static string SettingsPage_AlignedExclusionMaxSearchingSize {

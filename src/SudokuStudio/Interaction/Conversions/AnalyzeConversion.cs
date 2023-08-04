@@ -19,6 +19,10 @@ internal static class AnalyzeConversion
 
 	public static int GetCurrentViewIndexForViewPipsPager(int currentIndex) => currentIndex;
 
+	public static double GetWidth_HodokuRatingText(bool showing) => showing ? 40 : 0;
+
+	public static double GetWidth_SudokuExplainerText(bool showing) => showing ? 60 : 0;
+
 	public static string GetEliminationString(Step step) => ConclusionNotation.ToCollectionString(step.Conclusions);
 
 	public static string GetDifficultyRatingText(Step step) => step.Difficulty.ToString("0.0");
@@ -40,6 +44,10 @@ internal static class AnalyzeConversion
 
 	public static string GetViewIndexDisplayerString(IRenderable? visualUnit, int currentIndex)
 		=> visualUnit?.Views?.Length is { } length ? $"{currentIndex + 1}/{length}" : "0/0";
+
+	public static Thickness GetMargin_HodokuRating(bool showing) => showing ? new(12, 0, 0, 0) : new();
+
+	public static Thickness GetMargin_SudokuExplainerRating(bool showing) => showing ? new(12, 0, 0, 0) : new();
 
 	public static Visibility GetProgressRingVisibility(bool isAnalyzerLaunched, bool isGathererLaunched, bool isGeneratorLaunched)
 		=> isAnalyzerLaunched || isGathererLaunched || isGeneratorLaunched ? Visibility.Visible : Visibility.Collapsed;

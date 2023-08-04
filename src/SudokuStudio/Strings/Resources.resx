@@ -1218,6 +1218,21 @@ Please note that saving/copying transparent-background sudoku pane is terrible, 
   <data name="SettingsPage_WeakLinkDashStyle" xml:space="preserve">
     <value>Weak link dash style</value>
   </data>
+  <data name="Settings_Compatibility" xml:space="preserve">
+    <value>Compatibility</value>
+  </data>
+  <data name="Settings_DisplayDifficultyRatingForHodoku" xml:space="preserve">
+    <value>Display rating for HoDoKu</value>
+  </data>
+  <data name="Settings_DisplayDifficultyRatingForHodokuDescription" xml:space="preserve">
+    <value>Indicates whether the difficulty rating value defined by HoDoKu will be displayed in the step shown in solving path tab. If the current technique is not defined in HoDoKu, a string "HR" in light white will be displayed as a placeholder</value>
+  </data>
+  <data name="Settings_DisplayDifficultyRatingForSudokuExplainer" xml:space="preserve">
+    <value>Display rating for Sudoku Explainer</value>
+  </data>
+  <data name="Settings_DisplayDifficultyRatingForSudokuExplainerDescription" xml:space="preserve">
+    <value>Indicates whether the difficulty rating value defined by Sudoku Explainer will be displayed in the step shown in solving path tab. If the current technique is not defined in Sudoku Explainer, a string "SER" in light white will be displayed as a placeholder; if HoDoKu rating will be also displayed, Sudoku Explainer rating will be shown right-side of the HoDoKu rating</value>
+  </data>
   <data name="SingleCountingPracticingPage_ComplexMode" xml:space="preserve">
     <value>Both</value>
   </data>

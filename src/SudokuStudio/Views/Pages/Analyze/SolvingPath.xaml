@@ -27,7 +27,7 @@
 											a:TextBlockBindable.Inlines="{x:Bind cvt:AnalyzeConversion.GetInlinesOfTooltip((bs:SolvingPathStepBindableSource))}" />
 									</ToolTipService.ToolTip>
 
-									<Grid RowDefinitions="*,*" ColumnDefinitions="20,Auto,40,60,*,*">
+									<Grid RowDefinitions="*,*" ColumnDefinitions="20,Auto,Auto,Auto,*,*">
 										<!--Step index-->
 										<TextBlock
 											Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center"
@@ -48,18 +48,30 @@
 										<!--HoDoKu rating-->
 										<TextBlock
 											Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
-											Margin="12,0,0,0" Text="HR" Foreground="#DDD" />
+											HorizontalTextAlignment="Center"
+											Width="{x:Bind cvt:AnalyzeConversion.GetWidth_HodokuRatingText(ShowHodokuDifficulty)}"
+											Margin="{x:Bind cvt:AnalyzeConversion.GetMargin_HodokuRating(ShowHodokuDifficulty)}"
+											Text="HR" Foreground="#DDD" />
 										<TextBlock
 											Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
-											Margin="12,0,0,0" Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText_Hodoku(Step)}" />
+											HorizontalTextAlignment="Center"
+											Width="{x:Bind cvt:AnalyzeConversion.GetWidth_HodokuRatingText(ShowHodokuDifficulty)}"
+											Margin="{x:Bind cvt:AnalyzeConversion.GetMargin_HodokuRating(ShowHodokuDifficulty)}"
+											Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText_Hodoku(Step)}" />
 
 										<!--SE rating-->
 										<TextBlock
 											Grid.Column="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
-											Margin="12,0,0,0" Text="SER" Foreground="#DDD" />
+											HorizontalTextAlignment="Center"
+											Width="{x:Bind cvt:AnalyzeConversion.GetWidth_SudokuExplainerText(ShowSudokuExplainerDifficulty)}"
+											Margin="{x:Bind cvt:AnalyzeConversion.GetMargin_SudokuExplainerRating(ShowSudokuExplainerDifficulty)}"
+											Text="SER" Foreground="#DDD" />
 										<TextBlock
 											Grid.Column="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
-											Margin="12,0,0,0" Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText_SudokuExplainer(Step)}" />
+											HorizontalTextAlignment="Center"
+											Width="{x:Bind cvt:AnalyzeConversion.GetWidth_SudokuExplainerText(ShowSudokuExplainerDifficulty)}"
+											Margin="{x:Bind cvt:AnalyzeConversion.GetMargin_SudokuExplainerRating(ShowSudokuExplainerDifficulty)}"
+											Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText_SudokuExplainer(Step)}" />
 
 										<!--Name-->
 										<StackPanel

@@ -18,13 +18,16 @@ public sealed class SolvingPathStepCollection : List<SolvingPathStepBindableSour
 			return [];
 		}
 
-		var collection = new List<SolvingPathStepBindableSource>();
+		var showHodoku = ((App)Application.Current).Preference.AnalysisPreferences.DisplayDifficultyRatingForHodoku;
+		var showSudokuExplainer = ((App)Application.Current).Preference.AnalysisPreferences.DisplayDifficultyRatingForSudokuExplainer;
+
+		var result = new List<SolvingPathStepBindableSource>();
 		for (var i = 0; i < pathStepsCount; i++)
 		{
 			var (sGrid, s) = steps[i];
-			collection.Add(new() { Index = i, StepGrid = sGrid, Step = s, DisplayItems = displayItems });
+			result.Add(new() { Index = i, StepGrid = sGrid, Step = s, DisplayItems = displayItems, ShowHodokuDifficulty = showHodoku, ShowSudokuExplainerDifficulty = showSudokuExplainer });
 		}
 
-		return [.. collection];
+		return [.. result];
 	}
 }
