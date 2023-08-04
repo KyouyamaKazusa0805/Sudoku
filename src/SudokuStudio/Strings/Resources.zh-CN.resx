@@ -891,6 +891,9 @@
   <data name="SettingsPage_Backdrop_MicaDeep" xml:space="preserve">
     <value>Mica 透色，不过跟深一些</value>
   </data>
+  <data name="SettingsPage_Backslash" xml:space="preserve">
+    <value>反斜杠（\）</value>
+  </data>
   <data name="SettingsPage_Basic" xml:space="preserve">
     <value>基本设置</value>
   </data>
@@ -926,6 +929,9 @@
   </data>
   <data name="SettingsPage_Coordinates" xml:space="preserve">
     <value>坐标</value>
+  </data>
+  <data name="SettingsPage_Cross" xml:space="preserve">
+    <value>打叉</value>
   </data>
   <data name="SettingsPage_CursorBackgroundColor" xml:space="preserve">
     <value>光标背景</value>
@@ -983,6 +989,9 @@
   </data>
   <data name="SettingsPage_EliminationColor" xml:space="preserve">
     <value>删数</value>
+  </data>
+  <data name="SettingsPage_EliminationDisplayMode" xml:space="preserve">
+    <value>删数的渲染模型</value>
   </data>
   <data name="SettingsPage_EmptyCellCharacter" xml:space="preserve">
     <value>文本里空格的占位符</value>
@@ -1141,6 +1150,9 @@
   </data>
   <data name="SettingsPage_SinglesGroup" xml:space="preserve">
     <value>出数类技巧</value>
+  </data>
+  <data name="SettingsPage_Slash" xml:space="preserve">
+    <value>斜杠（/）</value>
   </data>
   <data name="SettingsPage_SolidCircle" xml:space="preserve">
     <value>实心圆</value>

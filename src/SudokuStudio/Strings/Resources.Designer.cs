@@ -2563,6 +2563,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backslash (\).
+        /// </summary>
+        internal static string SettingsPage_Backslash {
+            get {
+                return ResourceManager.GetString("SettingsPage_Backslash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basic preferences.
         /// </summary>
         internal static string SettingsPage_Basic {
@@ -2667,6 +2676,15 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_Coordinates {
             get {
                 return ResourceManager.GetString("SettingsPage_Coordinates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cross.
+        /// </summary>
+        internal static string SettingsPage_Cross {
+            get {
+                return ResourceManager.GetString("SettingsPage_Cross", resourceCulture);
             }
         }
         
@@ -2838,6 +2856,15 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_EliminationColor {
             get {
                 return ResourceManager.GetString("SettingsPage_EliminationColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display mode for eliminations.
+        /// </summary>
+        internal static string SettingsPage_EliminationDisplayMode {
+            get {
+                return ResourceManager.GetString("SettingsPage_EliminationDisplayMode", resourceCulture);
             }
         }
         
@@ -3308,6 +3335,15 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_SinglesGroup {
             get {
                 return ResourceManager.GetString("SettingsPage_SinglesGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slash (/).
+        /// </summary>
+        internal static string SettingsPage_Slash {
+            get {
+                return ResourceManager.GetString("SettingsPage_Slash", resourceCulture);
             }
         }
         

@@ -25,6 +25,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<CoordinateLabelDisplayKind>("CoordinateLabelDisplayKind", DefaultValue = CoordinateLabelDisplayKind.RxCy, DocSummary = "Indicates the displaying kind of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Interaction.CoordinateLabelDisplayKind\"/>.")]
 [DependencyProperty<CoordinateLabelDisplayMode>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplayMode.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Interaction.CoordinateLabelDisplayMode\"/>.")]
 [DependencyProperty<CandidateViewNodeDisplayNode>("CandidateViewNodeDisplayMode", DefaultValue = CandidateViewNodeDisplayNode.CircleSolid, DocSummary = "Indicates the displaying mode of candidate view nodes.")]
+[DependencyProperty<EliminationDisplayMode>("EliminationDisplayMode", DefaultValue = EliminationDisplayMode.CircleSolid, DocSummary = "Indicates the displaying mode of an elimination.")]
 [DependencyProperty<CandidateMap>("ViewUnitUsedCandidates", DocSummary = "Indicates a map that stores candidates used in a view unit.")]
 [DependencyProperty<Color>("GivenColor", DocSummary = "Indicates the given color.")]
 [DependencyProperty<Color>("ModifiableColor", DocSummary = "Indicates the modifiable color.")]
@@ -643,6 +644,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	[Callback]
 	private static void CandidateViewNodeDisplayModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void EliminationDisplayModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> ((SudokuPane)d).UpdateViewUnit();
 
 

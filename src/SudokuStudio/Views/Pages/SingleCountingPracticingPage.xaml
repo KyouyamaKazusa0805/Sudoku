@@ -38,7 +38,7 @@
 					BorderColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,Mode=OneWay}"
 					CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
 					CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}"
-					CandidateViewNodeDisplayMode="CircleSolid"
+					CandidateViewNodeDisplayMode="CircleSolid" EliminationDisplayMode="CircleSolid"
 				/>
 
 				<!--Info displaying pane-->

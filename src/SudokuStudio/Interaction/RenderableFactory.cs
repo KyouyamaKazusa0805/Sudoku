@@ -158,7 +158,8 @@ internal static class RenderableFactory
 			candidate,
 			paneCellControl,
 			animatedResults,
-			true
+			true,
+			conclusion.ConclusionType == Elimination
 		);
 	}
 
@@ -300,7 +301,7 @@ internal static class RenderableFactory
 			return;
 		}
 
-		ForCandidateNodeCore(IdentifierConversion.GetColor(id), candidate, paneCellControl, animatedResults, false);
+		ForCandidateNodeCore(IdentifierConversion.GetColor(id), candidate, paneCellControl, animatedResults, false, false);
 	}
 
 	/// <summary>
@@ -313,13 +314,15 @@ internal static class RenderableFactory
 	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
 	/// </param>
 	/// <param name="isForConclusion">Indicates whether the operation draws for a conclusion.</param>
+	/// <param name="isForElimination">Indicates whether the operation draws for an elimination.</param>
 	/// <seealso cref="ForCandidateNode(SudokuPane, CandidateViewNode, Conclusion[], out Conclusion?, AnimatedResultCollection)"/>
 	private static void ForCandidateNodeCore(
 		Color color,
 		Candidate candidate,
 		SudokuPaneCell paneCellControl,
 		AnimatedResultCollection animatedResults,
-		bool isForConclusion
+		bool isForConclusion,
+		bool isForElimination
 	)
 	{
 		if (paneCellControl is not
@@ -329,7 +332,8 @@ internal static class RenderableFactory
 				{
 					HighlightCandidateCircleScale: var highlightScale,
 					EnableAnimationFeedback: var enableAnimation,
-					CandidateViewNodeDisplayMode: var candidateDisplayMode
+					CandidateViewNodeDisplayMode: var candidateDisplayMode,
+					EliminationDisplayMode: var eliminationDisplayMode
 				}
 			})
 		{
@@ -337,9 +341,9 @@ internal static class RenderableFactory
 		}
 
 		var (width, height) = size / 3F * (float)highlightScale;
-		var control = (isForConclusion, candidateDisplayMode) switch
+		var control = (isForConclusion, isForElimination, candidateDisplayMode, eliminationDisplayMode) switch
 		{
-			(true, _) or (_, CandidateViewNodeDisplayNode.CircleSolid)
+			(true, true, _, EliminationDisplayMode.CircleSolid)
 				=> new Ellipse
 				{
 					Width = width,
@@ -350,7 +354,36 @@ internal static class RenderableFactory
 					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
 					Opacity = enableAnimation ? 0 : 1
 				},
-			(_, CandidateViewNodeDisplayNode.CircleHollow)
+			(true, true, _, EliminationDisplayMode.Cross or EliminationDisplayMode.Slash or EliminationDisplayMode.Backslash)
+				=> new Cross
+				{
+					Width = width,
+					Height = height,
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					Background = new SolidColorBrush(color),
+					StrokeThickness = 3,
+					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+					Opacity = enableAnimation ? 0 : 1,
+					ForwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Slash
+						? Visibility.Visible
+						: Visibility.Collapsed,
+					BackwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Backslash
+						? Visibility.Visible
+						: Visibility.Collapsed
+				},
+			(true, _, _, _) or (_, _, CandidateViewNodeDisplayNode.CircleSolid, _)
+				=> new Ellipse
+				{
+					Width = width,
+					Height = height,
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					Fill = new SolidColorBrush(color),
+					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+					Opacity = enableAnimation ? 0 : 1
+				},
+			(_, _, CandidateViewNodeDisplayNode.CircleHollow, _)
 				=> new Ellipse
 				{
 					Width = width,
@@ -362,7 +395,7 @@ internal static class RenderableFactory
 					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
 					Opacity = enableAnimation ? 0 : 1
 				},
-			(_, CandidateViewNodeDisplayNode.SquareHollow)
+			(_, _, CandidateViewNodeDisplayNode.SquareHollow, _)
 				=> new Rectangle
 				{
 					Width = width,
@@ -374,7 +407,7 @@ internal static class RenderableFactory
 					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
 					Opacity = enableAnimation ? 0 : 1
 				},
-			(_, CandidateViewNodeDisplayNode.SquareSolid)
+			(_, _, CandidateViewNodeDisplayNode.SquareSolid, _)
 				=> new Rectangle
 				{
 					Width = width,

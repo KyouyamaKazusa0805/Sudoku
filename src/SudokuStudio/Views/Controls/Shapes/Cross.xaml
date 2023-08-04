@@ -13,20 +13,23 @@
 
 	<Canvas x:Name="MainGrid">
 		<Line
+			x:Name="BackwardLine"
 			X1="0" Y1="0"
 			X2="{Binding ElementName=MainGrid,Path=ActualWidth,Mode=OneWay,Converter={StaticResource LengthMultipliedByRootOf2Converter}}"
-			Y2="0" Stroke="{x:Bind Background,Mode=OneWay}" StrokeThickness="{x:Bind StrokeThickness,Mode=OneWay}">
+			Y2="0" Stroke="{x:Bind Background,Mode=OneWay}" StrokeThickness="{x:Bind StrokeThickness,Mode=OneWay}"
+			Visibility="{x:Bind BackwardLineVisibility,Mode=OneWay}">
 			<Line.RenderTransform>
 				<RotateTransform Angle="45" />
 			</Line.RenderTransform>
 		</Line>
 		<Line
-			x:Name="Line2" X1="{Binding ElementName=MainGrid,Path=ActualWidth,Mode=OneWay}" Y1="0"
+			x:Name="ForwardLine" X1="{Binding ElementName=MainGrid,Path=ActualWidth,Mode=OneWay}" Y1="0"
 			X2="{Binding ElementName=MainGrid,Path=ActualWidth,Mode=OneWay}"
 			Y2="{Binding ElementName=MainGrid,Path=ActualHeight,Mode=OneWay,Converter={StaticResource LengthMultipliedByRootOf2Converter}}"
-			Stroke="{x:Bind Background,Mode=OneWay}" StrokeThickness="{x:Bind StrokeThickness,Mode=OneWay}">
+			Stroke="{x:Bind Background,Mode=OneWay}" StrokeThickness="{x:Bind StrokeThickness,Mode=OneWay}"
+			Visibility="{x:Bind ForwardLineVisibility,Mode=OneWay}">
 			<Line.RenderTransform>
-				<RotateTransform Angle="45" CenterX="{x:Bind Line2.X1,Mode=OneWay}" />
+				<RotateTransform Angle="45" CenterX="{x:Bind ForwardLine.X1,Mode=OneWay}" />
 			</Line.RenderTransform>
 		</Line>
 	</Canvas>

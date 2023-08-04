@@ -888,6 +888,9 @@
   <data name="SettingsPage_Backdrop_MicaDeep" xml:space="preserve">
     <value>Mica deep</value>
   </data>
+  <data name="SettingsPage_Backslash" xml:space="preserve">
+    <value>Backslash (\)</value>
+  </data>
   <data name="SettingsPage_Basic" xml:space="preserve">
     <value>Basic preferences</value>
   </data>
@@ -923,6 +926,9 @@
   </data>
   <data name="SettingsPage_Coordinates" xml:space="preserve">
     <value>Coordinates</value>
+  </data>
+  <data name="SettingsPage_Cross" xml:space="preserve">
+    <value>Cross</value>
   </data>
   <data name="SettingsPage_CursorBackgroundColor" xml:space="preserve">
     <value>Cursor background</value>
@@ -980,6 +986,9 @@
   </data>
   <data name="SettingsPage_EliminationColor" xml:space="preserve">
     <value>Eliminations</value>
+  </data>
+  <data name="SettingsPage_EliminationDisplayMode" xml:space="preserve">
+    <value>Display mode for eliminations</value>
   </data>
   <data name="SettingsPage_EmptyCellCharacter" xml:space="preserve">
     <value>Placeholder for empty cells in text</value>
@@ -1138,6 +1147,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_SinglesGroup" xml:space="preserve">
     <value>Singles</value>
+  </data>
+  <data name="SettingsPage_Slash" xml:space="preserve">
+    <value>Slash (/)</value>
   </data>
   <data name="SettingsPage_SolidCircle" xml:space="preserve">
     <value>Solid circle</value>

@@ -1,5 +1,6 @@
 namespace SudokuStudio.Configuration;
 
+using E = EliminationDisplayMode;
 using K = CoordinateLabelDisplayKind;
 using M = CoordinateLabelDisplayMode;
 using N = CandidateViewNodeDisplayNode;
@@ -33,6 +34,7 @@ using N = CandidateViewNodeDisplayNode;
 [DependencyProperty<int>("CoordinateLabelDisplayKind", DefaultValue = (int)K.RxCy, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind")]
 [DependencyProperty<int>("CoordinateLabelDisplayMode", DefaultValue = (int)M.FourDirection, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode")]
 [DependencyProperty<int>("CandidateViewNodeDisplayMode", DefaultValue = (int)N.CircleSolid, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode")]
+[DependencyProperty<int>("EliminationDisplayMode", DefaultValue = (int)E.CircleSolid, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode")]
 [DependencyProperty<int>("DesiredPictureSizeOnSaving", DefaultValue = 1000)]
 [DependencyProperty<string>("GivenFontName", DefaultValue = "Cascadia Code")]
 [DependencyProperty<string>("ModifiableFontName", DefaultValue = "Cascadia Code")]

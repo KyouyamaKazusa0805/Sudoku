@@ -1297,6 +1297,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CandidateViewNodeDisplayMode"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EliminationDisplayModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationDisplayMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationDisplayMode"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSavingProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving"/>.
@@ -1634,6 +1640,9 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CandidateViewNodeDisplayMode">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationDisplayMode">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving">
             <summary>
@@ -2507,6 +2516,31 @@ if (student is (name: var name, age: >= 18))
             Indicates the mode is baba grouping.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.EliminationDisplayMode">
+            <summary>
+            Defines a mode that is used for displaying an elimination.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.EliminationDisplayMode.CircleSolid">
+            <summary>
+            Indicates the display mode is to draw a solid circle.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.EliminationDisplayMode.Cross">
+            <summary>
+            Indicates the display mode is to draw a cross sign.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.EliminationDisplayMode.Slash">
+            <summary>
+            Indicates the display mode is to draw a slash.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.EliminationDisplayMode.Backslash">
+            <summary>
+            Indicates the display mode is to draw a backslash.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventHandler"/>.
@@ -2881,7 +2915,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <seealso cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.RenderableFactory.ForCandidateNodeCore(Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell,SudokuStudio.Interaction.AnimatedResultCollection,System.Boolean)">
+        <member name="M:SudokuStudio.Interaction.RenderableFactory.ForCandidateNodeCore(Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell,SudokuStudio.Interaction.AnimatedResultCollection,System.Boolean,System.Boolean)">
             <summary>
             The core method called by <see cref="M:SudokuStudio.Interaction.RenderableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CandidateViewNode,Sudoku.Analytics.Conclusion[],System.Nullable{Sudoku.Analytics.Conclusion}@,SudokuStudio.Interaction.AnimatedResultCollection)"/>.
             </summary>
@@ -2892,6 +2926,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:SudokuStudio.Interaction.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Interaction.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
             </param>
             <param name="isForConclusion">Indicates whether the operation draws for a conclusion.</param>
+            <param name="isForElimination">Indicates whether the operation draws for an elimination.</param>
             <seealso cref="M:SudokuStudio.Interaction.RenderableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CandidateViewNode,Sudoku.Analytics.Conclusion[],System.Nullable{Sudoku.Analytics.Conclusion}@,SudokuStudio.Interaction.AnimatedResultCollection)"/>
         </member>
         <member name="M:SudokuStudio.Interaction.RenderableFactory.ForHouseNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.HouseViewNode,SudokuStudio.Interaction.AnimatedResultCollection)">
@@ -3344,6 +3379,17 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToCoordinateLabelModeConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToEliminationDisplayModeConverter">
+            <summary>
+            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Interaction.EliminationDisplayMode"/> field.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToEliminationDisplayModeConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToEliminationDisplayModeConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.LengthMultipliedByRootOf2Converter">
@@ -5238,6 +5284,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Mica deep.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Backslash">
+            <summary>
+              Looks up a localized string similar to Backslash (\).
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Basic">
             <summary>
               Looks up a localized string similar to Basic preferences.
@@ -5296,6 +5347,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Coordinates">
             <summary>
               Looks up a localized string similar to Coordinates.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Cross">
+            <summary>
+              Looks up a localized string similar to Cross.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_CursorBackgroundColor">
@@ -5391,6 +5447,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_EliminationColor">
             <summary>
               Looks up a localized string similar to Eliminations.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_EliminationDisplayMode">
+            <summary>
+              Looks up a localized string similar to Display mode for eliminations.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_EmptyCellCharacter">
@@ -5653,6 +5714,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SinglesGroup">
             <summary>
               Looks up a localized string similar to Singles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Slash">
+            <summary>
+              Looks up a localized string similar to Slash (/).
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SolidCircle">
@@ -6913,9 +6979,31 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Cross.StrokeThickness"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.Shapes.Cross.BackwardLineVisibilityProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Cross.BackwardLineVisibility"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Cross.BackwardLineVisibility"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.Shapes.Cross.ForwardLineVisibilityProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Cross.ForwardLineVisibility"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Cross.ForwardLineVisibility"/>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.Shapes.Cross.StrokeThickness">
             <summary>
             Indicates the stroke thickness.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.Shapes.Cross.BackwardLineVisibility">
+            <summary>
+            Indicates whether the backward line is shown.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.Shapes.Cross.ForwardLineVisibility">
+            <summary>
+            Indicates whether the forward line is shown.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Controls.StepSearcherListView">
@@ -7301,6 +7389,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidatesProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidates"/>.
@@ -7613,6 +7707,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode">
             <summary>
             Indicates the displaying mode of candidate view nodes.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode">
+            <summary>
+            Indicates the displaying mode of an elimination.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidates">
