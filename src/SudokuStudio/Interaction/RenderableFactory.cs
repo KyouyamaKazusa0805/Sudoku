@@ -157,7 +157,8 @@ internal static class RenderableFactory
 			),
 			candidate,
 			paneCellControl,
-			animatedResults
+			animatedResults,
+			true
 		);
 	}
 
@@ -299,7 +300,7 @@ internal static class RenderableFactory
 			return;
 		}
 
-		ForCandidateNodeCore(IdentifierConversion.GetColor(id), candidate, paneCellControl, animatedResults);
+		ForCandidateNodeCore(IdentifierConversion.GetColor(id), candidate, paneCellControl, animatedResults, false);
 	}
 
 	/// <summary>
@@ -311,19 +312,80 @@ internal static class RenderableFactory
 	/// <param name="animatedResults">
 	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
 	/// </param>
+	/// <param name="isForConclusion">Indicates whether the operation draws for a conclusion.</param>
 	/// <seealso cref="ForCandidateNode(SudokuPane, CandidateViewNode, Conclusion[], out Conclusion?, AnimatedResultCollection)"/>
-	private static void ForCandidateNodeCore(Color color, Candidate candidate, SudokuPaneCell paneCellControl, AnimatedResultCollection animatedResults)
+	private static void ForCandidateNodeCore(
+		Color color,
+		Candidate candidate,
+		SudokuPaneCell paneCellControl,
+		AnimatedResultCollection animatedResults,
+		bool isForConclusion
+	)
 	{
-		var (width, height) = paneCellControl.ActualSize / 3F * (float)paneCellControl.BasePane.HighlightCandidateCircleScale;
-		var control = new Ellipse
+		if (paneCellControl is not
+			{
+				ActualSize: var size,
+				BasePane:
+				{
+					HighlightCandidateCircleScale: var highlightScale,
+					EnableAnimationFeedback: var enableAnimation,
+					CandidateViewNodeDisplayMode: var candidateDisplayMode
+				}
+			})
 		{
-			Width = width,
-			Height = height,
-			HorizontalAlignment = HorizontalAlignment.Center,
-			VerticalAlignment = VerticalAlignment.Center,
-			Fill = new SolidColorBrush(color),
-			Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
-			Opacity = paneCellControl.BasePane.EnableAnimationFeedback ? 0 : 1
+			return;
+		}
+
+		var (width, height) = size / 3F * (float)highlightScale;
+		var control = (candidateDisplayMode, isForConclusion) switch
+		{
+			(CandidateViewNodeDisplayNode.CircleHollow, _)
+				=> new Ellipse
+				{
+					Width = width,
+					Height = height,
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					Stroke = new SolidColorBrush(color),
+					StrokeThickness = 3,
+					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+					Opacity = enableAnimation ? 0 : 1
+				},
+			(CandidateViewNodeDisplayNode.SquareHollow, _)
+				=> new Rectangle
+				{
+					Width = width,
+					Height = height,
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					Stroke = new SolidColorBrush(color),
+					StrokeThickness = 3,
+					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+					Opacity = enableAnimation ? 0 : 1
+				},
+			(CandidateViewNodeDisplayNode.SquareSolid, _)
+				=> new Rectangle
+				{
+					Width = width,
+					Height = height,
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					Fill = new SolidColorBrush(color),
+					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+					Opacity = enableAnimation ? 0 : 1
+				},
+			(CandidateViewNodeDisplayNode.CircleSolid, _) or (_, true)
+				=> new Ellipse
+				{
+					Width = width,
+					Height = height,
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					Fill = new SolidColorBrush(color),
+					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+					Opacity = enableAnimation ? 0 : 1
+				},
+			_ => default(FrameworkElement)!
 		};
 
 		var digit = candidate % 9;
@@ -331,7 +393,7 @@ internal static class RenderableFactory
 		GridLayout.SetColumn(control, digit % 3);
 		Canvas.SetZIndex(control, -1);
 
-		if (paneCellControl.BasePane.EnableAnimationFeedback)
+		if (enableAnimation)
 		{
 			control.OpacityTransition = new();
 		}

@@ -1291,6 +1291,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayMode"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CandidateViewNodeDisplayModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CandidateViewNodeDisplayMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CandidateViewNodeDisplayMode"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSavingProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving"/>.
@@ -1625,6 +1631,9 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayMode">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CandidateViewNodeDisplayMode">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving">
             <summary>
@@ -2207,6 +2216,31 @@ if (student is (name: var name, age: >= 18))
             <param name="sender">An object which triggers the event.</param>
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.CandidatesDisplayingToggled"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.CandidateViewNodeDisplayNode">
+            <summary>
+            Defines a mode that is used for displaying candidate view nodes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.CandidateViewNodeDisplayNode.CircleHollow">
+            <summary>
+            Indicates the display mode is to draw a hollow circle.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.CandidateViewNodeDisplayNode.CircleSolid">
+            <summary>
+            Indicates the display mode is to draw a solid circle.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.CandidateViewNodeDisplayNode.SquareHollow">
+            <summary>
+            Indicates the display mode is to draw a hollow square.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.CandidateViewNodeDisplayNode.SquareSolid">
+            <summary>
+            Indicates the display mode is to draw a solid square.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.AnalyzeConversion">
             <summary>
@@ -2847,7 +2881,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <seealso cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.RenderableFactory.ForCandidateNodeCore(Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell,SudokuStudio.Interaction.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Interaction.RenderableFactory.ForCandidateNodeCore(Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell,SudokuStudio.Interaction.AnimatedResultCollection,System.Boolean)">
             <summary>
             The core method called by <see cref="M:SudokuStudio.Interaction.RenderableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CandidateViewNode,Sudoku.Analytics.Conclusion[],System.Nullable{Sudoku.Analytics.Conclusion}@,SudokuStudio.Interaction.AnimatedResultCollection)"/>.
             </summary>
@@ -2857,6 +2891,7 @@ if (student is (name: var name, age: >= 18))
             <param name="animatedResults">
             <inheritdoc cref="M:SudokuStudio.Interaction.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Interaction.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
             </param>
+            <param name="isForConclusion">Indicates whether the operation draws for a conclusion.</param>
             <seealso cref="M:SudokuStudio.Interaction.RenderableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CandidateViewNode,Sudoku.Analytics.Conclusion[],System.Nullable{Sudoku.Analytics.Conclusion}@,SudokuStudio.Interaction.AnimatedResultCollection)"/>
         </member>
         <member name="M:SudokuStudio.Interaction.RenderableFactory.ForHouseNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.HouseViewNode,SudokuStudio.Interaction.AnimatedResultCollection)">
@@ -3276,6 +3311,17 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.DoubleToDecimalConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToCandidateViewNodeDisplayModeConverter">
+            <summary>
+            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Interaction.CandidateViewNodeDisplayNode"/> field.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToCandidateViewNodeDisplayModeConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToCandidateViewNodeDisplayModeConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToCoordinateLabelKindConverter">
@@ -5212,6 +5258,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Candidate font.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_CandidateViewNodeDisplayMode">
+            <summary>
+              Looks up a localized string similar to Display mode for candidates.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_CandidateViewNodeDisplayModeDescription">
+            <summary>
+              Looks up a localized string similar to This option controls the behavior on displaying a candidate..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_CannibalismColor">
             <summary>
               Looks up a localized string similar to Cannibalism.
@@ -5439,6 +5495,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Scale of highlighted candidate background circles.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_HollowCircle">
+            <summary>
+              Looks up a localized string similar to Hollow circle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_HollowSquare">
+            <summary>
+              Looks up a localized string similar to Hollow square.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Intro">
             <summary>
               Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting..
@@ -5587,6 +5653,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SinglesGroup">
             <summary>
               Looks up a localized string similar to Singles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SolidCircle">
+            <summary>
+              Looks up a localized string similar to Solid circle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SolidSquare">
+            <summary>
+              Looks up a localized string similar to Solid square.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_StepDisplayItem_Abbreviation">
@@ -7219,6 +7295,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidatesProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidates"/>.
@@ -7527,6 +7609,11 @@ if (student is (name: var name, age: >= 18))
             <remarks>
             For more information please visit <see cref="T:SudokuStudio.Interaction.CoordinateLabelDisplayMode"/>.
             </remarks>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode">
+            <summary>
+            Indicates the displaying mode of candidate view nodes.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidates">
             <summary>

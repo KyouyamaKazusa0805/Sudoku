@@ -2599,6 +2599,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display mode for candidates.
+        /// </summary>
+        internal static string SettingsPage_CandidateViewNodeDisplayMode {
+            get {
+                return ResourceManager.GetString("SettingsPage_CandidateViewNodeDisplayMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This option controls the behavior on displaying a candidate..
+        /// </summary>
+        internal static string SettingsPage_CandidateViewNodeDisplayModeDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_CandidateViewNodeDisplayModeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannibalism.
         /// </summary>
         internal static string SettingsPage_CannibalismColor {
@@ -3006,6 +3024,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hollow circle.
+        /// </summary>
+        internal static string SettingsPage_HollowCircle {
+            get {
+                return ResourceManager.GetString("SettingsPage_HollowCircle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hollow square.
+        /// </summary>
+        internal static string SettingsPage_HollowSquare {
+            get {
+                return ResourceManager.GetString("SettingsPage_HollowSquare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting..
         /// </summary>
         internal static string SettingsPage_Intro {
@@ -3272,6 +3308,24 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_SinglesGroup {
             get {
                 return ResourceManager.GetString("SettingsPage_SinglesGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solid circle.
+        /// </summary>
+        internal static string SettingsPage_SolidCircle {
+            get {
+                return ResourceManager.GetString("SettingsPage_SolidCircle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solid square.
+        /// </summary>
+        internal static string SettingsPage_SolidSquare {
+            get {
+                return ResourceManager.GetString("SettingsPage_SolidSquare", resourceCulture);
             }
         }
         

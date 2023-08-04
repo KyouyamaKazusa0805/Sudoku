@@ -2,6 +2,7 @@ namespace SudokuStudio.Configuration;
 
 using K = CoordinateLabelDisplayKind;
 using M = CoordinateLabelDisplayMode;
+using N = CandidateViewNodeDisplayNode;
 
 /// <summary>
 /// Defines a list of UI-related preference items. Some items in this group may not be found in settings page
@@ -31,6 +32,7 @@ using M = CoordinateLabelDisplayMode;
 [DependencyProperty<decimal>("CoordinateLabelFontScale")]
 [DependencyProperty<int>("CoordinateLabelDisplayKind", DefaultValue = (int)K.RxCy, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind")]
 [DependencyProperty<int>("CoordinateLabelDisplayMode", DefaultValue = (int)M.FourDirection, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode")]
+[DependencyProperty<int>("CandidateViewNodeDisplayMode", DefaultValue = (int)N.CircleSolid, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode")]
 [DependencyProperty<int>("DesiredPictureSizeOnSaving", DefaultValue = 1000)]
 [DependencyProperty<string>("GivenFontName", DefaultValue = "Cascadia Code")]
 [DependencyProperty<string>("ModifiableFontName", DefaultValue = "Cascadia Code")]

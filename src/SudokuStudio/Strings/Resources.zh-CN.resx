@@ -903,6 +903,12 @@
   <data name="SettingsPage_CandidateFontData" xml:space="preserve">
     <value>候选数字体</value>
   </data>
+  <data name="SettingsPage_CandidateViewNodeDisplayMode" xml:space="preserve">
+    <value>候选数渲染模型</value>
+  </data>
+  <data name="SettingsPage_CandidateViewNodeDisplayModeDescription" xml:space="preserve">
+    <value>该选项控制的是技巧步骤或用户为候选数进行标记的过程之中，程序显示出来的模型</value>
+  </data>
   <data name="SettingsPage_CannibalismColor" xml:space="preserve">
     <value>结构内删数（自噬删数）</value>
   </data>
@@ -1040,6 +1046,12 @@
   <data name="SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle" xml:space="preserve">
     <value>候选数视图节点的缩放比例</value>
   </data>
+  <data name="SettingsPage_HollowCircle" xml:space="preserve">
+    <value>空心圆</value>
+  </data>
+  <data name="SettingsPage_HollowSquare" xml:space="preserve">
+    <value>空心方块</value>
+  </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
     <value>该页面列举的是程序使用到的偏好设置项。你可以修改和调整它们来使得程序用起来更加得心应手。所有配置项均为即时保存，但需要重启程序后才能生效。懒得写绑定了 :)</value>
   </data>
@@ -1129,6 +1141,12 @@
   </data>
   <data name="SettingsPage_SinglesGroup" xml:space="preserve">
     <value>出数类技巧</value>
+  </data>
+  <data name="SettingsPage_SolidCircle" xml:space="preserve">
+    <value>实心圆</value>
+  </data>
+  <data name="SettingsPage_SolidSquare" xml:space="preserve">
+    <value>实心方块</value>
   </data>
   <data name="SettingsPage_StepDisplayItems" xml:space="preserve">
     <value>技巧步骤的呈现内容</value>

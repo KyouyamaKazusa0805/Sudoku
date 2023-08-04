@@ -900,6 +900,12 @@
   <data name="SettingsPage_CandidateFontData" xml:space="preserve">
     <value>Candidate font</value>
   </data>
+  <data name="SettingsPage_CandidateViewNodeDisplayMode" xml:space="preserve">
+    <value>Display mode for candidates</value>
+  </data>
+  <data name="SettingsPage_CandidateViewNodeDisplayModeDescription" xml:space="preserve">
+    <value>This option controls the behavior on displaying a candidate.</value>
+  </data>
   <data name="SettingsPage_CannibalismColor" xml:space="preserve">
     <value>Cannibalism</value>
   </data>
@@ -1037,6 +1043,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle" xml:space="preserve">
     <value>Scale of highlighted candidate background circles</value>
   </data>
+  <data name="SettingsPage_HollowCircle" xml:space="preserve">
+    <value>Hollow circle</value>
+  </data>
+  <data name="SettingsPage_HollowSquare" xml:space="preserve">
+    <value>Hollow square</value>
+  </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
     <value>Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting.</value>
   </data>
@@ -1126,6 +1138,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_SinglesGroup" xml:space="preserve">
     <value>Singles</value>
+  </data>
+  <data name="SettingsPage_SolidCircle" xml:space="preserve">
+    <value>Solid circle</value>
+  </data>
+  <data name="SettingsPage_SolidSquare" xml:space="preserve">
+    <value>Solid square</value>
   </data>
   <data name="SettingsPage_StepDisplayItems" xml:space="preserve">
     <value>Technique step display items</value>

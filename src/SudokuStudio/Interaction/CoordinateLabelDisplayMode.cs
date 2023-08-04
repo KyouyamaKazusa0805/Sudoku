@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interaction;
+namespace SudokuStudio.Interaction;
 
 /// <summary>
 /// Defines a mode that is used for describing a kind of displaying case on coordinate labels.
