@@ -1,7 +1,5 @@
 namespace SudokuStudio.Interaction;
 
-using AnimatedResults = List<(Action Animating, Action Adding)>;
-
 /// <summary>
 /// Defines a factory type that is used for creating a list of <see cref="FrameworkElement"/>
 /// to display for highlighted cells, candidates and so on.
@@ -60,7 +58,7 @@ internal static class RenderableFactory
 
 		var (pencilmarkMode, controlAddingActions, overlapped, links, usedCandidates) = (
 			((App)Application.Current).Preference.UIPreferences.DisplayCandidates,
-			new AnimatedResults(),
+			new AnimatedResultCollection(),
 			new List<Conclusion>(),
 			new List<LinkViewNode>(),
 			CandidateMap.Empty
@@ -140,7 +138,7 @@ internal static class RenderableFactory
 	/// <param name="conclusion">The conclusion to be displayed.</param>
 	/// <param name="overlapped">A collection that stores for overlapped candidates.</param>
 	/// <param name="animatedResults">A list that stores the final actions to adding controls into the sudoku pane.</param>
-	private static void ForConclusion(SudokuPane sudokuPane, Conclusion conclusion, List<Conclusion> overlapped, AnimatedResults animatedResults)
+	private static void ForConclusion(SudokuPane sudokuPane, Conclusion conclusion, List<Conclusion> overlapped, AnimatedResultCollection animatedResults)
 	{
 		var (type, candidate) = conclusion;
 		if (sudokuPane._children[candidate / 9] is not { } paneCellControl)
@@ -167,14 +165,14 @@ internal static class RenderableFactory
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="CellViewNode"/>.
 	/// </summary>
 	/// <param name="sudokuPane">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResults)" path="/param[@name='sudokuPane']"/>
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
 	/// </param>
 	/// <param name="cellNode">The node to be displayed.</param>
 	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResults)" path="/param[@name='animatedResults']"/>
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
 	/// </param>
 	/// <seealso cref="CellViewNode"/>
-	private static void ForCellNode(SudokuPane sudokuPane, CellViewNode cellNode, AnimatedResults animatedResults)
+	private static void ForCellNode(SudokuPane sudokuPane, CellViewNode cellNode, AnimatedResultCollection animatedResults)
 	{
 		var (id, cell) = cellNode;
 		if (sudokuPane._children[cell] is not { } paneCellControl)
@@ -263,10 +261,10 @@ internal static class RenderableFactory
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="CandidateViewNode"/>.
 	/// </summary>
 	/// <param name="sudokuPane">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResults)" path="/param[@name='sudokuPane']"/>
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
 	/// </param>
 	/// <param name="candidateNode">
-	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResults)" path="/param[@name='sudokuPane']"/>
+	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
 	/// </param>
 	/// <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalism.</param>
 	/// <param name="overlapped">
@@ -274,7 +272,7 @@ internal static class RenderableFactory
 	/// what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
 	/// </param>
 	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResults)" path="/param[@name='animatedResults']"/>
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
 	/// </param>
 	/// <seealso cref="CandidateViewNode"/>
 	private static void ForCandidateNode(
@@ -282,7 +280,7 @@ internal static class RenderableFactory
 		CandidateViewNode candidateNode,
 		Conclusion[] conclusions,
 		out Conclusion? overlapped,
-		AnimatedResults animatedResults
+		AnimatedResultCollection animatedResults
 	)
 	{
 		overlapped = null;
@@ -305,16 +303,16 @@ internal static class RenderableFactory
 	}
 
 	/// <summary>
-	/// The core method called by <see cref="ForCandidateNode(SudokuPane, CandidateViewNode, Conclusion[], out Conclusion?, AnimatedResults)"/>.
+	/// The core method called by <see cref="ForCandidateNode(SudokuPane, CandidateViewNode, Conclusion[], out Conclusion?, AnimatedResultCollection)"/>.
 	/// </summary>
 	/// <param name="color">The color to be used on rendering.</param>
 	/// <param name="candidate">The candidate to be rendered.</param>
 	/// <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
 	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResults)" path="/param[@name='animatedResults']"/>
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
 	/// </param>
-	/// <seealso cref="ForCandidateNode(SudokuPane, CandidateViewNode, Conclusion[], out Conclusion?, AnimatedResults)"/>
-	private static void ForCandidateNodeCore(Color color, Candidate candidate, SudokuPaneCell paneCellControl, AnimatedResults animatedResults)
+	/// <seealso cref="ForCandidateNode(SudokuPane, CandidateViewNode, Conclusion[], out Conclusion?, AnimatedResultCollection)"/>
+	private static void ForCandidateNodeCore(Color color, Candidate candidate, SudokuPaneCell paneCellControl, AnimatedResultCollection animatedResults)
 	{
 		var (width, height) = paneCellControl.ActualSize / 3F * (float)paneCellControl.BasePane.HighlightCandidateCircleScale;
 		var control = new Ellipse
@@ -345,19 +343,19 @@ internal static class RenderableFactory
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="HouseViewNode"/>.
 	/// </summary>
 	/// <param name="sudokuPane">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResults)" path="/param[@name='sudokuPane']"/>
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
 	/// </param>
 	/// <param name="houseNode">
-	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResults)" path="/param[@name='cellNode']"/>
+	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResultCollection)" path="/param[@name='cellNode']"/>
 	/// </param>
 	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResults)" path="/param[@name='animatedResults']"/>
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
 	/// </param>
 	/// <exception cref="ArgumentException">
 	/// Throws when the argument <paramref name="houseNode"/> stores invalid data of property <see cref="HouseViewNode.House"/>.
 	/// </exception>
 	/// <seealso cref="HouseViewNode"/>
-	private static void ForHouseNode(SudokuPane sudokuPane, HouseViewNode houseNode, AnimatedResults animatedResults)
+	private static void ForHouseNode(SudokuPane sudokuPane, HouseViewNode houseNode, AnimatedResultCollection animatedResults)
 	{
 		var (id, house) = houseNode;
 		if (sudokuPane.MainGrid is not { } gridControl)
@@ -407,19 +405,19 @@ internal static class RenderableFactory
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="ChuteViewNode"/>.
 	/// </summary>
 	/// <param name="sudokuPane">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResults)" path="/param[@name='sudokuPane']"/>
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
 	/// </param>
 	/// <param name="chuteNode">
-	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResults)" path="/param[@name='cellNode']"/>
+	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResultCollection)" path="/param[@name='cellNode']"/>
 	/// </param>
 	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResults)" path="/param[@name='animatedResults']"/>
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
 	/// </param>
 	/// <exception cref="ArgumentException">
 	/// Throws when the argument <paramref name="chuteNode"/> stores invalid data of property <see cref="ChuteViewNode.ChuteIndex"/>.
 	/// </exception>
 	/// <seealso cref="ChuteViewNode"/>
-	private static void ForChuteNode(SudokuPane sudokuPane, ChuteViewNode chuteNode, AnimatedResults animatedResults)
+	private static void ForChuteNode(SudokuPane sudokuPane, ChuteViewNode chuteNode, AnimatedResultCollection animatedResults)
 	{
 		if (sudokuPane.MainGrid is not { } gridControl)
 		{
@@ -467,16 +465,16 @@ internal static class RenderableFactory
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="BabaGroupViewNode"/>.
 	/// </summary>
 	/// <param name="sudokuPane">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResults)" path="/param[@name='sudokuPane']"/>
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
 	/// </param>
 	/// <param name="babaGroupNode">
-	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResults)" path="/param[@name='cellNode']"/>
+	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResultCollection)" path="/param[@name='cellNode']"/>
 	/// </param>
 	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResults)" path="/param[@name='animatedResults']"/>
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
 	/// </param>
 	/// <seealso cref="BabaGroupViewNode"/>
-	private static void ForBabaGroupNode(SudokuPane sudokuPane, BabaGroupViewNode babaGroupNode, AnimatedResults animatedResults)
+	private static void ForBabaGroupNode(SudokuPane sudokuPane, BabaGroupViewNode babaGroupNode, AnimatedResultCollection animatedResults)
 	{
 		var (id, cell, @char) = babaGroupNode;
 		if (sudokuPane._children[cell] is not { } paneCellControl)
@@ -521,19 +519,19 @@ internal static class RenderableFactory
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="LinkViewNode"/>s.
 	/// </summary>
 	/// <param name="sudokuPane">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResults)" path="/param[@name='sudokuPane']"/>
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
 	/// </param>
 	/// <param name="linkNodes">
-	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResults)" path="/param[@name='cellNode']"/>
+	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResultCollection)" path="/param[@name='cellNode']"/>
 	/// </param>
 	/// <param name="conclusions">Indicates the conclusions. The value is used for appending links between tail node and conclusion.</param>
 	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResults)" path="/param[@name='animatedResults']"/>
+	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
 	/// </param>
 	/// <remarks>
 	/// This method is special: We should handle all <see cref="LinkViewNode"/>s together.
 	/// </remarks>
-	private static void ForLinkNodes(SudokuPane sudokuPane, LinkViewNode[] linkNodes, Conclusion[] conclusions, AnimatedResults animatedResults)
+	private static void ForLinkNodes(SudokuPane sudokuPane, LinkViewNode[] linkNodes, Conclusion[] conclusions, AnimatedResultCollection animatedResults)
 	{
 		if (sudokuPane.MainGrid is not { } gridControl)
 		{
