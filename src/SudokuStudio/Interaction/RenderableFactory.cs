@@ -337,34 +337,10 @@ internal static class RenderableFactory
 		}
 
 		var (width, height) = size / 3F * (float)highlightScale;
-		var control = (candidateDisplayMode, isForConclusion) switch
+		var control = (isForConclusion, candidateDisplayMode) switch
 		{
-			(CandidateViewNodeDisplayNode.CircleHollow, _)
+			(true, _) or (_, CandidateViewNodeDisplayNode.CircleSolid)
 				=> new Ellipse
-				{
-					Width = width,
-					Height = height,
-					HorizontalAlignment = HorizontalAlignment.Center,
-					VerticalAlignment = VerticalAlignment.Center,
-					Stroke = new SolidColorBrush(color),
-					StrokeThickness = 3,
-					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
-					Opacity = enableAnimation ? 0 : 1
-				},
-			(CandidateViewNodeDisplayNode.SquareHollow, _)
-				=> new Rectangle
-				{
-					Width = width,
-					Height = height,
-					HorizontalAlignment = HorizontalAlignment.Center,
-					VerticalAlignment = VerticalAlignment.Center,
-					Stroke = new SolidColorBrush(color),
-					StrokeThickness = 3,
-					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
-					Opacity = enableAnimation ? 0 : 1
-				},
-			(CandidateViewNodeDisplayNode.SquareSolid, _)
-				=> new Rectangle
 				{
 					Width = width,
 					Height = height,
@@ -374,8 +350,32 @@ internal static class RenderableFactory
 					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
 					Opacity = enableAnimation ? 0 : 1
 				},
-			(CandidateViewNodeDisplayNode.CircleSolid, _) or (_, true)
+			(_, CandidateViewNodeDisplayNode.CircleHollow)
 				=> new Ellipse
+				{
+					Width = width,
+					Height = height,
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					Stroke = new SolidColorBrush(color),
+					StrokeThickness = 3,
+					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+					Opacity = enableAnimation ? 0 : 1
+				},
+			(_, CandidateViewNodeDisplayNode.SquareHollow)
+				=> new Rectangle
+				{
+					Width = width,
+					Height = height,
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					Stroke = new SolidColorBrush(color),
+					StrokeThickness = 3,
+					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+					Opacity = enableAnimation ? 0 : 1
+				},
+			(_, CandidateViewNodeDisplayNode.SquareSolid)
+				=> new Rectangle
 				{
 					Width = width,
 					Height = height,
