@@ -3074,11 +3074,6 @@ if (student is (name: var name, age: >= 18))
             <param name="conclusion">The overlapped result.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:SudokuStudio.Interaction.RenderingShapeExtensions">
-            <summary>
-            Represents a type that contains some extension methods used by rendering candidate view nodes and conclusions.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Interaction.SaveFileFailedEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.SaveFileFailedEventHandler"/>.

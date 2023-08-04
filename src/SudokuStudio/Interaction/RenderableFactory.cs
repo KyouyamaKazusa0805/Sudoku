@@ -343,57 +343,83 @@ internal static class RenderableFactory
 		var (width, height) = size / 3F * (float)highlightScale;
 		var control = (isForConclusion, isForElimination, candidateDisplayMode, eliminationDisplayMode) switch
 		{
-			(true, true, _, EliminationDisplayMode.CircleSolid) => new Ellipse(),
-			(true, true, _, EliminationDisplayMode.Cross or EliminationDisplayMode.Slash or EliminationDisplayMode.Backslash) => new Cross(),
-			(true, _, _, _) or (_, _, CandidateViewNodeDisplayNode.CircleSolid, _) => new Ellipse(),
-			(_, _, CandidateViewNodeDisplayNode.CircleHollow, _) => new Ellipse(),
-			(_, _, CandidateViewNodeDisplayNode.SquareHollow, _) => new Rectangle(),
-			(_, _, CandidateViewNodeDisplayNode.SquareSolid, _) => new Rectangle(),
+			(true, true, _, EliminationDisplayMode.CircleSolid)
+				=> new Ellipse
+				{
+					Width = width,
+					Height = height,
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					Fill = new SolidColorBrush(color),
+					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+					Opacity = enableAnimation ? 0 : 1
+				},
+			(true, true, _, EliminationDisplayMode.Cross or EliminationDisplayMode.Slash or EliminationDisplayMode.Backslash)
+				=> new Cross
+				{
+					Width = width,
+					Height = height,
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					Background = new SolidColorBrush(color),
+					StrokeThickness = (width + height) / 2 * 3 / 20,
+					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+					Opacity = enableAnimation ? 0 : 1,
+					ForwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Slash
+						? Visibility.Visible
+						: Visibility.Collapsed,
+					BackwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Backslash
+						? Visibility.Visible
+						: Visibility.Collapsed
+				},
+			(true, _, _, _) or (_, _, CandidateViewNodeDisplayNode.CircleSolid, _)
+				=> new Ellipse
+				{
+					Width = width,
+					Height = height,
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					Fill = new SolidColorBrush(color),
+					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+					Opacity = enableAnimation ? 0 : 1
+				},
+			(_, _, CandidateViewNodeDisplayNode.CircleHollow, _)
+				=> new Ellipse
+				{
+					Width = width,
+					Height = height,
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					Stroke = new SolidColorBrush(color),
+					StrokeThickness = (width + height) / 2 * 3 / 20,
+					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+					Opacity = enableAnimation ? 0 : 1
+				},
+			(_, _, CandidateViewNodeDisplayNode.SquareHollow, _)
+				=> new Rectangle
+				{
+					Width = width,
+					Height = height,
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					Stroke = new SolidColorBrush(color),
+					StrokeThickness = (width + height) / 2 * 3 / 20,
+					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+					Opacity = enableAnimation ? 0 : 1
+				},
+			(_, _, CandidateViewNodeDisplayNode.SquareSolid, _)
+				=> new Rectangle
+				{
+					Width = width,
+					Height = height,
+					HorizontalAlignment = HorizontalAlignment.Center,
+					VerticalAlignment = VerticalAlignment.Center,
+					Fill = new SolidColorBrush(color),
+					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+					Opacity = enableAnimation ? 0 : 1
+				},
 			_ => default(FrameworkElement)!
 		};
-
-		control
-			.AssignProperty(c => c.Width = width)
-			.AssignProperty(c => c.Height = height)
-			.AssignProperty(static c => c.HorizontalAlignment = HorizontalAlignment.Center)
-			.AssignProperty(static c => c.VerticalAlignment = VerticalAlignment.Center)
-			.AssignProperty(c => c.Opacity = enableAnimation ? 0 : 1)
-			.AssignProperty(c => c.Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}")
-			.AssignPropertyIf(
-				c => c.Background = new SolidColorBrush(color),
-				() => (isForConclusion, isForElimination, eliminationDisplayMode) is (true, true, EliminationDisplayMode.Cross or EliminationDisplayMode.Slash or EliminationDisplayMode.Backslash)
-			)
-			.AssignPropertyIf(
-				c => c.Fill = new SolidColorBrush(color),
-				() => (isForConclusion, isForElimination, candidateDisplayMode, eliminationDisplayMode)
-					is (true, _, _, _)
-					or (true, true, _, EliminationDisplayMode.CircleSolid)
-					or (_, _, CandidateViewNodeDisplayNode.CircleSolid or CandidateViewNodeDisplayNode.SquareSolid, _)
-			)
-			.AssignPropertyIf(
-				static c => c.StrokeThickness = 3,
-				() => (isForConclusion, isForElimination, candidateDisplayMode, eliminationDisplayMode)
-					is (true, true, _, EliminationDisplayMode.Cross or EliminationDisplayMode.Slash or EliminationDisplayMode.Backslash)
-					or (_, _, CandidateViewNodeDisplayNode.CircleHollow or CandidateViewNodeDisplayNode.SquareHollow, _)
-			)
-			.AssignPropertyIf(
-				c => c.Stroke = new SolidColorBrush(color),
-				() => candidateDisplayMode is CandidateViewNodeDisplayNode.CircleHollow or CandidateViewNodeDisplayNode.SquareHollow
-			)
-			.AssignPropertyIf(
-				c => c.ForwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Slash
-					? Visibility.Visible
-					: Visibility.Collapsed,
-				() => (isForConclusion, isForElimination, eliminationDisplayMode)
-					is (true, true, EliminationDisplayMode.Cross or EliminationDisplayMode.Slash or EliminationDisplayMode.Backslash)
-			)
-			.AssignPropertyIf(
-				c => c.BackwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Backslash
-					? Visibility.Visible
-					: Visibility.Collapsed,
-				() => (isForConclusion, isForElimination, eliminationDisplayMode)
-					is (true, true, EliminationDisplayMode.Cross or EliminationDisplayMode.Slash or EliminationDisplayMode.Backslash)
-			);
 
 		var digit = candidate % 9;
 		GridLayout.SetRow(control, digit / 3);
@@ -1022,29 +1048,5 @@ file static class Extensions
 
 		conclusion = null;
 		return false;
-	}
-}
-
-/// <summary>
-/// Represents a type that contains some extension methods used by rendering candidate view nodes and conclusions.
-/// </summary>
-file static class RenderingShapeExtensions
-{
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static FrameworkElement AssignProperty(this FrameworkElement @this, Action<FrameworkElement> assigning)
-	{
-		assigning(@this);
-		return @this;
-	}
-
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static FrameworkElement AssignPropertyIf(this FrameworkElement @this, Action<dynamic> assign, Func<bool> condition)
-	{
-		if (condition())
-		{
-			assign(@this);
-		}
-
-		return @this;
 	}
 }
