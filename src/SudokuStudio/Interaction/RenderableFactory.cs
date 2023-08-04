@@ -124,7 +124,7 @@ internal static class RenderableFactory
 		// We should handle it at last.
 		ForLinkNodes(sudokuPane, [.. links], conclusions, controlAddingActions);
 
-		controlAddingActions.ForEach(static pair => pair.Invoke());
+		controlAddingActions.ForEach(static pair => (pair.Animating + pair.Adding)());
 
 		// Update property to get highlighted candidates.
 		sudokuPane.ViewUnitUsedCandidates = usedCandidates;
@@ -703,25 +703,20 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							StrokeDashArray = dashArray,
 							Data = new GeometryGroup
 							{
-								Children = new GeometryCollection
-								{
+								Children = [
 									new PathGeometry
 									{
-										Figures = new()
-										{
+										Figures = [
 											new PathFigure
 											{
 												StartPoint = pt1,
 												IsClosed = false,
 												IsFilled = false,
-												Segments = new()
-												{
-													new BezierSegment { Point1 = new(bx1, by1), Point2 = new(bx2, by2), Point3 = pt2 }
-												}
+												Segments = [new BezierSegment { Point1 = new(bx1, by1), Point2 = new(bx2, by2), Point3 = pt2 }]
 											}
-										}
+										]
 									}
-								}
+								]
 							},
 							Tag = $"{nameof(RenderableFactory)}: curve segment {start} -> {end}",
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
@@ -745,10 +740,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							StrokeDashArray = dashArray,
-							Data = new GeometryGroup
-							{
-								Children = new() { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } }
-							},
+							Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
 							Tag = $"{nameof(RenderableFactory)}: arrow cap {start} -> {end}",
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						};
@@ -907,11 +899,10 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		var topY = arrowLength * Sin(angle1);
 		var bottomX = arrowLength * Cos(angle2);
 		var bottomY = arrowLength * Sin(angle2);
-		return new()
-		{
+		return [
 			new LineGeometry { StartPoint = new(pt2.X + topX, pt2.Y + topY), EndPoint = pt2 },
 			new LineGeometry { StartPoint = new(pt2.X + bottomX, pt2.Y + bottomY), EndPoint = pt2 }
-		};
+		];
 	}
 }
 
