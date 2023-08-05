@@ -50,7 +50,7 @@ public static class CollectionEnumeration
 	}
 
 	/// <inheritdoc cref="ForEachRef{T}(T[], ForEachRefCallback{T})"/>
-	public static unsafe void ForEachRefUnsafe<T>(this T[] @this, delegate*</*scoped*/ ref T, void> callback)
+	public static unsafe void ForEachRefUnsafe<T>(this T[] @this, delegate*<ref T, void> callback)
 	{
 		foreach (ref var element in @this.EnumerateRef())
 		{

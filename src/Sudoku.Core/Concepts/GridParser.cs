@@ -27,7 +27,7 @@ public unsafe ref partial struct GridParser(
 	/// <summary>
 	/// The list of all methods to parse.
 	/// </summary>
-	private static readonly delegate*</*scoped*/ ref GridParser, Grid>[] ParseFunctions = [
+	private static readonly delegate*<ref GridParser, Grid>[] ParseFunctions = [
 		&OnParsingSimpleTable,
 		&OnParsingSimpleMultilineGrid,
 		&OnParsingPencilMarked,
@@ -42,7 +42,7 @@ public unsafe ref partial struct GridParser(
 	/// <summary>
 	/// The list of all methods to parse multiple-line grid.
 	/// </summary>
-	private static readonly delegate*</*scoped*/ ref GridParser, Grid>[] MultilineParseFunctions = [
+	private static readonly delegate*<ref GridParser, Grid>[] MultilineParseFunctions = [
 		&OnParsingSimpleMultilineGrid,
 		&OnParsingPencilMarked
 	];
