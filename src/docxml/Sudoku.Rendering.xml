@@ -1045,17 +1045,6 @@ if (student is (name: var name, age: >= 18))
             Provides with a data structure that displays a view for basic information.
             </summary>
         </member>
-        <member name="M:Sudoku.Rendering.View.#ctor">
-            <summary>
-            Creates an empty <see cref="T:Sudoku.Rendering.View"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Rendering.View.#ctor(System.Collections.Generic.HashSet{Sudoku.Rendering.ViewNode})">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Rendering.View"/> instance via the specified list as the raw value.
-            </summary>
-            <param name="nodes">The list as the raw value.</param>
-        </member>
         <member name="P:Sudoku.Rendering.View.BasicNodes">
             <summary>
             Indicates the basic nodes that the current data type stores.

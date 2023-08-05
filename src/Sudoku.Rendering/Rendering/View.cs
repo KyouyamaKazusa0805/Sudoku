@@ -6,24 +6,6 @@ namespace Sudoku.Rendering;
 public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 {
 	/// <summary>
-	/// Creates an empty <see cref="View"/> instance.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View() : base()
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="View"/> instance via the specified list as the raw value.
-	/// </summary>
-	/// <param name="nodes">The list as the raw value.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private View(HashSet<ViewNode> nodes) : base(nodes)
-	{
-	}
-
-
-	/// <summary>
 	/// Indicates the basic nodes that the current data type stores.
 	/// </summary>
 	public OfTypeEnumerator<BasicViewNode> BasicNodes => OfType<BasicViewNode>();
@@ -94,5 +76,5 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View Clone() => Count == 0 ? [] : new([.. from node in this select node.Clone()]);
+	public View Clone() => Count == 0 ? [] : [.. from node in this select node.Clone()];
 }
