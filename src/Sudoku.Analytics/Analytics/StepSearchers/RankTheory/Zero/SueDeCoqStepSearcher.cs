@@ -24,13 +24,10 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 			return null;
 		}
 
-		var cannibalModeCases = stackalloc[] { false, true };
-
 		scoped ref readonly var grid = ref context.Grid;
 		using scoped var list = new ValueList<CellMap>(4);
-		for (var caseIndex = 0; caseIndex < 2; caseIndex++)
+		foreach (var cannibalMode in stackalloc[] { false, true })
 		{
-			var cannibalMode = cannibalModeCases[caseIndex];
 			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{
 				var emptyCellsInInterMap = c & EmptyCells;
@@ -46,7 +43,6 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 					case { Count: 2 }:
 					{
 						list.Add(emptyCellsInInterMap);
-
 						break;
 					}
 					case [var i, var j, var k]:
@@ -55,7 +51,6 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 						list.Add(CellsMap[j] + k);
 						list.Add(CellsMap[i] + k);
 						list.Add(emptyCellsInInterMap);
-
 						break;
 					}
 				}
@@ -123,11 +118,9 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 									var digitIsolated = TrailingZeroCount(maskIsolated);
 									if (digitIsolated != InvalidTrailingZeroCountMethodFallback)
 									{
-										elimMapIsolated = (
-											cannibalMode
-												? (currentBlockMap | currentLineMap)
-												: currentInterMap
-										) % CandidatesMap[digitIsolated] & EmptyCells;
+										elimMapIsolated = (cannibalMode ? (currentBlockMap | currentLineMap) : currentInterMap)
+											% CandidatesMap[digitIsolated]
+											& EmptyCells;
 									}
 
 									if (currentInterMap.Count + i + j == PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)
@@ -161,9 +154,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 										}
 										foreach (var cell in elimMapIsolated)
 										{
-											conclusions.Add(
-												new(Elimination, cell, digitIsolated)
-											);
+											conclusions.Add(new(Elimination, cell, digitIsolated));
 										}
 										if (conclusions.Count == 0)
 										{
