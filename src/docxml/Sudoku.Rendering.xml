@@ -17,6 +17,21 @@
             <param name="this">The puzzle to be applied.</param>
             <param name="renderable">The renderable instance providing with conclusions to be applied.</param>
         </member>
+        <member name="T:Sudoku.Rendering.ViewExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Rendering.View"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Rendering.View"/>
+        </member>
+        <member name="M:Sudoku.Rendering.ViewExtensions.UnknownOverlaps(Sudoku.Rendering.View,System.Int32)">
+            <summary>
+            Determines whether the specified <see cref="T:Sudoku.Rendering.View"/> stores several <see cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>s,
+            and at least one of it overlaps the specified cell.
+            </summary>
+            <param name="this">The view instance.</param>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether being overlapped.</returns>
+        </member>
         <member name="T:Sudoku.Rendering.ColorColorIdentifier">
             <summary>
             Defines a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> derived type that uses color value (like type <c>System.Drawing.Color</c>) to distinct with colors.
@@ -1140,21 +1155,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.View.OfTypeEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="T:Sudoku.Rendering.ViewExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Rendering.View"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Rendering.View"/>
-        </member>
-        <member name="M:Sudoku.Rendering.ViewExtensions.UnknownOverlaps(Sudoku.Rendering.View,System.Int32)">
-            <summary>
-            Determines whether the specified <see cref="T:Sudoku.Rendering.View"/> stores several <see cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>s,
-            and at least one of it overlaps the specified cell.
-            </summary>
-            <param name="this">The view instance.</param>
-            <param name="cell">The cell.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating whether being overlapped.</returns>
         </member>
         <member name="T:Sudoku.Rendering.ViewNode">
             <summary>
