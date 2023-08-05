@@ -1,4 +1,4 @@
-namespace Sudoku.DataModel;
+namespace Sudoku.Compatibility.SudokuExplainer;
 
 /// <summary>
 /// Defines a pair of <see cref="SudokuExplainerDifficultyRatingRange"/> instances indicating the result of difficulty rating

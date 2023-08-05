@@ -5041,7 +5041,7 @@ result ^= expression;
             The formats will be interpolated into the property <see cref="P:Sudoku.Analytics.Step.Format"/> result.
             </summary>
             <seealso cref="P:Sudoku.Analytics.Step.Format"/>
-            <seealso cref="T:Sudoku.DataModel.FormatInterpolation"/>
+            <seealso cref="T:Sudoku.Text.FormatInterpolation"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.ConclusionText">
             <summary>
@@ -17734,6 +17734,28 @@ result ^= expression;
             Indicates the program name of the current provider to be compatible.
             </summary>
         </member>
+        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderDifficultyResult">
+            <summary>
+            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange"/> instances indicating the result of difficulty rating
+            for the specified technique defined in application Sudoku Explainer.
+            </summary>
+            <param name="Original">The original difficulty rating of the technique.</param>
+            <param name="Advanced">The advanced difficulty rating of the technique.</param>
+        </member>
+        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderDifficultyResult.#ctor(System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange},System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange})">
+            <summary>
+            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange"/> instances indicating the result of difficulty rating
+            for the specified technique defined in application Sudoku Explainer.
+            </summary>
+            <param name="Original">The original difficulty rating of the technique.</param>
+            <param name="Advanced">The advanced difficulty rating of the technique.</param>
+        </member>
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderDifficultyResult.Original">
+            <summary>The original difficulty rating of the technique.</summary>
+        </member>
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderDifficultyResult.Advanced">
+            <summary>The advanced difficulty rating of the technique.</summary>
+        </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility">
             <summary>
             Represents some methods that are used for get the details supported and defined
@@ -17765,7 +17787,7 @@ result ^= expression;
             <param name="this">The technique.</param>
             <returns>
             <para>
-            A <see cref="T:Sudoku.DataModel.SudokuExplainderDifficultyResult"/> value defined by the project Sudoku Explainer.
+            A <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderDifficultyResult"/> value defined by the project Sudoku Explainer.
             </para>
             <para>
             If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.
@@ -17796,35 +17818,6 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.DataModel.ExtraDifficultyCase.Value">
             <summary>The rating value.</summary>
-        </member>
-        <member name="T:Sudoku.DataModel.FormatInterpolation">
-            <summary>
-            Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
-            </summary>
-            <param name="LanguageNameOrIdentifier">
-            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh"</c> and <c>"en-US"</c>
-            </param>
-            <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
-        </member>
-        <member name="M:Sudoku.DataModel.FormatInterpolation.#ctor(System.String,System.String[])">
-            <summary>
-            Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
-            </summary>
-            <param name="LanguageNameOrIdentifier">
-            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh"</c> and <c>"en-US"</c>
-            </param>
-            <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
-        </member>
-        <member name="P:Sudoku.DataModel.FormatInterpolation.LanguageNameOrIdentifier">
-            <summary>
-            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh"</c> and <c>"en-US"</c>
-            </summary>
-        </member>
-        <member name="P:Sudoku.DataModel.FormatInterpolation.ResourcePlaceholderValues">
-            <summary>The values of the interpolation.</summary>
         </member>
         <member name="T:Sudoku.DataModel.IntersectionBase">
             <summary>
@@ -17883,28 +17876,6 @@ result ^= expression;
             <summary>
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </summary>
-        </member>
-        <member name="T:Sudoku.DataModel.SudokuExplainderDifficultyResult">
-            <summary>
-            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange"/> instances indicating the result of difficulty rating
-            for the specified technique defined in application Sudoku Explainer.
-            </summary>
-            <param name="Original">The original difficulty rating of the technique.</param>
-            <param name="Advanced">The advanced difficulty rating of the technique.</param>
-        </member>
-        <member name="M:Sudoku.DataModel.SudokuExplainderDifficultyResult.#ctor(System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange},System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange})">
-            <summary>
-            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange"/> instances indicating the result of difficulty rating
-            for the specified technique defined in application Sudoku Explainer.
-            </summary>
-            <param name="Original">The original difficulty rating of the technique.</param>
-            <param name="Advanced">The advanced difficulty rating of the technique.</param>
-        </member>
-        <member name="P:Sudoku.DataModel.SudokuExplainderDifficultyResult.Original">
-            <summary>The original difficulty rating of the technique.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.SudokuExplainderDifficultyResult.Advanced">
-            <summary>The advanced difficulty rating of the technique.</summary>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>
@@ -18196,6 +18167,35 @@ result ^= expression;
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>All true candidates.</returns>
             <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
+        </member>
+        <member name="T:Sudoku.Text.FormatInterpolation">
+            <summary>
+            Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
+            </summary>
+            <param name="LanguageNameOrIdentifier">
+            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            for example, <c>"zh"</c> and <c>"en-US"</c>
+            </param>
+            <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
+        </member>
+        <member name="M:Sudoku.Text.FormatInterpolation.#ctor(System.String,System.String[])">
+            <summary>
+            Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
+            </summary>
+            <param name="LanguageNameOrIdentifier">
+            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            for example, <c>"zh"</c> and <c>"en-US"</c>
+            </param>
+            <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
+        </member>
+        <member name="P:Sudoku.Text.FormatInterpolation.LanguageNameOrIdentifier">
+            <summary>
+            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            for example, <c>"zh"</c> and <c>"en-US"</c>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.FormatInterpolation.ResourcePlaceholderValues">
+            <summary>The values of the interpolation.</summary>
         </member>
         <member name="T:Sudoku.Text.Notation.HobiwanFishNotation">
             <summary>

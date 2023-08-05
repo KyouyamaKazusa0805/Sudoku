@@ -1,4 +1,4 @@
-namespace Sudoku.DataModel;
+namespace Sudoku.Text;
 
 /// <summary>
 /// Defines a type that represents the resource interpolated values used by <see cref="Step.FormatInterpolationParts"/>.
