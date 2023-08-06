@@ -7367,6 +7367,30 @@ result ^= expression;
             </para>
             </remarks>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.ExocetStepSearcher">
+            <summary>
+            Provides with a <b>Junior Exocet</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Junior Exocet</item>
+            <item>Senior Exocet</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.Houses">
+            <summary>
+            Indicates the houses.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.BaseOrTargetCellsCombination">
+            <summary>
+            Indicates the list of cells nearby crossline at the specified house. Suppose we don't use any blocks as crosslines,
+            The former 9 values in the target array are unmeaningful to be used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher">
             <summary>
             Provides with a <b>Junior Exocet</b> step searcher.
