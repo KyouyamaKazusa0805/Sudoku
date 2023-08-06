@@ -675,7 +675,7 @@
             </summary>
         </member>
         <member name="M:System.Collections.Generic.ValueList`1.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.Collections.Generic.CollectionExtensions">
             <summary>
@@ -3859,7 +3859,7 @@ fixed (short* ptr = instance)
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:System.Utf8Char.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:System.Utf8Char.op_Equality(System.Utf8Char,System.Utf8Char)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>

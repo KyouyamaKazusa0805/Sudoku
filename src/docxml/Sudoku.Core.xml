@@ -2405,7 +2405,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Equality(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
@@ -3598,7 +3598,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_Equality(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
@@ -5029,7 +5029,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Concepts.LockedTarget.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.LockedTarget.op_Equality(Sudoku.Concepts.LockedTarget@,Sudoku.Concepts.LockedTarget@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>

@@ -176,7 +176,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.ColorColorIdentifier.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Rendering.ColorIdentifier">
             <summary>
@@ -376,7 +376,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.BasicViewNode">
             <summary>
@@ -471,7 +471,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.CandidateViewNode.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.CellViewNode">
             <summary>
@@ -560,7 +560,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.CellViewNode.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.ChuteViewNode">
             <summary>
@@ -655,7 +655,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.ChuteViewNode.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.CircleViewNode">
             <summary>
@@ -784,7 +784,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.HouseViewNode.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.IconViewNode">
             <summary>
@@ -859,7 +859,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.IconViewNode.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.LinkViewNode">
             <summary>
@@ -951,7 +951,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.Nodes.LinkViewNode.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Rendering.Nodes.SquareViewNode">
             <summary>
@@ -1028,7 +1028,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Rendering.RenderingMode">
             <summary>
@@ -1277,7 +1277,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Rendering.WellKnownColorIdentifier.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Rendering.WellKnownColorIdentifierKind">
             <summary>

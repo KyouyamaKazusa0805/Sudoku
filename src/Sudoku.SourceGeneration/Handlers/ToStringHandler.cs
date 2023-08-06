@@ -133,7 +133,7 @@ internal static class ToStringHandler
 			{
 			{{suppress0809}}partial {{kindString}} {{typeNameString}}
 				{
-					/// <inheritdoc cref="object.GetHashCode"/>
+					/// <inheritdoc cref="object.ToString"/>
 					{{attributesMarked}}
 					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(GetHashCodeHandler).FullName}}", "{{Value}}")]
 					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]

@@ -3944,7 +3944,7 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="F:Sudoku.Analytics.StepSearcher._splitPriority">
             <summary>
@@ -17221,7 +17221,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.DataModel.ChainNode.ToString">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.DataModel.ChainNode.op_Equality(Sudoku.DataModel.ChainNode,Sudoku.DataModel.ChainNode)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
