@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Patterns;
+namespace Sudoku.DataModel;
 
 partial class MultipleForcingChains
 {

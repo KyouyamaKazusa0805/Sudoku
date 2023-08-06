@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Patterns;
+namespace Sudoku.DataModel;
 
 /// <summary>
 /// Defines a list of <see cref="ChainNode"/> using doubly linked list as the backing algorithm.

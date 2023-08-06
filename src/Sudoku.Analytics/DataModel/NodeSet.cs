@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Patterns;
+namespace Sudoku.DataModel;
 
 /// <summary>
 /// Defines a <see cref="ChainNode"/> collection using <see cref="HashSet{T}"/> as backing implementation.

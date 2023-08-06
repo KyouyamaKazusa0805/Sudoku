@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Patterns;
+namespace Sudoku.DataModel;
 
 /// <summary>
 /// Defines a data structure that describes an ALS.

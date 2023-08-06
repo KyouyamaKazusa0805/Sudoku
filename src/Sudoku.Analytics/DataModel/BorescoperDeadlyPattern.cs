@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Patterns;
+namespace Sudoku.DataModel;
 
 /// <summary>
 /// Defines a pattern that is a Borescoper's Deadly Pattern technique structure in theory. The sketch is like:
@@ -48,7 +48,7 @@ namespace Sudoku.Analytics.Patterns;
 /// Due to the rendering engine, you have to check this file rather than the tip window.
 /// </para>
 /// </param>
-public readonly partial struct BorescoperDeadlyPattern([PrimaryConstructorParameter(MemberKinds.Field)] long mask)
+internal readonly partial struct BorescoperDeadlyPattern([PrimaryConstructorParameter(MemberKinds.Field)] long mask)
 {
 	/// <summary>
 	/// Indicates whether the specified pattern is a heptagon.

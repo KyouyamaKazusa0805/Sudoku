@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Patterns;
+namespace Sudoku.DataModel;
 
 /// <summary>
 /// Indicates a firework pattern. The pattern will be like:

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Patterns;
+namespace Sudoku.DataModel;
 
 /// <summary>
 /// Represents for a data set that describes the complete information about a unique loop technique.
@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Patterns;
 /// <param name="Path">Indicates the detail path of the loop.</param>
 /// <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="Mask"/>.</param>
 [GetHashCode]
-public readonly partial record struct UniqueLoop([property: HashCodeMember] scoped in CellMap Loop, Cell[] Path, Mask DigitsMask)
+internal readonly partial record struct UniqueLoop([property: HashCodeMember] scoped in CellMap Loop, Cell[] Path, Mask DigitsMask)
 {
 	/// <inheritdoc/>
 	public bool Equals(UniqueLoop other) => Loop == other.Loop;
