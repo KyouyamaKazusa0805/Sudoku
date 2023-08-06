@@ -170,8 +170,7 @@ public unsafe ref partial struct GridParser(
 		var result = Grid.Empty;
 		for (var i = 0; i < 81; i++)
 		{
-			var currentMatch = matches[length - 81 + i];
-			switch (currentMatch)
+			switch (matches[length - 81 + i])
 			{
 				case [var match and not ('.' or '0')]:
 				{
@@ -222,8 +221,7 @@ public unsafe ref partial struct GridParser(
 			return Grid.Undefined;
 		}
 
-		var values = parsingValue.SplitBy(['\r', '\n']);
-		if (values.Length != 9)
+		if (parsingValue.SplitBy(['\r', '\n']) is not { Length: 9 } values)
 		{
 			return Grid.Undefined;
 		}
