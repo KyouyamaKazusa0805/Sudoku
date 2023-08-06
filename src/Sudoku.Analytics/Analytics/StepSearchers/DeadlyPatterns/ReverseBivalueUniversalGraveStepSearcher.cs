@@ -70,6 +70,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			}
 		}
 
+		var accumulator = new List<ReverseBivalueUniversalGraveStep>();
 		var globalMapUpperBound = AllowPartiallyUsedTypes ? GlobalMaps.Length : 1;
 
 		// Iterates on all combinations of digits, with length of each combination 2.
@@ -133,7 +134,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				// other types will only use 1 or 2 empty cells.
 				for (
 					var incrementStep = (valuesMap.Count & 1) == 0 ? 2 : 1;
-					incrementStep < Min(18 - d1Counter - d2Counter, MaxSearchingEmptyCellsCount);
+					incrementStep <= Min(18 - d1Counter - d2Counter, MaxSearchingEmptyCellsCount);
 					incrementStep += 2
 				)
 				{
@@ -146,15 +147,19 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 							continue;
 						}
 
-						if (CheckType1(ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type1Step)
+						if (CheckType1(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type1Step)
 						{
 							return type1Step;
 						}
-						if (CheckType2(ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type2Step)
+						if (CheckType2(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type2Step)
 						{
 							return type2Step;
 						}
-						if (CheckType4(ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type4Step)
+						if (CheckType3(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type3Step)
+						{
+							return type3Step;
+						}
+						if (CheckType4(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type4Step)
 						{
 							return type4Step;
 						}
@@ -163,12 +168,18 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			}
 		}
 
+		if (accumulator.Count != 0 && !context.OnlyFindOne)
+		{
+			context.Accumulator.AddRange(accumulator.Distinct());
+		}
+
 		return null;
 	}
 
 	/// <summary>
 	/// Check for type 1.
 	/// </summary>
+	/// <param name="accumulator">The accumulator.</param>
 	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="d1">The first digit used.</param>
 	/// <param name="d2">The second digit used.</param>
@@ -177,6 +188,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <param name="cellsChosen">The empty cells chosen.</param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType1Step? CheckType1(
+		List<ReverseBivalueUniversalGraveStep> accumulator,
 		scoped ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
@@ -218,13 +230,14 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			return step;
 		}
 
-		context.Accumulator.Add(step);
+		accumulator.Add(step);
 		return null;
 	}
 
 	/// <summary>
 	/// Check for type 2.
 	/// </summary>
+	/// <param name="accumulator">The step accumulator.</param>
 	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="d1">The first digit used.</param>
 	/// <param name="d2">The second digit used.</param>
@@ -233,6 +246,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <param name="cellsChosen">The empty cells chosen.</param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType2Step? CheckType2(
+		List<ReverseBivalueUniversalGraveStep> accumulator,
 		scoped ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
@@ -280,7 +294,131 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			return step;
 		}
 
-		context.Accumulator.Add(step);
+		accumulator.Add(step);
+
+		return null;
+	}
+
+	/// <summary>
+	/// Check for type 3.
+	/// </summary>
+	/// <param name="accumulator">The step accumulator.</param>
+	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="d1">The first digit used.</param>
+	/// <param name="d2">The second digit used.</param>
+	/// <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
+	/// <param name="completePattern">The complete pattern.</param>
+	/// <param name="cellsChosen">The empty cells chosen.</param>
+	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
+	private ReverseBivalueUniversalGraveType3Step? CheckType3(
+		List<ReverseBivalueUniversalGraveStep> accumulator,
+		scoped ref AnalysisContext context,
+		Digit d1,
+		Digit d2,
+		Mask comparer,
+		scoped in CellMap completePattern,
+		scoped in CellMap cellsChosen
+	)
+	{
+		if (cellsChosen is not [var cell1, var cell2])
+		{
+			return null;
+		}
+
+		if (!cellsChosen.InOneHouse)
+		{
+			return null;
+		}
+
+		scoped ref readonly var grid = ref context.Grid;
+		var (digitsMask1, digitsMask2) = (grid.GetCandidates(cell1), grid.GetCandidates(cell2));
+		var otherDigitsMask = (Mask)((digitsMask1 | digitsMask2) & ~comparer);
+		if (IsPow2(otherDigitsMask))
+		{
+			// Only one digit is categorized as "other digits". In this case we can only use an extra cell to form a type 3.
+			// However, the extra cell is a naked single. The naked single must be handled before this technique.
+			return null;
+		}
+
+		var numbersOfOtherDigits = PopCount((uint)otherDigitsMask);
+		foreach (var house in cellsChosen.CoveredHouses)
+		{
+			var otherEmptyCells = (EmptyCells & HousesMap[house]) - cellsChosen;
+			if (otherEmptyCells.Count <= numbersOfOtherDigits - 1)
+			{
+				// No conclusion will be created.
+				continue;
+			}
+
+			foreach (var cells in otherEmptyCells.GetSubsets(numbersOfOtherDigits - 1))
+			{
+				if (grid[cells] != otherDigitsMask)
+				{
+					// The subset is not matched.
+					continue;
+				}
+
+				// Type 3 found. Now check eliminations.
+				var elimMap = otherEmptyCells - cells;
+				if (!elimMap)
+				{
+					continue;
+				}
+
+				var conclusions = new List<Conclusion>(elimMap.Count * numbersOfOtherDigits);
+				foreach (var cell in elimMap)
+				{
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & otherDigitsMask))
+					{
+						conclusions.Add(new(Elimination, cell, digit));
+					}
+				}
+				if (conclusions.Count == 0)
+				{
+					// No eliminations.
+					continue;
+				}
+
+				var cellOffsets = new List<CellViewNode>(completePattern.Count);
+				foreach (var cell in completePattern)
+				{
+					cellOffsets.Add(new(cellsChosen.Contains(cell) ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell));
+				}
+
+				var candidateOffsets = new List<CandidateViewNode>(cellsChosen.Count);
+				foreach (var cell in cellsChosen)
+				{
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & comparer))
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+					}
+				}
+				foreach (var cell in cells)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+					}
+				}
+
+				var step = new ReverseBivalueUniversalGraveType3Step(
+					[.. conclusions],
+					[[.. cellOffsets, .. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+					d1,
+					d2,
+					house,
+					otherDigitsMask,
+					completePattern,
+					cellsChosen
+				);
+				if (context.OnlyFindOne)
+				{
+					return step;
+				}
+
+				accumulator.Add(step);
+			}
+		}
 
 		return null;
 	}
@@ -288,6 +426,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <summary>
 	/// Check for type 4.
 	/// </summary>
+	/// <param name="accumulator">The step accumulator.</param>
 	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="d1">The first digit used.</param>
 	/// <param name="d2">The second digit used.</param>
@@ -296,6 +435,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <param name="cellsChosen">The empty cells chosen.</param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType4Step? CheckType4(
+		List<ReverseBivalueUniversalGraveStep> accumulator,
 		scoped ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
@@ -381,7 +521,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				return step;
 			}
 
-			context.Accumulator.Add(step);
+			accumulator.Add(step);
 		}
 
 		return null;

@@ -2279,4 +2279,7 @@
   <data name="AvoidableRectangleExternalWWing" xml:space="preserve">
     <value>可规避矩形・外部 W-Wing</value>
   </data>
+  <data name="TechniqueFormat_ReverseBivalueUniversalGraveType3Step" xml:space="preserve">
+    <value>额外区域 {0}，带有额外数字 {1}</value>
+  </data>
 </root>

@@ -5272,6 +5272,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extra house {0}, with extra digits {1}.
+        /// </summary>
+        public static string TechniqueFormat_ReverseBivalueUniversalGraveType3Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_ReverseBivalueUniversalGraveType3Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Conjugate pair: {0}.
         /// </summary>
         public static string TechniqueFormat_ReverseBivalueUniversalGraveType4Step {

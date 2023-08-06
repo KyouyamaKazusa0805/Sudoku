@@ -2154,4 +2154,7 @@
   <data name="AvoidableRectangleExternalWWing" xml:space="preserve">
     <value>Avoidable Rectangle External W-Wing</value>
   </data>
+  <data name="TechniqueFormat_ReverseBivalueUniversalGraveType3Step" xml:space="preserve">
+    <value>Extra house {0}, with extra digits {1}</value>
+  </data>
 </root>

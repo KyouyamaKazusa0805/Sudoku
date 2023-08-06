@@ -5028,10 +5028,11 @@
         <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.CheckType1(Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep},Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Check for type 1.
             </summary>
+            <param name="accumulator">The accumulator.</param>
             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
             <param name="d1">The first digit used.</param>
             <param name="d2">The second digit used.</param>
@@ -5040,10 +5041,11 @@
             <param name="cellsChosen">The empty cells chosen.</param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.CheckType2(Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep},Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Check for type 2.
             </summary>
+            <param name="accumulator">The step accumulator.</param>
             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
             <param name="d1">The first digit used.</param>
             <param name="d2">The second digit used.</param>
@@ -5052,10 +5054,24 @@
             <param name="cellsChosen">The empty cells chosen.</param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.CheckType4(Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.CheckType3(System.Collections.Generic.List{Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep},Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Check for type 3.
+            </summary>
+            <param name="accumulator">The step accumulator.</param>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <param name="d1">The first digit used.</param>
+            <param name="d2">The second digit used.</param>
+            <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
+            <param name="completePattern">The complete pattern.</param>
+            <param name="cellsChosen">The empty cells chosen.</param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep},Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Check for type 4.
             </summary>
+            <param name="accumulator">The step accumulator.</param>
             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
             <param name="d1">The first digit used.</param>
             <param name="d2">The second digit used.</param>
@@ -10492,6 +10508,9 @@
             Indicates the last cells used that are not empty.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#ReverseBivalueUniversalGraveStep}#op_Equality(Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep,Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep)">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Digit1">
             <summary>
             The generated property declaration for parameter <c>digit1</c>.
@@ -10579,6 +10598,48 @@
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.ExtraDigit">
             <summary>
             The generated property declaration for parameter <c>extraDigit</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step">
+            <summary>
+            Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 3</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="subsetHouse">Indicates the subset house used.</param>
+            <param name="subsetMask">Indicates the subset digits mask.</param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="emptyCells"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 3</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="subsetHouse">Indicates the subset house used.</param>
+            <param name="subsetMask">Indicates the subset digits mask.</param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="emptyCells"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step.SubsetHouse">
+            <summary>
+            The generated property declaration for parameter <c>subsetHouse</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step.SubsetMask">
+            <summary>
+            The generated property declaration for parameter <c>subsetMask</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step">
@@ -15910,6 +15971,11 @@
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_ReverseBivalueUniversalGraveType2Step">
             <summary>
               Looks up a localized string similar to Extra digit: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_ReverseBivalueUniversalGraveType3Step">
+            <summary>
+              Looks up a localized string similar to Extra house {0}, with extra digits {1}.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_ReverseBivalueUniversalGraveType4Step">
