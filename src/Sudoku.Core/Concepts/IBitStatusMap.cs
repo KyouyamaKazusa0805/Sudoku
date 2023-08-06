@@ -306,7 +306,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 		var length = Min(n, limitSubsetSize);
 		for (var i = 1; i <= length; i++)
 		{
-			var target = Combinatorial[n - 1, i - 1];
+			var target = Combinatorial[n - 1][i - 1];
 			desiredSize += target;
 		}
 

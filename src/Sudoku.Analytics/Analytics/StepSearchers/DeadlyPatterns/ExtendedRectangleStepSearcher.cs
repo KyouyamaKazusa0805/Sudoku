@@ -42,33 +42,30 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ExtendedRectangleStepSearcher()
 	{
-		var houses = new[,]
-		{
-			{ 9, 10 }, { 9, 11 }, { 10, 11 },
-			{ 12, 13 }, { 12, 14 }, { 13, 14 },
-			{ 15, 16 }, { 15, 17 }, { 16, 17 },
-			{ 18, 19 }, { 18, 20 }, { 19, 20 },
-			{ 21, 22 }, { 21, 23 }, { 22, 23 },
-			{ 24, 25 }, { 24, 26 }, { 25, 26 }
-		};
-		var fitTableRow = new[,]
-		{
-			{ 0, 3 }, { 0, 4 }, { 0, 5 }, { 0, 6 }, { 0, 7 }, { 0, 8 },
-			{ 1, 3 }, { 1, 4 }, { 1, 5 }, { 1, 6 }, { 1, 7 }, { 1, 8 },
-			{ 2, 3 }, { 2, 4 }, { 2, 5 }, { 2, 6 }, { 2, 7 }, { 2, 8 },
-			{ 3, 6 }, { 3, 7 }, { 3, 8 },
-			{ 4, 6 }, { 4, 7 }, { 4, 8 },
-			{ 5, 6 }, { 5, 7 }, { 5, 8 }
-		};
-		var fitTableColumn = new[,]
-		{
-			{ 0, 27 }, { 0, 36 }, { 0, 45 }, { 0, 54 }, { 0, 63 }, { 0, 72 },
-			{ 9, 27 }, { 9, 36 }, { 9, 45 }, { 9, 54 }, { 9, 63 }, { 9, 72 },
-			{ 18, 27 }, { 18, 36 }, { 18, 45 }, { 18, 54 }, { 18, 63 }, { 18, 72 },
-			{ 27, 54 }, { 27, 63 }, { 27, 72 },
-			{ 36, 54 }, { 36, 63 }, { 36, 72 },
-			{ 45, 54 }, { 45, 63 }, { 45, 72 }
-		};
+		var houses = (int[][])[
+			[9, 10], [9, 11], [10, 11],
+			[12, 13], [12, 14], [13, 14],
+			[15, 16], [15, 17], [16, 17],
+			[18, 19], [18, 20], [19, 20],
+			[21, 22], [21, 23], [22, 23],
+			[24, 25], [24, 26], [25, 26]
+		];
+		var fitTableRow = (int[][])[
+			[0, 3], [0, 4], [0, 5], [0, 6], [0, 7], [0, 8],
+			[1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8],
+			[2, 3], [2, 4], [2, 5], [2, 6], [2, 7], [2, 8],
+			[3, 6], [3, 7], [3, 8],
+			[4, 6], [4, 7], [4, 8],
+			[5, 6], [5, 7], [5, 8]
+		];
+		var fitTableColumn = (int[][])[
+			[0, 27], [0, 36], [0, 45], [0, 54], [0, 63], [0, 72],
+			[9, 27], [9, 36], [9, 45], [9, 54], [9, 63], [9, 72],
+			[18, 27], [18, 36], [18, 45], [18, 54], [18, 63], [18, 72],
+			[27, 54], [27, 63], [27, 72],
+			[36, 54], [36, 63], [36, 72],
+			[45, 54], [45, 63], [45, 72]
+		];
 
 		RawPatternData = [];
 
@@ -77,8 +74,8 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		{
 			for (var i = 0; i < fitTableRow.Length >> 1; i++)
 			{
-				var c11 = fitTableRow[i, 0] + j * 27;
-				var c21 = fitTableRow[i, 1] + j * 27;
+				var c11 = fitTableRow[i][0] + j * 27;
+				var c21 = fitTableRow[i][1] + j * 27;
 				var c12 = c11 + 9;
 				var c22 = c21 + 9;
 				var c13 = c11 + 18;
@@ -90,8 +87,8 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		{
 			for (var i = 0; i < fitTableColumn.Length >> 1; i++)
 			{
-				var c11 = fitTableColumn[i, 0] + j * 3;
-				var c21 = fitTableColumn[i, 1] + j * 3;
+				var c11 = fitTableColumn[i][0] + j * 3;
+				var c21 = fitTableColumn[i][1] + j * 3;
 				var c12 = c11 + 1;
 				var c22 = c21 + 1;
 				var c13 = c11 + 2;
@@ -105,8 +102,8 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		{
 			for (var i = 0; i < houses.Length >> 1; i++)
 			{
-				var house1 = houses[i, 0];
-				var house2 = houses[i, 1];
+				var house1 = houses[i][0];
+				var house2 = houses[i][1];
 				foreach (Mask mask in new MaskCombinationsGenerator(9, size))
 				{
 					// Check whether all cells are in same house. If so, continue the loop immediately.
@@ -115,12 +112,10 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						continue;
 					}
 
-					var map = CellMap.Empty;
-					var pairs = new List<(Cell, Cell)>();
+					var (map, pairs) = (CellMap.Empty, new List<(Cell, Cell)>());
 					foreach (var pos in mask)
 					{
-						var cell1 = HouseCells[house1][pos];
-						var cell2 = HouseCells[house2][pos];
+						var (cell1, cell2) = (HouseCells[house1][pos], HouseCells[house2][pos]);
 						map.Add(cell1);
 						map.Add(cell2);
 						pairs.Add((cell1, cell2));

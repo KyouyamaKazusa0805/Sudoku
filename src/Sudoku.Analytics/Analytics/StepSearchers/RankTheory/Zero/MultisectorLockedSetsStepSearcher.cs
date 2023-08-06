@@ -26,18 +26,16 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 	static MultisectorLockedSetsStepSearcher()
 	{
 		const int a = ~7, b = ~56, c = ~448;
-		var sizeList = new[,] { { 3, 3 }, { 3, 4 }, { 4, 3 }, { 4, 4 }, { 4, 5 }, { 5, 4 } };
+		var sizeList = (int[][])[[3, 3], [3, 4], [4, 3], [4, 4], [4, 5], [5, 4]];
 		var z = (int[])[0, 1, 2, 3, 4, 5, 6, 7, 8];
 		var result = new CellMap[MultisectorLockedSetsTemplatesCount];
 		var n = 0;
 		for (var i = 0; i < sizeList.Length >> 1; i++)
 		{
-			var rows = sizeList[i, 0];
-			var columns = sizeList[i, 1];
+			var (rows, columns) = (sizeList[i][0], sizeList[i][1]);
 			foreach (var rowList in z.GetSubsets(rows))
 			{
-				var rowMask = (Mask)0;
-				var rowMap = CellMap.Empty;
+				var (rowMask, rowMap) = ((Mask)0, CellMap.Empty);
 				foreach (var row in rowList)
 				{
 					rowMask |= (Mask)(1 << row);
@@ -51,8 +49,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 
 				foreach (var columnList in z.GetSubsets(columns))
 				{
-					var columnMask = (Mask)0;
-					var columnMap = CellMap.Empty;
+					var (columnMask, columnMap) = ((Mask)0, CellMap.Empty);
 					foreach (var column in columnList)
 					{
 						columnMask |= (Mask)(1 << column);
