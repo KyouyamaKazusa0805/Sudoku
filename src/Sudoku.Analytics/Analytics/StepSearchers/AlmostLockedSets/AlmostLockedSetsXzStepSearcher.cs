@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.SinglyLinkedAlmostLockedSetsXzRule, Technique.DoublyLinkedAlmostLockedSetsXzRule, Technique.ExtendedSubsetPrinciple)]
-public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
+public sealed partial class AlmostLockedSetsXzStepSearcher : AlmostLockedSetsStepSearcher
 {
 	/// <summary>
 	/// Indicates whether two ALSes make an collision, which means they share the some same cells. 
@@ -40,7 +40,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var house = (stackalloc House[2]);
-		var alses = grid.GatherAlmostLockedSets();
+		var alses = GatherAlmostLockedSets(grid);
 		for (var (i, length) = (0, alses.Length); i < length - 1; i++)
 		{
 			var als1 = alses[i];

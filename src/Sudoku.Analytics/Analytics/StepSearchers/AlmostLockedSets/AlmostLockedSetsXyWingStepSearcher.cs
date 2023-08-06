@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.AlmostLockedSetsXyWing)]
-public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
+public sealed partial class AlmostLockedSetsXyWingStepSearcher : AlmostLockedSetsStepSearcher
 {
 	/// <summary>
 	/// Indicates whether two ALSes make an collision, which means they share the some same cells. 
@@ -22,7 +22,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var rccList = new List<(AlmostLockedSet Left, AlmostLockedSet Right, Mask Mask)>();
-		var alses = grid.GatherAlmostLockedSets();
+		var alses = GatherAlmostLockedSets(grid);
 
 		// Gather all RCCs.
 		for (var (i, length) = (0, alses.Length); i < length - 1; i++)

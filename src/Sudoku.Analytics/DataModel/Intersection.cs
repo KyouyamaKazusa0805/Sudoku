@@ -1,9 +1,9 @@
-namespace Sudoku.Analytics.InternalHelpers;
+namespace Sudoku.DataModel;
 
 /// <summary>
 /// Defines a type that stores some fields as shared one.
 /// </summary>
-internal static class SharedFields
+internal static class Intersection
 {
 	/// <summary>
 	/// <para>
@@ -52,7 +52,7 @@ internal static class SharedFields
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
-	static SharedFields()
+	static Intersection()
 	{
 		scoped var r = (ReadOnlySpan<byte>)[0, 1, 2, 3, 4, 5, 6, 7, 8];
 		scoped var c = (ReadOnlySpan<byte>)[0, 3, 6, 1, 4, 7, 2, 5, 8];
@@ -79,10 +79,8 @@ internal static class SharedFields
 file sealed class IntersectionBaseComparer : IEqualityComparer<IntersectionBase>
 {
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(IntersectionBase x, IntersectionBase y) => x == y;
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int GetHashCode(IntersectionBase obj) => obj.Line << 5 | obj.Block;
 }

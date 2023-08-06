@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.InternalHelpers;
+namespace Sudoku.DataModel;
 
 /// <summary>
 /// Represents a list of methods that operates with single techniques, in order to get crosshatching information.

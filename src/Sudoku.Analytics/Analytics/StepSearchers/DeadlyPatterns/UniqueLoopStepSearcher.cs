@@ -146,13 +146,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d2));
 		}
 
-		var step = new UniqueLoopType1Step(
-			[.. conclusions],
-			[[.. candidateOffsets, .. UniqueLoopStepSearcherHelper.GetLoopLinks(path)]],
-			d1,
-			d2,
-			loop
-		);
+		var step = new UniqueLoopType1Step([.. conclusions], [[.. candidateOffsets, .. GetLoopLinks(path)]], d1, d2, loop);
 		if (onlyFindOne)
 		{
 			return step;
@@ -213,7 +207,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 		var step = new UniqueLoopType2Step(
 			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
-			[[.. candidateOffsets, .. UniqueLoopStepSearcherHelper.GetLoopLinks(path)]],
+			[[.. candidateOffsets, .. GetLoopLinks(path)]],
 			d1,
 			d2,
 			loop,
@@ -349,13 +343,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 						var step = new UniqueLoopType3Step(
 							[.. conclusions],
-							[
-								[
-									.. candidateOffsets,
-									new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex),
-									.. UniqueLoopStepSearcherHelper.GetLoopLinks(path)
-								]
-							],
+							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
 							d1,
 							d2,
 							loop,
@@ -435,7 +423,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 					var step = new UniqueLoopType3Step(
 						[.. conclusions],
-						[[.. candidateOffsets, .. UniqueLoopStepSearcherHelper.GetLoopLinks(path)]],
+						[[.. candidateOffsets, .. GetLoopLinks(path)]],
 						d1,
 						d2,
 						loop,
@@ -526,13 +514,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 				var step = new UniqueLoopType4Step(
 					[.. conclusions],
-					[
-						[
-							.. candidateOffsets,
-							new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex),
-							.. UniqueLoopStepSearcherHelper.GetLoopLinks(path)
-						]
-					],
+					[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
 					d1,
 					d2,
 					loop,
@@ -592,7 +574,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 			foreach (var next in HousesMap[cell.ToHouseIndex(houseType)] & EmptyCells)
 			{
-				if (loopPath[0] == next && loopPath.Count >= 6 && UniqueLoopStepSearcherHelper.IsValidLoop(loopPath))
+				if (loopPath[0] == next && loopPath.Count >= 6 && IsValidLoop(loopPath))
 				{
 					// Yeah. The loop is closed.
 					result.Add(new(loopMap, [.. loopPath], (Mask)(1 << d1 | 1 << d2)));
@@ -622,5 +604,85 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 		loopPath.Remove();
 		loopMap.Remove(cell);
+	}
+
+
+	/// <summary>
+	/// Determine whether the specified loop is a valid unique loop or unique rectangle pattern.
+	/// </summary>
+	/// <param name="loopPath">The path of the loop.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <remarks>
+	/// <para>
+	/// This method uses a trick way (node-coloring) to check whether a loop is a unique loop.
+	/// The parameter <paramref name="loopPath"/> holds a list of cells, which are nodes of the loop.
+	/// Then we begin to colorize each node with 2 different colors <b><i>A</i></b> and <b><i>B</i></b>.
+	/// The only point we should notice is that the color between 2 adjacent nodes should be different
+	/// (i.e. one is colored with <b><i>A</i></b> and the other should be colored with <b><i>B</i></b>).
+	/// If at least one pair of cells in a same house are colored with a same color, it won't be a valid unique loop.
+	/// Those colors stands for the final filling digits. Therefore, "Two cells in a same house are colored same"
+	/// means "Two cells in a same house are filled with a same digit", which disobeys the basic sudoku rule.
+	/// </para>
+	/// <para>
+	/// This method won't check for whether the loop is a unique rectangle (of length 4). It means, a valid unique rectangle
+	/// can also make this method return <see langword="true"/>.
+	/// </para>
+	/// </remarks>
+	internal static bool IsValidLoop(scoped in ValueList<Cell> loopPath)
+	{
+		var (visitedOdd, visitedEven, isOdd) = (0, 0, false);
+		foreach (var cell in loopPath)
+		{
+			foreach (var houseType in HouseTypes)
+			{
+				var house = cell.ToHouseIndex(houseType);
+				if (isOdd)
+				{
+					if ((visitedOdd >> house & 1) != 0)
+					{
+						return false;
+					}
+
+					visitedOdd |= 1 << house;
+				}
+				else
+				{
+					if ((visitedEven >> house & 1) != 0)
+					{
+						return false;
+					}
+
+					visitedEven |= 1 << house;
+				}
+			}
+
+			isOdd = !isOdd;
+		}
+
+		return visitedEven == visitedOdd;
+	}
+
+	/// <summary>
+	/// Gets all possible links of the loop.
+	/// </summary>
+	/// <param name="path">The loop, specified as its path.</param>
+	/// <returns>A list of <see cref="LinkViewNode"/> instances.</returns>
+	private static List<LinkViewNode> GetLoopLinks(Cell[] path)
+	{
+		const Digit digit = 4;
+		var result = new List<LinkViewNode>();
+		for (var i = 0; i < path.Length; i++)
+		{
+			result.Add(
+				new(
+					WellKnownColorIdentifier.Normal,
+					new(digit, CellsMap[path[i]]),
+					new(digit, CellsMap[path[i + 1 == path.Length ? 0 : i + 1]]),
+					Inference.ConjugatePair
+				)
+			);
+		}
+
+		return result;
 	}
 }

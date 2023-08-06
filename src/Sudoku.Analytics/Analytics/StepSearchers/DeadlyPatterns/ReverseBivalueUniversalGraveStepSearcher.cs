@@ -140,7 +140,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 					foreach (var cellsChosen in emptyCells.GetSubsets(incrementStep))
 					{
 						var completePattern = valuesMap | cellsChosen;
-						if (!UniqueLoopStepSearcherHelper.IsGeneralizedUniqueLoop(completePattern))
+						if (!IsGeneralizedUniqueLoop(completePattern))
 						{
 							// This pattern is invalid.
 							continue;
@@ -385,5 +385,75 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		}
 
 		return null;
+	}
+
+
+	/// <summary>
+	/// Determine whether a loop is a generalized unique loop.
+	/// </summary>
+	/// <param name="loop">The loop to be checked.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <remarks>
+	/// <para>This method uses another way to check for unique loops.</para>
+	/// <para>
+	/// <i>
+	/// However, this method contains a little bug for checking loops, leading to returning <see langword="true"/> for this method,
+	/// and returning <see langword="false"/> for the method <see cref="UniqueLoopStepSearcher.IsValidLoop(in ValueList{int})"/> above this.
+	/// If a pattern is like:
+	/// </i>
+	/// <code><![CDATA[
+	/// .-----.-----.
+	/// | x   | x   |
+	/// |   x |   x |
+	/// |-----+-----|
+	/// | x   |   x |
+	/// |   x | x   |
+	/// '-----'-----'
+	/// ]]></code>
+	/// <i>This pattern isn't a valid unique loop, because the pattern has no suitable way to filling digits, without conflict.</i>
+	/// </para>
+	/// <para>
+	/// This method can also check for separated ones, e.g.:
+	/// <code><![CDATA[
+	/// .-------.-------.-------.
+	/// | x     | x     |       |
+	/// | x     | x     |       |
+	/// |       |       |       |
+	/// |-------+-------+-------|
+	/// |       |       |       |
+	/// |       |     x |     x |
+	/// |       |     x |     x |
+	/// ~~~~~~~~~~~~~~~~~~~~~~~~~
+	/// ]]></code>
+	/// </para>
+	/// <para><inheritdoc cref="UniqueLoopStepSearcher.IsValidLoop(in ValueList{int})" path="//remarks/para[2]"/></para>
+	/// </remarks>
+	/// <seealso cref="UniqueLoopStepSearcher.IsValidLoop(in ValueList{int})"/>
+	private static bool IsGeneralizedUniqueLoop(scoped in CellMap loop)
+	{
+		// The length of the loop pattern must be at least 4, and an even.
+		_ = loop is { Count: var length, Houses: var houses, RowMask: var r, ColumnMask: var c, BlockMask: var b };
+		if ((length & 1) != 0 || length < 4)
+		{
+			return false;
+		}
+
+		// The pattern must span n/2 rows, n/2 columns and n/2 blocks, and n is the length of the pattern).
+		var halfLength = length >> 1;
+		if (PopCount((uint)r) != halfLength || PopCount((uint)c) != halfLength || PopCount((uint)b) != halfLength)
+		{
+			return false;
+		}
+
+		// All houses spanned should contain only 2 cells of the pattern.
+		foreach (var house in houses)
+		{
+			if ((HousesMap[house] & loop).Count != 2)
+			{
+				return false;
+			}
+		}
+
+		return true;
 	}
 }

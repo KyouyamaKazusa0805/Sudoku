@@ -42,7 +42,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.SiameseSashimiMutantXWing, Technique.SiameseSashimiMutantSwordfish, Technique.SiameseSashimiMutantJellyfish,
 	Technique.SiameseSashimiMutantSquirmbag, Technique.SiameseSashimiMutantWhale, Technique.SiameseSashimiMutantLeviathan,
 	ConditionalCases = ConditionalCase.TimeComplexity)]
-public sealed partial class ComplexFishStepSearcher : StepSearcher
+public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 {
 	/// <summary>
 	/// The internal <see cref="StepSearcher"/> instance that is used for pre-checking the possible eliminations of the fishes.
@@ -423,7 +423,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 									exofins,
 									endofins,
 									!searchForMutant,
-									FishStepSearcherHelper.IsSashimi(baseSets, fins, digit)
+									IsSashimi(baseSets, fins, digit)
 								);
 								if (onlyFindOne)
 								{

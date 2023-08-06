@@ -54,7 +54,7 @@ public sealed partial class ComplexFishStep(
 	public override decimal BaseDifficulty => 3.2M;
 
 	/// <inheritdoc/>
-	public override Technique Code => FishStepSearcherHelper.GetComplexFishTechniqueCodeFromName(InternalName);
+	public override Technique Code => GetComplexFishTechniqueCodeFromName(InternalName);
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
@@ -109,6 +109,34 @@ public sealed partial class ComplexFishStep(
 				? $"{shapeModifier} "
 				: null
 		)}{TechniqueFact.GetFishEnglishName(Size)}";
+
+
+	/// <summary>
+	/// Try to get the <see cref="Technique"/> code instance from the specified name, where the name belongs
+	/// to a complex fish name, such as "Finned Franken Swordfish".
+	/// </summary>
+	/// <param name="name">The name.</param>
+	/// <returns>The <see cref="Technique"/> code instance.</returns>
+	/// <seealso cref="Technique"/>
+	private static unsafe Technique GetComplexFishTechniqueCodeFromName(string name)
+	{
+		// Creates a buffer to store the characters that isn't a space or a bar.
+		var buffer = stackalloc char[name.Length];
+		var bufferLength = 0;
+		fixed (char* p = name)
+		{
+			for (var ptr = p; *ptr != '\0'; ptr++)
+			{
+				if (*ptr is not ('-' or ' '))
+				{
+					buffer[bufferLength++] = *ptr;
+				}
+			}
+		}
+
+		// Parses via the buffer, and returns the result.
+		return Enum.Parse<Technique>(new string(PointerOperations.Slice(buffer, bufferLength, 0)));
+	}
 
 
 	/// <inheritdoc/>

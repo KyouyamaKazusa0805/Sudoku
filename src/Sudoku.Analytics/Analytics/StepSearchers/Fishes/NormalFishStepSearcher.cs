@@ -45,7 +45,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.SiameseFinnedSquirmbag, Technique.SiameseFinnedWhale, Technique.SiameseFinnedLeviathan,
 	Technique.SiameseSashimiXWing, Technique.SiameseSashimiSwordfish, Technique.SiameseSashimiJellyfish,
 	Technique.SiameseSashimiSquirmbag, Technique.SiameseSashimiWhale, Technique.SiameseSashimiLeviathan)]
-public sealed partial class NormalFishStepSearcher : StepSearcher
+public sealed partial class NormalFishStepSearcher : FishStepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
@@ -266,7 +266,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 						baseSetsMask,
 						coverSetsMask,
 						fins,
-						FishStepSearcherHelper.IsSashimi(bs, fins, digit)
+						IsSashimi(bs, fins, digit)
 					);
 
 					if (onlyFindOne)

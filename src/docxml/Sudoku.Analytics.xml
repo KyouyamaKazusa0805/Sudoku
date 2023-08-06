@@ -2902,331 +2902,6 @@
         <member name="M:Sudoku.Analytics.Eliminations.IPhasedConclusionProvider`2.System#IEquatable{TSelf}#Equals(`0)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.InternalHelpers.AlmostLockedSetHelper">
-            <summary>
-            Represents a helper type that operates with <see cref="T:Sudoku.Analytics.Patterns.AlmostLockedSet"/> instances.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.AlmostLockedSetHelper.GatherAlmostLockedSets(Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Analytics.Patterns.AlmostLockedSet.Gather(Sudoku.Concepts.Grid@)"/>
-            <remarks><b>This method uses <see cref="T:Sudoku.Analytics.Buffers.CachedFields"/>.</b></remarks>
-            <seealso cref="T:Sudoku.Analytics.Buffers.CachedFields"/>
-        </member>
-        <member name="T:Sudoku.Analytics.InternalHelpers.Crosshatching">
-            <summary>
-            Represents a list of methods that operates with single techniques, in order to get crosshatching information.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.Crosshatching.GetCrosshatchingInfo(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to get a pair of <see cref="T:Sudoku.Concepts.CellMap"/> instances indicating the crosshatching information for the specified house,
-            with the specified digit in the specified grid.
-            </summary>
-            <param name="grid">The puzzle relying on.</param>
-            <param name="digit">The digit to be checked.</param>
-            <param name="house">The house to be checked.</param>
-            <param name="cells">The cell to be checked. The cell is the final hidden single cell or the locked candidate cells.</param>
-            <returns>The result pair.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.InternalHelpers.CrosshatchingInfo">
-            <summary>
-            Defines the target crosshatching information.
-            </summary>
-            <param name="BaseCells">The base cells to be used.</param>
-            <param name="EmptyCells">The empty cells in the final.</param>
-            <param name="ExcludedCells">The excluded cells to be used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.CrosshatchingInfo.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Defines the target crosshatching information.
-            </summary>
-            <param name="BaseCells">The base cells to be used.</param>
-            <param name="EmptyCells">The empty cells in the final.</param>
-            <param name="ExcludedCells">The excluded cells to be used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.InternalHelpers.CrosshatchingInfo.BaseCells">
-            <summary>The base cells to be used.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.InternalHelpers.CrosshatchingInfo.EmptyCells">
-            <summary>The empty cells in the final.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.InternalHelpers.CrosshatchingInfo.ExcludedCells">
-            <summary>The excluded cells to be used.</summary>
-        </member>
-        <member name="T:Sudoku.Analytics.InternalHelpers.EmptyRectangleHelper">
-            <summary>
-            Represents a helper type that operates with empty rectangles.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.EmptyRectangleHelper.IsEmptyRectangle(Sudoku.Concepts.CellMap@,System.Int32,System.Int32@,System.Int32@)">
-            <summary>
-            Determine whether the specified cells in the specified block form an empty rectangle.
-            </summary>
-            <param name="cells">The cells to be checked.</param>
-            <param name="block">The block where the cells may form an empty rectangle structure.</param>
-            <param name="row">The row that the empty rectangle used.</param>
-            <param name="column">The column that the empty rectangle used.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/> value indicating that. If <see langword="true"/>,
-            both arguments <paramref name="row"/> and <paramref name="column"/> can be used;
-            otherwise, both arguments should be discards.
-            </returns>
-        </member>
-        <member name="T:Sudoku.Analytics.InternalHelpers.FishStepSearcherHelper">
-            <summary>
-            Used by <see cref="T:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher"/> and <see cref="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher"/>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.FishStepSearcherHelper.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Check whether the fish is sashimi.
-            </summary>
-            <param name="baseSets">The base sets.</param>
-            <param name="fins">All fins.</param>
-            <param name="digit">The digit.</param>
-            <returns>
-            <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
-            <para>
-            <inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexFishStep.IsSashimi" path="/remarks"/>
-            </para>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.FishStepSearcherHelper.GetComplexFishTechniqueCodeFromName(System.String)">
-            <summary>
-            Try to get the <see cref="T:Sudoku.Analytics.Categorization.Technique"/> code instance from the specified name, where the name belongs
-            to a complex fish name, such as "Finned Franken Swordfish".
-            </summary>
-            <param name="name">The name.</param>
-            <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> code instance.</returns>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="T:Sudoku.Analytics.InternalHelpers.SharedFields">
-            <summary>
-            Defines a type that stores some fields as shared one.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionMaps">
-            <summary>
-            <para>
-            Indicates all maps that forms the each intersection. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | C C C | A A A | A A A |
-            | B B B | . . . | . . . |
-            | B B B | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            </para>
-            <para>
-            In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionBlockTable">
-            <summary>
-            <para>The table of all blocks to iterate for each blocks.</para>
-            <para>
-            This field is only used for providing the data for another field <see cref="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionMaps"/>.
-            </para>
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionMaps"/>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.SharedFields.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
-        <member name="T:Sudoku.Analytics.InternalHelpers.IntersectionBaseComparer">
-            <summary>
-            Represents a comparer instance that compares two tuples.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.IntersectionBaseComparer.Equals(Sudoku.DataModel.IntersectionBase,Sudoku.DataModel.IntersectionBase)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.IntersectionBaseComparer.GetHashCode(Sudoku.DataModel.IntersectionBase)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper">
-            <summary>
-            Used by <see cref="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)">
-            <summary>
-            Determine whether the specified loop is a valid unique loop or unique rectangle pattern.
-            </summary>
-            <param name="loopPath">The path of the loop.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <remarks>
-            <para>
-            This method uses a trick way (node-coloring) to check whether a loop is a unique loop.
-            The parameter <paramref name="loopPath"/> holds a list of cells, which are nodes of the loop.
-            Then we begin to colorize each node with 2 different colors <b><i>A</i></b> and <b><i>B</i></b>.
-            The only point we should notice is that the color between 2 adjacent nodes should be different
-            (i.e. one is colored with <b><i>A</i></b> and the other should be colored with <b><i>B</i></b>).
-            If at least one pair of cells in a same house are colored with a same color, it won't be a valid unique loop.
-            Those colors stands for the final filling digits. Therefore, "Two cells in a same house are colored same"
-            means "Two cells in a same house are filled with a same digit", which disobeys the basic sudoku rule.
-            </para>
-            <para>
-            This method won't check for whether the loop is a unique rectangle (of length 4). It means, a valid unique rectangle
-            can also make this method return <see langword="true"/>.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.IsGeneralizedUniqueLoop(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Determine whether a loop is a generalized unique loop.
-            </summary>
-            <param name="loop">The loop to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <remarks>
-            <para>This method uses another way to check for unique loops.</para>
-            <para>
-            <i>
-            However, this method contains a little bug for checking loops, leading to returning <see langword="true"/> for this method,
-            and returning <see langword="false"/> for the method <see cref="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)"/> above this. If a pattern is like:
-            </i>
-            <code><![CDATA[
-            .-----.-----.
-            | x   | x   |
-            |   x |   x |
-            |-----+-----|
-            | x   |   x |
-            |   x | x   |
-            '-----'-----'
-            ]]></code>
-            <i>This pattern isn't a valid unique loop, because the pattern has no suitable way to filling digits, without conflict.</i>
-            </para>
-            <para>
-            This method can also check for separated ones, e.g.:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | x     | x     |       |
-            | x     | x     |       |
-            |       |       |       |
-            |-------+-------+-------|
-            |       |       |       |
-            |       |     x |     x |
-            |       |     x |     x |
-            ~~~~~~~~~~~~~~~~~~~~~~~~~
-            ]]></code>
-            </para>
-            <para><inheritdoc cref="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)" path="//remarks/para[2]"/></para>
-            </remarks>
-            <seealso cref="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueLoopStepSearcherHelper.GetLoopLinks(System.Int32[])">
-            <summary>
-            Gets all possible links of the loop.
-            </summary>
-            <param name="path">The loop, specified as its path.</param>
-            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instances.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper">
-            <summary>
-            Used by <see cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>
-        </member>
-        <member name="F:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.CountOfPatterns">
-            <summary>
-            Indicates the number of all total possible UR patterns.
-            The value is same as the length of field <see cref="F:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.UniqueRectanglePatterns"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.UniqueRectanglePatterns"/>
-        </member>
-        <member name="F:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.UniqueRectanglePatterns">
-            <summary>
-            The table of all <b>Unique Rectangle</b> cells.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.CheckPreconditions(Sudoku.Concepts.Grid@,System.Int32[],System.Boolean)">
-            <summary>
-            Check preconditions.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
-            <returns>Indicates whether the UR is passed to check.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.CheckPreconditionsOnIncomplete(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32)">
-            <summary>
-            Checks whether the specified UR cells satisfies the precondition of an incomplete UR.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="urCells">The UR cells.</param>
-            <param name="d1">The first digit used.</param>
-            <param name="d2">The second digit used.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.IsConjugatePair(System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            To determine whether the specified house forms a conjugate pair
-            of the specified digit, and the cells where they contain the digit
-            is same as the given map contains.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="map">The map.</param>
-            <param name="houseIndex">The house index.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.IsSameHouseCell(System.Int32,System.Int32,System.Int32@)">
-            <summary>
-            Get whether two cells are in a same house.
-            </summary>
-            <param name="cell1">The cell 1 to check.</param>
-            <param name="cell2">The cell 2 to check.</param>
-            <param name="houses">
-            The result houses that both two cells lie in. If the cell can't be found, this argument will be 0.
-            </param>
-            <returns>
-            The <see cref="T:System.Boolean"/> value indicating whether the another cell is same house as the current one.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.IsIncomplete(System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode})">
-            <summary>
-            Check whether the highlight UR candidates is incomplete.
-            </summary>
-            <param name="allowIncomplete"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles" path="/summary"/></param>
-            <param name="list">The list to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <remarks>
-            This method uses a trick to check a UR structure: to count up the number of "Normal colored"
-            candidates used in the current UR structure. If and only if the full structure uses 8 candidates
-            colored with normal one, the structure will be complete.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.GetDiagonalCell(System.Int32[],System.Int32)">
-            <summary>
-            Get a cell that can't see each other.
-            </summary>
-            <param name="urCells">The UR cells.</param>
-            <param name="cell">The current cell.</param>
-            <returns>The diagonal cell.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the specified argument <paramref name="cell"/> is invalid.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Analytics.InternalHelpers.UniqueRectangleStepSearcherHelper.GetHighlightCells(System.Int32[])">
-            <summary>
-            Get all highlight cells.
-            </summary>
-            <param name="urCells">The all UR cells used.</param>
-            <returns>The list of highlight cells.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.AnalyzerFailedReason">
             <summary>
             Defines a reason why the puzzle is failed to be analyzed.
@@ -5417,6 +5092,39 @@ result ^= expression;
             </summary>
             <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsStepSearcher">
+            <summary>
+            Provides with an <b>Almost Locked Sets</b> step searcher.
+            </summary>
+            <param name="priority">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
+            </param>
+            <param name="level">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
+            </param>
+            <param name="runningArea">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsStepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
+            <summary>
+            Provides with an <b>Almost Locked Sets</b> step searcher.
+            </summary>
+            <param name="priority">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
+            </param>
+            <param name="level">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
+            </param>
+            <param name="runningArea">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsStepSearcher.GatherAlmostLockedSets(Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Analytics.Patterns.AlmostLockedSet.Gather(Sudoku.Concepts.Grid@)"/>
+            <remarks><b>This method uses <see cref="T:Sudoku.Analytics.Buffers.CachedFields"/>.</b></remarks>
+            <seealso cref="T:Sudoku.Analytics.Buffers.CachedFields"/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher">
             <summary>
             Provides with an <b>Almost Locked Sets W-Wing</b> step searcher.
@@ -6472,6 +6180,49 @@ result ^= expression;
             <param name="cellsChosen">The empty cells chosen.</param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.IsGeneralizedUniqueLoop(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Determine whether a loop is a generalized unique loop.
+            </summary>
+            <param name="loop">The loop to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <remarks>
+            <para>This method uses another way to check for unique loops.</para>
+            <para>
+            <i>
+            However, this method contains a little bug for checking loops, leading to returning <see langword="true"/> for this method,
+            and returning <see langword="false"/> for the method <see cref="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)"/> above this.
+            If a pattern is like:
+            </i>
+            <code><![CDATA[
+            .-----.-----.
+            | x   | x   |
+            |   x |   x |
+            |-----+-----|
+            | x   |   x |
+            |   x | x   |
+            '-----'-----'
+            ]]></code>
+            <i>This pattern isn't a valid unique loop, because the pattern has no suitable way to filling digits, without conflict.</i>
+            </para>
+            <para>
+            This method can also check for separated ones, e.g.:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | x     | x     |       |
+            | x     | x     |       |
+            |       |       |       |
+            |-------+-------+-------|
+            |       |       |       |
+            |       |     x |     x |
+            |       |     x |     x |
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+            ]]></code>
+            </para>
+            <para><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)" path="//remarks/para[2]"/></para>
+            </remarks>
+            <seealso cref="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)"/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
             <summary>
             Provides with a <b>Unique Loop</b> step searcher.
@@ -6561,6 +6312,36 @@ result ^= expression;
             <param name="extraDigits">The extra digits to be checked.</param>
             <param name="allowedEx">Indicates how many cells the current loop can exist, with extra digits stored.</param>
             <param name="lastHouseType">The last house type. This is a temporary variable.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)">
+            <summary>
+            Determine whether the specified loop is a valid unique loop or unique rectangle pattern.
+            </summary>
+            <param name="loopPath">The path of the loop.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <remarks>
+            <para>
+            This method uses a trick way (node-coloring) to check whether a loop is a unique loop.
+            The parameter <paramref name="loopPath"/> holds a list of cells, which are nodes of the loop.
+            Then we begin to colorize each node with 2 different colors <b><i>A</i></b> and <b><i>B</i></b>.
+            The only point we should notice is that the color between 2 adjacent nodes should be different
+            (i.e. one is colored with <b><i>A</i></b> and the other should be colored with <b><i>B</i></b>).
+            If at least one pair of cells in a same house are colored with a same color, it won't be a valid unique loop.
+            Those colors stands for the final filling digits. Therefore, "Two cells in a same house are colored same"
+            means "Two cells in a same house are filled with a same digit", which disobeys the basic sudoku rule.
+            </para>
+            <para>
+            This method won't check for whether the loop is a unique rectangle (of length 4). It means, a valid unique rectangle
+            can also make this method return <see langword="true"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.GetLoopLinks(System.Int32[])">
+            <summary>
+            Gets all possible links of the loop.
+            </summary>
+            <param name="path">The loop, specified as its path.</param>
+            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher">
             <summary>
@@ -6661,6 +6442,18 @@ result ^= expression;
             </list>
             </item>
             </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CountOfPatterns">
+            <summary>
+            Indicates the number of all total possible UR patterns.
+            The value is same as the length of field <see cref="F:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.UniqueRectanglePatterns"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.UniqueRectanglePatterns"/>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.UniqueRectanglePatterns">
+            <summary>
+            The table of all <b>Unique Rectangle</b> cells.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles">
@@ -7367,6 +7160,80 @@ result ^= expression;
             </para>
             </remarks>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckPreconditions(Sudoku.Concepts.Grid@,System.Int32[],System.Boolean)">
+            <summary>
+            Check preconditions.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
+            <returns>Indicates whether the UR is passed to check.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Checks whether the specified UR cells satisfies the precondition of an incomplete UR.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="urCells">The UR cells.</param>
+            <param name="d1">The first digit used.</param>
+            <param name="d2">The second digit used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsConjugatePair(System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            To determine whether the specified house forms a conjugate pair
+            of the specified digit, and the cells where they contain the digit
+            is same as the given map contains.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="map">The map.</param>
+            <param name="houseIndex">The house index.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsSameHouseCell(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Get whether two cells are in a same house.
+            </summary>
+            <param name="cell1">The cell 1 to check.</param>
+            <param name="cell2">The cell 2 to check.</param>
+            <param name="houses">
+            The result houses that both two cells lie in. If the cell can't be found, this argument will be 0.
+            </param>
+            <returns>
+            The <see cref="T:System.Boolean"/> value indicating whether the another cell is same house as the current one.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsIncomplete(System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode})">
+            <summary>
+            Check whether the highlight UR candidates is incomplete.
+            </summary>
+            <param name="allowIncomplete"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles" path="/summary"/></param>
+            <param name="list">The list to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <remarks>
+            This method uses a trick to check a UR structure: to count up the number of "Normal colored"
+            candidates used in the current UR structure. If and only if the full structure uses 8 candidates
+            colored with normal one, the structure will be complete.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.GetDiagonalCell(System.Int32[],System.Int32)">
+            <summary>
+            Get a cell that can't see each other.
+            </summary>
+            <param name="urCells">The UR cells.</param>
+            <param name="cell">The current cell.</param>
+            <returns>The diagonal cell.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the specified argument <paramref name="cell"/> is invalid.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.GetHighlightCells(System.Int32[])">
+            <summary>
+            Get all highlight cells.
+            </summary>
+            <param name="urCells">The all UR cells used.</param>
+            <returns>The list of highlight cells.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher">
             <summary>
             Provides with a <b>Junior Exocet</b> step searcher.
@@ -7499,6 +7366,48 @@ result ^= expression;
             </summary>
             <param name="grid">The grid.</param>
             <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.FishStepSearcher">
+            <summary>
+            Provides with a <b>Fish</b> step searcher.
+            </summary>
+            <param name="priority">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
+            </param>
+            <param name="level">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
+            </param>
+            <param name="runningArea">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.FishStepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
+            <summary>
+            Provides with a <b>Fish</b> step searcher.
+            </summary>
+            <param name="priority">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
+            </param>
+            <param name="level">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
+            </param>
+            <param name="runningArea">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.FishStepSearcher.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check whether the fish is sashimi.
+            </summary>
+            <param name="baseSets">The base sets.</param>
+            <param name="fins">All fins.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
+            <para>
+            <inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexFishStep.IsSashimi" path="/remarks"/>
+            </para>
+            </returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher">
             <summary>
@@ -8224,6 +8133,20 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleStepSearcher.IsEmptyRectangle(Sudoku.Concepts.CellMap@,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Determine whether the specified cells in the specified block form an empty rectangle.
+            </summary>
+            <param name="cells">The cells to be checked.</param>
+            <param name="block">The block where the cells may form an empty rectangle structure.</param>
+            <param name="row">The row that the empty rectangle used.</param>
+            <param name="column">The column that the empty rectangle used.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating that. If <see langword="true"/>,
+            both arguments <paramref name="row"/> and <paramref name="column"/> can be used;
+            otherwise, both arguments should be discards.
+            </returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher">
             <summary>
@@ -12072,6 +11995,15 @@ result ^= expression;
             <summary>
             The internal name.
             </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.GetComplexFishTechniqueCodeFromName(System.String)">
+            <summary>
+            Try to get the <see cref="T:Sudoku.Analytics.Categorization.Technique"/> code instance from the specified name, where the name belongs
+            to a complex fish name, such as "Finned Franken Swordfish".
+            </summary>
+            <param name="name">The name.</param>
+            <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> code instance.</returns>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#ComplexFishStep}#op_Equality(Sudoku.Analytics.Steps.ComplexFishStep,Sudoku.Analytics.Steps.ComplexFishStep)">
             <inheritdoc/>
@@ -17799,6 +17731,47 @@ result ^= expression;
             </exception>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
+        <member name="T:Sudoku.DataModel.Crosshatching">
+            <summary>
+            Represents a list of methods that operates with single techniques, in order to get crosshatching information.
+            </summary>
+        </member>
+        <member name="M:Sudoku.DataModel.Crosshatching.GetCrosshatchingInfo(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to get a pair of <see cref="T:Sudoku.Concepts.CellMap"/> instances indicating the crosshatching information for the specified house,
+            with the specified digit in the specified grid.
+            </summary>
+            <param name="grid">The puzzle relying on.</param>
+            <param name="digit">The digit to be checked.</param>
+            <param name="house">The house to be checked.</param>
+            <param name="cells">The cell to be checked. The cell is the final hidden single cell or the locked candidate cells.</param>
+            <returns>The result pair.</returns>
+        </member>
+        <member name="T:Sudoku.DataModel.CrosshatchingInfo">
+            <summary>
+            Defines the target crosshatching information.
+            </summary>
+            <param name="BaseCells">The base cells to be used.</param>
+            <param name="EmptyCells">The empty cells in the final.</param>
+            <param name="ExcludedCells">The excluded cells to be used.</param>
+        </member>
+        <member name="M:Sudoku.DataModel.CrosshatchingInfo.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines the target crosshatching information.
+            </summary>
+            <param name="BaseCells">The base cells to be used.</param>
+            <param name="EmptyCells">The empty cells in the final.</param>
+            <param name="ExcludedCells">The excluded cells to be used.</param>
+        </member>
+        <member name="P:Sudoku.DataModel.CrosshatchingInfo.BaseCells">
+            <summary>The base cells to be used.</summary>
+        </member>
+        <member name="P:Sudoku.DataModel.CrosshatchingInfo.EmptyCells">
+            <summary>The empty cells in the final.</summary>
+        </member>
+        <member name="P:Sudoku.DataModel.CrosshatchingInfo.ExcludedCells">
+            <summary>The excluded cells to be used.</summary>
+        </member>
         <member name="T:Sudoku.DataModel.ExtraDifficultyCase">
             <summary>
             Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
@@ -17818,6 +17791,61 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.DataModel.ExtraDifficultyCase.Value">
             <summary>The rating value.</summary>
+        </member>
+        <member name="T:Sudoku.DataModel.Intersection">
+            <summary>
+            Defines a type that stores some fields as shared one.
+            </summary>
+        </member>
+        <member name="F:Sudoku.DataModel.Intersection.IntersectionMaps">
+            <summary>
+            <para>
+            Indicates all maps that forms the each intersection. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | C C C | A A A | A A A |
+            | B B B | . . . | . . . |
+            | B B B | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            </para>
+            <para>
+            In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.DataModel.Intersection.IntersectionBlockTable">
+            <summary>
+            <para>The table of all blocks to iterate for each blocks.</para>
+            <para>
+            This field is only used for providing the data for another field <see cref="F:Sudoku.DataModel.Intersection.IntersectionMaps"/>.
+            </para>
+            </summary>
+            <seealso cref="F:Sudoku.DataModel.Intersection.IntersectionMaps"/>
+        </member>
+        <member name="M:Sudoku.DataModel.Intersection.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="T:Sudoku.DataModel.IntersectionBaseComparer">
+            <summary>
+            Represents a comparer instance that compares two tuples.
+            </summary>
+        </member>
+        <member name="M:Sudoku.DataModel.IntersectionBaseComparer.Equals(Sudoku.DataModel.IntersectionBase,Sudoku.DataModel.IntersectionBase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.DataModel.IntersectionBaseComparer.GetHashCode(Sudoku.DataModel.IntersectionBase)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.DataModel.IntersectionBase">
             <summary>
@@ -17841,7 +17869,7 @@ result ^= expression;
         </member>
         <member name="T:Sudoku.DataModel.IntersectionResult">
             <summary>
-            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionMaps"/> property.
+            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.DataModel.Intersection.IntersectionMaps"/> property.
             </summary>
             <param name="LineMap">The map of the line.</param>
             <param name="BlockMap">The map of the block.</param>
@@ -17849,11 +17877,11 @@ result ^= expression;
             <param name="OtherBlocks">
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </param>
-            <seealso cref="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionMaps"/>
+            <seealso cref="F:Sudoku.DataModel.Intersection.IntersectionMaps"/>
         </member>
         <member name="M:Sudoku.DataModel.IntersectionResult.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Byte[])">
             <summary>
-            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionMaps"/> property.
+            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.DataModel.Intersection.IntersectionMaps"/> property.
             </summary>
             <param name="LineMap">The map of the line.</param>
             <param name="BlockMap">The map of the block.</param>
@@ -17861,7 +17889,7 @@ result ^= expression;
             <param name="OtherBlocks">
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </param>
-            <seealso cref="F:Sudoku.Analytics.InternalHelpers.SharedFields.IntersectionMaps"/>
+            <seealso cref="F:Sudoku.DataModel.Intersection.IntersectionMaps"/>
         </member>
         <member name="P:Sudoku.DataModel.IntersectionResult.LineMap">
             <summary>The map of the line.</summary>

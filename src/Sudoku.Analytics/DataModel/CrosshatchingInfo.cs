@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.InternalHelpers;
+namespace Sudoku.DataModel;
 
 /// <summary>
 /// Defines the target crosshatching information.

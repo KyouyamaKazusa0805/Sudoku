@@ -8,13 +8,13 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.AlmostLockedSetsWWing)]
-public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
+public sealed partial class AlmostLockedSetsWWingStepSearcher : AlmostLockedSetsStepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		var alses = grid.GatherAlmostLockedSets();
+		var alses = GatherAlmostLockedSets(grid);
 
 		// Gather all conjugate pairs.
 		var conjugatePairs = Cached.Gather();

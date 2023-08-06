@@ -1,14 +1,27 @@
-namespace Sudoku.Analytics.InternalHelpers;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
-/// Represents a helper type that operates with <see cref="AlmostLockedSet"/> instances.
+/// Provides with an <b>Almost Locked Sets</b> step searcher.
 /// </summary>
-internal static class AlmostLockedSetHelper
+/// <param name="priority">
+/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='priority']"/>
+/// </param>
+/// <param name="level">
+/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='level']"/>
+/// </param>
+/// <param name="runningArea">
+/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
+/// </param>
+public abstract class AlmostLockedSetsStepSearcher(
+	int priority,
+	int level,
+	StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering
+) : StepSearcher(priority, level, runningArea)
 {
 	/// <inheritdoc cref="AlmostLockedSet.Gather(in Grid)"/>
 	/// <remarks><b>This method uses <see cref="CachedFields"/>.</b></remarks>
 	/// <seealso cref="CachedFields"/>
-	internal static AlmostLockedSet[] GatherAlmostLockedSets(this scoped in Grid @this)
+	protected internal static AlmostLockedSet[] GatherAlmostLockedSets(scoped in Grid @this)
 	{
 		// Get all bi-value-cell ALSes.
 		var result = new List<AlmostLockedSet>();
