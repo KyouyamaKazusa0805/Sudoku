@@ -5,13 +5,13 @@ namespace SudokuStudio.Views.Attached;
 /// </summary>
 /// <seealso cref="SudokuPane"/>
 /// <seealso cref="StepCollector"/>
-[AttachedProperty<bool>(RuntimeIdentifier.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps, DefaultValue = true)]
 [AttachedProperty<int>(RuntimeIdentifier.StepGathererMaxStepsGathered, DefaultValue = 1000)]
+[AttachedProperty<int>(RuntimeIdentifier.DifficultyLevelMode, DefaultValue = 0)]
 public static partial class GathererProperties
 {
 	[Callback]
 	private static void StepGathererOnlySearchSameLevelTechniquesInFindAllStepsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> SudokuPaneBindable.GetStepCollector((SudokuPane)d).WithSameLevelConfigruation((bool)e.NewValue);
+		=> SudokuPaneBindable.GetStepCollector((SudokuPane)d).WithSameLevelConfigruation((StepCollectorDifficultyLevelMode)(int)e.NewValue);
 
 	[Callback]
 	private static void StepGathererMaxStepsGatheredPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

@@ -220,7 +220,7 @@
 							a:AnalyzerProperties.AnalyzerUseIttoryuMode="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AnalyzerUseIttoryuMode,Mode=OneWay}"
 							a:AnalyzerProperties.LogicalSolverIgnoresSlowAlgorithms="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms,Mode=OneWay}"
 							a:AnalyzerProperties.LogicalSolverIgnoresHighAllocationAlgorithms="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=OneWay}"
-							a:GathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=OneWay}"
+							a:GathererProperties.DifficultyLevelMode="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DifficultyLevelMode,Mode=OneWay}"
 							a:GathererProperties.StepGathererMaxStepsGathered="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered,Mode=OneWay}"
 							Clicked="SudokuPane_Clicked" MouseWheelChanged="SudokuPane_MouseWheelChanged" GridUpdated="SudokuPane_GridUpdated"
 							CandidatesDisplayingToggled="SudokuPane_CandidatesDisplayingToggled" Caching="SudokuPane_Caching"

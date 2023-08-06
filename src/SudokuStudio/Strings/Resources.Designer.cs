@@ -2428,6 +2428,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow all levels.
+        /// </summary>
+        internal static string SettingsPage_AllLevelsAllowed {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllLevelsAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow collision on ALS-XY-Wing.
         /// </summary>
         internal static string SettingsPage_AllowCollisionOnAlmostLockedSetXyWing {
@@ -2833,6 +2842,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Behavior on difficulty level of step collector.
+        /// </summary>
+        internal static string SettingsPage_DifficultyLevelMode {
+            get {
+                return ResourceManager.GetString("SettingsPage_DifficultyLevelMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This option controls the behavior which level of steps that a step collector can collect. The more number of steps can be collected, the slower the program will be executed..
+        /// </summary>
+        internal static string SettingsPage_DifficultyLevelModeDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_DifficultyLevelModeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable flyout in sudoku pane when right-clicked.
         /// </summary>
         internal static string SettingsPage_DisableSudokuPaneLayoutDisplaying {
@@ -3195,6 +3222,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One-levelr harder.
+        /// </summary>
+        internal static string SettingsPage_OneLevelHarder {
+            get {
+                return ResourceManager.GetString("SettingsPage_OneLevelHarder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open settings folder.
         /// </summary>
         internal static string SettingsPage_OpenSettingsFolder {
@@ -3317,6 +3353,15 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription {
             get {
                 return ResourceManager.GetString("SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same level only.
+        /// </summary>
+        internal static string SettingsPage_SameLevel {
+            get {
+                return ResourceManager.GetString("SettingsPage_SameLevel", resourceCulture);
             }
         }
         
@@ -3488,15 +3533,6 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_StepDisplayItemsDescription {
             get {
                 return ResourceManager.GetString("SettingsPage_StepDisplayItemsDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Only search for steps in a same difficulty level for step searchers.
-        /// </summary>
-        internal static string SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps {
-            get {
-                return ResourceManager.GetString("SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps", resourceCulture);
             }
         }
         

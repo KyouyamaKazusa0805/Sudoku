@@ -99,7 +99,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		var collector = ((App)Application.Current)
 			.StepCollector
 			.WithMaxSteps(((App)Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered)
-			.WithSameLevelConfigruation(((App)Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps)
+			.WithSameLevelConfigruation((StepCollectorDifficultyLevelMode)((App)Application.Current).Preference.AnalysisPreferences.DifficultyLevelMode)
 			.WithStepSearchers(((App)Application.Current).GetStepSearchers())
 			.WithRuntimeIdentifierSetters(BasePage.SudokuPane);
 		BasePage._ctsForAnalyzingRelatedOperations = cts;

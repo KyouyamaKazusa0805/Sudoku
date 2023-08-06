@@ -6,12 +6,10 @@ namespace Sudoku.Analytics;
 public sealed partial class StepCollector : AnalyzerOrCollector
 {
 	/// <summary>
-	/// Indicates whether the solver only displays the techniques with the same displaying level.
+	/// Indicates the error information that describes that the mode is undefined.
 	/// </summary>
-	/// <remarks>
-	/// The default value is <see langword="true"/>.
-	/// </remarks>
-	public bool OnlyShowSameLevelTechniquesInFindAllSteps { get; internal set; } = true;
+	private const string ErrorInfo_ModeIsUndefined = $"The property value '{nameof(DifficultyLevelMode)}' is undefined.";
+
 
 	/// <summary>
 	/// Indicates the maximum steps can be gathered.
@@ -20,6 +18,14 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 	/// The default value is 1000.
 	/// </remarks>
 	public int MaxStepsGathered { get; internal set; } = 1000;
+
+	/// <summary>
+	/// Indicates whether the solver only displays the techniques with the same displaying level.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <see cref="StepCollectorDifficultyLevelMode.OnlySame"/>.
+	/// </remarks>
+	public StepCollectorDifficultyLevelMode DifficultyLevelMode { get; internal set; } = StepCollectorDifficultyLevelMode.OnlySame;
 
 	/// <inheritdoc/>
 	[DisallowNull]
@@ -47,8 +53,14 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 	/// <returns>
 	/// The result. If cancelled, the return value will be <see langword="null"/>; otherwise, a real list even though it may be empty.
 	/// </returns>
+	/// <exception cref="InvalidOperationException">Throws when property <see cref="DifficultyLevelMode"/> is not defined.</exception>
 	public IEnumerable<Step>? Search(scoped in Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
+		if (!Enum.IsDefined(DifficultyLevelMode))
+		{
+			throw new InvalidOperationException(ErrorInfo_ModeIsUndefined);
+		}
+
 		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out var isSukaku) || isSukaku is not { } sukaku)
 		{
 			return [];
@@ -71,14 +83,14 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 
 		List<Step> searchInternal(bool sukaku, IProgress<AnalyzerProgress>? progress, scoped in Grid puzzle, CancellationToken cancellationToken)
 		{
-			const int defaultLevelValue = int.MaxValue;
+			const int defaultLevel = int.MaxValue;
 
 			var possibleStepSearchers = ResultStepSearchers;
 			var totalSearchersCount = possibleStepSearchers.Length;
 
 			Initialize(puzzle, puzzle.SolutionGrid);
 
-			var (i, bag, currentSearcherIndex) = (defaultLevelValue, new List<Step>(), 0);
+			var (lastLevel, bag, currentSearcherIndex) = (defaultLevel, new List<Step>(), 0);
 			foreach (var searcher in possibleStepSearchers)
 			{
 				switch (searcher)
@@ -91,9 +103,20 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 					case { Level: var currentLevel }:
 					{
 						// If a searcher contains the upper level, it will be skipped.
-						if (OnlyShowSameLevelTechniquesInFindAllSteps && i != defaultLevelValue && i != currentLevel)
+						switch (DifficultyLevelMode)
 						{
-							goto ReportProgress;
+							case StepCollectorDifficultyLevelMode.OnlySame
+								when lastLevel != defaultLevel && currentLevel <= lastLevel || lastLevel == defaultLevel:
+							case StepCollectorDifficultyLevelMode.OneLevelHarder
+								when lastLevel != defaultLevel && currentLevel <= lastLevel + 1 || lastLevel == defaultLevel:
+							case StepCollectorDifficultyLevelMode.All:
+							{
+								break;
+							}
+							default:
+							{
+								goto ReportProgress;
+							}
 						}
 
 						cancellationToken.ThrowIfCancellationRequested();
@@ -103,25 +126,13 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 						scoped var context = new AnalysisContext(accumulator, puzzle, false);
 						searcher.Collect(ref context);
 
-						switch (accumulator.Count)
+						if (accumulator.Count is not (var count and not 0))
 						{
-							case 0:
-							{
-								goto ReportProgress;
-							}
-							case var count:
-							{
-								if (OnlyShowSameLevelTechniquesInFindAllSteps)
-								{
-									i = currentLevel;
-								}
-
-								bag.AddRange(count > MaxStepsGathered ? accumulator[..MaxStepsGathered] : accumulator);
-
-								break;
-							}
+							goto ReportProgress;
 						}
 
+						lastLevel = currentLevel;
+						bag.AddRange(count > MaxStepsGathered ? accumulator[..MaxStepsGathered] : accumulator);
 						break;
 					}
 				}

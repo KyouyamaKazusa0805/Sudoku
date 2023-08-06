@@ -18,7 +18,6 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<bool>(RuntimeIdentifier.LogicalSolverIsFullApplying, DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(Analyzer)}.{nameof(Analyzer.IsFullApplying)}")]
 [DependencyProperty<bool>(RuntimeIdentifier.LogicalSolverIgnoresSlowAlgorithms, DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(Analyzer)}.{nameof(Analyzer.IgnoreSlowAlgorithms)}")]
 [DependencyProperty<bool>(RuntimeIdentifier.LogicalSolverIgnoresHighAllocationAlgorithms, DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(Analyzer)}.{nameof(Analyzer.IgnoreHighAllocationAlgorithms)}")]
-[DependencyProperty<bool>(RuntimeIdentifier.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps, DefaultValue = true, DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(StepCollector)}.{nameof(StepCollector.OnlyShowSameLevelTechniquesInFindAllSteps)}")]
 [DependencyProperty<bool>(RuntimeIdentifier.SearchForReverseBugPartiallyUsedTypes, DefaultValue = true, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(ReverseBivalueUniversalGraveStepSearcher)}.{nameof(ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes)}")]
 [DependencyProperty<bool>("AlsoDisplayEnglishNameOfStep", DocSummary = "Indicates whether the step analyzed will also display its English name of the technique used.")]
 [DependencyProperty<bool>("DisplayDifficultyRatingForHodoku", DocSummary = "Indicates whether the step will display its corresponding rating defined in program HoDoKu.")]
@@ -28,4 +27,5 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<int>(RuntimeIdentifier.ReverseBugMaxSearchingEmptyCellsCount, DefaultValue = 2, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(ReverseBivalueUniversalGraveStepSearcher)}.{nameof(ReverseBivalueUniversalGraveStepSearcher.MaxSearchingEmptyCellsCount)}")]
 [DependencyProperty<int>(RuntimeIdentifier.MaxSizeOfComplexFish, DefaultValue = 5, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(ComplexFishStepSearcher)}.{nameof(ComplexFishStepSearcher.MaxSize)}")]
 [DependencyProperty<int>(RuntimeIdentifier.StepGathererMaxStepsGathered, DefaultValue = 1000, DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(StepCollector)}.{nameof(StepCollector.MaxStepsGathered)}")]
+[DependencyProperty<int>(RuntimeIdentifier.DifficultyLevelMode, DefaultValue = 0, DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(StepCollector)}.{nameof(StepCollector.DifficultyLevelMode)}")]
 public sealed partial class AnalysisPreferenceGroup : PreferenceGroup;

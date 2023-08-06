@@ -82,8 +82,8 @@ public static class RuntimeIdentifier
 	/// <inheritdoc cref="Analyzer.IgnoreHighAllocationAlgorithms"/>
 	public const string LogicalSolverIgnoresHighAllocationAlgorithms = nameof(LogicalSolverIgnoresHighAllocationAlgorithms);
 
-	/// <inheritdoc cref="StepCollector.OnlyShowSameLevelTechniquesInFindAllSteps"/>
-	public const string StepGathererOnlySearchSameLevelTechniquesInFindAllSteps = nameof(StepGathererOnlySearchSameLevelTechniquesInFindAllSteps);
+	/// <inheritdoc cref="StepCollector.DifficultyLevelMode"/>
+	public const string DifficultyLevelMode = nameof(DifficultyLevelMode);
 
 	/// <inheritdoc cref="StepCollector.MaxStepsGathered"/>
 	public const string StepGathererMaxStepsGathered = nameof(StepGathererMaxStepsGathered);

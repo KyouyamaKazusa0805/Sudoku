@@ -828,6 +828,9 @@
   <data name="SettingsPage_AlignedExclusionMaxSearchingSizeDescription" xml:space="preserve">
     <value>A value controlling the complexity of searching operation for Aligned Exclusion technique. The maximum possible value is 5, recommend value is 3, and the minimum value is 2. It cannot be negative.</value>
   </data>
+  <data name="SettingsPage_AllLevelsAllowed" xml:space="preserve">
+    <value>Allow all levels</value>
+  </data>
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
     <value>Allow collision on ALS-XY-Wing</value>
   </data>
@@ -963,6 +966,12 @@
   <data name="SettingsPage_DifficultyLevelForegrounds" xml:space="preserve">
     <value>Foreground colors of difficulty levels</value>
   </data>
+  <data name="SettingsPage_DifficultyLevelMode" xml:space="preserve">
+    <value>Behavior on difficulty level of step collector</value>
+  </data>
+  <data name="SettingsPage_DifficultyLevelModeDescription" xml:space="preserve">
+    <value>This option controls the behavior which level of steps that a step collector can collect. The more number of steps can be collected, the slower the program will be executed.</value>
+  </data>
   <data name="SettingsPage_DisableSudokuPaneLayoutDisplaying" xml:space="preserve">
     <value>Disable flyout in sudoku pane when right-clicked</value>
   </data>
@@ -1085,6 +1094,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_OnContent" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="SettingsPage_OneLevelHarder" xml:space="preserve">
+    <value>One-levelr harder</value>
+  </data>
   <data name="SettingsPage_OpenSettingsFolder" xml:space="preserve">
     <value>Open settings folder</value>
   </data>
@@ -1126,6 +1138,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription" xml:space="preserve">
     <value>A value controlling the complexity of searching operation for Reverse BUG technique. This maximum possible value is 4, recommend value is 2, and the minimum value is 1. It cannot be negative.</value>
+  </data>
+  <data name="SettingsPage_SameLevel" xml:space="preserve">
+    <value>Same level only</value>
   </data>
   <data name="SettingsPage_SavePuzzleGeneratingHistory" xml:space="preserve">
     <value>Save puzzle-generating history</value>
@@ -1183,9 +1198,6 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_StepDisplayItem_TechniqueName" xml:space="preserve">
     <value>Technique name</value>
-  </data>
-  <data name="SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps" xml:space="preserve">
-    <value>Only search for steps in a same difficulty level for step searchers</value>
   </data>
   <data name="SettingsPage_StepsColoring" xml:space="preserve">
     <value>Colors For Techniques</value>

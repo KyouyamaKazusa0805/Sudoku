@@ -849,12 +849,6 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIgnoresHighAllocationAlgorithms"/>
         </member>
-        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps"/>
-        </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForReverseBugPartiallyUsedTypesProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForReverseBugPartiallyUsedTypes"/>.
@@ -909,6 +903,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererMaxStepsGathered"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.DifficultyLevelModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DifficultyLevelMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DifficultyLevelMode"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableFullHouse">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableFullHouse"/>
         </member>
@@ -948,9 +948,6 @@
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LogicalSolverIgnoresHighAllocationAlgorithms">
             <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps">
-            <inheritdoc cref="P:Sudoku.Analytics.StepCollector.OnlyShowSameLevelTechniquesInFindAllSteps"/>
-        </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchForReverseBugPartiallyUsedTypes">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
         </member>
@@ -983,6 +980,9 @@
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererMaxStepsGathered">
             <inheritdoc cref="P:Sudoku.Analytics.StepCollector.MaxStepsGathered"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DifficultyLevelMode">
+            <inheritdoc cref="P:Sudoku.Analytics.StepCollector.DifficultyLevelMode"/>
         </member>
         <member name="T:SudokuStudio.Configuration.BackdropKind">
             <summary>
@@ -5241,6 +5241,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to A value controlling the complexity of searching operation for Aligned Exclusion technique. The maximum possible value is 5, recommend value is 3, and the minimum value is 2. It cannot be negative..
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AllLevelsAllowed">
+            <summary>
+              Looks up a localized string similar to Allow all levels.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AllowCollisionOnAlmostLockedSetXyWing">
             <summary>
               Looks up a localized string similar to Allow collision on ALS-XY-Wing.
@@ -5466,6 +5471,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Foreground colors of difficulty levels.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DifficultyLevelMode">
+            <summary>
+              Looks up a localized string similar to Behavior on difficulty level of step collector.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DifficultyLevelModeDescription">
+            <summary>
+              Looks up a localized string similar to This option controls the behavior which level of steps that a step collector can collect. The more number of steps can be collected, the slower the program will be executed..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DisableSudokuPaneLayoutDisplaying">
             <summary>
               Looks up a localized string similar to Disable flyout in sudoku pane when right-clicked.
@@ -5668,6 +5683,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Yes.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_OneLevelHarder">
+            <summary>
+              Looks up a localized string similar to One-levelr harder.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_OpenSettingsFolder">
             <summary>
               Looks up a localized string similar to Open settings folder.
@@ -5736,6 +5756,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription">
             <summary>
               Looks up a localized string similar to A value controlling the complexity of searching operation for Reverse BUG technique. This maximum possible value is 4, recommend value is 2, and the minimum value is 1. It cannot be negative..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SameLevel">
+            <summary>
+              Looks up a localized string similar to Same level only.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SavePuzzleGeneratingHistory">
@@ -5831,11 +5856,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_StepDisplayItemsDescription">
             <summary>
               Looks up a localized string similar to This option controls the tooltip content when you put your cursor onto a technique step..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps">
-            <summary>
-              Looks up a localized string similar to Only search for steps in a same difficulty level for step searchers.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_StepsColoring">
@@ -6662,27 +6682,15 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:SudokuStudio.Views.Controls.SudokuPane"/>
             <seealso cref="T:Sudoku.Analytics.StepCollector"/>
         </member>
-        <member name="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>StepGathererOnlySearchSameLevelTechniquesInFindAllSteps</c>.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererMaxStepsGatheredProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <c>StepGathererMaxStepsGathered</c>.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Attached.GathererProperties.SetStepGathererOnlySearchSameLevelTechniquesInFindAllSteps(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+        <member name="F:SudokuStudio.Views.Attached.GathererProperties.DifficultyLevelModeProperty">
             <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty"/> to get or set value.
+            Defines a attached property that binds with setter and getter methods <c>DifficultyLevelMode</c>.
             </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.GathererProperties.GetStepGathererOnlySearchSameLevelTechniquesInFindAllSteps(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererOnlySearchSameLevelTechniquesInFindAllStepsProperty" />
         </member>
         <member name="M:SudokuStudio.Views.Attached.GathererProperties.SetStepGathererMaxStepsGathered(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
             <summary>
@@ -6695,6 +6703,18 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererMaxStepsGatheredProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererMaxStepsGatheredProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.GathererProperties.SetDifficultyLevelMode(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.GathererProperties.DifficultyLevelModeProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.GathererProperties.DifficultyLevelModeProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.GathererProperties.GetDifficultyLevelMode(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.GathererProperties.DifficultyLevelModeProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.GathererProperties.DifficultyLevelModeProperty" />
         </member>
         <member name="T:SudokuStudio.Views.Attached.SudokuPaneBindable">
             <summary>

@@ -3087,8 +3087,8 @@
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.LogicalSolverIgnoresHighAllocationAlgorithms">
             <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms"/>
         </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps">
-            <inheritdoc cref="P:Sudoku.Analytics.StepCollector.OnlyShowSameLevelTechniquesInFindAllSteps"/>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.DifficultyLevelMode">
+            <inheritdoc cref="P:Sudoku.Analytics.StepCollector.DifficultyLevelMode"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.StepGathererMaxStepsGathered">
             <inheritdoc cref="P:Sudoku.Analytics.StepCollector.MaxStepsGathered"/>
@@ -3650,13 +3650,10 @@
             Represents an instance that can collect all possible <see cref="T:Sudoku.Analytics.Step"/>s in a grid for one status.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepCollector.OnlyShowSameLevelTechniquesInFindAllSteps">
+        <member name="F:Sudoku.Analytics.StepCollector.ErrorInfo_ModeIsUndefined">
             <summary>
-            Indicates whether the solver only displays the techniques with the same displaying level.
+            Indicates the error information that describes that the mode is undefined.
             </summary>
-            <remarks>
-            The default value is <see langword="true"/>.
-            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.StepCollector.MaxStepsGathered">
             <summary>
@@ -3664,6 +3661,14 @@
             </summary>
             <remarks>
             The default value is 1000.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.StepCollector.DifficultyLevelMode">
+            <summary>
+            Indicates whether the solver only displays the techniques with the same displaying level.
+            </summary>
+            <remarks>
+            The default value is <see cref="F:Sudoku.Analytics.StepCollectorDifficultyLevelMode.OnlySame"/>.
             </remarks>
         </member>
         <member name="P:Sudoku.Analytics.StepCollector.StepSearchers">
@@ -3682,12 +3687,34 @@
             <returns>
             The result. If cancelled, the return value will be <see langword="null"/>; otherwise, a real list even though it may be empty.
             </returns>
+            <exception cref="T:System.InvalidOperationException">Throws when property <see cref="P:Sudoku.Analytics.StepCollector.DifficultyLevelMode"/> is not defined.</exception>
         </member>
         <member name="F:Sudoku.Analytics.StepCollector._stepSearchers">
             <summary>
             Indicates the backing field of property <see cref="P:Sudoku.Analytics.StepCollector.StepSearchers"/>.
             </summary>
             <seealso cref="P:Sudoku.Analytics.StepCollector.StepSearchers"/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepCollectorDifficultyLevelMode">
+            <summary>
+            Indicates the mode that describe the difficulty level controlling for a <see cref="T:Sudoku.Analytics.StepCollector"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.StepCollector"/>
+        </member>
+        <member name="F:Sudoku.Analytics.StepCollectorDifficultyLevelMode.OnlySame">
+            <summary>
+            Indicates the collecting mode is to collect steps whose difficulty level are same as the status of the current grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepCollectorDifficultyLevelMode.OneLevelHarder">
+            <summary>
+            Indicates the collecting mode is to collect steps whose difficulty level are same as the status of the current grid or one level harder.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepCollectorDifficultyLevelMode.All">
+            <summary>
+            Indicates the collecting mode is to collect all possible steps, no matter which level the step belongs to.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepCollectorFactory">
             <summary>
@@ -3714,12 +3741,12 @@
         <member name="M:Sudoku.Analytics.StepCollectorFactory.WithStepSearchers(Sudoku.Analytics.StepCollector,System.Collections.Generic.IEnumerable{Sudoku.Analytics.StepSearcher})">
             <inheritdoc cref="M:Sudoku.Analytics.StepCollectorFactory.WithStepSearchers(Sudoku.Analytics.StepCollector,Sudoku.Analytics.StepSearcher[])"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithSameLevelConfigruation(Sudoku.Analytics.StepCollector,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithSameLevelConfigruation(Sudoku.Analytics.StepCollector,Sudoku.Analytics.StepCollectorDifficultyLevelMode)">
             <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.StepCollector.OnlyShowSameLevelTechniquesInFindAllSteps"/> with the target value.
+            Sets the property <see cref="P:Sudoku.Analytics.StepCollector.DifficultyLevelMode"/> with the target value.
             </summary>
             <param name="this">The collector instance.</param>
-            <param name="sameLevel">A <see cref="T:System.Boolean"/> value indicating whether the collector only collects for same-level steps.</param>
+            <param name="collectingMode">The mode of the collecting steps.</param>
             <returns>The reference same as <see cref="T:Sudoku.Analytics.StepCollector"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcher">

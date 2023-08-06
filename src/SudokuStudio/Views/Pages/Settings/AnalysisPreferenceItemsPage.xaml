@@ -260,9 +260,16 @@
 						</w:SettingsCard>
 					</w:SettingsExpander.Items>
 				</w:SettingsExpander>
-				<w:SettingsCard Header="{m:R Key=SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps}">
-					<ToggleSwitch
-						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererOnlySearchSameLevelTechniquesInFindAllSteps,Mode=TwoWay}" />
+				<w:SettingsCard
+					Header="{m:R Key=SettingsPage_DifficultyLevelMode}"
+					Description="{m:R Key=SettingsPage_DifficultyLevelModeDescription}">
+					<ComboBox
+						Width="260"
+						SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DifficultyLevelMode,Mode=TwoWay}">
+						<ComboBoxItem Content="{m:R Key=SettingsPage_SameLevel}" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_OneLevelHarder}" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_AllLevelsAllowed}" />
+					</ComboBox>
 				</w:SettingsCard>
 			</w:SettingsGroup>
 			<w:SettingsGroup Header="{m:R Key=Settings_Compatibility}">

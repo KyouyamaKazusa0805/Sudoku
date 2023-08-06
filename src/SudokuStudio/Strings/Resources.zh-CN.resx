@@ -831,6 +831,9 @@
   <data name="SettingsPage_AlignedExclusionMaxSearchingSizeDescription" xml:space="preserve">
     <value>该项控制了技巧搜索的复杂程度（数字越大，搜索复杂程度也就越高）。最大值是 5，建议的值为 3，最小值为 2。不能是负数。</value>
   </data>
+  <data name="SettingsPage_AllLevelsAllowed" xml:space="preserve">
+    <value>所有难度级别均允许</value>
+  </data>
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
     <value>允许 ALS-XY-Wing 技巧里的 ALS 结构重叠</value>
   </data>
@@ -966,6 +969,12 @@
   <data name="SettingsPage_DifficultyLevelForegrounds" xml:space="preserve">
     <value>难度系数文字配色</value>
   </data>
+  <data name="SettingsPage_DifficultyLevelMode" xml:space="preserve">
+    <value>步骤收集难度行为</value>
+  </data>
+  <data name="SettingsPage_DifficultyLevelModeDescription" xml:space="preserve">
+    <value>该设置项控制的是步骤收集操作的行为。如果允许收集的技巧越多，那么程序运行的速度也会越慢。</value>
+  </data>
   <data name="SettingsPage_DisableSudokuPaneLayoutDisplaying" xml:space="preserve">
     <value>阻止右键数独盘面的时候弹出菜单</value>
   </data>
@@ -1088,6 +1097,9 @@
   <data name="SettingsPage_OnContent" xml:space="preserve">
     <value>是</value>
   </data>
+  <data name="SettingsPage_OneLevelHarder" xml:space="preserve">
+    <value>允许比该级别大一个难度的技巧</value>
+  </data>
   <data name="SettingsPage_OpenSettingsFolder" xml:space="preserve">
     <value>打开设置文件夹</value>
   </data>
@@ -1129,6 +1141,9 @@
   </data>
   <data name="SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription" xml:space="preserve">
     <value>该项控制了技巧搜索的复杂程度（数字越大，搜索复杂程度也就越高）。最大值是 4，建议的值为 2，最小值为 1。不能是负数。</value>
+  </data>
+  <data name="SettingsPage_SameLevel" xml:space="preserve">
+    <value>只搜索同一技巧级别的技巧</value>
   </data>
   <data name="SettingsPage_SavePuzzleGeneratingHistory" xml:space="preserve">
     <value>保存软件的出题记录</value>
@@ -1186,9 +1201,6 @@
   </data>
   <data name="SettingsPage_StepDisplayItem_TechniqueName" xml:space="preserve">
     <value>技巧名</value>
-  </data>
-  <data name="SettingsPage_StepGathererOnlySearchSameLevelTechniquesInFindAllSteps" xml:space="preserve">
-    <value>在单步所有步骤搜索功能中，只搜索同难度级别的技巧</value>
   </data>
   <data name="SettingsPage_StepsColoring" xml:space="preserve">
     <value>步骤配色</value>

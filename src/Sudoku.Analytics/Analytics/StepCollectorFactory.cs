@@ -38,14 +38,14 @@ public static class StepCollectorFactory
 	}
 
 	/// <summary>
-	/// Sets the property <see cref="StepCollector.OnlyShowSameLevelTechniquesInFindAllSteps"/> with the target value.
+	/// Sets the property <see cref="StepCollector.DifficultyLevelMode"/> with the target value.
 	/// </summary>
 	/// <param name="this">The collector instance.</param>
-	/// <param name="sameLevel">A <see cref="bool"/> value indicating whether the collector only collects for same-level steps.</param>
+	/// <param name="collectingMode">The mode of the collecting steps.</param>
 	/// <returns>The reference same as <see cref="StepCollector"/>.</returns>
-	public static StepCollector WithSameLevelConfigruation(this StepCollector @this, bool sameLevel)
+	public static StepCollector WithSameLevelConfigruation(this StepCollector @this, StepCollectorDifficultyLevelMode collectingMode)
 	{
-		@this.OnlyShowSameLevelTechniquesInFindAllSteps = sameLevel;
+		@this.DifficultyLevelMode = collectingMode;
 		return @this;
 	}
 }
