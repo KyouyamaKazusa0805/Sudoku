@@ -13,7 +13,7 @@ namespace Sudoku.Analytics;
 /// <seealso cref="PredefinedAnalyzers"/>
 /// <seealso cref="AnalyzerFactory"/>
 /// <completionlist cref="PredefinedAnalyzers"/>
-public sealed partial class Analyzer() : AnalyzerOrCollector, IAnalyzer<Analyzer, AnalyzerResult>
+public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, AnalyzerResult>
 {
 	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher,

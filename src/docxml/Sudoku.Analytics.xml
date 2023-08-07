@@ -76,21 +76,6 @@
             <seealso cref="T:Sudoku.Analytics.AnalyzerFactory"/>
             <completionlist cref="T:Sudoku.Analytics.PredefinedAnalyzers"/>
         </member>
-        <member name="M:Sudoku.Analytics.Analyzer.#ctor">
-            <summary>
-            Provides an analyzer that solves a sudoku puzzle using the human-friendly logics, and creates an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance
-            indicating the analytics data.
-            </summary>
-            <remarks>
-            Please note that this type has no accessible constructors,
-            you can just use type <see cref="T:Sudoku.Analytics.PredefinedAnalyzers"/> to get <see cref="T:Sudoku.Analytics.Analyzer"/>s you want to get.
-            In addition, you can also use <see cref="T:Sudoku.Analytics.AnalyzerFactory"/> to create some extra configuration.
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
-            <seealso cref="T:Sudoku.Analytics.PredefinedAnalyzers"/>
-            <seealso cref="T:Sudoku.Analytics.AnalyzerFactory"/>
-            <completionlist cref="T:Sudoku.Analytics.PredefinedAnalyzers"/>
-        </member>
         <member name="P:Sudoku.Analytics.Analyzer.IsFullApplying">
             <summary>
             Indicates whether the solver will apply all found steps in a step searcher,
