@@ -542,9 +542,22 @@ public unsafe partial struct Grid :
 					var result = MaxCandidatesMask;
 					foreach (var cell in cells)
 					{
-						if (!withValueCells && GetStatus(cell) != CellStatus.Empty || withValueCells)
+						if (!withValueCells && GetStatus(cell) == CellStatus.Empty || withValueCells)
 						{
 							result &= (Mask)~this[cell];
+						}
+					}
+
+					return result;
+				}
+				case GridMaskMergingMethod.And:
+				{
+					var result = MaxCandidatesMask;
+					foreach (var cell in cells)
+					{
+						if (!withValueCells && GetStatus(cell) == CellStatus.Empty || withValueCells)
+						{
+							result &= this[cell];
 						}
 					}
 
@@ -555,7 +568,7 @@ public unsafe partial struct Grid :
 					var result = (Mask)0;
 					foreach (var cell in cells)
 					{
-						if (!withValueCells && GetStatus(cell) != CellStatus.Empty || withValueCells)
+						if (!withValueCells && GetStatus(cell) == CellStatus.Empty || withValueCells)
 						{
 							result |= this[cell];
 						}

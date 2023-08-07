@@ -101,14 +101,14 @@ public abstract class SubsetStepSearcher(
 			for (var house = 0; house < 27; house++)
 			{
 				scoped ref readonly var currentHouseCells = ref HousesMap[house];
-				var traversingMap = currentHouseCells - EmptyCells;
+				var traversingMap = currentHouseCells & EmptyCells;
 				if (traversingMap.Count >= 8)
 				{
 					// No available digit (Or hidden single).
 					continue;
 				}
 
-				var mask = grid[traversingMap, false, GridMaskMergingMethod.AndNot];
+				var mask = grid[traversingMap];
 				foreach (var digits in mask.GetAllSets().GetSubsets(size))
 				{
 					var (tempMask, digitsMask, map) = (mask, (Mask)0, CellMap.Empty);

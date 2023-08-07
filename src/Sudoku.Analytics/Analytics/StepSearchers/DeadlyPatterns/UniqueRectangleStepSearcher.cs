@@ -290,10 +290,10 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 							if (SearchForExtendedUniqueRectangles)
 							{
-								for (var size = 2; size <= 4; size++)
-								{
-									CheckRegularWing(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, size, index);
-								}
+								CheckRegularWing(
+									gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2,
+									tempOtherCellsMap, index, (c1, c2) is (0, 3) or (1, 2)
+								);
 							}
 
 							switch (c1, c2)
@@ -2582,8 +2582,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="corner1">The corner cell 1.</param>
 	/// <param name="corner2">The corner cell 2.</param>
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-	/// <param name="size">The size of the wing to search.</param>
 	/// <param name="index">The index.</param>
+	/// <param name="isCornerCellsCannotSeeEachOther">Indicates whether the corner cells cannot see each other.</param>
 	/// <remarks>
 	/// <para>The structures:</para>
 	/// <para>
@@ -2617,360 +2617,187 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner1,
 		Cell corner2,
 		scoped in CellMap otherCellsMap,
-		int size,
-		int index
+		int index,
+		bool isCornerCellsCannotSeeEachOther
 	)
 	{
+		// Firstly, we should check whether the 2 corner cells should contain both a and b, and only contain a and b.
+		// This expression only uses candidates to check digits appearing, so it doesn't determine whether the pattern is a UR or not.
+		// Yeah, ARs can also be passed.
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
 			return;
 		}
 
-		if ((CellsMap[corner1] + corner2).AllSetsAreInOneHouse(out var house) && house < 9)
+		var otherCell1Mask = grid.GetCandidates(otherCellsMap[0]);
+		var otherCell2Mask = grid.GetCandidates(otherCellsMap[1]);
+		if ((otherCell1Mask & otherCell2Mask & comparer) == 0 || ((otherCell1Mask | otherCell2Mask) & comparer) != comparer)
 		{
-			// Subtype 1.
-			var offsets = (Cell[])[.. otherCellsMap];
-			var (otherCell1, otherCell2) = (offsets[0], offsets[1]);
-			var (mask1, mask2) = (grid.GetCandidates(otherCell1), grid.GetCandidates(otherCell2));
-			var mask = (Mask)(mask1 | mask2);
+			return;
+		}
 
-			if (PopCount((uint)mask) != 2 + size || (mask & comparer) != comparer || mask1 == comparer || mask2 == comparer)
+		// Now we check for other 2 cells, collecting digits not being UR/AR digits.
+		var otherDigitsMask = (Mask)((otherCell1Mask | otherCell2Mask) & ~comparer);
+
+		// Merge incomplete and complete wing logic into one loop.
+		// Here we don't know what digit will be selected as a pivot, so we should iterate all digits.
+		// The last case -1 is for complete wing.
+		var cells = (CellMap)urCells;
+		var pivotDigits = (Digit[])[.. otherDigitsMask.GetAllSets(), -1];
+		foreach (var pivotDigit in pivotDigits)
+		{
+			Cell[][] cellsGroups;
+			if (pivotDigit == -1)
 			{
-				return;
+				// No pivot digit should be checked. Due to no way to check intersection, we should delay the checking.
+				cellsGroups = new Cell[PopCount((uint)otherDigitsMask)][];
+				var tempIndex = 0;
+				foreach (var lastDigit in otherDigitsMask)
+				{
+					scoped ref var currentCellGroup = ref cellsGroups[tempIndex++];
+					currentCellGroup = (cells % CandidatesMap[lastDigit] & BivalueCells).ToArray();
+				}
 			}
-
-			var map = (PeersMap[otherCell1] | PeersMap[otherCell2]) & BivalueCells;
-			if (map.Count < size)
+			else
 			{
-				return;
-			}
-
-			var testMap = (CellsMap[otherCell1] + otherCell2).PeerIntersection;
-			var extraDigitsMask = (Mask)(mask ^ comparer);
-			var cells = (Cell[])[.. map];
-			for (var (i1, length) = (0, cells.Length); i1 < length - size + 1; i1++)
-			{
-				var c1 = cells[i1];
-				var m1 = grid.GetCandidates(c1);
-				if ((m1 & ~extraDigitsMask) == 0)
+				// Pivot digit is specified. We should check for cells that contain that digit.
+				var lastDigitsMask = (Mask)(otherDigitsMask & ~(1 << pivotDigit));
+				if (PopCount((uint)lastDigitsMask) is 0 or 1)
 				{
 					continue;
 				}
 
-				for (var i2 = i1 + 1; i2 < length - size + 2; i2++)
+				cellsGroups = new Cell[PopCount((uint)lastDigitsMask)][];
+				var tempIndex = 0;
+				var atLeastOneGroupIsEmpty = false;
+				foreach (var lastDigit in lastDigitsMask)
 				{
-					var c2 = cells[i2];
-					var m2 = grid.GetCandidates(c2);
-					if ((m2 & ~extraDigitsMask) == 0)
+					scoped ref var currentCellGroup = ref cellsGroups[tempIndex++];
+					currentCellGroup = (cells % CandidatesMap[lastDigit] & CandidatesMap[pivotDigit] & BivalueCells).ToArray();
+					if (currentCellGroup.Length == 0)
 					{
+						atLeastOneGroupIsEmpty = true;
+						break;
+					}
+				}
+				if (atLeastOneGroupIsEmpty)
+				{
+					// If a cells group does not contain such cells, the current pivot digit will be considered invalid.
+					// Now just skip for this case.
+					continue;
+				}
+			}
+
+			// Extract one element for each cells group.
+			var finalPivotDigit = pivotDigit;
+			foreach (CellMap combination in cellsGroups.GetExtractedCombinations())
+			{
+				if (cellsGroups.Length != combination.Count)
+				{
+					// The selected items cannot duplicate with others.
+					continue;
+				}
+
+				// Here we should check for pivot digit for case 'pivotDigit == -1'.
+				if (pivotDigit == -1)
+				{
+					var mergedMask = grid[combination, false, GridMaskMergingMethod.And];
+					if (!IsPow2(mergedMask))
+					{
+						// No pivot digit can be found, meaning no eliminations can be found.
 						continue;
 					}
 
-					if (size == 2)
+					finalPivotDigit = TrailingZeroCount(mergedMask);
+				}
+
+				var maskToCompare = pivotDigit == -1 ? grid[combination] & ~(1 << finalPivotDigit) : grid[combination];
+				if (((otherCell1Mask | otherCell2Mask) & ~comparer) != maskToCompare)
+				{
+					// Digits are not matched.
+					continue;
+				}
+
+				var elimMap = (pivotDigit == -1 ? combination : combination | cells & CandidatesMap[finalPivotDigit]).PeerIntersection
+					& CandidatesMap[finalPivotDigit];
+				if (!elimMap)
+				{
+					// No eliminations.
+					continue;
+				}
+
+				var candidateOffsets = new List<CandidateViewNode>();
+				foreach (var cell in cells & EmptyCells)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
 					{
-						// Check XY-Wing.
-						var m = (Mask)((Mask)(m1 | m2) ^ extraDigitsMask);
-						if ((PopCount((uint)m), PopCount((uint)(m1 & m2))) != (1, 1))
-						{
-							continue;
-						}
-
-						// Now check whether all cells found should see their corresponding
-						// cells in UR structure ('otherCells1' or 'otherCells2').
-						var flag = true;
-						foreach (var cell in stackalloc[] { c1, c2 })
-						{
-							var extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
-							if (!(testMap & CandidatesMap[extraDigit]).Contains(cell))
-							{
-								flag = false;
-								break;
-							}
-						}
-						if (!flag)
-						{
-							continue;
-						}
-
-						// Now check eliminations.
-						var elimDigit = TrailingZeroCount(m);
-						var elimMap = (CellsMap[c1] + c2).PeerIntersection & CandidatesMap[elimDigit];
-						if (!elimMap)
-						{
-							continue;
-						}
-
-						var candidateOffsets = new List<CandidateViewNode>(12);
-						foreach (var cell in urCells)
-						{
-							if (grid.GetStatus(cell) == CellStatus.Empty)
-							{
-								foreach (var digit in grid.GetCandidates(cell))
-								{
-									candidateOffsets.Add(
-										new(
-											digit == elimDigit
-												? otherCellsMap.Contains(cell) ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Normal
-												: (extraDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
-											cell * 9 + digit
-										)
-									);
-								}
-							}
-						}
-						foreach (var digit in grid.GetCandidates(c1))
-						{
-							candidateOffsets.Add(
-								new(digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1, c1 * 9 + digit));
-						}
-						foreach (var digit in grid.GetCandidates(c2))
-						{
-							candidateOffsets.Add(
-								new(digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1, c2 * 9 + digit));
-						}
-						if (IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
-						{
-							return;
-						}
-
-						accumulator.Add(
-							new UniqueRectangleWithWingStep(
-								from cell in elimMap select new Conclusion(Elimination, cell, elimDigit),
-								[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
-								arMode ? Technique.AvoidableRectangleXyWing : Technique.UniqueRectangleXyWing,
-								d1,
-								d2,
-								[.. urCells],
-								arMode,
-								[c1, c2],
-								otherCellsMap,
-								extraDigitsMask,
-								index
+						candidateOffsets.Add(
+							new(
+								(comparer >> digit & 1) != 0
+									? WellKnownColorIdentifier.Normal
+									: digit == finalPivotDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1,
+								cell * 9 + digit
 							)
 						);
 					}
-					else // size > 2
+				}
+				foreach (var cell in combination)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
 					{
-						for (var (i3, lengthMinusSizePlus3) = (i2 + 1, length - size + 3); i3 < lengthMinusSizePlus3; i3++)
-						{
-							var c3 = cells[i3];
-							var m3 = grid.GetCandidates(c3);
-							if ((m3 & ~extraDigitsMask) == 0)
-							{
-								continue;
-							}
-
-							if (size == 3)
-							{
-								// Check XYZ-Wing.
-								var m = (Mask)(((Mask)(m1 | m2) | m3) ^ extraDigitsMask);
-								if ((PopCount((uint)m), PopCount((uint)(m1 & m2 & m3))) != (1, 1))
-								{
-									continue;
-								}
-
-								// Now check whether all cells found should see their corresponding
-								// cells in UR structure ('otherCells1' or 'otherCells2').
-								var flag = true;
-								foreach (var cell in stackalloc[] { c1, c2, c3 })
-								{
-									var extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
-									if (!(testMap & CandidatesMap[extraDigit]).Contains(cell))
-									{
-										flag = false;
-										break;
-									}
-								}
-								if (!flag)
-								{
-									continue;
-								}
-
-								// Now check eliminations.
-								var elimDigit = TrailingZeroCount(m);
-								var elimMap = (CellsMap[c1] + c2 + c3).PeerIntersection & CandidatesMap[elimDigit];
-								if (!elimMap)
-								{
-									continue;
-								}
-
-								var candidateOffsets = new List<CandidateViewNode>();
-								foreach (var cell in urCells)
-								{
-									if (grid.GetStatus(cell) == CellStatus.Empty)
-									{
-										foreach (var digit in grid.GetCandidates(cell))
-										{
-											candidateOffsets.Add(
-												new(
-													(extraDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
-													cell * 9 + digit
-												)
-											);
-										}
-									}
-								}
-								foreach (var digit in grid.GetCandidates(c1))
-								{
-									candidateOffsets.Add(
-										new(digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1, c1 * 9 + digit));
-								}
-								foreach (var digit in grid.GetCandidates(c2))
-								{
-									candidateOffsets.Add(
-										new(digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1, c2 * 9 + digit));
-								}
-								foreach (var digit in grid.GetCandidates(c3))
-								{
-									candidateOffsets.Add(
-										new(digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1, c3 * 9 + digit));
-								}
-								if (IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
-								{
-									return;
-								}
-
-								accumulator.Add(
-									new UniqueRectangleWithWingStep(
-										from cell in elimMap select new Conclusion(Elimination, cell, elimDigit),
-										[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
-										arMode ? Technique.AvoidableRectangleXyzWing : Technique.UniqueRectangleXyzWing,
-										d1,
-										d2,
-										[.. urCells],
-										arMode,
-										[c1, c2, c3],
-										otherCellsMap,
-										extraDigitsMask,
-										index
-									)
-								);
-							}
-							else // size == 4
-							{
-								for (var i4 = i3 + 1; i4 < length; i4++)
-								{
-									var c4 = cells[i4];
-									var m4 = grid.GetCandidates(c4);
-									if ((m4 & ~extraDigitsMask) == 0)
-									{
-										continue;
-									}
-
-									// Check WXYZ-Wing.
-									var m = (Mask)((Mask)((Mask)((Mask)(m1 | m2) | m3) | m4) ^ extraDigitsMask);
-									if ((PopCount((uint)m), PopCount((uint)(m1 & m2 & m3 & m4))) != (1, 1))
-									{
-										continue;
-									}
-
-									// Now check whether all cells found should see their corresponding
-									// cells in UR structure ('otherCells1' or 'otherCells2').
-									var flag = true;
-									foreach (var cell in stackalloc[] { c1, c2, c3, c4 })
-									{
-										var extraDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~m);
-										if (!(testMap & CandidatesMap[extraDigit]).Contains(cell))
-										{
-											flag = false;
-											break;
-										}
-									}
-									if (!flag)
-									{
-										continue;
-									}
-
-									// Now check eliminations.
-									var elimDigit = TrailingZeroCount(m);
-									var elimMap = (CellsMap[c1] + c2 + c3 + c4).PeerIntersection & CandidatesMap[elimDigit];
-									if (!elimMap)
-									{
-										continue;
-									}
-
-									var candidateOffsets = new List<CandidateViewNode>();
-									foreach (var cell in urCells)
-									{
-										if (grid.GetStatus(cell) == CellStatus.Empty)
-										{
-											foreach (var digit in grid.GetCandidates(cell))
-											{
-												candidateOffsets.Add(
-													new(
-														(extraDigitsMask >> digit & 1) != 0
-															? WellKnownColorIdentifier.Auxiliary1
-															: WellKnownColorIdentifier.Normal,
-														cell * 9 + digit
-													)
-												);
-											}
-										}
-									}
-									foreach (var digit in grid.GetCandidates(c1))
-									{
-										candidateOffsets.Add(
-											new(
-												digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1,
-												c1 * 9 + digit
-											)
-										);
-									}
-									foreach (var digit in grid.GetCandidates(c2))
-									{
-										candidateOffsets.Add(
-											new(
-												digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1,
-												c2 * 9 + digit
-											)
-										);
-									}
-									foreach (var digit in grid.GetCandidates(c3))
-									{
-										candidateOffsets.Add(
-											new(
-												digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1,
-												c3 * 9 + digit
-											)
-										);
-									}
-									foreach (var digit in grid.GetCandidates(c4))
-									{
-										candidateOffsets.Add(
-											new(
-												digit == elimDigit ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1,
-												c4 * 9 + digit
-											)
-										);
-									}
-									if (IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
-									{
-										return;
-									}
-
-									accumulator.Add(
-										new UniqueRectangleWithWingStep(
-											from cell in elimMap select new Conclusion(Elimination, cell, elimDigit),
-											[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
-											arMode ? Technique.AvoidableRectangleWxyzWing : Technique.UniqueRectangleWxyzWing,
-											d1,
-											d2,
-											[.. urCells],
-											arMode,
-											[c1, c2, c3, c4],
-											otherCellsMap,
-											extraDigitsMask,
-											index
-										)
-									);
-								}
-							}
-						}
+						candidateOffsets.Add(
+							new(
+								digit != finalPivotDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Auxiliary2,
+								cell * 9 + digit
+							)
+						);
 					}
 				}
+
+				var cellOffsets = new List<CellViewNode>();
+				foreach (var cell in urCells)
+				{
+					if (!EmptyCells.Contains(cell))
+					{
+						cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
+					}
+				}
+
+				var isIncomplete = IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets);
+				if (!AllowIncompleteUniqueRectangles && isIncomplete)
+				{
+					continue;
+				}
+
+				accumulator.Add(
+					new UniqueRectangleWithWingStep(
+						from cell in elimMap select new Conclusion(Elimination, cell, finalPivotDigit),
+						[[.. candidateOffsets, .. cellOffsets]],
+						(arMode, pivotDigit, combination.Count) switch
+						{
+							(false, -1, 2) => Technique.UniqueRectangleXyWing,
+							(false, -1, 3) => Technique.UniqueRectangleXyzWing,
+							(false, -1, 4) => Technique.UniqueRectangleWxyzWing,
+							(false, _, 2) => Technique.UniqueRectangleXyzWing,
+							(false, _, 3) => Technique.UniqueRectangleWxyzWing,
+							(_, -1, 2) => Technique.AvoidableRectangleXyWing,
+							(_, -1, 3) => Technique.AvoidableRectangleXyzWing,
+							(_, -1, 4) => Technique.AvoidableRectangleWxyzWing,
+							(_, _, 2) => Technique.AvoidableRectangleXyzWing,
+							(_, _, 3) => Technique.AvoidableRectangleWxyzWing
+						},
+						d1,
+						d2,
+						cells,
+						arMode,
+						combination,
+						otherCellsMap,
+						otherDigitsMask,
+						index
+					)
+				);
 			}
 		}
-		// TODO: Check for subtype 2 on UR/AR Wings.
 	}
 
 	/// <summary>

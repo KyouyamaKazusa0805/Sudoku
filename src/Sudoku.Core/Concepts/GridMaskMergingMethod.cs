@@ -11,6 +11,11 @@ public enum GridMaskMergingMethod
 	AndNot,
 
 	/// <summary>
+	/// Indicates the merging operation is <see langword="operator"/> <c><![CDATA[&]]></c>.
+	/// </summary>
+	And,
+
+	/// <summary>
 	/// Indicates the merging operation is <see langword="operator"/> <c><![CDATA[|]]></c>.
 	/// </summary>
 	Or

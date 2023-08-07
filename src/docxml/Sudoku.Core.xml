@@ -3501,6 +3501,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the merging operation is <see langword="operator"/> <c><![CDATA[&]]></c> and <see langword="operator"/> <c><![CDATA[~]]></c>.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.GridMaskMergingMethod.And">
+            <summary>
+            Indicates the merging operation is <see langword="operator"/> <c><![CDATA[&]]></c>.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.GridMaskMergingMethod.Or">
             <summary>
             Indicates the merging operation is <see langword="operator"/> <c><![CDATA[|]]></c>.
