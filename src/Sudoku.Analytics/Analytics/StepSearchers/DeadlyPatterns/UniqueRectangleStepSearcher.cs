@@ -2650,8 +2650,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			if (pivotDigit == -1)
 			{
 				// No pivot digit should be checked. Due to no way to check intersection, we should delay the checking.
-				cellsGroups = new Cell[PopCount((uint)otherDigitsMask)][];
-				var tempIndex = 0;
+				(cellsGroups, var tempIndex) = (new Cell[PopCount((uint)otherDigitsMask)][], 0);
 				foreach (var lastDigit in otherDigitsMask)
 				{
 					scoped ref var currentCellGroup = ref cellsGroups[tempIndex++];
@@ -2667,9 +2666,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				cellsGroups = new Cell[PopCount((uint)lastDigitsMask)][];
-				var tempIndex = 0;
-				var atLeastOneGroupIsEmpty = false;
+				(cellsGroups, var tempIndex, var atLeastOneGroupIsEmpty) = (new Cell[PopCount((uint)lastDigitsMask)][], 0, false);
 				foreach (var lastDigit in lastDigitsMask)
 				{
 					scoped ref var currentCellGroup = ref cellsGroups[tempIndex++];
@@ -2718,8 +2715,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var elimMap = (pivotDigit == -1 ? combination : combination | cells & CandidatesMap[finalPivotDigit]).PeerIntersection
-					& CandidatesMap[finalPivotDigit];
+				var elimMapBase = pivotDigit == -1 ? combination : combination | cells & CandidatesMap[finalPivotDigit];
+				var elimMap = elimMapBase.PeerIntersection & CandidatesMap[finalPivotDigit];
 				if (!elimMap)
 				{
 					// No eliminations.
