@@ -11,21 +11,21 @@ public interface ISudokuPainterFactory
 	/// </summary>
 	/// <param name="size">The new size of the canvas.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithSize(int size);
+	public abstract ISudokuPainter WithSize(int size);
 
 	/// <summary>
 	/// Sets the offset of the canvas.
 	/// </summary>
 	/// <param name="padding">The padding of the canvas.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithPadding(int padding);
+	public abstract ISudokuPainter WithPadding(int padding);
 
 	/// <summary>
 	/// Sets the grid of the canvas.
 	/// </summary>
 	/// <param name="grid">The new grid.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithGrid(scoped in Grid grid);
+	public abstract ISudokuPainter WithGrid(scoped in Grid grid);
 
 	/// <summary>
 	/// Sets the grid of the canvas, with the string representation.
@@ -33,7 +33,7 @@ public interface ISudokuPainterFactory
 	/// <param name="gridCode">The new grid string code.</param>
 	/// <returns>The target painter.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed ISudokuPainter WithGridCode(string gridCode) => WithGrid(Grid.Parse(gridCode));
+	public sealed ISudokuPainter WithGridCode(string gridCode) => WithGrid(Grid.Parse(gridCode));
 
 	/// <summary>
 	/// Sets whether the candidates in the grid will also be rendered.
@@ -41,7 +41,7 @@ public interface ISudokuPainterFactory
 	/// <param name="renderingCandidates">The <see cref="bool"/> value indicating that.</param>
 	/// <returns>The target painter.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed ISudokuPainter WithRenderingCandidates(bool renderingCandidates)
+	public sealed ISudokuPainter WithRenderingCandidates(bool renderingCandidates)
 		=> WithPreferenceSettings(pref => pref.ShowCandidates = renderingCandidates);
 
 	/// <summary>
@@ -50,7 +50,7 @@ public interface ISudokuPainterFactory
 	/// <param name="fontName">The font name.</param>
 	/// <returns>The target painter.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed ISudokuPainter WithValueFont(string fontName)
+	public sealed ISudokuPainter WithValueFont(string fontName)
 		=> WithPreferenceSettings(pref => pref.GivenFontName = pref.ModifiableFontName = fontName);
 
 	/// <summary>
@@ -67,7 +67,7 @@ public interface ISudokuPainterFactory
 	/// </param>
 	/// <returns>The target painter.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed ISudokuPainter WithFontScale(decimal fontScale) => WithFontScale(fontScale, fontScale / 3);
+	public sealed ISudokuPainter WithFontScale(decimal fontScale) => WithFontScale(fontScale, fontScale / 3);
 
 	/// <summary>
 	/// <inheritdoc cref="WithFontScale(decimal)" path="/summary"/>
@@ -86,7 +86,7 @@ public interface ISudokuPainterFactory
 	/// <inheritdoc cref="WithFontScale(decimal)" path="/returns"/>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed ISudokuPainter WithFontScale(decimal valueFontScale, decimal candidateFontScale)
+	public sealed ISudokuPainter WithFontScale(decimal valueFontScale, decimal candidateFontScale)
 		=> WithPreferenceSettings(pref => { pref.ValueScale = valueFontScale; pref.CandidateScale = candidateFontScale; });
 
 	/// <summary>
@@ -95,14 +95,14 @@ public interface ISudokuPainterFactory
 	/// <param name="fontName">The font name.</param>
 	/// <returns>The target painter.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed ISudokuPainter WithCandidateFont(string fontName) => WithPreferenceSettings(pref => pref.CandidateFontName = fontName);
+	public sealed ISudokuPainter WithCandidateFont(string fontName) => WithPreferenceSettings(pref => pref.CandidateFontName = fontName);
 
 	/// <summary>
 	/// Sets the preference to the target value.
 	/// </summary>
 	/// <param name="action">The action to set preference values.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithPreferenceSettings(Action<DrawingConfigurations> action);
+	public abstract ISudokuPainter WithPreferenceSettings(Action<DrawingConfigurations> action);
 
 	/// <summary>
 	/// Sets the footer text that can be rendered below the picture.
@@ -110,7 +110,7 @@ public interface ISudokuPainterFactory
 	/// <param name="footerText">The footer text.</param>
 	/// <returns>The target painter.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed ISudokuPainter WithFooterText(string footerText) => WithFooterText(footerText, TextAlignmentType.Center);
+	public sealed ISudokuPainter WithFooterText(string footerText) => WithFooterText(footerText, TextAlignmentType.Center);
 
 	/// <summary>
 	/// Sets the footer text that can be rendered below the picture, with the specified alignment.
@@ -119,7 +119,7 @@ public interface ISudokuPainterFactory
 	/// <param name="alignment">The alignment.</param>
 	/// <returns>The target painter.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="alignment"/> is not defined.</exception>
-	ISudokuPainter WithFooterText(string footerText, TextAlignmentType alignment);
+	public abstract ISudokuPainter WithFooterText(string footerText, TextAlignmentType alignment);
 
 	/// <summary>
 	/// Sets the conclusions used for rendering.
@@ -127,40 +127,40 @@ public interface ISudokuPainterFactory
 	/// <param name="conclusions">The conclusions.</param>
 	/// <returns>The target painter.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed ISudokuPainter WithConclusions(params Conclusion[] conclusions) => WithConclusions(ImmutableArray.Create(conclusions));
+	public sealed ISudokuPainter WithConclusions(params Conclusion[] conclusions) => WithConclusions(ImmutableArray.Create(conclusions));
 
 	/// <summary>
 	/// Sets the conclusions used for rendering.
 	/// </summary>
 	/// <param name="conclusions">The conclusions.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithConclusions(ImmutableArray<Conclusion> conclusions);
+	public abstract ISudokuPainter WithConclusions(ImmutableArray<Conclusion> conclusions);
 
 	/// <summary>
 	/// Sets the view nodes used for rendering.
 	/// </summary>
 	/// <param name="nodes">The nodes.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter WithNodes(IEnumerable<ViewNode> nodes);
+	public abstract ISudokuPainter WithNodes(IEnumerable<ViewNode> nodes);
 
 	/// <summary>
 	/// Append extra nodes.
 	/// </summary>
 	/// <param name="nodes">Extra nodes.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter AddNodes(IEnumerable<ViewNode> nodes);
+	public abstract ISudokuPainter AddNodes(IEnumerable<ViewNode> nodes);
 
 	/// <summary>
 	/// Remove nodes.
 	/// </summary>
 	/// <param name="nodes">Nodes.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter RemoveNodes(IEnumerable<ViewNode> nodes);
+	public abstract ISudokuPainter RemoveNodes(IEnumerable<ViewNode> nodes);
 
 	/// <summary>
 	/// Remove nodes if the target node satisfies the specified condition.
 	/// </summary>
 	/// <param name="predicate">The predicate.</param>
 	/// <returns>The target painter.</returns>
-	ISudokuPainter RemoveNodesWhen(Predicate<ViewNode> predicate);
+	public abstract ISudokuPainter RemoveNodesWhen(Predicate<ViewNode> predicate);
 }

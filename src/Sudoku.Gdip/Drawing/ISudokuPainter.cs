@@ -8,7 +8,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// <summary>
 	/// The grid image generator.
 	/// </summary>
-	protected internal GridImageGenerator GridImageGenerator { get; }
+	protected internal abstract GridImageGenerator GridImageGenerator { get; }
 
 
 	/// <summary>
@@ -22,7 +22,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// <exception cref="NotSupportedException">
 	/// Throws when the specified file format specified in the argument <paramref name="path"/> is not supported.
 	/// </exception>
-	sealed void SaveTo(string path)
+	public sealed void SaveTo(string path)
 	{
 		switch (Path.GetExtension(path)?.ToLower())
 		{
@@ -82,7 +82,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// </list>
 	/// Other formats are not supported. This method will return <see langword="false"/> for not being supported.
 	/// </returns>
-	sealed bool TrySaveTo(string path)
+	public sealed bool TrySaveTo(string path)
 	{
 		try
 		{
@@ -118,7 +118,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// </returns>
 	/// <seealso cref="Image"/>
 	/// <seealso cref="IDisposable"/>
-	Image Render();
+	public abstract Image Render();
 
 	/// <summary>
 	/// Sets the footer text that can be rendered below the picture.
@@ -126,14 +126,14 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// <param name="footerText">The footer text.</param>
 	/// <returns>The target painter.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed ISudokuPainter WithFooterTextIfNotNull(string? footerText) => footerText is not null ? WithFooterText(footerText) : this;
+	public sealed ISudokuPainter WithFooterTextIfNotNull(string? footerText) => footerText is not null ? WithFooterText(footerText) : this;
 
 
 	/// <summary>
 	/// The default singleton instance that you can get.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static ISudokuPainter Create(int canvasDefaultSize, int canvasOffset = 10) => new SudokuPainter(canvasDefaultSize, canvasOffset);
+	public static sealed ISudokuPainter Create(int canvasDefaultSize, int canvasOffset = 10) => new SudokuPainter(canvasDefaultSize, canvasOffset);
 
 	/// <summary>
 	/// Create an instance using the specified <see cref="SudokuPainterPropertySetter"/> method,
@@ -142,7 +142,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	/// <param name="base">The base instance.</param>
 	/// <param name="propertySetters">The property setter method.</param>
 	/// <returns>Created <see cref="ISudokuPainter"/> instance.</returns>
-	static ISudokuPainter Create(ISudokuPainter @base, SudokuPainterPropertySetter propertySetters)
+	public static sealed ISudokuPainter Create(ISudokuPainter @base, SudokuPainterPropertySetter propertySetters)
 	{
 		foreach (var method in propertySetters.GetInvocations())
 		{

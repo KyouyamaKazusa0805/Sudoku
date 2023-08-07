@@ -12,7 +12,7 @@ public interface ICellMapFormatter : IFormatProvider, ICustomFormatter
 	/// </summary>
 	/// <param name="cellMap">A <see cref="CellMap"/> instance to be formatted.</param>
 	/// <returns>A <see cref="string"/> representation as result.</returns>
-	string ToString(scoped in CellMap cellMap);
+	public abstract string ToString(scoped in CellMap cellMap);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

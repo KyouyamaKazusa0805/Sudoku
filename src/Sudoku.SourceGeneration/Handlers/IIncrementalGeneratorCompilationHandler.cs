@@ -1,4 +1,4 @@
-﻿namespace Sudoku.SourceGeneration.Handlers;
+namespace Sudoku.SourceGeneration.Handlers;
 
 /// <summary>
 /// Represents a file-local constraint for generators,
@@ -14,5 +14,5 @@ internal interface IIncrementalGeneratorCompilationHandler
 	/// <param name="compilation">
 	/// The <see cref="Compilation"/> instance that provides the information for the calling project.
 	/// </param>
-	void Output(SourceProductionContext spc, Compilation compilation);
+	public abstract void Output(SourceProductionContext spc, Compilation compilation);
 }

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Defines a formatter that can create a <see cref="string"/> value representing the current instances
@@ -16,7 +16,7 @@ public interface ICollectionFormatter<in TElement>
 	/// The separator that will be inserted into each two adjacent elements in this collection.
 	/// </param>
 	/// <returns>A <see cref="string"/> result.</returns>
-	static abstract string Format(IEnumerable<TElement> elements, string separator);
+	public static abstract string Format(IEnumerable<TElement> elements, string separator);
 
 	/// <summary>
 	/// Try to format a list of <typeparamref name="TElement"/> instances using the specified formatting mode.
@@ -26,5 +26,5 @@ public interface ICollectionFormatter<in TElement>
 	/// The formatting mode. The default value is <see cref="FormattingMode.Simple"/>.
 	/// </param>
 	/// <returns>A <see cref="string"/> result.</returns>
-	static abstract string Format(IEnumerable<TElement> elements, FormattingMode formattingMode = FormattingMode.Simple);
+	public static abstract string Format(IEnumerable<TElement> elements, FormattingMode formattingMode = FormattingMode.Simple);
 }

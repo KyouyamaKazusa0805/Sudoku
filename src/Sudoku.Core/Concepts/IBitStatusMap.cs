@@ -39,18 +39,18 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <summary>
 	/// Indicates the size of each unit.
 	/// </summary>
-	int Shifting { get; }
+	public abstract int Shifting { get; }
 
 	/// <summary>
 	/// Indicates the number of the values stored in this collection.
 	/// </summary>
-	new int Count { get; }
+	public abstract new int Count { get; }
 
 	/// <summary>
 	/// Gets all chunks of the current collection, meaning a list of <see cref="string"/> values that can describe
 	/// all cell and candidate indices, grouped with same row/column.
 	/// </summary>
-	string[] StringChunks { get; }
+	public abstract string[] StringChunks { get; }
 
 	/// <summary>
 	/// Indicates the peer intersection of the current instance.
@@ -59,12 +59,12 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
 	/// For more information please visit <see href="http://sudopedia.enjoysudoku.com/Peer.html">this link</see>.
 	/// </remarks>
-	TSelf PeerIntersection { get; }
+	public abstract TSelf PeerIntersection { get; }
 
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
-	protected TElement[] Offsets { get; }
+	protected abstract TElement[] Offsets { get; }
 
 	/// <inheritdoc/>
 	bool ICollection<TElement>.IsReadOnly => false;
@@ -76,12 +76,12 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <summary>
 	/// Indicates the empty instance.
 	/// </summary>
-	static abstract TSelf Empty { get; }
+	public static abstract TSelf Empty { get; }
 
 	/// <summary>
 	/// Indicates the maximum number of elements that the collection can be reached.
 	/// </summary>
-	static abstract TElement MaxCount { get; }
+	public static abstract TElement MaxCount { get; }
 
 
 	/// <summary>
@@ -91,7 +91,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <returns>
 	/// The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
 	/// </returns>
-	TElement this[int index] { get; }
+	public abstract TElement this[int index] { get; }
 
 
 	/// <inheritdoc/>
@@ -102,7 +102,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// Adds a new offset into the current collection.
 	/// </summary>
 	/// <param name="offset">The offset.</param>
-	new void Add(TElement offset);
+	public new abstract void Add(TElement offset);
 
 	/// <summary>
 	/// Adds a list of offsets specified as the containing type <typeparamref name="TSelf"/> of this method into the current collection.
@@ -110,25 +110,25 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// without a real appending operation with <see langword="foreach"/> loop.
 	/// </summary>
 	/// <param name="self">The instance whose type is the containing type.</param>
-	void Add(scoped in TSelf self);
+	public abstract void Add(scoped in TSelf self);
 
 	/// <summary>
 	/// Set the specified offsets as <see langword="true"/> value.
 	/// </summary>
 	/// <param name="offsets">The offsets to add.</param>
-	void AddRange(IEnumerable<TElement> offsets);
+	public abstract void AddRange(IEnumerable<TElement> offsets);
 
 	/// <summary>
 	/// Set the specified offset as <see langword="false"/> value.
 	/// </summary>
 	/// <param name="offset">The offset.</param>
-	new void Remove(TElement offset);
+	public new abstract void Remove(TElement offset);
 
 	/// <summary>
 	/// Set the specified offsets as <see langword="false"/> value.
 	/// </summary>
 	/// <param name="offsets">The offsets to remove.</param>
-	sealed void RemoveRange(scoped ReadOnlySpan<TElement> offsets)
+	public sealed void RemoveRange(scoped ReadOnlySpan<TElement> offsets)
 	{
 		foreach (var cell in offsets)
 		{
@@ -137,12 +137,12 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	}
 
 	/// <inheritdoc cref="RemoveRange(ReadOnlySpan{TElement})"/>
-	void RemoveRange(IEnumerable<TElement> offsets);
+	public abstract void RemoveRange(IEnumerable<TElement> offsets);
 
 	/// <summary>
 	/// Clear all bits.
 	/// </summary>
-	new void Clear();
+	public new abstract void Clear();
 
 	/// <summary>
 	/// Copies the current instance to the target array specified as an <typeparamref name="TElement"/>*.
@@ -155,10 +155,10 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the capacity isn't enough to store all values.
 	/// </exception>
-	unsafe void CopyTo(TElement* arr, int length);
+	public abstract unsafe void CopyTo(TElement* arr, int length);
 
 	/// <inheritdoc cref="ICollection{T}.CopyTo(T[], int)"/>
-	new unsafe void CopyTo(TElement[] array, int arrayIndex)
+	public new sealed unsafe void CopyTo(TElement[] array, int arrayIndex)
 	{
 		fixed (TElement* pArray = array)
 		{
@@ -173,7 +173,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// The target <see cref="Span{T}"/> instance.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed unsafe void CopyTo(scoped Span<TElement> span)
+	public sealed unsafe void CopyTo(scoped Span<TElement> span)
 	{
 		fixed (TElement* ptr = span)
 		{
@@ -185,35 +185,35 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// Iterates on each element in this collection.
 	/// </summary>
 	/// <param name="action">The visitor that handles for each element in this collection.</param>
-	void ForEach(Action<TElement> action);
+	public abstract void ForEach(Action<TElement> action);
 
 	/// <inheritdoc cref="ISet{T}.ExceptWith(IEnumerable{T})"/>
-	new void ExceptWith(IEnumerable<TElement> other);
+	public new abstract void ExceptWith(IEnumerable<TElement> other);
 
 	/// <inheritdoc cref="ISet{T}.IntersectWith(IEnumerable{T})"/>
-	new void IntersectWith(IEnumerable<TElement> other);
+	public new abstract void IntersectWith(IEnumerable<TElement> other);
 
 	/// <inheritdoc cref="ISet{T}.SymmetricExceptWith(IEnumerable{T})"/>
-	new void SymmetricExceptWith(IEnumerable<TElement> other);
+	public new abstract void SymmetricExceptWith(IEnumerable<TElement> other);
 
 	/// <inheritdoc cref="ISet{T}.UnionWith(IEnumerable{T})"/>
-	new void UnionWith(IEnumerable<TElement> other);
+	public new abstract void UnionWith(IEnumerable<TElement> other);
 
 	/// <summary>
 	/// Determine whether the map contains the specified offset.
 	/// </summary>
 	/// <param name="offset">The offset.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	new bool Contains(TElement offset);
+	public new abstract bool Contains(TElement offset);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-	bool Equals(scoped in TSelf other);
+	public abstract bool Equals(scoped in TSelf other);
 
 	/// <summary>
 	/// Get all offsets whose bits are set <see langword="true"/>.
 	/// </summary>
 	/// <returns>An array of offsets.</returns>
-	TElement[] ToArray();
+	public abstract TElement[] ToArray();
 
 	/// <summary>
 	/// Slices the current instance, and get the new instance with some of elements between two indices.
@@ -221,7 +221,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="start">The start index.</param>
 	/// <param name="count">The number of elements.</param>
 	/// <returns>The target instance.</returns>
-	TSelf Slice(int start, int count);
+	public abstract TSelf Slice(int start, int count);
 
 	/// <summary>
 	/// Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
@@ -258,7 +258,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// and the argument <paramref name="subsetSize"/> is 2, the expression <c><![CDATA[cells & 2]]></c>
 	/// will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
 	/// </remarks>
-	TSelf[] GetSubsets(int subsetSize);
+	public abstract TSelf[] GetSubsets(int subsetSize);
 
 	/// <summary>
 	/// Equivalent to <c>GetAllSubsets(Count)</c>.
@@ -266,7 +266,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <returns>All subsets of the current instance.</returns>
 	/// <seealso cref="GetAllSubsets(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	TSelf[] GetAllSubsets() => GetAllSubsets(Count);
+	public virtual TSelf[] GetAllSubsets() => GetAllSubsets(Count);
 
 	/// <summary>
 	/// Gets all subsets of the current collection via the specified size
@@ -295,7 +295,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// coming from <c><![CDATA[cells & 1]]></c>,
 	/// <c><![CDATA[cells & 2]]></c> and <c><![CDATA[cells & 3]]></c>.
 	/// </remarks>
-	TSelf[] GetAllSubsets(int limitSubsetSize)
+	public virtual TSelf[] GetAllSubsets(int limitSubsetSize)
 	{
 		if (limitSubsetSize == 0 || Count == 0)
 		{
@@ -323,7 +323,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
-	new OneDimensionalArrayEnumerator<TElement> GetEnumerator();
+	public new abstract OneDimensionalArrayEnumerator<TElement> GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -496,7 +496,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// The statement <c>collection</c> will be expanded to <c>collection.Count != 0</c>. Therefore, the negation operator <c>!</c>
 	/// will invert the result of above expression. This is why I use <see langword="operator"/> <c>!</c> to determine on this.
 	/// </remarks>
-	static abstract bool operator !(scoped in TSelf offsets);
+	public static abstract bool operator !(scoped in TSelf offsets);
 
 	/// <summary>
 	/// Reverse status for all offsets, which means all <see langword="true"/> bits
@@ -505,7 +505,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </summary>
 	/// <param name="offsets">The instance to negate.</param>
 	/// <returns>The negative result.</returns>
-	static abstract TSelf operator ~(scoped in TSelf offsets);
+	public static abstract TSelf operator ~(scoped in TSelf offsets);
 
 	/// <summary>
 	/// Determines whether the specified <typeparamref name="TSelf"/> collection is not empty.
@@ -513,7 +513,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="cells">The collection.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual bool operator true(scoped in TSelf cells) => cells.Count != 0;
+	public static virtual bool operator true(scoped in TSelf cells) => cells.Count != 0;
 
 	/// <summary>
 	/// Determines whether the specified <typeparamref name="TSelf"/> collection is empty.
@@ -521,7 +521,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="cells">The collection.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual bool operator false(scoped in TSelf cells) => cells.Count == 0;
+	public static virtual bool operator false(scoped in TSelf cells) => cells.Count == 0;
 
 	/// <summary>
 	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
@@ -530,7 +530,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be added.</param>
 	/// <returns>The result collection.</returns>
-	static abstract TSelf operator +(scoped in TSelf collection, TElement offset);
+	public static abstract TSelf operator +(scoped in TSelf collection, TElement offset);
 
 	/// <summary>
 	/// Adds the specified list of <paramref name="offsets"/> to the <paramref name="collection"/>,
@@ -539,7 +539,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offsets">A list of cells to be added.</param>
 	/// <returns>The result collection.</returns>
-	static abstract TSelf operator +(scoped in TSelf collection, IEnumerable<TElement> offsets);
+	public static abstract TSelf operator +(scoped in TSelf collection, IEnumerable<TElement> offsets);
 
 	/// <summary>
 	/// Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
@@ -548,7 +548,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
-	static abstract TSelf operator -(scoped in TSelf collection, TElement offset);
+	public static abstract TSelf operator -(scoped in TSelf collection, TElement offset);
 
 	/// <summary>
 	/// Get a <typeparamref name="TSelf"/> that contains all <paramref name="collection"/> instance
@@ -557,7 +557,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="collection">The left instance.</param>
 	/// <param name="offsets">The right instance.</param>
 	/// <returns>The result.</returns>
-	static abstract TSelf operator -(scoped in TSelf collection, IEnumerable<TElement> offsets);
+	public static abstract TSelf operator -(scoped in TSelf collection, IEnumerable<TElement> offsets);
 
 	/// <summary>
 	/// Get a <typeparamref name="TSelf"/> that contains all <paramref name="left"/> instance
@@ -566,7 +566,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	static virtual TSelf operator -(scoped in TSelf left, scoped in TSelf right) => left & ~right;
+	public static virtual TSelf operator -(scoped in TSelf left, scoped in TSelf right) => left & ~right;
 
 	/// <summary>
 	/// Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
@@ -574,7 +574,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	static abstract TSelf operator &(scoped in TSelf left, scoped in TSelf right);
+	public static abstract TSelf operator &(scoped in TSelf left, scoped in TSelf right);
 
 	/// <summary>
 	/// Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
@@ -591,7 +591,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	static abstract TSelf operator ^(scoped in TSelf left, scoped in TSelf right);
+	public static abstract TSelf operator ^(scoped in TSelf left, scoped in TSelf right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -636,7 +636,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </summary>
 	/// <param name="array">An array of element type <typeparamref name="TElement"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual explicit operator TSelf(TElement[] array) => [.. array];
+	public static virtual explicit operator TSelf(TElement[] array) => [.. array];
 
 	/// <summary>
 	/// Converts an array of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance, with boundary checks.
@@ -646,7 +646,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// Throws when at least one element in argument <paramref name="array"/> is greater than <see cref="MaxCount"/>.
 	/// </exception>
 	/// <seealso cref="MaxCount"/>
-	static virtual explicit operator checked TSelf(TElement[] array)
+	public static virtual explicit operator checked TSelf(TElement[] array)
 	{
 		var result = TSelf.Empty;
 		foreach (var element in array)
@@ -667,7 +667,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </summary>
 	/// <param name="values">An array of element type <typeparamref name="TElement"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual explicit operator TSelf(scoped ReadOnlySpan<TElement> values) => [.. values];
+	public static virtual explicit operator TSelf(scoped ReadOnlySpan<TElement> values) => [.. values];
 
 	/// <summary>
 	/// Converts an <see cref="ReadOnlySpan{T}"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance, 
@@ -678,7 +678,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// Throws when at least one element in argument <paramref name="values"/> is greater than <see cref="MaxCount"/>.
 	/// </exception>
 	/// <seealso cref="MaxCount"/>
-	static virtual explicit operator checked TSelf(scoped ReadOnlySpan<TElement> values)
+	public static virtual explicit operator checked TSelf(scoped ReadOnlySpan<TElement> values)
 	{
 		var result = TSelf.Empty;
 		foreach (var element in values)

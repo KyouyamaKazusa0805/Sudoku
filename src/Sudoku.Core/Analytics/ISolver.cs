@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Represents a solver that can provide with a basic function to solve a sudoku puzzle given with a <see cref="Grid"/> instance,
@@ -12,7 +12,7 @@ public interface ISolver
 	/// <remarks>
 	/// This property is reserved as information that is offered to the algorithm learners.
 	/// </remarks>
-	static abstract string? UriLink { get; }
+	public static abstract string? UriLink { get; }
 
 
 	/// <summary>
@@ -46,5 +46,5 @@ public interface ISolver
 	/// </item>
 	/// </list>
 	/// </returns>
-	bool? Solve(scoped in Grid grid, out Grid result);
+	public abstract bool? Solve(scoped in Grid grid, out Grid result);
 }

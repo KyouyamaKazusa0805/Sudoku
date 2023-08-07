@@ -12,7 +12,7 @@ public interface IAnalyzerResult<in TSolver, out TSelf> where TSolver : IAnalyze
 	/// <summary>
 	/// Indicates whether the solver has solved the puzzle.
 	/// </summary>
-	bool IsSolved { get; init; }
+	public abstract bool IsSolved { get; init; }
 
 	/// <summary>
 	/// Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
@@ -20,22 +20,22 @@ public interface IAnalyzerResult<in TSolver, out TSelf> where TSolver : IAnalyze
 	/// <see cref="TimeSpan.Zero"/>.
 	/// </summary>
 	/// <seealso cref="TimeSpan.Zero"/>
-	TimeSpan ElapsedTime { get; init; }
+	public abstract TimeSpan ElapsedTime { get; init; }
 
 	/// <summary>
 	/// Indicates the original puzzle to be solved.
 	/// </summary>
-	Grid Puzzle { get; init; }
+	public abstract Grid Puzzle { get; init; }
 
 	/// <summary>
 	/// Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
 	/// <see cref="Grid.Undefined"/>.
 	/// </summary>
 	/// <seealso cref="Grid.Undefined"/>
-	Grid Solution { get; init; }
+	public abstract Grid Solution { get; init; }
 
 	/// <summary>
 	/// Indicates the unhandled exception thrown.
 	/// </summary>
-	Exception? UnhandledException { get; init; }
+	public abstract Exception? UnhandledException { get; init; }
 }

@@ -17,5 +17,5 @@ public interface IPuzzleGenerator
 	/// <returns>
 	/// The result puzzle generated. If canceled, the return value will be <see cref="Grid.Undefined"/>.
 	/// </returns>
-	Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default);
+	public abstract Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default);
 }

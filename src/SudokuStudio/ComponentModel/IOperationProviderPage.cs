@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.ComponentModel;
+namespace SudokuStudio.ComponentModel;
 
 /// <summary>
 /// Provides with a app-bar operation provider page.
@@ -8,5 +8,5 @@ public interface IOperationProviderPage
 	/// <summary>
 	/// Indicates the base page.
 	/// </summary>
-	AnalyzePage BasePage { get; set; }
+	public abstract AnalyzePage BasePage { get; set; }
 }

@@ -8,5 +8,5 @@ public interface ICompatibilityProvider
 	/// <summary>
 	/// Indicates the program name of the current provider to be compatible.
 	/// </summary>
-	static abstract string ProgramName { get; }
+	public static abstract string ProgramName { get; }
 }

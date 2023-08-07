@@ -12,7 +12,7 @@ public interface ICandidateMapFormatter : IFormatProvider
 	/// </summary>
 	/// <param name="candidateMap">A <see cref="CandidateMap"/> instance to be formatted.</param>
 	/// <returns>A <see cref="string"/> representation as result.</returns>
-	string ToString(scoped in CandidateMap candidateMap);
+	public abstract string ToString(scoped in CandidateMap candidateMap);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

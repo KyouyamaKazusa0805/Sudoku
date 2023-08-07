@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Storage;
+namespace SudokuStudio.Storage;
 
 /// <summary>
 /// Provides with a handler that can handle a file type defined in type <see cref="FileExtensions"/>.
@@ -10,7 +10,7 @@ public interface IProgramSupportedFileHandler<T> where T : notnull
 	/// <summary>
 	/// Indicates the supported file extension.
 	/// </summary>
-	static abstract string SupportedFileExtension { get; }
+	public static abstract string SupportedFileExtension { get; }
 
 
 	/// <summary>
@@ -18,12 +18,12 @@ public interface IProgramSupportedFileHandler<T> where T : notnull
 	/// </summary>
 	/// <param name="filePath">The file path.</param>
 	/// <returns>The parsed instance.</returns>
-	static abstract T? Read(string filePath);
+	public static abstract T? Read(string filePath);
 
 	/// <summary>
 	/// Writes the specified instance, and output the content into the target file path.
 	/// </summary>
 	/// <param name="filePath">The file path.</param>
 	/// <param name="instance">The instance to be written.</param>
-	static abstract void Write(string filePath, T instance);
+	public static abstract void Write(string filePath, T instance);
 }

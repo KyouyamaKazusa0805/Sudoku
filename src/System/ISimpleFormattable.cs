@@ -1,4 +1,4 @@
-﻿namespace System;
+namespace System;
 
 /// <summary>
 /// Defines a type that supports <c>ToString(<see langword="string"/>?)</c>.
@@ -12,5 +12,5 @@ public interface ISimpleFormattable
 	/// <param name="format">The format to use, or <see langword="null"/> to use the default format.</param>
 	/// <returns>The value of the current instance in the specified format.</returns>
 	/// <exception cref="FormatException">Throws when the format is invalid.</exception>
-	string ToString(string? format);
+	public abstract string ToString(string? format);
 }

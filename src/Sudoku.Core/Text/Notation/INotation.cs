@@ -17,7 +17,7 @@ public interface INotation<TSelf, TElement> : INotation where TSelf : notnull, I
 	/// </summary>
 	/// <param name="value">The instance to be output.</param>
 	/// <returns>The string notation of the value.</returns>
-	static abstract string ToString(TElement value);
+	public static abstract string ToString(TElement value);
 }
 
 /// <summary>
@@ -41,7 +41,7 @@ public interface INotation<TSelf, TElement, TConceptKindPresenter> : INotation
 	/// <returns>The converted result.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the argument <paramref name="text"/> cannot be parsed.</exception>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
-	static abstract TElement Parse(string text, TConceptKindPresenter notation);
+	public static abstract TElement Parse(string text, TConceptKindPresenter notation);
 
 	/// <summary>
 	/// Gets the text notation that can represent the specified value via the specified notation kind.
@@ -52,7 +52,7 @@ public interface INotation<TSelf, TElement, TConceptKindPresenter> : INotation
 	/// </param>
 	/// <returns>The string representation of the value.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
-	static abstract string ToString(TElement value, TConceptKindPresenter notation);
+	public static abstract string ToString(TElement value, TConceptKindPresenter notation);
 }
 
 /// <summary>
@@ -90,7 +90,7 @@ public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter> 
 	///     path="/returns"/>
 	/// </returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
-	static abstract TCollection ParseCollection(string text, TConceptKindPresenter notation);
+	public static abstract TCollection ParseCollection(string text, TConceptKindPresenter notation);
 
 	/// <summary>
 	/// Gets the text notation that can represent the specified collection via the specified notation kind.
@@ -111,7 +111,7 @@ public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter> 
 	///     path="/returns"/>
 	/// </returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
-	static abstract string ToCollectionString(TCollection collection, TConceptKindPresenter notation);
+	public static abstract string ToCollectionString(TCollection collection, TConceptKindPresenter notation);
 }
 
 /// <summary>
@@ -157,7 +157,7 @@ public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter, 
 	/// <returns>
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)" path="/returns"/>
 	/// </returns>
-	static abstract TElement Parse(string text, TConceptKindPresenter notation, TOptionProvider option);
+	public static abstract TElement Parse(string text, TConceptKindPresenter notation, TOptionProvider option);
 
 	/// <summary>
 	/// <inheritdoc
@@ -180,7 +180,7 @@ public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter, 
 	/// <returns>
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)" path="/returns"/>
 	/// </returns>
-	static abstract TCollection ParseCollection(string text, TConceptKindPresenter notation, TOptionProvider option);
+	public static abstract TCollection ParseCollection(string text, TConceptKindPresenter notation, TOptionProvider option);
 
 	/// <summary>
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)" path="/summary"/>
@@ -201,7 +201,7 @@ public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter, 
 	/// <returns>
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)" path="/returns"/>
 	/// </returns>
-	static abstract string ToString(TElement value, TConceptKindPresenter notation, TOptionProvider option);
+	public static abstract string ToString(TElement value, TConceptKindPresenter notation, TOptionProvider option);
 
 	/// <summary>
 	/// <inheritdoc
@@ -226,5 +226,5 @@ public interface INotation<TSelf, TCollection, TElement, TConceptKindPresenter, 
 	/// <returns>
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.Parse(string, TConceptKindPresenter)" path="/returns"/>
 	/// </returns>
-	static abstract string ToCollectionString(TCollection collection, TConceptKindPresenter notation, TOptionProvider option);
+	public static abstract string ToCollectionString(TCollection collection, TConceptKindPresenter notation, TOptionProvider option);
 }

@@ -14,22 +14,22 @@ public interface IComparableStep<in TSelf> where TSelf : Step, IComparableStep<T
 	/// <param name="right">The right-side value to be compared.</param>
 	/// <returns>An <see cref="int"/> value indicating which is greater.</returns>
 	/// <inheritdoc cref="IComparer{T}.Compare(T, T)"/>
-	static abstract int Compare(TSelf left, TSelf right);
+	public static abstract int Compare(TSelf left, TSelf right);
 
 
 	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual bool operator >(TSelf left, TSelf right) => TSelf.Compare(left, right) > 0;
+	public static virtual bool operator >(TSelf left, TSelf right) => TSelf.Compare(left, right) > 0;
 
 	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual bool operator >=(TSelf left, TSelf right) => TSelf.Compare(left, right) >= 0;
+	public static virtual bool operator >=(TSelf left, TSelf right) => TSelf.Compare(left, right) >= 0;
 
 	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual bool operator <(TSelf left, TSelf right) => TSelf.Compare(left, right) < 0;
+	public static virtual bool operator <(TSelf left, TSelf right) => TSelf.Compare(left, right) < 0;
 
 	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static virtual bool operator <=(TSelf left, TSelf right) => TSelf.Compare(left, right) <= 0;
+	public static virtual bool operator <=(TSelf left, TSelf right) => TSelf.Compare(left, right) <= 0;
 }

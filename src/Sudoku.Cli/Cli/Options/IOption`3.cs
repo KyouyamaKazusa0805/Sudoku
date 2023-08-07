@@ -18,12 +18,12 @@ public interface IOption<TSelf, out T, TConverter> : IOption<TSelf, T>
 	/// <inheritdoc cref="Option{T}.Option(string, ParseArgument{T}, bool, string?)" path="/param[@name='isDefault']"/>
 	/// </summary>
 	/// <remarks>This property is <see langword="false"/> by default.</remarks>
-	static virtual bool IsDefault { get; } = false;
+	public static virtual bool IsDefault { get; } = false;
 
 
 	/// <inheritdoc cref="IOption{TSelf, T}.CreateOption"/>
 	[SuppressMessage("Style", "IDE0002:Simplify Member Access", Justification = "<Pending>")]
-	static new Option<T> CreateOption()
+	public static new sealed Option<T> CreateOption()
 	{
 		var result = new Option<T>(TSelf.Aliases, TConverter.ConvertValue, TSelf.IsDefault, TSelf.Description) { IsRequired = TSelf.IsRequired };
 		result.SetDefaultValue(TSelf.DefaultValue);

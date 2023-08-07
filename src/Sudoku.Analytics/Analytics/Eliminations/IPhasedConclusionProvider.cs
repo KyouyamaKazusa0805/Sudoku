@@ -14,16 +14,16 @@ public interface IPhasedConclusionProvider<TSelf, TReasonEnum> : IEquatable<TSel
 	/// <summary>
 	/// Indicates the conclusions that matches for the current reason.
 	/// </summary>
-	public Conclusion[] Conclusions { get; }
+	public abstract Conclusion[] Conclusions { get; }
 
 	/// <summary>
 	/// Indicates the reason why the conclusions can be available.
 	/// </summary>
-	public TReasonEnum Reason { get; }
+	public abstract TReasonEnum Reason { get; }
 
 
 	/// <inheritdoc cref="object.GetHashCode"/>
-	sealed int GetHashCode()
+	public sealed int GetHashCode()
 	{
 		var hashCode = new HashCode();
 		foreach (var conclusion in Conclusions)
@@ -40,7 +40,7 @@ public interface IPhasedConclusionProvider<TSelf, TReasonEnum> : IEquatable<TSel
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	sealed OneDimensionalArrayEnumerator<Conclusion> GetEnumerator() => Conclusions.EnumerateImmutable();
+	public sealed OneDimensionalArrayEnumerator<Conclusion> GetEnumerator() => Conclusions.EnumerateImmutable();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

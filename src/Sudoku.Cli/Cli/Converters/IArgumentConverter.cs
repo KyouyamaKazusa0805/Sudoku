@@ -12,5 +12,5 @@ public interface IArgumentConverter<TSelf, out T> where TSelf : IArgumentConvert
 	/// </summary>
 	/// <param name="argumentResult">The argument instance.</param>
 	/// <returns>The result instance having parsed.</returns>
-	static abstract T ConvertValue(ArgumentResult argumentResult);
+	public static abstract T ConvertValue(ArgumentResult argumentResult);
 }

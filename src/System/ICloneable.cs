@@ -1,4 +1,4 @@
-﻿namespace System;
+namespace System;
 
 /// <summary>
 /// <inheritdoc cref="ICloneable" path="/summary"/>
@@ -7,7 +7,7 @@
 public interface ICloneable<out TSelf> : ICloneable where TSelf : class?, ICloneable<TSelf>?
 {
 	/// <inheritdoc cref="ICloneable.Clone"/>
-	new TSelf Clone();
+	public new abstract TSelf Clone();
 
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when method <see cref="Clone"/> returns <see langword="null"/>.</exception>

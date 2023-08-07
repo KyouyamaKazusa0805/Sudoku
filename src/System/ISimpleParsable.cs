@@ -1,4 +1,4 @@
-﻿namespace System;
+namespace System;
 
 /// <summary>
 /// Defines an instance that allows the <see cref="string"/> value
@@ -23,7 +23,7 @@ public interface ISimpleParsable<TSelf> where TSelf : ISimpleParsable<TSelf>
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="str"/> is <see langword="null"/>.
 	/// </exception>
-	static abstract TSelf Parse(string str);
+	public static abstract TSelf Parse(string str);
 
 	/// <summary>
 	/// Try to parse the specified string text, and get the same-meaning instance
@@ -37,5 +37,5 @@ public interface ISimpleParsable<TSelf> where TSelf : ISimpleParsable<TSelf>
 	/// <returns>
 	/// A <see cref="bool"/> result indicating whether the operation is successful to execute.
 	/// </returns>
-	static abstract bool TryParse(string str, [NotNullWhen(true)] out TSelf? result);
+	public static abstract bool TryParse(string str, [NotNullWhen(true)] out TSelf? result);
 }

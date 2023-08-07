@@ -1,4 +1,4 @@
-﻿namespace Sudoku.SourceGeneration.Handlers;
+namespace Sudoku.SourceGeneration.Handlers;
 
 /// <summary>
 /// Represents a file-local constraint for generators,
@@ -16,12 +16,12 @@ internal interface IIncrementalGeneratorAttributeHandler<T> where T : notnull
 	/// <param name="gasc">The context used for getting basic information for a <see cref="SyntaxNode"/>.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel generating.</param>
 	/// <returns>The result. The value can be <see langword="null"/>.</returns>
-	T? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken);
+	public abstract T? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken);
 
 	/// <summary>
 	/// Try to generate the source.
 	/// </summary>
 	/// <param name="spc">The context used for generating.</param>
 	/// <param name="values">The values.</param>
-	void Output(SourceProductionContext spc, ImmutableArray<T> values);
+	public abstract void Output(SourceProductionContext spc, ImmutableArray<T> values);
 }

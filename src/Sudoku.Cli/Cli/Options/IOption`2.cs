@@ -13,29 +13,29 @@ public interface IOption<TSelf, out T> where TSelf : class, IOption<TSelf, T>, n
 	/// <para><inheritdoc cref="Option.IsRequired" path="/remarks"/></para>
 	/// </summary>
 	/// <remarks>This property is <see langword="false"/> by default.</remarks>
-	static virtual bool IsRequired { get; } = false;
+	public static virtual bool IsRequired { get; } = false;
 
 	/// <summary>
 	/// Indicates the description to be used.
 	/// </summary>
-	static abstract string Description { get; }
+	public static abstract string Description { get; }
 
 	/// <summary>
 	/// Indicates the aliases to be used.
 	/// </summary>
-	static abstract string[] Aliases { get; }
+	public static abstract string[] Aliases { get; }
 
 	/// <summary>
 	/// Indicates the default value to be used.
 	/// </summary>
-	static abstract T DefaultValue { get; }
+	public static abstract T DefaultValue { get; }
 
 
 	/// <summary>
 	/// Create an <see cref="Option{T}"/> instance.
 	/// </summary>
 	/// <returns>An <see cref="Option{T}"/> instance.</returns>
-	static Option<T> CreateOption()
+	public static sealed Option<T> CreateOption()
 	{
 		var result = new Option<T>(TSelf.Aliases, TSelf.Description) { IsRequired = TSelf.IsRequired };
 		result.SetDefaultValue(TSelf.DefaultValue);

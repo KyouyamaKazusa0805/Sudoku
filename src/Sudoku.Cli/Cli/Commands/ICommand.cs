@@ -10,5 +10,5 @@ public interface ICommand<TSelf> where TSelf : Command, ICommand<TSelf>, new()
 	/// Creates a (an) <typeparamref name="TSelf"/> instance.
 	/// </summary>
 	/// <returns>A (An) <typeparamref name="TSelf"/> instance.</returns>
-	static TSelf CreateCommand() => new();
+	public static sealed TSelf CreateCommand() => new();
 }
