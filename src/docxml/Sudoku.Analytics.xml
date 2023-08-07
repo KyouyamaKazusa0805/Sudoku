@@ -4231,12 +4231,12 @@
             Try to create a binary forcing chain hint on "off" state.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.DataModel.ChainNode,System.Collections.Generic.Dictionary{System.Byte,Sudoku.DataModel.NodeSet})">
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.DataModel.ChainNode,Sudoku.DataModel.ChainBranch)">
             <summary>
             Try to create a cell forcing chain hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.DataModel.ChainNode,System.Collections.Generic.Dictionary{System.Byte,Sudoku.DataModel.NodeSet})">
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.DataModel.ChainNode,Sudoku.DataModel.ChainBranch)">
             <summary>
             Try to create a region (house) forcing chain hint.
             </summary>
@@ -4280,17 +4280,17 @@
             </remarks>
             <seealso cref="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Byte,System.Byte,Sudoku.DataModel.NodeSet,Sudoku.DataModel.NodeSet)"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForCellTargetType(System.Collections.Generic.Dictionary{System.Byte,Sudoku.DataModel.NodeSet},Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForCellTargetType(Sudoku.DataModel.ChainBranch,Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
             <summary>
             Check for cell-target type.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForHouseTargetType(System.Collections.Generic.Dictionary{System.Byte,Sudoku.DataModel.NodeSet},Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForHouseTargetType(Sudoku.DataModel.ChainBranch,Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
             <summary>
             Check for house-target type.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.IsOneToOneRelationBetweenStartAndEndNodes(Sudoku.DataModel.NodeList,Sudoku.Concepts.CellMap@,System.Byte,System.Collections.Generic.Dictionary{Sudoku.DataModel.ChainNode,System.Int32}@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.IsOneToOneRelationBetweenStartAndEndNodes(Sudoku.DataModel.NodeList,Sudoku.Concepts.CellMap@,System.Byte,Sudoku.DataModel.ChainNodeListWithHeadCandidate@)">
             <summary>
             Determine whether one target node corresponds to one base node begins the branch, and vice versa.
             </summary>
@@ -4300,7 +4300,7 @@
             <param name="projectedStartNodes">The projected starting nodes, which can be used if return value is <see langword="true"/>.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CollectLoopEliminations(System.Collections.Generic.Dictionary{Sudoku.DataModel.ChainNode,System.Int32},Sudoku.Concepts.Grid@,System.Byte)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CollectLoopEliminations(Sudoku.DataModel.ChainNodeListWithHeadCandidate,Sudoku.Concepts.Grid@,System.Byte)">
             <summary>
             Try to collect all possible eliminations for each branch.
             </summary>
@@ -4309,7 +4309,7 @@
             <param name="baseDigit">The base digit.</param>
             <returns>All possible eliminations. If none found, an empty list.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CreateStepCellType(Sudoku.Concepts.Grid@,System.Int32,System.Byte,System.Collections.Generic.Dictionary{Sudoku.DataModel.ChainNode,System.Int32},System.Byte,System.Int16)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CreateStepCellType(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.DataModel.ChainNodeListWithHeadCandidate,System.Byte,System.Int16)">
             <summary>
             Try to create a hint, for a cell type.
             </summary>
@@ -4320,7 +4320,7 @@
             <param name="targetCell">Indicates the target cell which makes all branches end with.</param>
             <param name="elimDigitsMask">Indicates mask of digits can be eliminated in target cell.</param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CreateStepHouseType(Sudoku.Concepts.Grid@,System.Int32,System.Byte,System.Collections.Generic.Dictionary{Sudoku.DataModel.ChainNode,System.Int32},Sudoku.Concepts.CellMap@,System.Byte)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CreateStepHouseType(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.DataModel.ChainNodeListWithHeadCandidate,Sudoku.Concepts.CellMap@,System.Byte)">
             <summary>
             Try to create a hint, for a house type.
             </summary>
@@ -4582,12 +4582,12 @@
             Try to create a binary forcing chain hint on "off" state.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.DataModel.ChainNode,System.Collections.Generic.Dictionary{System.Byte,Sudoku.DataModel.NodeSet})">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,System.Byte,Sudoku.DataModel.ChainNode,Sudoku.DataModel.ChainBranch)">
             <summary>
             Try to create a cell forcing chain hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.DataModel.ChainNode,System.Collections.Generic.Dictionary{System.Byte,Sudoku.DataModel.NodeSet})">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,System.Int32,System.Byte,Sudoku.DataModel.ChainNode,Sudoku.DataModel.ChainBranch)">
             <summary>
             Try to create a region (house) forcing chain hint.
             </summary>
@@ -17004,6 +17004,11 @@ if (student is (name: var name, age: >= 18))
             The generated field declaration for parameter <c>mask</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.DataModel.ChainBranch">
+            <summary>
+            Represents a chain branch.
+            </summary>
+        </member>
         <member name="T:Sudoku.DataModel.ChainNode">
             <summary>
             Defines a node used in chaining.
@@ -17226,6 +17231,24 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.DataModel.ChainNode.op_Inequality(Sudoku.DataModel.ChainNode,Sudoku.DataModel.ChainNode)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.DataModel.ChainNodeListWithHeadCandidate">
+            <summary>
+            Represents a chain node list with head candidate.
+            </summary>
+            <remarks>
+            Initializes a <see cref="T:Sudoku.DataModel.ChainNodeListWithHeadCandidate"/> instance.
+            </remarks>
+            <param name="capacity">The capacity.</param>
+        </member>
+        <member name="M:Sudoku.DataModel.ChainNodeListWithHeadCandidate.#ctor(System.Int32)">
+            <summary>
+            Represents a chain node list with head candidate.
+            </summary>
+            <remarks>
+            Initializes a <see cref="T:Sudoku.DataModel.ChainNodeListWithHeadCandidate"/> instance.
+            </remarks>
+            <param name="capacity">The capacity.</param>
         </member>
         <member name="T:Sudoku.DataModel.Crosshatching">
             <summary>

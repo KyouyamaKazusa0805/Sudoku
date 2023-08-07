@@ -34,5 +34,3 @@ global using static System.Math;
 global using static Sudoku.Analytics.Buffers.CachedFields;
 global using static Sudoku.Analytics.Strings.StringsAccessor;
 global using static Sudoku.DataModel.Intersection;
-global using ChainBranch = System.Collections.Generic.Dictionary<byte, Sudoku.DataModel.NodeSet>;
-global using ChainNodeListWithHeadCandidate = System.Collections.Generic.Dictionary<Sudoku.DataModel.ChainNode, /*Candidate*/ int>;
