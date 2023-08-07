@@ -2485,6 +2485,31 @@ if (student is (name: var name, age: >= 18))
             Indicates the current cell has been filled a value that cannot be modified because it exists in initial grid.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Chute">
+            <summary>
+            Defines a chute.
+            </summary>
+            <param name="Cells">The cells used.</param>
+            <param name="IsRow">Indicates whether the chute is in a mega-row.</param>
+            <param name="HousesMask">Indicates the houses used.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Chute.#ctor(Sudoku.Concepts.CellMap@,System.Boolean,System.Int16)">
+            <summary>
+            Defines a chute.
+            </summary>
+            <param name="Cells">The cells used.</param>
+            <param name="IsRow">Indicates whether the chute is in a mega-row.</param>
+            <param name="HousesMask">Indicates the houses used.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Chute.Cells">
+            <summary>The cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Chute.IsRow">
+            <summary>Indicates whether the chute is in a mega-row.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Chute.HousesMask">
+            <summary>Indicates the houses used.</summary>
+        </member>
         <member name="T:Sudoku.Concepts.Conjugate">
             <summary>
             Represents a <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">conjugate pair</see>.
@@ -5107,31 +5132,6 @@ if (student is (name: var name, age: >= 18))
             <param name="row">The row value.</param>
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
-        </member>
-        <member name="T:Sudoku.DataModel.Chute">
-            <summary>
-            Defines a chute.
-            </summary>
-            <param name="Cells">The cells used.</param>
-            <param name="IsRow">Indicates whether the chute is in a mega-row.</param>
-            <param name="HousesMask">Indicates the houses used.</param>
-        </member>
-        <member name="M:Sudoku.DataModel.Chute.#ctor(Sudoku.Concepts.CellMap@,System.Boolean,System.Int16)">
-            <summary>
-            Defines a chute.
-            </summary>
-            <param name="Cells">The cells used.</param>
-            <param name="IsRow">Indicates whether the chute is in a mega-row.</param>
-            <param name="HousesMask">Indicates the houses used.</param>
-        </member>
-        <member name="P:Sudoku.DataModel.Chute.Cells">
-            <summary>The cells used.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Chute.IsRow">
-            <summary>Indicates whether the chute is in a mega-row.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Chute.HousesMask">
-            <summary>Indicates the houses used.</summary>
         </member>
         <member name="T:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator">
             <summary>
