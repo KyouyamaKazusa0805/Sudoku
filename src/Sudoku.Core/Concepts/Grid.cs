@@ -1627,6 +1627,18 @@ public unsafe partial struct Grid :
 		static Vector<byte> loadVector(scoped ref byte start, nuint offset) => ReadUnaligned<Vector<byte>>(ref AddByteOffset(ref start, offset));
 	}
 
+	/// <summary>
+	/// The light-weight event handler for <see cref="ValueChanged"/>.
+	/// </summary>
+	/// <param name="this">The grid itself.</param>
+	/// <param name="cell">Indicates the cell changed.</param>
+	/// <param name="oldMask">Indicates the original mask representing the original digits in that cell.</param>
+	/// <param name="newMask">Indicates the mask representing the digits updated.</param>
+	/// <param name="setValue">
+	/// Indicates the set value. If to clear the cell, the value will be -1.
+	/// In fact, if the value is -1, this method will do nothing.
+	/// </param>
+	/// <seealso cref="ValueChanged"/>
 	private static void OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
 	{
 		if (setValue != -1)
@@ -1644,6 +1656,11 @@ public unsafe partial struct Grid :
 		}
 	}
 
+	/// <summary>
+	/// The light-weight event handler for <see cref="RefreshingCandidates"/>.
+	/// </summary>
+	/// <param name="this">The grid itself.</param>
+	/// <seealso cref="RefreshingCandidates"/>
 	private static void OnRefreshingCandidates(ref Grid @this)
 	{
 		for (var i = 0; i < 81; i++)

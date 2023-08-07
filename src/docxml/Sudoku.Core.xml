@@ -3329,6 +3329,27 @@ if (student is (name: var name, age: >= 18))
             https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
             -->
         </member>
+        <member name="M:Sudoku.Concepts.Grid.OnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Int16,System.Int32)">
+            <summary>
+            The light-weight event handler for <see cref="F:Sudoku.Concepts.Grid.ValueChanged"/>.
+            </summary>
+            <param name="this">The grid itself.</param>
+            <param name="cell">Indicates the cell changed.</param>
+            <param name="oldMask">Indicates the original mask representing the original digits in that cell.</param>
+            <param name="newMask">Indicates the mask representing the digits updated.</param>
+            <param name="setValue">
+            Indicates the set value. If to clear the cell, the value will be -1.
+            In fact, if the value is -1, this method will do nothing.
+            </param>
+            <seealso cref="F:Sudoku.Concepts.Grid.ValueChanged"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.OnRefreshingCandidates(Sudoku.Concepts.Grid@)">
+            <summary>
+            The light-weight event handler for <see cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>.
+            </summary>
+            <param name="this">The grid itself.</param>
+            <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.op_Explicit(System.Int16[])~Sudoku.Concepts.Grid">
             <summary>
             Converts the specified array elements into the target <see cref="T:Sudoku.Concepts.Grid"/> instance, without any value boundary checking.
