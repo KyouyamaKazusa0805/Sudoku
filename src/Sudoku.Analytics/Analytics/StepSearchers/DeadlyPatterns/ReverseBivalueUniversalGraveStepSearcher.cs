@@ -495,9 +495,9 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				);
 			}
 
-			var lockedTargetInner = new LockedTarget(selectedDigit, conjugatePairCellInnerPattern);
-			var lockedTargetOuter = new LockedTarget(selectedDigit, conjugatePairCellOuterPattern);
-			var anotherLockedTarget = new LockedTarget(selectedDigit, anotherCell);
+			var lockedTargetInner = new LockedTarget(selectedDigit, CellsMap[conjugatePairCellInnerPattern]);
+			var lockedTargetOuter = new LockedTarget(selectedDigit, CellsMap[conjugatePairCellOuterPattern]);
+			var anotherLockedTarget = new LockedTarget(selectedDigit, CellsMap[anotherCell]);
 			var step = new ReverseBivalueUniversalGraveType4Step(
 				[conclusion],
 				[

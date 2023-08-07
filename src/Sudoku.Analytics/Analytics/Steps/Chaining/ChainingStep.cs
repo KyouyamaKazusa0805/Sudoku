@@ -604,8 +604,8 @@ public abstract partial class ChainingStep(
 				result.Add(
 					new(
 						WellKnownColorIdentifier.Normal,
-						new(prDigit, prCell),
-						new(pDigit, pCell),
+						new(prDigit, CellsMap[prCell]),
+						new(pDigit, CellsMap[pCell]),
 						(prIsOn, pIsOn) switch
 						{
 							(false, true) => Inference.Strong,

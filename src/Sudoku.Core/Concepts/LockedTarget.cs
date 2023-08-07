@@ -19,20 +19,8 @@ namespace Sudoku.Concepts;
 public readonly partial struct LockedTarget(
 	[PrimaryConstructorParameter, HashCodeMember] Digit digit,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] CellMap cells
-) :
-	IEquatable<LockedTarget>,
-	IEqualityOperators<LockedTarget, LockedTarget, bool>
+) : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget, bool>
 {
-	/// <summary>
-	/// Initializes a <see cref="LockedTarget"/> instance via the specified cell and the specified digit used.
-	/// </summary>
-	/// <param name="digit">Indicates the digit used.</param>
-	/// <param name="cell">Indicates the cell used.</param>
-	public LockedTarget(Digit digit, Cell cell) : this(digit, CellsMap[cell])
-	{
-	}
-
-
 	/// <summary>
 	/// Indicates whether the number of cells is 1.
 	/// </summary>
