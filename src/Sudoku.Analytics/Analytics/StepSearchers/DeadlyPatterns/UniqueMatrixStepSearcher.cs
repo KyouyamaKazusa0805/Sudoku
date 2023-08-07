@@ -104,7 +104,13 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 1.
 	/// </summary>
-	private UniqueMatrixType1Step? CheckType1(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in CellMap pattern, Mask mask)
+	private UniqueMatrixType1Step? CheckType1(
+		List<Step> accumulator,
+		scoped in Grid grid,
+		bool onlyFindOne,
+		scoped in CellMap pattern,
+		Mask mask
+	)
 	{
 		if (PopCount((uint)mask) != 5)
 		{
@@ -220,7 +226,13 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 3.
 	/// </summary>
-	private UniqueMatrixType3Step? CheckType3(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in CellMap pattern, Mask mask)
+	private UniqueMatrixType3Step? CheckType3(
+		List<Step> accumulator,
+		scoped in Grid grid,
+		bool onlyFindOne,
+		scoped in CellMap pattern,
+		Mask mask
+	)
 	{
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
@@ -313,7 +325,13 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 4.
 	/// </summary>
-	private UniqueMatrixType4Step? CheckType4(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in CellMap pattern, Mask mask)
+	private UniqueMatrixType4Step? CheckType4(
+		List<Step> accumulator,
+		scoped in Grid grid,
+		bool onlyFindOne,
+		scoped in CellMap pattern,
+		Mask mask
+	)
 	{
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
