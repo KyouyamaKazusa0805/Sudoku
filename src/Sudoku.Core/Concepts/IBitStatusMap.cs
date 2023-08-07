@@ -325,6 +325,42 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <returns>The enumerator instance.</returns>
 	public new abstract OneDimensionalArrayEnumerator<TElement> GetEnumerator();
 
+	/// <inheritdoc cref="ISet{T}.IsProperSubsetOf(IEnumerable{T})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public new sealed bool IsProperSubsetOf(IEnumerable<TElement> other)
+	{
+		var otherCells = TSelf.Empty + other;
+		return (TSelf)this != otherCells && (otherCells & (TSelf)this) == (TSelf)this;
+	}
+
+	/// <inheritdoc cref="ISet{T}.IsProperSupersetOf(IEnumerable{T})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public new sealed bool IsProperSupersetOf(IEnumerable<TElement> other)
+	{
+		var otherCells = TSelf.Empty + other;
+		return (TSelf)this != otherCells && ((TSelf)this & otherCells) == otherCells;
+	}
+
+	/// <inheritdoc cref="ISet{T}.IsSubsetOf(IEnumerable{T})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public new sealed bool IsSubsetOf(IEnumerable<TElement> other) => ((TSelf.Empty + other) & (TSelf)this) == (TSelf)this;
+
+	/// <inheritdoc cref="ISet{T}.IsSupersetOf(IEnumerable{T})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public new sealed bool IsSupersetOf(IEnumerable<TElement> other)
+	{
+		var otherCells = TSelf.Empty + other;
+		return ((TSelf)this & otherCells) == otherCells;
+	}
+
+	/// <inheritdoc cref="ISet{T}.Overlaps(IEnumerable{T})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public new sealed bool Overlaps(IEnumerable<TElement> other) => !!((TSelf)this & (TSelf.Empty + other));
+
+	/// <inheritdoc cref="ISet{T}.SetEquals(IEnumerable{T})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public new sealed bool SetEquals(IEnumerable<TElement> other) => (TSelf)this == TSelf.Empty + other;
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	void ICollection<TElement>.Clear() => Clear();
@@ -372,44 +408,6 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	bool IEquatable<TSelf>.Equals(TSelf other) => Equals(other);
-
-	#region Not fully tested
-	/// <inheritdoc cref="ISet{T}.IsProperSubsetOf(IEnumerable{T})"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	new sealed bool IsProperSubsetOf(IEnumerable<TElement> other)
-	{
-		var otherCells = TSelf.Empty + other;
-		return (TSelf)this != otherCells && (otherCells & (TSelf)this) == (TSelf)this;
-	}
-
-	/// <inheritdoc cref="ISet{T}.IsProperSupersetOf(IEnumerable{T})"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	new sealed bool IsProperSupersetOf(IEnumerable<TElement> other)
-	{
-		var otherCells = TSelf.Empty + other;
-		return (TSelf)this != otherCells && ((TSelf)this & otherCells) == otherCells;
-	}
-
-	/// <inheritdoc cref="ISet{T}.IsSubsetOf(IEnumerable{T})"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	new sealed bool IsSubsetOf(IEnumerable<TElement> other) => ((TSelf.Empty + other) & (TSelf)this) == (TSelf)this;
-
-	/// <inheritdoc cref="ISet{T}.IsSupersetOf(IEnumerable{T})"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	new sealed bool IsSupersetOf(IEnumerable<TElement> other)
-	{
-		var otherCells = TSelf.Empty + other;
-		return ((TSelf)this & otherCells) == otherCells;
-	}
-
-	/// <inheritdoc cref="ISet{T}.Overlaps(IEnumerable{T})"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	new sealed bool Overlaps(IEnumerable<TElement> other) => !!((TSelf)this & (TSelf.Empty + other));
-
-	/// <inheritdoc cref="ISet{T}.SetEquals(IEnumerable{T})"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	new sealed bool SetEquals(IEnumerable<TElement> other) => (TSelf)this == TSelf.Empty + other;
-	#endregion
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
