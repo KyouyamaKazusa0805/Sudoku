@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Rating;
+namespace Sudoku.Analytics.Rating;
 
 /// <summary>
 /// Represents a type that calculates for chain difficulty.
@@ -13,8 +13,7 @@ public static class ChainDifficultyRating
 	public static decimal GetExtraDifficultyByLength(int length)
 	{
 		var result = 0M;
-		var ceil = 4;
-		for (var isOdd = false; length > ceil; isOdd = !isOdd)
+		for (var (isOdd, ceil) = (false, 4); length > ceil; isOdd = !isOdd)
 		{
 			result += .1M;
 			ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;
