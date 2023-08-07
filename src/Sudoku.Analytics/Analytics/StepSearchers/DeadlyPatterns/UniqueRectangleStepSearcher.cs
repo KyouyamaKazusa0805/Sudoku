@@ -799,7 +799,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var offsets = (Cell[])[.. otherCellsMap];
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
 						conclusions,
@@ -815,7 +814,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						d2,
 						[.. urCells],
 						arMode,
-						[new(offsets[0], offsets[1], digit)],
+						[new(otherCellsMap[0], otherCellsMap[1], digit)],
 						index
 					)
 				);
@@ -1517,7 +1516,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			return;
 		}
 
-		scoped ReadOnlySpan<Digit> digits = (stackalloc[] { d1, d2 });
 		foreach (var cell in stackalloc[] { corner1, corner2 })
 		{
 			foreach (var otherCell in otherCellsMap)
@@ -1534,9 +1532,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						continue;
 					}
 
-					for (var digitIndex = 0; digitIndex < 2; digitIndex++)
+					foreach (var digit in stackalloc[] { d1, d2 })
 					{
-						var digit = digits[digitIndex];
 						if (!IsConjugatePair(digit, CellsMap[cell] + otherCell, house))
 						{
 							continue;
@@ -1832,8 +1829,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var abyCell = adjacentCellsMap[1];
 			var map1 = CellsMap[abzCell] + abxCell;
 			var map2 = CellsMap[abzCell] + abyCell;
-			if (!IsConjugatePair(b, map1, map1.CoveredLine)
-				|| !IsConjugatePair(a, map2, map2.CoveredLine))
+			if (!IsConjugatePair(b, map1, map1.CoveredLine) || !IsConjugatePair(a, map2, map2.CoveredLine))
 			{
 				continue;
 			}
@@ -2081,11 +2077,10 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
-		scoped ReadOnlySpan<(Digit, Digit)> digitPairs = (stackalloc[] { (d1, d2), (d2, d1) });
 		foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 		{
 			var linkMap = CellsMap[begin] + abzCell;
-			foreach (var (a, b) in digitPairs)
+			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 			{
 				if (!IsConjugatePair(b, linkMap, linkMap.CoveredLine))
 				{
@@ -2205,11 +2200,10 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
-		scoped ReadOnlySpan<(Digit, Digit)> digitPairs = (stackalloc[] { (d1, d2), (d2, d1) });
 		foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 		{
 			var linkMap = CellsMap[begin] + abzCell;
-			foreach (var (a, b) in digitPairs)
+			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
 			{
 				if (!IsConjugatePair(a, linkMap, linkMap.CoveredLine))
 				{
@@ -5207,7 +5201,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <summary>
 	/// Check whether the highlight UR candidates is incomplete.
 	/// </summary>
-	/// <param name="allowIncomplete"><inheritdoc cref="UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles" path="/summary"/></param>
+	/// <param name="allowIncomplete"><inheritdoc cref="AllowIncompleteUniqueRectangles" path="/summary"/></param>
 	/// <param name="list">The list to check.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	/// <remarks>
@@ -5225,9 +5219,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="urCells">The UR cells.</param>
 	/// <param name="cell">The current cell.</param>
 	/// <returns>The diagonal cell.</returns>
-	/// <exception cref="ArgumentException">
-	/// Throws when the specified argument <paramref name="cell"/> is invalid.
-	/// </exception>
+	/// <exception cref="ArgumentException">Throws when the specified argument <paramref name="cell"/> is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static Cell GetDiagonalCell(Cell[] urCells, Cell cell)
 		=> cell == urCells[0] ? urCells[3] : cell == urCells[1] ? urCells[2] : cell == urCells[2] ? urCells[1] : urCells[0];

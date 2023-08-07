@@ -6150,9 +6150,7 @@
             <param name="urCells">The UR cells.</param>
             <param name="cell">The current cell.</param>
             <returns>The diagonal cell.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the specified argument <paramref name="cell"/> is invalid.
-            </exception>
+            <exception cref="T:System.ArgumentException">Throws when the specified argument <paramref name="cell"/> is invalid.</exception>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.GetHighlightCells(System.Int32[])">
             <summary>
