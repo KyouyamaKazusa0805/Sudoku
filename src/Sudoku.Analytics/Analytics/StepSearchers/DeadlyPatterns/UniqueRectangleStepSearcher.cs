@@ -301,7 +301,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								// Diagonal type.
 								case (0, 3) or (1, 2):
 								{
-									if (!arMode)
+									if (arMode)
+									{
+										if (SearchForExtendedUniqueRectangles)
+										{
+											CheckHiddenSingleAvoidable(gathered, grid, urCells, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+										}
+									}
+									else
 									{
 										CheckType6(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 
@@ -309,14 +316,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 										{
 											Check2D(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 											Check2D1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-										}
-									}
-									else
-									{
-										// Don't merge this else-if block. The code in this block may be extended.
-										if (SearchForExtendedUniqueRectangles)
-										{
-											CheckHiddenSingleAvoidable(gathered, grid, urCells, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 										}
 									}
 
