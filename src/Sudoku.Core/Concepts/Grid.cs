@@ -531,56 +531,41 @@ public unsafe partial struct Grid :
 	/// </param>
 	/// <returns><inheritdoc cref="this[in CellMap]" path="/returns"/></returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
-	public readonly Mask this[scoped in CellMap cells, bool withValueCells, GridMaskMergingMethod mergingMethod]
+	public readonly unsafe Mask this[scoped in CellMap cells, bool withValueCells, GridMaskMergingMethod mergingMethod]
 	{
 		get
 		{
-			switch (mergingMethod)
+			var result = mergingMethod switch
 			{
-				case GridMaskMergingMethod.AndNot:
-				{
-					var result = MaxCandidatesMask;
-					foreach (var cell in cells)
-					{
-						if (!withValueCells && GetStatus(cell) == CellStatus.Empty || withValueCells)
-						{
-							result &= (Mask)~this[cell];
-						}
-					}
+				GridMaskMergingMethod.AndNot => MaxCandidatesMask,
+				GridMaskMergingMethod.And => MaxCandidatesMask,
+				GridMaskMergingMethod.Or => (Mask)0,
+				_ => throw new ArgumentOutOfRangeException(nameof(mergingMethod))
+			};
 
-					return result;
-				}
-				case GridMaskMergingMethod.And:
-				{
-					var result = MaxCandidatesMask;
-					foreach (var cell in cells)
-					{
-						if (!withValueCells && GetStatus(cell) == CellStatus.Empty || withValueCells)
-						{
-							result &= this[cell];
-						}
-					}
+			delegate*<ref Mask, in Grid, Cell, void> mergingFunctionPtr = mergingMethod switch
+			{
+				GridMaskMergingMethod.AndNot => &andNot,
+				GridMaskMergingMethod.And => &and,
+				GridMaskMergingMethod.Or => &or,
+			};
 
-					return result;
-				}
-				case GridMaskMergingMethod.Or:
+			foreach (var cell in cells)
+			{
+				if (!withValueCells && GetStatus(cell) == CellStatus.Empty || withValueCells)
 				{
-					var result = (Mask)0;
-					foreach (var cell in cells)
-					{
-						if (!withValueCells && GetStatus(cell) == CellStatus.Empty || withValueCells)
-						{
-							result |= this[cell];
-						}
-					}
-
-					return (Mask)(result & MaxCandidatesMask);
-				}
-				default:
-				{
-					throw new ArgumentOutOfRangeException(nameof(mergingMethod));
+					mergingFunctionPtr(ref result, this, cell);
 				}
 			}
+
+			return result;
+
+
+			static void andNot(scoped ref Mask result, scoped in Grid grid, Cell cell) => result &= (Mask)~grid[cell];
+
+			static void and(scoped ref Mask result, scoped in Grid grid, Cell cell) => result &= grid[cell];
+
+			static void or(scoped ref Mask result, scoped in Grid grid, Cell cell) => result |= grid[cell];
 		}
 	}
 
