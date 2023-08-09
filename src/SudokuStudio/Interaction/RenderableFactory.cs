@@ -582,7 +582,7 @@ internal static class RenderableFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = $"{nameof(RenderableFactory)}: baba group {CellNotation.ToString(cell)}, {@char}",
-			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : 1,
+			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Child = new TextBlock
 			{
 				Text = @char.ToString(),
@@ -607,7 +607,7 @@ internal static class RenderableFactory
 			control.OpacityTransition = new();
 		}
 
-		animatedResults.Add((() => paneCellControl.MainGrid.Children.Add(control), () => control.Opacity = 1));
+		animatedResults.Add((() => paneCellControl.MainGrid.Children.Add(control), () => control.Opacity = (double)sudokuPane.HighlightBackgroundOpacity));
 	}
 
 	/// <summary>

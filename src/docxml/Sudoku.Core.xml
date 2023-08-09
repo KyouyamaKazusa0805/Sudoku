@@ -6090,7 +6090,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Formatting.SusserFormatEliminationsOnly.EliminationPattern">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>(?&lt;=\\:)(\\d{3}\\s+)*\\d{3}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ Zero-width positive lookbehind.<br/>
                 ○ Match ':' right-to-left.<br/>
@@ -6737,7 +6741,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.CellOrCellListPattern_RxCy">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ 1st capture group.<br/>
                 ○ Match with 2 alternative expressions, atomically.<br/>
@@ -6756,7 +6764,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.CellOrCellListPattern_K9">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>[A-IKa-ik]{1,9}[1-9]{1,9}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ Match a character in the set [A-IKa-ik] atomically at least 1 and at most 9 times.<br/>
             ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
@@ -6765,7 +6777,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.ComplexCellOrCellListPattern_RxCy">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>\\{\\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})(,\\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}))?\\s*\\}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ Match '{'.<br/>
             ○ Match a whitespace character atomically any number of times.<br/>
@@ -6804,7 +6820,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.Candidates_PrepositionalFormPattern">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
             ○ 1st capture group.<br/>
@@ -6824,7 +6844,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.Candidates_PostpositionalFormPattern">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})\\([1-9]{1,9}\\)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ 1st capture group.<br/>
                 ○ Match with 2 alternative expressions.<br/>
@@ -6846,7 +6870,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.Candidates_ComplexPrepositionalFormPattern">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>[1-9]{1,9}\\{\\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})(,\\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}))?\\s*\\}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
             ○ Match '{'.<br/>
@@ -6886,7 +6914,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.Candidates_ComplexPostpositionalFormPattern">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>\\{\\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})(,\\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}))?\\s*\\}\\([1-9]{1,9}\\)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ Match '{'.<br/>
             ○ Match a whitespace character atomically any number of times.<br/>
@@ -6927,7 +6959,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.ConclusionPattern_RxCy">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>[Rr]([1-9]+)[Cc]([1-9]+)\\s*(=|!=|&lt;&gt;)\\s*([1-9]+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ Match a character in the set [Rr].<br/>
             ○ 1st capture group.<br/>
@@ -6949,7 +6985,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.ConclusionPattern_K9">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>([A-IKa-ik]+)([1-9]+)\\s*(=|!=|&lt;&gt;)\\s*([1-9]+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ 1st capture group.<br/>
                 ○ Match a character in the set [A-IKa-ik] atomically at least once.<br/>
@@ -6969,7 +7009,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.GridSusserDigitPattern">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>(\\+?\\d|\\.)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ 1st capture group.<br/>
                 ○ Match with 2 alternative expressions, atomically.<br/>
@@ -6982,7 +7026,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.GridOpenSudokuPattern">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>\\d(\\|\\d){242}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ Match a Unicode digit.<br/>
             ○ Loop exactly 242 times.<br/>
@@ -6994,7 +7042,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.GridPencilmarkedPattern">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>(\\&lt;\\d\\&gt;|\\*\\d\\*|\\d*[\\+\\-]?\\d+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ 1st capture group.<br/>
                 ○ Match with 3 alternative expressions, atomically.<br/>
@@ -7015,7 +7067,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.GridSimpleMultilinePattern">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>([\\d\\.\\+]{9}(\\r|\\n|\\r\\n)){8}[\\d\\.\\+]{9}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ Loop exactly 8 times.<br/>
                 ○ 1st capture group.<br/>
@@ -7030,7 +7086,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.GridSusserPattern">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>[\\d\\.\\+]{80,}(\\:(\\d{3}\\s+)*\\d{3})?</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ Match a character in the set [+.\d] greedily at least 80 times.<br/>
             ○ Optional (greedy).<br/>
@@ -7046,7 +7106,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.GridShortenedSusserPattern">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>[\\d\\.\\*]{1,9}(,[\\d\\.\\*]{1,9}){8}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
             ○ Loop exactly 8 times.<br/>
@@ -7058,7 +7122,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.NotationPatterns.GridSukakuSegmentPattern">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>\\d*[\\-\\+]?\\d+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ Match a Unicode digit greedily any number of times.<br/>
             ○ Match a character in the set [+-] atomically, optionally.<br/>

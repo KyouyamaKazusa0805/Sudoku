@@ -2556,7 +2556,11 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.StringExtensions.NullLinesOrHeaderSpacesPattern">
             <remarks>
-            Pattern explanation:<br/>
+            Pattern:<br/>
+            <code>(^\\s*|(?&lt;=\\r\\n)\\s+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
             <code>
             ○ 1st capture group.<br/>
                 ○ Match with 2 alternative expressions, atomically.<br/>
