@@ -3143,14 +3143,14 @@
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherAttribute">
             <summary>
-            Indicates the type is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
+            Indicates a type marked this attribute is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
             <param name="supportedTechniques">All supported techniques.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="M:Sudoku.Analytics.Metadata.StepSearcherAttribute.#ctor(Sudoku.Analytics.Categorization.Technique[])">
             <summary>
-            Indicates the type is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
+            Indicates a type marked this attribute is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
             <param name="supportedTechniques">All supported techniques.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
