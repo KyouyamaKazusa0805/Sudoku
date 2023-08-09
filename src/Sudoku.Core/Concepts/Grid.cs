@@ -547,7 +547,7 @@ public unsafe partial struct Grid :
 			{
 				GridMaskMergingMethod.AndNot => &andNot,
 				GridMaskMergingMethod.And => &and,
-				GridMaskMergingMethod.Or => &or,
+				GridMaskMergingMethod.Or => &or
 			};
 
 			foreach (var cell in cells)
