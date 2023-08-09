@@ -8243,6 +8243,9 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Steps.IComparableStep`1"/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.ComparableStep.Order``1(``0[])">
+            <inheritdoc cref="M:Sudoku.Analytics.Steps.ComparableStep.Order``1(System.Collections.Generic.List{``0})"/>
+        </member>
         <member name="M:Sudoku.Analytics.Steps.ComparableStep.Order``1(System.Collections.Generic.List{``0})">
             <summary>
             Try to order the <typeparamref name="TSelf"/> collection via the specified comparison rule,
