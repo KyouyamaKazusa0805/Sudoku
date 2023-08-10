@@ -14,10 +14,7 @@ public static class TrueCandidatesSearcher
 	/// <exception cref="ArgumentException">Throws when the puzzle is invalid.</exception>
 	public static CandidateMap GetAllTrueCandidates(scoped in Grid grid, CancellationToken cancellationToken = default)
 	{
-		if (!grid.IsValid)
-		{
-			throw new ArgumentException("The puzzle must be valid.", nameof(grid));
-		}
+		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.IsValid, true);
 
 		// Get the number of multi-value cells.
 		// If the number of that is greater than the specified number, here will return the default list directly.

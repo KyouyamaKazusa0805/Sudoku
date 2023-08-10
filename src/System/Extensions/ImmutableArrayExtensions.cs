@@ -1,4 +1,4 @@
-﻿namespace System.Collections.Immutable;
+namespace System.Collections.Immutable;
 
 /// <summary>
 /// Provides with extension methods on <see cref="ImmutableArray{T}"/>.
@@ -82,10 +82,7 @@ public static class ImmutableArrayExtensions
 	/// <inheritdoc cref="Enumerable.Count{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static int Count<T>(this ImmutableArray<T> @this, Predicate<T> predicate)
 	{
-		if (@this.IsDefault)
-		{
-			throw new ArgumentException("The array is not initialized.", nameof(@this));
-		}
+		ArgumentOutOfRangeException.ThrowIfNotEqual(@this.IsDefault, false);
 
 		var result = 0;
 		foreach (var element in @this)
@@ -102,10 +99,7 @@ public static class ImmutableArrayExtensions
 	/// <inheritdoc cref="Enumerable.Count{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static unsafe int Count<T>(this ImmutableArray<T> @this, delegate*<T, bool> predicate)
 	{
-		if (@this.IsDefault)
-		{
-			throw new ArgumentException("The array is not initialized.", nameof(@this));
-		}
+		ArgumentOutOfRangeException.ThrowIfNotEqual(@this.IsDefault, false);
 
 		var result = 0;
 		foreach (var element in @this)

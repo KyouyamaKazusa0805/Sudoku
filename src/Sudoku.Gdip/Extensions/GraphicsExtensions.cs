@@ -173,10 +173,7 @@ internal static class GraphicsExtensions
 	{
 		_ = rectangle is var (x, y, w, h) and var (l, _);
 
-		if (circleRadius >= Max(w, h))
-		{
-			throw new ArgumentException("Specified argument is greater than the value in rectangle", nameof(circleRadius));
-		}
+		ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(circleRadius, Max(w, h));
 
 		PointF p1, p2, p3, p4, p5, p6, p7, p8;
 		p8 = p7 = p6 = p5 = p4 = p3 = p2 = p1 = l;
