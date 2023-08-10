@@ -10,6 +10,6 @@ namespace System.SourceGeneration;
 /// <param name="length">Indicates the length of the fixed-sized buffer type.</param>
 [AttributeUsage(AttributeTargets.Struct, Inherited = false)]
 public sealed partial class InlineArrayFieldAttribute<T>(
-	[PrimaryConstructorParameter] string fieldName,
-	[PrimaryConstructorParameter] int length
+	[DataMember] string fieldName,
+	[DataMember] int length
 ) : Attribute;

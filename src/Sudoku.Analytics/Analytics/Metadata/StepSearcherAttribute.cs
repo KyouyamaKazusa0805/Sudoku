@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Metadata;
 /// <param name="supportedTechniques">All supported techniques.</param>
 /// <seealso cref="StepSearcher"/>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] params Technique[] supportedTechniques) : Attribute
+public sealed partial class StepSearcherAttribute([DataMember] params Technique[] supportedTechniques) : Attribute
 {
 	/// <summary>
 	/// Indicates the searching logic only uses cached fields in type <see cref="CachedFields"/>,

@@ -19,9 +19,9 @@ namespace Sudoku.Concepts;
 [Equals]
 [GetHashCode]
 public unsafe ref partial struct GridParser(
-	[PrimaryConstructorParameter(SetterExpression = "private set")] string parsingValue,
-	[PrimaryConstructorParameter] bool compatibleFirst,
-	[PrimaryConstructorParameter(GeneratedMemberName = "ShortenSusserFormat", SetterExpression = "private set")] bool shortenSusser
+	[DataMember(SetterExpression = "private set")] string parsingValue,
+	[DataMember] bool compatibleFirst,
+	[DataMember(GeneratedMemberName = "ShortenSusserFormat", SetterExpression = "private set")] bool shortenSusser
 )
 {
 	/// <summary>

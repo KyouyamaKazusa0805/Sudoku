@@ -13,11 +13,11 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class AlmostLockedSetsWWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
-	[PrimaryConstructorParameter(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
-	[PrimaryConstructorParameter] Conjugate conjugatePair,
-	[PrimaryConstructorParameter] Mask wDigitsMask,
-	[PrimaryConstructorParameter] Digit xDigit
+	[DataMember(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
+	[DataMember(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
+	[DataMember] Conjugate conjugatePair,
+	[DataMember] Mask wDigitsMask,
+	[DataMember] Digit xDigit
 ) : AlmostLockedSetsStep(conclusions, views)
 {
 	/// <inheritdoc/>

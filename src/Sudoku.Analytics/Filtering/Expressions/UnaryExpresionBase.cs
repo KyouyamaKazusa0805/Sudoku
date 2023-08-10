@@ -6,7 +6,7 @@ namespace Sudoku.Filtering.Expressions;
 /// <param name="expression">The expression.</param>
 /// <seealso cref="IExpression"/>
 public abstract partial class UnaryExpressionBase(
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "protected")] IExpression expression
+	[DataMember(MemberKinds.Field, Accessibility = "protected")] IExpression expression
 ) : IExpression
 {
 	/// <inheritdoc/>

@@ -16,9 +16,9 @@ namespace Sudoku.Analytics;
 /// <param name="onlyFindOne">Indicates whether the solver only find one possible step and exit the searcher.</param>
 [StructLayout(LayoutKind.Auto)]
 public unsafe ref partial struct AnalysisContext(
-	[PrimaryConstructorParameter] List<Step>? accumulator,
-	[PrimaryConstructorParameter(MemberKinds.Field)] in Grid grid,
-	[PrimaryConstructorParameter(MembersNotNull = "false: Accumulator")] bool onlyFindOne
+	[DataMember] List<Step>? accumulator,
+	[DataMember(MemberKinds.Field)] in Grid grid,
+	[DataMember(MembersNotNull = "false: Accumulator")] bool onlyFindOne
 )
 {
 	/// <summary>

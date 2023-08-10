@@ -14,12 +14,12 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class ChainingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] bool isX = true,
-	[PrimaryConstructorParameter] bool isY = true,
-	[PrimaryConstructorParameter] bool isMultiple = false,
-	[PrimaryConstructorParameter] bool isDynamic = false,
-	[PrimaryConstructorParameter] bool isNishio = false,
-	[PrimaryConstructorParameter] int dynamicNestingLevel = 0
+	[DataMember] bool isX = true,
+	[DataMember] bool isY = true,
+	[DataMember] bool isMultiple = false,
+	[DataMember] bool isDynamic = false,
+	[DataMember] bool isNishio = false,
+	[DataMember] int dynamicNestingLevel = 0
 ) : Step(conclusions, views), IComparableStep<ChainingStep>
 {
 	/// <inheritdoc/>

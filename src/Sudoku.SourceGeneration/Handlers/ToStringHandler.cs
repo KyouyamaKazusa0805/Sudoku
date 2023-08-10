@@ -39,9 +39,9 @@ internal static class ToStringHandler
 			return null;
 		}
 
-		const string primaryConstructorParameterAttributeTypeName = "System.SourceGeneration.PrimaryConstructorParameterAttribute";
-		var primaryConstructorParameterAttributeSymbol = compilation.GetTypeByMetadataName(primaryConstructorParameterAttributeTypeName);
-		if (primaryConstructorParameterAttributeSymbol is null)
+		const string dataMemberAttributeTypeName = "System.SourceGeneration.DataMemberAttribute";
+		var dataMemberAttributeTypeNameSymbol = compilation.GetTypeByMetadataName(dataMemberAttributeTypeName);
+		if (dataMemberAttributeTypeNameSymbol is null)
 		{
 			return null;
 		}
@@ -57,7 +57,7 @@ internal static class ToStringHandler
 			type,
 			semanticModel,
 			parameterList,
-			primaryConstructorParameterAttributeSymbol,
+			dataMemberAttributeTypeNameSymbol,
 			a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, stringMemberAttributeSymbol),
 			symbol => (string?)symbol.GetAttributes().First(stringMemberAttirbuteMatcher).ConstructorArguments[0].Value ?? symbol.Name,
 			cancellationToken

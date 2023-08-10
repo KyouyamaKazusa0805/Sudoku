@@ -16,8 +16,8 @@ public sealed partial class UniqueLoopType3Step(
 	Digit digit1,
 	Digit digit2,
 	scoped in CellMap loop,
-	[PrimaryConstructorParameter] scoped in CellMap subsetCells,
-	[PrimaryConstructorParameter] Mask subsetDigitsMask
+	[DataMember] scoped in CellMap subsetCells,
+	[DataMember] Mask subsetDigitsMask
 ) : UniqueLoopStep(conclusions, views, digit1, digit2, loop)
 {
 	/// <inheritdoc/>

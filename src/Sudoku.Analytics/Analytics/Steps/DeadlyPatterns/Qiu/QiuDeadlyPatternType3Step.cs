@@ -13,9 +13,9 @@ public sealed partial class QiuDeadlyPatternType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in QiuDeadlyPattern pattern,
-	[PrimaryConstructorParameter] scoped in CellMap subsetCells,
-	[PrimaryConstructorParameter] Mask subsetDigitsMask,
-	[PrimaryConstructorParameter] bool isNaked
+	[DataMember] scoped in CellMap subsetCells,
+	[DataMember] Mask subsetDigitsMask,
+	[DataMember] bool isNaked
 ) : QiuDeadlyPatternStep(conclusions, views, pattern)
 {
 	/// <inheritdoc/>

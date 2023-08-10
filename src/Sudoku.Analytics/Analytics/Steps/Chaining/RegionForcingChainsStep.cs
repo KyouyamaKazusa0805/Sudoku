@@ -13,9 +13,9 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class RegionForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] House houseIndex,
-	[PrimaryConstructorParameter] byte digit,
-	[PrimaryConstructorParameter] MultipleForcingChains chains,
+	[DataMember] House houseIndex,
+	[DataMember] byte digit,
+	[DataMember] MultipleForcingChains chains,
 	bool isDynamic,
 	int dynamicNestingLevel = 0
 ) : ChainingStep(conclusions, views, isMultiple: true, isDynamic: isDynamic, dynamicNestingLevel: dynamicNestingLevel)

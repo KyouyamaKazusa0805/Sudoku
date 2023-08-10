@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class TemplateStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] bool isTemplateDeletion
+	[DataMember] bool isTemplateDeletion
 ) : LastResortStep(conclusions, views)
 {
 	/// <summary>

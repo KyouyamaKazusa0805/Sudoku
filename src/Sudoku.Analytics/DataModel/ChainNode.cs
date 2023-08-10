@@ -15,7 +15,7 @@ namespace Sudoku.DataModel;
 [ToString]
 [EqualityOperators]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
+public readonly partial struct ChainNode([DataMember(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IEquatable<ChainNode>,
 	IEqualityOperators<ChainNode, ChainNode, bool>
 {

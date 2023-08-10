@@ -16,10 +16,10 @@ public sealed partial class JuniorExocetStep(
 	Exocet exocet,
 	Mask digitsMask,
 #if false
-	[PrimaryConstructorParameter] Mask lockedMemberQ,
-	[PrimaryConstructorParameter] Mask lockedMemberR,
+	[DataMember] Mask lockedMemberQ,
+	[DataMember] Mask lockedMemberR,
 #endif
-	[PrimaryConstructorParameter] ExocetElimination[] eliminations
+	[DataMember] ExocetElimination[] eliminations
 ) : ExocetStep(views, exocet, digitsMask, eliminations)
 {
 	/// <inheritdoc/>

@@ -16,8 +16,8 @@ public sealed partial class ReverseBivalueUniversalGraveType3Step(
 	View[]? views,
 	Digit digit1,
 	Digit digit2,
-	[PrimaryConstructorParameter] House subsetHouse,
-	[PrimaryConstructorParameter] Mask subsetMask,
+	[DataMember] House subsetHouse,
+	[DataMember] Mask subsetMask,
 	scoped in CellMap pattern,
 	scoped in CellMap emptyCells
 ) : ReverseBivalueUniversalGraveStep(conclusions, views, digit1, digit2, pattern, emptyCells)

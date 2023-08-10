@@ -12,10 +12,10 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class AlmostLockedCandidatesStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] scoped in CellMap baseCells,
-	[PrimaryConstructorParameter] scoped in CellMap targetCells,
-	[PrimaryConstructorParameter] bool hasValueCell
+	[DataMember] Mask digitsMask,
+	[DataMember] scoped in CellMap baseCells,
+	[DataMember] scoped in CellMap targetCells,
+	[DataMember] bool hasValueCell
 ) : IntersectionStep(conclusions, views)
 {
 	/// <inheritdoc/>

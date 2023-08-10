@@ -12,9 +12,9 @@ namespace Sudoku.DataModel;
 /// The special case is a bi-value cell.
 /// </remarks>
 public sealed partial class AlmostLockedSet(
-	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] scoped in CellMap cells,
-	[PrimaryConstructorParameter] scoped in CellMap possibleEliminationMap
+	[DataMember] Mask digitsMask,
+	[DataMember] scoped in CellMap cells,
+	[DataMember] scoped in CellMap possibleEliminationMap
 )
 {
 	/// <summary>

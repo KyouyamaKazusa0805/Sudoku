@@ -11,9 +11,9 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class BivalueOddagonStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] scoped in CellMap loopCells,
-	[PrimaryConstructorParameter] Digit digit1,
-	[PrimaryConstructorParameter] Digit digit2
+	[DataMember] scoped in CellMap loopCells,
+	[DataMember] Digit digit1,
+	[DataMember] Digit digit2
 ) : NegativeRankStep(conclusions, views), IEquatableStep<BivalueOddagonStep>
 {
 	/// <summary>

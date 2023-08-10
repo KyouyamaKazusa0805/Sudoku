@@ -5,4 +5,4 @@ namespace Sudoku.Analytics.Categorization;
 /// </summary>
 /// <param name="group">Indicates the group that the current technique belong to.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed partial class TechniqueGroupAttribute([PrimaryConstructorParameter] TechniqueGroup group) : Attribute;
+public sealed partial class TechniqueGroupAttribute([DataMember] TechniqueGroup group) : Attribute;

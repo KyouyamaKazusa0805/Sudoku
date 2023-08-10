@@ -12,10 +12,10 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class FireworkPairType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] scoped in CellMap cells,
-	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] Cell extraCell1,
-	[PrimaryConstructorParameter] Cell extraCell2
+	[DataMember] scoped in CellMap cells,
+	[DataMember] Mask digitsMask,
+	[DataMember] Cell extraCell1,
+	[DataMember] Cell extraCell2
 ) : FireworkStep(conclusions, views)
 {
 	/// <inheritdoc/>

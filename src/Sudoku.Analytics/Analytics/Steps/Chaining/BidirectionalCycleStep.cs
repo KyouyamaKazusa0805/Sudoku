@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BidirectionalCycleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] ChainNode destinationOn,
+	[DataMember] ChainNode destinationOn,
 	bool isX,
 	bool isY
 ) : ChainingStep(conclusions, views, isX, isY)

@@ -32,9 +32,9 @@ internal static class GetHashCodeHandler
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
 		var typeNameString = $"{typeName}{typeParametersString}";
 
-		const string primaryConstructorParameterAttributeTypeName = "System.SourceGeneration.PrimaryConstructorParameterAttribute";
-		var primaryConstructorParameterAttributeSymbol = compilation.GetTypeByMetadataName(primaryConstructorParameterAttributeTypeName);
-		if (primaryConstructorParameterAttributeSymbol is null)
+		const string dataMemberAttributeTypeName = "System.SourceGeneration.DataMemberAttribute";
+		var dataMemberAttributeTypeNameSymbol = compilation.GetTypeByMetadataName(dataMemberAttributeTypeName);
+		if (dataMemberAttributeTypeNameSymbol is null)
 		{
 			return null;
 		}
@@ -50,7 +50,7 @@ internal static class GetHashCodeHandler
 			type,
 			semanticModel,
 			parameterList,
-			primaryConstructorParameterAttributeSymbol,
+			dataMemberAttributeTypeNameSymbol,
 			a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, hashCodeMemberAttributeSymbol),
 			static symbol => symbol switch
 			{

@@ -20,7 +20,7 @@ public sealed partial class UniqueRectangleType2Step(
 	Technique code,
 	scoped in CellMap cells,
 	bool isAvoidable,
-	[PrimaryConstructorParameter] Digit extraDigit,
+	[DataMember] Digit extraDigit,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,

@@ -12,10 +12,10 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class ReverseBivalueUniversalGraveStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] Digit digit1,
-	[PrimaryConstructorParameter] Digit digit2,
-	[PrimaryConstructorParameter(GeneratedMemberName = "CompletePattern")] scoped in CellMap pattern,
-	[PrimaryConstructorParameter] scoped in CellMap emptyCells
+	[DataMember] Digit digit1,
+	[DataMember] Digit digit2,
+	[DataMember(GeneratedMemberName = "CompletePattern")] scoped in CellMap pattern,
+	[DataMember] scoped in CellMap emptyCells
 ) : DeadlyPatternStep(conclusions, views), IEquatableStep<ReverseBivalueUniversalGraveStep>
 {
 	/// <summary>

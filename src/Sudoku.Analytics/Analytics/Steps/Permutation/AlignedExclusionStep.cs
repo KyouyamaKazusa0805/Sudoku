@@ -10,8 +10,8 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class AlignedExclusionStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] scoped in CellMap cells,
-	[PrimaryConstructorParameter] (Digit[], Cell)[] lockedCombinations
+	[DataMember] scoped in CellMap cells,
+	[DataMember] (Digit[], Cell)[] lockedCombinations
 ) : Step(conclusions, views), IEquatableStep<AlignedExclusionStep>
 {
 	/// <inheritdoc/>

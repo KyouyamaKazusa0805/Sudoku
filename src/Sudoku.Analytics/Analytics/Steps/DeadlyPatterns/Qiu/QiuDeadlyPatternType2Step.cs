@@ -11,7 +11,7 @@ public sealed partial class QiuDeadlyPatternType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in QiuDeadlyPattern pattern,
-	[PrimaryConstructorParameter] Digit extraDigit
+	[DataMember] Digit extraDigit
 ) : QiuDeadlyPatternStep(conclusions, views, pattern)
 {
 	/// <inheritdoc/>

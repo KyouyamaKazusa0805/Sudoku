@@ -32,8 +32,8 @@ public sealed partial class NormalFishStep(
 	Digit digit,
 	HouseMask baseSetsMask,
 	HouseMask coverSetsMask,
-	[PrimaryConstructorParameter] scoped in CellMap fins,
-	[PrimaryConstructorParameter] bool? isSashimi
+	[DataMember] scoped in CellMap fins,
+	[DataMember] bool? isSashimi
 ) : FishStep(conclusions, views, digit, baseSetsMask, coverSetsMask)
 {
 	/// <inheritdoc/>

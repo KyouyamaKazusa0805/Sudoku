@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class QiuDeadlyPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] scoped in QiuDeadlyPattern pattern
+	[DataMember] scoped in QiuDeadlyPattern pattern
 ) : DeadlyPatternStep(conclusions, views)
 {
 	/// <inheritdoc/>

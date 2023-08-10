@@ -19,10 +19,10 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BinaryForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] ChainNode sourcePotential,
-	[PrimaryConstructorParameter] ChainNode fromOnPotential,
-	[PrimaryConstructorParameter] ChainNode fromOffPotential,
-	[PrimaryConstructorParameter] bool isAbsurd,
+	[DataMember] ChainNode sourcePotential,
+	[DataMember] ChainNode fromOnPotential,
+	[DataMember] ChainNode fromOffPotential,
+	[DataMember] bool isAbsurd,
 	bool isNishio,
 	int dynamicNestingLevel = 0
 ) : ChainingStep(conclusions, views, isMultiple: true, isDynamic: true, isNishio: isNishio, dynamicNestingLevel: dynamicNestingLevel)

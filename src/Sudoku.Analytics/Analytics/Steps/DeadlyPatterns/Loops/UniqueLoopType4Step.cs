@@ -15,7 +15,7 @@ public sealed partial class UniqueLoopType4Step(
 	Digit digit1,
 	Digit digit2,
 	scoped in CellMap loop,
-	[PrimaryConstructorParameter] scoped in Conjugate conjugatePair
+	[DataMember] scoped in Conjugate conjugatePair
 ) : UniqueLoopStep(conclusions, views, digit1, digit2, loop)
 {
 	/// <inheritdoc/>

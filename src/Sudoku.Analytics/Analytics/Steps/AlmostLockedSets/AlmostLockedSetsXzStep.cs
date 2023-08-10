@@ -20,11 +20,11 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class AlmostLockedSetsXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
-	[PrimaryConstructorParameter(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
-	[PrimaryConstructorParameter] Mask xDigitsMask,
-	[PrimaryConstructorParameter] Mask zDigitsMask,
-	[PrimaryConstructorParameter] bool? isDoublyLinked
+	[DataMember(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
+	[DataMember(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
+	[DataMember] Mask xDigitsMask,
+	[DataMember] Mask zDigitsMask,
+	[DataMember] bool? isDoublyLinked
 ) : AlmostLockedSetsStep(conclusions, views)
 {
 	/// <inheritdoc/>

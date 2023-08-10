@@ -20,16 +20,16 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class SueDeCoqStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] House block,
-	[PrimaryConstructorParameter] House line,
-	[PrimaryConstructorParameter] Mask blockMask,
-	[PrimaryConstructorParameter] Mask lineMask,
-	[PrimaryConstructorParameter] Mask intersectionMask,
-	[PrimaryConstructorParameter] bool isCannibalistic,
-	[PrimaryConstructorParameter] Mask isolatedDigitsMask,
-	[PrimaryConstructorParameter] scoped in CellMap blockCells,
-	[PrimaryConstructorParameter] scoped in CellMap lineCells,
-	[PrimaryConstructorParameter] scoped in CellMap intersectionCells
+	[DataMember] House block,
+	[DataMember] House line,
+	[DataMember] Mask blockMask,
+	[DataMember] Mask lineMask,
+	[DataMember] Mask intersectionMask,
+	[DataMember] bool isCannibalistic,
+	[DataMember] Mask isolatedDigitsMask,
+	[DataMember] scoped in CellMap blockCells,
+	[DataMember] scoped in CellMap lineCells,
+	[DataMember] scoped in CellMap intersectionCells
 ) : ZeroRankStep(conclusions, views)
 {
 	/// <inheritdoc/>

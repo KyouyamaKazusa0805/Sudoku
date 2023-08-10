@@ -44,10 +44,10 @@ public sealed partial class ComplexFishStep(
 	Digit digit,
 	HouseMask baseSetsMask,
 	HouseMask coverSetsMask,
-	[PrimaryConstructorParameter] scoped in CellMap exofins,
-	[PrimaryConstructorParameter] scoped in CellMap endofins,
-	[PrimaryConstructorParameter] bool isFranken,
-	[PrimaryConstructorParameter] bool? isSashimi
+	[DataMember] scoped in CellMap exofins,
+	[DataMember] scoped in CellMap endofins,
+	[DataMember] bool isFranken,
+	[DataMember] bool? isSashimi
 ) : FishStep(conclusions, views, digit, baseSetsMask, coverSetsMask), IEquatableStep<ComplexFishStep>
 {
 	/// <inheritdoc/>

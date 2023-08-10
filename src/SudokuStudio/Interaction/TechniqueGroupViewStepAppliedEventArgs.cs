@@ -6,5 +6,5 @@ namespace SudokuStudio.Interaction;
 /// <param name="step">The step.</param>
 /// <seealso cref="TechniqueGroupViewStepAppliedEventHandler"/>
 public sealed partial class TechniqueGroupViewStepAppliedEventArgs(
-	[PrimaryConstructorParameter(GeneratedMemberName = "ChosenStep")] Step step
+	[DataMember(GeneratedMemberName = "ChosenStep")] Step step
 ) : EventArgs;

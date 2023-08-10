@@ -6,8 +6,8 @@ namespace Sudoku.Analytics.Strings;
 /// <param name="resourceKey">Indicates the resource key that causes this error.</param>
 /// <param name="assembly">Indicates the assembly where this error is thrown.</param>
 public sealed partial class ResourceNotFoundException(
-	[PrimaryConstructorParameter] string resourceKey,
-	[PrimaryConstructorParameter] Assembly assembly
+	[DataMember] string resourceKey,
+	[DataMember] Assembly assembly
 ) : Exception
 {
 	/// <inheritdoc/>

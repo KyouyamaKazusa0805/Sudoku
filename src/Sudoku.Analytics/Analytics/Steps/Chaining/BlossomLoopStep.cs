@@ -11,9 +11,9 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BlossomLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] House houseIndex,
-	[PrimaryConstructorParameter] byte digit,
-	[PrimaryConstructorParameter] MultipleForcingChains chains
+	[DataMember] House houseIndex,
+	[DataMember] byte digit,
+	[DataMember] MultipleForcingChains chains
 ) : Step(conclusions, views), IComparableStep<BlossomLoopStep>
 {
 	internal BlossomLoopStep(Conclusion[] conclusions, House houseIndex, byte digit, MultipleForcingChains chains) :

@@ -20,10 +20,10 @@ public sealed partial class UniqueRectangleExternalType3Step(
 	Digit digit1,
 	Digit digit2,
 	scoped in CellMap cells,
-	[PrimaryConstructorParameter] scoped in CellMap guardianCells,
-	[PrimaryConstructorParameter] scoped in CellMap subsetCells,
-	[PrimaryConstructorParameter] Mask subsetDigitsMask,
-	[PrimaryConstructorParameter] bool isIncomplete,
+	[DataMember] scoped in CellMap guardianCells,
+	[DataMember] scoped in CellMap subsetCells,
+	[DataMember] Mask subsetDigitsMask,
+	[DataMember] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
 ) : UniqueRectangleStep(

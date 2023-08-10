@@ -9,8 +9,8 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="eliminations">Indicates the eliminations, grouped by the type.</param>
 public abstract partial class ExocetStep(
 	View[]? views,
-	[PrimaryConstructorParameter] Exocet exocet,
-	[PrimaryConstructorParameter] Mask digitsMask,
+	[DataMember] Exocet exocet,
+	[DataMember] Mask digitsMask,
 	ExocetElimination[] eliminations
 ) : Step(from e in eliminations from c in e.Conclusions select c, views)
 {

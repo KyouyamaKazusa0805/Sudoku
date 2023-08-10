@@ -11,7 +11,7 @@ public sealed partial class QiuDeadlyPatternType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in QiuDeadlyPattern pattern,
-	[PrimaryConstructorParameter] scoped in Conjugate conjugatePair
+	[DataMember] scoped in Conjugate conjugatePair
 ) : QiuDeadlyPatternStep(conclusions, views, pattern)
 {
 	/// <inheritdoc/>

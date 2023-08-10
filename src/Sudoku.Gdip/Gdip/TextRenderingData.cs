@@ -7,9 +7,9 @@ namespace Sudoku.Gdip;
 /// <param name="extraHeight">Indicates the extra height.</param>
 /// <param name="stringFormat">Indicates the string format.</param>
 internal sealed partial class TextRenderingData(
-	[PrimaryConstructorParameter] Font font,
-	[PrimaryConstructorParameter] float extraHeight,
-	[PrimaryConstructorParameter] StringFormat stringFormat
+	[DataMember] Font font,
+	[DataMember] float extraHeight,
+	[DataMember] StringFormat stringFormat
 ) : IDisposable
 {
 	[DeconstructionMethod]

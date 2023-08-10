@@ -10,7 +10,7 @@ namespace Sudoku.Rendering.Nodes;
 [method: JsonConstructor]
 public sealed partial class ChuteViewNode(
 	ColorIdentifier identifier,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] int chuteIndex
+	[DataMember, HashCodeMember, StringMember] int chuteIndex
 ) : BasicViewNode(identifier)
 {
 	/// <summary>

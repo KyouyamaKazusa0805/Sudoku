@@ -12,8 +12,8 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class CellForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] byte sourceCell,
-	[PrimaryConstructorParameter] MultipleForcingChains chains,
+	[DataMember] byte sourceCell,
+	[DataMember] MultipleForcingChains chains,
 	bool isDynamic,
 	int dynamicNestingLevel = 0
 ) : ChainingStep(conclusions, views, isMultiple: true, isDynamic: isDynamic, dynamicNestingLevel: dynamicNestingLevel)

@@ -6,8 +6,8 @@ namespace Sudoku.Analytics;
 /// <param name="grid">Indicates the invalid sudoku grid. This property is also stored in the property <see cref="Exception.Data"/>.</param>
 /// <param name="wrongStep">Indicates the wrong step.</param>
 public sealed partial class WrongStepException(
-	[PrimaryConstructorParameter(GeneratedMemberName = "CurrentInvalidGrid")] scoped in Grid grid,
-	[PrimaryConstructorParameter] Step wrongStep
+	[DataMember(GeneratedMemberName = "CurrentInvalidGrid")] scoped in Grid grid,
+	[DataMember] Step wrongStep
 ) : Exception
 {
 	/// <inheritdoc/>

@@ -11,9 +11,9 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class FishStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] Digit digit,
-	[PrimaryConstructorParameter] HouseMask baseSetsMask,
-	[PrimaryConstructorParameter] HouseMask coverSetsMask
+	[DataMember] Digit digit,
+	[DataMember] HouseMask baseSetsMask,
+	[DataMember] HouseMask coverSetsMask
 ) : Step(conclusions, views)
 {
 	/// <inheritdoc/>

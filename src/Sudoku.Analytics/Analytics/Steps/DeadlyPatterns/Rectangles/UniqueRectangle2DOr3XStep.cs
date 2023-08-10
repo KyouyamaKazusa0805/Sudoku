@@ -22,9 +22,9 @@ public sealed partial class UniqueRectangle2DOr3XStep(
 	Digit digit2,
 	scoped in CellMap cells,
 	bool isAvoidable,
-	[PrimaryConstructorParameter] Digit xDigit,
-	[PrimaryConstructorParameter] Digit yDigit,
-	[PrimaryConstructorParameter] Cell xyCell,
+	[DataMember] Digit xDigit,
+	[DataMember] Digit yDigit,
+	[DataMember] Cell xyCell,
 	int absoluteOffset
 ) : UniqueRectangleStep(conclusions, views, code, digit1, digit2, cells, isAvoidable, absoluteOffset)
 {

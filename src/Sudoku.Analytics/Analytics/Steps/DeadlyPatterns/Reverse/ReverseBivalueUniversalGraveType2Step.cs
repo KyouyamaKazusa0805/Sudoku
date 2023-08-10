@@ -15,7 +15,7 @@ public sealed partial class ReverseBivalueUniversalGraveType2Step(
 	View[]? views,
 	Digit digit1,
 	Digit digit2,
-	[PrimaryConstructorParameter] Digit extraDigit,
+	[DataMember] Digit extraDigit,
 	scoped in CellMap pattern,
 	scoped in CellMap emptyCells
 ) : ReverseBivalueUniversalGraveStep(conclusions, views, digit1, digit2, pattern, emptyCells)

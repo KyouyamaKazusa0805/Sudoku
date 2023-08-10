@@ -48,7 +48,7 @@ namespace Sudoku.DataModel;
 /// Due to the rendering engine, you have to check this file rather than the tip window.
 /// </para>
 /// </param>
-internal readonly partial struct BorescoperDeadlyPattern([PrimaryConstructorParameter(MemberKinds.Field)] long mask)
+internal readonly partial struct BorescoperDeadlyPattern([DataMember(MemberKinds.Field)] long mask)
 {
 	/// <summary>
 	/// Indicates whether the specified pattern is a heptagon.

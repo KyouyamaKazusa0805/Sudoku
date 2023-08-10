@@ -14,8 +14,8 @@ public sealed partial class UniqueMatrixType3Step(
 	View[]? views,
 	scoped in CellMap cells,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] scoped in CellMap subsetCells,
-	[PrimaryConstructorParameter] Mask subsetDigitsMask
+	[DataMember] scoped in CellMap subsetCells,
+	[DataMember] Mask subsetDigitsMask
 ) : UniqueMatrixStep(conclusions, views, cells, digitsMask)
 {
 	/// <inheritdoc/>

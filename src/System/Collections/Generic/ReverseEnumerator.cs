@@ -6,7 +6,7 @@ namespace System.Collections.Generic;
 /// <typeparam name="T">The type of the element.</typeparam>
 /// <param name="array">The internal array.</param>
 [StructLayout(LayoutKind.Auto)]
-public ref partial struct ReverseEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] T[] array)
+public ref partial struct ReverseEnumerator<T>([DataMember(MemberKinds.Field)] T[] array)
 {
 	/// <summary>
 	/// Indicates the current index.

@@ -7,6 +7,6 @@ namespace Sudoku.Compatibility.Hodoku;
 /// <param name="difficultyLevel">Indicates the difficulty level.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
 public sealed partial class HodokuDifficultyRatingAttribute(
-	[PrimaryConstructorParameter] int difficultyRating,
-	[PrimaryConstructorParameter] HodokuDifficultyLevel difficultyLevel
+	[DataMember] int difficultyRating,
+	[DataMember] HodokuDifficultyLevel difficultyLevel
 ) : Attribute;

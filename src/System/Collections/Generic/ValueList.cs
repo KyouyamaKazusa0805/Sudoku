@@ -20,7 +20,7 @@ namespace System.Collections.Generic;
 /// </remarks>
 [StructLayout(LayoutKind.Auto)]
 [ToString(ToStringBehavior.CallOverload)]
-public unsafe ref partial struct ValueList<T>([PrimaryConstructorParameter(MemberKinds.Field)] byte capacity) where T : notnull
+public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] byte capacity) where T : notnull
 {
 	/// <summary>
 	/// Indicates the current length.

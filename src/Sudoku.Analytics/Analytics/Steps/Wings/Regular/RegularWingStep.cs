@@ -12,10 +12,10 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class RegularWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] Cell pivot,
-	[PrimaryConstructorParameter] int pivotCandidatesCount,
-	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] scoped in CellMap petals
+	[DataMember] Cell pivot,
+	[DataMember] int pivotCandidatesCount,
+	[DataMember] Mask digitsMask,
+	[DataMember] scoped in CellMap petals
 ) : WingStep(conclusions, views)
 {
 	/// <summary>

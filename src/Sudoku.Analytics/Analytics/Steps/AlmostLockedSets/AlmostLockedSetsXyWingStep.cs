@@ -14,12 +14,12 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class AlmostLockedSetsXyWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
-	[PrimaryConstructorParameter(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
-	[PrimaryConstructorParameter(GeneratedMemberName = "BridgeAls")] AlmostLockedSet bridge,
-	[PrimaryConstructorParameter] Mask xDigitsMask,
-	[PrimaryConstructorParameter] Mask yDigitsMask,
-	[PrimaryConstructorParameter] Mask zDigitsMask
+	[DataMember(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
+	[DataMember(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
+	[DataMember(GeneratedMemberName = "BridgeAls")] AlmostLockedSet bridge,
+	[DataMember] Mask xDigitsMask,
+	[DataMember] Mask yDigitsMask,
+	[DataMember] Mask zDigitsMask
 ) : AlmostLockedSetsStep(conclusions, views)
 {
 	/// <inheritdoc/>

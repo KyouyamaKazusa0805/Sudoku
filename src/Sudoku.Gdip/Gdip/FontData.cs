@@ -10,9 +10,9 @@ namespace Sudoku.Gdip;
 [GetHashCode]
 [method: SetsRequiredMembers]
 public sealed partial class FontData(
-	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] string fontName,
-	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] float fontSize,
-	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] FontStyle fontStyle
+	[DataMember(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] string fontName,
+	[DataMember(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] float fontSize,
+	[DataMember(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] FontStyle fontStyle
 ) : IEquatable<FontData>
 {
 	[DeconstructionMethod]

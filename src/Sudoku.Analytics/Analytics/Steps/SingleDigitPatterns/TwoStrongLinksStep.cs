@@ -12,8 +12,8 @@ public sealed partial class TwoStrongLinksStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	Digit digit,
-	[PrimaryConstructorParameter] House baseHouse,
-	[PrimaryConstructorParameter] House targetHouse
+	[DataMember] House baseHouse,
+	[DataMember] House targetHouse
 ) : SingleDigitPatternStep(conclusions, views, digit)
 {
 	/// <inheritdoc/>

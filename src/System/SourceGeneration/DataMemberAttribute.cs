@@ -29,19 +29,14 @@ namespace System.SourceGeneration;
 /// <para>
 /// Via this attribute type, we can simplify the code:
 /// <code><![CDATA[
-/// public readonly partial struct Color(
-///     [PrimaryConstructorParameter] byte a,
-///     [PrimaryConstructorParameter] byte r,
-///     [PrimaryConstructorParameter] byte g,
-///     [PrimaryConstructorParameter] byte b
-/// );
+/// public readonly partial struct Color([DataMember] byte a, [DataMember] byte r, [DataMember] byte g, [DataMember] byte b);
 /// ]]></code>
 /// Such code is equivalent to the original one.
 /// </para>
 /// <para>If you want to learn more information about this attribute type, please visit the metadata of the type.</para>
 /// </remarks>
 [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
-public sealed class PrimaryConstructorParameterAttribute(string memberKind = MemberKinds.Property) : Attribute
+public sealed class DataMemberAttribute(string memberKind = MemberKinds.Property) : Attribute
 {
 	/// <summary>
 	/// Indicates the extra setter expression. The expression is same declaration as auto-implemented properties.

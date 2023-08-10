@@ -11,7 +11,7 @@ public sealed partial class QiuDeadlyPatternLockedTypeStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	scoped in QiuDeadlyPattern pattern,
-	[PrimaryConstructorParameter(NamingRule = ">@Locked")] scoped in CandidateMap candidates
+	[DataMember(NamingRule = ">@Locked")] scoped in CandidateMap candidates
 ) : QiuDeadlyPatternStep(conclusions, views, pattern)
 {
 	/// <inheritdoc/>

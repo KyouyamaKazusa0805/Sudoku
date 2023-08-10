@@ -16,8 +16,8 @@ public sealed partial class HiddenSingleStep(
 	View[]? views,
 	Cell cell,
 	Digit digit,
-	[PrimaryConstructorParameter] House house,
-	[PrimaryConstructorParameter] bool enableAndIsLastDigit
+	[DataMember] House house,
+	[DataMember] bool enableAndIsLastDigit
 ) : SingleStep(conclusions, views, cell, digit)
 {
 	/// <inheritdoc/>

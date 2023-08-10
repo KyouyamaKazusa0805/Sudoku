@@ -11,7 +11,7 @@ namespace Sudoku.Concepts;
 [Equals]
 [GetHashCode]
 [EqualityOperators]
-public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKinds.Field)] int mask) :
+public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] int mask) :
 	IEquatable<Conjugate>,
 	IEqualityOperators<Conjugate, Conjugate, bool>
 {

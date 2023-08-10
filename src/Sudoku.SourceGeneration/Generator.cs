@@ -27,7 +27,7 @@ public sealed class Generator : IIncrementalGenerator
 		context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
-					"System.SourceGeneration.PrimaryConstructorParameterAttribute",
+					"System.SourceGeneration.DataMemberAttribute",
 					SyntaxNodeTypePredicate<ParameterSyntax>,
 					instance.Transform
 				)

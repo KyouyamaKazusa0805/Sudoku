@@ -13,7 +13,7 @@ public sealed partial class ExtendedRectangleType2Step(
 	View[]? views,
 	scoped in CellMap cells,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] Digit extraDigit
+	[DataMember] Digit extraDigit
 ) : ExtendedRectangleStep(conclusions, views, cells, digitsMask)
 {
 	/// <inheritdoc/>

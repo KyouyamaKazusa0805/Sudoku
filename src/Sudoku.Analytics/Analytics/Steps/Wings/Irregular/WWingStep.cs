@@ -11,9 +11,9 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class WWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] Cell startCell,
-	[PrimaryConstructorParameter] Cell endCell,
-	[PrimaryConstructorParameter] scoped in Conjugate conjugatePair
+	[DataMember] Cell startCell,
+	[DataMember] Cell endCell,
+	[DataMember] scoped in Conjugate conjugatePair
 ) : IrregularWingStep(conclusions, views)
 {
 	/// <inheritdoc/>

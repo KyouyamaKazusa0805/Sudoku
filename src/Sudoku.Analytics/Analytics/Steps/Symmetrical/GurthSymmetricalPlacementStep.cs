@@ -19,8 +19,8 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class GurthSymmetricalPlacementStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] SymmetricType symmetricType,
-	[PrimaryConstructorParameter] Digit?[]? mapping
+	[DataMember] SymmetricType symmetricType,
+	[DataMember] Digit?[]? mapping
 ) : SymmetryStep(conclusions, views)
 {
 	/// <inheritdoc/>

@@ -17,8 +17,8 @@ namespace Sudoku.Concepts;
 [EqualityOperators]
 [method: JsonConstructor]
 public readonly partial struct LockedTarget(
-	[PrimaryConstructorParameter, HashCodeMember] Digit digit,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] CellMap cells
+	[DataMember, HashCodeMember] Digit digit,
+	[DataMember, HashCodeMember, StringMember] CellMap cells
 ) : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget, bool>
 {
 	/// <summary>

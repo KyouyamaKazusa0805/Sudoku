@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ForcingChainStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] ChainNode target,
+	[DataMember] ChainNode target,
 	bool isX,
 	bool isY
 ) : ChainingStep(conclusions, views, isX, isY)

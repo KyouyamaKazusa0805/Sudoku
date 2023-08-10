@@ -19,9 +19,9 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 	Digit digit1,
 	Digit digit2,
 	scoped in CellMap cells,
-	[PrimaryConstructorParameter] scoped in CellMap guardianCells,
-	[PrimaryConstructorParameter] AlmostLockedSet almostLockedSet,
-	[PrimaryConstructorParameter] bool isIncomplete,
+	[DataMember] scoped in CellMap guardianCells,
+	[DataMember] AlmostLockedSet almostLockedSet,
+	[DataMember] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
 ) : UniqueRectangleStep(

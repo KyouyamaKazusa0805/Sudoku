@@ -15,7 +15,7 @@ public sealed partial class UniqueLoopType2Step(
 	Digit digit1,
 	Digit digit2,
 	scoped in CellMap loop,
-	[PrimaryConstructorParameter] Digit extraDigit
+	[DataMember] Digit extraDigit
 ) : UniqueLoopStep(conclusions, views, digit1, digit2, loop)
 {
 	/// <inheritdoc/>

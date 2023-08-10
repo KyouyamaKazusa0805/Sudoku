@@ -14,12 +14,12 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class SueDeCoq3DimensionStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] Mask rowDigitsMask,
-	[PrimaryConstructorParameter] Mask columnDigitsMask,
-	[PrimaryConstructorParameter] Mask blockDigitsMask,
-	[PrimaryConstructorParameter] scoped in CellMap rowCells,
-	[PrimaryConstructorParameter] scoped in CellMap columnCells,
-	[PrimaryConstructorParameter] scoped in CellMap blockCells
+	[DataMember] Mask rowDigitsMask,
+	[DataMember] Mask columnDigitsMask,
+	[DataMember] Mask blockDigitsMask,
+	[DataMember] scoped in CellMap rowCells,
+	[DataMember] scoped in CellMap columnCells,
+	[DataMember] scoped in CellMap blockCells
 ) : ZeroRankStep(conclusions, views)
 {
 	/// <inheritdoc/>

@@ -13,7 +13,7 @@ public sealed partial class UniqueMatrixType2Step(
 	View[]? views,
 	scoped in CellMap cells,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] Digit extraDigit
+	[DataMember] Digit extraDigit
 ) : UniqueMatrixStep(conclusions, views, cells, digitsMask)
 {
 	/// <inheritdoc/>

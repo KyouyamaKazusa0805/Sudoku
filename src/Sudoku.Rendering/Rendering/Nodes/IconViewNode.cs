@@ -7,7 +7,7 @@ namespace Sudoku.Rendering.Nodes;
 /// <param name="cell">The cell.</param>
 [GetHashCode]
 [ToString]
-public abstract partial class IconViewNode(ColorIdentifier identifier, [PrimaryConstructorParameter, HashCodeMember, StringMember] Cell cell) : ViewNode(identifier)
+public abstract partial class IconViewNode(ColorIdentifier identifier, [DataMember, HashCodeMember, StringMember] Cell cell) : ViewNode(identifier)
 {
 	[DeconstructionMethod]
 	public partial void Deconstruct(out Cell cell);

@@ -10,7 +10,7 @@ namespace Sudoku.Rendering.Nodes;
 [method: JsonConstructor]
 public sealed partial class HouseViewNode(
 	ColorIdentifier identifier,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] House house
+	[DataMember, HashCodeMember, StringMember] House house
 ) : BasicViewNode(identifier)
 {
 	[DeconstructionMethod]

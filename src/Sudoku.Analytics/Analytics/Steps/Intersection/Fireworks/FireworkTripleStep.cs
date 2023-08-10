@@ -10,8 +10,8 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class FireworkTripleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[PrimaryConstructorParameter] scoped in CellMap cells,
-	[PrimaryConstructorParameter] Mask digitsMask
+	[DataMember] scoped in CellMap cells,
+	[DataMember] Mask digitsMask
 ) : FireworkStep(conclusions, views)
 {
 	/// <inheritdoc/>
