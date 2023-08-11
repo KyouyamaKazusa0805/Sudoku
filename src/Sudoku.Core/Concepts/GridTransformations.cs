@@ -253,7 +253,7 @@ public static unsafe class GridTransformations
 		return ref @this;
 
 
-		bool houseIndexChecker((int, int) pair) => pair == (houseIndex1, houseIndex2) || pair == (houseIndex2, houseIndex1);
+		bool houseIndexChecker((House, House) pair) => pair == (houseIndex1, houseIndex2) || pair == (houseIndex2, houseIndex1);
 	}
 
 	/// <summary>
