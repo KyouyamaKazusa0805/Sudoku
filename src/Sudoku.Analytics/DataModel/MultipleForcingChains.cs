@@ -3,7 +3,7 @@ namespace Sudoku.DataModel;
 /// <summary>
 /// Defines a multiple forcing chains.
 /// </summary>
-public sealed partial class MultipleForcingChains : IReadOnlyList<(byte CellOrDigit, ChainNode Potential)>
+public sealed partial class MultipleForcingChains() : IReadOnlyList<(byte CellOrDigit, ChainNode Potential)>
 {
 	/// <summary>
 	/// Indicates the internal dictionary.
@@ -19,6 +19,20 @@ public sealed partial class MultipleForcingChains : IReadOnlyList<(byte CellOrDi
 	/// Indicates the values.
 	/// </summary>
 	private readonly List<ChainNode> _values = new(7);
+
+
+	/// <summary>
+	/// Initializes a <see cref="MultipleForcingChains"/> instance via the specified <see cref="Dictionary{TKey, TValue}"/>
+	/// of types <see cref="byte"/> and <see cref="ChainNode"/> indicates the internal keys and values.
+	/// </summary>
+	/// <param name="dictionary">A dictionary instance.</param>
+	public MultipleForcingChains(Dictionary<byte, ChainNode> dictionary) : this()
+	{
+		foreach (var (key, value) in dictionary)
+		{
+			Add(key, value);
+		}
+	}
 
 
 	/// <summary>
@@ -88,22 +102,6 @@ public sealed partial class MultipleForcingChains : IReadOnlyList<(byte CellOrDi
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-
-	/// <summary>
-	/// Implicit cast from <see cref="Dictionary{TKey, TValue}"/> to <see cref="MultipleForcingChains"/>.
-	/// </summary>
-	/// <param name="dictionary">The dictionary.</param>
-	public static implicit operator MultipleForcingChains(Dictionary<byte, ChainNode> dictionary)
-	{
-		var result = new MultipleForcingChains();
-		foreach (var (key, value) in dictionary)
-		{
-			result.Add(key, value);
-		}
-
-		return result;
-	}
 }
 
 /// <summary>
