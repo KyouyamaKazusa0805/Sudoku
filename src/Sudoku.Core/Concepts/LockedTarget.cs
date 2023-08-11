@@ -16,6 +16,7 @@ namespace Sudoku.Concepts;
 [ToString]
 [EqualityOperators]
 [method: JsonConstructor]
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct LockedTarget(
 	[DataMember, HashCodeMember] Digit digit,
 	[DataMember, HashCodeMember, StringMember] CellMap cells
