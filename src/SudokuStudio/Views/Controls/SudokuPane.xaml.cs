@@ -405,7 +405,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
-	/// Try to update grid status.
+	/// Try to update grid state.
 	/// </summary>
 	/// <param name="newGrid">The new grid to be used for assigning to the target.</param>
 	public void UpdateGrid(scoped in Grid newGrid) => SetPuzzleInternal(newGrid);
@@ -496,7 +496,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		for (var i = 0; i < 81; i++)
 		{
 			var cellControl = _children[i];
-			cellControl.Status = grid.GetStatus(i);
+			cellControl.Status = grid.GetState(i);
 			cellControl.CandidatesMask = grid.GetCandidates(i);
 		}
 	}
@@ -779,7 +779,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			default:
 			case (_, not (>= 0 and < 81), _, _):
-			case var (_, cell, _, _) when Puzzle.GetStatus(cell) == CellStatus.Given:
+			case var (_, cell, _, _) when Puzzle.GetState(cell) == CellState.Given:
 			case (_, _, _, -2):
 			{
 				return;
@@ -812,7 +812,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			when PreventConflictingInput && !Puzzle.DuplicateWith(cell, digit) || !PreventConflictingInput:
 			{
 				var modified = Puzzle;
-				if (Puzzle.GetStatus(cell) == CellStatus.Modifiable)
+				if (Puzzle.GetState(cell) == CellState.Modifiable)
 				{
 					// Temporarily re-compute candidates.
 					modified.SetDigit(cell, -1);

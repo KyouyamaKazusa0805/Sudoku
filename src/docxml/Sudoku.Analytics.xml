@@ -3632,7 +3632,7 @@
         </member>
         <member name="T:Sudoku.Analytics.StepCollector">
             <summary>
-            Represents an instance that can collect all possible <see cref="T:Sudoku.Analytics.Step"/>s in a grid for one status.
+            Represents an instance that can collect all possible <see cref="T:Sudoku.Analytics.Step"/>s in a grid for one state.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.StepCollector.ErrorInfo_ModeIsUndefined">
@@ -3667,7 +3667,7 @@
             Search for all possible steps in a grid.
             </summary>
             <param name="puzzle">The puzzle grid.</param>
-            <param name="progress">The progress instance that is used for reporting the status.</param>
+            <param name="progress">The progress instance that is used for reporting the state.</param>
             <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
             <returns>
             The result. If cancelled, the return value will be <see langword="null"/>; otherwise, a real list even though it may be empty.
@@ -3688,12 +3688,12 @@
         </member>
         <member name="F:Sudoku.Analytics.StepCollectorDifficultyLevelMode.OnlySame">
             <summary>
-            Indicates the collecting mode is to collect steps whose difficulty level are same as the status of the current grid.
+            Indicates the collecting mode is to collect steps whose difficulty level are same as the state of the current grid.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.StepCollectorDifficultyLevelMode.OneLevelHarder">
             <summary>
-            Indicates the collecting mode is to collect steps whose difficulty level are same as the status of the current grid or one level harder.
+            Indicates the collecting mode is to collect steps whose difficulty level are same as the state of the current grid or one level harder.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.StepCollectorDifficultyLevelMode.All">
@@ -7625,7 +7625,7 @@
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="destinationOn">Indicates the destination node that is "on" status.</param>
+            <param name="destinationOn">Indicates the destination node that is "on" state.</param>
             <param name="isX"><inheritdoc/></param>
             <param name="isY"><inheritdoc/></param>
         </member>
@@ -7635,7 +7635,7 @@
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="destinationOn">Indicates the destination node that is "on" status.</param>
+            <param name="destinationOn">Indicates the destination node that is "on" state.</param>
             <param name="isX"><inheritdoc/></param>
             <param name="isY"><inheritdoc/></param>
         </member>

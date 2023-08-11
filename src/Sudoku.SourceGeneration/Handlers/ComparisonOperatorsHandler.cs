@@ -38,7 +38,7 @@ internal static class ComparisonOperatorsHandler
 			(true, TypeKind.Struct, _) => Behavior.DefaultButDeprecated,
 			(_, TypeKind.Struct, true) => Behavior.WithScopedIn,
 			(_, TypeKind.Struct, _) => Behavior.Default,
-			_ => throw new InvalidOperationException("Invalid status.")
+			_ => throw new InvalidOperationException("Invalid state.")
 		};
 		if (behavior == Behavior.DoNothing)
 		{
@@ -51,7 +51,7 @@ internal static class ComparisonOperatorsHandler
 			(_, TypeKind.Class) => "class",
 			(true, TypeKind.Struct) => "record struct",
 			(_, TypeKind.Struct) => "struct",
-			_ => throw new InvalidOperationException("Invalid status.")
+			_ => throw new InvalidOperationException("Invalid state.")
 		};
 		var namespaceString = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
 		var typeArgumentsString = typeParameters is []

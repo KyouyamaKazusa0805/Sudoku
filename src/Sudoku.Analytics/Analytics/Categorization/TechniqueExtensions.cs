@@ -99,7 +99,7 @@ public static class TechniqueExtensions
 		{
 			({ Features: var feature }, _) when feature.Flags(TechniqueFeature.NotImplemented) => DifficultyLevel.Unknown,
 			(_, { Level: var level }) => level,
-			_ => throw new InvalidOperationException("The status is invalid for the current technique field.")
+			_ => throw new InvalidOperationException("The state is invalid for the current technique field.")
 		};
 	}
 

@@ -66,7 +66,7 @@ partial class GridImageGenerator
 			var mask = puzzle[cell];
 			switch (MaskOperations.MaskToStatus(mask))
 			{
-				case CellStatus.Undefined when showCandidates:
+				case CellState.Undefined when showCandidates:
 				{
 					// Draw candidates.
 					// This block is use when user draw candidates from undefined grid.
@@ -80,7 +80,7 @@ partial class GridImageGenerator
 
 					break;
 				}
-				case CellStatus.Empty when showCandidates:
+				case CellState.Empty when showCandidates:
 				{
 					// Draw candidates.
 					var overlaps = View.UnknownOverlaps(cell);
@@ -93,18 +93,18 @@ partial class GridImageGenerator
 
 					break;
 				}
-				case var status and (CellStatus.Modifiable or CellStatus.Given):
+				case var state and (CellState.Modifiable or CellState.Given):
 				{
 					// Draw values.
 					var originalPoint = calc.GetMousePointInCenter(cell);
 					var point = originalPoint with { Y = originalPoint.Y + vOffsetValue };
-					g.DrawValue(puzzle.GetDigit(cell) + 1, f(status, fGiven, fModifiable), f(status, bGiven, bModifiable), point, StringLocating);
+					g.DrawValue(puzzle.GetDigit(cell) + 1, f(state, fGiven, fModifiable), f(state, bGiven, bModifiable), point, StringLocating);
 
 					break;
 
 
 					[MethodImpl(MethodImplOptions.AggressiveInlining)]
-					static T f<T>(CellStatus status, T given, T modifiable) => status == CellStatus.Given ? given : modifiable;
+					static T f<T>(CellState state, T given, T modifiable) => state == CellState.Given ? given : modifiable;
 				}
 			}
 		}

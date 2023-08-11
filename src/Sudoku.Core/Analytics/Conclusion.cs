@@ -9,7 +9,7 @@ namespace Sudoku.Analytics;
 /// if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
 /// </remarks>
 /// <param name="mask">
-/// The field uses the mask table of length 81 to indicate the status and all possible candidates
+/// The field uses the mask table of length 81 to indicate the state and all possible candidates
 /// holding for each cell. Each mask uses a <see cref="Mask"/> value, but only uses 11 of 16 bits.
 /// <code>
 /// | 16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |

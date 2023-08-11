@@ -509,7 +509,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (var cell in urCells)
 		{
-			if (grid.GetStatus(cell) == CellStatus.Empty)
+			if (grid.GetState(cell) == CellState.Empty)
 			{
 				foreach (var digit in grid.GetCandidates(cell))
 				{
@@ -592,7 +592,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		foreach (var cell in otherCellsMap)
 		{
 			var currentMask = grid.GetCandidates(cell);
-			if ((currentMask & comparer) == 0 || currentMask == comparer || arMode && grid.GetStatus(cell) != CellStatus.Empty)
+			if ((currentMask & comparer) == 0 || currentMask == comparer || arMode && grid.GetState(cell) != CellState.Empty)
 			{
 				notSatisfiedType3 = true;
 				break;
@@ -644,7 +644,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					var cellOffsets = new List<CellViewNode>();
 					foreach (var cell in urCells)
 					{
-						if (grid.GetStatus(cell) != CellStatus.Empty)
+						if (grid.GetState(cell) != CellState.Empty)
 						{
 							cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 						}
@@ -653,7 +653,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (var cell in urCells)
 					{
-						if (grid.GetStatus(cell) == CellStatus.Empty)
+						if (grid.GetState(cell) == CellState.Empty)
 						{
 							foreach (var digit in grid.GetCandidates(cell))
 							{
@@ -768,7 +768,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				var candidateOffsets = new List<CandidateViewNode>(6);
 				foreach (var cell in urCells)
 				{
-					if (grid.GetStatus(cell) != CellStatus.Empty)
+					if (grid.GetState(cell) != CellState.Empty)
 					{
 						continue;
 					}
@@ -890,7 +890,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var candidateOffsets = new List<CandidateViewNode>(16);
 		foreach (var cell in urCells)
 		{
-			if (grid.GetStatus(cell) != CellStatus.Empty)
+			if (grid.GetState(cell) != CellState.Empty)
 			{
 				continue;
 			}
@@ -1120,7 +1120,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (var cell in urCells)
 			{
-				if (grid.GetStatus(cell) != CellStatus.Empty)
+				if (grid.GetState(cell) != CellState.Empty)
 				{
 					continue;
 				}
@@ -2843,7 +2843,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		{
 			var currentMask = grid.GetCandidates(cell);
 			mergedMaskInOtherCells |= currentMask;
-			if ((currentMask & comparer) == 0 || currentMask == comparer || arMode && grid.GetStatus(cell) != CellStatus.Empty)
+			if ((currentMask & comparer) == 0 || currentMask == comparer || arMode && grid.GetState(cell) != CellState.Empty)
 			{
 				notSatisfiedType3 = true;
 				break;
@@ -3177,7 +3177,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var containsValueCells = false;
 			foreach (var cell in cells)
 			{
-				if (grid.GetStatus(cell) != CellStatus.Empty)
+				if (grid.GetState(cell) != CellState.Empty)
 				{
 					containsValueCells = true;
 					break;
@@ -3528,7 +3528,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d2));
 					}
 
-					if (grid.GetStatus(cell) == CellStatus.Modifiable)
+					if (grid.GetState(cell) == CellState.Modifiable)
 					{
 						cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 					}
@@ -3689,7 +3689,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d2));
 								}
 
-								if (grid.GetStatus(cell) == CellStatus.Modifiable)
+								if (grid.GetState(cell) == CellState.Modifiable)
 								{
 									cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 								}
@@ -3869,7 +3869,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d2));
 							}
 
-							if (grid.GetStatus(cell) == CellStatus.Modifiable)
+							if (grid.GetState(cell) == CellState.Modifiable)
 							{
 								cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 							}
@@ -4450,9 +4450,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					var (candidateOffsets, cellOffsets) = (new List<CandidateViewNode>(), new List<CellViewNode>());
 					foreach (var cell in urCells)
 					{
-						switch (grid.GetStatus(cell))
+						switch (grid.GetState(cell))
 						{
-							case CellStatus.Empty:
+							case CellState.Empty:
 							{
 								foreach (var digit in (Mask)(grid.GetCandidates(cell) & comparer))
 								{
@@ -4460,7 +4460,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								}
 								break;
 							}
-							case CellStatus.Modifiable:
+							case CellState.Modifiable:
 							{
 								cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 								break;
@@ -4570,9 +4570,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				var (candidateOffsets, cellOffsets) = (new List<CandidateViewNode>(), new List<CellViewNode>());
 				foreach (var cell in urCells)
 				{
-					switch (grid.GetStatus(cell))
+					switch (grid.GetState(cell))
 					{
-						case CellStatus.Empty:
+						case CellState.Empty:
 						{
 							foreach (var digit in (Mask)(grid.GetCandidates(cell) & comparer))
 							{
@@ -4580,7 +4580,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							}
 							break;
 						}
-						case CellStatus.Modifiable:
+						case CellState.Modifiable:
 						{
 							cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 							break;
@@ -4739,9 +4739,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					var cellOffsets = new List<CellViewNode>();
 					foreach (var urCell in urCells)
 					{
-						switch (grid.GetStatus(urCell))
+						switch (grid.GetState(urCell))
 						{
-							case CellStatus.Empty:
+							case CellState.Empty:
 							{
 								foreach (var digit in comparer)
 								{
@@ -4752,7 +4752,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								}
 								break;
 							}
-							case CellStatus.Modifiable:
+							case CellState.Modifiable:
 							{
 								cellOffsets.Add(new(WellKnownColorIdentifier.Normal, urCell));
 								break;
@@ -4844,7 +4844,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		int index
 	)
 	{
-		if (grid.GetStatus(corner1) != CellStatus.Modifiable || grid.GetStatus(corner2) != CellStatus.Modifiable
+		if (grid.GetState(corner1) != CellState.Modifiable || grid.GetState(corner2) != CellState.Modifiable
 			|| grid.GetDigit(corner1) != grid.GetDigit(corner2) || grid.GetDigit(corner1) != d1 && grid.GetDigit(corner1) != d2)
 		{
 			return;
@@ -4935,19 +4935,19 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var modifiableCount = (byte)0;
 		foreach (var urCell in urCells)
 		{
-			switch (grid.GetStatus(urCell))
+			switch (grid.GetState(urCell))
 			{
-				case CellStatus.Given:
-				case CellStatus.Modifiable when !arMode:
+				case CellState.Given:
+				case CellState.Modifiable when !arMode:
 				{
 					return false;
 				}
-				case CellStatus.Empty when arMode:
+				case CellState.Empty when arMode:
 				{
 					emptyCountWhenArMode++;
 					break;
 				}
-				case CellStatus.Modifiable:
+				case CellState.Modifiable:
 				{
 					modifiableCount++;
 					break;

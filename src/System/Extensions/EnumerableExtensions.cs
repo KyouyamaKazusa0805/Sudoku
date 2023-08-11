@@ -4,7 +4,7 @@
 /// Provides a set of static methods for querying objects that implement
 /// <see cref="IEnumerable"/> and <see cref="IEnumerable{T}"/>.
 /// </summary>
-/// <remarks>This class has the same function and status with <see cref="Enumerable"/>.</remarks>
+/// <remarks>This class has the same function and state with <see cref="Enumerable"/>.</remarks>
 /// <seealso cref="IEnumerable"/>
 /// <seealso cref="IEnumerable{T}"/>
 /// <seealso cref="Enumerable"/>

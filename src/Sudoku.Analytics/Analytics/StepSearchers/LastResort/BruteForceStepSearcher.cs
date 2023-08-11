@@ -42,7 +42,7 @@ public sealed partial class BruteForceStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var offset in BruteForceTryAndErrorOrder)
 		{
-			if (grid.GetStatus(offset) == CellStatus.Empty)
+			if (grid.GetState(offset) == CellState.Empty)
 			{
 				var cand = offset * 9 + Solution.GetDigit(offset);
 				var step = new BruteForceStep([new(Assignment, cand)], [[new CandidateViewNode(WellKnownColorIdentifier.Normal, cand)]]);

@@ -214,7 +214,7 @@
     <value>Anti-diagonal swap</value>
   </data>
   <data name="AnalyzePage_AreYouSureToReturnToEmpty" xml:space="preserve">
-    <value>This will clear the puzzle, returning the puzzle to empty status. Are you sure?</value>
+    <value>This will clear the puzzle, returning the puzzle to empty state. Are you sure?</value>
   </data>
   <data name="AnalyzePage_ArgumentsPolarScoreName" xml:space="preserve">
     <value>Score</value>
@@ -1012,7 +1012,7 @@
     <value>Enable animation feedback</value>
   </data>
   <data name="SettingsPage_EnableAnimationFeedbackDescription" xml:space="preserve">
-    <value>If this option is set true, when you adjust status of the sudoku grid pane, you can see animation (such as candidates ease in/out). Such animations are called "Animation Feedback".</value>
+    <value>If this option is set true, when you adjust state of the sudoku grid pane, you can see animation (such as candidates ease in/out). Such animations are called "Animation Feedback".</value>
   </data>
   <data name="SettingsPage_EnableDoubleTapFillingForSudokuPane" xml:space="preserve">
     <value>Enable double tapping to fill digit</value>

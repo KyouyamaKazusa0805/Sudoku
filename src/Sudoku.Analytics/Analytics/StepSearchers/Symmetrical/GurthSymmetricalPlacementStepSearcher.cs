@@ -85,7 +85,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 		var diagonalHasEmptyCell = false;
 		for (var i = 0; i < 9; i++)
 		{
-			if (grid.GetStatus(i * 9 + i) == CellStatus.Empty)
+			if (grid.GetState(i * 9 + i) == CellState.Empty)
 			{
 				diagonalHasEmptyCell = true;
 				break;
@@ -104,8 +104,8 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			{
 				var c1 = i * 9 + j;
 				var c2 = j * 9 + i;
-				var condition = grid.GetStatus(c1) == CellStatus.Empty;
-				if (condition ^ grid.GetStatus(c2) == CellStatus.Empty)
+				var condition = grid.GetState(c1) == CellState.Empty;
+				if (condition ^ grid.GetState(c2) == CellState.Empty)
 				{
 					// One of two cells is empty. Not this symmetry.
 					return null;
@@ -173,7 +173,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 		for (var i = 0; i < 9; i++)
 		{
 			var cell = i * 9 + i;
-			if (grid.GetStatus(cell) != CellStatus.Empty)
+			if (grid.GetState(cell) != CellState.Empty)
 			{
 				continue;
 			}
@@ -206,7 +206,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 		var antiDiagonalHasEmptyCell = false;
 		for (var i = 0; i < 9; i++)
 		{
-			if (grid.GetStatus(i * 9 + (8 - i)) == CellStatus.Empty)
+			if (grid.GetState(i * 9 + (8 - i)) == CellState.Empty)
 			{
 				antiDiagonalHasEmptyCell = true;
 				break;
@@ -225,8 +225,8 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			{
 				var c1 = i * 9 + j;
 				var c2 = (8 - j) * 9 + (8 - i);
-				var condition = grid.GetStatus(c1) == CellStatus.Empty;
-				if (condition ^ grid.GetStatus(c2) == CellStatus.Empty)
+				var condition = grid.GetState(c1) == CellState.Empty;
+				if (condition ^ grid.GetState(c2) == CellState.Empty)
 				{
 					// One of two cells is empty. Not this symmetry.
 					return null;
@@ -294,7 +294,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 		for (var i = 0; i < 9; i++)
 		{
 			var cell = i * 9 + (8 - i);
-			if (grid.GetStatus(cell) != CellStatus.Empty)
+			if (grid.GetState(cell) != CellState.Empty)
 			{
 				continue;
 			}
@@ -324,7 +324,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static GurthSymmetricalPlacementStep? CheckCentral(in Grid grid)
 	{
-		if (grid.GetStatus(40) != CellStatus.Empty)
+		if (grid.GetState(40) != CellState.Empty)
 		{
 			// Has no conclusion even though the grid may be symmetrical.
 			return null;
@@ -334,8 +334,8 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 		for (var cell = 0; cell < 40; cell++)
 		{
 			var anotherCell = 80 - cell;
-			var condition = grid.GetStatus(cell) == CellStatus.Empty;
-			if (condition ^ grid.GetStatus(anotherCell) == CellStatus.Empty)
+			var condition = grid.GetState(cell) == CellState.Empty;
+			if (condition ^ grid.GetState(anotherCell) == CellState.Empty)
 			{
 				// One of two cell is empty, not central symmetry type.
 				return null;

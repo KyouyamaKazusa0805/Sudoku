@@ -17,7 +17,7 @@ public interface ISolver
 
 	/// <summary>
 	/// Solve the specified grid, and return the solution via argument <paramref name="result"/>
-	/// with returning a <see cref="bool"/>? value indicating the solved status.
+	/// with returning a <see cref="bool"/>? value indicating the solved state.
 	/// </summary>
 	/// <param name="grid">The grid to be solved.</param>
 	/// <param name="result">

@@ -1,7 +1,7 @@
 ﻿namespace SudokuStudio.Input;
 
 /// <summary>
-/// Defines a quadruple <see cref="bool"/>s indicating the key-down status of virtual key modifiers
+/// Defines a quadruple <see cref="bool"/>s indicating the key-down state of virtual key modifiers
 /// defined by type <see cref="VirtualKeyModifiers"/>.
 /// </summary>
 /// <param name="IsControlKeyDown">Indicates whether the control key is input.</param>

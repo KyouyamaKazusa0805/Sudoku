@@ -5,8 +5,8 @@ namespace SudokuStudio.Interaction.Conversions;
 /// </summary>
 internal static class ValueTextConversion
 {
-	public static string GetText(CellStatus cellStatus, Mask candidatesMask)
-		=> cellStatus == CellStatus.Empty || candidatesMask is not (>= 0 and < 511)
+	public static string GetText(CellState cellStatus, Mask candidatesMask)
+		=> cellStatus == CellState.Empty || candidatesMask is not (>= 0 and < 511)
 			? string.Empty
 			: (TrailingZeroCount((uint)candidatesMask) + 1).ToString();
 
@@ -28,7 +28,7 @@ internal static class ValueTextConversion
 		return new SolidColorBrush(
 			!solution.IsUndefined && solution.GetDigit(cell) != digit && useDifferentColorToDisplayDeltaDigits
 				? deltaColor
-				: grid.GetStatus(cell) == CellStatus.Modifiable ? modifiableColor : givenColor
+				: grid.GetState(cell) == CellState.Modifiable ? modifiableColor : givenColor
 		);
 	}
 }

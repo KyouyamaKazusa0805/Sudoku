@@ -124,8 +124,8 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 		var eliminatedCandidates = CandidateMap.Empty;
 		for (var c = 0; c < 81; c++)
 		{
-			var status = grid.GetStatus(c);
-			if (status == CellStatus.Empty && !originalGrid.IsUndefined && WithCandidates)
+			var state = grid.GetState(c);
+			if (state == CellState.Empty && !originalGrid.IsUndefined && WithCandidates)
 			{
 				// Check if the value has been set 'true' and the value has already deleted at the grid
 				// with only givens and modifiables.
@@ -139,14 +139,14 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 				}
 			}
 
-			switch (status)
+			switch (state)
 			{
-				case CellStatus.Empty:
+				case CellState.Empty:
 				{
 					sb.Append(Placeholder);
 					break;
 				}
-				case CellStatus.Modifiable:
+				case CellState.Modifiable:
 				{
 					switch (this)
 					{
@@ -165,14 +165,14 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 
 					break;
 				}
-				case CellStatus.Given:
+				case CellState.Given:
 				{
 					sb.Append(grid.GetDigit(c) + 1);
 					break;
 				}
 				default:
 				{
-					throw new InvalidOperationException("The specified status is invalid.");
+					throw new InvalidOperationException("The specified state is invalid.");
 				}
 			}
 		}

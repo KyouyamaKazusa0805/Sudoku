@@ -90,7 +90,7 @@ internal static class ToStringHandler
 				=> $$$"""
 				$"{{{typeName}}} {{ {{{string.Join(", ", f(referencedMembers))}}} }}"
 				""",
-			_ => throw new InvalidOperationException("Invalid status.")
+			_ => throw new InvalidOperationException("Invalid state.")
 		};
 
 		var kindString = (isRecord, kind) switch
@@ -99,7 +99,7 @@ internal static class ToStringHandler
 			(true, TypeKind.Struct) => "record struct",
 			(_, TypeKind.Class) => "class",
 			(_, TypeKind.Struct) => "struct",
-			_ => throw new InvalidOperationException("Invalid status.")
+			_ => throw new InvalidOperationException("Invalid state.")
 		};
 		var attributesMarked = isRefStruct && behavior is Behavior.Throw or Behavior.ReturnTypeName
 			? behavior == Behavior.ReturnTypeName

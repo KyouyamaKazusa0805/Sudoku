@@ -108,7 +108,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 						var flag = true;
 						foreach (var c in d1Map | d2Map)
 						{
-							if (grid.GetStatus(c) == CellStatus.Given)
+							if (grid.GetState(c) == CellState.Given)
 							{
 								flag = false;
 								break;

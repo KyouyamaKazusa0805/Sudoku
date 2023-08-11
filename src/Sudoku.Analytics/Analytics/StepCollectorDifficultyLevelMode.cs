@@ -7,12 +7,12 @@ namespace Sudoku.Analytics;
 public enum StepCollectorDifficultyLevelMode
 {
 	/// <summary>
-	/// Indicates the collecting mode is to collect steps whose difficulty level are same as the status of the current grid.
+	/// Indicates the collecting mode is to collect steps whose difficulty level are same as the state of the current grid.
 	/// </summary>
 	OnlySame,
 
 	/// <summary>
-	/// Indicates the collecting mode is to collect steps whose difficulty level are same as the status of the current grid or one level harder.
+	/// Indicates the collecting mode is to collect steps whose difficulty level are same as the state of the current grid or one level harder.
 	/// </summary>
 	OneLevelHarder,
 

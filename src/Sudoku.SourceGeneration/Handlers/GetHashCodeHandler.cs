@@ -79,9 +79,9 @@ internal static class GetHashCodeHandler
 					_ => Behavior.Specified
 				},
 				1 => Behavior.Throw,
-				_ => throw new InvalidOperationException("Invalid status.")
+				_ => throw new InvalidOperationException("Invalid state.")
 			},
-			_ => throw new InvalidOperationException("Invalid status.")
+			_ => throw new InvalidOperationException("Invalid state.")
 		};
 
 		var codeBlock = behavior switch
@@ -114,7 +114,7 @@ internal static class GetHashCodeHandler
 						return hashCode.ToHashCode();
 					}
 				""",
-			_ => throw new InvalidOperationException("Invalid status.")
+			_ => throw new InvalidOperationException("Invalid state.")
 		};
 
 		var kindString = (isRecord, kind) switch
@@ -123,7 +123,7 @@ internal static class GetHashCodeHandler
 			(true, TypeKind.Struct) => "record struct",
 			(_, TypeKind.Class) => "class",
 			(_, TypeKind.Struct) => "struct",
-			_ => throw new InvalidOperationException("Invalid status.")
+			_ => throw new InvalidOperationException("Invalid state.")
 		};
 		var attributesMarked = (isRefStruct, behavior) switch
 		{

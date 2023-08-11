@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
-/// <param name="destinationOn">Indicates the destination node that is "on" status.</param>
+/// <param name="destinationOn">Indicates the destination node that is "on" state.</param>
 /// <param name="isX"><inheritdoc/></param>
 /// <param name="isY"><inheritdoc/></param>
 public sealed partial class BidirectionalCycleStep(

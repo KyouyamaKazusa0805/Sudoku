@@ -1,7 +1,7 @@
 namespace SudokuStudio.Input;
 
 /// <summary>
-/// Provides with a easier way to visit key-down status.
+/// Provides with a easier way to visit key-down state.
 /// </summary>
 public static class Keyboard
 {
@@ -67,7 +67,7 @@ public static class Keyboard
 		};
 
 	/// <summary>
-	/// Try to create a <see cref="VirtualKeyModifierStatus"/> instance to determine key-down status.
+	/// Try to create a <see cref="VirtualKeyModifierStatus"/> instance to determine key-down state.
 	/// </summary>
 	/// <returns>A <see cref="VirtualKeyModifierStatus"/> instance.</returns>
 	/// <remarks>

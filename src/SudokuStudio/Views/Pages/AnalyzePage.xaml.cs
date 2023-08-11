@@ -1185,9 +1185,9 @@ public sealed partial class AnalyzePage : Page
 			case { MouseButton: MouseButton.Right, Cell: var cell } when SudokuPane is { DisableFlyout: false, Puzzle: var puzzle }:
 			{
 				static IEnumerable<AppBarButton> getAppBarButtons(CommandBarFlyout flyout) => flyout.SecondaryCommands.OfType<AppBarButton>();
-				switch (puzzle.GetStatus(cell))
+				switch (puzzle.GetState(cell))
 				{
-					case CellStatus.Empty:
+					case CellState.Empty:
 					{
 						SudokuPane._temporarySelectedCell = cell;
 						foreach (var element in getAppBarButtons(MainMenuFlyout))
@@ -1198,7 +1198,7 @@ public sealed partial class AnalyzePage : Page
 						MainMenuFlyout.ShowAt(SudokuPane);
 						break;
 					}
-					case CellStatus.Given or CellStatus.Modifiable:
+					case CellState.Given or CellState.Modifiable:
 					{
 						SudokuPane._temporarySelectedCell = cell;
 						foreach (var element in getAppBarButtons(MainMenuFlyout))

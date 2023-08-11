@@ -2,7 +2,7 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Encapsulates a binary series of cell status table.
+/// Encapsulates a binary series of cell state table.
 /// </summary>
 /// <remarks>
 /// <para>

@@ -102,7 +102,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 			// Get the values count ('n') and pairs list ('pairs').
 			for (i = 0; i < 8; i++)
 			{
-				if (grid.GetStatus(cells[i << 1]) != CellStatus.Empty)
+				if (grid.GetState(cells[i << 1]) != CellState.Empty)
 				{
 					n++;
 				}
@@ -111,7 +111,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 					pairs[i] |= grid.GetCandidates(cells[i << 1]);
 				}
 
-				if (grid.GetStatus(cells[(i << 1) + 1]) != CellStatus.Empty)
+				if (grid.GetState(cells[(i << 1) + 1]) != CellState.Empty)
 				{
 					n++;
 				}
@@ -128,8 +128,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 				candidateCount += PopCount((uint)pairs[i]);
 			}
 
-			// Check validity: If the number of candidate appearing is lower than 32 - (n * 2),
-			// the status is invalid.
+			// Check validity: If the number of candidate appearing is lower than 32 - (n * 2), the state will become invalid.
 			if (i < 8 || candidateCount > 32 - (n << 1))
 			{
 				continue;

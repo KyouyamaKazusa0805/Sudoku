@@ -34,10 +34,10 @@ internal static class EqualsHandler
 						(true, _) => Behavior.ReturnFalse,
 						(_, TypeKind.Struct) => Behavior.IsCast,
 						(_, TypeKind.Class) => Behavior.AsCast,
-						_ => throw new InvalidOperationException("Invalid status.")
+						_ => throw new InvalidOperationException("Invalid state.")
 					},
 					1 => Behavior.Throw,
-					_ => throw new InvalidOperationException("Invalid status.")
+					_ => throw new InvalidOperationException("Invalid state.")
 				}
 			};
 		var otherModifiers = attribute.GetNamedArgument<string>("OtherModifiers") switch
@@ -56,7 +56,7 @@ internal static class EqualsHandler
 			Behavior.IsCast => $"obj is {fullTypeNameString} comparer && Equals(comparer)",
 			Behavior.AsCast => $"Equals(obj as {fullTypeNameString})",
 			Behavior.Throw => """throw new global::System.NotSupportedException("This method is not supported or disallowed by author.")""",
-			_ => throw new InvalidOperationException("Invalid status.")
+			_ => throw new InvalidOperationException("Invalid state.")
 		};
 		var attributesMarked = isRefStruct
 			? behavior == Behavior.ReturnFalse
@@ -75,7 +75,7 @@ internal static class EqualsHandler
 		{
 			TypeKind.Class => "class",
 			TypeKind.Struct => "struct",
-			_ => throw new InvalidOperationException("Invalid status.")
+			_ => throw new InvalidOperationException("Invalid state.")
 		};
 		var otherModifiersString = otherModifiers.Length == 0 ? string.Empty : $"{string.Join(" ", otherModifiers)} ";
 		var isDeprecated = attributesMarked.Contains("ObsoleteAttribute");

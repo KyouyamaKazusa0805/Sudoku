@@ -64,7 +64,7 @@ partial struct Grid
 			while (_currentIndex < 81)
 			{
 				_currentIndex++;
-				if (MaskToStatus(AddByteOffset(ref _start, _currentIndex)) == CellStatus.Empty)
+				if (MaskToStatus(AddByteOffset(ref _start, _currentIndex)) == CellState.Empty)
 				{
 					break;
 				}

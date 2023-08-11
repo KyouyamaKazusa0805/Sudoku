@@ -5,7 +5,7 @@ namespace SudokuStudio.Views.Controls;
 /// </summary>
 /// <seealso cref="SudokuPane"/>
 [DependencyProperty<Mask>("CandidatesMask", DefaultValue = Grid.MaxCandidatesMask)]
-[DependencyProperty<CellStatus>("Status", DefaultValue = CellStatus.Empty)]
+[DependencyProperty<CellState>("Status", DefaultValue = CellState.Empty)]
 internal sealed partial class SudokuPaneCell : UserControl
 {
 	/// <summary>
@@ -74,7 +74,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 
 		if (!Digit.TryParse(text, out var originalDigit)
 			|| originalDigit - 1 is not (var digit and >= 0 and < 9)
-			|| modified.GetStatus(cell) != CellStatus.Empty
+			|| modified.GetState(cell) != CellState.Empty
 			|| (modified.GetCandidates(cell) >> digit & 1) == 0)
 		{
 			return;
@@ -100,7 +100,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 
 		BasePane.TriggerClicked(MouseButton.Right, cell * 9 + digit);
 
-		if (!BasePane.EnableRightTapRemoving || modified.GetStatus(cell) != CellStatus.Empty || (modified.GetCandidates(cell) >> digit & 1) == 0)
+		if (!BasePane.EnableRightTapRemoving || modified.GetState(cell) != CellState.Empty || (modified.GetCandidates(cell) >> digit & 1) == 0)
 		{
 			return;
 		}

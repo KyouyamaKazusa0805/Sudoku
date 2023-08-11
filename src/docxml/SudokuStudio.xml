@@ -1909,7 +1909,7 @@
         </member>
         <member name="T:SudokuStudio.Input.Keyboard">
             <summary>
-            Provides with a easier way to visit key-down status.
+            Provides with a easier way to visit key-down state.
             </summary>
         </member>
         <member name="P:SudokuStudio.Input.Keyboard.IsControlKeyDown">
@@ -1964,7 +1964,7 @@
         </member>
         <member name="M:SudokuStudio.Input.Keyboard.GetModifierStatusForCurrentThread">
             <summary>
-            Try to create a <see cref="T:SudokuStudio.Input.VirtualKeyModifierStatus"/> instance to determine key-down status.
+            Try to create a <see cref="T:SudokuStudio.Input.VirtualKeyModifierStatus"/> instance to determine key-down state.
             </summary>
             <returns>A <see cref="T:SudokuStudio.Input.VirtualKeyModifierStatus"/> instance.</returns>
             <remarks>
@@ -2172,7 +2172,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Input.VirtualKeyModifierStatus">
             <summary>
-            Defines a quadruple <see cref="T:System.Boolean"/>s indicating the key-down status of virtual key modifiers
+            Defines a quadruple <see cref="T:System.Boolean"/>s indicating the key-down state of virtual key modifiers
             defined by type <see cref="T:Windows.System.VirtualKeyModifiers"/>.
             </summary>
             <param name="IsControlKeyDown">Indicates whether the control key is input.</param>
@@ -2183,7 +2183,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
-            Defines a quadruple <see cref="T:System.Boolean"/>s indicating the key-down status of virtual key modifiers
+            Defines a quadruple <see cref="T:System.Boolean"/>s indicating the key-down state of virtual key modifiers
             defined by type <see cref="T:Windows.System.VirtualKeyModifiers"/>.
             </summary>
             <param name="IsControlKeyDown">Indicates whether the control key is input.</param>
@@ -4193,7 +4193,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_AreYouSureToReturnToEmpty">
             <summary>
-              Looks up a localized string similar to This will clear the puzzle, returning the puzzle to empty status. Are you sure?.
+              Looks up a localized string similar to This will clear the puzzle, returning the puzzle to empty state. Are you sure?.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_ArgumentsPolarScoreName">
@@ -5548,7 +5548,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_EnableAnimationFeedbackDescription">
             <summary>
-              Looks up a localized string similar to If this option is set true, when you adjust status of the sudoku grid pane, you can see animation (such as candidates ease in/out). Such animations are called &quot;Animation Feedback&quot;..
+              Looks up a localized string similar to If this option is set true, when you adjust state of the sudoku grid pane, you can see animation (such as candidates ease in/out). Such animations are called &quot;Animation Feedback&quot;..
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_EnableDoubleTapFillingForSudokuPane">
@@ -7246,7 +7246,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UpdateGrid(Sudoku.Concepts.Grid@)">
             <summary>
-            Try to update grid status.
+            Try to update grid state.
             </summary>
             <param name="newGrid">The new grid to be used for assigning to the target.</param>
         </member>
@@ -9456,7 +9456,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.SetAppTitleBarStatus">
             <summary>
-            Sets the status of app title bars conditionally.
+            Sets the state of app title bars conditionally.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeAppWindow">

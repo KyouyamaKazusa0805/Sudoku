@@ -258,7 +258,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 				}
 			}
 
-			throw new InvalidOperationException("The puzzle has wrong status.");
+			throw new InvalidOperationException("The puzzle keeps a wrong state.");
 		}
 	}
 
@@ -282,7 +282,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 				}
 			}
 
-			throw new InvalidOperationException("The puzzle has wrong status.");
+			throw new InvalidOperationException("The puzzle keeps a wrong state.");
 		}
 	}
 

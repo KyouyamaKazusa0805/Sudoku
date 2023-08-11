@@ -538,7 +538,7 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This will clear the puzzle, returning the puzzle to empty status. Are you sure?.
+        ///   Looks up a localized string similar to This will clear the puzzle, returning the puzzle to empty state. Are you sure?.
         /// </summary>
         internal static string AnalyzePage_AreYouSureToReturnToEmpty {
             get {
@@ -2977,7 +2977,7 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If this option is set true, when you adjust status of the sudoku grid pane, you can see animation (such as candidates ease in/out). Such animations are called &quot;Animation Feedback&quot;..
+        ///   Looks up a localized string similar to If this option is set true, when you adjust state of the sudoku grid pane, you can see animation (such as candidates ease in/out). Such animations are called &quot;Animation Feedback&quot;..
         /// </summary>
         internal static string SettingsPage_EnableAnimationFeedbackDescription {
             get {

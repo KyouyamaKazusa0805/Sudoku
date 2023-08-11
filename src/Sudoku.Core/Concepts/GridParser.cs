@@ -175,7 +175,7 @@ public unsafe ref partial struct GridParser(
 				case [var match and not ('.' or '0')]:
 				{
 					result.SetDigit(i, match - '1');
-					result.SetStatus(i, CellStatus.Given);
+					result.SetStatus(i, CellState.Given);
 
 					break;
 				}
@@ -192,7 +192,7 @@ public unsafe ref partial struct GridParser(
 					}
 
 					result.SetDigit(i, match - '1');
-					result.SetStatus(i, CellStatus.Modifiable);
+					result.SetStatus(i, CellState.Modifiable);
 
 					break;
 				}
@@ -262,13 +262,13 @@ public unsafe ref partial struct GridParser(
 				case not '0' and var ch when whenClause(i * 6, match, "|0|0", "|0|0|"):
 				{
 					result.SetDigit(i, ch - '1');
-					result.SetStatus(i, CellStatus.Given);
+					result.SetStatus(i, CellState.Given);
 
 					break;
 				}
 				default:
 				{
-					// Invalid string status.
+					// Invalid string state.
 					return Grid.Undefined;
 				}
 			}
@@ -314,7 +314,7 @@ public unsafe ref partial struct GridParser(
 					if (s[1] is var c and >= '1' and <= '9')
 					{
 						result.SetDigit(cell, c - '1');
-						result.SetStatus(cell, CellStatus.Given);
+						result.SetStatus(cell, CellState.Given);
 					}
 					else
 					{
@@ -336,7 +336,7 @@ public unsafe ref partial struct GridParser(
 					if (s[1] is var c and >= '1' and <= '9')
 					{
 						result.SetDigit(cell, c - '1');
-						result.SetStatus(cell, CellStatus.Modifiable);
+						result.SetStatus(cell, CellState.Modifiable);
 					}
 					else
 					{
@@ -369,7 +369,7 @@ public unsafe ref partial struct GridParser(
 				if ((mask & mask - 1) == 0)
 				{
 					result.SetDigit(cell, TrailingZeroCount(mask));
-					result.SetStatus(cell, CellStatus.Given);
+					result.SetStatus(cell, CellState.Given);
 				}
 				else
 				{
@@ -479,11 +479,11 @@ public unsafe ref partial struct GridParser(
 					// Set value.
 					result.SetDigit(realPos, c - '1');
 
-					// Set the cell status as 'CellStatus.Given'.
+					// Set the cell state as 'CellStatus.Given'.
 					// If the code below doesn't make sense to you,
 					// you can see the comments in method 'OnParsingSusser(string)'
 					// to know the meaning also.
-					result.SetStatus(realPos, CellStatus.Given);
+					result.SetStatus(realPos, CellState.Given);
 
 					// Finally moves 1 step forward.
 					i++;

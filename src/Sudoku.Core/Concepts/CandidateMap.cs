@@ -2,7 +2,7 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Encapsulates a binary series of candidate status table.
+/// Encapsulates a binary series of candidate state table.
 /// The internal buffer size 12 is equivalent to expression <c><![CDATA[floor(729 / sizeof(long) << 6)]]></c>.
 /// </summary>
 /// <remarks>

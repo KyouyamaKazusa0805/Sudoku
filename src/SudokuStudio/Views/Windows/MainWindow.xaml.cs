@@ -116,7 +116,7 @@ public sealed partial class MainWindow : Window
 	}
 
 	/// <summary>
-	/// Sets the status of app title bars conditionally.
+	/// Sets the state of app title bars conditionally.
 	/// </summary>
 	private void SetAppTitleBarStatus()
 	{

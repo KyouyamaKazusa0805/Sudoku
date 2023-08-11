@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics;
 
 /// <summary>
-/// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one status.
+/// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one state.
 /// </summary>
 public sealed partial class StepCollector : AnalyzerOrCollector
 {
@@ -48,7 +48,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 	/// Search for all possible steps in a grid.
 	/// </summary>
 	/// <param name="puzzle">The puzzle grid.</param>
-	/// <param name="progress">The progress instance that is used for reporting the status.</param>
+	/// <param name="progress">The progress instance that is used for reporting the state.</param>
 	/// <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
 	/// <returns>
 	/// The result. If cancelled, the return value will be <see langword="null"/>; otherwise, a real list even though it may be empty.

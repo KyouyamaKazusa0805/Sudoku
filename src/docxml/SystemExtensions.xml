@@ -993,7 +993,7 @@
             Provides a set of static methods for querying objects that implement
             <see cref="T:System.Collections.IEnumerable"/> and <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
             </summary>
-            <remarks>This class has the same function and status with <see cref="T:System.Linq.Enumerable"/>.</remarks>
+            <remarks>This class has the same function and state with <see cref="T:System.Linq.Enumerable"/>.</remarks>
             <seealso cref="T:System.Collections.IEnumerable"/>
             <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
             <seealso cref="T:System.Linq.Enumerable"/>

@@ -58,9 +58,9 @@ public sealed record OpenSudokuFormat : IGridFormatter
 			// Now replace some positions with the specified values.
 			for (var (i, pos) = (0, 0); i < 81; i++, pos += 6)
 			{
-				switch (grid.GetStatus(i))
+				switch (grid.GetState(i))
 				{
-					case CellStatus.Empty:
+					case CellState.Empty:
 					{
 						pResult[pos] = Zero;
 						pResult[pos + 2] = Zero;
@@ -68,8 +68,8 @@ public sealed record OpenSudokuFormat : IGridFormatter
 
 						break;
 					}
-					case CellStatus.Modifiable:
-					case CellStatus.Given:
+					case CellState.Modifiable:
+					case CellState.Given:
 					{
 						pResult[pos] = (char)(grid.GetDigit(i) + One);
 						pResult[pos + 2] = Zero;

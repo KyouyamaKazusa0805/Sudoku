@@ -41,17 +41,17 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the empty mask, modifiable mask and given mask.
 	/// </summary>
-	public const Mask EmptyMask = (Mask)CellStatus.Empty << 9;
+	public const Mask EmptyMask = (Mask)CellState.Empty << 9;
 
 	/// <summary>
 	/// Indicates the modifiable mask.
 	/// </summary>
-	public const Mask ModifiableMask = (Mask)CellStatus.Modifiable << 9;
+	public const Mask ModifiableMask = (Mask)CellState.Modifiable << 9;
 
 	/// <summary>
 	/// Indicates the given mask.
 	/// </summary>
-	public const Mask GivenMask = (Mask)CellStatus.Given << 9;
+	public const Mask GivenMask = (Mask)CellState.Given << 9;
 
 
 	/// <summary>
@@ -102,7 +102,7 @@ public unsafe partial struct Grid :
 	/// Indicates the inner array that stores the masks of the sudoku grid, which stores the in-time sudoku grid inner information.
 	/// </summary>
 	/// <remarks>
-	/// The field uses the mask table of length 81 to indicate the status and all possible candidates
+	/// The field uses the mask table of length 81 to indicate the state and all possible candidates
 	/// holding for each cell. Each mask uses a <see cref="Mask"/> value, but only uses 11 of 16 bits.
 	/// <code>
 	/// | 16  15  14  13  12  11  10  9   8   7   6   5   4   3   2   1   0 |
@@ -113,27 +113,27 @@ public unsafe partial struct Grid :
 	///                          (2)                     (1)
 	/// </code>
 	/// Here the 9 bits in (1) indicate whether each digit is possible candidate in the current cell for each bit respectively,
-	/// and the higher 3 bits in (2) indicate the cell status. The possible cell status are:
+	/// and the higher 3 bits in (2) indicate the cell state. The possible cell state are:
 	/// <list type="table">
 	/// <listheader>
 	/// <term>Status name</term>
 	/// <description>Description</description>
 	/// </listheader>
 	/// <item>
-	/// <term>Empty cell (i.e. <see cref="CellStatus.Empty"/>)</term>
+	/// <term>Empty cell (i.e. <see cref="CellState.Empty"/>)</term>
 	/// <description>The cell is currently empty, and wait for being filled.</description>
 	/// </item>
 	/// <item>
-	/// <term>Modifiable cell (i.e. <see cref="CellStatus.Modifiable"/>)</term>
+	/// <term>Modifiable cell (i.e. <see cref="CellState.Modifiable"/>)</term>
 	/// <description>The cell is filled by a digit, but the digit isn't the given by the initial grid.</description>
 	/// </item>
 	/// <item>
-	/// <term>Given cell (i.e. <see cref="CellStatus.Given"/>)</term>
+	/// <term>Given cell (i.e. <see cref="CellState.Given"/>)</term>
 	/// <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
 	/// </item>
 	/// </list>
 	/// </remarks>
-	/// <seealso cref="CellStatus"/>
+	/// <seealso cref="CellState"/>
 	private Mask _values;
 
 
@@ -171,8 +171,8 @@ public unsafe partial struct Grid :
 				// Calls the indexer to trigger the event (Clear the candidates in peer cells).
 				SetDigit(i, realValue);
 
-				// Set the status to 'CellStatus.Given'.
-				SetStatus(i, CellStatus.Given);
+				// Set the state to 'CellStatus.Given'.
+				SetStatus(i, CellState.Given);
 			}
 		}
 	}
@@ -200,7 +200,7 @@ public unsafe partial struct Grid :
 		{
 			for (var i = 0; i < 81; i++)
 			{
-				if (GetStatus(i) == CellStatus.Empty)
+				if (GetState(i) == CellState.Empty)
 				{
 					return false;
 				}
@@ -208,9 +208,9 @@ public unsafe partial struct Grid :
 
 			for (var i = 0; i < 81; i++)
 			{
-				switch (GetStatus(i))
+				switch (GetState(i))
 				{
-					case CellStatus.Given or CellStatus.Modifiable:
+					case CellState.Given or CellState.Modifiable:
 					{
 						var curDigit = GetDigit(i);
 						foreach (var cell in Peers[i])
@@ -223,7 +223,7 @@ public unsafe partial struct Grid :
 
 						break;
 					}
-					case CellStatus.Empty:
+					case CellState.Empty:
 					{
 						continue;
 					}
@@ -281,7 +281,7 @@ public unsafe partial struct Grid :
 			var count = 0;
 			for (var i = 0; i < 81; i++)
 			{
-				if (GetStatus(i) == CellStatus.Empty)
+				if (GetState(i) == CellState.Empty)
 				{
 					count += PopCount((uint)GetCandidates(i));
 				}
@@ -441,9 +441,9 @@ public unsafe partial struct Grid :
 				var result = solution;
 				foreach (var cell in ~pattern)
 				{
-					if (result.GetStatus(cell) == CellStatus.Given)
+					if (result.GetState(cell) == CellState.Given)
 					{
-						result.SetStatus(cell, CellStatus.Modifiable);
+						result.SetStatus(cell, CellState.Modifiable);
 					}
 				}
 
@@ -510,7 +510,7 @@ public unsafe partial struct Grid :
 			var result = (Mask)0;
 			foreach (var cell in cells)
 			{
-				if (!withValueCells && GetStatus(cell) != CellStatus.Empty || withValueCells)
+				if (!withValueCells && GetState(cell) != CellState.Empty || withValueCells)
 				{
 					result |= this[cell];
 				}
@@ -552,7 +552,7 @@ public unsafe partial struct Grid :
 
 			foreach (var cell in cells)
 			{
-				if (!withValueCells && GetStatus(cell) == CellStatus.Empty || withValueCells)
+				if (!withValueCells && GetState(cell) == CellState.Empty || withValueCells)
 				{
 					mergingFunctionPtr(ref result, this, cell);
 				}
@@ -767,7 +767,7 @@ public unsafe partial struct Grid :
 	/// </remarks>
 	/// <seealso cref="GetCandidateIsOn(Cell, Digit)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool? Exists(Cell cell, Digit digit) => GetStatus(cell) == CellStatus.Empty ? GetCandidateIsOn(cell, digit) : null;
+	public readonly bool? Exists(Cell cell, Digit digit) => GetState(cell) == CellState.Empty ? GetCandidateIsOn(cell, digit) : null;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -778,7 +778,7 @@ public unsafe partial struct Grid :
 	/// Serializes this instance to an array, where all digit value will be stored.
 	/// </summary>
 	/// <returns>
-	/// This array. All elements are between 0 and 9, where 0 means the cell is <see cref="CellStatus.Empty"/> now.
+	/// This array. All elements are between 0 and 9, where 0 means the cell is <see cref="CellState.Empty"/> now.
 	/// </returns>
 	public readonly Digit[] ToArray()
 	{
@@ -908,12 +908,12 @@ public unsafe partial struct Grid :
 		};
 
 	/// <summary>
-	/// Get the cell status at the specified cell.
+	/// Get the cell state at the specified cell.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
-	/// <returns>The cell status.</returns>
+	/// <returns>The cell state.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CellStatus GetStatus(Cell cell) => MaskToStatus(this[cell]);
+	public readonly CellState GetState(Cell cell) => MaskToStatus(this[cell]);
 
 	/// <summary>
 	/// Try to get the digit filled in the specified cell.
@@ -921,15 +921,15 @@ public unsafe partial struct Grid :
 	/// <param name="cell">The cell used.</param>
 	/// <returns>The digit that the current cell filled. If the cell is empty, return -1.</returns>
 	/// <exception cref="InvalidOperationException">
-	/// Throws when the specified cell keeps a wrong cell status value. For example, <see cref="CellStatus.Undefined"/>.
+	/// Throws when the specified cell keeps a wrong cell state value. For example, <see cref="CellState.Undefined"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Digit GetDigit(Cell cell)
-		=> GetStatus(cell) switch
+		=> GetState(cell) switch
 		{
-			CellStatus.Empty => -1,
-			CellStatus.Modifiable or CellStatus.Given => TrailingZeroCount(this[cell]),
-			_ => throw new InvalidOperationException("The grid cannot keep invalid cell status value.")
+			CellState.Empty => -1,
+			CellState.Modifiable or CellState.Given => TrailingZeroCount(this[cell]),
+			_ => throw new InvalidOperationException("The grid cannot keep invalid cell state value.")
 		};
 
 	/// <summary>
@@ -969,7 +969,7 @@ public unsafe partial struct Grid :
 	{
 		for (var i = 0; i < 81; i++)
 		{
-			if (GetStatus(i) == CellStatus.Modifiable)
+			if (GetState(i) == CellState.Modifiable)
 			{
 				SetDigit(i, -1); // Reset the cell, and then re-compute all candidates.
 			}
@@ -983,9 +983,9 @@ public unsafe partial struct Grid :
 	{
 		for (var i = 0; i < 81; i++)
 		{
-			if (GetStatus(i) == CellStatus.Modifiable)
+			if (GetState(i) == CellState.Modifiable)
 			{
-				SetStatus(i, CellStatus.Given);
+				SetStatus(i, CellState.Given);
 			}
 		}
 	}
@@ -997,9 +997,9 @@ public unsafe partial struct Grid :
 	{
 		for (var i = 0; i < 81; i++)
 		{
-			if (GetStatus(i) == CellStatus.Given)
+			if (GetState(i) == CellState.Given)
 			{
-				SetStatus(i, CellStatus.Modifiable);
+				SetStatus(i, CellState.Modifiable);
 			}
 		}
 	}
@@ -1040,16 +1040,16 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
-	/// Set the specified cell to the specified status.
+	/// Set the specified cell to the specified state.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
-	/// <param name="status">The status.</param>
+	/// <param name="state">The state.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetStatus(Cell cell, CellStatus status)
+	public void SetStatus(Cell cell, CellState state)
 	{
 		scoped ref var mask = ref this[cell];
 		var copied = mask;
-		mask = (Mask)((int)status << 9 | mask & MaxCandidatesMask);
+		mask = (Mask)((int)state << 9 | mask & MaxCandidatesMask);
 
 		ValueChanged(ref this, cell, copied, mask, -1);
 	}
@@ -1089,7 +1089,7 @@ public unsafe partial struct Grid :
 	{
 		switch (digit)
 		{
-			case -1 when GetStatus(cell) == CellStatus.Modifiable:
+			case -1 when GetState(cell) == CellState.Modifiable:
 			{
 				// If 'value' is -1, we should reset the grid.
 				// Note that reset candidates may not trigger the event.
@@ -1104,7 +1104,7 @@ public unsafe partial struct Grid :
 				scoped ref var result = ref this[cell];
 				var copied = result;
 
-				// Set cell status to 'CellStatus.Modifiable'.
+				// Set cell state to 'CellStatus.Modifiable'.
 				result = (Mask)(ModifiableMask | 1 << digit);
 
 				// To trigger the event, which is used for eliminate all same candidates in peer cells.
@@ -1116,7 +1116,7 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
-	/// Sets the target candidate status.
+	/// Sets the target candidate state.
 	/// </summary>
 	/// <param name="cell">The cell offset between 0 and 80.</param>
 	/// <param name="digit">The digit between 0 and 8.</param>
@@ -1643,7 +1643,7 @@ public unsafe partial struct Grid :
 		{
 			foreach (var peerCell in Peers[cell])
 			{
-				if (@this.GetStatus(peerCell) == CellStatus.Empty)
+				if (@this.GetState(peerCell) == CellState.Empty)
 				{
 					// You can't do this because of being invoked recursively.
 					//@this.SetCandidateIsOn(peerCell, setValue, false);
@@ -1663,7 +1663,7 @@ public unsafe partial struct Grid :
 	{
 		for (var i = 0; i < 81; i++)
 		{
-			if (@this.GetStatus(i) == CellStatus.Empty)
+			if (@this.GetState(i) == CellState.Empty)
 			{
 				// Remove all appeared digits.
 				var mask = MaxCandidatesMask;
@@ -1773,19 +1773,19 @@ file static class GridCellPredicates
 	/// <param name="g">The grid.</param>
 	/// <param name="cell">The cell to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public static bool GivenCells(scoped in Grid g, Cell cell) => g.GetStatus(cell) == CellStatus.Given;
+	public static bool GivenCells(scoped in Grid g, Cell cell) => g.GetState(cell) == CellState.Given;
 
 	/// <summary>
 	/// Determines whether the specified cell in the specified grid is a modifiable cell.
 	/// </summary>
 	/// <inheritdoc cref="GivenCells(in Grid, int)"/>
-	public static bool ModifiableCells(scoped in Grid g, Cell cell) => g.GetStatus(cell) == CellStatus.Modifiable;
+	public static bool ModifiableCells(scoped in Grid g, Cell cell) => g.GetState(cell) == CellState.Modifiable;
 
 	/// <summary>
 	/// Determines whether the specified cell in the specified grid is an empty cell.
 	/// </summary>
 	/// <inheritdoc cref="GivenCells(in Grid, int)"/>
-	public static bool EmptyCells(scoped in Grid g, Cell cell) => g.GetStatus(cell) == CellStatus.Empty;
+	public static bool EmptyCells(scoped in Grid g, Cell cell) => g.GetState(cell) == CellState.Empty;
 
 	/// <summary>
 	/// Determines whether the specified cell in the specified grid is a bi-value cell, which means the cell is an empty cell,

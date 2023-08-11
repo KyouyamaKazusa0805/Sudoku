@@ -1,13 +1,13 @@
-﻿namespace Sudoku.Concepts;
+namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents a cell status.
+/// Represents a cell state.
 /// </summary>
 [Flags]
-public enum CellStatus : byte
+public enum CellState : byte
 {
 	/// <summary>
-	/// Indicates the cell status is invalid.
+	/// Indicates the cell state is invalid.
 	/// </summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	Undefined = 0,

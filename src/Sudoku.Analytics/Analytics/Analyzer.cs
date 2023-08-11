@@ -246,7 +246,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				{
 					switch (t)
 					{
-						case Assignment when playground.GetStatus(c) == CellStatus.Empty:
+						case Assignment when playground.GetState(c) == CellState.Empty:
 						case Elimination when playground.Exists(c, d) is true:
 						{
 							atLeastOneConclusionIsWorth = true;

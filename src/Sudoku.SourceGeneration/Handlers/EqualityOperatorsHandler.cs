@@ -51,11 +51,11 @@ internal static class EqualityOperatorsHandler
 				(_, TypeKind.Struct, true) => Behavior.WithScopedIn,
 				(_, TypeKind.Struct, _) => Behavior.Default,
 				(_, TypeKind.Interface, _) => Behavior.StaticAbstract,
-				_ => throw new InvalidOperationException("Invalid status.")
+				_ => throw new InvalidOperationException("Invalid state.")
 			},
 			1 => Behavior.StaticVirtual,
 			2 => Behavior.StaticAbstract,
-			_ => throw new InvalidOperationException("Invalid status.")
+			_ => throw new InvalidOperationException("Invalid state.")
 		};
 		if (behavior == Behavior.DoNothing)
 		{
@@ -69,7 +69,7 @@ internal static class EqualityOperatorsHandler
 			(true, TypeKind.Struct) => "record struct",
 			(_, TypeKind.Struct) => "struct",
 			(_, TypeKind.Interface) => "interface",
-			_ => throw new InvalidOperationException("Invalid status.")
+			_ => throw new InvalidOperationException("Invalid state.")
 		};
 		var namespaceString = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
 		var typeArgumentsString = typeParameters is []
@@ -91,7 +91,7 @@ internal static class EqualityOperatorsHandler
 				{ ConstraintNullableAnnotations: var annotations } when annotations.Contains(Annotated) => nullableToken, // Reference type inferred.
 				_ => string.Empty
 			},
-			_ => throw new InvalidOperationException("Invalid status.")
+			_ => throw new InvalidOperationException("Invalid state.")
 		};
 		var scopedKeywordString = isRefStruct ? "scoped " : string.Empty;
 		var attributesMarked = behavior switch

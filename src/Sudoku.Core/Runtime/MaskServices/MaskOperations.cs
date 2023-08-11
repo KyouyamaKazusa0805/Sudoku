@@ -25,14 +25,14 @@ public static class MaskOperations
 	}
 
 	/// <summary>
-	/// To get the cell status for a mask value. The mask is an inner representation to describe a cell's state.
+	/// To get the cell state for a mask value. The mask is an inner representation to describe a cell's state.
 	/// For more information please visit the details of the design for type <see cref="Grid"/>.
 	/// </summary>
 	/// <param name="mask">The mask.</param>
-	/// <returns>The cell status.</returns>
+	/// <returns>The cell state.</returns>
 	/// <seealso cref="Grid"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellStatus MaskToStatus(Mask mask) => (CellStatus)(mask >> 9 & 7);
+	public static CellState MaskToStatus(Mask mask) => (CellState)(mask >> 9 & 7);
 
 	/// <summary>
 	/// Get all mask combinations.

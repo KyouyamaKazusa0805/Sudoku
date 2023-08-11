@@ -1,7 +1,7 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Extracts a base type that describes status table from elements of <typeparamref name="TSelf"/> type.
+/// Extracts a base type that describes state table from elements of <typeparamref name="TSelf"/> type.
 /// </summary>
 /// <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
 /// <typeparam name="TElement">The type of each element.</typeparam>
@@ -497,7 +497,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	public static abstract bool operator !(scoped in TSelf offsets);
 
 	/// <summary>
-	/// Reverse status for all offsets, which means all <see langword="true"/> bits
+	/// Reverse state for all offsets, which means all <see langword="true"/> bits
 	/// will be set <see langword="false"/>, and all <see langword="false"/> bits
 	/// will be set <see langword="true"/>.
 	/// </summary>

@@ -212,8 +212,8 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		var result = true;
 		foreach (var peerCell in Peers[cell])
 		{
-			var status = grid.GetStatus(peerCell);
-			if ((status != CellStatus.Empty && grid.GetDigit(peerCell) != grid.GetDigit(cell) || status == CellStatus.Empty)
+			var state = grid.GetState(peerCell);
+			if ((state != CellState.Empty && grid.GetDigit(peerCell) != grid.GetDigit(cell) || state == CellState.Empty)
 				&& grid.GetCandidates(peerCell) != 0)
 			{
 				continue;

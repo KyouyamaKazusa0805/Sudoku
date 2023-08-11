@@ -94,10 +94,10 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatVa
 					MaskToStatus(value) switch
 					{
 						// The output will be '<digit>' and consist of 3 characters.
-						CellStatus.Given => Max(candidatesCount, TreatValueAsGiven is null ? 1 : 3),
+						CellState.Given => Max(candidatesCount, TreatValueAsGiven is null ? 1 : 3),
 
 						// The output will be '*digit*' and consist of 3 characters.
-						CellStatus.Modifiable => Max(candidatesCount, TreatValueAsGiven is null ? 1 : 3),
+						CellState.Modifiable => Max(candidatesCount, TreatValueAsGiven is null ? 1 : 3),
 
 						// Normal output: 'series' (at least 1 character).
 						_ => candidatesCount
@@ -191,15 +191,15 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatVa
 		{
 			// Get digit.
 			var value = valuesByRow[i];
-			var status = MaskToStatus(value);
+			var state = MaskToStatus(value);
 
 			value &= Grid.MaxCandidatesMask;
-			var d = value == 0 ? -1 : (status != CellStatus.Empty ? TrailingZeroCount(value) : -1) + 1;
-			var s = (status, TreatValueAsGiven) switch
+			var d = value == 0 ? -1 : (state != CellState.Empty ? TrailingZeroCount(value) : -1) + 1;
+			var s = (state, TreatValueAsGiven) switch
 			{
-				(CellStatus.Given, not null) or (CellStatus.Modifiable, true) => $"<{d}>",
-				(CellStatus.Modifiable, false) => $"*{d}*",
-				(CellStatus.Given or CellStatus.Modifiable, null) => d.ToString(),
+				(CellState.Given, not null) or (CellState.Modifiable, true) => $"<{d}>",
+				(CellState.Modifiable, false) => $"*{d}*",
+				(CellState.Given or CellState.Modifiable, null) => d.ToString(),
 				_ => appendingMask(value)
 			};
 
