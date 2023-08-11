@@ -170,11 +170,10 @@
         </member>
         <member name="T:System.ArgumentNullRefException">
             <inheritdoc/>
+            <param name="paramName">The parameter name.</param>
         </member>
         <member name="M:System.ArgumentNullRefException.#ctor(System.String)">
-            <summary>
-            Initializes an <see cref="T:System.ArgumentNullRefException"/> instance via the specified argument name whose value is <see langword="ref null"/>.
-            </summary>
+            <inheritdoc/>
             <param name="paramName">The parameter name.</param>
         </member>
         <member name="M:System.ArgumentNullRefException.ThrowIfNullRef``1(``0@,System.String)">

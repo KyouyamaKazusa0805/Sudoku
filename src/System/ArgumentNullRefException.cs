@@ -1,18 +1,10 @@
 namespace System;
 
 /// <inheritdoc/>
-public sealed class ArgumentNullRefException : ArgumentNullException
+/// <param name="paramName">The parameter name.</param>
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
+public sealed class ArgumentNullRefException(string? paramName) : ArgumentNullException(paramName)
 {
-	/// <summary>
-	/// Initializes an <see cref="ArgumentNullRefException"/> instance via the specified argument name whose value is <see langword="ref null"/>.
-	/// </summary>
-	/// <param name="paramName">The parameter name.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ArgumentNullRefException(string? paramName) : base(paramName)
-	{
-	}
-
-
 	/// <summary>
 	/// Throws an <see cref="ArgumentNullRefException"/> if argument is <see langword="null"/> reference.
 	/// </summary>
