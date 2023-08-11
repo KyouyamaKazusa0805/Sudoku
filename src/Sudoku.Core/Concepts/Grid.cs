@@ -1637,7 +1637,7 @@ public unsafe partial struct Grid :
 	/// In fact, if the value is -1, this method will do nothing.
 	/// </param>
 	/// <seealso cref="ValueChanged"/>
-	private static void OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
+	private static void OnValueChanged(scoped ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
 	{
 		if (setValue != -1)
 		{
@@ -1659,7 +1659,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <param name="this">The grid itself.</param>
 	/// <seealso cref="RefreshingCandidates"/>
-	private static void OnRefreshingCandidates(ref Grid @this)
+	private static void OnRefreshingCandidates(scoped ref Grid @this)
 	{
 		for (var i = 0; i < 81; i++)
 		{
