@@ -44,7 +44,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <summary>
 	/// Indicates the number of the values stored in this collection.
 	/// </summary>
-	public abstract new int Count { get; }
+	public new abstract int Count { get; }
 
 	/// <summary>
 	/// Gets all chunks of the current collection, meaning a list of <see cref="string"/> values that can describe
