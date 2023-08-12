@@ -24,22 +24,21 @@ internal static class EqualsHandler
 		}
 
 		var namespaceString = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
-		var behavior =
-			attribute switch
+		var behavior = attribute switch
+		{
+			{ ConstructorArguments: [{ Value: int behaviorRawValue }] } => behaviorRawValue switch
 			{
-				{ ConstructorArguments: [{ Value: int behaviorRawValue }] } => behaviorRawValue switch
+				0 => (isRefStruct, kind) switch
 				{
-					0 => (isRefStruct, kind) switch
-					{
-						(true, _) => Behavior.ReturnFalse,
-						(_, TypeKind.Struct) => Behavior.IsCast,
-						(_, TypeKind.Class) => Behavior.AsCast,
-						_ => throw new InvalidOperationException("Invalid state.")
-					},
-					1 => Behavior.Throw,
+					(true, _) => Behavior.ReturnFalse,
+					(_, TypeKind.Struct) => Behavior.IsCast,
+					(_, TypeKind.Class) => Behavior.AsCast,
 					_ => throw new InvalidOperationException("Invalid state.")
-				}
-			};
+				},
+				1 => Behavior.Throw,
+				_ => throw new InvalidOperationException("Invalid state.")
+			}
+		};
 		var otherModifiers = attribute.GetNamedArgument<string>("OtherModifiers") switch
 		{
 			{ } str => str.Split((char[])[' '], StringSplitOptions.RemoveEmptyEntries),

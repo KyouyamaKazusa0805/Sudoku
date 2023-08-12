@@ -225,7 +225,8 @@ public sealed partial class CellNotation : INotation<CellNotation, CellMap, Cell
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToCollectionString(scoped in CellMap collection) => ToCollectionString(collection, Kind.RxCy);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(TCollection, TConceptKindPresenter)"/>
+	[ExplicitlyImpl]
 	public static string ToCollectionString(scoped in CellMap collection, Kind notation)
 	{
 		static string i(Digit v) => (v + 1).ToString();
@@ -363,9 +364,4 @@ public sealed partial class CellNotation : INotation<CellNotation, CellMap, Cell
 			}
 		}
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static string INotation<CellNotation, CellMap, Cell, Kind>.ToCollectionString(CellMap collection, Kind notation)
-		=> ToCollectionString(collection, notation);
 }

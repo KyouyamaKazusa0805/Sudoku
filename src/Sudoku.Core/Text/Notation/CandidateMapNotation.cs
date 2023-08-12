@@ -18,6 +18,7 @@ public sealed partial class CandidateMapNotation : INotation<CandidateMapNotatio
 
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitlyImpl]
 	public static string ToString(scoped in CandidateMap value, Kind notation)
 		=> notation switch
 		{
@@ -25,9 +26,4 @@ public sealed partial class CandidateMapNotation : INotation<CandidateMapNotatio
 			Kind.K9 => CandidateNotation.ToCollectionString(value, CandidateNotation.Kind.K9),
 			_ => throw new ArgumentOutOfRangeException(nameof(notation)),
 		};
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static string INotation<CandidateMapNotation, CandidateMap, Kind>.ToString(CandidateMap value, Kind notation)
-		=> ToString(value, notation);
 }

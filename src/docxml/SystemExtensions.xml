@@ -3290,10 +3290,10 @@ fixed (short* ptr = instance)
             If the parameter is defined without any <see langword="ref"/> modifiers:
             <list type="bullet">
             <item><see langword="ref"/></item>
-            <item><see langword="ref readonly"/> (May not be supported for C# 12)</item>
+            <item><see langword="ref readonly"/> (Supported for C# 12)</item>
             <item><see langword="in"/></item>
             <item><see langword="scoped ref"/></item>
-            <item><see langword="scoped ref readonly"/> (May not be supported for C# 12)</item>
+            <item><see langword="scoped ref readonly"/> (Supported for C# 12)</item>
             <item><see langword="scoped in"/></item>
             <item><see langword="scoped in scoped"/> (May not be supported for C# 12)</item>
             <item><see langword="scoped ref scoped"/> (May not be supported for C# 12)</item>
@@ -3411,6 +3411,41 @@ fixed (short* ptr = instance)
         <member name="F:System.SourceGeneration.EqualsBehavior.ThrowNotSupportedException">
             <summary>
             Indicates the method always throws <see cref="T:System.NotSupportedException"/>.
+            </summary>
+        </member>
+        <member name="T:System.SourceGeneration.ExplicitlyImplAttribute">
+            <summary>
+            Represents an attribute type that tells source generator that the current method marked this attribute type should implement an interface
+            type specified as argument <paramref name="interfaceType"/>.
+            </summary>
+            <param name="interfaceType">
+            Indicates the interface type. This parameter may not be explicitly specified if the containing type just implements one interface.
+            In other words, this parameter is optional one. By default it keeps <see langword="null"/> value. If you explicitly specified it,
+            you must give an interface type.
+            </param>
+            <remarks>
+            This type can also be consumed by operators; however, the interface type should be always explicitly specified because a type
+            may contain many operators that implements multiple interfaces.
+            </remarks>
+        </member>
+        <member name="M:System.SourceGeneration.ExplicitlyImplAttribute.#ctor(System.Type)">
+            <summary>
+            Represents an attribute type that tells source generator that the current method marked this attribute type should implement an interface
+            type specified as argument <paramref name="interfaceType"/>.
+            </summary>
+            <param name="interfaceType">
+            Indicates the interface type. This parameter may not be explicitly specified if the containing type just implements one interface.
+            In other words, this parameter is optional one. By default it keeps <see langword="null"/> value. If you explicitly specified it,
+            you must give an interface type.
+            </param>
+            <remarks>
+            This type can also be consumed by operators; however, the interface type should be always explicitly specified because a type
+            may contain many operators that implements multiple interfaces.
+            </remarks>
+        </member>
+        <member name="P:System.SourceGeneration.ExplicitlyImplAttribute.InterfaceType">
+            <summary>
+            The generated property declaration for parameter <c>interfaceType</c>.
             </summary>
         </member>
         <member name="T:System.SourceGeneration.GetHashCodeAttribute">

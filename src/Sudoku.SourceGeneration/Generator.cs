@@ -7,7 +7,7 @@ namespace Sudoku.SourceGeneration;
 public sealed class Generator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
-	public unsafe void Initialize(IncrementalGeneratorInitializationContext context)
+	public void Initialize(IncrementalGeneratorInitializationContext context)
 	{
 		// Elementary generators
 		PrimaryConstructor(context);
@@ -15,6 +15,7 @@ public sealed class Generator : IIncrementalGenerator
 		DuckTyping(context);
 		InstanceDeconstruction(context);
 		ImplicitField(context);
+		ExplicitlyImpl(context);
 
 		// Advanced generators
 		StepSearcherImports(context);
@@ -137,6 +138,20 @@ public sealed class Generator : IIncrementalGenerator
 			instance.Output
 		);
 	}
+
+	private void ExplicitlyImpl(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(
+					"System.SourceGeneration.ExplicitlyImplAttribute",
+					SyntaxNodeTypePredicate<MethodDeclarationSyntax>,
+					ExplicitlyImplHandler.Transform
+				)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			ExplicitlyImplHandler.Output
+		);
 
 	private void StepSearcherImports(IncrementalGeneratorInitializationContext context)
 	{
