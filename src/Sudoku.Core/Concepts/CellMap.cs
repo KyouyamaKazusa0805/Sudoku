@@ -597,6 +597,7 @@ public unsafe partial struct CellMap :
 	/// If all rules are compared, but they are still considered equal, then return 0.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitlyImpl(typeof(IComparable<>))]
 	public readonly int CompareTo(scoped in CellMap other)
 		=> _count > other._count ? 1 : _count < other._count ? -1 : Sign($"{this:b}".CompareTo($"{other:b}"));
 
@@ -878,10 +879,6 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly int IComparable<CellMap>.CompareTo(CellMap other) => CompareTo(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	void IBitStatusMap<CellMap, Cell>.ExceptWith(IEnumerable<Cell> other) => this -= other;
 
 	/// <inheritdoc/>
@@ -1095,6 +1092,7 @@ public unsafe partial struct CellMap :
 	/// <param name="base">The base map.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result instance.</returns>
+	[ExplicitlyImpl(typeof(IMultiplyOperators<,,>))]
 	public static CandidateMap operator *(scoped in CellMap @base, Digit digit)
 	{
 		var result = CandidateMap.Empty;
@@ -1112,6 +1110,7 @@ public unsafe partial struct CellMap :
 	/// <param name="map">The map.</param>
 	/// <param name="houseIndex">The house index.</param>
 	/// <returns>The mask.</returns>
+	[ExplicitlyImpl(typeof(IDivisionOperators<,,>))]
 	public static Mask operator /(scoped in CellMap map, House houseIndex)
 	{
 		var (p, i) = ((Mask)0, 0);
@@ -1130,10 +1129,6 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Mask IDivisionOperators<CellMap, House, Mask>.operator /(CellMap left, House right) => left / right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap IAdditionOperators<CellMap, Cell, CellMap>.operator +(CellMap left, Cell right) => left + right;
 
 	/// <inheritdoc/>
@@ -1147,10 +1142,6 @@ public unsafe partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap ISubtractionOperators<CellMap, IEnumerable<Cell>, CellMap>.operator -(CellMap left, IEnumerable<Cell> right) => left - right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap IMultiplyOperators<CellMap, Digit, CandidateMap>.operator *(CellMap left, Digit right) => left * right;
 
 
 	/// <summary>

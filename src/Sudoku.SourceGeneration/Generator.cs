@@ -144,7 +144,7 @@ public sealed class Generator : IIncrementalGenerator
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
 					"System.SourceGeneration.ExplicitlyImplAttribute",
-					SyntaxNodeTypePredicate<MethodDeclarationSyntax>,
+					SyntaxNodeTypePredicate<MethodDeclarationSyntax, OperatorDeclarationSyntax>,
 					ExplicitlyImplHandler.Transform
 				)
 				.Where(NotNullPredicate)

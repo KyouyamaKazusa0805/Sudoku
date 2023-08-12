@@ -15,6 +15,19 @@ internal static class CommonMethods
 	public static bool SyntaxNodeTypePredicate<T>(SyntaxNode node, CancellationToken _) where T : SyntaxNode => node is T;
 
 	/// <summary>
+	/// Determine whether the specified <see cref="SyntaxNode"/> is of type <typeparamref name="T1"/> or <typeparamref name="T2"/>.
+	/// </summary>
+	/// <typeparam name="T1">The possible type 1 of the node.</typeparam>
+	/// <typeparam name="T2">The possible type 2 of the node.</typeparam>
+	/// <param name="node"><inheritdoc cref="SyntaxNodeTypePredicate{T}(SyntaxNode, CancellationToken)" path="/param[@name='node']"/></param>
+	/// <param name="_"/>
+	/// <returns>
+	/// <inheritdoc cref="SyntaxNodeTypePredicate{T}(SyntaxNode, CancellationToken)" path="/returns"/>
+	/// </returns>
+	public static bool SyntaxNodeTypePredicate<T1, T2>(SyntaxNode node, CancellationToken _) where T1 : SyntaxNode where T2 : SyntaxNode
+		=> node is T1 or T2;
+
+	/// <summary>
 	/// Determine whether the specified type declaration syntax node contains a <see langword="partial"/> modifier.
 	/// </summary>
 	/// <typeparam name="T">The type of the declaration syntax node.</typeparam>

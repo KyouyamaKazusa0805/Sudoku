@@ -586,6 +586,7 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc cref="IDivisionOperators{TSelf, TOther, TResult}.op_Division(TSelf, TOther)"/>
+	[ExplicitlyImpl(typeof(IDivisionOperators<,,>))]
 	public static CellMap operator /(scoped in CandidateMap offsets, Digit digit)
 	{
 		var result = CellMap.Empty;
@@ -752,10 +753,6 @@ public partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator %(scoped in CandidateMap @base, scoped in CandidateMap template)
 		=> (@base & template).PeerIntersection & template;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap IDivisionOperators<CandidateMap, Digit, CellMap>.operator /(CandidateMap left, Digit right) => left / right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

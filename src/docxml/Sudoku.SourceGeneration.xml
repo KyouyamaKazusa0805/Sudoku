@@ -154,6 +154,18 @@
             <param name="_"/>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.SourceGeneration.CommonMethods.SyntaxNodeTypePredicate``2(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
+            <summary>
+            Determine whether the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> is of type <typeparamref name="T1"/> or <typeparamref name="T2"/>.
+            </summary>
+            <typeparam name="T1">The possible type 1 of the node.</typeparam>
+            <typeparam name="T2">The possible type 2 of the node.</typeparam>
+            <param name="node"><inheritdoc cref="M:Sudoku.SourceGeneration.CommonMethods.SyntaxNodeTypePredicate``1(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)" path="/param[@name='node']"/></param>
+            <param name="_"/>
+            <returns>
+            <inheritdoc cref="M:Sudoku.SourceGeneration.CommonMethods.SyntaxNodeTypePredicate``1(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)" path="/returns"/>
+            </returns>
+        </member>
         <member name="M:Sudoku.SourceGeneration.CommonMethods.IsPartialTypePredicate``1(``0,System.Threading.CancellationToken)">
             <summary>
             Determine whether the specified type declaration syntax node contains a <see langword="partial"/> modifier.

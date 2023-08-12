@@ -11,7 +11,6 @@ internal static class ExplicitlyImplHandler
 				TargetSymbol: IMethodSymbol
 				{
 					Name: var methodName,
-					Parameters: var parameters,
 					TypeParameters: var typeParametersMethod,
 					ContainingType: INamedTypeSymbol
 					{
@@ -23,8 +22,7 @@ internal static class ExplicitlyImplHandler
 						ContainingNamespace: var @namespace,
 						Interfaces: var impledInterfaces and not []
 					}
-				},
-				SemanticModel.Compilation: var compilation
+				}
 			})
 		{
 			return null;
@@ -33,7 +31,7 @@ internal static class ExplicitlyImplHandler
 		var namespaceString = toName(@namespace)["global::".Length..];
 		var typeParametersMethodStr = typeParametersMethod is []
 			? string.Empty
-			: $"<{string.Join(", ", from typeParameter in typeParametersMethod select typeParameter.Name)}>";
+			: $"<{string.Join(comma, from typeParameter in typeParametersMethod select typeParameter.Name)}>";
 		var typeParametersConstraintMethodStr = typeParametersMethod is []
 			? "\t\t\t"
 			: $$"""
@@ -47,7 +45,7 @@ internal static class ExplicitlyImplHandler
 			""";
 		var typeArgumentsString = typeParametersType is []
 			? string.Empty
-			: $"<{string.Join(", ", from typeParameter in typeParametersType select typeParameter.Name)}>";
+			: $"<{string.Join(comma, from typeParameter in typeParametersType select typeParameter.Name)}>";
 		var typeNameString = $"{typeName}{typeArgumentsString}";
 		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
 		var typeKindString = (kind, isRecord) switch
@@ -114,6 +112,7 @@ internal static class ExplicitlyImplHandler
 				continue;
 			}
 
+			var parameters = methodOrOperator.Parameters;
 			var staticModifier = methodOrOperator.IsStatic ? "static " : string.Empty;
 			var readOnlyModifier = methodOrOperator.IsReadOnly ? "readonly " : string.Empty;
 			var conversionOperatorModifier = methodOrOperator switch
@@ -135,7 +134,7 @@ internal static class ExplicitlyImplHandler
 				{
 					IsGenericType: true,
 					TypeArguments: var typeArgsForImpledInterface,
-					TypeArgumentNullableAnnotations: var typeArgsNullabilityForImpledInterface,
+					TypeArgumentNullableAnnotations: var typeArgsNullabilityForImpledInterface
 				}
 				when typeArgsForImpledInterface.Zip(typeArgsNullabilityForImpledInterface, typeInfoMerger) is var pairedTypeInfo
 					=> $"<{string.Join(comma, from pair in pairedTypeInfo select $"{toName(pair.Type)}{nullabilityToken(pair.Nullability)}")}>",
@@ -143,10 +142,8 @@ internal static class ExplicitlyImplHandler
 			};
 			var parametersList = string.Join(
 				comma,
-				from parameter in methodOrOperator.Parameters
-				let scopedKind = parameter.ScopedKind
-				let refKind = parameter.RefKind
-				let modifier = (scopedKind, refKind) switch
+				from parameter in parameters
+				let modifier = (parameter.ScopedKind, parameter.RefKind) switch
 				{
 					(ScopedKind.None, RefKind.Ref) => "ref ",
 					//(ScopedKind.None, RefKind.RefReadOnly) => "ref readonly ",
@@ -159,29 +156,30 @@ internal static class ExplicitlyImplHandler
 				}
 				select $"{modifier}{toName(parameter.Type)} {parameter.Name}"
 			);
+
 			var parametersListWithoutType = string.Join(", ", from parameter in parameters select parameter.Name);
 			var expressionStr = methodName switch
 			{
 				"op_Explicit" when parameters is [{ Name: var a }] => $"({returnTypeStr}){a}",
-				"op_ExplicitChecked" when parameters is [{ Name: var a }] => $"checked(({returnTypeStr}){a})",
+				"op_CheckedExplicit" when parameters is [{ Name: var a }] => $"checked(({returnTypeStr}){a})",
 				"op_Implicit" when parameters is [{ Name: var a }] => a,
 				"op_Increment" when parameters is [{ Name: var a }] => $"{a}++",
-				"op_IncrementChecked" when parameters is [{ Name: var a }] => $"checked({a}++)",
+				"op_CheckedIncrement" when parameters is [{ Name: var a }] => $"checked({a}++)",
 				"op_Decrement" when parameters is [{ Name: var a }] => $"{a}--",
-				"op_DecrementChecked" when parameters is [{ Name: var a }] => $"checked({a}--)",
+				"op_CheckedDecrement" when parameters is [{ Name: var a }] => $"checked({a}--)",
 				"op_UnaryPlus" when parameters is [{ Name: var a }] => $"+{a}",
 				"op_UnaryNegation" when parameters is [{ Name: var a }] => $"-{a}",
-				"op_UnaryNegationChecked" when parameters is [{ Name: var a }] => $"checked(-{a})",
+				"op_CheckedUnaryNegation" when parameters is [{ Name: var a }] => $"checked(-{a})",
 				"op_Negation" when parameters is [{ Name: var a }] => $"!{a}",
 				"op_OnesComplement" when parameters is [{ Name: var a }] => $"~{a}",
 				"op_Addition" when parameters is [{ Name: var a }, { Name: var b }] => $"{a} + {b}",
-				"op_AdditionChecked" when parameters is [{ Name: var a }, { Name: var b }] => $"checked({a} + {b})",
+				"op_CheckedAddition" when parameters is [{ Name: var a }, { Name: var b }] => $"checked({a} + {b})",
 				"op_Subtraction" when parameters is [{ Name: var a }, { Name: var b }] => $"{a} - {b}",
-				"op_SubtractionChecked" when parameters is [{ Name: var a }, { Name: var b }] => $"checked({a} - {b})",
+				"op_CheckedSubtraction" when parameters is [{ Name: var a }, { Name: var b }] => $"checked({a} - {b})",
 				"op_Multiply" when parameters is [{ Name: var a }, { Name: var b }] => $"{a} * {b}",
-				"op_MultiplyChecked" when parameters is [{ Name: var a }, { Name: var b }] => $"checked({a} * {b})",
+				"op_CheckedMultiply" when parameters is [{ Name: var a }, { Name: var b }] => $"checked({a} * {b})",
 				"op_Division" when parameters is [{ Name: var a }, { Name: var b }] => $"{a} / {b}",
-				"op_DivisionChecked" when parameters is [{ Name: var a }, { Name: var b }] => $"checked({a} / {b})",
+				"op_CheckedDivision" when parameters is [{ Name: var a }, { Name: var b }] => $"checked({a} / {b})",
 				"op_Modulus" when parameters is [{ Name: var a }, { Name: var b }] => $"{a} % {b}",
 				"op_ExclusiveOr" when parameters is [{ Name: var a }, { Name: var b }] => $"{a} ^ {b}",
 				"op_BitwiseAnd" when parameters is [{ Name: var a }, { Name: var b }] => $"{a} & {b}",
@@ -200,22 +198,22 @@ internal static class ExplicitlyImplHandler
 			var operatorSignStr = methodName switch
 			{
 				"op_Increment" => "++",
-				"op_IncrementChecked" => "checked ++",
+				"op_CheckedIncrement" => "checked ++",
 				"op_Decrement" => "--",
-				"op_DecrementChecked" => "checked --",
+				"op_CheckedDecrement" => "checked --",
 				"op_UnaryPlus" => "+",
 				"op_UnaryNegation" => "-",
-				"op_UnaryNegationChecked" => "checked -",
+				"op_CheckedUnaryNegation" => "checked -",
 				"op_Negation" => "!",
 				"op_OnesComplement" => "~",
 				"op_Addition" => "+",
-				"op_AdditionChecked" => "checked +",
+				"op_CheckedAddition" => "checked +",
 				"op_Subtraction" => "-",
-				"op_SubtractionChecked" => "checked -",
+				"op_CheckedSubtraction" => "checked -",
 				"op_Multiply" => "*",
-				"op_MultiplyChecked" => "checked *",
+				"op_CheckedMultiply" => "checked *",
 				"op_Division" => "/",
-				"op_DivisionChecked" => "checked /",
+				"op_CheckedDivision" => "checked /",
 				"op_Modulus" => "%",
 				"op_ExclusiveOr" => "^",
 				"op_BitwiseAnd" => "&",
@@ -233,7 +231,7 @@ internal static class ExplicitlyImplHandler
 			};
 			var signature = methodName switch
 			{
-				"op_Explicit" or "op_ExplicitChecked" or "op_Implicit"
+				"op_Explicit" or "op_CheckedExplicit" or "op_Implicit"
 				when (methodName.Contains("Checked") ? "checked " : string.Empty) is var checkedModifier
 					=> $$"""{{interfaceTypeName}}.operator {{checkedModifier}}{{returnTypeStr}}""",
 				_ when methodName.StartsWith("op_")
