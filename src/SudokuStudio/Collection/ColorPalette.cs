@@ -11,22 +11,6 @@ public sealed partial class ColorPalette :
 	IEquatable<ColorPalette>,
 	IEqualityOperators<ColorPalette, ColorPalette, bool>
 {
-	/// <summary>
-	/// Initializes a <see cref="ColorPalette"/> instance.
-	/// </summary>
-	public ColorPalette() : base()
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="ColorPalette"/> instance via the specified colors.
-	/// </summary>
-	/// <param name="colors">The initial colors.</param>
-	public ColorPalette(IEnumerable<Color> colors) : base(colors)
-	{
-	}
-
-
 	[StringMember]
 	private string ElementsString => $"[{string.Join(", ", this)}]";
 

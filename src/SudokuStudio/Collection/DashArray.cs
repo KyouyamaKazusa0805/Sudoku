@@ -62,16 +62,7 @@ public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<Das
 	/// Converts the current collection into a <see cref="DoubleCollection"/> instance.
 	/// </summary>
 	/// <returns>A <see cref="DoubleCollection"/> result.</returns>
-	public DoubleCollection ToDoubleCollection()
-	{
-		var result = new DoubleCollection();
-		foreach (var element in _doubles)
-		{
-			result.Add(element);
-		}
-
-		return result;
-	}
+	public DoubleCollection ToDoubleCollection() => [.. _doubles];
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => _doubles.GetEnumerator();

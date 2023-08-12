@@ -418,17 +418,6 @@
             Represents a color palette that contains a list of <see cref="T:Windows.UI.Color"/> instances that can be used in UI binding.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Collection.ColorPalette.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Collection.ColorPalette"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Collection.ColorPalette.#ctor(System.Collections.Generic.IEnumerable{Windows.UI.Color})">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Collection.ColorPalette"/> instance via the specified colors.
-            </summary>
-            <param name="colors">The initial colors.</param>
-        </member>
         <member name="M:SudokuStudio.Collection.ColorPalette.Equals(SudokuStudio.Collection.ColorPalette)">
             <inheritdoc/>
         </member>
