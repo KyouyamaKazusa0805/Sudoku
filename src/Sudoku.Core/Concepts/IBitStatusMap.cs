@@ -331,7 +331,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
-	public abstract new OneDimensionalArrayEnumerator<TElement> GetEnumerator();
+	public new abstract OneDimensionalArrayEnumerator<TElement> GetEnumerator();
 
 	/// <inheritdoc cref="ISet{T}.IsProperSubsetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
