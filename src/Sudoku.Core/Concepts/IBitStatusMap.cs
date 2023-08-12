@@ -142,6 +142,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <summary>
 	/// Clear all bits.
 	/// </summary>
+	[ExplicitlyImpl(typeof(ICollection<>))]
 	public new abstract void Clear();
 
 	/// <summary>
@@ -158,6 +159,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	public abstract unsafe void CopyTo(TElement* arr, int length);
 
 	/// <inheritdoc cref="ICollection{T}.CopyTo(T[], int)"/>
+	[ExplicitlyImpl(typeof(ICollection<>))]
 	public new sealed unsafe void CopyTo(TElement[] array, int arrayIndex)
 	{
 		fixed (TElement* pArray = array)
@@ -188,15 +190,19 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	public abstract void ForEach(Action<TElement> action);
 
 	/// <inheritdoc cref="ISet{T}.ExceptWith(IEnumerable{T})"/>
+	[ExplicitlyImpl(typeof(ISet<>))]
 	public new abstract void ExceptWith(IEnumerable<TElement> other);
 
 	/// <inheritdoc cref="ISet{T}.IntersectWith(IEnumerable{T})"/>
+	[ExplicitlyImpl(typeof(ISet<>))]
 	public new abstract void IntersectWith(IEnumerable<TElement> other);
 
 	/// <inheritdoc cref="ISet{T}.SymmetricExceptWith(IEnumerable{T})"/>
+	[ExplicitlyImpl(typeof(ISet<>))]
 	public new abstract void SymmetricExceptWith(IEnumerable<TElement> other);
 
 	/// <inheritdoc cref="ISet{T}.UnionWith(IEnumerable{T})"/>
+	[ExplicitlyImpl(typeof(ISet<>))]
 	public new abstract void UnionWith(IEnumerable<TElement> other);
 
 	/// <summary>
@@ -204,9 +210,11 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </summary>
 	/// <param name="offset">The offset.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	[ExplicitlyImpl(typeof(IReadOnlySet<>))]
 	public new abstract bool Contains(TElement offset);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+	[ExplicitlyImpl(typeof(IEquatable<>))]
 	public abstract bool Equals(scoped in TSelf other);
 
 	/// <summary>
@@ -323,10 +331,12 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
-	public new abstract OneDimensionalArrayEnumerator<TElement> GetEnumerator();
+	public abstract new OneDimensionalArrayEnumerator<TElement> GetEnumerator();
 
 	/// <inheritdoc cref="ISet{T}.IsProperSubsetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitlyImpl(typeof(ISet<>))]
+	[ExplicitlyImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsProperSubsetOf(IEnumerable<TElement> other)
 	{
 		var otherCells = TSelf.Empty + other;
@@ -335,6 +345,8 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 	/// <inheritdoc cref="ISet{T}.IsProperSupersetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitlyImpl(typeof(ISet<>))]
+	[ExplicitlyImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsProperSupersetOf(IEnumerable<TElement> other)
 	{
 		var otherCells = TSelf.Empty + other;
@@ -343,10 +355,14 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 	/// <inheritdoc cref="ISet{T}.IsSubsetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitlyImpl(typeof(ISet<>))]
+	[ExplicitlyImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsSubsetOf(IEnumerable<TElement> other) => ((TSelf.Empty + other) & (TSelf)this) == (TSelf)this;
 
 	/// <inheritdoc cref="ISet{T}.IsSupersetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitlyImpl(typeof(ISet<>))]
+	[ExplicitlyImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsSupersetOf(IEnumerable<TElement> other)
 	{
 		var otherCells = TSelf.Empty + other;
@@ -355,35 +371,15 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 	/// <inheritdoc cref="ISet{T}.Overlaps(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitlyImpl(typeof(ISet<>))]
+	[ExplicitlyImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool Overlaps(IEnumerable<TElement> other) => !!((TSelf)this & (TSelf.Empty + other));
 
 	/// <inheritdoc cref="ISet{T}.SetEquals(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitlyImpl(typeof(ISet<>))]
+	[ExplicitlyImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool SetEquals(IEnumerable<TElement> other) => (TSelf)this == TSelf.Empty + other;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ICollection<TElement>.Clear() => Clear();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ICollection<TElement>.CopyTo(TElement[] array, int arrayIndex) => CopyTo(array, arrayIndex);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<TElement>.ExceptWith(IEnumerable<TElement> other) => ExceptWith(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<TElement>.IntersectWith(IEnumerable<TElement> other) => IntersectWith(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<TElement>.SymmetricExceptWith(IEnumerable<TElement> other) => SymmetricExceptWith(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ISet<TElement>.UnionWith(IEnumerable<TElement> other) => UnionWith(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -400,62 +396,6 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 		Remove(item);
 		return true;
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<TElement>.Contains(TElement item) => Contains(item);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IEquatable<TSelf>.Equals(TSelf other) => Equals(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<TElement>.IsProperSubsetOf(IEnumerable<TElement> other) => IsProperSubsetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<TElement>.IsProperSupersetOf(IEnumerable<TElement> other) => IsProperSupersetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<TElement>.IsSubsetOf(IEnumerable<TElement> other) => IsSubsetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<TElement>.IsSupersetOf(IEnumerable<TElement> other) => IsSupersetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<TElement>.Overlaps(IEnumerable<TElement> other) => Overlaps(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<TElement>.SetEquals(IEnumerable<TElement> other) => SetEquals(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<TElement>.IsProperSubsetOf(IEnumerable<TElement> other) => IsProperSubsetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<TElement>.IsProperSupersetOf(IEnumerable<TElement> other) => IsProperSupersetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<TElement>.IsSubsetOf(IEnumerable<TElement> other) => IsSubsetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<TElement>.IsSupersetOf(IEnumerable<TElement> other) => IsSupersetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<TElement>.Overlaps(IEnumerable<TElement> other) => Overlaps(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<TElement>.SetEquals(IEnumerable<TElement> other) => SetEquals(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -503,6 +443,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </summary>
 	/// <param name="offsets">The instance to negate.</param>
 	/// <returns>The negative result.</returns>
+	[ExplicitlyImpl(typeof(IBitwiseOperators<,,>))]
 	public static abstract TSelf operator ~(scoped in TSelf offsets);
 
 	/// <summary>
@@ -572,6 +513,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
+	[ExplicitlyImpl(typeof(IBitwiseOperators<,,>))]
 	public static abstract TSelf operator &(scoped in TSelf left, scoped in TSelf right);
 
 	/// <summary>
@@ -581,7 +523,8 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	static abstract TSelf operator |(scoped in TSelf left, scoped in TSelf right);
+	[ExplicitlyImpl(typeof(IBitwiseOperators<,,>))]
+	public static abstract TSelf operator |(scoped in TSelf left, scoped in TSelf right);
 
 	/// <summary>
 	/// Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
@@ -589,6 +532,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
+	[ExplicitlyImpl(typeof(IBitwiseOperators<,,>))]
 	public static abstract TSelf operator ^(scoped in TSelf left, scoped in TSelf right);
 
 	/// <inheritdoc/>
@@ -601,23 +545,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static TSelf IBitwiseOperators<TSelf, TSelf, TSelf>.operator ~(TSelf value) => ~value;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static TSelf ISubtractionOperators<TSelf, TSelf, TSelf>.operator -(TSelf left, TSelf right) => left - right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static TSelf IBitwiseOperators<TSelf, TSelf, TSelf>.operator &(TSelf left, TSelf right) => left & right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static TSelf IBitwiseOperators<TSelf, TSelf, TSelf>.operator |(TSelf left, TSelf right) => left | right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static TSelf IBitwiseOperators<TSelf, TSelf, TSelf>.operator ^(TSelf left, TSelf right) => left ^ right;
 
 	/// <summary>
 	/// Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.

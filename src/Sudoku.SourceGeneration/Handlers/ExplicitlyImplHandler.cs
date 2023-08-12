@@ -43,10 +43,10 @@ internal static class ExplicitlyImplHandler
 			)}}
 						
 			""";
-		var typeArgumentsString = typeParametersType is []
+		var typeParametersString = typeParametersType is []
 			? string.Empty
 			: $"<{string.Join(comma, from typeParameter in typeParametersType select typeParameter.Name)}>";
-		var typeNameString = $"{typeName}{typeArgumentsString}";
+		var typeNameString = $"{typeName}{typeParametersString}";
 		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
 		var typeKindString = (kind, isRecord) switch
 		{
@@ -264,10 +264,10 @@ internal static class ExplicitlyImplHandler
 		);
 
 
+		static INamedTypeSymbol unbound(INamedTypeSymbol self) => self.IsGenericType ? self.ConstructUnboundGenericType() : self;
+
 		static (ITypeSymbol Type, NullableAnnotation Nullability) typeInfoMerger(ITypeSymbol a, NullableAnnotation b)
 			=> (Type: a, Nullability: b);
-
-		static INamedTypeSymbol unbound(INamedTypeSymbol self) => self.IsGenericType ? self.ConstructUnboundGenericType() : self;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static string toName<T>(T symbol) where T : ISymbol => symbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
