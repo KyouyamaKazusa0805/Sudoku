@@ -20,7 +20,7 @@ internal static class ExplicitlyImplHandler
 						TypeKind: var kind and (TypeKind.Struct or TypeKind.Class or TypeKind.Interface),
 						TypeParameters: var typeParametersType,
 						ContainingNamespace: var @namespace,
-						Interfaces: var impledInterfaces and not []
+						AllInterfaces: var impledInterfaces and not []
 					}
 				}
 			})

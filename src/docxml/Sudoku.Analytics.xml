@@ -17965,9 +17965,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.DataModel.MultipleForcingChains.GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.DataModel.MultipleForcingChains.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.DataModel.MultipleForcingChains.Enumerator">
             <summary>
             Defines an enumerator that iterates the current collection.
@@ -17990,6 +17987,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.DataModel.MultipleForcingChains.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.DataModel.MultipleForcingChains.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.DataModel.CellOrDigitComparer">
             <summary>

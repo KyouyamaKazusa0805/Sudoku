@@ -91,6 +91,7 @@ public sealed partial class MultipleForcingChains() : IReadOnlyList<(byte CellOr
 	}
 
 	/// <inheritdoc/>
+	[ExplicitlyImpl(typeof(IEnumerable))]
 	public IEnumerator<(byte CellOrDigit, ChainNode Potential)> GetEnumerator()
 	{
 		foreach (var (a, b) in this)
@@ -98,10 +99,6 @@ public sealed partial class MultipleForcingChains() : IReadOnlyList<(byte CellOr
 			yield return (a, b);
 		}
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
 
 /// <summary>
