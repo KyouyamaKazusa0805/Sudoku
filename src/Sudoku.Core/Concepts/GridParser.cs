@@ -157,8 +157,7 @@ public unsafe ref partial struct GridParser(
 	private static Grid OnParsingSimpleMultilineGrid(scoped ref GridParser parser)
 	{
 		var matches = from match in NotationPatterns.GridSusserDigitPattern().Matches(parser.ParsingValue) select match.Value;
-		var length = matches.Length;
-		if (length is not (81 or 85))
+		if (matches.Length is not (var length and (81 or 85)))
 		{
 			// Subtle grid outline will bring 2 '.'s on first line of the grid.
 			return Grid.Undefined;
@@ -302,8 +301,7 @@ public unsafe ref partial struct GridParser(
 
 			if (s.Contains('<'))
 			{
-				// All values will be treated as normal characters:
-				// '<digit>', '*digit*' and 'candidates'.
+				// All values will be treated as normal characters: '<digit>', '*digit*' and 'candidates'.
 
 				// Givens.
 				if (length == 3)
@@ -350,8 +348,7 @@ public unsafe ref partial struct GridParser(
 			else if (s.SatisfyPattern("""[1-9]{1,9}"""))
 			{
 				// Candidates.
-				// Here don't need to check the length of the string,
-				// and also all characters are digit characters.
+				// Here don't need to check the length of the string, and also all characters are digit characters.
 				var mask = (Mask)0;
 				foreach (var c in s)
 				{
@@ -650,13 +647,6 @@ public unsafe ref partial struct GridParser(
 				{
 					return Grid.Undefined;
 				}
-
-				// We don't need to set the value as a given because the current parsing if for Sukakus, rather than normal sudokus.
-				//if (IsPow2(mask))
-				//{
-				//	result.SetDigit(cell, TrailingZeroCount(mask));
-				//	result.SetStatus(offset, CellStatus.Given);
-				//}
 
 				for (var digit = 0; digit < 9; digit++)
 				{
