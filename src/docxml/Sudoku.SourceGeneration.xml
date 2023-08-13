@@ -336,6 +336,33 @@
         <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.Data">
+            <summary>
+            The internal collected data.
+            </summary>
+            <param name="Attributes">The attributes data.</param>
+            <param name="TargetSymbol">The target method symbol.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.Data.#ctor(Microsoft.CodeAnalysis.AttributeData[],Microsoft.CodeAnalysis.IMethodSymbol)">
+            <summary>
+            The internal collected data.
+            </summary>
+            <param name="Attributes">The attributes data.</param>
+            <param name="TargetSymbol">The target method symbol.</param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.Data.Attributes">
+            <summary>The attributes data.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.Data.TargetSymbol">
+            <summary>The target method symbol.</summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.IIncrementalGeneratorAttributeHandler`1">
             <summary>
             Represents a file-local constraint for generators,

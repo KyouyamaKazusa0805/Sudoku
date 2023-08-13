@@ -142,15 +142,11 @@ public sealed class Generator : IIncrementalGenerator
 	private void ExplicitInterfaceImpl(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(
 			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					"System.SourceGeneration.ExplicitInterfaceImplAttribute",
-					SyntaxNodeTypePredicate<MethodDeclarationSyntax, OperatorDeclarationSyntax>,
-					ExplicitlyImplHandler.Transform
-				)
+				.CreateSyntaxProvider(SyntaxNodeTypePredicate<TypeDeclarationSyntax>, ExplicitInterfaceImplHandler.Transform)
 				.Where(NotNullPredicate)
 				.Select(NotNullSelector)
 				.Collect(),
-			ExplicitlyImplHandler.Output
+			ExplicitInterfaceImplHandler.Output
 		);
 
 	private void StepSearcherImports(IncrementalGeneratorInitializationContext context)
