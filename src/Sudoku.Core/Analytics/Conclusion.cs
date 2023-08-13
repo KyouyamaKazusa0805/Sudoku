@@ -134,8 +134,8 @@ file sealed class Converter : JsonConverter<Conclusion>
 	public override Conclusion Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> reader.GetString() switch
 		{
-			[_, var r, _, var c, .. { Length: 3 }, var d] => new(Assignment, (r - '1') * 9 + (c - '1'), d - '1'),
-			[_, var r, _, var c, .. { Length: 4 }, var d] => new(Elimination, (r - '1') * 9 + (c - '1'), d - '1'),
+			[_, var r, _, var c, .. " = " or " == ", var d] => new(Assignment, (r - '1') * 9 + (c - '1'), d - '1'),
+			[_, var r, _, var c, .. " != " or " <> ", var d] => new(Elimination, (r - '1') * 9 + (c - '1'), d - '1'),
 			_ => throw new JsonException()
 		};
 
