@@ -597,7 +597,7 @@ public unsafe partial struct CellMap :
 	/// If all rules are compared, but they are still considered equal, then return 0.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitlyImpl(typeof(IComparable<>))]
+	[ExplicitInterfaceImpl(typeof(IComparable<>))]
 	public readonly int CompareTo(scoped in CellMap other)
 		=> _count > other._count ? 1 : _count < other._count ? -1 : Sign($"{this:b}".CompareTo($"{other:b}"));
 
@@ -1092,7 +1092,7 @@ public unsafe partial struct CellMap :
 	/// <param name="base">The base map.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result instance.</returns>
-	[ExplicitlyImpl(typeof(IMultiplyOperators<,,>))]
+	[ExplicitInterfaceImpl(typeof(IMultiplyOperators<,,>))]
 	public static CandidateMap operator *(scoped in CellMap @base, Digit digit)
 	{
 		var result = CandidateMap.Empty;
@@ -1110,7 +1110,7 @@ public unsafe partial struct CellMap :
 	/// <param name="map">The map.</param>
 	/// <param name="houseIndex">The house index.</param>
 	/// <returns>The mask.</returns>
-	[ExplicitlyImpl(typeof(IDivisionOperators<,,>))]
+	[ExplicitInterfaceImpl(typeof(IDivisionOperators<,,>))]
 	public static Mask operator /(scoped in CellMap map, House houseIndex)
 	{
 		var (p, i) = ((Mask)0, 0);

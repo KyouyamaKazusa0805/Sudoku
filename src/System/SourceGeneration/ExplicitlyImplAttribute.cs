@@ -14,4 +14,4 @@ namespace System.SourceGeneration;
 /// may contain many operators that implements multiple interfaces.
 /// </remarks>
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
-public sealed partial class ExplicitlyImplAttribute([DataMember] Type? interfaceType = null) : Attribute;
+public sealed partial class ExplicitInterfaceImplAttribute([DataMember] Type? interfaceType = null) : Attribute;

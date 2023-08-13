@@ -91,7 +91,7 @@ public sealed partial class MultipleForcingChains() : IReadOnlyList<(byte CellOr
 	}
 
 	/// <inheritdoc/>
-	[ExplicitlyImpl(typeof(IEnumerable))]
+	[ExplicitInterfaceImpl(typeof(IEnumerable))]
 	public IEnumerator<(byte CellOrDigit, ChainNode Potential)> GetEnumerator()
 	{
 		foreach (var (a, b) in this)

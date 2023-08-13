@@ -226,7 +226,7 @@ public sealed partial class CellNotation : INotation<CellNotation, CellMap, Cell
 	public static string ToCollectionString(scoped in CellMap collection) => ToCollectionString(collection, Kind.RxCy);
 
 	/// <inheritdoc cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(TCollection, TConceptKindPresenter)"/>
-	[ExplicitlyImpl(typeof(INotation<,,,>))]
+	[ExplicitInterfaceImpl(typeof(INotation<,,,>))]
 	public static string ToCollectionString(scoped in CellMap collection, Kind notation)
 	{
 		static string i(Digit v) => (v + 1).ToString();

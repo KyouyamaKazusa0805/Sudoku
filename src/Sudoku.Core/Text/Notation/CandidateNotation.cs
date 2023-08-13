@@ -266,7 +266,7 @@ public sealed partial class CandidateNotation : INotation<CandidateNotation, Can
 
 	/// <inheritdoc cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(TCollection, TConceptKindPresenter)"/>
 	/// <exception cref="NotSupportedException">Throws when <paramref name="notation"/> is <see cref="Kind.K9"/>.</exception>
-	[ExplicitlyImpl(typeof(INotation<,,,>))]
+	[ExplicitInterfaceImpl(typeof(INotation<,,,>))]
 	public static string ToCollectionString(scoped in CandidateMap collection, Kind notation)
 	{
 		switch (notation)

@@ -29,7 +29,7 @@ public sealed partial class CellMapNotation : INotation<CellMapNotation, CellMap
 	public static string ToString(scoped in CellMap value) => CellNotation.ToCollectionString(value);
 
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"/>
-	[ExplicitlyImpl(typeof(INotation<,,>))]
+	[ExplicitInterfaceImpl(typeof(INotation<,,>))]
 	public static string ToString(scoped in CellMap value, Kind notation)
 	{
 		switch (notation)

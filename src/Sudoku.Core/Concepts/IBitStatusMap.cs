@@ -142,7 +142,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <summary>
 	/// Clear all bits.
 	/// </summary>
-	[ExplicitlyImpl(typeof(ICollection<>))]
+	[ExplicitInterfaceImpl(typeof(ICollection<>))]
 	public new abstract void Clear();
 
 	/// <summary>
@@ -159,7 +159,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	public abstract unsafe void CopyTo(TElement* arr, int length);
 
 	/// <inheritdoc cref="ICollection{T}.CopyTo(T[], int)"/>
-	[ExplicitlyImpl(typeof(ICollection<>))]
+	[ExplicitInterfaceImpl(typeof(ICollection<>))]
 	public new sealed unsafe void CopyTo(TElement[] array, int arrayIndex)
 	{
 		fixed (TElement* pArray = array)
@@ -190,19 +190,19 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	public abstract void ForEach(Action<TElement> action);
 
 	/// <inheritdoc cref="ISet{T}.ExceptWith(IEnumerable{T})"/>
-	[ExplicitlyImpl(typeof(ISet<>))]
+	[ExplicitInterfaceImpl(typeof(ISet<>))]
 	public new abstract void ExceptWith(IEnumerable<TElement> other);
 
 	/// <inheritdoc cref="ISet{T}.IntersectWith(IEnumerable{T})"/>
-	[ExplicitlyImpl(typeof(ISet<>))]
+	[ExplicitInterfaceImpl(typeof(ISet<>))]
 	public new abstract void IntersectWith(IEnumerable<TElement> other);
 
 	/// <inheritdoc cref="ISet{T}.SymmetricExceptWith(IEnumerable{T})"/>
-	[ExplicitlyImpl(typeof(ISet<>))]
+	[ExplicitInterfaceImpl(typeof(ISet<>))]
 	public new abstract void SymmetricExceptWith(IEnumerable<TElement> other);
 
 	/// <inheritdoc cref="ISet{T}.UnionWith(IEnumerable{T})"/>
-	[ExplicitlyImpl(typeof(ISet<>))]
+	[ExplicitInterfaceImpl(typeof(ISet<>))]
 	public new abstract void UnionWith(IEnumerable<TElement> other);
 
 	/// <summary>
@@ -210,11 +210,11 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </summary>
 	/// <param name="offset">The offset.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	[ExplicitlyImpl(typeof(IReadOnlySet<>))]
+	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new abstract bool Contains(TElement offset);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-	[ExplicitlyImpl(typeof(IEquatable<>))]
+	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
 	public abstract bool Equals(scoped in TSelf other);
 
 	/// <summary>
@@ -335,8 +335,8 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 	/// <inheritdoc cref="ISet{T}.IsProperSubsetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitlyImpl(typeof(ISet<>))]
-	[ExplicitlyImpl(typeof(IReadOnlySet<>))]
+	[ExplicitInterfaceImpl(typeof(ISet<>))]
+	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsProperSubsetOf(IEnumerable<TElement> other)
 	{
 		var otherCells = TSelf.Empty + other;
@@ -345,8 +345,8 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 	/// <inheritdoc cref="ISet{T}.IsProperSupersetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitlyImpl(typeof(ISet<>))]
-	[ExplicitlyImpl(typeof(IReadOnlySet<>))]
+	[ExplicitInterfaceImpl(typeof(ISet<>))]
+	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsProperSupersetOf(IEnumerable<TElement> other)
 	{
 		var otherCells = TSelf.Empty + other;
@@ -355,14 +355,14 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 	/// <inheritdoc cref="ISet{T}.IsSubsetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitlyImpl(typeof(ISet<>))]
-	[ExplicitlyImpl(typeof(IReadOnlySet<>))]
+	[ExplicitInterfaceImpl(typeof(ISet<>))]
+	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsSubsetOf(IEnumerable<TElement> other) => ((TSelf.Empty + other) & (TSelf)this) == (TSelf)this;
 
 	/// <inheritdoc cref="ISet{T}.IsSupersetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitlyImpl(typeof(ISet<>))]
-	[ExplicitlyImpl(typeof(IReadOnlySet<>))]
+	[ExplicitInterfaceImpl(typeof(ISet<>))]
+	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsSupersetOf(IEnumerable<TElement> other)
 	{
 		var otherCells = TSelf.Empty + other;
@@ -371,14 +371,14 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 	/// <inheritdoc cref="ISet{T}.Overlaps(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitlyImpl(typeof(ISet<>))]
-	[ExplicitlyImpl(typeof(IReadOnlySet<>))]
+	[ExplicitInterfaceImpl(typeof(ISet<>))]
+	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool Overlaps(IEnumerable<TElement> other) => !!((TSelf)this & (TSelf.Empty + other));
 
 	/// <inheritdoc cref="ISet{T}.SetEquals(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitlyImpl(typeof(ISet<>))]
-	[ExplicitlyImpl(typeof(IReadOnlySet<>))]
+	[ExplicitInterfaceImpl(typeof(ISet<>))]
+	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool SetEquals(IEnumerable<TElement> other) => (TSelf)this == TSelf.Empty + other;
 
 	/// <inheritdoc/>
@@ -443,7 +443,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </summary>
 	/// <param name="offsets">The instance to negate.</param>
 	/// <returns>The negative result.</returns>
-	[ExplicitlyImpl(typeof(IBitwiseOperators<,,>))]
+	[ExplicitInterfaceImpl(typeof(IBitwiseOperators<,,>))]
 	public static abstract TSelf operator ~(scoped in TSelf offsets);
 
 	/// <summary>
@@ -513,7 +513,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	[ExplicitlyImpl(typeof(IBitwiseOperators<,,>))]
+	[ExplicitInterfaceImpl(typeof(IBitwiseOperators<,,>))]
 	public static abstract TSelf operator &(scoped in TSelf left, scoped in TSelf right);
 
 	/// <summary>
@@ -523,7 +523,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	[ExplicitlyImpl(typeof(IBitwiseOperators<,,>))]
+	[ExplicitInterfaceImpl(typeof(IBitwiseOperators<,,>))]
 	public static abstract TSelf operator |(scoped in TSelf left, scoped in TSelf right);
 
 	/// <summary>
@@ -532,7 +532,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	[ExplicitlyImpl(typeof(IBitwiseOperators<,,>))]
+	[ExplicitInterfaceImpl(typeof(IBitwiseOperators<,,>))]
 	public static abstract TSelf operator ^(scoped in TSelf left, scoped in TSelf right);
 
 	/// <inheritdoc/>

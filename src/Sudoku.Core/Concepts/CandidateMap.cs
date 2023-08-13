@@ -586,7 +586,7 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc cref="IDivisionOperators{TSelf, TOther, TResult}.op_Division(TSelf, TOther)"/>
-	[ExplicitlyImpl(typeof(IDivisionOperators<,,>))]
+	[ExplicitInterfaceImpl(typeof(IDivisionOperators<,,>))]
 	public static CellMap operator /(scoped in CandidateMap offsets, Digit digit)
 	{
 		var result = CellMap.Empty;

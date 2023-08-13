@@ -18,7 +18,7 @@ public sealed partial class CandidateMapNotation : INotation<CandidateMapNotatio
 
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitlyImpl(typeof(INotation<,,>))]
+	[ExplicitInterfaceImpl(typeof(INotation<,,>))]
 	public static string ToString(scoped in CandidateMap value, Kind notation)
 		=> notation switch
 		{

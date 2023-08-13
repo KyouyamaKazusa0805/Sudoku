@@ -15,7 +15,7 @@ public sealed class Generator : IIncrementalGenerator
 		DuckTyping(context);
 		InstanceDeconstruction(context);
 		ImplicitField(context);
-		ExplicitlyImpl(context);
+		ExplicitInterfaceImpl(context);
 
 		// Advanced generators
 		StepSearcherImports(context);
@@ -139,11 +139,11 @@ public sealed class Generator : IIncrementalGenerator
 		);
 	}
 
-	private void ExplicitlyImpl(IncrementalGeneratorInitializationContext context)
+	private void ExplicitInterfaceImpl(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
-					"System.SourceGeneration.ExplicitlyImplAttribute",
+					"System.SourceGeneration.ExplicitInterfaceImplAttribute",
 					SyntaxNodeTypePredicate<MethodDeclarationSyntax, OperatorDeclarationSyntax>,
 					ExplicitlyImplHandler.Transform
 				)
