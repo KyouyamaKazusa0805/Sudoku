@@ -2540,21 +2540,10 @@ if (student is (name: var name, age: >= 18))
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.Empty">
-            <summary>
-            The empty grid that is valid during implementation or running the program (all values are <see cref="F:Sudoku.Concepts.Grid.DefaultMask"/>, i.e. empty cells).
-            </summary>
-            <remarks>
-            This field is initialized by the static constructor of this structure.
-            </remarks>
-            <seealso cref="F:Sudoku.Concepts.Grid.DefaultMask"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`3.Empty"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.Undefined">
-            <summary>
-            Indicates the default grid that all values are initialized 0. This value is equivalent to <see langword="default"/>(<see cref="T:Sudoku.Concepts.Grid"/>).
-            </summary>
-            <remarks>
-            This value can be used for non-candidate-based sudoku operations, e.g. a sudoku grid canvas.
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`3.Undefined"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.BackingSolver">
             <summary>
@@ -2659,137 +2648,69 @@ if (student is (name: var name, age: >= 18))
 	</static-constructor>
         </member>
         <member name="P:Sudoku.Concepts.Grid.IsSolved">
-            <summary>
-            Indicates the grid has already solved. If the value is <see langword="true"/>,
-            the grid is solved; otherwise, <see langword="false"/>.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.IsUndefined">
-            <summary>
-            Indicates whether the grid is <see cref="F:Sudoku.Concepts.Grid.Undefined"/>, which means the grid
-            holds totally same value with <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.IsEmpty">
-            <summary>
-            Indicates whether the grid is <see cref="F:Sudoku.Concepts.Grid.Empty"/>, which means the grid
-            holds totally same value with <see cref="F:Sudoku.Concepts.Grid.Empty"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Grid.Empty"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.IsValid">
-            <summary>
-            Indicates whether the puzzle has a unique solution.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.IsMinimal">
-            <summary>
-            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
-            if arbitrary one given digit will be removed from the grid.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.CandidatesCount">
-            <summary>
-            Indicates the number of total candidates.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.GivensCount">
-            <summary>
-            Indicates the total number of given cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.ModifiablesCount">
-            <summary>
-            Indicates the total number of modifiable cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.EmptiesCount">
-            <summary>
-            Indicates the total number of empty cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.NullHouses">
-            <summary>
-            <para>Indicates which houses are null houses.</para>
-            <para>A <b>Null House</b> is a house whose hold cells are all empty cells.</para>
-            <para>
-            The property returns a <see cref="T:System.Int32"/> value as a mask that contains all possible house indices.
-            For example, if the row 5, column 5 and block 5 (1-9) are null houses, the property will return
-            the result <see cref="T:System.Int32"/> value, <c>000010000_000010000_000010000</c> as binary.
-            </para>
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.GivenCells">
-            <summary>
-            Gets a cell list that only contains the given cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.ModifiableCells">
-            <summary>
-            Gets a cell list that only contains the modifiable cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.EmptyCells">
-            <summary>
-            Indicates a cell list whose corresponding position in this grid is empty.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.BivalueCells">
-            <summary>
-            Indicates a cell list whose corresponding position in this grid contain two candidates.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.CandidatesMap">
-            <summary>
-            Indicates the map of possible positions of the existence of the candidate value for each digit.
-            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.DigitsMap">
-            <summary>
-            <para>
-            Indicates the map of possible positions of the existence of each digit. The return value will
-            be an array of 9 elements, which stands for the statuses of 9 digits.
-            </para>
-            <para>
-            Different with <see cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>, this property contains all givens, modifiables and
-            empty cells only if it contains the digit in the mask.
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.ValuesMap">
-            <summary>
-            <para>
-            Indicates the map of possible positions of the existence of that value of each digit.
-            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
-            </para>
-            <para>
-            Different with <see cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>, the value only contains the given or modifiable
-            cells whose mask contain the set bit of that digit.
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.ConjugatePairs">
-            <summary>
-            Indicates all possible conjugate pairs appeared in this grid.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.ResetGrid">
-            <summary>
-            Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.SolutionGrid">
-            <summary>
-            Indicates the solution of the current grid. If the puzzle has no solution or multiple solutions,
-            this property will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid,System#Int16,Sudoku#Concepts#CellMap}#DefaultMask">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.System#Numerics#IMinMaxValue{Sudoku#Concepts#Grid}#MinValue">
@@ -2810,247 +2731,56 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="T:Sudoku.Algorithm.Solving.BacktrackingSolver"/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid,System#Int16,Sudoku#Concepts#CellMap}#Empty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid,System#Int16,Sudoku#Concepts#CellMap}#Undefined">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Creates a mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9,
-            ranged in a specified list of cells in the current sudoku grid.
-            </summary>
-            <param name="cells">The list of cells to gather the usages on all digits.</param>
-            <returns>A mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9.</returns>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@,System.Boolean)">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/summary"/>
-            </summary>
-            <param name="cells"><inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/param[@name='cells']"/></param>
-            <param name="withValueCells">
-            Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
-            If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
-            </param>
-            <returns><inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/returns"/></returns>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.GridMaskMergingMethod)">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/summary"/>
-            </summary>
-            <param name="cells"><inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/param[@name='cells']"/></param>
-            <param name="withValueCells">
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@,System.Boolean)" path="/param[@name='withValueCells']"/>
-            </param>
-            <param name="mergingMethod">
-            </param>
-            <returns><inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/returns"/></returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid,System#Int16,Sudoku#Concepts#CellMap}#Item(System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Concepts.Grid"/> instance hold the same values as the current instance.
-            </summary>
-            <param name="other">The instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.DuplicateWith(System.Int32,System.Int32)">
-            <summary>
-            Determine whether the digit in the target cell may be duplicated with a certain cell in the peers of the current cell,
-            if the digit is filled into the cell.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ExactlyValidate(Sudoku.Concepts.Grid@,System.Nullable{System.Boolean}@)">
-            <summary>
-            <para>
-            Determines whether the current grid is valid, checking on both normal and sukaku cases
-            and returning a <see cref="T:System.Boolean"/>? value indicating whether the current sudoku grid is valid
-            only on sukaku case.
-            </para>
-            <para>
-            For more information, please see the introduction about the parameter
-            <paramref name="sukaku"/>.
-            </para>
-            </summary>
-            <param name="solutionIfValid">
-            The solution if the puzzle is valid; otherwise, <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </param>
-            <param name="sukaku">Indicates whether the current mode is sukaku mode.<list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The puzzle is a sukaku puzzle.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The puzzle is a normal sudoku puzzle.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The puzzle is invalid.</description>
-            </item>
-            </list>
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.CheckMinimal(System.Int32@)">
-            <summary>
-            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
-            if arbitrary one given digit will be removed from the grid.
-            </summary>
-            <param name="firstCandidateMakePuzzleNotMinimal">
-            <para>
-            Indicates the first found candidate that can make the puzzle not minimal, which means
-            if we remove the digit in the cell, the puzzle will still keep unique.
-            </para>
-            <para>If the return value is <see langword="true"/>, this argument will be -1.</para>
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetCandidateIsOn(System.Int32,System.Int32)">
-            <summary>
-            Sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
-            </summary>
-            <param name="cell"><inheritdoc cref="M:Sudoku.Concepts.Grid.SetCandidateIsOn(System.Int32,System.Int32,System.Boolean)" path="/param[@name='cell']"/></param>
-            <param name="digit"><inheritdoc cref="M:Sudoku.Concepts.Grid.SetCandidateIsOn(System.Int32,System.Int32,System.Boolean)" path="/param[@name='digit']"/></param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Exists(System.Int32)">
-            <summary>
-            Indicates whether the current grid contains the specified candidate offset.
-            </summary>
-            <param name="candidate">The candidate offset.</param>
-            <returns><inheritdoc cref="M:Sudoku.Concepts.Grid.Exists(System.Int32,System.Int32)" path="/returns"/></returns>
-            <remarks><inheritdoc cref="M:Sudoku.Concepts.Grid.Exists(System.Int32,System.Int32)" path="/remarks"/></remarks>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Exists(System.Int32,System.Int32)">
-            <summary>
-            Indicates whether the current grid contains the digit in the specified cell.
-            </summary>
-            <param name="cell">The cell offset.</param>
-            <param name="digit">The digit.</param>
-            <returns>
-            The method will return a <see cref="T:System.Boolean"/>? value
-            (containing three possible cases: <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
-            All values corresponding to the cases are below:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Case description on this value</description>
-            </listheader>
-            <item>
-            <term><see langword="true"/></term>
-            <description>
-            The cell is an empty cell <b>and</b> contains the specified digit.
-            </description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>
-            The cell is an empty cell <b>but doesn't</b> contain the specified digit.
-            </description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The cell is <b>not</b> an empty cell.</description>
-            </item>
-            </list>
-            </returns>
-            <remarks>
-            <para>
-            Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
-            '<c>grid.Exists(cell, digit) is true</c>' or '<c>grid.Exists(cell, digit) == true</c>'
-            to decide whether a condition is true.
-            </para>
-            <para>
-            In addition, because the type is <see cref="T:System.Boolean"/>? rather than <see cref="T:System.Boolean"/>,
-            the result case will be more precisely than the indexer <see cref="M:Sudoku.Concepts.Grid.GetCandidateIsOn(System.Int32,System.Int32)"/>,
-            which is the main difference between this method and that indexer.
-            </para>
-            </remarks>
-            <seealso cref="M:Sudoku.Concepts.Grid.GetCandidateIsOn(System.Int32,System.Int32)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetHashCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.LeastTimesOf(System.Int32,System.Int32,System.Int32@)">
-            <summary>
-            Try to get the minimum times that the specified digit, describing it can be filled with the specified houses.
-            </summary>
-            <param name="digit">The digit to be checked.</param>
-            <param name="houses">The houses that the digit can be filled with.</param>
-            <param name="leastHousesUsed">
-            <para>One of all possiblities of the combination of least using for houses appearing.</para>
-            <para>The number of bits is always same as return value if the return value is not 0.</para>
-            </param>
-            <returns>
-            <para>The number of times that the digit can be filled with the specified houses, at least.</para>
-            <para>
-            If any one of the houses from argument <paramref name="houses"/> doesn't contain that digit,
-            or the digit has already been filled with that house as a value, the value will be 0. No exception will be thrown.
-            </para>
-            </returns>
-            <remarks>
-            For example, the following diagram shows for a sample grid.
-            <code><![CDATA[
-                     c2           c4                    c8
-               b1---------------,---------------,-----------------,
-               | 5   1     469  | 2    489  7   | 46    3     48  |
-            r2 | 7   2346  2346 | 48   1    38  | 2456  2458  9   |
-               | 39  234   8    | 6    349  5   | 7     1     24  |
-               :----------------+---------------+-----------------:
-            r4 | 2   67    5    | 478  48   689 | 1     49    3   |
-               | 39  8     369  | 1    234  26  | 245   7     245 |
-               | 4   37    1    | 57   235  239 | 8     29    6   |
-               :----------------+---------------+-----------------:
-               | 1   25    7    | 9    6    4   | 3     258   258 |
-            r8 | 6   2345  234  | 58   7    28  | 9     245   1   |
-               | 8   9     24   | 3    25   1   | 245   6     7   |
-               '----------------'---------------'-----------------'
-            ]]></code>
-            If we check for the digit 4 in houses <c>c248</c>, we can get the result number 3,
-            meaning we must fill with at least 4 times of the digit 4 into the columns 2, 4 and 8, they are:
-            <list type="bullet">
-            <item>Row 2</item>
-            <item>Row 4</item>
-            <item>Row 8</item>
-            <item>Block 1</item>
-            </list>
-            Therefore, the method will return 4 as the final answer.
-            </remarks>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ToArray">
-            <summary>
-            Serializes this instance to an array, where all digit value will be stored.
-            </summary>
-            <returns>
-            This array. All elements are between 0 and 9, where 0 means the cell is <see cref="F:Sudoku.Concepts.CellState.Empty"/> now.
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetCandidates(System.Int32)">
-            <summary>
-            Get the candidate mask part of the specified cell.
-            </summary>
-            <param name="cell">The cell offset you want to get.</param>
-            <returns>
-            <para>
-            The candidate mask. The return value is a 9-bit <see cref="T:System.Int16"/>
-            value, where each bit will be:
-            <list type="table">
-            <item>
-            <term><c>0</c></term>
-            <description>The cell <b>doesn't contain</b> the possibility of the digit.</description>
-            </item>
-            <item>
-            <term><c>1</c></term>
-            <description>The cell <b>contains</b> the possibility of the digit.</description>
-            </item>
-            </list>
-            </para>
-            <para>
-            For example, if the result mask is 266 (i.e. <c>0b<b>1</b>00_00<b>1</b>_0<b>1</b>0</c> in binary),
-            the value will indicate the cell contains the digit 2, 4 and 9.
-            </para>
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ToString(System.String)">
             <inheritdoc/>
@@ -3114,21 +2844,10 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetState(System.Int32)">
-            <summary>
-            Get the cell state at the specified cell.
-            </summary>
-            <param name="cell">The cell.</param>
-            <returns>The cell state.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetDigit(System.Int32)">
-            <summary>
-            Try to get the digit filled in the specified cell.
-            </summary>
-            <param name="cell">The cell used.</param>
-            <returns>The digit that the current cell filled. If the cell is empty, return -1.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified cell keeps a wrong cell state value. For example, <see cref="F:Sudoku.Concepts.CellState.Undefined"/>.
-            </exception>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.EnumerateCandidates">
             <summary>
@@ -3137,154 +2856,55 @@ if (student is (name: var name, age: >= 18))
             <returns>The enumerator instance.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Select``1(System.Func{System.Int32,``0})">
-            <summary>
-            Projects each element of a sequence into a new form.
-            </summary>
-            <typeparam name="TResult">
-            The type of the value returned by <paramref name="selector"/>.
-            This type must be an <see langword="unmanaged"/> type in order to make optimization
-            in the future release of C# versions.
-            </typeparam>
-            <param name="selector">A transform function to apply to each element.</param>
-            <returns>
-            An array of <typeparamref name="TResult"/> elements converted.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Reset">
-            <summary>
-            Reset the sudoku grid, to set all modifiable values to empty ones.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Fix">
-            <summary>
-            To fix the current grid (all modifiable values will be changed to given ones).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Unfix">
-            <summary>
-            To unfix the current grid (all given values will be changed to modifiable ones).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Analytics.Conclusion)">
-            <summary>
-            Try to apply the specified conclusion.
-            </summary>
-            <param name="conclusion">The conclusion to be applied.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Analytics.Conclusion[])">
-            <summary>
-            Try to apply the specified array of conclusions.
-            </summary>
-            <param name="conclusions">The conclusions to be applied.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.SetStatus(System.Int32,Sudoku.Concepts.CellState)">
-            <summary>
-            Set the specified cell to the specified state.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="state">The state.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.SetMask(System.Int32,System.Int16)">
-            <summary>
-            Set the specified cell to the specified mask.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="mask">The mask to set.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.SetDigit(System.Int32,System.Int32)">
-            <summary>
-            Set the specified digit into the specified cell.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="digit">
-            <para>
-            The value you want to set. The value should be between 0 and 8.
-            If assigning -1, the grid will execute an implicit behavior that candidates in <b>all</b> empty cells will be re-computed.
-            </para>
-            <para>
-            The values set into the grid will be regarded as the modifiable values.
-            If the cell contains a digit, it will be covered when it is a modifiable value.
-            If the cell is a given cell, the setter will do nothing.
-            </para>
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.SetCandidateIsOn(System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Sets the target candidate state.
-            </summary>
-            <param name="cell">The cell offset between 0 and 80.</param>
-            <param name="digit">The digit between 0 and 8.</param>
-            <param name="isOn">
-            The case you want to set. <see langword="false"/> means that this candidate
-            doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+        <member name="M:Sudoku.Concepts.Grid.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Fix">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Unfix">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Analytics.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Analytics.Conclusion[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.SetStatus(System.Int32,Sudoku.Concepts.CellState)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.SetMask(System.Int32,System.Int16)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.SetDigit(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.SetCandidateIsOn(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMap()">
-            <summary>
-            Called by properties <see cref="P:Sudoku.Concepts.Grid.EmptyCells"/> and <see cref="P:Sudoku.Concepts.Grid.BivalueCells"/>.
-            </summary>
-            <param name="predicate">The predicate.</param>
-            <returns>The map.</returns>
-            <seealso cref="P:Sudoku.Concepts.Grid.EmptyCells"/>
-            <seealso cref="P:Sudoku.Concepts.Grid.BivalueCells"/>
+            <inheritdoc cref="!:IGrid&lt;TSelf, TMask, TBitStatusMap&gt;.GetMap(delegate*&lt;in TSelf, int, bool&gt;)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMaps()">
-            <summary>
-            Called by properties <see cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>, <see cref="P:Sudoku.Concepts.Grid.DigitsMap"/> and <see cref="P:Sudoku.Concepts.Grid.ValuesMap"/>.
-            </summary>
-            <param name="predicate">The predicate.</param>
-            <returns>The map indexed by each digit.</returns>
-            <seealso cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
-            <seealso cref="P:Sudoku.Concepts.Grid.DigitsMap"/>
-            <seealso cref="P:Sudoku.Concepts.Grid.ValuesMap"/>
+            <inheritdoc cref="!:IGrid&lt;TSelf, TMask, TBitStatusMap&gt;.GetMaps(delegate*&lt;in Grid, int, int, bool&gt;)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Preserve(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Gets a sudoku grid, removing all value digits not appearing in the specified <paramref name="pattern"/>.
-            </summary>
-            <param name="pattern">The pattern.</param>
-            <returns>The result grid.</returns>
+            <inheritdoc cref="M:Sudoku.Concepts.IGrid`3.Preserve(`2@)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Create(System.Int32[],Sudoku.Concepts.GridCreatingOption)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance using grid values.
-            </summary>
-            <param name="gridValues">The array of grid values.</param>
-            <param name="creatingOption">The grid creating option.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Create(System.Int16[])">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance with the specified mask array.
-            </summary>
-            <param name="masks">The masks.</param>
-            <exception cref="T:System.ArgumentException">Throws when <see cref="P:System.Array.Length"/> is not 81.</exception>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Create(System.ReadOnlySpan{System.Int32},Sudoku.Concepts.GridCreatingOption)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance via the array of cell digits
-            of type <see cref="T:System.ReadOnlySpan`1"/>.
-            </summary>
-            <param name="gridValues">The list of cell digits.</param>
-            <param name="creatingOption">The grid creating option.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.String)">
             <inheritdoc/>
-            <remarks>
-            We suggest you use <see cref="M:Sudoku.Concepts.Grid.op_Explicit(System.String)~Sudoku.Concepts.Grid"/> to achieve same goal if the passing argument is a constant.
-            For example:
-            <code><![CDATA[
-            var grid1 = (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
-            var grid2 = (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
-            var grid3 = Grid.Parse(stringCode); // 'stringCode' is a string, not null.
-            ]]></code>
-            </remarks>
-            <seealso cref="M:Sudoku.Concepts.Grid.op_Explicit(System.String)~Sudoku.Concepts.Grid"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.String,System.Boolean)">
             <summary>
@@ -3306,52 +2926,22 @@ if (student is (name: var name, age: >= 18))
             <returns>The result instance had converted.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.String,Sudoku.Concepts.GridParsingOption)">
-            <summary>
-            Parses a string value and converts to this type, using a specified grid parsing type.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="gridParsingOption">The grid parsing type.</param>
-            <returns>The result instance had converted.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.ReadOnlySpan{System.Char})">
-            <summary>
-            <para>Parses a string value and converts to this type.</para>
-            <para>
-            If you want to parse a PM grid, we recommend you use the method
-            <see cref="M:Sudoku.Concepts.Grid.Parse(System.String,Sudoku.Concepts.GridParsingOption)"/> instead of this method.
-            </para>
-            </summary>
-            <param name="str">The string.</param>
-            <returns>The result instance had converted.</returns>
-            <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String,Sudoku.Concepts.GridParsingOption)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Concepts.GridParsingOption,Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to parse a string and converts to this type, and returns a
-            <see cref="T:System.Boolean"/> value indicating the result of the conversion.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="option">The grid parsing type.</param>
-            <param name="result">
-            The result parsed. If the conversion is failed, this argument will be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.Utf8String,Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Concepts.Grid@)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.Utf8String,Sudoku.Concepts.GridParsingOption,Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Concepts.GridParsingOption,Sudoku.Concepts.Grid@)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.System#IParsable{Sudoku#Concepts#Grid}#Parse(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.System#IParsable{Sudoku#Concepts#Grid}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.InternalEqualsByRef(System.Byte@,System.Byte@,System.UIntPtr)">
             <summary>
@@ -3397,44 +2987,13 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_Explicit(System.Int16[])~Sudoku.Concepts.Grid">
-            <summary>
-            Converts the specified array elements into the target <see cref="T:Sudoku.Concepts.Grid"/> instance, without any value boundary checking.
-            </summary>
-            <param name="maskArray">An array of the target mask. The array must be of length 81.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_CheckedExplicit(System.Int16[])~Sudoku.Concepts.Grid">
-            <summary>
-            Converts the specified array elements into the target <see cref="T:Sudoku.Concepts.Grid"/> instance, with value boundary checking.
-            </summary>
-            <param name="maskArray">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.op_Explicit(System.Int16[])~Sudoku.Concepts.Grid" path="/param[@name='maskArray']"/>
-            </param>
-            <exception cref="T:System.ArgumentException">
-            Throws when at least one element in the mask array is greater than 0b100__111_111_111 (i.e. 2559) or less than 0.
-            </exception>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_Explicit(System.String)~Sudoku.Concepts.Grid">
-            <summary>
-            Implicit cast from <see cref="T:System.String"/> code to its equivalent <see cref="T:Sudoku.Concepts.Grid"/> instance representation.
-            </summary>
-            <param name="gridCode">The grid code.</param>
-            <remarks>
-            <para>
-            This explicit operator has same meaning for method <see cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>. You can also use
-            <see cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/> to get the same result as this operator.
-            </para>
-            <para>
-            If the argument being passed is <see langword="null"/>, this operator will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>
-            as the final result, whose behavior is the only one that is different with method <see cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>.
-            That method will throw a <see cref="T:System.FormatException"/> instance to report the invalid argument being passed.
-            </para>
-            </remarks>
-            <exception cref="T:System.FormatException">
-            See exception thrown cases for method <see cref="M:System.ISimpleParsable`1.Parse(System.String)"/>.
-            </exception>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-            <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>
-            <seealso cref="M:System.ISimpleParsable`1.Parse(System.String)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -3452,6 +3011,15 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#Numerics#IEqualityOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,System#Boolean}#op_Inequality(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid,System#Int16,Sudoku#Concepts#CellMap}#GetMap()">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid,System#Int16,Sudoku#Concepts#CellMap}#GetMaps()">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid,System#Int16,Sudoku#Concepts#CellMap}#Preserve(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Converter">
@@ -4715,6 +4283,651 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_ExclusiveOr(`0,`0)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.IGrid`3">
+            <summary>
+            Represents a role that executes like a sudoku grid concept.
+            </summary>
+            <typeparam name="TSelf">The type of the implementation.</typeparam>
+            <typeparam name="TMask">The type of the bit mask.</typeparam>
+            <typeparam name="TBitStatusMap">The type of the bit status map.</typeparam>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.IsSolved">
+            <summary>
+            Indicates the grid has already solved. If the value is <see langword="true"/>, the grid is solved; otherwise, <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.IsUndefined">
+            <summary>
+            Indicates whether the grid is <see cref="P:Sudoku.Concepts.IGrid`3.Undefined"/>, which means the grid
+            holds totally same value with <see cref="P:Sudoku.Concepts.IGrid`3.Undefined"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.IGrid`3.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.IsEmpty">
+            <summary>
+            Indicates whether the grid is <see cref="P:Sudoku.Concepts.IGrid`3.Empty"/>, which means the grid
+            holds totally same value with <see cref="P:Sudoku.Concepts.IGrid`3.Empty"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.IGrid`3.Empty"/>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.IsValid">
+            <summary>
+            Indicates whether the puzzle has a unique solution.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.IsMinimal">
+            <summary>
+            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
+            if arbitrary one given digit will be removed from the grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.CandidatesCount">
+            <summary>
+            Indicates the number of total candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.GivensCount">
+            <summary>
+            Indicates the total number of given cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.ModifiablesCount">
+            <summary>
+            Indicates the total number of modifiable cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.EmptiesCount">
+            <summary>
+            Indicates the total number of empty cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.NullHouses">
+            <summary>
+            <para>Indicates which houses are null houses.</para>
+            <para>A <b>Null House</b> is a house whose hold cells are all empty cells.</para>
+            <para>
+            The property returns a <see cref="T:System.Int32"/> value as a mask that contains all possible house indices.
+            For example, if the row 5, column 5 and block 5 (1-9) are null houses, the property will return
+            the result <see cref="T:System.Int32"/> value, <c>000010000_000010000_000010000</c> as binary.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.GivenCells">
+            <summary>
+            Gets a cell list that only contains the given cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.ModifiableCells">
+            <summary>
+            Gets a cell list that only contains the modifiable cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.EmptyCells">
+            <summary>
+            Indicates a cell list whose corresponding position in this grid is empty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.BivalueCells">
+            <summary>
+            Indicates a cell list whose corresponding position in this grid contain two candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.CandidatesMap">
+            <summary>
+            Indicates the map of possible positions of the existence of the candidate value for each digit.
+            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.DigitsMap">
+            <summary>
+            <para>
+            Indicates the map of possible positions of the existence of each digit. The return value will
+            be an array of 9 elements, which stands for the statuses of 9 digits.
+            </para>
+            <para>
+            Different with <see cref="P:Sudoku.Concepts.IGrid`3.CandidatesMap"/>, this property contains all givens, modifiables and
+            empty cells only if it contains the digit in the mask.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.IGrid`3.CandidatesMap"/>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.ValuesMap">
+            <summary>
+            <para>
+            Indicates the map of possible positions of the existence of that value of each digit.
+            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+            </para>
+            <para>
+            Different with <see cref="P:Sudoku.Concepts.IGrid`3.CandidatesMap"/>, the value only contains the given or modifiable
+            cells whose mask contain the set bit of that digit.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.IGrid`3.CandidatesMap"/>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.ConjugatePairs">
+            <summary>
+            Indicates all possible conjugate pairs appeared in this grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.ResetGrid">
+            <summary>
+            Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.SolutionGrid">
+            <summary>
+            Indicates the solution of the current grid. If the puzzle has no solution or multiple solutions,
+            this property will return <see cref="P:Sudoku.Concepts.IGrid`3.Undefined"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.IGrid`3.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.Empty">
+            <summary>
+            The empty grid that is valid during implementation or running the program (all values are <see cref="P:Sudoku.Concepts.IGrid`3.DefaultMask"/>, i.e. empty cells).
+            </summary>
+            <remarks>
+            This field is initialized by the static constructor of this structure.
+            </remarks>
+            <seealso cref="P:Sudoku.Concepts.IGrid`3.DefaultMask"/>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.Undefined">
+            <summary>
+            Indicates the default grid that all values are initialized 0. This value is equivalent to <see langword="default"/>(<typeparamref name="TSelf"/>).
+            </summary>
+            <remarks>
+            This value can be used for non-candidate-based sudoku operations, e.g. a sudoku grid canvas.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.DefaultMask">
+            <summary>
+            Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.Item(System.Int32)">
+            <summary>
+            Indexer member kind that allows interaction with low-level mask operation.
+            </summary>
+            <param name="cell">The index of the cell.</param>
+            <returns>A reference to the mask at the specified cell offset.</returns>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.Item(`2@)">
+            <summary>
+            Creates a mask of type <typeparamref name="TMask"/> that represents the usages of digits 1 to 9,
+            ranged in a specified list of cells in the current sudoku grid.
+            </summary>
+            <param name="cells">The list of cells to gather the usages on all digits.</param>
+            <returns>A mask of type <typeparamref name="TMask"/> that represents the usages of digits 1 to 9.</returns>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.Item(`2@,System.Boolean)">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`3.Item(`2@)" path="/summary"/>
+            </summary>
+            <param name="cells"><inheritdoc cref="P:Sudoku.Concepts.IGrid`3.Item(`2@)" path="/param[@name='cells']"/></param>
+            <param name="withValueCells">
+            Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
+            If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
+            </param>
+            <returns><inheritdoc cref="P:Sudoku.Concepts.IGrid`3.Item(`2@)" path="/returns"/></returns>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`3.Item(`2@,System.Boolean,Sudoku.Concepts.GridMaskMergingMethod)">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`3.Item(`2@)" path="/summary"/>
+            </summary>
+            <param name="cells"><inheritdoc cref="P:Sudoku.Concepts.IGrid`3.Item(`2@)" path="/param[@name='cells']"/></param>
+            <param name="withValueCells">
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`3.Item(`2@,System.Boolean)" path="/param[@name='withValueCells']"/>
+            </param>
+            <param name="mergingMethod">
+            </param>
+            <returns><inheritdoc cref="P:Sudoku.Concepts.IGrid`3.Item(`2@)" path="/returns"/></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Equals(`0@)">
+            <summary>
+            Determine whether the specified <typeparamref name="TSelf"/> instance hold the same values as the current instance.
+            </summary>
+            <param name="other">The instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.DuplicateWith(System.Int32,System.Int32)">
+            <summary>
+            Determine whether the digit in the target cell may be duplicated with a certain cell in the peers of the current cell,
+            if the digit is filled into the cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.ExactlyValidate(`0@,System.Nullable{System.Boolean}@)">
+            <summary>
+            <para>
+            Determines whether the current grid is valid, checking on both normal and sukaku cases
+            and returning a <see cref="T:System.Boolean"/>? value indicating whether the current sudoku grid is valid
+            only on sukaku case.
+            </para>
+            <para>
+            For more information, please see the introduction about the parameter
+            <paramref name="sukaku"/>.
+            </para>
+            </summary>
+            <param name="solutionIfValid">
+            The solution if the puzzle is valid; otherwise, <see cref="P:Sudoku.Concepts.IGrid`3.Undefined"/>.
+            </param>
+            <param name="sukaku">Indicates whether the current mode is sukaku mode.<list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The puzzle is a sukaku puzzle.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The puzzle is a normal sudoku puzzle.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The puzzle is invalid.</description>
+            </item>
+            </list>
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <seealso cref="P:Sudoku.Concepts.IGrid`3.Undefined"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.CheckMinimal(System.Int32@)">
+            <summary>
+            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
+            if arbitrary one given digit will be removed from the grid.
+            </summary>
+            <param name="firstCandidateMakePuzzleNotMinimal">
+            <para>
+            Indicates the first found candidate that can make the puzzle not minimal, which means
+            if we remove the digit in the cell, the puzzle will still keep unique.
+            </para>
+            <para>If the return value is <see langword="true"/>, this argument will be -1.</para>
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.GetCandidateIsOn(System.Int32,System.Int32)">
+            <summary>
+            Sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Concepts.IGrid`3.SetCandidateIsOn(System.Int32,System.Int32,System.Boolean)" path="/param[@name='cell']"/></param>
+            <param name="digit"><inheritdoc cref="M:Sudoku.Concepts.IGrid`3.SetCandidateIsOn(System.Int32,System.Int32,System.Boolean)" path="/param[@name='digit']"/></param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Exists(System.Int32,System.Int32)">
+            <summary>
+            Indicates whether the current grid contains the digit in the specified cell.
+            </summary>
+            <param name="cell">The cell offset.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            The method will return a <see cref="T:System.Boolean"/>? value
+            (containing three possible cases: <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
+            All values corresponding to the cases are below:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Case description on this value</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The cell is an empty cell <b>and</b> contains the specified digit.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>
+            The cell is an empty cell <b>but doesn't</b> contain the specified digit.
+            </description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The cell is <b>not</b> an empty cell.</description>
+            </item>
+            </list>
+            </returns>
+            <remarks>
+            <para>
+            Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
+            '<c>grid.Exists(cell, digit) is true</c>' or '<c>grid.Exists(cell, digit) == true</c>'
+            to decide whether a condition is true.
+            </para>
+            <para>
+            In addition, because the type is <see cref="T:System.Boolean"/>? rather than <see cref="T:System.Boolean"/>,
+            the result case will be more precisely than the indexer <see cref="M:Sudoku.Concepts.IGrid`3.GetCandidateIsOn(System.Int32,System.Int32)"/>,
+            which is the main difference between this method and that indexer.
+            </para>
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.IGrid`3.GetCandidateIsOn(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.LeastTimesOf(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Try to get the minimum times that the specified digit, describing it can be filled with the specified houses.
+            </summary>
+            <param name="digit">The digit to be checked.</param>
+            <param name="houses">The houses that the digit can be filled with.</param>
+            <param name="leastHousesUsed">
+            <para>One of all possiblities of the combination of least using for houses appearing.</para>
+            <para>The number of bits is always same as return value if the return value is not 0.</para>
+            </param>
+            <returns>
+            <para>The number of times that the digit can be filled with the specified houses, at least.</para>
+            <para>
+            If any one of the houses from argument <paramref name="houses"/> doesn't contain that digit,
+            or the digit has already been filled with that house as a value, the value will be 0. No exception will be thrown.
+            </para>
+            </returns>
+            <remarks>
+            For example, the following diagram shows for a sample grid.
+            <code><![CDATA[
+                     c2           c4                    c8
+               b1---------------,---------------,-----------------,
+               | 5   1     469  | 2    489  7   | 46    3     48  |
+            r2 | 7   2346  2346 | 48   1    38  | 2456  2458  9   |
+               | 39  234   8    | 6    349  5   | 7     1     24  |
+               :----------------+---------------+-----------------:
+            r4 | 2   67    5    | 478  48   689 | 1     49    3   |
+               | 39  8     369  | 1    234  26  | 245   7     245 |
+               | 4   37    1    | 57   235  239 | 8     29    6   |
+               :----------------+---------------+-----------------:
+               | 1   25    7    | 9    6    4   | 3     258   258 |
+            r8 | 6   2345  234  | 58   7    28  | 9     245   1   |
+               | 8   9     24   | 3    25   1   | 245   6     7   |
+               '----------------'---------------'-----------------'
+            ]]></code>
+            If we check for the digit 4 in houses <c>c248</c>, we can get the result number 3,
+            meaning we must fill with at least 4 times of the digit 4 into the columns 2, 4 and 8, they are:
+            <list type="bullet">
+            <item>Row 2</item>
+            <item>Row 4</item>
+            <item>Row 8</item>
+            <item>Block 1</item>
+            </list>
+            Therefore, the method will return 4 as the final answer.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.ToArray">
+            <summary>
+            Serializes this instance to an array, where all digit value will be stored.
+            </summary>
+            <returns>
+            This array. All elements are between 0 and 9, where 0 means the cell is <see cref="F:Sudoku.Concepts.CellState.Empty"/> now.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.GetCandidates(System.Int32)">
+            <summary>
+            Get the candidate mask part of the specified cell.
+            </summary>
+            <param name="cell">The cell offset you want to get.</param>
+            <returns>
+            <para>
+            The candidate mask. The return value is a 9-bit <typeparamref name="TMask"/> value, where each bit will be:
+            <list type="table">
+            <item>
+            <term><c>0</c></term>
+            <description>The cell <b>doesn't contain</b> the possibility of the digit.</description>
+            </item>
+            <item>
+            <term><c>1</c></term>
+            <description>The cell <b>contains</b> the possibility of the digit.</description>
+            </item>
+            </list>
+            </para>
+            <para>
+            For example, if the result mask is 266 (i.e. <c>0b<b>1</b>00_00<b>1</b>_0<b>1</b>0</c> in binary),
+            the value will indicate the cell contains the digit 2, 4 and 9.
+            </para>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.GetState(System.Int32)">
+            <summary>
+            Get the cell state at the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>The cell state.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.GetDigit(System.Int32)">
+            <summary>
+            Try to get the digit filled in the specified cell.
+            </summary>
+            <param name="cell">The cell used.</param>
+            <returns>The digit that the current cell filled. If the cell is empty, return -1.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified cell keeps a wrong cell state value. For example, <see cref="F:Sudoku.Concepts.CellState.Undefined"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Select``1(System.Func{System.Int32,``0})">
+            <summary>
+            Projects each element of a sequence into a new form.
+            </summary>
+            <typeparam name="TResult">
+            The type of the value returned by <paramref name="selector"/>.
+            This type must be an <see langword="unmanaged"/> type in order to make optimization
+            in the future release of C# versions.
+            </typeparam>
+            <param name="selector">A transform function to apply to each element.</param>
+            <returns>
+            An array of <typeparamref name="TResult"/> elements converted.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Reset">
+            <summary>
+            Reset the sudoku grid, to set all modifiable values to empty ones.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Fix">
+            <summary>
+            To fix the current grid (all modifiable values will be changed to given ones).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Unfix">
+            <summary>
+            To unfix the current grid (all given values will be changed to modifiable ones).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Apply(Sudoku.Analytics.Conclusion)">
+            <summary>
+            Try to apply the specified conclusion.
+            </summary>
+            <param name="conclusion">The conclusion to be applied.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Apply(Sudoku.Analytics.Conclusion[])">
+            <summary>
+            Try to apply the specified array of conclusions.
+            </summary>
+            <param name="conclusions">The conclusions to be applied.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.SetStatus(System.Int32,Sudoku.Concepts.CellState)">
+            <summary>
+            Set the specified cell to the specified state.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="state">The state.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.SetMask(System.Int32,`1)">
+            <summary>
+            Set the specified cell to the specified mask.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="mask">The mask to set.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.SetDigit(System.Int32,System.Int32)">
+            <summary>
+            Set the specified digit into the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">
+            <para>
+            The value you want to set. The value should be between 0 and 8.
+            If assigning -1, the grid will execute an implicit behavior that candidates in <b>all</b> empty cells will be re-computed.
+            </para>
+            <para>
+            The values set into the grid will be regarded as the modifiable values.
+            If the cell contains a digit, it will be covered when it is a modifiable value.
+            If the cell is a given cell, the setter will do nothing.
+            </para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.SetCandidateIsOn(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Sets the target candidate state.
+            </summary>
+            <param name="cell">The cell offset between 0 and 80.</param>
+            <param name="digit">The digit between 0 and 8.</param>
+            <param name="isOn">
+            The case you want to set. <see langword="false"/> means that this candidate
+            doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.GetMap()">
+            <summary>
+            Called by properties <see cref="P:Sudoku.Concepts.IGrid`3.EmptyCells"/> and <see cref="P:Sudoku.Concepts.IGrid`3.BivalueCells"/>.
+            </summary>
+            <param name="predicate">The predicate.</param>
+            <returns>The map.</returns>
+            <seealso cref="P:Sudoku.Concepts.IGrid`3.EmptyCells"/>
+            <seealso cref="P:Sudoku.Concepts.IGrid`3.BivalueCells"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.GetMaps()">
+            <summary>
+            Called by properties <see cref="P:Sudoku.Concepts.IGrid`3.CandidatesMap"/>, <see cref="P:Sudoku.Concepts.IGrid`3.DigitsMap"/> and <see cref="P:Sudoku.Concepts.IGrid`3.ValuesMap"/>.
+            </summary>
+            <param name="predicate">The predicate.</param>
+            <returns>The map indexed by each digit.</returns>
+            <seealso cref="P:Sudoku.Concepts.IGrid`3.CandidatesMap"/>
+            <seealso cref="P:Sudoku.Concepts.IGrid`3.DigitsMap"/>
+            <seealso cref="P:Sudoku.Concepts.IGrid`3.ValuesMap"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Preserve(`2@)">
+            <summary>
+            Gets a sudoku grid, removing all value digits not appearing in the specified <paramref name="pattern"/>.
+            </summary>
+            <param name="pattern">The pattern.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Create(System.Int32[],Sudoku.Concepts.GridCreatingOption)">
+            <summary>
+            Creates a <typeparamref name="TSelf"/> instance using grid values.
+            </summary>
+            <param name="gridValues">The array of grid values.</param>
+            <param name="creatingOption">The grid creating option.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Create(`1[])">
+            <summary>
+            Creates a <typeparamref name="TSelf"/> instance with the specified mask array.
+            </summary>
+            <param name="masks">The masks.</param>
+            <exception cref="T:System.ArgumentException">Throws when <see cref="P:System.Array.Length"/> is out of valid range.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Create(System.ReadOnlySpan{System.Int32},Sudoku.Concepts.GridCreatingOption)">
+            <summary>
+            Creates a <typeparamref name="TSelf"/> instance via the array of cell digits of type <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <param name="gridValues">The list of cell digits.</param>
+            <param name="creatingOption">The grid creating option.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Parse(System.String)">
+            <inheritdoc/>
+            <remarks>
+            We suggest you use <see cref="M:Sudoku.Concepts.IGrid`3.op_Explicit(System.String)~`0"/> to achieve same goal if the passing argument is a constant.
+            For example:
+            <code><![CDATA[
+            var grid1 = (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
+            var grid2 = (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
+            var grid3 = Grid.Parse(stringCode); // 'stringCode' is a string, not null.
+            ]]></code>
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.IGrid`3.op_Explicit(System.String)~`0"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Parse(System.String,Sudoku.Concepts.GridParsingOption)">
+            <summary>
+            Parses a string value and converts to this type, using a specified grid parsing type.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="gridParsingOption">The grid parsing type.</param>
+            <returns>The result instance had converted.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.Parse(System.ReadOnlySpan{System.Char})">
+            <summary>
+            <para>Parses a string value and converts to this type.</para>
+            <para>
+            If you want to parse a PM grid, we recommend you use the method
+            <see cref="M:Sudoku.Concepts.IGrid`3.Parse(System.String,Sudoku.Concepts.GridParsingOption)"/> instead of this method.
+            </para>
+            </summary>
+            <param name="str">The string.</param>
+            <returns>The result instance had converted.</returns>
+            <seealso cref="M:Sudoku.Concepts.IGrid`3.Parse(System.String,Sudoku.Concepts.GridParsingOption)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.TryParse(System.String,`0@)">
+            <inheritdoc cref="M:System.ISimpleParsable`1.TryParse(System.String,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.TryParse(System.String,Sudoku.Concepts.GridParsingOption,`0@)">
+            <summary>
+            Try to parse a string and converts to this type, and returns a
+            <see cref="T:System.Boolean"/> value indicating the result of the conversion.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="option">The grid parsing type.</param>
+            <param name="result">
+            The result parsed. If the conversion is failed, this argument will be <see cref="P:Sudoku.Concepts.IGrid`3.Undefined"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <seealso cref="P:Sudoku.Concepts.IGrid`3.Undefined"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.System#IParsable{TSelf}#TryParse(System.String,System.IFormatProvider,`0@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.op_Explicit(`1[])~`0">
+            <summary>
+            Converts the specified array elements into the target <typeparamref name="TSelf"/> instance, without any value boundary checking.
+            </summary>
+            <param name="maskArray">An array of the target mask. The array must be of a valid length.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.op_CheckedExplicit(`1[])~`0">
+            <summary>
+            Converts the specified array elements into the target <typeparamref name="TSelf"/> instance, with value boundary checking.
+            </summary>
+            <param name="maskArray">
+            <inheritdoc cref="M:Sudoku.Concepts.IGrid`3.op_Explicit(`1[])~`0" path="/param[@name='maskArray']"/>
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Throws when at least one element in the mask array is greater than 0b100__111_111_111 (i.e. 2559) or less than 0.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`3.op_Explicit(System.String)~`0">
+            <summary>
+            Implicit cast from <see cref="T:System.String"/> code to its equivalent <typeparamref name="TSelf"/> instance representation.
+            </summary>
+            <param name="gridCode">The grid code.</param>
+            <remarks>
+            <para>
+            This explicit operator has same meaning for method <see cref="M:Sudoku.Concepts.IGrid`3.Parse(System.String)"/>. You can also use
+            <see cref="M:Sudoku.Concepts.IGrid`3.Parse(System.String)"/> to get the same result as this operator.
+            </para>
+            <para>
+            If the argument being passed is <see langword="null"/>, this operator will return <see cref="P:Sudoku.Concepts.IGrid`3.Undefined"/>
+            as the final result, whose behavior is the only one that is different with method <see cref="M:Sudoku.Concepts.IGrid`3.Parse(System.String)"/>.
+            That method will throw a <see cref="T:System.FormatException"/> instance to report the invalid argument being passed.
+            </para>
+            </remarks>
+            <exception cref="T:System.FormatException">
+            See exception thrown cases for method <see cref="M:System.ISimpleParsable`1.Parse(System.String)"/>.
+            </exception>
+            <seealso cref="P:Sudoku.Concepts.IGrid`3.Undefined"/>
+            <seealso cref="M:Sudoku.Concepts.IGrid`3.Parse(System.String)"/>
+            <seealso cref="M:System.ISimpleParsable`1.Parse(System.String)"/>
         </member>
         <member name="T:Sudoku.Concepts.Inference">
             <summary>

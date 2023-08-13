@@ -179,6 +179,9 @@ internal static class ExplicitInterfaceImplHandler
 				var parameters = methodOrOperator.Parameters;
 				var staticModifier = methodOrOperator.IsStatic ? "static " : string.Empty;
 				var readOnlyModifier = methodOrOperator.IsReadOnly ? "readonly " : string.Empty;
+				var unsafeModifier = methodOrOperator.Parameters.Any(static param => param.Type is IPointerTypeSymbol or IFunctionPointerTypeSymbol)
+					? "unsafe "
+					: string.Empty;
 				var conversionOperatorModifier = methodOrOperator switch
 				{
 					{ Name: "op_Explicit" } => "explicit ",
@@ -240,7 +243,7 @@ internal static class ExplicitInterfaceImplHandler
 							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ExplicitInterfaceImplHandler).FullName}}", "{{Value}}")]
 							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 							[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-							{{staticModifier}}{{conversionOperatorModifier}}{{readOnlyModifier}}{{signature}}({{parametersList}})
+							{{staticModifier}}{{conversionOperatorModifier}}{{readOnlyModifier}}{{unsafeModifier}}{{signature}}({{parametersList}})
 					{{typeParametersConstraintMethodStr}}=> {{expressionStr}};
 					"""
 				);
