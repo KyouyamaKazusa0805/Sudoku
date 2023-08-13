@@ -2,16 +2,17 @@ namespace System.SourceGeneration;
 
 /// <summary>
 /// Represents an attribute type that tells source generator that the current method marked this attribute type should implement an interface
-/// type specified as argument <paramref name="interfaceType"/>.
+/// type specified as argument <paramref name="interfaceType"/>. This type can also be consumed by operators.
 /// </summary>
 /// <param name="interfaceType">
-/// Indicates the interface type. This parameter may not be explicitly specified if the containing type just implements one interface.
-/// In other words, this parameter is optional one. By default it keeps <see langword="null"/> value. If you explicitly specified it,
-/// you must give an interface type.
+/// Indicates the interface type. The type should be specified via <see langword="typeof"/> expression.
+/// If the target interface type is a generic type, you can just specify its open-typed reference.
+/// For example, if you want to explicitly implement <see cref="IEquatable{T}.Equals(T)"/>,
+/// just pass value <c><![CDATA[typeof(IEquatable<>)]]></c>.
 /// </param>
-/// <remarks>
-/// This type can also be consumed by operators; however, the interface type should be always explicitly specified because a type
-/// may contain many operators that implements multiple interfaces.
-/// </remarks>
+/// <remarks><b>
+/// Please note that if a type implements multiple same interfaces without type parameters
+/// (e.g. <c><![CDATA[I<A>]]></c> and <c><![CDATA[I<B>]]></c>), the target source generator won't work.
+/// </b></remarks>
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
-public sealed partial class ExplicitInterfaceImplAttribute([DataMember] Type? interfaceType = null) : Attribute;
+public sealed partial class ExplicitInterfaceImplAttribute([DataMember] Type interfaceType) : Attribute;

@@ -36,7 +36,7 @@ internal static class ExplicitInterfaceImplHandler
 			// Therefore, we may get a runtime error from source generator, telling us that generation may contain duplicate.
 			typeSymbol.GetMembers().OfType<IMethodSymbol>()
 #endif
-			)
+		)
 		{
 			var attributesData = (
 				from attributeData in methodSymbol.GetAttributes()
@@ -129,6 +129,7 @@ internal static class ExplicitInterfaceImplHandler
 				INamedTypeSymbol containingInterfaceType;
 				switch (attributeData.ConstructorArguments, impledInterfaces)
 				{
+#if false
 					case ([{ Kind: TypedConstantKind.Type, Value: null }], [var interfaceTypeDirectlyImpled]):
 					{
 						var methodsOrOperators = interfaceTypeDirectlyImpled.GetMembers().OfType<IMethodSymbol>();
@@ -140,6 +141,7 @@ internal static class ExplicitInterfaceImplHandler
 						(methodOrOperator, containingInterfaceType) = (foundMember, interfaceTypeDirectlyImpled);
 						break;
 					}
+#endif
 					case ([{ Kind: TypedConstantKind.Type, Value: INamedTypeSymbol { TypeKind: TypeKind.Interface } interfaceTypeSymbol }], _):
 					{
 						var unboundedInterfaceTypeSymbol = interfaceTypeSymbol.Unbound();
