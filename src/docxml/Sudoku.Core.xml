@@ -4803,9 +4803,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.LockedTarget.Equals(Sudoku.Concepts.LockedTarget@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="M:Sudoku.Concepts.LockedTarget.System#IEquatable{Sudoku#Concepts#LockedTarget}#Equals(Sudoku.Concepts.LockedTarget)">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.LockedTarget.Digit">
             <summary>
             The generated property declaration for parameter <c>digit</c>.
@@ -4835,6 +4832,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.LockedTarget.System#Numerics#IEqualityOperators{Sudoku#Concepts#LockedTarget,Sudoku#Concepts#LockedTarget,System#Boolean}#op_Inequality(Sudoku.Concepts.LockedTarget,Sudoku.Concepts.LockedTarget)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.LockedTarget.System#IEquatable{Sudoku#Concepts#LockedTarget}#Equals(Sudoku.Concepts.LockedTarget)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.SymmetricType">
