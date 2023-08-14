@@ -19,7 +19,7 @@ namespace Sudoku.Concepts;
 [Equals]
 [ToString]
 [EqualityOperators]
-public unsafe partial struct Grid : IGrid<Grid, Mask, CellMap>
+public unsafe partial struct Grid : IGrid<Grid, Mask, CellMap, Conclusion>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -68,10 +68,10 @@ public unsafe partial struct Grid : IGrid<Grid, Mask, CellMap>
 	/// </remarks>
 	public static readonly delegate*<ref Grid, void> RefreshingCandidates = &OnRefreshingCandidates;
 
-	/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap}.Empty"/>
+	/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap, TConclusion}.Empty"/>
 	public static readonly Grid Empty;
 
-	/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap}.Undefined"/>
+	/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap, TConclusion}.Undefined"/>
 	public static readonly Grid Undefined;
 
 	/// <summary>
@@ -367,7 +367,7 @@ public unsafe partial struct Grid : IGrid<Grid, Mask, CellMap>
 	readonly int IReadOnlyCollection<Digit>.Count => 81;
 
 	/// <inheritdoc/>
-	static Mask IGrid<Grid, Mask, CellMap>.DefaultMask => DefaultMask;
+	static Mask IGrid<Grid, Mask, CellMap, Conclusion>.DefaultMask => DefaultMask;
 
 	/// <summary>
 	/// Indicates the minimum possible grid value that the current type can reach.
@@ -388,10 +388,10 @@ public unsafe partial struct Grid : IGrid<Grid, Mask, CellMap>
 	static Grid IMinMaxValue<Grid>.MaxValue => (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
 
 	/// <inheritdoc/>
-	static Grid IGrid<Grid, Mask, CellMap>.Empty => Empty;
+	static Grid IGrid<Grid, Mask, CellMap, Conclusion>.Empty => Empty;
 
 	/// <inheritdoc/>
-	static Grid IGrid<Grid, Mask, CellMap>.Undefined => Undefined;
+	static Grid IGrid<Grid, Mask, CellMap, Conclusion>.Undefined => Undefined;
 
 
 	/// <inheritdoc/>
@@ -467,7 +467,7 @@ public unsafe partial struct Grid : IGrid<Grid, Mask, CellMap>
 	}
 
 	/// <inheritdoc/>
-	readonly Mask IGrid<Grid, Mask, CellMap>.this[Cell cell] => this[cell];
+	readonly Mask IGrid<Grid, Mask, CellMap, Conclusion>.this[Cell cell] => this[cell];
 
 
 	/// <inheritdoc/>
@@ -878,9 +878,9 @@ public unsafe partial struct Grid : IGrid<Grid, Mask, CellMap>
 
 
 #pragma warning disable CS1584, CS1658
-	/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap}.GetMap(delegate*{in TSelf, int, bool})"/>
+	/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap, TConclusion}.GetMap(delegate*{in TSelf, int, bool})"/>
 #pragma warning restore CS1584, CS1658
-	[ExplicitInterfaceImpl(typeof(IGrid<,,>))]
+	[ExplicitInterfaceImpl(typeof(IGrid<,,,>))]
 	private readonly CellMap GetMap(delegate*<in Grid, Cell, bool> predicate)
 	{
 		var result = CellMap.Empty;
@@ -896,9 +896,9 @@ public unsafe partial struct Grid : IGrid<Grid, Mask, CellMap>
 	}
 
 #pragma warning disable CS1584, CS1658
-	/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap}.GetMaps(delegate*{in Grid, int, int, bool})"/>
+	/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap, TConclusion}.GetMaps(delegate*{in Grid, int, int, bool})"/>
 #pragma warning restore CS1584, CS1658
-	[ExplicitInterfaceImpl(typeof(IGrid<,,>))]
+	[ExplicitInterfaceImpl(typeof(IGrid<,,,>))]
 	private readonly CellMap[] GetMaps(delegate*<in Grid, Cell, Digit, bool> predicate)
 	{
 		var result = new CellMap[9];
@@ -917,8 +917,8 @@ public unsafe partial struct Grid : IGrid<Grid, Mask, CellMap>
 		return result;
 	}
 
-	/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap}.Preserve(in TBitStatusMap)"/>
-	[ExplicitInterfaceImpl(typeof(IGrid<,,>))]
+	/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap, TConclusion}.Preserve(in TBitStatusMap)"/>
+	[ExplicitInterfaceImpl(typeof(IGrid<,,,>))]
 	private readonly Grid Preserve(scoped in CellMap pattern)
 	{
 		var result = this;

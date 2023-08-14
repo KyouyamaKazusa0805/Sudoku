@@ -6,7 +6,8 @@ namespace Sudoku.Concepts;
 /// <typeparam name="TSelf">The type of the implementation.</typeparam>
 /// <typeparam name="TMask">The type of the bit mask.</typeparam>
 /// <typeparam name="TBitStatusMap">The type of the bit status map.</typeparam>
-public partial interface IGrid<TSelf, TMask, TBitStatusMap> :
+/// <typeparam name="TConclusion">The type of the conclusion.</typeparam>
+public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IFormattable,
 	IMinMaxValue<TSelf>,
@@ -14,9 +15,10 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap> :
 	IReadOnlyCollection<Digit>,
 	ISimpleFormattable,
 	ISimpleParsable<TSelf>
-	where TSelf : IGrid<TSelf, TMask, TBitStatusMap>
+	where TSelf : IGrid<TSelf, TMask, TBitStatusMap, TConclusion>
 	where TMask : unmanaged, IBinaryInteger<TMask>
 	where TBitStatusMap : unmanaged, IBitStatusMap<TBitStatusMap, Cell>
+	where TConclusion : IConclusion<TConclusion, TMask>
 {
 	/// <summary>
 	/// Indicates the grid has already solved. If the value is <see langword="true"/>, the grid is solved; otherwise, <see langword="false"/>.
@@ -460,13 +462,13 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap> :
 	/// Try to apply the specified conclusion.
 	/// </summary>
 	/// <param name="conclusion">The conclusion to be applied.</param>
-	public abstract void Apply(Conclusion conclusion);
+	public abstract void Apply(TConclusion conclusion);
 
 	/// <summary>
 	/// Try to apply the specified array of conclusions.
 	/// </summary>
 	/// <param name="conclusions">The conclusions to be applied.</param>
-	public virtual void Apply(Conclusion[] conclusions)
+	public virtual void Apply(TConclusion[] conclusions)
 	{
 		foreach (var conclusion in conclusions)
 		{

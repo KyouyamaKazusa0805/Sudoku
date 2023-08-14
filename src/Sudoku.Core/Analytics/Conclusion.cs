@@ -3,36 +3,18 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Defines a type that can describe a candidate is the correct or wrong digit.
 /// </summary>
-/// <remarks>
-/// Two <see cref="Conclusion"/>s can be compared with each other. If one of those two is an elimination
-/// (i.e. holds the value <see cref="Elimination"/> as the type), the instance will be greater;
-/// if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
-/// </remarks>
 /// <param name="mask">
-/// The field uses the mask table of length 81 to indicate the state and all possible candidates
-/// holding for each cell. Each mask uses a <see cref="Mask"/> value, but only uses 11 of 16 bits.
-/// <code>
-/// | 16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
-/// |-----------------------|---|---------------------------------------|
-/// |   |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
-/// '-----------------------|---|---------------------------------------'
-///                          \_/ \_____________________________________/
-///                          (2)                   (1)
-/// </code>
-/// Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
-/// Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1), but the real type
-/// <see cref="Analytics.ConclusionType"/> uses <see cref="byte"/> as its underlying numeric type because C# cannot set "A bit"
-/// to be the underlying type. The narrowest type is <see cref="byte"/>.
+/// <inheritdoc cref="IConclusion{TSelf, TMask}.Mask" path="/summary"/>
 /// </param>
+/// <remarks>
+/// <inheritdoc cref="IConclusion{TSelf, TMask}.Mask" path="/remarks"/>
+/// </remarks>
 [JsonConverter(typeof(Converter))]
 [Equals]
 [GetHashCode]
 [EqualityOperators]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public readonly partial struct Conclusion([DataMember(MemberKinds.Field), HashCodeMember] Mask mask) :
-	IComparable<Conclusion>,
-	IEqualityOperators<Conclusion, Conclusion, bool>,
-	IEquatable<Conclusion>
+public readonly partial struct Conclusion([DataMember(MemberKinds.Field), HashCodeMember] Mask mask) : IConclusion<Conclusion, Mask>
 {
 	/// <summary>
 	/// Initializes an instance with a conclusion type and a candidate offset.
@@ -56,43 +38,36 @@ public readonly partial struct Conclusion([DataMember(MemberKinds.Field), HashCo
 	}
 
 
-	/// <summary>
-	/// Indicates the cell.
-	/// </summary>
+	/// <inheritdoc/>
 	public Cell Cell
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Candidate / 9;
 	}
 
-	/// <summary>
-	/// Indicates the digit.
-	/// </summary>
+	/// <inheritdoc/>
 	public Digit Digit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Candidate % 9;
 	}
 
-	/// <summary>
-	/// Indicates the candidate.
-	/// </summary>
+	/// <inheritdoc/>
 	public Candidate Candidate
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _mask & 1023;
 	}
 
-	/// <summary>
-	/// The conclusion type to control the action of applying.
-	/// If the type is <see cref="Assignment"/>, this conclusion will be set value (Set a digit into a cell);
-	/// otherwise, a candidate will be removed.
-	/// </summary>
+	/// <inheritdoc/>
 	public ConclusionType ConclusionType
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (ConclusionType)(_mask >> 10 & 1);
 	}
+
+	/// <inheritdoc/>
+	Mask IConclusion<Conclusion, Mask>.Mask => _mask;
 
 
 	[DeconstructionMethod]
@@ -114,15 +89,9 @@ public readonly partial struct Conclusion([DataMember(MemberKinds.Field), HashCo
 	public override string ToString() => ConclusionNotation.ToString(this);
 
 
-	/// <summary>
-	/// Negates the current conclusion instance, changing the conclusion type from <see cref="Assignment"/> to <see cref="Elimination"/>,
-	/// or from <see cref="Elimination"/> to <see cref="Assignment"/>.
-	/// </summary>
-	/// <param name="current">The current conclusion instance to be negated.</param>
-	/// <returns>The negation.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Conclusion operator ~(Conclusion current)
-		=> new(current.ConclusionType == Assignment ? Elimination : Assignment, current.Candidate);
+	public static Conclusion operator ~(Conclusion self) => new(self.ConclusionType == Assignment ? Elimination : Assignment, self.Candidate);
 }
 
 /// <summary>
