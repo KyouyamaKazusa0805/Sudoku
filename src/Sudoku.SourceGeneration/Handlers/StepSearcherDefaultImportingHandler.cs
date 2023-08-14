@@ -3,7 +3,7 @@ namespace Sudoku.SourceGeneration.Handlers;
 /// <summary>
 /// The generator handler for step searcher default importing.
 /// </summary>
-internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGeneratorCompilationHandler
+internal static class StepSearcherDefaultImportingHandler
 {
 	private const string AreasPropertyName = "Areas";
 
@@ -17,7 +17,7 @@ internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGenerato
 
 
 	/// <inheritdoc/>
-	public void Output(SourceProductionContext spc, Compilation compilation)
+	public static void Output(SourceProductionContext spc, Compilation compilation)
 	{
 		// Checks whether the assembly has marked any attributes.
 		if (compilation.Assembly.GetAttributes() is not { IsDefaultOrEmpty: false } attributesData)
@@ -128,7 +128,7 @@ internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGenerato
 					partial class {{name}} : {{baseTypeFullName}}
 					{
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().Name}}", "{{Value}}")]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(StepSearcherDefaultImportingHandler).Name}}", "{{Value}}")]
 						public {{name}}() : base({{priority}}, {{level}}{{(runningAreaStr is not null ? $", {runningAreaStr}" : string.Empty)}})
 						{
 						}
@@ -149,7 +149,7 @@ internal sealed class StepSearcherDefaultImportingHandler : IIncrementalGenerato
 						///     path="/param[@name='runningArea']"/>
 						/// </param>
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().Name}}", "{{Value}}")]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(StepSearcherDefaultImportingHandler).Name}}", "{{Value}}")]
 						public {{name}}(
 							int priority,
 							int level,

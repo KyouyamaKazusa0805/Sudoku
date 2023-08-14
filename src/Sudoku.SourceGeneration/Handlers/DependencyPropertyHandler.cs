@@ -3,10 +3,10 @@ namespace Sudoku.SourceGeneration.Handlers;
 /// <summary>
 /// The generator handler for dependency properties.
 /// </summary>
-internal sealed class DependencyPropertyHandler : IIncrementalGeneratorAttributeHandler<DependencyPropertyCollectedResult>
+internal static class DependencyPropertyHandler
 {
 	/// <inheritdoc/>
-	public void Output(SourceProductionContext spc, ImmutableArray<DependencyPropertyCollectedResult> values)
+	public static void Output(SourceProductionContext spc, ImmutableArray<DependencyPropertyCollectedResult> values)
 	{
 		var types = new List<string>();
 		foreach (var group in values.GroupBy(static data => data.Type, (IEqualityComparer<INamedTypeSymbol>)SymbolEqualityComparer.Default))
@@ -51,7 +51,7 @@ internal sealed class DependencyPropertyHandler : IIncrementalGeneratorAttribute
 								/// </summary>
 								/// <seealso cref="{propertyName}"/>
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{Value}")]
+								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{typeof(DependencyPropertyHandler).FullName}", "{Value}")]
 								{accessibilityModifier} static readonly global::Microsoft.UI.Xaml.DependencyProperty {propertyName}Property =
 									global::Microsoft.UI.Xaml.DependencyProperty.Register(nameof({propertyName}), typeof({propertyTypeStr}), typeof({containingTypeStr}), {defaultValueCreatorStr});
 						"""
@@ -62,7 +62,7 @@ internal sealed class DependencyPropertyHandler : IIncrementalGeneratorAttribute
 						{{doc}}
 								{{memberNotNullComment}}[global::System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute(true, {{notNullMembersStr}})]
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{Value}}")]
+								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(DependencyPropertyHandler).FullName}}", "{{Value}}")]
 								{{accessibilityModifier}} {{propertyTypeStr}}{{nullableToken}} {{propertyName}}
 								{
 									[global::System.Diagnostics.DebuggerStepThroughAttribute]
@@ -117,7 +117,7 @@ internal sealed class DependencyPropertyHandler : IIncrementalGeneratorAttribute
 	}
 
 	/// <inheritdoc/>
-	public DependencyPropertyCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	public static DependencyPropertyCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 	{
 		if (gasc is not
 			{

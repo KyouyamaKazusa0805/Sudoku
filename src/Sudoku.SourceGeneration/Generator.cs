@@ -23,21 +23,18 @@ public sealed class Generator : IIncrementalGenerator
 	}
 
 	private void PrimaryConstructor(IncrementalGeneratorInitializationContext context)
-	{
-		var instance = new PrimaryConstructorHandler();
-		context.RegisterSourceOutput(
+		=> context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
 					"System.SourceGeneration.DataMemberAttribute",
 					SyntaxNodeTypePredicate<ParameterSyntax>,
-					instance.Transform
+					PrimaryConstructorHandler.Transform
 				)
 				.Where(NotNullPredicate)
 				.Select(NotNullSelector)
 				.Collect(),
-			instance.Output
+			PrimaryConstructorHandler.Output
 		);
-	}
 
 	private void ObjectOverridden(IncrementalGeneratorInitializationContext context)
 	{
@@ -106,38 +103,32 @@ public sealed class Generator : IIncrementalGenerator
 	}
 
 	private void InstanceDeconstruction(IncrementalGeneratorInitializationContext context)
-	{
-		var instance = new InstanceDeconstructionMethodHandler();
-		context.RegisterSourceOutput(
+		=> context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
 					"System.SourceGeneration.DeconstructionMethodAttribute",
 					IsPartialMethodPredicate,
-					instance.Transform
+					InstanceDeconstructionMethodHandler.Transform
 				)
 				.Where(NotNullPredicate)
 				.Select(NotNullSelector)
 				.Collect(),
-			instance.Output
+			InstanceDeconstructionMethodHandler.Output
 		);
-	}
 
 	private void ImplicitField(IncrementalGeneratorInitializationContext context)
-	{
-		var instance = new ImplicitFieldHandler();
-		context.RegisterSourceOutput(
+		=> context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
 					"System.SourceGeneration.ImplicitFieldAttribute",
 					SyntaxNodeTypePredicate<PropertyDeclarationSyntax>,
-					instance.Transform
+					ImplicitFieldHandler.Transform
 				)
 				.Where(NotNullPredicate)
 				.Select(NotNullSelector)
 				.Collect(),
-			instance.Output
+			ImplicitFieldHandler.Output
 		);
-	}
 
 	private void ExplicitInterfaceImpl(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(
@@ -150,30 +141,21 @@ public sealed class Generator : IIncrementalGenerator
 		);
 
 	private void StepSearcherImports(IncrementalGeneratorInitializationContext context)
-	{
-		var instance = new StepSearcherDefaultImportingHandler();
-		context.RegisterSourceOutput(
+		=> context.RegisterSourceOutput(
 			context.CompilationProvider,
-			(spc, c) => { if (c.AssemblyName == "Sudoku.Analytics") { instance.Output(spc, c); } }
+			(spc, c) => { if (c.AssemblyName == "Sudoku.Analytics") { StepSearcherDefaultImportingHandler.Output(spc, c); } }
 		);
-	}
 
 	private void SudokuStudioXamlBindings(IncrementalGeneratorInitializationContext context)
 	{
 		const string projectName = "SudokuStudio";
 
-		const string name_Dependency = "SudokuStudio.ComponentModel.DependencyPropertyAttribute`1";
-		var instance_Dependency = new DependencyPropertyHandler();
 		context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
-					name_Dependency,
-					static (n, _) => n is ClassDeclarationSyntax
-					{
-						TypeParameterList: null,
-						Modifiers: var m and not []
-					} && m.Any(SyntaxKind.PartialKeyword),
-					instance_Dependency.Transform
+					"SudokuStudio.ComponentModel.DependencyPropertyAttribute`1",
+					static (n, _) => n is ClassDeclarationSyntax { TypeParameterList: null, Modifiers: var m and not [] } && m.Any(SyntaxKind.PartialKeyword),
+					DependencyPropertyHandler.Transform
 				)
 				.Where(NotNullPredicate)
 				.Select(NotNullSelector)
@@ -181,21 +163,19 @@ public sealed class Generator : IIncrementalGenerator
 				.Where(static pair => pair.Right.AssemblyName == projectName)
 				.Select(static (pair, _) => pair.Left)
 				.Collect(),
-			instance_Dependency.Output
+			DependencyPropertyHandler.Output
 		);
 
-		const string name_Attached = "SudokuStudio.ComponentModel.AttachedPropertyAttribute`1";
-		var instance_Attached = new AttachedPropertyHandler();
 		context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
-					name_Attached,
+					"SudokuStudio.ComponentModel.AttachedPropertyAttribute`1",
 					static (n, _) => n is ClassDeclarationSyntax
 					{
 						TypeParameterList: null,
 						Modifiers: var m and not []
 					} && m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword),
-					instance_Attached.Transform
+					AttachedPropertyHandler.Transform
 				)
 				.Where(NotNullPredicate)
 				.Select(NotNullSelector)
@@ -203,7 +183,7 @@ public sealed class Generator : IIncrementalGenerator
 				.Where(static pair => pair.Right.AssemblyName == projectName)
 				.Select(static (pair, _) => pair.Left)
 				.Collect(),
-			instance_Attached.Output
+			AttachedPropertyHandler.Output
 		);
 	}
 }

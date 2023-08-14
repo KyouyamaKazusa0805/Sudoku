@@ -154,18 +154,6 @@
             <param name="_"/>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.SourceGeneration.CommonMethods.SyntaxNodeTypePredicate``2(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
-            <summary>
-            Determine whether the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> is of type <typeparamref name="T1"/> or <typeparamref name="T2"/>.
-            </summary>
-            <typeparam name="T1">The possible type 1 of the node.</typeparam>
-            <typeparam name="T2">The possible type 2 of the node.</typeparam>
-            <param name="node"><inheritdoc cref="M:Sudoku.SourceGeneration.CommonMethods.SyntaxNodeTypePredicate``1(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)" path="/param[@name='node']"/></param>
-            <param name="_"/>
-            <returns>
-            <inheritdoc cref="M:Sudoku.SourceGeneration.CommonMethods.SyntaxNodeTypePredicate``1(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)" path="/returns"/>
-            </returns>
-        </member>
         <member name="M:Sudoku.SourceGeneration.CommonMethods.IsPartialTypePredicate``1(``0,System.Threading.CancellationToken)">
             <summary>
             Determine whether the specified type declaration syntax node contains a <see langword="partial"/> modifier.
@@ -362,47 +350,6 @@
 					Provides with file-local extension methods.
 				</summary>
 			</target>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.IIncrementalGeneratorAttributeHandler`1">
-            <summary>
-            Represents a file-local constraint for generators,
-            which can be used for <see cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.SyntaxProvider"/>,
-            with <see cref="M:Microsoft.CodeAnalysis.SyntaxValueProvider.ForAttributeWithMetadataName``1(System.String,System.Func{Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken,System.Boolean},System.Func{Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken,``0})"/>.
-            </summary>
-            <typeparam name="T">The type of the final data structure.</typeparam>
-            <seealso cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.SyntaxProvider"/>
-            <seealso cref="M:Microsoft.CodeAnalysis.SyntaxValueProvider.ForAttributeWithMetadataName``1(System.String,System.Func{Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken,System.Boolean},System.Func{Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken,``0})"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.IIncrementalGeneratorAttributeHandler`1.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <summary>
-            Transform the target result from the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> and its semantic values.
-            </summary>
-            <param name="gasc">The context used for getting basic information for a <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/>.</param>
-            <param name="cancellationToken">The cancellation token that can cancel generating.</param>
-            <returns>The result. The value can be <see langword="null"/>.</returns>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.IIncrementalGeneratorAttributeHandler`1.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{`0})">
-            <summary>
-            Try to generate the source.
-            </summary>
-            <param name="spc">The context used for generating.</param>
-            <param name="values">The values.</param>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.IIncrementalGeneratorCompilationHandler">
-            <summary>
-            Represents a file-local constraint for generators,
-            which can be used for <see cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.CompilationProvider"/>.
-            </summary>
-            <seealso cref="P:Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext.CompilationProvider"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.IIncrementalGeneratorCompilationHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,Microsoft.CodeAnalysis.Compilation)">
-            <summary>
-            Try to generate the source.
-            </summary>
-            <param name="spc">The context used for generating.</param>
-            <param name="compilation">
-            The <see cref="T:Microsoft.CodeAnalysis.Compilation"/> instance that provides the information for the calling project.
-            </param>
         </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler">
             <summary>

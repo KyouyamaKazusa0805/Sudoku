@@ -3,10 +3,10 @@ namespace Sudoku.SourceGeneration.Handlers;
 /// <summary>
 /// The generator handler for implicit fields.
 /// </summary>
-internal sealed class ImplicitFieldHandler : IIncrementalGeneratorAttributeHandler<ImplicitFieldCollectedResult>
+internal static class ImplicitFieldHandler
 {
 	/// <inheritdoc/>
-	public void Output(SourceProductionContext spc, ImmutableArray<ImplicitFieldCollectedResult> values)
+	public static void Output(SourceProductionContext spc, ImmutableArray<ImplicitFieldCollectedResult> values)
 	{
 		var types = new List<string>();
 		foreach (var group in values.GroupBy(static value => value.ContainingType, (IEqualityComparer<ITypeSymbol>)SymbolEqualityComparer.Default))
@@ -24,7 +24,7 @@ internal sealed class ImplicitFieldHandler : IIncrementalGeneratorAttributeHandl
 							/// Indicates the backing field of property <see cref="{{property.Name}}"/>.
 							/// </summary>
 							/// <seealso cref="{{property.Name}}"/>
-							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{Value}}")]
+							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ImplicitFieldHandler).FullName}}", "{{Value}}")]
 							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 							private {{readOnlyKeyword}}{{property.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}}{{nullableToken}} {{property.Name.ToCamelCase()}};
 					"""
@@ -65,7 +65,7 @@ internal sealed class ImplicitFieldHandler : IIncrementalGeneratorAttributeHandl
 	}
 
 	/// <inheritdoc/>
-	public ImplicitFieldCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	public static ImplicitFieldCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
 	{
 		if (gasc is not
 			{

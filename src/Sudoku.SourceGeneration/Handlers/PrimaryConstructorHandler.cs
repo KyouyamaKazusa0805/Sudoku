@@ -3,10 +3,10 @@ namespace Sudoku.SourceGeneration.Handlers;
 /// <summary>
 /// The generator handler for primary constructor parameters.
 /// </summary>
-internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttributeHandler<PrimaryConstructorCollectedResult>
+internal static class PrimaryConstructorHandler
 {
 	/// <inheritdoc/>
-	public void Output(SourceProductionContext spc, ImmutableArray<PrimaryConstructorCollectedResult> values)
+	public static void Output(SourceProductionContext spc, ImmutableArray<PrimaryConstructorCollectedResult> values)
 	{
 		var types = new List<string>();
 		foreach (var valuesGrouped in
@@ -50,7 +50,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 							/// <summary>
 									{docComments ?? $"/// The generated field declaration for parameter <c>{parameterName}</c>."}
 									/// </summary>
-									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{Value}")]
+									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{typeof(PrimaryConstructorHandler).FullName}", "{Value}")]
 									[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 							{pragmaWarningDisable}{accessibilityModifiers}{readonlyModifier}{refModifiers}{parameterTypeName}{targetMemberName} = {assigning};{pragmaWarningRestor}
 							"""
@@ -88,7 +88,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 							/// <summary>
 									{{docComments ?? $"/// The generated property declaration for parameter <c>{parameterName}</c>."}}
 									/// </summary>
-									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{Value}}")]
+									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(PrimaryConstructorHandler).FullName}}", "{{Value}}")]
 									[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 									{{memberNotNullAttribute}}{{accessibilityModifiers}}{{readonlyModifier}}{{refModifiers}}{{parameterTypeName}}{{targetMemberName}} { get;{{setter}} } = {{assigning}};
 							"""
@@ -181,7 +181,7 @@ internal sealed class PrimaryConstructorHandler : IIncrementalGeneratorAttribute
 	}
 
 	/// <inheritdoc/>
-	public PrimaryConstructorCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	public static PrimaryConstructorCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 		=> gasc switch
 		{
 			{

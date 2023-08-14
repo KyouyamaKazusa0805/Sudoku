@@ -3,10 +3,10 @@ namespace Sudoku.SourceGeneration.Handlers;
 /// <summary>
 /// The generator handler for attached properties.
 /// </summary>
-internal sealed class AttachedPropertyHandler : IIncrementalGeneratorAttributeHandler<AttachedPropertyCollectedResult>
+internal static class AttachedPropertyHandler
 {
 	/// <inheritdoc/>
-	public void Output(SourceProductionContext spc, ImmutableArray<AttachedPropertyCollectedResult> values)
+	public static void Output(SourceProductionContext spc, ImmutableArray<AttachedPropertyCollectedResult> values)
 	{
 		var types = new List<string>();
 		foreach (var group in values.GroupBy(static data => data.Type, (IEqualityComparer<INamedTypeSymbol>)SymbolEqualityComparer.Default))
@@ -42,7 +42,7 @@ internal sealed class AttachedPropertyHandler : IIncrementalGeneratorAttributeHa
 								/// Defines a attached property that binds with setter and getter methods <c>{propertyName}</c>.
 								/// </summary>
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{GetType().FullName}", "{Value}")]
+								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{typeof(AttachedPropertyHandler).FullName}", "{Value}")]
 								public static readonly global::Microsoft.UI.Xaml.DependencyProperty {propertyName}Property =
 									global::Microsoft.UI.Xaml.DependencyProperty.RegisterAttached("{propertyName}", typeof({propertyTypeStr}), typeof({containingTypeStr}), {defaultValueCreatorStr});
 						"""
@@ -52,7 +52,7 @@ internal sealed class AttachedPropertyHandler : IIncrementalGeneratorAttributeHa
 						$$"""
 						{{doc}}
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{Value}}")]
+								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(AttachedPropertyHandler).FullName}}", "{{Value}}")]
 								[global::System.Diagnostics.DebuggerStepThroughAttribute]
 								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 								public static void Set{{propertyName}}(global::Microsoft.UI.Xaml.DependencyObject obj, {{propertyTypeStr}}{{nullableToken}} value)
@@ -60,7 +60,7 @@ internal sealed class AttachedPropertyHandler : IIncrementalGeneratorAttributeHa
 
 								{{doc}}
 								[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{Value}}")]
+								[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(AttachedPropertyHandler).FullName}}", "{{Value}}")]
 								[global::System.Diagnostics.DebuggerStepThroughAttribute]
 								[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 								public static {{propertyTypeStr}}{{nullableToken}} Get{{propertyName}}(global::Microsoft.UI.Xaml.DependencyObject obj)
@@ -109,7 +109,7 @@ internal sealed class AttachedPropertyHandler : IIncrementalGeneratorAttributeHa
 	}
 
 	/// <inheritdoc/>
-	public AttachedPropertyCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	public static AttachedPropertyCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
 	{
 		if (gasc is not
 			{

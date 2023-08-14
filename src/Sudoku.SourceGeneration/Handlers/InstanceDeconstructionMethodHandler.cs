@@ -3,13 +3,13 @@ namespace Sudoku.SourceGeneration.Handlers;
 /// <summary>
 /// The generator handler for instance deconstruction methods.
 /// </summary>
-internal sealed class InstanceDeconstructionMethodHandler : IIncrementalGeneratorAttributeHandler<InstanceDeconstructionMethodCollectedResult>
+internal static class InstanceDeconstructionMethodHandler
 {
 	private const string DeconstructionMethodArgumentAttributeName = "System.SourceGeneration.DeconstructionMethodArgumentAttribute";
 
 
 	/// <inheritdoc/>
-	public void Output(SourceProductionContext spc, ImmutableArray<InstanceDeconstructionMethodCollectedResult> values)
+	public static void Output(SourceProductionContext spc, ImmutableArray<InstanceDeconstructionMethodCollectedResult> values)
 	{
 		static INamedTypeSymbol containingTypeSelector(InstanceDeconstructionMethodCollectedResult data) => data.ContainingType;
 		var types = new List<string>();
@@ -62,7 +62,7 @@ internal sealed class InstanceDeconstructionMethodHandler : IIncrementalGenerato
 					$$"""
 					/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 							[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{GetType().FullName}}", "{{Value}}")]
+							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(InstanceDeconstructionMethodHandler).FullName}}", "{{Value}}")]
 							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 							{{modifiers}} void Deconstruct({{argsStr}})
 							{
@@ -108,7 +108,7 @@ internal sealed class InstanceDeconstructionMethodHandler : IIncrementalGenerato
 	}
 
 	/// <inheritdoc/>
-	public InstanceDeconstructionMethodCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	public static InstanceDeconstructionMethodCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 		=> gasc switch
 		{
 			{
