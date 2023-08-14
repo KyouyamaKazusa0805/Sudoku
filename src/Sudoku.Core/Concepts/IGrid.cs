@@ -5,12 +5,16 @@ namespace Sudoku.Concepts;
 /// </summary>
 /// <typeparam name="TSelf">The type of the implementation.</typeparam>
 /// <typeparam name="THouseMask">The type of te house mask.</typeparam>
+/// <typeparam name="TConjuagteMask">The type of conjugate pair mask.</typeparam>
 /// <typeparam name="TMask">The type of the bit mask.</typeparam>
 /// <typeparam name="TCell">The type of the cell.</typeparam>
 /// <typeparam name="TDigit">The type of the digit.</typeparam>
+/// <typeparam name="TCandidate">The type of the candidate.</typeparam>
+/// <typeparam name="THouse">The type of the house.</typeparam>
 /// <typeparam name="TBitStatusMap">The type of the bit status map.</typeparam>
 /// <typeparam name="TConclusion">The type of the conclusion.</typeparam>
-public partial interface IGrid<TSelf, THouseMask, TMask, TCell, TDigit, TBitStatusMap, TConclusion> :
+/// <typeparam name="TConjugate">The type of the conjugate pair.</typeparam>
+public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, TCandidate, THouse, TBitStatusMap, TConclusion, TConjugate> :
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IFormattable,
 	IMinMaxValue<TSelf>,
@@ -18,13 +22,17 @@ public partial interface IGrid<TSelf, THouseMask, TMask, TCell, TDigit, TBitStat
 	IReadOnlyCollection<TDigit>,
 	ISimpleFormattable,
 	ISimpleParsable<TSelf>
-	where TSelf : IGrid<TSelf, THouseMask, TMask, TCell, TDigit, TBitStatusMap, TConclusion>
+	where TSelf : IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, TCandidate, THouse, TBitStatusMap, TConclusion, TConjugate>
 	where THouseMask : unmanaged, IBinaryInteger<THouseMask>
+	where TConjuagteMask : unmanaged, IBinaryInteger<TConjuagteMask>
 	where TMask : unmanaged, IBinaryInteger<TMask>
 	where TCell : unmanaged, IBinaryInteger<TCell>
 	where TDigit : unmanaged, IBinaryInteger<TDigit>
+	where TCandidate : unmanaged, IBinaryInteger<TCandidate>
+	where THouse : unmanaged, IBinaryInteger<THouse>
 	where TBitStatusMap : unmanaged, IBitStatusMap<TBitStatusMap, TCell>
 	where TConclusion : IConclusion<TConclusion, TMask>
+	where TConjugate : IConjugatePair<TConjugate, THouseMask, TConjuagteMask, TCell, TDigit, THouse, TBitStatusMap>
 {
 	/// <summary>
 	/// Indicates the grid has already solved. If the value is <see langword="true"/>, the grid is solved; otherwise, <see langword="false"/>.
@@ -142,7 +150,7 @@ public partial interface IGrid<TSelf, THouseMask, TMask, TCell, TDigit, TBitStat
 	/// <summary>
 	/// Indicates all possible conjugate pairs appeared in this grid.
 	/// </summary>
-	public abstract Conjugate[] ConjugatePairs { get; }
+	public abstract TConjugate[] ConjugatePairs { get; }
 
 	/// <summary>
 	/// Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
@@ -282,7 +290,7 @@ public partial interface IGrid<TSelf, THouseMask, TMask, TCell, TDigit, TBitStat
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
-	public abstract bool CheckMinimal(out Candidate firstCandidateMakePuzzleNotMinimal);
+	public abstract bool CheckMinimal(out TCandidate firstCandidateMakePuzzleNotMinimal);
 
 	/// <summary>
 	/// Sets a candidate existence case with a <see cref="bool"/> value.
@@ -447,7 +455,7 @@ public partial interface IGrid<TSelf, THouseMask, TMask, TCell, TDigit, TBitStat
 	/// <returns>
 	/// An array of <typeparamref name="TResult"/> elements converted.
 	/// </returns>
-	public abstract TResult[] Select<TResult>(Func<Candidate, TResult> selector);
+	public abstract TResult[] Select<TResult>(Func<TCandidate, TResult> selector);
 
 	/// <summary>
 	/// Reset the sudoku grid, to set all modifiable values to empty ones.

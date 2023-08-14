@@ -19,7 +19,7 @@ namespace Sudoku.Concepts;
 [Equals]
 [ToString]
 [EqualityOperators]
-public unsafe partial struct Grid : IGrid<Grid, HouseMask, Mask, Cell, Digit, CellMap, Conclusion>
+public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -68,10 +68,10 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, Mask, Cell, Digit, Ce
 	/// </remarks>
 	public static readonly delegate*<ref Grid, void> RefreshingCandidates = &OnRefreshingCandidates;
 
-	/// <inheritdoc cref="IGrid{TSelf, THouseMask, TMask, TCell, TDigit, TBitStatusMap, TConclusion}.Empty"/>
+	/// <inheritdoc cref="IGrid{TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, THouse, TBitStatusMap, TConclusion, TConjugate}.Empty"/>
 	public static readonly Grid Empty;
 
-	/// <inheritdoc cref="IGrid{TSelf, THouseMask, TMask, TCell, TDigit, TBitStatusMap, TConclusion}.Undefined"/>
+	/// <inheritdoc cref="IGrid{TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, THouse, TBitStatusMap, TConclusion, TConjugate}.Undefined"/>
 	public static readonly Grid Undefined;
 
 	/// <summary>
@@ -367,7 +367,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, Mask, Cell, Digit, Ce
 	readonly int IReadOnlyCollection<Digit>.Count => 81;
 
 	/// <inheritdoc/>
-	static Mask IGrid<Grid, HouseMask, Mask, Cell, Digit, CellMap, Conclusion>.DefaultMask => DefaultMask;
+	static Mask IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>.DefaultMask => DefaultMask;
 
 	/// <summary>
 	/// Indicates the minimum possible grid value that the current type can reach.
@@ -388,10 +388,10 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, Mask, Cell, Digit, Ce
 	static Grid IMinMaxValue<Grid>.MaxValue => (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
 
 	/// <inheritdoc/>
-	static Grid IGrid<Grid, HouseMask, Mask, Cell, Digit, CellMap, Conclusion>.Empty => Empty;
+	static Grid IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>.Empty => Empty;
 
 	/// <inheritdoc/>
-	static Grid IGrid<Grid, HouseMask, Mask, Cell, Digit, CellMap, Conclusion>.Undefined => Undefined;
+	static Grid IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>.Undefined => Undefined;
 
 
 	/// <inheritdoc/>
@@ -467,7 +467,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, Mask, Cell, Digit, Ce
 	}
 
 	/// <inheritdoc/>
-	readonly Mask IGrid<Grid, HouseMask, Mask, Cell, Digit, CellMap, Conclusion>.this[Cell cell] => this[cell];
+	readonly Mask IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>.this[Cell cell] => this[cell];
 
 
 	/// <inheritdoc/>
@@ -880,7 +880,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, Mask, Cell, Digit, Ce
 #pragma warning disable CS1584, CS1658
 	/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap, TConclusion}.GetMap(delegate*{in TSelf, int, bool})"/>
 #pragma warning restore CS1584, CS1658
-	[ExplicitInterfaceImpl(typeof(IGrid<,,,,,,>))]
+	[ExplicitInterfaceImpl(typeof(IGrid<,,,,,,,,,,>))]
 	private readonly CellMap GetMap(delegate*<in Grid, Cell, bool> predicate)
 	{
 		var result = CellMap.Empty;
@@ -898,7 +898,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, Mask, Cell, Digit, Ce
 #pragma warning disable CS1584, CS1658
 	/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap, TConclusion}.GetMaps(delegate*{in Grid, int, int, bool})"/>
 #pragma warning restore CS1584, CS1658
-	[ExplicitInterfaceImpl(typeof(IGrid<,,,,,,>))]
+	[ExplicitInterfaceImpl(typeof(IGrid<,,,,,,,,,,>))]
 	private readonly CellMap[] GetMaps(delegate*<in Grid, Cell, Digit, bool> predicate)
 	{
 		var result = new CellMap[9];
@@ -917,8 +917,8 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, Mask, Cell, Digit, Ce
 		return result;
 	}
 
-	/// <inheritdoc cref="IGrid{TSelf, THouseMask, TMask, TCell, TDigit, TBitStatusMap, TConclusion}.Preserve(in TBitStatusMap)"/>
-	[ExplicitInterfaceImpl(typeof(IGrid<,,,,,,>))]
+	/// <inheritdoc cref="IGrid{TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, TCandidate, THouse, TBitStatusMap, TConclusion, TConjugate}.Preserve(in TBitStatusMap)"/>
+	[ExplicitInterfaceImpl(typeof(IGrid<,,,,,,,,,,>))]
 	private readonly Grid Preserve(scoped in CellMap pattern)
 	{
 		var result = this;

@@ -11,9 +11,7 @@ namespace Sudoku.Concepts;
 [Equals]
 [GetHashCode]
 [EqualityOperators]
-public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] int mask) :
-	IEquatable<Conjugate>,
-	IEqualityOperators<Conjugate, Conjugate, bool>
+public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] int mask) : IConjugatePair<Conjugate, HouseMask, int, Cell, Digit, House, CellMap>
 {
 	/// <summary>
 	/// Initializes a <see cref="Conjugate"/> instance with from and to cell offset and a digit.
@@ -38,27 +36,21 @@ public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] int mas
 	}
 
 
-	/// <summary>
-	/// Indicates the cell that starts with the conjugate pair.
-	/// </summary>
+	/// <inheritdoc/>
 	public Cell From
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _mask & 1023;
 	}
 
-	/// <summary>
-	/// Indicates the cell that ends with the conjugate pair.
-	/// </summary>
+	/// <inheritdoc/>
 	public Cell To
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _mask >> 10 & 1023;
 	}
 
-	/// <summary>
-	/// Indicates the digit used.
-	/// </summary>
+	/// <inheritdoc/>
 	[HashCodeMember]
 	public Digit Digit
 	{
@@ -66,34 +58,30 @@ public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] int mas
 		get => _mask >> 20 & 15;
 	}
 
-	/// <summary>
-	/// Indicates the line that two cells lie in.
-	/// </summary>
+	/// <inheritdoc/>
 	public House Line
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Map.CoveredLine;
 	}
 
-	/// <summary>
-	/// Indicates the house that two cells lie in.
-	/// </summary>
-	/// <remarks><inheritdoc cref="CellMap.CoveredHouses"/></remarks>
+	/// <inheritdoc/>
 	public HouseMask Houses
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Map.CoveredHouses;
 	}
 
-	/// <summary>
-	/// Indicates the whole map.
-	/// </summary>
+	/// <inheritdoc/>
 	[HashCodeMember]
 	public CellMap Map
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => CellsMap[From] + To;
 	}
+
+	/// <inheritdoc/>
+	int IConjugatePair<Conjugate, HouseMask, int, Cell, Digit, House, CellMap>.Mask => _mask;
 
 	private Candidate FromCandidate => From * 9 + Digit;
 
