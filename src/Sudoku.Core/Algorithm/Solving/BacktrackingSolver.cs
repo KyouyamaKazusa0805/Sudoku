@@ -18,7 +18,7 @@ namespace Sudoku.Algorithm.Solving;
 /// <see href="https://en.wikipedia.org/wiki/Sudoku_solving_algorithms#cite_note-difficult_17_clue-1">this link</see>.
 /// </para>
 /// </remarks>
-public sealed class BacktrackingSolver : ISolver
+public sealed class BacktrackingSolver : ISolver<Grid, Mask, CellMap, Conclusion>
 {
 	/// <inheritdoc/>
 	public static string UriLink => "https://simple.wikipedia.org/wiki/Backtracking";
@@ -31,7 +31,7 @@ public sealed class BacktrackingSolver : ISolver
 	/// <param name="result">
 	/// <para>The result of the grid.</para>
 	/// <para>
-	/// Different with other methods whose containing type is <see cref="ISolver"/>,
+	/// Different with other methods whose containing type is <see cref="ISolver{TGrid, TMask, TBitStatusMap, TConclusion}"/>,
 	/// this argument can be used no matter what the result value will be.
 	/// </para>
 	/// </param>
