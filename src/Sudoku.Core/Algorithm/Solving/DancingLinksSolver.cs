@@ -3,7 +3,7 @@ namespace Sudoku.Algorithm.Solving;
 /// <summary>
 /// Defines a solver that uses the dancing links algorithm.
 /// </summary>
-public sealed class DancingLinksSolver : ISolver<Grid, Mask, CellMap, Conclusion>
+public sealed class DancingLinksSolver : ISolver
 {
 	/// <summary>
 	/// Indicates the stack that stores the raw data for the solutions.

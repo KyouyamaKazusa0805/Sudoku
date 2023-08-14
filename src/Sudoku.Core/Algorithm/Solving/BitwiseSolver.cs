@@ -10,7 +10,7 @@ using static Constants;
 /// The reason why the type name contains the word <i>bitwise</i> is that the solver uses the bitwise algorithm
 /// to handle a sudoku grid, which is more efficient.
 /// </remarks>
-public sealed unsafe class BitwiseSolver : ISolver<Grid, Mask, CellMap, Conclusion>
+public sealed unsafe class BitwiseSolver : ISolver
 {
 	/// <summary>
 	/// The buffer length of a solution puzzle.

@@ -4,20 +4,26 @@ namespace Sudoku.Concepts;
 /// Represents a role that executes like a sudoku grid concept.
 /// </summary>
 /// <typeparam name="TSelf">The type of the implementation.</typeparam>
+/// <typeparam name="THouseMask">The type of te house mask.</typeparam>
 /// <typeparam name="TMask">The type of the bit mask.</typeparam>
+/// <typeparam name="TCell">The type of the cell.</typeparam>
+/// <typeparam name="TDigit">The type of the digit.</typeparam>
 /// <typeparam name="TBitStatusMap">The type of the bit status map.</typeparam>
 /// <typeparam name="TConclusion">The type of the conclusion.</typeparam>
-public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
+public partial interface IGrid<TSelf, THouseMask, TMask, TCell, TDigit, TBitStatusMap, TConclusion> :
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IFormattable,
 	IMinMaxValue<TSelf>,
 	IParsable<TSelf>,
-	IReadOnlyCollection<Digit>,
+	IReadOnlyCollection<TDigit>,
 	ISimpleFormattable,
 	ISimpleParsable<TSelf>
-	where TSelf : IGrid<TSelf, TMask, TBitStatusMap, TConclusion>
+	where TSelf : IGrid<TSelf, THouseMask, TMask, TCell, TDigit, TBitStatusMap, TConclusion>
+	where THouseMask : unmanaged, IBinaryInteger<THouseMask>
 	where TMask : unmanaged, IBinaryInteger<TMask>
-	where TBitStatusMap : unmanaged, IBitStatusMap<TBitStatusMap, Cell>
+	where TCell : unmanaged, IBinaryInteger<TCell>
+	where TDigit : unmanaged, IBinaryInteger<TDigit>
+	where TBitStatusMap : unmanaged, IBitStatusMap<TBitStatusMap, TCell>
 	where TConclusion : IConclusion<TConclusion, TMask>
 {
 	/// <summary>
@@ -74,12 +80,12 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// <para>Indicates which houses are null houses.</para>
 	/// <para>A <b>Null House</b> is a house whose hold cells are all empty cells.</para>
 	/// <para>
-	/// The property returns a <see cref="HouseMask"/> value as a mask that contains all possible house indices.
+	/// The property returns a <typeparamref name="THouseMask"/> value as a mask that contains all possible house indices.
 	/// For example, if the row 5, column 5 and block 5 (1-9) are null houses, the property will return
-	/// the result <see cref="HouseMask"/> value, <c>000010000_000010000_000010000</c> as binary.
+	/// the result <typeparamref name="THouseMask"/> value, <c>000010000_000010000_000010000</c> as binary.
 	/// </para>
 	/// </summary>
-	public abstract HouseMask NullHouses { get; }
+	public abstract THouseMask NullHouses { get; }
 
 	/// <summary>
 	/// Gets a cell list that only contains the given cells.
@@ -178,7 +184,7 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// </summary>
 	/// <param name="cell">The index of the cell.</param>
 	/// <returns>A reference to the mask at the specified cell offset.</returns>
-	public abstract TMask this[Cell cell] { get; }
+	public abstract TMask this[TCell cell] { get; }
 
 	/// <summary>
 	/// Creates a mask of type <typeparamref name="TMask"/> that represents the usages of digits 1 to 9,
@@ -228,7 +234,7 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public abstract bool DuplicateWith(Cell cell, Digit digit);
+	public abstract bool DuplicateWith(TCell cell, TDigit digit);
 
 	/// <summary>
 	/// <para>
@@ -281,10 +287,10 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// <summary>
 	/// Sets a candidate existence case with a <see cref="bool"/> value.
 	/// </summary>
-	/// <param name="cell"><inheritdoc cref="SetCandidateIsOn(int, int, bool)" path="/param[@name='cell']"/></param>
-	/// <param name="digit"><inheritdoc cref="SetCandidateIsOn(int, int, bool)" path="/param[@name='digit']"/></param>
+	/// <param name="cell"><inheritdoc cref="SetCandidateIsOn(TCell, TDigit, bool)" path="/param[@name='cell']"/></param>
+	/// <param name="digit"><inheritdoc cref="SetCandidateIsOn(TCell, TDigit, bool)" path="/param[@name='digit']"/></param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public abstract bool GetCandidateIsOn(Cell cell, Digit digit);
+	public abstract bool GetCandidateIsOn(TCell cell, TDigit digit);
 
 	/// <summary>
 	/// Indicates whether the current grid contains the digit in the specified cell.
@@ -326,12 +332,12 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// </para>
 	/// <para>
 	/// In addition, because the type is <see cref="bool"/>? rather than <see cref="bool"/>,
-	/// the result case will be more precisely than the indexer <see cref="GetCandidateIsOn(Cell, Digit)"/>,
+	/// the result case will be more precisely than the indexer <see cref="GetCandidateIsOn(TCell, TDigit)"/>,
 	/// which is the main difference between this method and that indexer.
 	/// </para>
 	/// </remarks>
-	/// <seealso cref="GetCandidateIsOn(Cell, Digit)"/>
-	public abstract bool? Exists(Cell cell, Digit digit);
+	/// <seealso cref="GetCandidateIsOn(TCell, TDigit)"/>
+	public abstract bool? Exists(TCell cell, TDigit digit);
 
 	/// <summary>
 	/// Try to get the minimum times that the specified digit, describing it can be filled with the specified houses.
@@ -377,7 +383,7 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// </list>
 	/// Therefore, the method will return 4 as the final answer.
 	/// </remarks>
-	public abstract int LeastTimesOf(Digit digit, HouseMask houses, out HouseMask leastHousesUsed);
+	public abstract int LeastTimesOf(TDigit digit, THouseMask houses, out THouseMask leastHousesUsed);
 
 	/// <summary>
 	/// Serializes this instance to an array, where all digit value will be stored.
@@ -385,7 +391,7 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// <returns>
 	/// This array. All elements are between 0 and 9, where 0 means the cell is <see cref="CellState.Empty"/> now.
 	/// </returns>
-	public abstract Digit[] ToArray();
+	public abstract TDigit[] ToArray();
 
 	/// <summary>
 	/// Get the candidate mask part of the specified cell.
@@ -410,14 +416,14 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// the value will indicate the cell contains the digit 2, 4 and 9.
 	/// </para>
 	/// </returns>
-	public abstract TMask GetCandidates(Cell cell);
+	public abstract TMask GetCandidates(TCell cell);
 
 	/// <summary>
 	/// Get the cell state at the specified cell.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <returns>The cell state.</returns>
-	public abstract CellState GetState(Cell cell);
+	public abstract CellState GetState(TCell cell);
 
 	/// <summary>
 	/// Try to get the digit filled in the specified cell.
@@ -427,7 +433,7 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the specified cell keeps a wrong cell state value. For example, <see cref="CellState.Undefined"/>.
 	/// </exception>
-	public abstract Digit GetDigit(Cell cell);
+	public abstract TDigit GetDigit(TCell cell);
 
 	/// <summary>
 	/// Projects each element of a sequence into a new form.
@@ -481,14 +487,14 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="state">The state.</param>
-	public abstract void SetStatus(Cell cell, CellState state);
+	public abstract void SetStatus(TCell cell, CellState state);
 
 	/// <summary>
 	/// Set the specified cell to the specified mask.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="mask">The mask to set.</param>
-	public abstract void SetMask(Cell cell, TMask mask);
+	public abstract void SetMask(TCell cell, TMask mask);
 
 	/// <summary>
 	/// Set the specified digit into the specified cell.
@@ -505,7 +511,7 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// If the cell is a given cell, the setter will do nothing.
 	/// </para>
 	/// </param>
-	public abstract void SetDigit(Cell cell, Digit digit);
+	public abstract void SetDigit(TCell cell, TDigit digit);
 
 	/// <summary>
 	/// Sets the target candidate state.
@@ -516,7 +522,7 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// The case you want to set. <see langword="false"/> means that this candidate
 	/// doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
 	/// </param>
-	public abstract void SetCandidateIsOn(Cell cell, Digit digit, bool isOn);
+	public abstract void SetCandidateIsOn(TCell cell, TDigit digit, bool isOn);
 
 	/// <summary>
 	/// Called by properties <see cref="EmptyCells"/> and <see cref="BivalueCells"/>.
@@ -525,10 +531,10 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// <returns>The map.</returns>
 	/// <seealso cref="EmptyCells"/>
 	/// <seealso cref="BivalueCells"/>
-	protected virtual unsafe TBitStatusMap GetMap(delegate*<in TSelf, Cell, bool> predicate)
+	protected virtual unsafe TBitStatusMap GetMap(delegate*<in TSelf, TCell, bool> predicate)
 	{
 		var result = TBitStatusMap.Empty;
-		for (var cell = 0; cell < 81; cell++)
+		for (var (cell, i) = (TCell.Zero, 0); i < 81; cell++, i++)
 		{
 			if (predicate((TSelf)this, cell))
 			{
@@ -547,13 +553,13 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// <seealso cref="CandidatesMap"/>
 	/// <seealso cref="DigitsMap"/>
 	/// <seealso cref="ValuesMap"/>
-	protected virtual unsafe TBitStatusMap[] GetMaps(delegate*<in TSelf, Cell, Digit, bool> predicate)
+	protected virtual unsafe TBitStatusMap[] GetMaps(delegate*<in TSelf, TCell, TDigit, bool> predicate)
 	{
 		var result = new TBitStatusMap[9];
-		for (var digit = 0; digit < 9; digit++)
+		for (var (digit, i) = (TDigit.Zero, 0); i < 9; digit++, i++)
 		{
-			scoped ref var map = ref result[digit];
-			for (var cell = 0; cell < 81; cell++)
+			scoped ref var map = ref result[i];
+			for (var (cell, j) = (TCell.Zero, 0); j < 81; cell++, j++)
 			{
 				if (predicate((TSelf)this, cell, digit))
 				{
@@ -570,12 +576,12 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	/// </summary>
 	/// <param name="pattern">The pattern.</param>
 	/// <returns>The result grid.</returns>
-	protected virtual unsafe TSelf Preserve(scoped in TBitStatusMap pattern)
+	protected virtual TSelf Preserve(scoped in TBitStatusMap pattern)
 	{
 		var result = (TSelf)this;
 		foreach (var cell in ~pattern)
 		{
-			result.SetDigit(cell, -1);
+			result.SetDigit(cell, -TDigit.One);
 		}
 
 		return result;
@@ -587,14 +593,14 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator<Digit> IEnumerable<Digit>.GetEnumerator() => ((IEnumerable<Digit>)ToArray()).GetEnumerator();
+	IEnumerator<TDigit> IEnumerable<TDigit>.GetEnumerator() => ((IEnumerable<TDigit>)ToArray()).GetEnumerator();
 
 	/// <summary>
 	/// Creates a <typeparamref name="TSelf"/> instance using grid values.
 	/// </summary>
 	/// <param name="gridValues">The array of grid values.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
-	public static abstract TSelf Create(Digit[] gridValues, GridCreatingOption creatingOption = 0);
+	public static abstract TSelf Create(TDigit[] gridValues, GridCreatingOption creatingOption = 0);
 
 	/// <summary>
 	/// Creates a <typeparamref name="TSelf"/> instance with the specified mask array.
@@ -604,11 +610,12 @@ public partial interface IGrid<TSelf, TMask, TBitStatusMap, TConclusion> :
 	public static abstract TSelf Create(TMask[] masks);
 
 	/// <summary>
-	/// Creates a <typeparamref name="TSelf"/> instance via the array of cell digits of type <see cref="ReadOnlySpan{T}"/>.
+	/// Creates a <typeparamref name="TSelf"/> instance via the array of cell digits
+	/// of type <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TDigit"/>.
 	/// </summary>
 	/// <param name="gridValues">The list of cell digits.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
-	public static abstract TSelf Create(scoped ReadOnlySpan<Digit> gridValues, GridCreatingOption creatingOption = 0);
+	public static abstract TSelf Create(scoped ReadOnlySpan<TDigit> gridValues, GridCreatingOption creatingOption = 0);
 
 	/// <inheritdoc/>
 	/// <remarks>

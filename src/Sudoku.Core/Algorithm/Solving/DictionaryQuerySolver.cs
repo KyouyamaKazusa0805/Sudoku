@@ -16,7 +16,7 @@ namespace Sudoku.Algorithm.Solving;
 /// </para>
 /// </remarks>
 /// <seealso cref="EnumerableQuerySolver"/>
-public sealed class DictionaryQuerySolver : ISolver<Grid, Mask, CellMap, Conclusion>
+public sealed class DictionaryQuerySolver : ISolver
 {
 	/// <summary>
 	/// Indicates the characters of all rows.

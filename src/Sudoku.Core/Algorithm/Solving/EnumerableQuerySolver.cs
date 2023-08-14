@@ -3,7 +3,7 @@ namespace Sudoku.Algorithm.Solving;
 /// <summary>
 /// Defines a solver that can solve a sudoku puzzle, using LINQ.
 /// </summary>
-public sealed class EnumerableQuerySolver : ISolver<Grid, Mask, CellMap, Conclusion>
+public sealed class EnumerableQuerySolver : ISolver
 {
 	/// <inheritdoc/>
 	public static string? UriLink => null;

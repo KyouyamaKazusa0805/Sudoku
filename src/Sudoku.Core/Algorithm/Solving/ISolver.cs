@@ -1,22 +1,10 @@
 namespace Sudoku.Algorithm.Solving;
 
 /// <summary>
-/// Represents a solver that can provide with a basic function to solve a sudoku puzzle given with a <typeparamref name="TGrid"/> instance,
+/// Represents a solver that can provide with a basic function to solve a sudoku puzzle given with a <see cref="Grid"/> instance,
 /// and returns its solution grid.
 /// </summary>
-/// <typeparam name="TGrid"><inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap, TConclusion}" path="/typeparam[@name='TSelf']"/></typeparam>
-/// <typeparam name="TMask"><inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap, TConclusion}" path="/typeparam[@name='TMask']"/></typeparam>
-/// <typeparam name="TBitStatusMap">
-/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap, TConclusion}" path="/typeparam[@name='TBitStatusMap']"/>
-/// </typeparam>
-/// <typeparam name="TConclusion">
-/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap, TConclusion}" path="/typeparam[@name='TConclusion']"/>
-/// </typeparam>
-public interface ISolver<TGrid, TMask, TBitStatusMap, TConclusion>
-	where TGrid : IGrid<TGrid, TMask, TBitStatusMap, TConclusion>
-	where TMask : unmanaged, IBinaryInteger<TMask>
-	where TBitStatusMap : unmanaged, IBitStatusMap<TBitStatusMap, Cell>
-	where TConclusion : IConclusion<TConclusion, TMask>
+public interface ISolver
 {
 	/// <summary>
 	/// Indicates the URI link that links to the introduction of the algorithm.
@@ -58,5 +46,5 @@ public interface ISolver<TGrid, TMask, TBitStatusMap, TConclusion>
 	/// </item>
 	/// </list>
 	/// </returns>
-	public abstract bool? Solve(scoped in TGrid grid, out TGrid result);
+	public abstract bool? Solve(scoped in Grid grid, out Grid result);
 }
