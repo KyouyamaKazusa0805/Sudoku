@@ -6,6 +6,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <list type="bullet">
 /// <item>Reverse Bivalue Universal Grave Type 1</item>
 /// <item>Reverse Bivalue Universal Grave Type 2</item>
+/// <item>Reverse Bivalue Universal Grave Type 3</item>
 /// <item>Reverse Bivalue Universal Grave Type 4</item>
 /// </list>
 /// </summary>
@@ -99,7 +100,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				var d2Counter = d2Map.Count;
 				switch (i)
 				{
-					case 0 when (d1Counter, d2Counter) is ( >= 7, _) or (_, >= 7):
+					case 0 when (d1Counter, d2Counter) is (>= 7, _) or (_, >= 7):
 					{
 						continue;
 					}
@@ -134,7 +135,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				// other types will only use 1 or 2 empty cells.
 				for (
 					var incrementStep = (valuesMap.Count & 1) == 0 ? 2 : 1;
-					incrementStep <= Min(18 - d1Counter - d2Counter, MaxSearchingEmptyCellsCount);
+					incrementStep <= Min(14 - d1Counter - d2Counter, MaxSearchingEmptyCellsCount);
 					incrementStep += 2
 				)
 				{
