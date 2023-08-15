@@ -135,7 +135,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				// other types will only use 1 or 2 empty cells.
 				for (
 					var incrementStep = (valuesMap.Count & 1) == 0 ? 2 : 1;
-					incrementStep <= Min(14 - d1Counter - d2Counter, MaxSearchingEmptyCellsCount);
+					incrementStep <= Min(18 - d1Counter - d2Counter, MaxSearchingEmptyCellsCount);
 					incrementStep += 2
 				)
 				{
@@ -574,7 +574,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	{
 		// The length of the loop pattern must be at least 4, and an even.
 		_ = loop is { Count: var length, Houses: var houses, RowMask: var r, ColumnMask: var c, BlockMask: var b };
-		if ((length & 1) != 0 || length < 4)
+		if ((length & 1) != 0 || length is < 4 or > 14)
 		{
 			return false;
 		}
