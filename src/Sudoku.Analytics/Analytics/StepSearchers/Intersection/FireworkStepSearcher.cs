@@ -40,8 +40,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static FireworkStepSearcher()
 	{
-		var houses = (int[][])
-		[
+		var houses = (int[][])[
 			[0, 1, 3, 4],
 			[0, 2, 3, 5],
 			[1, 2, 4, 5],
