@@ -39,18 +39,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static BorescoperDeadlyPatternStepSearcher()
 	{
-		var quads = (int[][])[
-			[0, 1, 3, 4],
-			[1, 2, 4, 5],
-			[3, 4, 6, 7],
-			[4, 5, 7, 8],
-			[0, 2, 3, 5],
-			[3, 5, 6, 8],
-			[0, 1, 6, 7],
-			[1, 2, 7, 8],
-			[0, 2, 6, 8]
-		];
-
+		var quads = (int[][])[[0, 1, 3, 4], [1, 2, 4, 5], [3, 4, 6, 7], [4, 5, 7, 8], [0, 2, 3, 5], [3, 5, 6, 8], [0, 1, 6, 7], [1, 2, 7, 8], [0, 2, 6, 8]];
 		var count = 0;
 		for (var block = 0; block < 9; block++)
 		{
@@ -64,13 +53,13 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 					tempQuad[j] = (block / 3 * 3 + quad[j] / 3) * 9 + block % 3 * 3 + quad[j] % 3;
 				}
 
-				gatherHeptagons(block, i, tempQuad, ref count);
-				gatherOctagons(block, i, tempQuad, ref count);
+				collectHeptagonPatterns(block, i, tempQuad, ref count);
+				collectOctagonPatterns(block, i, tempQuad, ref count);
 			}
 		}
 
 
-		static void gatherHeptagons(House block, int i, Cell[] quad, scoped ref int count)
+		static void collectHeptagonPatterns(House block, int i, Cell[] quad, scoped ref int count)
 		{
 			if (quad is not [var q1, var q2, var q3, var q4])
 			{
@@ -114,7 +103,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 					for (var i2 = 0; i2 < 6; i2++)
 					{
 						// Now check extra digits.
-						var allCells = new List<Cell>(triplet) { pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1] };
+						var allCells = (List<Cell>)([.. triplet, pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1]]);
 						var v = 0L;
 						for (var z = 0; z < allCells.Count; z++)
 						{
@@ -138,7 +127,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			}
 		}
 
-		static void gatherOctagons(House block, int i, Cell[] quad, scoped ref int count)
+		static void collectOctagonPatterns(House block, int i, Cell[] quad, scoped ref int count)
 		{
 			if (quad is not [var t1, var t2, var t3, _])
 			{
@@ -168,8 +157,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				for (var i2 = 0; i2 < 6; i2++)
 				{
 					// Now check extra digits.
-					var allCells = new List<Cell>(quad) { pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1] };
-
+					var allCells = (List<Cell>)([.. quad, pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1]]);
 					var v = 0L;
 					for (var z = 0; z < allCells.Count; z++)
 					{
