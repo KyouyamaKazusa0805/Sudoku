@@ -56,7 +56,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		{
 			if (!EnableFullHouse)
 			{
-				goto CheckHiddenSingle;
+				goto CheckForHiddenSingle;
 			}
 
 			for (var house = 0; house < 27; house++)
@@ -96,7 +96,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				context.Accumulator.Add(step);
 			}
 
-		CheckHiddenSingle:
+		CheckForHiddenSingle:
 			for (var house = 0; house < 27; house++)
 			{
 				if (CheckForHiddenSingleAndLastDigit(grid, digit, house) is not { } step)
