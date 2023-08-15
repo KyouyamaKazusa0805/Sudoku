@@ -68,10 +68,10 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 	/// </remarks>
 	public static readonly delegate*<ref Grid, void> RefreshingCandidates = &OnRefreshingCandidates;
 
-	/// <inheritdoc cref="IGrid{TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, THouse, TBitStatusMap, TConclusion, TConjugate}.Empty"/>
+	/// <inheritdoc cref="IGrid{TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, THouse, TCandidate, TBitStatusMap, TConclusion, TConjugate}.Empty"/>
 	public static readonly Grid Empty;
 
-	/// <inheritdoc cref="IGrid{TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, THouse, TBitStatusMap, TConclusion, TConjugate}.Undefined"/>
+	/// <inheritdoc cref="IGrid{TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, THouse, TCandidate, TBitStatusMap, TConclusion, TConjugate}.Undefined"/>
 	public static readonly Grid Undefined;
 
 	/// <summary>
@@ -339,6 +339,30 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 
 	/// <inheritdoc/>
 	public readonly Grid ResetGrid => Preserve(GivenCells);
+
+	/// <inheritdoc/>
+	public readonly Grid UnfixedGrid
+	{
+		get
+		{
+			var result = this;
+			result.Unfix();
+
+			return result;
+		}
+	}
+
+	/// <inheritdoc/>
+	public readonly Grid FixedGrid
+	{
+		get
+		{
+			var result = this;
+			result.Fix();
+
+			return result;
+		}
+	}
 
 	/// <inheritdoc/>
 	public readonly Grid SolutionGrid

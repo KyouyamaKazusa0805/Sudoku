@@ -165,6 +165,34 @@ public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, 
 	public abstract TSelf SolutionGrid { get; }
 
 	/// <summary>
+	/// Indicates the fixed grid for the current grid, meaning all modifiable digits will be replaced with given ones.
+	/// </summary>
+	public virtual TSelf FixedGrid
+	{
+		get
+		{
+			var result = (TSelf)this;
+			result.Fix();
+
+			return result;
+		}
+	}
+
+	/// <summary>
+	/// Indicates the unfixed grid for the current grid, meaning all given digits will be replaced with modifiable ones.
+	/// </summary>
+	public virtual TSelf UnfixedGrid
+	{
+		get
+		{
+			var result = (TSelf)this;
+			result.Unfix();
+
+			return result;
+		}
+	}
+
+	/// <summary>
 	/// The empty grid that is valid during implementation or running the program (all values are <see cref="DefaultMask"/>, i.e. empty cells).
 	/// </summary>
 	/// <remarks>

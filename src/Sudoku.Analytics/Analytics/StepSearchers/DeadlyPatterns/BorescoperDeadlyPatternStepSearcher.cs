@@ -39,8 +39,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static BorescoperDeadlyPatternStepSearcher()
 	{
-		var quads = (int[][])
-		[
+		var quads = (int[][])[
 			[0, 1, 3, 4],
 			[1, 2, 4, 5],
 			[3, 4, 6, 7],
@@ -78,8 +77,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				return;
 			}
 
-			var triplets = (int[][])
-			[
+			var triplets = (int[][])[
 				[q1, q2, q3], // (0, 1) and (0, 2) is same house.
 				[q2, q1, q4], // (0, 1) and (1, 3) is same house.
 				[q3, q1, q4], // (0, 2) and (2, 3) is same house.

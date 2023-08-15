@@ -2558,10 +2558,10 @@ if (student is (name: var name, age: >= 18))
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.Empty">
-            <inheritdoc cref="!:IGrid&lt;TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, THouse, TBitStatusMap, TConclusion, TConjugate&gt;.Empty"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`11.Empty"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.Undefined">
-            <inheritdoc cref="!:IGrid&lt;TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, THouse, TBitStatusMap, TConclusion, TConjugate&gt;.Undefined"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`11.Undefined"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.BackingSolver">
             <summary>
@@ -2720,6 +2720,12 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.ResetGrid">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.UnfixedGrid">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.FixedGrid">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.SolutionGrid">
@@ -4495,6 +4501,16 @@ if (student is (name: var name, age: >= 18))
             this property will return <see cref="P:Sudoku.Concepts.IGrid`11.Undefined"/>.
             </summary>
             <seealso cref="P:Sudoku.Concepts.IGrid`11.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`11.FixedGrid">
+            <summary>
+            Indicates the fixed grid for the current grid, meaning all modifiable digits will be replaced with given ones.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`11.UnfixedGrid">
+            <summary>
+            Indicates the unfixed grid for the current grid, meaning all given digits will be replaced with modifiable ones.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.IGrid`11.Empty">
             <summary>
