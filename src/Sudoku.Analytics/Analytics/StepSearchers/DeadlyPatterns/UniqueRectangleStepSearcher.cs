@@ -2654,8 +2654,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				(cellsGroups, var tempIndex) = (new Cell[PopCount((uint)otherDigitsMask)][], 0);
 				foreach (var lastDigit in otherDigitsMask)
 				{
-					scoped ref var currentCellGroup = ref cellsGroups[tempIndex++];
-					currentCellGroup = (cells % CandidatesMap[lastDigit] & BivalueCells).ToArray();
+					cellsGroups[tempIndex++] = (cells % CandidatesMap[lastDigit] & BivalueCells).ToArray();
 				}
 			}
 			else
