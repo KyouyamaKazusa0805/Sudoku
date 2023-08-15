@@ -6,8 +6,7 @@ namespace Sudoku.Analytics;
 /// <param name="conclusions"><inheritdoc cref="IRenderable.Conclusions" path="/summary"/></param>
 /// <param name="views"><inheritdoc cref="IRenderable.Views" path="/summary"/></param>
 [GetHashCode(OtherModifiers = "sealed")]
-public abstract partial class Step([DataMember] Conclusion[] conclusions, [DataMember] View[]? views) :
-	IRenderable
+public abstract partial class Step([DataMember] Conclusion[] conclusions, [DataMember] View[]? views) : IRenderable
 {
 	/// <summary>
 	/// The placeholder of the hash code.
