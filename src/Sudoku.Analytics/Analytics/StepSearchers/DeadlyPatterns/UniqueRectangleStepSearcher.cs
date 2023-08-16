@@ -3260,10 +3260,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						}
 
 						// Gather views.
-						var candidateOffsets = new List<CandidateViewNode>
-						{
-							new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit)
-						};
+						var candidateOffsets = new List<CandidateViewNode> { new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit) };
 						if (CandidatesMap[d1].Contains(resultCell))
 						{
 							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, resultCell * 9 + d1));
@@ -3401,7 +3398,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						}
 
 						// Add into the list.
-						var extraDigitId2 = (byte)(char)(extraDigit + '1');
+						var extraDigitId2 = (Utf8Char)(char)(extraDigit + '1');
 						var extraDigitMask2 = (Mask)(1 << extraDigit);
 						accumulator.Add(
 							new UniqueRectangleWithBabaGroupingStep(
@@ -3416,10 +3413,10 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									],
 									[
 										.. candidateOffsetsAnotherSubtypeLighter,
-										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask2),
-										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, targetCell, (byte)'x', _xOr_yMask2),
+										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, bivalueCellToCheck, (Utf8Char)'y', _xOr_yMask2),
+										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, targetCell, (Utf8Char)'x', _xOr_yMask2),
 										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, urCellInSameBlock, extraDigitId2, extraDigitMask2),
-										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, anotherCell, (byte)'x', _xOr_yMask2),
+										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, anotherCell, (Utf8Char)'x', _xOr_yMask2),
 										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, resultCell, extraDigitId2, extraDigitMask2)
 									]
 								],
