@@ -6,11 +6,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="isTemplateDeletion">Indicates the current template step is a template deletion.</param>
-public sealed partial class TemplateStep(
-	Conclusion[] conclusions,
-	View[]? views,
-	[DataMember] bool isTemplateDeletion
-) : LastResortStep(conclusions, views)
+public sealed partial class TemplateStep(Conclusion[] conclusions, View[]? views, [DataMember] bool isTemplateDeletion) : LastResortStep(conclusions, views)
 {
 	/// <summary>
 	/// Indicates the digit.

@@ -6,11 +6,8 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="contradictionLinks">Indicates the list of contradiction links.</param>
-public sealed partial class BowmanBingoStep(
-	Conclusion[] conclusions,
-	View[]? views,
-	[DataMember] Conclusion[] contradictionLinks
-) : LastResortStep(conclusions, views)
+public sealed partial class BowmanBingoStep(Conclusion[] conclusions, View[]? views, [DataMember] Conclusion[] contradictionLinks) :
+	LastResortStep(conclusions, views)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 8.0M;

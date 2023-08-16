@@ -7,9 +7,4 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc/></param>
 /// <param name="cell">Indicates the cell used.</param>
 /// <param name="digit">Indicates the digit used.</param>
-public abstract partial class SingleStep(
-	Conclusion[] conclusions,
-	View[]? views,
-	[DataMember] Cell cell,
-	[DataMember] Digit digit
-) : Step(conclusions, views);
+public abstract partial class SingleStep(Conclusion[] conclusions, View[]? views, [DataMember] Cell cell, [DataMember] Digit digit) : Step(conclusions, views);
