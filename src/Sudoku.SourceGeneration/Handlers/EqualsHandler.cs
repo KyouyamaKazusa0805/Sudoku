@@ -78,12 +78,8 @@ internal static class EqualsHandler
 		};
 		var otherModifiersString = otherModifiers.Length == 0 ? string.Empty : $"{string.Join(" ", otherModifiers)} ";
 		var isDeprecated = attributesMarked.Contains("ObsoleteAttribute");
-		var suppress0809 = isDeprecated
-			? "#pragma warning disable CS0809\r\n\t"
-			: "\t";
-		var enable0809 = isDeprecated
-			? "#pragma warning restore CS0809\r\n\t"
-			: string.Empty;
+		var suppress0809 = isDeprecated ? "#pragma warning disable CS0809\r\n\t" : "\t";
+		var enable0809 = isDeprecated ? "#pragma warning restore CS0809\r\n\t" : string.Empty;
 		return new(
 			$$"""
 			namespace {{namespaceString}}

@@ -108,7 +108,7 @@ internal static class InstanceDeconstructionMethodHandler
 	}
 
 	/// <inheritdoc/>
-	public static InstanceDeconstructionMethodCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	public static InstanceDeconstructionMethodCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
 		=> gasc switch
 		{
 			{
