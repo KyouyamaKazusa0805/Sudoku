@@ -66,7 +66,7 @@ public static class DeadlyPatternChecker
 					return false;
 				}
 
-				solution[cell] = (Mask)(Grid.EmptyMask | (Mask)(rowMask & columnMask & blockMask));
+				solution[cell] = (Mask)(Grid.EmptyMask | rowMask & columnMask & blockMask);
 			}
 
 			// Step 3: Try to get solutions for that pattern, then determine whether any solutions to the current state exists.
