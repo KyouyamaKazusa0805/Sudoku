@@ -180,13 +180,7 @@ public abstract class SubsetStepSearcher(
 
 						var step = new HiddenSubsetStep(
 							[.. conclusions],
-							[
-								[
-									.. candidateOffsets,
-									new HouseViewNode(WellKnownColorIdentifier.Normal, house),
-									.. cellOffsets
-								]
-							],
+							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house), .. cellOffsets]],
 							house,
 							map,
 							digitsMask,
