@@ -145,6 +145,7 @@ internal static class ToStringHandler
 
 		return new(finalString);
 
+
 		bool hasImpledFormattable(INamedTypeSymbol type)
 			=> type.AllInterfaces.Contains(simpleFormattableTypeSymbol, SymbolEqualityComparer.Default);
 

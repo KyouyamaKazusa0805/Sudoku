@@ -21,6 +21,7 @@ public sealed class EnumerableQuerySolver : ISolver
 		};
 		return @return;
 
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static int indexOfZeroIgnoringCase(string s) => s.IndexOf('0', StringComparison.OrdinalIgnoreCase);
 

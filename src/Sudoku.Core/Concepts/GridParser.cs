@@ -272,6 +272,7 @@ public unsafe ref partial struct GridParser(
 
 		return result;
 
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool whenClause(Cell i, string match, string pattern1, string pattern2)
 			=> i == 80 * 6 ? match[(i + 1)..(i + 5)] == pattern1 : match[(i + 1)..(i + 6)] == pattern2;
@@ -504,6 +505,7 @@ public unsafe ref partial struct GridParser(
 			}
 		}
 		return result;
+
 
 		static bool expandCode(string? original, [NotNullWhen(true)] out string? result)
 		{

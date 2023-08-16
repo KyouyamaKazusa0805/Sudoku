@@ -339,6 +339,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 
 		return result;
 
+
 		static bool isRelevant(Digit[] combination, List<Conclusion> conclusions, Cell[] cells)
 		{
 			Debug.Assert(combination.Length == cells.Length);

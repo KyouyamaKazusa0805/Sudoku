@@ -44,6 +44,7 @@ public abstract partial class ChainingStep(
 		{
 			return DynamicNestingLevel switch { 0 => prefixWithoutLevel(), var l => $"{prefixWithoutLevel()}{nestedSuffix(l)}" };
 
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static string space() => CultureInfo.CurrentCulture.Name switch { ['Z' or 'z', 'H' or 'h', ..] => string.Empty, _ => " " };
 

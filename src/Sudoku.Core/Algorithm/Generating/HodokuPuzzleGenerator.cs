@@ -347,6 +347,7 @@ public ref struct HodokuPuzzleGenerator
 		}
 		return false;
 
+
 		static bool checkValidityOnDuplicate(scoped in Grid grid, Cell cell)
 		{
 			foreach (var peer in Peers[cell])

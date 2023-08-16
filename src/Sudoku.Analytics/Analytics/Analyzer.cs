@@ -216,6 +216,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			progress?.Report(new(progressedStepSearcherName, (double)(totalCandidatesCount - playground.CandidatesCount) / totalCandidatesCount));
 			goto Again;
 
+
 			static bool verifyConclusionValidity(scoped in Grid solution, Step step)
 			{
 				foreach (var (t, c, d) in step.Conclusions)

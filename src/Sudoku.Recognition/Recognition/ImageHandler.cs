@@ -266,6 +266,7 @@ public static class ImageHandler
 
 		return image;
 
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool colorIs<T>() where T : struct, IColor => typeof(TColor) == typeof(T);
 

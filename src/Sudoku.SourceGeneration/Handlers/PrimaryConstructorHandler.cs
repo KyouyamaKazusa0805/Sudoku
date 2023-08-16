@@ -122,6 +122,7 @@ internal static class PrimaryConstructorHandler
 				"""
 			);
 
+
 			static string getAccessibilityModifiers(NamedArgs namedArgs, string @default)
 				=> namedArgs.TryGetValueOrDefault<string>("Accessibility", out var a) && a is not null ? $"{a.Trim().ToLower()} " : @default;
 

@@ -135,6 +135,7 @@ public abstract class ChainingStepSearcher(
 
 		return result;
 
+
 		static void addHiddenParentsOfCell(scoped ref ChainNode p, scoped in Grid current, scoped in Grid original, NodeSet offPotentials)
 		{
 			var cell = p.Cell;

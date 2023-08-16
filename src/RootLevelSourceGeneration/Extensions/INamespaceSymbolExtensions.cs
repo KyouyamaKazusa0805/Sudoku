@@ -17,6 +17,7 @@ internal static class INamespaceSymbolExtensions
 		getAllNestedTypes(@this, result);
 		return result;
 
+
 		static void getAllNestedTypes(INamespaceSymbol @this, List<INamedTypeSymbol> result)
 		{
 			foreach (var @namespace in @this.GetNamespaceMembers())

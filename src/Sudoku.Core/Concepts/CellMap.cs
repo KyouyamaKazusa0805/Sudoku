@@ -712,6 +712,7 @@ public unsafe partial struct CellMap :
 			enumerateWithLimit(subsetSize, n, subsetSize, Offsets);
 			return result;
 
+
 			void enumerateWithLimit(int size, int last, int index, Cell[] offsets)
 			{
 				for (var i = last; i >= index; i--)
@@ -743,6 +744,7 @@ public unsafe partial struct CellMap :
 			var result = new List<CellMap>();
 			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
 			return [.. result];
+
 
 			void enumerateWithoutLimit(int size, int last, int index, Cell[] offsets)
 			{

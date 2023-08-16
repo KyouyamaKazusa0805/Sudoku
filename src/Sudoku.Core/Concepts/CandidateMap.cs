@@ -336,6 +336,7 @@ public partial struct CandidateMap :
 			enumerateWithLimit(subsetSize, n, subsetSize, Offsets);
 			return result;
 
+
 			void enumerateWithLimit(int size, int last, int index, Candidate[] offsets)
 			{
 				for (var i = last; i >= index; i--)
@@ -367,6 +368,7 @@ public partial struct CandidateMap :
 			var result = new List<CandidateMap>();
 			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
 			return [.. result];
+
 
 			void enumerateWithoutLimit(int size, int last, int index, Candidate[] offsets)
 			{

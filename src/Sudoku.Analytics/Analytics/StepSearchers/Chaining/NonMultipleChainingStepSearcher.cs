@@ -38,6 +38,7 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 		context.Accumulator.AddRange(result);
 		return null;
 
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		List<ChainingStep> getNonMultipleChains(scoped in Grid grid)
 		{

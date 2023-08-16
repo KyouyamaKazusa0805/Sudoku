@@ -371,6 +371,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 		{
 			return BackingSolver.Solve(this) is { IsUndefined: false } solution ? unfix(solution, GivenCells) : Undefined;
 
+
 			static Grid unfix(scoped in Grid solution, scoped in CellMap pattern)
 			{
 				var result = solution;
@@ -1283,6 +1284,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 		// - loops are conditional jmps backwards and predicted.
 		// - exceptions are conditional forwards jmps and not predicted.
 		return false;
+
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static ushort loadUshort(scoped ref byte start) => ReadUnaligned<ushort>(ref start);

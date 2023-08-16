@@ -8,12 +8,7 @@ partial class GridImageGenerator
 	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	private void DrawFigure(Graphics g)
 	{
-		if (this is not
-			{
-				View.FigureNodes: var figureNodes,
-				Calculator: { CellSize: var (cw, ch) } calc,
-				Preferences.FigurePadding: var padding
-			})
+		if (this is not { View.FigureNodes: var figureNodes, Calculator: { CellSize: var (cw, ch) } calc, Preferences.FigurePadding: var padding })
 		{
 			return;
 		}
@@ -39,6 +34,90 @@ partial class GridImageGenerator
 					g.FillPath(brush, path);
 
 					break;
+
+
+					[MethodImpl(MethodImplOptions.AggressiveInlining)]
+					GraphicsPath triangle(float x, float y)
+					{
+						var top = new PointF(x, y - Tan(PI / 3) / 4 * (cw - 2 * padding));
+						var left = new PointF(x - (cw - 2 * padding) / 2, y - ch / 2 + ch - padding);
+						var right = new PointF(x + (cw - 2 * padding) / 2, y - ch / 2 + ch - padding);
+
+						var path = new GraphicsPath();
+						path.AddLine(top, left);
+						path.AddLine(left, right);
+						path.AddLine(right, top);
+
+						return path;
+					}
+
+					[MethodImpl(MethodImplOptions.AggressiveInlining)]
+					GraphicsPath diamond(float x, float y)
+					{
+						var p1 = new PointF(x, y - ch / 2 + padding);
+						var p2 = new PointF(x - cw / 2 + padding, y);
+						var p3 = new PointF(x + cw / 2 - padding, y);
+						var p4 = new PointF(x, y + ch / 2 - padding);
+
+						var path = new GraphicsPath();
+						path.AddLine(p1, p3);
+						path.AddLine(p3, p4);
+						path.AddLine(p4, p2);
+						path.AddLine(p2, p1);
+
+						return path;
+					}
+
+					[MethodImpl(MethodImplOptions.AggressiveInlining)]
+					GraphicsPath star(float x, float y)
+					{
+						var angles1 = getAngles(-PI / 2);
+						var angles2 = getAngles(-PI / 2 + PI / 5);
+						var points1 = getPoints(x, y, cw / 2 - padding, angles1);
+						var points2 = getPoints(x, y, (ch / 2 - padding) / 2, angles2);
+						var points = new PointF[points1.Length + points2.Length];
+						for (var (i, j) = (0, 0); i < points.Length; i += 2, j++)
+						{
+							points[i] = points1[j];
+							points[i + 1] = points2[j];
+						}
+
+						var path = new GraphicsPath();
+						for (var i = 0; i < points.Length - 1; i++)
+						{
+							path.AddLine(points[i], points[i + 1]);
+						}
+						path.AddLine(points[^1], points[0]);
+
+						return path;
+
+
+						static float[] getAngles(float startAngle)
+						{
+							var result = (float[])[startAngle, default, default, default, default];
+							for (var i = 1; i < 5; i++)
+							{
+								result[i] = result[i - 1] + 2 * PI / 5;
+							}
+
+							return result;
+						}
+
+						[MethodImpl(MethodImplOptions.AggressiveInlining)]
+						static PointF getPoint(float x, float y, float length, float angle)
+							=> new(x + length * Cos(angle), y + length * Sin(angle));
+
+						static PointF[] getPoints(float x, float y, float length, params float[] angles)
+						{
+							var result = new PointF[angles.Length];
+							for (var i = 0; i < result.Length; i++)
+							{
+								result[i] = getPoint(x, y, length, angles[i]);
+							}
+
+							return result;
+						}
+					}
 				}
 				case (SquareViewNode or CircleViewNode) and (var cell) { Identifier: var identifier }:
 				{
@@ -87,89 +166,6 @@ partial class GridImageGenerator
 							var y = centerY + (13 * Cos(t) - 5 * Cos(2 * t) - 2 * Cos(3 * t) - Cos(4 * t)) / (32 + 2 * padding) * ch;
 
 							result[i] = new(x, y);
-						}
-
-						return result;
-					}
-				}
-
-
-				[MethodImpl(MethodImplOptions.AggressiveInlining)]
-				GraphicsPath triangle(float x, float y)
-				{
-					var top = new PointF(x, y - Tan(PI / 3) / 4 * (cw - 2 * padding));
-					var left = new PointF(x - (cw - 2 * padding) / 2, y - ch / 2 + ch - padding);
-					var right = new PointF(x + (cw - 2 * padding) / 2, y - ch / 2 + ch - padding);
-
-					var path = new GraphicsPath();
-					path.AddLine(top, left);
-					path.AddLine(left, right);
-					path.AddLine(right, top);
-
-					return path;
-				}
-
-				[MethodImpl(MethodImplOptions.AggressiveInlining)]
-				GraphicsPath diamond(float x, float y)
-				{
-					var p1 = new PointF(x, y - ch / 2 + padding);
-					var p2 = new PointF(x - cw / 2 + padding, y);
-					var p3 = new PointF(x + cw / 2 - padding, y);
-					var p4 = new PointF(x, y + ch / 2 - padding);
-
-					var path = new GraphicsPath();
-					path.AddLine(p1, p3);
-					path.AddLine(p3, p4);
-					path.AddLine(p4, p2);
-					path.AddLine(p2, p1);
-
-					return path;
-				}
-
-				[MethodImpl(MethodImplOptions.AggressiveInlining)]
-				GraphicsPath star(float x, float y)
-				{
-					var angles1 = getAngles(-PI / 2);
-					var angles2 = getAngles(-PI / 2 + PI / 5);
-					var points1 = getPoints(x, y, cw / 2 - padding, angles1);
-					var points2 = getPoints(x, y, (ch / 2 - padding) / 2, angles2);
-					var points = new PointF[points1.Length + points2.Length];
-					for (var (i, j) = (0, 0); i < points.Length; i += 2, j++)
-					{
-						points[i] = points1[j];
-						points[i + 1] = points2[j];
-					}
-
-					var path = new GraphicsPath();
-					for (var i = 0; i < points.Length - 1; i++)
-					{
-						path.AddLine(points[i], points[i + 1]);
-					}
-					path.AddLine(points[^1], points[0]);
-
-					return path;
-
-					static float[] getAngles(float startAngle)
-					{
-						var result = (float[])[startAngle, default, default, default, default];
-						for (var i = 1; i < 5; i++)
-						{
-							result[i] = result[i - 1] + 2 * PI / 5;
-						}
-
-						return result;
-					}
-
-					[MethodImpl(MethodImplOptions.AggressiveInlining)]
-					static PointF getPoint(float x, float y, float length, float angle)
-						=> new(x + length * Cos(angle), y + length * Sin(angle));
-
-					static PointF[] getPoints(float x, float y, float length, params float[] angles)
-					{
-						var result = new PointF[angles.Length];
-						for (var i = 0; i < result.Length; i++)
-						{
-							result[i] = getPoint(x, y, length, angles[i]);
 						}
 
 						return result;
