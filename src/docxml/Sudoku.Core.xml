@@ -7326,7 +7326,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Notation.NotationPatterns.ConclusionPattern_RxCy">
             <remarks>
             Pattern:<br/>
-            <code>[Rr]([1-9]+)[Cc]([1-9]+)\\s*(=|!=|&lt;&gt;)\\s*([1-9]+)</code><br/>
+            <code>[Rr]([1-9]+)[Cc]([1-9]+)\\s*(={1,2}|!=|&lt;&gt;)\\s*([1-9]+)</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -7340,7 +7340,7 @@ if (student is (name: var name, age: >= 18))
             ○ Match a whitespace character atomically any number of times.<br/>
             ○ 3rd capture group.<br/>
                 ○ Match with 3 alternative expressions.<br/>
-                    ○ Match '='.<br/>
+                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
                     ○ Match the string "!=".<br/>
                     ○ Match the string "&lt;&gt;".<br/>
             ○ Match a whitespace character atomically any number of times.<br/>
@@ -7352,7 +7352,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Notation.NotationPatterns.ConclusionPattern_K9">
             <remarks>
             Pattern:<br/>
-            <code>([A-IKa-ik]+)([1-9]+)\\s*(=|!=|&lt;&gt;)\\s*([1-9]+)</code><br/>
+            <code>([A-IKa-ik]+)([1-9]+)\\s*(={1,2}|!=|&lt;&gt;)\\s*([1-9]+)</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -7364,7 +7364,7 @@ if (student is (name: var name, age: >= 18))
             ○ Match a whitespace character atomically any number of times.<br/>
             ○ 3rd capture group.<br/>
                 ○ Match with 3 alternative expressions.<br/>
-                    ○ Match '='.<br/>
+                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
                     ○ Match the string "!=".<br/>
                     ○ Match the string "&lt;&gt;".<br/>
             ○ Match a whitespace character atomically any number of times.<br/>
