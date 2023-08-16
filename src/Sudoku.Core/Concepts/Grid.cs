@@ -841,11 +841,11 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetMask(Cell cell, Mask mask)
 	{
-		scoped ref var m = ref this[cell];
-		var copied = m;
-		m = mask;
+		scoped ref var newMask = ref this[cell];
+		var originalMask = newMask;
+		newMask = mask;
 
-		ValueChanged(ref this, cell, copied, m, -1);
+		ValueChanged(ref this, cell, originalMask, newMask, -1);
 	}
 
 	/// <inheritdoc/>

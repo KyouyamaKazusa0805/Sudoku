@@ -76,6 +76,7 @@ public sealed class BacktrackingSolver : ISolver
 			return false;
 		}
 
+
 		static void solve(scoped ref int solutionsCount, scoped ref Digit[]? result, Digit[] gridValues, int finishedCellsCount)
 		{
 			if (finishedCellsCount == 81)
@@ -116,6 +117,7 @@ public sealed class BacktrackingSolver : ISolver
 				// Backtracking the cell...
 				gridValues[finishedCellsCount] = 0;
 			}
+
 
 			static bool isValid(Digit[] gridValues, int r, int c)
 			{

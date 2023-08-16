@@ -18553,6 +18553,27 @@ result ^= expression;
             <returns>A list of backdoors.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the grid is not unique, or the puzzle is too easy.</exception>
         </member>
+        <member name="T:Sudoku.Preprocessing.DeadlyPatternChecker">
+            <summary>
+            Represents a checker that checks for a pattern (specified as a <see cref="T:Sudoku.Concepts.Grid"/>, but invalid - multiple solutions),
+            determining whether the pattern is a deadly pattern.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Preprocessing.DeadlyPatternChecker.IsDeadlyPattern(Sudoku.Concepts.Grid@)">
+            <summary>
+            Determines whether a pattern is a deadly pattern.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="grid"/> is valid.</exception>
+            <remarks><b>
+            Please note that you should use inline array syntax like <c>grid[cellIndex]</c> to visit and update mask,
+            in order to avoid events <see cref="F:Sudoku.Concepts.Grid.ValueChanged"/> and <see cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/> being triggered.
+            </b></remarks>
+            <seealso cref="F:Sudoku.Concepts.Grid.ValueChanged"/>
+            <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
+        </member>
         <member name="T:Sudoku.Preprocessing.TrueCandidatesSearcher">
             <summary>
             Defines a searcher that searches for the true candidates of the current sudoku grid.
