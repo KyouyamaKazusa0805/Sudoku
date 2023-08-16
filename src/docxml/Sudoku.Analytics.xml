@@ -17475,18 +17475,12 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a chain node list with head candidate.
             </summary>
-            <remarks>
-            Initializes a <see cref="T:Sudoku.DataModel.ChainNodeListWithHeadCandidate"/> instance.
-            </remarks>
             <param name="capacity">The capacity.</param>
         </member>
         <member name="M:Sudoku.DataModel.ChainNodeListWithHeadCandidate.#ctor(System.Int32)">
             <summary>
             Represents a chain node list with head candidate.
             </summary>
-            <remarks>
-            Initializes a <see cref="T:Sudoku.DataModel.ChainNodeListWithHeadCandidate"/> instance.
-            </remarks>
             <param name="capacity">The capacity.</param>
         </member>
         <member name="T:Sudoku.DataModel.Crosshatching">
