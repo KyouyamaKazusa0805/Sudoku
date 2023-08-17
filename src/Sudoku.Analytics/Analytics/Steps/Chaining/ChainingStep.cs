@@ -148,6 +148,11 @@ public abstract partial class ChainingStep(
 		};
 
 	/// <summary>
+	/// Indicates the total number of views the step will be displayed.
+	/// </summary>
+	protected int ViewsCount => FlatViewsCount + NestedViewsCount;
+
+	/// <summary>
 	/// Indicates the result node.
 	/// </summary>
 	protected ChainNode? Result
@@ -167,11 +172,6 @@ public abstract partial class ChainingStep(
 	/// Indicates the difficulty rating of the current step, which binds with length factor.
 	/// </summary>
 	private decimal LengthDifficulty => ChainDifficultyRating.GetExtraDifficultyByLength(Complexity - 2);
-
-	/// <summary>
-	/// Indicates the total number of views the step will be displayed.
-	/// </summary>
-	private int ViewsCount => FlatViewsCount + NestedViewsCount;
 
 	/// <summary>
 	/// Indicates the complexity of the chain. The complexity value generally indicates the total length of all branches in a chain.
@@ -264,24 +264,36 @@ public abstract partial class ChainingStep(
 	/// </summary>
 	/// <param name="grid">The grid used.</param>
 	/// <returns>The values.</returns>
-	protected internal View[]? CreateViews(scoped in Grid grid)
+	protected internal virtual View[]? CreateViews(scoped in Grid grid)
 	{
+		var globalView = new View();
 		var result = new View[ViewsCount];
 		var i = 0;
 		for (; i < FlatViewsCount; i++)
 		{
 			var view = new View();
+			foreach (var candidate in GetOffPotentials(i))
+			{
+				var node = new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, candidate);
+				view.Add(node);
+				globalView.Add(node);
+			}
+			foreach (var candidate in GetOnPotentials(i))
+			{
+				var node = new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate);
+				view.Add(node);
+				globalView.Add(node);
+			}
 
-			GetOffPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, candidate)));
-			GetOnPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate)));
-			view.AddRange(GetLinks(i));
+			var links = GetLinks(i);
+			view.AddRange(links);
+			globalView.AddRange(links);
 
 			result[i] = view;
 		}
 		for (; i < ViewsCount; i++)
 		{
 			var view = new View();
-
 			GetNestedOnPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate)));
 			GetNestedOffPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, candidate)));
 			GetPartiallyOffPotentials(grid, i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, candidate)));
@@ -290,7 +302,7 @@ public abstract partial class ChainingStep(
 			result[i] = view;
 		}
 
-		return result;
+		return [globalView, .. result];
 	}
 
 	/// <summary><b><i>

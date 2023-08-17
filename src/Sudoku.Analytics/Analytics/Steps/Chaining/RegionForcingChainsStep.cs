@@ -43,7 +43,7 @@ public sealed partial class RegionForcingChainsStep(
 
 	private string DigitStr => DigitNotation.ToString((Digit)Digit);
 
-	private string HouseStr => $"{char.ToLower(HouseIndex.ToHouseType().ToString()[0])}{HouseIndex % 9 + 1}";
+	private string HouseStr => HouseNotation.ToString(HouseIndex);
 
 
 	/// <inheritdoc/>

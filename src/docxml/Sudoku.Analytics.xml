@@ -7641,6 +7641,9 @@
         <member name="P:Sudoku.Analytics.Steps.BidirectionalCycleStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.BidirectionalCycleStep.CreateViews(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Steps.BidirectionalCycleStep.GetOnPotentials(System.Int32)">
             <inheritdoc/>
         </member>
@@ -7920,6 +7923,11 @@
             Returns how many views the current step will be used.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.ViewsCount">
+            <summary>
+            Indicates the total number of views the step will be displayed.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.Result">
             <summary>
             Indicates the result node.
@@ -7928,11 +7936,6 @@
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.LengthDifficulty">
             <summary>
             Indicates the difficulty rating of the current step, which binds with length factor.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ChainingStep.ViewsCount">
-            <summary>
-            Indicates the total number of views the step will be displayed.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.FlatComplexity">
@@ -8155,6 +8158,9 @@
             <param name="isY"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ForcingChainStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ForcingChainStep.CreateViews(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ForcingChainStep.GetOnPotentials(System.Int32)">
