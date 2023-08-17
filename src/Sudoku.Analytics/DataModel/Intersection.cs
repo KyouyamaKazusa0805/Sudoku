@@ -22,38 +22,19 @@ internal static class Intersection
 	/// </summary>
 	public static readonly IReadOnlyDictionary<IntersectionBase, IntersectionResult> IntersectionMaps;
 
-	/// <summary>
-	/// <para>The table of all blocks to iterate for each blocks.</para>
-	/// <para>
-	/// This field is only used for providing the data for another field <see cref="IntersectionMaps"/>.
-	/// </para>
-	/// </summary>
-	/// <seealso cref="IntersectionMaps"/>
-	private static readonly byte[][] IntersectionBlockTable = [
-		[1, 2], [0, 2], [0, 1],
-		[1, 2], [0, 2], [0, 1],
-		[1, 2], [0, 2], [0, 1],
-		[4, 5], [3, 5], [3, 4],
-		[4, 5], [3, 5], [3, 4],
-		[4, 5], [3, 5], [3, 4],
-		[7, 8], [6, 8], [6, 7],
-		[7, 8], [6, 8], [6, 7],
-		[7, 8], [6, 8], [6, 7],
-		[3, 6], [0, 6], [0, 3],
-		[3, 6], [0, 6], [0, 3],
-		[3, 6], [0, 6], [0, 3],
-		[4, 7], [1, 7], [1, 4],
-		[4, 7], [1, 7], [1, 4],
-		[4, 7], [1, 7], [1, 4],
-		[5, 8], [2, 8], [2, 5],
-		[5, 8], [2, 8], [2, 5],
-		[5, 8], [2, 8], [2, 5]
-	];
-
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static Intersection()
 	{
+		var intersectionBlockTable = (byte[][])[
+			[1, 2], [0, 2], [0, 1], [1, 2], [0, 2], [0, 1], [1, 2], [0, 2], [0, 1],
+			[4, 5], [3, 5], [3, 4], [4, 5], [3, 5], [3, 4], [4, 5], [3, 5], [3, 4],
+			[7, 8], [6, 8], [6, 7], [7, 8], [6, 8], [6, 7], [7, 8], [6, 8], [6, 7],
+			[3, 6], [0, 6], [0, 3], [3, 6], [0, 6], [0, 3], [3, 6], [0, 6], [0, 3],
+			[4, 7], [1, 7], [1, 4], [4, 7], [1, 7], [1, 4], [4, 7], [1, 7], [1, 4],
+			[5, 8], [2, 8], [2, 5], [5, 8], [2, 8], [2, 5], [5, 8], [2, 8], [2, 5]
+		];
+
 		scoped var r = (ReadOnlySpan<byte>)[0, 1, 2, 3, 4, 5, 6, 7, 8];
 		scoped var c = (ReadOnlySpan<byte>)[0, 3, 6, 1, 4, 7, 2, 5, 8];
 		var dic = new Dictionary<IntersectionBase, IntersectionResult>(new IntersectionBaseComparer());
@@ -65,7 +46,7 @@ internal static class Intersection
 				scoped ref readonly var bm = ref HousesMap[bs];
 				scoped ref readonly var cm = ref HousesMap[cs];
 				var i = bm & cm;
-				dic.Add(new(bs, cs), new(bm - i, cm - i, i, IntersectionBlockTable[(bs - 9) * 3 + j]));
+				dic.Add(new(bs, cs), new(bm - i, cm - i, i, intersectionBlockTable[(bs - 9) * 3 + j]));
 			}
 		}
 
