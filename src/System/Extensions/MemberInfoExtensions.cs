@@ -27,19 +27,14 @@ public static class MemberInfoExtensions
 	/// </returns>
 	public static Attribute? GetCustomGenericAttribute<T>(this T @this, Type genericAttributeType) where T : MemberInfo
 	{
-		var customAttributes = (Attribute[])@this.GetCustomAttributes();
 		return genericAttributeType switch
 		{
 			{ IsGenericType: true, FullName: { } genericTypeName }
 				=> (
-					from a in customAttributes
+					from a in (Attribute[])@this.GetCustomAttributes()
 					where a.GetType() is { IsGenericType: var g, FullName: { } f } && g && p(genericTypeName) == p(f)
 					select a
-				) switch
-				{
-					[var attribute] => attribute,
-					_ => null
-				},
+				) is [var attribute] ? attribute : null,
 			_ => null
 		};
 
