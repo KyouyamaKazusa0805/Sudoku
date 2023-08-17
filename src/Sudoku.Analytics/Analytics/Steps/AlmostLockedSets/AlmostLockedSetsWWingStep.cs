@@ -38,5 +38,5 @@ public sealed partial class AlmostLockedSetsWWingStep(
 
 	private string WStr => DigitNotation.ToString(WDigitsMask);
 
-	private string XStr => (XDigit + 1).ToString();
+	private string XStr => DigitNotation.ToString(XDigit);
 }

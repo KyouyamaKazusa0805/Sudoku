@@ -44,7 +44,7 @@ public sealed partial class UniqueRectangleWithBabaGroupingStep(
 	private string TargetCellStr => CellNotation.ToString(TargetCell);
 
 	private string DigitsStr
-		=> string.Join(GetString("OrKeywordWithSpaces")!, from digit in ((Mask)(1 << Digit1 | 1 << Digit2)).GetAllSets() select (digit + 1).ToString());
+		=> string.Join(GetString("OrKeywordWithSpaces")!, from digit in ((Mask)(1 << Digit1 | 1 << Digit2)).GetAllSets() select DigitNotation.ToString(digit));
 
-	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
+	private string ExtraDigitStr => DigitNotation.ToString(ExtraDigit);
 }

@@ -32,9 +32,9 @@ public abstract partial class UniqueLoopStep(
 
 	private protected string LoopStr => Loop.ToString();
 
-	private protected string Digit1Str => (Digit1 + 1).ToString();
+	private protected string Digit1Str => DigitNotation.ToString(Digit1);
 
-	private protected string Digit2Str => (Digit2 + 1).ToString();
+	private protected string Digit2Str => DigitNotation.ToString(Digit2);
 
 
 	/// <inheritdoc/>

@@ -32,7 +32,7 @@ public sealed partial class UniqueMatrixType4Step(
 
 	private string ConjStr => ConjugateHouse.ToString();
 
-	private string Digit1Str => (Digit1 + 1).ToString();
+	private string Digit1Str => DigitNotation.ToString(Digit1);
 
-	private string Digit2Str => (Digit2 + 1).ToString();
+	private string Digit2Str => DigitNotation.ToString(Digit2);
 }

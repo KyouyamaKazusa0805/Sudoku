@@ -33,7 +33,7 @@ public sealed partial class TwoStrongLinksStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, BaseHouseStr, TargetHouseStr]), new(ChineseLanguage, [DigitStr, BaseHouseStr, TargetHouseStr])];
 
-	private string DigitStr => (Digit + 1).ToString();
+	private string DigitStr => DigitNotation.ToString(Digit);
 
 	private string BaseHouseStr => HouseNotation.ToString(BaseHouse);
 

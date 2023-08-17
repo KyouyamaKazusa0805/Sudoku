@@ -26,7 +26,7 @@ public sealed partial class LockedCandidatesStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, BaseSetStr, CoverSetStr]), new(ChineseLanguage, [DigitStr, BaseSetStr, CoverSetStr])];
 
-	private string DigitStr => (Digit + 1).ToString();
+	private string DigitStr => DigitNotation.ToString(Digit);
 
 	private string BaseSetStr => HouseNotation.ToString(BaseSet);
 

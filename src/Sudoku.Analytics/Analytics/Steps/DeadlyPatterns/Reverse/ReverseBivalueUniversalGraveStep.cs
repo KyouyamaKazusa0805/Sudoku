@@ -42,9 +42,9 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	/// </summary>
 	public CellMap PatternNonEmptyCells => CompletePattern - EmptyCells;
 
-	private protected string Cell1Str => (Digit1 + 1).ToString();
+	private protected string Cell1Str => DigitNotation.ToString(Digit1);
 
-	private protected string Cell2Str => (Digit2 + 1).ToString();
+	private protected string Cell2Str => DigitNotation.ToString(Digit2);
 
 	private protected string PatternStr => CompletePattern.ToString();
 

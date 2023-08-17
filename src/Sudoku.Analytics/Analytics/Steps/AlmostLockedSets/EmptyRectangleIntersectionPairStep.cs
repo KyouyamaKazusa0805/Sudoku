@@ -33,9 +33,9 @@ public sealed partial class EmptyRectangleIntersectionPairStep(
 			new(ChineseLanguage, [Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr])
 		];
 
-	private string Digit1Str => (Digit1 + 1).ToString();
+	private string Digit1Str => DigitNotation.ToString(Digit1);
 
-	private string Digit2Str => (Digit2 + 1).ToString();
+	private string Digit2Str => DigitNotation.ToString(Digit2);
 
 	private string StartCellStr => CellNotation.ToString(StartCell);
 

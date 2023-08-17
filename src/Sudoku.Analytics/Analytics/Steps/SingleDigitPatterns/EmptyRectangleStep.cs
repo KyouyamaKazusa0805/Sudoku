@@ -26,7 +26,7 @@ public sealed partial class EmptyRectangleStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, HouseStr, ConjStr]), new(ChineseLanguage, [DigitStr, HouseStr, ConjStr])];
 
-	private string DigitStr => (Digit + 1).ToString();
+	private string DigitStr => DigitNotation.ToString(Digit);
 
 	private string HouseStr => HouseNotation.ToString(Block);
 

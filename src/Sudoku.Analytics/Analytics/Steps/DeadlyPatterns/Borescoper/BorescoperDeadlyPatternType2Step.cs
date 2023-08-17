@@ -26,5 +26,5 @@ public sealed partial class BorescoperDeadlyPatternType2Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitStr]), new(ChineseLanguage, [DigitsStr, CellsStr, ExtraDigitStr])];
 
-	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
+	private string ExtraDigitStr => DigitNotation.ToString(ExtraDigit);
 }

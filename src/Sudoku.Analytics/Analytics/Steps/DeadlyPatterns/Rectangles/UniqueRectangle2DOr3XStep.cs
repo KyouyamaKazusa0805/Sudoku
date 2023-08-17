@@ -38,9 +38,9 @@ public sealed partial class UniqueRectangle2DOr3XStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, XDigitStr, YDigitStr, XYCellsStr])
 		];
 
-	private string XDigitStr => (XDigit + 1).ToString();
+	private string XDigitStr => DigitNotation.ToString(XDigit);
 
-	private string YDigitStr => (YDigit + 1).ToString();
+	private string YDigitStr => DigitNotation.ToString(YDigit);
 
 	private string XYCellsStr => CellNotation.ToString(XyCell);
 }

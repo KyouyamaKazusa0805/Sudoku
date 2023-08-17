@@ -37,7 +37,7 @@ public sealed partial class HiddenSingleStep(
 			new(ChineseLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr])
 		];
 
-	private string DigitStr => (Digit + 1).ToString();
+	private string DigitStr => DigitNotation.ToString(Digit);
 
 	private string HouseStr => HouseNotation.ToString(House);
 }

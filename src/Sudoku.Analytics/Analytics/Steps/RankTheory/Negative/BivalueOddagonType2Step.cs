@@ -28,5 +28,5 @@ public sealed partial class BivalueOddagonType2Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [ExtraDigitStr, LoopStr]), new(ChineseLanguage, [LoopStr, ExtraDigitStr])];
 
-	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
+	private string ExtraDigitStr => DigitNotation.ToString(ExtraDigit);
 }

@@ -26,5 +26,5 @@ public sealed partial class UniqueMatrixType2Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitStr]), new(ChineseLanguage, [ExtraDigitStr, CellsStr, DigitsStr])];
 
-	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
+	private string ExtraDigitStr => DigitNotation.ToString(ExtraDigit);
 }

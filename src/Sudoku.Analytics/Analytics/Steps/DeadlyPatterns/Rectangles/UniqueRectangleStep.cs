@@ -38,9 +38,9 @@ public abstract partial class UniqueRectangleStep(
 	/// <inheritdoc/>
 	public sealed override Technique Code => code;
 
-	private protected string D1Str => (Digit1 + 1).ToString();
+	private protected string D1Str => DigitNotation.ToString(Digit1);
 
-	private protected string D2Str => (Digit2 + 1).ToString();
+	private protected string D2Str => DigitNotation.ToString(Digit2);
 
 	private protected string CellsStr => Cells.ToString();
 

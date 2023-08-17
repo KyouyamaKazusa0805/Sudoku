@@ -24,5 +24,5 @@ public sealed partial class QiuDeadlyPatternType2Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [PatternStr, ExtraDigitStr]), new(ChineseLanguage, [PatternStr, ExtraDigitStr])];
 
-	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
+	private string ExtraDigitStr => DigitNotation.ToString(ExtraDigit);
 }

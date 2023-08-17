@@ -31,5 +31,5 @@ public sealed partial class ReverseBivalueUniversalGraveType2Step(
 		=> [new(EnglishLanguage, [ExtraDigitStr]), new(ChineseLanguage, [ExtraDigitStr])];
 
 	/// <inheritdoc/>
-	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
+	private string ExtraDigitStr => DigitNotation.ToString(ExtraDigit);
 }

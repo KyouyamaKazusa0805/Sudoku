@@ -56,7 +56,7 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianDigitStr, GuardianCellsStr])
 		];
 
-	private string GuardianDigitStr => (GuardianDigit + 1).ToString();
+	private string GuardianDigitStr => DigitNotation.ToString(GuardianDigit);
 
 	private string GuardianCellsStr => GuardianCells.ToString();
 }

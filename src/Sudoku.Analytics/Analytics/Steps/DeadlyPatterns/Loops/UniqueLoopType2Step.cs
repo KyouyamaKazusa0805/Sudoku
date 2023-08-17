@@ -31,5 +31,5 @@ public sealed partial class UniqueLoopType2Step(
 			new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ExtraDigitStr])
 		];
 
-	private string ExtraDigitStr => (ExtraDigit + 1).ToString();
+	private string ExtraDigitStr => DigitNotation.ToString(ExtraDigit);
 }

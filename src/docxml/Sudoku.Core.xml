@@ -6917,6 +6917,19 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Notation.DigitNotation.ToString(System.Int16,Sudoku.Text.Notation.DigitNotation.Kind)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Text.Notation.DigitNotation.ToString(System.Int32)">
+            <summary>
+            Gets the string representation for the specified digit.
+            </summary>
+            <param name="digit">The digit.</param>
+            <returns>The string representation of that digit.</returns>
+            <remarks><i><b>
+            Please note that this method is very close to <see cref="M:Sudoku.Text.Notation.DigitNotation.ToString(System.Int16)"/>. The only difference is the type of the parameter
+            (one is a <see cref="T:System.Int16"/> and the other is a <see cref="T:System.Int32"/>). Don't invoke this method if you don't know
+            whether the target value is a digit or not.
+            </b></i></remarks>
+            <seealso cref="M:Sudoku.Text.Notation.DigitNotation.ToString(System.Int16)"/>
+        </member>
         <member name="T:Sudoku.Text.Notation.DigitNotation.Kind">
             <summary>
             Represents a kind of the notation for digit.

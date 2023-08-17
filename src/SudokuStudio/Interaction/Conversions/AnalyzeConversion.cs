@@ -40,7 +40,7 @@ internal static class AnalyzeConversion
 			_ => string.Empty
 		};
 
-	public static string GetIndexText(SolvingPathStepBindableSource step) => (step.Index + 1).ToString();
+	public static string GetIndexText(SolvingPathStepBindableSource step) => DigitNotation.ToString(step.Index);
 
 	public static string GetViewIndexDisplayerString(IRenderable? visualUnit, int currentIndex)
 		=> visualUnit?.Views?.Length is { } length ? $"{currentIndex + 1}/{length}" : "0/0";
@@ -104,7 +104,7 @@ internal static class AnalyzeConversion
 
 			result.Add(new Run { Text = GetString("AnalyzePage_TechniqueIndex") }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
-			result.Add(new Run { Text = (index + 1).ToString() });
+			result.Add(new Run { Text = DigitNotation.ToString(index) });
 		}
 
 		if (displayKind.Flags(StepTooltipDisplayItems.Abbreviation))

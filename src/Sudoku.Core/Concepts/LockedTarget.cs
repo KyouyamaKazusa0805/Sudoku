@@ -32,7 +32,7 @@ public readonly partial struct LockedTarget(
 	/// The digit string value.
 	/// </summary>
 	[StringMember(nameof(Digit))]
-	private string DigitString => (Digit + 1).ToString();
+	private string DigitString => DigitNotation.ToString(Digit);
 
 
 	[DeconstructionMethod]

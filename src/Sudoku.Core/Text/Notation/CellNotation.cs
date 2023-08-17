@@ -229,7 +229,7 @@ public sealed partial class CellNotation : INotation<CellNotation, CellMap, Cell
 	[ExplicitInterfaceImpl(typeof(INotation<,,,>))]
 	public static string ToCollectionString(scoped in CellMap collection, Kind notation)
 	{
-		static string i(Digit v) => (v + 1).ToString();
+		static string i(Digit v) => DigitNotation.ToString(v);
 		switch (notation)
 		{
 			case Kind.RxCy:

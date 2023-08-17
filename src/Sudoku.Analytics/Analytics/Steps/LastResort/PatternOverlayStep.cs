@@ -20,5 +20,5 @@ public sealed class PatternOverlayStep(Conclusion[] conclusions) : LastResortSte
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts => [new(EnglishLanguage, [DigitStr]), new(ChineseLanguage, [DigitStr])];
 
-	private string DigitStr => (Digit + 1).ToString();
+	private string DigitStr => DigitNotation.ToString(Digit);
 }
