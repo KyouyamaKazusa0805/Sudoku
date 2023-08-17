@@ -119,12 +119,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
-			var digitsMask = (Mask)0;
-			foreach (var digit in digits)
-			{
-				digitsMask |= (Mask)(1 << digit);
-			}
-
+			var digitsMask = MaskCreator.Create(digits);
 			var extraDigit = TrailingZeroCount(mask & ~digitsMask);
 			var extraDigitMap = CandidatesMap[extraDigit] & pattern;
 			if (extraDigitMap is not [var elimCell])
@@ -179,12 +174,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
-			var digitsMask = (Mask)0;
-			foreach (var digit in digits)
-			{
-				digitsMask |= (Mask)(1 << digit);
-			}
-
+			var digitsMask = MaskCreator.Create(digits);
 			var extraDigit = TrailingZeroCount(mask & ~digitsMask);
 			if (pattern % CandidatesMap[extraDigit] is not (var elimMap and not []))
 			{
@@ -236,12 +226,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	{
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
-			var digitsMask = (Mask)0;
-			foreach (var digit in digits)
-			{
-				digitsMask |= (Mask)(1 << digit);
-			}
-
+			var digitsMask = MaskCreator.Create(digits);
 			var extraDigitsMask = (Mask)(mask & ~digitsMask);
 			var tempMap = CellMap.Empty;
 			foreach (var digit in extraDigitsMask)
@@ -335,12 +320,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	{
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
-			var digitsMask = (Mask)0;
-			foreach (var digit in digits)
-			{
-				digitsMask |= (Mask)(1 << digit);
-			}
-
+			var digitsMask = MaskCreator.Create(digits);
 			var extraDigitsMask = (Mask)(mask & ~digitsMask);
 			var tempMap = CellMap.Empty;
 			foreach (var digit in extraDigitsMask)

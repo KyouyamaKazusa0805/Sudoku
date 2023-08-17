@@ -181,7 +181,6 @@ public abstract class ChainingStepSearcher(
 			static Mask g(scoped in Grid grid, House houseIndex, Digit digit)
 			{
 				var result = (Mask)0;
-
 				for (var i = 0; i < 9; i++)
 				{
 					if (grid.Exists(HouseCells[houseIndex][i], digit) is true)

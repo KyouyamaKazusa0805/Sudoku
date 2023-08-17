@@ -5323,12 +5323,18 @@ if (student is (name: var name, age: >= 18))
             Represents a type that creates for a <see cref="T:System.Int16"/> value.
             </summary>
         </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskCreator.Create(System.ReadOnlySpan{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Runtime.MaskServices.MaskCreator.Create(System.Int32[])"/>
+        </member>
         <member name="M:Sudoku.Runtime.MaskServices.MaskCreator.Create(System.Int32[])">
             <summary>
             Creates for a <see cref="T:System.Int16"/> instance via the specified digits.
             </summary>
             <param name="digits">The digits.</param>
             <returns>A <see cref="T:System.Int16"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskCreator.Create(System.Collections.Generic.HashSet{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Runtime.MaskServices.MaskCreator.Create(System.Int32[])"/>
         </member>
         <member name="T:Sudoku.Runtime.MaskServices.MaskOperations">
             <summary>

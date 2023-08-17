@@ -184,11 +184,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 						continue;
 					}
 
-					var comparer = (Mask)0;
-					foreach (var digit in digits)
-					{
-						comparer |= (Mask)(1 << digit);
-					}
+					var comparer = MaskCreator.Create(digits);
 					var otherDigitsMask = (Mask)(pairMask & ~comparer);
 					if (appearingMap == (tempMap & HousesMap[TrailingZeroCount(square.BlockMask)]))
 					{
