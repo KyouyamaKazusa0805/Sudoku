@@ -1,4 +1,4 @@
-﻿namespace System;
+namespace System;
 
 /// <summary>
 /// Provides extension methods on <see cref="Delegate"/>.
