@@ -63,12 +63,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 					}
 
 					tempAccumulator.Add(
-						new BowmanBingoStep(
-							[new(Elimination, startCandidate)],
-							[[.. candidateOffsets, .. GetLinks()]],
-							[.. _tempConclusions]
-						)
-					);
+						new BowmanBingoStep([new(Elimination, startCandidate)], [[.. candidateOffsets, .. GetLinks()]], [.. _tempConclusions]));
 				}
 
 				// Undo the operation.
