@@ -16,9 +16,8 @@ namespace Sudoku.Analytics;
 public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, AnalyzerResult>
 {
 	/// <summary>
-	/// Indicates whether the solver will apply all found steps in a step searcher,
-	/// in order to solve a puzzle faster. If the value is <see langword="true"/>,
-	/// the third argument of <see cref="StepSearcher.Collect(ref AnalysisContext)"/>
+	/// Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
+	/// If the value is <see langword="true"/>, the third argument of <see cref="StepSearcher.Collect(ref AnalysisContext)"/>
 	/// will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
 	/// and all steps will be applied at the same time.
 	/// </summary>
@@ -38,8 +37,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	public bool IgnoreSlowAlgorithms { get; internal set; }
 
 	/// <summary>
-	/// Indicates whether the solver will ignore slow step searchers being configured
-	/// <see cref="ConditionalCase.SpaceComplexity"/>.
+	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="ConditionalCase.SpaceComplexity"/>.
 	/// </summary>
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
@@ -99,6 +97,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 		}
 		return result with { IsSolved = false, FailedReason = AnalyzerFailedReason.PuzzleIsInvalid };
 
+
 		AnalyzerResult analyzeInternal(
 			scoped in Grid puzzle,
 			scoped in Grid solution,
@@ -127,7 +126,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 					{
 						// Skips on those two cases:
 						// 1. Sukaku puzzles can't use techniques that is marked as "not supported for sukaku".
-						// 2. If the searcher is currently disabled, just skip it.
+						// 2. If the searcher is currently disabled.
 						// 3. If the searcher is configured as slow.
 						// 4. If the searcher is configured as high-allocation.
 						continue;
@@ -201,9 +200,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				goto ReportStatusAndSkipToTryAgain;
 			}
 
-			// All solver can't finish the puzzle...
-			// :(
-
+			// All solver can't finish the puzzle... :(
 			return resultBase with
 			{
 				FailedReason = AnalyzerFailedReason.PuzzleIsTooHard,

@@ -78,9 +78,8 @@
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.IsFullApplying">
             <summary>
-            Indicates whether the solver will apply all found steps in a step searcher,
-            in order to solve a puzzle faster. If the value is <see langword="true"/>,
-            the third argument of <see cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)"/>
+            Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
+            If the value is <see langword="true"/>, the third argument of <see cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)"/>
             will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
             and all steps will be applied at the same time.
             </summary>
@@ -100,8 +99,7 @@
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms">
             <summary>
-            Indicates whether the solver will ignore slow step searchers being configured
-            <see cref="F:Sudoku.Analytics.Metadata.ConditionalCase.SpaceComplexity"/>.
+            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Analytics.Metadata.ConditionalCase.SpaceComplexity"/>.
             </summary>
             <remarks>
             The default value is <see langword="false"/>.
@@ -17803,15 +17801,6 @@ if (student is (name: var name, age: >= 18))
             In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
             </para>
             </summary>
-        </member>
-        <member name="F:Sudoku.DataModel.Intersection.IntersectionBlockTable">
-            <summary>
-            <para>The table of all blocks to iterate for each blocks.</para>
-            <para>
-            This field is only used for providing the data for another field <see cref="F:Sudoku.DataModel.Intersection.IntersectionMaps"/>.
-            </para>
-            </summary>
-            <seealso cref="F:Sudoku.DataModel.Intersection.IntersectionMaps"/>
         </member>
         <member name="M:Sudoku.DataModel.Intersection.#cctor">
             <static-constructor>
