@@ -435,6 +435,40 @@ public partial struct CandidateMap :
 		return result;
 	}
 
+	/// <summary>
+	/// Groups the elements of a sequence accroding to a specified key selector function.
+	/// </summary>
+	/// <typeparam name="TKey">
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/typeparam[@name='TKey']"/>
+	/// </typeparam>
+	/// <param name="keySelector">
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/param[@name='keySelector']"/>
+	/// </param>
+	/// <returns>
+	/// A list of <see cref="CandidateMapGroup{TKey, TValue}"/> instances where each value object contains a sequence of objects and a key.
+	/// </returns>
+	public readonly ReadOnlySpan<CandidateMapGroup<TKey, Candidate>> GroupBy<TKey>(Func<Candidate, TKey> keySelector) where TKey : notnull
+	{
+		var dictionary = new Dictionary<TKey, CandidateMap>();
+		foreach (var candidate in this)
+		{
+			var key = keySelector(candidate);
+			if (!dictionary.TryAdd(key, [candidate]))
+			{
+				dictionary[key].Add(candidate);
+			}
+		}
+
+		var result = new CandidateMapGroup<TKey, Candidate>[dictionary.Count];
+		var i = 0;
+		foreach (var (key, value) in dictionary)
+		{
+			result[i++] = new(key, [.. value]);
+		}
+
+		return result;
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(Candidate offset)

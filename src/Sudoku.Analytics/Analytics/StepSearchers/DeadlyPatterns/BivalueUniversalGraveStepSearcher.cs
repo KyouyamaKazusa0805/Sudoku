@@ -370,8 +370,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	private BivalueUniversalGraveType4Step? CheckType4(List<Step> accumulator, scoped in CandidateMap trueCandidates, bool onlyFindOne)
 	{
 		// Conjugate pairs should lie in two cells.
-		var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
-		if (candsGroupByCell.Take(3).Count() != 2)
+		scoped var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
+		if (candsGroupByCell.Length != 2)
 		{
 			return null;
 		}

@@ -1462,6 +1462,20 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.Select``1(System.Func{System.Int32,``0})">
             <inheritdoc cref="M:Sudoku.Concepts.CellMap.Select``1(System.Func{System.Int32,``0})"/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.GroupBy``1(System.Func{System.Int32,``0})">
+            <summary>
+            Groups the elements of a sequence accroding to a specified key selector function.
+            </summary>
+            <typeparam name="TKey">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='TKey']"/>
+            </typeparam>
+            <param name="keySelector">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='keySelector']"/>
+            </param>
+            <returns>
+            A list of <see cref="T:Sudoku.Linq.CandidateMapGroup`2"/> instances where each value object contains a sequence of objects and a key.
+            </returns>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)">
             <inheritdoc/>
         </member>
@@ -5267,6 +5281,73 @@ if (student is (name: var name, age: >= 18))
             <param name="row">The row value.</param>
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
+        </member>
+        <member name="T:Sudoku.Linq.CandidateMapGroup`2">
+            <summary>
+            Represents a candidate map group.
+            </summary>
+            <typeparam name="TKey">The type of the key in the group.</typeparam>
+            <typeparam name="TValue">The type of the values in the group.</typeparam>
+            <param name="key">Indicates the key used.</param>
+            <param name="values">Indicates the values.</param>
+        </member>
+        <member name="M:Sudoku.Linq.CandidateMapGroup`2.#ctor(`0,`1[])">
+            <summary>
+            Represents a candidate map group.
+            </summary>
+            <typeparam name="TKey">The type of the key in the group.</typeparam>
+            <typeparam name="TValue">The type of the values in the group.</typeparam>
+            <param name="key">Indicates the key used.</param>
+            <param name="values">Indicates the values.</param>
+        </member>
+        <member name="M:Sudoku.Linq.CandidateMapGroup`2.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>An <see cref="T:Sudoku.Linq.CandidateMapGroup`2.Enumerator"/> object that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="T:Sudoku.Linq.CandidateMapGroup`2.Enumerator">
+            <summary>
+            Indicates the enumerator type.
+            </summary>
+            <param name="values">The values to be assigned.</param>
+        </member>
+        <member name="M:Sudoku.Linq.CandidateMapGroup`2.Enumerator.#ctor(`1[])">
+            <summary>
+            Indicates the enumerator type.
+            </summary>
+            <param name="values">The values to be assigned.</param>
+        </member>
+        <member name="F:Sudoku.Linq.CandidateMapGroup`2.Enumerator._totalCount">
+            <summary>
+            Indicates the total number of elements.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Linq.CandidateMapGroup`2.Enumerator._values">
+            <summary>
+            Indicates the internal values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Linq.CandidateMapGroup`2.Enumerator._currentIndex">
+            <summary>
+            Indicates the current index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Linq.CandidateMapGroup`2.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Sudoku.Linq.CandidateMapGroup`2.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="P:Sudoku.Linq.CandidateMapGroup`2.Key">
+            <summary>
+            The generated property declaration for parameter <c>key</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Linq.CandidateMapGroup`2.Values">
+            <summary>
+            The generated property declaration for parameter <c>values</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator">
             <summary>

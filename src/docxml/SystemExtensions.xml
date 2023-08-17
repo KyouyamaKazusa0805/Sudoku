@@ -1131,6 +1131,9 @@
             </param>
             <returns>A <typeparamref name="T"/>[] that contains elements form the input sequence that satisfy the condition.</returns>
         </member>
+        <member name="M:System.Linq.SpanEnumerable.OrderBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
         <member name="T:System.Linq.StringEnumerable">
             <summary>
             Provides with LINQ methods on a <see cref="T:System.String"/> value.

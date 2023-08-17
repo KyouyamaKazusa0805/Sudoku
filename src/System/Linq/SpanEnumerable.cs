@@ -71,4 +71,14 @@ public static class SpanEnumerable
 
 		return result[..i];
 	}
+
+	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+	public static ReadOnlySpan<T> OrderBy<T, TKey>(this scoped ReadOnlySpan<T> @this, Func<T, TKey> keySelector) where TKey : IComparable<TKey>
+	{
+		var copied = new T[@this.Length];
+		@this.CopyTo(copied);
+		Array.Sort(copied, (a, b) => keySelector(a).CompareTo(keySelector(b)));
+
+		return copied;
+	}
 }
