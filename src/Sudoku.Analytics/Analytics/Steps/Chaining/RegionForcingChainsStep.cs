@@ -41,7 +41,7 @@ public sealed partial class RegionForcingChainsStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, HouseStr]), new(ChineseLanguage, [HouseStr, DigitStr])];
 
-	private string DigitStr => DigitNotation.ToString(Digit);
+	private string DigitStr => DigitNotation.ToString((Digit)Digit);
 
 	private string HouseStr => $"{char.ToLower(HouseIndex.ToHouseType().ToString()[0])}{HouseIndex % 9 + 1}";
 
