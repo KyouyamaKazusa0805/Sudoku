@@ -185,7 +185,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : AlmostLockedSetsSte
 					continue;
 				}
 
-				// Now record highlight elements.
+				// Now collect highlight elements.
 				var isEsp = als1.IsBivalueCell || als2.IsBivalueCell;
 				var candidateOffsets = new List<CandidateViewNode>();
 				if (isEsp)

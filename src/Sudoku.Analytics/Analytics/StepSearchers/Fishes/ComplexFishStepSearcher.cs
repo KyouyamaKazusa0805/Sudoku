@@ -224,7 +224,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 							continue;
 						}
 
-						// Now record the cover sets into the cover table.
+						// Now collect the cover sets into the cover table.
 						scoped var coverTable = z.GetAllSets();
 
 						// Iterate on each cover sets combination.

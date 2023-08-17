@@ -31,7 +31,7 @@ public static unsafe class EnumExtensions
 	/// </returns>
 	public static T[] GetAllFlags<T>(this T @this) where T : unmanaged, Enum
 	{
-		// Create a buffer to record all possible flags.
+		// Create a buffer to gather all possible flags.
 		var buffer = stackalloc T[Enum.GetValues<T>().Length];
 		var i = 0;
 		foreach (var flag in @this)
