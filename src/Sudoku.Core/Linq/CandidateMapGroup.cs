@@ -4,10 +4,9 @@ namespace Sudoku.Linq;
 /// Represents a candidate map group.
 /// </summary>
 /// <typeparam name="TKey">The type of the key in the group.</typeparam>
-/// <typeparam name="TValue">The type of the values in the group.</typeparam>
 /// <param name="key">Indicates the key used.</param>
-/// <param name="values">Indicates the values.</param>
-public readonly partial struct CandidateMapGroup<TKey, TValue>([DataMember] TKey key, [DataMember] TValue[] values) where TKey : notnull
+/// <param name="values">Indicates the candidates.</param>
+public readonly partial struct CandidateMapGroup<TKey>([DataMember] TKey key, [DataMember] scoped in CandidateMap values) where TKey : notnull
 {
 	/// <summary>
 	/// Returns an enumerator that iterates through a collection.

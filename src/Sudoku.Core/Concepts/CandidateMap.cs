@@ -445,9 +445,10 @@ public partial struct CandidateMap :
 	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/param[@name='keySelector']"/>
 	/// </param>
 	/// <returns>
-	/// A list of <see cref="CandidateMapGroup{TKey, TValue}"/> instances where each value object contains a sequence of objects and a key.
+	/// A list of <see cref="CandidateMapGroup{TKey}"/> instances where each value object contains a sequence of objects and a key.
 	/// </returns>
-	public readonly ReadOnlySpan<CandidateMapGroup<TKey, Candidate>> GroupBy<TKey>(Func<Candidate, TKey> keySelector) where TKey : notnull
+	/// <seealso cref="CandidateMapGroup{TKey}"/>
+	public readonly ReadOnlySpan<CandidateMapGroup<TKey>> GroupBy<TKey>(Func<Candidate, TKey> keySelector) where TKey : notnull
 	{
 		var dictionary = new Dictionary<TKey, CandidateMap>();
 		foreach (var candidate in this)
@@ -459,11 +460,11 @@ public partial struct CandidateMap :
 			}
 		}
 
-		var result = new CandidateMapGroup<TKey, Candidate>[dictionary.Count];
+		var result = new CandidateMapGroup<TKey>[dictionary.Count];
 		var i = 0;
 		foreach (var (key, value) in dictionary)
 		{
-			result[i++] = new(key, [.. value]);
+			result[i++] = new(key, value);
 		}
 
 		return result;

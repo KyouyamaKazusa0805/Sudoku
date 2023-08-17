@@ -1,22 +1,22 @@
 namespace Sudoku.Linq;
 
-partial struct CandidateMapGroup<TKey, TValue>
+partial struct CandidateMapGroup<TKey>
 {
 	/// <summary>
 	/// Indicates the enumerator type.
 	/// </summary>
-	/// <param name="values">The values to be assigned.</param>
-	public ref struct Enumerator(TValue[] values)
+	/// <param name="map">The candidate map to be assigned.</param>
+	public ref struct Enumerator(scoped in CandidateMap map)
 	{
 		/// <summary>
 		/// Indicates the total number of elements.
 		/// </summary>
-		private readonly int _totalCount = values.Length;
+		private readonly int _totalCount = map.Count;
 
 		/// <summary>
 		/// Indicates the internal values.
 		/// </summary>
-		private readonly TValue[] _values = values;
+		private readonly Candidate[] _values = [.. map];
 
 		/// <summary>
 		/// Indicates the current index.
@@ -25,7 +25,7 @@ partial struct CandidateMapGroup<TKey, TValue>
 
 
 		/// <inheritdoc cref="IEnumerator.Current"/>
-		public readonly ref TValue Current => ref _values[_currentIndex];
+		public readonly Candidate Current => _values[_currentIndex];
 
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
