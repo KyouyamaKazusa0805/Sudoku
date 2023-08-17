@@ -4397,13 +4397,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				continue;
 			}
 
-			//forOneEndoLeaf(grid, cellsToEnumerate, guardianCells);
-			forBothExoLeaves(grid, cellsToEnumerate, guardianCells);
+			//forOneEndoLeaf(grid, cellsToEnumerate, guardianCells, houseCombination);
+			forBothExoLeaves(grid, cellsToEnumerate, guardianCells, houseCombination);
 		}
 
 
 #pragma warning disable CS8321
-		void forOneEndoLeaf(scoped in Grid grid, scoped in CellMap cellsToEnumerate, scoped in CellMap guardianCells)
+		void forOneEndoLeaf(scoped in Grid grid, scoped in CellMap cellsToEnumerate, scoped in CellMap guardianCells, House[] houseCombination)
 		{
 			foreach (var cell1 in guardianCells)
 			{
@@ -4517,7 +4517,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 #pragma warning restore CS8321
 
-		void forBothExoLeaves(scoped in Grid grid, scoped in CellMap cellsToEnumerate, scoped in CellMap guardianCells)
+		void forBothExoLeaves(scoped in Grid grid, scoped in CellMap cellsToEnumerate, scoped in CellMap guardianCells, House[] houseCombination)
 		{
 			foreach (var cellPair in cellsToEnumerate.GetSubsets(2))
 			{
@@ -4615,7 +4615,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				accumulator.Add(
 					new UniqueRectangleExternalXyWingStep(
 						[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
-						[[.. cellOffsets, .. candidateOffsets]],
+						[
+							[
+								.. cellOffsets,
+								.. candidateOffsets,
+								new HouseViewNode(WellKnownColorIdentifier.Normal, houseCombination[0]),
+								new HouseViewNode(WellKnownColorIdentifier.Normal, houseCombination[1])
+							]
+						],
 						d1,
 						d2,
 						cells,
