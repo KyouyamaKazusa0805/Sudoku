@@ -206,7 +206,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		}
 
 		var step = new UniqueLoopType2Step(
-			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
+			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 			[[.. candidateOffsets, .. GetLoopLinks(path)]],
 			d1,
 			d2,

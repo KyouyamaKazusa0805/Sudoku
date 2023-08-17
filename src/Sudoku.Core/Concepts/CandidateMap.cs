@@ -422,8 +422,8 @@ public partial struct CandidateMap :
 		return [.. result];
 	}
 
-	/// <inheritdoc cref="CellMap.Select{TResult}(Func{int, TResult})"/>
-	public readonly TResult[] Select<TResult>(Func<Candidate, TResult> selector)
+	/// <inheritdoc/>
+	public readonly ReadOnlySpan<TResult> Select<TResult>(Func<Candidate, TResult> selector)
 	{
 		var offsets = Offsets;
 		var result = new TResult[offsets.Length];
@@ -435,20 +435,9 @@ public partial struct CandidateMap :
 		return result;
 	}
 
-	/// <summary>
-	/// Groups the elements of a sequence accroding to a specified key selector function.
-	/// </summary>
-	/// <typeparam name="TKey">
-	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/typeparam[@name='TKey']"/>
-	/// </typeparam>
-	/// <param name="keySelector">
-	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/param[@name='keySelector']"/>
-	/// </param>
-	/// <returns>
-	/// A list of <see cref="CandidateMapGroup{TKey}"/> instances where each value object contains a sequence of objects and a key.
-	/// </returns>
-	/// <seealso cref="CandidateMapGroup{TKey}"/>
-	public readonly ReadOnlySpan<CandidateMapGroup<TKey>> GroupBy<TKey>(Func<Candidate, TKey> keySelector) where TKey : notnull
+	/// <inheritdoc/>
+	public readonly ReadOnlySpan<BitStatusMapGroup<CandidateMap, Candidate, TKey>> GroupBy<TKey>(Func<Candidate, TKey> keySelector)
+		where TKey : notnull
 	{
 		var dictionary = new Dictionary<TKey, CandidateMap>();
 		foreach (var candidate in this)
@@ -460,7 +449,7 @@ public partial struct CandidateMap :
 			}
 		}
 
-		var result = new CandidateMapGroup<TKey>[dictionary.Count];
+		var result = new BitStatusMapGroup<CandidateMap, Candidate, TKey>[dictionary.Count];
 		var i = 0;
 		foreach (var (key, value) in dictionary)
 		{

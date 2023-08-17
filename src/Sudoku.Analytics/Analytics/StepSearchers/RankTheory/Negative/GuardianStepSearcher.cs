@@ -76,7 +76,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 				// If we just return the first found step, we will miss steps being more elegant.
 				resultAccumulator.Add(
 					new GuardianStep(
-						from c in elimMap select new Conclusion(Elimination, c, digit),
+						[.. from c in elimMap select new Conclusion(Elimination, c, digit)],
 						[[.. candidateOffsets]],
 						digit,
 						loop,

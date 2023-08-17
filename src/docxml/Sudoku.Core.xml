@@ -1460,22 +1460,10 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Select``1(System.Func{System.Int32,``0})">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMap.Select``1(System.Func{System.Int32,``0})"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.GroupBy``1(System.Func{System.Int32,``0})">
-            <summary>
-            Groups the elements of a sequence accroding to a specified key selector function.
-            </summary>
-            <typeparam name="TKey">
-            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='TKey']"/>
-            </typeparam>
-            <param name="keySelector">
-            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='keySelector']"/>
-            </param>
-            <returns>
-            A list of <see cref="T:Sudoku.Linq.CandidateMapGroup`1"/> instances where each value object contains a sequence of objects and a key.
-            </returns>
-            <seealso cref="T:Sudoku.Linq.CandidateMapGroup`1"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)">
             <inheritdoc/>
@@ -1997,13 +1985,10 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Select``1(System.Func{System.Int32,``0})">
-            <summary>
-            Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
-            using the specified function to convert.
-            </summary>
-            <typeparam name="TResult">The type of target value.</typeparam>
-            <param name="selector">The selector.</param>
-            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.GroupBy``1(System.Func{System.Int32,``0})">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Add(System.Int32)">
             <inheritdoc/>
@@ -4058,6 +4043,30 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.Select``1(System.Func{`1,``0})">
+            <summary>
+            Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
+            using the specified function to convert.
+            </summary>
+            <typeparam name="TResult">The type of target value.</typeparam>
+            <param name="selector">The selector.</param>
+            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.GroupBy``1(System.Func{`1,``0})">
+            <summary>
+            Groups the elements of a sequence accroding to a specified key selector function.
+            </summary>
+            <typeparam name="TKey">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='TKey']"/>
+            </typeparam>
+            <param name="keySelector">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='keySelector']"/>
+            </param>
+            <returns>
+            A list of <see cref="T:Sudoku.Linq.BitStatusMapGroup`3"/> instances where each value object contains a sequence of objects and a key.
+            </returns>
+            <seealso cref="T:Sudoku.Linq.BitStatusMapGroup`3"/>
+        </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})"/>
         </member>
@@ -5283,67 +5292,71 @@ if (student is (name: var name, age: >= 18))
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
         </member>
-        <member name="T:Sudoku.Linq.CandidateMapGroup`1">
+        <member name="T:Sudoku.Linq.BitStatusMapGroup`3">
             <summary>
-            Represents a candidate map group.
+            Represents a map group for <see cref="T:Sudoku.Concepts.CandidateMap"/> and <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
+            <typeparam name="TMap">The type of the map that stores the <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>.</typeparam>
+            <typeparam name="TElement">The type of elements stored in <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>.</typeparam>
             <typeparam name="TKey">The type of the key in the group.</typeparam>
             <param name="key">Indicates the key used.</param>
             <param name="values">Indicates the candidates.</param>
         </member>
-        <member name="M:Sudoku.Linq.CandidateMapGroup`1.#ctor(`0,Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.#ctor(`2,`0@)">
             <summary>
-            Represents a candidate map group.
+            Represents a map group for <see cref="T:Sudoku.Concepts.CandidateMap"/> and <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
+            <typeparam name="TMap">The type of the map that stores the <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>.</typeparam>
+            <typeparam name="TElement">The type of elements stored in <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>.</typeparam>
             <typeparam name="TKey">The type of the key in the group.</typeparam>
             <param name="key">Indicates the key used.</param>
             <param name="values">Indicates the candidates.</param>
         </member>
-        <member name="M:Sudoku.Linq.CandidateMapGroup`1.GetEnumerator">
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.GetEnumerator">
             <summary>
             Returns an enumerator that iterates through a collection.
             </summary>
-            <returns>An <see cref="T:Sudoku.Linq.CandidateMapGroup`1.Enumerator"/> object that can be used to iterate through the collection.</returns>
+            <returns>An <see cref="T:Sudoku.Linq.BitStatusMapGroup`3.Enumerator"/> object that can be used to iterate through the collection.</returns>
         </member>
-        <member name="T:Sudoku.Linq.CandidateMapGroup`1.Enumerator">
+        <member name="T:Sudoku.Linq.BitStatusMapGroup`3.Enumerator">
             <summary>
             Indicates the enumerator type.
             </summary>
             <param name="map">The candidate map to be assigned.</param>
         </member>
-        <member name="M:Sudoku.Linq.CandidateMapGroup`1.Enumerator.#ctor(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Enumerator.#ctor(`0@)">
             <summary>
             Indicates the enumerator type.
             </summary>
             <param name="map">The candidate map to be assigned.</param>
         </member>
-        <member name="F:Sudoku.Linq.CandidateMapGroup`1.Enumerator._totalCount">
+        <member name="F:Sudoku.Linq.BitStatusMapGroup`3.Enumerator._totalCount">
             <summary>
             Indicates the total number of elements.
             </summary>
         </member>
-        <member name="F:Sudoku.Linq.CandidateMapGroup`1.Enumerator._values">
+        <member name="F:Sudoku.Linq.BitStatusMapGroup`3.Enumerator._values">
             <summary>
             Indicates the internal values.
             </summary>
         </member>
-        <member name="F:Sudoku.Linq.CandidateMapGroup`1.Enumerator._currentIndex">
+        <member name="F:Sudoku.Linq.BitStatusMapGroup`3.Enumerator._currentIndex">
             <summary>
             Indicates the current index.
             </summary>
         </member>
-        <member name="P:Sudoku.Linq.CandidateMapGroup`1.Enumerator.Current">
+        <member name="P:Sudoku.Linq.BitStatusMapGroup`3.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
-        <member name="M:Sudoku.Linq.CandidateMapGroup`1.Enumerator.MoveNext">
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="P:Sudoku.Linq.CandidateMapGroup`1.Key">
+        <member name="P:Sudoku.Linq.BitStatusMapGroup`3.Key">
             <summary>
             The generated property declaration for parameter <c>key</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Linq.CandidateMapGroup`1.Values">
+        <member name="P:Sudoku.Linq.BitStatusMapGroup`3.Values">
             <summary>
             The generated property declaration for parameter <c>values</c>.
             </summary>

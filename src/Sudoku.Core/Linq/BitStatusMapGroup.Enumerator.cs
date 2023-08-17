@@ -1,12 +1,12 @@
 namespace Sudoku.Linq;
 
-partial struct CandidateMapGroup<TKey>
+partial struct BitStatusMapGroup<TMap, TElement, TKey>
 {
 	/// <summary>
 	/// Indicates the enumerator type.
 	/// </summary>
 	/// <param name="map">The candidate map to be assigned.</param>
-	public ref struct Enumerator(scoped in CandidateMap map)
+	public ref struct Enumerator(scoped in TMap map)
 	{
 		/// <summary>
 		/// Indicates the total number of elements.
@@ -16,7 +16,7 @@ partial struct CandidateMapGroup<TKey>
 		/// <summary>
 		/// Indicates the internal values.
 		/// </summary>
-		private readonly Candidate[] _values = [.. map];
+		private readonly TElement[] _values = [.. map];
 
 		/// <summary>
 		/// Indicates the current index.
@@ -25,7 +25,7 @@ partial struct CandidateMapGroup<TKey>
 
 
 		/// <inheritdoc cref="IEnumerator.Current"/>
-		public readonly Candidate Current => _values[_currentIndex];
+		public readonly TElement Current => _values[_currentIndex];
 
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>

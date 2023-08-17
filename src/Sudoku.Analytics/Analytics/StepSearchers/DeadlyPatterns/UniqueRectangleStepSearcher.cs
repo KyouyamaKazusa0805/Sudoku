@@ -531,7 +531,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var isType5 = !(CellsMap[corner1] + corner2).InOneHouse;
 		accumulator.Add(
 			new UniqueRectangleType2Step(
-				from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
+				[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 				[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
 				d1,
 				d2,
@@ -802,7 +802,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						conclusions,
+						[.. conclusions],
 						[
 							[
 								.. arMode ? GetHighlightCells(urCells) : [],
@@ -907,7 +907,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 		accumulator.Add(
 			new UniqueRectangleType2Step(
-				from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
+				[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 				[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
 				d1,
 				d2,
@@ -1027,7 +1027,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 			accumulator.Add(
 				new UniqueRectangleWithConjugatePairStep(
-					conclusions,
+					[.. conclusions],
 					[
 						[
 							.. arMode ? GetHighlightCells(urCells) : [],
@@ -2768,7 +2768,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleWithWingStep(
-						from cell in elimMap select new Conclusion(Elimination, cell, finalPivotDigit),
+						[.. from cell in elimMap select new Conclusion(Elimination, cell, finalPivotDigit)],
 						[[.. candidateOffsets, .. cellOffsets]],
 						(arMode, pivotDigit, combination.Count) switch
 						{
@@ -3542,7 +3542,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleExternalType1Or2Step(
-						from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit),
+						[.. from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit)],
 						[
 							[
 								.. cellOffsets,
@@ -4073,7 +4073,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 							accumulator.Add(
 								new UniqueRectangleExternalTurbotFishStep(
-									from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit),
+									[.. from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit)],
 									[
 										[
 											.. candidateOffsets,
@@ -4614,7 +4614,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleExternalXyWingStep(
-						from cell in elimMap select new Conclusion(Elimination, cell, elimDigit),
+						[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
 						[[.. cellOffsets, .. candidateOffsets]],
 						d1,
 						d2,
@@ -4784,7 +4784,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 					accumulator.Add(
 						new UniqueRectangleExternalAlmostLockedSetsXzStep(
-							from cell in elimMap select new Conclusion(Elimination, cell, zDigit),
+							[.. from cell in elimMap select new Conclusion(Elimination, cell, zDigit)],
 							[[.. candidateOffsets, .. cellOffsets, new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet1, alsHouse)]],
 							d1,
 							d2,

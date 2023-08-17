@@ -350,7 +350,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		}
 
 		var step = new ExtendedRectangleType2Step(
-			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
+			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 			[[.. candidateOffsets]],
 			allCellsMap,
 			normalDigits,

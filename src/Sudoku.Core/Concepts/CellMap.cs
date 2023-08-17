@@ -798,19 +798,36 @@ public unsafe partial struct CellMap :
 		return [.. result];
 	}
 
-	/// <summary>
-	/// Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
-	/// using the specified function to convert.
-	/// </summary>
-	/// <typeparam name="TResult">The type of target value.</typeparam>
-	/// <param name="selector">The selector.</param>
-	/// <returns>An array of <typeparamref name="TResult"/> elements.</returns>
-	public readonly TResult[] Select<TResult>(Func<Cell, TResult> selector)
+	/// <inheritdoc/>
+	public readonly ReadOnlySpan<TResult> Select<TResult>(Func<Cell, TResult> selector)
 	{
 		var (result, i) = (new TResult[_count], 0);
 		foreach (var cell in Offsets)
 		{
 			result[i++] = selector(cell);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	public readonly ReadOnlySpan<BitStatusMapGroup<CellMap, Cell, TKey>> GroupBy<TKey>(Func<Cell, TKey> keySelector) where TKey : notnull
+	{
+		var dictionary = new Dictionary<TKey, CellMap>();
+		foreach (var cell in this)
+		{
+			var key = keySelector(cell);
+			if (!dictionary.TryAdd(key, CellsMap[cell]))
+			{
+				dictionary[key].Add(cell);
+			}
+		}
+
+		var result = new BitStatusMapGroup<CellMap, Cell, TKey>[dictionary.Count];
+		var i = 0;
+		foreach (var (key, value) in dictionary)
+		{
+			result[i++] = new(key, value);
 		}
 
 		return result;

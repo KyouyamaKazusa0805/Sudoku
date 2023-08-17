@@ -81,7 +81,7 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 					}
 
 					var step = new TwoStrongLinksStep(
-						from cell in elimMap select new Conclusion(Elimination, cell, digit),
+						[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
 						[
 							[
 								new CandidateViewNode(WellKnownColorIdentifier.Normal, cellsList1[c1Index] * 9 + digit),

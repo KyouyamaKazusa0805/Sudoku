@@ -333,6 +333,61 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <returns>The enumerator instance.</returns>
 	public new abstract OneDimensionalArrayEnumerator<TElement> GetEnumerator();
 
+	/// <summary>
+	/// Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
+	/// using the specified function to convert.
+	/// </summary>
+	/// <typeparam name="TResult">The type of target value.</typeparam>
+	/// <param name="selector">The selector.</param>
+	/// <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+	public virtual ReadOnlySpan<TResult> Select<TResult>(Func<TElement, TResult> selector)
+	{
+		var offsets = Offsets;
+		var result = new TResult[offsets.Length];
+		for (var i = 0; i < offsets.Length; i++)
+		{
+			result[i] = selector(offsets[i]);
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Groups the elements of a sequence accroding to a specified key selector function.
+	/// </summary>
+	/// <typeparam name="TKey">
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/typeparam[@name='TKey']"/>
+	/// </typeparam>
+	/// <param name="keySelector">
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/param[@name='keySelector']"/>
+	/// </param>
+	/// <returns>
+	/// A list of <see cref="BitStatusMapGroup{TMap, TElement, TKey}"/> instances where each value object contains a sequence of objects and a key.
+	/// </returns>
+	/// <seealso cref="BitStatusMapGroup{TMap, TElement, TKey}"/>
+	public virtual ReadOnlySpan<BitStatusMapGroup<TSelf, TElement, TKey>> GroupBy<TKey>(Func<TElement, TKey> keySelector)
+		where TKey : notnull
+	{
+		var dictionary = new Dictionary<TKey, TSelf>();
+		foreach (var element in this)
+		{
+			var key = keySelector(element);
+			if (!dictionary.TryAdd(key, [element]))
+			{
+				dictionary[key].Add(element);
+			}
+		}
+
+		var result = new BitStatusMapGroup<TSelf, TElement, TKey>[dictionary.Count];
+		var i = 0;
+		foreach (var (key, value) in dictionary)
+		{
+			result[i++] = new(key, value);
+		}
+
+		return result;
+	}
+
 	/// <inheritdoc cref="ISet{T}.IsProperSubsetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(ISet<>))]

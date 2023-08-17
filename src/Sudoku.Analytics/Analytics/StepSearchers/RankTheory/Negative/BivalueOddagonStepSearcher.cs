@@ -134,7 +134,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		}
 
 		var step = new BivalueOddagonType2Step(
-			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
+			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 			[[.. candidateOffsets]],
 			loop,
 			d1,

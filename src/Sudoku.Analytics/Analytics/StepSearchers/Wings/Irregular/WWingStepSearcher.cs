@@ -127,7 +127,7 @@ public sealed partial class WWingStepSearcher : StepSearcher
 							case [var a, var b]:
 							{
 								step = new WWingStep(
-									from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit),
+									[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
 									[
 										[
 											new CandidateViewNode(WellKnownColorIdentifier.Normal, c1 * 9 + anotherDigit),
@@ -162,7 +162,7 @@ public sealed partial class WWingStepSearcher : StepSearcher
 								}
 
 								step = new GroupedWWingStep(
-									from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit),
+									[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
 									[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house)]],
 									c1,
 									c2,

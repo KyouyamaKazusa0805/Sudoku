@@ -86,7 +86,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 				var realCoverSet = housesMask & 127;
 				var intersection = c & candidatesMap;
 				var step = new LockedCandidatesStep(
-					from cell in elimMap select new Conclusion(Elimination, cell, digit),
+					[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
 					[
 						[
 							.. from cell in intersection select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),

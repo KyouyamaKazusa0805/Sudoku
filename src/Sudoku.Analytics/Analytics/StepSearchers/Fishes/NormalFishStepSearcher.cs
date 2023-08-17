@@ -260,7 +260,7 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 
 					// Gather the result.
 					var step = new NormalFishStep(
-						from cell in elimMap select new Conclusion(Elimination, cell, digit),
+						[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
 						[[.. candidateOffsets, .. houseOffsets], GetDirectView(digit, bs, cs, fins, searchRow)],
 						digit,
 						baseSetsMask,

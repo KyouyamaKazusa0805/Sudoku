@@ -282,7 +282,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		}
 
 		var step = new ReverseBivalueUniversalGraveType2Step(
-			from cell in elimMap select new Conclusion(Elimination, cell, extraDigit),
+			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 			[[.. cellOffsets, .. candidateOffsets]],
 			d1,
 			d2,
