@@ -708,7 +708,7 @@ public unsafe partial struct CellMap :
 		{
 			// Optimization: Use table to get the total number of result elements.
 			var totalIndex = 0;
-			var result = new CellMap[Combinatorial[n - 1][subsetSize - 1]];
+			var result = new CellMap[PascalTriangle[n - 1][subsetSize - 1]];
 			enumerateWithLimit(subsetSize, n, subsetSize, Offsets);
 			return result;
 
@@ -786,7 +786,7 @@ public unsafe partial struct CellMap :
 		var length = Min(n, limitSubsetSize);
 		for (var i = 1; i <= length; i++)
 		{
-			desiredSize += Combinatorial[n - 1][i - 1];
+			desiredSize += PascalTriangle[n - 1][i - 1];
 		}
 
 		var result = new List<CellMap>(desiredSize);

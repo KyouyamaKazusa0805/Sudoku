@@ -38,22 +38,22 @@ public static class SolutionWideReadOnlyFields
 	/// <summary>
 	/// Indicates the mask that means all blocks.
 	/// </summary>
-	public const HouseMask AllBlocksMask = 0b000_000_000__000_000_000__111_111_111;
+	public const HouseMask AllBlocksMask = 511;
 
 	/// <summary>
 	/// Indicates the mask that means all rows.
 	/// </summary>
-	public const HouseMask AllRowsMask = 0b000_000_000__111_111_111__000_000_000;
+	public const HouseMask AllRowsMask = 511 << 9;
 
 	/// <summary>
 	/// Indicates the mask that means all columns.
 	/// </summary>
-	public const HouseMask AllColumnsMask = 0b111_111_111__000_000_000__000_000_000;
+	public const HouseMask AllColumnsMask = 511 << 18;
 
 	/// <summary>
 	/// Indicates the mask that means all houses.
 	/// </summary>
-	public const HouseMask AllHousesMask = 0b111_111_111__111_111_111__111_111_111;
+	public const HouseMask AllHousesMask = (1 << 27) - 1;
 
 	/// <summary>
 	/// Indicates the first cell offset for each house.
@@ -278,9 +278,9 @@ public static class SolutionWideReadOnlyFields
 	];
 
 	/// <summary>
-	/// Indicates the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.
+	/// Indicates the Pascal Triangle (in Chinese: Yang Hui's Triangle), i.e. the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.
 	/// </summary>
-	internal static readonly int[][] Combinatorial = [
+	internal static readonly int[][] PascalTriangle = [
 		[1],
 		[2, 1],
 		[3, 3, 1],
