@@ -174,7 +174,12 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		// Sort and remove duplicate instances if worth.
-		var resultList = list.Distinct().ToList();
+		var resultList = list.Distinct() switch
+		{
+			UniqueRectangleStep[] a => [.. a],
+			HashSet<UniqueRectangleStep> s => [.. s],
+			List<UniqueRectangleStep> l => l
+		};
 		resultList.Order();
 
 		if (context.OnlyFindOne)
