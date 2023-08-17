@@ -785,19 +785,16 @@
             Represents a set of methods to be used as method groups.
             </summary>
         </member>
-        <member name="M:System.CommonMethods.BitMerger(System.Int32,System.Int32)">
+        <member name="M:System.CommonMethods.BitMerger``1(``0,``0)">
             <summary>
             Merges two integers by bits. This method will be used by LINQ method
             <see cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>.
             </summary>
+            <typeparam name="T">The type of the value. The value must be an integer type, and supports for shifting operators.</typeparam>
             <param name="interim">The interim value.</param>
             <param name="next">The next value to be merged by its bits.</param>
             <returns>The final value merged.</returns>
             <seealso cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>
-        </member>
-        <member name="M:System.CommonMethods.BitMerger``1(``0,``0)">
-            <inheritdoc cref="M:System.CommonMethods.BitMerger(System.Int32,System.Int32)"/>
-            <typeparam name="T">The type of the value. The value must be an integer type, and supports for shifting operators.</typeparam>
         </member>
         <member name="M:System.CommonMethods.EnumFlagMerger``1(``0,``0)">
             <summary>
