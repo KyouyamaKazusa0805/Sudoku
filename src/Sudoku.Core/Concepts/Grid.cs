@@ -277,7 +277,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 	}
 
 	/// <inheritdoc/>
-	public readonly HouseMask NullHouses
+	public readonly HouseMask EmptyHouses
 	{
 		get
 		{

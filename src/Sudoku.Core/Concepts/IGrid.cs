@@ -85,15 +85,15 @@ public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, 
 	public abstract int EmptiesCount { get; }
 
 	/// <summary>
-	/// <para>Indicates which houses are null houses.</para>
-	/// <para>A <b>Null House</b> is a house whose hold cells are all empty cells.</para>
+	/// <para>Indicates which houses are empty houses.</para>
+	/// <para>An <b>Empty House</b> is a house holding 9 empty cells, i.e. all cells in this house are empty.</para>
 	/// <para>
 	/// The property returns a <typeparamref name="THouseMask"/> value as a mask that contains all possible house indices.
 	/// For example, if the row 5, column 5 and block 5 (1-9) are null houses, the property will return
 	/// the result <typeparamref name="THouseMask"/> value, <c>000010000_000010000_000010000</c> as binary.
 	/// </para>
 	/// </summary>
-	public abstract THouseMask NullHouses { get; }
+	public abstract THouseMask EmptyHouses { get; }
 
 	/// <summary>
 	/// Gets a cell list that only contains the given cells.
