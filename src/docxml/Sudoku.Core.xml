@@ -2602,7 +2602,7 @@ if (student is (name: var name, age: >= 18))
             and the higher 3 bits in (2) indicate the cell state. The possible cell state are:
             <list type="table">
             <listheader>
-            <term>Status name</term>
+            <term>State name</term>
             <description>Description</description>
             </listheader>
             <item>
@@ -2912,7 +2912,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Analytics.Conclusion[])">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.SetStatus(System.Int32,Sudoku.Concepts.CellState)">
+        <member name="M:Sudoku.Concepts.Grid.SetState(System.Int32,Sudoku.Concepts.CellState)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.SetMask(System.Int32,System.Int16)">
@@ -4844,7 +4844,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="conclusions">The conclusions to be applied.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IGrid`11.SetStatus(`4,Sudoku.Concepts.CellState)">
+        <member name="M:Sudoku.Concepts.IGrid`11.SetState(`4,Sudoku.Concepts.CellState)">
             <summary>
             Set the specified cell to the specified state.
             </summary>
@@ -5428,7 +5428,7 @@ if (student is (name: var name, age: >= 18))
             <param name="digitMask">The digit mask.</param>
             <returns>The digits returned.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.MaskToStatus(System.Int16)">
+        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.MaskToCellState(System.Int16)">
             <summary>
             To get the cell state for a mask value. The mask is an inner representation to describe a cell's state.
             For more information please visit the details of the design for type <see cref="T:Sudoku.Concepts.Grid"/>.

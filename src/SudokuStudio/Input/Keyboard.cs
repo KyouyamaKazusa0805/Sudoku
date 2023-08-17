@@ -67,16 +67,16 @@ public static class Keyboard
 		};
 
 	/// <summary>
-	/// Try to create a <see cref="VirtualKeyModifierStatus"/> instance to determine key-down state.
+	/// Try to create a <see cref="VirtualKeyModifierState"/> instance to determine key-down state.
 	/// </summary>
-	/// <returns>A <see cref="VirtualKeyModifierStatus"/> instance.</returns>
+	/// <returns>A <see cref="VirtualKeyModifierState"/> instance.</returns>
 	/// <remarks>
-	/// Please note that type <see cref="VirtualKeyModifierStatus"/> is a <see langword="readonly record struct"/>,
+	/// Please note that type <see cref="VirtualKeyModifierState"/> is a <see langword="readonly record struct"/>,
 	/// which means you can use deconstruction syntax to check what key you want to check:
 	/// <code><![CDATA[
-	/// var (_, shiftIsDown, _, _) = Keyboard.GetModifierStatusForCurrentThread();
+	/// var (_, shiftIsDown, _, _) = Keyboard.GetModifierStateForCurrentThread();
 	/// ]]></code>
 	/// For more information, please visit that type to learn more details.
 	/// </remarks>
-	public static VirtualKeyModifierStatus GetModifierStatusForCurrentThread() => new(IsControlKeyDown, IsShiftKeyDown, IsAltKeyDown, IsWindowsKeyDown);
+	public static VirtualKeyModifierState GetModifierStateForCurrentThread() => new(IsControlKeyDown, IsShiftKeyDown, IsAltKeyDown, IsWindowsKeyDown);
 }

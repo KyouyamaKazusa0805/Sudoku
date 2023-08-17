@@ -13,7 +13,7 @@ internal static class PencilmarkTextConversion
 	public static Brush GetBrush(
 		Color pencilmarkColor,
 		Color deltaColor,
-		CellState cellStatus,
+		CellState cellState,
 		Grid solution,
 		Cell cell,
 		Mask candidatesMask,
@@ -24,7 +24,7 @@ internal static class PencilmarkTextConversion
 	)
 	{
 		// Special case: If the candidate is rendered by a view node, display it.
-		if (cellStatus == CellState.Empty && usedCandidates.Contains(cell * 9 + digit))
+		if (cellState == CellState.Empty && usedCandidates.Contains(cell * 9 + digit))
 		{
 			return new SolidColorBrush(pencilmarkColor);
 		}
@@ -32,7 +32,7 @@ internal static class PencilmarkTextConversion
 		var defaultBrush = new SolidColorBrush();
 
 		// If the cell is not empty, don't display it.
-		if (cellStatus is CellState.Given or CellState.Modifiable)
+		if (cellState is CellState.Given or CellState.Modifiable)
 		{
 			return defaultBrush;
 		}

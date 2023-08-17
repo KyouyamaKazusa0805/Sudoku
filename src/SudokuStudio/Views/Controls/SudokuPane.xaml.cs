@@ -496,7 +496,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		for (var i = 0; i < 81; i++)
 		{
 			var cellControl = _children[i];
-			cellControl.Status = grid.GetState(i);
+			cellControl.State = grid.GetState(i);
 			cellControl.CandidatesMask = grid.GetCandidates(i);
 		}
 	}
@@ -775,7 +775,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	private void UserControl_KeyDown(object sender, KeyRoutedEventArgs e)
 	{
-		switch (Keyboard.GetModifierStatusForCurrentThread(), SelectedCell, e.Key, Keyboard.GetInputDigit(e.Key))
+		switch (Keyboard.GetModifierStateForCurrentThread(), SelectedCell, e.Key, Keyboard.GetInputDigit(e.Key))
 		{
 			default:
 			case (_, not (>= 0 and < 81), _, _):

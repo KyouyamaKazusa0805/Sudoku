@@ -98,7 +98,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 	/// and the higher 3 bits in (2) indicate the cell state. The possible cell state are:
 	/// <list type="table">
 	/// <listheader>
-	/// <term>Status name</term>
+	/// <term>State name</term>
 	/// <description>Description</description>
 	/// </listheader>
 	/// <item>
@@ -153,8 +153,8 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 				// Calls the indexer to trigger the event (Clear the candidates in peer cells).
 				SetDigit(i, realValue);
 
-				// Set the state to 'CellStatus.Given'.
-				SetStatus(i, CellState.Given);
+				// Set the state to 'CellState.Given'.
+				SetState(i, CellState.Given);
 			}
 		}
 	}
@@ -379,7 +379,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 				{
 					if (result.GetState(cell) == CellState.Given)
 					{
-						result.SetStatus(cell, CellState.Modifiable);
+						result.SetState(cell, CellState.Modifiable);
 					}
 				}
 
@@ -730,7 +730,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CellState GetState(Cell cell) => MaskToStatus(this[cell]);
+	public readonly CellState GetState(Cell cell) => MaskToCellState(this[cell]);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -780,7 +780,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 		{
 			if (GetState(i) == CellState.Modifiable)
 			{
-				SetStatus(i, CellState.Given);
+				SetState(i, CellState.Given);
 			}
 		}
 	}
@@ -792,7 +792,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 		{
 			if (GetState(i) == CellState.Given)
 			{
-				SetStatus(i, CellState.Modifiable);
+				SetState(i, CellState.Modifiable);
 			}
 		}
 	}
@@ -828,7 +828,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetStatus(Cell cell, CellState state)
+	public void SetState(Cell cell, CellState state)
 	{
 		scoped ref var mask = ref this[cell];
 		var copied = mask;
@@ -869,7 +869,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 				scoped ref var result = ref this[cell];
 				var copied = result;
 
-				// Set cell state to 'CellStatus.Modifiable'.
+				// Set cell state to 'CellState.Modifiable'.
 				result = (Mask)(ModifiableMask | 1 << digit);
 
 				// To trigger the event, which is used for eliminate all same candidates in peer cells.

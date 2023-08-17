@@ -171,7 +171,7 @@ public unsafe ref partial struct GridParser(
 				case [var match and not ('.' or '0')]:
 				{
 					result.SetDigit(i, match - '1');
-					result.SetStatus(i, CellState.Given);
+					result.SetState(i, CellState.Given);
 
 					break;
 				}
@@ -188,7 +188,7 @@ public unsafe ref partial struct GridParser(
 					}
 
 					result.SetDigit(i, match - '1');
-					result.SetStatus(i, CellState.Modifiable);
+					result.SetState(i, CellState.Modifiable);
 
 					break;
 				}
@@ -258,7 +258,7 @@ public unsafe ref partial struct GridParser(
 				case not '0' and var ch when whenClause(i * 6, match, "|0|0", "|0|0|"):
 				{
 					result.SetDigit(i, ch - '1');
-					result.SetStatus(i, CellState.Given);
+					result.SetState(i, CellState.Given);
 
 					break;
 				}
@@ -310,7 +310,7 @@ public unsafe ref partial struct GridParser(
 					if (s[1] is var c and >= '1' and <= '9')
 					{
 						result.SetDigit(cell, c - '1');
-						result.SetStatus(cell, CellState.Given);
+						result.SetState(cell, CellState.Given);
 					}
 					else
 					{
@@ -332,7 +332,7 @@ public unsafe ref partial struct GridParser(
 					if (s[1] is var c and >= '1' and <= '9')
 					{
 						result.SetDigit(cell, c - '1');
-						result.SetStatus(cell, CellState.Modifiable);
+						result.SetState(cell, CellState.Modifiable);
 					}
 					else
 					{
@@ -364,7 +364,7 @@ public unsafe ref partial struct GridParser(
 				if ((mask & mask - 1) == 0)
 				{
 					result.SetDigit(cell, TrailingZeroCount(mask));
-					result.SetStatus(cell, CellState.Given);
+					result.SetState(cell, CellState.Given);
 				}
 				else
 				{
@@ -474,11 +474,11 @@ public unsafe ref partial struct GridParser(
 					// Set value.
 					result.SetDigit(realPos, c - '1');
 
-					// Set the cell state as 'CellStatus.Given'.
+					// Set the cell state as 'CellState.Given'.
 					// If the code below doesn't make sense to you,
 					// you can see the comments in method 'OnParsingSusser(string)'
 					// to know the meaning also.
-					result.SetStatus(realPos, CellState.Given);
+					result.SetState(realPos, CellState.Given);
 
 					// Finally moves 1 step forward.
 					i++;

@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Input;
+namespace SudokuStudio.Input;
 
 /// <summary>
 /// Defines a quadruple <see cref="bool"/>s indicating the key-down state of virtual key modifiers
@@ -9,8 +9,8 @@
 /// <param name="IsAltKeyDown">Indicates whether the alt key is input.</param>
 /// <param name="IsWindowsKeyDown">Indicates whether the windows key is input.</param>
 /// <seealso cref="VirtualKeyModifiers"/>
-public readonly record struct VirtualKeyModifierStatus(bool IsControlKeyDown, bool IsShiftKeyDown, bool IsAltKeyDown, bool IsWindowsKeyDown) :
-	IEqualityOperators<VirtualKeyModifierStatus, VirtualKeyModifierStatus, bool>
+public readonly record struct VirtualKeyModifierState(bool IsControlKeyDown, bool IsShiftKeyDown, bool IsAltKeyDown, bool IsWindowsKeyDown) :
+	IEqualityOperators<VirtualKeyModifierState, VirtualKeyModifierState, bool>
 {
 	/// <summary>
 	/// Indicates whether all modifier keys are not pressed.
@@ -47,14 +47,14 @@ public readonly record struct VirtualKeyModifierStatus(bool IsControlKeyDown, bo
 
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
-	public static bool operator ==(VirtualKeyModifierStatus left, VirtualKeyModifiers right) => left.AsKeyModifiers() == right;
+	public static bool operator ==(VirtualKeyModifierState left, VirtualKeyModifiers right) => left.AsKeyModifiers() == right;
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
-	public static bool operator ==(VirtualKeyModifiers left, VirtualKeyModifierStatus right) => left == right.AsKeyModifiers();
+	public static bool operator ==(VirtualKeyModifiers left, VirtualKeyModifierState right) => left == right.AsKeyModifiers();
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
-	public static bool operator !=(VirtualKeyModifierStatus left, VirtualKeyModifiers right) => !(left == right);
+	public static bool operator !=(VirtualKeyModifierState left, VirtualKeyModifiers right) => !(left == right);
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
-	public static bool operator !=(VirtualKeyModifiers left, VirtualKeyModifierStatus right) => !(left == right);
+	public static bool operator !=(VirtualKeyModifiers left, VirtualKeyModifierState right) => !(left == right);
 }

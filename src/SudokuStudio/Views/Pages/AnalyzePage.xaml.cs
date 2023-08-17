@@ -459,10 +459,10 @@ public sealed partial class AnalyzePage : Page
 		base.OnKeyDown(e);
 
 		// This method routes the hotkeys.
-		var modifierStatus = Keyboard.GetModifierStatusForCurrentThread();
+		var modifierState = Keyboard.GetModifierStateForCurrentThread();
 		foreach (var ((key, modifiers), action) in _hotkeyFunctions)
 		{
-			if (modifierStatus == modifiers && e.Key == key)
+			if (modifierState == modifiers && e.Key == key)
 			{
 				action();
 				break;

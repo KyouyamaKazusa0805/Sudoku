@@ -25,7 +25,7 @@ public sealed partial class MainWindow : Window
 
 #if UI_FEATURE_CUSTOMIZED_TITLE_BAR
 		InitializeAppWindow();
-		SetAppTitleBarStatus();
+		SetAppTitleBarState();
 		SetAppIcon();
 #endif
 	}
@@ -118,7 +118,7 @@ public sealed partial class MainWindow : Window
 	/// <summary>
 	/// Sets the state of app title bars conditionally.
 	/// </summary>
-	private void SetAppTitleBarStatus()
+	private void SetAppTitleBarState()
 	{
 #if SEARCH_AUTO_SUGGESTION_BOX
 		AppTitleBar.Visibility = Visibility.Visible;

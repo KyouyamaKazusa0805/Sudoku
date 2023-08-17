@@ -32,7 +32,7 @@ public static class MaskOperations
 	/// <returns>The cell state.</returns>
 	/// <seealso cref="Grid"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellState MaskToStatus(Mask mask) => (CellState)(mask >> 9 & 7);
+	public static CellState MaskToCellState(Mask mask) => (CellState)(mask >> 9 & 7);
 
 	/// <summary>
 	/// Get all mask combinations.

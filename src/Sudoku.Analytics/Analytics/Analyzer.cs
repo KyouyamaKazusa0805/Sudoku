@@ -197,7 +197,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 			SetAnalyzerProgress:
 				progressedStepSearcherName = searcher.ToString();
-				goto ReportStatusAndSkipToTryAgain;
+				goto ReportStateAndSkipToTryAgain;
 			}
 
 			// All solver can't finish the puzzle... :(
@@ -209,7 +209,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				StepGrids = [.. stepGrids]
 			};
 
-		ReportStatusAndSkipToTryAgain:
+		ReportStateAndSkipToTryAgain:
 			progress?.Report(new(progressedStepSearcherName, (double)(totalCandidatesCount - playground.CandidatesCount) / totalCandidatesCount));
 			goto Again;
 

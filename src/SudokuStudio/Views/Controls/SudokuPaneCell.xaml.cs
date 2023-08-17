@@ -5,7 +5,7 @@ namespace SudokuStudio.Views.Controls;
 /// </summary>
 /// <seealso cref="SudokuPane"/>
 [DependencyProperty<Mask>("CandidatesMask", DefaultValue = Grid.MaxCandidatesMask)]
-[DependencyProperty<CellState>("Status", DefaultValue = CellState.Empty)]
+[DependencyProperty<CellState>("State", DefaultValue = CellState.Empty)]
 internal sealed partial class SudokuPaneCell : UserControl
 {
 	/// <summary>

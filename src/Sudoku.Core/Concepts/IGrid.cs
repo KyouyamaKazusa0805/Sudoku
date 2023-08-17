@@ -523,7 +523,7 @@ public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, 
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="state">The state.</param>
-	public abstract void SetStatus(TCell cell, CellState state);
+	public abstract void SetState(TCell cell, CellState state);
 
 	/// <summary>
 	/// Set the specified cell to the specified mask.

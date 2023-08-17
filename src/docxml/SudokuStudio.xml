@@ -1951,16 +1951,16 @@
             </list>
             </returns>
         </member>
-        <member name="M:SudokuStudio.Input.Keyboard.GetModifierStatusForCurrentThread">
+        <member name="M:SudokuStudio.Input.Keyboard.GetModifierStateForCurrentThread">
             <summary>
-            Try to create a <see cref="T:SudokuStudio.Input.VirtualKeyModifierStatus"/> instance to determine key-down state.
+            Try to create a <see cref="T:SudokuStudio.Input.VirtualKeyModifierState"/> instance to determine key-down state.
             </summary>
-            <returns>A <see cref="T:SudokuStudio.Input.VirtualKeyModifierStatus"/> instance.</returns>
+            <returns>A <see cref="T:SudokuStudio.Input.VirtualKeyModifierState"/> instance.</returns>
             <remarks>
-            Please note that type <see cref="T:SudokuStudio.Input.VirtualKeyModifierStatus"/> is a <see langword="readonly record struct"/>,
+            Please note that type <see cref="T:SudokuStudio.Input.VirtualKeyModifierState"/> is a <see langword="readonly record struct"/>,
             which means you can use deconstruction syntax to check what key you want to check:
             <code><![CDATA[
-            var (_, shiftIsDown, _, _) = Keyboard.GetModifierStatusForCurrentThread();
+            var (_, shiftIsDown, _, _) = Keyboard.GetModifierStateForCurrentThread();
             ]]></code>
             For more information, please visit that type to learn more details.
             </remarks>
@@ -2159,7 +2159,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:SudokuStudio.Input.VirtualKeyModifierStatus">
+        <member name="T:SudokuStudio.Input.VirtualKeyModifierState">
             <summary>
             Defines a quadruple <see cref="T:System.Boolean"/>s indicating the key-down state of virtual key modifiers
             defined by type <see cref="T:Windows.System.VirtualKeyModifiers"/>.
@@ -2170,7 +2170,7 @@ if (student is (name: var name, age: >= 18))
             <param name="IsWindowsKeyDown">Indicates whether the windows key is input.</param>
             <seealso cref="T:Windows.System.VirtualKeyModifiers"/>
         </member>
-        <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:SudokuStudio.Input.VirtualKeyModifierState.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Defines a quadruple <see cref="T:System.Boolean"/>s indicating the key-down state of virtual key modifiers
             defined by type <see cref="T:Windows.System.VirtualKeyModifiers"/>.
@@ -2181,51 +2181,51 @@ if (student is (name: var name, age: >= 18))
             <param name="IsWindowsKeyDown">Indicates whether the windows key is input.</param>
             <seealso cref="T:Windows.System.VirtualKeyModifiers"/>
         </member>
-        <member name="P:SudokuStudio.Input.VirtualKeyModifierStatus.IsControlKeyDown">
+        <member name="P:SudokuStudio.Input.VirtualKeyModifierState.IsControlKeyDown">
             <summary>Indicates whether the control key is input.</summary>
         </member>
-        <member name="P:SudokuStudio.Input.VirtualKeyModifierStatus.IsShiftKeyDown">
+        <member name="P:SudokuStudio.Input.VirtualKeyModifierState.IsShiftKeyDown">
             <summary>Indicates whether the shift key is input.</summary>
         </member>
-        <member name="P:SudokuStudio.Input.VirtualKeyModifierStatus.IsAltKeyDown">
+        <member name="P:SudokuStudio.Input.VirtualKeyModifierState.IsAltKeyDown">
             <summary>Indicates whether the alt key is input.</summary>
         </member>
-        <member name="P:SudokuStudio.Input.VirtualKeyModifierStatus.IsWindowsKeyDown">
+        <member name="P:SudokuStudio.Input.VirtualKeyModifierState.IsWindowsKeyDown">
             <summary>Indicates whether the windows key is input.</summary>
         </member>
-        <member name="P:SudokuStudio.Input.VirtualKeyModifierStatus.AllFalse">
+        <member name="P:SudokuStudio.Input.VirtualKeyModifierState.AllFalse">
             <summary>
             Indicates whether all modifier keys are not pressed.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Input.VirtualKeyModifierStatus.AllTrue">
+        <member name="P:SudokuStudio.Input.VirtualKeyModifierState.AllTrue">
             <summary>
             Indicates whether all modifier keys are pressed.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.AsKeyModifiers">
+        <member name="M:SudokuStudio.Input.VirtualKeyModifierState.AsKeyModifiers">
             <summary>
             Creates a <see cref="T:Windows.System.VirtualKeyModifiers"/> instance using the current data.
             </summary>
             <returns>A <see cref="T:Windows.System.VirtualKeyModifiers"/> instance.</returns>
         </member>
-        <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.HasModifier(Windows.System.VirtualKeyModifiers)">
+        <member name="M:SudokuStudio.Input.VirtualKeyModifierState.HasModifier(Windows.System.VirtualKeyModifiers)">
             <summary>
             Determines whether the current instance contains the specified virtual key modifier.
             </summary>
             <param name="modifier">The key modifier.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.op_Equality(SudokuStudio.Input.VirtualKeyModifierStatus,Windows.System.VirtualKeyModifiers)">
+        <member name="M:SudokuStudio.Input.VirtualKeyModifierState.op_Equality(SudokuStudio.Input.VirtualKeyModifierState,Windows.System.VirtualKeyModifiers)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.op_Equality(Windows.System.VirtualKeyModifiers,SudokuStudio.Input.VirtualKeyModifierStatus)">
+        <member name="M:SudokuStudio.Input.VirtualKeyModifierState.op_Equality(Windows.System.VirtualKeyModifiers,SudokuStudio.Input.VirtualKeyModifierState)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.op_Inequality(SudokuStudio.Input.VirtualKeyModifierStatus,Windows.System.VirtualKeyModifiers)">
+        <member name="M:SudokuStudio.Input.VirtualKeyModifierState.op_Inequality(SudokuStudio.Input.VirtualKeyModifierState,Windows.System.VirtualKeyModifiers)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="M:SudokuStudio.Input.VirtualKeyModifierStatus.op_Inequality(Windows.System.VirtualKeyModifiers,SudokuStudio.Input.VirtualKeyModifierStatus)">
+        <member name="M:SudokuStudio.Input.VirtualKeyModifierState.op_Inequality(Windows.System.VirtualKeyModifiers,SudokuStudio.Input.VirtualKeyModifierState)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:SudokuStudio.Interaction.AnimatedResultCollection">
@@ -7992,11 +7992,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.StatusProperty">
+        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.StateProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.Status"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.State"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.Status"/>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.State"/>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
             <summary>
@@ -8004,11 +8004,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty" />
         </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.Status">
+        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.State">
             <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.StatusProperty"/> to get or set value.
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.StateProperty"/> to get or set value.
             </summary>
-            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.StatusProperty" />
+            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.StateProperty" />
         </member>
         <member name="T:SudokuStudio.Views.Controls.TechniqueGroupView">
             <summary>
@@ -9443,7 +9443,7 @@ if (student is (name: var name, age: >= 18))
             Saves for puzzle generating history.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.SetAppTitleBarStatus">
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SetAppTitleBarState">
             <summary>
             Sets the state of app title bars conditionally.
             </summary>
