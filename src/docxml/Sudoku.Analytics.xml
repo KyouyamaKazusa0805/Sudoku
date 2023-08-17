@@ -658,7 +658,7 @@
         <member name="M:Sudoku.Analytics.AnalyzerResult.StepsEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="T:Sudoku.Analytics.Buffers.CachedFields">
+        <member name="T:Sudoku.Analytics.CachedFields">
             <summary>
             <para>Represents cached fields used by solving and analyzing for a sudoku puzzle, reducing repeated and redundant calculations.</para>
             <para>
@@ -670,9 +670,9 @@
             Sometimes, such values may only be calculated only once, and we just use those return values after the value had been calculated.
             For the consideration of the calculation result caching, those results will be stored here as <see langword="static"/> fields,
             we can use them if we can ensure that such fields have already been initialized.
-            For calling the method <see cref="M:Sudoku.Analytics.Buffers.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>, we can ensure those fields are initialized, in order to be used later.
+            For calling the method <see cref="M:Sudoku.Analytics.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>, we can ensure those fields are initialized, in order to be used later.
             In other words,
-            <b>you must ensure the method <see cref="M:Sudoku.Analytics.Buffers.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> having been called before using such fields if you want to use them</b>;
+            <b>you must ensure the method <see cref="M:Sudoku.Analytics.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> having been called before using such fields if you want to use them</b>;
             otherwise, <see cref="T:System.NullReferenceException"/> will be thrown for cached fields whose types are reference ones.
             </para>
             <para>
@@ -682,63 +682,63 @@
             </para>
             <para>Some <see cref="T:Sudoku.Analytics.StepSearcher"/>s may rely on this type.</para>
             </summary>
-            <seealso cref="M:Sudoku.Analytics.Buffers.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
+            <seealso cref="M:Sudoku.Analytics.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="F:Sudoku.Analytics.Buffers.CachedFields.EmptyCells">
+        <member name="F:Sudoku.Analytics.CachedFields.EmptyCells">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.EmptyCells"/>
             </summary>
             <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Analytics.Buffers.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Analytics.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are set <see langword="true"/> for property <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsPure"/>.
             </remarks>
-            <seealso cref="M:Sudoku.Analytics.Buffers.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
+            <seealso cref="M:Sudoku.Analytics.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
             <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsPure"/>
         </member>
-        <member name="F:Sudoku.Analytics.Buffers.CachedFields.BivalueCells">
+        <member name="F:Sudoku.Analytics.CachedFields.BivalueCells">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.BivalueCells"/>
             </summary>
             <remarks>
-            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedFields.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Analytics.CachedFields.EmptyCells" path="/remarks"/>
             </remarks>
         </member>
-        <member name="F:Sudoku.Analytics.Buffers.CachedFields.CandidatesMap">
+        <member name="F:Sudoku.Analytics.CachedFields.CandidatesMap">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
             </summary>
             <remarks>
-            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedFields.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Analytics.CachedFields.EmptyCells" path="/remarks"/>
             </remarks>
             <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
         </member>
-        <member name="F:Sudoku.Analytics.Buffers.CachedFields.DigitsMap">
+        <member name="F:Sudoku.Analytics.CachedFields.DigitsMap">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.DigitsMap"/>
             </summary>
             <remarks>
-            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedFields.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Analytics.CachedFields.EmptyCells" path="/remarks"/>
             </remarks>
             <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
         </member>
-        <member name="F:Sudoku.Analytics.Buffers.CachedFields.ValuesMap">
+        <member name="F:Sudoku.Analytics.CachedFields.ValuesMap">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.ValuesMap"/>
             </summary>
             <remarks>
-            <inheritdoc cref="F:Sudoku.Analytics.Buffers.CachedFields.EmptyCells" path="/remarks"/>
+            <inheritdoc cref="F:Sudoku.Analytics.CachedFields.EmptyCells" path="/remarks"/>
             </remarks>
             <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
         </member>
-        <member name="F:Sudoku.Analytics.Buffers.CachedFields.Solution">
+        <member name="F:Sudoku.Analytics.CachedFields.Solution">
             <summary>
             Indicates the solution.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Buffers.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>
             Initialize the maps that used later.
             </summary>
@@ -3155,10 +3155,10 @@
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.OnlyUsesCachedFields">
             <summary>
-            Indicates the searching logic only uses cached fields in type <see cref="T:Sudoku.Analytics.Buffers.CachedFields"/>,
+            Indicates the searching logic only uses cached fields in type <see cref="T:Sudoku.Analytics.CachedFields"/>,
             which means it can conclude result without using field <see cref="P:Sudoku.Analytics.AnalysisContext.Grid"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Buffers.CachedFields"/>
+            <seealso cref="T:Sudoku.Analytics.CachedFields"/>
             <seealso cref="T:Sudoku.Analytics.AnalysisContext"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsPure">
@@ -3190,7 +3190,7 @@
             </para>
             </remarks>
             -->
-            <seealso cref="T:Sudoku.Analytics.Buffers.CachedFields"/>
+            <seealso cref="T:Sudoku.Analytics.CachedFields"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsFixed">
             <summary>
@@ -4016,8 +4016,8 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsStepSearcher.GatherAlmostLockedSets(Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:Sudoku.DataModel.AlmostLockedSet.Gather(Sudoku.Concepts.Grid@)"/>
-            <remarks><b>This method uses <see cref="T:Sudoku.Analytics.Buffers.CachedFields"/>.</b></remarks>
-            <seealso cref="T:Sudoku.Analytics.Buffers.CachedFields"/>
+            <remarks><b>This method uses <see cref="T:Sudoku.Analytics.CachedFields"/>.</b></remarks>
+            <seealso cref="T:Sudoku.Analytics.CachedFields"/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher">
             <summary>
