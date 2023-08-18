@@ -3660,7 +3660,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							}
 
 							// UR Guardian External Subsets found. Now check eliminations.
-							var elimMap = (houseCells | guardianCellPair) - otherCells;
+							var elimMap = houseCells - otherCells;
 							var conclusions = new List<Conclusion>();
 							foreach (var cell in elimMap)
 							{
