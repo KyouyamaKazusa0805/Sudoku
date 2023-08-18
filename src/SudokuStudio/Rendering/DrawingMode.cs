@@ -1,4 +1,4 @@
-namespace SudokuStudio.Interaction;
+namespace SudokuStudio.Rendering;
 
 /// <summary>
 /// Indicates the drawing mode.

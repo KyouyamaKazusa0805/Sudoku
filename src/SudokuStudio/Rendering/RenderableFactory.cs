@@ -1,4 +1,4 @@
-namespace SudokuStudio.Interaction;
+namespace SudokuStudio.Rendering;
 
 /// <summary>
 /// Defines a factory type that is used for creating a list of <see cref="FrameworkElement"/>

@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interaction;
+namespace SudokuStudio.Rendering;
 
 /// <summary>
 /// Defines a mode that is used for displaying an elimination.

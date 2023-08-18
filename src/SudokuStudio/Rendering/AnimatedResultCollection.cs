@@ -1,4 +1,4 @@
-namespace SudokuStudio.Interaction;
+namespace SudokuStudio.Rendering;
 
 /// <summary>
 /// Represents a type that records a list of animating data.

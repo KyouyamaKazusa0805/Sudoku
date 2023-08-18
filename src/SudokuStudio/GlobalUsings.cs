@@ -53,6 +53,7 @@ global using SudokuStudio.Configuration;
 global using SudokuStudio.Input;
 global using SudokuStudio.Interaction;
 global using SudokuStudio.Interaction.Conversions;
+global using SudokuStudio.Rendering;
 global using SudokuStudio.Runtime.InteropServices;
 global using SudokuStudio.Storage;
 global using SudokuStudio.Views.Attached;
