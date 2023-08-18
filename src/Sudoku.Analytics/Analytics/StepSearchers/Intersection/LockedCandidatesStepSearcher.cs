@@ -81,10 +81,8 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 					continue;
 				}
 
-				// Okay, now collect the current step into the collection.
-				var realBaseSet = housesMask >> 8 & 127;
-				var realCoverSet = housesMask & 127;
-				var intersection = c & candidatesMap;
+				// Okay, now put the current step into the collection.
+				var (realBaseSet, realCoverSet, intersection) = (housesMask >> 8 & 127, housesMask & 127, c & candidatesMap);
 				var step = new LockedCandidatesStep(
 					[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
 					[
