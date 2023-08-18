@@ -140,10 +140,11 @@ public readonly partial struct ChainNode([DataMember(MemberKinds.Field), HashCod
 	/// In addition, if a <see cref="ChainNode"/> instance has no available parent (i.e. the return collection is empty),
 	/// it must the head of a chain.
 	/// </para>
-	/// <para>
+	/// <para><b><i>
 	/// If you want to append more parent nodes into the current <see cref="ChainNode"/> instance,
 	/// just call <see cref="List{T}.Add(T)"/> to add it using this property: <c>p.Parents.Add(parent);</c>.
-	/// </para>
+	/// However, please don't call other methods like <see cref="List{T}.Clear"/> because it can be only used by creating a dynamic chains.
+	/// </i></b></para>
 	/// </summary>
 	public List<ChainNode> Parents { get; } = new(1);
 
