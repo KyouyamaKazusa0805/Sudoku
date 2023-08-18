@@ -6,7 +6,7 @@ partial struct Grid
 	/// Defines the default enumerator that iterates the <see cref="Grid"/> through the candidates in the current <see cref="Grid"/> instance.
 	/// </summary>
 	/// <param name="arr">The reference to an array.</param>
-	public ref struct CandidateEnumerator([UnscopedRef] ref Mask arr)
+	public ref struct CandidateEnumerator(ref Mask arr)
 	{
 		/// <summary>
 		/// The pointer to the start value.
