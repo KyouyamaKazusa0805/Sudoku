@@ -5316,40 +5316,8 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Returns an enumerator that iterates through a collection.
             </summary>
-            <returns>An <see cref="T:Sudoku.Linq.BitStatusMapGroup`3.Enumerator"/> object that can be used to iterate through the collection.</returns>
-        </member>
-        <member name="T:Sudoku.Linq.BitStatusMapGroup`3.Enumerator">
-            <summary>
-            Indicates the enumerator type.
-            </summary>
-            <param name="map">The candidate map to be assigned.</param>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Enumerator.#ctor(`0@)">
-            <summary>
-            Indicates the enumerator type.
-            </summary>
-            <param name="map">The candidate map to be assigned.</param>
-        </member>
-        <member name="F:Sudoku.Linq.BitStatusMapGroup`3.Enumerator._totalCount">
-            <summary>
-            Indicates the total number of elements.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Linq.BitStatusMapGroup`3.Enumerator._values">
-            <summary>
-            Indicates the internal values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Linq.BitStatusMapGroup`3.Enumerator._currentIndex">
-            <summary>
-            Indicates the current index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Linq.BitStatusMapGroup`3.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+            <returns>An <see cref="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1"/> object that can be used to iterate through the collection.</returns>
+            <seealso cref="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1"/>
         </member>
         <member name="P:Sudoku.Linq.BitStatusMapGroup`3.Key">
             <summary>

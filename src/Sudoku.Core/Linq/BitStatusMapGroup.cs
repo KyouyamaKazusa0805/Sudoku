@@ -16,7 +16,8 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>([DataMemb
 	/// <summary>
 	/// Returns an enumerator that iterates through a collection.
 	/// </summary>
-	/// <returns>An <see cref="Enumerator"/> object that can be used to iterate through the collection.</returns>
+	/// <returns>An <see cref="OneDimensionalArrayEnumerator{T}"/> object that can be used to iterate through the collection.</returns>
+	/// <seealso cref="OneDimensionalArrayEnumerator{T}"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Enumerator GetEnumerator() => new(Values);
+	public OneDimensionalArrayEnumerator<TElement> GetEnumerator() => Values.GetEnumerator();
 }
