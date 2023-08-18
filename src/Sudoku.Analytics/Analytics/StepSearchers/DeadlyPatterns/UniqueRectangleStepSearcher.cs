@@ -682,13 +682,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					accumulator.Add(
 						new UniqueRectangleType3Step(
 							[.. conclusions],
-							[
-								[
-									.. arMode ? cellOffsets : [],
-									.. candidateOffsets,
-									new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)
-								]
-							],
+							[[.. arMode ? cellOffsets : [], .. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)]],
 							d1,
 							d2,
 							[.. urCells],
