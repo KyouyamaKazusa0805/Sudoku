@@ -343,81 +343,75 @@ internal static class RenderableFactory
 		var (width, height) = size / 3F * (float)highlightScale;
 		var control = (isForConclusion, isForElimination, candidateDisplayMode, eliminationDisplayMode) switch
 		{
-			(true, true, _, EliminationDisplayMode.CircleSolid)
-				=> new Ellipse
-				{
-					Width = width,
-					Height = height,
-					HorizontalAlignment = HorizontalAlignment.Center,
-					VerticalAlignment = VerticalAlignment.Center,
-					Fill = new SolidColorBrush(color),
-					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
-					Opacity = enableAnimation ? 0 : 1
-				},
-			(true, true, _, EliminationDisplayMode.Cross or EliminationDisplayMode.Slash or EliminationDisplayMode.Backslash)
-				=> new Cross
-				{
-					Width = width,
-					Height = height,
-					HorizontalAlignment = HorizontalAlignment.Center,
-					VerticalAlignment = VerticalAlignment.Center,
-					Background = new SolidColorBrush(color),
-					StrokeThickness = (width + height) / 2 * 3 / 20,
-					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
-					Opacity = enableAnimation ? 0 : 1,
-					ForwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Slash
-						? Visibility.Visible
-						: Visibility.Collapsed,
-					BackwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Backslash
-						? Visibility.Visible
-						: Visibility.Collapsed
-				},
-			(true, _, _, _) or (_, _, CandidateViewNodeDisplayNode.CircleSolid, _)
-				=> new Ellipse
-				{
-					Width = width,
-					Height = height,
-					HorizontalAlignment = HorizontalAlignment.Center,
-					VerticalAlignment = VerticalAlignment.Center,
-					Fill = new SolidColorBrush(color),
-					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
-					Opacity = enableAnimation ? 0 : 1
-				},
-			(_, _, CandidateViewNodeDisplayNode.CircleHollow, _)
-				=> new Ellipse
-				{
-					Width = width,
-					Height = height,
-					HorizontalAlignment = HorizontalAlignment.Center,
-					VerticalAlignment = VerticalAlignment.Center,
-					Stroke = new SolidColorBrush(color),
-					StrokeThickness = (width + height) / 2 * 3 / 20,
-					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
-					Opacity = enableAnimation ? 0 : 1
-				},
-			(_, _, CandidateViewNodeDisplayNode.SquareHollow, _)
-				=> new Rectangle
-				{
-					Width = width,
-					Height = height,
-					HorizontalAlignment = HorizontalAlignment.Center,
-					VerticalAlignment = VerticalAlignment.Center,
-					Stroke = new SolidColorBrush(color),
-					StrokeThickness = (width + height) / 2 * 3 / 20,
-					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
-					Opacity = enableAnimation ? 0 : 1
-				},
-			(_, _, CandidateViewNodeDisplayNode.SquareSolid, _)
-				=> new Rectangle
-				{
-					Width = width,
-					Height = height,
-					HorizontalAlignment = HorizontalAlignment.Center,
-					VerticalAlignment = VerticalAlignment.Center,
-					Fill = new SolidColorBrush(color),
-					Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
-					Opacity = enableAnimation ? 0 : 1
-				},
+			(true, true, _, EliminationDisplayMode.CircleSolid) => new Ellipse
+			{
+				Width = width,
+				Height = height,
+				HorizontalAlignment = HorizontalAlignment.Center,
+				VerticalAlignment = VerticalAlignment.Center,
+				Fill = new SolidColorBrush(color),
+				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Opacity = enableAnimation ? 0 : 1
+			},
+			(true, true, _, EliminationDisplayMode.Cross or EliminationDisplayMode.Slash or EliminationDisplayMode.Backslash) => new Cross
+			{
+				Width = width,
+				Height = height,
+				HorizontalAlignment = HorizontalAlignment.Center,
+				VerticalAlignment = VerticalAlignment.Center,
+				Background = new SolidColorBrush(color),
+				StrokeThickness = (width + height) / 2 * 3 / 20,
+				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Opacity = enableAnimation ? 0 : 1,
+				ForwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Slash
+					? Visibility.Visible
+					: Visibility.Collapsed,
+				BackwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Backslash
+					? Visibility.Visible
+					: Visibility.Collapsed
+			},
+			(true, _, _, _) or (_, _, CandidateViewNodeDisplayNode.CircleSolid, _) => new Ellipse
+			{
+				Width = width,
+				Height = height,
+				HorizontalAlignment = HorizontalAlignment.Center,
+				VerticalAlignment = VerticalAlignment.Center,
+				Fill = new SolidColorBrush(color),
+				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Opacity = enableAnimation ? 0 : 1
+			},
+			(_, _, CandidateViewNodeDisplayNode.CircleHollow, _) => new Ellipse
+			{
+				Width = width,
+				Height = height,
+				HorizontalAlignment = HorizontalAlignment.Center,
+				VerticalAlignment = VerticalAlignment.Center,
+				Stroke = new SolidColorBrush(color),
+				StrokeThickness = (width + height) / 2 * 3 / 20,
+				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Opacity = enableAnimation ? 0 : 1
+			},
+			(_, _, CandidateViewNodeDisplayNode.SquareHollow, _) => new Rectangle
+			{
+				Width = width,
+				Height = height,
+				HorizontalAlignment = HorizontalAlignment.Center,
+				VerticalAlignment = VerticalAlignment.Center,
+				Stroke = new SolidColorBrush(color),
+				StrokeThickness = (width + height) / 2 * 3 / 20,
+				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Opacity = enableAnimation ? 0 : 1
+			},
+			(_, _, CandidateViewNodeDisplayNode.SquareSolid, _) => new Rectangle
+			{
+				Width = width,
+				Height = height,
+				HorizontalAlignment = HorizontalAlignment.Center,
+				VerticalAlignment = VerticalAlignment.Center,
+				Fill = new SolidColorBrush(color),
+				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Opacity = enableAnimation ? 0 : 1
+			},
 			_ => default(FrameworkElement)!
 		};
 
@@ -532,12 +526,7 @@ internal static class RenderableFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			Tag = $"{nameof(RenderableFactory)}: chute m{(chute < 3 ? 'r' : 'c')}{chute % 3 + 1}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
-			Margin = chute switch
-			{
-				>= 0 and < 3 => new(6, 12, 6, 12),
-				>= 3 and < 6 => new(12, 6, 12, 6),
-				_ => Throw<Thickness>(chute, 6)
-			},
+			Margin = chute switch { >= 0 and < 3 => new(6, 12, 6, 12), >= 3 and < 6 => new(12, 6, 12, 6), _ => Throw<Thickness>(chute, 6) },
 			CornerRadius = new(18),
 			BorderThickness = new(0)
 		};
@@ -708,6 +697,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			switch (inference)
 			{
 				case Inference.Default:
+				case Inference.ConjugatePair:
 				{
 					correctOffsetOfPoint(ref pt1, ow, oh);
 					correctOffsetOfPoint(ref pt2, ow, oh);
