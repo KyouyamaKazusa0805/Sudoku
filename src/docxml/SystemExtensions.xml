@@ -362,29 +362,25 @@
             Defines an enumerator that iterates the one-dimensional array.
             </summary>
             <typeparam name="T">The type of the element.</typeparam>
+            <param name="innerArray">An array to be iterated.</param>
         </member>
-        <member name="F:System.Collections.Generic.OneDimensionalArrayEnumerator`1._length">
+        <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.#ctor(`0[])">
             <summary>
-            Indicates the length of the array to iterate.
-            The value is equal to <c><see cref="F:System.Collections.Generic.OneDimensionalArrayEnumerator`1._innerArray"/>.Length</c>.
+            Defines an enumerator that iterates the one-dimensional array.
             </summary>
-        </member>
-        <member name="F:System.Collections.Generic.OneDimensionalArrayEnumerator`1._innerArray">
-            <summary>
-            Indicates the array to iterate.
-            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="innerArray">An array to be iterated.</param>
         </member>
         <member name="F:System.Collections.Generic.OneDimensionalArrayEnumerator`1._index">
             <summary>
             Indicates the current index being iterated.
             </summary>
         </member>
-        <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.#ctor(`0[])">
+        <member name="P:System.Collections.Generic.OneDimensionalArrayEnumerator`1.Length">
             <summary>
-            Initializes a <see cref="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1"/> instance
-            via the specified array to iterate.
+            Indicates the length of the array.
+            This property can be used for implementing LINQ logic to create an array that can store the specified number of elements.
             </summary>
-            <param name="innerArray">The array to iterate.</param>
         </member>
         <member name="P:System.Collections.Generic.OneDimensionalArrayEnumerator`1.Current">
             <summary>
@@ -406,6 +402,11 @@
             Returns <see langword="false"/> when the last iteration is for the last element,
             and now there's no elements to be iterated.
             </returns>
+        </member>
+        <member name="F:System.Collections.Generic.OneDimensionalArrayEnumerator`1._innerArray">
+            <summary>
+            The generated field declaration for parameter <c>innerArray</c>.
+            </summary>
         </member>
         <member name="M:System.Collections.Generic.OneDimensionalArrayEnumerator`1.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

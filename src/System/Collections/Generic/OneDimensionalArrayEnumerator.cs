@@ -4,21 +4,13 @@ namespace System.Collections.Generic;
 /// Defines an enumerator that iterates the one-dimensional array.
 /// </summary>
 /// <typeparam name="T">The type of the element.</typeparam>
+/// <param name="innerArray">An array to be iterated.</param>
+[StructLayout(LayoutKind.Auto)]
 [Equals]
 [GetHashCode]
-public ref partial struct OneDimensionalArrayEnumerator<T>
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
+public ref partial struct OneDimensionalArrayEnumerator<T>([DataMember(MemberKinds.Field)] T[] innerArray)
 {
-	/// <summary>
-	/// Indicates the length of the array to iterate.
-	/// The value is equal to <c><see cref="_innerArray"/>.Length</c>.
-	/// </summary>
-	private readonly int _length;
-
-	/// <summary>
-	/// Indicates the array to iterate.
-	/// </summary>
-	private readonly T[] _innerArray;
-
 	/// <summary>
 	/// Indicates the current index being iterated.
 	/// </summary>
@@ -26,22 +18,15 @@ public ref partial struct OneDimensionalArrayEnumerator<T>
 
 
 	/// <summary>
-	/// Initializes a <see cref="OneDimensionalArrayEnumerator{T}"/> instance
-	/// via the specified array to iterate.
+	/// Indicates the length of the array.
+	/// This property can be used for implementing LINQ logic to create an array that can store the specified number of elements.
 	/// </summary>
-	/// <param name="innerArray">The array to iterate.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal OneDimensionalArrayEnumerator(T[] innerArray) => (_innerArray, _length) = (innerArray, innerArray.Length);
-
+	public readonly int Length { get; } = innerArray.Length;
 
 	/// <summary>
 	/// Indicates the current instance being iterated. Please note that the value is returned by reference.
 	/// </summary>
-	public readonly T Current
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _innerArray[_index];
-	}
+	public readonly T Current => _innerArray[_index];
 
 
 	/// <summary>
@@ -60,5 +45,5 @@ public ref partial struct OneDimensionalArrayEnumerator<T>
 	/// and now there's no elements to be iterated.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool MoveNext() => ++_index < _length;
+	public bool MoveNext() => ++_index < Length;
 }
