@@ -597,13 +597,20 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		foreach (var cell in otherCellsMap)
 		{
 			var currentMask = grid.GetCandidates(cell);
-			if ((currentMask & comparer) == 0 || currentMask == comparer || arMode && grid.GetState(cell) != CellState.Empty)
+			if ((currentMask & comparer) == 0 // The current cell does not contain a valid digit appeared in UR.
+				|| currentMask == comparer // The current cell contains both digits appeared in UR.
+				|| !arMode && grid.GetState(cell) != CellState.Empty) // The current cell is not empty.
 			{
 				notSatisfiedType3 = true;
 				break;
 			}
 		}
-		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer || notSatisfiedType3)
+		if (notSatisfiedType3)
+		{
+			return;
+		}
+
+		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
 			return;
 		}
