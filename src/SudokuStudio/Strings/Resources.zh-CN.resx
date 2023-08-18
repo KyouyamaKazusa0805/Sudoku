@@ -1142,6 +1142,12 @@
   <data name="SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription" xml:space="preserve">
     <value>该项控制了技巧搜索的复杂程度（数字越大，搜索复杂程度也就越高）。最大值是 4，建议的值为 2，最小值为 1。不能是负数。</value>
   </data>
+  <data name="SettingsPage_RoundedRectangleHollow" xml:space="preserve">
+    <value>空心圆角矩形</value>
+  </data>
+  <data name="SettingsPage_RoundedRectangleSolid" xml:space="preserve">
+    <value>实心圆角矩形</value>
+  </data>
   <data name="SettingsPage_SameLevel" xml:space="preserve">
     <value>只搜索同一技巧级别的技巧</value>
   </data>

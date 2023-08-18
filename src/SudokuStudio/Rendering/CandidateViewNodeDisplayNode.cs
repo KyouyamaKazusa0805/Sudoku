@@ -23,5 +23,15 @@ public enum CandidateViewNodeDisplayNode
 	/// <summary>
 	/// Indicates the display mode is to draw a solid square.
 	/// </summary>
-	SquareSolid
+	SquareSolid,
+
+	/// <summary>
+	/// Indicates the display mode is to draw a hollow rounded rectangle.
+	/// </summary>
+	RoundedRectangleHollow,
+
+	/// <summary>
+	/// Indicates the display mode is to draw a solid rounded rectangle.
+	/// </summary>
+	RoundedRectangleSolid
 }

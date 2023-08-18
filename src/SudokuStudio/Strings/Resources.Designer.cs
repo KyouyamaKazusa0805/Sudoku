@@ -3357,6 +3357,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hollow rounded rectangle.
+        /// </summary>
+        internal static string SettingsPage_RoundedRectangleHollow {
+            get {
+                return ResourceManager.GetString("SettingsPage_RoundedRectangleHollow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solid rounded rectangle.
+        /// </summary>
+        internal static string SettingsPage_RoundedRectangleSolid {
+            get {
+                return ResourceManager.GetString("SettingsPage_RoundedRectangleSolid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Same level only.
         /// </summary>
         internal static string SettingsPage_SameLevel {

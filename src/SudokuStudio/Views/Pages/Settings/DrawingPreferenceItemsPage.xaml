@@ -304,6 +304,8 @@
 							<ComboBoxItem Content="{m:R Key=SettingsPage_SolidCircle}" />
 							<ComboBoxItem Content="{m:R Key=SettingsPage_HollowSquare}" />
 							<ComboBoxItem Content="{m:R Key=SettingsPage_SolidSquare}" />
+							<ComboBoxItem Content="{m:R Key=SettingsPage_RoundedRectangleHollow}" />
+							<ComboBoxItem Content="{m:R Key=SettingsPage_RoundedRectangleSolid}" />
 						</ComboBox>
 					</w:SettingsCard>
 					<w:SettingsCard Header="{m:R Key=SettingsPage_EliminationDisplayMode}">

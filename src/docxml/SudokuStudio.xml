@@ -3248,6 +3248,16 @@ if (student is (name: var name, age: >= 18))
             Indicates the display mode is to draw a solid square.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplayNode.RoundedRectangleHollow">
+            <summary>
+            Indicates the display mode is to draw a hollow rounded rectangle.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplayNode.RoundedRectangleSolid">
+            <summary>
+            Indicates the display mode is to draw a solid rounded rectangle.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Rendering.CoordinateLabelDisplayKind">
             <summary>
             Defines a kind of coordinate label to be displayed.
@@ -5745,6 +5755,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription">
             <summary>
               Looks up a localized string similar to A value controlling the complexity of searching operation for Reverse BUG technique. This maximum possible value is 4, recommend value is 2, and the minimum value is 1. It cannot be negative..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_RoundedRectangleHollow">
+            <summary>
+              Looks up a localized string similar to Hollow rounded rectangle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_RoundedRectangleSolid">
+            <summary>
+              Looks up a localized string similar to Solid rounded rectangle.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SameLevel">

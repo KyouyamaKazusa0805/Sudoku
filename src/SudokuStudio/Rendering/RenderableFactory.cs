@@ -410,7 +410,31 @@ internal static class RenderableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
 				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
-				Opacity = enableAnimation ? 0 : 1
+				Opacity = enableAnimation ? 0 : 1,
+			},
+			(_, _, CandidateViewNodeDisplayNode.RoundedRectangleHollow, _) => new Rectangle
+			{
+				Width = width,
+				Height = height,
+				HorizontalAlignment = HorizontalAlignment.Center,
+				VerticalAlignment = VerticalAlignment.Center,
+				Fill = new SolidColorBrush(color),
+				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Opacity = enableAnimation ? 0 : 1,
+				RadiusX = width / 3,
+				RadiusY = height / 3
+			},
+			(_, _, CandidateViewNodeDisplayNode.RoundedRectangleSolid, _) => new Rectangle
+			{
+				Width = width,
+				Height = height,
+				HorizontalAlignment = HorizontalAlignment.Center,
+				VerticalAlignment = VerticalAlignment.Center,
+				Fill = new SolidColorBrush(color),
+				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Opacity = enableAnimation ? 0 : 1,
+				RadiusX = width / 3,
+				RadiusY = height / 3
 			},
 			_ => default(FrameworkElement)!
 		};

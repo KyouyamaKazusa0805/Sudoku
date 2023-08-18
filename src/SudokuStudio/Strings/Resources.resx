@@ -1139,6 +1139,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_ReverseBugMaxSearchingEmptyCellsCountDescription" xml:space="preserve">
     <value>A value controlling the complexity of searching operation for Reverse BUG technique. This maximum possible value is 4, recommend value is 2, and the minimum value is 1. It cannot be negative.</value>
   </data>
+  <data name="SettingsPage_RoundedRectangleHollow" xml:space="preserve">
+    <value>Hollow rounded rectangle</value>
+  </data>
+  <data name="SettingsPage_RoundedRectangleSolid" xml:space="preserve">
+    <value>Solid rounded rectangle</value>
+  </data>
   <data name="SettingsPage_SameLevel" xml:space="preserve">
     <value>Same level only</value>
   </data>
