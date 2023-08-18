@@ -2416,7 +2416,7 @@
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>The name of the current technique.</returns>
-            <exception cref="T:Sudoku.Analytics.Strings.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
+            <exception cref="T:Sudoku.Strings.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetEnglishName(Sudoku.Analytics.Categorization.Technique)">
             <summary>
@@ -2424,7 +2424,7 @@
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>The name of the current technique.</returns>
-            <exception cref="T:Sudoku.Analytics.Strings.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
+            <exception cref="T:Sudoku.Strings.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAbbreviation(Sudoku.Analytics.Categorization.Technique)">
             <summary>
@@ -13028,33 +13028,6 @@
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-        </member>
-        <member name="T:Sudoku.Analytics.Strings.ResourceNotFoundException">
-            <summary>
-            Represents an exception that will be thrown when a certain resource key cannot be found in the resource dictionary.
-            </summary>
-            <param name="resourceKey">Indicates the resource key that causes this error.</param>
-            <param name="assembly">Indicates the assembly where this error is thrown.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Strings.ResourceNotFoundException.#ctor(System.String,System.Reflection.Assembly)">
-            <summary>
-            Represents an exception that will be thrown when a certain resource key cannot be found in the resource dictionary.
-            </summary>
-            <param name="resourceKey">Indicates the resource key that causes this error.</param>
-            <param name="assembly">Indicates the assembly where this error is thrown.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.ResourceNotFoundException.Message">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.ResourceNotFoundException.ResourceKey">
-            <summary>
-            The generated property declaration for parameter <c>resourceKey</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.ResourceNotFoundException.Assembly">
-            <summary>
-            The generated property declaration for parameter <c>assembly</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Strings.Resources">
             <summary>

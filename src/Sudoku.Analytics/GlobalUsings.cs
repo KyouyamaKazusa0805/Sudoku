@@ -26,6 +26,7 @@ global using Sudoku.Preprocessing;
 global using Sudoku.Rendering;
 global using Sudoku.Rendering.Nodes;
 global using Sudoku.Runtime.MaskServices;
+global using Sudoku.Strings;
 global using Sudoku.Text;
 global using Sudoku.Text.Notation;
 global using static System.Algorithm.Sequences;
