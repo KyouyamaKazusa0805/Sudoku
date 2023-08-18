@@ -54,7 +54,44 @@ public sealed partial class ComplexFishStep(
 	public override decimal BaseDifficulty => 3.2M;
 
 	/// <inheritdoc/>
-	public override Technique Code => GetComplexFishTechniqueCodeFromName(InternalName);
+	public override unsafe Technique Code
+	{
+		get
+		{
+			// Creates a buffer to store the characters that isn't a space or a bar.
+			var name = internalName();
+			var buffer = stackalloc char[name.Length];
+			var bufferLength = 0;
+			fixed (char* p = name)
+			{
+				for (var ptr = p; *ptr != '\0'; ptr++)
+				{
+					if (*ptr is not ('-' or ' '))
+					{
+						buffer[bufferLength++] = *ptr;
+					}
+				}
+			}
+
+			// Parses via the buffer, and returns the result.
+			return Enum.Parse<Technique>(new string(PointerOperations.Slice(buffer, bufferLength, 0)));
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			string internalName()
+			{
+				var finKindStr = finKind() is var finModifier and not FinKind.Normal ? $"{finModifier} " : null;
+				var shapeKindStr = shapeKind() is var shapeModifier and not ShapeKind.Basic ? $"{shapeModifier} " : null;
+				return $"{finKindStr}{shapeKindStr}{TechniqueFact.GetFishEnglishName(Size)}";
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			FinKind finKind() => IsSashimi switch { true => FinKind.Sashimi, false => FinKind.Finned, _ => FinKind.Normal };
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			ShapeKind shapeKind() => IsFranken ? ShapeKind.Franken : ShapeKind.Mutant;
+		}
+	}
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
@@ -82,54 +119,6 @@ public sealed partial class ComplexFishStep(
 		=> [new(EnglishLanguage, [NotationString]), new(ChineseLanguage, [NotationString])];
 
 	private string NotationString => HobiwanFishNotation.ToString(this);
-
-	/// <summary>
-	/// The internal name.
-	/// </summary>
-	private string InternalName
-	{
-		get
-		{
-			var finKindStr = finKind() is var finModifier and not FinKind.Normal ? $"{finModifier} " : null;
-			var shapeKindStr = shapeKind() is var shapeModifier and not ShapeKind.Basic ? $"{shapeModifier} " : null;
-			return $"{finKindStr}{shapeKindStr}{TechniqueFact.GetFishEnglishName(Size)}";
-
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			FinKind finKind() => IsSashimi switch { true => FinKind.Sashimi, false => FinKind.Finned, _ => FinKind.Normal };
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			ShapeKind shapeKind() => IsFranken ? ShapeKind.Franken : ShapeKind.Mutant;
-		}
-	}
-
-
-	/// <summary>
-	/// Try to get the <see cref="Technique"/> code instance from the specified name, where the name belongs
-	/// to a complex fish name, such as "Finned Franken Swordfish".
-	/// </summary>
-	/// <param name="name">The name.</param>
-	/// <returns>The <see cref="Technique"/> code instance.</returns>
-	/// <seealso cref="Technique"/>
-	private static unsafe Technique GetComplexFishTechniqueCodeFromName(string name)
-	{
-		// Creates a buffer to store the characters that isn't a space or a bar.
-		var buffer = stackalloc char[name.Length];
-		var bufferLength = 0;
-		fixed (char* p = name)
-		{
-			for (var ptr = p; *ptr != '\0'; ptr++)
-			{
-				if (*ptr is not ('-' or ' '))
-				{
-					buffer[bufferLength++] = *ptr;
-				}
-			}
-		}
-
-		// Parses via the buffer, and returns the result.
-		return Enum.Parse<Technique>(new string(PointerOperations.Slice(buffer, bufferLength, 0)));
-	}
 
 
 	/// <inheritdoc/>

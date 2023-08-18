@@ -10944,20 +10944,6 @@
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.InternalName">
-            <summary>
-            The internal name.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.GetComplexFishTechniqueCodeFromName(System.String)">
-            <summary>
-            Try to get the <see cref="T:Sudoku.Analytics.Categorization.Technique"/> code instance from the specified name, where the name belongs
-            to a complex fish name, such as "Finned Franken Swordfish".
-            </summary>
-            <param name="name">The name.</param>
-            <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> code instance.</returns>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
         <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#ComplexFishStep}#op_Equality(Sudoku.Analytics.Steps.ComplexFishStep,Sudoku.Analytics.Steps.ComplexFishStep)">
             <inheritdoc/>
         </member>
