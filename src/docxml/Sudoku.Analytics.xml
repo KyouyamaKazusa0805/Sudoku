@@ -18287,6 +18287,12 @@ result ^= expression;
             </summary>
             <returns>The number of techniques.</returns>
         </member>
+        <member name="M:Sudoku.Facts.TechniqueFact.GetTechniques">
+            <summary>
+            Try to get all possible <see cref="T:Sudoku.Analytics.Categorization.Technique"/> values.
+            </summary>
+            <returns>All <see cref="T:Sudoku.Analytics.Categorization.Technique"/> values.</returns>
+        </member>
         <member name="M:Sudoku.Facts.TechniqueFact.GetSubsetName(System.Int32)">
             <summary>
             Try to get the real name for the specified size of subset.

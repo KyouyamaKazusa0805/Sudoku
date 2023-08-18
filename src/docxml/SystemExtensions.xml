@@ -1033,6 +1033,26 @@
             <param name="predicate">A function to test each element for a condition.</param>
             <returns>A (An) <typeparamref name="T"/>[] that contains elements from the input sequence that satisfy the condition.</returns>
         </member>
+        <member name="M:System.Linq.ArrayEnumerable.OrderBy``2(``0[],System.Func{``0,``1})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
+            </summary>
+            <typeparam name="T">
+            <inheritdoc cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='T']"/>
+            </typeparam>
+            <typeparam name="TKey">
+            <inheritdoc cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='TKey']"/>
+            </typeparam>
+            <param name="this">
+            <inheritdoc cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='source']"/>
+            </param>
+            <param name="keySelector">
+            <inheritdoc cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='keySelector']"/>
+            </param>
+            <returns>
+            An array of <typeparamref name="T"/> whose elements are sorted according to a key.
+            </returns>
+        </member>
         <member name="T:System.Linq.ArrayListEnumerable">
             <summary>
             Provides with extension methods on <see cref="T:System.Collections.ArrayList"/>.

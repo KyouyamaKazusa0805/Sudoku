@@ -10,7 +10,14 @@ public static class TechniqueFact
 	/// </summary>
 	/// <returns>The number of techniques.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetTechniquesCount() => Enum.GetValues<Technique>().Length;
+	public static int GetTechniquesCount() => GetTechniques().Length;
+
+	/// <summary>
+	/// Try to get all possible <see cref="Technique"/> values.
+	/// </summary>
+	/// <returns>All <see cref="Technique"/> values.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Technique[] GetTechniques() => Enum.GetValues<Technique>();
 
 	/// <summary>
 	/// Try to get the real name for the specified size of subset.

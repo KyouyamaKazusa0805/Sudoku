@@ -71,4 +71,30 @@ public static class ArrayEnumerable
 
 		return result[..finalIndex];
 	}
+
+	/// <summary>
+	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/summary"/>
+	/// </summary>
+	/// <typeparam name="T">
+	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/typeparam[@name='T']"/>
+	/// </typeparam>
+	/// <typeparam name="TKey">
+	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/typeparam[@name='TKey']"/>
+	/// </typeparam>
+	/// <param name="this">
+	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/param[@name='source']"/>
+	/// </param>
+	/// <param name="keySelector">
+	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/param[@name='keySelector']"/>
+	/// </param>
+	/// <returns>
+	/// An array of <typeparamref name="T"/> whose elements are sorted according to a key.
+	/// </returns>
+	public static T[] OrderBy<T, TKey>(this T[] @this, Func<T, TKey> keySelector)
+	{
+		var copied = new T[@this.Length];
+		Array.Copy(@this, copied, @this.Length);
+		Array.Sort(copied, (a, b) => Comparer.Default.Compare(keySelector(a), keySelector(b)));
+		return copied;
+	}
 }
