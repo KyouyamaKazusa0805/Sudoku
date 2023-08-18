@@ -3552,6 +3552,17 @@
             <seealso cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>
             <seealso cref="T:Sudoku.DataModel.ExtraDifficultyCase"/>
         </member>
+        <member name="P:Sudoku.Analytics.Step.SpottingDifficulty">
+            <summary>
+            Indicates the difficulty that describe how hard you can spot the pattern.
+            This value has same properties as <see cref="P:Sudoku.Analytics.Step.Difficulty"/>, between 1.0 - 12.0.
+            </summary>
+            <remarks>
+            By default, this value is same as <see cref="P:Sudoku.Analytics.Step.Difficulty"/>.
+            I recommend you overwrite this property if the step describes for a direct technique.
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.Step.Difficulty"/>
+        </member>
         <member name="P:Sudoku.Analytics.Step.Code">
             <summary>
             The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
