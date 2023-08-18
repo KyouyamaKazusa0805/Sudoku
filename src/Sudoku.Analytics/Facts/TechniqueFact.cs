@@ -60,7 +60,7 @@ public static class TechniqueFact
 		=> size switch
 		{
 			0 => throw new ArgumentOutOfRangeException(nameof(size)),
-			1 => "Cyclops fish",
+			1 => "Cyclopsfish",
 			2 => "X-Wing",
 			3 => "Swordfish",
 			4 => "Jellyfish",

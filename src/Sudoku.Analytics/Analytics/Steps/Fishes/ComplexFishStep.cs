@@ -81,34 +81,27 @@ public sealed partial class ComplexFishStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [NotationString]), new(ChineseLanguage, [NotationString])];
 
-	/// <summary>
-	/// Indicates the base houses.
-	/// </summary>
-	private House[] BaseHouses => [.. BaseSetsMask.GetAllSets()];
-
-	/// <summary>
-	/// Indicates the cover houses.
-	/// </summary>
-	private House[] CoverHouses => [.. CoverSetsMask.GetAllSets()];
-
 	private string NotationString => HobiwanFishNotation.ToString(this);
 
 	/// <summary>
 	/// The internal name.
 	/// </summary>
 	private string InternalName
-		=> $"{(
-			IsSashimi switch
-			{
-				true => ComplexFishFinKind.Sashimi,
-				false => ComplexFishFinKind.Finned,
-				_ => ComplexFishFinKind.Normal
-			} is var finModifier and not ComplexFishFinKind.Normal ? $"{finModifier} " : null
-		)}{(
-			(IsFranken ? ComplexFishShapeKind.Franken : ComplexFishShapeKind.Mutant) is var shapeModifier and not ComplexFishShapeKind.Basic
-				? $"{shapeModifier} "
-				: null
-		)}{TechniqueFact.GetFishEnglishName(Size)}";
+	{
+		get
+		{
+			var finKindStr = finKind() is var finModifier and not FinKind.Normal ? $"{finModifier} " : null;
+			var shapeKindStr = shapeKind() is var shapeModifier and not ShapeKind.Basic ? $"{shapeModifier} " : null;
+			return $"{finKindStr}{shapeKindStr}{TechniqueFact.GetFishEnglishName(Size)}";
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			FinKind finKind() => IsSashimi switch { true => FinKind.Sashimi, false => FinKind.Finned, _ => FinKind.Normal };
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			ShapeKind shapeKind() => IsFranken ? ShapeKind.Franken : ShapeKind.Mutant;
+		}
+	}
 
 
 	/// <summary>
@@ -151,7 +144,7 @@ public sealed partial class ComplexFishStep(
 /// Indicates a shape modifier that is used for a complex fish structure.
 /// </summary>
 [Flags]
-file enum ComplexFishShapeKind
+file enum ShapeKind
 {
 	/// <summary>
 	/// Indicates the basic fish.
@@ -173,7 +166,7 @@ file enum ComplexFishShapeKind
 /// Indicates a fin modifier that is used for a complex fish structure.
 /// </summary>
 [Flags]
-file enum ComplexFishFinKind
+file enum FinKind
 {
 	/// <summary>
 	/// Indicates the normal fish (i.e. no fins).

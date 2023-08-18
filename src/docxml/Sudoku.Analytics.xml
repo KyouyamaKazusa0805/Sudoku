@@ -10944,16 +10944,6 @@
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.BaseHouses">
-            <summary>
-            Indicates the base houses.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.CoverHouses">
-            <summary>
-            Indicates the cover houses.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.InternalName">
             <summary>
             The internal name.
@@ -10991,49 +10981,49 @@
             The generated property declaration for parameter <c>isSashimi</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ComplexFishShapeKind">
+        <member name="T:Sudoku.Analytics.Steps.ShapeKind">
             <summary>
             Indicates a shape modifier that is used for a complex fish structure.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Steps.ComplexFishShapeKind.Basic">
+        <member name="F:Sudoku.Analytics.Steps.ShapeKind.Basic">
             <summary>
             Indicates the basic fish.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Steps.ComplexFishShapeKind.Franken">
+        <member name="F:Sudoku.Analytics.Steps.ShapeKind.Franken">
             <summary>
             Indicates the franken fish.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Steps.ComplexFishShapeKind.Mutant">
+        <member name="F:Sudoku.Analytics.Steps.ShapeKind.Mutant">
             <summary>
             Indicates the mutant fish.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ComplexFishFinKind">
+        <member name="T:Sudoku.Analytics.Steps.FinKind">
             <summary>
             Indicates a fin modifier that is used for a complex fish structure.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Steps.ComplexFishFinKind.Normal">
+        <member name="F:Sudoku.Analytics.Steps.FinKind.Normal">
             <summary>
             Indicates the normal fish (i.e. no fins).
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Steps.ComplexFishFinKind.Finned">
+        <member name="F:Sudoku.Analytics.Steps.FinKind.Finned">
             <summary>
             Indicates the finned fish
             (i.e. contains fins, but the fish may be regular when the fins are removed).
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Steps.ComplexFishFinKind.Sashimi">
+        <member name="F:Sudoku.Analytics.Steps.FinKind.Sashimi">
             <summary>
             Indicates the sashimi fish
             (i.e. contains fins, and the fish may be degenerated to hidden singles when the fins are removed).
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Steps.ComplexFishFinKind.Siamese">
+        <member name="F:Sudoku.Analytics.Steps.FinKind.Siamese">
             <summary>
             Indicates the siamese fish (i.e. two fish share same base sets, with different cover sets).
             </summary>
