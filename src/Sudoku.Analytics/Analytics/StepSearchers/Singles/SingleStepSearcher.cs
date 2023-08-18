@@ -348,7 +348,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				[
 					.. enableAndIsLastDigit ? cellOffsets : [],
 					.. enableAndIsLastDigit ? [] : GetCrosshatchBaseCells(grid, digit, house, resultCell),
-					enableAndIsLastDigit ? null : new HouseViewNode(WellKnownColorIdentifier.Normal, house)
+					.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
 				]
 			],
 			resultCell,

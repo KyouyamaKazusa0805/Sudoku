@@ -245,8 +245,8 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : AlmostLockedSetsSte
 					[
 						[
 							.. candidateOffsets,
-							isEsp ? null : new HouseViewNode(WellKnownColorIdentifier.Normal, house1),
-							isEsp ? null : new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house2)
+							.. isEsp ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house1)],
+							.. isEsp ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house2)]
 						]
 					],
 					als1,

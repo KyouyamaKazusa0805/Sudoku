@@ -72,6 +72,7 @@ public static class ArrayEnumerable
 		return result[..finalIndex];
 	}
 
+#if false
 	/// <summary>
 	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/summary"/>
 	/// </summary>
@@ -94,7 +95,12 @@ public static class ArrayEnumerable
 	{
 		var copied = new T[@this.Length];
 		Array.Copy(@this, copied, @this.Length);
-		Array.Sort(copied, (a, b) => Comparer.Default.Compare(keySelector(a), keySelector(b)));
+		Array.Sort(copied, (a, b) => Comparer<TKey>.Default.Compare(keySelector(a), keySelector(b)));
 		return copied;
 	}
+
+	/// <inheritdoc cref="OrderBy{T, TKey}(T[], Func{T, TKey})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static T[] ThenBy<T, TKey>(this T[] @this, Func<T, TKey> keySelector) => @this.OrderBy(keySelector);
+#endif
 }

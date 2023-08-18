@@ -17,23 +17,6 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 
 
 	/// <summary>
-	/// Appends a new <see cref="ViewNode"/> into the current collection if the specified argument isn't <see langword="null"/>.
-	/// </summary>
-	/// <param name="node">A possible node to be appended. If the value is <see langword="null"/>, it will be ignored.</param>
-	/// <remarks>
-	/// The reason why the parameter <paramref name="node"/> is nullable is that C# 12 feature "Collection Literals" use this method
-	/// to append elements.
-	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public new void Add(ViewNode? node)
-	{
-		if (node is not null)
-		{
-			base.Add(node);
-		}
-	}
-
-	/// <summary>
 	/// Adds a list of <see cref="ViewNode"/>s into the collection.
 	/// </summary>
 	/// <param name="nodes">A list of <see cref="ViewNode"/> instance.</param>
