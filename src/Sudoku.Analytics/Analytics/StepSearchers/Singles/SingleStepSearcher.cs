@@ -347,7 +347,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			[
 				[
 					.. enableAndIsLastDigit ? cellOffsets : [],
-					.. enableAndIsLastDigit ? [] : GetCrosshatchBaseCells(grid, digit, house, resultCell),
+					.. enableAndIsLastDigit ? [] : GetHiddenSingleExcluders(grid, digit, house, resultCell),
 					.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
 				]
 			],
@@ -366,7 +366,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <param name="house">The house.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private CellViewNode[] GetCrosshatchBaseCells(scoped in Grid grid, Digit digit, House house, Cell cell)
+	private CellViewNode[] GetHiddenSingleExcluders(scoped in Grid grid, Digit digit, House house, Cell cell)
 	{
 		var info = Crosshatching.GetCrosshatchingInfo(grid, digit, house, CellsMap[cell]);
 		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))

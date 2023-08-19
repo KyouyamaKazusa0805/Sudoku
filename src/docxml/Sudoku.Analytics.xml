@@ -7151,7 +7151,7 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
             </summary>
