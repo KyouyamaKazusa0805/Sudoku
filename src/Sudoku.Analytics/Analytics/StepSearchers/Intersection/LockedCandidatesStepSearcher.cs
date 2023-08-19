@@ -41,7 +41,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 	/// Why this expression? <c>a ^ b</c> means the digit can only appear in either cells A or cells B.
 	/// If both or neither, the digit won't contain the locked candidates pattern.
 	/// Because of the optimization of the performance, we use the predefined table to iterate on
-	/// all possible location where may form a locked candidate.
+	/// all possible location where may form a locked candidates.
 	/// </para>
 	/// </remarks>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
