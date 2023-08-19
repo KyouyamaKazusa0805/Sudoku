@@ -2833,14 +2833,14 @@
         </member>
         <member name="T:Sudoku.Analytics.Eliminations.ExocetElimination">
             <summary>
-            Represents a data structure that describes the eliminations that are created and proved by the exocet technique.
+            Represents a data pattern that describes the eliminations that are created and proved by the exocet technique.
             </summary>
             <param name="Conclusions">Indicates the conclusions.</param>
             <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
         </member>
         <member name="M:Sudoku.Analytics.Eliminations.ExocetElimination.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Analytics.Eliminations.ExocetEliminatedReason)">
             <summary>
-            Represents a data structure that describes the eliminations that are created and proved by the exocet technique.
+            Represents a data pattern that describes the eliminations that are created and proved by the exocet technique.
             </summary>
             <param name="Conclusions">Indicates the conclusions.</param>
             <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
@@ -2856,7 +2856,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Eliminations.IPhasedConclusionProvider`2">
             <summary>
-            Defines a data structure that describes for a phased conclusion list.
+            Defines a data pattern that describes for a phased conclusion list.
             </summary>
             <typeparam name="TSelf">The type of the implemented type itself.</typeparam>
             <typeparam name="TReasonEnum">
@@ -5390,7 +5390,7 @@
             ab  |  ab
             ]]></code>
             This is a complete pattern, and we may remove an <c>ab</c> in a certain corner.
-            The incomplete pattern may not contain all four <c>ab</c>s in the structure.
+            The incomplete pattern may not contain all four <c>ab</c>s in the pattern.
             </remarks>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles">
@@ -5427,7 +5427,7 @@
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
               ↓ cornerCell
             (abc) ab
@@ -5451,7 +5451,7 @@
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
               ↓ corner1, corner2
             (abc) (abc)
@@ -5477,7 +5477,7 @@
             </param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
              ↓ corner1, corner2
             (ab ) (ab )
@@ -5503,7 +5503,7 @@
             </param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
              ↓ corner1, corner2
             (ab ) ab
@@ -5526,7 +5526,7 @@
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
              ↓ cornerCell
             (ab ) abc
@@ -5550,7 +5550,7 @@
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
              ↓ corner1
             (ab )  aby
@@ -5574,7 +5574,7 @@
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
              ↓ cornerCell
             (ab ) abx
@@ -5598,7 +5598,7 @@
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
               ↓ corner1
             (ab )  abx
@@ -5623,7 +5623,7 @@
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
               ↓ corner1, corner2
             (ab )  (ab )
@@ -5650,7 +5650,7 @@
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
               ↓ corner1
             (ab )   aby
@@ -5677,7 +5677,7 @@
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
              ↓ cornerCell
             (ab )  abx
@@ -5701,7 +5701,7 @@
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
              ↓ cornerCell
             (ab )    abx
@@ -5727,7 +5727,7 @@
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
              ↓ cornerCell
             (ab )-----abx
@@ -5753,7 +5753,7 @@
              <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
              <param name="index">The index.</param>
              <remarks>
-             The structure:
+             The pattern:
              <code><![CDATA[
               ↓ cornerCell
              (ab )-----abx
@@ -5779,7 +5779,7 @@
              <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
              <param name="index">The index.</param>
              <remarks>
-             The structure:
+             The pattern:
              <code><![CDATA[
                ↓ cornerCell
              (ab )-----abx
@@ -5806,7 +5806,7 @@
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
               ↓ corner1, corner2
             (abx)-----(aby)
@@ -5913,7 +5913,7 @@
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
             <remarks>
-            The structure:
+            The pattern:
             <code><![CDATA[
                       |   xyz
              ab+ ab+  | abxyz abxyz
@@ -6069,7 +6069,7 @@
             </param>
             <param name="index">The index.</param>
             <remarks>
-            <para>The structure:</para>
+            <para>The pattern:</para>
             <para>
             <code><![CDATA[
             ↓corner1
@@ -6133,9 +6133,9 @@
             <param name="list">The list to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
             <remarks>
-            This method uses a trick to check a UR structure: to count up the number of "Normal colored"
-            candidates used in the current UR structure. If and only if the full structure uses 8 candidates
-            colored with normal one, the structure will be complete.
+            This method uses a trick to check a UR pattern: to count up the number of "Normal colored"
+            candidates used in the current UR pattern. If and only if the full pattern uses 8 candidates
+            colored with normal one, the pattern will be complete.
             </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.GetDiagonalCell(System.Int32[],System.Int32)">
@@ -6526,10 +6526,10 @@
             <param name="pivot">The pivot cell.</param>
             <param name="grid">The grid.</param>
             <param name="house1CellsExcluded">
-            The excluded cells that is out of the firework structure in the <paramref name="c1"/>'s house.
+            The excluded cells that is out of the firework pattern in the <paramref name="c1"/>'s house.
             </param>
             <param name="house2CellsExcluded">
-            The excluded cells that is out of the firework structure in the <paramref name="c2"/>'s house.
+            The excluded cells that is out of the firework pattern in the <paramref name="c2"/>'s house.
             </param>
             <returns>All digits that satisfied the firework rule. If none found, 0.</returns>
         </member>
@@ -6576,7 +6576,7 @@
             </para>
             <para>
             Why this expression? <c>a ^ b</c> means the digit can only appear in either cells A or cells B.
-            If both or neither, the digit won't contain the locked candidates structure.
+            If both or neither, the digit won't contain the locked candidates pattern.
             Because of the optimization of the performance, we use the predefined table to iterate on
             all possible location where may form a locked candidate.
             </para>
@@ -6775,7 +6775,7 @@
             <para>
             <i>
             In practicing, type 1 and 4 do not exist. A bi-value oddagon type 1 is a remote pair
-            and a type 4 cannot be formed as a stable technique structure.
+            and a type 4 cannot be formed as a stable technique pattern.
             </i>
             </para>
             <para><i>A Remote Pair is a XY-Chain that only uses two digits.</i></para>
@@ -7059,7 +7059,7 @@
             Determine whether the specified cells in the specified block form an empty rectangle.
             </summary>
             <param name="cells">The cells to be checked.</param>
-            <param name="block">The block where the cells may form an empty rectangle structure.</param>
+            <param name="block">The block where the cells may form an empty rectangle pattern.</param>
             <param name="row">The row that the empty rectangle used.</param>
             <param name="column">The column that the empty rectangle used.</param>
             <returns>
@@ -10343,8 +10343,8 @@
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="block">Indicates the block index that the Sue de Coq pattern used.</param>
             <param name="line">Indicates the line (row or column) index that the Sue de Coq pattern used.</param>
-            <param name="blockMask">Indicates the mask that contains all digits from the block of the Sue de Coq structure.</param>
-            <param name="lineMask">Indicates the cells in the line of the Sue de Coq structure.</param>
+            <param name="blockMask">Indicates the mask that contains all digits from the block of the Sue de Coq pattern.</param>
+            <param name="lineMask">Indicates the cells in the line of the Sue de Coq pattern.</param>
             <param name="intersectionMask">
             Indicates the mask that contains all digits from the intersection of houses <see cref="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>.
             </param>
@@ -10367,8 +10367,8 @@
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="block">Indicates the block index that the Sue de Coq pattern used.</param>
             <param name="line">Indicates the line (row or column) index that the Sue de Coq pattern used.</param>
-            <param name="blockMask">Indicates the mask that contains all digits from the block of the Sue de Coq structure.</param>
-            <param name="lineMask">Indicates the cells in the line of the Sue de Coq structure.</param>
+            <param name="blockMask">Indicates the mask that contains all digits from the block of the Sue de Coq pattern.</param>
+            <param name="lineMask">Indicates the cells in the line of the Sue de Coq pattern.</param>
             <param name="intersectionMask">
             Indicates the mask that contains all digits from the intersection of houses <see cref="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>.
             </param>
@@ -10980,7 +10980,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.ShapeKind">
             <summary>
-            Indicates a shape modifier that is used for a complex fish structure.
+            Indicates a shape modifier that is used for a complex fish pattern.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Steps.ShapeKind.Basic">
@@ -11000,7 +11000,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.FinKind">
             <summary>
-            Indicates a fin modifier that is used for a complex fish structure.
+            Indicates a fin modifier that is used for a complex fish pattern.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Steps.FinKind.Normal">
@@ -12315,7 +12315,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
-            <param name="block">Indicates the block that the real empty rectangle structure lis in.</param>
+            <param name="block">Indicates the block that the real empty rectangle pattern lis in.</param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.EmptyRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
@@ -12325,7 +12325,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
-            <param name="block">Indicates the block that the real empty rectangle structure lis in.</param>
+            <param name="block">Indicates the block that the real empty rectangle pattern lis in.</param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.BaseDifficulty">
@@ -12668,7 +12668,7 @@
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="house">The house that structure lies in.</param>
+            <param name="house">The house that pattern lies in.</param>
             <param name="cells">Indicates the cells used.</param>
             <param name="digitsMask">Indicates the mask that contains all digits used.</param>
         </member>
@@ -12678,7 +12678,7 @@
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="house">The house that structure lies in.</param>
+            <param name="house">The house that pattern lies in.</param>
             <param name="cells">Indicates the cells used.</param>
             <param name="digitsMask">Indicates the mask that contains all digits used.</param>
         </member>
@@ -12953,7 +12953,7 @@
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.IsIncomplete">
             <summary>
-            Indicates whether the structure is incomplete.
+            Indicates whether the pattern is incomplete.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.BaseDifficulty">
@@ -15658,17 +15658,17 @@
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_BivalueOddagonType1Step">
             <summary>
-              Looks up a localized string similar to If the cell {0} only contains the digits {1} and {2} (or one of those two), the loop {3} will form an error structure.
+              Looks up a localized string similar to If the cell {0} only contains the digits {1} and {2} (or one of those two), the loop {3} will form an error pattern.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_BivalueOddagonType2Step">
             <summary>
-              Looks up a localized string similar to If all digit {0} in cells {1} are removed, the loop will from an error structure.
+              Looks up a localized string similar to If all digit {0} in cells {1} are removed, the loop will from an error pattern.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_BivalueOddagonType3Step">
             <summary>
-              Looks up a localized string similar to To avoid the structure {0} of digits {1} and {2} error, the only way is to form the subset (digits {3} in cells {4}).
+              Looks up a localized string similar to To avoid the pattern {0} of digits {1} and {2} error, the only way is to form the subset (digits {3} in cells {4}).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep">
@@ -15728,7 +15728,7 @@
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_ChromaticPatternType1Step">
             <summary>
-              Looks up a localized string similar to Cells {0} in blocks {1} will form an invalid structure if these cells only contain the digits {2}.
+              Looks up a localized string similar to Cells {0} in blocks {1} will form an invalid pattern if these cells only contain the digits {2}.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_ChromaticPatternXzStep">
@@ -16911,7 +16911,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.DataModel.AlmostLockedSet">
             <summary>
-            Defines a data structure that describes an ALS.
+            Defines a data pattern that describes an ALS.
             </summary>
             <param name="digitsMask">Indicates the mask of digits used.</param>
             <param name="cells">Indicates the cells used.</param>
@@ -16924,7 +16924,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.DataModel.AlmostLockedSet.#ctor(System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
-            Defines a data structure that describes an ALS.
+            Defines a data pattern that describes an ALS.
             </summary>
             <param name="digitsMask">Indicates the mask of digits used.</param>
             <param name="cells">Indicates the cells used.</param>
@@ -17014,7 +17014,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.DataModel.BorescoperDeadlyPattern">
             <summary>
-            Defines a pattern that is a Borescoper's Deadly Pattern technique structure in theory. The sketch is like:
+            Defines a pattern that is a Borescoper's Deadly Pattern technique pattern in theory. The sketch is like:
             <code><![CDATA[
             .-------.-------.-------.
             | . . . | . . . | . . . |
@@ -17064,7 +17064,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.DataModel.BorescoperDeadlyPattern.#ctor(System.Int64)">
             <summary>
-            Defines a pattern that is a Borescoper's Deadly Pattern technique structure in theory. The sketch is like:
+            Defines a pattern that is a Borescoper's Deadly Pattern technique pattern in theory. The sketch is like:
             <code><![CDATA[
             .-------.-------.-------.
             | . . . | . . . | . . . |
@@ -17276,7 +17276,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.DataModel.ChainNode.SingletonParent">
             <summary>
-            Defines an accessor that allows user assigning a singleton parent node into the current data structure on instantiation phase.
+            Defines an accessor that allows user assigning a singleton parent node into the current data pattern on instantiation phase.
             </summary>
         </member>
         <member name="P:Sudoku.DataModel.ChainNode.ChainPotentials">
@@ -17518,7 +17518,7 @@ if (student is (name: var name, age: >= 18))
             </list>
             </para>
             <para>
-            In the data structure, all letters will be used as the same one in this exemplar.
+            In the data pattern, all letters will be used as the same one in this exemplar.
             In addition, if senior exocet, one of two target cells will lie in cross-line cells,
             and the lines of two target cells lying on can't contain any base digits.
             </para>
@@ -17564,7 +17564,7 @@ if (student is (name: var name, age: >= 18))
             </list>
             </para>
             <para>
-            In the data structure, all letters will be used as the same one in this exemplar.
+            In the data pattern, all letters will be used as the same one in this exemplar.
             In addition, if senior exocet, one of two target cells will lie in cross-line cells,
             and the lines of two target cells lying on can't contain any base digits.
             </para>
@@ -17765,7 +17765,7 @@ if (student is (name: var name, age: >= 18))
             ]]></code>
             </para>
             <para>
-            In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
+            In addition, in this data pattern, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
             </para>
             </summary>
         </member>
@@ -18122,7 +18122,7 @@ result ^= expression;
         </member>
         <member name="T:Sudoku.DataModel.QiuDeadlyPattern">
             <summary>
-            Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
+            Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
             <code><![CDATA[
             .-------.-------.-------.
             | . . . | . . . | . . . |
@@ -18151,7 +18151,7 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.DataModel.QiuDeadlyPattern.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
-            Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
+            Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
             <code><![CDATA[
             .-------.-------.-------.
             | . . . | . . . | . . . |

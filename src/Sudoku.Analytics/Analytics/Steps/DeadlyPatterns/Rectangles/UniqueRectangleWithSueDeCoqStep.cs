@@ -11,8 +11,8 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isAvoidable"><inheritdoc/></param>
 /// <param name="block">Indicates the block index that the Sue de Coq pattern used.</param>
 /// <param name="line">Indicates the line (row or column) index that the Sue de Coq pattern used.</param>
-/// <param name="blockMask">Indicates the mask that contains all digits from the block of the Sue de Coq structure.</param>
-/// <param name="lineMask">Indicates the cells in the line of the Sue de Coq structure.</param>
+/// <param name="blockMask">Indicates the mask that contains all digits from the block of the Sue de Coq pattern.</param>
+/// <param name="lineMask">Indicates the cells in the line of the Sue de Coq pattern.</param>
 /// <param name="intersectionMask">
 /// Indicates the mask that contains all digits from the intersection of houses <see cref="Block"/> and <see cref="Line"/>.
 /// </param>

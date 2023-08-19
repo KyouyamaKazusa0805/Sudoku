@@ -19,7 +19,7 @@ public sealed partial class RegularWingStep(
 ) : WingStep(conclusions, views)
 {
 	/// <summary>
-	/// Indicates whether the structure is incomplete.
+	/// Indicates whether the pattern is incomplete.
 	/// </summary>
 	public bool IsIncomplete => Size == PivotCandidatesCount + 1;
 

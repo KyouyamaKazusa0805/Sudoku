@@ -142,7 +142,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// ab  |  ab
 	/// ]]></code>
 	/// This is a complete pattern, and we may remove an <c>ab</c> in a certain corner.
-	/// The incomplete pattern may not contain all four <c>ab</c>s in the structure.
+	/// The incomplete pattern may not contain all four <c>ab</c>s in the pattern.
 	/// </remarks>
 	[RuntimeIdentifier(RuntimeIdentifier.AllowIncompleteUniqueRectangles)]
 	public bool AllowIncompleteUniqueRectangles { get; set; }
@@ -202,7 +202,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		// Search for ALSes. This result will be used by UR External ALS-XZ structures.
 		var alses = AlmostLockedSetsStepSearcher.GatherAlmostLockedSets(grid);
 
-		// Iterate on each possible UR structure.
+		// Iterate on each possible UR pattern.
 		for (var index = 0; index < CountOfPatterns; index++)
 		{
 			var urCells = UniqueRectanglePatterns[index];
@@ -376,7 +376,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///   ↓ cornerCell
 	/// (abc) ab
@@ -467,7 +467,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///   ↓ corner1, corner2
 	/// (abc) (abc)
@@ -572,7 +572,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///  ↓ corner1, corner2
 	/// (ab ) (ab )
@@ -722,7 +722,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///  ↓ corner1, corner2
 	/// (ab ) ab
@@ -843,7 +843,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///  ↓ cornerCell
 	/// (ab ) abc
@@ -941,7 +941,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///  ↓ corner1
 	/// (ab )  aby
@@ -1068,7 +1068,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///  ↓ cornerCell
 	/// (ab ) abx
@@ -1193,7 +1193,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///   ↓ corner1
 	/// (ab )  abx
@@ -1322,7 +1322,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///   ↓ corner1, corner2
 	/// (ab )  (ab )
@@ -1493,7 +1493,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///   ↓ corner1
 	/// (ab )   aby
@@ -1664,7 +1664,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///  ↓ cornerCell
 	/// (ab )  abx
@@ -1800,7 +1800,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///  ↓ cornerCell
 	/// (ab )    abx
@@ -1923,7 +1923,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///  ↓ cornerCell
 	/// (ab )-----abx
@@ -2052,7 +2052,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///  ↓ cornerCell
 	/// (ab )-----abx
@@ -2175,7 +2175,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///   ↓ cornerCell
 	/// (ab )-----abx
@@ -2299,7 +2299,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///   ↓ corner1, corner2
 	/// (abx)-----(aby)
@@ -2818,7 +2818,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// The structure:
+	/// The pattern:
 	/// <code><![CDATA[
 	///           |   xyz
 	///  ab+ ab+  | abxyz abxyz
@@ -4829,7 +4829,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// <para>The structure:</para>
+	/// <para>The pattern:</para>
 	/// <para>
 	/// <code><![CDATA[
 	/// ↓corner1
@@ -5039,9 +5039,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="list">The list to check.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	/// <remarks>
-	/// This method uses a trick to check a UR structure: to count up the number of "Normal colored"
-	/// candidates used in the current UR structure. If and only if the full structure uses 8 candidates
-	/// colored with normal one, the structure will be complete.
+	/// This method uses a trick to check a UR pattern: to count up the number of "Normal colored"
+	/// candidates used in the current UR pattern. If and only if the full pattern uses 8 candidates
+	/// colored with normal one, the pattern will be complete.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static bool IsIncomplete(bool allowIncomplete, List<CandidateViewNode> list)

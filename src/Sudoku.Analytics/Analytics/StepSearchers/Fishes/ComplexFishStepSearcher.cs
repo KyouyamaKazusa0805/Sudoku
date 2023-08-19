@@ -173,11 +173,11 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 						endofins &= possibleMap;
 
 						// We can't hold any endo-fins at present. The algorithm limits
-						// the whole technique structure can't contain endo-fins now.
+						// the whole technique pattern can't contain endo-fins now.
 						// We just assume the possible elimination is true, then the last incomplete
-						// structure can't contain any fins; otherwise, kraken fishes.
+						// pattern can't contain any fins; otherwise, kraken fishes.
 						// Do you know why we only check endo-fins instead of checking both exo-fins
-						// and endo-fins? Because here the incomplete structure don't contain
+						// and endo-fins? Because here the incomplete pattern don't contain
 						// any exo-fins at all.
 						if (endofins)
 						{

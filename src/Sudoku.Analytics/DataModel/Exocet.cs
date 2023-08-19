@@ -28,7 +28,7 @@ namespace Sudoku.DataModel;
 /// </list>
 /// </para>
 /// <para>
-/// In the data structure, all letters will be used as the same one in this exemplar.
+/// In the data pattern, all letters will be used as the same one in this exemplar.
 /// In addition, if senior exocet, one of two target cells will lie in cross-line cells,
 /// and the lines of two target cells lying on can't contain any base digits.
 /// </para>

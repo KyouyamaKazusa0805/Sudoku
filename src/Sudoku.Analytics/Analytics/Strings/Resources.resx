@@ -295,13 +295,13 @@
     <value>{Name}: It can be proved to be a contradiction if {AnchorIsTrueOrFalseStr} is {AnchorIsNotOnStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_BivalueOddagonType1Step" xml:space="preserve">
-    <value>If the cell {0} only contains the digits {1} and {2} (or one of those two), the loop {3} will form an error structure</value>
+    <value>If the cell {0} only contains the digits {1} and {2} (or one of those two), the loop {3} will form an error pattern</value>
   </data>
   <data name="TechniqueFormat_BivalueOddagonType2Step" xml:space="preserve">
-    <value>If all digit {0} in cells {1} are removed, the loop will from an error structure</value>
+    <value>If all digit {0} in cells {1} are removed, the loop will from an error pattern</value>
   </data>
   <data name="TechniqueFormat_BivalueOddagonType3Step" xml:space="preserve">
-    <value>To avoid the structure {0} of digits {1} and {2} error, the only way is to form the subset (digits {3} in cells {4})</value>
+    <value>To avoid the pattern {0} of digits {1} and {2} error, the only way is to form the subset (digits {3} in cells {4})</value>
   </data>
   <data name="TechniqueFormat_BivalueUniversalGraveMultipleStep" xml:space="preserve">
     <value>True candidates: {0}</value>
@@ -1327,7 +1327,7 @@
     <value>Chromatic Pattern Type 4</value>
   </data>
   <data name="TechniqueFormat_ChromaticPatternType1Step" xml:space="preserve">
-    <value>Cells {0} in blocks {1} will form an invalid structure if these cells only contain the digits {2}</value>
+    <value>Cells {0} in blocks {1} will form an invalid pattern if these cells only contain the digits {2}</value>
   </data>
   <data name="ChromaticPatternXzRule" xml:space="preserve">
     <value>Chromatic Pattern XZ Rule</value>

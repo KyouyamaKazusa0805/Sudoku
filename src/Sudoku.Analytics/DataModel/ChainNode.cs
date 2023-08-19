@@ -73,7 +73,7 @@ public readonly partial struct ChainNode([DataMember(MemberKinds.Field), HashCod
 	public Candidate Candidate => _mask & (1 << 10) - 1;
 
 	/// <summary>
-	/// Defines an accessor that allows user assigning a singleton parent node into the current data structure on instantiation phase.
+	/// Defines an accessor that allows user assigning a singleton parent node into the current data pattern on instantiation phase.
 	/// </summary>
 	public ChainNode SingletonParent
 	{

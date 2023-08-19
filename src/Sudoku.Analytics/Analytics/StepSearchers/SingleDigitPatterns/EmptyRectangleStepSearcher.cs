@@ -34,7 +34,7 @@ public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 			for (var block = 0; block < 9; block++)
 			{
 				// Check the empty rectangle occupies more than 2 cells.
-				// and the structure forms an empty rectangle.
+				// and the pattern forms an empty rectangle.
 				var erMap = CandidatesMap[digit] & HousesMap[block];
 				if (erMap.Count < 2 || !IsEmptyRectangle(erMap, block, out var row, out var column))
 				{
@@ -107,7 +107,7 @@ public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 	/// Determine whether the specified cells in the specified block form an empty rectangle.
 	/// </summary>
 	/// <param name="cells">The cells to be checked.</param>
-	/// <param name="block">The block where the cells may form an empty rectangle structure.</param>
+	/// <param name="block">The block where the cells may form an empty rectangle pattern.</param>
 	/// <param name="row">The row that the empty rectangle used.</param>
 	/// <param name="column">The column that the empty rectangle used.</param>
 	/// <returns>

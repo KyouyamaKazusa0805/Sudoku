@@ -130,7 +130,7 @@ public sealed partial class ComplexFishStep(
 }
 
 /// <summary>
-/// Indicates a shape modifier that is used for a complex fish structure.
+/// Indicates a shape modifier that is used for a complex fish pattern.
 /// </summary>
 [Flags]
 file enum ShapeKind
@@ -152,7 +152,7 @@ file enum ShapeKind
 }
 
 /// <summary>
-/// Indicates a fin modifier that is used for a complex fish structure.
+/// Indicates a fin modifier that is used for a complex fish pattern.
 /// </summary>
 [Flags]
 file enum FinKind

@@ -1,7 +1,7 @@
 namespace Sudoku.DataModel;
 
 /// <summary>
-/// Defines a pattern that is a Borescoper's Deadly Pattern technique structure in theory. The sketch is like:
+/// Defines a pattern that is a Borescoper's Deadly Pattern technique pattern in theory. The sketch is like:
 /// <code><![CDATA[
 /// .-------.-------.-------.
 /// | . . . | . . . | . . . |

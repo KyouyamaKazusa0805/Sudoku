@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
-/// <param name="block">Indicates the block that the real empty rectangle structure lis in.</param>
+/// <param name="block">Indicates the block that the real empty rectangle pattern lis in.</param>
 /// <param name="conjugatePair">Indicates the conjugate pair used.</param>
 public sealed partial class EmptyRectangleStep(
 	Conclusion[] conclusions,

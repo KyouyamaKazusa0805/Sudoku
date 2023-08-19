@@ -17,7 +17,7 @@ internal static class Intersection
 	/// ]]></code>
 	/// </para>
 	/// <para>
-	/// In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
+	/// In addition, in this data pattern, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
 	/// </para>
 	/// </summary>
 	public static readonly IReadOnlyDictionary<IntersectionBase, IntersectionResult> IntersectionMaps;

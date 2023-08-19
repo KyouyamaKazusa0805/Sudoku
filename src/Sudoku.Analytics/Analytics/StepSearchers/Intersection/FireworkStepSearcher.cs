@@ -118,7 +118,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		{
 			if ((EmptyCells & pattern.Map) != pattern.Map)
 			{
-				// At least one cell is not empty cell. Just skip this structure.
+				// At least one cell is not empty cell. Just skip this pattern.
 				continue;
 			}
 
@@ -573,10 +573,10 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <param name="pivot">The pivot cell.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="house1CellsExcluded">
-	/// The excluded cells that is out of the firework structure in the <paramref name="c1"/>'s house.
+	/// The excluded cells that is out of the firework pattern in the <paramref name="c1"/>'s house.
 	/// </param>
 	/// <param name="house2CellsExcluded">
-	/// The excluded cells that is out of the firework structure in the <paramref name="c2"/>'s house.
+	/// The excluded cells that is out of the firework pattern in the <paramref name="c2"/>'s house.
 	/// </param>
 	/// <returns>All digits that satisfied the firework rule. If none found, 0.</returns>
 	private static Mask GetFireworkDigits(

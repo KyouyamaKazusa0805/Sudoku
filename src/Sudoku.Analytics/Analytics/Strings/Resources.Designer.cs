@@ -4741,7 +4741,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If the cell {0} only contains the digits {1} and {2} (or one of those two), the loop {3} will form an error structure.
+        ///   Looks up a localized string similar to If the cell {0} only contains the digits {1} and {2} (or one of those two), the loop {3} will form an error pattern.
         /// </summary>
         public static string TechniqueFormat_BivalueOddagonType1Step {
             get {
@@ -4750,7 +4750,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If all digit {0} in cells {1} are removed, the loop will from an error structure.
+        ///   Looks up a localized string similar to If all digit {0} in cells {1} are removed, the loop will from an error pattern.
         /// </summary>
         public static string TechniqueFormat_BivalueOddagonType2Step {
             get {
@@ -4759,7 +4759,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To avoid the structure {0} of digits {1} and {2} error, the only way is to form the subset (digits {3} in cells {4}).
+        ///   Looks up a localized string similar to To avoid the pattern {0} of digits {1} and {2} error, the only way is to form the subset (digits {3} in cells {4}).
         /// </summary>
         public static string TechniqueFormat_BivalueOddagonType3Step {
             get {
@@ -4867,7 +4867,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cells {0} in blocks {1} will form an invalid structure if these cells only contain the digits {2}.
+        ///   Looks up a localized string similar to Cells {0} in blocks {1} will form an invalid pattern if these cells only contain the digits {2}.
         /// </summary>
         public static string TechniqueFormat_ChromaticPatternType1Step {
             get {

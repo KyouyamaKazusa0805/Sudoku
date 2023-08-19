@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <para>
 /// <i>
 /// In practicing, type 1 and 4 do not exist. A bi-value oddagon type 1 is a remote pair
-/// and a type 4 cannot be formed as a stable technique structure.
+/// and a type 4 cannot be formed as a stable technique pattern.
 /// </i>
 /// </para>
 /// <para><i>A Remote Pair is a XY-Chain that only uses two digits.</i></para>

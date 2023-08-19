@@ -1,7 +1,7 @@
 namespace Sudoku.DataModel;
 
 /// <summary>
-/// Defines a data structure that describes an ALS.
+/// Defines a data pattern that describes an ALS.
 /// </summary>
 /// <param name="digitsMask">Indicates the mask of digits used.</param>
 /// <param name="cells">Indicates the cells used.</param>

@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Eliminations;
 
 /// <summary>
-/// Defines a data structure that describes for a phased conclusion list.
+/// Defines a data pattern that describes for a phased conclusion list.
 /// </summary>
 /// <typeparam name="TSelf">The type of the implemented type itself.</typeparam>
 /// <typeparam name="TReasonEnum">

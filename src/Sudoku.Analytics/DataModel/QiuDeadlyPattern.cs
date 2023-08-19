@@ -1,7 +1,7 @@
 namespace Sudoku.DataModel;
 
 /// <summary>
-/// Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
+/// Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
 /// <code><![CDATA[
 /// .-------.-------.-------.
 /// | . . . | . . . | . . . |

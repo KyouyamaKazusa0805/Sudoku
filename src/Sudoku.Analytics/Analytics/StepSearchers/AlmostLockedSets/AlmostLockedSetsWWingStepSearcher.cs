@@ -84,13 +84,13 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : AlmostLockedSets
 							var cpMap = conjugatePair.Map;
 							if (cpMap && map1 || cpMap && map2)
 							{
-								// Conjugate pair can't overlap with the ALS structure.
+								// Conjugate pair can't overlap with the ALS pattern.
 								continue;
 							}
 
 							if ((cpMap & p1).Count != 1 || (cpMap & p2).Count != 1 || ((p1 | p2) & cpMap).Count != 2)
 							{
-								// If so, the structure may be a grouped ALS-W-Wing,
+								// If so, the pattern may be a grouped ALS-W-Wing,
 								// but I may not implement this one at present, so just skip it.
 								continue;
 							}

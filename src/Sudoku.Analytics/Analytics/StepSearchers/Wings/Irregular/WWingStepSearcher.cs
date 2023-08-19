@@ -13,7 +13,7 @@ public sealed partial class WWingStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
-		// The grid with possible W-Wing structure should contain at least two empty cells (start and end cell).
+		// The grid with possible W-Wing pattern should contain at least two empty cells (start and end cell).
 		if (BivalueCells.Count < 2)
 		{
 			return null;
@@ -48,7 +48,7 @@ public sealed partial class WWingStepSearcher : StepSearcher
 				var intersection = PeersMap[c1] & PeersMap[c2];
 				if (!(EmptyCells & intersection))
 				{
-					// The structure doesn't contain any possible eliminations.
+					// The pattern doesn't contain any possible eliminations.
 					continue;
 				}
 
