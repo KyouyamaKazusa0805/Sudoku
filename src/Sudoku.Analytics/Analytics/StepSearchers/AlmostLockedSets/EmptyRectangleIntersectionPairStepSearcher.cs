@@ -49,7 +49,7 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 				foreach (var interCell in interMap)
 				{
 					var block = interCell.ToHouseIndex(HouseType.Block);
-					var houseMap = HousesMap[block];
+					scoped ref readonly var houseMap = ref HousesMap[block];
 					var checkingMap = houseMap - unionMap & houseMap;
 					if (checkingMap & CandidatesMap[d1] || checkingMap & CandidatesMap[d2])
 					{
@@ -59,9 +59,8 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 					// Check whether two digits are both in the same empty rectangle.
 					var b1 = c1.ToHouseIndex(HouseType.Block);
 					var b2 = c2.ToHouseIndex(HouseType.Block);
-					var erMap = unionMap & HousesMap[b1] - interMap | unionMap & HousesMap[b2] - interMap;
-					var erCellsMap = houseMap & erMap;
-					var m = grid[erCellsMap];
+					var erMap = unionMap & houseMap - interMap & (CandidatesMap[d1] | CandidatesMap[d2]);
+					var m = grid[erMap];
 					if ((m & mask) != mask)
 					{
 						continue;
@@ -97,7 +96,7 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 					{
 						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, c2 * 9 + digit));
 					}
-					foreach (var cell in erCellsMap)
+					foreach (var cell in erMap)
 					{
 						foreach (var digit in grid.GetCandidates(cell))
 						{
