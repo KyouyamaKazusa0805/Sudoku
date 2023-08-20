@@ -115,9 +115,7 @@ public ref struct HodokuPuzzleGenerator
 				GenerateInitPos(symmetricType, cancellationToken);
 			}
 
-			var result = _newValidSudoku;
-			result.Fix();
-			return result;
+			return _newValidSudoku.FixedGrid;
 		}
 		catch (OperationCanceledException)
 		{

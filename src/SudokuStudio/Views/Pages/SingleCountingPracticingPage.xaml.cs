@@ -277,8 +277,7 @@ file static class Generator
 			}
 		}
 
-		result.Fix();
-		return result;
+		return result.FixedGrid;
 	}
 }
 

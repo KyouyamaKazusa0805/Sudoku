@@ -1032,21 +1032,9 @@ public sealed partial class AnalyzePage : Page
 		operationProvider.BasePage = @this;
 	}
 
-	private void FixGridButton_Click(object sender, RoutedEventArgs e)
-	{
-		var modified = SudokuPane.Puzzle;
-		modified.Fix();
+	private void FixGridButton_Click(object sender, RoutedEventArgs e) => SudokuPane.Puzzle = SudokuPane.Puzzle.FixedGrid;
 
-		SudokuPane.Puzzle = modified;
-	}
-
-	private void UnfixGridButton_Click(object sender, RoutedEventArgs e)
-	{
-		var modified = SudokuPane.Puzzle;
-		modified.Unfix();
-
-		SudokuPane.Puzzle = modified;
-	}
+	private void UnfixGridButton_Click(object sender, RoutedEventArgs e) => SudokuPane.Puzzle = SudokuPane.Puzzle.UnfixedGrid;
 
 	private void SudokuPane_MouseWheelChanged(SudokuPane sender, SudokuPaneMouseWheelChangedEventArgs e)
 	{

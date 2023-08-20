@@ -554,9 +554,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 			}
 			default:
 			{
-				var gridCopied = this;
-				gridCopied.Unfix();
-
+				var gridCopied = UnfixedGrid;
 				foreach (var cell in gridCopied.ModifiableCells)
 				{
 					var newGrid = gridCopied;
