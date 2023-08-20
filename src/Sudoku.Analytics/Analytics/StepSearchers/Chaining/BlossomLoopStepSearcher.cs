@@ -49,7 +49,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 				// Iterate on all potential values that are not alone.
 				foreach (byte digit in mask)
 				{
-					var onToOn = new NodeSet { new(cell, digit, true) };
+					var onToOn = (NodeSet)([new(cell, digit, true)]);
 					DoChaining(grid, onToOn, [], false, false);
 
 					// Do house chaining.
@@ -103,8 +103,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 					}
 					else
 					{
-						var otherToOn = new NodeSet { new(otherCell, baseDigit, true) };
-
+						var otherToOn = (NodeSet)([new(otherCell, baseDigit, true)]);
 						DoChaining(grid, otherToOn, [], false, false);
 
 						posToOn.Add(otherCell, otherToOn);
