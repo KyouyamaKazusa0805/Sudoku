@@ -68,10 +68,10 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 	/// </remarks>
 	public static readonly delegate*<ref Grid, void> RefreshingCandidates = &OnRefreshingCandidates;
 
-	/// <inheritdoc cref="IGrid{TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, THouse, TCandidate, TBitStatusMap, TConclusion, TConjugate}.Empty"/>
+	/// <inheritdoc cref="P:Sudoku.Concepts.IGrid`11.Empty"/>
 	public static readonly Grid Empty;
 
-	/// <inheritdoc cref="IGrid{TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, THouse, TCandidate, TBitStatusMap, TConclusion, TConjugate}.Undefined"/>
+	/// <inheritdoc cref="P:Sudoku.Concepts.IGrid`11.Undefined"/>
 	public static readonly Grid Undefined;
 
 	/// <summary>
