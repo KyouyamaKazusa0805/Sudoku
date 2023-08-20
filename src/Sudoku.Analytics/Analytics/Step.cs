@@ -107,17 +107,6 @@ public abstract partial class Step([DataMember] Conclusion[] conclusions, [DataM
 	public decimal Difficulty => BaseDifficulty + (ExtraDifficultyCases?.Sum(static @case => @case.Value) ?? 0);
 
 	/// <summary>
-	/// Indicates the difficulty that describe how hard you can spot the pattern.
-	/// This value has same properties as <see cref="Difficulty"/>, between 1.0 - 12.0.
-	/// </summary>
-	/// <remarks>
-	/// By default, this value is same as <see cref="Difficulty"/>.
-	/// I recommend you overwrite this property if the step describes for a direct technique.
-	/// </remarks>
-	/// <seealso cref="Difficulty"/>
-	public virtual decimal SpottingDifficulty => Difficulty;
-
-	/// <summary>
 	/// The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
 	/// </summary>
 	public abstract Technique Code { get; }
