@@ -18,7 +18,7 @@ public static class EnumFlagsEnumerable
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the enumeration type is not marked <see cref="FlagsAttribute"/>.
 	/// </exception>
-	public static TResult[] Select<T, TResult>(this T @this, Func<T, TResult> selector) where T : unmanaged, Enum
+	public static ReadOnlySpan<TResult> Select<T, TResult>(this T @this, Func<T, TResult> selector) where T : unmanaged, Enum
 	{
 		if (!typeof(T).IsDefined(typeof(FlagsAttribute)))
 		{

@@ -1528,6 +1528,13 @@ public enum Technique
 	UniqueRectangleWxyzWing,
 
 	/// <summary>
+	/// Indicates unique rectangle W-Wing.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	UniqueRectangleWWing,
+
+	/// <summary>
 	/// Indicates unique rectangle sue de coq.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
@@ -1681,6 +1688,13 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleWxyzWing,
+
+	/// <summary>
+	/// Indicates avoidable rectangle W-Wing.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	AvoidableRectangleWWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle sue de coq.

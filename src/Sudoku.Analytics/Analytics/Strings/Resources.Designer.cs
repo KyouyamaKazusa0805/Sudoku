@@ -493,6 +493,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle W-Wing.
+        /// </summary>
+        public static string AvoidableRectangleWWing {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleWWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle WXYZ-Wing.
         /// </summary>
         public static string AvoidableRectangleWxyzWing {
@@ -5605,6 +5614,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with a W-Wing, connectors are {3}, end cells are {4}, w = {5}.
+        /// </summary>
+        public static string TechniqueFormat_UniqueRectangleWithWWingStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithWWingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} to {1} with conjugate pair {2}.
         /// </summary>
         public static string TechniqueFormat_WWingStep {
@@ -6033,6 +6051,15 @@ namespace Sudoku.Analytics.Strings {
         public static string UniqueRectangleType6 {
             get {
                 return ResourceManager.GetString("UniqueRectangleType6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle W-Wing.
+        /// </summary>
+        public static string UniqueRectangleWWing {
+            get {
+                return ResourceManager.GetString("UniqueRectangleWWing", resourceCulture);
             }
         }
         

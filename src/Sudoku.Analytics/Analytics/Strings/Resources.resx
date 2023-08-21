@@ -2157,4 +2157,13 @@
   <data name="TechniqueFormat_ReverseBivalueUniversalGraveType3Step" xml:space="preserve">
     <value>Extra house {0}, with extra digits {1}</value>
   </data>
+  <data name="AvoidableRectangleWWing" xml:space="preserve">
+    <value>Avoidable Rectangle W-Wing</value>
+  </data>
+  <data name="TechniqueFormat_UniqueRectangleWithWWingStep" xml:space="preserve">
+    <value>Digits {0} and {1} in {2}, with a W-Wing, connectors are {3}, end cells are {4}, w = {5}</value>
+  </data>
+  <data name="UniqueRectangleWWing" xml:space="preserve">
+    <value>Unique Rectangle W-Wing</value>
+  </data>
 </root>

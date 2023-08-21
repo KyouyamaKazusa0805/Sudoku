@@ -1689,6 +1689,11 @@
             Indicates unique rectangle-WXYZ-Wing.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleWWing">
+            <summary>
+            Indicates unique rectangle W-Wing.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleSueDeCoq">
             <summary>
             Indicates unique rectangle sue de coq.
@@ -1787,6 +1792,11 @@
         <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleWxyzWing">
             <summary>
             Indicates avoidable rectangle WXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleWWing">
+            <summary>
+            Indicates avoidable rectangle W-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleSueDeCoq">
@@ -5862,7 +5872,7 @@
             <param name="corner2">The corner cell 2.</param>
             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
-            <param name="isCornerCellsCannotSeeEachOther">Indicates whether the corner cells cannot see each other.</param>
+            <param name="areCornerCellsAligned">Indicates whether the corner cells cannot see each other.</param>
             <remarks>
             <para>The structures:</para>
             <para>
@@ -5884,6 +5894,44 @@
                     ↑ corner2
             ]]></code>
             </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckWWing(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check UR-W-Wing and AR-W-Wing.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            <para>The structures:</para>
+            <para>
+            Subtype 1:
+            <code><![CDATA[
+                    ↓ corner1
+            xz   abx  (ab )
+                (ab )  aby   yz
+                  ↑ corner2
+            ]]></code>
+            </para>
+            <para>
+            Subtype 2:
+            <code><![CDATA[
+                  ↓ corner1
+            xz  (ab )  abx
+                 abx  (ab )  xz
+                        ↑ corner2
+            ]]></code>
+            </para>
+            <para>Please note that corner cells may be aligned as a same row or column.</para>
             </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckSueDeCoq(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
@@ -10480,6 +10528,59 @@
             The generated property declaration for parameter <c>extraDigitsMask</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with W-Wing</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="code"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="isAvoidable"><inheritdoc/></param>
+            <param name="wDigit">Indicates the digit W.</param>
+            <param name="connectors">Indicates the connectors.</param>
+            <param name="endCells">Indicates the end cells.</param>
+            <param name="absoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with W-Wing</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="code"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="isAvoidable"><inheritdoc/></param>
+            <param name="wDigit">Indicates the digit W.</param>
+            <param name="connectors">Indicates the connectors.</param>
+            <param name="endCells">Indicates the end cells.</param>
+            <param name="absoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.WDigit">
+            <summary>
+            The generated property declaration for parameter <c>wDigit</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.Connectors">
+            <summary>
+            The generated property declaration for parameter <c>connectors</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.EndCells">
+            <summary>
+            The generated property declaration for parameter <c>endCells</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep">
             <summary>
             Provides with a step that is a <b>Reverse Bi-value Universal Grave</b> technique.
@@ -13283,6 +13384,11 @@
         <member name="P:Sudoku.Analytics.Strings.Resources.AvoidableRectangleType5">
             <summary>
               Looks up a localized string similar to Avoidable Rectangle Type 5.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.AvoidableRectangleWWing">
+            <summary>
+              Looks up a localized string similar to Avoidable Rectangle W-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.AvoidableRectangleWxyzWing">
@@ -16125,6 +16231,11 @@
               Looks up a localized string similar to Digits {0} and {1} in {2}, with a wing (pivots: {3}, with digits: {4} in cells {2}).
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_UniqueRectangleWithWWingStep">
+            <summary>
+              Looks up a localized string similar to Digits {0} and {1} in {2}, with a W-Wing, connectors are {3}, end cells are {4}, w = {5}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_WWingStep">
             <summary>
               Looks up a localized string similar to {0} to {1} with conjugate pair {2}.
@@ -16363,6 +16474,11 @@
         <member name="P:Sudoku.Analytics.Strings.Resources.UniqueRectangleType6">
             <summary>
               Looks up a localized string similar to Unique Rectangle Type 6.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.UniqueRectangleWWing">
+            <summary>
+              Looks up a localized string similar to Unique Rectangle W-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.UniqueRectangleWxyzWing">

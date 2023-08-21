@@ -126,6 +126,20 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// <typeparam name="T">The type of the element in the sequence.</typeparam>
 	/// <param name="sequence">The whole sequence.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
+	private bool AllNotNull<T>(scoped ReadOnlySpan<T> sequence)
+	{
+		foreach (var e in sequence)
+		{
+			if (e is null)
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/// <inheritdoc cref="AllNotNull{T}(ReadOnlySpan{T})"/>
 	private bool AllNotNull<T>(IEnumerable<T> sequence)
 	{
 		foreach (var e in sequence)
@@ -207,7 +221,7 @@ public sealed class DictionaryQuerySolver : ISolver
 			let solution = Search(Assign(new(values), s2, d.ToString()))
 			where solution is not null
 			select solution
-		).FirstOrDefault();
+		)[0];
 	}
 
 	/// <summary>
@@ -215,12 +229,7 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private Dictionary<string, string>? Assign(Dictionary<string, string> values, string s, string d)
-		=> AllNotNull(
-			from d2 in values[s]
-			where d2.ToString() != d
-			select Eliminate(values, s, d2.ToString()) into v
-			select v
-		) ? values : null;
+		=> AllNotNull(from d2 in values[s] where d2.ToString() != d select Eliminate(values, s, d2.ToString())) ? values : null;
 
 	/// <summary>
 	/// Eliminate d from <c>values[s]</c>; propagate when values or places <![CDATA[<=]]> 2.

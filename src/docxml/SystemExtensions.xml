@@ -1019,7 +1019,7 @@
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
             </param>
             <returns>
-            A <typeparamref name="T"/>[] whose elements are the result of invoking the transform function on each element of <paramref name="this"/>.
+            An array of <typeparamref name="TResult"/> instances being the result of invoking the transform function on each element of <paramref name="this"/>.
             </returns>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,``1[]},System.Func{``0,``1,``2})">
@@ -1098,26 +1098,18 @@
             <seealso cref="T:System.ReadOnlySpan`1"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Select``2(System.Span{``0},System.Func{``0,``1})">
-            <summary>
-            The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
-            clause.
-            </summary>
-            <typeparam name="T">The element type.</typeparam>
-            <typeparam name="TResult">The result type.</typeparam>
-            <param name="this">The list.</param>
-            <param name="selector">The selector that is used for conversion.</param>
-            <returns>The array of target result elements.</returns>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
             <summary>
-            The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
-            clause.
+            Projects each element in the current instance into the target-typed span of element type <typeparamref name="TResult"/>,
+            using the specified function to convert.
             </summary>
-            <typeparam name="T">The element type.</typeparam>
-            <typeparam name="TResult">The result type.</typeparam>
-            <param name="this">The list.</param>
-            <param name="selector">The selector that is used for conversion.</param>
-            <returns>The array of target result elements.</returns>
+            <typeparam name="T">The type of each elements in the span.</typeparam>
+            <typeparam name="TResult">The type of target value.</typeparam>
+            <param name="this">The source elements.</param>
+            <param name="selector">The selector.</param>
+            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
             <summary>
@@ -1131,6 +1123,9 @@
         </member>
         <member name="M:System.Linq.SpanEnumerable.OrderBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.FirstOrDefault``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
         <member name="T:System.Linq.StringEnumerable">
             <summary>

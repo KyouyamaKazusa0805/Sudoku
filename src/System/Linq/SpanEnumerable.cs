@@ -7,15 +7,7 @@ namespace System.Linq;
 /// <seealso cref="ReadOnlySpan{T}"/>
 public static class SpanEnumerable
 {
-	/// <summary>
-	/// The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
-	/// clause.
-	/// </summary>
-	/// <typeparam name="T">The element type.</typeparam>
-	/// <typeparam name="TResult">The result type.</typeparam>
-	/// <param name="this">The list.</param>
-	/// <param name="selector">The selector that is used for conversion.</param>
-	/// <returns>The array of target result elements.</returns>
+	/// <inheritdoc cref="Select{T, TResult}(ReadOnlySpan{T}, Func{T, TResult})"/>
 	public static TResult[] Select<T, TResult>(this scoped Span<T> @this, Func<T, TResult> selector)
 	{
 		var result = new TResult[@this.Length];
@@ -29,15 +21,15 @@ public static class SpanEnumerable
 	}
 
 	/// <summary>
-	/// The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
-	/// clause.
+	/// Projects each element in the current instance into the target-typed span of element type <typeparamref name="TResult"/>,
+	/// using the specified function to convert.
 	/// </summary>
-	/// <typeparam name="T">The element type.</typeparam>
-	/// <typeparam name="TResult">The result type.</typeparam>
-	/// <param name="this">The list.</param>
-	/// <param name="selector">The selector that is used for conversion.</param>
-	/// <returns>The array of target result elements.</returns>
-	public static TResult[] Select<T, TResult>(this scoped ReadOnlySpan<T> @this, Func<T, TResult> selector)
+	/// <typeparam name="T">The type of each elements in the span.</typeparam>
+	/// <typeparam name="TResult">The type of target value.</typeparam>
+	/// <param name="this">The source elements.</param>
+	/// <param name="selector">The selector.</param>
+	/// <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+	public static ReadOnlySpan<TResult> Select<T, TResult>(this scoped ReadOnlySpan<T> @this, Func<T, TResult> selector)
 	{
 		var result = new TResult[@this.Length];
 		var i = 0;
@@ -57,7 +49,7 @@ public static class SpanEnumerable
 	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})" path="/param[@name='predicate']"/>
 	/// </param>
 	/// <returns>A <typeparamref name="T"/>[] that contains elements form the input sequence that satisfy the condition.</returns>
-	public static T[] Where<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
+	public static ReadOnlySpan<T> Where<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
 		var result = new T[@this.Length];
 		var i = 0;
@@ -69,7 +61,7 @@ public static class SpanEnumerable
 			}
 		}
 
-		return result[..i];
+		return result.AsSpan()[..i];
 	}
 
 	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
@@ -80,5 +72,19 @@ public static class SpanEnumerable
 		Array.Sort(copied, (a, b) => keySelector(a).CompareTo(keySelector(b)));
 
 		return copied;
+	}
+
+	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
+	public static T? FirstOrDefault<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> condition)
+	{
+		foreach (var element in @this)
+		{
+			if (condition(element))
+			{
+				return element;
+			}
+		}
+
+		return default;
 	}
 }

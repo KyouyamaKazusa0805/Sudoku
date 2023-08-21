@@ -15,7 +15,7 @@ public static class ArrayEnumerable
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/param[@name='selector']"/>
 	/// </param>
 	/// <returns>
-	/// A <typeparamref name="T"/>[] whose elements are the result of invoking the transform function on each element of <paramref name="this"/>.
+	/// An array of <typeparamref name="TResult"/> instances being the result of invoking the transform function on each element of <paramref name="this"/>.
 	/// </returns>
 	public static TResult[] Select<T, TResult>(this T[] @this, Func<T, TResult> selector)
 	{

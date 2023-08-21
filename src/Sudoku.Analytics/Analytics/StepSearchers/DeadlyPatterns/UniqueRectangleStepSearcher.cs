@@ -48,7 +48,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.UniqueRectangleExternalType4, Technique.UniqueRectangleExternalXyWing, Technique.UniqueRectangleExternalTurbotFish,
 	Technique.UniqueRectangleExternalWWing, Technique.UniqueRectangleExternalAlmostLockedSetsXz, Technique.UniqueRectangleBabaGrouping,
 	Technique.UniqueRectangleSueDeCoq, Technique.UniqueRectangleXyWing, Technique.UniqueRectangleXyzWing, Technique.UniqueRectangleWxyzWing,
-	Technique.UniqueRectangle2B1, Technique.UniqueRectangle2D, Technique.UniqueRectangle2D1, Technique.UniqueRectangle3E2,
+	Technique.UniqueRectangleWWing, Technique.UniqueRectangle2B1, Technique.UniqueRectangle2D, Technique.UniqueRectangle2D1, Technique.UniqueRectangle3E2,
 	Technique.UniqueRectangle3N2, Technique.UniqueRectangle3U2, Technique.UniqueRectangle3X, Technique.UniqueRectangle3X1L,
 	Technique.UniqueRectangle3X1U, Technique.UniqueRectangle3X2, Technique.UniqueRectangle4C3, Technique.UniqueRectangle4X1L,
 	Technique.UniqueRectangle4X1U, Technique.UniqueRectangle4X2L, Technique.UniqueRectangle4X2U, Technique.UniqueRectangle4X3,
@@ -57,8 +57,8 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.AvoidableRectangleExternalType4, Technique.AvoidableRectangleExternalXyWing, Technique.AvoidableRectangleExternalWWing,
 	Technique.AvoidableRectangleExternalAlmostLockedSetsXz, Technique.AvoidableRectangle2D, Technique.AvoidableRectangle3X,
 	Technique.AvoidableRectangleBrokenWing, Technique.AvoidableRectangleHiddenSingleBlock, Technique.AvoidableRectangleHiddenSingleRow,
-	Technique.AvoidableRectangleHiddenSingleColumn, Technique.AvoidableRectangleSueDeCoq,
-	Technique.AvoidableRectangleXyWing, Technique.AvoidableRectangleXyzWing, Technique.AvoidableRectangleWxyzWing,
+	Technique.AvoidableRectangleHiddenSingleColumn, Technique.AvoidableRectangleSueDeCoq, Technique.AvoidableRectangleXyWing,
+	Technique.AvoidableRectangleXyzWing, Technique.AvoidableRectangleWxyzWing, Technique.AvoidableRectangleWWing,
 	ConditionalCases = ConditionalCase.Standard)]
 public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 {
@@ -184,7 +184,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 		if (context.OnlyFindOne)
 		{
-			return resultList.FirstOrDefault();
+			return resultList[0];
 		}
 
 		context.Accumulator.AddRange(resultList);
@@ -301,6 +301,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2,
 									tempOtherCellsMap, index, (c1, c2) is (0, 3) or (1, 2)
 								);
+								CheckWWing(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 							}
 
 							switch (c1, c2)
@@ -2590,7 +2591,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="corner2">The corner cell 2.</param>
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
-	/// <param name="isCornerCellsCannotSeeEachOther">Indicates whether the corner cells cannot see each other.</param>
+	/// <param name="areCornerCellsAligned">Indicates whether the corner cells cannot see each other.</param>
 	/// <remarks>
 	/// <para>The structures:</para>
 	/// <para>
@@ -2625,12 +2626,12 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner2,
 		scoped in CellMap otherCellsMap,
 		int index,
-		bool isCornerCellsCannotSeeEachOther
+		bool areCornerCellsAligned
 	)
 	{
 		// Firstly, we should check whether the 2 corner cells should contain both a and b, and only contain a and b.
 		// This expression only uses candidates to check digits appearing, so it doesn't determine whether the pattern is a UR or not.
-		// Yeah, ARs can also be passed.
+		// ARs can also be passed of course.
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
 			return;
@@ -2796,6 +2797,164 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						combination,
 						otherCellsMap,
 						otherDigitsMask,
+						index
+					)
+				);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Check UR-W-Wing and AR-W-Wing.
+	/// </summary>
+	/// <param name="accumulator">The technique accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="urCells">All UR cells.</param>
+	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+	/// <param name="comparer">The mask comparer.</param>
+	/// <param name="d1">The digit 1 used in UR.</param>
+	/// <param name="d2">The digit 2 used in UR.</param>
+	/// <param name="corner1">The corner cell 1.</param>
+	/// <param name="corner2">The corner cell 2.</param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// <para>The structures:</para>
+	/// <para>
+	/// Subtype 1:
+	/// <code><![CDATA[
+	///         ↓ corner1
+	/// xz   abx  (ab )
+	///     (ab )  aby   yz
+	///       ↑ corner2
+	/// ]]></code>
+	/// </para>
+	/// <para>
+	/// Subtype 2:
+	/// <code><![CDATA[
+	///       ↓ corner1
+	/// xz  (ab )  abx
+	///      abx  (ab )  xz
+	///             ↑ corner2
+	/// ]]></code>
+	/// </para>
+	/// <para>Please note that corner cells may be aligned as a same row or column.</para>
+	/// </remarks>
+	private void CheckWWing(
+		List<UniqueRectangleStep> accumulator,
+		scoped in Grid grid,
+		Cell[] urCells,
+		bool arMode,
+		Mask comparer,
+		Digit d1,
+		Digit d2,
+		Cell corner1,
+		Cell corner2,
+		scoped in CellMap otherCellsMap,
+		int index
+	)
+	{
+		// Firstly, we should check whether the 2 corner cells should contain both a and b, and only contain a and b.
+		// This expression only uses candidates to check digits appearing, so it doesn't determine whether the pattern is a UR or not.
+		// ARs can also be passed of course.
+		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
+		{
+			return;
+		}
+
+		var otherCell1Mask = grid.GetCandidates(otherCellsMap[0]);
+		var otherCell2Mask = grid.GetCandidates(otherCellsMap[1]);
+		if ((otherCell1Mask & otherCell2Mask & comparer) == 0 || ((otherCell1Mask | otherCell2Mask) & comparer) != comparer)
+		{
+			return;
+		}
+
+		var otherDigits1 = (Mask)(otherCell1Mask & (Mask)~comparer);
+		if (!IsPow2(otherDigits1))
+		{
+			return;
+		}
+		var otherDigits2 = (Mask)(otherCell2Mask & (Mask)~comparer);
+		if (!IsPow2(otherDigits2))
+		{
+			return;
+		}
+
+		var otherDigit1 = TrailingZeroCount(otherDigits1);
+		var otherDigit2 = TrailingZeroCount(otherDigits2);
+
+		// Now we check for other 2 cells, collecting digits not being UR/AR digits.
+		var cells = (CellMap)urCells;
+		foreach (var endCell1 in PeersMap[otherCellsMap[0]] & BivalueCells & CandidatesMap[otherDigit1])
+		{
+			foreach (var endCell2 in (PeersMap[otherCellsMap[1]] & BivalueCells & CandidatesMap[otherDigit2]) - endCell1)
+			{
+				// Check whether two cells are same, or in a same house. If so, the pattern will be degenerated to a normal type 3.
+				if ((CellsMap[endCell1] + endCell2).InOneHouse)
+				{
+					continue;
+				}
+
+				var mergedMask = (Mask)(grid.GetCandidates(endCell1) & grid.GetCandidates(endCell2));
+				if (!IsPow2(mergedMask))
+				{
+					continue;
+				}
+
+				var wDigit = TrailingZeroCount(mergedMask);
+				if (otherDigit1 == wDigit || otherDigit2 == wDigit)
+				{
+					continue;
+				}
+
+				var elimMap = (CellsMap[endCell1] + endCell2).PeerIntersection & CandidatesMap[wDigit];
+				if (!elimMap)
+				{
+					// No eliminations.
+					continue;
+				}
+
+				// A W-Wing found.
+				var candidateOffsets = new List<CandidateViewNode>();
+				foreach (var cell in urCells)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(
+							new(
+								digit == d1 || digit == d2 ? WellKnownColorIdentifier.Normal : WellKnownColorIdentifier.Auxiliary1,
+								cell * 9 + digit
+							)
+						);
+					}
+				}
+				foreach (var digit in grid.GetCandidates(endCell1))
+				{
+					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, endCell1 * 9 + digit));
+				}
+				foreach (var digit in grid.GetCandidates(endCell2))
+				{
+					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, endCell2 * 9 + digit));
+				}
+
+				if (!AllowIncompleteUniqueRectangles && IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
+				{
+					continue;
+				}
+
+				var isAvoidable = arMode && (EmptyCells & cells).Count != 4;
+				accumulator.Add(
+					new UniqueRectangleWithWWingStep(
+						[.. from cell in elimMap select new Conclusion(Elimination, cell, wDigit)],
+						[[.. candidateOffsets]],
+						isAvoidable ? Technique.AvoidableRectangleWWing : Technique.UniqueRectangleWWing,
+						d1,
+						d2,
+						cells,
+						isAvoidable,
+						wDigit,
+						otherCellsMap,
+						CellsMap[endCell1] + endCell2,
 						index
 					)
 				);

@@ -2282,4 +2282,15 @@
   <data name="TechniqueFormat_ReverseBivalueUniversalGraveType3Step" xml:space="preserve">
     <value>额外区域 {0}，带有额外数字 {1}</value>
   </data>
+  <data name="AvoidableRectangleWWing" xml:space="preserve">
+    <value>可规避矩形・W-Wing</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_UniqueRectangleWithWWingStep" xml:space="preserve">
+    <value>数字 {0} 和 {1} 在结构 {2} 里，带 W-Wing 结构，由 {3} 连接起来，最终单元格为 {4}，w 为 {5}</value>
+  </data>
+  <data name="UniqueRectangleWWing" xml:space="preserve">
+    <value>唯一矩形・W-Wing</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>
