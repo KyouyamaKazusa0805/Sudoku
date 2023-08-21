@@ -77,7 +77,6 @@ partial struct Grid
 
 			_refCurrent = ref AddByteOffset(ref _start, _currentIndex + 1);
 			_currentMask = (Mask)(_refCurrent & MaxCandidatesMask);
-
 			return true;
 		}
 
