@@ -4966,11 +4966,6 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.QiuDeadlyPatternTemplatesCount">
-            <summary>
-            Indicates the total number of Qiu's deadly patterns.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Patterns">
             <summary>
             All different patterns.

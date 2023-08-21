@@ -18,15 +18,9 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// Indicates the total number of Qiu's deadly patterns.
-	/// </summary>
-	public const int QiuDeadlyPatternTemplatesCount = 972;
-
-
-	/// <summary>
 	/// All different patterns.
 	/// </summary>
-	private static readonly QiuDeadlyPattern[] Patterns = new QiuDeadlyPattern[QiuDeadlyPatternTemplatesCount];
+	private static readonly QiuDeadlyPattern[] Patterns;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -43,29 +37,40 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			[27, 36], [27, 45], [36, 45], [54, 63], [54, 72], [63, 72]
 		];
 
+		var patterns = new List<QiuDeadlyPattern>();
 		for (var (i, n, length) = (0, 0, baseLineIteratorValues.Length); i < length >> 1; i++)
 		{
 			var isRow = i < length >> 2;
-			var houseType = isRow ? HouseType.Column : HouseType.Row;
 			var baseLineMap = HousesMap[baseLineIteratorValues[i][0]] | HousesMap[baseLineIteratorValues[i][1]];
 			for (var (j, z) = (isRow ? 0 : 9, 0); z < length >> 2; j++, z++)
 			{
-				var (c1, c2) = (startCells[j][0], startCells[j][1]);
-				for (var k = 0; k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
+				for (var (k, c1, c2) = (0, startCells[j][0], startCells[j][1]); k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
 				{
 					var pairMap = CellsMap[c1] + c2;
-					if (baseLineMap && pairMap
-						|| baseLineMap && HousesMap[c1.ToHouseIndex(HouseType.Block)] | HousesMap[c2.ToHouseIndex(HouseType.Block)])
+					if (baseLineMap && pairMap)
 					{
 						continue;
 					}
 
-					var tempMapLine = HousesMap[c1.ToHouseIndex(houseType)] | HousesMap[c2.ToHouseIndex(houseType)];
-					var squareMap = baseLineMap & tempMapLine;
-					Patterns[n++] = new(squareMap, baseLineMap - squareMap, pairMap);
+					if (baseLineMap && HousesMap[c1.ToHouseIndex(HouseType.Block)] | HousesMap[c2.ToHouseIndex(HouseType.Block)])
+					{
+						continue;
+					}
+
+					var squareMap = baseLineMap & (
+						HousesMap[c1.ToHouseIndex(isRow ? HouseType.Column : HouseType.Row)]
+							| HousesMap[c2.ToHouseIndex(isRow ? HouseType.Column : HouseType.Row)]
+					);
+					if (!squareMap)
+					{
+						continue;
+					}
+					patterns.Add(new(squareMap, baseLineMap - squareMap, pairMap));
 				}
 			}
 		}
+
+		Patterns = [.. patterns];
 	}
 
 
