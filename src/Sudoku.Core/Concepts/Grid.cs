@@ -748,7 +748,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 	public readonly CandidateEnumerator EnumerateCandidates() => new(ref AsRef(this[0]));
 
 	/// <inheritdoc/>
-	public readonly TResult[] Select<TResult>(Func<Candidate, TResult> selector)
+	public readonly ReadOnlySpan<TResult> Select<TResult>(Func<Candidate, TResult> selector)
 	{
 		var (result, i) = (new TResult[81], 0);
 		foreach (var candidate in EnumerateCandidates())

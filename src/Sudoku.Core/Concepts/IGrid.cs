@@ -483,7 +483,7 @@ public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, 
 	/// <returns>
 	/// An array of <typeparamref name="TResult"/> elements converted.
 	/// </returns>
-	public abstract TResult[] Select<TResult>(Func<TCandidate, TResult> selector);
+	public abstract ReadOnlySpan<TResult> Select<TResult>(Func<TCandidate, TResult> selector);
 
 	/// <summary>
 	/// Reset the sudoku grid, to set all modifiable values to empty ones.
