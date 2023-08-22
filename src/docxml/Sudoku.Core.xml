@@ -2698,6 +2698,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.Grid.EmptyHouses">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.FullHouses">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.GivenCells">
             <inheritdoc/>
         </member>
@@ -4458,6 +4461,12 @@ if (student is (name: var name, age: >= 18))
             For example, if the row 5, column 5 and block 5 (1-9) are null houses, the property will return
             the result <typeparamref name="THouseMask"/> value, <c>000010000_000010000_000010000</c> as binary.
             </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`11.FullHouses">
+            <summary>
+            <para>Indicates which houses are completed, regardless of ways of filling.</para>
+            <para><inheritdoc cref="P:Sudoku.Concepts.IGrid`11.EmptyHouses" path="//summary/para[3]"/></para>
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.IGrid`11.GivenCells">

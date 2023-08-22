@@ -5,4 +5,4 @@ namespace System;
 /// </summary>
 /// <typeparam name="T">The type of the element.</typeparam>
 /// <param name="element">The reference to the element.</param>
-public delegate void ForEachRefCallback<T>(scoped ref T element);
+public delegate void ActionRef<T>(scoped ref T element);

@@ -297,6 +297,37 @@ public unsafe partial struct Grid : GridImpl
 	}
 
 	/// <inheritdoc/>
+	public readonly HouseMask FullHouses
+	{
+		get
+		{
+			var emptyCells = EmptyCells;
+			var result = 0;
+			for (var houseIndex = 0; houseIndex < 27; houseIndex++)
+			{
+				var isCompleted = true;
+				foreach (var cell in HouseCells[houseIndex])
+				{
+					if (emptyCells.Contains(cell))
+					{
+						// The current cells is empty, breaking the rule of full house.
+						isCompleted = false;
+						break;
+					}
+				}
+				if (!isCompleted)
+				{
+					continue;
+				}
+
+				result |= 1 << houseIndex;
+			}
+
+			return result;
+		}
+	}
+
+	/// <inheritdoc/>
 	public readonly CellMap GivenCells => GetMap(&GridCellPredicates.GivenCells);
 
 	/// <inheritdoc/>

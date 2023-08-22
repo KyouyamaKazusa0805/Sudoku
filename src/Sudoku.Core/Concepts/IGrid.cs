@@ -96,6 +96,12 @@ public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, 
 	public abstract THouseMask EmptyHouses { get; }
 
 	/// <summary>
+	/// <para>Indicates which houses are completed, regardless of ways of filling.</para>
+	/// <para><inheritdoc cref="EmptyHouses" path="//summary/para[3]"/></para>
+	/// </summary>
+	public abstract THouseMask FullHouses { get; }
+
+	/// <summary>
 	/// Gets a cell list that only contains the given cells.
 	/// </summary>
 	public abstract TBitStatusMap GivenCells { get; }

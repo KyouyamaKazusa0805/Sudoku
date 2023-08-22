@@ -41,7 +41,7 @@ public static class CollectionEnumeration
 	/// <typeparam name="T">The type of each element in this array.</typeparam>
 	/// <param name="this">The array.</param>
 	/// <param name="callback">The callback method to handle for each reference to each element.</param>
-	public static void ForEachRef<T>(this T[] @this, ForEachRefCallback<T> callback)
+	public static void ForEachRef<T>(this T[] @this, ActionRef<T> callback)
 	{
 		foreach (ref var element in @this.EnumerateRef())
 		{
@@ -49,7 +49,7 @@ public static class CollectionEnumeration
 		}
 	}
 
-	/// <inheritdoc cref="ForEachRef{T}(T[], ForEachRefCallback{T})"/>
+	/// <inheritdoc cref="ForEachRef{T}(T[], ActionRef{T})"/>
 	public static unsafe void ForEachRefUnsafe<T>(this T[] @this, delegate*<ref T, void> callback)
 	{
 		foreach (ref var element in @this.EnumerateRef())

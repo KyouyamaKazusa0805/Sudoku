@@ -21,7 +21,8 @@
           "TechniqueGroupViewStepChosenEventArgs.cs": [ "TechniqueGroupViewStepChosenEventHandler.cs" ],
           "TechniqueGroupViewStepAppliedEventArgs.cs": [ "TechniqueGroupViewStepAppliedEventHandler.cs" ],
           "StepSearcherListViewItemSelectedEventArgs.cs": [ "StepSearcherListViewItemSelectedEventHandler.cs" ],
-          "CandidatesDisplayingToggledEventArgs.cs": [ "CandidatesDisplayingToggledEventHandler.cs" ]
+          "CandidatesDisplayingToggledEventArgs.cs": [ "CandidatesDisplayingToggledEventHandler.cs" ],
+          "HouseCompletedEventArgs.cs": [ "HouseCompletedEventHandler.cs" ]
         }
       }
     }

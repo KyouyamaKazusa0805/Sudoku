@@ -2657,6 +2657,33 @@ if (student is (name: var name, age: >= 18))
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.GridUpdated"/>
         </member>
+        <member name="T:SudokuStudio.Interaction.HouseCompletedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.HouseCompletedEventHandler"/>.
+            </summary>
+            <param name="house">Indicates the house finished.</param>
+            <seealso cref="T:SudokuStudio.Interaction.HouseCompletedEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.HouseCompletedEventArgs.#ctor(System.Int32)">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.HouseCompletedEventHandler"/>.
+            </summary>
+            <param name="house">Indicates the house finished.</param>
+            <seealso cref="T:SudokuStudio.Interaction.HouseCompletedEventHandler"/>
+        </member>
+        <member name="P:SudokuStudio.Interaction.HouseCompletedEventArgs.House">
+            <summary>
+            The generated property declaration for parameter <c>house</c>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.HouseCompletedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.HouseCompleted"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.HouseCompleted"/>
+        </member>
         <member name="T:SudokuStudio.Interaction.MouseButton">
             <summary>
             Defines a mouse button.
@@ -7222,6 +7249,11 @@ if (student is (name: var name, age: >= 18))
         <member name="E:SudokuStudio.Views.Controls.SudokuPane.CandidatesDisplayingToggled">
             <summary>
             Indicates the event that is triggered when "displaying candidates" option is toggled.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.SudokuPane.HouseCompleted">
+            <summary>
+            Indicates the event that is triggered when a house is completed.
             </summary>
         </member>
         <member name="E:SudokuStudio.Views.Controls.SudokuPane.Caching">

@@ -327,6 +327,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public event CandidatesDisplayingToggledEventHandler? CandidatesDisplayingToggled;
 
 	/// <summary>
+	/// Indicates the event that is triggered when a house is completed.
+	/// </summary>
+	public event HouseCompletedEventHandler? HouseCompleted;
+
+	/// <summary>
 	/// Indicates the event that is triggered when caching.
 	/// </summary>
 	public event EventHandler? Caching;
@@ -516,6 +521,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			_undoStack.Push(_puzzle);
 		}
 
+		// Check whether a house is going to be completed.
+		var housesToBeCompleted = value.FullHouses & ~_puzzle.FullHouses;
+
+		// Assigns the puzzle.
 		_puzzle = value;
 
 		UpdateCellData(value);
@@ -537,7 +546,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		// Clears the view unit.
 		ViewUnit = null;
 
+		// Triggers the event.
 		PropertyChanged?.Invoke(this, new(nameof(Puzzle)));
+		housesToBeCompleted.GetAllSets().ForEach((scoped in House completedHouse) => HouseCompleted?.Invoke(this, new(completedHouse)));
 	}
 
 
