@@ -19,7 +19,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </summary>
 [StepSearcher(
 	Technique.BivalueOddagonType2, Technique.BivalueOddagonType3, Technique.GroupedBivalueOddagon,
-	ConditionalCases = ConditionalCase.TimeComplexity | ConditionalCase.SpaceComplexity)]
+	Flags = ConditionalFlags.TimeComplexity | ConditionalFlags.SpaceComplexity)]
 public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

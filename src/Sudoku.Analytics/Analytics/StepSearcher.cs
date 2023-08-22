@@ -58,21 +58,21 @@ public abstract partial class StepSearcher(
 	/// <summary>
 	/// Determines whether the current step searcher is not supported for sukaku solving mode.
 	/// </summary>
-	public bool IsNotSupportedForSukaku => StepSearcherMetadataInfo.ConditionalCases is var cases && cases.Flags(ConditionalCase.Standard);
+	public bool IsNotSupportedForSukaku => StepSearcherMetadataInfo.Flags is var cases && cases.Flags(ConditionalFlags.Standard);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
-	/// by option <see cref="ConditionalCase.TimeComplexity"/> being configured.
+	/// by option <see cref="ConditionalFlags.TimeComplexity"/> being configured.
 	/// </summary>
-	/// <seealso cref="ConditionalCase.TimeComplexity"/>
-	public bool IsConfiguredSlow => StepSearcherMetadataInfo.ConditionalCases is var cases && cases.Flags(ConditionalCase.TimeComplexity);
+	/// <seealso cref="ConditionalFlags.TimeComplexity"/>
+	public bool IsConfiguredSlow => StepSearcherMetadataInfo.Flags is var cases && cases.Flags(ConditionalFlags.TimeComplexity);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
-	/// by option <see cref="ConditionalCase.SpaceComplexity"/> being configured.
+	/// by option <see cref="ConditionalFlags.SpaceComplexity"/> being configured.
 	/// </summary>
-	/// <seealso cref="ConditionalCase.SpaceComplexity"/>
-	public bool IsConfiguredHighAllocation => StepSearcherMetadataInfo.ConditionalCases is var cases && cases.Flags(ConditionalCase.SpaceComplexity);
+	/// <seealso cref="ConditionalFlags.SpaceComplexity"/>
+	public bool IsConfiguredHighAllocation => StepSearcherMetadataInfo.Flags is var cases && cases.Flags(ConditionalFlags.SpaceComplexity);
 
 	/// <summary>
 	/// Indicates the split priority. This value cannot be greater than 16 due to design of <see cref="SplitStepSearcherAttribute"/>.

@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </summary>
 [StepSearcher(
 	Technique.UniqueMatrixType1, Technique.UniqueMatrixType2, Technique.UniqueMatrixType3, Technique.UniqueMatrixType4,
-	ConditionalCases = ConditionalCase.Standard)]
+	Flags = ConditionalFlags.Standard)]
 public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 {
 	/// <summary>

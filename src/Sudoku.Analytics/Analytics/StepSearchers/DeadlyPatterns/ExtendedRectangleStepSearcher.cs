@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </summary>
 [StepSearcher(
 	Technique.ExtendedRectangleType1, Technique.ExtendedRectangleType2, Technique.ExtendedRectangleType3, Technique.ExtendedRectangleType4,
-	ConditionalCases = ConditionalCase.Standard)]
+	Flags = ConditionalFlags.Standard)]
 public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 {
 	/// <summary>

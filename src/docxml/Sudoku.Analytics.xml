@@ -90,21 +90,21 @@
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.IgnoreSlowAlgorithms">
             <summary>
-            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Analytics.Metadata.ConditionalCase.TimeComplexity"/>.
+            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.TimeComplexity"/>.
             </summary>
             <remarks>
             The default value is <see langword="false"/>.
             </remarks>
-            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.TimeComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.TimeComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms">
             <summary>
-            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Analytics.Metadata.ConditionalCase.SpaceComplexity"/>.
+            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.SpaceComplexity"/>.
             </summary>
             <remarks>
             The default value is <see langword="false"/>.
             </remarks>
-            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.SpaceComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.SpaceComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.StepSearchers">
             <inheritdoc/>
@@ -2961,25 +2961,24 @@
             that always produces a valid step, guaranteeing that the solver will never give up at all time.
             </i></remarks>
         </member>
-        <member name="T:Sudoku.Analytics.Metadata.ConditionalCase">
+        <member name="T:Sudoku.Analytics.Metadata.ConditionalFlags">
             <summary>
             Represents a list of cases that describes some cases that <see cref="T:Sudoku.Analytics.StepSearcher"/> is partially allowed
-            in searching or gathering operation. Fields in this type can be used
-            by <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.ConditionalCases"/> property assigning.
+            in searching or gathering operation. Fields in this type can be used by <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.Flags"/> property assigning.
             </summary>
             <remarks><i>
             This type is marked <see cref="T:System.FlagsAttribute"/>, which means you can use
-            <see cref="T:Sudoku.Analytics.Metadata.ConditionalCase"/>.<see langword="operator"/> | to combine multiple fields.
+            <see cref="T:Sudoku.Analytics.Metadata.ConditionalFlags"/>.<see langword="operator"/> | to combine multiple fields.
             </i></remarks>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.ConditionalCases"/>
+            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.Flags"/>
         </member>
-        <member name="F:Sudoku.Analytics.Metadata.ConditionalCase.Default">
+        <member name="F:Sudoku.Analytics.Metadata.ConditionalFlags.Default">
             <summary>
             Indicates the step searcher can be called anywhere as long it is enabled. This is also the default value of this enumeration type.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Metadata.ConditionalCase.Standard">
+        <member name="F:Sudoku.Analytics.Metadata.ConditionalFlags.Standard">
             <summary>
             Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> is only enabled for standard sudoku puzzles, which means other variants are disallowed
             using this <see cref="T:Sudoku.Analytics.StepSearcher"/> instance. For example, <see cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>
@@ -2987,19 +2986,19 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>
         </member>
-        <member name="F:Sudoku.Analytics.Metadata.ConditionalCase.TimeComplexity">
+        <member name="F:Sudoku.Analytics.Metadata.ConditionalFlags.TimeComplexity">
             <summary>
             Indicates a <see cref="T:Sudoku.Analytics.StepSearcher"/> will produce high time complexity,
             meaning it will be disabled if a user want to disable high time-complexity algorithms.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Metadata.ConditionalCase.SpaceComplexity">
+        <member name="F:Sudoku.Analytics.Metadata.ConditionalFlags.SpaceComplexity">
             <summary>
             Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> will produce high space complexity,
             meaning it will be disabled if a user want to disable high space-complexity algorithms.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Metadata.ConditionalCase.Advanced">
+        <member name="F:Sudoku.Analytics.Metadata.ConditionalFlags.Advanced">
             <summary>
             Indicates the reserved field. This field may be used for future considerations.
             </summary>
@@ -3207,7 +3206,7 @@
             Indicates whether the option is fixed that can't be modified in UI.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.ConditionalCases">
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.Flags">
             <summary>
             Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> instance is unavailable on partial cases.
             For example, Deadly Patterns are unavailable for Sukaku puzzles because we cannot determine
@@ -3830,16 +3829,16 @@
         <member name="P:Sudoku.Analytics.StepSearcher.IsConfiguredSlow">
             <summary>
             Determines whether the current step searcher is disabled
-            by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalCase.TimeComplexity"/> being configured.
+            by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.TimeComplexity"/> being configured.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.TimeComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.TimeComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.StepSearcher.IsConfiguredHighAllocation">
             <summary>
             Determines whether the current step searcher is disabled
-            by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalCase.SpaceComplexity"/> being configured.
+            by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.SpaceComplexity"/> being configured.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalCase.SpaceComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.SpaceComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.StepSearcher.SplitPriority">
             <summary>

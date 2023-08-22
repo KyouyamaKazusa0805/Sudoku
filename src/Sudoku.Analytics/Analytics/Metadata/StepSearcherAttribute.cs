@@ -57,7 +57,7 @@ public sealed partial class StepSearcherAttribute([DataMember] params Technique[
 	/// For example, Deadly Patterns are unavailable for Sukaku puzzles because we cannot determine
 	/// whether a candidate is having been removed before.
 	/// </summary>
-	public ConditionalCase ConditionalCases { get; init; }
+	public ConditionalFlags Flags { get; init; }
 
 	/// <summary>
 	/// Indicates what difficulty levels the current step searcher can produce.

@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	Technique.QiuDeadlyPatternType1, Technique.QiuDeadlyPatternType2,
 	Technique.QiuDeadlyPatternType3, Technique.QiuDeadlyPatternType4, Technique.LockedQiuDeadlyPattern,
-	ConditionalCases = ConditionalCase.Standard)]
+	Flags = ConditionalFlags.Standard)]
 public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 {
 	/// <summary>
