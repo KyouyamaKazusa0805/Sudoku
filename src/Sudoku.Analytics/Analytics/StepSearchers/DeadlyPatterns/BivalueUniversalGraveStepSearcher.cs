@@ -276,7 +276,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	private BivalueUniversalGraveType3Step? CheckType3Naked(List<Step> accumulator, scoped in Grid grid, scoped in CandidateMap trueCandidates, bool onlyFindOne)
 	{
 		// Check whether all true candidates lie in a same house.
-		var map = (CellMap)([.. from c in trueCandidates group c by c / 9 into z select z.Key]);
+		var map = (CellMap)(from c in trueCandidates group c by c / 9 into z select z.Key);
 		if (!map.InOneHouse)
 		{
 			return null;
