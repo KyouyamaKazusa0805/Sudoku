@@ -480,11 +480,7 @@ public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, 
 	/// <summary>
 	/// Projects each element of a sequence into a new form.
 	/// </summary>
-	/// <typeparam name="TResult">
-	/// The type of the value returned by <paramref name="selector"/>.
-	/// This type must be an <see langword="unmanaged"/> type in order to make optimization
-	/// in the future release of C# versions.
-	/// </typeparam>
+	/// <typeparam name="TResult">The type of the value returned by <paramref name="selector"/>.</typeparam>
 	/// <param name="selector">A transform function to apply to each element.</param>
 	/// <returns>
 	/// An array of <typeparamref name="TResult"/> elements converted.
