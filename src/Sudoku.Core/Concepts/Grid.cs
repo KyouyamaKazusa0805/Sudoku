@@ -1,6 +1,8 @@
 #define TARGET_64BIT
 namespace Sudoku.Concepts;
 
+using GridImpl = IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>;
+
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
@@ -19,7 +21,7 @@ namespace Sudoku.Concepts;
 [Equals]
 [ToString]
 [EqualityOperators]
-public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>
+public unsafe partial struct Grid : GridImpl
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -68,10 +70,10 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 	/// </remarks>
 	public static readonly delegate*<ref Grid, void> RefreshingCandidates = &OnRefreshingCandidates;
 
-	/// <inheritdoc cref="P:Sudoku.Concepts.IGrid`11.Empty"/>
+	/// <inheritdoc cref="GridImpl.Empty"/>
 	public static readonly Grid Empty;
 
-	/// <inheritdoc cref="P:Sudoku.Concepts.IGrid`11.Undefined"/>
+	/// <inheritdoc cref="GridImpl.Undefined"/>
 	public static readonly Grid Undefined;
 
 	/// <summary>
@@ -392,7 +394,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 	readonly int IReadOnlyCollection<Digit>.Count => 81;
 
 	/// <inheritdoc/>
-	static Mask IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>.DefaultMask => DefaultMask;
+	static Mask GridImpl.DefaultMask => DefaultMask;
 
 	/// <summary>
 	/// Indicates the minimum possible grid value that the current type can reach.
@@ -413,10 +415,10 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 	static Grid IMinMaxValue<Grid>.MaxValue => (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
 
 	/// <inheritdoc/>
-	static Grid IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>.Empty => Empty;
+	static Grid GridImpl.Empty => Empty;
 
 	/// <inheritdoc/>
-	static Grid IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>.Undefined => Undefined;
+	static Grid GridImpl.Undefined => Undefined;
 
 
 	/// <inheritdoc/>
@@ -465,11 +467,12 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 				_ => throw new ArgumentOutOfRangeException(nameof(mergingMethod))
 			};
 
-			delegate*<ref Mask, in Grid, Cell, void> mergingFunctionPtr = mergingMethod switch
+			var mergingFunctionPtr = mergingMethod switch
 			{
 				GridMaskMergingMethod.AndNot => &andNot,
 				GridMaskMergingMethod.And => &and,
-				GridMaskMergingMethod.Or => &or
+				GridMaskMergingMethod.Or => &or,
+				_ => default(delegate*<ref Mask, in Grid, Cell, void>)
 			};
 
 			foreach (var cell in cells)
@@ -492,7 +495,7 @@ public unsafe partial struct Grid : IGrid<Grid, HouseMask, int, Mask, Cell, Digi
 	}
 
 	/// <inheritdoc/>
-	readonly Mask IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>.this[Cell cell] => this[cell];
+	readonly Mask GridImpl.this[Cell cell] => this[cell];
 
 
 	/// <inheritdoc/>
