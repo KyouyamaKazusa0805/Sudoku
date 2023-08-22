@@ -44,9 +44,7 @@ public readonly ref partial struct ValueStopwatch([DataMember(MemberKinds.Field)
 
 	/// <summary>
 	/// Indicates a new instance. Use this property to start a new stopwatch instead of expressions like
-	/// <see langword="new"/> <see cref="ValueStopwatch"/>(),
-	/// <see langword="default"/>(<see cref="ValueStopwatch"/>)
-	/// or so on.
+	/// <see langword="new"/> <see cref="ValueStopwatch"/>() and <see langword="default"/>(<see cref="ValueStopwatch"/>).
 	/// </summary>
 	public static ValueStopwatch NewInstance
 	{

@@ -3719,9 +3719,7 @@ fixed (short* ptr = instance)
         <member name="P:System.Timers.ValueStopwatch.NewInstance">
             <summary>
             Indicates a new instance. Use this property to start a new stopwatch instead of expressions like
-            <see langword="new"/> <see cref="T:System.Timers.ValueStopwatch"/>(),
-            <see langword="default"/>(<see cref="T:System.Timers.ValueStopwatch"/>)
-            or so on.
+            <see langword="new"/> <see cref="T:System.Timers.ValueStopwatch"/>() and <see langword="default"/>(<see cref="T:System.Timers.ValueStopwatch"/>).
             </summary>
         </member>
         <member name="F:System.Timers.ValueStopwatch._startTimestamp">
