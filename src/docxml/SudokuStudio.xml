@@ -2670,15 +2670,22 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.HouseCompletedEventHandler"/>.
             </summary>
+            <param name="lastCell">Indicates the last cell finished.</param>
             <param name="house">Indicates the house finished.</param>
             <seealso cref="T:SudokuStudio.Interaction.HouseCompletedEventHandler"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.HouseCompletedEventArgs.#ctor(System.Int32)">
+        <member name="M:SudokuStudio.Interaction.HouseCompletedEventArgs.#ctor(System.Int32,System.Int32)">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.HouseCompletedEventHandler"/>.
             </summary>
+            <param name="lastCell">Indicates the last cell finished.</param>
             <param name="house">Indicates the house finished.</param>
             <seealso cref="T:SudokuStudio.Interaction.HouseCompletedEventHandler"/>
+        </member>
+        <member name="P:SudokuStudio.Interaction.HouseCompletedEventArgs.LastCell">
+            <summary>
+            The generated property declaration for parameter <c>lastCell</c>.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Interaction.HouseCompletedEventArgs.House">
             <summary>
@@ -8037,6 +8044,13 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the colors applied to technique structure Almost Locked Sets.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
         </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPaneCell">
             <summary>

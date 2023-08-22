@@ -497,9 +497,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		HouseCompleted += async (_, e) =>
 		{
-			foreach (var cell in HouseCells[e.House])
+			foreach (var cells in e.LastCell.GetCellsOrdered(e.House))
 			{
-				_children[cell].LightUpAsync(250);
+				cells.ForEach(cell => _children[cell].LightUpAsync(250));
 				await Task.Delay(100);
 			}
 		};
@@ -537,6 +537,18 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		// Check whether a house is going to be completed.
 		var housesToBeCompleted = value.FullHouses & ~_puzzle.FullHouses;
+		var lastCells = new List<Cell>();
+		foreach (var houseToBeCompleted in housesToBeCompleted)
+		{
+			foreach (var cell in HouseCells[houseToBeCompleted])
+			{
+				if (_puzzle.GetState(cell) == CellState.Empty && value.GetState(cell) != CellState.Empty)
+				{
+					lastCells.Add(cell);
+					break;
+				}
+			}
+		}
 
 		// Assigns the puzzle.
 		_puzzle = value;
@@ -562,7 +574,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		// Triggers the event.
 		PropertyChanged?.Invoke(this, new(nameof(Puzzle)));
-		housesToBeCompleted.GetAllSets().ForEach((scoped in House completedHouse) => HouseCompleted?.Invoke(this, new(completedHouse)));
+
+		var houses = housesToBeCompleted.GetAllSets();
+		for (var i = 0; i < houses.Length; i++)
+		{
+			HouseCompleted?.Invoke(this, new(lastCells[i], houses[i]));
+		}
 	}
 
 
@@ -860,6 +877,80 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Assignment, cell * 9 + digit));
 
 				break;
+			}
+		}
+	}
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	public static CellMap[] GetCellsOrdered(this Cell @this, House house)
+	{
+		var cells = HouseCells[house];
+		switch (house.ToHouseType())
+		{
+			case HouseType.Row:
+			{
+				var pos = Array.FindIndex(cells, cell => cell % 9 == @this % 9);
+				var result = new List<CellMap>(5);
+				for (var i = 1; ; i++)
+				{
+					var map = CellMap.Empty;
+					if (pos - i >= 0)
+					{
+						map.Add(cells[pos - i]);
+					}
+					if (pos + i < cells.Length)
+					{
+						map.Add(cells[pos + i]);
+					}
+
+					if (map)
+					{
+						result.Add(map);
+						continue;
+					}
+
+					break;
+				}
+
+				return [.. result];
+			}
+			case HouseType.Column:
+			{
+				var pos = Array.FindIndex(cells, cell => cell / 9 == @this / 9);
+				var result = new List<CellMap>(5);
+				for (var i = 1; ; i++)
+				{
+					var map = CellMap.Empty;
+					if (pos - i >= 0)
+					{
+						map.Add(cells[pos - i]);
+					}
+					if (pos + i < cells.Length)
+					{
+						map.Add(cells[pos + i]);
+					}
+
+					if (map)
+					{
+						result.Add(map);
+						continue;
+					}
+
+					break;
+				}
+
+				return [.. result];
+			}
+			case HouseType.Block:
+			{
+				return from cell in cells select CellsMap[cell];
+			}
+			default:
+			{
+				throw new InvalidOperationException("The value is invalid.");
 			}
 		}
 	}
