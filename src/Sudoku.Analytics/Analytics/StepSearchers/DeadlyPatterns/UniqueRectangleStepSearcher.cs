@@ -20,6 +20,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Avoidable Rectangle + Hidden Single</item>
 /// <item>Unique Rectangle + Unknown Covering</item>
 /// <item>Unique Rectangle + Sue de Coq</item>
+/// <item>Unique Rectangle + XY-Wing, XYZ-Wing and WXYZ-Wing</item>
+/// <item>Unique Rectangle + W-Wing</item>
 /// <item>
 /// Unique Rectangle + Guardian (This program call it "Unique Rectangle External Types"):
 /// <list type="bullet">
@@ -138,8 +140,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <remarks>
 	/// For example, the complete pattern is:
 	/// <code><![CDATA[
-	/// ab  |  ab
-	/// ab  |  ab
+	/// ab | ab
+	/// ab | ab
 	/// ]]></code>
 	/// This is a complete pattern, and we may remove an <c>ab</c> in a certain corner.
 	/// The incomplete pattern may not contain all four <c>ab</c>s in the pattern.
