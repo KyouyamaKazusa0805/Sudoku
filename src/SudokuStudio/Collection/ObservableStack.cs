@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Collection;
+namespace SudokuStudio.Collection;
 
 /// <summary>
 /// <para><inheritdoc cref="Stack{T}" path="/summary"/></para>
