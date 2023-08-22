@@ -4,8 +4,9 @@ namespace SudokuStudio.Views.Controls;
 /// Defines a cell displayed in a <see cref="SudokuPane"/>.
 /// </summary>
 /// <seealso cref="SudokuPane"/>
-[DependencyProperty<Mask>("CandidatesMask", DefaultValue = Grid.MaxCandidatesMask)]
+[DependencyProperty<int>("HouseCompletedFeedbackDuration", DefaultValue = 800)]
 [DependencyProperty<CellState>("State", DefaultValue = CellState.Empty)]
+[DependencyProperty<Mask>("CandidatesMask", DefaultValue = Grid.MaxCandidatesMask)]
 internal sealed partial class SudokuPaneCell : UserControl
 {
 	/// <summary>
@@ -30,6 +31,25 @@ internal sealed partial class SudokuPaneCell : UserControl
 
 
 	/// <summary>
+	/// Light up the background of the cell.
+	/// </summary>
+	/// <param name="duration">The duration.</param>
+	/// <remarks><i>
+	/// This method returns <see langword="void"/> on purpose because we do not want to make the method wait-able by user.
+	/// </i></remarks>
+	public async void LightUpAsync(int duration)
+	{
+		if (!((App)Application.Current).Preference.UIPreferences.EnableAnimationFeedback)
+		{
+			return;
+		}
+
+		ValueSurrounder.Background = new SolidColorBrush(BasePane.HouseCompletedFeedbackColor);
+		await Task.Delay(duration);
+		ValueSurrounder.Background = null;
+	}
+
+	/// <summary>
 	/// Try to initialize for animation feedback if worth.
 	/// </summary>
 	private void InitializeAnimationFeedbackIfWorth()
@@ -49,7 +69,14 @@ internal sealed partial class SudokuPaneCell : UserControl
 		Candidate6TextBlock.OpacityTransition = new();
 		Candidate7TextBlock.OpacityTransition = new();
 		Candidate8TextBlock.OpacityTransition = new();
+
+		ValueSurrounder.BackgroundTransition = new() { Duration = TimeSpan.FromMilliseconds(HouseCompletedFeedbackDuration) };
 	}
+
+
+	[Callback]
+	private static void HouseCompletedFeedbackDurationPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPaneCell)d).ValueSurrounder.BackgroundTransition.Duration = TimeSpan.FromMilliseconds((int)e.NewValue);
 
 
 	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e) => BasePane.SelectedCell = CellIndex;

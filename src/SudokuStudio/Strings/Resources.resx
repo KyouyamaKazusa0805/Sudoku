@@ -1067,6 +1067,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_HollowSquare" xml:space="preserve">
     <value>Hollow square</value>
   </data>
+  <data name="SettingsPage_HouseCompletedFeedbackColor" xml:space="preserve">
+    <value>Color for completed house feedback</value>
+  </data>
+  <data name="SettingsPage_HouseCompletedFeedbackColorDescription" xml:space="preserve">
+    <value>When you fill with a digit into a cell, making the containing house be completed, animation feedback will be triggered with a color specified here.</value>
+  </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
     <value>Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting.</value>
   </data>

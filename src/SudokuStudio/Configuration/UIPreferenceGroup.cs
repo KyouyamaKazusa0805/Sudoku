@@ -63,6 +63,7 @@ using N = CandidateViewNodeDisplayNode;
 [DependencyProperty<Color>("CannibalismColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CannibalismColor")]
 [DependencyProperty<Color>("ExofinColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.ExofinColor")]
 [DependencyProperty<Color>("EndofinColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EndofinColor")]
+[DependencyProperty<Color>("HouseCompletedFeedbackColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor")]
 [DependencyProperty<DashArray>("StrongLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle")]
 [DependencyProperty<DashArray>("WeakLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle")]
 [DependencyProperty<DashArray>("CyclingCellLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle")]
@@ -150,6 +151,9 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 
 	[Default]
 	private static readonly Color EndofinColorDefaultValue = Color.FromArgb(255, 216, 178, 255);
+
+	[Default]
+	private static readonly Color HouseCompletedFeedbackColorDefaultValue = Colors.HotPink;
 
 	[Default]
 	private static readonly DashArray StrongLinkDashStyleDefaultValue = [];

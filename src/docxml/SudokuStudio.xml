@@ -1492,6 +1492,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.StrongLinkDashStyleProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.StrongLinkDashStyle"/>.
@@ -1792,6 +1798,9 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.StrongLinkDashStyle">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle"/>
@@ -5664,6 +5673,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Hollow square.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_HouseCompletedFeedbackColor">
+            <summary>
+              Looks up a localized string similar to Color for completed house feedback.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_HouseCompletedFeedbackColorDescription">
+            <summary>
+              Looks up a localized string similar to When you fill with a digit into a cell, making the containing house be completed, animation feedback will be triggered with a color specified here..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Intro">
             <summary>
               Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting..
@@ -7483,6 +7502,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontScale"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackDurationProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackDuration"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackDuration"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.SelectedCellProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell"/>.
@@ -7620,6 +7645,12 @@ if (student is (name: var name, age: >= 18))
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyleProperty">
             <summary>
@@ -7801,6 +7832,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the coordinate label font scale. The value should generally be below 1.0.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackDuration">
+            <summary>
+            Indicates the duration of feedback when a house is completed.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell">
             <summary>
             Indicates the currently selected cell.
@@ -7922,6 +7958,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the endofin color.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor">
+            <summary>
+            Indicates the feedback color when a house is completed.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle">
             <summary>
             Indicates the dash style of the strong links.
@@ -8018,6 +8059,15 @@ if (student is (name: var name, age: >= 18))
             Indicates the cell index.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.LightUpAsync(System.Int32)">
+            <summary>
+            Light up the background of the cell.
+            </summary>
+            <param name="duration">The duration.</param>
+            <remarks><i>
+            This method returns <see langword="void"/> on purpose because we do not want to make the method wait-able by user.
+            </i></remarks>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.InitializeAnimationFeedbackIfWorth">
             <summary>
             Try to initialize for animation feedback if worth.
@@ -8038,11 +8088,11 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty">
+        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDurationProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDuration"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDuration"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.StateProperty">
             <summary>
@@ -8050,17 +8100,29 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.State"/>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
+        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty">
             <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty"/> to get or set value.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>.
             </summary>
-            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty" />
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDuration">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDurationProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDurationProperty" />
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.State">
             <summary>
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.StateProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.StateProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty" />
         </member>
         <member name="T:SudokuStudio.Views.Controls.TechniqueGroupView">
             <summary>

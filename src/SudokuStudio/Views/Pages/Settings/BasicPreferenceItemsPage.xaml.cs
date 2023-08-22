@@ -26,4 +26,7 @@ public sealed partial class BasicPreferenceItemsPage : Page
 			((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter = ch;
 		}
 	}
+
+	private void HouseCompletedFeedbackColorSelector_ColorChanged(object sender, Color e)
+		=> ((App)Application.Current).Preference.UIPreferences.HouseCompletedFeedbackColor = e;
 }

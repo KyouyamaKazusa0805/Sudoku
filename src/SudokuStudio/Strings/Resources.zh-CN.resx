@@ -1070,6 +1070,12 @@
   <data name="SettingsPage_HollowSquare" xml:space="preserve">
     <value>空心方块</value>
   </data>
+  <data name="SettingsPage_HouseCompletedFeedbackColor" xml:space="preserve">
+    <value>区域完成时的动画反馈配色</value>
+  </data>
+  <data name="SettingsPage_HouseCompletedFeedbackColorDescription" xml:space="preserve">
+    <value>当一个区域的数字全被用户完成，则会触发动画反馈，使用此配色来提示该区域完成。</value>
+  </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
     <value>该页面列举的是程序使用到的偏好设置项。你可以修改和调整它们来使得程序用起来更加得心应手。所有配置项均为即时保存，但需要重启程序后才能生效。懒得写绑定了 :)</value>
   </data>

@@ -21,6 +21,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<decimal>("PencilmarkFontScale", DocSummary = "Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.")]
 [DependencyProperty<decimal>("BabaGroupLabelFontScale", DocSummary = "Indicates the font scale of baba group characters. The value should generally be below 1.0.")]
 [DependencyProperty<decimal>("CoordinateLabelFontScale", DocSummary = "Indicates the coordinate label font scale. The value should generally be below 1.0.")]
+[DependencyProperty<int>("HouseCompletedFeedbackDuration", DefaultValue = 800, DocSummary = "Indicates the duration of feedback when a house is completed.")]
 [DependencyProperty<Cell>("SelectedCell", DocSummary = "Indicates the currently selected cell.")]
 [DependencyProperty<CoordinateLabelDisplayKind>("CoordinateLabelDisplayKind", DefaultValue = CoordinateLabelDisplayKind.RxCy, DocSummary = "Indicates the displaying kind of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Rendering.CoordinateLabelDisplayKind\"/>.")]
 [DependencyProperty<CoordinateLabelDisplayMode>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplayMode.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Rendering.CoordinateLabelDisplayMode\"/>.")]
@@ -44,6 +45,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<Color>("CannibalismColor", DocSummary = "Indicates the cannibalism color.")]
 [DependencyProperty<Color>("ExofinColor", DocSummary = "Indicates the exofin color.")]
 [DependencyProperty<Color>("EndofinColor", DocSummary = "Indicates the endofin color.")]
+[DependencyProperty<Color>("HouseCompletedFeedbackColor", DocSummary = "Indicates the feedback color when a house is completed.")]
 [DependencyProperty<DashArray>("StrongLinkDashStyle", DocSummary = "Indicates the dash style of the strong links.")]
 [DependencyProperty<DashArray>("WeakLinkDashStyle", DocSummary = "Indicates the dash style of the weak links.")]
 [DependencyProperty<DashArray>("CycleLikeLinkDashStyle", DocSummary = "Indicates the dash style of the cycle-like technique links.")]
@@ -135,6 +137,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	[Default]
 	private static readonly Color EndofinColorDefaultValue = Color.FromArgb(255, 216, 178, 255);
+
+	[Default]
+	private static readonly Color HouseCompletedFeedbackColorDefaultValue = Colors.HotPink;
 
 	[Default]
 	private static readonly CandidateMap ViewUnitUsedCandidatesDefaultValue = CandidateMap.Empty;
@@ -489,6 +494,15 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			(_undoStack = []).Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_undoStack)));
 			(_redoStack = []).Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_redoStack)));
 		}
+
+		HouseCompleted += async (_, e) =>
+		{
+			foreach (var cell in HouseCells[e.House])
+			{
+				_children[cell].LightUpAsync(250);
+				await Task.Delay(100);
+			}
+		};
 	}
 
 	/// <summary>
@@ -660,6 +674,15 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[Callback]
 	private static void EliminationDisplayModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> ((SudokuPane)d).UpdateViewUnit();
+
+	[Callback]
+	private static void HouseCompletedFeedbackDurationPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		foreach (var element in ((SudokuPane)d)._children)
+		{
+			element.HouseCompletedFeedbackDuration = (int)e.NewValue;
+		}
+	}
 
 
 	private void UserControl_PointerEntered(object sender, PointerRoutedEventArgs e) => Focus(FocusState.Programmatic);

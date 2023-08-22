@@ -111,6 +111,14 @@
 						<ComboBoxItem Content="{m:R Key=SettingsPage_EmptyCellCharacter_Dot}" Tag="." />
 					</ComboBox>
 				</w:SettingsCard>
+				<w:SettingsCard
+					Header="{m:R Key=SettingsPage_HouseCompletedFeedbackColor}"
+					Description="{m:R Key=SettingsPage_HouseCompletedFeedbackColorDescription}">
+					<c:ColorSelector
+						x:Name="HouseCompletedFeedbackColorSelector"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HouseCompletedFeedbackColor}"
+						ColorChanged="HouseCompletedFeedbackColorSelector_ColorChanged" />
+				</w:SettingsCard>
 			</w:SettingsGroup>
 		</StackPanel>
 	</ScrollViewer>

@@ -3141,6 +3141,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Color for completed house feedback.
+        /// </summary>
+        internal static string SettingsPage_HouseCompletedFeedbackColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_HouseCompletedFeedbackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you fill with a digit into a cell, making the containing house be completed, animation feedback will be triggered with a color specified here..
+        /// </summary>
+        internal static string SettingsPage_HouseCompletedFeedbackColorDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_HouseCompletedFeedbackColorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting..
         /// </summary>
         internal static string SettingsPage_Intro {

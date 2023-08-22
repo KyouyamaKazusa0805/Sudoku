@@ -186,6 +186,7 @@
 							OverlappedAssignmentColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.OverlappedAssignmentColor,Mode=OneWay}"
 							EliminationColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationColor,Mode=OneWay}"
 							CannibalismColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CannibalismColor,Mode=OneWay}"
+							HouseCompletedFeedbackColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HouseCompletedFeedbackColor,Mode=OneWay}"
 							AuxiliaryColors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors,Mode=OneWay}"
 							AlmostLockedSetsColors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,Mode=OneWay}"
 							DifficultyLevelForegrounds="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds,Mode=OneWay}"
