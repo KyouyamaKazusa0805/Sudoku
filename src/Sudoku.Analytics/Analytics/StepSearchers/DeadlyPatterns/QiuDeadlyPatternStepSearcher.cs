@@ -78,8 +78,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		var accumulator = context.Accumulator!;
-		var onlyFindOne = context.OnlyFindOne;
 		for (var (i, length) = (0, Patterns.Length); i < length; i++)
 		{
 			var isRow = i < length >> 1;
@@ -190,15 +188,15 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					{
 						// Qdp forms.
 						// Now check each type.
-						if (CheckType1(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask, onlyFindOne) is { } type1Step)
+						if (CheckType1(context.Accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask, context.OnlyFindOne) is { } type1Step)
 						{
 							return type1Step;
 						}
-						if (CheckType2(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask, onlyFindOne) is { } type2Step)
+						if (CheckType2(context.Accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask, context.OnlyFindOne) is { } type2Step)
 						{
 							return type2Step;
 						}
-						if (CheckType3(accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask, onlyFindOne) is { } type3Step)
+						if (CheckType3(context.Accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask, context.OnlyFindOne) is { } type3Step)
 						{
 							return type3Step;
 						}
@@ -206,11 +204,11 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				}
 			}
 
-			if (CheckType4(accumulator, isRow, pair, square, baseLine, pattern, pairMask, onlyFindOne) is { } type4Step)
+			if (CheckType4(context.Accumulator, isRow, pair, square, baseLine, pattern, pairMask, context.OnlyFindOne) is { } type4Step)
 			{
 				return type4Step;
 			}
-			if (CheckLockedType(accumulator, grid, isRow, pair, square, baseLine, pattern, pairMask, onlyFindOne) is { } typeLockedStep)
+			if (CheckLockedType(context.Accumulator, grid, isRow, pair, square, baseLine, pattern, pairMask, context.OnlyFindOne) is { } typeLockedStep)
 			{
 				return typeLockedStep;
 			}
@@ -223,7 +221,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// Check for type 1.
 	/// </summary>
 	private QiuDeadlyPatternType1Step? CheckType1(
-		List<Step> accumulator,
+		List<Step>? accumulator,
 		scoped in Grid grid,
 		bool isRow,
 		scoped in CellMap pair,
@@ -300,8 +298,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			return step;
 		}
 
-		accumulator.Add(step);
-
+		accumulator!.Add(step);
 		return null;
 	}
 
@@ -309,7 +306,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// Check for type 2.
 	/// </summary>
 	private QiuDeadlyPatternType2Step? CheckType2(
-		List<Step> accumulator,
+		List<Step>? accumulator,
 		scoped in Grid grid,
 		bool isRow,
 		scoped in CellMap pair,
@@ -369,8 +366,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			return step;
 		}
 
-		accumulator.Add(step);
-
+		accumulator!.Add(step);
 		return null;
 	}
 
@@ -378,7 +374,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// Check for type 3.
 	/// </summary>
 	private QiuDeadlyPatternType3Step? CheckType3(
-		List<Step> accumulator,
+		List<Step>? accumulator,
 		scoped in Grid grid,
 		bool isRow,
 		scoped in CellMap pair,
@@ -472,7 +468,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 						return step;
 					}
 
-					accumulator.Add(step);
+					accumulator!.Add(step);
 				}
 			}
 		}
@@ -484,7 +480,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// Check for type 4.
 	/// </summary>
 	private QiuDeadlyPatternType4Step? CheckType4(
-		List<Step> accumulator,
+		List<Step>? accumulator,
 		bool isRow,
 		scoped in CellMap pair,
 		scoped in CellMap square,
@@ -570,7 +566,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					return step;
 				}
 
-				accumulator.Add(step);
+				accumulator!.Add(step);
 			}
 		}
 
@@ -581,7 +577,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// Check for locked type.
 	/// </summary>
 	private QiuDeadlyPatternLockedTypeStep? CheckLockedType(
-		List<Step> accumulator,
+		List<Step>? accumulator,
 		scoped in Grid grid,
 		bool isRow,
 		scoped in CellMap pair,
@@ -697,7 +693,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			return step;
 		}
 
-		accumulator.Add(step);
+		accumulator!.Add(step);
 		return null;
 	}
 }
