@@ -2675,14 +2675,16 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="lastCell">Indicates the last cell finished.</param>
             <param name="house">Indicates the house finished.</param>
+            <param name="method">Indicates a method kind that makes a house be completed.</param>
             <seealso cref="T:SudokuStudio.Interaction.HouseCompletedEventHandler"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.HouseCompletedEventArgs.#ctor(System.Int32,System.Int32)">
+        <member name="M:SudokuStudio.Interaction.HouseCompletedEventArgs.#ctor(System.Int32,System.Int32,SudokuStudio.Interaction.PuzzleUpdatingMethod)">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.HouseCompletedEventHandler"/>.
             </summary>
             <param name="lastCell">Indicates the last cell finished.</param>
             <param name="house">Indicates the house finished.</param>
+            <param name="method">Indicates a method kind that makes a house be completed.</param>
             <seealso cref="T:SudokuStudio.Interaction.HouseCompletedEventHandler"/>
         </member>
         <member name="P:SudokuStudio.Interaction.HouseCompletedEventArgs.LastCell">
@@ -2693,6 +2695,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Interaction.HouseCompletedEventArgs.House">
             <summary>
             The generated property declaration for parameter <c>house</c>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.HouseCompletedEventArgs.Method">
+            <summary>
+            The generated property declaration for parameter <c>method</c>.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.HouseCompletedEventHandler">
@@ -2804,6 +2811,21 @@ if (student is (name: var name, age: >= 18))
             <param name="sender">An object which triggers the event.</param>
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.Clicked"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.PuzzleUpdatingMethod">
+            <summary>
+            Represents a kind that describes what kind of the method that makes a puzzle to be completed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.PuzzleUpdatingMethod.UserUpdating">
+            <summary>
+            Indicates the method is by user updating.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.PuzzleUpdatingMethod.Programmatic">
+            <summary>
+            Indicates the method is by program.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.SaveFileFailedEventArgs">
             <summary>
@@ -7379,12 +7401,13 @@ if (student is (name: var name, age: >= 18))
             <param name="mouseButton">Indicates the mouse button clicked.</param>
             <param name="candidate">The candidate.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,SudokuStudio.Interaction.PuzzleUpdatingMethod,System.Boolean)">
             <summary>
             <para>Try to set puzzle, with a <see cref="T:System.Boolean"/> value indicating whether undoing and redoing stacks should be cleared.</para>
             <para><inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.TriggerGridUpdated(SudokuStudio.Interaction.GridUpdatedBehavior,System.Object)" path="//summary/para[2]"/></para>
             </summary>
             <param name="value">The newer grid.</param>
+            <param name="method">The updating method.</param>
             <param name="clearStack">
             Indicates whether undoing and redoing stacks should be cleared. The default value is <see langword="false"/>.
             </param>
@@ -7409,6 +7432,12 @@ if (student is (name: var name, age: >= 18))
             To initializes for stack events.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.OnHouseCompletedAsync(SudokuStudio.Interaction.HouseCompletedEventArgs)">
+            <summary>
+            The default handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.HouseCompleted"/> event.
+            </summary>
+            <param name="e">The event arguments.</param>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UpdateCellData(Sudoku.Concepts.Grid@)">
             <summary>
             To initialize <see cref="F:SudokuStudio.Views.Controls.SudokuPane._children"/> values via the specified grid.
@@ -7416,13 +7445,18 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid.</param>
             <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._children"/>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,SudokuStudio.Interaction.PuzzleUpdatingMethod,System.Boolean,System.Boolean)">
             <summary>
             Try to update the puzzle value by using the specified newer <see cref="T:Sudoku.Concepts.Grid"/> instance,
             and two parameters indicating the details of the current updating operation.
             </summary>
-            <param name="value"><inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,System.Boolean)" path="/param[@name='value']"/></param>
-            <param name="clearStack"><inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,System.Boolean)" path="//param[@name='clearStack']/para[1]"/></param>
+            <param name="value">
+            <inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,SudokuStudio.Interaction.PuzzleUpdatingMethod,System.Boolean)" path="/param[@name='value']"/>
+            </param>
+            <param name="method">Indicates the updating method.</param>
+            <param name="clearStack">
+            <inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,SudokuStudio.Interaction.PuzzleUpdatingMethod,System.Boolean)" path="//param[@name='clearStack']/para[1]"/>
+            </param>
             <param name="whileUndoingOrRedoing">Indicates whether the method is called while undoing and redoing.</param>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeComponent">
