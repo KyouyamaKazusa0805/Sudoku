@@ -370,7 +370,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		var target = _undoStack.Pop();
 
-		SetPuzzleInternal(target, PuzzleUpdatingMethod.UserUpdating, false, true);
+		SetPuzzleCore(target, new(PuzzleUpdatingMethod.UserUpdating, false, true));
 
 		GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Undoing, target));
 	}
@@ -398,7 +398,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		var target = _redoStack.Pop();
 
-		SetPuzzleInternal(target, PuzzleUpdatingMethod.UserUpdating, false, true);
+		SetPuzzleCore(target, new(PuzzleUpdatingMethod.UserUpdating, false, true));
 
 		GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Redoing, target));
 	}
@@ -453,7 +453,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </param>
 	/// <seealso cref="SudokuPaneCell"/>
 	internal void SetPuzzleInternal(scoped in Grid value, PuzzleUpdatingMethod method, bool clearStack = false)
-		=> SetPuzzleInternal(value, method, clearStack, false);
+		=> SetPuzzleCore(value, new(method, clearStack, false));
 
 	/// <inheritdoc cref="UpdateViewUnit(ViewUnitBindableSource?)"/>
 	private void UpdateViewUnit() => UpdateViewUnit(ViewUnit);
@@ -545,13 +545,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <param name="value">
 	/// <inheritdoc cref="SetPuzzleInternal(in Grid, PuzzleUpdatingMethod, bool)" path="/param[@name='value']"/>
 	/// </param>
-	/// <param name="method">Indicates the updating method.</param>
-	/// <param name="clearStack">
-	/// <inheritdoc cref="SetPuzzleInternal(in Grid, PuzzleUpdatingMethod, bool)" path="//param[@name='clearStack']/para[1]"/>
-	/// </param>
-	/// <param name="whileUndoingOrRedoing">Indicates whether the method is called while undoing and redoing.</param>
-	private void SetPuzzleInternal(scoped in Grid value, PuzzleUpdatingMethod method, bool clearStack, bool whileUndoingOrRedoing)
+	/// <param name="data">The details of updating.</param>
+	private void SetPuzzleCore(scoped in Grid value, GridUpdatingDetails data)
 	{
+		var (method, clearStack, whileUndoingOrRedoing) = data;
+
 		// Pushes the grid into the stack if worth.
 		if (!whileUndoingOrRedoing && !clearStack && EnableUndoRedoStacking)
 		{
@@ -560,7 +558,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		// Check whether a house is going to be completed.
 		var housesToBeCompleted = value.FullHouses & ~_puzzle.FullHouses;
-		var lastCells = new List<Cell>();
+		using scoped var lastCells = new ValueList<Cell>((byte)PopCount((uint)housesToBeCompleted));
 		foreach (var houseToBeCompleted in housesToBeCompleted)
 		{
 			foreach (var cell in HouseCells[houseToBeCompleted])

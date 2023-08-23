@@ -2669,6 +2669,31 @@ if (student is (name: var name, age: >= 18))
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.GridUpdated"/>
         </member>
+        <member name="T:SudokuStudio.Interaction.GridUpdatingDetails">
+            <summary>
+            A set of grid updating details.
+            </summary>
+            <param name="Method">The method that describes which way to update grid.</param>
+            <param name="ClearStack">A <see cref="T:System.Boolean"/> value indicating whether the undo and redo stacks should be reset.</param>
+            <param name="WhileUndoingOrRedoing">A <see cref="T:System.Boolean"/> value indicating whether the environment is in undoing or redoing operation.</param>
+        </member>
+        <member name="M:SudokuStudio.Interaction.GridUpdatingDetails.#ctor(SudokuStudio.Interaction.PuzzleUpdatingMethod,System.Boolean,System.Boolean)">
+            <summary>
+            A set of grid updating details.
+            </summary>
+            <param name="Method">The method that describes which way to update grid.</param>
+            <param name="ClearStack">A <see cref="T:System.Boolean"/> value indicating whether the undo and redo stacks should be reset.</param>
+            <param name="WhileUndoingOrRedoing">A <see cref="T:System.Boolean"/> value indicating whether the environment is in undoing or redoing operation.</param>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GridUpdatingDetails.Method">
+            <summary>The method that describes which way to update grid.</summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GridUpdatingDetails.ClearStack">
+            <summary>A <see cref="T:System.Boolean"/> value indicating whether the undo and redo stacks should be reset.</summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GridUpdatingDetails.WhileUndoingOrRedoing">
+            <summary>A <see cref="T:System.Boolean"/> value indicating whether the environment is in undoing or redoing operation.</summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.HouseCompletedEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.HouseCompletedEventHandler"/>.
@@ -7445,7 +7470,7 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid.</param>
             <seealso cref="F:SudokuStudio.Views.Controls.SudokuPane._children"/>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,SudokuStudio.Interaction.PuzzleUpdatingMethod,System.Boolean,System.Boolean)">
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleCore(Sudoku.Concepts.Grid@,SudokuStudio.Interaction.GridUpdatingDetails)">
             <summary>
             Try to update the puzzle value by using the specified newer <see cref="T:Sudoku.Concepts.Grid"/> instance,
             and two parameters indicating the details of the current updating operation.
@@ -7453,11 +7478,7 @@ if (student is (name: var name, age: >= 18))
             <param name="value">
             <inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,SudokuStudio.Interaction.PuzzleUpdatingMethod,System.Boolean)" path="/param[@name='value']"/>
             </param>
-            <param name="method">Indicates the updating method.</param>
-            <param name="clearStack">
-            <inheritdoc cref="M:SudokuStudio.Views.Controls.SudokuPane.SetPuzzleInternal(Sudoku.Concepts.Grid@,SudokuStudio.Interaction.PuzzleUpdatingMethod,System.Boolean)" path="//param[@name='clearStack']/para[1]"/>
-            </param>
-            <param name="whileUndoingOrRedoing">Indicates whether the method is called while undoing and redoing.</param>
+            <param name="data">The details of updating.</param>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeComponent">
             <summary>
