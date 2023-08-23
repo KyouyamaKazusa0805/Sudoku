@@ -7,6 +7,36 @@ namespace System.Linq;
 /// <seealso cref="ReadOnlySpan{T}"/>
 public static class SpanEnumerable
 {
+	/// <inheritdoc cref="ArrayEnumerable.Count{T}(T[], Func{T, bool})"/>
+	public static int Count<T>(this scoped Span<T> @this, Func<T, bool> predicate)
+	{
+		var result = 0;
+		foreach (var element in @this)
+		{
+			if (predicate(element))
+			{
+				result++;
+			}
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc cref="ArrayEnumerable.Count{T}(T[], Func{T, bool})"/>
+	public static int Count<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
+	{
+		var result = 0;
+		foreach (var element in @this)
+		{
+			if (predicate(element))
+			{
+				result++;
+			}
+		}
+
+		return result;
+	}
+
 	/// <inheritdoc cref="Select{T, TResult}(ReadOnlySpan{T}, Func{T, TResult})"/>
 	public static TResult[] Select<T, TResult>(this scoped Span<T> @this, Func<T, TResult> selector)
 	{

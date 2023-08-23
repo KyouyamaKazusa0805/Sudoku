@@ -1018,6 +1018,15 @@
             Provides with the LINQ-related methods on type <see cref="T:System.Array"/>, especially for the one-dimensional array.
             </summary>
         </member>
+        <member name="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})">
+            <summary>
+            Totals up the number of elements that satisfy the specified condition.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array.</param>
+            <param name="predicate">The condition.</param>
+            <returns>The number of elements satisfying the specified condition.</returns>
+        </member>
         <member name="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})">
             <summary>
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
@@ -1081,6 +1090,15 @@
         <member name="M:System.Linq.ImmutableArrayEnumerable.Zip``2(System.Collections.Immutable.ImmutableArray{``0},System.Collections.Immutable.ImmutableArray{``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})"/>
         </member>
+        <member name="T:System.Linq.ListEnumerable">
+            <summary>
+            Represents with LINQ methods for <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.List`1"/>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.Count``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
+        </member>
         <member name="T:System.Linq.MaskEnumerable">
             <summary>
             Represents a set of operation that iterates on each bit in a <see cref="T:System.Int16"/> instance like LINQ.
@@ -1106,6 +1124,12 @@
             </summary>
             <seealso cref="T:System.Span`1"/>
             <seealso cref="T:System.ReadOnlySpan`1"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.Count``1(System.Span{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.Count``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Select``2(System.Span{``0},System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
