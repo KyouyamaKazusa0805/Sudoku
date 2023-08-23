@@ -858,6 +858,9 @@
   <data name="SettingsPage_AnalysisDescription" xml:space="preserve">
     <value>This page lists options that controls the analysis and gathering solving steps of a puzzle</value>
   </data>
+  <data name="SettingsPage_AnimationFeedback" xml:space="preserve">
+    <value>Animation Feedbacks</value>
+  </data>
   <data name="SettingsPage_AssignmentColor" xml:space="preserve">
     <value>Assignments</value>
   </data>

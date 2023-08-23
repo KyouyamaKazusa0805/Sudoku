@@ -2518,6 +2518,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Animation Feedbacks.
+        /// </summary>
+        internal static string SettingsPage_AnimationFeedback {
+            get {
+                return ResourceManager.GetString("SettingsPage_AnimationFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assignments.
         /// </summary>
         internal static string SettingsPage_AssignmentColor {

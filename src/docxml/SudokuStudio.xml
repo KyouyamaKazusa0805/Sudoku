@@ -5368,6 +5368,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to This page lists options that controls the analysis and gathering solving steps of a puzzle.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AnimationFeedback">
+            <summary>
+              Looks up a localized string similar to Animation Feedbacks.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AssignmentColor">
             <summary>
               Looks up a localized string similar to Assignments.

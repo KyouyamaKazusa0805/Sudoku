@@ -60,14 +60,24 @@
 					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableRightTapRemovingForSudokuPane,Mode=TwoWay}" />
 				</w:SettingsCard>
 				<w:SettingsCard
+					Header="{m:R Key=SettingsPage_TransparentBackground}"
+					Description="{m:R Key=SettingsPage_TransparentBackgroundDescription}">
+					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=TwoWay}" />
+				</w:SettingsCard>
+			</w:SettingsGroup>
+			<w:SettingsGroup Header="{m:R Key=SettingsPage_AnimationFeedback}">
+				<w:SettingsCard
 					Header="{m:R Key=SettingsPage_EnableAnimationFeedback}"
 					Description="{m:R Key=SettingsPage_EnableAnimationFeedbackDescription}">
 					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableAnimationFeedback,Mode=TwoWay}" />
 				</w:SettingsCard>
 				<w:SettingsCard
-					Header="{m:R Key=SettingsPage_TransparentBackground}"
-					Description="{m:R Key=SettingsPage_TransparentBackgroundDescription}">
-					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=TwoWay}" />
+					Header="{m:R Key=SettingsPage_HouseCompletedFeedbackColor}"
+					Description="{m:R Key=SettingsPage_HouseCompletedFeedbackColorDescription}">
+					<c:ColorSelector
+						x:Name="HouseCompletedFeedbackColorSelector"
+						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HouseCompletedFeedbackColor}"
+						ColorChanged="HouseCompletedFeedbackColorSelector_ColorChanged" />
 				</w:SettingsCard>
 			</w:SettingsGroup>
 			<w:SettingsGroup Header="{m:R Key=SettingsPage_MiscellaneousBehaviors}">
@@ -110,14 +120,6 @@
 						</ComboBoxItem>
 						<ComboBoxItem Content="{m:R Key=SettingsPage_EmptyCellCharacter_Dot}" Tag="." />
 					</ComboBox>
-				</w:SettingsCard>
-				<w:SettingsCard
-					Header="{m:R Key=SettingsPage_HouseCompletedFeedbackColor}"
-					Description="{m:R Key=SettingsPage_HouseCompletedFeedbackColorDescription}">
-					<c:ColorSelector
-						x:Name="HouseCompletedFeedbackColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HouseCompletedFeedbackColor}"
-						ColorChanged="HouseCompletedFeedbackColorSelector_ColorChanged" />
 				</w:SettingsCard>
 			</w:SettingsGroup>
 		</StackPanel>
