@@ -48,7 +48,7 @@ public sealed partial class HiddenSubsetStep(
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> [
 			new(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M }),
-			new(ExtraDifficultyCaseNames.Locked, IsLocked ? .1M : 0)
+			new(ExtraDifficultyCaseNames.Locked, IsLocked switch { true => Size switch { 2 => -1.2M, 3 => -1.3M }, _ => 0 })
 		];
 
 	/// <inheritdoc/>
