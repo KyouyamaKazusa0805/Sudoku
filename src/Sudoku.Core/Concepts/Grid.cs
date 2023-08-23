@@ -2,6 +2,8 @@
 namespace Sudoku.Concepts;
 
 using GridImpl = IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>;
+using unsafe ValueChangedCallbackFunc = delegate* managed<ref Grid, Cell, Mask, Mask, Digit, void>;
+using unsafe CandidatesRefreshingCallbackFunc = delegate* managed<ref Grid, void>;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -57,18 +59,12 @@ public unsafe partial struct Grid : GridImpl
 	/// <summary>
 	/// Indicates the event triggered when the value is changed.
 	/// </summary>
-	/// <remarks>
-	/// <include file="../../global-doc-comments.xml" path="/g/csharp9/feature[@name='function-pointer']"/>
-	/// </remarks>
-	public static readonly delegate*<ref Grid, Cell, Mask, Mask, Digit, void> ValueChanged = &OnValueChanged;
+	public static readonly void* ValueChanged = (ValueChangedCallbackFunc)(&OnValueChanged);
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
 	/// </summary>
-	/// <remarks>
-	/// <include file="../../global-doc-comments.xml" path="/g/csharp9/feature[@name='function-pointer']"/>
-	/// </remarks>
-	public static readonly delegate*<ref Grid, void> RefreshingCandidates = &OnRefreshingCandidates;
+	public static readonly void* RefreshingCandidates = (CandidatesRefreshingCallbackFunc)(&OnRefreshingCandidates);
 
 	/// <inheritdoc cref="GridImpl.Empty"/>
 	public static readonly Grid Empty;
@@ -866,7 +862,7 @@ public unsafe partial struct Grid : GridImpl
 		var copied = mask;
 		mask = (Mask)((int)state << 9 | mask & MaxCandidatesMask);
 
-		ValueChanged(ref this, cell, copied, mask, -1);
+		((ValueChangedCallbackFunc)ValueChanged)(ref this, cell, copied, mask, -1);
 	}
 
 	/// <inheritdoc/>
@@ -877,7 +873,7 @@ public unsafe partial struct Grid : GridImpl
 		var originalMask = newMask;
 		newMask = mask;
 
-		ValueChanged(ref this, cell, originalMask, newMask, -1);
+		((ValueChangedCallbackFunc)ValueChanged)(ref this, cell, originalMask, newMask, -1);
 	}
 
 	/// <inheritdoc/>
@@ -892,7 +888,7 @@ public unsafe partial struct Grid : GridImpl
 				// Note that reset candidates may not trigger the event.
 				this[cell] = DefaultMask;
 
-				RefreshingCandidates(ref this);
+				((CandidatesRefreshingCallbackFunc)RefreshingCandidates)(ref this);
 
 				break;
 			}
@@ -905,7 +901,7 @@ public unsafe partial struct Grid : GridImpl
 				result = (Mask)(ModifiableMask | 1 << digit);
 
 				// To trigger the event, which is used for eliminate all same candidates in peer cells.
-				ValueChanged(ref this, cell, copied, result, digit);
+				((ValueChangedCallbackFunc)ValueChanged)(ref this, cell, copied, result, digit);
 
 				break;
 			}
@@ -929,13 +925,13 @@ public unsafe partial struct Grid : GridImpl
 			}
 
 			// To trigger the event.
-			ValueChanged(ref this, cell, copied, this[cell], -1);
+			((ValueChangedCallbackFunc)ValueChanged)(ref this, cell, copied, this[cell], -1);
 		}
 	}
 
 
 #pragma warning disable CS1584, CS1658
-	/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap, TConclusion}.GetMap(delegate*{in TSelf, int, bool})"/>
+	/// <inheritdoc cref="GridImpl.GetMap(delegate*{in TSelf, int, bool})"/>
 #pragma warning restore CS1584, CS1658
 	[ExplicitInterfaceImpl(typeof(IGrid<,,,,,,,,,,>))]
 	private readonly CellMap GetMap(delegate*<in Grid, Cell, bool> predicate)
@@ -953,7 +949,7 @@ public unsafe partial struct Grid : GridImpl
 	}
 
 #pragma warning disable CS1584, CS1658
-	/// <inheritdoc cref="IGrid{TSelf, TMask, TBitStatusMap, TConclusion}.GetMaps(delegate*{in Grid, int, int, bool})"/>
+	/// <inheritdoc cref="GridImpl.GetMaps(delegate*{in Grid, int, int, bool})"/>
 #pragma warning restore CS1584, CS1658
 	[ExplicitInterfaceImpl(typeof(IGrid<,,,,,,,,,,>))]
 	private readonly CellMap[] GetMaps(delegate*<in Grid, Cell, Digit, bool> predicate)

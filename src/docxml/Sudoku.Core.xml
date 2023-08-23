@@ -2534,31 +2534,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the event triggered when the value is changed.
             </summary>
-            <remarks>
-            <feature name="function-pointer">
-			<b>
-				<i>
-					This member is only exposed for user for knowing the data structure backing implementation,
-					so it is disallowed to invoke it.
-				</i>
-			</b>
-		</feature>
-            </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.RefreshingCandidates">
             <summary>
             Indicates the event triggered when should re-compute candidates.
             </summary>
-            <remarks>
-            <feature name="function-pointer">
-			<b>
-				<i>
-					This member is only exposed for user for knowing the data structure backing implementation,
-					so it is disallowed to invoke it.
-				</i>
-			</b>
-		</feature>
-            </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.Empty">
             <inheritdoc cref="P:Sudoku.Concepts.IGrid`11.Empty"/>
@@ -2916,10 +2896,10 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMap()">
-            <inheritdoc cref="!:IGrid&lt;TSelf, TMask, TBitStatusMap, TConclusion&gt;.GetMap(delegate*&lt;in TSelf, int, bool&gt;)"/>
+            <inheritdoc cref="!:GridImpl.GetMap(delegate*&lt;in TSelf, int, bool&gt;)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMaps()">
-            <inheritdoc cref="!:IGrid&lt;TSelf, TMask, TBitStatusMap, TConclusion&gt;.GetMaps(delegate*&lt;in Grid, int, int, bool&gt;)"/>
+            <inheritdoc cref="!:GridImpl.GetMaps(delegate*&lt;in Grid, int, int, bool&gt;)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Preserve(Sudoku.Concepts.CellMap@)">
             <inheritdoc cref="M:Sudoku.Concepts.IGrid`11.Preserve(`8@)"/>
