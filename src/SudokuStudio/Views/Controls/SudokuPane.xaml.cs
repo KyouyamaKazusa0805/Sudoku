@@ -337,6 +337,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public event HouseCompletedEventHandler? HouseCompleted;
 
 	/// <summary>
+	/// Indicates the event that is triggered when the current puzzle is completed.
+	/// </summary>
+	public event PuzzleCompletedEventHandler? PuzzleCompleted;
+
+	/// <summary>
 	/// Indicates the event that is triggered when caching.
 	/// </summary>
 	public event EventHandler? Caching;
@@ -579,6 +584,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		for (var i = 0; i < houses.Length; i++)
 		{
 			HouseCompleted?.Invoke(this, new(lastCells[i], houses[i]));
+		}
+
+		if (value.IsSolved)
+		{
+			PuzzleCompleted?.Invoke(this, new(value));
 		}
 	}
 

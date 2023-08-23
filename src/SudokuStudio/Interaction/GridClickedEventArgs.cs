@@ -3,22 +3,11 @@ namespace SudokuStudio.Interaction;
 /// <summary>
 /// Provides event data used by delegate type <see cref="GridUpdatedEventHandler"/>.
 /// </summary>
+/// <param name="mouseButton">Indicates the mouse button clicked.</param>
+/// <param name="candidate">The candidate clicked.</param>
 /// <seealso cref="GridUpdatedEventHandler"/>
-public sealed class GridClickedEventArgs : EventArgs
+public sealed partial class GridClickedEventArgs([DataMember] MouseButton mouseButton, [DataMember] Candidate candidate) : EventArgs
 {
-	/// <summary>
-	/// Initializes a <see cref="GridClickedEventArgs"/> instance.
-	/// </summary>
-	/// <param name="mouseButton">Indicates the mouse button clicked.</param>
-	/// <param name="candidate">The candidate.</param>
-	public GridClickedEventArgs(MouseButton mouseButton, Candidate candidate) => (MouseButton, Candidate) = (mouseButton, candidate);
-
-
-	/// <summary>
-	/// Indicates the clicked candidate.
-	/// </summary>
-	public Candidate Candidate { get; }
-
 	/// <summary>
 	/// Indicates the clicked cell.
 	/// </summary>
@@ -38,11 +27,6 @@ public sealed class GridClickedEventArgs : EventArgs
 	/// Indicates the chutes the current cell lines in.
 	/// </summary>
 	public (int Megarow, int Megacolumn) Chutes => GetChute(Candidate);
-
-	/// <summary>
-	/// Indicates the clicked mouse button.
-	/// </summary>
-	public MouseButton MouseButton { get; }
 
 
 	/// <summary>

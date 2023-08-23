@@ -2483,19 +2483,17 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>.
             </summary>
+            <param name="mouseButton">Indicates the mouse button clicked.</param>
+            <param name="candidate">The candidate clicked.</param>
             <seealso cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>
         </member>
         <member name="M:SudokuStudio.Interaction.GridClickedEventArgs.#ctor(SudokuStudio.Interaction.MouseButton,System.Int32)">
             <summary>
-            Initializes a <see cref="T:SudokuStudio.Interaction.GridClickedEventArgs"/> instance.
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>.
             </summary>
             <param name="mouseButton">Indicates the mouse button clicked.</param>
-            <param name="candidate">The candidate.</param>
-        </member>
-        <member name="P:SudokuStudio.Interaction.GridClickedEventArgs.Candidate">
-            <summary>
-            Indicates the clicked candidate.
-            </summary>
+            <param name="candidate">The candidate clicked.</param>
+            <seealso cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>
         </member>
         <member name="P:SudokuStudio.Interaction.GridClickedEventArgs.Cell">
             <summary>
@@ -2517,11 +2515,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the chutes the current cell lines in.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Interaction.GridClickedEventArgs.MouseButton">
-            <summary>
-            Indicates the clicked mouse button.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Interaction.GridClickedEventArgs.GetHouse(System.Int32)">
             <summary>
             Try to calculate house indices for a candidate.
@@ -2537,6 +2530,16 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="candidate">The candidate.</param>
             <returns>A pair of two values indicating chute indices in a mega-row and mega-column.</returns>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GridClickedEventArgs.MouseButton">
+            <summary>
+            The generated property declaration for parameter <c>mouseButton</c>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GridClickedEventArgs.Candidate">
+            <summary>
+            The generated property declaration for parameter <c>candidate</c>.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.GridClickedEventHandler">
             <summary>
@@ -2769,6 +2772,38 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the failed reason is the file cannot be parsed and converted into a valid sudoku grid.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.PuzzleCompletedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.PuzzleCompletedEventHandler"/>.
+            </summary>
+            <param name="finishedPuzzle">Indicates the finished puzzle.</param>
+            <seealso cref="T:SudokuStudio.Interaction.PuzzleCompletedEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.PuzzleCompletedEventArgs.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.PuzzleCompletedEventHandler"/>.
+            </summary>
+            <param name="finishedPuzzle">Indicates the finished puzzle.</param>
+            <seealso cref="T:SudokuStudio.Interaction.PuzzleCompletedEventHandler"/>
+        </member>
+        <member name="P:SudokuStudio.Interaction.PuzzleCompletedEventArgs.IsFullyFixed">
+            <summary>
+            Indicates whether the puzzle is fully fixed.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.PuzzleCompletedEventArgs.FinishedPuzzle">
+            <summary>
+            The generated property declaration for parameter <c>finishedPuzzle</c>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.PuzzleCompletedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.Clicked"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.Clicked"/>
         </member>
         <member name="T:SudokuStudio.Interaction.SaveFileFailedEventArgs">
             <summary>
@@ -7280,6 +7315,11 @@ if (student is (name: var name, age: >= 18))
         <member name="E:SudokuStudio.Views.Controls.SudokuPane.HouseCompleted">
             <summary>
             Indicates the event that is triggered when a house is completed.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.SudokuPane.PuzzleCompleted">
+            <summary>
+            Indicates the event that is triggered when the current puzzle is completed.
             </summary>
         </member>
         <member name="E:SudokuStudio.Views.Controls.SudokuPane.Caching">
