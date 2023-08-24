@@ -288,4 +288,90 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			}
 		}
 	}
+
+	/// <summary>
+	/// Only analyze for one step if <see cref="IsFullApplying"/> is <see langword="false"/>,
+	/// or a list of <see cref="Step"/>s if <see cref="IsFullApplying"/> is <see langword="true"/>.
+	/// </summary>
+	/// <param name="puzzle">The puzzle.</param>
+	/// <returns>The first steps found.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// <inheritdoc cref="Analyze(in Grid, IProgress{AnalyzerProgress}?, CancellationToken)" path="/exception[@cref='InvalidOperationException']"/>
+	/// </exception>
+	/// <seealso cref="IsFullApplying"/>
+	public Step[]? AnalyzeOneStep(scoped in Grid puzzle)
+	{
+		if (puzzle.IsSolved)
+		{
+			throw new InvalidOperationException("This puzzle has already been solved.");
+		}
+
+		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } isSukaku)
+		{
+			Initialize(puzzle, puzzle.SolutionGrid);
+			foreach (var searcher in ResultStepSearchers)
+			{
+				switch (isSukaku, searcher, this)
+				{
+					case (true, { IsNotSupportedForSukaku: true }, _):
+					case (_, { RunningArea: StepSearcherRunningArea.None }, _):
+					case (_, { IsConfiguredSlow: true }, { IgnoreSlowAlgorithms: true }):
+					case (_, { IsConfiguredHighAllocation: true }, { IgnoreHighAllocationAlgorithms: true }):
+					{
+						// Skips on those two cases:
+						// 1. Sukaku puzzles can't use techniques that is marked as "not supported for sukaku".
+						// 2. If the searcher is currently disabled.
+						// 3. If the searcher is configured as slow.
+						// 4. If the searcher is configured as high-allocation.
+						continue;
+					}
+					case (_, not BruteForceStepSearcher, { IsFullApplying: true }):
+					{
+						var accumulator = new List<Step>();
+						scoped var context = new AnalysisContext(accumulator, puzzle, false);
+						searcher.Collect(ref context);
+						if (accumulator.Count == 0)
+						{
+							continue;
+						}
+
+						var steps = new List<Step>();
+						foreach (var step in accumulator)
+						{
+							steps.Add(verifyConclusionValidity(solution, step) ? step : throw new WrongStepException(puzzle, step));
+						}
+
+						return [.. steps];
+					}
+					default:
+					{
+						scoped var context = new AnalysisContext(null, puzzle, true);
+						if (searcher.Collect(ref context) is not { } step)
+						{
+							continue;
+						}
+
+						return verifyConclusionValidity(solution, step) ? [step] : throw new WrongStepException(puzzle, step);
+					}
+				}
+			}
+		}
+
+		return null;
+
+
+		static bool verifyConclusionValidity(scoped in Grid solution, Step step)
+		{
+			foreach (var (t, c, d) in step.Conclusions)
+			{
+				var digit = solution.GetDigit(c);
+				if (t == Assignment && digit != d || t == Elimination && digit == d)
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+	}
 }

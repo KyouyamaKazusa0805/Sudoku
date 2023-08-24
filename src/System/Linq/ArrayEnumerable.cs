@@ -93,6 +93,18 @@ public static class ArrayEnumerable
 		return result[..finalIndex];
 	}
 
+	/// <inheritdoc cref="Enumerable.Cast{TResult}(IEnumerable)"/>
+	public static TResult[] Cast<TResult>(this object[] @this)
+	{
+		var result = new TResult[@this.Length];
+		for (var i = 0; i < @this.Length; i++)
+		{
+			result[i] = (TResult)@this[i];
+		}
+
+		return result;
+	}
+
 #if false
 	/// <summary>
 	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/summary"/>

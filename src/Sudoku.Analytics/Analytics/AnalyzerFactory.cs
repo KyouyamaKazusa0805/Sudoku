@@ -21,6 +21,19 @@ public static class AnalyzerFactory
 	}
 
 	/// <summary>
+	/// Try to set "Apply All" option to an <see cref="Analyzer"/> instance.
+	/// </summary>
+	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
+	/// <param name="applyAll">The value to be set. The value will be assigned to property <see cref="Analyzer.IsFullApplying"/>.</param>
+	/// <returns>The result.</returns>
+	/// <seealso cref="Analyzer.IsFullApplying"/>
+	public static Analyzer WithApplyAll(this Analyzer @this, bool applyAll)
+	{
+		@this.IsFullApplying = applyAll;
+		return @this;
+	}
+
+	/// <summary>
 	/// Try to set property <see cref="Analyzer.StepSearchers"/> with the specified value.
 	/// </summary>
 	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>

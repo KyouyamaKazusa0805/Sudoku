@@ -1053,6 +1053,9 @@
             <param name="predicate">A function to test each element for a condition.</param>
             <returns>A (An) <typeparamref name="T"/>[] that contains elements from the input sequence that satisfy the condition.</returns>
         </member>
+        <member name="M:System.Linq.ArrayEnumerable.Cast``1(System.Object[])">
+            <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
+        </member>
         <member name="T:System.Linq.ArrayListEnumerable">
             <summary>
             Provides with extension methods on <see cref="T:System.Collections.ArrayList"/>.

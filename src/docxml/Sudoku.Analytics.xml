@@ -116,6 +116,18 @@
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
         </member>
+        <member name="M:Sudoku.Analytics.Analyzer.AnalyzeOneStep(Sudoku.Concepts.Grid@)">
+            <summary>
+            Only analyze for one step if <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/> is <see langword="false"/>,
+            or a list of <see cref="T:Sudoku.Analytics.Step"/>s if <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/> is <see langword="true"/>.
+            </summary>
+            <param name="puzzle">The puzzle.</param>
+            <returns>The first steps found.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)" path="/exception[@cref='InvalidOperationException']"/>
+            </exception>
+            <seealso cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
+        </member>
         <member name="F:Sudoku.Analytics.Analyzer._stepSearchers">
             <summary>
             Indicates the backing field of property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>.
@@ -136,6 +148,15 @@
             <param name="ignoreLargeTimeComplexity">Indicates whether the analyzer ignores for large time-complexity step searchers.</param>
             <param name="ignoreLargeSpaceComplexity">Indicates whether the analyzer ignores for large space-complexity step searchers.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithApplyAll(Sudoku.Analytics.Analyzer,System.Boolean)">
+            <summary>
+            Try to set "Apply All" option to an <see cref="T:Sudoku.Analytics.Analyzer"/> instance.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="applyAll">The value to be set. The value will be assigned to property <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>.</param>
+            <returns>The result.</returns>
+            <seealso cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Categorization.DifficultyLevel)">
             <summary>
@@ -12606,6 +12627,9 @@
             <param name="views"><inheritdoc/></param>
             <param name="cell">Indicates the cell used.</param>
             <param name="digit">Indicates the digit used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SingleStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#SingleStep}#op_Equality(Sudoku.Analytics.Steps.SingleStep,Sudoku.Analytics.Steps.SingleStep)">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SingleStep.Cell">
             <summary>
