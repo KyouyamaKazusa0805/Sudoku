@@ -719,22 +719,13 @@ public unsafe partial struct Grid : GridImpl
 	/// </para>
 	/// <para>
 	/// In some cases we suggest you use this method instead of calling <see cref="ToString(string?)"/>
-	/// and <see cref="ToString(string?, IFormatProvider?)"/> because you may not remember all possible string formats.
-	/// </para>
-	/// <para>
-	/// In addition, the method <see cref="ToString(string?, IFormatProvider?)"/> is also compatible with this method.
-	/// If you forget to call this one, you can also use that method to get the same target result by passing first argument
-	/// named <c>format</c> with <see langword="null"/> value:
-	/// <code><![CDATA[
-	/// string targetStr = grid.ToString(null, formatter);
-	/// ]]></code>
+	/// because you may not remember all possible string formats.
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="Text.Formatting"/>
 	/// <seealso cref="IGridFormatter"/>
 	/// <seealso cref="SusserFormat"/>
 	/// <seealso cref="ToString(string?)"/>
-	/// <seealso cref="ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(IGridFormatter gridFormatter)
 		=> this switch
@@ -742,22 +733,6 @@ public unsafe partial struct Grid : GridImpl
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
 			{ IsEmpty: true } => $"<{nameof(Empty)}>",
 			_ => gridFormatter.ToString(this)
-		};
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(string? format, IFormatProvider? formatProvider)
-		=> (this, format, formatProvider) switch
-		{
-			({ IsUndefined: true }, _, _) => $"<{nameof(Undefined)}>",
-			({ IsEmpty: true }, _, _) => $"<{nameof(Empty)}>",
-			(_, null, null) => ToString(SusserFormat.Default),
-			(_, not null, _) => ToString(format),
-			(_, _, IGridFormatter formatter) => formatter.ToString(this),
-			(_, _, ICustomFormatter formatter) => formatter.Format(format, this, formatProvider),
-			(_, _, CultureInfo { Name: "zh-CN" }) => ToString(SusserFormat.Full),
-			(_, _, CultureInfo { Name: ['e', 'n', '-', >= 'A' and <= 'Z', >= 'A' and <= 'Z'] }) => ToString(MultipleLineFormat.Default),
-			_ => ToString(SusserFormat.Default)
 		};
 
 	/// <inheritdoc/>

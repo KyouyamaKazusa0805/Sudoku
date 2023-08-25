@@ -85,7 +85,7 @@ namespace Sudoku.Text.Formatting;
 /// <para>
 /// If you want to control the customized formatting on <see cref="Grid"/> instances, this type will be very useful.
 /// For more information about this type and its derived (implemented) types, please visit the documentation comments
-/// of members <see cref="Grid.ToString(IGridFormatter)"/> and <see cref="Grid.ToString(string?, IFormatProvider?)"/>,
+/// of members <see cref="Grid.ToString(IGridFormatter)"/>,
 /// specially for arguments in those members.
 /// </para>
 /// <!--
@@ -109,8 +109,7 @@ namespace Sudoku.Text.Formatting;
 /// </summary>
 /// <seealso cref="Grid"/>
 /// <seealso cref="Grid.ToString(IGridFormatter)"/>
-/// <seealso cref="Grid.ToString(string?, IFormatProvider?)"/>
-public interface IGridFormatter : ICustomFormatter
+public interface IGridFormatter
 {
 	/// <summary>
 	/// Indicates the singleton instance.
@@ -129,23 +128,4 @@ public interface IGridFormatter : ICustomFormatter
 	/// <param name="grid">A <see cref="Grid"/> instance to be formatted.</param>
 	/// <returns>A <see cref="string"/> representation as result.</returns>
 	public abstract string ToString(scoped in Grid grid);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	string ICustomFormatter.Format(string? format, object? arg, IFormatProvider? formatProvider)
-		=> (format, arg, formatProvider) switch
-		{
-			(null, Grid targetGrid, IGridFormatter targetFormatter) => targetFormatter.ToString(targetGrid),
-			(_, Grid targetGrid, { } targetFormatter) => targetFormatter.GetFormat(GetType()) switch
-			{
-				IGridFormatter gridFormatter => gridFormatter.ToString(targetGrid),
-				_ => throw new FormatException("Unexpected error has been encountered due to not aware of target formatter type instance.")
-			},
-			(_, Grid targetGrid, null) => GridFormatterFactory.GetBuiltInFormatter(format) switch
-			{
-				{ } formatter => formatter.ToString(targetGrid),
-				_ => throw new FormatException($"The target format '{nameof(format)}' is invalid.")
-			},
-			(_, not Grid, _) => throw new FormatException($"The argument '{nameof(arg)}' must be of type '{nameof(Grid)}'.")
-		};
 }
