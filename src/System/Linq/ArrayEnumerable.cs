@@ -136,4 +136,31 @@ public static class ArrayEnumerable
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static T[] ThenBy<T, TKey>(this T[] @this, Func<T, TKey> keySelector) => @this.OrderBy(keySelector);
 #endif
+
+	/// <summary>
+	/// <inheritdoc cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})" path="/summary"/>
+	/// </summary>
+	/// <typeparam name="TSource">
+	/// <inheritdoc
+	///     cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"
+	///     path="/typeparam[@name='TSource']"
+	/// />
+	/// </typeparam>
+	/// <param name="this">An array of <typeparamref name="TSource"/> elementsto aggregate over.</param>
+	/// <param name="func">
+	/// <inheritdoc cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})" path="/param[@name='func']"/>
+	/// </param>
+	/// <returns>
+	/// <inheritdoc cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})" path="/returns"/>
+	/// </returns>
+	public static TSource? Aggregate<TSource>(this TSource[] @this, Func<TSource?, TSource?, TSource> func)
+	{
+		var result = default(TSource);
+		foreach (var element in @this)
+		{
+			result = func(result, element);
+		}
+
+		return result;
+	}
 }

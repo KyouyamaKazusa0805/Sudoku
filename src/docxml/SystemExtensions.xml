@@ -1056,6 +1056,24 @@
         <member name="M:System.Linq.ArrayEnumerable.Cast``1(System.Object[])">
             <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
         </member>
+        <member name="M:System.Linq.ArrayEnumerable.Aggregate``1(``0[],System.Func{``0,``0,``0})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" path="/summary"/>
+            </summary>
+            <typeparam name="TSource">
+            <inheritdoc
+                cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"
+                path="/typeparam[@name='TSource']"
+            />
+            </typeparam>
+            <param name="this">An array of <typeparamref name="TSource"/> elementsto aggregate over.</param>
+            <param name="func">
+            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" path="/param[@name='func']"/>
+            </param>
+            <returns>
+            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" path="/returns"/>
+            </returns>
+        </member>
         <member name="T:System.Linq.ArrayListEnumerable">
             <summary>
             Provides with extension methods on <see cref="T:System.Collections.ArrayList"/>.
