@@ -14,7 +14,7 @@ public interface INotation<TSelf, TElement, TConceptKindPresenter> : INotation
 	where TConceptKindPresenter : unmanaged, Enum
 {
 	/// <summary>
-	/// Try to parse the specified text, converting it into the target cell value via the specified notation kind.
+	/// Try to parse the specified text, converting it into the target value via the specified notation kind.
 	/// </summary>
 	/// <param name="text">The text to be parsed.</param>
 	/// <param name="notation">The notation that limits the conversion rule of the notation.</param>

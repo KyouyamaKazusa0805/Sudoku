@@ -6994,6 +6994,91 @@ if (student is (name: var name, age: >= 18))
             Indicates the notation kind is compact one.
             </summary>
         </member>
+        <member name="T:Sudoku.Text.Notation.GridNotation">
+            <summary>
+            Represents a notation that represents for a <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.GridNotation.Parse(System.String)">
+            <summary>
+            Same as <see cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>.
+            </summary>
+            <param name="text">The text to be parsed.</param>
+            <returns>The target <see cref="T:Sudoku.Concepts.Grid"/> instance.</returns>
+            <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.GridNotation.Parse(System.String,Sudoku.Text.Notation.GridNotation.Kind)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Throws when the argument <paramref name="notation"/> is not supported.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
+        </member>
+        <member name="M:Sudoku.Text.Notation.GridNotation.ToString(Sudoku.Concepts.Grid@)">
+            <summary>
+            Same as <see cref="M:Sudoku.Concepts.Grid.ToString"/>.
+            </summary>
+            <param name="value">The grid to be output.</param>
+            <returns>The string representation of the grid.</returns>
+            <seealso cref="M:Sudoku.Concepts.Grid.ToString"/>
+        </member>
+        <member name="M:Sudoku.Text.Notation.GridNotation.ToString(Sudoku.Concepts.Grid@,Sudoku.Text.Notation.GridNotation.Kind)">
+            <inheritdoc cref="M:Sudoku.Text.Notation.INotation`3.ToString(`1,`2)"/>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
+        </member>
+        <member name="T:Sudoku.Text.Notation.GridNotation.Kind">
+            <summary>
+            Represents a kind of output text mode for <see cref="T:Sudoku.Concepts.Grid"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Text.Notation.GridNotation.Kind.Susser">
+            <summary>
+            Indicates the Susser format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notation.GridNotation.Kind.SusserTreatingValuesAsGivens">
+            <summary>
+            Indicates the Susser format, treating all values as givens.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notation.GridNotation.Kind.SusserElimination">
+            <summary>
+            Indicates elimination notation that follows Susser format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notation.GridNotation.Kind.Pencilmark">
+            <summary>
+            Indicates pencilmark format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notation.GridNotation.Kind.HodokuLibrary">
+            <summary>
+            Indicates Hodoku library format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notation.GridNotation.Kind.MultipleLine">
+            <summary>
+            Indicates multiple line format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notation.GridNotation.Kind.Sukaku">
+            <summary>
+            Indicates sukaku format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notation.GridNotation.Kind.Excel">
+            <summary>
+            Indicates Excel format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Notation.GridNotation.Kind.OpenSudoku">
+            <summary>
+            Indicates Open-Sudoku format.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Notation.GridNotation.Sudoku#Text#Notation#INotation{Sudoku#Text#Notation#GridNotation,Sudoku#Concepts#Grid,Sudoku#Text#Notation#GridNotation#Kind}#ToString(Sudoku.Concepts.Grid,Sudoku.Text.Notation.GridNotation.Kind)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Text.Notation.HouseNotation">
             <summary>
             Represents a type that can output notations for <see cref="T:System.Int32"/> values.
@@ -7077,7 +7162,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Notation.INotation`3.Parse(System.String,`2)">
             <summary>
-            Try to parse the specified text, converting it into the target cell value via the specified notation kind.
+            Try to parse the specified text, converting it into the target value via the specified notation kind.
             </summary>
             <param name="text">The text to be parsed.</param>
             <param name="notation">The notation that limits the conversion rule of the notation.</param>
