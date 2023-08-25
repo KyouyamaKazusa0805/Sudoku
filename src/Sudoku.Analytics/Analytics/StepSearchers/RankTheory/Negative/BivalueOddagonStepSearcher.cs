@@ -283,7 +283,8 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	/// </returns>
 	private static unsafe BivalueOddagon[] CollectBivalueOddagons(Mask digitsMask)
 	{
-		var condition = (CollectorPredicateFunc)(&GuardianOrBivalueOddagonSatisfyingPredicate);
+		static bool predicate(scoped in CellMap loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
+		var condition = (CollectorPredicateFunc)(&predicate);
 		var result = new List<BivalueOddagon>();
 		var d1 = TrailingZeroCount(digitsMask);
 		var d2 = digitsMask.GetNextSet(d1);
@@ -361,11 +362,4 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			}
 		}
 	}
-
-	/// <summary>
-	/// Defines a templating method that can determine whether a loop is a valid bi-value oddagon.
-	/// </summary>
-	/// <param name="loop">The loop to be checked.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	private static bool GuardianOrBivalueOddagonSatisfyingPredicate(scoped in CellMap loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
 }

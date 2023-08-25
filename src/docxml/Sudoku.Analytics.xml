@@ -6857,13 +6857,6 @@
             Checks for bi-value oddagon loops using recursion.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Defines a templating method that can determine whether a loop is a valid bi-value oddagon.
-            </summary>
-            <param name="loop">The loop to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher">
             <summary>
             Provides with a <b>Chromatic Pattern</b> step searcher.
