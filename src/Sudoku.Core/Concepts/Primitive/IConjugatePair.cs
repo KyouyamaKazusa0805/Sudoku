@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Primitive;
 
 /// <summary>
 /// Represents a role that describes for a conjugate pair.

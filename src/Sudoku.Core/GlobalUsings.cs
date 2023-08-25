@@ -6,6 +6,7 @@ global using System.SourceGeneration;
 global using Sudoku.Algorithm.Solving;
 global using Sudoku.Analytics;
 global using Sudoku.Concepts;
+global using Sudoku.Concepts.Primitive;
 global using Sudoku.Linq;
 global using Sudoku.Text.Formatting;
 global using Sudoku.Text.Notation;

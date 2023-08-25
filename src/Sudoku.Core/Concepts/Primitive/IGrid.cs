@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Primitive;
 
 /// <summary>
 /// Represents a role that executes like a sudoku grid concept.
