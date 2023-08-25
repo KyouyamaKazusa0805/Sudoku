@@ -1,4 +1,3 @@
-#pragma warning disable IDE0032, IDE0064
 namespace Sudoku.Concepts;
 
 /// <summary>
