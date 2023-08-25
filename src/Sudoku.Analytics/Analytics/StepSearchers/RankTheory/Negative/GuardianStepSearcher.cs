@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics.StepSearchers;
 
+using unsafe CollectorPredicateFunc = delegate* managed<in CellMap, bool>;
+
 /// <summary>
 /// Provides with a <b>Guardian</b> step searcher.
 /// The step searcher will include the following techniques:
@@ -47,7 +49,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 				continue;
 			}
 
-			var foundData = Cached.GatherGuardianLoops(digit);
+			var foundData = CollectGuardianLoops(digit);
 			if (foundData.Length == 0)
 			{
 				continue;
@@ -101,23 +103,18 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 
 		return null;
 	}
-}
 
-/// <summary>
-/// Represents a cached gathering operation set.
-/// </summary>
-file static unsafe class Cached
-{
+
 	/// <summary>
-	/// Try to gather all possible loops which should satisfy the specified condition.
+	/// Try to collect all possible loops which should satisfy the specified condition.
 	/// </summary>
 	/// <param name="digit">The digit used.</param>
 	/// <returns>
 	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
 	/// </returns>
-	public static Guardian[] GatherGuardianLoops(Digit digit)
+	private static unsafe Guardian[] CollectGuardianLoops(Digit digit)
 	{
-		var condition = (delegate*<in CellMap, bool>)&GuardianOrBivalueOddagonSatisfyingPredicate;
+		var condition = (CollectorPredicateFunc)(&GuardianOrBivalueOddagonSatisfyingPredicate);
 
 		var result = new List<Guardian>();
 		foreach (var cell in CandidatesMap[digit])
@@ -131,14 +128,14 @@ file static unsafe class Cached
 	/// <summary>
 	/// Checks for guardian loops using recursion.
 	/// </summary>
-	private static void DepthFirstSearching_Guardian(
+	private static unsafe void DepthFirstSearching_Guardian(
 		Cell startCell,
 		Cell lastCell,
 		House lastHouse,
 		scoped in CellMap currentLoop,
 		scoped in CellMap currentGuardians,
 		Digit digit,
-		delegate*<in CellMap, bool> condition,
+		CollectorPredicateFunc condition,
 		List<Guardian> result
 	)
 	{

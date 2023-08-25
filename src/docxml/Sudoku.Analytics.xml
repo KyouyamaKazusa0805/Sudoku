@@ -4061,14 +4061,9 @@
         <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.Cached">
+        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher.CollectConjugatePairs">
             <summary>
-            Represents a cached gathering operation set.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.Gather">
-            <summary>
-            Gathers possible conjugate pairs grouped by digit.
+            Collect possible conjugate pairs grouped by digit.
             </summary>
             <returns>The conjugate pairs found, grouped by digit.</returns>
         </member>
@@ -6848,27 +6843,21 @@
             Check for type 3.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.Cached">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.CollectBivalueOddagons(System.Int16)">
             <summary>
-            Represents a cached gathering operation set.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.GatherBivalueOddagons(System.Int16)">
-            <summary>
-            Try to gather all possible loops being used in technique bivalue oddagons,
-            which should satisfy the specified condition.
+            Try to collect all possible loops being used in technique bivalue oddagons, which should satisfy the specified condition.
             </summary>
             <param name="digitsMask">The digits used.</param>
             <returns>
             Returns a list of array of candidates used in the loop, as the data of possible found loops.
             </returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.DepthFirstSearching_BivalueOddagon(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.DataModel.BivalueOddagon})">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.DepthFirstSearching_BivalueOddagon(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.DataModel.BivalueOddagon})">
             <summary>
             Checks for bi-value oddagon loops using recursion.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
             <summary>
             Defines a templating method that can determine whether a loop is a valid bi-value oddagon.
             </summary>
@@ -6974,26 +6963,21 @@
         <member name="M:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.Cached">
+        <member name="M:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.CollectGuardianLoops(System.Int32)">
             <summary>
-            Represents a cached gathering operation set.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.GatherGuardianLoops(System.Int32)">
-            <summary>
-            Try to gather all possible loops which should satisfy the specified condition.
+            Try to collect all possible loops which should satisfy the specified condition.
             </summary>
             <param name="digit">The digit used.</param>
             <returns>
             Returns a list of array of candidates used in the loop, as the data of possible found loops.
             </returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.DepthFirstSearching_Guardian(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,,System.Collections.Generic.List{Sudoku.DataModel.Guardian})">
+        <member name="M:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.DepthFirstSearching_Guardian(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,,System.Collections.Generic.List{Sudoku.DataModel.Guardian})">
             <summary>
             Checks for guardian loops using recursion.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.Cached.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
             <summary>
             Defines a templating method that can determine whether a loop is a valid guardian.
             </summary>

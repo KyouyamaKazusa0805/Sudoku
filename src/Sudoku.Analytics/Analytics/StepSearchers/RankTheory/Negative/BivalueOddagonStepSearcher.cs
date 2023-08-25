@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics.StepSearchers;
 
+using unsafe CollectorPredicateFunc = delegate* managed<in CellMap, bool>;
+
 /// <summary>
 /// <para>
 /// Provides with a <b>Bi-value Oddagon</b> step searcher.
@@ -43,7 +45,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			var d1 = TrailingZeroCount(mask);
 			var d2 = mask.GetNextSet(d1);
 			var comparer = (Mask)(1 << d1 | 1 << d2);
-			var foundData = Cached.GatherBivalueOddagons(comparer);
+			var foundData = CollectBivalueOddagons(comparer);
 			if (foundData.Length == 0)
 			{
 				continue;
@@ -270,25 +272,18 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	ReturnNull:
 		return null;
 	}
-}
 
-/// <summary>
-/// Represents a cached gathering operation set.
-/// </summary>
-file static unsafe class Cached
-{
+
 	/// <summary>
-	/// Try to gather all possible loops being used in technique bivalue oddagons,
-	/// which should satisfy the specified condition.
+	/// Try to collect all possible loops being used in technique bivalue oddagons, which should satisfy the specified condition.
 	/// </summary>
 	/// <param name="digitsMask">The digits used.</param>
 	/// <returns>
 	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
 	/// </returns>
-	public static BivalueOddagon[] GatherBivalueOddagons(Mask digitsMask)
+	private static unsafe BivalueOddagon[] CollectBivalueOddagons(Mask digitsMask)
 	{
-		var condition = (delegate*<in CellMap, bool>)&GuardianOrBivalueOddagonSatisfyingPredicate;
-
+		var condition = (CollectorPredicateFunc)(&GuardianOrBivalueOddagonSatisfyingPredicate);
 		var result = new List<BivalueOddagon>();
 		var d1 = TrailingZeroCount(digitsMask);
 		var d2 = digitsMask.GetNextSet(d1);
@@ -305,14 +300,14 @@ file static unsafe class Cached
 	/// <summary>
 	/// Checks for bi-value oddagon loops using recursion.
 	/// </summary>
-	private static void DepthFirstSearching_BivalueOddagon(
+	private static unsafe void DepthFirstSearching_BivalueOddagon(
 		Cell startCell,
 		Cell lastCell,
 		House lastHouse,
 		scoped in CellMap currentLoop,
 		Mask digitsMask,
 		scoped in CellMap fullCells,
-		delegate*<in CellMap, bool> condition,
+		CollectorPredicateFunc condition,
 		List<BivalueOddagon> result
 	)
 	{

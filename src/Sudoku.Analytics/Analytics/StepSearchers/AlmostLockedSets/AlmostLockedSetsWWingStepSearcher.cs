@@ -17,7 +17,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : AlmostLockedSets
 		var alses = GatherAlmostLockedSets(grid);
 
 		// Gather all conjugate pairs.
-		var conjugatePairs = Cached.Gather();
+		var conjugatePairs = CollectConjugatePairs();
 
 		// Iterate on each ALS.
 		for (var (i, length) = (0, alses.Length); i < length - 1; i++)
@@ -187,18 +187,12 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : AlmostLockedSets
 
 		return null;
 	}
-}
 
-/// <summary>
-/// Represents a cached gathering operation set.
-/// </summary>
-file static class Cached
-{
 	/// <summary>
-	/// Gathers possible conjugate pairs grouped by digit.
+	/// Collect possible conjugate pairs grouped by digit.
 	/// </summary>
 	/// <returns>The conjugate pairs found, grouped by digit.</returns>
-	public static List<Conjugate>?[] Gather()
+	private static List<Conjugate>?[] CollectConjugatePairs()
 	{
 		var conjugatePairs = new List<Conjugate>?[9];
 		for (var digit = 0; digit < 9; digit++)
