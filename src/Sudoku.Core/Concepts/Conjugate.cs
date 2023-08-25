@@ -77,7 +77,7 @@ public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] int mas
 	public CellMap Map
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CellsMap[From] + To;
+		get => [From, To];
 	}
 
 	/// <inheritdoc/>

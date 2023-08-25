@@ -988,12 +988,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 		void gather(scoped in Grid grid, scoped in CellMap otherCellsMap, bool isRow, Digit digit, House house1, House house2)
 		{
-			var precheck = isRow
-				&& IsConjugatePair(digit, CellsMap[corner1] + o1, house1)
-				&& IsConjugatePair(digit, CellsMap[corner2] + o2, house2)
-				|| !isRow
-				&& IsConjugatePair(digit, CellsMap[corner1] + o2, house1)
-				&& IsConjugatePair(digit, CellsMap[corner2] + o1, house2);
+			var precheck = isRow && IsConjugatePair(digit, [corner1, o1], house1) && IsConjugatePair(digit, [corner2, o2], house2)
+				|| !isRow && IsConjugatePair(digit, [corner1, o2], house1) && IsConjugatePair(digit, [corner2, o1], house2);
 			if (!precheck)
 			{
 				return;
@@ -1374,7 +1370,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					for (var digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
 						var digit = digits[digitIndex];
-						if (!IsConjugatePair(digit, CellsMap[cell] + otherCell, house))
+						if (!IsConjugatePair(digit, [cell, otherCell], house))
 						{
 							continue;
 						}
@@ -1544,7 +1540,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 					foreach (var digit in stackalloc[] { d1, d2 })
 					{
-						if (!IsConjugatePair(digit, CellsMap[cell] + otherCell, house))
+						if (!IsConjugatePair(digit, [cell, otherCell], house))
 						{
 							continue;
 						}
@@ -2956,7 +2952,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						isAvoidable,
 						wDigit,
 						otherCellsMap,
-						CellsMap[endCell1] + endCell2,
+						[endCell1, endCell2],
 						index
 					)
 				);
@@ -3058,9 +3054,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					}
 					case [var i, var j, var k]:
 					{
-						list.Add(CellsMap[i] + j);
-						list.Add(CellsMap[j] + k);
-						list.Add(CellsMap[i] + k);
+						list.Add([i, j]);
+						list.Add([j, k]);
+						list.Add([i, k]);
 						list.Add(emptyCellsInInterMap);
 						break;
 					}
@@ -4471,7 +4467,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									d2,
 									cells,
 									guardianCells,
-									CellsMap[startCell] + endCell,
+									[startCell, endCell],
 									isIncomplete,
 									false,
 									index

@@ -44,7 +44,7 @@ public interface IConjugatePair<TSelf, THouseMask, TMask, TCell, TDigit, THouse,
 	/// <summary>
 	/// Indicates the full map of cells used.
 	/// </summary>
-	public virtual TBitStatusMap Map => TBitStatusMap.Empty + From + To;
+	public virtual TBitStatusMap Map => [From, To];
 
 	/// <summary>
 	/// Indicates the house that two cells lie in.
