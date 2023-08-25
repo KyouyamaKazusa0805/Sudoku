@@ -6,13 +6,12 @@ namespace Sudoku.Text.Formatting;
 /// representing this instance. This type is used as arguments being passed in method <see cref="Grid.ToString(IGridFormatter)"/>.
 /// </para>
 /// <!--THE FOLLOWING COMMENT BLOCK IS TEMPORARILY DISABLED! THE TEXT ARE TOO LONG TO BE DISPLAYED ONTO TOOLTIP IN VISUAL STUDIO!-->
-/// <!--
 /// <para>
 /// The built-in derived types are:
 /// <list type="table">
 /// <listheader>
-/// <term>Formatter type</term>
-/// <description>Description about this type</description>
+/// <term>Formatter Type</term>
+/// <description>Description</description>
 /// </listheader>
 /// <item>
 /// <term><see cref="SusserFormat"/> (Recommend)</term>
@@ -83,13 +82,13 @@ namespace Sudoku.Text.Formatting;
 /// </item>
 /// </list>
 /// </para>
-/// -->
 /// <para>
 /// If you want to control the customized formatting on <see cref="Grid"/> instances, this type will be very useful.
 /// For more information about this type and its derived (implemented) types, please visit the documentation comments
 /// of members <see cref="Grid.ToString(IGridFormatter)"/> and <see cref="Grid.ToString(string?, IFormatProvider?)"/>,
 /// specially for arguments in those members.
 /// </para>
+/// <!--
 /// <para>
 /// In addition, you can also define your own formatter, by using this type, you can just implement this interface:
 /// <code><![CDATA[
@@ -106,6 +105,7 @@ namespace Sudoku.Text.Formatting;
 /// }
 /// ]]></code>
 /// </para>
+/// -->
 /// </summary>
 /// <seealso cref="Grid"/>
 /// <seealso cref="Grid.ToString(IGridFormatter)"/>
