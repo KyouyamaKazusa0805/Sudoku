@@ -1435,18 +1435,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.ToString(Sudoku.Text.Formatting.ICandidateMapFormatter)">
-            <summary>
-            Gets <see cref="T:System.String"/> representation of the current <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, using pre-defined formatters.
-            </summary>
-            <param name="candidateMapFormatter">
-            The <see cref="T:Sudoku.Concepts.CandidateMap"/> formatter instance to format the current instance.
-            </param>
-            <returns>The <see cref="T:System.String"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.GetEnumerator">
             <inheritdoc/>
         </member>
@@ -1481,12 +1469,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Remove(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#ISimpleFormattable#ToString(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
@@ -1934,62 +1916,10 @@ if (student is (name: var name, age: >= 18))
             If all rules are compared, but they are still considered equal, then return 0.
             </returns>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.ToArray">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.ToString(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.ToString(Sudoku.Text.Formatting.ICellMapFormatter)">
-            <summary>
-            Gets <see cref="T:System.String"/> representation of the current <see cref="T:Sudoku.Concepts.CellMap"/> instance, using pre-defined formatters.
-            </summary>
-            <param name="cellMapFormatter">
-            The <see cref="T:Sudoku.Concepts.CellMap"/> formatter instance to format the current instance.
-            </param>
-            <returns>The <see cref="T:System.String"/> result.</returns>
-            <remarks>
-            <para>
-            The target and supported types are stored in namespace <see cref="N:Sudoku.Text.Formatting"/>.
-            If you don't remember the full format strings, you can try this method instead by passing
-            actual <see cref="T:Sudoku.Text.Formatting.ICellMapFormatter"/> instances.
-            </para>
-            <para>
-            For example, by using Susser formatter <see cref="T:Sudoku.Text.Formatting.RxCyFormat"/> instances:
-            <code><![CDATA[
-            // Suppose the variable is of type 'CellMap'.
-            var cells = ...;
-            
-            // Creates a RxCyFormat-based formatter.
-            var formatter = RxCyFormat.Default;
-            
-            // Using this method to get the target string representation.
-            string targetStr = cells.ToString(formatter);
-            
-            // Output the result.
-            Console.WriteLine(targetStr);
-            ]]></code>
-            </para>
-            <para>
-            In some cases we suggest you use this method instead of calling <see cref="M:Sudoku.Concepts.CellMap.ToString(System.String)"/>
-            and <see cref="M:Sudoku.Concepts.CellMap.ToString(System.String,System.IFormatProvider)"/> because you may not remember all possible string formats.
-            </para>
-            <para>
-            In addition, the method <see cref="M:Sudoku.Concepts.CellMap.ToString(System.String,System.IFormatProvider)"/> is also compatible with this method.
-            If you forget to call this one, you can also use that method to get the same target result by passing first argument
-            named <c>format</c> with <see langword="null"/> value:
-            <code><![CDATA[
-            string targetStr = cells.ToString(null, formatter);
-            ]]></code>
-            </para>
-            </remarks>
-            <seealso cref="N:Sudoku.Text.Formatting"/>
-            <seealso cref="T:Sudoku.Text.Formatting.ICellMapFormatter"/>
-            <seealso cref="T:Sudoku.Text.Formatting.RxCyFormat"/>
-            <seealso cref="M:Sudoku.Concepts.CellMap.ToString(System.String)"/>
-            <seealso cref="M:Sudoku.Concepts.CellMap.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.GetEnumerator">
@@ -2195,9 +2125,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.CellMap.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Equality(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
@@ -5698,56 +5625,6 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>assembly</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Text.Formatting.CellMapBinaryFormat">
-            <summary>
-            Defines a formatter that formats a <see cref="T:Sudoku.Concepts.CellMap"/>, converting into a <see cref="T:System.String"/> of a list of binary value
-            to display all values.
-            </summary>
-            <param name="WithSeparator">
-            <para>Indicates whether the formatter will emit a separator between two adjacent 27-bit chunks.</para>
-            <para>The default value is <see langword="true"/>.</para>
-            </param>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.CellMapBinaryFormat.#ctor(System.Boolean)">
-            <summary>
-            Defines a formatter that formats a <see cref="T:Sudoku.Concepts.CellMap"/>, converting into a <see cref="T:System.String"/> of a list of binary value
-            to display all values.
-            </summary>
-            <param name="WithSeparator">
-            <para>Indicates whether the formatter will emit a separator between two adjacent 27-bit chunks.</para>
-            <para>The default value is <see langword="true"/>.</para>
-            </param>
-        </member>
-        <member name="P:Sudoku.Text.Formatting.CellMapBinaryFormat.WithSeparator">
-            <summary>
-            <para>Indicates whether the formatter will emit a separator between two adjacent 27-bit chunks.</para>
-            <para>The default value is <see langword="true"/>.</para>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.CellMapBinaryFormat.ToString(Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.Formatting.CellMapFormatterFactory">
-            <summary>
-            Indicates the factory that creates the cell map formatter.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.CellMapFormatterFactory.GetBuiltInFormatter(System.String)">
-            <summary>
-            Get a built-in <see cref="T:Sudoku.Text.Formatting.ICellMapFormatter"/> instance according to the specified format.
-            </summary>
-            <param name="format">The format.</param>
-            <returns>The grid formatter.</returns>
-            <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
-        </member>
-        <member name="T:Sudoku.Text.Formatting.CellMapTableFormat">
-            <summary>
-            Defines a formatter that formats a <see cref="T:Sudoku.Concepts.CellMap"/>, converting into a table <see cref="T:System.String"/> value to display all values.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.CellMapTableFormat.ToString(Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Text.Formatting.ExcelFormat">
             <summary>
             Represents with Excel formatter.
@@ -5773,28 +5650,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Formatting.ExcelFormat.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.Formatting.FormattingMode">
-            <summary>
-            Represents for a formatting mode (simple, normal or full). The modes will correspond to the methods
-            <c>ToSimpleString</c>, <c>ToString</c> and <c>ToFullString</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.FormattingMode.Simple">
-            <summary>
-            Indicates the formatting mode is simple, which means the result string will be more simple
-            that options <see cref="F:Sudoku.Text.Formatting.FormattingMode.Normal"/> or <see cref="F:Sudoku.Text.Formatting.FormattingMode.Full"/> behaves.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.FormattingMode.Normal">
-            <summary>
-            Indicates the formatting mode is normal, which means all important data will be displayed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Formatting.FormattingMode.Full">
-            <summary>
-            Indicates the formatting mode is full, which means all possible data will be displayed.
-            </summary>
         </member>
         <member name="T:Sudoku.Text.Formatting.GridFormatterFactory">
             <summary>
@@ -5887,71 +5742,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Formatting.HodokuLibraryFormat.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.Formatting.ICandidateMapFormatter">
-            <summary>
-            Represents with a formatter type that formats and parses a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance,
-            converting it into an equivalent <see cref="T:System.String"/> value.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.ICandidateMapFormatter.ToString(Sudoku.Concepts.CandidateMap@)">
-            <summary>
-            Try to format a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance into the specified target-formatted <see cref="T:System.String"/> representation.
-            </summary>
-            <param name="candidateMap">A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance to be formatted.</param>
-            <returns>A <see cref="T:System.String"/> representation as result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.ICandidateMapFormatter.System#IFormatProvider#GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.Formatting.ICellMapFormatter">
-            <summary>
-            Represents with a formatter type that formats and parses a <see cref="T:Sudoku.Concepts.CellMap"/> instance,
-            converting it into an equivalent <see cref="T:System.String"/> value.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CellMap"/>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.ICellMapFormatter.ToString(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to format a <see cref="T:Sudoku.Concepts.CellMap"/> instance into the specified target-formatted <see cref="T:System.String"/> representation.
-            </summary>
-            <param name="cellMap">A <see cref="T:Sudoku.Concepts.CellMap"/> instance to be formatted.</param>
-            <returns>A <see cref="T:System.String"/> representation as result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.ICellMapFormatter.System#IFormatProvider#GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.ICellMapFormatter.System#ICustomFormatter#Format(System.String,System.Object,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.Formatting.ICollectionFormatter`1">
-            <summary>
-            Defines a formatter that can create a <see cref="T:System.String"/> value representing the current instances
-            of type <typeparamref name="TElement"/>.
-            </summary>
-            <typeparam name="TElement">The type of the elements in the collection.</typeparam>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.ICollectionFormatter`1.Format(System.Collections.Generic.IEnumerable{`0},System.String)">
-            <summary>
-            Try to format a list of <typeparamref name="TElement"/> instances, split by <paramref name="separator"/>s
-            between two adjacent elements.
-            </summary>
-            <param name="elements">The elements to be formatted.</param>
-            <param name="separator">
-            The separator that will be inserted into each two adjacent elements in this collection.
-            </param>
-            <returns>A <see cref="T:System.String"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.ICollectionFormatter`1.Format(System.Collections.Generic.IEnumerable{`0},Sudoku.Text.Formatting.FormattingMode)">
-            <summary>
-            Try to format a list of <typeparamref name="TElement"/> instances using the specified formatting mode.
-            </summary>
-            <param name="elements">The elements to be formatted.</param>
-            <param name="formattingMode">
-            The formatting mode. The default value is <see cref="F:Sudoku.Text.Formatting.FormattingMode.Simple"/>.
-            </param>
-            <returns>A <see cref="T:System.String"/> result.</returns>
         </member>
         <member name="T:Sudoku.Text.Formatting.IGridFormatter">
             <summary>
@@ -6080,23 +5870,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="grid">A <see cref="T:Sudoku.Concepts.Grid"/> instance to be formatted.</param>
             <returns>A <see cref="T:System.String"/> representation as result.</returns>
-        </member>
-        <member name="T:Sudoku.Text.Formatting.K9Format">
-            <summary>
-            Defines a formatter that uses <b>K9</b> rule to format a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <remarks>
-            <inheritdoc cref="F:Sudoku.Text.Notation.CellNotation.Kind.K9" path="/remarks"/>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.K9Format.ToString(Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.K9Format.ToString(Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.K9Format.System#IFormatProvider#GetFormat(System.Type)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Formatting.MultipleLineFormat">
             <summary>
@@ -6347,23 +6120,6 @@ if (student is (name: var name, age: >= 18))
             Creates a dictionary.
             </summary>
             <returns>The dictionary instance.</returns>
-        </member>
-        <member name="T:Sudoku.Text.Formatting.RxCyFormat">
-            <summary>
-            Defines a formatter that uses <b>RxCy</b> rule to format a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <remarks>
-            <inheritdoc cref="F:Sudoku.Text.Notation.CellNotation.Kind.RxCy" path="/remarks"/>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.RxCyFormat.ToString(Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.RxCyFormat.ToString(Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.RxCyFormat.System#IFormatProvider#GetFormat(System.Type)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Formatting.SukakuFormat">
             <summary>

@@ -27,7 +27,6 @@ namespace Sudoku.Concepts;
 [LargeStructure]
 [Equals]
 [GetHashCode]
-[ToString]
 [EqualityOperators]
 [ComparisonOperators]
 public unsafe partial struct CellMap :
@@ -601,76 +600,13 @@ public unsafe partial struct CellMap :
 	public readonly int CompareTo(scoped in CellMap other)
 		=> _count > other._count ? 1 : _count < other._count ? -1 : Sign($"{this:b}".CompareTo($"{other:b}"));
 
+	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly string ToString() => CellNotation.ToCollectionString(this);
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Cell[] ToArray() => Offsets;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(string? format) => ToString(format, null);
-
-	/// <summary>
-	/// Gets <see cref="string"/> representation of the current <see cref="CellMap"/> instance, using pre-defined formatters.
-	/// </summary>
-	/// <param name="cellMapFormatter">
-	/// The <see cref="CellMap"/> formatter instance to format the current instance.
-	/// </param>
-	/// <returns>The <see cref="string"/> result.</returns>
-	/// <remarks>
-	/// <para>
-	/// The target and supported types are stored in namespace <see cref="Text.Formatting"/>.
-	/// If you don't remember the full format strings, you can try this method instead by passing
-	/// actual <see cref="ICellMapFormatter"/> instances.
-	/// </para>
-	/// <para>
-	/// For example, by using Susser formatter <see cref="RxCyFormat"/> instances:
-	/// <code><![CDATA[
-	/// // Suppose the variable is of type 'CellMap'.
-	/// var cells = ...;
-	/// 
-	/// // Creates a RxCyFormat-based formatter.
-	/// var formatter = RxCyFormat.Default;
-	/// 
-	/// // Using this method to get the target string representation.
-	/// string targetStr = cells.ToString(formatter);
-	/// 
-	/// // Output the result.
-	/// Console.WriteLine(targetStr);
-	/// ]]></code>
-	/// </para>
-	/// <para>
-	/// In some cases we suggest you use this method instead of calling <see cref="ToString(string?)"/>
-	/// and <see cref="ToString(string?, IFormatProvider?)"/> because you may not remember all possible string formats.
-	/// </para>
-	/// <para>
-	/// In addition, the method <see cref="ToString(string?, IFormatProvider?)"/> is also compatible with this method.
-	/// If you forget to call this one, you can also use that method to get the same target result by passing first argument
-	/// named <c>format</c> with <see langword="null"/> value:
-	/// <code><![CDATA[
-	/// string targetStr = cells.ToString(null, formatter);
-	/// ]]></code>
-	/// </para>
-	/// </remarks>
-	/// <seealso cref="Text.Formatting"/>
-	/// <seealso cref="ICellMapFormatter"/>
-	/// <seealso cref="RxCyFormat"/>
-	/// <seealso cref="ToString(string?)"/>
-	/// <seealso cref="ToString(string?, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(ICellMapFormatter cellMapFormatter) => cellMapFormatter.ToString(this);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(string? format, IFormatProvider? formatProvider)
-		=> (format, formatProvider) switch
-		{
-			(null, null) => ToString(new RxCyFormat()),
-			(not null, _) => ToString(format),
-			(_, ICellMapFormatter formatter) => formatter.ToString(this),
-			(_, ICustomFormatter formatter) => formatter.Format(format, this, formatProvider),
-			(_, CultureInfo { Name: ['Z' or 'z', 'H' or 'h', ..] }) => ToString(new K9Format()),
-			_ => ToString(new RxCyFormat())
-		};
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

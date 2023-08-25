@@ -274,27 +274,6 @@ public partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly string ToString() => CandidateNotation.ToCollectionString(this);
 
-	/// <summary>
-	/// Gets <see cref="string"/> representation of the current <see cref="CandidateMap"/> instance, using pre-defined formatters.
-	/// </summary>
-	/// <param name="candidateMapFormatter">
-	/// The <see cref="CandidateMap"/> formatter instance to format the current instance.
-	/// </param>
-	/// <returns>The <see cref="string"/> result.</returns>
-	public readonly string ToString(ICandidateMapFormatter candidateMapFormatter) => candidateMapFormatter.ToString(this);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(string? format, IFormatProvider? formatProvider)
-		=> (format, formatProvider) switch
-		{
-			(null, null) => ToString(new RxCyFormat()),
-			//(not null, _) => ToString(format),
-			(_, ICandidateMapFormatter formatter) => formatter.ToString(this),
-			(_, CultureInfo { Name: ['Z' or 'z', 'H' or 'h', ..] }) => ToString(new K9Format()),
-			_ => ToString(new RxCyFormat())
-		};
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly OneDimensionalArrayEnumerator<Candidate> GetEnumerator() => Offsets.EnumerateImmutable();
@@ -506,14 +485,6 @@ public partial struct CandidateMap :
 			_count--;
 		}
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly string ISimpleFormattable.ToString(string? format) => ToString();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

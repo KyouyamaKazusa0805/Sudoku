@@ -13,13 +13,11 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
 	IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
-	IFormattable,
 	IMinMaxValue<TSelf>,
 	IModulusOperators<TSelf, TSelf, TSelf>,
 	IParsable<TSelf>,
 	IReadOnlySet<TElement>,
 	ISet<TElement>,
-	ISimpleFormattable,
 	ISimpleParsable<TSelf>,
 	ISubtractionOperators<TSelf, TSelf, TSelf>
 	where TSelf : unmanaged, IBitStatusMap<TSelf, TElement>
