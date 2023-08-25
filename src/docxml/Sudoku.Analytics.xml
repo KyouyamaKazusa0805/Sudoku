@@ -6852,11 +6852,6 @@
             Returns a list of array of candidates used in the loop, as the data of possible found loops.
             </returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.DepthFirstSearching_BivalueOddagon(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,,System.Collections.Generic.List{Sudoku.DataModel.BivalueOddagon})">
-            <summary>
-            Checks for bi-value oddagon loops using recursion.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher">
             <summary>
             Provides with a <b>Chromatic Pattern</b> step searcher.
@@ -6964,18 +6959,6 @@
             <returns>
             Returns a list of array of candidates used in the loop, as the data of possible found loops.
             </returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.DepthFirstSearching_Guardian(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,,System.Collections.Generic.List{Sudoku.DataModel.Guardian})">
-            <summary>
-            Checks for guardian loops using recursion.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.GuardianOrBivalueOddagonSatisfyingPredicate(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Defines a templating method that can determine whether a loop is a valid guardian.
-            </summary>
-            <param name="loop">The loop to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher">
             <summary>
