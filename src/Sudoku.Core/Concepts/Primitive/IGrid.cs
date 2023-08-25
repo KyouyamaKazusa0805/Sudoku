@@ -227,7 +227,7 @@ public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, 
 	/// </summary>
 	/// <param name="cell">The index of the cell.</param>
 	/// <returns>A reference to the mask at the specified cell offset.</returns>
-	public abstract TMask this[TCell cell] { get; }
+	public abstract TMask this[TCell cell] { get; set; }
 
 	/// <summary>
 	/// Creates a mask of type <typeparamref name="TMask"/> that represents the usages of digits 1 to 9,
@@ -235,7 +235,7 @@ public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, 
 	/// </summary>
 	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
 	/// <returns>A mask of type <typeparamref name="TMask"/> that represents the usages of digits 1 to 9.</returns>
-	public abstract TMask this[scoped in TBitStatusMap cells] { get; }
+	public abstract TMask this[scoped in TBitStatusMap cells] { get; set; }
 
 	/// <summary>
 	/// <inheritdoc cref="this[in TBitStatusMap]" path="/summary"/>

@@ -438,9 +438,9 @@ public unsafe partial struct Grid : GridImpl
 
 
 	/// <inheritdoc/>
-	public readonly Mask this[scoped in CellMap cells]
+	public Mask this[scoped in CellMap cells]
 	{
-		get
+		readonly get
 		{
 			var result = (Mask)0;
 			foreach (var cell in cells)
@@ -449,6 +449,15 @@ public unsafe partial struct Grid : GridImpl
 			}
 
 			return (Mask)(result & MaxCandidatesMask);
+		}
+
+		[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
+		set
+		{
+			foreach (var cell in cells)
+			{
+				this[cell] = value;
+			}
 		}
 	}
 
@@ -511,7 +520,13 @@ public unsafe partial struct Grid : GridImpl
 	}
 
 	/// <inheritdoc/>
-	readonly Mask GridImpl.this[Cell cell] => this[cell];
+	Mask GridImpl.this[Cell cell]
+	{
+		readonly get => this[cell];
+
+		[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
+		set => this[cell] = value;
+	}
 
 
 	/// <inheritdoc/>
