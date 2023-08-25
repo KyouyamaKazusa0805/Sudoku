@@ -24,6 +24,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [StructLayout(LayoutKind.Auto)]
+[CollectionBuilder(typeof(CellMapCreator), nameof(CellMapCreator.Create))]
 [LargeStructure]
 [Equals]
 [GetHashCode]
@@ -730,7 +731,7 @@ public unsafe partial struct CellMap :
 							temp[j] = offsets[buffer[j]];
 						}
 
-						result[totalIndex++] = [.. temp];
+						result[totalIndex++] = (CellMap)temp;
 					}
 				}
 			}
@@ -763,7 +764,7 @@ public unsafe partial struct CellMap :
 							temp[j] = offsets[buffer[j]];
 						}
 
-						result.Add([.. temp]);
+						result.Add((CellMap)temp);
 					}
 				}
 			}

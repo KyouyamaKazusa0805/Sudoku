@@ -25,6 +25,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [StructLayout(LayoutKind.Auto)]
+[CollectionBuilder(typeof(CandidateMapCreator), nameof(CandidateMapCreator.Create))]
 [InlineArrayField<long>("_bits", 12)]
 [LargeStructure]
 [Equals]

@@ -19,6 +19,7 @@ using unsafe CandidatesRefreshingCallbackFunc = delegate* managed<ref Grid, void
 [JsonConverter(typeof(Converter))]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [InlineArray(81)]
+[CollectionBuilder(typeof(GridCreator), nameof(GridCreator.Create))]
 [LargeStructure]
 [Equals]
 [ToString]
@@ -67,7 +68,7 @@ public unsafe partial struct Grid : GridImpl
 	public static readonly void* RefreshingCandidates = (CandidatesRefreshingCallbackFunc)(&OnRefreshingCandidates);
 
 	/// <inheritdoc cref="GridImpl.Empty"/>
-	public static readonly Grid Empty;
+	public static readonly Grid Empty = [DefaultMask];
 
 	/// <inheritdoc cref="GridImpl.Undefined"/>
 	public static readonly Grid Undefined;
@@ -154,18 +155,6 @@ public unsafe partial struct Grid : GridImpl
 				// Set the state to 'CellState.Given'.
 				SetState(i, CellState.Given);
 			}
-		}
-	}
-
-
-	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
-	static Grid()
-	{
-		// Initializes the empty grid.
-		Empty = default;
-		for (var i = 0; i < 81; i++)
-		{
-			Empty[i] = DefaultMask;
 		}
 	}
 

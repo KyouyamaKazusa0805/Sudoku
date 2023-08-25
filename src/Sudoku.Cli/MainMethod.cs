@@ -2,7 +2,7 @@ using SpecialFolder = System.Environment.SpecialFolder;
 
 const int totalPuzzlesCount = 200000;
 var desktop = Environment.GetFolderPath(SpecialFolder.Desktop);
-for (var emptyCellsCount = 35; emptyCellsCount <= 55; emptyCellsCount += 5)
+for (var emptyCellsCount = 45; emptyCellsCount <= 55; emptyCellsCount += 5)
 {
 	var filePath = $@"{desktop}\空格数 {emptyCellsCount} 题库.txt";
 	await using var sw = new StreamWriter(filePath);

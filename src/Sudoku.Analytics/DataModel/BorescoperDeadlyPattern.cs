@@ -58,12 +58,12 @@ internal readonly partial struct BorescoperDeadlyPattern([DataMember(MemberKinds
 	/// <summary>
 	/// Indicates the map of pair 1 cells.
 	/// </summary>
-	public CellMap Pair1Map => [CellsMap[Pair1.A], Pair1.B];
+	public CellMap Pair1Map => [Pair1.A, Pair1.B];
 
 	/// <summary>
 	/// Indicates the map of pair 2 cells.
 	/// </summary>
-	public CellMap Pair2Map => [CellsMap[Pair2.A], Pair2.B];
+	public CellMap Pair2Map => [Pair2.A, Pair2.B];
 
 	/// <summary>
 	/// The map of other three (or four) cells.

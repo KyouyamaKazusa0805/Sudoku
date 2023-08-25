@@ -1659,6 +1659,26 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CandidateMap,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.CandidateMapCreator">
+            <summary>
+            Represents a type that has ability to create <see cref="T:Sudoku.Concepts.CandidateMap"/> instances called by compiler.
+            For the users' aspect, we can just use collection expressions.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMapCreator.Create">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
+            </summary>
+            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMapCreator.Create(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance via the specified candidates.
+            </summary>
+            <param name="candidates">The candidates.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.CellMap">
             <summary>
             Encapsulates a binary series of cell state table.
@@ -2241,6 +2261,26 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CellMap,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.CellMapCreator">
+            <summary>
+            Represents a type that has ability to create <see cref="T:Sudoku.Concepts.CellMap"/> instances called by compiler.
+            For the users' aspect, we can just use collection expressions.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMapCreator.Create">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMapCreator.Create(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.CellMap"/> instance via the specified cells.
+            </summary>
+            <param name="cells">The cells.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.CellState">
             <summary>
             Represents a cell state.
@@ -2634,19 +2674,6 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.ArgumentNullRefException">
             Throws when the argument <paramref name="firstElement" /> is <see langword="null" /> reference.
             </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
         </member>
         <member name="P:Sudoku.Concepts.Grid.IsSolved">
             <inheritdoc/>
@@ -3114,6 +3141,35 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates each value should minus one before creation.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.GridCreator">
+            <summary>
+            Represents a type that has ability to create <see cref="T:Sudoku.Concepts.Grid"/> instances called by compiler.
+            For the users' aspect, we can just use collection expressions.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridCreator.Create">
+            <summary>
+            Returns <see cref="F:Sudoku.Concepts.Grid.Undefined"/>, which is equivalent to <see langword="default"/>(<see cref="T:Sudoku.Concepts.Grid"/>).
+            </summary>
+            <returns>
+            Instance whose internal values are same as <see cref="F:Sudoku.Concepts.Grid.Undefined"/>, i.e. a copy from field <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.GridCreator.Create(System.ReadOnlySpan{System.Int16})">
+            <summary>
+            Returns a <see cref="T:Sudoku.Concepts.Grid"/> instance via the raw mask values.
+            </summary>
+            <param name="rawMaskValues">
+            <para>The raw mask values.</para>
+            <para>
+            This value can contain 1 or 81 elements.
+            If the array contain 1 element, all elements in the target sudoku grid will be initialized by it, the uniform value;
+            if the array contain 81 elements, elements will be initialized by the array one by one using the array elements respectively.
+            </para>
+            </param>
+            <returns>A <see cref="T:Sudoku.Concepts.Grid"/> result.</returns>
         </member>
         <member name="T:Sudoku.Concepts.GridMaskMergingMethod">
             <summary>
