@@ -1132,7 +1132,7 @@ file sealed class Converter : JsonConverter<CellMap>
 
 
 	/// <inheritdoc/>
-	public override CellMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	public override CellMap Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		var result = CellMap.Empty;
 		var parts = Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");

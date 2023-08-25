@@ -789,7 +789,7 @@ file sealed class Converter : JsonConverter<CandidateMap>
 
 
 	/// <inheritdoc/>
-	public override CandidateMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	public override CandidateMap Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		var result = CandidateMap.Empty;
 		var parts = Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
