@@ -210,6 +210,57 @@ internal static class ExplicitInterfaceImplHandler
 				var parametersList = string.Join(
 					comma,
 					from parameter in parameters
+					let attributeStrings = (
+						from attribute in parameter.GetAttributes()
+						let attributeTypeString = attribute.AttributeClass!.ToName()
+						let constructorArguments = attribute.ConstructorArguments
+						let constructorArgumentString = string.Join(
+							comma,
+							from argument in constructorArguments
+							let kind = argument.Kind
+							let value = argument.Value
+							let type = argument.Type
+							select kind switch
+							{
+								TypedConstantKind.Array => string.Join(", ", from argumentValue in argument.Values select value.ToString()),
+								TypedConstantKind.Type => ((INamedTypeSymbol)value).ToName(),
+								TypedConstantKind.Enum => $"({type.ToName()}){value!}",
+								_ => value.ToString()
+							}
+						)
+						let namedArguments = attribute.NamedArguments
+						let namedArgumentString = namedArguments switch
+						{
+							not [] => $", {string.Join(
+								comma,
+								from argument in namedArguments
+								let argumentName = argument.Key
+								let argumentValue = argument.Value
+								let kind = argumentValue.Kind
+								let value = argumentValue.Value
+								let type = argumentValue.Type
+								select kind switch
+								{
+									TypedConstantKind.Array => string.Join(", ", from argumentValue in argumentValue.Values select value.ToString()),
+									TypedConstantKind.Type => ((INamedTypeSymbol)value).ToName(),
+									TypedConstantKind.Enum => $"({type.ToName()}){value!}",
+									_ => value.ToString()
+								}
+							)}",
+							_ => string.Empty
+						}
+						select $"{attributeTypeString}({constructorArgumentString}{namedArgumentString})"
+					).ToArray()
+					let finalAttributes = attributeStrings switch
+					{
+						{ Length: not 0 } => string.Concat(from attributeString in attributeStrings select $"[{attributeString}]"),
+						_ => string.Empty
+					}
+					let parameterNullableToken = parameter switch
+					{
+						{ Type: { NullableAnnotation: Annotated, TypeKind: TypeKind.Class or TypeKind.Interface } } => "?",
+						_ => string.Empty
+					}
 					let modifier = (parameter.ScopedKind, parameter.RefKind) switch
 					{
 						(ScopedKind.None, RefKind.Ref) => "ref ",
@@ -221,7 +272,7 @@ internal static class ExplicitInterfaceImplHandler
 						(_, RefKind.Out) => "out ",
 						_ => string.Empty
 					}
-					select $"{modifier}{parameter.Type.ToName()} {parameter.Name}"
+					select $"{finalAttributes}{modifier}{parameter.Type.ToName()}{parameterNullableToken} {parameter.Name}"
 				);
 
 				var parametersListWithoutType = string.Join(comma, from parameter in parameters select parameter.Name);
