@@ -117,7 +117,7 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 		scoped var sb = new StringHandler(162);
 		var originalGrid = this switch
 		{
-			{ WithCandidates: true, ShortenSusser: false } => Grid.Parse(grid.ToString(null, this with { WithCandidates = false })),
+			{ WithCandidates: true, ShortenSusser: false } => Grid.Parse(grid.ToString(this with { WithCandidates = false })),
 			_ => Grid.Undefined
 		};
 
@@ -162,7 +162,6 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 							break;
 						}
 					}
-
 					break;
 				}
 				case CellState.Given:
@@ -199,13 +198,8 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 					case []:
 					{
 						// Can't find any simplifications.
-						CopyBlock(
-							ref AsByteRef(ref AsRef(resultSpan[characterIndexStart])),
-							ref AsByteRef(ref AsRef(sliced[0])),
-							sizeof(char) * 9);
-
+						CopyBlock(ref AsByteRef(ref AsRef(resultSpan[characterIndexStart])), ref AsByteRef(ref AsRef(sliced[0])), sizeof(char) * 9);
 						spanIndex += 9;
-
 						break;
 					}
 					case var collection:
@@ -228,7 +222,6 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 										j++;
 									}
 								}
-
 								break;
 							}
 							case var set:
@@ -248,11 +241,9 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 										j++;
 									}
 								}
-
 								break;
 							}
 						}
-
 						break;
 					}
 				}

@@ -5786,23 +5786,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Formatting.ExcelFormat.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.Formatting.ExtendedFormatAttribute">
-            <summary>
-            Indicates the extended format.
-            </summary>
-            <param name="format">Indicates the extended format.</param>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.ExtendedFormatAttribute.#ctor(System.String)">
-            <summary>
-            Indicates the extended format.
-            </summary>
-            <param name="format">Indicates the extended format.</param>
-        </member>
-        <member name="P:Sudoku.Text.Formatting.ExtendedFormatAttribute.Format">
-            <summary>
-            The generated property declaration for parameter <c>format</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Text.Formatting.FormattingMode">
             <summary>
             Represents for a formatting mode (simple, normal or full). The modes will correspond to the methods
@@ -6110,9 +6093,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="grid">A <see cref="T:Sudoku.Concepts.Grid"/> instance to be formatted.</param>
             <returns>A <see cref="T:System.String"/> representation as result.</returns>
-        </member>
-        <member name="M:Sudoku.Text.Formatting.IGridFormatter.System#IFormatProvider#GetFormat(System.Type)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Formatting.IGridFormatter.System#ICustomFormatter#Format(System.String,System.Object,System.IFormatProvider)">
             <inheritdoc/>

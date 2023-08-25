@@ -33,11 +33,7 @@ public interface ICellMapFormatter : IFormatProvider, ICustomFormatter
 			(_, CellMap target, null) => CellMapFormatterFactory.GetBuiltInFormatter(format) switch
 			{
 				{ } formatter => formatter.ToString(target),
-				_ => GetType().GetCustomAttribute<ExtendedFormatAttribute>() switch
-				{
-					{ Format: var f } when f == format => ToString(target),
-					_ => throw new FormatException($"The target format '{nameof(format)}' is invalid.")
-				}
+				_ => throw new FormatException($"The target format '{nameof(format)}' is invalid.")
 			},
 			(_, not CellMap, _) => throw new FormatException($"The argument '{nameof(arg)}' must be of type '{nameof(CellMap)}'.")
 		};

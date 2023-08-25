@@ -110,7 +110,7 @@ namespace Sudoku.Text.Formatting;
 /// <seealso cref="Grid"/>
 /// <seealso cref="Grid.ToString(IGridFormatter)"/>
 /// <seealso cref="Grid.ToString(string?, IFormatProvider?)"/>
-public interface IGridFormatter : IFormatProvider, ICustomFormatter
+public interface IGridFormatter : ICustomFormatter
 {
 	/// <summary>
 	/// Indicates the singleton instance.
@@ -132,11 +132,6 @@ public interface IGridFormatter : IFormatProvider, ICustomFormatter
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[return: NotNullIfNotNull(nameof(formatType))]
-	object? IFormatProvider.GetFormat(Type? formatType) => formatType == GetType() ? this : null;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	string ICustomFormatter.Format(string? format, object? arg, IFormatProvider? formatProvider)
 		=> (format, arg, formatProvider) switch
 		{
@@ -149,11 +144,7 @@ public interface IGridFormatter : IFormatProvider, ICustomFormatter
 			(_, Grid targetGrid, null) => GridFormatterFactory.GetBuiltInFormatter(format) switch
 			{
 				{ } formatter => formatter.ToString(targetGrid),
-				_ => GetType().GetCustomAttribute<ExtendedFormatAttribute>() switch
-				{
-					{ Format: var f } when f == format => ToString(targetGrid),
-					_ => throw new FormatException($"The target format '{nameof(format)}' is invalid.")
-				}
+				_ => throw new FormatException($"The target format '{nameof(format)}' is invalid.")
 			},
 			(_, not Grid, _) => throw new FormatException($"The argument '{nameof(arg)}' must be of type '{nameof(Grid)}'.")
 		};

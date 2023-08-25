@@ -1,9 +1,8 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Represents with Excel formatter.
 /// </summary>
-[ExtendedFormat("%")]
 public sealed record ExcelFormat : IGridFormatter
 {
 	/// <summary>

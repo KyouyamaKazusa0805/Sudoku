@@ -3,7 +3,6 @@ namespace Sudoku.Text.Formatting;
 /// <summary>
 /// Represents with OpenSudoku formatter.
 /// </summary>
-[ExtendedFormat("^")]
 public sealed record OpenSudokuFormat : IGridFormatter
 {
 	/// <summary>

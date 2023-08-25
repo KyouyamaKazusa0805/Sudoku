@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Represents with a Susser formatter, removing all plus mark <c>'+'</c> as modifiable distinction tokens.

@@ -17,7 +17,6 @@ namespace Sudoku.Concepts.Primitive;
 public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, TCandidate, THouse, TBitStatusMap, TConclusion, TConjugate> :
 	//IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
-	IFormattable,
 	IMinMaxValue<TSelf>,
 	IParsable<TSelf>,
 	IReadOnlyCollection<TDigit>,
