@@ -67,13 +67,11 @@ public ref struct HodokuPuzzleGenerator
 	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[SuppressMessage("Performance", "CA1861:Avoid constant arrays as arguments", Justification = "<Pending>")]
-	public unsafe HodokuPuzzleGenerator()
+	public HodokuPuzzleGenerator()
 	{
-		static void callback(scoped ref RecursionStackEntry element) => element = new();
 		_generateIndices = new int[81];
 		_stack = new RecursionStackEntry[82];
-		_stack.ForEachRefUnsafe(&callback);
+		_stack.ForEachRef((scoped ref RecursionStackEntry element) => element = new());
 	}
 
 
