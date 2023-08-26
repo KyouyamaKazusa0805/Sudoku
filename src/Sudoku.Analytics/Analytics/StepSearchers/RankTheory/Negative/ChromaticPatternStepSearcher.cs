@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using PatternOffsetTuple = ValueTuple<int[], int[], int[], int[]>;
+using PatternOffsetTuple = (int[], int[], int[], int[]);
 
 /// <summary>
 /// Provides with a <b>Chromatic Pattern</b> step searcher.
