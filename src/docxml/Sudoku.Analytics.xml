@@ -5944,6 +5944,9 @@
             ]]></code>
             </para>
             <para>Please note that corner cells may be aligned as a same row or column.</para>
+            <para>
+            <i>Also, this method is useless because it may be replaced with another techniques such as UR-XY-Wing and UR External Type 2.</i>
+            </para>
             </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckSueDeCoq(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">

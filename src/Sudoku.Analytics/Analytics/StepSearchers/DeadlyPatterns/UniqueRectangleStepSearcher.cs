@@ -176,12 +176,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		// Sort and remove duplicate instances if worth.
-		var resultList = list.Distinct() switch
-		{
-			UniqueRectangleStep[] a => [.. a],
-			HashSet<UniqueRectangleStep> s => [.. s],
-			List<UniqueRectangleStep> l => l
-		};
+		var resultList = list.Distinct() switch { UniqueRectangleStep[] a => [.. a], HashSet<UniqueRectangleStep> s => [.. s], List<UniqueRectangleStep> l => l };
 		resultList.Order();
 
 		if (context.OnlyFindOne)
@@ -303,7 +298,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2,
 									tempOtherCellsMap, index, (c1, c2) is (0, 3) or (1, 2)
 								);
-								CheckWWing(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+								//CheckWWing(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 							}
 
 							switch (c1, c2)
@@ -2837,6 +2832,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </para>
 	/// <para>Please note that corner cells may be aligned as a same row or column.</para>
+	/// <para>
+	/// <i>Also, this method is useless because it may be replaced with another techniques such as UR-XY-Wing and UR External Type 2.</i>
+	/// </para>
 	/// </remarks>
 	private void CheckWWing(
 		List<UniqueRectangleStep> accumulator,
