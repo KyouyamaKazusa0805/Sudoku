@@ -423,6 +423,7 @@ public unsafe partial struct CellMap :
 
 
 	/// <inheritdoc/>
+	[IndexerName("CellIndex")]
 	public readonly Cell this[int index]
 	{
 		get

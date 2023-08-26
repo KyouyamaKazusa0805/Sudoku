@@ -208,6 +208,7 @@ public partial struct CandidateMap :
 
 
 	/// <inheritdoc/>
+	[IndexerName("CandidateIndex")]
 	public readonly Candidate this[int index]
 	{
 		get

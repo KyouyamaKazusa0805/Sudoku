@@ -1404,7 +1404,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.CandidateMap.System#Numerics#IMinMaxValue{Sudoku#Concepts#CandidateMap}#MinValue">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Item(System.Int32)">
+        <member name="P:Sudoku.Concepts.CandidateMap.CandidateIndex(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.CopyTo(System.Int32*,System.Int32)">
@@ -1844,7 +1844,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.CellMap.System#Numerics#IMinMaxValue{Sudoku#Concepts#CellMap}#MinValue">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Item(System.Int32)">
+        <member name="P:Sudoku.Concepts.CellMap.CellIndex(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.CopyTo(System.Int32*,System.Int32)">
