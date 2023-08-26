@@ -2208,7 +2208,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Concepts.CellState.Undefined">
             <summary>
-            Indicates the cell state is invalid.
+            Indicates the cell state is invalid - it holds an empty cell without any candidates here.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.CellState.Empty">

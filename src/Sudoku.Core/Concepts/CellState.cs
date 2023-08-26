@@ -7,9 +7,8 @@ namespace Sudoku.Concepts;
 public enum CellState : byte
 {
 	/// <summary>
-	/// Indicates the cell state is invalid.
+	/// Indicates the cell state is invalid - it holds an empty cell without any candidates here.
 	/// </summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
 	Undefined = 0,
 
 	/// <summary>
