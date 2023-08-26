@@ -5116,7 +5116,11 @@ if (student is (name: var name, age: >= 18))
             <param name="creatingOption">The grid creating option.</param>
         </member>
         <member name="M:Sudoku.Concepts.Primitive.IGrid`11.Parse(System.String)">
-            <inheritdoc/>
+            <summary>
+            <inheritdoc cref="M:System.ISimpleParsable`1.Parse(System.String)" path="/summary"/>
+            </summary>
+            <param name="str"><inheritdoc cref="M:System.ISimpleParsable`1.Parse(System.String)" path="/param[@name='str']"/></param>
+            <returns>The <typeparamref name="TSelf"/> instance.</returns>
             <remarks>
             We suggest you use <see cref="M:Sudoku.Concepts.Primitive.IGrid`11.op_Explicit(System.String)~`0"/> to achieve same goal if the passing argument is a constant.
             For example:

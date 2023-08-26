@@ -72,7 +72,9 @@ public abstract class SubsetStepSearcher(
 
 					var isLocked = cells.IsInIntersection
 						? true
-						: lockedDigitsMask == digitsMask ? true : lockedDigitsMask != 0 ? false : default(bool?);
+						: lockedDigitsMask == digitsMask && size != 4
+							? true
+							: lockedDigitsMask != 0 ? false : default(bool?);
 					if (isLocked is true && OnlySearchingForLocked || !OnlySearchingForLocked)
 					{
 						var step = new NakedSubsetStep(

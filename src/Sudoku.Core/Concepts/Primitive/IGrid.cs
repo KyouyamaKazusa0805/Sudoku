@@ -655,7 +655,11 @@ public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, 
 	/// <param name="creatingOption">The grid creating option.</param>
 	public static abstract TSelf Create(scoped ReadOnlySpan<TDigit> gridValues, GridCreatingOption creatingOption = 0);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// <inheritdoc cref="ISimpleParsable{TSelf}.Parse(string)" path="/summary"/>
+	/// </summary>
+	/// <param name="str"><inheritdoc cref="ISimpleParsable{TSelf}.Parse(string)" path="/param[@name='str']"/></param>
+	/// <returns>The <typeparamref name="TSelf"/> instance.</returns>
 	/// <remarks>
 	/// We suggest you use <see cref="op_Explicit(string)"/> to achieve same goal if the passing argument is a constant.
 	/// For example:
