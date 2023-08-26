@@ -100,6 +100,8 @@ internal readonly partial struct BorescoperDeadlyPattern([DataMember(MemberKinds
 		=> ((Cell)(_mask >> 49 & 127), (Cell)(_mask >> 42 & 127), (Cell)(_mask >> 35 & 127), (Cell)(_mask >> 28 & 127));
 
 
-	[DeconstructionMethod]
-	internal partial void Deconstruct(out (Cell A, Cell B) pair1, out (Cell A, Cell B) pair2, out (Cell A, Cell B, Cell C, Cell D) centerCells);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal void Deconstruct(out (Cell A, Cell B) pair1, out (Cell A, Cell B) pair2, out (Cell A, Cell B, Cell C, Cell D) centerCells)
+		=> (pair1, pair2, centerCells) = (Pair1, Pair2, CenterCells);
 }

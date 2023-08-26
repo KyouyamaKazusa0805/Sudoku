@@ -160,11 +160,13 @@ public readonly partial struct ChainNode([DataMember(MemberKinds.Field), HashCod
 	private string DebuggerDisplayString => $"{CandidateString} is {(IsOn ? bool.TrueString : bool.FalseString).ToLower()}";
 
 
-	[DeconstructionMethod]
-	public partial void Deconstruct(out Candidate candidate, out bool isOn);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out Candidate candidate, out bool isOn) => (candidate, isOn) = (Candidate, IsOn);
 
-	[DeconstructionMethod]
-	public partial void Deconstruct(out byte cell, out byte digit, out bool isOn);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out byte cell, out byte digit, out bool isOn) => (cell, digit, (_, isOn)) = (Cell, Digit, this);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

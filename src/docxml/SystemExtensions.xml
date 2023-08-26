@@ -3374,23 +3374,6 @@ fixed (short* ptr = instance)
             </para>
             </remarks>
         </member>
-        <member name="T:System.SourceGeneration.DeconstructionMethodArgumentAttribute">
-            <summary>
-            Defines an attribute that specifies a parameter used by a deconstruction method.
-            </summary>
-            <param name="referencedMemberName">The referenced member name.</param>
-        </member>
-        <member name="M:System.SourceGeneration.DeconstructionMethodArgumentAttribute.#ctor(System.String)">
-            <summary>
-            Defines an attribute that specifies a parameter used by a deconstruction method.
-            </summary>
-            <param name="referencedMemberName">The referenced member name.</param>
-        </member>
-        <member name="T:System.SourceGeneration.DeconstructionMethodAttribute">
-            <summary>
-            Defines an attribute that specifies a deconstruction method.
-            </summary>
-        </member>
         <member name="T:System.SourceGeneration.DuckTypingAttribute">
             <summary>
             Represents an attribute type that can be used as a duck-typing implementation by source generators.

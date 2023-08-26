@@ -12,8 +12,10 @@ internal sealed partial class TextRenderingData(
 	[DataMember] StringFormat stringFormat
 ) : IDisposable
 {
-	[DeconstructionMethod]
-	public partial void Deconstruct(out Font font, out float extraHeight, out StringFormat stringFormat);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out Font font, out float extraHeight, out StringFormat stringFormat)
+		=> (font, extraHeight, stringFormat) = (Font, ExtraHeight, StringFormat);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.NoInlining)]

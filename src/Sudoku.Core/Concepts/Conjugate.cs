@@ -90,8 +90,9 @@ public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] int mas
 	private Candidate ToCandidate => To * 9 + Digit;
 
 
-	[DeconstructionMethod]
-	public partial void Deconstruct([DeconstructionMethodArgument(nameof(FromCandidate))] out Candidate fromCand, [DeconstructionMethodArgument(nameof(ToCandidate))] out Candidate toCand);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out Candidate fromCand, out Candidate toCand) => (fromCand, toCand) = (FromCandidate, ToCandidate);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

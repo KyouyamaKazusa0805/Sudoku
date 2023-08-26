@@ -17,8 +17,10 @@ public sealed partial class LinkViewNode(
 	[DataMember, StringMember] Inference inference
 ) : BasicViewNode(identifier)
 {
-	[DeconstructionMethod]
-	public partial void Deconstruct(out ColorIdentifier identifier, out LockedTarget start, out LockedTarget end, out Inference inference);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out ColorIdentifier identifier, out LockedTarget start, out LockedTarget end, out Inference inference)
+		=> (identifier, start, end, inference) = (Identifier, Start, End, Inference);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

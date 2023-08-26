@@ -9,8 +9,9 @@ namespace Sudoku.Rendering.Nodes;
 [ToString]
 public abstract partial class IconViewNode(ColorIdentifier identifier, [DataMember, HashCodeMember, StringMember] Cell cell) : ViewNode(identifier)
 {
-	[DeconstructionMethod]
-	public partial void Deconstruct(out Cell cell);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out Cell cell) => cell = Cell;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

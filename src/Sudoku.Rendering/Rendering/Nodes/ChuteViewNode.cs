@@ -33,13 +33,13 @@ public sealed partial class ChuteViewNode(
 	public HouseMask HousesMask => Chutes[ChuteIndex] switch { var (_, isRow, rawMask) => rawMask << (isRow ? 9 : 18) };
 
 
-	[DeconstructionMethod]
-	public partial void Deconstruct(out ColorIdentifier identifier, [DeconstructionMethodArgument(nameof(ChuteIndex))] out int chute);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out ColorIdentifier identifier, out int chute) => (identifier, chute) = (Identifier, ChuteIndex);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is ChuteViewNode comparer && ChuteIndex == comparer.ChuteIndex;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is ChuteViewNode comparer && ChuteIndex == comparer.ChuteIndex;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

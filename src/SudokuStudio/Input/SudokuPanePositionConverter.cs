@@ -77,11 +77,15 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 	private string GridHeightString => ((int)GridSize.Height).ToString();
 
 
-	[DeconstructionMethod]
-	public partial void Deconstruct(out Point firstCellTopLeftPosition, out Point[,] gridPoints);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out Point firstCellTopLeftPosition, out Point[,] gridPoints)
+		=> (firstCellTopLeftPosition, gridPoints) = (FirstCellTopLeftPosition, GridPoints);
 
-	[DeconstructionMethod]
-	public partial void Deconstruct(out Size candidateSize, out Size cellSize, out Size blockSize, out Size gridSize);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out Size candidateSize, out Size cellSize, out Size blockSize, out Size gridSize)
+		=> (candidateSize, cellSize, blockSize, gridSize) = (CandidateSize, CellSize, BlockSize, GridSize);
 
 	/// <inheritdoc/>
 	public bool Equals(SudokuPanePositionConverter other) => GridSize == other.GridSize;

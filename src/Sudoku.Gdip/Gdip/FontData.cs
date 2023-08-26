@@ -15,8 +15,10 @@ public sealed partial class FontData(
 	[DataMember(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] FontStyle fontStyle
 ) : IEquatable<FontData>
 {
-	[DeconstructionMethod]
-	public partial void Deconstruct(out string fontName, out float fontSize, out FontStyle fontStyle);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out string fontName, out float fontSize, out FontStyle fontStyle)
+		=> (fontName, fontSize, fontStyle) = (FontName, FontSize, FontStyle);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

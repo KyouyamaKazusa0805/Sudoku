@@ -24,11 +24,13 @@ public sealed partial class ColorColorIdentifier(
 	private int RawValue => A << 24 | R << 16 | G << 8 | B;
 
 
-	[DeconstructionMethod]
-	public partial void Deconstruct(out byte r, out byte g, out byte b);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out byte r, out byte g, out byte b) => (r, g, b) = (R, G, B);
 
-	[DeconstructionMethod]
-	public partial void Deconstruct(out byte a, out byte r, out byte g, out byte b);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out byte a, out byte r, out byte g, out byte b) => (a, (r, g, b)) = (A, this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

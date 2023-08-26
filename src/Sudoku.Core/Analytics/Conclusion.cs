@@ -70,11 +70,15 @@ public readonly partial struct Conclusion([DataMember(MemberKinds.Field), HashCo
 	Mask IConclusion<Conclusion, Mask>.Mask => _mask;
 
 
-	[DeconstructionMethod]
-	public partial void Deconstruct(out ConclusionType conclusionType, out Candidate candidate);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out ConclusionType conclusionType, out Candidate candidate)
+		=> (conclusionType, candidate) = (ConclusionType, Candidate);
 
-	[DeconstructionMethod]
-	public partial void Deconstruct(out ConclusionType conclusionType, out Cell cell, out Digit digit);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out ConclusionType conclusionType, out Cell cell, out Digit digit)
+		=> ((conclusionType, _), cell, digit) = (this, Cell, Digit);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

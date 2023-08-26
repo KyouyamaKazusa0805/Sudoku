@@ -63,10 +63,8 @@ public sealed partial class SudokuExplainerDifficultyRatingAttribute : Attribute
 	public half? DifficultyRatingMaximumThreshold { get; }
 
 
-	[DeconstructionMethod]
-	public partial void Deconstruct(
-		[DeconstructionMethodArgument(nameof(DifficultyRating))] out half min,
-		[DeconstructionMethodArgument(nameof(DifficultyRatingMaximumThreshold))] out half? max,
-		[DeconstructionMethodArgument(nameof(IsAdvancedDefined))] out bool isAdvanced
-	);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out half min, out half? max, out bool isAdvanced)
+		=> (min, max, isAdvanced) = (DifficultyRating, DifficultyRatingMaximumThreshold, IsAdvancedDefined);
 }

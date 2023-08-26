@@ -23,8 +23,9 @@ public sealed partial class CellViewNode(ColorIdentifier identifier, [DataMember
 	private string CellString => CellNotation.ToString(Cell);
 
 
-	[DeconstructionMethod]
-	public partial void Deconstruct(out ColorIdentifier identifier, out Cell cell);
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out ColorIdentifier identifier, out Cell cell) => (identifier, cell) = (Identifier, Cell);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

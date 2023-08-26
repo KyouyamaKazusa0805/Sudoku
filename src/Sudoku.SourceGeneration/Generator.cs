@@ -13,7 +13,6 @@ public sealed class Generator : IIncrementalGenerator
 		PrimaryConstructor(context);
 		ObjectOverridden(context);
 		DuckTyping(context);
-		InstanceDeconstruction(context);
 		ImplicitField(context);
 		ExplicitInterfaceImpl(context);
 
@@ -101,20 +100,6 @@ public sealed class Generator : IIncrementalGenerator
 			InlineArrayFieldHandler.Output
 		);
 	}
-
-	private void InstanceDeconstruction(IncrementalGeneratorInitializationContext context)
-		=> context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					"System.SourceGeneration.DeconstructionMethodAttribute",
-					IsPartialMethodPredicate,
-					InstanceDeconstructionMethodHandler.Transform
-				)
-				.Where(NotNullPredicate)
-				.Select(NotNullSelector)
-				.Collect(),
-			InstanceDeconstructionMethodHandler.Output
-		);
 
 	private void ImplicitField(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(

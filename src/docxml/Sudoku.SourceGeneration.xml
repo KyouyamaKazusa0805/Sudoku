@@ -104,18 +104,6 @@
             </summary>
             <seealso cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>
         </member>
-        <member name="T:Sudoku.SourceGeneration.CollectedResults.InstanceDeconstructionMethodCollectedResult">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.InstanceDeconstructionMethodHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.InstanceDeconstructionMethodHandler"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CollectedResults.InstanceDeconstructionMethodCollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IMethodSymbol,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol},Microsoft.CodeAnalysis.SyntaxTokenList,Microsoft.CodeAnalysis.INamedTypeSymbol,System.String)">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.InstanceDeconstructionMethodHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.InstanceDeconstructionMethodHandler"/>
-        </member>
         <member name="T:Sudoku.SourceGeneration.CollectedResults.PrimaryConstructorCollectedResult">
             <summary>
             Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler"/>.
@@ -375,31 +363,6 @@
             </summary>
             <param name="this">The string.</param>
             <returns>The camel-cased string.</returns>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.InstanceDeconstructionMethodHandler">
-            <summary>
-            The generator handler for instance deconstruction methods.
-            </summary>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.InstanceDeconstructionMethodHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.CollectedResults.InstanceDeconstructionMethodCollectedResult})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.InstanceDeconstructionMethodHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.Extensions.AllOutParameters(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol})">
-            <summary>
-            Determines whether all parameters are <see langword="out"/> ones.
-            </summary>
-            <param name="this">A list of parameters.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler">
             <summary>
