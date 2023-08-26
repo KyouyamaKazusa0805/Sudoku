@@ -1453,6 +1453,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.Select``1(System.Func{System.Int32,``0})">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Where(System.Func{System.Int32,System.Boolean})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.GroupBy``1(System.Func{System.Int32,``0})">
             <inheritdoc/>
         </member>
@@ -1938,6 +1941,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Select``1(System.Func{System.Int32,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Where(System.Func{System.Int32,System.Boolean})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.GroupBy``1(System.Func{System.Int32,``0})">
@@ -4215,6 +4221,16 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="TResult">The type of target value.</typeparam>
             <param name="selector">The selector.</param>
             <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`2.Where(System.Func{`1,System.Boolean})">
+            <summary>
+            Filters a <typeparamref name="TSelf"/> collection based on a predicate.
+            </summary>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <returns>
+            A <typeparamref name="TSelf"/> that contains elements from the input <typeparamref name="TSelf"/> collection
+            that satisfy the condition.
+            </returns>
         </member>
         <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`2.GroupBy``1(System.Func{`1,``0})">
             <summary>

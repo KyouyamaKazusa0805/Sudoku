@@ -415,6 +415,21 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
+	public readonly CandidateMap Where(Func<Candidate, bool> predicate)
+	{
+		var result = this;
+		foreach (var cell in this)
+		{
+			if (!predicate(cell))
+			{
+				result.Remove(cell);
+			}
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
 	public readonly ReadOnlySpan<BitStatusMapGroup<CandidateMap, Candidate, TKey>> GroupBy<TKey>(Func<Candidate, TKey> keySelector)
 		where TKey : notnull
 	{

@@ -747,6 +747,21 @@ public unsafe partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
+	public readonly CellMap Where(Func<Cell, bool> predicate)
+	{
+		var result = this;
+		foreach (var cell in this)
+		{
+			if (!predicate(cell))
+			{
+				result.Remove(cell);
+			}
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
 	public readonly ReadOnlySpan<BitStatusMapGroup<CellMap, Cell, TKey>> GroupBy<TKey>(Func<Cell, TKey> keySelector) where TKey : notnull
 	{
 		var dictionary = new Dictionary<TKey, CellMap>();

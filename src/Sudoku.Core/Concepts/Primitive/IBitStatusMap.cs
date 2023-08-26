@@ -352,6 +352,28 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	}
 
 	/// <summary>
+	/// Filters a <typeparamref name="TSelf"/> collection based on a predicate.
+	/// </summary>
+	/// <param name="predicate">A function to test each element for a condition.</param>
+	/// <returns>
+	/// A <typeparamref name="TSelf"/> that contains elements from the input <typeparamref name="TSelf"/> collection
+	/// that satisfy the condition.
+	/// </returns>
+	public virtual TSelf Where(Func<TElement, bool> predicate)
+	{
+		var result = (TSelf)this;
+		foreach (var cell in this)
+		{
+			if (!predicate(cell))
+			{
+				result.Remove(cell);
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// Groups the elements of a sequence accroding to a specified key selector function.
 	/// </summary>
 	/// <typeparam name="TKey">
