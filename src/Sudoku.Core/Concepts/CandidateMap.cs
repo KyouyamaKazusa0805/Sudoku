@@ -518,10 +518,6 @@ public partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	void IBitStatusMap<CandidateMap, Candidate>.UnionWith(IEnumerable<Candidate> other) => this += other;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CandidateMap, int>.Add(scoped in CandidateMap self) => this |= self;
-
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out CandidateMap result)

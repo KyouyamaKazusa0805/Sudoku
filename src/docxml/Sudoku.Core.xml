@@ -1479,9 +1479,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#Add(Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.String,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
@@ -1943,9 +1940,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Add(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.Add(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
@@ -4026,14 +4020,6 @@ if (student is (name: var name, age: >= 18))
             Adds a new offset into the current collection.
             </summary>
             <param name="offset">The offset.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`2.Add(`0@)">
-            <summary>
-            Adds a list of offsets specified as the containing type <typeparamref name="TSelf"/> of this method into the current collection.
-            This method will be called when you use C# 12 feature "Collection Expression",
-            without a real appending operation with <see langword="foreach"/> loop.
-            </summary>
-            <param name="self">The instance whose type is the containing type.</param>
         </member>
         <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`2.AddRange(System.Collections.Generic.IEnumerable{`1})">
             <summary>
