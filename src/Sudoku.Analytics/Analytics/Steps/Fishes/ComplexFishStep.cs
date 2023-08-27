@@ -175,7 +175,7 @@ file enum FinKind
 	Sashimi = 1 << 2,
 
 	/// <summary>
-	/// Indicates the siamese fish (i.e. two fish share same base sets, with different cover sets).
+	/// Indicates the Siamese fish (i.e. two fish share same base sets, with different cover sets).
 	/// </summary>
 	Siamese = 1 << 3
 }

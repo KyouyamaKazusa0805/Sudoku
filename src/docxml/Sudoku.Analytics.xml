@@ -11092,7 +11092,7 @@
         </member>
         <member name="F:Sudoku.Analytics.Steps.FinKind.Siamese">
             <summary>
-            Indicates the siamese fish (i.e. two fish share same base sets, with different cover sets).
+            Indicates the Siamese fish (i.e. two fish share same base sets, with different cover sets).
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.FishStep">
