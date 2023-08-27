@@ -13,6 +13,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
 	IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
+	ILogicalOperators<TSelf>,
 	IMinMaxValue<TSelf>,
 	IModulusOperators<TSelf, TSelf, TSelf>,
 	IParsable<TSelf>,
@@ -366,7 +367,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	}
 
 	/// <summary>
-	/// Groups the elements of a sequence accroding to a specified key selector function.
+	/// Groups the elements of a sequence according to a specified key selector function.
 	/// </summary>
 	/// <typeparam name="TKey">
 	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/typeparam[@name='TKey']"/>

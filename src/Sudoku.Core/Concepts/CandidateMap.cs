@@ -33,6 +33,7 @@ public partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, Candidate, CandidateMap>,
 	IAdditionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>,
 	IDivisionOperators<CandidateMap, Digit, CellMap>,
+	ILogicalOperators<CandidateMap>,
 	ISubtractionOperators<CandidateMap, Candidate, CandidateMap>,
 	ISubtractionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>,
 	IBitStatusMap<CandidateMap, Candidate>
@@ -566,10 +567,12 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static bool operator true(scoped in CandidateMap value) => value._count != 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static bool operator false(scoped in CandidateMap value) => value._count == 0;
 
 	/// <inheritdoc/>
@@ -663,6 +666,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static CandidateMap operator &(scoped in CandidateMap left, scoped in CandidateMap right)
 	{
 		var finalCount = 0;
@@ -686,6 +690,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static CandidateMap operator |(scoped in CandidateMap left, scoped in CandidateMap right)
 	{
 		var finalCount = 0;

@@ -2826,6 +2826,43 @@ fixed (short* ptr = instance)
             <exception cref="T:System.InvalidOperationException">Throws when method <see cref="M:System.ICloneable`1.Clone"/> returns <see langword="null"/>.</exception>
             <seealso cref="M:System.ICloneable`1.Clone"/>
         </member>
+        <member name="T:System.ILogicalOperators`1">
+            <summary>
+            Represents for an abstraction unit that supports for boolean logical operators
+            <see langword="operator"/> <![CDATA[&&]]> and <see langword="operator"/> <![CDATA[||]]>.
+            </summary>
+            <typeparam name="TSelf">The implementation.</typeparam>
+        </member>
+        <member name="M:System.ILogicalOperators`1.op_BitwiseAnd(`0,`0)">
+            <summary>
+            Equivalent to <c><![CDATA[false(left) ? left : false(left & right)]]></c>.
+            </summary>
+            <param name="left">The left-side value.</param>
+            <param name="right">The right-side value.</param>
+            <returns>A <typeparamref name="TSelf"/> result indicating the calculation result.</returns>
+        </member>
+        <member name="M:System.ILogicalOperators`1.op_BitwiseOr(`0,`0)">
+            <summary>
+            Equivalent to <c><![CDATA[true(left) ? left : false(left | right)]]></c>.
+            </summary>
+            <param name="left">The left-side value.</param>
+            <param name="right">The right-side value.</param>
+            <returns>A <typeparamref name="TSelf"/> result indicating the calculation result.</returns>
+        </member>
+        <member name="M:System.ILogicalOperators`1.op_True(`0)">
+            <summary>
+            Determine whether the specified object is determined <see langword="true"/>.
+            </summary>
+            <param name="value">The value to be determined.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.ILogicalOperators`1.op_False(`0)">
+            <summary>
+            Determine whether the specified object is determined <see langword="false"/>.
+            </summary>
+            <param name="value">The value to be determined.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:System.ISimpleFormattable">
             <summary>
             Defines a type that supports <c>ToString(<see langword="string"/>?)</c>.
