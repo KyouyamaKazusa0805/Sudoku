@@ -1617,6 +1617,9 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:Sudoku.Concepts.CandidateMap.Count"/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#ILogicalOperators{Sudoku#Concepts#CandidateMap}#op_LogicalNot(Sudoku.Concepts.CandidateMap)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#ILogicalOperators{Sudoku#Concepts#CandidateMap}#op_True(Sudoku.Concepts.CandidateMap)">
             <inheritdoc/>
         </member>
@@ -2171,6 +2174,9 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="P:Sudoku.Concepts.CellMap.Count"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#IComparable{Sudoku#Concepts#CellMap}#CompareTo(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#ILogicalOperators{Sudoku#Concepts#CellMap}#op_LogicalNot(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#ILogicalOperators{Sudoku#Concepts#CellMap}#op_True(Sudoku.Concepts.CellMap)">

@@ -796,6 +796,14 @@
             Represents a set of methods to be used as method groups.
             </summary>
         </member>
+        <member name="M:System.CommonMethods.LogicalConversion``1(``0)">
+            <summary>
+            Makes the variable <paramref name="value"/> be an equivalent <see cref="T:System.Boolean"/> value.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="value">The value to be checked.</param>
+            <returns>The logical conversion result.</returns>
+        </member>
         <member name="M:System.CommonMethods.BitMerger``1(``0,``0)">
             <summary>
             Merges two integers by bits. This method will be used by LINQ method
@@ -2832,6 +2840,13 @@ fixed (short* ptr = instance)
             <see langword="operator"/> <![CDATA[&&]]> and <see langword="operator"/> <![CDATA[||]]>.
             </summary>
             <typeparam name="TSelf">The implementation.</typeparam>
+        </member>
+        <member name="M:System.ILogicalOperators`1.op_LogicalNot(`0)">
+            <summary>
+            Negates the current instance, and makes the result to be negated one.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:System.ILogicalOperators`1.op_BitwiseAnd(`0,`0)">
             <summary>

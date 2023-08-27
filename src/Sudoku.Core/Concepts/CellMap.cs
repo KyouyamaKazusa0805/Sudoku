@@ -938,6 +938,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static bool operator !(scoped in CellMap offsets) => offsets._count == 0;
 
 	/// <inheritdoc/>

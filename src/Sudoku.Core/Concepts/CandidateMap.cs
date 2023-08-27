@@ -563,6 +563,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static bool operator !(scoped in CandidateMap offsets) => offsets._count == 0;
 
 	/// <inheritdoc/>

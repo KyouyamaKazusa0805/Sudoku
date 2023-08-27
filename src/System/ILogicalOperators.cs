@@ -8,6 +8,13 @@ namespace System;
 public interface ILogicalOperators<TSelf> where TSelf : ILogicalOperators<TSelf>?
 {
 	/// <summary>
+	/// Negates the current instance, and makes the result to be negated one.
+	/// </summary>
+	/// <param name="value">The value.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	public static abstract bool operator !(TSelf value);
+
+	/// <summary>
 	/// Equivalent to <c><![CDATA[false(left) ? left : false(left & right)]]></c>.
 	/// </summary>
 	/// <param name="left">The left-side value.</param>
@@ -35,5 +42,6 @@ public interface ILogicalOperators<TSelf> where TSelf : ILogicalOperators<TSelf>
 	/// </summary>
 	/// <param name="value">The value to be determined.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public static abstract bool operator false(TSelf value);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static virtual bool operator false(TSelf value) => !value;
 }

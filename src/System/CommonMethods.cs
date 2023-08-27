@@ -6,6 +6,15 @@ namespace System;
 public static class CommonMethods
 {
 	/// <summary>
+	/// Makes the variable <paramref name="value"/> be an equivalent <see cref="bool"/> value.
+	/// </summary>
+	/// <typeparam name="T">The type of the value.</typeparam>
+	/// <param name="value">The value to be checked.</param>
+	/// <returns>The logical conversion result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool LogicalConversion<T>(T value) where T : ILogicalOperators<T> => !!value;
+
+	/// <summary>
 	/// Merges two integers by bits. This method will be used by LINQ method
 	/// <see cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>.
 	/// </summary>
