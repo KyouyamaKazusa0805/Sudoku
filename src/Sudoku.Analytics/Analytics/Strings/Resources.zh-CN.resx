@@ -2293,4 +2293,20 @@
     <value>唯一矩形・W-Wing</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="GroupedSkyscraper" xml:space="preserve">
+    <value>结构摩天楼</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="GroupedTurbotFish" xml:space="preserve">
+    <value>结构多宝鱼</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="GroupedTwoStringKite" xml:space="preserve">
+    <value>结构双线风筝</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="StepSearcherName_GroupedTwoStrongLinksStepSearcher" xml:space="preserve">
+    <value>结构双强链</value>
+    <comment>Step Searcher Name</comment>
+  </data>
 </root>

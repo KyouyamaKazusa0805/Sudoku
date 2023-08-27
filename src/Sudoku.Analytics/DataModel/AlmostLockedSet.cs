@@ -33,7 +33,7 @@ public sealed partial class AlmostLockedSet(
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			_ = Cells.AllSetsAreInOneHouse(out var houseIndex);
+			_ = Cells.AllInOneHouse(out var houseIndex);
 			return houseIndex;
 		}
 	}

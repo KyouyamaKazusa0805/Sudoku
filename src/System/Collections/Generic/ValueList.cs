@@ -19,6 +19,7 @@ namespace System.Collections.Generic;
 /// ]]></code>
 /// </remarks>
 [StructLayout(LayoutKind.Auto)]
+[CollectionBuilder(typeof(ValueListCreator), nameof(ValueListCreator.Create))]
 [ToString(ToStringBehavior.CallOverload)]
 public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] byte capacity) where T : notnull
 {

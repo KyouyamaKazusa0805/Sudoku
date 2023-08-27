@@ -2166,4 +2166,16 @@
   <data name="UniqueRectangleWWing" xml:space="preserve">
     <value>Unique Rectangle W-Wing</value>
   </data>
+  <data name="GroupedSkyscraper" xml:space="preserve">
+    <value>Grouped Skyscraper</value>
+  </data>
+  <data name="GroupedTurbotFish" xml:space="preserve">
+    <value>Grouped Turbot Fish</value>
+  </data>
+  <data name="GroupedTwoStringKite" xml:space="preserve">
+    <value>Grouped Two-String Kite</value>
+  </data>
+  <data name="StepSearcherName_GroupedTwoStrongLinksStepSearcher" xml:space="preserve">
+    <value>Grouped Two-Strong Links</value>
+  </data>
 </root>

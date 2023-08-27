@@ -2281,6 +2281,27 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	TurbotFish,
+
+	/// <summary>
+	/// Indicates grouped skyscraper.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	GroupedSkyscraper,
+
+	/// <summary>
+	/// Indicates grouped two-string kite.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	GroupedTwoStringKite,
+
+	/// <summary>
+	/// Indicates grouped turbot fish.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	GroupedTurbotFish,
 	#endregion
 
 	//

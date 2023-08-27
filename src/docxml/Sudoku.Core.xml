@@ -1735,10 +1735,10 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Concepts.CellMap.InOneHouse">
             <summary>
-            Same as the method <see cref="M:Sudoku.Concepts.CellMap.AllSetsAreInOneHouse(System.Int32@)"/>, but this property doesn't contain
+            Same as the method <see cref="M:Sudoku.Concepts.CellMap.AllInOneHouse(System.Int32@)"/>, but this property doesn't contain
             the <see langword="out"/> argument, as the optimization.
             </summary>
-            <seealso cref="M:Sudoku.Concepts.CellMap.AllSetsAreInOneHouse(System.Int32@)"/>
+            <seealso cref="M:Sudoku.Concepts.CellMap.AllInOneHouse(System.Int32@)"/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.IsInIntersection">
             <summary>
@@ -1853,7 +1853,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.ForEach(System.Action{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.AllSetsAreInOneHouse(System.Int32@)">
+        <member name="M:Sudoku.Concepts.CellMap.AllInOneHouse(System.Int32@)">
             <summary>
             Indicates whether all cells in this instance are in one house.
             </summary>

@@ -80,6 +80,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Complex Fishes (Franken, Mutant)
   * Single-Digit Structures
     * Two-Strong-Links
+    * Grouped Two-Strong-Links
     * Empty Rectangle
   * Wings
     * Regular Wing (XY-Wing, XYZ-Wing, etc.)

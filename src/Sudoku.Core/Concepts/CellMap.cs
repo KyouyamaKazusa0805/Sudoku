@@ -86,10 +86,10 @@ public partial struct CellMap :
 
 
 	/// <summary>
-	/// Same as the method <see cref="AllSetsAreInOneHouse(out House)"/>, but this property doesn't contain
+	/// Same as the method <see cref="AllInOneHouse(out House)"/>, but this property doesn't contain
 	/// the <see langword="out"/> argument, as the optimization.
 	/// </summary>
-	/// <seealso cref="AllSetsAreInOneHouse(out House)"/>
+	/// <seealso cref="AllInOneHouse(out House)"/>
 	public readonly bool InOneHouse
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -519,7 +519,7 @@ public partial struct CellMap :
 	/// use the property <see cref="InOneHouse"/> to improve the performance.
 	/// </remarks>
 	/// <seealso cref="InOneHouse"/>
-	public readonly bool AllSetsAreInOneHouse(out House houseIndex)
+	public readonly bool AllInOneHouse(out House houseIndex)
 	{
 #pragma warning disable format
 		if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) { houseIndex =  0; return true; }

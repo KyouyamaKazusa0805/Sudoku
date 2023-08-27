@@ -1753,11 +1753,38 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Grouped Skyscraper.
+        /// </summary>
+        public static string GroupedSkyscraper {
+            get {
+                return ResourceManager.GetString("GroupedSkyscraper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grouped Split Wing.
         /// </summary>
         public static string GroupedSplitWing {
             get {
                 return ResourceManager.GetString("GroupedSplitWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped Turbot Fish.
+        /// </summary>
+        public static string GroupedTurbotFish {
+            get {
+                return ResourceManager.GetString("GroupedTurbotFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped Two-String Kite.
+        /// </summary>
+        public static string GroupedTwoStringKite {
+            get {
+                return ResourceManager.GetString("GroupedTwoStringKite", resourceCulture);
             }
         }
         
@@ -3252,6 +3279,15 @@ namespace Sudoku.Analytics.Strings {
         public static string StepSearcherName_FireworkStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_FireworkStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped Two-Strong Links.
+        /// </summary>
+        public static string StepSearcherName_GroupedTwoStrongLinksStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_GroupedTwoStrongLinksStepSearcher", resourceCulture);
             }
         }
         

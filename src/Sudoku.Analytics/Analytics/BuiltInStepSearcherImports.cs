@@ -9,6 +9,7 @@
 [assembly: StepSearcherImport<TwoStrongLinksStepSearcher>(1)]
 [assembly: StepSearcherImport<RegularWingStepSearcher>(1)]
 [assembly: StepSearcherImport<WWingStepSearcher>(1)]
+[assembly: StepSearcherImport<GroupedTwoStrongLinksStepSearcher>(1)]
 [assembly: StepSearcherImport<MultiBranchWWingStepSearcher>(1)]
 [assembly: StepSearcherImport<UniqueRectangleStepSearcher>(1)]
 [assembly: StepSearcherImport<AlmostLockedCandidatesStepSearcher>(1)]

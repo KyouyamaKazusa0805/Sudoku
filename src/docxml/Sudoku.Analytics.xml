@@ -2140,6 +2140,21 @@
             Indicates turbot fish.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedSkyscraper">
+            <summary>
+            Indicates grouped skyscraper.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedTwoStringKite">
+            <summary>
+            Indicates grouped two-string kite.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedTurbotFish">
+            <summary>
+            Indicates grouped turbot fish.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.EmptyRectangle">
             <summary>
             Indicates empty rectangle.
@@ -7084,6 +7099,20 @@
             both arguments <paramref name="row"/> and <paramref name="column"/> can be used;
             otherwise, both arguments should be discards.
             </returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.GroupedTwoStrongLinksStepSearcher">
+            <summary>
+            Provides with a <b>Grouped Two-strong Links</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Grouped Skyscraper</item>
+            <item>Grouped Two-string Kite</item>
+            <item>Grouped Turbot Fish</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.GroupedTwoStrongLinksStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher">
             <summary>
@@ -12440,23 +12469,25 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.TwoStrongLinksStep">
             <summary>
-            Provides with a step that is a <b>Single Digit Pattern</b> technique.
+            Provides with a step that is a <b>Single-Digit Pattern</b> or <b>Grouped Single-Digit Pattern</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="baseHouse">Indicates the base house used.</param>
             <param name="targetHouse">Indicates the target house used.</param>
+            <param name="isGrouped">Indicates whether the links is grouped.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.TwoStrongLinksStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.TwoStrongLinksStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
-            Provides with a step that is a <b>Single Digit Pattern</b> technique.
+            Provides with a step that is a <b>Single-Digit Pattern</b> or <b>Grouped Single-Digit Pattern</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="baseHouse">Indicates the base house used.</param>
             <param name="targetHouse">Indicates the target house used.</param>
+            <param name="isGrouped">Indicates whether the links is grouped.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.BaseDifficulty">
             <inheritdoc/>
@@ -12475,6 +12506,11 @@
         <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.TargetHouse">
             <summary>
             The generated property declaration for parameter <c>targetHouse</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.IsGrouped">
+            <summary>
+            The generated property declaration for parameter <c>isGrouped</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.FullHouseStep">
@@ -14069,9 +14105,24 @@
               Looks up a localized string similar to Grouped Purple Cow.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.GroupedSkyscraper">
+            <summary>
+              Looks up a localized string similar to Grouped Skyscraper.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.GroupedSplitWing">
             <summary>
               Looks up a localized string similar to Grouped Split Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.GroupedTurbotFish">
+            <summary>
+              Looks up a localized string similar to Grouped Turbot Fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.GroupedTwoStringKite">
+            <summary>
+              Looks up a localized string similar to Grouped Two-String Kite.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.GroupedWWing">
@@ -14902,6 +14953,11 @@
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_FireworkStepSearcher">
             <summary>
               Looks up a localized string similar to Firework.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_GroupedTwoStrongLinksStepSearcher">
+            <summary>
+              Looks up a localized string similar to Grouped Two-Strong Links.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_GuardianStepSearcher">

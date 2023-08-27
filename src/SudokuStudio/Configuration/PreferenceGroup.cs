@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Configuration;
+namespace SudokuStudio.Configuration;
 
 /// <summary>
 /// Defines a preference group that contains a list of preference items that can be serialized and deserialized by JSON.

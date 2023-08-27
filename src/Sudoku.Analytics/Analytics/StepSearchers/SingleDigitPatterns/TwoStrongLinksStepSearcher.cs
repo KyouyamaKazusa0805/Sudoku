@@ -59,7 +59,7 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 						for (var j = 0; j < 2; j++)
 						{
 							var cell2 = cellsList2[j];
-							if ((CellsMap[cell1] + cell2).AllSetsAreInOneHouse(out sameHouse))
+							if ((CellsMap[cell1] + cell2).AllInOneHouse(out sameHouse))
 							{
 								(c1Index, c2Index) = (i, j);
 								(headIndex, tailIndex) = (i == 0 ? 1 : 0, j == 0 ? 1 : 0);
@@ -88,12 +88,15 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 								new CandidateViewNode(WellKnownColorIdentifier.Normal, cellsList2[c2Index] * 9 + digit),
 								new CandidateViewNode(WellKnownColorIdentifier.Normal, head * 9 + digit),
 								new CandidateViewNode(WellKnownColorIdentifier.Normal, tail * 9 + digit),
+								new HouseViewNode(WellKnownColorIdentifier.Normal, h1),
+								new HouseViewNode(WellKnownColorIdentifier.Normal, h2),
 								new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, sameHouse)
 							]
 						],
 						digit,
 						h1,
-						h2
+						h2,
+						false
 					);
 
 					if (context.OnlyFindOne)
