@@ -29,7 +29,7 @@ namespace Sudoku.Concepts;
 [GetHashCode]
 [EqualityOperators]
 [ComparisonOperators]
-public unsafe partial struct CellMap :
+public partial struct CellMap :
 	IAdditionOperators<CellMap, Cell, CellMap>,
 	IAdditionOperators<CellMap, IEnumerable<Cell>, CellMap>,
 	IBitStatusMap<CellMap, Cell>,
@@ -463,7 +463,7 @@ public unsafe partial struct CellMap :
 
 
 	/// <inheritdoc/>
-	public readonly void CopyTo(Cell* arr, int length)
+	public readonly unsafe void CopyTo(Cell* arr, int length)
 	{
 		ArgumentNullException.ThrowIfNull(arr);
 
@@ -628,7 +628,7 @@ public unsafe partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CellMap[] GetSubsets(int subsetSize)
+	public readonly unsafe CellMap[] GetSubsets(int subsetSize)
 	{
 		if (subsetSize == 0 || subsetSize > _count)
 		{
