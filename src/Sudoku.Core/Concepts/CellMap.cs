@@ -37,7 +37,6 @@ public partial struct CellMap :
 	IComparable<CellMap>,
 	IComparisonOperators<CellMap, CellMap, bool>,
 	IDivisionOperators<CellMap, House, Mask>,
-	ILogicalOperators<CellMap>,
 	IMultiplyOperators<CellMap, Digit, CandidateMap>,
 	ISubtractionOperators<CellMap, Cell, CellMap>,
 	ISubtractionOperators<CellMap, IEnumerable<Cell>, CellMap>
@@ -938,17 +937,14 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static bool operator !(scoped in CellMap offsets) => offsets._count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static bool operator true(scoped in CellMap value) => value._count != 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static bool operator false(scoped in CellMap value) => value._count == 0;
 
 	/// <inheritdoc/>
@@ -1014,13 +1010,11 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static CellMap operator &(scoped in CellMap left, scoped in CellMap right)
 		=> CreateByBits(left._high & right._high, left._low & right._low);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static CellMap operator |(scoped in CellMap left, scoped in CellMap right)
 		=> CreateByBits(left._high | right._high, left._low | right._low);
 

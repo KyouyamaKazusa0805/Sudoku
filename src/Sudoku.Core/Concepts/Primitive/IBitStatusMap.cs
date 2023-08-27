@@ -503,6 +503,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// The statement <c>collection</c> will be expanded to <c>collection.Count != 0</c>. Therefore, the negation operator <c>!</c>
 	/// will invert the result of above expression. This is why I use <see langword="operator"/> <c>!</c> to determine on this.
 	/// </remarks>
+	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static abstract bool operator !(scoped in TSelf offsets);
 
 	/// <summary>
@@ -521,6 +522,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="cells">The collection.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static virtual bool operator true(scoped in TSelf cells) => cells.Count != 0;
 
 	/// <summary>
@@ -529,6 +531,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="cells">The collection.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static virtual bool operator false(scoped in TSelf cells) => cells.Count == 0;
 
 	/// <summary>
@@ -583,6 +586,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	[ExplicitInterfaceImpl(typeof(IBitwiseOperators<,,>))]
+	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static abstract TSelf operator &(scoped in TSelf left, scoped in TSelf right);
 
 	/// <summary>
@@ -593,6 +597,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	[ExplicitInterfaceImpl(typeof(IBitwiseOperators<,,>))]
+	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static abstract TSelf operator |(scoped in TSelf left, scoped in TSelf right);
 
 	/// <summary>
