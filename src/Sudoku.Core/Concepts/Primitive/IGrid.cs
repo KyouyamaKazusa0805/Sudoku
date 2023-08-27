@@ -5,7 +5,7 @@ namespace Sudoku.Concepts.Primitive;
 /// </summary>
 /// <typeparam name="TSelf">The type of the implementation.</typeparam>
 /// <typeparam name="THouseMask">The type of te house mask.</typeparam>
-/// <typeparam name="TConjuagteMask">The type of conjugate pair mask.</typeparam>
+/// <typeparam name="TConjugateMask">The type of conjugate pair mask.</typeparam>
 /// <typeparam name="TMask">The type of the bit mask.</typeparam>
 /// <typeparam name="TCell">The type of the cell.</typeparam>
 /// <typeparam name="TDigit">The type of the digit.</typeparam>
@@ -14,7 +14,7 @@ namespace Sudoku.Concepts.Primitive;
 /// <typeparam name="TBitStatusMap">The type of the bit status map.</typeparam>
 /// <typeparam name="TConclusion">The type of the conclusion.</typeparam>
 /// <typeparam name="TConjugate">The type of the conjugate pair.</typeparam>
-public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, TCandidate, THouse, TBitStatusMap, TConclusion, TConjugate> :
+public partial interface IGrid<TSelf, THouseMask, TConjugateMask, TMask, TCell, TDigit, TCandidate, THouse, TBitStatusMap, TConclusion, TConjugate> :
 	//IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IMinMaxValue<TSelf>,
@@ -22,9 +22,9 @@ public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, 
 	IReadOnlyCollection<TDigit>,
 	ISimpleFormattable,
 	ISimpleParsable<TSelf>
-	where TSelf : IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, TCandidate, THouse, TBitStatusMap, TConclusion, TConjugate>
+	where TSelf : IGrid<TSelf, THouseMask, TConjugateMask, TMask, TCell, TDigit, TCandidate, THouse, TBitStatusMap, TConclusion, TConjugate>
 	where THouseMask : unmanaged, IBinaryInteger<THouseMask>
-	where TConjuagteMask : unmanaged, IBinaryInteger<TConjuagteMask>
+	where TConjugateMask : unmanaged, IBinaryInteger<TConjugateMask>
 	where TMask : unmanaged, IBinaryInteger<TMask>
 	where TCell : unmanaged, IBinaryInteger<TCell>
 	where TDigit : unmanaged, IBinaryInteger<TDigit>
@@ -32,7 +32,7 @@ public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, 
 	where THouse : unmanaged, IBinaryInteger<THouse>
 	where TBitStatusMap : unmanaged, IBitStatusMap<TBitStatusMap, TCell>
 	where TConclusion : IConclusion<TConclusion, TMask>
-	where TConjugate : IConjugatePair<TConjugate, THouseMask, TConjuagteMask, TCell, TDigit, THouse, TBitStatusMap>
+	where TConjugate : IConjugatePair<TConjugate, THouseMask, TConjugateMask, TCell, TDigit, THouse, TBitStatusMap>
 {
 	/// <summary>
 	/// Indicates the grid has already solved. If the value is <see langword="true"/>, the grid is solved; otherwise, <see langword="false"/>.
@@ -226,7 +226,7 @@ public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, 
 	/// </summary>
 	/// <param name="cell">The index of the cell.</param>
 	/// <returns>A reference to the mask at the specified cell offset.</returns>
-	public abstract TMask this[TCell cell] { get; set; }
+	public abstract ref TMask this[TCell cell] { get; }
 
 	/// <summary>
 	/// Creates a mask of type <typeparamref name="TMask"/> that represents the usages of digits 1 to 9,
@@ -387,7 +387,7 @@ public partial interface IGrid<TSelf, THouseMask, TConjuagteMask, TMask, TCell, 
 	/// <param name="digit">The digit to be checked.</param>
 	/// <param name="houses">The houses that the digit can be filled with.</param>
 	/// <param name="leastHousesUsed">
-	/// <para>One of all possiblities of the combination of least using for houses appearing.</para>
+	/// <para>One of all possibilities of the combination of least using for houses appearing.</para>
 	/// <para>The number of bits is always same as return value if the return value is not 0.</para>
 	/// </param>
 	/// <returns>

@@ -4560,7 +4560,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <typeparam name="TSelf">The type of the implementation.</typeparam>
             <typeparam name="THouseMask">The type of te house mask.</typeparam>
-            <typeparam name="TConjuagteMask">The type of conjugate pair mask.</typeparam>
+            <typeparam name="TConjugateMask">The type of conjugate pair mask.</typeparam>
             <typeparam name="TMask">The type of the bit mask.</typeparam>
             <typeparam name="TCell">The type of the cell.</typeparam>
             <typeparam name="TDigit">The type of the digit.</typeparam>
@@ -4903,7 +4903,7 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">The digit to be checked.</param>
             <param name="houses">The houses that the digit can be filled with.</param>
             <param name="leastHousesUsed">
-            <para>One of all possiblities of the combination of least using for houses appearing.</para>
+            <para>One of all possibilities of the combination of least using for houses appearing.</para>
             <para>The number of bits is always same as return value if the return value is not 0.</para>
             </param>
             <returns>

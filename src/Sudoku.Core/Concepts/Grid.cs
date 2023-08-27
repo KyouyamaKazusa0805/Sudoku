@@ -520,13 +520,7 @@ public unsafe partial struct Grid : GridImpl
 	}
 
 	/// <inheritdoc/>
-	Mask GridImpl.this[Cell cell]
-	{
-		readonly get => this[cell];
-
-		[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
-		set => this[cell] = value;
-	}
+	readonly ref Mask GridImpl.this[Cell cell] => ref AsRef(this[cell]);
 
 
 	/// <inheritdoc/>
