@@ -114,18 +114,15 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 	{
 		const HouseType bothLines = (HouseType)3;
 
-		var currentCoverSets = stackalloc House[MaxSize];
-		var searchForMutantCases = stackalloc[] { false, true };
-
 		// Iterate on each size.
+		scoped var currentCoverSets = (stackalloc House[MaxSize]);
 		for (var size = 2; size <= MaxSize; size++)
 		{
 			// Iterate on different cases on whether searcher finds mutant fishes.
 			// If false, search for franken fishes.
-			for (var caseIndex = 0; caseIndex < 2; caseIndex++)
+			foreach (var checkMutant in stackalloc[] { false, true })
 			{
 				// Then iterate on each elimination.
-				var searchForMutant = searchForMutantCases[caseIndex];
 				foreach (var cell in pomElimsOfThisDigit)
 				{
 					// Try to assume the digit is true in the current cell,
@@ -153,7 +150,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 						}
 
 						// Franken fishes doesn't contain both row and column two house types.
-						if (!searchForMutant && (baseSetsMask & AllRowsMask) != 0 && (baseSetsMask & AllColumnsMask) != 0)
+						if (!checkMutant && (baseSetsMask & AllRowsMask) != 0 && (baseSetsMask & AllColumnsMask) != 0)
 						{
 							continue;
 						}
@@ -186,7 +183,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 
 						// Get the mask for checking for mutant fish.
 						SkipInit(out HouseType baseHouseTypes);
-						if (searchForMutant)
+						if (checkMutant)
 						{
 							baseHouseTypes = HouseType.Block;
 							if ((baseSetsMask & AllRowsMask) != 0)
@@ -267,7 +264,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 								// Add the house into the cover sets, and check the cover house types.
 								usedInCoverSets |= 1 << houseIndex;
 								SkipInit(out HouseType coverHouseTypes);
-								if (searchForMutant)
+								if (checkMutant)
 								{
 									coverHouseTypes = HouseType.Block;
 									if ((usedInCoverSets & AllRowsMask) != 0)
@@ -290,13 +287,13 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 									goto BacktrackValue;
 								}
 
-								if (!searchForMutant && (usedInCoverSets & AllRowsMask) != 0 && (usedInCoverSets & AllColumnsMask) != 0)
+								if (!checkMutant && (usedInCoverSets & AllRowsMask) != 0 && (usedInCoverSets & AllColumnsMask) != 0)
 								{
 									// Mutant fish but checking Franken now.
 									goto BacktrackValue;
 								}
 
-								if (searchForMutant && baseHouseTypes != bothLines && coverHouseTypes != bothLines)
+								if (checkMutant && baseHouseTypes != bothLines && coverHouseTypes != bothLines)
 								{
 									// Not Mutant fish.
 									goto BacktrackValue;
@@ -422,7 +419,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 									coverSetsMask,
 									exofins,
 									endofins,
-									!searchForMutant,
+									!checkMutant,
 									IsSashimi(baseSets, fins, digit)
 								);
 								if (onlyFindOne)
@@ -462,7 +459,6 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 		{
 			result[step.Digit].AddRange(from conclusion in step.Conclusions select conclusion.Cell);
 		}
-
 		return result;
 	}
 }
