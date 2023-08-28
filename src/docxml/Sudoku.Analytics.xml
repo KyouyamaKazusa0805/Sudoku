@@ -3355,13 +3355,14 @@
             <list type="bullet">
             <item><see cref="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher"/></item>
             <item><see cref="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher"/></item>
-            <item><see cref="T:Sudoku.Analytics.StepSearchers.SubsetStepSearcher"/></item>
-            <item></item>
+            <item><see cref="T:Sudoku.Analytics.StepSearchers.LockedSubsetStepSearcher"/></item>
+            <item><see cref="T:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher"/></item>
             </list>
             </summary>
             <seealso cref="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher"/>
             <seealso cref="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher"/>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.SubsetStepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.LockedSubsetStepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher"/>
         </member>
         <member name="T:Sudoku.Analytics.Rating.ChainDifficultyRating">
             <summary>

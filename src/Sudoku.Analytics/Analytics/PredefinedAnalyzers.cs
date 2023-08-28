@@ -6,12 +6,10 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Analyzer"/>
 public static class PredefinedAnalyzers
 {
-#pragma warning disable CS0618
 	/// <summary>
 	/// Indicates the default <see cref="Analyzer"/> instance that has no extra configuration.
 	/// </summary>
 	public static Analyzer Default => new();
-#pragma warning restore CS0618
 
 	/// <summary>
 	/// Indicates an <see cref="Analyzer"/> instance that all possible <see cref="StepSearcher"/> instances are included.
@@ -49,13 +47,14 @@ public static class PredefinedAnalyzers
 	/// <list type="bullet">
 	/// <item><see cref="SingleStepSearcher"/></item>
 	/// <item><see cref="LockedCandidatesStepSearcher"/></item>
-	/// <item><see cref="SubsetStepSearcher"/></item>
-	/// <item></item>
+	/// <item><see cref="LockedSubsetStepSearcher"/></item>
+	/// <item><see cref="NormalSubsetStepSearcher"/></item>
 	/// </list>
 	/// </summary>
 	/// <seealso cref="SingleStepSearcher"/>
 	/// <seealso cref="LockedCandidatesStepSearcher"/>
-	/// <seealso cref="SubsetStepSearcher"/>
+	/// <seealso cref="LockedSubsetStepSearcher"/>
+	/// <seealso cref="NormalSubsetStepSearcher"/>
 	public static Analyzer SstsOnly
 		=> Default
 			.WithStepSearchers([new SingleStepSearcher(), new LockedSubsetStepSearcher(), new LockedCandidatesStepSearcher(), new NormalSubsetStepSearcher()])
