@@ -1231,7 +1231,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var xyMask = (Mask)(o ^ comparer);
 		var x = TrailingZeroCount(xyMask);
 		var y = xyMask.GetNextSet(x);
-		var inter = otherCellsMap.PeerIntersection - [.. urCells];
+		var inter = otherCellsMap.PeerIntersection - (CellMap)urCells;
 		foreach (var possibleXyCell in inter)
 		{
 			if (grid.GetCandidates(possibleXyCell) != xyMask)
@@ -1402,7 +1402,11 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									foreach (var d in grid.GetCandidates(urCell))
 									{
 										candidateOffsets.Add(
-											new(d == digit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, urCell * 9 + d));
+											new(
+												d == digit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
+												urCell * 9 + d
+											)
+										);
 									}
 								}
 								else
@@ -1580,7 +1584,11 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									foreach (var d in grid.GetCandidates(urCell))
 									{
 										candidateOffsets.Add(
-											new(d == digit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, urCell * 9 + d));
+											new(
+												d == digit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
+												urCell * 9 + d
+											)
+										);
 									}
 								}
 								else
@@ -1954,8 +1962,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
-		scoped ReadOnlySpan<(Digit, Digit)> digitPairs = (stackalloc[] { (d1, d2), (d2, d1) });
-		scoped ReadOnlySpan<Digit> digits = (stackalloc[] { d1, d2 });
+		scoped var digitPairs = (ReadOnlySpan<(Digit, Digit)>)([(d1, d2), (d2, d1)]);
+		scoped var digits = (ReadOnlySpan<Digit>)([d1, d2]);
 		foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
 		{
 			var linkMap = CellsMap[begin] + abzCell;
