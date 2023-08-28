@@ -75,6 +75,12 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 					// Two strong link found.
 					// Record all eliminations.
 					var (head, tail) = (cellsList1[headIndex], cellsList2[tailIndex]);
+					if ((CellsMap[head] + tail).InOneHouse)
+					{
+						// A standard X-Wing pattern.
+						continue;
+					}
+
 					if ((PeersMap[head] & PeersMap[tail] & CandidatesMap[digit]) is not (var elimMap and not []))
 					{
 						continue;
