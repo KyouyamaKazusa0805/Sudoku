@@ -1648,7 +1648,6 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[Abbreviation("HAR")]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	HiddenAvoidableRectangle,
 

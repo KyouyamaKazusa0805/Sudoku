@@ -1080,7 +1080,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		int index
 	)
 	{
-		if (grid.GetCandidates(cornerCell) != comparer)
+		var cells = (CellMap)urCells;
+		if (!arMode && grid.GetCandidates(cornerCell) != comparer || arMode && (EmptyCells & cells) != otherCellsMap)
 		{
 			return;
 		}
@@ -1102,8 +1103,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				continue;
 			}
 
-			if (!IsConjugatePair(digit, map1, m1cl)
-				|| !IsConjugatePair(digit, map2, m2cl))
+			if (!IsConjugatePair(digit, map1, m1cl) || !IsConjugatePair(digit, map2, m2cl))
+			{
+				continue;
+			}
+
+			// Determine whether the Hidden ARs don't use unrelated digits.
+			if (arMode && ((1 << grid.GetDigit(cornerCell)) | 1 << digit) != comparer)
 			{
 				continue;
 			}
