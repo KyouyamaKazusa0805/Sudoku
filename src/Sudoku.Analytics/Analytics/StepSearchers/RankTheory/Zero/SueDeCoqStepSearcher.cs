@@ -134,9 +134,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 											{
 												if ((blockMask >> digit & 1) != 0)
 												{
-													conclusions.Add(
-														new(Elimination, cell, digit)
-													);
+													conclusions.Add(new(Elimination, cell, digit));
 												}
 											}
 										}
@@ -146,9 +144,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 											{
 												if ((lineMask >> digit & 1) != 0)
 												{
-													conclusions.Add(
-														new(Elimination, cell, digit)
-													);
+													conclusions.Add(new(Elimination, cell, digit));
 												}
 											}
 										}
