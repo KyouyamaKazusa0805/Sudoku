@@ -1114,7 +1114,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				continue;
 			}
 
-			// Hidden UR found. Now check eliminations.
+			// Hidden UR/AR found. Now check eliminations.
 			var elimDigit = TrailingZeroCount(comparer ^ (1 << digit));
 			if (!CandidatesMap[elimDigit].Contains(abzCell))
 			{
