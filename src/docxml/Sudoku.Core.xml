@@ -2399,67 +2399,6 @@ if (student is (name: var name, age: >= 18))
             </para>
             </remarks>
         </member>
-        <member name="T:Sudoku.Concepts.Grid.CandidateEnumerator">
-            <summary>
-            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
-            </summary>
-            <param name="arr">The reference to an array.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.CandidateEnumerator.#ctor(System.Int16@)">
-            <summary>
-            Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Grid"/> through the candidates in the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
-            </summary>
-            <param name="arr">The reference to an array.</param>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.CandidateEnumerator._start">
-            <summary>
-            The pointer to the start value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.CandidateEnumerator._refCurrent">
-            <summary>
-            The current pointer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.CandidateEnumerator._currentMask">
-            <summary>
-            Indicates the current mask.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.CandidateEnumerator._currentIndex">
-            <summary>
-            The current index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.CandidateEnumerator.Current">
-            <summary>
-            Gets the element in the collection at the current position of the enumerator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.CandidateEnumerator.MoveNext">
-            <summary>
-            Advances the enumerator to the next element of the collection.
-            </summary>
-            <returns>
-            <list type="table">
-            <listheader>
-            <term>Return value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><see langword="true"/></term>
-            <description>If the enumerator was successfully advanced to the next element.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>If the enumerator has passed the end of the collection.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.CandidateEnumerator.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
         <member name="F:Sudoku.Concepts.Grid.DefaultMask">
             <summary>
             Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -2799,6 +2738,9 @@ if (student is (name: var name, age: >= 18))
             Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
             </summary>
             <returns>The enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Where(System.Func{System.Int32,System.Boolean})">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Select``1(System.Func{System.Int32,``0})">
             <inheritdoc/>
@@ -4991,6 +4933,13 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.InvalidOperationException">
             Throws when the specified cell keeps a wrong cell state value. For example, <see cref="F:Sudoku.Concepts.CellState.Undefined"/>.
             </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitive.IGrid`11.Where(System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Filters the candidates that satisfies the specified condition.
+            </summary>
+            <param name="predicate">The condition to filter candidates.</param>
+            <returns>All candidates satisfied the specified condition.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Primitive.IGrid`11.Select``1(System.Func{`6,``0})">
             <summary>

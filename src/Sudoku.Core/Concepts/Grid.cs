@@ -747,19 +747,45 @@ public unsafe partial struct Grid : GridImpl
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidateEnumerator EnumerateCandidates() => new(ref AsRef(this[0]));
+	public readonly OneDimensionalArrayEnumerator<Candidate> EnumerateCandidates()
+	{
+		var candidates = new Candidate[CandidatesCount];
+		for (var (cell, i) = (0, 0); cell < 81; cell++)
+		{
+			if (GetState(cell) == CellState.Empty)
+			{
+				foreach (var digit in GetCandidates(cell))
+				{
+					candidates[i++] = cell * 9 + digit;
+				}
+			}
+		}
+		return candidates.EnumerateImmutable();
+	}
+
+	/// <inheritdoc/>
+	public readonly ReadOnlySpan<Candidate> Where(Func<Candidate, bool> predicate)
+	{
+		var (result, i) = (new Candidate[CandidatesCount], 0);
+		foreach (var candidate in EnumerateCandidates())
+		{
+			if (predicate(candidate))
+			{
+				result[i++] = candidate;
+			}
+		}
+		return result.AsSpan()[..i];
+	}
 
 	/// <inheritdoc/>
 	public readonly ReadOnlySpan<TResult> Select<TResult>(Func<Candidate, TResult> selector)
 	{
-		var (result, i) = (new TResult[81], 0);
+		var (result, i) = (new TResult[CandidatesCount], 0);
 		foreach (var candidate in EnumerateCandidates())
 		{
 			result[i++] = selector(candidate);
 		}
-
-		return result;
+		return result.AsSpan()[..i];
 	}
 
 	/// <inheritdoc/>

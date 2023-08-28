@@ -478,6 +478,13 @@ public partial interface IGrid<TSelf, THouseMask, TConjugateMask, TMask, TCell, 
 	public abstract TDigit GetDigit(TCell cell);
 
 	/// <summary>
+	/// Filters the candidates that satisfies the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition to filter candidates.</param>
+	/// <returns>All candidates satisfied the specified condition.</returns>
+	public abstract ReadOnlySpan<Candidate> Where(Func<Candidate, bool> predicate);
+
+	/// <summary>
 	/// Projects each element of a sequence into a new form.
 	/// </summary>
 	/// <typeparam name="TResult">The type of the value returned by <paramref name="selector"/>.</typeparam>

@@ -18670,7 +18670,7 @@ result ^= expression;
             </summary>
             <param name="grid">The grid to be checked.</param>
             <returns>A list of backdoors.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the grid is not unique, or the puzzle is too easy.</exception>
+            <exception cref="T:System.ArgumentException">Throws when the grid is not unique, or the puzzle is too easy.</exception>
         </member>
         <member name="T:Sudoku.Preprocessing.DeadlyPatternChecker">
             <summary>
