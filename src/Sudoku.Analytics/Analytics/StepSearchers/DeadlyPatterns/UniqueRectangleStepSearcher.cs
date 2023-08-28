@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </item>
 /// <item>
-/// Structured types:
+/// Constructed types:
 /// <list type="bullet">
 /// <item>Unique Rectangle + Conjugate Pair (also called "Unique Rectangle + Strong Link")</item>
 /// <item>Avoidable Rectangle + Hidden Single</item>
