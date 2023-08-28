@@ -29,7 +29,10 @@ public partial class UniqueRectangleWithConjugatePairStep(
 
 	/// <inheritdoc/>
 	public sealed override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> [new(ExtraDifficultyCaseNames.ConjugatePair, ConjugatePairs.Length * .2M)];
+		=> [
+			new(ExtraDifficultyCaseNames.ConjugatePair, ConjugatePairs.Length * .2M),
+			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .2M : 0)
+		];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
