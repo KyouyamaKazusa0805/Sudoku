@@ -274,11 +274,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						}
 
 						// If we aim to a single cell, all four cells should be checked.
-						// Therefore, the 'break' clause should be written here,
-						// rather than continuing the execution.
+						// Therefore, the 'break' clause should be written here, rather than continuing the execution.
 						// In addition, I think you may ask me a question why the outer for loop is limited
-						// the variable 'c1' from 0 to 4 instead of 0 to 3.
-						// If so, we'll miss the cases for checking the last cell.
+						// the variable 'c1' from 0 to 4 instead of 0 to 3. If so, we'll miss the cases for checking the last cell.
 						if (c1 == 3)
 						{
 							break;
