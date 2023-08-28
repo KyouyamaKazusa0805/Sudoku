@@ -975,6 +975,12 @@
   <data name="SettingsPage_DifficultyLevelModeDescription" xml:space="preserve">
     <value>This option controls the behavior which level of steps that a step collector can collect. The more number of steps can be collected, the slower the program will be executed.</value>
   </data>
+  <data name="SettingsPage_DisableFinnedOrSashimiXWing" xml:space="preserve">
+    <value>Disable for Finned X-Wings &amp; Sashimi X-Wings</value>
+  </data>
+  <data name="SettingsPage_DisableFinnedOrSashimiXWingDescription" xml:space="preserve">
+    <value>Grouped &amp; non-grouped Skyscrapers are equivalent to X-Wings, but some users may be used to spotting for skyscrapers and grouped skyscrapers instead of finned or sashimi X-Wings. This option can disable for Finned X-Wings &amp; Sashimi X-Wings.</value>
+  </data>
   <data name="SettingsPage_DisableSudokuPaneLayoutDisplaying" xml:space="preserve">
     <value>Disable flyout in sudoku pane when right-clicked</value>
   </data>

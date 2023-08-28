@@ -47,6 +47,17 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.SiameseSashimiSquirmbag, Technique.SiameseSashimiWhale, Technique.SiameseSashimiLeviathan)]
 public sealed partial class NormalFishStepSearcher : FishStepSearcher
 {
+	/// <summary>
+	/// Indicates whether Finned X-Wing and Sashimi X-Wing should be disabled.
+	/// </summary>
+	/// <remarks>
+	/// This option may be used when you are used to spotting skyscrapers (grouped or non-grouped).
+	/// All Finned X-Wings can be replaced with Grouped Skyscrapers, and all Sashimi X-Wings can be replaced with Non-grouped Skyscrapers.
+	/// </remarks>
+	[RuntimeIdentifier(RuntimeIdentifier.DisableFinnedOrSashimiXWing)]
+	public bool DisableFinnedOrSashimiXWing { get; set; }
+
+
 	/// <inheritdoc/>
 	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
 	{
@@ -223,6 +234,13 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 
 						// Finally, get the elimination cells.
 						elimMap = coverLine - baseLine & HousesMap[finBlock];
+					}
+
+					if (DisableFinnedOrSashimiXWing && size == 2 && !!fins)
+					{
+						// We should disallow collecting Finned X-Wing and Sashimi X-Wings
+						// when option 'DisableFinnedOrSashimiXWing' is configured.
+						continue;
 					}
 
 					// Gather the conclusions and candidates or houses to be highlighted.

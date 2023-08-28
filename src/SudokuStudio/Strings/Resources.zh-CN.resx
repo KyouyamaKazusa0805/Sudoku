@@ -978,6 +978,12 @@
   <data name="SettingsPage_DifficultyLevelModeDescription" xml:space="preserve">
     <value>该设置项控制的是步骤收集操作的行为。如果允许收集的技巧越多，那么程序运行的速度也会越慢。</value>
   </data>
+  <data name="SettingsPage_DisableFinnedOrSashimiXWing" xml:space="preserve">
+    <value>禁用鳍二阶鱼和退化二阶鱼</value>
+  </data>
+  <data name="SettingsPage_DisableFinnedOrSashimiXWingDescription" xml:space="preserve">
+    <value>结构摩天楼和普通摩天楼等效于技巧鳍二阶鱼和退化二阶鱼，但有些用户可能更习惯于观察使用摩天楼技巧而不是二阶鱼结构。该选项可以提供禁用，使得程序不再优先搜索带鱼鳍的二阶鱼结构。</value>
+  </data>
   <data name="SettingsPage_DisableSudokuPaneLayoutDisplaying" xml:space="preserve">
     <value>阻止右键数独盘面的时候弹出菜单</value>
   </data>

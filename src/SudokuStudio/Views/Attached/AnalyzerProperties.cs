@@ -20,6 +20,7 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<bool>(RuntimeIdentifier.AllowLoopedPatternsOnAlmostLockedSetXzRule, DefaultValue = true)]
 [AttachedProperty<bool>(RuntimeIdentifier.AllowCollisionOnAlmostLockedSetXyWing, DefaultValue = true)]
 [AttachedProperty<bool>(RuntimeIdentifier.SearchForReverseBugPartiallyUsedTypes, DefaultValue = true)]
+[AttachedProperty<bool>(RuntimeIdentifier.DisableFinnedOrSashimiXWing, DefaultValue = true)]
 [AttachedProperty<int>(RuntimeIdentifier.ReverseBugMaxSearchingEmptyCellsCount, DefaultValue = 2)]
 [AttachedProperty<int>(RuntimeIdentifier.AlignedExclusionMaxSearchingSize, DefaultValue = 3)]
 [AttachedProperty<int>(RuntimeIdentifier.MaxSizeOfRegularWing, DefaultValue = 5)]
@@ -165,6 +166,10 @@ public static partial class AnalyzerProperties
 	[Callback]
 	private static void CheckAlmostLockedQuadruplePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<AlmostLockedCandidatesStepSearcher>(d, s => s.CheckAlmostLockedQuadruple = (bool)e.NewValue);
+
+	[Callback]
+	private static void DisableFinnedOrSashimiXWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<NormalFishStepSearcher>(d, s => s.DisableFinnedOrSashimiXWing = (bool)e.NewValue);
 
 	[Callback]
 	private static void CheckAdvancedJuniorExocetPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

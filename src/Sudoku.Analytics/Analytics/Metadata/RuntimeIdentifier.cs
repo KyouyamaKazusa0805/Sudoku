@@ -22,6 +22,9 @@ public static class RuntimeIdentifier
 	/// <inheritdoc cref="SingleStepSearcher.UseIttoryuMode"/>
 	public const string AnalyzerUseIttoryuMode = nameof(AnalyzerUseIttoryuMode);
 
+	/// <inheritdoc cref="NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
+	public const string DisableFinnedOrSashimiXWing = nameof(DisableFinnedOrSashimiXWing);
+
 	/// <inheritdoc cref="UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
 	public const string AllowIncompleteUniqueRectangles = nameof(AllowIncompleteUniqueRectangles);
 

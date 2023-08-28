@@ -41,6 +41,19 @@
 					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSinglesInBlockFirst,Mode=TwoWay}" />
 				</w:SettingsCard>
 			</w:SettingsGroup>
+			<w:SettingsGroup Header="{m:R Key=SettingsPage_FishesGroup}">
+				<w:SettingsCard
+					Header="{m:R Key=SettingsPage_DisableFinnedOrSashimiXWing}"
+					Description="{m:R Key=SettingsPage_DisableFinnedOrSashimiXWingDescription}">
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DisableFinnedOrSashimiXWing,Mode=TwoWay}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=SettingsPage_MaxSizeOfComplexFish}">
+					<c:IntegerBox
+						Minimum="2" Maximum="7" LargeChange="2"
+						Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=TwoWay}" />
+				</w:SettingsCard>
+			</w:SettingsGroup>
 			<w:SettingsGroup Header="{m:R Key=SettingsPage_DeadlyPatternsGroup}">
 				<w:SettingsCard Header="{m:R Key=SettingsPage_AllowIncompleteUniqueRectangles}">
 					<ToggleSwitch
@@ -94,13 +107,6 @@
 					<c:IntegerBox
 						Minimum="2" Maximum="5" LargeChange="2"
 						Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AlignedExclusionMaxSearchingSize,Mode=TwoWay}" />
-				</w:SettingsCard>
-			</w:SettingsGroup>
-			<w:SettingsGroup Header="{m:R Key=SettingsPage_FishesGroup}">
-				<w:SettingsCard Header="{m:R Key=SettingsPage_MaxSizeOfComplexFish}">
-					<c:IntegerBox
-						Minimum="2" Maximum="7" LargeChange="2"
-						Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=TwoWay}" />
 				</w:SettingsCard>
 			</w:SettingsGroup>
 			<w:SettingsGroup Header="{m:R Key=SettingsPage_StepsColoring}">

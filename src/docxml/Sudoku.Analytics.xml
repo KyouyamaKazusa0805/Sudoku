@@ -3058,6 +3058,9 @@
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AnalyzerUseIttoryuMode">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode"/>
         </member>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.DisableFinnedOrSashimiXWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
+        </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowIncompleteUniqueRectangles">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
         </member>
@@ -6431,6 +6434,15 @@
             </item>
             </list>
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.DisableFinnedOrSashimiXWing">
+            <summary>
+            Indicates whether Finned X-Wing and Sashimi X-Wing should be disabled.
+            </summary>
+            <remarks>
+            This option may be used when you are used to spotting skyscrapers (grouped or non-grouped).
+            All Finned X-Wings can be replaced with Grouped Skyscrapers, and all Sashimi X-Wings can be replaced with Non-grouped Skyscrapers.
+            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>

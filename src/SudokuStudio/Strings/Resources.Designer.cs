@@ -2869,6 +2869,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable for Finned X-Wings &amp; Sashimi X-Wings.
+        /// </summary>
+        internal static string SettingsPage_DisableFinnedOrSashimiXWing {
+            get {
+                return ResourceManager.GetString("SettingsPage_DisableFinnedOrSashimiXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped &amp; non-grouped Skyscrapers are equivalent to X-Wings, but some users may be used to spotting for skyscrapers and grouped skyscrapers instead of finned or sashimi X-Wings. This option can disable for Finned X-Wings &amp; Sashimi X-Wings..
+        /// </summary>
+        internal static string SettingsPage_DisableFinnedOrSashimiXWingDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_DisableFinnedOrSashimiXWingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable flyout in sudoku pane when right-clicked.
         /// </summary>
         internal static string SettingsPage_DisableSudokuPaneLayoutDisplaying {
