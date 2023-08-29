@@ -675,6 +675,9 @@
   <data name="GeneratingStrategyPage_DifficultyLevel" xml:space="preserve">
     <value>难度级别：</value>
   </data>
+  <data name="GeneratingStrategyPage_Edit" xml:space="preserve">
+    <value>修改</value>
+  </data>
   <data name="GeneratingStrategyPage_FirstAssignmentAttribute" xml:space="preserve">
     <value>首步出数特性：</value>
   </data>

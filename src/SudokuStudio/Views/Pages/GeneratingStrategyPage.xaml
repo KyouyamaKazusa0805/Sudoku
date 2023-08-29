@@ -14,11 +14,25 @@
 			<TextBlock Text="{m:R Key=GeneratingStrategyPage_Intro}" Margin="0,0,0,26" TextWrapping="WrapWholeWords" />
 			<ListView VerticalAlignment="Center" SelectionMode="None">
 				<Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="6">
-					<c:RunningStrategy Margin="20" StrategyName="{m:R Key=GeneratingStrategyPage_Main}">
-						<c:RunningStrategy.ItemsProvider>
-							<bs:GeneratingStrategyItemsProvider />
-						</c:RunningStrategy.ItemsProvider>
-					</c:RunningStrategy>
+					<Grid PointerEntered="Grid_PointerEntered" PointerExited="Grid_PointerExited">
+						<c:RunningStrategy
+							HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20"
+							StrategyName="{m:R Key=GeneratingStrategyPage_Main}">
+							<c:RunningStrategy.ItemsProvider>
+								<bs:GeneratingStrategyItemsProvider />
+							</c:RunningStrategy.ItemsProvider>
+						</c:RunningStrategy>
+						<Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" Tag="Target" Opacity="0">
+							<Button.OpacityTransition>
+								<ScalarTransition />
+							</Button.OpacityTransition>
+
+							<Grid RowDefinitions="Auto,*">
+								<SymbolIcon Grid.Row="0" Symbol="Edit" />
+								<TextBlock Grid.Row="1" Text="{m:R Key=GeneratingStrategyPage_Edit}" />
+							</Grid>
+						</Button>
+					</Grid>
 				</Border>
 			</ListView>
 		</StackPanel>

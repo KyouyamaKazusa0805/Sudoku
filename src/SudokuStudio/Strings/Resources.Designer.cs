@@ -1915,6 +1915,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string GeneratingStrategyPage_Edit {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attribute on first assignment: .
         /// </summary>
         internal static string GeneratingStrategyPage_FirstAssignmentAttribute {

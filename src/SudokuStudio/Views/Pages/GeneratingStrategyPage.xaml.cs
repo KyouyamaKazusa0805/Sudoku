@@ -9,4 +9,29 @@ public sealed partial class GeneratingStrategyPage : Page
 	/// Initializes a <see cref="GeneratingStrategyPage"/> instance.
 	/// </summary>
 	public GeneratingStrategyPage() => InitializeComponent();
+
+
+	private void Grid_PointerEntered(object sender, PointerRoutedEventArgs e)
+	{
+		foreach (var control in ((GridLayout)sender).Children)
+		{
+			if (control is FrameworkElement { Tag: "Target" })
+			{
+				control.Opacity = 1;
+				return;
+			}
+		}
+	}
+
+	private void Grid_PointerExited(object sender, PointerRoutedEventArgs e)
+	{
+		foreach (var control in ((GridLayout)sender).Children)
+		{
+			if (control is FrameworkElement { Tag: "Target" })
+			{
+				control.Opacity = 0;
+				return;
+			}
+		}
+	}
 }

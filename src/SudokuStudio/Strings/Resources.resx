@@ -672,6 +672,9 @@
   <data name="GeneratingStrategyPage_DifficultyLevel" xml:space="preserve">
     <value>Difficulty Level: </value>
   </data>
+  <data name="GeneratingStrategyPage_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
   <data name="GeneratingStrategyPage_FirstAssignmentAttribute" xml:space="preserve">
     <value>Attribute on first assignment: </value>
   </data>

@@ -5127,6 +5127,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Difficulty Level: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Edit">
+            <summary>
+              Looks up a localized string similar to Edit.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_FirstAssignmentAttribute">
             <summary>
               Looks up a localized string similar to Attribute on first assignment: .
