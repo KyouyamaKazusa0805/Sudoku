@@ -669,6 +669,27 @@
   <data name="FontPicker_SelectFontPlaceholder" xml:space="preserve">
     <value>Select a font</value>
   </data>
+  <data name="GeneratingStrategyPage_DifficultyLevel" xml:space="preserve">
+    <value>Difficulty Level: </value>
+  </data>
+  <data name="GeneratingStrategyPage_FirstAssignmentAttribute" xml:space="preserve">
+    <value>Attribute on first assignment: </value>
+  </data>
+  <data name="GeneratingStrategyPage_Intro" xml:space="preserve">
+    <value>This page provides with configured generating strategies used by analyzer page. The puzzle will be generated via the specified strategy displayed in this page.</value>
+  </data>
+  <data name="GeneratingStrategyPage_IsMinimalPuzzle" xml:space="preserve">
+    <value>Minimal: </value>
+  </data>
+  <data name="GeneratingStrategyPage_Main" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="GeneratingStrategyPage_Symmetry" xml:space="preserve">
+    <value>Symmetry: </value>
+  </data>
+  <data name="GeneratingStrategyPage_TechniquesMustIncluded" xml:space="preserve">
+    <value>Techniques must be included: </value>
+  </data>
   <data name="HotkeyCheatTablePage_ClearCell" xml:space="preserve">
     <value>Clear a cell</value>
   </data>
@@ -794,6 +815,12 @@
   </data>
   <data name="MainWindow_ExtraFunctions" xml:space="preserve">
     <value>Extra Functions</value>
+  </data>
+  <data name="MainWindow_GeneratingStrategy" xml:space="preserve">
+    <value>Generating Strategies</value>
+  </data>
+  <data name="MainWindow_GeneratingStrategyPageTitle" xml:space="preserve">
+    <value>Generating Strategies</value>
   </data>
   <data name="MainWindow_HotkeyCheatTable" xml:space="preserve">
     <value>Hotkeys</value>

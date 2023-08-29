@@ -2488,6 +2488,14 @@ if (student is (name: var name, age: >= 18))
             Indicates the failed reason is that the file cannot be parsed.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.GeneratingStrategyItemsProvider">
+            <summary>
+            Represents a generating strategy items provider.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GeneratingStrategyItemsProvider.Items">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Interaction.GridClickedEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>.
@@ -2744,6 +2752,16 @@ if (student is (name: var name, age: >= 18))
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.HouseCompleted"/>
         </member>
+        <member name="T:SudokuStudio.Interaction.IRunningStrategyItemsProvider">
+            <summary>
+            Represents a value provider that provides with data to be displayed.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.IRunningStrategyItemsProvider.Items">
+            <summary>
+            Indicates the items to be displayed.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.MouseButton">
             <summary>
             Defines a mouse button.
@@ -2860,6 +2878,26 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the method is by program.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.RunningStrategyItem">
+            <summary>
+            The title to be displayed.
+            </summary>
+            <param name="Title">Indicates the title.</param>
+            <param name="Value">Indicates the value.</param>
+        </member>
+        <member name="M:SudokuStudio.Interaction.RunningStrategyItem.#ctor(System.String,System.String)">
+            <summary>
+            The title to be displayed.
+            </summary>
+            <param name="Title">Indicates the title.</param>
+            <param name="Value">Indicates the value.</param>
+        </member>
+        <member name="P:SudokuStudio.Interaction.RunningStrategyItem.Title">
+            <summary>Indicates the title.</summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.RunningStrategyItem.Value">
+            <summary>Indicates the value.</summary>
         </member>
         <member name="T:SudokuStudio.Interaction.SaveFileFailedEventArgs">
             <summary>
@@ -5084,6 +5122,41 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Select a font.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_DifficultyLevel">
+            <summary>
+              Looks up a localized string similar to Difficulty Level: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_FirstAssignmentAttribute">
+            <summary>
+              Looks up a localized string similar to Attribute on first assignment: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Intro">
+            <summary>
+              Looks up a localized string similar to This page provides with configured generating strategies used by analyzer page. The puzzle will be generated via the specified strategy displayed in this page..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_IsMinimalPuzzle">
+            <summary>
+              Looks up a localized string similar to Minimal: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Main">
+            <summary>
+              Looks up a localized string similar to Main.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Symmetry">
+            <summary>
+              Looks up a localized string similar to Symmetry: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_TechniquesMustIncluded">
+            <summary>
+              Looks up a localized string similar to Techniques must be included: .
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ClearCell">
             <summary>
               Looks up a localized string similar to Clear a cell.
@@ -5292,6 +5365,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_ExtraFunctions">
             <summary>
               Looks up a localized string similar to Extra Functions.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_GeneratingStrategy">
+            <summary>
+              Looks up a localized string similar to Generating Strategies.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_GeneratingStrategyPageTitle">
+            <summary>
+              Looks up a localized string similar to Generating Strategies.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_HotkeyCheatTable">
@@ -7174,6 +7257,53 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.IntegerBox.LargeChange">
             <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.NumberBox.LargeChange"/>
         </member>
+        <member name="T:SudokuStudio.Views.Controls.RunningStrategy">
+            <summary>
+            Represents a running strategy control.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.RunningStrategy.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.RunningStrategy"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.RunningStrategy.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.RunningStrategy.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.RunningStrategy.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.RunningStrategy.StrategyNameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.RunningStrategy.StrategyName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.RunningStrategy.StrategyName"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.RunningStrategy.ItemsProviderProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.RunningStrategy.ItemsProvider"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.RunningStrategy.ItemsProvider"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.RunningStrategy.StrategyName">
+            <summary>
+            Indicates the strategy name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.RunningStrategy.ItemsProvider">
+            <summary>
+            An instance that can create a list of items that can be used for the displaying.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Controls.Shapes.CircleRing">
             <summary>
             Represents a circle ring.
@@ -8995,6 +9125,31 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.ContentDialogs.ExceptionThrownOnAnalyzingContent.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.GeneratingStrategyPage">
+            <summary>
+            The generating strategy page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratingStrategyPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.GeneratingStrategyPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratingStrategyPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratingStrategyPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratingStrategyPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

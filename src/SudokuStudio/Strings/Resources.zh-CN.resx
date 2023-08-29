@@ -672,6 +672,27 @@
   <data name="FontPicker_SelectFontPlaceholder" xml:space="preserve">
     <value>选择一个字体</value>
   </data>
+  <data name="GeneratingStrategyPage_DifficultyLevel" xml:space="preserve">
+    <value>难度级别：</value>
+  </data>
+  <data name="GeneratingStrategyPage_FirstAssignmentAttribute" xml:space="preserve">
+    <value>首步出数特性：</value>
+  </data>
+  <data name="GeneratingStrategyPage_Intro" xml:space="preserve">
+    <value>该页面列举的是用户配置的一些生成题目使用的出题策略。它们会被分析器页面使用。你指定的是什么配置内容，那个页面就生成满足这些指定参数的题目。</value>
+  </data>
+  <data name="GeneratingStrategyPage_IsMinimalPuzzle" xml:space="preserve">
+    <value>必须为最小题：</value>
+  </data>
+  <data name="GeneratingStrategyPage_Main" xml:space="preserve">
+    <value>主策略</value>
+  </data>
+  <data name="GeneratingStrategyPage_Symmetry" xml:space="preserve">
+    <value>对称性：</value>
+  </data>
+  <data name="GeneratingStrategyPage_TechniquesMustIncluded" xml:space="preserve">
+    <value>必须含有的技巧：</value>
+  </data>
   <data name="HotkeyCheatTablePage_ClearCell" xml:space="preserve">
     <value>清除单元格填数</value>
   </data>
@@ -797,6 +818,12 @@
   </data>
   <data name="MainWindow_ExtraFunctions" xml:space="preserve">
     <value>额外功能</value>
+  </data>
+  <data name="MainWindow_GeneratingStrategy" xml:space="preserve">
+    <value>题目生成策略</value>
+  </data>
+  <data name="MainWindow_GeneratingStrategyPageTitle" xml:space="preserve">
+    <value>题目生成策略</value>
   </data>
   <data name="MainWindow_HotkeyCheatTable" xml:space="preserve">
     <value>热键表</value>

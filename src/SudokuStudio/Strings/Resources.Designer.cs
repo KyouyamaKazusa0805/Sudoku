@@ -1906,6 +1906,69 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Difficulty Level: .
+        /// </summary>
+        internal static string GeneratingStrategyPage_DifficultyLevel {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_DifficultyLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attribute on first assignment: .
+        /// </summary>
+        internal static string GeneratingStrategyPage_FirstAssignmentAttribute {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_FirstAssignmentAttribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page provides with configured generating strategies used by analyzer page. The puzzle will be generated via the specified strategy displayed in this page..
+        /// </summary>
+        internal static string GeneratingStrategyPage_Intro {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimal: .
+        /// </summary>
+        internal static string GeneratingStrategyPage_IsMinimalPuzzle {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_IsMinimalPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main.
+        /// </summary>
+        internal static string GeneratingStrategyPage_Main {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_Main", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symmetry: .
+        /// </summary>
+        internal static string GeneratingStrategyPage_Symmetry {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_Symmetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Techniques must be included: .
+        /// </summary>
+        internal static string GeneratingStrategyPage_TechniquesMustIncluded {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_TechniquesMustIncluded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear a cell.
         /// </summary>
         internal static string HotkeyCheatTablePage_ClearCell {
@@ -2280,6 +2343,24 @@ namespace SudokuStudio.Strings {
         internal static string MainWindow_ExtraFunctions {
             get {
                 return ResourceManager.GetString("MainWindow_ExtraFunctions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generating Strategies.
+        /// </summary>
+        internal static string MainWindow_GeneratingStrategy {
+            get {
+                return ResourceManager.GetString("MainWindow_GeneratingStrategy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generating Strategies.
+        /// </summary>
+        internal static string MainWindow_GeneratingStrategyPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_GeneratingStrategyPageTitle", resourceCulture);
             }
         }
         

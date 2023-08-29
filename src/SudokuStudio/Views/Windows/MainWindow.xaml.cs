@@ -79,6 +79,7 @@ public sealed partial class MainWindow : Window
 	private void InitializeField()
 		=> _navigatingData = [
 			(container => container == AnalyzePageItem, typeof(AnalyzePage)),
+			(container => container == GeneratingStrategyPageItem, typeof(GeneratingStrategyPage)),
 			(container => container == AboutPageItem, typeof(AboutPage)),
 			(container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage)),
 			(container => container == HotkeyCheatTablePage, typeof(HotkeyCheatTablePage))

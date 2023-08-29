@@ -49,6 +49,7 @@
 			<NavigationView.MenuItems>
 				<NavigationViewItemHeader Content="{m:R Key=MainWindow_BasicFunctions}" />
 				<NavigationViewItem x:Name="AnalyzePageItem" Icon="Edit" Content="{m:R Key=MainWindow_Analyze}" />
+				<NavigationViewItem x:Name="GeneratingStrategyPageItem" Icon="Favorite" Content="{m:R Key=MainWindow_GeneratingStrategy}" />
 				<NavigationViewItemHeader Content="{m:R Key=MainWindow_ExtraFunctions}" />
 				<NavigationViewItem x:Name="SingleCountingPageItem" Content="{m:R Key=MainWindow_SingleCountingPracticing}">
 					<NavigationViewItem.Icon>

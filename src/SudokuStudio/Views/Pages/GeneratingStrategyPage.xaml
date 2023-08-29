@@ -1,0 +1,26 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.GeneratingStrategyPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:i="using:SudokuStudio.Interaction"
+	xmlns:p="using:SudokuStudio.Views.Pages"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:GeneratingStrategyPage}">
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
+			<TextBlock Text="{m:R Key=GeneratingStrategyPage_Intro}" Margin="0,0,0,26" TextWrapping="WrapWholeWords" />
+			<ListView VerticalAlignment="Center" SelectionMode="None">
+				<Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="6">
+					<c:RunningStrategy Margin="20" StrategyName="{m:R Key=GeneratingStrategyPage_Main}">
+						<c:RunningStrategy.ItemsProvider>
+							<i:GeneratingStrategyItemsProvider />
+						</c:RunningStrategy.ItemsProvider>
+					</c:RunningStrategy>
+				</Border>
+			</ListView>
+		</StackPanel>
+	</ScrollViewer>
+</Page>

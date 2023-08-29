@@ -19,8 +19,7 @@
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	</PropertyGroup>
 	<ItemGroup>
-	  <None Remove="Views\Controls\TechniqueSelector.xaml" />
-	  <None Remove="Views\Pages\Manuals\HotkeyCheatTablePage.xaml" />
+	  <None Remove="Views\Pages\GeneratingStrategyPage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -98,7 +97,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Views\Controls\TechniqueSelector.xaml">
+	  <Page Update="Views\Pages\GeneratingStrategyPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>
 	</ItemGroup>
@@ -188,6 +187,9 @@
 		<Page Update="Views\Controls\TechniqueSelector.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
+		<Page Update="Views\Controls\RunningStrategy.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 
 	<!--
@@ -199,9 +201,9 @@
 		<ProjectCapability Include="Msix" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Page Update="Views\Pages\Manuals\HotkeyCheatTablePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
+		<Page Update="Views\Pages\Manuals\HotkeyCheatTablePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 
 	<!--
