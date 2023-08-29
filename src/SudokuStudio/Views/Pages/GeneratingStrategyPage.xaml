@@ -4,9 +4,9 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:bs="using:SudokuStudio.BindableSource"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:m="using:SudokuStudio.Markup"
-	xmlns:i="using:SudokuStudio.Interaction"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:GeneratingStrategyPage}">
 	<ScrollViewer>
@@ -16,7 +16,7 @@
 				<Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="6">
 					<c:RunningStrategy Margin="20" StrategyName="{m:R Key=GeneratingStrategyPage_Main}">
 						<c:RunningStrategy.ItemsProvider>
-							<i:GeneratingStrategyItemsProvider />
+							<bs:GeneratingStrategyItemsProvider />
 						</c:RunningStrategy.ItemsProvider>
 					</c:RunningStrategy>
 				</Border>

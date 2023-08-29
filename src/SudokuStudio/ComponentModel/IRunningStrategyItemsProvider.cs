@@ -1,4 +1,4 @@
-namespace SudokuStudio.Interaction;
+namespace SudokuStudio.ComponentModel;
 
 /// <summary>
 /// Represents a value provider that provides with data to be displayed.

@@ -1,4 +1,4 @@
-namespace SudokuStudio.Interaction;
+namespace SudokuStudio.BindableSource;
 
 /// <summary>
 /// Represents a generating strategy items provider.
