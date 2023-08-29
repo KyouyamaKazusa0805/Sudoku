@@ -1906,6 +1906,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Diamond.
+        /// </summary>
+        internal static string GeneratingStrategyPage_DiamondPuzzle {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_DiamondPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Difficulty Level: .
         /// </summary>
         internal static string GeneratingStrategyPage_DifficultyLevel {
@@ -1956,6 +1965,24 @@ namespace SudokuStudio.Strings {
         internal static string GeneratingStrategyPage_Main {
             get {
                 return ResourceManager.GetString("GeneratingStrategyPage_Main", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal.
+        /// </summary>
+        internal static string GeneratingStrategyPage_NormalPuzzle {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_NormalPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pearl.
+        /// </summary>
+        internal static string GeneratingStrategyPage_PearlPuzzle {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_PearlPuzzle", resourceCulture);
             }
         }
         

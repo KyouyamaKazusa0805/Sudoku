@@ -5122,6 +5122,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Select a font.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_DiamondPuzzle">
+            <summary>
+              Looks up a localized string similar to Diamond.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_DifficultyLevel">
             <summary>
               Looks up a localized string similar to Difficulty Level: .
@@ -5150,6 +5155,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Main">
             <summary>
               Looks up a localized string similar to Main.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_NormalPuzzle">
+            <summary>
+              Looks up a localized string similar to Normal.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_PearlPuzzle">
+            <summary>
+              Looks up a localized string similar to Pearl.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Symmetry">
