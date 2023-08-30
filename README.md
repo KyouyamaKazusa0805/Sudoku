@@ -55,8 +55,6 @@ This repository is created for the following kinds of users:
 
 ![](docs/pic/winui.png)
 
-\* Numbers beside steps shown in solving path tab are the difficulty rating values defined by sudoku analyzer program HoDoKu and Sudoku Explainer.
-
 ## Technique Supports
 
 This solution supports many kinds of human-friendly techniques. Here I will list them.

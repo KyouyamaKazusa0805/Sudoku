@@ -51,8 +51,6 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 
 ![](docs/pic/winui.png)
 
-\* 步骤旁边的数字是 HoDoKu 和 Sudoku Explainer 软件所规定的该技巧的难度。
-
 ## 支持的技巧
 
 本项目支持众多人工解题技巧的逻辑推理过程。下面给大家列举一下这些技巧。
