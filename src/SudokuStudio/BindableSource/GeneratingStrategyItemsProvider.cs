@@ -24,7 +24,19 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 				DifficultyLevelConversion.GetName(((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel),
 				new(
 					GeneratingStrategyPage_DifficultyLevel,
-					static obj => ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel = (DifficultyLevel)obj!
+					static () => new ComboBox
+					{
+						SelectedIndex = 0,
+						ItemsSource = (ComboBoxItem[])[
+							new() { Content = GetString("DifficultyLevel_None"), Tag = DifficultyLevel.Unknown },
+							new() { Content = GetString("DifficultyLevel_Easy"), Tag = DifficultyLevel.Easy },
+							new() { Content = GetString("DifficultyLevel_Moderate"), Tag = DifficultyLevel.Moderate },
+							new() { Content = GetString("DifficultyLevel_Hard"), Tag = DifficultyLevel.Hard },
+							new() { Content = GetString("DifficultyLevel_Fiendish"), Tag = DifficultyLevel.Fiendish },
+							new() { Content = GetString("DifficultyLevel_Nightmare"), Tag = DifficultyLevel.Nightmare }
+						]
+					},
+					static c => ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel = (DifficultyLevel)((ComboBoxItem)((ComboBox)c).SelectedItem).Tag!
 				)
 			),
 			new(
@@ -32,7 +44,23 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 				GetString($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}"),
 				new(
 					GeneratingStrategyPage_Symmetry,
-					static obj => ((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern = (SymmetricType)obj!
+					static () => new ComboBox
+					{
+						SelectedIndex = 0,
+						ItemsSource = (ComboBoxItem[])[
+							new() { Content = GetString("SymmetricType_None"), Tag = SymmetricType.None },
+							new() { Content = GetString("SymmetricType_Central"), Tag = SymmetricType.Central },
+							new() { Content = GetString("SymmetricType_Diagonal"), Tag = SymmetricType.Diagonal },
+							new() { Content = GetString("SymmetricType_AntiDiagonal"), Tag = SymmetricType.AntiDiagonal },
+							new() { Content = GetString("SymmetricType_AntiDiagonal"), Tag = SymmetricType.AntiDiagonal },
+							new() { Content = GetString("SymmetricType_XAxis"), Tag = SymmetricType.XAxis },
+							new() { Content = GetString("SymmetricType_YAxis"), Tag = SymmetricType.YAxis },
+							new() { Content = GetString("SymmetricType_AxisBoth"), Tag = SymmetricType.AxisBoth },
+							new() { Content = GetString("SymmetricType_DiagonalBoth"), Tag = SymmetricType.DiagonalBoth },
+							new() { Content = GetString("SymmetricType_All"), Tag = SymmetricType.AxisBoth }
+						]
+					},
+					static c => ((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern = (SymmetricType)((ComboBoxItem)((ComboBox)c).SelectedItem).Tag!
 				)
 			),
 			new(
@@ -44,7 +72,14 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 				},
 				new(
 					GeneratingStrategyPage_TechniquesMustIncluded,
-					static obj => ((App)Application.Current).Preference.UIPreferences.SelectedTechnique = (Technique)obj!
+					static () => new TechniqueSelector { SelectedIndex = 0 },
+					static c => ((App)Application.Current).Preference.UIPreferences.SelectedTechnique = c switch
+					{
+						TechniqueSelector { ItemsSource: var source, SelectedIndex: var index }
+							=> index switch { -1 => Technique.None, _ => source[index].Technique },
+						_
+							=> throw new InvalidOperationException("The status is invalid.")
+					}
 				)
 			),
 			new(
@@ -52,7 +87,8 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 				((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBeMinimal.ToString(),
 				new(
 					GeneratingStrategyPage_IsMinimalPuzzle,
-					static obj => ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBeMinimal = (bool)obj!
+					static () => new ToggleSwitch(),
+					static c => ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBeMinimal = ((ToggleSwitch)c).IsOn
 				)
 			),
 			new(
@@ -65,7 +101,8 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 				},
 				new(
 					GeneratingStrategyPage_FirstAssignmentAttribute,
-					static obj => ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBePearl = (bool)obj!
+					static () => new ToggleSwitch(),
+					static c => ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBePearl = ((ToggleSwitch)c).IsOn
 				)
 			)
 		];

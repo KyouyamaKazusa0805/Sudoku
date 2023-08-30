@@ -203,7 +203,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 	private void PuzzleTechniqueSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		if (sender is TechniqueSelector { ItemsSource: TechniqueBindableSource[] source, SelectedIndex: var index and not -1 })
+		if (sender is TechniqueSelector { ItemsSource: var source, SelectedIndex: var index and not -1 })
 		{
 			((App)Application.Current).Preference.UIPreferences.SelectedTechnique = source[index].Technique;
 		}

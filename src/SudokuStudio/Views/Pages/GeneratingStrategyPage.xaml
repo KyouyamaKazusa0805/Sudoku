@@ -16,7 +16,7 @@
 				<Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="6">
 					<Grid PointerEntered="Grid_PointerEntered" PointerExited="Grid_PointerExited">
 						<c:RunningStrategy
-							HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20"
+							x:Name="RunningStrategy" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20"
 							StrategyName="{m:R Key=GeneratingStrategyPage_Main}">
 							<c:RunningStrategy.ItemsProvider>
 								<bs:GeneratingStrategyItemsProvider />

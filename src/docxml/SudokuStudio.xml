@@ -2883,46 +2883,63 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a type that describes for a running strategy item.
             </summary>
-            <param name="TitleKey">Indicates the title key in resource.</param>
-            <param name="Value">Indicates the value.</param>
-            <param name="Updater">The updater that can assign new value to the target place.</param>
+            <param name="titleKey">Indicates the title key in resource.</param>
+            <param name="value">Indicates the value.</param>
+            <param name="updater">The updater that can assign new value to the target place.</param>
         </member>
-        <member name="M:SudokuStudio.Interaction.RunningStrategyItem.#ctor(System.String,System.String,SudokuStudio.Interaction.RunningStrategyUpdater@)">
+        <member name="M:SudokuStudio.Interaction.RunningStrategyItem.#ctor(System.String,System.String,SudokuStudio.Interaction.RunningStrategyUpdater)">
             <summary>
             Represents a type that describes for a running strategy item.
             </summary>
-            <param name="TitleKey">Indicates the title key in resource.</param>
-            <param name="Value">Indicates the value.</param>
-            <param name="Updater">The updater that can assign new value to the target place.</param>
+            <param name="titleKey">Indicates the title key in resource.</param>
+            <param name="value">Indicates the value.</param>
+            <param name="updater">The updater that can assign new value to the target place.</param>
         </member>
         <member name="P:SudokuStudio.Interaction.RunningStrategyItem.TitleKey">
-            <summary>Indicates the title key in resource.</summary>
+            <summary>
+            The generated property declaration for parameter <c>titleKey</c>.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Interaction.RunningStrategyItem.Value">
-            <summary>Indicates the value.</summary>
+            <summary>
+            The generated property declaration for parameter <c>value</c>.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Interaction.RunningStrategyItem.Updater">
-            <summary>The updater that can assign new value to the target place.</summary>
+            <summary>
+            The generated property declaration for parameter <c>updater</c>.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.RunningStrategyUpdater">
             <summary>
             Represents a type that encapsulates a router that can route a value to the distination.
             </summary>
-            <param name="TitleKey">The title key to be assigned. This value is used for disctincting with options set.</param>
-            <param name="ValueRouter">The value router that can assign the value to the distinction.</param>
+            <param name="titleKey">The title key to be assigned. This value is used for disctincting with options set.</param>
+            <param name="updaterControlCreator">A function that creates a control that can update the result.</param>
+            <param name="valueRouter">The value router that can assign the value to the distinction.</param>
         </member>
-        <member name="M:SudokuStudio.Interaction.RunningStrategyUpdater.#ctor(System.String,System.Action{System.Object})">
+        <member name="M:SudokuStudio.Interaction.RunningStrategyUpdater.#ctor(System.String,System.Func{Microsoft.UI.Xaml.FrameworkElement},System.Action{Microsoft.UI.Xaml.FrameworkElement})">
             <summary>
             Represents a type that encapsulates a router that can route a value to the distination.
             </summary>
-            <param name="TitleKey">The title key to be assigned. This value is used for disctincting with options set.</param>
-            <param name="ValueRouter">The value router that can assign the value to the distinction.</param>
+            <param name="titleKey">The title key to be assigned. This value is used for disctincting with options set.</param>
+            <param name="updaterControlCreator">A function that creates a control that can update the result.</param>
+            <param name="valueRouter">The value router that can assign the value to the distinction.</param>
         </member>
         <member name="P:SudokuStudio.Interaction.RunningStrategyUpdater.TitleKey">
-            <summary>The title key to be assigned. This value is used for disctincting with options set.</summary>
+            <summary>
+            The generated property declaration for parameter <c>titleKey</c>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.RunningStrategyUpdater.UpdaterControlCreator">
+            <summary>
+            The generated property declaration for parameter <c>updaterControlCreator</c>.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Interaction.RunningStrategyUpdater.ValueRouter">
-            <summary>The value router that can assign the value to the distinction.</summary>
+            <summary>
+            The generated property declaration for parameter <c>valueRouter</c>.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.SaveFileFailedEventArgs">
             <summary>

@@ -43,6 +43,19 @@ public sealed partial class GeneratingStrategyPage : Page
 
 	private void Button_Click(object sender, RoutedEventArgs e)
 	{
+		foreach (var itemControl in RunningStrategy.InternalListView.ItemsPanelRoot.Children)
+		{
+			if (itemControl is not ListViewItem
+				{
+					Tag: RunningStrategyItem { Updater.UpdaterControlCreator: var creator },
+					Content: StackPanel { Children: [.., ContentPresenter presenter] }
+				})
+			{
+				continue;
+			}
 
+			presenter.Content = creator();
+			presenter.Visibility = Visibility.Visible;
+		}
 	}
 }

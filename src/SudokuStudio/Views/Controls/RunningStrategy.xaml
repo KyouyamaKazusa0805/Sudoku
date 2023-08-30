@@ -14,15 +14,18 @@
 
 	<StackPanel>
 		<TextBlock Text="{x:Bind StrategyName,Mode=OneWay}" FontSize="24" FontWeight="Bold" Margin="0,0,0,16" />
-		<ListView SelectionMode="None" ItemsSource="{x:Bind RunningStrategyItems.View,Mode=OneWay}">
+		<ListView
+			x:Name="InternalListView" x:FieldModifier="internal" SelectionMode="None"
+			ItemsSource="{x:Bind RunningStrategyItems.View,Mode=OneWay}">
 			<ListView.ItemTemplate>
 				<DataTemplate x:DataType="i:RunningStrategyItem">
-					<ListViewItem>
+					<ListViewItem Height="40" Tag="{x:Bind}">
 						<StackPanel Orientation="Horizontal">
 							<TextBlock
 								Text="{x:Bind cvt:GeneratingStrategyConversion.GetTitle(TitleKey)}" FontWeight="Bold"
-								MinWidth="160" Margin="0,0,20,0" />
-							<TextBlock Text="{x:Bind Value}" />
+								VerticalAlignment="Center" MinWidth="160" Margin="0,0,20,0" />
+							<TextBlock Text="{x:Bind Value}" VerticalAlignment="Center" MinWidth="160" Margin="0,0,20,0" />
+							<ContentPresenter VerticalAlignment="Center" Visibility="Collapsed" />
 						</StackPanel>
 					</ListViewItem>
 				</DataTemplate>
