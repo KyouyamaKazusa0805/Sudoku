@@ -55,7 +55,7 @@ public sealed partial class GeneratingStrategyPage : Page
 			}
 
 			presenter.Content = creator();
-			presenter.Visibility = Visibility.Visible;
+			presenter.Opacity = 1;
 		}
 	}
 }
