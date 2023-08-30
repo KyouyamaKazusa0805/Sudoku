@@ -39,11 +39,7 @@ public sealed partial class GeneratingStrategyPage : Page
 	/// </summary>
 	private void InitializeEvents()
 	{
-		ValueChanged += (_, _) =>
-		{
-			RunningStrategy.UpdateValues();
-			RunningStrategy.HideContentPresenters();
-		};
+		ValueChanged += (_, _) => { RunningStrategy.UpdateValues(); RunningStrategy.HideContentPresenters(); };
 		ValueCanceled += (_, _) => RunningStrategy.HideContentPresenters();
 	}
 
