@@ -6,6 +6,12 @@ namespace SudokuStudio.Views.Pages;
 public sealed partial class GeneratingStrategyPage : Page
 {
 	/// <summary>
+	/// The target item that the corresponding control's tag will set this value.
+	/// </summary>
+	private const string TargetTagName = "Target";
+
+
+	/// <summary>
 	/// Initializes a <see cref="GeneratingStrategyPage"/> instance.
 	/// </summary>
 	public GeneratingStrategyPage() => InitializeComponent();
@@ -15,7 +21,7 @@ public sealed partial class GeneratingStrategyPage : Page
 	{
 		foreach (var control in ((GridLayout)sender).Children)
 		{
-			if (control is FrameworkElement { Tag: "Target" })
+			if (control is FrameworkElement { Tag: TargetTagName })
 			{
 				control.Opacity = 1;
 				return;
@@ -27,7 +33,7 @@ public sealed partial class GeneratingStrategyPage : Page
 	{
 		foreach (var control in ((GridLayout)sender).Children)
 		{
-			if (control is FrameworkElement { Tag: "Target" })
+			if (control is FrameworkElement { Tag: TargetTagName })
 			{
 				control.Opacity = 0;
 				return;

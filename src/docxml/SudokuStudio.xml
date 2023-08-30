@@ -9179,6 +9179,11 @@ if (student is (name: var name, age: >= 18))
             The generating strategy page.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.GeneratingStrategyPage.TargetTagName">
+            <summary>
+            The target item that the corresponding control's tag will set this value.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.GeneratingStrategyPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.GeneratingStrategyPage"/> instance.
