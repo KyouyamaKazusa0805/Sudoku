@@ -8,7 +8,8 @@
 	xmlns:config="using:SudokuStudio.Configuration"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:StepSearcherListView}">
 	<ListView
-		x:Name="MainListView" SelectionMode="Single" ItemsSource="{x:Bind StepSearchers,Mode=TwoWay}"
+		x:Name="MainListView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+		SelectionMode="Single" ItemsSource="{x:Bind StepSearchers,Mode=TwoWay}"
 		CanDragItems="True" CanReorderItems="True" AllowDrop="True" BorderBrush="{x:Bind BorderBrush,Mode=OneWay}"
 		BorderThickness="{x:Bind BorderThickness,Mode=OneWay}" CornerRadius="{x:Bind CornerRadius,Mode=OneWay}"
 		DragItemsStarting="MainListView_DragItemsStarting" DragOver="MainListView_DragOver" Drop="MainListView_DropAsync"

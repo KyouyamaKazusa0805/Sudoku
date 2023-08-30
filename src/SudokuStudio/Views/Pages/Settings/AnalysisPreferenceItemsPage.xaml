@@ -209,18 +209,19 @@
 					Description="{m:R Key=SettingsPage_StepSearcherOrderingDescription}">
 					<w:SettingsExpander.Items>
 						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
-							<StackPanel Orientation="Horizontal" Spacing="36">
-								<ScrollViewer>
+							<Grid RowDefinitions="500" ColumnDefinitions="360,24,360">
+								<ScrollViewer Grid.Row="0" Grid.Column="0">
 									<c:StepSearcherListView
-										x:Name="StepSearcherView" Margin="40,10" Width="300" Height="500" HorizontalAlignment="Left"
-										BorderBrush="DimGray" BorderThickness="1" CornerRadius="6"
+										x:Name="StepSearcherView" Margin="40,10" BorderBrush="LightGray" BorderThickness="1" CornerRadius="6"
 										StepSearchers="{x:Bind ((z:App)y:Application.Current).Preference.StepSearcherOrdering.StepSearchersOrder,Mode=TwoWay}"
 										ItemSelected="StepSearcherView_ItemSelected" />
 								</ScrollViewer>
 								<ScrollViewer
-									VerticalScrollBarVisibility="Auto" Height="500" MaxWidth="600"
+									Grid.Row="0" Grid.Column="2" VerticalScrollBarVisibility="Auto"
 									Visibility="{x:Bind cvt:StepSearcherListViewConversion.GetDisplayerVisibility(CurrentSelectedStepSearcher),Mode=OneWay}">
-									<StackPanel Orientation="Vertical" Spacing="6" CornerRadius="6" BorderBrush="DimGray" BorderThickness="1" Padding="24">
+									<StackPanel
+										Orientation="Vertical" Spacing="6" CornerRadius="6" BorderBrush="LightGray"
+										BorderThickness="1" Padding="24">
 										<TextBlock
 											FontSize="24" FontWeight="Bold"
 											Text="{x:Bind cvt:StepSearcherListViewConversion.GetStepSearcherName(CurrentSelectedStepSearcher),Mode=OneWay}" />
@@ -239,7 +240,7 @@
 												</DataTemplate>
 											</ItemsRepeater.ItemTemplate>
 											<ItemsRepeater.Layout>
-												<ColumnMajorUniformToLargestGridLayout MaxColumns="6" RowSpacing="6" ColumnSpacing="6" />
+												<StackLayout Orientation="Horizontal" Spacing="6" />
 											</ItemsRepeater.Layout>
 										</ItemsRepeater>
 										<TextBlock Text="{m:R Key=AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques}" />
@@ -257,12 +258,12 @@
 												</DataTemplate>
 											</ItemsRepeater.ItemTemplate>
 											<ItemsRepeater.Layout>
-												<ColumnMajorUniformToLargestGridLayout MaxColumns="6" RowSpacing="6" ColumnSpacing="6" />
+												<StackLayout Orientation="Vertical" Spacing="6" />
 											</ItemsRepeater.Layout>
 										</ItemsRepeater>
 									</StackPanel>
 								</ScrollViewer>
-							</StackPanel>
+							</Grid>
 						</w:SettingsCard>
 					</w:SettingsExpander.Items>
 				</w:SettingsExpander>
