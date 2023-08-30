@@ -9232,6 +9232,28 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditingProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditing"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditing"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditButtonHoveredProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditButtonHovered"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditButtonHovered"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditing">
+            <summary>
+            Indicates whether the editing operation is processed.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditButtonHovered">
+            <summary>
+            Indicates whether the edit button is hovered.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Pages.Manuals.AboutPage">
             <summary>
             Represents about page.

@@ -6,6 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:bs="using:SudokuStudio.BindableSource"
 	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:GeneratingStrategyPage}">
@@ -23,8 +24,8 @@
 							</c:RunningStrategy.ItemsProvider>
 						</c:RunningStrategy>
 						<Button
-							HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" Tag="Target"
-							Opacity="0" OpacityTransition="{m:ScalarTransition}"
+							HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" Tag="Target" OpacityTransition="{m:ScalarTransition}"
+							Opacity="{x:Bind cvt:GeneratingStrategyConversion.GetEditButtonOpacity(IsEditing,IsEditButtonHovered),Mode=OneWay}"
 							Click="Button_Click">
 							<Grid RowDefinitions="Auto,*">
 								<SymbolIcon Grid.Row="0" Symbol="Edit" />

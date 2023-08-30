@@ -3,6 +3,8 @@ namespace SudokuStudio.Views.Pages;
 /// <summary>
 /// The generating strategy page.
 /// </summary>
+[DependencyProperty<bool>("IsEditing", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the editing operation is processed.")]
+[DependencyProperty<bool>("IsEditButtonHovered", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the edit button is hovered.")]
 public sealed partial class GeneratingStrategyPage : Page
 {
 	/// <summary>
@@ -24,6 +26,7 @@ public sealed partial class GeneratingStrategyPage : Page
 			if (control is FrameworkElement { Tag: TargetTagName })
 			{
 				control.Opacity = 1;
+				IsEditButtonHovered = true;
 				return;
 			}
 		}
@@ -36,6 +39,7 @@ public sealed partial class GeneratingStrategyPage : Page
 			if (control is FrameworkElement { Tag: TargetTagName })
 			{
 				control.Opacity = 0;
+				IsEditButtonHovered = false;
 				return;
 			}
 		}
@@ -43,6 +47,7 @@ public sealed partial class GeneratingStrategyPage : Page
 
 	private void Button_Click(object sender, RoutedEventArgs e)
 	{
+		var isEditing = false;
 		foreach (var itemControl in RunningStrategy.InternalListView.ItemsPanelRoot.Children)
 		{
 			if (itemControl is not ListViewItem
@@ -54,8 +59,11 @@ public sealed partial class GeneratingStrategyPage : Page
 				continue;
 			}
 
+			isEditing = true;
 			presenter.Content = creator();
 			presenter.Opacity = 1;
 		}
+
+		IsEditing = isEditing;
 	}
 }
