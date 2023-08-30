@@ -22,7 +22,9 @@
 								<bs:GeneratingStrategyItemsProvider />
 							</c:RunningStrategy.ItemsProvider>
 						</c:RunningStrategy>
-						<Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" Tag="Target" Opacity="0">
+						<Button
+							HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" Tag="Target" Opacity="0"
+							Click="Button_Click">
 							<Button.OpacityTransition>
 								<ScalarTransition />
 							</Button.OpacityTransition>

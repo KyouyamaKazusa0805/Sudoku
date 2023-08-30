@@ -2881,23 +2881,48 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Interaction.RunningStrategyItem">
             <summary>
-            The title to be displayed.
+            Represents a type that describes for a running strategy item.
             </summary>
             <param name="Title">Indicates the title.</param>
             <param name="Value">Indicates the value.</param>
+            <param name="Updater">The updater that can assign new value to the target place.</param>
         </member>
-        <member name="M:SudokuStudio.Interaction.RunningStrategyItem.#ctor(System.String,System.String)">
+        <member name="M:SudokuStudio.Interaction.RunningStrategyItem.#ctor(System.String,System.String,SudokuStudio.Interaction.RunningStrategyUpdater@)">
             <summary>
-            The title to be displayed.
+            Represents a type that describes for a running strategy item.
             </summary>
             <param name="Title">Indicates the title.</param>
             <param name="Value">Indicates the value.</param>
+            <param name="Updater">The updater that can assign new value to the target place.</param>
         </member>
         <member name="P:SudokuStudio.Interaction.RunningStrategyItem.Title">
             <summary>Indicates the title.</summary>
         </member>
         <member name="P:SudokuStudio.Interaction.RunningStrategyItem.Value">
             <summary>Indicates the value.</summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.RunningStrategyItem.Updater">
+            <summary>The updater that can assign new value to the target place.</summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.RunningStrategyUpdater">
+            <summary>
+            Represents a type that encapsulates a router that can route a value to the distination.
+            </summary>
+            <param name="Title">The title to be assigned. This value is used for disctincting with options set.</param>
+            <param name="ValueRouter">The value router that can assign the value to the distinction.</param>
+        </member>
+        <member name="M:SudokuStudio.Interaction.RunningStrategyUpdater.#ctor(System.String,System.Action{System.Object})">
+            <summary>
+            Represents a type that encapsulates a router that can route a value to the distination.
+            </summary>
+            <param name="Title">The title to be assigned. This value is used for disctincting with options set.</param>
+            <param name="ValueRouter">The value router that can assign the value to the distinction.</param>
+        </member>
+        <member name="P:SudokuStudio.Interaction.RunningStrategyUpdater.Title">
+            <summary>The title to be assigned. This value is used for disctincting with options set.</summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.RunningStrategyUpdater.ValueRouter">
+            <summary>The value router that can assign the value to the distinction.</summary>
         </member>
         <member name="T:SudokuStudio.Interaction.SaveFileFailedEventArgs">
             <summary>
