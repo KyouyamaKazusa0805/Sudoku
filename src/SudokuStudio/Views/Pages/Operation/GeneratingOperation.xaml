@@ -26,9 +26,7 @@
 			Click="NewPuzzleButton_ClickAsync" />
 		<AppBarSeparator />
 		<AppBarElementContainer>
-			<StackPanel>
-				<TextBlock x:Name="GeneratingStrategyDisplayer" VerticalAlignment="Center" />
-			</StackPanel>
+			<TextBlock x:Name="GeneratingStrategyDisplayer" VerticalAlignment="Center" />
 		</AppBarElementContainer>
 	</CommandBar>
 </Page>
