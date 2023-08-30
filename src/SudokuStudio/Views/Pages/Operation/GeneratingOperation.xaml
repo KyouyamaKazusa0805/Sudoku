@@ -27,55 +27,7 @@
 		<AppBarSeparator />
 		<AppBarElementContainer>
 			<StackPanel>
-				<TextBlock Text="{m:R Key=AnalyzePage_PleaseSelectDifficultyLevel}" VerticalAlignment="Center" />
-				<ComboBox x:Name="DifficultyLevelSelector" AllowFocusOnInteraction="True" SelectionChanged="DifficultyLevelSelector_SelectionChanged">
-					<ComboBoxItem Content="{m:R Key=DifficultyLevel_None}" Tag="{m:Int32 Value=0}" />
-					<ComboBoxItem Content="{m:R Key=DifficultyLevel_Easy}" Tag="{m:Int32 Value=1}" />
-					<ComboBoxItem Content="{m:R Key=DifficultyLevel_Moderate}" Tag="{m:Int32 Value=2}" />
-					<ComboBoxItem Content="{m:R Key=DifficultyLevel_Hard}" Tag="{m:Int32 Value=4}" />
-					<ComboBoxItem Content="{m:R Key=DifficultyLevel_Fiendish}" Tag="{m:Int32 Value=8}" />
-					<ComboBoxItem Content="{m:R Key=DifficultyLevel_Nightmare}" Tag="{m:Int32 Value=16}" />
-				</ComboBox>
-			</StackPanel>
-		</AppBarElementContainer>
-		<AppBarElementContainer>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=AnalyzePage_PleaseSelectSymmetricPattern}" VerticalAlignment="Center" />
-				<ComboBox x:Name="PuzzleSymmetricPatternSelector" AllowFocusOnInteraction="True" SelectionChanged="PuzzleSymmetricPatternSelector_SelectionChanged">
-					<ComboBoxItem Content="{m:R Key=SymmetricType_None}" Tag="{m:Int32 Value=0}" />
-					<ComboBoxItem Content="{m:R Key=SymmetricType_Central}" Tag="{m:Int32 Value=1}" />
-					<ComboBoxItem Content="{m:R Key=SymmetricType_Diagonal}" Tag="{m:Int32 Value=2}" />
-					<ComboBoxItem Content="{m:R Key=SymmetricType_AntiDiagonal}" Tag="{m:Int32 Value=4}" />
-					<ComboBoxItem Content="{m:R Key=SymmetricType_XAxis}" Tag="{m:Int32 Value=8}" />
-					<ComboBoxItem Content="{m:R Key=SymmetricType_YAxis}" Tag="{m:Int32 Value=16}" />
-					<ComboBoxItem Content="{m:R Key=SymmetricType_AxisBoth}" Tag="{m:Int32 Value=32}" />
-					<ComboBoxItem Content="{m:R Key=SymmetricType_DiagonalBoth}" Tag="{m:Int32 Value=64}" />
-					<ComboBoxItem Content="{m:R Key=SymmetricType_All}" Tag="{m:Int32 Value=128}" />
-				</ComboBox>
-			</StackPanel>
-		</AppBarElementContainer>
-		<AppBarElementContainer>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=AnalyzePage_TechniqueMustAppear}" VerticalAlignment="Center" />
-				<c:TechniqueSelector x:Name="PuzzleTechniqueSelector" AllowFocusOnInteraction="True" SelectionChanged="PuzzleTechniqueSelector_SelectionChanged" />
-			</StackPanel>
-		</AppBarElementContainer>
-		<AppBarElementContainer>
-			<StackPanel>
-				<TextBlock
-					Text="{m:R Key=AnalyzePage_GenerateForMinimalPuzzle}" VerticalAlignment="Center"
-					ToolTipService.ToolTip="{m:R Key=AnalyzePage_GenerateForMinimalPuzzleTooltip}" />
-				<ToggleSwitch
-					x:Name="GenerateForMinimalPuzzleToggleSwitch" OnContent="{x:Null}" OffContent="{x:Null}" MinWidth="0"
-					Toggled="GenerateForMinimalPuzzleToggleSwitch_Toggled" />
-			</StackPanel>
-		</AppBarElementContainer>
-		<AppBarElementContainer>
-			<StackPanel>
-				<TextBlock Text="{m:R Key=TechniqueSelector_ShouleBePearlPuzzle}" VerticalAlignment="Center" />
-				<ToggleSwitch
-					x:Name="GenerateForPearlPuzzleToggleSwitch" OnContent="{x:Null}" OffContent="{x:Null}" MinWidth="0"
-					Toggled="GenerateForPearlPuzzleToggleSwitch_Toggled" />
+				<TextBlock x:Name="GeneratingStrategyDisplayer" VerticalAlignment="Center" />
 			</StackPanel>
 		</AppBarElementContainer>
 	</CommandBar>

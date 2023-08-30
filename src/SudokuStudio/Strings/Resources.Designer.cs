@@ -232,6 +232,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ) .
+        /// </summary>
+        internal static string _Token_ClosedBrace {
+            get {
+                return ResourceManager.GetString("_Token_ClosedBrace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to : .
         /// </summary>
         internal static string _Token_Colon {
@@ -246,6 +255,24 @@ namespace SudokuStudio.Strings {
         internal static string _Token_Comma {
             get {
                 return ResourceManager.GetString("_Token_Comma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , .
+        /// </summary>
+        internal static string _Token_Comma2 {
+            get {
+                return ResourceManager.GetString("_Token_Comma2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  (.
+        /// </summary>
+        internal static string _Token_OpenBrace {
+            get {
+                return ResourceManager.GetString("_Token_OpenBrace", resourceCulture);
             }
         }
         
@@ -984,6 +1011,15 @@ namespace SudokuStudio.Strings {
         internal static string AnalyzePage_GenerateForMinimalPuzzleTooltip {
             get {
                 return ResourceManager.GetString("AnalyzePage_GenerateForMinimalPuzzleTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active strategy: Main.
+        /// </summary>
+        internal static string AnalyzePage_GeneratingStrategySelected {
+            get {
+                return ResourceManager.GetString("AnalyzePage_GeneratingStrategySelected", resourceCulture);
             }
         }
         
@@ -2496,6 +2532,15 @@ namespace SudokuStudio.Strings {
         internal static string MainWindow_SingleCountingPracticingPageTitle {
             get {
                 return ResourceManager.GetString("MainWindow_SingleCountingPracticingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
             }
         }
         
@@ -4376,6 +4421,15 @@ namespace SudokuStudio.Strings {
         internal static string TechniqueSelector_ShouleBePearlPuzzle {
             get {
                 return ResourceManager.GetString("TechniqueSelector_ShouleBePearlPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

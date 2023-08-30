@@ -4245,6 +4245,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Sudoku Studio.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources._Token_ClosedBrace">
+            <summary>
+              Looks up a localized string similar to ) .
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources._Token_Colon">
             <summary>
               Looks up a localized string similar to : .
@@ -4253,6 +4258,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources._Token_Comma">
             <summary>
               Looks up a localized string similar to , .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources._Token_Comma2">
+            <summary>
+              Looks up a localized string similar to , .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources._Token_OpenBrace">
+            <summary>
+              Looks up a localized string similar to  (.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AboutPage_Author">
@@ -4663,6 +4678,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GenerateForMinimalPuzzleTooltip">
             <summary>
               Looks up a localized string similar to If any one given in a puzzle cannot be removed, the puzzle will be minimal..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GeneratingStrategySelected">
+            <summary>
+              Looks up a localized string similar to Active strategy: Main.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GeneratorIsProcessing">
@@ -5503,6 +5523,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_SingleCountingPracticingPageTitle">
             <summary>
               Looks up a localized string similar to Single Counting Practicing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.No">
+            <summary>
+              Looks up a localized string similar to No.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.Settings_Compatibility">
@@ -6551,6 +6576,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.TechniqueSelector_ShouleBePearlPuzzle">
             <summary>
               Looks up a localized string similar to Should be pearl puzzle: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.Yes">
+            <summary>
+              Looks up a localized string similar to Yes.
             </summary>
         </member>
         <member name="T:SudokuStudio.Strings.StringsAccessor">

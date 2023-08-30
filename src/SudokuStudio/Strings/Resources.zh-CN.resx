@@ -366,6 +366,9 @@
   <data name="AnalyzePage_GenerateForMinimalPuzzleTooltip" xml:space="preserve">
     <value>最小题是说，某个唯一解的题目的任何一个提示数被去掉，都会变为多解题的题目类型。</value>
   </data>
+  <data name="AnalyzePage_GeneratingStrategySelected" xml:space="preserve">
+    <value>启用的策略：主策略</value>
+  </data>
   <data name="AnalyzePage_GeneratorIsProcessing" xml:space="preserve">
     <value>正在出题……</value>
   </data>
@@ -869,6 +872,9 @@
   </data>
   <data name="MainWindow_SingleCountingPracticingPageTitle" xml:space="preserve">
     <value>唯余数数练习</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>否</value>
   </data>
   <data name="SettingsPage_AlignedExclusionMaxSearchingSize" xml:space="preserve">
     <value>均衡数组的最大枚举空格数量</value>
@@ -1502,6 +1508,9 @@
   <data name="TechniqueSelector_ShouleBePearlPuzzle" xml:space="preserve">
     <value>是否为珍珠题：</value>
   </data>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>容易</value>
   </data>
@@ -1556,10 +1565,19 @@
   <data name="_Inference_Weak" xml:space="preserve">
     <value>弱链关系</value>
   </data>
+  <data name="_Token_ClosedBrace" xml:space="preserve">
+    <value>）</value>
+  </data>
   <data name="_Token_Colon" xml:space="preserve">
     <value>：</value>
   </data>
   <data name="_Token_Comma" xml:space="preserve">
     <value>、</value>
+  </data>
+  <data name="_Token_Comma2" xml:space="preserve">
+    <value>，</value>
+  </data>
+  <data name="_Token_OpenBrace" xml:space="preserve">
+    <value>（</value>
   </data>
 </root>

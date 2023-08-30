@@ -363,6 +363,9 @@
   <data name="AnalyzePage_GenerateForMinimalPuzzleTooltip" xml:space="preserve">
     <value>If any one given in a puzzle cannot be removed, the puzzle will be minimal.</value>
   </data>
+  <data name="AnalyzePage_GeneratingStrategySelected" xml:space="preserve">
+    <value>Active strategy: Main</value>
+  </data>
   <data name="AnalyzePage_GeneratorIsProcessing" xml:space="preserve">
     <value>Generator is processing...</value>
   </data>
@@ -866,6 +869,9 @@
   </data>
   <data name="MainWindow_SingleCountingPracticingPageTitle" xml:space="preserve">
     <value>Single Counting Practicing</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
   </data>
   <data name="SettingsPage_AlignedExclusionMaxSearchingSize" xml:space="preserve">
     <value>Maximum number of cell permutation in aligned exclusion</value>
@@ -1499,6 +1505,9 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="TechniqueSelector_ShouleBePearlPuzzle" xml:space="preserve">
     <value>Should be pearl puzzle: </value>
   </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
   <data name="_DifficultyLevel_Easy" xml:space="preserve">
     <value>Easy</value>
   </data>
@@ -1556,10 +1565,19 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="_ProgramName" xml:space="preserve">
     <value>Sudoku Studio</value>
   </data>
+  <data name="_Token_ClosedBrace" xml:space="preserve">
+    <value>) </value>
+  </data>
   <data name="_Token_Colon" xml:space="preserve">
     <value>: </value>
   </data>
   <data name="_Token_Comma" xml:space="preserve">
     <value>, </value>
+  </data>
+  <data name="_Token_Comma2" xml:space="preserve">
+    <value>, </value>
+  </data>
+  <data name="_Token_OpenBrace" xml:space="preserve">
+    <value> (</value>
   </data>
 </root>

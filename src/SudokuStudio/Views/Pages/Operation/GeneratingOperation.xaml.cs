@@ -24,53 +24,36 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	/// </summary>
 	private void SetMemoryOptions()
 	{
-		//
-		// DifficultyLevelSelector
-		//
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
-		var flag = false;
-		for (var (i, items, target) = (0, DifficultyLevelSelector.Items, uiPref.GeneratorDifficultyLevel);
-			i < items.Count;
-			i++)
-		{
-			if (items[i] is ComboBoxItem { Tag: int rawValue } && (DifficultyLevel)rawValue == target)
-			{
-				(DifficultyLevelSelector.SelectedIndex, flag) = (i, true);
-				break;
-			}
-		}
-		if (!flag)
-		{
-			DifficultyLevelSelector.SelectedIndex = 0;
-		}
+		var openBrace = GetString("_Token_OpenBrace");
+		var closedBrace = GetString("_Token_ClosedBrace");
+		var textParts = new List<string>();
+		var s = DifficultyLevelConversion.GetName(uiPref.GeneratorDifficultyLevel);
+		textParts.Add($"{GetString("AnalyzePage_PleaseSelectDifficultyLevel")}{s}");
 
-		//
-		// PuzzleSymmetricPatternSelector
-		//
-		for ((var i, var items, var target, flag) = (0, PuzzleSymmetricPatternSelector.Items, uiPref.GeneratorSymmetricPattern, false);
-			i < items.Count;
-			i++)
-		{
-			if (items[i] is ComboBoxItem { Tag: int rawValue } && (SymmetricType)rawValue == target)
-			{
-				(PuzzleSymmetricPatternSelector.SelectedIndex, flag) = (i, true);
-				break;
-			}
-		}
-		if (!flag)
-		{
-			PuzzleSymmetricPatternSelector.SelectedIndex = 0;
-		}
+		s = GetString($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}");
+		textParts.Add($"{GetString("AnalyzePage_PleaseSelectSymmetricPattern")}{s}");
 
-		//
-		// GenerateForMinimalPuzzleToggleSwitch
-		//
-		GenerateForMinimalPuzzleToggleSwitch.IsOn = uiPref.GeneratedPuzzleShouldBeMinimal;
+		s = uiPref.SelectedTechnique switch
+		{
+			Technique.None => GetString("TechniqueSelector_NoTechniqueSelected"),
+			var t => $"{t.GetName()}{openBrace}{t.GetEnglishName()}{closedBrace}"
+		};
+		textParts.Add($"{GetString("AnalyzePage_TechniqueMustAppear")}{s}");
 
-		//
-		// PuzzleTechniqueSelector
-		//
-		PuzzleTechniqueSelector.SelectedIndex = Array.FindIndex(PuzzleTechniqueSelector.ItemsSource, e => e.Technique == uiPref.SelectedTechnique);
+		s = uiPref.GeneratedPuzzleShouldBeMinimal ? GetString("Yes") : GetString("No");
+		textParts.Add($"{GetString("AnalyzePage_GenerateForMinimalPuzzle")}{s}");
+
+		s = uiPref.GeneratedPuzzleShouldBePearl switch
+		{
+			true => GetString("GeneratingStrategyPage_PearlPuzzle"),
+			false => GetString("GeneratingStrategyPage_NormalPuzzle"),
+			//_ => GetString("GeneratingStrategyPage_DiamondPuzzle")
+		};
+		textParts.Add($"{GetString("TechniqueSelector_ShouleBePearlPuzzle")}{s}");
+
+		var resultParts = string.Join(GetString("_Token_Comma2"), textParts);
+		GeneratingStrategyDisplayer.Text = $"{GetString("AnalyzePage_GeneratingStrategySelected")}{openBrace}{resultParts}{closedBrace}";
 	}
 
 
@@ -166,46 +149,6 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			{
 				return null;
 			}
-		}
-	}
-
-	private void DifficultyLevelSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-	{
-		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: int value } })
-		{
-			((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel = (DifficultyLevel)value;
-		}
-	}
-
-	private void PuzzleSymmetricPatternSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-	{
-		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: int value } })
-		{
-			((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern = (SymmetricType)value;
-		}
-	}
-
-	private void GenerateForMinimalPuzzleToggleSwitch_Toggled(object sender, RoutedEventArgs e)
-	{
-		if (sender is ToggleSwitch { IsOn: var value })
-		{
-			((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBeMinimal = value;
-		}
-	}
-
-	private void GenerateForPearlPuzzleToggleSwitch_Toggled(object sender, RoutedEventArgs e)
-	{
-		if (sender is ToggleSwitch { IsOn: var value })
-		{
-			((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBePearl = value;
-		}
-	}
-
-	private void PuzzleTechniqueSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-	{
-		if (sender is TechniqueSelector { ItemsSource: var source, SelectedIndex: var index and not -1 })
-		{
-			((App)Application.Current).Preference.UIPreferences.SelectedTechnique = source[index].Technique;
 		}
 	}
 }
