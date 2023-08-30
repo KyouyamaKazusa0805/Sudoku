@@ -7,6 +7,7 @@
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:i="using:SudokuStudio.Interaction"
+	xmlns:m="using:SudokuStudio.Markup"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:RunningStrategy}">
 	<UserControl.Resources>
 		<CollectionViewSource x:Name="RunningStrategyItems" />
@@ -25,11 +26,7 @@
 								Text="{x:Bind cvt:GeneratingStrategyConversion.GetTitle(TitleKey)}" FontWeight="Bold"
 								VerticalAlignment="Center" MinWidth="160" Margin="0,0,20,0" />
 							<TextBlock Text="{x:Bind Value}" VerticalAlignment="Center" MinWidth="160" Margin="0,0,20,0" />
-							<ContentPresenter VerticalAlignment="Center" Opacity="0">
-								<ContentPresenter.OpacityTransition>
-									<ScalarTransition />
-								</ContentPresenter.OpacityTransition>
-							</ContentPresenter>
+							<ContentPresenter VerticalAlignment="Center" Opacity="0" OpacityTransition="{m:ScalarTransition}" />
 						</StackPanel>
 					</ListViewItem>
 				</DataTemplate>

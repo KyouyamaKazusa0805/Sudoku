@@ -3384,6 +3384,17 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Markup.RExtension.ProvideValue">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Markup.ScalarTransitionExtension">
+            <summary>
+            Represents a scalar transition extension instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Markup.ScalarTransitionExtension.Duration">
+            <inheritdoc cref="P:Microsoft.UI.Xaml.ScalarTransition.Duration"/>
+        </member>
+        <member name="M:SudokuStudio.Markup.ScalarTransitionExtension.ProvideValue">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Markup.ThicknessExtension">
             <summary>
             Defines a markup extension that can create a new <see cref="T:Microsoft.UI.Xaml.Thickness"/> instance via base one.
