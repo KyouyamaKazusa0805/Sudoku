@@ -672,6 +672,9 @@
   <data name="FontPicker_SelectFontPlaceholder" xml:space="preserve">
     <value>选择一个字体</value>
   </data>
+  <data name="GeneratingStrategyPage_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
   <data name="GeneratingStrategyPage_DiamondPuzzle" xml:space="preserve">
     <value>钻石题</value>
   </data>
@@ -698,6 +701,9 @@
   </data>
   <data name="GeneratingStrategyPage_PearlPuzzle" xml:space="preserve">
     <value>珍珠题</value>
+  </data>
+  <data name="GeneratingStrategyPage_Submit" xml:space="preserve">
+    <value>确定</value>
   </data>
   <data name="GeneratingStrategyPage_Symmetry" xml:space="preserve">
     <value>对称性：</value>

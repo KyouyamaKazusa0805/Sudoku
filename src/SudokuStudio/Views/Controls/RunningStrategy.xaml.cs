@@ -13,6 +13,39 @@ public sealed partial class RunningStrategy : UserControl
 	public RunningStrategy() => InitializeComponent();
 
 
+	/// <summary>
+	/// Hidden content presenters.
+	/// </summary>
+	internal void HideContentPresenters()
+	{
+		foreach (var element in InternalListView.ItemsPanelRoot.Children)
+		{
+			if (element is ListViewItem { Content: StackPanel { Children: [.., ContentPresenter presenter] } })
+			{
+				presenter.Opacity = 0;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Indicates the value updated.
+	/// </summary>
+	internal void UpdateValues()
+	{
+		foreach (var element in InternalListView.ItemsPanelRoot.Children)
+		{
+			if (element is ListViewItem
+				{
+					Tag: RunningStrategyItem { Updater.InitializedValueDisplayer: var displayer },
+					Content: StackPanel { Children: [_, TextBlock valuePresenter, ContentPresenter { Content: FrameworkElement control }] }
+				})
+			{
+				valuePresenter.Text = displayer();
+			}
+		}
+	}
+
+
 	[Callback]
 	private static void ItemsProviderPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> ((RunningStrategy)d).RunningStrategyItems.Source = ((IRunningStrategyItemsProvider)e.NewValue).Items;

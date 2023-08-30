@@ -2884,25 +2884,18 @@ if (student is (name: var name, age: >= 18))
             Represents a type that describes for a running strategy item.
             </summary>
             <param name="titleKey">Indicates the title key in resource.</param>
-            <param name="value">Indicates the value.</param>
             <param name="updater">The updater that can assign new value to the target place.</param>
         </member>
-        <member name="M:SudokuStudio.Interaction.RunningStrategyItem.#ctor(System.String,System.String,SudokuStudio.Interaction.RunningStrategyUpdater)">
+        <member name="M:SudokuStudio.Interaction.RunningStrategyItem.#ctor(System.String,SudokuStudio.Interaction.RunningStrategyUpdater)">
             <summary>
             Represents a type that describes for a running strategy item.
             </summary>
             <param name="titleKey">Indicates the title key in resource.</param>
-            <param name="value">Indicates the value.</param>
             <param name="updater">The updater that can assign new value to the target place.</param>
         </member>
         <member name="P:SudokuStudio.Interaction.RunningStrategyItem.TitleKey">
             <summary>
             The generated property declaration for parameter <c>titleKey</c>.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Interaction.RunningStrategyItem.Value">
-            <summary>
-            The generated property declaration for parameter <c>value</c>.
             </summary>
         </member>
         <member name="P:SudokuStudio.Interaction.RunningStrategyItem.Updater">
@@ -2916,14 +2909,16 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="titleKey">The title key to be assigned. This value is used for disctincting with options set.</param>
             <param name="updaterControlCreator">A function that creates a control that can update the result.</param>
+            <param name="initializedValueDisplayer">The displayer that displays for initialized values.</param>
             <param name="valueRouter">The value router that can assign the value to the distinction.</param>
         </member>
-        <member name="M:SudokuStudio.Interaction.RunningStrategyUpdater.#ctor(System.String,System.Func{Microsoft.UI.Xaml.FrameworkElement},System.Action{Microsoft.UI.Xaml.FrameworkElement})">
+        <member name="M:SudokuStudio.Interaction.RunningStrategyUpdater.#ctor(System.String,System.Func{Microsoft.UI.Xaml.FrameworkElement},System.Func{System.String},System.Action{Microsoft.UI.Xaml.FrameworkElement})">
             <summary>
             Represents a type that encapsulates a router that can route a value to the distination.
             </summary>
             <param name="titleKey">The title key to be assigned. This value is used for disctincting with options set.</param>
             <param name="updaterControlCreator">A function that creates a control that can update the result.</param>
+            <param name="initializedValueDisplayer">The displayer that displays for initialized values.</param>
             <param name="valueRouter">The value router that can assign the value to the distinction.</param>
         </member>
         <member name="P:SudokuStudio.Interaction.RunningStrategyUpdater.TitleKey">
@@ -2934,6 +2929,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Interaction.RunningStrategyUpdater.UpdaterControlCreator">
             <summary>
             The generated property declaration for parameter <c>updaterControlCreator</c>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.RunningStrategyUpdater.InitializedValueDisplayer">
+            <summary>
+            The generated property declaration for parameter <c>initializedValueDisplayer</c>.
             </summary>
         </member>
         <member name="P:SudokuStudio.Interaction.RunningStrategyUpdater.ValueRouter">
@@ -5175,6 +5175,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Select a font.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Cancel">
+            <summary>
+              Looks up a localized string similar to Cancel.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_DiamondPuzzle">
             <summary>
               Looks up a localized string similar to Diamond.
@@ -5218,6 +5223,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_PearlPuzzle">
             <summary>
               Looks up a localized string similar to Pearl.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Submit">
+            <summary>
+              Looks up a localized string similar to Submit.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Symmetry">
@@ -7340,6 +7350,16 @@ if (student is (name: var name, age: >= 18))
             Initializes a <see cref="T:SudokuStudio.Views.Controls.RunningStrategy"/> instance.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.RunningStrategy.HideContentPresenters">
+            <summary>
+            Hidden content presenters.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.RunningStrategy.UpdateValues">
+            <summary>
+            Indicates the value updated.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.RunningStrategy.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -9217,6 +9237,27 @@ if (student is (name: var name, age: >= 18))
             Initializes a <see cref="T:SudokuStudio.Views.Pages.GeneratingStrategyPage"/> instance.
             </summary>
         </member>
+        <member name="E:SudokuStudio.Views.Pages.GeneratingStrategyPage.ValueChanged">
+            <summary>
+            An event triggered when the target value is changed.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Pages.GeneratingStrategyPage.ValueCanceled">
+            <summary>
+            An event triggered when the target value is canceled.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratingStrategyPage.InitializeEvents">
+            <summary>
+            Initializes for events.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratingStrategyPage.EnumerateSubControls">
+            <summary>
+            Try to get all sub-controls in items panel.
+            </summary>
+            <returns>All sub-controls in items panel.</returns>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.GeneratingStrategyPage.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -9238,18 +9279,18 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditing"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditButtonHoveredProperty">
+        <member name="F:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsCardHoveredProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditButtonHovered"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsCardHovered"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditButtonHovered"/>
+            <seealso cref="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsCardHovered"/>
         </member>
         <member name="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditing">
             <summary>
             Indicates whether the editing operation is processed.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditButtonHovered">
+        <member name="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsCardHovered">
             <summary>
             Indicates whether the edit button is hovered.
             </summary>

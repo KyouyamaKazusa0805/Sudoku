@@ -21,7 +21,6 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 		=> [
 			new(
 				GeneratingStrategyPage_DifficultyLevel,
-				DifficultyLevelConversion.GetName(((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel),
 				new(
 					GeneratingStrategyPage_DifficultyLevel,
 					static () => new ComboBox
@@ -36,12 +35,12 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 							new() { Content = GetString("DifficultyLevel_Nightmare"), Tag = DifficultyLevel.Nightmare }
 						]
 					},
+					static () => DifficultyLevelConversion.GetName(((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel),
 					static c => ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel = (DifficultyLevel)((ComboBoxItem)((ComboBox)c).SelectedItem).Tag!
 				)
 			),
 			new(
 				GeneratingStrategyPage_Symmetry,
-				GetString($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}"),
 				new(
 					GeneratingStrategyPage_Symmetry,
 					static () => new ComboBox
@@ -60,19 +59,20 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 							new() { Content = GetString("SymmetricType_All"), Tag = SymmetricType.AxisBoth }
 						]
 					},
+					static () => GetString($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}"),
 					static c => ((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern = (SymmetricType)((ComboBoxItem)((ComboBox)c).SelectedItem).Tag!
 				)
 			),
 			new(
 				GeneratingStrategyPage_TechniquesMustIncluded,
-				((App)Application.Current).Preference.UIPreferences.SelectedTechnique switch
-				{
-					Technique.None => GetString("TechniqueSelector_NoTechniqueSelected"),
-					var n => $"{n.GetName()} ({n.GetEnglishName()})"
-				},
 				new(
 					GeneratingStrategyPage_TechniquesMustIncluded,
 					static () => new TechniqueSelector { SelectedIndex = 0 },
+					static () => ((App)Application.Current).Preference.UIPreferences.SelectedTechnique switch
+					{
+						Technique.None => GetString("TechniqueSelector_NoTechniqueSelected"),
+						var n => $"{n.GetName()} ({n.GetEnglishName()})"
+					},
 					static c => ((App)Application.Current).Preference.UIPreferences.SelectedTechnique = c switch
 					{
 						TechniqueSelector { ItemsSource: var source, SelectedIndex: var index }
@@ -84,24 +84,24 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 			),
 			new(
 				GeneratingStrategyPage_IsMinimalPuzzle,
-				((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBeMinimal.ToString(),
 				new(
 					GeneratingStrategyPage_IsMinimalPuzzle,
 					static () => new ToggleSwitch(),
+					static () => ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBeMinimal.ToString(),
 					static c => ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBeMinimal = ((ToggleSwitch)c).IsOn
 				)
 			),
 			new(
 				GeneratingStrategyPage_FirstAssignmentAttribute,
-				((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBePearl switch
-				{
-					true => GetString("GeneratingStrategyPage_PearlPuzzle"),
-					false => GetString("GeneratingStrategyPage_NormalPuzzle"),
-					//_ => GetString("GeneratingStrategyPage_DiamondPuzzle")
-				},
 				new(
 					GeneratingStrategyPage_FirstAssignmentAttribute,
 					static () => new ToggleSwitch(),
+					static () => ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBePearl switch
+					{
+						true => GetString("GeneratingStrategyPage_PearlPuzzle"),
+						false => GetString("GeneratingStrategyPage_NormalPuzzle"),
+						//_ => GetString("GeneratingStrategyPage_DiamondPuzzle")
+					},
 					static c => ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBePearl = ((ToggleSwitch)c).IsOn
 				)
 			)

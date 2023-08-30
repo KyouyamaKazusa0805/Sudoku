@@ -23,15 +23,37 @@
 								<bs:GeneratingStrategyItemsProvider />
 							</c:RunningStrategy.ItemsProvider>
 						</c:RunningStrategy>
-						<Button
-							HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" Tag="Target" OpacityTransition="{m:ScalarTransition}"
-							Opacity="{x:Bind cvt:GeneratingStrategyConversion.GetEditButtonOpacity(IsEditing,IsEditButtonHovered),Mode=OneWay}"
-							Click="Button_Click">
-							<Grid RowDefinitions="Auto,*">
-								<SymbolIcon Grid.Row="0" Symbol="Edit" />
-								<TextBlock Grid.Row="1" Text="{m:R Key=GeneratingStrategyPage_Edit}" />
-							</Grid>
-						</Button>
+						<StackPanel
+							HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0"
+							Orientation="Horizontal" Spacing="4">
+							<Button
+								Tag="Target" OpacityTransition="{m:ScalarTransition}"
+								Opacity="{x:Bind cvt:GeneratingStrategyConversion.GetEditButtonOpacity(IsEditing,IsCardHovered),Mode=OneWay}"
+								Click="EditButton_Click">
+								<Grid RowDefinitions="Auto,*">
+									<SymbolIcon Grid.Row="0" Symbol="Edit" />
+									<TextBlock Grid.Row="1" Text="{m:R Key=GeneratingStrategyPage_Edit}" />
+								</Grid>
+							</Button>
+							<Button
+								OpacityTransition="{m:ScalarTransition}"
+								Opacity="{x:Bind cvt:GeneratingStrategyConversion.GetSubmitButtonOpacity(IsEditing,IsCardHovered),Mode=OneWay}"
+								Click="SubmitButton_Click">
+								<Grid RowDefinitions="Auto,*">
+									<SymbolIcon Grid.Row="0" Symbol="Accept" />
+									<TextBlock Grid.Row="1" Text="{m:R Key=GeneratingStrategyPage_Submit}" />
+								</Grid>
+							</Button>
+							<Button
+								OpacityTransition="{m:ScalarTransition}"
+								Opacity="{x:Bind cvt:GeneratingStrategyConversion.GetSubmitButtonOpacity(IsEditing,IsCardHovered),Mode=OneWay}"
+								Click="CancelButton_Click">
+								<Grid RowDefinitions="Auto,*">
+									<SymbolIcon Grid.Row="0" Symbol="Cancel" />
+									<TextBlock Grid.Row="1" Text="{m:R Key=GeneratingStrategyPage_Cancel}" />
+								</Grid>
+							</Button>
+						</StackPanel>
 					</Grid>
 				</Border>
 			</ListView>

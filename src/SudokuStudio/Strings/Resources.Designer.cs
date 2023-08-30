@@ -1906,6 +1906,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string GeneratingStrategyPage_Cancel {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Diamond.
         /// </summary>
         internal static string GeneratingStrategyPage_DiamondPuzzle {
@@ -1983,6 +1992,15 @@ namespace SudokuStudio.Strings {
         internal static string GeneratingStrategyPage_PearlPuzzle {
             get {
                 return ResourceManager.GetString("GeneratingStrategyPage_PearlPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        internal static string GeneratingStrategyPage_Submit {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_Submit", resourceCulture);
             }
         }
         

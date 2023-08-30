@@ -669,6 +669,9 @@
   <data name="FontPicker_SelectFontPlaceholder" xml:space="preserve">
     <value>Select a font</value>
   </data>
+  <data name="GeneratingStrategyPage_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="GeneratingStrategyPage_DiamondPuzzle" xml:space="preserve">
     <value>Diamond</value>
   </data>
@@ -695,6 +698,9 @@
   </data>
   <data name="GeneratingStrategyPage_PearlPuzzle" xml:space="preserve">
     <value>Pearl</value>
+  </data>
+  <data name="GeneratingStrategyPage_Submit" xml:space="preserve">
+    <value>Submit</value>
   </data>
   <data name="GeneratingStrategyPage_Symmetry" xml:space="preserve">
     <value>Symmetry: </value>
