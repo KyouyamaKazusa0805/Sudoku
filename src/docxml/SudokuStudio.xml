@@ -2297,13 +2297,6 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The element.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:SudokuStudio.Interaction.Conversions.Extensions.SingletonSpan``1(Microsoft.UI.Xaml.Documents.Run)">
-            <summary>
-            Creates a <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> instance with a singleton value of <see cref="T:Microsoft.UI.Xaml.Documents.Run"/>.
-            </summary>
-            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Documents.Run"/> instance.</param>
-            <returns>A <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> instance.</returns>
-        </member>
         <member name="T:SudokuStudio.Interaction.Conversions.BackdropConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about backdrop.
@@ -10430,6 +10423,19 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The drag-drop event data provider instance.</param>
             <param name="target">The target list view.</param>
             <returns>The index of the element to be removed.</returns>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Documents.RunExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Documents.Run"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Documents.Run"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Documents.RunExtensions.SingletonSpan``1(Microsoft.UI.Xaml.Documents.Run)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> instance with a singleton value of <see cref="T:Microsoft.UI.Xaml.Documents.Run"/>.
+            </summary>
+            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Documents.Run"/> instance.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Documents.Bold"/> instance.</returns>
         </member>
         <member name="T:Microsoft.UI.Xaml.UIElementExtensions">
             <summary>

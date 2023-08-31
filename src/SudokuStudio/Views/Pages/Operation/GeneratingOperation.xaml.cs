@@ -25,35 +25,46 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	private void SetMemoryOptions()
 	{
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
+		var comma = GetString("_Token_Comma2");
 		var openBrace = GetString("_Token_OpenBrace");
 		var closedBrace = GetString("_Token_ClosedBrace");
-		var textParts = new List<string>();
-		var s = DifficultyLevelConversion.GetName(uiPref.GeneratorDifficultyLevel);
-		textParts.Add($"{GetString("AnalyzePage_PleaseSelectDifficultyLevel")}{s}");
-
-		s = GetString($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}");
-		textParts.Add($"{GetString("AnalyzePage_PleaseSelectSymmetricPattern")}{s}");
-
-		s = uiPref.SelectedTechnique switch
-		{
-			Technique.None => GetString("TechniqueSelector_NoTechniqueSelected"),
-			var t => $"{t.GetName()}{openBrace}{t.GetEnglishName()}{closedBrace}"
-		};
-		textParts.Add($"{GetString("AnalyzePage_TechniqueMustAppear")}{s}");
-
-		s = uiPref.GeneratedPuzzleShouldBeMinimal ? GetString("Yes") : GetString("No");
-		textParts.Add($"{GetString("AnalyzePage_GenerateForMinimalPuzzle")}{s}");
-
-		s = uiPref.GeneratedPuzzleShouldBePearl switch
-		{
-			true => GetString("GeneratingStrategyPage_PearlPuzzle"),
-			false => GetString("GeneratingStrategyPage_NormalPuzzle"),
-			//_ => GetString("GeneratingStrategyPage_DiamondPuzzle")
-		};
-		textParts.Add($"{GetString("TechniqueSelector_ShouleBePearlPuzzle")}{s}");
-
-		var resultParts = string.Join(GetString("_Token_Comma2"), textParts);
-		GeneratingStrategyDisplayer.Text = $"{GetString("AnalyzePage_GeneratingStrategySelected")}{openBrace}{resultParts}{closedBrace}";
+		TextBlockBindable.SetInlines(
+			GeneratingStrategyDisplayer,
+			[
+				new Run { Text = GetString("AnalyzePage_GeneratingStrategySelected") },
+				new Run { Text = openBrace },
+				new Run { Text = GetString("AnalyzePage_PleaseSelectDifficultyLevel") }.SingletonSpan<Bold>(),
+				new Run { Text = DifficultyLevelConversion.GetName(uiPref.GeneratorDifficultyLevel) },
+				new Run { Text = comma },
+				new Run { Text = GetString("AnalyzePage_PleaseSelectSymmetricPattern") }.SingletonSpan<Bold>(),
+				new Run { Text = GetString($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}") },
+				new Run { Text = comma },
+				new Run { Text = GetString("AnalyzePage_TechniqueMustAppear") }.SingletonSpan<Bold>(),
+				new Run
+				{
+					Text = uiPref.SelectedTechnique switch
+					{
+						Technique.None => GetString("TechniqueSelector_NoTechniqueSelected"),
+						var t => $"{t.GetName()}{openBrace}{t.GetEnglishName()}{closedBrace}"
+					}
+				},
+				new Run { Text = comma },
+				new Run { Text = GetString("AnalyzePage_GenerateForMinimalPuzzle") }.SingletonSpan<Bold>(),
+				new Run { Text = uiPref.GeneratedPuzzleShouldBeMinimal ? GetString("Yes") : GetString("No") },
+				new Run { Text = comma },
+				new Run { Text = GetString("TechniqueSelector_ShouleBePearlPuzzle") }.SingletonSpan<Bold>(),
+				new Run
+				{
+					Text = uiPref.GeneratedPuzzleShouldBePearl switch
+					{
+						true => GetString("GeneratingStrategyPage_PearlPuzzle"),
+						false => GetString("GeneratingStrategyPage_NormalPuzzle"),
+						//_ => GetString("GeneratingStrategyPage_DiamondPuzzle")
+					}
+				},
+				new Run { Text = closedBrace }
+			]
+		);
 	}
 
 
