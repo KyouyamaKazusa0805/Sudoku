@@ -33,13 +33,16 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			[
 				new Run { Text = GetString("AnalyzePage_GeneratingStrategySelected") },
 				new Run { Text = openBrace },
-				new Run { Text = GetString("AnalyzePage_PleaseSelectDifficultyLevel") }.SingletonSpan<Bold>(),
-				new Run { Text = DifficultyLevelConversion.GetName(uiPref.GeneratorDifficultyLevel) },
+				new Run { Text = GetString("AnalyzePage_PleaseSelectDifficultyLevel") },
+				new Run { Text = DifficultyLevelConversion.GetName(uiPref.GeneratorDifficultyLevel) }.SingletonSpan<Bold>(),
 				new Run { Text = comma },
-				new Run { Text = GetString("AnalyzePage_PleaseSelectSymmetricPattern") }.SingletonSpan<Bold>(),
-				new Run { Text = GetString($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}") },
+				new Run { Text = GetString("AnalyzePage_PleaseSelectSymmetricPattern") },
+				new Run
+				{
+					Text = GetString($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}")
+				}.SingletonSpan<Bold>(),
 				new Run { Text = comma },
-				new Run { Text = GetString("AnalyzePage_TechniqueMustAppear") }.SingletonSpan<Bold>(),
+				new Run { Text = GetString("AnalyzePage_TechniqueMustAppear") },
 				new Run
 				{
 					Text = uiPref.SelectedTechnique switch
@@ -47,12 +50,12 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 						Technique.None => GetString("TechniqueSelector_NoTechniqueSelected"),
 						var t => $"{t.GetName()}{openBrace}{t.GetEnglishName()}{closedBrace}"
 					}
-				},
+				}.SingletonSpan<Bold>(),
 				new Run { Text = comma },
-				new Run { Text = GetString("AnalyzePage_GenerateForMinimalPuzzle") }.SingletonSpan<Bold>(),
-				new Run { Text = uiPref.GeneratedPuzzleShouldBeMinimal ? GetString("Yes") : GetString("No") },
+				new Run { Text = GetString("AnalyzePage_GenerateForMinimalPuzzle") },
+				new Run { Text = uiPref.GeneratedPuzzleShouldBeMinimal ? GetString("Yes") : GetString("No") }.SingletonSpan<Bold>(),
 				new Run { Text = comma },
-				new Run { Text = GetString("TechniqueSelector_ShouleBePearlPuzzle") }.SingletonSpan<Bold>(),
+				new Run { Text = GetString("TechniqueSelector_ShouleBePearlPuzzle") },
 				new Run
 				{
 					Text = uiPref.GeneratedPuzzleShouldBePearl switch
@@ -61,7 +64,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 						false => GetString("GeneratingStrategyPage_NormalPuzzle"),
 						//_ => GetString("GeneratingStrategyPage_DiamondPuzzle")
 					}
-				},
+				}.SingletonSpan<Bold>(),
 				new Run { Text = closedBrace }
 			]
 		);
