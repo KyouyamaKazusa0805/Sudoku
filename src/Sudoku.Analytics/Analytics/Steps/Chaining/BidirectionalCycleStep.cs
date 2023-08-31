@@ -34,7 +34,7 @@ public sealed partial class BidirectionalCycleStep(
 
 
 	/// <inheritdoc/>
-	protected internal override View[]? CreateViews(scoped in Grid grid)
+	protected internal override View[] CreateViews(scoped in Grid grid)
 	{
 		var result = new View[ViewsCount];
 		var i = 0;

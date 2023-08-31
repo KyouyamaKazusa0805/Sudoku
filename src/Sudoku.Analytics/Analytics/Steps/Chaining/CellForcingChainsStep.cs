@@ -42,6 +42,13 @@ public sealed partial class CellForcingChainsStep(
 
 
 	/// <inheritdoc/>
+	protected internal override View[] CreateViews(scoped in Grid grid)
+	{
+		var result = base.CreateViews(grid);
+		return [[.. result[0], new CellViewNode(WellKnownColorIdentifier.Normal, SourceCell)], .. result[1..]];
+	}
+
+	/// <inheritdoc/>
 	protected override CandidateMap GetOnPotentials(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedOnPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), true, true);
 

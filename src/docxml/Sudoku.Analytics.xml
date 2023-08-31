@@ -7910,6 +7910,9 @@
         <member name="P:Sudoku.Analytics.Steps.CellForcingChainsStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.CellForcingChainsStep.CreateViews(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Steps.CellForcingChainsStep.GetOnPotentials(System.Int32)">
             <inheritdoc/>
         </member>
@@ -8280,6 +8283,9 @@
             <param name="dynamicNestingLevel"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegionForcingChainsStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RegionForcingChainsStep.CreateViews(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.RegionForcingChainsStep.GetOnPotentials(System.Int32)">
