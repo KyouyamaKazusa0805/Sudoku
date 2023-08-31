@@ -6874,10 +6874,11 @@
             Check for type 3.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.CollectBivalueOddagons(System.Int16)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.CollectBivalueOddagons(Sudoku.Concepts.Grid@,System.Int16)">
             <summary>
             Try to collect all possible loops being used in technique bivalue oddagons, which should satisfy the specified condition.
             </summary>
+            <param name="grid">The grid.</param>
             <param name="digitsMask">The digits used.</param>
             <returns>
             Returns a list of array of candidates used in the loop, as the data of possible found loops.

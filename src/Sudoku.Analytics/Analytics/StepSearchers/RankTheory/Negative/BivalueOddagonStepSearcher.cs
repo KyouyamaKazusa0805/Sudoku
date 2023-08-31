@@ -45,7 +45,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			var d1 = TrailingZeroCount(mask);
 			var d2 = mask.GetNextSet(d1);
 			var comparer = (Mask)(1 << d1 | 1 << d2);
-			var foundData = CollectBivalueOddagons(comparer);
+			var foundData = CollectBivalueOddagons(grid, comparer);
 			if (foundData.Length == 0)
 			{
 				continue;
@@ -277,11 +277,12 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	/// <summary>
 	/// Try to collect all possible loops being used in technique bivalue oddagons, which should satisfy the specified condition.
 	/// </summary>
+	/// <param name="grid">The grid.</param>
 	/// <param name="digitsMask">The digits used.</param>
 	/// <returns>
 	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
 	/// </returns>
-	private static unsafe BivalueOddagon[] CollectBivalueOddagons(Mask digitsMask)
+	private static unsafe BivalueOddagon[] CollectBivalueOddagons(scoped in Grid grid, Mask digitsMask)
 	{
 		static bool predicate(scoped in CellMap loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
 		var result = new List<BivalueOddagon>();
@@ -291,22 +292,14 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		// This limitation will miss the incomplete structures, I may modify it later.
 		foreach (var cell in CandidatesMap[d1] & CandidatesMap[d2])
 		{
-			dfs(
-				cell,
-				cell,
-				0,
-				CellsMap[cell],
-				digitsMask,
-				CandidatesMap[d1] & CandidatesMap[d2],
-				&predicate,
-				result
-			);
+			dfs(grid, cell, cell, 0, CellsMap[cell], digitsMask, CandidatesMap[d1] & CandidatesMap[d2], &predicate, result);
 		}
 
 		return [.. result.Distinct()];
 
 
 		static void dfs(
+			scoped in Grid grid,
 			Cell startCell,
 			Cell lastCell,
 			House lastHouse,
@@ -349,7 +342,10 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 
 					if (tempCell == startCell && condition(currentLoop))
 					{
-						result.Add(new(currentLoop, digitsMask));
+						if (extraCheck(grid, currentLoop, digitsMask))
+						{
+							result.Add(new(currentLoop, digitsMask));
+						}
 
 						// Exit the current of this recursion frame.
 						return;
@@ -361,6 +357,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 					}
 
 					dfs(
+						grid,
 						startCell,
 						tempCell,
 						lastHouse | housesUsed,
@@ -372,6 +369,26 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 					);
 				}
 			}
+		}
+
+		static bool extraCheck(scoped in Grid grid, scoped in CellMap loopCells, Mask digitsMask)
+		{
+			var otherDigits = grid[loopCells] & ~digitsMask;
+			var cellsContainsExtraDigits = CellMap.Empty;
+			foreach (var cell in loopCells)
+			{
+				if ((Mask)(grid.GetCandidates(cell) & otherDigits) != 0)
+				{
+					cellsContainsExtraDigits.Add(cell);
+				}
+			}
+
+			return PopCount((uint)otherDigits) switch
+			{
+				1 => !!(cellsContainsExtraDigits.PeerIntersection & CandidatesMap[TrailingZeroCount(otherDigits)]),
+				2 => cellsContainsExtraDigits.InOneHouse,
+				_ => false
+			};
 		}
 	}
 }
