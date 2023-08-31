@@ -267,6 +267,15 @@ public abstract partial class ChainingStep(
 	protected internal virtual View[]? CreateViews(scoped in Grid grid)
 	{
 		var globalView = new View();
+		if (this is CellForcingChainsStep { SourceCell: var cell })
+		{
+			globalView.Add(new CellViewNode(WellKnownColorIdentifier.Normal, cell));
+		}
+		else if (this is RegionForcingChainsStep { HouseIndex: var house })
+		{
+			globalView.Add(new HouseViewNode(WellKnownColorIdentifier.Normal, house));
+		}
+
 		var result = new View[ViewsCount];
 		var i = 0;
 		for (; i < FlatViewsCount; i++)
