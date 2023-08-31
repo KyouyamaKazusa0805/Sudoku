@@ -12533,15 +12533,17 @@
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
+            <param name="house">The house to be displayed.</param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Full House</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
+            <param name="house">The house to be displayed.</param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
         </member>
@@ -12550,6 +12552,11 @@
         </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.Code">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FullHouseStep.House">
+            <summary>
+            The generated property declaration for parameter <c>house</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenSingleStep">
             <summary>

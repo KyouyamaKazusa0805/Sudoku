@@ -5,9 +5,11 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="house">The house to be displayed.</param>
 /// <param name="cell"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
-public sealed class FullHouseStep(Conclusion[] conclusions, View[]? views, Cell cell, Digit digit) : SingleStep(conclusions, views, cell, digit)
+public sealed partial class FullHouseStep(Conclusion[] conclusions, View[]? views, [DataMember] House house, Cell cell, Digit digit) :
+	SingleStep(conclusions, views, cell, digit)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 1.0M;

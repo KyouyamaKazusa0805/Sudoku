@@ -83,6 +83,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				var step = new FullHouseStep(
 					[new(Assignment, resultCell, digit)],
 					[[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+					house,
 					resultCell,
 					digit
 				);
@@ -184,6 +185,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			var step = new FullHouseStep(
 				[new(Assignment, resultCell, digit)],
 				[[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+				house,
 				resultCell,
 				digit
 			);
