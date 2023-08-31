@@ -25,6 +25,40 @@ public sealed class NodeSet : HashSet<ChainNode>
 
 
 	/// <summary>
+	/// Try to get the target <see cref="ChainNode"/> instance whose internal value
+	/// (i.e. properties <see cref="ChainNode.Candidate"/> and <see cref="ChainNode.IsOn"/>) are same as
+	/// the specified one.
+	/// </summary>
+	/// <param name="node">The value to be checked.</param>
+	/// <returns>
+	/// The found value whose value is equal to <paramref name="node"/>; without checking for property <see cref="ChainNode.Parents"/>.
+	/// </returns>
+	/// <remarks><i>
+	/// Please note that this method will return an instance inside the current collection
+	/// whose value equals to the specified one; however, property <see cref="ChainNode.Parents"/> may not be equal.
+	/// </i></remarks>
+	/// <exception cref="InvalidOperationException">Throws when the result is <see langword="null"/>.</exception>
+	/// <seealso cref="ChainNode.Candidate"/>
+	/// <seealso cref="ChainNode.IsOn"/>
+	[IndexerName("Get")]
+	public ChainNode this[ChainNode node]
+	{
+		get
+		{
+			foreach (var potential in this)
+			{
+				if (potential == node)
+				{
+					return potential;
+				}
+			}
+
+			throw new InvalidOperationException("The specified node with suitable data is not found.");
+		}
+	}
+
+
+	/// <summary>
 	/// Determines whether a <see cref="NodeSet"/> object contains the specified element,
 	/// comparing for properties <see cref="ChainNode.Candidate"/> and <see cref="ChainNode.IsOn"/>.
 	/// </summary>

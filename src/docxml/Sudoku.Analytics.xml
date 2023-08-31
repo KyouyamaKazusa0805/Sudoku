@@ -18155,6 +18155,24 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="base">The collection of <see cref="T:Sudoku.DataModel.ChainNode"/> instances.</param>
         </member>
+        <member name="P:Sudoku.DataModel.NodeSet.Get(Sudoku.DataModel.ChainNode)">
+            <summary>
+            Try to get the target <see cref="T:Sudoku.DataModel.ChainNode"/> instance whose internal value
+            (i.e. properties <see cref="P:Sudoku.DataModel.ChainNode.Candidate"/> and <see cref="P:Sudoku.DataModel.ChainNode.IsOn"/>) are same as
+            the specified one.
+            </summary>
+            <param name="node">The value to be checked.</param>
+            <returns>
+            The found value whose value is equal to <paramref name="node"/>; without checking for property <see cref="P:Sudoku.DataModel.ChainNode.Parents"/>.
+            </returns>
+            <remarks><i>
+            Please note that this method will return an instance inside the current collection
+            whose value equals to the specified one; however, property <see cref="P:Sudoku.DataModel.ChainNode.Parents"/> may not be equal.
+            </i></remarks>
+            <exception cref="T:System.InvalidOperationException">Throws when the result is <see langword="null"/>.</exception>
+            <seealso cref="P:Sudoku.DataModel.ChainNode.Candidate"/>
+            <seealso cref="P:Sudoku.DataModel.ChainNode.IsOn"/>
+        </member>
         <member name="M:Sudoku.DataModel.NodeSet.Contains(Sudoku.DataModel.ChainNode)">
             <summary>
             Determines whether a <see cref="T:Sudoku.DataModel.NodeSet"/> object contains the specified element,

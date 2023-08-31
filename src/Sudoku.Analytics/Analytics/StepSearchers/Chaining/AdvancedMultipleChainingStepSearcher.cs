@@ -172,7 +172,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 			if (CandidatesMap[tempDigit].Contains(srcCell))
 			{
 				// Get corresponding value with the matching parents.
-				chains.Add(tempDigit, outcomes[tempDigit].GetNullable(target) ?? default);
+				chains.Add(tempDigit, outcomes[tempDigit][target]);
 			}
 		}
 
@@ -194,7 +194,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 		foreach (byte tempCell in CandidatesMap[digit] & HousesMap[houseIndex])
 		{
 			// Get corresponding value with the matching parents.
-			chains.Add(tempCell, outcomes[tempCell].GetNullable(target) ?? default);
+			chains.Add(tempCell, outcomes[tempCell][target]);
 		}
 
 		var result = new RegionForcingChainsStep(conclusions, houseIndex, digit, chains, AllowDynamic, DynamicNestingLevel);
