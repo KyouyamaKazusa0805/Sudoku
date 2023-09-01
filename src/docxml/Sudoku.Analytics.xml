@@ -18691,20 +18691,15 @@ result ^= expression;
             Indicates the target digit path.
             </summary>
             <param name="Digits">The digits path.</param>
-            <param name="Nodes">Indicates the nodes that describes the detail for the solving path.</param>
         </member>
-        <member name="M:Sudoku.Ittoryu.DigitPath.#ctor(System.Int32[],Sudoku.Ittoryu.PathNode[])">
+        <member name="M:Sudoku.Ittoryu.DigitPath.#ctor(System.Int32[])">
             <summary>
             Indicates the target digit path.
             </summary>
             <param name="Digits">The digits path.</param>
-            <param name="Nodes">Indicates the nodes that describes the detail for the solving path.</param>
         </member>
         <member name="P:Sudoku.Ittoryu.DigitPath.Digits">
             <summary>The digits path.</summary>
-        </member>
-        <member name="P:Sudoku.Ittoryu.DigitPath.Nodes">
-            <summary>Indicates the nodes that describes the detail for the solving path.</summary>
         </member>
         <member name="P:Sudoku.Ittoryu.DigitPath.IsComplete">
             <summary>

@@ -4,8 +4,8 @@ namespace Sudoku.Ittoryu;
 /// Indicates the target digit path.
 /// </summary>
 /// <param name="Digits">The digits path.</param>
-/// <param name="Nodes">Indicates the nodes that describes the detail for the solving path.</param>
-public readonly record struct DigitPath(Digit[] Digits, PathNode[] Nodes)
+///// <param name="Nodes">Indicates the nodes that describes the detail for the solving path.</param>
+public readonly record struct DigitPath(Digit[] Digits)
 {
 	/// <summary>
 	/// Indicates whethe the pattern is complete.
@@ -31,7 +31,7 @@ public readonly record struct DigitPath(Digit[] Digits, PathNode[] Nodes)
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => string.Join("->", Digits);
+	public override string ToString() => string.Join("->", from digit in Digits select digit + 1);
 
 	/// <inheritdoc cref="ToString()"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

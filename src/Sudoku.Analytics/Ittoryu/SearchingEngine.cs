@@ -24,62 +24,98 @@ public sealed class SearchingEngine
 	/// <returns>The target digit path. If none found, <see langword="null"/> will be returned. No exceptions will be thrown.</returns>
 	public DigitPath? FindPath(scoped in Grid grid)
 	{
-		for (var digit = 0; digit < 9; digit++)
+		var digitsStack = new Stack<Digit>();
+		try
 		{
-			var digitsStack = new Stack<Digit>();
-			var pathNodes = new Stack<PathNode>();
-			try
+			var foundNodes = new List<PathNode>();
+			for (var digit = 0; digit < 9; digit++)
 			{
-				dfs(grid, digit, digitsStack, pathNodes, 0);
+				ForFullHouse(grid, foundNodes, digit);
+				ForHiddenSingle(grid, foundNodes, digit);
+				ForNakedSingle(grid, foundNodes, digit);
 			}
-			catch (InvalidOperationException)
+
+			foreach (var digit in MaskCreator.Create(from node in foundNodes select node.Digit))
 			{
-				return new(digitsStack.Reverse().ToArray(), pathNodes.Reverse().ToArray());
+				dfs(
+					grid,
+					digit,
+					digitsStack,
+					from node in foundNodes where node.Digit == digit select node,
+					0
+				);
 			}
+		}
+		catch (InvalidOperationException)
+		{
+			return new(digitsStack.Reverse().ToArray());
 		}
 
 		return null;
 
 
-		void dfs(Grid grid, Digit digit, Stack<Digit> digitsStack, Stack<PathNode> pathNodes, int finishedDigitCount)
+		void dfs(Grid grid, Digit digit, Stack<Digit> digitsStack, scoped ReadOnlySpan<PathNode> foundNodes, Mask finishedDigits)
 		{
-			if (finishedDigitCount == 9)
+			if (foundNodes.Length == 0)
+			{
+				return;
+			}
+
+			if (digitsStack.Count == 9)
 			{
 				// Just find one.
 				throw new InvalidOperationException();
 			}
 
-			var foundNodes = new List<PathNode>(16);
-			ForFullHouse(grid, foundNodes, digit);
-			ForHiddenSingle(grid, foundNodes, digit);
-			ForNakedSingle(grid, foundNodes, digit);
-
 			// Apply all digits for the currently-found nodes.
 			foreach (var node in foundNodes)
 			{
-				pathNodes.Push(node);
-				grid.SetDigit(node.Cell, digit);
-
-				dfs(grid, digit, digitsStack, pathNodes, finishedDigitCount);
-
-				pathNodes.Pop();
+				if (grid.GetState(node.Cell) == CellState.Empty)
+				{
+					grid.SetDigit(node.Cell, node.Digit);
+				}
 			}
 
 			if (grid.ValuesMap[digit].Count != 9)
 			{
-				// No more moves found. The current chain is broken. Backtracking.
-				return;
+				var tempNodes = new List<PathNode>(16);
+				ForFullHouse(grid, tempNodes, digit);
+				ForHiddenSingle(grid, tempNodes, digit);
+				ForNakedSingle(grid, tempNodes, digit);
+
+				dfs(grid, digit, digitsStack, tempNodes.ToArray(), finishedDigits);
 			}
+			else
+			{
+				digitsStack.Push(digit);
+				finishedDigits |= (Mask)(1 << digit);
 
-			// Because the current digit is fully completed, we can push it into the stack and continue searching for the next digit.
-			digitsStack.Push(digit);
+				if (finishedDigits == Grid.MaxCandidatesMask)
+				{
+					throw new InvalidOperationException();
+				}
 
-			// Advance to the next digit.
-			dfs(grid, (digit + 1) % 9, digitsStack, pathNodes, finishedDigitCount + 1);
+				var tempNodes = new List<PathNode>(16);
+				foreach (var anotherDigit in (Mask)(Grid.MaxCandidatesMask & ~finishedDigits))
+				{
+					ForFullHouse(grid, tempNodes, anotherDigit);
+					ForHiddenSingle(grid, tempNodes, anotherDigit);
+					ForNakedSingle(grid, tempNodes, anotherDigit);
+				}
 
-			// If the recursion is executed to here, we we conclude that the current digit does not contain a full solving path.
-			// Now backtrack.
-			digitsStack.Pop();
+				foreach (var anotherDigit in MaskCreator.Create(from node in tempNodes select node.Digit))
+				{
+					dfs(
+						grid,
+						anotherDigit,
+						digitsStack,
+						from node in tempNodes where node.Digit == anotherDigit select node,
+						finishedDigits
+					);
+				}
+
+				digitsStack.Pop();
+			}
 		}
 	}
 
