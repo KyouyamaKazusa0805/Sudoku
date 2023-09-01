@@ -18686,6 +18686,189 @@ result ^= expression;
             </code>
             </remarks>
         </member>
+        <member name="T:Sudoku.Ittoryu.DigitPath">
+            <summary>
+            Indicates the target digit path.
+            </summary>
+            <param name="Digits">The digits path.</param>
+            <param name="Nodes">Indicates the nodes that describes the detail for the solving path.</param>
+        </member>
+        <member name="M:Sudoku.Ittoryu.DigitPath.#ctor(System.Int32[],Sudoku.Ittoryu.PathNode[])">
+            <summary>
+            Indicates the target digit path.
+            </summary>
+            <param name="Digits">The digits path.</param>
+            <param name="Nodes">Indicates the nodes that describes the detail for the solving path.</param>
+        </member>
+        <member name="P:Sudoku.Ittoryu.DigitPath.Digits">
+            <summary>The digits path.</summary>
+        </member>
+        <member name="P:Sudoku.Ittoryu.DigitPath.Nodes">
+            <summary>Indicates the nodes that describes the detail for the solving path.</summary>
+        </member>
+        <member name="P:Sudoku.Ittoryu.DigitPath.IsComplete">
+            <summary>
+            Indicates whethe the pattern is complete.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Ittoryu.DigitPath.Equals(Sudoku.Ittoryu.DigitPath)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Ittoryu.DigitPath.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Ittoryu.DigitPath.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Ittoryu.DigitPath.ToString(System.String)">
+            <inheritdoc cref="M:Sudoku.Ittoryu.DigitPath.ToString"/>
+        </member>
+        <member name="T:Sudoku.Ittoryu.PathNode">
+            <summary>
+            Represents for a path node in a whole solving path via ittoryu solving logic.
+            </summary>
+            <param name="Grid">Indicates the currently-used grid.</param>
+            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
+            <param name="Candidate">Indicates the target candidate.</param>
+        </member>
+        <member name="M:Sudoku.Ittoryu.PathNode.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Represents for a path node in a whole solving path via ittoryu solving logic.
+            </summary>
+            <param name="Grid">Indicates the currently-used grid.</param>
+            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
+            <param name="Candidate">Indicates the target candidate.</param>
+        </member>
+        <member name="P:Sudoku.Ittoryu.PathNode.Grid">
+            <summary>Indicates the currently-used grid.</summary>
+        </member>
+        <member name="P:Sudoku.Ittoryu.PathNode.House">
+            <summary>Indicates the house. The value can be -1 when the represented node is for a naked single.</summary>
+        </member>
+        <member name="P:Sudoku.Ittoryu.PathNode.Candidate">
+            <summary>Indicates the target candidate.</summary>
+        </member>
+        <member name="P:Sudoku.Ittoryu.PathNode.Digit">
+            <summary>
+            Indicates the target digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Ittoryu.PathNode.Cell">
+            <summary>
+            Indicates the target cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Ittoryu.PathNode.Deconstruct(Sudoku.Concepts.Grid@,System.Int32@,System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Ittoryu.PathNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Ittoryu.SearchingEngine">
+            <summary>
+            Represents an ittoryu searching engine. This engine will search for single techniques:
+            <list type="bullet">
+            <item>Full House</item>
+            <item>Last Digit</item>
+            <item>Hidden Single</item>
+            <item>Naked Single</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Ittoryu.SearchingEngine.AllowNakedSingles">
+            <summary>
+            Indicates whether the engine supports for naked singles.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Ittoryu.SearchingEngine.FindPath(Sudoku.Concepts.Grid@)">
+            <summary>
+            Find a suitable ittoryu path.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>The target digit path. If none found, <see langword="null"/> will be returned. No exceptions will be thrown.</returns>
+        </member>
+        <member name="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)">
+            <summary>
+            Get all full houses.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="foundNodes">A list of found path nodes.</param>
+            <param name="digit">Indicates the digit to be checked.</param>
+        </member>
+        <member name="M:Sudoku.Ittoryu.SearchingEngine.ForHiddenSingle(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)">
+            <summary>
+            Get all hidden singles.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)" path="/param[@name='grid']"/></param>
+            <param name="foundNodes"><inheritdoc cref="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)" path="/param[@name='foundNodes']"/></param>
+            <param name="digit"><inheritdoc cref="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)" path="/param[@name='digit']"/></param>
+        </member>
+        <member name="M:Sudoku.Ittoryu.SearchingEngine.ForNakedSingle(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)">
+            <summary>
+            Get all naked singles.
+            </summary>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)" path="/param[@name='grid']"/></param>
+            <param name="foundNodes"><inheritdoc cref="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)" path="/param[@name='foundNodes']"/></param>
+            <param name="digit"><inheritdoc cref="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)" path="/param[@name='digit']"/></param>
+        </member>
+        <member name="T:Sudoku.Ittoryu.Extensions">
+            <summary>
+            Represents LINQ methods used in this file.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Ittoryu.Extensions.Where``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:Sudoku.Ittoryu.Extensions.Select``2(System.Collections.Generic.List{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:Sudoku.Ittoryu.Extensions.Reverse``1(System.Collections.Generic.Stack{``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
         <member name="T:Sudoku.Preprocessing.BackdoorSearcher">
             <summary>
             Defines a backdoor searcher.

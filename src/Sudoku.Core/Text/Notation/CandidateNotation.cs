@@ -250,9 +250,9 @@ public sealed partial class CandidateNotation : INotation<CandidateNotation, Can
 	public static string ToString(Candidate value, Kind notation)
 		=> notation switch
 		{
-			Kind.RxCy => $"{value / 9 / 9 + 1}{value / 9 % 9 + 1}{value % 9 + 1}",
+			Kind.RxCy => $"r{value / 9 / 9 + 1}c{value / 9 % 9 + 1}({value % 9 + 1})",
 			Kind.K9 => $"{(char)(value / 9 / 9 + 'A')}{value / 9 % 9 + 1}.{value % 9 + 1}",
-			Kind.HodokuTriplet => $"{value / 9 / 9 + 1}{value / 9 % 9 + 1}{value % 9 + 1}",
+			Kind.HodokuTriplet => $"{value % 9 + 1}{value / 9 / 9 + 1}{value / 9 % 9 + 1}",
 			_ => throw new ArgumentOutOfRangeException(nameof(notation))
 		};
 
