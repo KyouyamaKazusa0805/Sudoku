@@ -45,8 +45,7 @@ public abstract class AlmostLockedSetsStepSearcher(
 					var blockMask = map.BlockMask;
 					if (IsPow2(blockMask) && houseIndex >= 9)
 					{
-						// All ALS cells lying on a box-row or a box-column
-						// will be processed as a block ALS.
+						// All ALS cells lying on a box-row or a box-column will be processed as a block ALS.
 						continue;
 					}
 
