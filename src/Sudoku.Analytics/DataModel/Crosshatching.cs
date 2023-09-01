@@ -3,7 +3,7 @@ namespace Sudoku.DataModel;
 /// <summary>
 /// Represents a list of methods that operates with single techniques, in order to get crosshatching information.
 /// </summary>
-internal static class Crosshatching
+public static class Crosshatching
 {
 	/// <summary>
 	/// Try to get a pair of <see cref="CellMap"/> instances indicating the crosshatching information for the specified house,
