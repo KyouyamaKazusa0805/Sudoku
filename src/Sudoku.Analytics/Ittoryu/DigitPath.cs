@@ -4,7 +4,6 @@ namespace Sudoku.Ittoryu;
 /// Indicates the target digit path.
 /// </summary>
 /// <param name="Digits">The digits path.</param>
-///// <param name="Nodes">Indicates the nodes that describes the detail for the solving path.</param>
 public readonly record struct DigitPath(Digit[] Digits)
 {
 	/// <summary>
