@@ -884,6 +884,16 @@
             Defines a solver that can solve a sudoku puzzle, using LINQ.
             </summary>
         </member>
+        <member name="F:Sudoku.Algorithm.Solving.EnumerableQuerySolver.DigitCharacters">
+            <summary>
+            Indicates the characters for 1 to 9.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Solving.EnumerableQuerySolver.Digits">
+            <summary>
+            Indicates the raw digits 1 to 9 used in memory.
+            </summary>
+        </member>
         <member name="P:Sudoku.Algorithm.Solving.EnumerableQuerySolver.UriLink">
             <inheritdoc/>
         </member>

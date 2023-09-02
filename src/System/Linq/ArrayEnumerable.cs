@@ -53,7 +53,7 @@ public static class ArrayEnumerable
 	/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
 	public static TResult[] SelectMany<TSource, TCollection, TResult>(
 		this TSource[] source,
-		Func<TSource, TCollection[]> collectionSelector,
+		Func<TSource, IEnumerable<TCollection>> collectionSelector,
 		Func<TSource, TCollection, TResult> resultSelector
 	)
 	{

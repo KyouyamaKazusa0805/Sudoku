@@ -5,6 +5,17 @@ namespace Sudoku.Algorithm.Solving;
 /// </summary>
 public sealed class EnumerableQuerySolver : ISolver
 {
+	/// <summary>
+	/// Indicates the characters for 1 to 9.
+	/// </summary>
+	private const string DigitCharacters = "123456789";
+
+	/// <summary>
+	/// Indicates the raw digits 1 to 9 used in memory.
+	/// </summary>
+	private static readonly Digit[] Digits = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
+
 	/// <inheritdoc/>
 	public static string? UriLink => null;
 
@@ -13,7 +24,7 @@ public sealed class EnumerableQuerySolver : ISolver
 	public bool? Solve(scoped in Grid grid, out Grid result)
 	{
 		SkipInit(out result);
-		var (_, @return) = solve(grid.ToString("0")) switch
+		var (_, @return) = solve(grid.ToString()) switch
 		{
 			[] => (Grid.Undefined, default(bool?)),
 			[var resultString] => (result = Grid.Parse(resultString), true),
@@ -22,31 +33,30 @@ public sealed class EnumerableQuerySolver : ISolver
 		return @return;
 
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static int indexOfZeroIgnoringCase(string s) => s.IndexOf('0', StringComparison.OrdinalIgnoreCase);
-
-		static List<string> solve(string puzzle)
+		static string[] solve(string puzzle)
 		{
-			const string digits = "123456789";
-			var result = new List<string> { puzzle };
-
-			while (result is [var r, ..] && indexOfZeroIgnoringCase(r) != -1)
+			var result = (string[])[puzzle];
+			while (result is [var r, ..] && r.IndexOf('.') != -1)
 			{
 				result = (
-					from solution in result
-					let index = indexOfZeroIgnoringCase(solution)
-					let pair = (Column: index % 9, Block: index - index % 27 + index % 9 - index % 3)
-					from digit in digits
+					from solution in (ReadOnlySpan<string>)result
+					let index = solution.IndexOf('.')
+					let column = index % 9
+					let block = index - index % 27 + column - index % 3
+					from digit in DigitCharacters
 					let duplicateCases =
-						from i in Enumerable.Range(0, 9)
-						let duplicatesInRow = solution[index - pair.Column + i] == digit
-						let duplicatesInColumn = solution[pair.Column + i * 9] == digit
-						let duplicatesInBlock = solution[pair.Block + i % 3 + (int)(i / 3F) * 9] == digit
+						// Here we cannot replace it with a read-only span (i.e. 'Digits' -> '(ReadOnlySpan<Digit>)Digits')
+						// because it will make the query expression create a new unsafe object in nested query expression,
+						// which will cause the solver to be unsafe.
+						from pos in Digits
+						let duplicatesInRow = solution[index - column + pos] == digit
+						let duplicatesInColumn = solution[column + pos * 9] == digit
+						let duplicatesInBlock = solution[block + pos % 3 + pos / 3 * 9] == digit
 						where duplicatesInRow || duplicatesInColumn || duplicatesInBlock
-						select i
-					where !duplicateCases.Any()
-					select solution.ReplaceAt(index, digit)
-				).ToList();
+						select pos
+					where duplicateCases.Length == 0
+					select $"{solution[..index]}{digit}{solution[(index + 1)..]}"
+				).ToArray();
 			}
 
 			return result;

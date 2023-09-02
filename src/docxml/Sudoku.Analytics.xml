@@ -18839,19 +18839,6 @@ if (student is (name: var name, age: >= 18))
             The target digit path. If none found, a longest path will be returned.
             </returns>
         </member>
-        <member name="T:Sudoku.Ittoryu.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Ittoryu.Extensions.Where``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
-        </member>
-        <member name="M:Sudoku.Ittoryu.Extensions.Select``2(System.Collections.Generic.List{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
-        </member>
         <member name="T:Sudoku.Preprocessing.BackdoorSearcher">
             <summary>
             Defines a backdoor searcher.

@@ -1067,7 +1067,7 @@
             An array of <typeparamref name="TResult"/> instances being the result of invoking the transform function on each element of <paramref name="this"/>.
             </returns>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,``1[]},System.Func{``0,``1,``2})">
+        <member name="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
             <inheritdoc cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Where``1(``0[],System.Func{``0,System.Boolean})">
@@ -1154,14 +1154,6 @@
             Throws when the enumeration type is not marked <see cref="T:System.FlagsAttribute"/>.
             </exception>
         </member>
-        <member name="T:System.Linq.ImmutableArrayEnumerable">
-            <summary>
-            Provides with LINQ methods on <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>.
-            </summary>
-        </member>
-        <member name="M:System.Linq.ImmutableArrayEnumerable.Zip``2(System.Collections.Immutable.ImmutableArray{``0},System.Collections.Immutable.ImmutableArray{``1})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})"/>
-        </member>
         <member name="T:System.Linq.ListEnumerable">
             <summary>
             Represents with LINQ methods for <see cref="T:System.Collections.Generic.List`1"/>.
@@ -1170,6 +1162,12 @@
         </member>
         <member name="M:System.Linq.ListEnumerable.Count``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.Where``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.Select``2(System.Collections.Generic.List{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
         <member name="T:System.Linq.MaskEnumerable">
             <summary>
@@ -1216,6 +1214,9 @@
             <param name="this">The source elements.</param>
             <param name="selector">The selector.</param>
             <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.SelectMany``3(System.ReadOnlySpan{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
+            <inheritdoc cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
             <summary>
@@ -2515,15 +2516,6 @@ fixed (short* ptr = instance)
             Throws when the specified <paramref name="pattern"/> is not a valid regular
             expression pattern.
             </exception>
-        </member>
-        <member name="M:System.StringExtensions.ReplaceAt(System.String,System.Int32,System.Char)">
-            <summary>
-            Replace the character at the specified index with the new value.
-            </summary>
-            <param name="this">The current string.</param>
-            <param name="index">The index.</param>
-            <param name="charToInsert">The string to insert.</param>
-            <returns>The result string.</returns>
         </member>
         <member name="M:System.StringExtensions.RemoveAll(System.String,System.Char)">
             <summary>

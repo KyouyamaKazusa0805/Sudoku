@@ -79,25 +79,6 @@ public static unsafe partial class StringExtensions
 		=> pattern.IsRegexPattern() ? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan) : throw InvalidOperation;
 
 	/// <summary>
-	/// Replace the character at the specified index with the new value.
-	/// </summary>
-	/// <param name="this">The current string.</param>
-	/// <param name="index">The index.</param>
-	/// <param name="charToInsert">The string to insert.</param>
-	/// <returns>The result string.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ReplaceAt(this string @this, int index, char charToInsert)
-	{
-		var resultPtr = stackalloc char[@this.Length + 1];
-		resultPtr[@this.Length] = '\0';
-		CopyBlock(ref AsByteRef(ref resultPtr[0]), ref AsByteRef(ref AsRef(@this[0])), (uint)(sizeof(char) * @this.Length));
-
-		resultPtr[index] = charToInsert;
-
-		return new(resultPtr);
-	}
-
-	/// <summary>
 	/// Removes all specified characters.
 	/// </summary>
 	/// <param name="this">The string value.</param>

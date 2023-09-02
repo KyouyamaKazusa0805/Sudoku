@@ -71,6 +71,27 @@ public static class SpanEnumerable
 		return result;
 	}
 
+	/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
+	public static ReadOnlySpan<TResult> SelectMany<TSource, TCollection, TResult>(
+		this scoped ReadOnlySpan<TSource> source,
+		Func<TSource, IEnumerable<TCollection>> collectionSelector,
+		Func<TSource, TCollection, TResult> resultSelector
+	)
+	{
+		var length = source.Length;
+		var result = new List<TResult>(length << 1);
+		for (var i = 0; i < length; i++)
+		{
+			var element = source[i];
+			foreach (var subElement in collectionSelector(element))
+			{
+				result.Add(resultSelector(element, subElement));
+			}
+		}
+
+		return [.. result];
+	}
+
 	/// <summary>
 	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})" path="/summary"/>
 	/// </summary>
