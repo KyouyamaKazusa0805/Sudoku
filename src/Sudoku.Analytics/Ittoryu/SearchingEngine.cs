@@ -33,8 +33,10 @@ public sealed class SearchingEngine
 	/// Find a suitable ittoryu path.
 	/// </summary>
 	/// <param name="grid">The grid to be checked.</param>
-	/// <returns>The target digit path. If none found, <see langword="null"/> will be returned. No exceptions will be thrown.</returns>
-	public DigitPath? FindPath(scoped in Grid grid)
+	/// <returns>
+	/// The target digit path. If none found, a longest path will be returned.
+	/// </returns>
+	public DigitPath FindPath(scoped in Grid grid)
 	{
 		var digitsStack = new Stack<Digit>();
 		try

@@ -35,4 +35,12 @@ public readonly record struct DigitPath(Digit[] Digits)
 	/// <inheritdoc cref="ToString()"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(string separator) => string.Join(separator, from digit in Digits select digit + 1);
+
+
+	/// <summary>
+	/// Implicit cast from a <see cref="Digit"/> sequence into a <see cref="DigitPath"/>.
+	/// </summary>
+	/// <param name="digitSequence">A digit sequence. Please note that the value can be <see langword="null"/>.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static implicit operator DigitPath(Digit[]? digitSequence) => new(digitSequence is null ? [] : digitSequence);
 }

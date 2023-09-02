@@ -18718,6 +18718,12 @@ result ^= expression;
         <member name="M:Sudoku.Ittoryu.DigitPath.ToString(System.String)">
             <inheritdoc cref="M:Sudoku.Ittoryu.DigitPath.ToString"/>
         </member>
+        <member name="M:Sudoku.Ittoryu.DigitPath.op_Implicit(System.Int32[])~Sudoku.Ittoryu.DigitPath">
+            <summary>
+            Implicit cast from a <see cref="T:System.Int32"/> sequence into a <see cref="T:Sudoku.Ittoryu.DigitPath"/>.
+            </summary>
+            <param name="digitSequence">A digit sequence. Please note that the value can be <see langword="null"/>.</param>
+        </member>
         <member name="T:Sudoku.Ittoryu.PathNode">
             <summary>
             Represents for a path node in a whole solving path via ittoryu solving logic.
@@ -18829,7 +18835,9 @@ if (student is (name: var name, age: >= 18))
             Find a suitable ittoryu path.
             </summary>
             <param name="grid">The grid to be checked.</param>
-            <returns>The target digit path. If none found, <see langword="null"/> will be returned. No exceptions will be thrown.</returns>
+            <returns>
+            The target digit path. If none found, a longest path will be returned.
+            </returns>
         </member>
         <member name="T:Sudoku.Ittoryu.Extensions">
             <target name="class" when="extension">
