@@ -18826,30 +18826,6 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid to be checked.</param>
             <returns>The target digit path. If none found, <see langword="null"/> will be returned. No exceptions will be thrown.</returns>
         </member>
-        <member name="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)">
-            <summary>
-            Get all full houses.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="foundNodes">A list of found path nodes.</param>
-            <param name="digit">Indicates the digit to be checked.</param>
-        </member>
-        <member name="M:Sudoku.Ittoryu.SearchingEngine.ForHiddenSingle(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)">
-            <summary>
-            Get all hidden singles.
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)" path="/param[@name='grid']"/></param>
-            <param name="foundNodes"><inheritdoc cref="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)" path="/param[@name='foundNodes']"/></param>
-            <param name="digit"><inheritdoc cref="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)" path="/param[@name='digit']"/></param>
-        </member>
-        <member name="M:Sudoku.Ittoryu.SearchingEngine.ForNakedSingle(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)">
-            <summary>
-            Get all naked singles.
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)" path="/param[@name='grid']"/></param>
-            <param name="foundNodes"><inheritdoc cref="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)" path="/param[@name='foundNodes']"/></param>
-            <param name="digit"><inheritdoc cref="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)" path="/param[@name='digit']"/></param>
-        </member>
         <member name="T:Sudoku.Ittoryu.Extensions">
             <target name="class" when="extension">
 				<summary>
