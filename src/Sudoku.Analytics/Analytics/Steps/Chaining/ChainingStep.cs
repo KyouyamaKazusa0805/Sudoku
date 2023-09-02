@@ -648,12 +648,10 @@ file sealed class Comparer : IEqualityComparer<ChainingStep>
 		{
 			(null, null) => true,
 			({ ChainsTargets: var targetsX }, { ChainsTargets: var targetsY })
-				=> targetsX.CollectionElementEquals(targetsY, &potentialComparison) && branchEquals(targetsX, targetsY),
+				=> targetsX.SequenceEquals(targetsY) && branchEquals(targetsX, targetsY),
 			_ => false
 		};
 
-
-		static bool potentialComparison(ChainNode a, ChainNode b) => a == b;
 
 		static bool branchEquals(ChainNode[] a, ChainNode[] b)
 		{
@@ -661,7 +659,7 @@ file sealed class Comparer : IEqualityComparer<ChainingStep>
 			scoped var i2 = b.EnumerateImmutable();
 			while (i1.MoveNext() && i2.MoveNext())
 			{
-				if (!i1.Current.FullChainPotentials.CollectionElementEquals(i2.Current.FullChainPotentials, &potentialComparison))
+				if (!i1.Current.FullChainPotentials.SequenceEquals(i2.Current.FullChainPotentials))
 				{
 					return false;
 				}

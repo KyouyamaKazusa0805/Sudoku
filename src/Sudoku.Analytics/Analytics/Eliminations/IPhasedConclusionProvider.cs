@@ -48,8 +48,12 @@ public interface IPhasedConclusionProvider<TSelf, TReasonEnum> : IEquatable<TSel
 	{
 		return other switch
 		{
-			{ Conclusions: var conc, Reason: var r } when Conclusions.CollectionElementEquals(conc, &conclusionEqualityComparer)
-				=> sizeof(TReasonEnum) switch { 1 or 2 or 4 => asInt(Reason) == asInt(r), 8 => asLong(Reason) == asLong(r), _ => false },
+			{ Conclusions: var conc, Reason: var r } when Conclusions.SequenceEquals(conc) => sizeof(TReasonEnum) switch
+			{
+				1 or 2 or 4 => asInt(Reason) == asInt(r),
+				8 => asLong(Reason) == asLong(r),
+				_ => false
+			},
 			_ => false
 		};
 
@@ -59,7 +63,5 @@ public interface IPhasedConclusionProvider<TSelf, TReasonEnum> : IEquatable<TSel
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static long asLong(TReasonEnum e) => As<TReasonEnum, long>(ref e);
-
-		static bool conclusionEqualityComparer(Conclusion a, Conclusion b) => a == b;
 	}
 }

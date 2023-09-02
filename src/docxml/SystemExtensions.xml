@@ -901,27 +901,6 @@
             The syntax identifier for strings containing XML.
             </summary>
         </member>
-        <member name="T:System.ArrayExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Array"/>.
-            </summary>
-            <seealso cref="T:System.Array"/>
-        </member>
-        <member name="M:System.ArrayExtensions.CollectionElementEquals``1(``0[],``0[],)">
-            <inheritdoc cref="!:ImmutableArrayExtensions.CollectionElementEquals&lt;T&gt;(ImmutableArray&lt;T&gt;, ImmutableArray&lt;T&gt;, delegate*&lt;T, T, bool&gt;)"/>
-        </member>
-        <member name="M:System.ArrayExtensions.CollectionElementRefEquals``1(``0[],``0[],)">
-            <inheritdoc cref="!:ImmutableArrayExtensions.CollectionElementRefEquals&lt;T&gt;(ImmutableArray&lt;T&gt;, ImmutableArray&lt;T&gt;, delegate*&lt;T, T, bool&gt;)"/>
-        </member>
-        <member name="M:System.ArrayExtensions.Zip``2(``0[],``1[])">
-            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})"/>
-            <param name="this">
-            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})" path="/param[@name='first']"/>
-            </param>
-            <param name="other">
-            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})" path="/param[@name='second']"/>
-            </param>
-        </member>
         <member name="T:System.Reflection.AssemblyExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Reflection.Assembly"/>.
@@ -1120,6 +1099,31 @@
             <returns>
             <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" path="/returns"/>
             </returns>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Zip``2(``0[],``1[])">
+            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})"/>
+            <param name="this">
+            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})" path="/param[@name='first']"/>
+            </param>
+            <param name="other">
+            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})" path="/param[@name='second']"/>
+            </param>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.SequenceEquals``1(``0[],``0[])">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.SequenceEquals``1(``0[],``0[],System.Func{``0,``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.SequenceEquals``1(``0[],``0[],System.Func{``0,``0,System.Boolean})">
+            <summary>
+            Compares elements from two arrays one by one respetively.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array to be compared.</param>
+            <param name="other">The other array to be compared.</param>
+            <param name="equalityComparer">
+            A method that compares two <typeparamref name="T"/> elements, and returns a <see cref="T:System.Boolean"/> result
+            indicating whether two elements are considered equal.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether two arrays are considered equal.</returns>
         </member>
         <member name="T:System.Linq.ArrayListEnumerable">
             <summary>

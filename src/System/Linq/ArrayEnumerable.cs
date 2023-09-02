@@ -163,4 +163,75 @@ public static class ArrayEnumerable
 
 		return result;
 	}
+
+	/// <inheritdoc cref="Enumerable.Zip{TFirst, TSecond}(IEnumerable{TFirst}, IEnumerable{TSecond})"/>
+	/// <param name="this">
+	/// <inheritdoc cref="Enumerable.Zip{TFirst, TSecond}(IEnumerable{TFirst}, IEnumerable{TSecond})" path="/param[@name='first']"/>
+	/// </param>
+	/// <param name="other">
+	/// <inheritdoc cref="Enumerable.Zip{TFirst, TSecond}(IEnumerable{TFirst}, IEnumerable{TSecond})" path="/param[@name='second']"/>
+	/// </param>
+	public static (TFirst, TSecond)[] Zip<TFirst, TSecond>(this TFirst[] @this, TSecond[] other)
+	{
+		if (@this.Length != other.Length)
+		{
+			throw new InvalidOperationException("Two arrays should be of same length.");
+		}
+
+		var result = new (TFirst, TSecond)[@this.Length];
+		for (var i = 0; i < @this.Length; i++)
+		{
+			result[i] = (@this[i], other[i]);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc cref="SequenceEquals{T}(T[], T[], Func{T, T, bool})"/>
+	public static bool SequenceEquals<T>(this T[] @this, T[] other) where T : IEqualityOperators<T, T, bool>
+	{
+		if (@this.Length != other.Length)
+		{
+			return false;
+		}
+
+		for (var i = 0; i < @this.Length; i++)
+		{
+			if (@this[i] != other[i])
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/// <summary>
+	/// Compares elements from two arrays one by one respetively.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The array to be compared.</param>
+	/// <param name="other">The other array to be compared.</param>
+	/// <param name="equalityComparer">
+	/// A method that compares two <typeparamref name="T"/> elements, and returns a <see cref="bool"/> result
+	/// indicating whether two elements are considered equal.
+	/// </param>
+	/// <returns>A <see cref="bool"/> result indicating whether two arrays are considered equal.</returns>
+	public static bool SequenceEquals<T>(this T[] @this, T[] other, Func<T, T, bool> equalityComparer)
+	{
+		if (@this.Length != other.Length)
+		{
+			return false;
+		}
+
+		for (var i = 0; i < @this.Length; i++)
+		{
+			if (!equalityComparer(@this[i], other[i]))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
 }
