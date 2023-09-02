@@ -71,7 +71,7 @@ public static class SpanEnumerable
 		return result;
 	}
 
-	/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
+	/// <inheritdoc cref="ArrayEnumerable.SelectMany{TSource, TCollection, TResult}(TSource[], Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
 	public static ReadOnlySpan<TResult> SelectMany<TSource, TCollection, TResult>(
 		this scoped ReadOnlySpan<TSource> source,
 		Func<TSource, IEnumerable<TCollection>> collectionSelector,
