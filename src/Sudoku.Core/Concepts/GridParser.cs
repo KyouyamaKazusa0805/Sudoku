@@ -510,7 +510,7 @@ public unsafe ref partial struct GridParser(
 		static bool expandCode(string? original, [NotNullWhen(true)] out string? result)
 		{
 			// We must the string code holds 8 ','s and is with no ':' or '+'.
-			if (original is null || original.Contains(':') || original.Contains('+') || original.CountOf(',') != 8)
+			if (original is null || original.Contains(':') || original.Contains('+') || original.Count(',') != 8)
 			{
 				result = null;
 				return false;
@@ -529,7 +529,7 @@ public unsafe ref partial struct GridParser(
 			for (var i = 0; i < 9; i++)
 			{
 				var line = lines[i];
-				switch (line.CountOf('*'))
+				switch (line.Count('*'))
 				{
 					case 1 when (9 + 1 - line.Length, 0, 0) is var (empties, j, k):
 					{
