@@ -12,9 +12,15 @@ namespace Sudoku.Ittoryu;
 public sealed class SearchingEngine
 {
 	/// <summary>
-	/// Indicates whether the engine supports for naked singles.
+	/// Indicates the supported techniques. By default, all singles are included.
 	/// </summary>
-	public bool AllowNakedSingles { get; set; }
+	public Technique[] SupportedTechniques { get; set; } = [
+		Technique.FullHouse,
+		Technique.HiddenSingleBlock,
+		Technique.HiddenSingleRow,
+		Technique.HiddenSingleColumn,
+		Technique.NakedSingle
+	];
 
 
 	/// <summary>
@@ -134,6 +140,11 @@ public sealed class SearchingEngine
 	/// <param name="digit">Indicates the digit to be checked.</param>
 	private void ForFullHouse(scoped in Grid grid, List<PathNode> foundNodes, Digit digit)
 	{
+		if (Array.IndexOf(SupportedTechniques, Technique.FullHouse) == -1)
+		{
+			return;
+		}
+
 		var emptyCells = grid.EmptyCells;
 		for (var house = 0; house < 27; house++)
 		{
@@ -159,6 +170,17 @@ public sealed class SearchingEngine
 		var candidatesMap = grid.CandidatesMap;
 		for (var house = 0; house < 27; house++)
 		{
+			var houseCode = house.ToHouseType() switch
+			{
+				HouseType.Block => Technique.HiddenSingleBlock,
+				HouseType.Row => Technique.HiddenSingleRow,
+				_ => Technique.HiddenSingleColumn
+			};
+			if (Array.IndexOf(SupportedTechniques, houseCode) == -1)
+			{
+				continue;
+			}
+
 			if ((HousesMap[house] & candidatesMap[digit]) / house is var mask && IsPow2((uint)mask))
 			{
 				foundNodes.Add(new(grid, house, HouseCells[house][Log2((uint)mask)] * 9 + digit));
@@ -174,22 +196,21 @@ public sealed class SearchingEngine
 	/// <param name="digit"><inheritdoc cref="ForFullHouse(in Grid, List{PathNode}, Digit)" path="/param[@name='digit']"/></param>
 	private void ForNakedSingle(scoped in Grid grid, List<PathNode> foundNodes, Digit digit)
 	{
-		if (AllowNakedSingles)
+		if (Array.IndexOf(SupportedTechniques, Technique.NakedSingle) == -1)
 		{
-			foreach (var cell in grid.EmptyCells)
+			return;
+		}
+
+		foreach (var cell in grid.EmptyCells)
+		{
+			if (grid.GetCandidates(cell) == 1 << digit)
 			{
-				if (grid.GetCandidates(cell) == 1 << digit)
-				{
-					foundNodes.Add(new(grid, -1, cell * 9 + digit));
-				}
+				foundNodes.Add(new(grid, -1, cell * 9 + digit));
 			}
 		}
 	}
 }
 
-/// <summary>
-/// Represents LINQ methods used in this file.
-/// </summary>
 file static class Extensions
 {
 	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
@@ -215,18 +236,6 @@ file static class Extensions
 		foreach (var element in source)
 		{
 			result[i++] = selector(element);
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc cref="Enumerable.Reverse{TSource}(IEnumerable{TSource})"/>
-	public static Stack<T> Reverse<T>(this Stack<T> source)
-	{
-		var result = new Stack<T>(source.Count);
-		foreach (var element in source)
-		{
-			result.Push(element);
 		}
 
 		return result;

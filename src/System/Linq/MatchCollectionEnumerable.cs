@@ -1,4 +1,4 @@
-﻿namespace System.Text.RegularExpressions;
+namespace System.Text.RegularExpressions;
 
 /// <summary>
 /// Provides LINQ-based extension methods on <see cref="MatchCollection"/>.

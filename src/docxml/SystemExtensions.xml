@@ -731,6 +731,19 @@
             The values you want to add to the end of the collection.
             </param>
         </member>
+        <member name="T:System.Collections.Generic.StackExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.Generic.Stack`1"/> instances.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.Stack`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.StackExtensions.Reverse``1(System.Collections.Generic.Stack{``0})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/summary"/>
+            </summary>
+            <param name="this"><inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/param[@name='source']"/></param>
+            <returns><inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/returns"/></returns>
+        </member>
         <member name="T:System.Collections.BitArrayExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
@@ -1810,6 +1823,9 @@ fixed (short* ptr = instance)
             Append a serial of characters at the tail of the collection.
             </summary>
             <param name="chars">The serial of characters.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRange``1(System.ReadOnlySpan{``0})">
+            <inheritdoc cref="M:System.Text.StringHandler.AppendRange``1(System.Collections.Generic.IEnumerable{``0})"/>
         </member>
         <member name="M:System.Text.StringHandler.AppendRange``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>

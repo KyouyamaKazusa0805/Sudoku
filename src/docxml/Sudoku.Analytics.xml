@@ -18814,9 +18814,9 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Ittoryu.SearchingEngine.AllowNakedSingles">
+        <member name="P:Sudoku.Ittoryu.SearchingEngine.SupportedTechniques">
             <summary>
-            Indicates whether the engine supports for naked singles.
+            Indicates the supported techniques. By default, all singles are included.
             </summary>
         </member>
         <member name="M:Sudoku.Ittoryu.SearchingEngine.FindPath(Sudoku.Concepts.Grid@)">
@@ -18850,19 +18850,11 @@ if (student is (name: var name, age: >= 18))
             <param name="foundNodes"><inheritdoc cref="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)" path="/param[@name='foundNodes']"/></param>
             <param name="digit"><inheritdoc cref="M:Sudoku.Ittoryu.SearchingEngine.ForFullHouse(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Ittoryu.PathNode},System.Int32)" path="/param[@name='digit']"/></param>
         </member>
-        <member name="T:Sudoku.Ittoryu.Extensions">
-            <summary>
-            Represents LINQ methods used in this file.
-            </summary>
-        </member>
         <member name="M:Sudoku.Ittoryu.Extensions.Where``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
         <member name="M:Sudoku.Ittoryu.Extensions.Select``2(System.Collections.Generic.List{``0},System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
-        </member>
-        <member name="M:Sudoku.Ittoryu.Extensions.Reverse``1(System.Collections.Generic.Stack{``0})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})"/>
         </member>
         <member name="T:Sudoku.Preprocessing.BackdoorSearcher">
             <summary>

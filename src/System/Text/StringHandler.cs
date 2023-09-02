@@ -481,6 +481,15 @@ public unsafe ref partial struct StringHandler
 		}
 	}
 
+	/// <inheritdoc cref="AppendRange{T}(IEnumerable{T})"/>
+	public void AppendRange<T>(scoped ReadOnlySpan<T> values)
+	{
+		foreach (var element in values)
+		{
+			AppendFormatted(element);
+		}
+	}
+
 	/// <summary>
 	/// Append a serial of strings from a serial of elements.
 	/// </summary>
