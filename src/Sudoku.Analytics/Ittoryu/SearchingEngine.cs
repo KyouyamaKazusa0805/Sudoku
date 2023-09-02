@@ -78,6 +78,7 @@ public sealed class SearchingEngine
 
 			if (grid.ValuesMap[digit].Count != 9)
 			{
+				// If the current digit is not completed, we should continue searching for this digit.
 				var tempNodes = new List<PathNode>(16);
 				ForFullHouse(grid, tempNodes, digit);
 				ForHiddenSingle(grid, tempNodes, digit);
@@ -87,14 +88,18 @@ public sealed class SearchingEngine
 			}
 			else
 			{
+				// If the current digit is completed, we should continue searching for the next digit.
 				digitsStack.Push(digit);
 				finishedDigits |= (Mask)(1 << digit);
 
+				// Here we should check the bit mask. If currently we have found the digits are finished,
+				// the last works are not necessary, just throw an exception to escape here.
 				if (finishedDigits == Grid.MaxCandidatesMask)
 				{
 					throw new InvalidOperationException();
 				}
 
+				// If not, we should search for available path nodes agagin, and iterate on them.
 				var tempNodes = new List<PathNode>(16);
 				foreach (var anotherDigit in (Mask)(Grid.MaxCandidatesMask & ~finishedDigits))
 				{
@@ -103,6 +108,7 @@ public sealed class SearchingEngine
 					ForNakedSingle(grid, tempNodes, anotherDigit);
 				}
 
+				// Iterate on found path nodes.
 				foreach (var anotherDigit in MaskCreator.Create(from node in tempNodes select node.Digit))
 				{
 					dfs(
@@ -114,6 +120,7 @@ public sealed class SearchingEngine
 					);
 				}
 
+				// If all available found path nodes cannot make the path complete, pop it.
 				digitsStack.Pop();
 			}
 		}
