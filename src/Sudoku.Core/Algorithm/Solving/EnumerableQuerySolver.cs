@@ -33,13 +33,13 @@ public sealed class EnumerableQuerySolver : ISolver
 		return @return;
 
 
-		static string[] solve(string puzzle)
+		static ReadOnlySpan<string> solve(string puzzle)
 		{
-			var result = (string[])[puzzle];
+			var result = (ReadOnlySpan<string>)[puzzle];
 			while (result is [var r, ..] && r.IndexOf('.') != -1)
 			{
 				result = (
-					from solution in (ReadOnlySpan<string>)result
+					from solution in result
 					let index = solution.IndexOf('.')
 					let column = index % 9
 					let block = index - index % 27 + column - index % 3
@@ -59,6 +59,10 @@ public sealed class EnumerableQuerySolver : ISolver
 				).ToArray();
 			}
 
+			// Return the result value.
+			// Because we generate the target value inside the query expression, we may not consider the value having been deleted by GC.
+			// In C# 11, we can use keyword 'scoped' to describe whether a value or reference can be used local-scoped.
+			// If a local does not contain a 'scoped' keyword, the value can be escaped the whole method lifecycle.
 			return result;
 		}
 	}
