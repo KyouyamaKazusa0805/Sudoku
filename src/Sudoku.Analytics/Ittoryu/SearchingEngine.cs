@@ -20,7 +20,7 @@ public sealed class SearchingEngine
 	/// <summary>
 	/// Indicates the supported techniques. By default, all singles are included.
 	/// </summary>
-	public Technique[] SupportedTechniques { get; set; } = [
+	public Technique[] SupportedTechniques { get; init; } = [
 		Technique.FullHouse,
 		Technique.HiddenSingleBlock,
 		Technique.HiddenSingleRow,
