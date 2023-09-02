@@ -12,6 +12,12 @@ namespace Sudoku.Ittoryu;
 public sealed class SearchingEngine
 {
 	/// <summary>
+	/// Indicates the found possible digit sequences.
+	/// </summary>
+	private readonly List<Digit[]> _foundSequences = [];
+
+
+	/// <summary>
 	/// Indicates the supported techniques. By default, all singles are included.
 	/// </summary>
 	public Technique[] SupportedTechniques { get; set; } = [
@@ -41,6 +47,7 @@ public sealed class SearchingEngine
 				nakedSingles(grid, foundNodes, digit);
 			}
 
+			_foundSequences.Clear();
 			foreach (var digit in MaskCreator.Create(from node in foundNodes select node.Digit))
 			{
 				dfs(
@@ -57,7 +64,12 @@ public sealed class SearchingEngine
 			return new(digitsStack.Reverse().ToArray());
 		}
 
-		return null;
+		if (_foundSequences.Count == 0)
+		{
+			return null;
+		}
+
+		return new((from sequence in _foundSequences orderby sequence.Length descending select sequence).First());
 
 
 		void dfs(Grid grid, Digit digit, Stack<Digit> digitsStack, scoped ReadOnlySpan<PathNode> foundNodes, Mask finishedDigits)
@@ -104,6 +116,9 @@ public sealed class SearchingEngine
 				{
 					throw new InvalidOperationException();
 				}
+
+				// Add a new sequence.
+				_foundSequences.Add(digitsStack.Reverse().ToArray());
 
 				// If not, we should search for available path nodes agagin, and iterate on them.
 				var tempNodes = new List<PathNode>(16);

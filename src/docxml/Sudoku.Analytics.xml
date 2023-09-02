@@ -18814,6 +18814,11 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Ittoryu.SearchingEngine._foundSequences">
+            <summary>
+            Indicates the found possible digit sequences.
+            </summary>
+        </member>
         <member name="P:Sudoku.Ittoryu.SearchingEngine.SupportedTechniques">
             <summary>
             Indicates the supported techniques. By default, all singles are included.
