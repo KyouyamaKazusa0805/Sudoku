@@ -34,5 +34,5 @@ public readonly record struct DigitPath(Digit[] Digits)
 
 	/// <inheritdoc cref="ToString()"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(string separator) => string.Join(separator, Digits);
+	public string ToString(string separator) => string.Join(separator, from digit in Digits select digit + 1);
 }

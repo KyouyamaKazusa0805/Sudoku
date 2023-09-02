@@ -159,7 +159,6 @@ public sealed class SearchingEngine
 		}
 	}
 
-
 	/// <summary>
 	/// Get all naked singles.
 	/// </summary>
