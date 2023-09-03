@@ -56,7 +56,7 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 							new() { Content = GetString("SymmetricType_YAxis"), Tag = SymmetricType.YAxis },
 							new() { Content = GetString("SymmetricType_AxisBoth"), Tag = SymmetricType.AxisBoth },
 							new() { Content = GetString("SymmetricType_DiagonalBoth"), Tag = SymmetricType.DiagonalBoth },
-							new() { Content = GetString("SymmetricType_All"), Tag = SymmetricType.AxisBoth }
+							new() { Content = GetString("SymmetricType_All"), Tag = SymmetricType.All }
 						]
 					},
 					static () => GetString($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}"),
