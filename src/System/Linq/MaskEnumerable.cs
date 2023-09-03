@@ -24,16 +24,4 @@ public static class MaskEnumerable
 
 		return result;
 	}
-
-	/// <inheritdoc cref="Select{T}(short, Func{int, T})"/>
-	public static unsafe ReadOnlySpan<T> Select<T>(this Mask @this, delegate*<int, T> selector) where T : unmanaged
-	{
-		var (result, i) = (new T[PopCount((uint)@this)], 0);
-		foreach (var bit in @this)
-		{
-			result[i++] = selector(bit);
-		}
-
-		return result;
-	}
 }
