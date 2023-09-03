@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using unsafe CollectorPredicateFunc = delegate* managed<in CellMap, bool>;
+using unsafe CollectorPredicateFunc = delegate*<in CellMap, bool>;
 
 /// <summary>
 /// Provides with a <b>Guardian</b> step searcher.

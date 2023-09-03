@@ -2,8 +2,8 @@
 namespace Sudoku.Concepts;
 
 using GridImpl = IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>;
-using unsafe ValueChangedCallbackFunc = delegate* managed<ref Grid, Cell, Mask, Mask, Digit, void>;
-using unsafe CandidatesRefreshingCallbackFunc = delegate* managed<ref Grid, void>;
+using unsafe ValueChangedCallbackFunc = delegate*<ref Grid, Cell, Mask, Mask, Digit, void>;
+using unsafe CandidatesRefreshingCallbackFunc = delegate*<ref Grid, void>;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
