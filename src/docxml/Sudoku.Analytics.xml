@@ -3704,7 +3704,7 @@
         <member name="P:Sudoku.Analytics.StepCollector.ResultStepSearchers">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepCollector.Search(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Analytics.StepCollector.Collect(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <summary>
             Search for all possible steps in a grid.
             </summary>

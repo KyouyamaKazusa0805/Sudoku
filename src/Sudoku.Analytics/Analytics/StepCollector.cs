@@ -54,7 +54,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 	/// The result. If cancelled, the return value will be <see langword="null"/>; otherwise, a real list even though it may be empty.
 	/// </returns>
 	/// <exception cref="InvalidOperationException">Throws when property <see cref="DifficultyLevelMode"/> is not defined.</exception>
-	public IEnumerable<Step>? Search(scoped in Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
+	public IEnumerable<Step>? Collect(scoped in Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		if (!Enum.IsDefined(DifficultyLevelMode))
 		{
