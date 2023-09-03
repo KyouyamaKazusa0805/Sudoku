@@ -46,7 +46,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			return null;
 		}
 
-		foreach (var (currentLoop, extraCells, comparer, _) in oddagonInfoList)
+		foreach (var (currentLoop, extraCells, comparer) in oddagonInfoList)
 		{
 			var d1 = TrailingZeroCount(comparer);
 			var d2 = comparer.GetNextSet(d1);
@@ -184,7 +184,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 							// The pattern is found.
 							if (++loopsCount < MaximumCount)
 							{
-								result.Add(new(loop, extraCells, comparer, extraDigitsMask));
+								result.Add(new(loop, extraCells, comparer));
 							}
 
 							return;
@@ -398,8 +398,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 /// <param name="LoopCells">Indicates the cells of the whole loop.</param>
 /// <param name="ExtraCells">Indicates the extra cells.</param>
 /// <param name="DigitsMask">Indicates the mask of digits that the loop used.</param>
-/// <param name="ExtraDigitsMask">Indicates the mask of extra digits that the loop isn't used, but they influence the loop.</param>
-file sealed record BivalueOddagonInfo(scoped in CellMap LoopCells, scoped in CellMap ExtraCells, Mask DigitsMask, Mask ExtraDigitsMask)
+file sealed record BivalueOddagonInfo(scoped in CellMap LoopCells, scoped in CellMap ExtraCells, Mask DigitsMask)
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
