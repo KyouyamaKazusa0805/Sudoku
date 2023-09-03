@@ -2187,13 +2187,6 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	BivalueOddagonType3,
-
-	/// <summary>
-	/// Indicates grouped bi-value oddagon.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	GroupedBivalueOddagon,
 	#endregion
 
 	//

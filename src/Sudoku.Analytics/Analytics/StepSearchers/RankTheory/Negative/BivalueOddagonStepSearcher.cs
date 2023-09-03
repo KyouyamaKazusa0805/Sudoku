@@ -1,7 +1,5 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using unsafe CollectorPredicateFunc = delegate*<in CellMap, bool>;
-
 /// <summary>
 /// <para>
 /// Provides with a <b>Bi-value Oddagon</b> step searcher.
@@ -20,10 +18,16 @@ using unsafe CollectorPredicateFunc = delegate*<in CellMap, bool>;
 /// <para><i>A Remote Pair is a XY-Chain that only uses two digits.</i></para>
 /// </summary>
 [StepSearcher(
-	Technique.BivalueOddagonType2, Technique.BivalueOddagonType3, Technique.GroupedBivalueOddagon,
+	Technique.BivalueOddagonType2, Technique.BivalueOddagonType3,
 	Flags = ConditionalFlags.TimeComplexity | ConditionalFlags.SpaceComplexity)]
 public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 {
+	/// <summary>
+	/// The maximum number of loops can be searched for in code.
+	/// </summary>
+	private const int MaximumCount = 100;
+
+
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
@@ -39,65 +43,181 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 		var onlyFindOne = context.OnlyFindOne;
 		var resultList = default(IOrderedEnumerable<BivalueOddagonStep>);
-		foreach (var cell in BivalueCells)
+		if (collect(grid) is not { Count: not 0 } oddagonInfoList)
 		{
-			var mask = grid.GetCandidates(cell);
-			var d1 = TrailingZeroCount(mask);
-			var d2 = mask.GetNextSet(d1);
-			var comparer = (Mask)(1 << d1 | 1 << d2);
-			var foundData = CollectBivalueOddagons(grid, comparer);
-			if (foundData.Length == 0)
-			{
-				continue;
-			}
+			return null;
+		}
 
-			foreach (var (currentLoop, _) in foundData)
+		foreach (var (currentLoop, extraCells, comparer, _) in oddagonInfoList)
+		{
+			var d1 = TrailingZeroCount(comparer);
+			var d2 = comparer.GetNextSet(d1);
+			switch (extraCells.Count)
 			{
-				var extraCellsMap = currentLoop - BivalueCells;
-				switch (extraCellsMap.Count)
+				case 0:
 				{
-					case 0:
+					// This puzzle has no puzzle solutions.
+					throw new StepSearcherProcessException<BivalueOddagonStepSearcher>();
+				}
+				case not 1:
+				{
+					// Type 2, 3.
+					// Here use default label to ensure the order of the handling will be 1->2->3.
+					if (CheckType2(resultAccumulator, grid, d1, d2, currentLoop, extraCells, comparer, onlyFindOne) is { } step2)
 					{
-						// This puzzle has no puzzle solutions.
-						throw new StepSearcherProcessException<BivalueOddagonStepSearcher>();
+						return step2;
 					}
-					case not 1:
+
+					if (extraCells.Count == 2)
 					{
-						// Type 2, 3.
-						// Here use default label to ensure the order of the handling will be 1->2->3.
-						if (CheckType2(resultAccumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer, onlyFindOne) is { } step2)
+						if (CheckType3(resultAccumulator, grid, d1, d2, currentLoop, extraCells, comparer, onlyFindOne) is { } step3)
 						{
-							return step2;
+							return step3;
 						}
+					}
 
-						if (extraCellsMap.Count == 2)
-						{
-							if (CheckType3(resultAccumulator, grid, d1, d2, currentLoop, extraCellsMap, comparer, onlyFindOne) is { } step3)
-							{
-								return step3;
-							}
-						}
+					break;
+				}
+			}
+		}
 
-						break;
+		if (resultAccumulator.Count == 0)
+		{
+			return null;
+		}
+
+		resultList = from step in resultAccumulator.Distinct() orderby step.LoopCells.Count, step.Code select step;
+		if (context.OnlyFindOne)
+		{
+			return resultList.First();
+		}
+
+		context.Accumulator.AddRange(resultList);
+		return null;
+
+
+		static HashSet<BivalueOddagonInfo> collect(scoped in Grid grid)
+		{
+			var (foundLoopsCount, result) = (-1, new HashSet<BivalueOddagonInfo>(MaximumCount));
+			for (var d1 = 0; d1 < 8; d1++)
+			{
+				for (var d2 = d1 + 1; d2 < 9; d2++)
+				{
+					var comparer = (Mask)(1 << d1 | 1 << d2);
+					var cellsContainingBothTwoDigits = CandidatesMap[d1] & CandidatesMap[d2];
+					foreach (var cell in cellsContainingBothTwoDigits)
+					{
+						dfs(
+							grid,
+							cell,
+							cell,
+							-1,
+							cellsContainingBothTwoDigits,
+							CellsMap[cell],
+							PopCount((uint)grid.GetCandidates(cell)) > 2 ? CellsMap[cell] : CellMap.Empty,
+							result,
+							ref foundLoopsCount,
+							comparer,
+							0
+						);
 					}
 				}
 			}
 
-			if (resultAccumulator.Count == 0)
-			{
-				continue;
-			}
-
-			resultList = from step in resultAccumulator.Distinct() orderby step.LoopCells.Count, step.Code select step;
-			if (context.OnlyFindOne)
-			{
-				return resultList.First();
-			}
-
-			context.Accumulator.AddRange(resultList);
+			return result;
 		}
 
-		return null;
+		static void dfs(
+			scoped in Grid grid,
+			Cell startCell,
+			Cell previousCell,
+			House previousHouse,
+			scoped in CellMap cellsContainingBothDigits,
+			scoped in CellMap loop,
+			scoped in CellMap extraCells,
+			HashSet<BivalueOddagonInfo> result,
+			scoped ref int loopsCount,
+			Mask comparer,
+			Mask extraDigitsMask
+		)
+		{
+			if (loopsCount > 100)
+			{
+				// There is no need to iterate more loops because they are same.
+				return;
+			}
+
+			scoped var h = (stackalloc House[3]);
+			foreach (var houseType in HouseTypes)
+			{
+				var nextHouse = previousCell.ToHouseIndex(houseType);
+				if (nextHouse == previousHouse)
+				{
+					continue;
+				}
+
+				var loopCellsInThisHouse = loop & HousesMap[nextHouse];
+				if (loopCellsInThisHouse.Count >= 2 && !loopCellsInThisHouse.Contains(startCell))
+				{
+					continue;
+				}
+
+				var otherCellsCanBeIterated = cellsContainingBothDigits - loop + startCell & HousesMap[nextHouse];
+				if (!otherCellsCanBeIterated)
+				{
+					continue;
+				}
+
+				foreach (var cell in otherCellsCanBeIterated)
+				{
+					cell.CopyHouseInfo(ref h[0]);
+
+					if (((loop & HousesMap[h[0]]).Count >= 2 || (loop & HousesMap[h[1]]).Count >= 2 || (loop & HousesMap[h[2]]).Count >= 2)
+						&& startCell != cell)
+					{
+						// All valid loops can only at most 2 cells from all houses that the current loop uses.
+						continue;
+					}
+
+					if (startCell == cell)
+					{
+						if ((loop.Count & 1) != 0 && loop.Count > 4)
+						{
+							// The pattern is found.
+							if (++loopsCount < MaximumCount)
+							{
+								result.Add(new(loop, extraCells, comparer, extraDigitsMask));
+							}
+
+							return;
+						}
+					}
+					else
+					{
+						var newExtraDigitsMask = (Mask)(extraDigitsMask | (Mask)(grid.GetCandidates(cell) & ~comparer));
+						var newExtraCells = PopCount((uint)grid.GetCandidates(cell)) > 2 ? extraCells + cell : extraCells;
+						if (newExtraCells.InOneHouse
+							|| IsPow2(newExtraDigitsMask) && !!(newExtraCells.PeerIntersection & CandidatesMap[Log2((uint)newExtraDigitsMask)])
+							|| newExtraCells.Count < 3)
+						{
+							dfs(
+								grid,
+								startCell,
+								cell,
+								nextHouse,
+								cellsContainingBothDigits,
+								loop + cell,
+								newExtraCells,
+								result,
+								ref loopsCount,
+								comparer,
+								newExtraDigitsMask
+							);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/// <summary>
@@ -272,123 +392,22 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	ReturnNull:
 		return null;
 	}
+}
 
+/// <summary>
+/// Defines a temporary type that records a pair of data for a bi-value oddagon.
+/// </summary>
+/// <param name="LoopCells">Indicates the cells of the whole loop.</param>
+/// <param name="ExtraCells">Indicates the extra cells.</param>
+/// <param name="DigitsMask">Indicates the mask of digits that the loop used.</param>
+/// <param name="ExtraDigitsMask">Indicates the mask of extra digits that the loop isn't used, but they influence the loop.</param>
+file sealed record BivalueOddagonInfo(scoped in CellMap LoopCells, scoped in CellMap ExtraCells, Mask DigitsMask, Mask ExtraDigitsMask)
+{
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals([NotNullWhen(true)] BivalueOddagonInfo? other) => other is not null && LoopCells == other.LoopCells;
 
-	/// <summary>
-	/// Try to collect all possible loops being used in technique bivalue oddagons, which should satisfy the specified condition.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="digitsMask">The digits used.</param>
-	/// <returns>
-	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
-	/// </returns>
-	private static unsafe BivalueOddagon[] CollectBivalueOddagons(scoped in Grid grid, Mask digitsMask)
-	{
-		static bool predicate(scoped in CellMap loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
-		var result = new List<BivalueOddagon>();
-		var d1 = TrailingZeroCount(digitsMask);
-		var d2 = digitsMask.GetNextSet(d1);
-
-		// This limitation will miss the incomplete structures, I may modify it later.
-		foreach (var cell in CandidatesMap[d1] & CandidatesMap[d2])
-		{
-			dfs(grid, cell, cell, 0, CellsMap[cell], digitsMask, CandidatesMap[d1] & CandidatesMap[d2], &predicate, result);
-		}
-
-		return [.. result.Distinct()];
-
-
-		static void dfs(
-			scoped in Grid grid,
-			Cell startCell,
-			Cell lastCell,
-			House lastHouse,
-			scoped in CellMap currentLoop,
-			Mask digitsMask,
-			scoped in CellMap fullCells,
-			CollectorPredicateFunc condition,
-			List<BivalueOddagon> result
-		)
-		{
-			foreach (var houseType in HouseTypes)
-			{
-				var house = lastCell.ToHouseIndex(houseType);
-				if ((lastHouse >> house & 1) != 0)
-				{
-					continue;
-				}
-
-				var cellsToBeChecked = fullCells & HousesMap[house];
-				if (cellsToBeChecked.Count < 2 || (currentLoop & HousesMap[house]).Count > 2)
-				{
-					continue;
-				}
-
-				foreach (var tempCell in cellsToBeChecked)
-				{
-					if (tempCell == lastCell)
-					{
-						continue;
-					}
-
-					var housesUsed = 0;
-					foreach (var tempHouseType in HouseTypes)
-					{
-						if (tempCell.ToHouseIndex(tempHouseType) == lastCell.ToHouseIndex(tempHouseType))
-						{
-							housesUsed |= 1 << lastCell.ToHouseIndex(tempHouseType);
-						}
-					}
-
-					if (tempCell == startCell && condition(currentLoop))
-					{
-						if (extraCheck(grid, currentLoop, digitsMask))
-						{
-							result.Add(new(currentLoop, digitsMask));
-						}
-
-						// Exit the current of this recursion frame.
-						return;
-					}
-
-					if ((HousesMap[house] & currentLoop).Count > 1)
-					{
-						continue;
-					}
-
-					dfs(
-						grid,
-						startCell,
-						tempCell,
-						lastHouse | housesUsed,
-						currentLoop + tempCell,
-						digitsMask,
-						fullCells,
-						condition,
-						result
-					);
-				}
-			}
-		}
-
-		static bool extraCheck(scoped in Grid grid, scoped in CellMap loopCells, Mask digitsMask)
-		{
-			var otherDigits = grid[loopCells] & ~digitsMask;
-			var cellsContainsExtraDigits = CellMap.Empty;
-			foreach (var cell in loopCells)
-			{
-				if ((Mask)(grid.GetCandidates(cell) & otherDigits) != 0)
-				{
-					cellsContainsExtraDigits.Add(cell);
-				}
-			}
-
-			return PopCount((uint)otherDigits) switch
-			{
-				1 => !!(cellsContainsExtraDigits.PeerIntersection & CandidatesMap[TrailingZeroCount(otherDigits)]),
-				2 => cellsContainsExtraDigits.InOneHouse,
-				_ => false
-			};
-		}
-	}
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => LoopCells.GetHashCode();
 }

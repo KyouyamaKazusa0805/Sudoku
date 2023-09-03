@@ -20,13 +20,13 @@ public static class HouseTypeExtensions
 	/// Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void CopyHouseInfo(this Cell cell, ref House reference)
+	public static void CopyHouseInfo(this Cell cell, scoped ref House reference)
 	{
 		ArgumentNullRefException.ThrowIfNullRef(ref reference);
 
 		reference = BlockTable[cell];
-		AddByteOffset(ref reference, sizeof(Cell)) = RowTable[cell];
-		AddByteOffset(ref reference, 2 * sizeof(Cell)) = ColumnTable[cell];
+		AddByteOffset(ref reference, sizeof(House)) = RowTable[cell];
+		AddByteOffset(ref reference, 2 * sizeof(House)) = ColumnTable[cell];
 	}
 
 	/// <summary>
