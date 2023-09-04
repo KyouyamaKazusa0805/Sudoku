@@ -42,4 +42,52 @@ public static class MemberInfoExtensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static int p(string s) => s.IndexOf('`');
 	}
+
+	/// <summary>
+	/// When overridden in a derived class, returns the <see langword="init"/> accessor for this property.
+	/// </summary>
+	/// <param name="this">The property.</param>
+	/// <param name="nonPublic">
+	/// Indicates whether the accessor should be returned if it is non-public.
+	/// <see langword="true"/> if a non-public accessor is to be returned; otherwise, <see langword="false"/>.
+	/// </param>
+	/// <returns>
+	/// This property's <see langword="init"/> method, or <see langword="null"/>, as shown in the following table.
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Value</term>
+	/// <description>Condition</description>
+	/// </listheader>
+	/// <item>
+	/// <term>The <see langword="init"/> method for this property</term>
+	/// <description>
+	/// The <see langword="init"/> accessor is public, or <paramref name="nonPublic"/> is <see langword="true"/>
+	/// and the <see langword="init"/> accessor is non-public.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term>
+	/// <description>
+	/// <paramref name="nonPublic"/> is <see langword="true"/>, but the property is read-only,
+	/// or <paramref name="nonPublic"/> is <see langword="false"/> and the <see langword="init"/> accessor is non-public,
+	/// or there is no <see langword="init"/> accessor.
+	/// </description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static MethodInfo? GetInitMethod(this PropertyInfo @this, bool nonPublic)
+	{
+		if (@this.GetSetMethod(nonPublic) is not { ReturnParameter: var returnParam } initAccessor)
+		{
+			return null;
+		}
+
+		if (!Array.Exists(returnParam.GetRequiredCustomModifiers(), static modreq => modreq == typeof(IsExternalInit)))
+		{
+			return null;
+		}
+
+		return initAccessor;
+	}
 }

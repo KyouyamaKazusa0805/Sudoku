@@ -101,10 +101,7 @@ public abstract class StepSearcherPool
 
 					// Sets the split priority value.
 					// We should use reflection to set value because keyword used of the property is 'init', rather than 'set'.
-					type.GetProperty(nameof(instance.SplitPriority))!
-						.GetSetMethod(true)!
-						.Invoke(instance, [separatedAttribute.Priority]);
-
+					type.GetProperty(nameof(instance.SplitPriority))!.GetInitMethod(true)!.Invoke(instance, [separatedAttribute.Priority]);
 					stepSearcherArray[i++] = instance;
 				}
 
