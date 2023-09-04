@@ -18725,6 +18725,31 @@ result ^= expression;
             </summary>
             <param name="digitSequence">A digit sequence. Please note that the value can be <see langword="null"/>.</param>
         </member>
+        <member name="T:Sudoku.Ittoryu.IttoryuPathFinder">
+            <summary>
+            Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+            This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Ittoryu.IttoryuPathFinder._foundSequences">
+            <summary>
+            Indicates the found possible digit sequences.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Ittoryu.IttoryuPathFinder.SupportedTechniques">
+            <summary>
+            Indicates the supported techniques. By default, all singles are included.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Ittoryu.IttoryuPathFinder.FindPath(Sudoku.Concepts.Grid@)">
+            <summary>
+            Find a suitable ittoryu path.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>
+            The target digit path. If none found, a longest path will be returned.
+            </returns>
+        </member>
         <member name="T:Sudoku.Ittoryu.PathNode">
             <summary>
             Represents for a path node in a whole solving path via ittoryu solving logic.
@@ -18809,36 +18834,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Ittoryu.PathNode.ToString">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Ittoryu.SearchingEngine">
-            <summary>
-            Represents an ittoryu searching engine. This engine will search for single techniques:
-            <list type="bullet">
-            <item>Full House</item>
-            <item>Last Digit</item>
-            <item>Hidden Single</item>
-            <item>Naked Single</item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Ittoryu.SearchingEngine._foundSequences">
-            <summary>
-            Indicates the found possible digit sequences.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Ittoryu.SearchingEngine.SupportedTechniques">
-            <summary>
-            Indicates the supported techniques. By default, all singles are included.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Ittoryu.SearchingEngine.FindPath(Sudoku.Concepts.Grid@)">
-            <summary>
-            Find a suitable ittoryu path.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>
-            The target digit path. If none found, a longest path will be returned.
-            </returns>
         </member>
         <member name="T:Sudoku.Preprocessing.BackdoorSearcher">
             <summary>

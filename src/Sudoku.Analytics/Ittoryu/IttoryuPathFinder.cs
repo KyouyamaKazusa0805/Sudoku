@@ -1,15 +1,10 @@
 namespace Sudoku.Ittoryu;
 
 /// <summary>
-/// Represents an ittoryu searching engine. This engine will search for single techniques:
-/// <list type="bullet">
-/// <item>Full House</item>
-/// <item>Last Digit</item>
-/// <item>Hidden Single</item>
-/// <item>Naked Single</item>
-/// </list>
+/// Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+/// This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
 /// </summary>
-public sealed class SearchingEngine
+public sealed class IttoryuPathFinder
 {
 	/// <summary>
 	/// Indicates the found possible digit sequences.
@@ -63,7 +58,7 @@ public sealed class SearchingEngine
 		}
 		catch (InvalidOperationException)
 		{
-			return new(digitsStack.Reverse().ToArray());
+			return digitsStack.Reverse().ToArray();
 		}
 
 		if (_foundSequences.Count == 0)
@@ -71,7 +66,7 @@ public sealed class SearchingEngine
 			return null;
 		}
 
-		return new((from sequence in _foundSequences orderby sequence.Length descending select sequence).First());
+		return (from sequence in _foundSequences orderby sequence.Length descending select sequence).First();
 
 
 		void dfs(Grid grid, Digit digit, Stack<Digit> digitsStack, scoped ReadOnlySpan<PathNode> foundNodes, Mask finishedDigits)
