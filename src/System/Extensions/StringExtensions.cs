@@ -142,7 +142,7 @@ public static unsafe partial class StringExtensions
 	/// </summary>
 	/// <param name="this">The current <see cref="string"/> instance.</param>
 	/// <returns>An array of <see cref="string"/> elements.</returns>
-	public static string[] ExpandCharacters(this string @this) => from c in @this.ToCharArray() select c.ToString();
+	public static string[] ExpandCharacters(this string @this) => [.. from c in (ReadOnlySpan<char>)@this select c.ToString()];
 
 	/// <summary>
 	/// Searches the specified input string for all occurrences of a
@@ -245,11 +245,13 @@ public static unsafe partial class StringExtensions
 		static bool isTab(char c) => c == '\t';
 		static bool isLetterDigitOrUnderscore(char c) => c == '_' || char.IsLetterOrDigit(c);
 
-		/*lang = regex*/
 		delegate*<char, bool> predicate = reservePattern switch
 		{
+			//lang = regex
 			@"\d" => &char.IsDigit,
+			//lang = regex
 			@"\t" => &isTab,
+			//lang = regex
 			@"\w" => &isLetterDigitOrUnderscore,
 			_ => throw InvalidOperation
 		};
