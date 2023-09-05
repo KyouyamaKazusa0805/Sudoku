@@ -1,4 +1,5 @@
 global using System.Algorithm;
+global using System.ComponentModel;
 global using System.Runtime.Intrinsics;
 global using System.SourceGeneration;
 global using Sudoku.Algorithm.Solving;
