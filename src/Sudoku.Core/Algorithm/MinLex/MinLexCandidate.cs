@@ -3,6 +3,7 @@ namespace Sudoku.Algorithm.MinLex;
 /// <summary>
 /// Represents for the basic data for candidates used by MinLex operations.
 /// </summary>
+[DebuggerDisplay($$"""{{{nameof(ToString)}}(),nq}""")]
 public unsafe struct MinLexCandidate
 {
 	private const int CandListSize = 15552;
