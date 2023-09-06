@@ -108,4 +108,86 @@ public static class SpanEnumerable
 
 		return default;
 	}
+
+	/// <summary>
+	/// Get all subsets from the specified number of the values to take.
+	/// </summary>
+	/// <param name="this">The array.</param>
+	/// <param name="count">The number of elements you want to take.</param>
+	/// <returns>All subsets.</returns>
+	public static T[][] GetSubsets<T>(this scoped Span<T> @this, int count)
+	{
+		if (count == 0)
+		{
+			return [];
+		}
+
+		var result = new List<T[]>();
+		g(@this.Length, count, count, stackalloc int[count], @this, result);
+		return [.. result];
+
+
+		static void g(int last, int count, int index, scoped Span<int> tempArray, scoped Span<T> @this, List<T[]> resultList)
+		{
+			for (var i = last; i >= index; i--)
+			{
+				tempArray[index - 1] = i - 1;
+				if (index > 1)
+				{
+					g(i - 1, count, index - 1, tempArray, @this, resultList);
+				}
+				else
+				{
+					var temp = new T[count];
+					for (var j = 0; j < tempArray.Length; j++)
+					{
+						temp[j] = @this[tempArray[j]];
+					}
+
+					resultList.Add(temp);
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Get all subsets from the specified number of the values to take.
+	/// </summary>
+	/// <param name="this">The array.</param>
+	/// <param name="count">The number of elements you want to take.</param>
+	/// <returns>All subsets.</returns>
+	public static T[][] GetSubsets<T>(this scoped ReadOnlySpan<T> @this, int count)
+	{
+		if (count == 0)
+		{
+			return [];
+		}
+
+		var result = new List<T[]>();
+		g(@this.Length, count, count, stackalloc int[count], @this, result);
+		return [.. result];
+
+
+		static void g(int last, int count, int index, scoped Span<int> tempArray, scoped ReadOnlySpan<T> @this, List<T[]> resultList)
+		{
+			for (var i = last; i >= index; i--)
+			{
+				tempArray[index - 1] = i - 1;
+				if (index > 1)
+				{
+					g(i - 1, count, index - 1, tempArray, @this, resultList);
+				}
+				else
+				{
+					var temp = new T[count];
+					for (var j = 0; j < tempArray.Length; j++)
+					{
+						temp[j] = @this[tempArray[j]];
+					}
+
+					resultList.Add(temp);
+				}
+			}
+		}
+	}
 }
