@@ -1,4 +1,4 @@
-namespace Sudoku.Ittoryu;
+namespace Sudoku.Algorithm.Ittoryu;
 
 /// <summary>
 /// Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
@@ -153,13 +153,10 @@ public sealed class IttoryuPathFinder
 			var emptyCells = grid.EmptyCells;
 			for (var house = 0; house < 27; house++)
 			{
-				if ((emptyCells & HousesMap[house]) is [var fullHouseCell])
+				if ((emptyCells & HousesMap[house]) is [var fullHouseCell]
+					&& TrailingZeroCount(grid[HousesMap[house] - fullHouseCell]) == digit)
 				{
-					var currentDigit = TrailingZeroCount(grid[HousesMap[house] - fullHouseCell]);
-					if (currentDigit == digit)
-					{
-						foundNodes.Add(new(grid, house, fullHouseCell * 9 + digit));
-					}
+					foundNodes.Add(new(grid, house, fullHouseCell * 9 + digit));
 				}
 			}
 		}

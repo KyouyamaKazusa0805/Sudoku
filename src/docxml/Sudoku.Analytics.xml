@@ -4,6 +4,154 @@
         <name>Sudoku.Analytics</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Algorithm.Ittoryu.DigitPath">
+            <summary>
+            Indicates the target digit path.
+            </summary>
+            <param name="Digits">The digits path.</param>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.#ctor(System.Int32[])">
+            <summary>
+            Indicates the target digit path.
+            </summary>
+            <param name="Digits">The digits path.</param>
+        </member>
+        <member name="P:Sudoku.Algorithm.Ittoryu.DigitPath.Digits">
+            <summary>The digits path.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Ittoryu.DigitPath.IsComplete">
+            <summary>
+            Indicates whethe the pattern is complete.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.Equals(Sudoku.Algorithm.Ittoryu.DigitPath)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.ToString(System.String)">
+            <inheritdoc cref="M:Sudoku.Algorithm.Ittoryu.DigitPath.ToString"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.op_Implicit(System.Int32[])~Sudoku.Algorithm.Ittoryu.DigitPath">
+            <summary>
+            Implicit cast from a <see cref="T:System.Int32"/> sequence into a <see cref="T:Sudoku.Algorithm.Ittoryu.DigitPath"/>.
+            </summary>
+            <param name="digitSequence">A digit sequence. Please note that the value can be <see langword="null"/>.</param>
+        </member>
+        <member name="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder">
+            <summary>
+            Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+            This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder._foundSequences">
+            <summary>
+            Indicates the found possible digit sequences.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.SupportedTechniques">
+            <summary>
+            Indicates the supported techniques. By default, all singles are included.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.FindPath(Sudoku.Concepts.Grid@)">
+            <summary>
+            Find a suitable ittoryu path.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>
+            The target digit path. If none found, a longest path will be returned.
+            </returns>
+        </member>
+        <member name="T:Sudoku.Algorithm.Ittoryu.PathNode">
+            <summary>
+            Represents for a path node in a whole solving path via ittoryu solving logic.
+            </summary>
+            <param name="Grid">Indicates the currently-used grid.</param>
+            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
+            <param name="Candidate">Indicates the target candidate.</param>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.PathNode.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Represents for a path node in a whole solving path via ittoryu solving logic.
+            </summary>
+            <param name="Grid">Indicates the currently-used grid.</param>
+            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
+            <param name="Candidate">Indicates the target candidate.</param>
+        </member>
+        <member name="P:Sudoku.Algorithm.Ittoryu.PathNode.Grid">
+            <summary>Indicates the currently-used grid.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Ittoryu.PathNode.House">
+            <summary>Indicates the house. The value can be -1 when the represented node is for a naked single.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Ittoryu.PathNode.Candidate">
+            <summary>Indicates the target candidate.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Ittoryu.PathNode.Digit">
+            <summary>
+            Indicates the target digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Ittoryu.PathNode.Cell">
+            <summary>
+            Indicates the target cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.PathNode.Deconstruct(Sudoku.Concepts.Grid@,System.Int32@,System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.PathNode.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.AnalysisContext">
             <summary>
             Defines a context that is used by step searchers to check the details of the solving and analysis information.
@@ -18686,154 +18834,6 @@ result ^= expression;
                         ○ Match a character in the set [Nn].<br/>
             </code>
             </remarks>
-        </member>
-        <member name="T:Sudoku.Ittoryu.DigitPath">
-            <summary>
-            Indicates the target digit path.
-            </summary>
-            <param name="Digits">The digits path.</param>
-        </member>
-        <member name="M:Sudoku.Ittoryu.DigitPath.#ctor(System.Int32[])">
-            <summary>
-            Indicates the target digit path.
-            </summary>
-            <param name="Digits">The digits path.</param>
-        </member>
-        <member name="P:Sudoku.Ittoryu.DigitPath.Digits">
-            <summary>The digits path.</summary>
-        </member>
-        <member name="P:Sudoku.Ittoryu.DigitPath.IsComplete">
-            <summary>
-            Indicates whethe the pattern is complete.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Ittoryu.DigitPath.Equals(Sudoku.Ittoryu.DigitPath)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Ittoryu.DigitPath.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Ittoryu.DigitPath.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Ittoryu.DigitPath.ToString(System.String)">
-            <inheritdoc cref="M:Sudoku.Ittoryu.DigitPath.ToString"/>
-        </member>
-        <member name="M:Sudoku.Ittoryu.DigitPath.op_Implicit(System.Int32[])~Sudoku.Ittoryu.DigitPath">
-            <summary>
-            Implicit cast from a <see cref="T:System.Int32"/> sequence into a <see cref="T:Sudoku.Ittoryu.DigitPath"/>.
-            </summary>
-            <param name="digitSequence">A digit sequence. Please note that the value can be <see langword="null"/>.</param>
-        </member>
-        <member name="T:Sudoku.Ittoryu.IttoryuPathFinder">
-            <summary>
-            Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
-            This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Ittoryu.IttoryuPathFinder._foundSequences">
-            <summary>
-            Indicates the found possible digit sequences.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Ittoryu.IttoryuPathFinder.SupportedTechniques">
-            <summary>
-            Indicates the supported techniques. By default, all singles are included.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Ittoryu.IttoryuPathFinder.FindPath(Sudoku.Concepts.Grid@)">
-            <summary>
-            Find a suitable ittoryu path.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>
-            The target digit path. If none found, a longest path will be returned.
-            </returns>
-        </member>
-        <member name="T:Sudoku.Ittoryu.PathNode">
-            <summary>
-            Represents for a path node in a whole solving path via ittoryu solving logic.
-            </summary>
-            <param name="Grid">Indicates the currently-used grid.</param>
-            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
-            <param name="Candidate">Indicates the target candidate.</param>
-        </member>
-        <member name="M:Sudoku.Ittoryu.PathNode.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
-            <summary>
-            Represents for a path node in a whole solving path via ittoryu solving logic.
-            </summary>
-            <param name="Grid">Indicates the currently-used grid.</param>
-            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
-            <param name="Candidate">Indicates the target candidate.</param>
-        </member>
-        <member name="P:Sudoku.Ittoryu.PathNode.Grid">
-            <summary>Indicates the currently-used grid.</summary>
-        </member>
-        <member name="P:Sudoku.Ittoryu.PathNode.House">
-            <summary>Indicates the house. The value can be -1 when the represented node is for a naked single.</summary>
-        </member>
-        <member name="P:Sudoku.Ittoryu.PathNode.Candidate">
-            <summary>Indicates the target candidate.</summary>
-        </member>
-        <member name="P:Sudoku.Ittoryu.PathNode.Digit">
-            <summary>
-            Indicates the target digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Ittoryu.PathNode.Cell">
-            <summary>
-            Indicates the target cell.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Ittoryu.PathNode.Deconstruct(Sudoku.Concepts.Grid@,System.Int32@,System.Int32@,System.Int32@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-<![CDATA[
-public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-<![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="M:Sudoku.Ittoryu.PathNode.ToString">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Preprocessing.BackdoorSearcher">
             <summary>
