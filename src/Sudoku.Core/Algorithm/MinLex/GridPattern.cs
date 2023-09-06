@@ -65,6 +65,30 @@ public unsafe struct GridPattern
 	}
 
 
+	/// <inheritdoc cref="FromStringUnsafe(string, GridPattern*, GridPattern*)"/>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="text"/> does not have 81 characters.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void FromString(string text, out GridPattern normal, out GridPattern transposed)
+	{
+		ArgumentOutOfRangeException.ThrowIfNotEqual(text.Length, 81);
+
+		SkipInit(out normal);
+		SkipInit(out transposed);
+		fixed (GridPattern* pNormal = &normal, pTransposed = &transposed)
+		{
+			FromStringUnsafe(text, pNormal, pTransposed);
+		}
+	}
+
+	/// <summary>
+	/// Loads a string text, parsing the data and returns two <see cref="GridPattern"/> results
+	/// indicating the data equivalent to the grid.
+	/// </summary>
+	/// <param name="text">The text.</param>
+	/// <param name="pair">The pair of pointers indicating the normal and transposed cases. <i><b>The length must be 2.</b></i></param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void FromStringUnsafe(string text, GridPattern* pair) => FromStringUnsafe(text, pair, pair + 1);
+
 	/// <summary>
 	/// Loads a string text, parsing the data and returns two <see cref="GridPattern"/> results
 	/// indicating the data equivalent to the grid.
@@ -72,7 +96,7 @@ public unsafe struct GridPattern
 	/// <param name="text">The text.</param>
 	/// <param name="normal">The normal converted data.</param>
 	/// <param name="transposed">The transposed converted data.</param>
-	public static void FromString(string text, [Out] GridPattern* normal, [Out] GridPattern* transposed)
+	public static void FromStringUnsafe(string text, GridPattern* normal, GridPattern* transposed)
 	{
 		normal->Rows[0] = 0; normal->Rows[1] = 0; normal->Rows[2] = 0;
 		normal->Rows[3] = 0; normal->Rows[4] = 0; normal->Rows[5] = 0;
@@ -81,22 +105,20 @@ public unsafe struct GridPattern
 		transposed->Rows[3] = 0; transposed->Rows[4] = 0; transposed->Rows[5] = 0;
 		transposed->Rows[6] = 0; transposed->Rows[7] = 0; transposed->Rows[8] = 0;
 
-		for (var row = 0; row < 9; row++)
+		for (var cell = 0; cell < 81; cell++)
 		{
-			for (var column = 0; column < 9; column++)
+			var (row, column) = (cell / 9, cell % 9);
+			if (text[cell] is var c and >= '1' and <= '9')
 			{
-				if (text[row * 9 + column] is var c and > '0' and <= '9')
-				{
-					normal->Rows[row] |= 1 << column;
-					transposed->Rows[column] |= 1 << row;
-					normal->Digits[row * 9 + column] = c - '0';
-					transposed->Digits[column * 9 + row] = c - '0';
-				}
-				else
-				{
-					normal->Digits[row * 9 + column] = 0;
-					transposed->Digits[column * 9 + row] = 0;
-				}
+				normal->Rows[row] |= 1 << column;
+				transposed->Rows[column] |= 1 << row;
+				normal->Digits[row * 9 + column] = c - '0';
+				transposed->Digits[column * 9 + row] = c - '0';
+			}
+			else
+			{
+				normal->Digits[row * 9 + column] = 0;
+				transposed->Digits[column * 9 + row] = 0;
 			}
 		}
 	}

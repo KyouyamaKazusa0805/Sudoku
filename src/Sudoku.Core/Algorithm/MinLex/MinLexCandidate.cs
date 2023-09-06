@@ -32,11 +32,54 @@ public unsafe struct MinLexCandidate
 	public MinLexCandidate() => SkipInit(out this);
 
 
+	/// <inheritdoc cref="object.ToString"/>
+	public override readonly string ToString()
+	{
+		const string separator = ", ";
+
+		var mapRowsForwardSb = new StringHandler();
+		for (var i = 0; i < 9; i++)
+		{
+			mapRowsForwardSb.Append(_mapRowsForward[i]);
+			mapRowsForwardSb.Append(separator);
+		}
+		mapRowsForwardSb.RemoveFromEnd(separator.Length);
+
+		var mapRowsBackwardSb = new StringHandler();
+		for (var i = 0; i < 9; i++)
+		{
+			mapRowsBackwardSb.Append(_mapRowsBackward[i]);
+			mapRowsBackwardSb.Append(separator);
+		}
+		mapRowsBackwardSb.RemoveFromEnd(separator.Length);
+
+		var colsPermMaskSb = new StringHandler();
+		for (var i = 0; i < 3; i++)
+		{
+			colsPermMaskSb.Append(_colsPermMask[i]);
+			colsPermMaskSb.Append(separator);
+		}
+		colsPermMaskSb.RemoveFromEnd(separator.Length);
+
+		return $$"""
+			{{nameof(MinLexCandidate)}} 
+			{ 
+			{{nameof(_isTransposed)}} = {{_isTransposed}}, 
+			{{nameof(_mapRowsForward)}} = [{{mapRowsForwardSb.ToStringAndClear()}}], 
+			{{nameof(_mapRowsBackward)}} = [{{mapRowsBackwardSb.ToStringAndClear()}}], 
+			{{nameof(_stacksPerm)}} = {{_stacksPerm}}, 
+			{{nameof(_colsPermMask)}} = [{{colsPermMaskSb.ToStringAndClear()}}]
+			}
+			""".RemoveLineEndings();
+	}
+
 	/// <summary>
 	/// Try to expand stacks for the specified pair of <see cref="GridPattern"/> instances.
 	/// </summary>
 	private void ExpandStacks(GridPattern* pair, int topKey, MinLexCandidate* candidates, int* nResults)
 	{
+		*nResults = 0;
+
 		var gr = pair + (_isTransposed ? 1 : 0);
 		var rowGivens = gr->Rows[_mapRowsBackward[0]];
 		var toTriplets = stackalloc int[3];
@@ -102,31 +145,31 @@ public unsafe struct MinLexCandidate
 
 
 	/// <summary>
-	/// 
+	/// Find minimum lexicographical-ordered string for the specified grid as a string value.
 	/// </summary>
-	/// <param name="source"></param>
-	/// <param name="result"></param>
-	/// <param name="patternOnly"></param>
+	/// <param name="source">The source grid.</param>
+	/// <param name="result">The result grid.</param>
+	/// <param name="patternOnly">Indicates whether the method only studies with pattern.</param>
 	public static void PatCanon(string source, out string result, bool patternOnly = false)
 	{
-		var nCurCandidates = 0;
+		SkipInit(out int nCurCandidates);
 		var candidates = stackalloc MinLexCandidate[CandListSize];
 		var candidates1 = stackalloc MinLexCandidate[CandListSize];
 		var pPair = stackalloc GridPattern[2];
-		GridPattern.FromString(source, &pPair[0], &pPair[1]);
+		GridPattern.FromStringUnsafe(source, pPair);
 		var minTopRowScores = stackalloc[] { pPair[0].BestTopRowScore, pPair[1].BestTopRowScore };
 		var minTopRowScore = Min(minTopRowScores[0], minTopRowScores[1]);
-		var resultBuffer = stackalloc char[82];
-		resultBuffer[0] = (char)(minTopRowScore >> 8 & 1);
-		resultBuffer[1] = (char)(minTopRowScore >> 7 & 1);
-		resultBuffer[2] = (char)(minTopRowScore >> 6 & 1);
-		resultBuffer[3] = (char)(minTopRowScore >> 5 & 1);
-		resultBuffer[4] = (char)(minTopRowScore >> 4 & 1);
-		resultBuffer[5] = (char)(minTopRowScore >> 3 & 1);
-		resultBuffer[6] = (char)(minTopRowScore >> 2 & 1);
-		resultBuffer[7] = (char)(minTopRowScore >> 1 & 1);
-		resultBuffer[8] = (char)(minTopRowScore & 1);
-		resultBuffer[81] = '\0';
+		var resultBuffer = stackalloc byte[82];
+		resultBuffer[0] = (byte)(minTopRowScore >> 8 & 1);
+		resultBuffer[1] = (byte)(minTopRowScore >> 7 & 1);
+		resultBuffer[2] = (byte)(minTopRowScore >> 6 & 1);
+		resultBuffer[3] = (byte)(minTopRowScore >> 5 & 1);
+		resultBuffer[4] = (byte)(minTopRowScore >> 4 & 1);
+		resultBuffer[5] = (byte)(minTopRowScore >> 3 & 1);
+		resultBuffer[6] = (byte)(minTopRowScore >> 2 & 1);
+		resultBuffer[7] = (byte)(minTopRowScore >> 1 & 1);
+		resultBuffer[8] = (byte)(minTopRowScore & 1);
+		resultBuffer[81] = 0;
 		foreach (var nowTransposed in stackalloc[] { false, true })
 		{
 			if (minTopRowScores[nowTransposed ? 1 : 0] > minTopRowScore)
@@ -163,7 +206,6 @@ public unsafe struct MinLexCandidate
 				if (rowInBand != 0)
 				{
 					var band = old->_mapRowsBackward[3 * toRow / 3] / 3;
-					var oldCopied = *old;
 					startRow = (sbyte)(band * 3);
 					endRow = (sbyte)(startRow + 3);
 				}
@@ -226,15 +268,15 @@ public unsafe struct MinLexCandidate
 			nCurCandidates = nNextCandidates;
 			nNextCandidates = 0;
 
-			resultBuffer[9 * toRow] = (char)(bestTriplets0 >> 2 & 1);
-			resultBuffer[9 * toRow + 1] = (char)(bestTriplets0 >> 1 & 1);
-			resultBuffer[9 * toRow + 2] = (char)(bestTriplets0 & 1);
-			resultBuffer[9 * toRow + 3] = (char)(bestTriplets1 >> 2 & 1);
-			resultBuffer[9 * toRow + 4] = (char)(bestTriplets1 >> 1 & 1);
-			resultBuffer[9 * toRow + 5] = (char)(bestTriplets1 & 1);
-			resultBuffer[9 * toRow + 6] = (char)(bestTriplets2 >> 2 & 1);
-			resultBuffer[9 * toRow + 7] = (char)(bestTriplets2 >> 1 & 1);
-			resultBuffer[9 * toRow + 8] = (char)(bestTriplets2 & 1);
+			resultBuffer[9 * toRow] = (byte)(bestTriplets0 >> 2 & 1);
+			resultBuffer[9 * toRow + 1] = (byte)(bestTriplets0 >> 1 & 1);
+			resultBuffer[9 * toRow + 2] = (byte)(bestTriplets0 & 1);
+			resultBuffer[9 * toRow + 3] = (byte)(bestTriplets1 >> 2 & 1);
+			resultBuffer[9 * toRow + 4] = (byte)(bestTriplets1 >> 1 & 1);
+			resultBuffer[9 * toRow + 5] = (byte)(bestTriplets1 & 1);
+			resultBuffer[9 * toRow + 6] = (byte)(bestTriplets2 >> 2 & 1);
+			resultBuffer[9 * toRow + 7] = (byte)(bestTriplets2 >> 1 & 1);
+			resultBuffer[9 * toRow + 8] = (byte)(bestTriplets2 & 1);
 		}
 
 		var minLex = stackalloc int[81];
@@ -244,15 +286,15 @@ public unsafe struct MinLexCandidate
 			{
 				if (resultBuffer[i] == 0)
 				{
-					resultBuffer[i] = '.';
+					resultBuffer[i] = (byte)'.';
 				}
 				else
 				{
-					resultBuffer[i] += '0';
+					resultBuffer[i] += (byte)'0';
 				}
 			}
 
-			result = new(resultBuffer);
+			result = ((Utf8String)new ReadOnlySpan<byte>(resultBuffer, 81)).ToString();
 			return;
 		}
 
@@ -330,16 +372,9 @@ public unsafe struct MinLexCandidate
 
 		for (var i = 0; i < 81; i++)
 		{
-			if (minLex[i] == 0)
-			{
-				resultBuffer[i] = '.';
-			}
-			else
-			{
-				resultBuffer[i] = (char)(minLex[i] + '0');
-			}
+			resultBuffer[i] = minLex[i] == 0 ? (byte)'.' : (byte)(minLex[i] + '0');
 		}
 
-		result = new(resultBuffer);
+		result = ((Utf8String)new ReadOnlySpan<byte>(resultBuffer, 81)).ToString();
 	}
 }
