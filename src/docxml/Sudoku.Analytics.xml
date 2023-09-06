@@ -24,6 +24,11 @@
             Indicates whethe the pattern is complete.
             </summary>
         </member>
+        <member name="P:Sudoku.Algorithm.Ittoryu.DigitPath.DigitsString">
+            <summary>
+            Indicates hte digits string.
+            </summary>
+        </member>
         <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.Equals(Sudoku.Algorithm.Ittoryu.DigitPath)">
             <inheritdoc/>
         </member>

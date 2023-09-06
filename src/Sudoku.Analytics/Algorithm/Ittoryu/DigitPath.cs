@@ -11,6 +11,11 @@ public readonly record struct DigitPath(Digit[] Digits)
 	/// </summary>
 	public bool IsComplete => Digits.Length == 9;
 
+	/// <summary>
+	/// Indicates hte digits string.
+	/// </summary>
+	private string[] DigitsString => from digit in Digits select (digit + 1).ToString();
+
 
 	/// <inheritdoc/>
 	public bool Equals(DigitPath other) => GetHashCode() == other.GetHashCode();
@@ -30,11 +35,12 @@ public readonly record struct DigitPath(Digit[] Digits)
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => string.Join("->", from digit in Digits select digit + 1);
+	public override string ToString() => ToString("->");
 
 	/// <inheritdoc cref="ToString()"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(string separator) => string.Join(separator, from digit in Digits select digit + 1);
+	public string ToString(string? separator)
+		=> separator switch { null or [] => string.Concat(DigitsString), _ => string.Join(separator, DigitsString) };
 
 
 	/// <summary>
