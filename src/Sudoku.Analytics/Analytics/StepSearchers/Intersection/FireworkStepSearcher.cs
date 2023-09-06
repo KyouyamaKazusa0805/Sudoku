@@ -414,7 +414,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 
 		foreach (var digits in digitsMask.GetAllSets().GetSubsets(4))
 		{
-			var cases = (stackalloc[]
+			scoped var cases = (stackalloc[]
 			{
 				((digits[0], digits[1]), (digits[2], digits[3])),
 				((digits[0], digits[2]), (digits[1], digits[3])),
