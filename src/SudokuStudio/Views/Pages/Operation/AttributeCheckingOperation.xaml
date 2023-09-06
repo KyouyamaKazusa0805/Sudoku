@@ -16,6 +16,9 @@
 			x:Name="ErrorDialog_PuzzleIsNotBugMultipleGrid" Target="{x:Bind TrueCandidateButton}" IsLightDismissEnabled="True"
 			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_PuzzleIsNotBugMultipleTitle}"
 			Subtitle="{m:R Key=AnalyzePage_PuzzleIsNotBugMultiple}" />
+		<TeachingTip
+			x:Name="InfoDialog_DisorderedIttoryuDigitSequence" IsLightDismissEnabled="True" Target="{x:Bind DisorderedIttoryuButton}"
+			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_DisorderedIttoryuOrderResult}" />
 	</Page.Resources>
 
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
@@ -23,5 +26,8 @@
 		<AppBarButton
 			x:Name="TrueCandidateButton" Icon="Message" Label="{m:R Key=AnalyzePage_TrueCandidateButton}"
 			Click="TrueCandidateButton_ClickAsync" />
+		<AppBarButton
+			x:Name="DisorderedIttoryuButton" Icon="Message" Label="{m:R Key=AnalyzePage_DisorderedIttoryu}"
+			Click="DisorderedIttoryuButton_ClickAsync" />
 	</CommandBar>
 </Page>

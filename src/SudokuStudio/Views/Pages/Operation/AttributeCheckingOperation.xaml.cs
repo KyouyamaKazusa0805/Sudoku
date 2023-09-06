@@ -22,7 +22,6 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		{
 			ErrorDialog_PuzzleIsInvalid.Target = BackdoorButton;
 			ErrorDialog_PuzzleIsInvalid.IsOpen = true;
-
 			return;
 		}
 
@@ -71,6 +70,29 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 			from candidate in trueCandidates
 			select new CandidateViewNode(WellKnownColorIdentifierKind.Assignment, candidate)
 		]);
+	}
+
+	private async void DisorderedIttoryuButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		var puzzle = BasePage.SudokuPane.Puzzle;
+		if (!puzzle.IsValid)
+		{
+			ErrorDialog_PuzzleIsInvalid.Target = TrueCandidateButton;
+			ErrorDialog_PuzzleIsInvalid.IsOpen = true;
+			return;
+		}
+
+		var ittoryuFinder = new IttoryuPathFinder();
+		var digitPath = await Task.Run(() => ittoryuFinder.FindPath(puzzle));
+		if (!digitPath.IsComplete)
+		{
+			InfoDialog_DisorderedIttoryuDigitSequence.Subtitle = GetString("AnalyzePage_DisorderedIttoryuDoesNotExist");
+			InfoDialog_DisorderedIttoryuDigitSequence.IsOpen = true;
+			return;
+		}
+
+		InfoDialog_DisorderedIttoryuDigitSequence.Subtitle = string.Format(GetString("AnalyzePage_DisorderedIttoryuOrderIs"), digitPath.ToString());
+		InfoDialog_DisorderedIttoryuDigitSequence.IsOpen = true;
 	}
 }
 

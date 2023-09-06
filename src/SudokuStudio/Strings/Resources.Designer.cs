@@ -826,6 +826,42 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disordered Ittoryu.
+        /// </summary>
+        internal static string AnalyzePage_DisorderedIttoryu {
+            get {
+                return ResourceManager.GetString("AnalyzePage_DisorderedIttoryu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, this puzzle does not contain a valid disordered ittoryu digit sequence :(.
+        /// </summary>
+        internal static string AnalyzePage_DisorderedIttoryuDoesNotExist {
+            get {
+                return ResourceManager.GetString("AnalyzePage_DisorderedIttoryuDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disordered ittoryu digit sequence: {0}.
+        /// </summary>
+        internal static string AnalyzePage_DisorderedIttoryuOrderIs {
+            get {
+                return ResourceManager.GetString("AnalyzePage_DisorderedIttoryuOrderIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Result of Disordered Ittoryu.
+        /// </summary>
+        internal static string AnalyzePage_DisorderedIttoryuOrderResult {
+            get {
+                return ResourceManager.GetString("AnalyzePage_DisorderedIttoryuOrderResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drawing.
         /// </summary>
         internal static string AnalyzePage_Drawing {

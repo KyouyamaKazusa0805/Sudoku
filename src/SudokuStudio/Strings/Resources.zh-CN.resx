@@ -300,6 +300,18 @@
   <data name="AnalyzePage_DifficultyTotal" xml:space="preserve">
     <value>总难度分</value>
   </data>
+  <data name="AnalyzePage_DisorderedIttoryu" xml:space="preserve">
+    <value>乱序一刀流</value>
+  </data>
+  <data name="AnalyzePage_DisorderedIttoryuDoesNotExist" xml:space="preserve">
+    <value>抱歉，本题尚不存在一个合适的乱序一刀流序列 :(</value>
+  </data>
+  <data name="AnalyzePage_DisorderedIttoryuOrderIs" xml:space="preserve">
+    <value>乱序一刀流序列：{0}</value>
+  </data>
+  <data name="AnalyzePage_DisorderedIttoryuOrderResult" xml:space="preserve">
+    <value>乱序一刀流结果</value>
+  </data>
   <data name="AnalyzePage_Drawing" xml:space="preserve">
     <value>绘图</value>
   </data>

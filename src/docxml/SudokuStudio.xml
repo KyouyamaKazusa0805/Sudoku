@@ -4568,6 +4568,26 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Total.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_DisorderedIttoryu">
+            <summary>
+              Looks up a localized string similar to Disordered Ittoryu.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_DisorderedIttoryuDoesNotExist">
+            <summary>
+              Looks up a localized string similar to Sorry, this puzzle does not contain a valid disordered ittoryu digit sequence :(.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_DisorderedIttoryuOrderIs">
+            <summary>
+              Looks up a localized string similar to Disordered ittoryu digit sequence: {0}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_DisorderedIttoryuOrderResult">
+            <summary>
+              Looks up a localized string similar to Result of Disordered Ittoryu.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_Drawing">
             <summary>
               Looks up a localized string similar to Drawing.

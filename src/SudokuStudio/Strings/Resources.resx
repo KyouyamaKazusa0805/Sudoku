@@ -300,6 +300,18 @@
   <data name="AnalyzePage_DifficultyTotal" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="AnalyzePage_DisorderedIttoryu" xml:space="preserve">
+    <value>Disordered Ittoryu</value>
+  </data>
+  <data name="AnalyzePage_DisorderedIttoryuDoesNotExist" xml:space="preserve">
+    <value>Sorry, this puzzle does not contain a valid disordered ittoryu digit sequence :(</value>
+  </data>
+  <data name="AnalyzePage_DisorderedIttoryuOrderIs" xml:space="preserve">
+    <value>Disordered ittoryu digit sequence: {0}</value>
+  </data>
+  <data name="AnalyzePage_DisorderedIttoryuOrderResult" xml:space="preserve">
+    <value>Result of Disordered Ittoryu</value>
+  </data>
   <data name="AnalyzePage_Drawing" xml:space="preserve">
     <value>Drawing</value>
   </data>
