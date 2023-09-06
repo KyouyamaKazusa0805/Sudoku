@@ -308,7 +308,6 @@ public abstract partial class ChainingStep(
 	/// <summary><b><i>
 	/// This method will be implemented later.
 	/// </i></b></summary>
-	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 	protected void CollectRuleParents(scoped in Grid initialGrid, scoped in Grid currentGrid, List<ChainNode> result, ChainNode target)
 	{
 		return;

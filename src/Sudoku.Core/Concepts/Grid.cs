@@ -19,7 +19,7 @@ using unsafe CandidatesRefreshingCallbackFunc = delegate*<ref Grid, void>;
 [JsonConverter(typeof(Converter))]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [InlineArray(81)]
-[CollectionBuilder(typeof(GridCreator), nameof(GridCreator.Create))]
+[CollectionBuilder(typeof(Grid), nameof(Create))]
 [LargeStructure]
 [Equals]
 [ToString]
@@ -990,6 +990,53 @@ public unsafe partial struct Grid : GridImpl
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Create(Mask[] masks) => checked((Grid)masks);
+
+	/// <summary>
+	/// Returns a <see cref="Grid"/> instance via the raw mask values.
+	/// </summary>
+	/// <param name="rawMaskValues">
+	/// <para>The raw mask values.</para>
+	/// <para>
+	/// This value can contain 1 or 81 elements.
+	/// If the array contain 1 element, all elements in the target sudoku grid will be initialized by it, the uniform value;
+	/// if the array contain 81 elements, elements will be initialized by the array one by one using the array elements respectively.
+	/// </para>
+	/// </param>
+	/// <returns>A <see cref="Grid"/> result.</returns>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public static Grid Create(scoped ReadOnlySpan<Mask> rawMaskValues)
+	{
+		switch (rawMaskValues.Length)
+		{
+			case 0:
+			{
+				return Undefined;
+			}
+			case 1:
+			{
+				var result = Undefined;
+				var uniformValue = rawMaskValues[0];
+				for (var cell = 0; cell < 81; cell++)
+				{
+					result[cell] = uniformValue;
+				}
+				return result;
+			}
+			case 81:
+			{
+				var result = Undefined;
+				for (var cell = 0; cell < 81; cell++)
+				{
+					result[cell] = rawMaskValues[cell];
+				}
+				return result;
+			}
+			default:
+			{
+				throw new InvalidOperationException($"The argument '{nameof(rawMaskValues)}' must contain 81 elements.");
+			}
+		}
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

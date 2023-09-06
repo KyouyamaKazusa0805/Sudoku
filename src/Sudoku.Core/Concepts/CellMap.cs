@@ -23,7 +23,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [StructLayout(LayoutKind.Auto)]
-[CollectionBuilder(typeof(CellMapCreator), nameof(CellMapCreator.Create))]
+[CollectionBuilder(typeof(CellMap), nameof(Create))]
 [LargeStructure]
 [Equals]
 [GetHashCode]
@@ -874,6 +874,22 @@ public partial struct CellMap :
 			result = Empty;
 			return false;
 		}
+	}
+
+	/// <summary>
+	/// Creates a <see cref="CellMap"/> instance via the specified cells.
+	/// </summary>
+	/// <param name="cells">The cells.</param>
+	/// <returns>A <see cref="CellMap"/> instance.</returns>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public static CellMap Create(scoped ReadOnlySpan<Cell> cells)
+	{
+		var result = Empty;
+		foreach (var cell in cells)
+		{
+			result.Add(cell);
+		}
+		return result;
 	}
 
 	/// <summary>

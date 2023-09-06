@@ -5,20 +5,9 @@ namespace Sudoku.Concepts.Primitive;
 /// For the users' aspect, we can just use collection expressions.
 /// </summary>
 /// <seealso cref="IBitStatusMap{TSelf, TElement}"/>
+[EditorBrowsable(EditorBrowsableState.Never)]
 public static class BitStatusMapCreator
 {
-	/// <summary>
-	/// Creates a <see cref="IBitStatusMap{TSelf, TElement}"/> instance.
-	/// </summary>
-	/// <typeparam name="TSelf"><inheritdoc cref="IBitStatusMap{TSelf, TElement}" path="/typeparam[@name='TSelf']"/></typeparam>
-	/// <typeparam name="TElement"><inheritdoc cref="IBitStatusMap{TSelf, TElement}" path="/typeparam[@name='TElement']"/></typeparam>
-	/// <returns>A <see cref="IBitStatusMap{TSelf, TElement}"/> instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TSelf Create<TSelf, TElement>()
-		where TSelf : unmanaged, IBitStatusMap<TSelf, TElement>
-		where TElement : unmanaged, IBinaryInteger<TElement>
-		=> TSelf.Empty;
-
 	/// <summary>
 	/// Creates a <see cref="IBitStatusMap{TSelf, TElement}"/> instance via the specified offsets.
 	/// </summary>

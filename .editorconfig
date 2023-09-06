@@ -84,7 +84,7 @@ dotnet_style_prefer_simplified_interpolation = true:suggestion
 dotnet_style_readonly_field = true:suggestion
 
 # Parameter preferences
-dotnet_code_quality_unused_parameters = all:suggestion
+dotnet_code_quality_unused_parameters = all:none
 
 # Suppression preferences
 dotnet_remove_unnecessary_suppression_exclusions = none
@@ -438,14 +438,14 @@ dotnet_diagnostic.IDE0002.severity = suggestion
 # IDE0005: Using directive is unnecessary
 dotnet_diagnostic.IDE0005.severity = suggestion
 
-# IDE0011: Add braces
-dotnet_diagnostic.IDE0011.severity = suggestion
-
 # IDE0047: Remove unnecessary parentheses
 dotnet_diagnostic.IDE0047.severity = suggestion
 
 # IDE0058: Expression value is never used
 dotnet_diagnostic.IDE0058.severity = none
+
+# IDE0060: Remove unused parameter
+dotnet_diagnostic.IDE0060.severity = none
 
 # IDE0065: Misplaced using directive
 dotnet_diagnostic.IDE0065.severity = none

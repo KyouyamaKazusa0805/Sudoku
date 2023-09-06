@@ -24,7 +24,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [StructLayout(LayoutKind.Auto)]
-[CollectionBuilder(typeof(CandidateMapCreator), nameof(CandidateMapCreator.Create))]
+[CollectionBuilder(typeof(CandidateMap), nameof(Create))]
 [InlineArrayField<long>("_bits", 12)]
 [LargeStructure]
 [Equals]
@@ -533,6 +533,22 @@ public partial struct CandidateMap :
 			SkipInit(out result);
 			return false;
 		}
+	}
+
+	/// <summary>
+	/// Creates a <see cref="CandidateMap"/> instance via the specified candidates.
+	/// </summary>
+	/// <param name="candidates">The candidates.</param>
+	/// <returns>A <see cref="CandidateMap"/> instance.</returns>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public static CandidateMap Create(scoped ReadOnlySpan<Candidate> candidates)
+	{
+		var result = Empty;
+		foreach (var candidate in candidates)
+		{
+			result.Add(candidate);
+		}
+		return result;
 	}
 
 	/// <inheritdoc/>
