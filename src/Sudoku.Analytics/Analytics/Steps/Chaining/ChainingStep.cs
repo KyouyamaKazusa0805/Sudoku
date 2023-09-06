@@ -538,15 +538,6 @@ public abstract partial class ChainingStep(
 	}
 
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int Compare(ChainingStep left, ChainingStep right)
-		=> Sign(left.Difficulty - right.Difficulty) is var d and not 0
-			? d
-			: Sign(left.Complexity - right.Complexity) is var c and not 0
-				? c
-				: Sign(left.SortKey - right.SortKey) is var s and not 0 ? s : 0;
-
 	/// <summary>
 	/// Try to get all ancestors from the specified node.
 	/// </summary>
@@ -633,6 +624,15 @@ public abstract partial class ChainingStep(
 
 		return result;
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static int IComparableStep<ChainingStep>.Compare(ChainingStep left, ChainingStep right)
+		=> Sign(left.Difficulty - right.Difficulty) is var d and not 0
+			? d
+			: Sign(left.Complexity - right.Complexity) is var c and not 0
+				? c
+				: Sign(left.SortKey - right.SortKey) is var s and not 0 ? s : 0;
 }
 
 /// <summary>

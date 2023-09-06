@@ -101,5 +101,5 @@ public sealed partial class BlossomLoopStep(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int Compare(BlossomLoopStep left, BlossomLoopStep right) => Sign(left.Difficulty - right.Difficulty);
+	static int IComparableStep<BlossomLoopStep>.Compare(BlossomLoopStep left, BlossomLoopStep right) => Sign(left.Difficulty - right.Difficulty);
 }

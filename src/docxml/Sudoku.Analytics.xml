@@ -7888,7 +7888,7 @@
         <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.GetLinks(System.Int32)">
             <inheritdoc cref="M:Sudoku.Analytics.Steps.ChainingStep.GetLinks(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.Compare(Sudoku.Analytics.Steps.BlossomLoopStep,Sudoku.Analytics.Steps.BlossomLoopStep)">
+        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.Sudoku#Analytics#Steps#IComparableStep{Sudoku#Analytics#Steps#BlossomLoopStep}#Compare(Sudoku.Analytics.Steps.BlossomLoopStep,Sudoku.Analytics.Steps.BlossomLoopStep)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.HouseIndex">
@@ -8163,9 +8163,6 @@
             <param name="nestedViewIndex">The nested view index.</param>
             <returns>A pair of values.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ChainingStep.Compare(Sudoku.Analytics.Steps.ChainingStep,Sudoku.Analytics.Steps.ChainingStep)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.AncestorsCountOf(Sudoku.DataModel.ChainNode)">
             <summary>
             Try to get all ancestors from the specified node.
@@ -8189,6 +8186,9 @@
             </summary>
             <param name="target">The target node.</param>
             <returns>All <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> displayed in this branch.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.Sudoku#Analytics#Steps#IComparableStep{Sudoku#Analytics#Steps#ChainingStep}#Compare(Sudoku.Analytics.Steps.ChainingStep,Sudoku.Analytics.Steps.ChainingStep)">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsX">
             <summary>
