@@ -679,47 +679,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.Where(System.Func{Sudoku.Analytics.Step,System.Boolean})">
-            <summary>
-            Filters the current collection, preserving <see cref="T:Sudoku.Analytics.Step"/> instances that are satisfied the specified condition.
-            </summary>
-            <param name="condition">The condition to be satisfied.</param>
-            <returns>An array of <see cref="T:Sudoku.Analytics.Step"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.Where(System.Func{Sudoku.Analytics.Step,System.Int32,System.Boolean})">
-            <summary>
-            Filters the current collection, preserving <see cref="T:Sudoku.Analytics.Step"/> instances that are satisfied the specified condition, with index.
-            </summary>
-            <param name="condition">The condition to be satisfied.</param>
-            <returns>An array of <see cref="T:Sudoku.Analytics.Step"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.Select``1(System.Func{Sudoku.Analytics.Step,``0})">
-            <summary>
-            Projects the collection, to an immutable result of target type.
-            </summary>
-            <typeparam name="TResult">The type of the result.</typeparam>
-            <param name="selector">
-            The selector to project the <see cref="T:Sudoku.Analytics.Step"/> instance into type <typeparamref name="TResult"/>.
-            </param>
-            <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.Select``1(System.Func{Sudoku.Analytics.Step,System.Int32,``0})">
-            <summary>
-            Projects the collection, to an immutable result of target type, with index.
-            </summary>
-            <typeparam name="TResult">The type of the result.</typeparam>
-            <param name="selector">
-            The selector to project the <see cref="T:Sudoku.Analytics.Step"/> instance into type <typeparamref name="TResult"/>.
-            </param>
-            <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.OfType``1">
-            <summary>
-            Filters the current collection, preserving steps that are of type <typeparamref name="T"/>.
-            </summary>
-            <typeparam name="T">The type of the step you want to get.</typeparam>
-            <returns>An array of <typeparamref name="T"/> instances.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.AnalyzerResult.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
@@ -803,34 +762,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the analysis result will show elapsed time on solving the puzzle.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.AnalyzerResult.StepsEnumerator">
-            <summary>
-            Defines an enumerator type that allows iterating on steps of the containing type.
-            </summary>
-            <param name="steps">The steps.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.StepsEnumerator.#ctor(Sudoku.Analytics.Step[])">
-            <summary>
-            Defines an enumerator type that allows iterating on steps of the containing type.
-            </summary>
-            <param name="steps">The steps.</param>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.StepsEnumerator._steps">
-            <summary>
-            The internal enumerator instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.StepsEnumerator._index">
-            <summary>
-            Indicates the index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.StepsEnumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.StepsEnumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="T:Sudoku.Analytics.CachedFields">
             <summary>
@@ -18839,6 +18770,39 @@ result ^= expression;
                         ○ Match a character in the set [Nn].<br/>
             </code>
             </remarks>
+        </member>
+        <member name="T:Sudoku.Linq.AnalyzerResultEnumerable">
+            <summary>
+            Provides with some LINQ methods for type <see cref="T:Sudoku.Analytics.AnalyzerResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+        </member>
+        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Where(Sudoku.Analytics.AnalyzerResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
+            <summary>
+            Filters the current collection, preserving <see cref="T:Sudoku.Analytics.Step"/> instances that are satisfied the specified condition.
+            </summary>
+            <param name="this">The instance.</param>
+            <param name="condition">The condition to be satisfied.</param>
+            <returns>An array of <see cref="T:Sudoku.Analytics.Step"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Select``1(Sudoku.Analytics.AnalyzerResult,System.Func{Sudoku.Analytics.Step,``0})">
+            <summary>
+            Projects the collection, to an immutable result of target type.
+            </summary>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <param name="this">The instance.</param>
+            <param name="selector">
+            The selector to project the <see cref="T:Sudoku.Analytics.Step"/> instance into type <typeparamref name="TResult"/>.
+            </param>
+            <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.OfType``1(Sudoku.Analytics.AnalyzerResult)">
+            <summary>
+            Filters the current collection, preserving steps that are of type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of the step you want to get.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>An array of <typeparamref name="T"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Preprocessing.BackdoorSearcher">
             <summary>
