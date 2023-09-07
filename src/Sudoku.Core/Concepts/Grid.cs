@@ -1,4 +1,12 @@
 #define TARGET_64BIT
+using Sudoku.Concepts.Primitive;
+using System.SourceGeneration;
+using System.ComponentModel;
+using System.Runtime.Intrinsics;
+using Sudoku.Text.Formatting;
+using Sudoku.Analytics;
+using Sudoku.Algorithm.Solving;
+
 namespace Sudoku.Concepts;
 
 using GridImpl = IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>;

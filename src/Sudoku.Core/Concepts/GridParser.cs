@@ -1,3 +1,7 @@
+using System.SourceGeneration;
+using Sudoku.Text.Formatting;
+using Sudoku.Text.Notation;
+
 namespace Sudoku.Concepts;
 
 /// <summary>

@@ -1,3 +1,5 @@
+using Sudoku.Algorithm.Solving;
+
 namespace Sudoku.Algorithm.Generating;
 
 /// <summary>

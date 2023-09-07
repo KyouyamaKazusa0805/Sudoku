@@ -1,3 +1,6 @@
+using Sudoku.Concepts.Primitive;
+using System.SourceGeneration;
+
 namespace Sudoku.Concepts;
 
 using ConjugateImpl = IConjugatePair<Conjugate, HouseMask, int, Cell, Digit, House, CellMap>;

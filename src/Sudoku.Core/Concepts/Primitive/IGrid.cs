@@ -1,3 +1,6 @@
+using System.SourceGeneration;
+using Sudoku.Analytics;
+
 namespace Sudoku.Concepts.Primitive;
 
 /// <summary>

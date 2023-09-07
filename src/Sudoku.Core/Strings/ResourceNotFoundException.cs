@@ -1,3 +1,5 @@
+using System.SourceGeneration;
+
 namespace Sudoku.Strings;
 
 /// <summary>
