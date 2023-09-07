@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Views.Attached;
+namespace SudokuStudio.Views.Attached;
 
 /// <summary>
 /// Defines a bind behaviors on <see cref="TextBlock"/> instances.
@@ -16,6 +16,9 @@ public static partial class TextBlockBindable
 		}
 
 		target.Inlines.Clear();
-		target.Inlines.AddRange((IEnumerable<Inline>)e.NewValue);
+		foreach (var inline in (IEnumerable<Inline>)e.NewValue)
+		{
+			target.Inlines.Add(inline);
+		}
 	}
 }

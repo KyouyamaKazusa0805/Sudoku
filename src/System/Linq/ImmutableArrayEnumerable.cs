@@ -1,10 +1,10 @@
-namespace System.Collections.Immutable;
+namespace System.Linq;
 
 /// <summary>
-/// Provides with extension methods on <see cref="ImmutableArray{T}"/>.
+/// Provides with LINQ methods of <see cref="ImmutableArray{T}"/> values comsumed by users.
 /// </summary>
 /// <see cref="ImmutableArray{T}"/>
-public static class ImmutableArrayExtensions
+public static class ImmutableArrayEnumerable
 {
 	/// <summary>
 	/// Determines whether two sequences are equal according to an equality comparer method, specified as a function pointer.
@@ -17,7 +17,7 @@ public static class ImmutableArrayExtensions
 	/// and returns a <see cref="bool"/> value indicating whether they are considered equal.
 	/// </param>
 	/// <returns><see langword="true"/> to indicate the sequences are equal; otherwise, <see langword="false"/>.</returns>
-	public static unsafe bool CollectionElementEquals<T>(this ImmutableArray<T> @this, ImmutableArray<T> other, delegate*<T, T, bool> comparison)
+	public static unsafe bool SequenceEquals<T>(this ImmutableArray<T> @this, ImmutableArray<T> other, delegate*<T, T, bool> comparison)
 	{
 		if (@this.IsDefault || other.IsDefault)
 		{
@@ -40,64 +40,8 @@ public static class ImmutableArrayExtensions
 		return true;
 	}
 
-#pragma warning disable CS1026, CS1584, CS1658
-	/// <summary>
-	/// Determines whether two sequences are equal according to an equality comparer method, specified as a function pointer.
-	/// Different with <see cref="CollectionElementEquals{T}(ImmutableArray{T}, ImmutableArray{T}, delegate*{T, T, bool})"/>,
-	/// this method requires references instead of the value to optimize the argument passing rule.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="this">The fist collection to be compared.</param>
-	/// <param name="other">The second collection to be compared.</param>
-	/// <param name="comparison">
-	/// The function pointer that points to a function that compares two <typeparamref name="T"/> instances,
-	/// and returns a <see cref="bool"/> value indicating whether they are considered equal.
-	/// </param>
-	/// <returns><see langword="true"/> to indicate the sequences are equal; otherwise, <see langword="false"/>.</returns>
-	/// <seealso cref="CollectionElementEquals{T}(ImmutableArray{T}, ImmutableArray{T}, delegate*{T, T, bool})"/>
-#pragma warning restore CS1026, CS1584, CS1658
-	public static unsafe bool CollectionElementRefEquals<T>(this ImmutableArray<T> @this, ImmutableArray<T> other, delegate*<in T, in T, bool> comparison)
-	{
-		if (@this.IsDefault || other.IsDefault)
-		{
-			return false;
-		}
-
-		if (@this.Length != other.Length)
-		{
-			return false;
-		}
-
-		for (var i = 0; i < @this.Length; i++)
-		{
-			if (!comparison(@this.ItemRef(i), other.ItemRef(i)))
-			{
-				return false;
-			}
-		}
-
-		return true;
-	}
-
 	/// <inheritdoc cref="Enumerable.Count{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static int Count<T>(this ImmutableArray<T> @this, Predicate<T> predicate)
-	{
-		ArgumentOutOfRangeException.ThrowIfNotEqual(@this.IsDefault, false);
-
-		var result = 0;
-		foreach (var element in @this)
-		{
-			if (predicate(element))
-			{
-				result++;
-			}
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc cref="Enumerable.Count{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public static unsafe int Count<T>(this ImmutableArray<T> @this, delegate*<T, bool> predicate)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(@this.IsDefault, false);
 

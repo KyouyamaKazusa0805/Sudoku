@@ -4,7 +4,7 @@ namespace System;
 /// Provides extension methods on <see cref="string"/>.
 /// </summary>
 /// <seealso cref="string"/>
-public static unsafe partial class StringExtensions
+public static partial class StringExtensions
 {
 	/// <summary>
 	/// Indicates the time span that is used for matching.
@@ -23,7 +23,7 @@ public static unsafe partial class StringExtensions
 	/// <param name="this">The current string.</param>
 	/// <param name="character">The character to count.</param>
 	/// <returns>The number of characters found.</returns>
-	public static int Count(this string @this, char character)
+	public static unsafe int Count(this string @this, char character)
 	{
 		var count = 0;
 		fixed (char* pThis = @this)
@@ -242,7 +242,7 @@ public static unsafe partial class StringExtensions
 	/// Throws when the <paramref name="reservePattern"/> is invalid.
 	/// All possible patterns are shown in the tip for the parameter <paramref name="reservePattern"/>.
 	/// </exception>
-	public static string Reserve(this string @this, [StringSyntax(StringSyntax.Regex), ConstantExpected] string reservePattern)
+	public static unsafe string Reserve(this string @this, [StringSyntax(StringSyntax.Regex), ConstantExpected] string reservePattern)
 	{
 		static bool isTab(char c) => c == '\t';
 		static bool isLetterDigitOrUnderscore(char c) => c == '_' || char.IsLetterOrDigit(c);

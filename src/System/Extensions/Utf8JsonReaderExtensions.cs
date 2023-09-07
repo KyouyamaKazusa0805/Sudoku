@@ -1,4 +1,4 @@
-﻿namespace System.Text.Json;
+namespace System.Text.Json;
 
 /// <summary>
 /// Provides extension methods on <see cref="Utf8JsonReader"/>.
