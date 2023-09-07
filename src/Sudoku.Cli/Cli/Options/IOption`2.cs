@@ -1,3 +1,5 @@
+using System.CommandLine;
+
 namespace Sudoku.Cli.Options;
 
 /// <summary>

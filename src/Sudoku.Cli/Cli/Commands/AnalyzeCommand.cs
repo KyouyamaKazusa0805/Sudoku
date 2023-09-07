@@ -1,3 +1,10 @@
+using System.CommandLine;
+using Sudoku.Analytics;
+using Sudoku.Analytics.Categorization;
+using Sudoku.Cli.Converters;
+using Sudoku.Cli.Options;
+using Sudoku.Text.Formatting;
+
 namespace Sudoku.Cli.Commands;
 
 /// <summary>

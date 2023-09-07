@@ -1,3 +1,8 @@
+using System.CommandLine;
+using Sudoku.Cli.Converters;
+using Sudoku.Cli.Options;
+using Sudoku.Drawing;
+
 namespace Sudoku.Cli.Commands;
 
 /// <summary>
