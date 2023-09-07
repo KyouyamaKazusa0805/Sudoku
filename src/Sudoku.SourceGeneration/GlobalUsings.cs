@@ -1,5 +1,3 @@
-global using Sudoku.SourceGeneration.CollectedResults;
-global using Sudoku.SourceGeneration.Handlers;
 global using static Microsoft.CodeAnalysis.NullableAnnotation;
 global using static Microsoft.CodeAnalysis.SpecialType;
 global using static RootLevelSourceGeneration.SolutionVersion;

@@ -1,4 +1,6 @@
-﻿namespace Sudoku.SourceGeneration.CollectedResults;
+using Sudoku.SourceGeneration.Handlers;
+
+namespace Sudoku.SourceGeneration.CollectedResults;
 
 /// <summary>
 /// Indicates the data collected via <see cref="PrimaryConstructorHandler"/>.

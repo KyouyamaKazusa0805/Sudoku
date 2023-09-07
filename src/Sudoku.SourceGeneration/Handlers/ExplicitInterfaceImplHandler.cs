@@ -1,3 +1,5 @@
+using Sudoku.SourceGeneration.CollectedResults;
+
 namespace Sudoku.SourceGeneration.Handlers;
 
 internal static class ExplicitInterfaceImplHandler
