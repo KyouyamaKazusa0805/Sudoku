@@ -112,10 +112,10 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 	/// <returns>
 	/// Returns a list of array of candidates used in the loop, as the data of possible found loops.
 	/// </returns>
-	private static unsafe Guardian[] CollectGuardianLoops(Digit digit)
+	private static unsafe Pattern[] CollectGuardianLoops(Digit digit)
 	{
 		static bool predicate(scoped in CellMap loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
-		var result = new List<Guardian>();
+		var result = new List<Pattern>();
 		foreach (var cell in CandidatesMap[digit])
 		{
 			dfs(cell, cell, 0, CellsMap[cell], CellMap.Empty, digit, &predicate, result);
@@ -132,7 +132,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 			scoped in CellMap currentGuardians,
 			Digit digit,
 			CollectorPredicateFunc condition,
-			List<Guardian> result
+			List<Pattern> result
 		)
 		{
 			foreach (var houseType in HouseTypes)
@@ -196,4 +196,13 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 			}
 		}
 	}
+
+
+	/// <summary>
+	/// Represents for a data set that describes the complete information about a guardian technique.
+	/// </summary>
+	/// <param name="LoopCells">Indicates the cells used in this whole guardian loop.</param>
+	/// <param name="Guardians">Indicates the extra cells that is used as guardians.</param>
+	/// <param name="Digit">Indicates the digit used.</param>
+	private readonly record struct Pattern(scoped in CellMap LoopCells, scoped in CellMap Guardians, Digit Digit);
 }

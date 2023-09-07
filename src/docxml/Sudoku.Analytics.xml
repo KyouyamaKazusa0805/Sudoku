@@ -3455,6 +3455,35 @@ if (student is (name: var name, age: >= 18))
             <param name="length">The length.</param>
             <returns>The difficulty.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyCase">
+            <summary>
+            Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
+            </summary>
+            <param name="Name">
+            <completionlist cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>
+            The name of extra difficulty rating item.
+            </param>
+            <param name="Value">The rating value.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Rating.ExtraDifficultyCase.#ctor(System.String,System.Decimal)">
+            <summary>
+            Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
+            </summary>
+            <param name="Name">
+            <completionlist cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>
+            The name of extra difficulty rating item.
+            </param>
+            <param name="Value">The rating value.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyCase.Name">
+            <summary>
+            <completionlist cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>
+            The name of extra difficulty rating item.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyCase.Value">
+            <summary>The rating value.</summary>
+        </member>
         <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames">
             <summary>
             Represents with kinds of the phased difficulty rating that is used for the calculations the total rating of a step.
@@ -3674,11 +3703,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
             <see cref="P:Sudoku.Analytics.Step.BaseDifficulty"/> and <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>. For property <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>,
-            the result is to sum all values up of inner property <see cref="P:Sudoku.DataModel.ExtraDifficultyCase.Value"/>.
+            the result is to sum all values up of inner property <see cref="P:Sudoku.Analytics.Rating.ExtraDifficultyCase.Value"/>.
             </summary>
             <seealso cref="P:Sudoku.Analytics.Step.BaseDifficulty"/>
             <seealso cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>
-            <seealso cref="T:Sudoku.DataModel.ExtraDifficultyCase"/>
+            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCase"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.Code">
             <summary>
@@ -4942,25 +4971,215 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.DataModel.BorescoperDeadlyPattern,System.Boolean,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern,System.Boolean,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Check for type 1.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.DataModel.BorescoperDeadlyPattern,System.Boolean,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern,System.Boolean,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Check type 2.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.CheckType3(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.DataModel.BorescoperDeadlyPattern,System.Boolean,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.CheckType3(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern,System.Boolean,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Check for type 3.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.DataModel.BorescoperDeadlyPattern,System.Boolean,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern,System.Boolean,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Check for type 4.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern">
+            <summary>
+            Defines a pattern that is a Borescoper's Deadly Pattern technique pattern in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | P P . |
+            :-------+-------+-------:
+            | . . . | . . Q | S S . |
+            | . . . | . . Q | S(S). |
+            | . . . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>The first group of cells.</description></item>
+            <item><term>Q</term><description>The second group of cells.</description></item>
+            <item>
+            <term>S</term>
+            <description>
+            The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
+            is optional.
+            </description>
+            </item>
+            </list>
+            </summary>
+            <param name="mask">
+            <para>Indicates the internal mask.</para>
+            <para>
+            This mask is of type <see cref="T:System.Int64"/>, where the distribution of each bit is as follows:
+            <code><![CDATA[
+            0      7     14     21     28     35     42     49     56
+            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
+            |-------|-------|-------|-------|-------|-------|-------|-------|
+            ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑
+            0       8      16      24      32      40      48      56      64
+            ]]></code>
+            where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
+            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
+            </para>
+            <para>
+            Due to the rendering engine, you have to check this file rather than the tip window.
+            </para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern.#ctor(System.Int64)">
+            <summary>
+            Defines a pattern that is a Borescoper's Deadly Pattern technique pattern in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | P P . |
+            :-------+-------+-------:
+            | . . . | . . Q | S S . |
+            | . . . | . . Q | S(S). |
+            | . . . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>The first group of cells.</description></item>
+            <item><term>Q</term><description>The second group of cells.</description></item>
+            <item>
+            <term>S</term>
+            <description>
+            The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
+            is optional.
+            </description>
+            </item>
+            </list>
+            </summary>
+            <param name="mask">
+            <para>Indicates the internal mask.</para>
+            <para>
+            This mask is of type <see cref="T:System.Int64"/>, where the distribution of each bit is as follows:
+            <code><![CDATA[
+            0      7     14     21     28     35     42     49     56
+            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
+            |-------|-------|-------|-------|-------|-------|-------|-------|
+            ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑
+            0       8      16      24      32      40      48      56      64
+            ]]></code>
+            where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
+            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
+            </para>
+            <para>
+            Due to the rendering engine, you have to check this file rather than the tip window.
+            </para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern.IsHeptagon">
+            <summary>
+            Indicates whether the specified pattern is a heptagon.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern.Pair1Map">
+            <summary>
+            Indicates the map of pair 1 cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern.Pair2Map">
+            <summary>
+            Indicates the map of pair 2 cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern.CenterCellsMap">
+            <summary>
+            The map of other three (or four) cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern.Map">
+            <summary>
+            Indicates the full map of all cells used in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern.Pair1">
+            <summary>
+            Indicates the pair 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern.Pair2">
+            <summary>
+            Indicates the pair 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern.CenterCells">
+            <summary>
+            Indicates the other three (or four) cells.
+            </summary>
+            <remarks>
+            <b>If and only if</b> the fourth value in the returned quadruple is available.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Pattern.Deconstruct(System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher">
             <summary>
@@ -5325,7 +5544,7 @@ if (student is (name: var name, age: >= 18))
             <param name="path">The path of the loop.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CollectUniqueLoops(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,System.Collections.Generic.ValueList{System.Int32},Sudoku.Concepts.CellMap@,System.Collections.Generic.HashSet{Sudoku.DataModel.UniqueLoop},System.Int16,System.Int32,Sudoku.Concepts.HouseType)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CollectUniqueLoops(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,System.Collections.Generic.ValueList{System.Int32},Sudoku.Concepts.CellMap@,System.Collections.Generic.HashSet{Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Pattern},System.Int16,System.Int32,Sudoku.Concepts.HouseType)">
             <summary>
             To collect all possible unique loop patterns in the current grid.
             </summary>
@@ -5371,6 +5590,37 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="path">The loop, specified as its path.</param>
             <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instances.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Pattern">
+            <summary>
+            Represents for a data set that describes the complete information about a unique loop technique.
+            </summary>
+            <param name="Loop">Indicates the cells used in this whole unique loop.</param>
+            <param name="Path">Indicates the detail path of the loop.</param>
+            <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Pattern.#ctor(Sudoku.Concepts.CellMap@,System.Int32[],System.Int16)">
+            <summary>
+            Represents for a data set that describes the complete information about a unique loop technique.
+            </summary>
+            <param name="Loop">Indicates the cells used in this whole unique loop.</param>
+            <param name="Path">Indicates the detail path of the loop.</param>
+            <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Pattern.Loop">
+            <summary>Indicates the cells used in this whole unique loop.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Pattern.Path">
+            <summary>Indicates the detail path of the loop.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Pattern.DigitsMask">
+            <summary>Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Pattern.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Pattern.Equals(Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Pattern)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher">
             <summary>
@@ -6657,17 +6907,17 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.CheckPairType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.DataModel.Firework@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.CheckPairType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Pattern@,System.Int32)">
             <summary>
             Checks for firework pair type 1 steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.CheckTriple(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.DataModel.Firework@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.CheckTriple(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Pattern@,System.Int16,System.Int32)">
             <summary>
             Checks for firework triple steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.CheckQuadruple(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.DataModel.Firework@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.CheckQuadruple(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Pattern@)">
             <summary>
             Checks for firework quadruple steps.
             </summary>
@@ -6691,6 +6941,56 @@ if (student is (name: var name, age: >= 18))
             The excluded cells that is out of the firework pattern in the <paramref name="c2"/>'s house.
             </param>
             <returns>All digits that satisfied the firework rule. If none found, 0.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Pattern">
+            <summary>
+            Indicates a firework pattern. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | B . . | . C . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | A . . | .(D). |
+            '-------'-------'-------'
+            ]]></code>
+            </summary>
+            <param name="Map">Indicates the full map of all cells used.</param>
+            <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Pattern.#ctor(Sudoku.Concepts.CellMap@,System.Nullable{System.Int32})">
+            <summary>
+            Indicates a firework pattern. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | B . . | . C . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | A . . | .(D). |
+            '-------'-------'-------'
+            ]]></code>
+            </summary>
+            <param name="Map">Indicates the full map of all cells used.</param>
+            <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Pattern.Map">
+            <summary>Indicates the full map of all cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Pattern.Pivot">
+            <summary>The pivot cell. This property can be <see langword="null"/> if four cells are used.</summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher">
             <summary>
@@ -7096,6 +7396,31 @@ if (student is (name: var name, age: >= 18))
             <returns>
             Returns a list of array of candidates used in the loop, as the data of possible found loops.
             </returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.Pattern">
+            <summary>
+            Represents for a data set that describes the complete information about a guardian technique.
+            </summary>
+            <param name="LoopCells">Indicates the cells used in this whole guardian loop.</param>
+            <param name="Guardians">Indicates the extra cells that is used as guardians.</param>
+            <param name="Digit">Indicates the digit used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.Pattern.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Represents for a data set that describes the complete information about a guardian technique.
+            </summary>
+            <param name="LoopCells">Indicates the cells used in this whole guardian loop.</param>
+            <param name="Guardians">Indicates the extra cells that is used as guardians.</param>
+            <param name="Digit">Indicates the digit used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.Pattern.LoopCells">
+            <summary>Indicates the cells used in this whole guardian loop.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.Pattern.Guardians">
+            <summary>Indicates the extra cells that is used as guardians.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.Pattern.Digit">
+            <summary>Indicates the digit used.</summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher">
             <summary>
@@ -11548,19 +11873,23 @@ if (student is (name: var name, age: >= 18))
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="digitsMask">Indicates the mask of digits used.</param>
-            <param name="pattern1">Indicates the first firework pattern used.</param>
-            <param name="pattern2">Indicates the second firework pattern used.</param>
+            <param name="pattern1Map">Indicates the map for pattern 1.</param>
+            <param name="pattern1Pivot">Indicates the pivot cell for pattern 1. <see langword="null"/> when the pattern is a quadruple.</param>
+            <param name="pattern2Map">Indicates the map for pattern 2.</param>
+            <param name="pattern2Pivot">Indicates the pivot cell for pattern 2. <see langword="null"/> when the pattern is a quadruple.</param>
             <param name="extraCell">Indicates the extra cell used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FireworkPairType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int16,Sudoku.DataModel.Firework@,Sudoku.DataModel.Firework@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.FireworkPairType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Int16,Sudoku.Concepts.CellMap@,System.Nullable{System.Int32},Sudoku.Concepts.CellMap@,System.Nullable{System.Int32},System.Int32)">
             <summary>
             Provides with a step that is a <b>Firework Pair Type 2</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="digitsMask">Indicates the mask of digits used.</param>
-            <param name="pattern1">Indicates the first firework pattern used.</param>
-            <param name="pattern2">Indicates the second firework pattern used.</param>
+            <param name="pattern1Map">Indicates the map for pattern 1.</param>
+            <param name="pattern1Pivot">Indicates the pivot cell for pattern 1. <see langword="null"/> when the pattern is a quadruple.</param>
+            <param name="pattern2Map">Indicates the map for pattern 2.</param>
+            <param name="pattern2Pivot">Indicates the pivot cell for pattern 2. <see langword="null"/> when the pattern is a quadruple.</param>
             <param name="extraCell">Indicates the extra cell used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.BaseDifficulty">
@@ -11577,14 +11906,24 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.Pattern1">
+        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.Pattern1Map">
             <summary>
-            The generated property declaration for parameter <c>pattern1</c>.
+            The generated property declaration for parameter <c>pattern1Map</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.Pattern2">
+        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.Pattern1Pivot">
             <summary>
-            The generated property declaration for parameter <c>pattern2</c>.
+            The generated property declaration for parameter <c>pattern1Pivot</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.Pattern2Map">
+            <summary>
+            The generated property declaration for parameter <c>pattern2Map</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.Pattern2Pivot">
+            <summary>
+            The generated property declaration for parameter <c>pattern2Pivot</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.ExtraCell">
@@ -17942,201 +18281,6 @@ result ^= expression;
         <member name="M:Sudoku.Concepts.EqualityComparer.GetHashCode(Sudoku.Concepts.ChainNode)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.DataModel.BorescoperDeadlyPattern">
-            <summary>
-            Defines a pattern that is a Borescoper's Deadly Pattern technique pattern in theory. The sketch is like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | P P . |
-            :-------+-------+-------:
-            | . . . | . . Q | S S . |
-            | . . . | . . Q | S(S). |
-            | . . . | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>P</term><description>The first group of cells.</description></item>
-            <item><term>Q</term><description>The second group of cells.</description></item>
-            <item>
-            <term>S</term>
-            <description>
-            The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
-            is optional.
-            </description>
-            </item>
-            </list>
-            </summary>
-            <param name="mask">
-            <para>Indicates the internal mask.</para>
-            <para>
-            This mask is of type <see cref="T:System.Int64"/>, where the distribution of each bit is as follows:
-            <code><![CDATA[
-            0      7     14     21     28     35     42     49     56
-            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
-            |-------|-------|-------|-------|-------|-------|-------|-------|
-            ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑
-            0       8      16      24      32      40      48      56      64
-            ]]></code>
-            where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
-            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
-            </para>
-            <para>
-            Due to the rendering engine, you have to check this file rather than the tip window.
-            </para>
-            </param>
-        </member>
-        <member name="M:Sudoku.DataModel.BorescoperDeadlyPattern.#ctor(System.Int64)">
-            <summary>
-            Defines a pattern that is a Borescoper's Deadly Pattern technique pattern in theory. The sketch is like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | P P . |
-            :-------+-------+-------:
-            | . . . | . . Q | S S . |
-            | . . . | . . Q | S(S). |
-            | . . . | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>P</term><description>The first group of cells.</description></item>
-            <item><term>Q</term><description>The second group of cells.</description></item>
-            <item>
-            <term>S</term>
-            <description>
-            The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
-            is optional.
-            </description>
-            </item>
-            </list>
-            </summary>
-            <param name="mask">
-            <para>Indicates the internal mask.</para>
-            <para>
-            This mask is of type <see cref="T:System.Int64"/>, where the distribution of each bit is as follows:
-            <code><![CDATA[
-            0      7     14     21     28     35     42     49     56
-            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
-            |-------|-------|-------|-------|-------|-------|-------|-------|
-            ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑
-            0       8      16      24      32      40      48      56      64
-            ]]></code>
-            where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
-            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
-            </para>
-            <para>
-            Due to the rendering engine, you have to check this file rather than the tip window.
-            </para>
-            </param>
-        </member>
-        <member name="P:Sudoku.DataModel.BorescoperDeadlyPattern.IsHeptagon">
-            <summary>
-            Indicates whether the specified pattern is a heptagon.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DataModel.BorescoperDeadlyPattern.Pair1Map">
-            <summary>
-            Indicates the map of pair 1 cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DataModel.BorescoperDeadlyPattern.Pair2Map">
-            <summary>
-            Indicates the map of pair 2 cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DataModel.BorescoperDeadlyPattern.CenterCellsMap">
-            <summary>
-            The map of other three (or four) cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DataModel.BorescoperDeadlyPattern.Map">
-            <summary>
-            Indicates the full map of all cells used in this pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DataModel.BorescoperDeadlyPattern.Pair1">
-            <summary>
-            Indicates the pair 1.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DataModel.BorescoperDeadlyPattern.Pair2">
-            <summary>
-            Indicates the pair 2.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DataModel.BorescoperDeadlyPattern.CenterCells">
-            <summary>
-            Indicates the other three (or four) cells.
-            </summary>
-            <remarks>
-            <b>If and only if</b> the fourth value in the returned quadruple is available.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.DataModel.BorescoperDeadlyPattern.Deconstruct(System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-<![CDATA[
-public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-<![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="F:Sudoku.DataModel.BorescoperDeadlyPattern._mask">
-            <summary>
-            The generated field declaration for parameter <c>mask</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.DataModel.Exocet">
             <summary>
             <para>
@@ -18291,110 +18435,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.DataModel.Exocet.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.DataModel.ExtraDifficultyCase">
-            <summary>
-            Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
-            </summary>
-            <param name="Name">
-            <completionlist cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>
-            The name of extra difficulty rating item.
-            </param>
-            <param name="Value">The rating value.</param>
-        </member>
-        <member name="M:Sudoku.DataModel.ExtraDifficultyCase.#ctor(System.String,System.Decimal)">
-            <summary>
-            Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
-            </summary>
-            <param name="Name">
-            <completionlist cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>
-            The name of extra difficulty rating item.
-            </param>
-            <param name="Value">The rating value.</param>
-        </member>
-        <member name="P:Sudoku.DataModel.ExtraDifficultyCase.Name">
-            <summary>
-            <completionlist cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>
-            The name of extra difficulty rating item.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DataModel.ExtraDifficultyCase.Value">
-            <summary>The rating value.</summary>
-        </member>
-        <member name="T:Sudoku.DataModel.Firework">
-            <summary>
-            Indicates a firework pattern. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | B . . | . C . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | A . . | .(D). |
-            '-------'-------'-------'
-            ]]></code>
-            </summary>
-            <param name="Map">Indicates the full map of all cells used.</param>
-            <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
-        </member>
-        <member name="M:Sudoku.DataModel.Firework.#ctor(Sudoku.Concepts.CellMap@,System.Nullable{System.Int32})">
-            <summary>
-            Indicates a firework pattern. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | B . . | . C . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | A . . | .(D). |
-            '-------'-------'-------'
-            ]]></code>
-            </summary>
-            <param name="Map">Indicates the full map of all cells used.</param>
-            <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
-        </member>
-        <member name="P:Sudoku.DataModel.Firework.Map">
-            <summary>Indicates the full map of all cells used.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Firework.Pivot">
-            <summary>The pivot cell. This property can be <see langword="null"/> if four cells are used.</summary>
-        </member>
-        <member name="T:Sudoku.DataModel.Guardian">
-            <summary>
-            Represents for a data set that describes the complete information about a guardian technique.
-            </summary>
-            <param name="LoopCells">Indicates the cells used in this whole guardian loop.</param>
-            <param name="Guardians">Indicates the extra cells that is used as guardians.</param>
-            <param name="Digit">Indicates the digit used.</param>
-        </member>
-        <member name="M:Sudoku.DataModel.Guardian.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Represents for a data set that describes the complete information about a guardian technique.
-            </summary>
-            <param name="LoopCells">Indicates the cells used in this whole guardian loop.</param>
-            <param name="Guardians">Indicates the extra cells that is used as guardians.</param>
-            <param name="Digit">Indicates the digit used.</param>
-        </member>
-        <member name="P:Sudoku.DataModel.Guardian.LoopCells">
-            <summary>Indicates the cells used in this whole guardian loop.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Guardian.Guardians">
-            <summary>Indicates the extra cells that is used as guardians.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Guardian.Digit">
-            <summary>Indicates the digit used.</summary>
-        </member>
         <member name="T:Sudoku.DataModel.QiuDeadlyPattern">
             <summary>
             Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
@@ -18466,37 +18506,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the full map of all cells used in this pattern.
             </summary>
-        </member>
-        <member name="T:Sudoku.DataModel.UniqueLoop">
-            <summary>
-            Represents for a data set that describes the complete information about a unique loop technique.
-            </summary>
-            <param name="Loop">Indicates the cells used in this whole unique loop.</param>
-            <param name="Path">Indicates the detail path of the loop.</param>
-            <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
-        </member>
-        <member name="M:Sudoku.DataModel.UniqueLoop.#ctor(Sudoku.Concepts.CellMap@,System.Int32[],System.Int16)">
-            <summary>
-            Represents for a data set that describes the complete information about a unique loop technique.
-            </summary>
-            <param name="Loop">Indicates the cells used in this whole unique loop.</param>
-            <param name="Path">Indicates the detail path of the loop.</param>
-            <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
-        </member>
-        <member name="P:Sudoku.DataModel.UniqueLoop.Loop">
-            <summary>Indicates the cells used in this whole unique loop.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.UniqueLoop.Path">
-            <summary>Indicates the detail path of the loop.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.UniqueLoop.DigitsMask">
-            <summary>Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</summary>
-        </member>
-        <member name="M:Sudoku.DataModel.UniqueLoop.Equals(Sudoku.DataModel.UniqueLoop)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.DataModel.UniqueLoop.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>

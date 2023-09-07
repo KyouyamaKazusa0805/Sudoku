@@ -6,15 +6,19 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="digitsMask">Indicates the mask of digits used.</param>
-/// <param name="pattern1">Indicates the first firework pattern used.</param>
-/// <param name="pattern2">Indicates the second firework pattern used.</param>
+/// <param name="pattern1Map">Indicates the map for pattern 1.</param>
+/// <param name="pattern1Pivot">Indicates the pivot cell for pattern 1. <see langword="null"/> when the pattern is a quadruple.</param>
+/// <param name="pattern2Map">Indicates the map for pattern 2.</param>
+/// <param name="pattern2Pivot">Indicates the pivot cell for pattern 2. <see langword="null"/> when the pattern is a quadruple.</param>
 /// <param name="extraCell">Indicates the extra cell used.</param>
 public sealed partial class FireworkPairType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	[DataMember] Mask digitsMask,
-	[DataMember] scoped in Firework pattern1,
-	[DataMember] scoped in Firework pattern2,
+	[DataMember] scoped in CellMap pattern1Map,
+	[DataMember] Cell? pattern1Pivot,
+	[DataMember] scoped in CellMap pattern2Map,
+	[DataMember] Cell? pattern2Pivot,
 	[DataMember] Cell extraCell
 ) : FireworkStep(conclusions, views)
 {
@@ -35,7 +39,7 @@ public sealed partial class FireworkPairType2Step(
 
 	private string DigitsStr => DigitNotation.ToString(DigitsMask);
 
-	private string Firework1Str => $"{Pattern1.Map}({DigitNotation.ToString(DigitsMask)})";
+	private string Firework1Str => $"{Pattern1Map}({DigitNotation.ToString(DigitsMask)})";
 
-	private string Firework2Str => $"{Pattern2.Map}({DigitNotation.ToString(DigitsMask)})";
+	private string Firework2Str => $"{Pattern2Map}({DigitNotation.ToString(DigitsMask)})";
 }

@@ -34,7 +34,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the patterns used.
 	/// </summary>
-	private static readonly Firework[] Patterns = new Firework[FireworkSubsetCount];
+	private static readonly Pattern[] Patterns = new Pattern[FireworkSubsetCount];
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -169,7 +169,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		List<Step> accumulator,
 		scoped in Grid grid,
 		bool onlyFindOne,
-		scoped in Firework pattern,
+		scoped in Pattern pattern,
 		Cell pivot
 	)
 	{
@@ -278,7 +278,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		List<Step> accumulator,
 		scoped in Grid grid,
 		bool onlyFindOne,
-		scoped in Firework pattern,
+		scoped in Pattern pattern,
 		Mask digitsMask,
 		Cell pivot
 	)
@@ -399,7 +399,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <summary>
 	/// Checks for firework quadruple steps.
 	/// </summary>
-	private FireworkQuadrupleStep? CheckQuadruple(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in Firework pattern)
+	private FireworkQuadrupleStep? CheckQuadruple(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in Pattern pattern)
 	{
 		if (pattern is not { Map: [var c1, var c2, var c3, var c4] map })
 		{
@@ -621,4 +621,27 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			return true;
 		}
 	}
+
+
+	/// <summary>
+	/// Indicates a firework pattern. The pattern will be like:
+	/// <code><![CDATA[
+	/// .-------.-------.-------.
+	/// | . . . | . . . | . . . |
+	/// | . . . | . . . | . . . |
+	/// | . . . | . . . | . . . |
+	/// :-------+-------+-------:
+	/// | . . . | B . . | . C . |
+	/// | . . . | . . . | . . . |
+	/// | . . . | . . . | . . . |
+	/// :-------+-------+-------:
+	/// | . . . | . . . | . . . |
+	/// | . . . | . . . | . . . |
+	/// | . . . | A . . | .(D). |
+	/// '-------'-------'-------'
+	/// ]]></code>
+	/// </summary>
+	/// <param name="Map">Indicates the full map of all cells used.</param>
+	/// <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
+	private readonly record struct Pattern(scoped in CellMap Map, Cell? Pivot);
 }
