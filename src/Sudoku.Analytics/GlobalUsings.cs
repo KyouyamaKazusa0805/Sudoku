@@ -1,4 +1,3 @@
-global using System.Algorithm;
 global using System.Globalization;
 global using System.Runtime.Versioning;
 global using System.SourceGeneration;
