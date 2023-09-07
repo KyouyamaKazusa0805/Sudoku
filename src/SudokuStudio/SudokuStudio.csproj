@@ -18,9 +18,6 @@
 		<!--A bug fix.-->
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	</PropertyGroup>
-	<ItemGroup>
-	  <None Remove="Views\Pages\GeneratingStrategyPage.xaml" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
@@ -97,12 +94,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Views\Pages\GeneratingStrategyPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
-
-	<ItemGroup>
+		<Page Update="Views\Pages\GeneratingStrategyPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\ContentDialogs\ExceptionThrownOnAnalyzingContent.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
