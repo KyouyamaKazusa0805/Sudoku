@@ -57,9 +57,9 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 
 
 	private static ComboBox DiffficultyLevelControlCreator()
-		=> new()
+	{
+		var control = new ComboBox
 		{
-			SelectedIndex = 0,
 			ItemsSource = (ComboBoxItem[])[
 				new() { Content = GetString("DifficultyLevel_None"), Tag = DifficultyLevel.Unknown },
 				new() { Content = GetString("DifficultyLevel_Easy"), Tag = DifficultyLevel.Easy },
@@ -69,11 +69,17 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 				new() { Content = GetString("DifficultyLevel_Nightmare"), Tag = DifficultyLevel.Nightmare }
 			]
 		};
+		control.SelectedIndex = Array.IndexOf(
+			from item in (ComboBoxItem[])control.ItemsSource select item.Tag,
+			((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel
+		);
+
+		return control;
+	}
 
 	private static ComboBox SymmetricTypeControlCreator()
 		=> new()
 		{
-			SelectedIndex = 0,
 			ItemsSource = (ComboBoxItem[])[
 				new() { Content = GetString("SymmetricType_None"), Tag = SymmetricType.None },
 				new() { Content = GetString("SymmetricType_Central"), Tag = SymmetricType.Central },
@@ -85,14 +91,18 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 				new() { Content = GetString("SymmetricType_AxisBoth"), Tag = SymmetricType.AxisBoth },
 				new() { Content = GetString("SymmetricType_DiagonalBoth"), Tag = SymmetricType.DiagonalBoth },
 				new() { Content = GetString("SymmetricType_All"), Tag = SymmetricType.All }
-			]
+			],
+			SelectedIndex = (int)((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern
 		};
 
-	private static TechniqueSelector TechniqueMustIncludedControlCreator() => new() { SelectedIndex = 0 };
+	private static TechniqueSelector TechniqueMustIncludedControlCreator()
+		=> new() { SelectedIndex = (int)((App)Application.Current).Preference.UIPreferences.SelectedTechnique };
 
-	private static ToggleSwitch IsMinimalControlCreator() => new();
+	private static ToggleSwitch IsMinimalControlCreator()
+		=> new() { IsOn = ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBeMinimal };
 
-	private static ToggleSwitch FirstAssignmentAttributeControlCreator() => new();
+	private static ToggleSwitch FirstAssignmentAttributeControlCreator()
+		=> new() { IsOn = ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBePearl };
 
 	private static string DifficultyLevelInitializedValueDisplayer()
 		=> DifficultyLevelConversion.GetName(((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel);
