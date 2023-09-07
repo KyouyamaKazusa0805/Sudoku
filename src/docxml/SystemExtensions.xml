@@ -1294,14 +1294,6 @@
             Provides with LINQ methods on a <see cref="T:System.String"/> value.
             </summary>
         </member>
-        <member name="M:System.Linq.StringEnumerable.SplitByLength(System.String,System.Int32)">
-            <summary>
-            Splits the specified string value into multiple parts, with each part being a same length.
-            </summary>
-            <param name="this">The string to be split.</param>
-            <param name="maxLength">The length to be split.</param>
-            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> instance with multiple parts of the string.</returns>
-        </member>
         <member name="M:System.Linq.StringEnumerable.Select``1(System.String,System.Func{System.Char,``0})">
             <summary>
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>

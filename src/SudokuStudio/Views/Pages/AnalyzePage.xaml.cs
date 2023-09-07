@@ -308,10 +308,11 @@ public sealed partial class AnalyzePage : Page
 				}
 				else
 				{
-					var finalText = from formatter in gridFormatters select ((IGridFormatter)formatter).ToString(grid);
-					await File.WriteAllTextAsync(filePath, string.Join("\r\n\r\n", finalText));
+					await File.WriteAllTextAsync(
+						filePath,
+						string.Join("\r\n\r\n", [.. from formatter in gridFormatters select ((IGridFormatter)formatter).ToString(grid)])
+					);
 				}
-
 				break;
 			}
 			case FileExtensions.Text:
@@ -320,20 +321,18 @@ public sealed partial class AnalyzePage : Page
 					filePath,
 					gridFormatters switch
 					{
-						null => [
-							new()
+						null => [new()
+						{
+							BaseGrid = grid,
+							RenderableData = viewUnit switch
 							{
-								BaseGrid = grid,
-								RenderableData = viewUnit switch
-								{
-									{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = [view] },
-									_ => null
-								},
-								ShowCandidates = displayCandidates
-							}
-						],
-						_
-							=>
+								{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = [view] },
+								_ => null
+							},
+							ShowCandidates = displayCandidates
+						}],
+						_ => [
+							..
 							from formatter in gridFormatters
 							select ((IGridFormatter)formatter).ToString(grid) into gridString
 							select new GridInfo
@@ -347,6 +346,7 @@ public sealed partial class AnalyzePage : Page
 								},
 								ShowCandidates = displayCandidates
 							}
+						]
 					}
 				);
 

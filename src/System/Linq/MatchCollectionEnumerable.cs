@@ -14,7 +14,7 @@ public static class MatchCollectionEnumerable
 	/// <param name="this">The list.</param>
 	/// <param name="selector">The selector that is used for conversion.</param>
 	/// <returns>The array of target result elements.</returns>
-	public static TResult[] Select<TResult>(this MatchCollection @this, Func<Match, TResult> selector)
+	public static ReadOnlySpan<TResult> Select<TResult>(this MatchCollection @this, Func<Match, TResult> selector)
 	{
 		var result = new TResult[@this.Count];
 		var i = 0;

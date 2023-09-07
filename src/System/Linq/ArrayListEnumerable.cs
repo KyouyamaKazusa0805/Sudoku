@@ -7,7 +7,7 @@ namespace System.Linq;
 public static class ArrayListEnumerable
 {
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
-	public static T[] Select<T>(this ArrayList @this, Func<object?, T> selector)
+	public static ReadOnlySpan<T> Select<T>(this ArrayList @this, Func<object?, T> selector)
 	{
 		var result = new T[@this.Count];
 		for (var i = 0; i < @this.Count; i++)

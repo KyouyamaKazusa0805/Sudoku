@@ -190,7 +190,9 @@ public static unsafe partial class StringExtensions
 	/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] MatchAll(this string @this, [StringSyntax(StringSyntax.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
-		=> pattern.IsRegexPattern() ? from m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value : throw InvalidOperation;
+		=> pattern.IsRegexPattern()
+			? [.. from m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value]
+			: throw InvalidOperation;
 
 	/// <inheritdoc cref="string.Split(char[], StringSplitOptions)"/>
 	/// <param name="this">The array itself.</param>

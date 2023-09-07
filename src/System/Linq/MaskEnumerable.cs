@@ -14,7 +14,7 @@ public static class MaskEnumerable
 	/// <param name="this">A mask instance.</param>
 	/// <param name="selector">The selector method to be converted.</param>
 	/// <returns>A list of converted result, encapsulated by a <see cref="ReadOnlySpan{T}"/> type.</returns>
-	public static ReadOnlySpan<T> Select<T>(this Mask @this, Func<int, T> selector) where T : unmanaged
+	public static ReadOnlySpan<T> Select<T>(this Mask @this, Func<int, T> selector)
 	{
 		var (result, i) = (new T[PopCount((uint)@this)], 0);
 		foreach (var bit in @this)
