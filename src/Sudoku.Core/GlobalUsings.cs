@@ -1,4 +1,3 @@
-global using System.Algorithm;
 global using System.ComponentModel;
 global using System.Runtime.Intrinsics;
 global using System.SourceGeneration;
@@ -10,6 +9,5 @@ global using Sudoku.Linq;
 global using Sudoku.Text.Formatting;
 global using Sudoku.Text.Notation;
 global using static System.Algorithm.Sequences;
-global using static System.Algorithm.Sorting;
 global using static System.Math;
 global using static Sudoku.Runtime.MaskServices.MaskOperations;
