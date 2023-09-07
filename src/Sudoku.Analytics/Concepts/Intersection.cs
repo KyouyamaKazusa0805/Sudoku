@@ -1,4 +1,4 @@
-namespace Sudoku.DataModel;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Defines a type that stores some fields as shared one.

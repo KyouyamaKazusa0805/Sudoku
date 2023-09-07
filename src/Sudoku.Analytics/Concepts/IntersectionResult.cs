@@ -1,4 +1,4 @@
-namespace Sudoku.DataModel;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Defines a tuple of <see cref="CellMap"/> instances that represents the house cells used, especially used by <see cref="IntersectionMaps"/> property.

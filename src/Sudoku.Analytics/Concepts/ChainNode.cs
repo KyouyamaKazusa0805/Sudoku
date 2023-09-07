@@ -1,4 +1,4 @@
-namespace Sudoku.DataModel;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Defines a node used in chaining.
