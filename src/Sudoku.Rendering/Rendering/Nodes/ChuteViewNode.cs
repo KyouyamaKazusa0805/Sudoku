@@ -1,3 +1,5 @@
+using System.SourceGeneration;
+
 namespace Sudoku.Rendering.Nodes;
 
 /// <summary>
@@ -8,10 +10,8 @@ namespace Sudoku.Rendering.Nodes;
 [GetHashCode]
 [ToString]
 [method: JsonConstructor]
-public sealed partial class ChuteViewNode(
-	ColorIdentifier identifier,
-	[DataMember, HashCodeMember, StringMember] int chuteIndex
-) : BasicViewNode(identifier)
+public sealed partial class ChuteViewNode(ColorIdentifier identifier, [DataMember, HashCodeMember, StringMember] int chuteIndex) :
+	BasicViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates whether the chute is in a row.

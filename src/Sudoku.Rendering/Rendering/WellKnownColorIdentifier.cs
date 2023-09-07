@@ -1,3 +1,5 @@
+using System.SourceGeneration;
+
 namespace Sudoku.Rendering;
 
 /// <summary>
@@ -7,7 +9,8 @@ namespace Sudoku.Rendering;
 [GetHashCode]
 [ToString(ToStringBehavior.RecordLike)]
 [method: JsonConstructor]
-public sealed partial class WellKnownColorIdentifier([DataMember, HashCodeMember, StringMember] WellKnownColorIdentifierKind kind) : ColorIdentifier
+public sealed partial class WellKnownColorIdentifier([DataMember, HashCodeMember, StringMember] WellKnownColorIdentifierKind kind) :
+	ColorIdentifier
 {
 	/// <inheritdoc cref="WellKnownColorIdentifierKind.Normal"/>
 	public static readonly ColorIdentifier Normal = WellKnownColorIdentifierKind.Normal;

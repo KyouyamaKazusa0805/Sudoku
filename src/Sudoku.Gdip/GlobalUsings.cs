@@ -1,14 +1,2 @@
-global using System.Drawing;
-global using System.Drawing.Drawing2D;
-global using System.Drawing.Imaging;
-global using System.Drawing.Text;
-global using System.Runtime.Versioning;
-global using System.SourceGeneration;
-global using Sudoku.Analytics;
-global using Sudoku.Drawing.TextRendering;
-global using Sudoku.Gdip;
-global using Sudoku.Rendering;
-global using Sudoku.Rendering.Nodes;
-global using Sudoku.Runtime.MaskServices;
 global using static System.MathF;
 global using static Sudoku.Drawing.ProjectWideConstants;

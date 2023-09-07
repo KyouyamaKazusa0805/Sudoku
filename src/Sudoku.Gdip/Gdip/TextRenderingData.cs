@@ -1,3 +1,6 @@
+using System.Drawing;
+using System.SourceGeneration;
+
 namespace Sudoku.Gdip;
 
 /// <summary>

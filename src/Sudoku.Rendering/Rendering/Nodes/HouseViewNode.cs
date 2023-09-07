@@ -1,3 +1,5 @@
+using System.SourceGeneration;
+
 namespace Sudoku.Rendering.Nodes;
 
 /// <summary>
@@ -8,10 +10,8 @@ namespace Sudoku.Rendering.Nodes;
 [GetHashCode]
 [ToString]
 [method: JsonConstructor]
-public sealed partial class HouseViewNode(
-	ColorIdentifier identifier,
-	[DataMember, HashCodeMember, StringMember] House house
-) : BasicViewNode(identifier)
+public sealed partial class HouseViewNode(ColorIdentifier identifier, [DataMember, HashCodeMember, StringMember] House house) :
+	BasicViewNode(identifier)
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

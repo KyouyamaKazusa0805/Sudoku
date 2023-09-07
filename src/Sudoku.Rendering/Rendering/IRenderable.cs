@@ -1,3 +1,5 @@
+using Sudoku.Analytics;
+
 namespace Sudoku.Rendering;
 
 /// <summary>

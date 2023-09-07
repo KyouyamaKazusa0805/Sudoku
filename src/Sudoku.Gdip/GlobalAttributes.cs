@@ -1,2 +1,4 @@
-﻿[assembly: SupportedOSPlatform("windows")]
+using System.Runtime.Versioning;
+
+[assembly: SupportedOSPlatform("windows")]
 [assembly: InternalsVisibleTo("Sudoku.Recognition")]

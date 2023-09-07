@@ -1,4 +1,6 @@
-﻿namespace System.Drawing;
+using System.Drawing.Drawing2D;
+
+namespace System.Drawing;
 
 /// <summary>
 /// Provides extension methods on <see cref="Bitmap"/>.

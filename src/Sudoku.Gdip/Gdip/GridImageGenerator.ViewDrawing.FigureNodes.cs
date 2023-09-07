@@ -1,3 +1,7 @@
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using Sudoku.Rendering.Nodes;
+
 namespace Sudoku.Gdip;
 
 partial class GridImageGenerator
@@ -22,15 +26,13 @@ partial class GridImageGenerator
 					using var brush = new SolidBrush(GetColor(identifier));
 					var (x, y) = calc.GetMousePointInCenter(cell);
 
-					using var path = (
-						figureNode switch
-						{
-							TriangleViewNode => triangle,
-							DiamondViewNode => diamond,
-							StarViewNode => star,
-							_ => default(Func<float, float, GraphicsPath>?)!
-						}
-					)(x, y);
+					using var path = (figureNode switch
+					{
+						TriangleViewNode => triangle,
+						DiamondViewNode => diamond,
+						StarViewNode => star,
+						_ => default(Func<float, float, GraphicsPath>?)!
+					})(x, y);
 					g.FillPath(brush, path);
 
 					break;

@@ -1,3 +1,7 @@
+using System.Drawing;
+using Sudoku.Rendering;
+using Sudoku.Runtime.MaskServices;
+
 namespace Sudoku.Gdip;
 
 partial class GridImageGenerator

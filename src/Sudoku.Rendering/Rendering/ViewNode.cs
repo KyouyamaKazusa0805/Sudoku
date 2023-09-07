@@ -1,3 +1,6 @@
+using System.SourceGeneration;
+using Sudoku.Rendering.Nodes;
+
 namespace Sudoku.Rendering;
 
 /// <summary>
