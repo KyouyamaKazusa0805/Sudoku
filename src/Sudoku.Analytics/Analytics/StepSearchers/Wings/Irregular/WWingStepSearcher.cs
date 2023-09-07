@@ -1,10 +1,11 @@
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
-/// Provides with a <b>W-Wing</b> step searcher.
+/// Provides with a <b>W-Wing (George Woods' Wing)</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>W-Wing (George Woods' Wing)</item>
+/// <item>W-Wing</item>
+/// <item>Grouped W-Wing</item>
 /// </list>
 /// </summary>
 [StepSearcher(Technique.WWing, Technique.GroupedWWing)]
@@ -62,8 +63,7 @@ public sealed partial class WWingStepSearcher : StepSearcher
 						|| house == c2.ToHouseIndex(HouseType.Row)
 						|| house == c2.ToHouseIndex(HouseType.Column))
 					{
-						// The house to search for conjugate pairs shouldn't
-						// be the same as those two cells' houses.
+						// The house to search for conjugate pairs shouldn't be the same as those two cells' houses.
 						continue;
 					}
 
@@ -121,58 +121,42 @@ public sealed partial class WWingStepSearcher : StepSearcher
 						}
 
 						// Now W-Wing found. Store it into the accumulator.
-						Step step;
-						switch (bridge)
+						var step = bridge switch
 						{
-							case [var a, var b]:
-							{
-								step = new WWingStep(
-									[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
+							[var a, var b] => new WWingStep(
+								[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
+								[
 									[
-										[
-											new CandidateViewNode(WellKnownColorIdentifier.Normal, c1 * 9 + anotherDigit),
-											new CandidateViewNode(WellKnownColorIdentifier.Normal, c2 * 9 + anotherDigit),
-											new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c1 * 9 + digit),
-											new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c2 * 9 + digit),
-											new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, a * 9 + digit),
-											new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, b * 9 + digit),
-											new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house)
-										]
-									],
-									c1,
-									c2,
-									new(a, b, digit)
-								);
-
-								break;
-							}
-							default:
-							{
-								var candidateOffsets = new List<CandidateViewNode>(8)
-								{
-									new(WellKnownColorIdentifier.Normal, c1 * 9 + anotherDigit),
-									new(WellKnownColorIdentifier.Normal, c2 * 9 + anotherDigit),
-									new(WellKnownColorIdentifier.Auxiliary1, c1 * 9 + digit),
-									new(WellKnownColorIdentifier.Auxiliary1, c2 * 9 + digit)
-								};
-
-								foreach (var cell in bridge)
-								{
-									candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
-								}
-
-								step = new GroupedWWingStep(
-									[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
-									[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house)]],
-									c1,
-									c2,
-									bridge
-								);
-
-								break;
-							}
-						}
-
+										new CandidateViewNode(WellKnownColorIdentifier.Normal, c1 * 9 + anotherDigit),
+										new CandidateViewNode(WellKnownColorIdentifier.Normal, c2 * 9 + anotherDigit),
+										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c1 * 9 + digit),
+										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c2 * 9 + digit),
+										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, a * 9 + digit),
+										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, b * 9 + digit),
+										new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house)
+									]
+								],
+								c1,
+								c2,
+								new(a, b, digit)
+							),
+							_ => (Step)new GroupedWWingStep(
+								[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
+								[
+									[
+										new CandidateViewNode(WellKnownColorIdentifier.Normal, c1 * 9 + anotherDigit),
+										new CandidateViewNode(WellKnownColorIdentifier.Normal, c2 * 9 + anotherDigit),
+										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c1 * 9 + digit),
+										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c2 * 9 + digit),
+										.. from cell in bridge select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit),
+										new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house)
+									]
+								],
+								c1,
+								c2,
+								bridge
+							)
+						};
 						if (context.OnlyFindOne)
 						{
 							return step;
