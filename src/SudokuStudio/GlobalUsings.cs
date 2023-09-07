@@ -39,7 +39,6 @@ global using Sudoku.Analytics.StepSearchers;
 global using Sudoku.Analytics.Strings;
 global using Sudoku.Compatibility.Hodoku;
 global using Sudoku.Compatibility.SudokuExplainer;
-global using Sudoku.DataModel;
 global using Sudoku.Filtering;
 global using Sudoku.Preprocessing;
 global using Sudoku.Rendering;
