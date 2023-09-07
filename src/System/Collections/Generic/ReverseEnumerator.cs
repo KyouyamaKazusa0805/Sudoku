@@ -1,3 +1,5 @@
+using System.SourceGeneration;
+
 namespace System.Collections.Generic;
 
 /// <summary>
@@ -15,7 +17,7 @@ public ref partial struct ReverseEnumerator<T>([DataMember(MemberKinds.Field)] T
 
 
 	/// <inheritdoc cref="IEnumerator.Current"/>
-	public ref T Current => ref _array[_index];
+	public readonly ref T Current => ref _array[_index];
 
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>

@@ -1,3 +1,5 @@
+using System.Text.Encodings.Web;
+
 namespace System.Text.Json;
 
 /// <summary>

@@ -1,3 +1,5 @@
+using System.Buffers;
+
 namespace System.Collections;
 
 /// <summary>

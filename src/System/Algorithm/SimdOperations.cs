@@ -1,3 +1,5 @@
+using System.Runtime.Intrinsics;
+
 namespace System.Algorithm;
 
 /// <summary>

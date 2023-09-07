@@ -1,4 +1,6 @@
 #pragma warning disable IDE0032
+using System.SourceGeneration;
+
 namespace System.Collections.Generic;
 
 /// <summary>
