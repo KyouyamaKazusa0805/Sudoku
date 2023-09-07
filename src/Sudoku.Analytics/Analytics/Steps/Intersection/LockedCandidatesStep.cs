@@ -1,3 +1,9 @@
+using System.SourceGeneration;
+using Sudoku.Analytics.Categorization;
+using Sudoku.Rendering;
+using Sudoku.Text;
+using Sudoku.Text.Notation;
+
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>

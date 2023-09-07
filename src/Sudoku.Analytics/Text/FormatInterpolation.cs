@@ -1,3 +1,6 @@
+using System.Globalization;
+using Sudoku.Analytics;
+
 namespace Sudoku.Text;
 
 /// <summary>

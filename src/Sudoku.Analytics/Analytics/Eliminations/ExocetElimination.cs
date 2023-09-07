@@ -1,3 +1,5 @@
+using Sudoku.Text.Notation;
+
 namespace Sudoku.Analytics.Eliminations;
 
 /// <summary>

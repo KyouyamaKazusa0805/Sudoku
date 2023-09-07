@@ -1,3 +1,7 @@
+using System.SourceGeneration;
+using Sudoku.Rendering;
+using Sudoku.Text.Notation;
+
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>

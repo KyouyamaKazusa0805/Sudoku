@@ -1,3 +1,9 @@
+using Expressive;
+using Expressive.Exceptions;
+using Sudoku.Analytics;
+using Sudoku.Filtering.Operators;
+using Sudoku.Text.Notation;
+
 namespace Sudoku.Filtering;
 
 /// <summary>

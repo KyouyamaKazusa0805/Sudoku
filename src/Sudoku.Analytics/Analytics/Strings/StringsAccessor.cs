@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace Sudoku.Analytics.Strings;
 
 /// <summary>

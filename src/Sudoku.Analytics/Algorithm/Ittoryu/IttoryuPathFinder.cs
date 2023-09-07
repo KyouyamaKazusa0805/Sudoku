@@ -1,3 +1,6 @@
+using Sudoku.Analytics.Categorization;
+using Sudoku.Runtime.MaskServices;
+
 namespace Sudoku.Algorithm.Ittoryu;
 
 /// <summary>

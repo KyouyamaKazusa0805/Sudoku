@@ -1,6 +1,9 @@
 // This file stores built-in 'StepSearcher' instances,
 // in order to create default collection of member 'StepSearcherPool.Default'.
 
+using Sudoku.Analytics.Metadata;
+using Sudoku.Analytics.StepSearchers;
+
 [assembly: StepSearcherImport<SingleStepSearcher>(0)]
 [assembly: StepSearcherImport<LockedSubsetStepSearcher>(0)]
 [assembly: StepSearcherImport<LockedCandidatesStepSearcher>(0)]

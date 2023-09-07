@@ -1,3 +1,5 @@
+using Sudoku.Analytics.Metadata;
+
 namespace Sudoku.Analytics;
 
 /// <summary>

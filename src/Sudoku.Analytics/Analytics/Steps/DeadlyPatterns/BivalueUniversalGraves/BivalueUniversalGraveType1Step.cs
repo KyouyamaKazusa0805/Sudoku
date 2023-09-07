@@ -1,3 +1,6 @@
+using Sudoku.Analytics.Categorization;
+using Sudoku.Rendering;
+
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>

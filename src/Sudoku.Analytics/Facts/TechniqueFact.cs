@@ -1,3 +1,5 @@
+using Sudoku.Analytics.Categorization;
+
 namespace Sudoku.Facts;
 
 /// <summary>

@@ -1,3 +1,6 @@
+using Sudoku.Analytics.Strings;
+using Sudoku.Strings;
+
 namespace Sudoku.Analytics.Categorization;
 
 /// <summary>

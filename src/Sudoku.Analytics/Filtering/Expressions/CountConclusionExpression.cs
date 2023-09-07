@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Filtering.Expressions;
+using Expressive.Expressions;
+
+namespace Sudoku.Filtering.Expressions;
 
 /// <summary>
 /// Defines the backing implementation of <c><see langword="count"/></c> operator.

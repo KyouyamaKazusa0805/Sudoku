@@ -1,3 +1,6 @@
+using System.SourceGeneration;
+using Sudoku.Analytics.Categorization;
+
 namespace Sudoku.Analytics.Metadata;
 
 /// <summary>
