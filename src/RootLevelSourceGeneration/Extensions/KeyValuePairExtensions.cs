@@ -1,4 +1,6 @@
-﻿namespace System.Collections.Generic;
+using System.ComponentModel;
+
+namespace System.Collections.Generic;
 
 /// <summary>
 /// Provides with the extension methods on type <see cref="KeyValuePair{TKey, TValue}"/>.

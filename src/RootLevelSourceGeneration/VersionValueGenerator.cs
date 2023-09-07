@@ -1,3 +1,5 @@
+using System.Xml;
+
 namespace RootLevelSourceGeneration;
 
 /// <summary>
