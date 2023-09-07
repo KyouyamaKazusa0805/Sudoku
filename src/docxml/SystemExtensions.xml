@@ -1243,9 +1243,6 @@
             <seealso cref="T:System.Span`1"/>
             <seealso cref="T:System.ReadOnlySpan`1"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.Select``2(System.Span{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
-        </member>
         <member name="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
             <summary>
             Projects each element in the current instance into the target-typed span of element type <typeparamref name="TResult"/>,

@@ -7,19 +7,6 @@ namespace System.Linq;
 /// <seealso cref="ReadOnlySpan{T}"/>
 public static class SpanEnumerable
 {
-	/// <inheritdoc cref="Select{T, TResult}(ReadOnlySpan{T}, Func{T, TResult})"/>
-	public static TResult[] Select<T, TResult>(this scoped Span<T> @this, Func<T, TResult> selector)
-	{
-		var result = new TResult[@this.Length];
-		var i = 0;
-		foreach (var element in @this)
-		{
-			result[i++] = selector(element);
-		}
-
-		return result;
-	}
-
 	/// <summary>
 	/// Projects each element in the current instance into the target-typed span of element type <typeparamref name="TResult"/>,
 	/// using the specified function to convert.
