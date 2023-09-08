@@ -10,8 +10,7 @@ internal static class BuiltInColorPalette
 	/// <summary>
 	/// Indicates the colors.
 	/// </summary>
-	public static readonly IList<Color> Value = new List<Color>
-	{
+	public static readonly IList<Color> Value = [
 		Color.FromArgb(255, 240, 135, 132),
 		Color.FromArgb(255, 235, 51, 36),
 		Color.FromArgb(255, 119, 67, 66),
@@ -65,5 +64,5 @@ internal static class BuiltInColorPalette
 		Colors.Gray,
 		Colors.DimGray,
 		Colors.White
-	};
+	];
 }
