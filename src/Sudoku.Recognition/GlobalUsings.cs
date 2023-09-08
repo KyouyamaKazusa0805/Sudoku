@@ -1,12 +1,3 @@
-global using System.Drawing;
-global using System.Drawing.Imaging;
-global using System.Runtime.Versioning;
-global using System.SourceGeneration;
-global using Emgu.CV;
-global using Emgu.CV.CvEnum;
-global using Emgu.CV.OCR;
-global using Emgu.CV.Structure;
-global using Emgu.CV.Util;
 global using static System.Math;
 global using static Sudoku.Recognition.ProjectWideConstants;
 global using Cv = Emgu.CV.CvInvoke;

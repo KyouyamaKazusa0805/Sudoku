@@ -1,3 +1,5 @@
+using System.Drawing;
+
 namespace Sudoku.Recognition;
 
 /// <summary>

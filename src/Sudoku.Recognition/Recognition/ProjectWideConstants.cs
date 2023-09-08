@@ -1,3 +1,5 @@
+using Emgu.CV.CvEnum;
+
 namespace Sudoku.Recognition;
 
 /// <summary>
