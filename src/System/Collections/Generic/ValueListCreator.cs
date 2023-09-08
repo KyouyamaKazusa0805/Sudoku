@@ -1,10 +1,13 @@
-﻿#pragma warning disable IDE0032, IDE0044
+#pragma warning disable IDE0032, IDE0044
+using System.ComponentModel;
+
 namespace System.Collections.Generic;
 
 /// <summary>
 /// Represents a type that can create a <see cref="ValueList{T}"/> instance.
 /// </summary>
 /// <seealso cref="ValueList{T}"/>
+[EditorBrowsable(EditorBrowsableState.Never)]
 public static class ValueListCreator
 {
 	/// <summary>
