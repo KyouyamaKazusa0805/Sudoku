@@ -50,7 +50,6 @@ public static class CachedFields
 	/// </remarks>
 	internal static CellMap BivalueCells;
 
-#nullable disable warnings
 	/// <summary>
 	/// <inheritdoc cref="Grid.CandidatesMap"/>
 	/// </summary>
@@ -58,7 +57,7 @@ public static class CachedFields
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	internal static CellMap[] CandidatesMap;
+	internal static CellMap[] CandidatesMap = null!;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.DigitsMap"/>
@@ -67,7 +66,7 @@ public static class CachedFields
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	internal static CellMap[] DigitsMap;
+	internal static CellMap[] DigitsMap = null!;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.ValuesMap"/>
@@ -76,8 +75,7 @@ public static class CachedFields
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	internal static CellMap[] ValuesMap;
-#nullable restore warnings
+	internal static CellMap[] ValuesMap = null!;
 
 	/// <summary>
 	/// Indicates the solution.
