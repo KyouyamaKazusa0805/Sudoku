@@ -1,6 +1,6 @@
 using Sudoku.Analytics;
 
-namespace Sudoku.Preprocessing;
+namespace Sudoku.Algorithm.Backdoors;
 
 /// <summary>
 /// Defines a backdoor searcher.

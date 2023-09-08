@@ -4,6 +4,45 @@
         <name>Sudoku.Analytics</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Algorithm.Backdoors.BackdoorSearcher">
+            <summary>
+            Defines a backdoor searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Backdoors.BackdoorSearcher.SstsChecker">
+            <summary>
+            The checker.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Backdoors.BackdoorSearcher.GetBackdoors(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get all possible backdoors.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A list of backdoors.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the grid is not unique, or the puzzle is too easy.</exception>
+        </member>
+        <member name="T:Sudoku.Algorithm.DeadlyPattern.DeadlyPatternChecker">
+            <summary>
+            Represents a checker that checks for a pattern (specified as a <see cref="T:Sudoku.Concepts.Grid"/>, but invalid - multiple solutions),
+            determining whether the pattern is a deadly pattern.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.DeadlyPattern.DeadlyPatternChecker.IsDeadlyPattern(Sudoku.Concepts.Grid@)">
+            <summary>
+            Determines whether a pattern is a deadly pattern.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="grid"/> is valid.</exception>
+            <remarks><b>
+            Please note that you should use inline array syntax like <c>grid[cellIndex]</c> to visit and update mask,
+            in order to avoid events <see cref="F:Sudoku.Concepts.Grid.ValueChanged"/> and <see cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/> being triggered.
+            </b></remarks>
+            <seealso cref="F:Sudoku.Concepts.Grid.ValueChanged"/>
+            <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
+        </member>
         <member name="T:Sudoku.Algorithm.Ittoryu.DigitPath">
             <summary>
             Indicates the target digit path.
@@ -156,6 +195,20 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Algorithm.Ittoryu.PathNode.ToString">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Algorithm.TrueCandidates.TrueCandidatesSearcher">
+            <summary>
+            Defines a searcher that searches for the true candidates of the current sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.TrueCandidates.TrueCandidatesSearcher.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            Get all true candidates when the number of empty cells is below than the argument.
+            </summary>
+            <param name="grid">Indicates the puzzle.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>All true candidates.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
         </member>
         <member name="T:Sudoku.Analytics.AnalysisContext">
             <summary>
@@ -18813,59 +18866,6 @@ result ^= expression;
             <typeparam name="T">The type of the step you want to get.</typeparam>
             <param name="this">The instance.</param>
             <returns>An array of <typeparamref name="T"/> instances.</returns>
-        </member>
-        <member name="T:Sudoku.Preprocessing.BackdoorSearcher">
-            <summary>
-            Defines a backdoor searcher.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Preprocessing.BackdoorSearcher.SstsChecker">
-            <summary>
-            The checker.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Preprocessing.BackdoorSearcher.GetBackdoors(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to get all possible backdoors.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>A list of backdoors.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the grid is not unique, or the puzzle is too easy.</exception>
-        </member>
-        <member name="T:Sudoku.Preprocessing.DeadlyPatternChecker">
-            <summary>
-            Represents a checker that checks for a pattern (specified as a <see cref="T:Sudoku.Concepts.Grid"/>, but invalid - multiple solutions),
-            determining whether the pattern is a deadly pattern.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Preprocessing.DeadlyPatternChecker.IsDeadlyPattern(Sudoku.Concepts.Grid@)">
-            <summary>
-            Determines whether a pattern is a deadly pattern.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="grid"/> is valid.</exception>
-            <remarks><b>
-            Please note that you should use inline array syntax like <c>grid[cellIndex]</c> to visit and update mask,
-            in order to avoid events <see cref="F:Sudoku.Concepts.Grid.ValueChanged"/> and <see cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/> being triggered.
-            </b></remarks>
-            <seealso cref="F:Sudoku.Concepts.Grid.ValueChanged"/>
-            <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
-        </member>
-        <member name="T:Sudoku.Preprocessing.TrueCandidatesSearcher">
-            <summary>
-            Defines a searcher that searches for the true candidates of the current sudoku grid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Preprocessing.TrueCandidatesSearcher.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            Get all true candidates when the number of empty cells is below than the argument.
-            </summary>
-            <param name="grid">Indicates the puzzle.</param>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-            <returns>All true candidates.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
         </member>
         <member name="T:Sudoku.Text.FormatInterpolation">
             <summary>

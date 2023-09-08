@@ -1,4 +1,4 @@
-namespace Sudoku.Preprocessing;
+namespace Sudoku.Algorithm.DeadlyPattern;
 
 /// <summary>
 /// Represents a checker that checks for a pattern (specified as a <see cref="Grid"/>, but invalid - multiple solutions),

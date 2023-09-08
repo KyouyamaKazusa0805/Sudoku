@@ -1,6 +1,6 @@
 using Sudoku.Runtime.MaskServices;
 
-namespace Sudoku.Preprocessing;
+namespace Sudoku.Algorithm.TrueCandidates;
 
 /// <summary>
 /// Defines a searcher that searches for the true candidates of the current sudoku grid.
