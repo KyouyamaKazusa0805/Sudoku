@@ -413,7 +413,7 @@
         </member>
         <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Conclusions">
             <summary>
-            Indicates the candidates as conclusions in a single <see cref="!:Step"/>.
+            Indicates the candidates as conclusions in a single <see cref="T:Sudoku.Analytics.Step"/>.
             </summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSource.View">
@@ -2422,28 +2422,31 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.DigitInputEventHandler"/>.
             </summary>
+            <param name="cell">Indicates the cell that raises the event triggered.</param>
+            <param name="newDigitInput">Indicates the digit input that raises the event triggered. -1 is for clear the cell.</param>
             <seealso cref="T:SudokuStudio.Interaction.DigitInputEventHandler"/>
         </member>
         <member name="M:SudokuStudio.Interaction.DigitInputEventArgs.#ctor(System.Int32,System.Int32)">
             <summary>
-            Initializes a <see cref="T:SudokuStudio.Interaction.DigitInputEventArgs"/> instance via the specified cell and input digit.
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.DigitInputEventHandler"/>.
             </summary>
-            <param name="cell">The cell.</param>
-            <param name="newDigitInput">The digit input.</param>
-        </member>
-        <member name="P:SudokuStudio.Interaction.DigitInputEventArgs.Cell">
-            <summary>
-            Indicates the cell that raises the event triggered.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Interaction.DigitInputEventArgs.DigitInput">
-            <summary>
-            Indicates the digit input that raises the event triggered. -1 is for clear the cell.
-            </summary>
+            <param name="cell">Indicates the cell that raises the event triggered.</param>
+            <param name="newDigitInput">Indicates the digit input that raises the event triggered. -1 is for clear the cell.</param>
+            <seealso cref="T:SudokuStudio.Interaction.DigitInputEventHandler"/>
         </member>
         <member name="P:SudokuStudio.Interaction.DigitInputEventArgs.Candidate">
             <summary>
             Indicates the candidate constructed. -1 is for the case that <see cref="P:SudokuStudio.Interaction.DigitInputEventArgs.DigitInput"/> is -1.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.DigitInputEventArgs.Cell">
+            <summary>
+            The generated property declaration for parameter <c>cell</c>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.DigitInputEventArgs.DigitInput">
+            <summary>
+            The generated property declaration for parameter <c>newDigitInput</c>.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.DigitInputEventHandler">
@@ -2458,17 +2461,25 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventHandler"/>.
             </summary>
+            <param name="reason">The failed reason.</param>
+            <remarks>
+            Initializes a <see cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs"/> instance via the specified reason.
+            </remarks>
             <seealso cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventHandler"/>
         </member>
         <member name="M:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs.#ctor(SudokuStudio.Interaction.FailedReceivedDroppedFileReason)">
             <summary>
-            Initializes a <see cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs"/> instance via the specified reason.
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventHandler"/>.
             </summary>
             <param name="reason">The failed reason.</param>
+            <remarks>
+            Initializes a <see cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs"/> instance via the specified reason.
+            </remarks>
+            <seealso cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventHandler"/>
         </member>
         <member name="P:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs.Reason">
             <summary>
-            Indicates the failed reason.
+            The generated property declaration for parameter <c>reason</c>.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventHandler">
@@ -2616,17 +2627,8 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>.
             </summary>
-            <seealso cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>
-        </member>
-        <member name="M:SudokuStudio.Interaction.GridUpdatedEventArgs.#ctor(SudokuStudio.Interaction.GridUpdatedBehavior,System.Object)">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Interaction.GridUpdatedEventArgs"/> instance via the specified data.
-            </summary>
-            <param name="behavior">The behavior that describes which kind of behavior is applied to replacing a grid with the new value.</param>
-            <param name="newValue">The new value.</param>
-        </member>
-        <member name="P:SudokuStudio.Interaction.GridUpdatedEventArgs.NewValue">
-            <summary>
+            <param name="behavior">Indicates the behavior.</param>
+            <param name="newValue">
             <para>Indicates the new value to be replaced.</para>
             <para>
             The type of the value is <see cref="T:System.Object"/> because the internal type will be varied
@@ -2673,12 +2675,72 @@ if (student is (name: var name, age: >= 18))
             You can use pattern matching to check the internal type such as <c>NewValue is int targetValue</c>,
             or just use type casting: <c>(int)NewValue</c> if you know what the behavior is currently.
             </para>
+            </param>
+            <seealso cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.GridUpdatedEventArgs.#ctor(SudokuStudio.Interaction.GridUpdatedBehavior,System.Object)">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Interaction.GridUpdatedEventArgs.Behavior"/>
+            <param name="behavior">Indicates the behavior.</param>
+            <param name="newValue">
+            <para>Indicates the new value to be replaced.</para>
+            <para>
+            The type of the value is <see cref="T:System.Object"/> because the internal type will be varied
+            from different value of property <see cref="P:SudokuStudio.Interaction.GridUpdatedEventArgs.Behavior"/>. The target type is:
+            <list type="table">
+            <listheader>
+            <term>Value of property <see cref="P:SudokuStudio.Interaction.GridUpdatedEventArgs.Behavior"/></term>
+            <description>Target type of this property</description>
+            </listheader>
+            <item>
+            <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Elimination"/></term>
+            <description>An <see cref="T:System.Int32"/> value indicating the candidate eliminated.</description>
+            </item>
+            <item>
+            <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.EliminationMultiple"/></term>
+            <description>
+            An <see cref="T:System.Int16"/> value indicating the candidates eliminated,
+            by <c><![CDATA[>> 9]]></c> to get the target cell, and <c><![CDATA[& 511]]></c> to get digits eliminated.
+            </description>
+            </item>
+            <item>
+            <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Assignment"/></term>
+            <description>An <see cref="T:System.Int32"/> value indicating the candidate set.</description>
+            </item>
+            <item>
+            <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Clear"/></term>
+            <description>An <see cref="T:System.Int32"/> value indicating the cell to be set empty.</description>
+            </item>
+            <item>
+            <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Undoing"/></term>
+            <description>A <see cref="T:Sudoku.Concepts.Grid"/> value indicating the newer grid to be replaced with the original one.</description>
+            </item>
+            <item>
+            <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Redoing"/></term>
+            <description>A <see cref="T:Sudoku.Concepts.Grid"/> value indicating the newer grid to be replaced with the original one.</description>
+            </item>
+            <item>
+            <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Replacing"/></term>
+            <description>A <see cref="T:Sudoku.Concepts.Grid"/> value indicating the newer grid to be replaced with the original one.</description>
+            </item>
+            </list>
+            </para>
+            <para>
+            You can use pattern matching to check the internal type such as <c>NewValue is int targetValue</c>,
+            or just use type casting: <c>(int)NewValue</c> if you know what the behavior is currently.
+            </para>
+            </param>
+            <seealso cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>
         </member>
         <member name="P:SudokuStudio.Interaction.GridUpdatedEventArgs.Behavior">
             <summary>
-            Indicates the behavior.
+            The generated property declaration for parameter <c>behavior</c>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.GridUpdatedEventArgs.NewValue">
+            <summary>
+            The generated property declaration for parameter <c>newValue</c>.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.GridUpdatedEventHandler">
@@ -2780,16 +2842,24 @@ if (student is (name: var name, age: >= 18))
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.OpenFileFailedEventHandler"/>.
             </summary>
             <seealso cref="T:SudokuStudio.Interaction.OpenFileFailedEventHandler"/>
+            <param name="reason">The failed reason.</param>
+            <remarks>
+            Initializes an <see cref="T:SudokuStudio.Interaction.OpenFileFailedEventArgs"/> instance via the specified reason.
+            </remarks>
         </member>
         <member name="M:SudokuStudio.Interaction.OpenFileFailedEventArgs.#ctor(SudokuStudio.Interaction.OpenFileFailedReason)">
             <summary>
-            Initializes an <see cref="T:SudokuStudio.Interaction.OpenFileFailedEventArgs"/> instance via the specified reason.
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.OpenFileFailedEventHandler"/>.
             </summary>
+            <seealso cref="T:SudokuStudio.Interaction.OpenFileFailedEventHandler"/>
             <param name="reason">The failed reason.</param>
+            <remarks>
+            Initializes an <see cref="T:SudokuStudio.Interaction.OpenFileFailedEventArgs"/> instance via the specified reason.
+            </remarks>
         </member>
         <member name="P:SudokuStudio.Interaction.OpenFileFailedEventArgs.Reason">
             <summary>
-            Indicates the reason.
+            The generated property declaration for parameter <c>reason</c>.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.OpenFileFailedEventHandler">
@@ -2939,16 +3009,24 @@ if (student is (name: var name, age: >= 18))
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.SaveFileFailedEventHandler"/>.
             </summary>
             <seealso cref="T:SudokuStudio.Interaction.SaveFileFailedEventHandler"/>
+            <param name="reason">The failed reason.</param>
+            <remarks>
+            Initializes an <see cref="T:SudokuStudio.Interaction.SaveFileFailedEventArgs"/> instance via the specified reason.
+            </remarks>
         </member>
         <member name="M:SudokuStudio.Interaction.SaveFileFailedEventArgs.#ctor(SudokuStudio.Interaction.SaveFileFailedReason)">
             <summary>
-            Initializes an <see cref="T:SudokuStudio.Interaction.SaveFileFailedEventArgs"/> instance via the specified reason.
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.SaveFileFailedEventHandler"/>.
             </summary>
+            <seealso cref="T:SudokuStudio.Interaction.SaveFileFailedEventHandler"/>
             <param name="reason">The failed reason.</param>
+            <remarks>
+            Initializes an <see cref="T:SudokuStudio.Interaction.SaveFileFailedEventArgs"/> instance via the specified reason.
+            </remarks>
         </member>
         <member name="P:SudokuStudio.Interaction.SaveFileFailedEventArgs.Reason">
             <summary>
-            Indicates the reason.
+            The generated property declaration for parameter <c>reason</c>.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.SaveFileFailedEventHandler">
@@ -3115,18 +3193,27 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventHandler"/>.
             </summary>
+            <param name="isClockwise">A <see cref="T:System.Boolean"/> value indicating whether the mouse wheel is clockwise.</param>
+            <remarks>
+            Initializes a <see cref="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventArgs"/> instance via a <see cref="T:System.Boolean"/> value
+            indicating whether the mouse wheel is clockwise.
+            </remarks>
             <seealso cref="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventHandler"/>
         </member>
         <member name="M:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventArgs.#ctor(System.Boolean)">
             <summary>
-            Initializes a <see cref="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventArgs"/> instance via a <see cref="T:System.Boolean"/> value
-            indicating whether the mouse wheel is clockwise.
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventHandler"/>.
             </summary>
             <param name="isClockwise">A <see cref="T:System.Boolean"/> value indicating whether the mouse wheel is clockwise.</param>
+            <remarks>
+            Initializes a <see cref="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventArgs"/> instance via a <see cref="T:System.Boolean"/> value
+            indicating whether the mouse wheel is clockwise.
+            </remarks>
+            <seealso cref="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventHandler"/>
         </member>
         <member name="P:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventArgs.IsClockwise">
             <summary>
-            Indicates whether the direction is clockwise.
+            The generated property declaration for parameter <c>isClockwise</c>.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventHandler">
@@ -8986,7 +9073,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex">
             <summary>
-            Indicates the current index of the view of property <see cref="!:IRenderable.Views"/> displayed.
+            Indicates the current index of the view of property <see cref="P:Sudoku.Rendering.IRenderable.Views"/> displayed.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedColorIndex">
