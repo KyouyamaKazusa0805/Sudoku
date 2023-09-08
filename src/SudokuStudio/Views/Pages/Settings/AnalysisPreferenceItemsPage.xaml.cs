@@ -1,3 +1,10 @@
+using System.SourceGeneration;
+using Microsoft.UI.Xaml.Controls;
+using SudokuStudio.ComponentModel;
+using SudokuStudio.Configuration;
+using SudokuStudio.Interaction;
+using SudokuStudio.Views.Controls;
+
 namespace SudokuStudio.Views.Pages.Settings;
 
 /// <summary>

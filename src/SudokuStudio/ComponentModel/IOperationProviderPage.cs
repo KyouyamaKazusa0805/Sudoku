@@ -1,3 +1,5 @@
+using SudokuStudio.Views.Pages;
+
 namespace SudokuStudio.ComponentModel;
 
 /// <summary>

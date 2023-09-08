@@ -1,3 +1,6 @@
+using Microsoft.UI.Xaml.Media.Animation;
+using Sudoku.Analytics;
+
 namespace SudokuStudio;
 
 /// <summary>

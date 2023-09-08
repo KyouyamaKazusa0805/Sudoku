@@ -1,4 +1,6 @@
-﻿namespace SudokuStudio.Interaction;
+using SudokuStudio.Views.Controls;
+
+namespace SudokuStudio.Interaction;
 
 /// <summary>
 /// Provides an event handler that is used by <see cref="SudokuPane.GridUpdated"/>.

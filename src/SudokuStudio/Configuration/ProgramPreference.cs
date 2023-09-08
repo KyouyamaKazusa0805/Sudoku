@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Configuration;
+namespace SudokuStudio.Configuration;
 
 /// <summary>
 /// Defines a user-defined program preference.

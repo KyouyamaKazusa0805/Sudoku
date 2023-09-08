@@ -1,9 +1,15 @@
-namespace SudokuStudio.Configuration;
+using Microsoft.UI.Xaml;
+using Sudoku.Analytics.Categorization;
+using SudokuStudio.Collection;
+using SudokuStudio.ComponentModel;
+using SudokuStudio.Interaction;
+using Windows.UI;
+using E = SudokuStudio.Rendering.EliminationDisplayMode;
+using K = SudokuStudio.Rendering.CoordinateLabelDisplayKind;
+using M = SudokuStudio.Rendering.CoordinateLabelDisplayMode;
+using N = SudokuStudio.Rendering.CandidateViewNodeDisplayNode;
 
-using E = EliminationDisplayMode;
-using K = CoordinateLabelDisplayKind;
-using M = CoordinateLabelDisplayMode;
-using N = CandidateViewNodeDisplayNode;
+namespace SudokuStudio.Configuration;
 
 /// <summary>
 /// Defines a list of UI-related preference items. Some items in this group may not be found in settings page

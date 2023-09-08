@@ -1,3 +1,9 @@
+using System.Collections.ObjectModel;
+using Microsoft.UI.Xaml;
+using Sudoku.Analytics;
+using Sudoku.Analytics.Metadata;
+using SudokuStudio.ComponentModel;
+
 namespace SudokuStudio.Configuration;
 
 /// <summary>

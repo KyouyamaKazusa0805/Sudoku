@@ -1,3 +1,6 @@
+using Microsoft.UI.Xaml.Controls;
+using SudokuStudio.ComponentModel;
+
 namespace SudokuStudio.BindableSource;
 
 /// <summary>

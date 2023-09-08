@@ -1,3 +1,5 @@
+using System.SourceGeneration;
+
 namespace SudokuStudio.Interaction;
 
 /// <summary>
@@ -7,8 +9,5 @@ namespace SudokuStudio.Interaction;
 /// <param name="house">Indicates the house finished.</param>
 /// <param name="method">Indicates a method kind that makes a house be completed.</param>
 /// <seealso cref="HouseCompletedEventHandler"/>
-public sealed partial class HouseCompletedEventArgs(
-	[DataMember] Cell lastCell,
-	[DataMember] House house,
-	[DataMember] PuzzleUpdatingMethod method
-) : EventArgs;
+public sealed partial class HouseCompletedEventArgs([DataMember] Cell lastCell, [DataMember] House house, [DataMember] PuzzleUpdatingMethod method) :
+	EventArgs;

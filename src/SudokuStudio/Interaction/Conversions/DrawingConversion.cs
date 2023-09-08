@@ -1,4 +1,9 @@
-﻿namespace SudokuStudio.Interaction.Conversions;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
+using SudokuStudio.Rendering;
+using Windows.UI;
+
+namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>
 /// Provides with conversion methods used by XAML designer, about drawing.

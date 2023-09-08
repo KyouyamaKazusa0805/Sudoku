@@ -1,4 +1,8 @@
-﻿namespace SudokuStudio.Interaction.Conversions;
+using Microsoft.UI.Xaml.Media;
+using SudokuStudio.Views.Controls;
+using Windows.UI;
+
+namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>
 /// Provides with conversion methods used by XAML designer, about grid lines in <see cref="SudokuPane"/> control.

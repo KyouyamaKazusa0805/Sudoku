@@ -1,3 +1,23 @@
+using System.ComponentModel;
+using System.SourceGeneration;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
+using Sudoku.Analytics;
+using SudokuStudio.BindableSource;
+using SudokuStudio.Collection;
+using SudokuStudio.ComponentModel;
+using SudokuStudio.Input;
+using SudokuStudio.Interaction;
+using SudokuStudio.Rendering;
+using SudokuStudio.Storage;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
+using Windows.Storage.Search;
+using Windows.UI;
+using WinRT;
+
 namespace SudokuStudio.Views.Controls;
 
 /// <summary>

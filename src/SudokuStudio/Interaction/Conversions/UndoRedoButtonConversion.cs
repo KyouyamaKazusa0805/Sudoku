@@ -1,4 +1,6 @@
-﻿namespace SudokuStudio.Interaction.Conversions;
+using SudokuStudio.Collection;
+
+namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>
 /// Provides with conversion methods used by XAML designer, about undo and redo buttons.

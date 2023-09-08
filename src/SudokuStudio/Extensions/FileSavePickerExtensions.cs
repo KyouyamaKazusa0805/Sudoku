@@ -1,3 +1,7 @@
+using Microsoft.UI.Xaml;
+using SudokuStudio;
+using WinRT.Interop;
+
 namespace Windows.Storage.Pickers;
 
 /// <summary>

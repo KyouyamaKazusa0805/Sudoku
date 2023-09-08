@@ -1,4 +1,6 @@
-﻿namespace SudokuStudio.Interaction.Conversions;
+using Microsoft.UI.Xaml.Controls;
+
+namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>
 /// Provides with conversion methods used by XAML designer, about symbol icon used by side bar buttons.

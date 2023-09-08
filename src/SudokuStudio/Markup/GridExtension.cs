@@ -1,3 +1,5 @@
+using Microsoft.UI.Xaml.Markup;
+
 namespace SudokuStudio.Markup;
 
 /// <summary>

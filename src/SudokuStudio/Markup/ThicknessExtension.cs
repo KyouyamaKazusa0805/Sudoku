@@ -1,4 +1,7 @@
-﻿namespace SudokuStudio.Markup;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Markup;
+
+namespace SudokuStudio.Markup;
 
 /// <summary>
 /// Defines a markup extension that can create a new <see cref="Thickness"/> instance via base one.

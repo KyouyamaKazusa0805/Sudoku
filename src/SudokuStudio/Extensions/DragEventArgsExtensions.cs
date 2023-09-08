@@ -1,3 +1,5 @@
+using Microsoft.UI.Xaml.Controls;
+
 namespace Microsoft.UI.Xaml;
 
 /// <summary>

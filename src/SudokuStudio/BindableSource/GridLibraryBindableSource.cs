@@ -1,3 +1,5 @@
+using SudokuStudio.Configuration;
+
 namespace SudokuStudio.BindableSource;
 
 /// <summary>

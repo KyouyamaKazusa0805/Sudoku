@@ -1,4 +1,6 @@
-﻿namespace SudokuStudio.Configuration;
+using Windows.UI;
+
+namespace SudokuStudio.Configuration;
 
 /// <summary>
 /// Indicates a built-in color palette.

@@ -1,3 +1,9 @@
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Sudoku.Analytics.Categorization;
+using SudokuStudio.BindableSource;
+using SudokuStudio.ComponentModel;
+
 namespace SudokuStudio.Views.Controls;
 
 /// <summary>

@@ -1,3 +1,6 @@
+using System.SourceGeneration;
+using Microsoft.UI.Xaml;
+
 namespace SudokuStudio.Interaction;
 
 /// <summary>

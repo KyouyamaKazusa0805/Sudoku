@@ -1,3 +1,22 @@
+using Microsoft.UI.Text;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Shapes;
+using Sudoku.Analytics;
+using Sudoku.Rendering;
+using Sudoku.Rendering.Nodes;
+using Sudoku.Text.Notation;
+using SudokuStudio.BindableSource;
+using SudokuStudio.Input;
+using SudokuStudio.Interaction.Conversions;
+using SudokuStudio.Views.Controls;
+using SudokuStudio.Views.Controls.Shapes;
+using Windows.Foundation;
+using Windows.UI;
+using Windows.UI.Text;
+using WinRT;
+
 namespace SudokuStudio.Rendering;
 
 /// <summary>

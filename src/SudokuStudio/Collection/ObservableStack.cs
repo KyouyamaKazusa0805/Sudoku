@@ -1,3 +1,5 @@
+using System.Collections.Specialized;
+
 namespace SudokuStudio.Collection;
 
 /// <summary>

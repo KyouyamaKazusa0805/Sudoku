@@ -1,4 +1,6 @@
-﻿namespace SudokuStudio.Markup;
+using Microsoft.UI.Xaml.Markup;
+
+namespace SudokuStudio.Markup;
 
 /// <summary>
 /// Defines a markup extension that only fetches for string resources defined by folder <c>Resources</c>.

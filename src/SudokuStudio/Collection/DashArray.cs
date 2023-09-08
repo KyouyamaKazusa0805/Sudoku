@@ -1,3 +1,8 @@
+using System.SourceGeneration;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Shapes;
+using WinRT;
+
 namespace SudokuStudio.Collection;
 
 /// <summary>

@@ -1,3 +1,8 @@
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
+using Sudoku.Analytics.Categorization;
+using Windows.UI;
+
 namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>

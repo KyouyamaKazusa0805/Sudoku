@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Collection;
+namespace SudokuStudio.Collection;
 
 /// <summary>
 /// Provides with an event handler delegate type triggered when the target collection is changed.

@@ -1,4 +1,6 @@
-﻿namespace SudokuStudio.Interaction.ValueConverters;
+using Microsoft.UI.Xaml.Data;
+
+namespace SudokuStudio.Interaction.ValueConverters;
 
 /// <summary>
 /// Converts a <see cref="string"/> value into a predicate that can return a <see cref="bool"/> result.

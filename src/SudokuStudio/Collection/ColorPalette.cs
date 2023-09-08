@@ -1,3 +1,7 @@
+using System.Collections.ObjectModel;
+using System.SourceGeneration;
+using Windows.UI;
+
 namespace SudokuStudio.Collection;
 
 /// <summary>

@@ -1,3 +1,6 @@
+using System.SourceGeneration;
+using Sudoku.Analytics;
+
 namespace SudokuStudio.Interaction;
 
 /// <summary>
@@ -5,6 +8,4 @@ namespace SudokuStudio.Interaction;
 /// </summary>
 /// <param name="step">The step.</param>
 /// <seealso cref="TechniqueGroupViewStepAppliedEventHandler"/>
-public sealed partial class TechniqueGroupViewStepAppliedEventArgs(
-	[DataMember(GeneratedMemberName = "ChosenStep")] Step step
-) : EventArgs;
+public sealed partial class TechniqueGroupViewStepAppliedEventArgs([DataMember(GeneratedMemberName = "ChosenStep")] Step step) : EventArgs;

@@ -1,3 +1,5 @@
+using Sudoku.Analytics.Categorization;
+
 namespace SudokuStudio.BindableSource;
 
 /// <summary>

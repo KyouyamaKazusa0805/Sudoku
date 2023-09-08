@@ -1,3 +1,6 @@
+using SkiaSharp;
+using Sudoku.Rendering;
+
 namespace Windows.UI;
 
 /// <summary>

@@ -1,4 +1,7 @@
-﻿namespace SudokuStudio.Interaction.Conversions;
+using Microsoft.UI.Xaml;
+using SudokuStudio.Views.Pages;
+
+namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>
 /// Provides with conversion methods used by XAML designer, about <see cref="SingleCountingPracticingPage"/>.

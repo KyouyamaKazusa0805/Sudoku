@@ -1,3 +1,11 @@
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Sudoku.Rendering;
+using Sudoku.Rendering.Nodes;
+using SudokuStudio.BindableSource;
+using SudokuStudio.Collection;
+using Windows.UI;
+
 namespace SudokuStudio.Views.Pages.Settings;
 
 /// <summary>

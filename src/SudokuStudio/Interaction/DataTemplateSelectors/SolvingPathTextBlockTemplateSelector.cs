@@ -1,4 +1,8 @@
-﻿namespace SudokuStudio.Interaction.DataTemplateSelectors;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using SudokuStudio.BindableSource;
+
+namespace SudokuStudio.Interaction.DataTemplateSelectors;
 
 /// <summary>
 /// Defines a template selector that is applied to a solving path element.

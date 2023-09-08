@@ -1,3 +1,5 @@
+using SudokuStudio.Views.Controls;
+
 namespace SudokuStudio.Interaction;
 
 /// <summary>

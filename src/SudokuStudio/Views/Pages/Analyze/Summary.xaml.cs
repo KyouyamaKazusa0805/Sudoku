@@ -1,3 +1,9 @@
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Sudoku.Analytics;
+using SudokuStudio.BindableSource;
+using SudokuStudio.ComponentModel;
+
 namespace SudokuStudio.Views.Pages.Analyze;
 
 /// <summary>

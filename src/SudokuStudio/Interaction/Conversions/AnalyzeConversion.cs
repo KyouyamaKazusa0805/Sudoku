@@ -1,3 +1,16 @@
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Documents;
+using Sudoku.Analytics;
+using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Rating;
+using Sudoku.Analytics.Strings;
+using Sudoku.Compatibility.Hodoku;
+using Sudoku.Compatibility.SudokuExplainer;
+using Sudoku.Rendering;
+using Sudoku.Text.Notation;
+using SudokuStudio.BindableSource;
+using SudokuStudio.Collection;
+
 namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>

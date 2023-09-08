@@ -1,4 +1,6 @@
-﻿namespace SudokuStudio.Interaction;
+using SudokuStudio.Views.Controls;
+
+namespace SudokuStudio.Interaction;
 
 /// <summary>
 /// Represents a kind that describes which behavior the grid is updated.

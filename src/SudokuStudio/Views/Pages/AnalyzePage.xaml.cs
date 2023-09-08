@@ -1,3 +1,37 @@
+using System.SourceGeneration;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Navigation;
+using Sudoku.Analytics;
+using Sudoku.Analytics.Metadata;
+using Sudoku.Rendering;
+using Sudoku.Rendering.Nodes;
+using Sudoku.Text.Formatting;
+using SudokuStudio.BindableSource;
+using SudokuStudio.Collection;
+using SudokuStudio.ComponentModel;
+using SudokuStudio.Configuration;
+using SudokuStudio.Input;
+using SudokuStudio.Interaction;
+using SudokuStudio.Rendering;
+using SudokuStudio.Storage;
+using SudokuStudio.Views.Attached;
+using SudokuStudio.Views.Controls;
+using SudokuStudio.Views.Pages.Analyze;
+using SudokuStudio.Views.Pages.ContentDialogs;
+using SudokuStudio.Views.Pages.Operation;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
+using Windows.System;
+using Windows.UI;
+using Windows.UI.ViewManagement;
+using WinRT;
+
 namespace SudokuStudio.Views.Pages;
 
 /// <summary>

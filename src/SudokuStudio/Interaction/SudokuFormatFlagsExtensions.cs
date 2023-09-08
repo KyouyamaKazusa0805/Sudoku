@@ -1,3 +1,5 @@
+using Sudoku.Text.Formatting;
+
 namespace SudokuStudio.Interaction;
 
 /// <summary>

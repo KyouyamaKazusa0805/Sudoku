@@ -413,7 +413,7 @@
         </member>
         <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Conclusions">
             <summary>
-            Indicates the candidates as conclusions in a single <see cref="T:Sudoku.Analytics.Step"/>.
+            Indicates the candidates as conclusions in a single <see cref="!:Step"/>.
             </summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSource.View">
@@ -3000,6 +3000,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a display item that will be displayed on tooltip to describe a data unit of a <see cref="T:Sudoku.Analytics.Step"/>.
             </summary>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="F:SudokuStudio.Interaction.StepTooltipDisplayItems.None">
             <summary>
@@ -8985,7 +8986,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex">
             <summary>
-            Indicates the current index of the view of property <see cref="P:Sudoku.Rendering.IRenderable.Views"/> displayed.
+            Indicates the current index of the view of property <see cref="!:IRenderable.Views"/> displayed.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedColorIndex">

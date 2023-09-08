@@ -1,3 +1,14 @@
+using Microsoft.UI.Xaml;
+using Microsoft.Windows.AppLifecycle;
+using Sudoku.Analytics;
+using SudokuStudio.Configuration;
+using SudokuStudio.Storage;
+using SudokuStudio.Views.Windows;
+using Windows.ApplicationModel.Activation;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using WinRT.Interop;
+
 namespace SudokuStudio;
 
 /// <summary>

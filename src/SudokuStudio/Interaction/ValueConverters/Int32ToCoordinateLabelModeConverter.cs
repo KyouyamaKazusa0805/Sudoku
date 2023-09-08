@@ -1,4 +1,7 @@
-﻿namespace SudokuStudio.Interaction.ValueConverters;
+using Microsoft.UI.Xaml.Data;
+using SudokuStudio.Rendering;
+
+namespace SudokuStudio.Interaction.ValueConverters;
 
 /// <summary>
 /// Defines a converter that converts an <see cref="int"/> value into a <see cref="CoordinateLabelDisplayMode"/> field.

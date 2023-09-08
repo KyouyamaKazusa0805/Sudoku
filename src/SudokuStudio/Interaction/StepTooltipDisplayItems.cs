@@ -1,8 +1,11 @@
+using Sudoku.Analytics;
+
 namespace SudokuStudio.Interaction;
 
 /// <summary>
 /// Defines a display item that will be displayed on tooltip to describe a data unit of a <see cref="Step"/>.
 /// </summary>
+/// <seealso cref="Step"/>
 [Flags]
 public enum StepTooltipDisplayItems
 {

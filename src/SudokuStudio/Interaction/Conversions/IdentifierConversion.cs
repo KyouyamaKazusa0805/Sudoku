@@ -1,3 +1,7 @@
+using Microsoft.UI.Xaml;
+using Sudoku.Rendering;
+using Windows.UI;
+
 namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>

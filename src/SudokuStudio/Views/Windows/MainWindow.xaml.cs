@@ -1,3 +1,14 @@
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using SudokuStudio.Runtime.InteropServices;
+using SudokuStudio.Storage;
+using SudokuStudio.Views.Pages;
+using SudokuStudio.Views.Pages.Manuals;
+using Windows.Graphics;
+using WinRT.Interop;
+
 namespace SudokuStudio.Views.Windows;
 
 /// <summary>

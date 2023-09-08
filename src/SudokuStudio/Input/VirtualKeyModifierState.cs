@@ -1,3 +1,5 @@
+using Windows.System;
+
 namespace SudokuStudio.Input;
 
 /// <summary>

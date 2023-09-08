@@ -1,3 +1,8 @@
+using Microsoft.UI.Xaml;
+using Sudoku.Analytics;
+using SudokuStudio.BindableSource;
+using SudokuStudio.Interaction;
+
 namespace SudokuStudio.Collection;
 
 /// <summary>

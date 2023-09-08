@@ -1,3 +1,14 @@
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Sudoku.Algorithm.Backdoors;
+using Sudoku.Algorithm.Ittoryu;
+using Sudoku.Algorithm.TrueCandidates;
+using Sudoku.Analytics;
+using Sudoku.Rendering;
+using Sudoku.Rendering.Nodes;
+using SudokuStudio.ComponentModel;
+using WinRT;
+
 namespace SudokuStudio.Views.Pages.Operation;
 
 /// <summary>

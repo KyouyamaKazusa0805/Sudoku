@@ -1,3 +1,15 @@
+using System.Collections.ObjectModel;
+using Expressive.Exceptions;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Sudoku.Analytics;
+using Sudoku.Filtering;
+using SudokuStudio.BindableSource;
+using SudokuStudio.ComponentModel;
+using SudokuStudio.Interaction;
+using SudokuStudio.Views.Attached;
+using SudokuStudio.Views.Controls;
+
 namespace SudokuStudio.Views.Pages.Analyze;
 
 /// <summary>
