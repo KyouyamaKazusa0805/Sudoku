@@ -1,3 +1,5 @@
+using Sudoku.Runtime.MaskServices;
+
 namespace Sudoku.Text.Formatting;
 
 /// <summary>
@@ -91,7 +93,7 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatVa
 				// Compares the values.
 				var comparer = Max(
 					candidatesCount,
-					MaskToCellState(value) switch
+					MaskOperations.MaskToCellState(value) switch
 					{
 						// The output will be '<digit>' and consist of 3 characters.
 						CellState.Given => Max(candidatesCount, TreatValueAsGiven is null ? 1 : 3),
@@ -191,7 +193,7 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatVa
 		{
 			// Get digit.
 			var value = valuesByRow[i];
-			var state = MaskToCellState(value);
+			var state = MaskOperations.MaskToCellState(value);
 
 			value &= Grid.MaxCandidatesMask;
 			var d = value == 0 ? -1 : (state != CellState.Empty ? TrailingZeroCount(value) : -1) + 1;

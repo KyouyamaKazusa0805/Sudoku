@@ -6,6 +6,7 @@ using System.Runtime.Intrinsics;
 using Sudoku.Text.Formatting;
 using Sudoku.Analytics;
 using Sudoku.Algorithm.Solving;
+using Sudoku.Runtime.MaskServices;
 
 namespace Sudoku.Concepts;
 
@@ -739,7 +740,7 @@ public unsafe partial struct Grid : GridImpl
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CellState GetState(Cell cell) => MaskToCellState(this[cell]);
+	public readonly CellState GetState(Cell cell) => MaskOperations.MaskToCellState(this[cell]);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
