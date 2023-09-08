@@ -40,7 +40,7 @@ public interface IPhasedConclusionProvider<TSelf, TReasonEnum> : IEquatable<TSel
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed OneDimensionalArrayEnumerator<Conclusion> GetEnumerator() => Conclusions.EnumerateImmutable();
+	public sealed OneDimensionalArrayEnumerator<Conclusion> GetEnumerator() => Conclusions.Enumerate();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

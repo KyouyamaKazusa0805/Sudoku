@@ -769,7 +769,7 @@ public unsafe partial struct Grid : GridImpl
 				}
 			}
 		}
-		return candidates.EnumerateImmutable();
+		return candidates.Enumerate();
 	}
 
 	/// <inheritdoc/>

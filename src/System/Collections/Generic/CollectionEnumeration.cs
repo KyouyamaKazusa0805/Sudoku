@@ -14,7 +14,7 @@ public static class CollectionEnumeration
 	/// The enumerable collection that allows the iteration on an one-dimensional array.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static OneDimensionalArrayEnumerator<T> EnumerateImmutable<T>(this T[] @this) where T : struct => new(@this);
+	public static OneDimensionalArrayEnumerator<T> Enumerate<T>(this T[] @this) where T : struct => new(@this);
 
 	/// <summary>
 	/// Creates a <see cref="OneDimensionalArrayRefEnumerator{T}"/> instance that iterates on each element.

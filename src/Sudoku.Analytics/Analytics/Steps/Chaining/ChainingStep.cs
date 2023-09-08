@@ -661,8 +661,8 @@ file sealed class Comparer : IEqualityComparer<ChainingStep>
 
 		static bool branchEquals(ChainNode[] a, ChainNode[] b)
 		{
-			scoped var i1 = a.EnumerateImmutable();
-			scoped var i2 = b.EnumerateImmutable();
+			scoped var i1 = a.Enumerate();
+			scoped var i2 = b.Enumerate();
 			while (i1.MoveNext() && i2.MoveNext())
 			{
 				if (!i1.Current.FullChainPotentials.SequenceEquals(i2.Current.FullChainPotentials))
