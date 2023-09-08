@@ -366,6 +366,9 @@
             two grids will contain a same minimal lexicographic value.
             </remarks>
         </member>
+        <member name="M:Sudoku.Algorithm.MinLex.MinLexFinder.Find(System.String,System.Boolean)">
+            <inheritdoc cref="M:Sudoku.Algorithm.MinLex.MinLexFinder.Find(Sudoku.Concepts.Grid@,System.Boolean)"/>
+        </member>
         <member name="M:Sudoku.Algorithm.MinLex.MinLexFinder.Find(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
             Find for the minimal lexicographic result for a grid.

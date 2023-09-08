@@ -9,6 +9,14 @@ namespace Sudoku.Algorithm.MinLex;
 /// </remarks>
 public static class MinLexFinder
 {
+	/// <inheritdoc cref="Find(in Grid, bool)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string Find(string gridString, bool findForPattern = false)
+	{
+		MinLexCandidate.PatCanon(gridString, out var result, findForPattern);
+		return result;
+	}
+
 	/// <summary>
 	/// Find for the minimal lexicographic result for a grid.
 	/// </summary>
