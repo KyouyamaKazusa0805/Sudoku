@@ -5,34 +5,23 @@ namespace System.Collections.Generic;
 /// <summary>
 /// Defines an enumerator that iterates the one-dimensional array.
 /// </summary>
+/// <param name="innerArray">The array to iterate.</param>
+[StructLayout(LayoutKind.Auto)]
 [Equals]
 [GetHashCode]
-public ref partial struct OneDimensionalArrayRefEnumerator<T>
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
+public ref partial struct OneDimensionalArrayRefEnumerator<T>([DataMember(MemberKinds.Field)] T[] innerArray)
 {
 	/// <summary>
 	/// Indicates the length of the array to iterate.
 	/// The value is equal to <c><see cref="_innerArray"/>.Length</c>.
 	/// </summary>
-	private readonly int _length;
-
-	/// <summary>
-	/// Indicates the array to iterate.
-	/// </summary>
-	private readonly T[] _innerArray;
+	private readonly int _length = innerArray.Length;
 
 	/// <summary>
 	/// Indicates the current index being iterated.
 	/// </summary>
 	private int _index = -1;
-
-
-	/// <summary>
-	/// Initializes a <see cref="OneDimensionalArrayRefEnumerator{T}"/> instance
-	/// via the specified array to iterate.
-	/// </summary>
-	/// <param name="innerArray">The array to iterate.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal OneDimensionalArrayRefEnumerator(T[] innerArray) => (_innerArray, _length) = (innerArray, innerArray.Length);
 
 
 	/// <summary>

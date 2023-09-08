@@ -1,9 +1,9 @@
 namespace System.Collections.Generic;
 
 /// <summary>
-/// Provides the extension <c>GetEnumerator</c> methods on collection types.
+/// Provides with a list of extension <c>GetEnumerator</c> methods for iterating one-dimensional arrays.
 /// </summary>
-public static class CollectionEnumeration
+public static class ArrayEnumeration
 {
 	/// <summary>
 	/// Creates a <see cref="OneDimensionalArrayEnumerator{T}"/> instance that iterates on each element.
