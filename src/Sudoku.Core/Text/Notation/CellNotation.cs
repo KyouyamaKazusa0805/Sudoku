@@ -146,7 +146,7 @@ public sealed partial class CellNotation : INotation<CellNotation, CellMap, Cell
 				var result = CellMap.Empty;
 
 				// Iterate on each match instance.
-				foreach (var match in matches.Cast<Match>())
+				foreach (var match in from match in matches select match)
 				{
 					var value = match.Value;
 					char* anchorR, anchorC;
