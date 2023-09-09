@@ -7,6 +7,7 @@ using Sudoku.Text.Formatting;
 using Sudoku.Analytics;
 using Sudoku.Algorithm.Solving;
 using Sudoku.Runtime.MaskServices;
+using Sudoku.Rendering;
 
 namespace Sudoku.Concepts;
 
@@ -853,8 +854,15 @@ public unsafe partial struct Grid : GridImpl
 		}
 	}
 
+	/// <summary>
+	/// <inheritdoc cref="ApplyAll(Conclusion[])" path="/summary"/>
+	/// </summary>
+	/// <param name="renderable">The renderable instance providing with conclusions to be applied.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Apply(IRenderable renderable) => ApplyAll(renderable.Conclusions);
+
 	/// <inheritdoc/>
-	public void Apply(Conclusion[] conclusions)
+	public void ApplyAll(Conclusion[] conclusions)
 	{
 		foreach (var conclusion in conclusions)
 		{

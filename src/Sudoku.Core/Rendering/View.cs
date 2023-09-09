@@ -52,6 +52,25 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	}
 
 	/// <summary>
+	/// Determines whether the specified <see cref="View"/> stores several <see cref="BabaGroupViewNode"/>s,
+	/// and at least one of it overlaps the specified cell.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <returns>A <see cref="bool"/> value indicating whether being overlapped.</returns>
+	public bool UnknownOverlaps(Cell cell)
+	{
+		foreach (var babaGroupNode in OfType<BabaGroupViewNode>())
+		{
+			if (babaGroupNode.Cell == cell)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/// <summary>
 	/// Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
 	/// </summary>
 	/// <typeparam name="T">The type of the node.</typeparam>

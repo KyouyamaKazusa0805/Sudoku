@@ -72,7 +72,7 @@ partial class GridImageGenerator
 
 		Drawing:
 			g.FillEllipse(
-				(cannibalism, view.UnknownOverlaps(c)) switch
+				(cannibalism, view?.UnknownOverlaps(c)) switch
 				{
 					(true, true) => cannibalismBrushLighter,
 					(true, false) => cannibalBrush,

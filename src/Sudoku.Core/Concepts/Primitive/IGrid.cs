@@ -522,7 +522,7 @@ public partial interface IGrid<TSelf, THouseMask, TConjugateMask, TMask, TCell, 
 	/// Try to apply the specified array of conclusions.
 	/// </summary>
 	/// <param name="conclusions">The conclusions to be applied.</param>
-	public virtual void Apply(TConclusion[] conclusions)
+	public virtual void ApplyAll(TConclusion[] conclusions)
 	{
 		foreach (var conclusion in conclusions)
 		{

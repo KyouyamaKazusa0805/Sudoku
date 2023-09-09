@@ -1,5 +1,4 @@
 using System.Drawing;
-using Sudoku.Rendering;
 using Sudoku.Runtime.MaskServices;
 
 namespace Sudoku.Gdip;
@@ -74,7 +73,7 @@ partial class GridImageGenerator
 				{
 					// Draw candidates.
 					// This block is use when user draw candidates from undefined grid.
-					var overlaps = View.UnknownOverlaps(cell);
+					var overlaps = View?.UnknownOverlaps(cell) ?? false;
 					foreach (var digit in (Mask)(mask & Grid.MaxCandidatesMask))
 					{
 						var originalPoint = calc.GetMousePointInCenter(cell, digit);
@@ -87,7 +86,7 @@ partial class GridImageGenerator
 				case CellState.Empty when showCandidates:
 				{
 					// Draw candidates.
-					var overlaps = View.UnknownOverlaps(cell);
+					var overlaps = View?.UnknownOverlaps(cell) ?? false;
 					foreach (var digit in (Mask)(mask & Grid.MaxCandidatesMask))
 					{
 						var originalPoint = calc.GetMousePointInCenter(cell, digit);

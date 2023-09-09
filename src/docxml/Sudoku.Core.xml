@@ -2875,7 +2875,13 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Analytics.Conclusion)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Analytics.Conclusion[])">
+        <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Rendering.IRenderable)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.ApplyAll(Sudoku.Analytics.Conclusion[])" path="/summary"/>
+            </summary>
+            <param name="renderable">The renderable instance providing with conclusions to be applied.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.ApplyAll(Sudoku.Analytics.Conclusion[])">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.SetState(System.Int32,Sudoku.Concepts.CellState)">
@@ -5067,7 +5073,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="conclusion">The conclusion to be applied.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Primitive.IGrid`11.Apply(`9[])">
+        <member name="M:Sudoku.Concepts.Primitive.IGrid`11.ApplyAll(`9[])">
             <summary>
             Try to apply the specified array of conclusions.
             </summary>
@@ -5333,33 +5339,64 @@ if (student is (name: var name, age: >= 18))
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
         </member>
-        <member name="T:Sudoku.Concepts.GridExtensions">
+        <member name="T:Sudoku.Linq.BitStatusMapGroup`3">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            Represents a map group for <see cref="T:Sudoku.Concepts.CandidateMap"/> and <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
+            <typeparam name="TMap">The type of the map that stores the <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>.</typeparam>
+            <typeparam name="TElement">The type of elements stored in <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>.</typeparam>
+            <typeparam name="TKey">The type of the key in the group.</typeparam>
+            <param name="key">Indicates the key used.</param>
+            <param name="values">Indicates the candidates.</param>
         </member>
-        <member name="M:Sudoku.Concepts.GridExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Rendering.IRenderable)">
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.#ctor(`2,`0@)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.Apply(Sudoku.Analytics.Conclusion[])" path="/summary"/>
+            Represents a map group for <see cref="T:Sudoku.Concepts.CandidateMap"/> and <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
-            <param name="this">The puzzle to be applied.</param>
-            <param name="renderable">The renderable instance providing with conclusions to be applied.</param>
+            <typeparam name="TMap">The type of the map that stores the <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>.</typeparam>
+            <typeparam name="TElement">The type of elements stored in <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>.</typeparam>
+            <typeparam name="TKey">The type of the key in the group.</typeparam>
+            <param name="key">Indicates the key used.</param>
+            <param name="values">Indicates the candidates.</param>
         </member>
-        <member name="T:Sudoku.Rendering.ViewExtensions">
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.GetEnumerator">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Rendering.View"/>.
+            Returns an enumerator that iterates through a collection.
             </summary>
-            <seealso cref="T:Sudoku.Rendering.View"/>
+            <returns>An <see cref="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1"/> object that can be used to iterate through the collection.</returns>
+            <seealso cref="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1"/>
         </member>
-        <member name="M:Sudoku.Rendering.ViewExtensions.UnknownOverlaps(Sudoku.Rendering.View,System.Int32)">
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Where(System.Func{`1,System.Boolean})">
             <summary>
-            Determines whether the specified <see cref="T:Sudoku.Rendering.View"/> stores several <see cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>s,
-            and at least one of it overlaps the specified cell.
+            Filters a sequence of values based on a predicate.
             </summary>
-            <param name="this">The view instance.</param>
-            <param name="cell">The cell.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating whether being overlapped.</returns>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <returns>A (An) <typeparamref name="TElement"/>[] that contains elements from the input sequence that satisfy the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Select``1(System.Func{`1,``0})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
+            </summary>
+            <typeparam name="TResult">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='TResult']"/>
+            </typeparam>
+            <param name="selector">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
+            </param>
+            <returns>
+            A (An) <typeparamref name="TResult"/>[] whose elements are the result of invoking the transform function
+            on each element of the current instance.
+            </returns>
+        </member>
+        <member name="P:Sudoku.Linq.BitStatusMapGroup`3.Key">
+            <summary>
+            The generated property declaration for parameter <c>key</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Linq.BitStatusMapGroup`3.Values">
+            <summary>
+            The generated property declaration for parameter <c>values</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Rendering.ColorColorIdentifier">
             <summary>
@@ -6415,6 +6452,14 @@ if (student is (name: var name, age: >= 18))
             The first element that matches the conditions defined by the specified predicate, if found; otherwise, <see langword="null"/>.
             </returns>
         </member>
+        <member name="M:Sudoku.Rendering.View.UnknownOverlaps(System.Int32)">
+            <summary>
+            Determines whether the specified <see cref="T:Sudoku.Rendering.View"/> stores several <see cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>s,
+            and at least one of it overlaps the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether being overlapped.</returns>
+        </member>
         <member name="M:Sudoku.Rendering.View.OfType``1">
             <summary>
             Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
@@ -6682,65 +6727,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet5">
             <summary>
             Indicates the fifth ALS recorded.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Linq.BitStatusMapGroup`3">
-            <summary>
-            Represents a map group for <see cref="T:Sudoku.Concepts.CandidateMap"/> and <see cref="T:Sudoku.Concepts.CellMap"/>.
-            </summary>
-            <typeparam name="TMap">The type of the map that stores the <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>.</typeparam>
-            <typeparam name="TElement">The type of elements stored in <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>.</typeparam>
-            <typeparam name="TKey">The type of the key in the group.</typeparam>
-            <param name="key">Indicates the key used.</param>
-            <param name="values">Indicates the candidates.</param>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.#ctor(`2,`0@)">
-            <summary>
-            Represents a map group for <see cref="T:Sudoku.Concepts.CandidateMap"/> and <see cref="T:Sudoku.Concepts.CellMap"/>.
-            </summary>
-            <typeparam name="TMap">The type of the map that stores the <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>.</typeparam>
-            <typeparam name="TElement">The type of elements stored in <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>.</typeparam>
-            <typeparam name="TKey">The type of the key in the group.</typeparam>
-            <param name="key">Indicates the key used.</param>
-            <param name="values">Indicates the candidates.</param>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through a collection.
-            </summary>
-            <returns>An <see cref="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1"/> object that can be used to iterate through the collection.</returns>
-            <seealso cref="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1"/>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Where(System.Func{`1,System.Boolean})">
-            <summary>
-            Filters a sequence of values based on a predicate.
-            </summary>
-            <param name="predicate">A function to test each element for a condition.</param>
-            <returns>A (An) <typeparamref name="TElement"/>[] that contains elements from the input sequence that satisfy the condition.</returns>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Select``1(System.Func{`1,``0})">
-            <summary>
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
-            </summary>
-            <typeparam name="TResult">
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='TResult']"/>
-            </typeparam>
-            <param name="selector">
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
-            </param>
-            <returns>
-            A (An) <typeparamref name="TResult"/>[] whose elements are the result of invoking the transform function
-            on each element of the current instance.
-            </returns>
-        </member>
-        <member name="P:Sudoku.Linq.BitStatusMapGroup`3.Key">
-            <summary>
-            The generated property declaration for parameter <c>key</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Linq.BitStatusMapGroup`3.Values">
-            <summary>
-            The generated property declaration for parameter <c>values</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator">
