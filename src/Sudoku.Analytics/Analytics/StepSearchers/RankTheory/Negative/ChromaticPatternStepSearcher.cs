@@ -7,8 +7,6 @@ using Sudoku.Runtime.MaskServices;
 
 namespace Sudoku.Analytics.StepSearchers;
 
-using PatternOffsetTuple = (int[], int[], int[], int[]);
-
 /// <summary>
 /// Provides with a <b>Chromatic Pattern</b> step searcher.
 /// The step searcher will include the following techniques:
@@ -44,7 +42,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// The possible pattern offsets.
 	/// </summary>
-	private static readonly PatternOffsetTuple[] PatternOffsets;
+	private static readonly (int[], int[], int[], int[])[] PatternOffsets;
 
 	/// <summary>
 	/// All possible blocks combinations being reserved for chromatic pattern searcher's usages.
@@ -62,7 +60,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	{
 		var diagonalCases = (int[][])[[0, 10, 20], [1, 11, 18], [2, 9, 19]];
 		var antidiagonalCases = (int[][])[[0, 11, 19], [1, 9, 20], [2, 10, 18]];
-		var patternOffsetsList = new List<PatternOffsetTuple>();
+		var patternOffsetsList = new List<(int[], int[], int[], int[])>();
 		foreach (var (aCase, bCase, cCase, dCase) in stackalloc[]
 		{
 			(true, false, false, false),
