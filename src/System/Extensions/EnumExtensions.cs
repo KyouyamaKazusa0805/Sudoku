@@ -68,10 +68,22 @@ public static unsafe class EnumExtensions
 	/// <exception cref="ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool Flags<T>(this T @this, T other) where T : unmanaged, Enum
-		=> sizeof(T) switch
+	{
+		return @this.GetTypeCode() switch
 		{
-			1 or 2 or 4 when As<T, int>(ref other) is var otherValue => (As<T, int>(ref @this) & otherValue) == otherValue,
-			8 when As<T, long>(ref other) is var otherValue => (As<T, long>(ref @this) & otherValue) == otherValue,
-			_ => throw new ArgumentException("The parameter should be one of the values 1, 2, 4 or 8.", nameof(@this))
+			TypeCode.SByte => (fastConvert<sbyte>(@this) & fastConvert<sbyte>(other)) == fastConvert<sbyte>(other),
+			TypeCode.Byte => (fastConvert<byte>(@this) & fastConvert<byte>(other)) == fastConvert<byte>(other),
+			TypeCode.Int16 => (fastConvert<short>(@this) & fastConvert<short>(other)) == fastConvert<short>(other),
+			TypeCode.UInt16 => (fastConvert<ushort>(@this) & fastConvert<ushort>(other)) == fastConvert<ushort>(other),
+			TypeCode.Int32 => (fastConvert<int>(@this) & fastConvert<int>(other)) == fastConvert<int>(other),
+			TypeCode.UInt32 => (fastConvert<uint>(@this) & fastConvert<uint>(other)) == fastConvert<uint>(other),
+			TypeCode.Int64 => (fastConvert<long>(@this) & fastConvert<long>(other)) == fastConvert<long>(other),
+			TypeCode.UInt64 => (fastConvert<ulong>(@this) & fastConvert<ulong>(other)) == fastConvert<ulong>(other),
+			_ => throw new NotSupportedException("The specified underlying type is not supported.")
 		};
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static TResult fastConvert<TResult>(T value) => As<T, TResult>(ref value);
+	}
 }
