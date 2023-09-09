@@ -46,7 +46,7 @@ internal static class SettingsPageConversion
 	public static string ToArgbRecordLikeString(Color color)
 	{
 		var (a, r, g, b) = color;
-		return $"{nameof(Color.A)} = {a}, {nameof(Color.R)} = {r}, {nameof(Color.G)} = {g}, {nameof(Color.B)} = {b}";
+		return $"{nameof(Color.A)} = {a} {nameof(Color.R)} = {r} {nameof(Color.G)} = {g} {nameof(Color.B)} = {b}";
 	}
 
 	public static CoordinateLabelDisplayMode GetCoordinateLabelDisplayMode(int index) => (CoordinateLabelDisplayMode)index;
