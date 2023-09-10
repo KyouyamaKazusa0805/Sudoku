@@ -6,6 +6,34 @@ namespace Sudoku.Runtime.MaskServices;
 public static class MaskOperations
 {
 	/// <summary>
+	/// Creates for a <see cref="Mask"/> instance via the specified digits.
+	/// </summary>
+	/// <param name="digits">The digits.</param>
+	/// <returns>A <see cref="Mask"/> instance.</returns>
+	public static Mask Create(scoped ReadOnlySpan<Digit> digits)
+	{
+		var result = (Mask)0;
+		foreach (var digit in digits)
+		{
+			result |= (Mask)(1 << digit);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc cref="Create(ReadOnlySpan{Digit})"/>
+	public static Mask Create(HashSet<Digit> digits)
+	{
+		var result = (Mask)0;
+		foreach (var digit in digits)
+		{
+			result |= (Mask)(1 << digit);
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// To get the digits that the current mask represents for. The mask must be between 0 and 512, and exclude 512.
 	/// </summary>
 	/// <param name="digitMask">The digit mask.</param>

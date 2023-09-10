@@ -12,5 +12,5 @@ public readonly ref partial struct MaskCombinationsGenerator(int bitCount, int o
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Enumerator GetEnumerator() => new(bitCount, oneCount);
+	public MaskCombinationEnumerator GetEnumerator() => new(bitCount, oneCount);
 }

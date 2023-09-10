@@ -284,7 +284,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 		{
 			foreach (var digits in otherDigitsMask.GetAllSets().GetSubsets(i))
 			{
-				var currentDigitsMask = MaskCreator.Create(digits);
+				var currentDigitsMask = MaskOperations.Create(digits);
 				for (var j = 0; j < 2; j++)
 				{
 					var count = 0;

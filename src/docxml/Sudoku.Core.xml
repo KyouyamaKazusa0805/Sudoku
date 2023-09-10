@@ -6729,6 +6729,36 @@ if (student is (name: var name, age: >= 18))
             Indicates the fifth ALS recorded.
             </summary>
         </member>
+        <member name="T:Sudoku.Runtime.MaskServices.MaskCombinationEnumerator">
+            <summary>
+            Indicates the enumerator of the current instance.
+            </summary>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationEnumerator.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Indicates the enumerator of the current instance.
+            </summary>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="F:Sudoku.Runtime.MaskServices.MaskCombinationEnumerator._mask">
+            <summary>
+            The mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MaskServices.MaskCombinationEnumerator._isLast">
+            <summary>
+            Indicates whether that the value is the last one.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.MaskServices.MaskCombinationEnumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationEnumerator.MoveNext">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator">
             <summary>
             Represents a combination generator that iterations each combination of bits for the specified number of bits, and how many 1's in it.
@@ -6749,58 +6779,20 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="T:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.Enumerator">
+        <member name="T:Sudoku.Runtime.MaskServices.MaskOperations">
             <summary>
-            Indicates the enumerator of the current instance.
-            </summary>
-            <param name="bitCount">The number of bits.</param>
-            <param name="oneCount">The number of <see langword="true"/> bits.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.Enumerator.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Indicates the enumerator of the current instance.
-            </summary>
-            <param name="bitCount">The number of bits.</param>
-            <param name="oneCount">The number of <see langword="true"/> bits.</param>
-        </member>
-        <member name="F:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.Enumerator._mask">
-            <summary>
-            The mask.
+            Provides with a set of methods that operates with mask defined in basic sudoku concepts, as data structures.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.Enumerator._isLast">
-            <summary>
-            Indicates whether that the value is the last one.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.Enumerator.Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.Enumerator.MoveNext">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Runtime.MaskServices.MaskCreator">
-            <summary>
-            Represents a type that creates for a <see cref="T:System.Int16"/> value.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.MaskServices.MaskCreator.Create(System.ReadOnlySpan{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Runtime.MaskServices.MaskCreator.Create(System.Int32[])"/>
-        </member>
-        <member name="M:Sudoku.Runtime.MaskServices.MaskCreator.Create(System.Int32[])">
+        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.Create(System.ReadOnlySpan{System.Int32})">
             <summary>
             Creates for a <see cref="T:System.Int16"/> instance via the specified digits.
             </summary>
             <param name="digits">The digits.</param>
             <returns>A <see cref="T:System.Int16"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.MaskServices.MaskCreator.Create(System.Collections.Generic.HashSet{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Runtime.MaskServices.MaskCreator.Create(System.Int32[])"/>
-        </member>
-        <member name="T:Sudoku.Runtime.MaskServices.MaskOperations">
-            <summary>
-            Provides with a set of methods that operates with mask defined in basic sudoku concepts, as data structures.
-            </summary>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.Create(System.Collections.Generic.HashSet{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Runtime.MaskServices.MaskOperations.Create(System.ReadOnlySpan{System.Int32})"/>
         </member>
         <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.MaskToDigits(System.Int16)">
             <summary>

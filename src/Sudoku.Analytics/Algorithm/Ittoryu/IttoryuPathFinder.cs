@@ -48,7 +48,7 @@ public sealed class IttoryuPathFinder
 			}
 
 			_foundSequences.Clear();
-			foreach (var digit in MaskCreator.Create(from node in foundNodes select node.Digit))
+			foreach (var digit in MaskOperations.Create(from node in foundNodes select node.Digit))
 			{
 				dfs(
 					grid,
@@ -130,7 +130,7 @@ public sealed class IttoryuPathFinder
 				}
 
 				// Iterate on found path nodes.
-				foreach (var anotherDigit in MaskCreator.Create(from node in tempNodes select node.Digit))
+				foreach (var anotherDigit in MaskOperations.Create(from node in tempNodes select node.Digit))
 				{
 					dfs(
 						grid,

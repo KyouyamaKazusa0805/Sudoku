@@ -476,7 +476,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				candidateOffsets[^1] = new(WellKnownColorIdentifier.Auxiliary1, c2 * 9 + conjugatePairDigit);
 
 				// BUG type 4.
-				var digitsMask = MaskCreator.Create(digits);
+				var digitsMask = MaskOperations.Create(digits);
 				var step = new BivalueUniversalGraveType4Step(
 					[.. conclusions],
 					[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
