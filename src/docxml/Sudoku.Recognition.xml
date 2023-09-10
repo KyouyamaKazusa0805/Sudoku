@@ -50,6 +50,51 @@
             <param name="photo">Indicates the photo to be assigned.</param>
             <seealso cref="T:Sudoku.Recognition.InternalServiceProvider"/>
         </member>
+        <member name="F:Sudoku.Recognition.GridRecognizer.L2Gradient">
+            <summary>
+            Indicates the L2Gradient.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.GridRecognizer.MaxSize">
+            <summary>
+            Indicates the maximum size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.GridRecognizer.RSize">
+            <summary>
+            Indicates the R-size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.GridRecognizer.ThresholdMin">
+            <summary>
+            Indicates the minimum threshold.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.GridRecognizer.ThresholdMax">
+            <summary>
+            Indicates the maximum threshold.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.GridRecognizer.FontSize">
+            <summary>
+            Indicates the font size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.GridRecognizer.FontSizePr">
+            <summary>
+            Indicates the font size pr.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.GridRecognizer.Font">
+            <summary>
+            Indicates the font face.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.GridRecognizer.ChainApproximation">
+            <summary>
+            Indicates the behavior that specifies and executes the chain approximation algorithm.
+            </summary>
+        </member>
         <member name="F:Sudoku.Recognition.GridRecognizer._image">
             <summary>
             The image.
@@ -162,6 +207,16 @@
             During the recognizing, the <b>field</b> indicates the whole outline of a grid.
             </remarks>
         </member>
+        <member name="F:Sudoku.Recognition.InternalServiceProvider.ThOcrMin">
+            <summary>
+            Indicates the ThOcrMin.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.InternalServiceProvider.ThOcrMax">
+            <summary>
+            Indicates the ThOcrMax.
+            </summary>
+        </member>
         <member name="F:Sudoku.Recognition.InternalServiceProvider._ocr">
             <summary>
             The internal <see cref="T:Emgu.CV.OCR.Tesseract"/> instance.
@@ -205,66 +260,6 @@
             <param name="lang">The language. The default value is <c>"eng"</c>.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
             <exception cref="T:System.IO.FileNotFoundException">Throws when the file doesn't found.</exception>
-        </member>
-        <member name="T:Sudoku.Recognition.ProjectWideConstants">
-            <summary>
-            Define the project-wide constants.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.ProjectWideConstants.L2Gradient">
-            <summary>
-            Indicates the L2Gradient.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.ProjectWideConstants.MaxSize">
-            <summary>
-            Indicates the maximum size.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.ProjectWideConstants.RSize">
-            <summary>
-            Indicates the R-size.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.ProjectWideConstants.ThresholdMin">
-            <summary>
-            Indicates the minimum threshold.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.ProjectWideConstants.ThresholdMax">
-            <summary>
-            Indicates the maximum threshold.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.ProjectWideConstants.FontSize">
-            <summary>
-            Indicates the font size.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.ProjectWideConstants.FontSizePr">
-            <summary>
-            Indicates the font size pr.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.ProjectWideConstants.ThOcrMin">
-            <summary>
-            Indicates the ThOcrMin.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.ProjectWideConstants.ThOcrMax">
-            <summary>
-            Indicates the ThOcrMax.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.ProjectWideConstants.Font">
-            <summary>
-            Indicates the font face.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.ProjectWideConstants.ChainApproximation">
-            <summary>
-            Indicates the behavior that specifies and executes the chain approximation algorithm.
-            </summary>
         </member>
         <member name="T:Sudoku.Recognition.RecognitionServiceProvider">
             <summary>

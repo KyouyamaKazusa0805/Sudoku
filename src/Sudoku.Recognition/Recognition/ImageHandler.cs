@@ -45,7 +45,7 @@ public static class ImageHandler
 		// Check angles between common sides.
 		for (var j = 0; j < 4; j++)
 		{
-			var angle = Abs(sides[(j + 1) % sides.Length].GetExteriorAngleDegree(sides[j]));
+			var angle = Math.Abs(sides[(j + 1) % sides.Length].GetExteriorAngleDegree(sides[j]));
 			if (angle < lowerAngle || angle > upperAngle)
 			{
 				return false;
@@ -126,7 +126,7 @@ public static class ImageHandler
 				var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
 				using var mat = new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0);
-				Cv.MixChannels(mat, image, [0, 0, 1, 1, 2, 2]);
+				CvInvoke.MixChannels(mat, image, [0, 0, 1, 1, 2, 2]);
 
 				bitmap.UnlockBits(data);
 
@@ -166,11 +166,11 @@ public static class ImageHandler
 				using var mv = new VectorOfMat([b, g, r, a]);
 				try
 				{
-					Cv.LUT(indexValue, bTable, b);
-					Cv.LUT(indexValue, gTable, g);
-					Cv.LUT(indexValue, rTable, r);
-					Cv.LUT(indexValue, aTable, a);
-					Cv.Merge(mv, image);
+					CvInvoke.LUT(indexValue, bTable, b);
+					CvInvoke.LUT(indexValue, gTable, g);
+					CvInvoke.LUT(indexValue, rTable, r);
+					CvInvoke.LUT(indexValue, aTable, a);
+					CvInvoke.Merge(mv, image);
 
 					bitmap.UnlockBits(data);
 				}
@@ -181,30 +181,25 @@ public static class ImageHandler
 					rTable?.Dispose();
 					aTable?.Dispose();
 				}
-
 				break;
 			}
 			case PixelFormat.Format8bppIndexed:
 			{
 				using var tmp = bitmap.ToImage<Bgra, byte>();
 				image.ConvertFrom(tmp);
-
 				break;
 			}
 			case PixelFormat.Format24bppRgb when colorIs<Bgr>() && depthIs<byte>():
 			{
 				image.CopyFromBitmap(bitmap);
-
 				break;
 			}
 			case PixelFormat.Format24bppRgb:
 			{
 				var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
-
-				using var tmp = new Field(size.Width, size.Height, data.Stride, data.Scan0);
+				using var tmp = new Image<Bgr, byte>(size.Width, size.Height, data.Stride, data.Scan0);
 				image.ConvertFrom(tmp);
 				bitmap.UnlockBits(data);
-
 				break;
 			}
 			case PixelFormat.Format1bppIndexed when colorIs<Gray>() && depthIs<byte>():
@@ -212,22 +207,17 @@ public static class ImageHandler
 				var rows = size.Height;
 				var cols = size.Width;
 				var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
-
 				var fullByteCount = cols >> 3;
 				var partialBitCount = cols & 7;
-
 				const int mask = 1 << 7;
-
 				var srcAddress = data.Scan0.ToInt64();
 				var imageData = (image.Data as byte[,,])!;
-
 				var row = new byte[fullByteCount + (partialBitCount == 0 ? 0 : 1)];
 
 				var v = 0;
 				for (var i = 0; i < rows; i++, srcAddress += data.Stride)
 				{
 					Marshal.Copy((nint)srcAddress, row, 0, row.Length);
-
 					for (var j = 0; j < cols; j++, v <<= 1)
 					{
 						if ((j & 7) == 0)
@@ -239,14 +229,12 @@ public static class ImageHandler
 						imageData[i, j, 0] = (v & mask) == 0 ? byte.MinValue : byte.MaxValue;
 					}
 				}
-
 				break;
 			}
 			case PixelFormat.Format1bppIndexed:
 			{
 				using var tmp = bitmap.ToImage<Gray, byte>();
 				image.ConvertFrom(tmp);
-
 				break;
 			}
 			default:
@@ -264,7 +252,6 @@ public static class ImageHandler
 						data[j, i, 3] = color.A;
 					}
 				}
-
 				image.ConvertFrom(temp);
 				break;
 			}
@@ -323,7 +310,7 @@ public static class ImageHandler
 	{
 		var data = bmp.LockBits(new(Point.Empty, bmp.Size), ImageLockMode.ReadOnly, bmp.PixelFormat);
 		using var mat = new Matrix<TDepth>(bmp.Height, bmp.Width, image.NumberOfChannels, data.Scan0, data.Stride);
-		Cv.cvCopy(mat.Ptr, image.Ptr, (nint)0);
+		CvInvoke.cvCopy(mat.Ptr, image.Ptr, (nint)0);
 		bmp.UnlockBits(data);
 	}
 }

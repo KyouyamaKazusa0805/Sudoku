@@ -1,6 +1,7 @@
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.OCR;
+using Emgu.CV.Structure;
 
 namespace Sudoku.Recognition;
 
@@ -12,6 +13,17 @@ namespace Sudoku.Recognition;
 /// </remarks>
 internal sealed class InternalServiceProvider : IDisposable
 {
+	/// <summary>
+	/// Indicates the ThOcrMin.
+	/// </summary>
+	private const int ThOcrMin = 120;
+
+	/// <summary>
+	/// Indicates the ThOcrMax.
+	/// </summary>
+	private const int ThOcrMax = 255;
+
+
 	/// <summary>
 	/// The internal <see cref="Tesseract"/> instance.
 	/// </summary>
@@ -35,7 +47,7 @@ internal sealed class InternalServiceProvider : IDisposable
 	/// <exception cref="FailedToFillValueException">
 	/// Throws when the processing is wrong or un-handle-able.
 	/// </exception>
-	public Grid RecognizeDigits(Field field)
+	public Grid RecognizeDigits(Image<Bgr, byte> field)
 	{
 		var result = Grid.Empty;
 		var w = field.Width / 9;
@@ -74,16 +86,16 @@ internal sealed class InternalServiceProvider : IDisposable
 	/// </returns>
 	/// <exception cref="ArgumentNullException">Throws when the inner tool isn't been initialized.</exception>
 	/// <exception cref="TesseractException">Throws when the OCR engine error.</exception>
-	private Digit RecognizeCellNumber(Field cellImg)
+	private Digit RecognizeCellNumber(Image<Bgr, byte> cellImg)
 	{
 		ArgumentNullException.ThrowIfNull(_ocr);
 
 		// Convert the image to gray-scale and filter out the noisy points.
 		var imgGray = new Mat();
-		Cv.CvtColor(cellImg, imgGray, ColorConversion.Bgr2Gray);
+		CvInvoke.CvtColor(cellImg, imgGray, ColorConversion.Bgr2Gray);
 
 		var imgThresholds = new Mat();
-		Cv.Threshold(imgGray, imgThresholds, ThOcrMin, ThOcrMax, ThresholdType.Binary);
+		CvInvoke.Threshold(imgGray, imgThresholds, ThOcrMin, ThOcrMax, ThresholdType.Binary);
 
 		_ocr.SetImage(imgThresholds);
 		if (_ocr.Recognize() != 0)

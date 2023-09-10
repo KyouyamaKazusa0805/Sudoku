@@ -15,9 +15,55 @@ namespace Sudoku.Recognition;
 internal sealed class GridRecognizer(Bitmap photo) : IDisposable
 {
 	/// <summary>
+	/// Indicates the L2Gradient.
+	/// </summary>
+	private const bool L2Gradient = true;
+
+	/// <summary>
+	/// Indicates the maximum size.
+	/// </summary>
+	private const int MaxSize = 2000;
+
+	/// <summary>
+	/// Indicates the R-size.
+	/// </summary>
+	private const int RSize = 360;
+
+	/// <summary>
+	/// Indicates the minimum threshold.
+	/// </summary>
+	private const int ThresholdMin = 50;
+
+	/// <summary>
+	/// Indicates the maximum threshold.
+	/// </summary>
+	private const int ThresholdMax = 100;
+
+	/// <summary>
+	/// Indicates the font size.
+	/// </summary>
+	private const int FontSize = 3;
+
+	/// <summary>
+	/// Indicates the font size pr.
+	/// </summary>
+	private const int FontSizePr = 1;
+
+	/// <summary>
+	/// Indicates the font face.
+	/// </summary>
+	private const FontFace Font = FontFace.HersheyPlain;
+
+	/// <summary>
+	/// Indicates the behavior that specifies and executes the chain approximation algorithm.
+	/// </summary>
+	private const ChainApproxMethod ChainApproximation = ChainApproxMethod.ChainApproxNone;
+
+
+	/// <summary>
 	/// The image.
 	/// </summary>
-	private Field _image = photo.CorrectOrientation().ToImage<Bgr, byte>();
+	private Image<Bgr, byte> _image = photo.CorrectOrientation().ToImage<Bgr, byte>();
 
 
 	/// <inheritdoc/>
@@ -27,7 +73,7 @@ internal sealed class GridRecognizer(Bitmap photo) : IDisposable
 	/// Recognize.
 	/// </summary>
 	/// <returns>The result.</returns>
-	public Field Recognize()
+	public Image<Bgr, byte> Recognize()
 	{
 		using var edges = PrepareImage();
 		return CutField(FindField(edges));
@@ -45,7 +91,7 @@ internal sealed class GridRecognizer(Bitmap photo) : IDisposable
 		using var contours = new VectorOfVectorOfPoint();
 
 		// Finding contours and choosing needed.
-		Cv.FindContours(edges, contours, null, RetrType.List, ChainApproximation);
+		CvInvoke.FindContours(edges, contours, null, RetrType.List, ChainApproximation);
 
 		for (var i = 0; i < contours.Size; i++)
 		{
@@ -57,9 +103,8 @@ internal sealed class GridRecognizer(Bitmap photo) : IDisposable
 			var shape = GetFourCornerPoints(contours[i].ToArray());
 			if (shape.IsRectangle())
 			{
-				_ = Cv.MinAreaRect(shape) is { Size: var (width, height) };
+				var (width, height) = CvInvoke.MinAreaRect(shape).Size;
 				var area = width * height;
-
 				if (area > maxRectArea)
 				{
 					maxRectArea = area;
@@ -135,16 +180,16 @@ internal sealed class GridRecognizer(Bitmap photo) : IDisposable
 
 		// Convert the image to gray-scale and filter out the noise.
 		using var uImage = new UMat();
-		Cv.CvtColor(_image, uImage, ColorConversion.Bgr2Gray);
+		CvInvoke.CvtColor(_image, uImage, ColorConversion.Bgr2Gray);
 
 		// Use image pyramid to remove noise.
 		using var pyrDown = new UMat();
-		Cv.PyrDown(uImage, pyrDown);
-		Cv.PyrUp(pyrDown, uImage);
+		CvInvoke.PyrDown(uImage, pyrDown);
+		CvInvoke.PyrUp(pyrDown, uImage);
 
 		var cannyEdges = new UMat();
 
-		Cv.Canny(uImage, cannyEdges, ThresholdMin, ThresholdMax, l2Gradient: L2Gradient);
+		CvInvoke.Canny(uImage, cannyEdges, ThresholdMin, ThresholdMax, l2Gradient: L2Gradient);
 
 		return cannyEdges;
 	}
@@ -154,16 +199,16 @@ internal sealed class GridRecognizer(Bitmap photo) : IDisposable
 	/// </summary>
 	/// <param name="field">The field.</param>
 	/// <returns>The image.</returns>
-	private Field CutField(PointF[] field)
+	private Image<Bgr, byte> CutField(PointF[] field)
 	{
 		// Size for output image, recommendation: multiples of 9 and 6.
-		var resultField = new Field(RSize, RSize);
+		var resultField = new Image<Bgr, byte>(RSize, RSize);
 
 		// Transformation sudoku field to rectangle size and aligning the sides.
-		Cv.WarpPerspective(
+		CvInvoke.WarpPerspective(
 			_image,
 			resultField,
-			Cv.GetPerspectiveTransform(field, [new(0, 0), new(RSize, 0), new(0, RSize), new(RSize, RSize)]),
+			CvInvoke.GetPerspectiveTransform(field, [new(0, 0), new(RSize, 0), new(0, RSize), new(RSize, RSize)]),
 			new(RSize, RSize)
 		);
 
