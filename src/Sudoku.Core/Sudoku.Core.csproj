@@ -5,7 +5,6 @@
 		<RootNamespace>Sudoku</RootNamespace>
 		<Description>Provides all core implementations of sudokus, such as a grid.</Description>
 		<DocumentationFile>..\docxml\Sudoku.Core.xml</DocumentationFile>
-		<DefineConstants>SIMD</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
