@@ -41,7 +41,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : AlmostLockedSet
 				var (map2, mask2) = (als2.Cells, als2.DigitsMask);
 
 				var map = map1 | map2;
-				if (map.InOneHouse || !!(map1 && map2))
+				if (map.InOneHouse(out _) || !!(map1 && map2))
 				{
 					continue;
 				}
@@ -51,7 +51,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : AlmostLockedSet
 					var rccMask = (Mask)0;
 					foreach (var digit in mask)
 					{
-						if ((map & CandidatesMap[digit]).InOneHouse)
+						if ((map & CandidatesMap[digit]).InOneHouse(out _))
 						{
 							rccMask |= (Mask)(1 << digit);
 						}

@@ -303,7 +303,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 
 				// XZ rule found.
 				var conclusions = new List<Conclusion>();
-				var condition = (CellsMap[c1] + extraCell).InOneHouse;
+				var condition = (CellsMap[c1] + extraCell).InOneHouse(out _);
 				var anotherCell = condition ? c2 : c1;
 				var anotherDigit = condition ? d1 : d2;
 				foreach (var peer in (CellsMap[extraCell] + anotherCell).PeerIntersection)

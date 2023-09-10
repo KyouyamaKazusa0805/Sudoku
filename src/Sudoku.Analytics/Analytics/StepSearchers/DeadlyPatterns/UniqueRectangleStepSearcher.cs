@@ -536,7 +536,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			return;
 		}
 
-		var isType5 = !(CellsMap[corner1] + corner2).InOneHouse;
+		var isType5 = !(CellsMap[corner1] + corner2).InOneHouse(out _);
 		accumulator.Add(
 			new UniqueRectangleType2Step(
 				[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
@@ -2905,7 +2905,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			foreach (var endCell2 in (PeersMap[otherCellsMap[1]] & BivalueCells & CandidatesMap[otherDigit2]) - endCell1)
 			{
 				// Check whether two cells are same, or in a same house. If so, the pattern will be degenerated to a normal type 3.
-				if ((CellsMap[endCell1] + endCell2).InOneHouse)
+				if ((CellsMap[endCell1] + endCell2).InOneHouse(out _))
 				{
 					continue;
 				}
@@ -4911,7 +4911,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					}
 
 					var xDigitMap = (alsMap | xDigitGuardianCells) & CandidatesMap[xDigit];
-					if (!xDigitMap.InOneHouse)
+					if (!xDigitMap.InOneHouse(out _))
 					{
 						// The X digit must be connected.
 						continue;

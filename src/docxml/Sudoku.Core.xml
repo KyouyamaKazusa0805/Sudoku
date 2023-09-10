@@ -1864,13 +1864,6 @@ if (student is (name: var name, age: >= 18))
             <param name="segments">The cell offsets, represented as a RxCy notation.</param>
             <seealso cref="F:Sudoku.Text.Notation.CellNotation.Kind.RxCy"/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.InOneHouse">
-            <summary>
-            Same as the method <see cref="M:Sudoku.Concepts.CellMap.AllInOneHouse(System.Int32@)"/>, but this property doesn't contain
-            the <see langword="out"/> argument, as the optimization.
-            </summary>
-            <seealso cref="M:Sudoku.Concepts.CellMap.AllInOneHouse(System.Int32@)"/>
-        </member>
         <member name="P:Sudoku.Concepts.CellMap.IsInIntersection">
             <summary>
             Determines whether the current list of cells are all lie in an intersection area,
@@ -1984,7 +1977,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.ForEach(System.Action{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.AllInOneHouse(System.Int32@)">
+        <member name="M:Sudoku.Concepts.CellMap.InOneHouse(System.Int32@)">
             <summary>
             Indicates whether all cells in this instance are in one house.
             </summary>
@@ -1993,11 +1986,6 @@ if (student is (name: var name, age: >= 18))
             If the return value is <see langword="false"/>, this value will be the constant -1.
             </param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <remarks>
-            If you don't want to use the <see langword="out"/> parameter value, please
-            use the property <see cref="P:Sudoku.Concepts.CellMap.InOneHouse"/> to improve the performance.
-            </remarks>
-            <seealso cref="P:Sudoku.Concepts.CellMap.InOneHouse"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Contains(System.Int32)">
             <inheritdoc/>

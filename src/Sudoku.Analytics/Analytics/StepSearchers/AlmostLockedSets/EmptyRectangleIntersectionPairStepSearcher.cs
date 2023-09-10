@@ -37,7 +37,7 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 				}
 
 				// Check the two cells are not in same house index.
-				if ((CellsMap[c1] + c2).InOneHouse)
+				if ((CellsMap[c1] + c2).InOneHouse(out _))
 				{
 					continue;
 				}

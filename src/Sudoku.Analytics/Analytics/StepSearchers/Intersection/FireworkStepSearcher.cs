@@ -70,19 +70,19 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					{
 						foreach (var c in HousesMap[triple[2]])
 						{
-							if ((CellsMap[a] + b).InOneHouse && (CellsMap[a] + c).InOneHouse)
+							if ((CellsMap[a] + b).InOneHouse(out _) && (CellsMap[a] + c).InOneHouse(out _))
 							{
 								Patterns[i++] = new([a, b, c], a);
 								continue;
 							}
 
-							if ((CellsMap[a] + b).InOneHouse && (CellsMap[b] + c).InOneHouse)
+							if ((CellsMap[a] + b).InOneHouse(out _) && (CellsMap[b] + c).InOneHouse(out _))
 							{
 								Patterns[i++] = new([a, b, c], b);
 								continue;
 							}
 
-							if ((CellsMap[a] + c).InOneHouse && (CellsMap[b] + c).InOneHouse)
+							if ((CellsMap[a] + c).InOneHouse(out _) && (CellsMap[b] + c).InOneHouse(out _))
 							{
 								Patterns[i++] = new([a, b, c], c);
 							}
@@ -100,8 +100,8 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					{
 						foreach (var d in HousesMap[houseQuad[3]])
 						{
-							if (!(CellsMap[a] + b).InOneHouse || !(CellsMap[a] + c).InOneHouse
-								|| !(CellsMap[b] + d).InOneHouse || !(CellsMap[c] + d).InOneHouse)
+							if (!(CellsMap[a] + b).InOneHouse(out _) || !(CellsMap[a] + c).InOneHouse(out _)
+								|| !(CellsMap[b] + d).InOneHouse(out _) || !(CellsMap[c] + d).InOneHouse(out _))
 							{
 								continue;
 							}

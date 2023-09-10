@@ -240,7 +240,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			{
 				tempMap |= CandidatesMap[digit];
 			}
-			if (tempMap.InOneHouse)
+			if (tempMap.InOneHouse(out _))
 			{
 				continue;
 			}
@@ -334,7 +334,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			{
 				tempMap |= CandidatesMap[digit];
 			}
-			if (tempMap.InOneHouse)
+			if (tempMap.InOneHouse(out _))
 			{
 				continue;
 			}

@@ -200,7 +200,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 					{
 						var newExtraDigitsMask = (Mask)(extraDigitsMask | (Mask)(grid.GetCandidates(cell) & ~comparer));
 						var newExtraCells = PopCount((uint)grid.GetCandidates(cell)) > 2 ? extraCells + cell : extraCells;
-						if (newExtraCells.InOneHouse
+						if (newExtraCells.InOneHouse(out _)
 							|| IsPow2(newExtraDigitsMask) && !!(newExtraCells.PeerIntersection & CandidatesMap[Log2((uint)newExtraDigitsMask)])
 							|| newExtraCells.Count < 3)
 						{
@@ -304,7 +304,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			}
 		}
 
-		if (!extraCellsMap.InOneHouse || notSatisfiedType3)
+		if (!extraCellsMap.InOneHouse(out _) || notSatisfiedType3)
 		{
 			goto ReturnNull;
 		}

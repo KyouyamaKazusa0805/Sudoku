@@ -79,20 +79,16 @@ public sealed partial class WWingStepSearcher : StepSearcher
 						var bridge = CandidatesMap[digit] & HousesMap[house];
 						var isPassed = bridge switch
 						{
-							[var a, var b] => (CellsMap[c1] + a, CellsMap[c2] + b, CellsMap[c1] + b, CellsMap[c2] + a) switch
-							{
-								({ InOneHouse: true }, { InOneHouse: true }, _, _) => true,
-								(_, _, { InOneHouse: true }, { InOneHouse: true }) => true,
-								_ => false
-							},
-							{ Count: > 2 and <= 6, BlockMask: var blocks } => PopCount((uint)blocks) switch
-							{
-								1 => ((PeersMap[c1] | PeersMap[c2]) & bridge) == bridge,
-								2 => TrailingZeroCount(blocks) switch
+							[var a, var b]
+								when (CellsMap[c1] + a).InOneHouse(out _) && (CellsMap[c2] + b).InOneHouse(out _)
+								|| (CellsMap[c1] + b).InOneHouse(out _) && (CellsMap[c2] + a).InOneHouse(out _)
+								=> true,
+							{ Count: > 2 and <= 6, BlockMask: var blocks }
+								=> PopCount((uint)blocks) switch
 								{
-									var block1 => blocks.GetNextSet(block1) switch
-									{
-										var block2 => (HousesMap[block1] & bridge, HousesMap[block2] & bridge) switch
+									1 => ((PeersMap[c1] | PeersMap[c2]) & bridge) == bridge,
+									2 when TrailingZeroCount(blocks) is var block1 && blocks.GetNextSet(block1) is var block2
+										=> (HousesMap[block1] & bridge, HousesMap[block2] & bridge) switch
 										{
 											var (bridgeInBlock1, bridgeInBlock2) => (
 												(PeersMap[c1] & bridgeInBlock1) == bridgeInBlock1,
@@ -105,11 +101,9 @@ public sealed partial class WWingStepSearcher : StepSearcher
 												(_, _, true, true) => true,
 												_ => false
 											}
-										}
-									}
+										},
+									_ => false
 								},
-								_ => false
-							},
 							_ => false
 						};
 						if (!isPassed)

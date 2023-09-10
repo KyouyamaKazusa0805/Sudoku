@@ -282,7 +282,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		}
 
 		var otherDigitsMask = (Mask)(m & ~comparer);
-		if (extraCellsMap.InOneHouse)
+		if (extraCellsMap.InOneHouse(out _))
 		{
 			if (extraCellsMap.Count != 2)
 			{
@@ -474,7 +474,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		Cell[] path
 	)
 	{
-		if (extraCellsMap is not { InOneHouse: true, Count: 2 })
+		if (extraCellsMap.Count != 2 || !extraCellsMap.InOneHouse(out _))
 		{
 			return null;
 		}

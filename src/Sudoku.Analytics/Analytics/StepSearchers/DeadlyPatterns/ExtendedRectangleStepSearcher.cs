@@ -239,7 +239,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					}
 				}
 
-				if (!extraCellsMap.InOneHouse)
+				if (!extraCellsMap.InOneHouse(out _))
 				{
 					continue;
 				}

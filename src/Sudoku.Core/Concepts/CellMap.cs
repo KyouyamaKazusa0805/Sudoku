@@ -93,50 +93,6 @@ public partial struct CellMap :
 
 
 	/// <summary>
-	/// Same as the method <see cref="AllInOneHouse(out House)"/>, but this property doesn't contain
-	/// the <see langword="out"/> argument, as the optimization.
-	/// </summary>
-	/// <seealso cref="AllInOneHouse(out House)"/>
-	public readonly bool InOneHouse
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-#pragma warning disable format
-			if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) { return true; }
-			if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0) { return true; }
-			if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0) { return true; }
-			if ((_high & ~        0x70L) == 0 && (_low & ~ 0x7038000000L) == 0) { return true; }
-			if ((_high & ~       0x381L) == 0 && (_low & ~0x181C0000000L) == 0) { return true; }
-			if ((_high & ~      0x1C0EL) == 0 && (_low & ~  0xE00000000L) == 0) { return true; }
-			if ((_high & ~ 0x381C0E000L) == 0 && (_low &             -1L) == 0) { return true; }
-			if ((_high & ~0x1C0E070000L) == 0 && (_low &             -1L) == 0) { return true; }
-			if ((_high & ~0xE070380000L) == 0 && (_low &             -1L) == 0) { return true; }
-			if ((_high &            -1L) == 0 && (_low & ~        0x1FFL) == 0) { return true; }
-			if ((_high &            -1L) == 0 && (_low & ~      0x3FE00L) == 0) { return true; }
-			if ((_high &            -1L) == 0 && (_low & ~    0x7FC0000L) == 0) { return true; }
-			if ((_high &            -1L) == 0 && (_low & ~  0xFF8000000L) == 0) { return true; }
-			if ((_high & ~         0xFL) == 0 && (_low & ~0x1F000000000L) == 0) { return true; }
-			if ((_high & ~      0x1FF0L) == 0 && (_low &             -1L) == 0) { return true; }
-			if ((_high & ~    0x3FE000L) == 0 && (_low &             -1L) == 0) { return true; }
-			if ((_high & ~  0x7FC00000L) == 0 && (_low &             -1L) == 0) { return true; }
-			if ((_high & ~0xFF80000000L) == 0 && (_low &             -1L) == 0) { return true; }
-			if ((_high & ~  0x80402010L) == 0 && (_low & ~ 0x1008040201L) == 0) { return true; }
-			if ((_high & ~ 0x100804020L) == 0 && (_low & ~ 0x2010080402L) == 0) { return true; }
-			if ((_high & ~ 0x201008040L) == 0 && (_low & ~ 0x4020100804L) == 0) { return true; }
-			if ((_high & ~ 0x402010080L) == 0 && (_low & ~ 0x8040201008L) == 0) { return true; }
-			if ((_high & ~ 0x804020100L) == 0 && (_low & ~0x10080402010L) == 0) { return true; }
-			if ((_high & ~0x1008040201L) == 0 && (_low & ~  0x100804020L) == 0) { return true; }
-			if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0) { return true; }
-			if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0) { return true; }
-			if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0) { return true; }
-#pragma warning restore format
-
-			return false;
-		}
-	}
-
-	/// <summary>
 	/// Determines whether the current list of cells are all lie in an intersection area,
 	/// i.e. a locked candidates.
 	/// </summary>
@@ -521,12 +477,7 @@ public partial struct CellMap :
 	/// If the return value is <see langword="false"/>, this value will be the constant -1.
 	/// </param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	/// <remarks>
-	/// If you don't want to use the <see langword="out"/> parameter value, please
-	/// use the property <see cref="InOneHouse"/> to improve the performance.
-	/// </remarks>
-	/// <seealso cref="InOneHouse"/>
-	public readonly bool AllInOneHouse(out House houseIndex)
+	public readonly bool InOneHouse(out House houseIndex)
 	{
 #pragma warning disable format
 		if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) { houseIndex =  0; return true; }

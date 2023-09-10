@@ -78,7 +78,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : AlmostLockedSetsSte
 
 				// If the number of digits that both two ALSes contain is only one (or zero),
 				// the ALS-XZ won't be formed.
-				if (PopCount((uint)xzMask) < 2 || map.AllInOneHouse(out var houseIndex))
+				if (PopCount((uint)xzMask) < 2 || map.InOneHouse(out var houseIndex))
 				{
 					continue;
 				}
@@ -88,7 +88,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : AlmostLockedSetsSte
 				var nh = 0;
 				foreach (var digit in xzMask)
 				{
-					if ((map & CandidatesMap[digit]).AllInOneHouse(out houseIndex))
+					if ((map & CandidatesMap[digit]).InOneHouse(out houseIndex))
 					{
 						// 'digit' is the RCC digit.
 						rccMask |= (Mask)(1 << digit);

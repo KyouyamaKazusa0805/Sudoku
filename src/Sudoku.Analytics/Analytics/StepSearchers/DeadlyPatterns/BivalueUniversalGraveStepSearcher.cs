@@ -285,7 +285,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	{
 		// Check whether all true candidates lie in a same house.
 		var map = (CellMap)(from c in trueCandidates group c by c / 9 into z select z.Key);
-		if (!map.InOneHouse)
+		if (!map.InOneHouse(out _))
 		{
 			return null;
 		}
@@ -569,7 +569,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 			// BUG-XZ found.
 			var conclusions = new List<Conclusion>();
-			var condition = (CellsMap[c1] + cell).InOneHouse;
+			var condition = (CellsMap[c1] + cell).InOneHouse(out _);
 			var anotherCell = condition ? c2 : c1;
 			var anotherDigit = condition ? d2 : d1;
 			foreach (var peer in (CellsMap[cell] + anotherCell).PeerIntersection)

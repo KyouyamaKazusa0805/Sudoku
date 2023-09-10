@@ -47,7 +47,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : AlmostLockedSets
 					continue;
 				}
 
-				if ((map1 | map2).InOneHouse)
+				if ((map1 | map2).InOneHouse(out _))
 				{
 					continue;
 				}

@@ -57,7 +57,7 @@ public abstract class SubsetStepSearcher(
 					foreach (var digit in digitsMask)
 					{
 						var map = cells % CandidatesMap[digit];
-						lockedDigitsMask |= (Mask)(map.InOneHouse ? 0 : 1 << digit);
+						lockedDigitsMask |= (Mask)(map.InOneHouse(out _) ? 0 : 1 << digit);
 
 						conclusions.AddRange(from cell in map select new Conclusion(Elimination, cell, digit));
 					}
