@@ -308,7 +308,6 @@ public static class ArrayEnumerable
 	/// </code>
 	/// 24 cases.
 	/// </returns>
-	[SkipLocalsInit]
 	public static unsafe T[][] GetExtractedCombinations<T>(this T[][] @this)
 	{
 		var length = @this.Length;
