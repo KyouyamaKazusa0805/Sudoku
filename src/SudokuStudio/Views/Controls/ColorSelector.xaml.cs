@@ -40,7 +40,7 @@ public sealed partial class ColorSelector : UserControl
 		}
 
 		SplitButton.Flyout.Hide();
-		
+
 		ColorChanged?.Invoke(this, SelectedColor = color);
 	}
 

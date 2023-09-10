@@ -48,7 +48,7 @@ internal static class PencilmarkTextConversion
 
 		var solutionHasThatCandidate = !solution.IsUndefined && solution.GetDigit(cell) == digit;
 		var candidatesContainThatDigit = (candidatesMask >> digit & 1) != 0;
-		
+
 		// If the candidate has been already deleted, just display it in a wrong color or normal color if not enabled "Display Delta Digits".
 		if (solutionHasThatCandidate && !candidatesContainThatDigit)
 		{

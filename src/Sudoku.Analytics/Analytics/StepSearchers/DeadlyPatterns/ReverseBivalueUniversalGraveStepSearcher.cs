@@ -107,7 +107,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				var d2Counter = d2Map.Count;
 				switch (i)
 				{
-					case 0 when (d1Counter, d2Counter) is (>= 7, _) or (_, >= 7):
+					case 0 when (d1Counter, d2Counter) is ( >= 7, _) or (_, >= 7):
 					{
 						continue;
 					}

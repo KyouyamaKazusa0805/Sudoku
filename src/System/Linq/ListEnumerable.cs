@@ -47,5 +47,5 @@ public static class ListEnumerable
 		}
 
 		return result;
-	}	
+	}
 }

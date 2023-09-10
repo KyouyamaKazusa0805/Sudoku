@@ -1,8 +1,6 @@
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
-using Sudoku.Rendering;
-using Sudoku.Rendering.Nodes;
 
 namespace Sudoku.Analytics.StepSearchers;
 

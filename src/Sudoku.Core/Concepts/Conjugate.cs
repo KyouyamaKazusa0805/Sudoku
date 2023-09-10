@@ -1,5 +1,5 @@
-using Sudoku.Concepts.Primitive;
 using System.SourceGeneration;
+using Sudoku.Concepts.Primitive;
 
 namespace Sudoku.Concepts;
 
