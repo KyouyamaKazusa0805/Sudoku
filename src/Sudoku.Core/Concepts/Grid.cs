@@ -1,19 +1,19 @@
 #define TARGET_64BIT
-using Sudoku.Concepts.Primitive;
-using System.SourceGeneration;
 using System.ComponentModel;
 using System.Runtime.Intrinsics;
-using Sudoku.Text.Formatting;
-using Sudoku.Analytics;
+using System.SourceGeneration;
 using Sudoku.Algorithm.Solving;
-using Sudoku.Runtime.MaskServices;
+using Sudoku.Analytics;
+using Sudoku.Concepts.Primitive;
 using Sudoku.Rendering;
+using Sudoku.Runtime.MaskServices;
+using Sudoku.Text.Formatting;
 
 namespace Sudoku.Concepts;
 
+using unsafe CandidatesRefreshingCallbackFunc = delegate*<ref Grid, void>;
 using GridImpl = IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>;
 using unsafe ValueChangedCallbackFunc = delegate*<ref Grid, Cell, Mask, Mask, Digit, void>;
-using unsafe CandidatesRefreshingCallbackFunc = delegate*<ref Grid, void>;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
