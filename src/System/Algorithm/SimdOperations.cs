@@ -1,3 +1,4 @@
+#if SIMD
 using System.Runtime.Intrinsics;
 
 namespace System.Algorithm;
@@ -364,3 +365,4 @@ file static class Constants
 		[1, 2, 3, 4, 5, 6, 7, 8]
 	];
 }
+#endif
