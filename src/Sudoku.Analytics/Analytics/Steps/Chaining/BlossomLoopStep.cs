@@ -5,6 +5,7 @@ using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using Sudoku.Text;
 using Sudoku.Text.Notation;
+using static System.Math;
 
 namespace Sudoku.Analytics.Steps;
 

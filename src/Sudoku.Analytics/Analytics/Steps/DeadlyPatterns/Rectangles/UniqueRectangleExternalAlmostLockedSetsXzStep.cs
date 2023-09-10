@@ -1,3 +1,4 @@
+using System.Algorithm;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Rating;
@@ -44,7 +45,7 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
 		=> [
-			new(ExtraDifficultyCaseNames.Guardian, A004526(GuardianCells.Count) * .1M),
+			new(ExtraDifficultyCaseNames.Guardian, Sequences.A004526(GuardianCells.Count) * .1M),
 			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
 			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
 		];

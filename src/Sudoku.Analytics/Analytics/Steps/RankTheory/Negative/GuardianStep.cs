@@ -1,3 +1,4 @@
+using System.Algorithm;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Rating;
@@ -30,7 +31,7 @@ public sealed partial class GuardianStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> [new(ExtraDifficultyCaseNames.Size, A004526(LoopCells.Count + A004526(Guardians.Count)) * .1M)];
+		=> [new(ExtraDifficultyCaseNames.Size, Sequences.A004526(LoopCells.Count + Sequences.A004526(Guardians.Count)) * .1M)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

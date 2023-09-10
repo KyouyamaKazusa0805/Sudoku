@@ -1,3 +1,5 @@
+using static System.Math;
+
 namespace Sudoku.Concepts;
 
 /// <summary>
@@ -211,6 +213,7 @@ public static unsafe class GridTransformations
 	/// This method will return the reference that is same as the argument,
 	/// in order to inline multiple transformation operations.
 	/// </remarks>
+	/// <seealso cref="PI"/>
 	public static ref Grid RotatePi(this ref Grid @this)
 	{
 		var result = Grid.Undefined;

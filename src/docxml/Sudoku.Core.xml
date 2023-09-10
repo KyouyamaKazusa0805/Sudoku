@@ -3652,6 +3652,7 @@ if (student is (name: var name, age: >= 18))
             This method will return the reference that is same as the argument,
             in order to inline multiple transformation operations.
             </remarks>
+            <seealso cref="F:System.Math.PI"/>
         </member>
         <member name="M:Sudoku.Concepts.GridTransformations.SwapTwoHouses(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
             <summary>

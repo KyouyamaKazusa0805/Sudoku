@@ -1,3 +1,4 @@
+using System.Algorithm;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Rating;
@@ -41,7 +42,8 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	public sealed override Technique Code => Technique.ReverseBivalueUniversalGraveType1 + (short)(Type - 1);
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Length, A002024(CompletePattern.Count) * .1M)];
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> [new(ExtraDifficultyCaseNames.Length, Sequences.A002024(CompletePattern.Count) * .1M)];
 
 	/// <summary>
 	/// Indicates the last cells used that are not empty.

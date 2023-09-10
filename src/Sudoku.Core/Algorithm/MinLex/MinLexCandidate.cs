@@ -1,3 +1,5 @@
+using static System.Math;
+
 namespace Sudoku.Algorithm.MinLex;
 
 /// <summary>

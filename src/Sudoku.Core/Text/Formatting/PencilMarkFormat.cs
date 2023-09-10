@@ -1,4 +1,6 @@
+using System.Algorithm;
 using Sudoku.Runtime.MaskServices;
+using static System.Math;
 
 namespace Sudoku.Text.Formatting;
 
@@ -156,7 +158,7 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatVa
 				}
 				default: // Print values and tabs.
 				{
-					DefaultPrinting(ref sb, valuesByRow[A057353(i)], '|', '|', maxLengths);
+					DefaultPrinting(ref sb, valuesByRow[Sequences.A057353(i)], '|', '|', maxLengths);
 
 					break;
 				}

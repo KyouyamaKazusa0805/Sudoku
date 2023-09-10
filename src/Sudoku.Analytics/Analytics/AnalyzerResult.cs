@@ -1,6 +1,7 @@
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
+using static System.Math;
 
 namespace Sudoku.Analytics;
 

@@ -3,6 +3,7 @@ using System.SourceGeneration;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Linq;
 using Sudoku.Text.Notation;
+using static System.Math;
 
 namespace Sudoku.Concepts;
 

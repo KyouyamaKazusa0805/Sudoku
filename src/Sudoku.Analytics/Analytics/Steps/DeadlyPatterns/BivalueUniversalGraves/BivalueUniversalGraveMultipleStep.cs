@@ -1,3 +1,4 @@
+using System.Algorithm;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Rating;
@@ -46,7 +47,8 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	public override Technique Code => Technique.BivalueUniversalGravePlusN;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Size, A002024(TrueCandidates.Count) * .1M)];
+	public override ExtraDifficultyCase[] ExtraDifficultyCases
+		=> [new(ExtraDifficultyCaseNames.Size, Sequences.A002024(TrueCandidates.Count) * .1M)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

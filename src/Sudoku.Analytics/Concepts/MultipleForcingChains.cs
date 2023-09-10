@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using static System.Math;
 
 namespace Sudoku.Concepts;
 

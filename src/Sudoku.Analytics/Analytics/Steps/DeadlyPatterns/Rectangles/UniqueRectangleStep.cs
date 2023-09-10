@@ -2,6 +2,7 @@ using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Rendering;
 using Sudoku.Text.Notation;
+using static System.Math;
 
 namespace Sudoku.Analytics.Steps;
 

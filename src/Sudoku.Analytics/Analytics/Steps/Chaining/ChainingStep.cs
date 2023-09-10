@@ -4,6 +4,7 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Rating;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
+using static System.Math;
 
 namespace Sudoku.Analytics.Steps;
 

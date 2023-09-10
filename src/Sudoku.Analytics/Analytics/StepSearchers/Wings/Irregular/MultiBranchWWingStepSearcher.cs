@@ -3,6 +3,7 @@ using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
+using static System.Math;
 
 namespace Sudoku.Analytics.StepSearchers;
 
