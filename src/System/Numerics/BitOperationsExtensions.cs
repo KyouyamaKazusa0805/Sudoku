@@ -6,27 +6,27 @@ namespace System.Numerics;
 /// <seealso cref="BitOperations"/>
 public static partial class BitOperationsExtensions
 {
-	public static partial Bits GetAllSets(this sbyte @this);
-	public static partial Bits GetAllSets(this byte @this);
-	public static partial Bits GetAllSets(this short @this);
-	public static partial Bits GetAllSets(this ushort @this);
-	public static partial Bits GetAllSets(this int @this);
-	public static partial Bits GetAllSets(this uint @this);
-	public static partial Bits GetAllSets(this long @this);
-	public static partial Bits GetAllSets(this ulong @this);
-	public static unsafe partial Bits GetAllSets(this nint @this);
-	public static unsafe partial Bits GetAllSets(this nuint @this);
+	public static partial ReadOnlySpan<int> GetAllSets(this sbyte @this);
+	public static partial ReadOnlySpan<int> GetAllSets(this byte @this);
+	public static partial ReadOnlySpan<int> GetAllSets(this short @this);
+	public static partial ReadOnlySpan<int> GetAllSets(this ushort @this);
+	public static partial ReadOnlySpan<int> GetAllSets(this int @this);
+	public static partial ReadOnlySpan<int> GetAllSets(this uint @this);
+	public static partial ReadOnlySpan<int> GetAllSets(this long @this);
+	public static partial ReadOnlySpan<int> GetAllSets(this ulong @this);
+	public static unsafe partial ReadOnlySpan<int> GetAllSets(this nint @this);
+	public static unsafe partial ReadOnlySpan<int> GetAllSets(this nuint @this);
 
-	public static partial BitEnumerator GetEnumerator(this sbyte @this);
-	public static partial BitEnumerator GetEnumerator(this byte @this);
-	public static partial BitEnumerator GetEnumerator(this short @this);
-	public static partial BitEnumerator GetEnumerator(this ushort @this);
-	public static partial BitEnumerator GetEnumerator(this int @this);
-	public static partial BitEnumerator GetEnumerator(this uint @this);
-	public static partial BitEnumerator GetEnumerator(this long @this);
-	public static partial BitEnumerator GetEnumerator(this ulong @this);
-	public static unsafe partial BitEnumerator GetEnumerator(this nint @this);
-	public static unsafe partial BitEnumerator GetEnumerator(this nuint @this);
+	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this sbyte @this);
+	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this byte @this);
+	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this short @this);
+	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this ushort @this);
+	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this int @this);
+	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this uint @this);
+	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this long @this);
+	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this ulong @this);
+	public static unsafe partial ReadOnlySpan<int>.Enumerator GetEnumerator(this nint @this);
+	public static unsafe partial ReadOnlySpan<int>.Enumerator GetEnumerator(this nuint @this);
 
 	public static partial int GetNextSet(this byte @this, int index);
 	public static partial int GetNextSet(this short @this, int index);

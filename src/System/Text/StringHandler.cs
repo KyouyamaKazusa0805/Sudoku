@@ -1419,8 +1419,8 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void GrowCore(uint requiredMinCapacity)
 	{
-		var newCapacity = Max(requiredMinCapacity, Min((uint)_chars.Length * 2, 0x3FFFFFDF)); // 0x3FFFFFDF: string.MaxLength
-		var arraySize = (int)Clamp(newCapacity, MinimumArrayPoolLength, int.MaxValue);
+		var newCapacity = Math.Max(requiredMinCapacity, Math.Min((uint)_chars.Length * 2, 0x3FFFFFDF)); // 0x3FFFFFDF: string.MaxLength
+		var arraySize = (int)Math.Clamp(newCapacity, MinimumArrayPoolLength, int.MaxValue);
 
 		var newArray = ArrayPool<char>.Shared.Rent(arraySize);
 		_chars[..Length].CopyTo(newArray);

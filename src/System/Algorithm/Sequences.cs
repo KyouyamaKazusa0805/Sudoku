@@ -1,4 +1,4 @@
-﻿namespace System.Algorithm;
+namespace System.Algorithm;
 
 /// <summary>
 /// Defines some sequences that has been recorded in the
@@ -26,7 +26,7 @@ public static class Sequences
 	/// <param name="index"><inheritdoc cref="Sequences" path="//shared-comments/para[2]"/></param>
 	/// <returns>The result value at the specified index.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int A002024(int index) => (int)(Sqrt(index << 1) + .5);
+	public static int A002024(int index) => (int)(Math.Sqrt(index << 1) + .5);
 
 	/// <summary>
 	/// Gets the value at the specified index in the sequence <see href="https://oeis.org/A004526">A004526</see>
@@ -44,5 +44,5 @@ public static class Sequences
 	/// <param name="index"><inheritdoc cref="Sequences" path="//shared-comments/para[1]"/></param>
 	/// <returns>The result value at the specified index.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int A057353(int index) => (int)Floor(3F * index / 4);
+	public static int A057353(int index) => (int)Math.Floor(3F * index / 4);
 }

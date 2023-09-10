@@ -309,7 +309,7 @@ public readonly unsafe partial struct Utf8String :
 	/// <returns>An <see cref="int"/> value indicating which one is greater.</returns>
 	private static int Compare(Utf8String strA, Utf8String strB)
 	{
-		var length = Min(strA._value.Length, strB._value.Length);
+		var length = Math.Min(strA._value.Length, strB._value.Length);
 		fixed (Utf8Char* ap = strA._value, bp = strB._value)
 		{
 			for (Utf8Char* a = ap, b = bp; length > 0; a++, b++, length--)

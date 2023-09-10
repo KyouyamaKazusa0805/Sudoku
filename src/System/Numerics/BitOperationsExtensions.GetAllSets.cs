@@ -7,11 +7,11 @@ partial class BitOperationsExtensions
 	/// </summary>
 	/// <param name="this">The value.</param>
 	/// <returns>All offsets.</returns>
-	public static partial Bits GetAllSets(this sbyte @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this sbyte @this)
 	{
 		if (@this == 0)
 		{
-			return Bits.Empty;
+			return ReadOnlySpan<int>.Empty;
 		}
 
 		var length = PopCount((uint)@this);
@@ -28,11 +28,11 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial Bits GetAllSets(this byte @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this byte @this)
 	{
 		if (@this == 0)
 		{
-			return Bits.Empty;
+			return ReadOnlySpan<int>.Empty;
 		}
 
 		var length = PopCount((uint)@this);
@@ -49,11 +49,11 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial Bits GetAllSets(this short @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this short @this)
 	{
 		if (@this == 0)
 		{
-			return Bits.Empty;
+			return ReadOnlySpan<int>.Empty;
 		}
 
 		var length = PopCount((uint)@this);
@@ -70,11 +70,11 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial Bits GetAllSets(this ushort @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this ushort @this)
 	{
 		if (@this == 0)
 		{
-			return Bits.Empty;
+			return ReadOnlySpan<int>.Empty;
 		}
 
 		var length = PopCount((uint)@this);
@@ -91,11 +91,11 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial Bits GetAllSets(this int @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this int @this)
 	{
 		if (@this == 0)
 		{
-			return Bits.Empty;
+			return ReadOnlySpan<int>.Empty;
 		}
 
 		var length = PopCount((uint)@this);
@@ -112,11 +112,11 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial Bits GetAllSets(this uint @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this uint @this)
 	{
 		if (@this == 0)
 		{
-			return Bits.Empty;
+			return ReadOnlySpan<int>.Empty;
 		}
 
 		var length = PopCount(@this);
@@ -133,11 +133,11 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial Bits GetAllSets(this long @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this long @this)
 	{
 		if (@this == 0)
 		{
-			return Bits.Empty;
+			return ReadOnlySpan<int>.Empty;
 		}
 
 		var length = PopCount((ulong)@this);
@@ -154,11 +154,11 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial Bits GetAllSets(this ulong @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this ulong @this)
 	{
 		if (@this == 0)
 		{
-			return Bits.Empty;
+			return ReadOnlySpan<int>.Empty;
 		}
 
 		var length = PopCount(@this);
@@ -175,11 +175,11 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static unsafe partial Bits GetAllSets(this nint @this)
+	public static unsafe partial ReadOnlySpan<int> GetAllSets(this nint @this)
 	{
 		if (@this == 0)
 		{
-			return Bits.Empty;
+			return ReadOnlySpan<int>.Empty;
 		}
 
 		var length = PopCount((nuint)@this);
@@ -196,11 +196,11 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static unsafe partial Bits GetAllSets(this nuint @this)
+	public static unsafe partial ReadOnlySpan<int> GetAllSets(this nuint @this)
 	{
 		if (@this == 0)
 		{
-			return Bits.Empty;
+			return ReadOnlySpan<int>.Empty;
 		}
 
 		var length = PopCount(@this);
