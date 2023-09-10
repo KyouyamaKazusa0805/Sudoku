@@ -41,7 +41,7 @@ partial class GridImageGenerator
 					[MethodImpl(MethodImplOptions.AggressiveInlining)]
 					GraphicsPath triangle(float x, float y)
 					{
-						var top = new PointF(x, y - Tan(PI / 3) / 4 * (cw - 2 * padding));
+						var top = new PointF(x, y - MathF.Tan(MathF.PI / 3) / 4 * (cw - 2 * padding));
 						var left = new PointF(x - (cw - 2 * padding) / 2, y - ch / 2 + ch - padding);
 						var right = new PointF(x + (cw - 2 * padding) / 2, y - ch / 2 + ch - padding);
 
@@ -73,8 +73,8 @@ partial class GridImageGenerator
 					[MethodImpl(MethodImplOptions.AggressiveInlining)]
 					GraphicsPath star(float x, float y)
 					{
-						var angles1 = getAngles(-PI / 2);
-						var angles2 = getAngles(-PI / 2 + PI / 5);
+						var angles1 = getAngles(-MathF.PI / 2);
+						var angles2 = getAngles(-MathF.PI / 2 + MathF.PI / 5);
 						var points1 = getPoints(x, y, cw / 2 - padding, angles1);
 						var points2 = getPoints(x, y, (ch / 2 - padding) / 2, angles2);
 						var points = new PointF[points1.Length + points2.Length];
@@ -99,7 +99,7 @@ partial class GridImageGenerator
 							var result = (float[])[startAngle, default, default, default, default];
 							for (var i = 1; i < 5; i++)
 							{
-								result[i] = result[i - 1] + 2 * PI / 5;
+								result[i] = result[i - 1] + 2 * MathF.PI / 5;
 							}
 
 							return result;
@@ -107,7 +107,7 @@ partial class GridImageGenerator
 
 						[MethodImpl(MethodImplOptions.AggressiveInlining)]
 						static PointF getPoint(float x, float y, float length, float angle)
-							=> new(x + length * Cos(angle), y + length * Sin(angle));
+							=> new(x + length * MathF.Cos(angle), y + length * MathF.Sin(angle));
 
 						static PointF[] getPoints(float x, float y, float length, params float[] angles)
 						{
@@ -163,9 +163,9 @@ partial class GridImageGenerator
 						var result = new PointF[maxTrialTimes];
 						for (var i = 0; i < maxTrialTimes; i++)
 						{
-							var t = 2 * PI / maxTrialTimes * i;
-							var x = centerX + 16 * Pow(Sin(t), 3) / (32 + 2 * padding) * cw;
-							var y = centerY + (13 * Cos(t) - 5 * Cos(2 * t) - 2 * Cos(3 * t) - Cos(4 * t)) / (32 + 2 * padding) * ch;
+							var t = 2 * MathF.PI / maxTrialTimes * i;
+							var x = centerX + 16 * MathF.Pow(MathF.Sin(t), 3) / (32 + 2 * padding) * cw;
+							var y = centerY + (13 * MathF.Cos(t) - 5 * MathF.Cos(2 * t) - 2 * MathF.Cos(3 * t) - MathF.Cos(4 * t)) / (32 + 2 * padding) * ch;
 
 							result[i] = new(x, y);
 						}

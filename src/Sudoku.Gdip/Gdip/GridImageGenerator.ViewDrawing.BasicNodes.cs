@@ -173,6 +173,8 @@ partial class GridImageGenerator
 	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	private void DrawLinks(Graphics g)
 	{
+		const float sqrtOf2 = 1.4142135F;
+
 		if (this is not
 			{
 				View: { } view,
@@ -226,8 +228,8 @@ partial class GridImageGenerator
 			{
 				// If the distance of two points is lower than the one of two adjacent candidates,
 				// the link will be emitted to draw because of too narrow.
-				var distance = Sqrt((pt1x - pt2x) * (pt1x - pt2x) + (pt1y - pt2y) * (pt1y - pt2y));
-				if (distance <= cw * SqrtOf2 || distance <= ch * SqrtOf2)
+				var distance = MathF.Sqrt((pt1x - pt2x) * (pt1x - pt2x) + (pt1y - pt2y) * (pt1y - pt2y));
+				if (distance <= cw * sqrtOf2 || distance <= ch * sqrtOf2)
 				{
 					continue;
 				}
@@ -235,7 +237,7 @@ partial class GridImageGenerator
 				// Check if another candidate lies in the direct line.
 				var deltaX = pt2x - pt1x;
 				var deltaY = pt2y - pt1y;
-				var alpha = Atan2(deltaY, deltaX);
+				var alpha = MathF.Atan2(deltaY, deltaX);
 				var dx1 = deltaX;
 				var dy1 = deltaY;
 				var through = false;
@@ -250,8 +252,8 @@ partial class GridImageGenerator
 
 					var dx2 = point.X - p1.X;
 					var dy2 = point.Y - p1.Y;
-					if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
-						&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
+					if (MathF.Sign(dx1) == MathF.Sign(dx2) && MathF.Sign(dy1) == MathF.Sign(dy2)
+						&& MathF.Abs(dx2) <= MathF.Abs(dx1) && MathF.Abs(dy2) <= MathF.Abs(dy1)
 						&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1F)))
 					{
 						through = true;
@@ -272,12 +274,12 @@ partial class GridImageGenerator
 					rotate(new(pt2x, pt2y), ref pt2, RotateAngle);
 
 					var aAlpha = alpha - RotateAngle;
-					var bx1 = pt1.X + bezierLength * Cos(aAlpha);
-					var by1 = pt1.Y + bezierLength * Sin(aAlpha);
+					var bx1 = pt1.X + bezierLength * MathF.Cos(aAlpha);
+					var by1 = pt1.Y + bezierLength * MathF.Sin(aAlpha);
 
 					aAlpha = alpha + RotateAngle;
-					var bx2 = pt2.X - bezierLength * Cos(aAlpha);
-					var by2 = pt2.Y - bezierLength * Sin(aAlpha);
+					var bx2 = pt2.X - bezierLength * MathF.Cos(aAlpha);
+					var by2 = pt2.Y - bezierLength * MathF.Sin(aAlpha);
 
 					g.DrawBezier(penToDraw, pt1.X, pt1.Y, bx1, by1, bx2, by2, pt2.X, pt2.Y);
 				}
@@ -298,8 +300,8 @@ partial class GridImageGenerator
 			pt2.Y -= pt1.Y;
 
 			// Rotate.
-			var sinAngle = Sin(angle);
-			var cosAngle = Cos(angle);
+			var sinAngle = MathF.Sin(angle);
+			var cosAngle = MathF.Cos(angle);
 			var xAct = pt2.X;
 			var yAct = pt2.Y;
 			pt2.X = (float)(xAct * cosAngle - yAct * sinAngle);
@@ -315,8 +317,8 @@ partial class GridImageGenerator
 			p1 = pt1;
 			p2 = pt2;
 			var tempDelta = candidateSize / 2;
-			var px = (int)(tempDelta * Cos(alpha));
-			var py = (int)(tempDelta * Sin(alpha));
+			var px = (int)(tempDelta * MathF.Cos(alpha));
+			var py = (int)(tempDelta * MathF.Sin(alpha));
 
 			p1.X += px;
 			p1.Y += py;
@@ -327,9 +329,9 @@ partial class GridImageGenerator
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void cut(scoped ref PointF pt1, scoped ref PointF pt2, float cw, float ch, float pt1x, float pt1y, float pt2x, float pt2y)
 		{
-			var slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
-			var x = cw / (float)Sqrt(1 + slope * slope);
-			var y = ch * (float)Sqrt(slope * slope / (1 + slope * slope));
+			var slope = MathF.Abs((pt2y - pt1y) / (pt2x - pt1x));
+			var x = cw / (float)MathF.Sqrt(1 + slope * slope);
+			var y = ch * (float)MathF.Sqrt(slope * slope / (1 + slope * slope));
 
 			if (pt1y > pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y -= ch / 2; pt2.Y += ch / 2; }
 			else if (pt1y < pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y += ch / 2; pt2.Y -= ch / 2; }
@@ -402,7 +404,7 @@ partial class GridImageGenerator
 			return;
 		}
 
-		var vOffsetValue = cellWidth / (AnchorsCount / 3); // The vertical offset of rendering each value.
+		var vOffsetValue = cellWidth / (PointCalculator.AnchorsCount / 3); // The vertical offset of rendering each value.
 		var halfWidth = cellWidth / 2F;
 
 		using var brush = new SolidBrush(uColor);

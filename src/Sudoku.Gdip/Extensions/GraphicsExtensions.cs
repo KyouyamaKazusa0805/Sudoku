@@ -123,7 +123,7 @@ internal static class GraphicsExtensions
 	{
 		_ = rectangle is var (x, y, w, h) and var (l, _);
 
-		ArgumentOutOfRangeException.ThrowIfGreaterThan(circleRadius, Max(w, h));
+		ArgumentOutOfRangeException.ThrowIfGreaterThan(circleRadius, MathF.Max(w, h));
 
 		PointF p1, p2, p3, p4, p5, p6, p7, p8;
 		p8 = p7 = p6 = p5 = p4 = p3 = p2 = p1 = l;
@@ -175,7 +175,7 @@ internal static class GraphicsExtensions
 	{
 		_ = rectangle is var (x, y, w, h) and var (l, _);
 
-		ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(circleRadius, Max(w, h));
+		ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(circleRadius, MathF.Max(w, h));
 
 		PointF p1, p2, p3, p4, p5, p6, p7, p8;
 		p8 = p7 = p6 = p5 = p4 = p3 = p2 = p1 = l;

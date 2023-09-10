@@ -12,6 +12,12 @@ namespace Sudoku.Gdip;
 public sealed partial class GridImageGenerator
 {
 	/// <summary>
+	/// The rotate angle (45 degrees). This field is used for rotate the chains if some of them are overlapped.
+	/// </summary>
+	private const float RotateAngle = MathF.PI / 4;
+
+
+	/// <summary>
 	/// Indicates the <see cref="StringFormat"/> instance that locates the text drawn by
 	/// <see cref="Graphics.DrawString(string?, Font, Brush, RectangleF, StringFormat?)"/>,
 	/// center the text with both horizontal and vertical.

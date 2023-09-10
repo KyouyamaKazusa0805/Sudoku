@@ -52,8 +52,8 @@ partial class GridImageGenerator
 			return;
 		}
 
-		var vOffsetValue = cellWidth / (AnchorsCount / 3); // The vertical offset of rendering each value.
-		var vOffsetCandidate = candidateWidth / (AnchorsCount / 3); // The vertical offset of rendering each candidate.
+		var vOffsetValue = cellWidth / (PointCalculator.AnchorsCount / 3); // The vertical offset of rendering each value.
+		var vOffsetCandidate = candidateWidth / (PointCalculator.AnchorsCount / 3); // The vertical offset of rendering each candidate.
 		var halfWidth = cellWidth / 2F;
 
 		using var bGiven = new SolidBrush(gColor);
@@ -152,17 +152,17 @@ partial class GridImageGenerator
 		using var pg = new Pen(gridLineColor, gridLineWidth);
 		using var pb = new Pen(blockLineColor, blockLineWidth);
 
-		const int length = AnchorsCount + 1;
-		for (var i = 0; i < length; i += AnchorsCount / 9)
+		const int length = PointCalculator.AnchorsCount + 1;
+		for (var i = 0; i < length; i += PointCalculator.AnchorsCount / 9)
 		{
-			g.DrawLine(pg, pts[i, 0], pts[i, AnchorsCount]);
-			g.DrawLine(pg, pts[0, i], pts[AnchorsCount, i]);
+			g.DrawLine(pg, pts[i, 0], pts[i, PointCalculator.AnchorsCount]);
+			g.DrawLine(pg, pts[0, i], pts[PointCalculator.AnchorsCount, i]);
 		}
 
-		for (var i = 0; i < length; i += AnchorsCount / 3)
+		for (var i = 0; i < length; i += PointCalculator.AnchorsCount / 3)
 		{
-			g.DrawLine(pb, pts[i, 0], pts[i, AnchorsCount]);
-			g.DrawLine(pb, pts[0, i], pts[AnchorsCount, i]);
+			g.DrawLine(pb, pts[i, 0], pts[i, PointCalculator.AnchorsCount]);
+			g.DrawLine(pb, pts[0, i], pts[PointCalculator.AnchorsCount, i]);
 		}
 	}
 }

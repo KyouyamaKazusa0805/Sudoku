@@ -8,6 +8,22 @@ namespace Sudoku.Gdip;
 public sealed class PointCalculator
 {
 	/// <summary>
+	/// Indicates the number of anchors hold per house.
+	/// </summary>
+	/// <remarks>
+	/// The sudoku grid painter will draw the outlines and the inner lines, and correct the point
+	/// of each digits (candidates also included). Each row or column always contains 27 candidates,
+	/// so this value is 27.
+	/// </remarks>
+	internal const int AnchorsCount = 27;
+
+	/// <summary>
+	/// Indicates the default padding of the sudoku grid drawn.
+	/// </summary>
+	private const float DefaultPadding = 10F;
+
+
+	/// <summary>
 	/// Initializes a <see cref="PointCalculator"/> instance via the specified picture size and padding value.
 	/// </summary>
 	/// <param name="size">The size of the picture.</param>

@@ -319,36 +319,6 @@
             Indicates the alignment is as right.
             </summary>
         </member>
-        <member name="T:Sudoku.Drawing.ProjectWideConstants">
-            <summary>
-            Provides with project-wide constants.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Drawing.ProjectWideConstants.SqrtOf2">
-            <summary>
-            The square root of 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Drawing.ProjectWideConstants.RotateAngle">
-            <summary>
-            The rotate angle (45 degrees). This field is used for rotate the chains if some of them are overlapped.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Drawing.ProjectWideConstants.DefaultPadding">
-            <summary>
-            Indicates the default padding value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Drawing.ProjectWideConstants.AnchorsCount">
-            <summary>
-            Indicates the number of anchors hold per house.
-            </summary>
-            <remarks>
-            The sudoku grid painter will draw the outlines and the inner lines, and correct the point
-            of each digits (candidates also included). Each row or column always contains 27 candidates,
-            so this value is 27.
-            </remarks>
-        </member>
         <member name="T:Sudoku.Gdip.DrawingConfigurations">
             <summary>
             Represents with a preference type that stores the configurations on drawing.
@@ -628,6 +598,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
+        <member name="F:Sudoku.Gdip.GridImageGenerator.RotateAngle">
+            <summary>
+            The rotate angle (45 degrees). This field is used for rotate the chains if some of them are overlapped.
+            </summary>
+        </member>
         <member name="F:Sudoku.Gdip.GridImageGenerator.StringLocating">
             <summary>
             Indicates the <see cref="T:System.Drawing.StringFormat"/> instance that locates the text drawn by
@@ -809,6 +784,21 @@ if (student is (name: var name, age: >= 18))
             Provides a serial of methods for a point calculator that interacts with the UI projects.
             </summary>
         </member>
+        <member name="F:Sudoku.Gdip.PointCalculator.AnchorsCount">
+            <summary>
+            Indicates the number of anchors hold per house.
+            </summary>
+            <remarks>
+            The sudoku grid painter will draw the outlines and the inner lines, and correct the point
+            of each digits (candidates also included). Each row or column always contains 27 candidates,
+            so this value is 27.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Gdip.PointCalculator.DefaultPadding">
+            <summary>
+            Indicates the default padding of the sudoku grid drawn.
+            </summary>
+        </member>
         <member name="M:Sudoku.Gdip.PointCalculator.#ctor(System.Single,System.Single)">
             <summary>
             Initializes a <see cref="T:Sudoku.Gdip.PointCalculator"/> instance via the specified picture size and padding value.
@@ -823,9 +813,9 @@ if (student is (name: var name, age: >= 18))
             <param name="size">The <see cref="T:System.Drawing.SizeF"/> instance.</param>
             <param name="padding">
             Indicates the padding to set to allow the output items moving a little bit left or right,
-            in order to correct the position on drawing. The default value is <c>10F</c>, which is defined by <see cref="F:Sudoku.Drawing.ProjectWideConstants.DefaultPadding"/>
+            in order to correct the position on drawing. The default value is <c>10F</c>, which is defined by <see cref="F:Sudoku.Gdip.PointCalculator.DefaultPadding"/>
             </param>
-            <seealso cref="F:Sudoku.Drawing.ProjectWideConstants.DefaultPadding"/>
+            <seealso cref="F:Sudoku.Gdip.PointCalculator.DefaultPadding"/>
         </member>
         <member name="P:Sudoku.Gdip.PointCalculator.Width">
             <summary>
