@@ -1,3 +1,4 @@
+using Sudoku.Linq;
 using Sudoku.Rendering.Nodes;
 
 namespace Sudoku.Rendering;
@@ -10,12 +11,12 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	/// <summary>
 	/// Indicates the basic nodes that the current data type stores.
 	/// </summary>
-	public OfTypeEnumerator<BasicViewNode> BasicNodes => OfType<BasicViewNode>();
+	public OfTypeEnumerator<BasicViewNode> BasicNodes => this.OfType<BasicViewNode>();
 
 	/// <summary>
 	/// Indicates icon nodes that the current data type stores.
 	/// </summary>
-	public OfTypeEnumerator<IconViewNode> FigureNodes => OfType<IconViewNode>();
+	public OfTypeEnumerator<IconViewNode> FigureNodes => this.OfType<IconViewNode>();
 
 
 	/// <summary>
@@ -59,7 +60,7 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	/// <returns>A <see cref="bool"/> value indicating whether being overlapped.</returns>
 	public bool UnknownOverlaps(Cell cell)
 	{
-		foreach (var babaGroupNode in OfType<BabaGroupViewNode>())
+		foreach (var babaGroupNode in this.OfType<BabaGroupViewNode>())
 		{
 			if (babaGroupNode.Cell == cell)
 			{
@@ -69,14 +70,6 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 
 		return false;
 	}
-
-	/// <summary>
-	/// Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
-	/// </summary>
-	/// <typeparam name="T">The type of the node.</typeparam>
-	/// <returns>The target collection of element type <typeparamref name="T"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OfTypeEnumerator<T> OfType<T>() where T : ViewNode => new(this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

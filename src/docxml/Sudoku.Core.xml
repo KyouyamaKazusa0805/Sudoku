@@ -5399,6 +5399,19 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>values</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Linq.ViewEnumerable">
+            <summary>
+            Represents with LINQ methods for <see cref="T:Sudoku.Rendering.View"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Rendering.View"/>
+        </member>
+        <member name="M:Sudoku.Linq.ViewEnumerable.OfType``1(Sudoku.Rendering.View)">
+            <summary>
+            Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of the node.</typeparam>
+            <returns>The target collection of element type <typeparamref name="T"/>.</returns>
+        </member>
         <member name="T:Sudoku.Rendering.ColorColorIdentifier">
             <summary>
             Defines a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> derived type that uses color value (like type <c>System.Drawing.Color</c>) to distinct with colors.
@@ -6460,13 +6473,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether being overlapped.</returns>
-        </member>
-        <member name="M:Sudoku.Rendering.View.OfType``1">
-            <summary>
-            Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
-            </summary>
-            <typeparam name="T">The type of the node.</typeparam>
-            <returns>The target collection of element type <typeparamref name="T"/>.</returns>
         </member>
         <member name="M:Sudoku.Rendering.View.Clone">
             <inheritdoc/>
