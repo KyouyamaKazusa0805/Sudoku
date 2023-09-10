@@ -2283,20 +2283,6 @@ if (student is (name: var name, age: >= 18))
             Provides with conversion methods used by XAML designer, about analyze tab pages.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Interaction.Conversions.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:SudokuStudio.Interaction.Conversions.Extensions.None(System.Collections.IEnumerable)">
-            <summary>
-            Determines whether an <see cref="T:System.Collections.IEnumerable"/> collection has no elements in it.
-            </summary>
-            <param name="this">The element.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="T:SudokuStudio.Interaction.Conversions.BackdropConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about backdrop.

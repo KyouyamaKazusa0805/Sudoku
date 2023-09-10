@@ -836,372 +836,6 @@
             <param name="epsilon">The epsilon value (the minimal differ).</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:System.Linq.EnumerableExtensions">
-            <summary>
-            Provides a set of static methods for querying objects that implement
-            <see cref="T:System.Collections.IEnumerable"/> and <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
-            </summary>
-            <remarks>This class has the same function and state with <see cref="T:System.Linq.Enumerable"/>.</remarks>
-            <seealso cref="T:System.Collections.IEnumerable"/>
-            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
-            <seealso cref="T:System.Linq.Enumerable"/>
-        </member>
-        <member name="M:System.Linq.EnumerableExtensions.HasOnlyOneElement``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Check whether the specified list has only one element.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="this">The list.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:System.Linq.ArrayEnumerable">
-            <summary>
-            Provides with the LINQ-related methods on type <see cref="T:System.Array"/>, especially for the one-dimensional array.
-            </summary>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.Cast``1(System.Object[])">
-            <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})">
-            <summary>
-            Totals up the number of elements that satisfy the specified condition.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The array.</param>
-            <param name="predicate">The condition.</param>
-            <returns>The number of elements satisfying the specified condition.</returns>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})">
-            <summary>
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
-            </summary>
-            <param name="this">
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='source']"/>
-            </param>
-            <param name="selector">
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
-            </param>
-            <returns>
-            An array of <typeparamref name="TResult"/> instances being the result of invoking the transform function on each element of <paramref name="this"/>.
-            </returns>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
-            <summary>
-            Projects each element of a sequence of a collection, flattens the resulting sequence into one sequence,
-            and invokes a result selector function on each element therein.
-            </summary>
-            <typeparam name="TSource">
-            <inheritdoc
-                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
-                path="/typeparam[@name='TSource']"/>
-            </typeparam>
-            <typeparam name="TCollection">
-            <inheritdoc
-                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
-                path="/typeparam[@name='TCollection']"/>
-            </typeparam>
-            <typeparam name="TResult">
-            <inheritdoc
-                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
-                path="/typeparam[@name='TResult']"/>
-            </typeparam>
-            <param name="source">
-            <inheritdoc
-                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
-                path="/param[@name='source']"/>
-            </param>
-            <param name="collectionSelector">
-            <inheritdoc
-                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
-                path="/param[@name='collectionSelector']"/>
-            </param>
-            <param name="resultSelector">
-            <inheritdoc
-                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
-                path="/param[@name='resultSelector']"/>
-            </param>
-            <returns>
-            A same type of collection whose elements are the result of invoking the one-to-many transform function
-            <paramref name="collectionSelector"/> on each element of <paramref name="source"/> and then mapping each of those sequence elements
-            and their corresponding source element to a result element.
-            </returns>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.Where``1(``0[],System.Func{``0,System.Boolean})">
-            <summary>
-            Filters a sequence of values based on a predicate.
-            </summary>
-            <typeparam name="T">The type of the elements of source.</typeparam>
-            <param name="this">A (An) <typeparamref name="T"/>[] to filter.</param>
-            <param name="predicate">A function to test each element for a condition.</param>
-            <returns>A (An) <typeparamref name="T"/>[] that contains elements from the input sequence that satisfy the condition.</returns>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.Aggregate``1(``0[],System.Func{``0,``0,``0})">
-            <summary>
-            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" path="/summary"/>
-            </summary>
-            <typeparam name="TSource">
-            <inheritdoc
-                cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"
-                path="/typeparam[@name='TSource']"/>
-            </typeparam>
-            <param name="this">An array of <typeparamref name="TSource"/> elementsto aggregate over.</param>
-            <param name="func">
-            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" path="/param[@name='func']"/>
-            </param>
-            <returns>
-            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" path="/returns"/>
-            </returns>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.Zip``2(``0[],``1[])">
-            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})"/>
-            <param name="this">
-            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})" path="/param[@name='first']"/>
-            </param>
-            <param name="other">
-            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})" path="/param[@name='second']"/>
-            </param>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.SequenceEquals``1(``0[],``0[])">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.SequenceEquals``1(``0[],``0[],System.Func{``0,``0,System.Boolean})"/>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.SequenceEquals``1(``0[],``0[],System.Func{``0,``0,System.Boolean})">
-            <summary>
-            Compares elements from two arrays one by one respetively.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The array to be compared.</param>
-            <param name="other">The other array to be compared.</param>
-            <param name="equalityComparer">
-            A method that compares two <typeparamref name="T"/> elements, and returns a <see cref="T:System.Boolean"/> result
-            indicating whether two elements are considered equal.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether two arrays are considered equal.</returns>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.GetSubsets``1(``0[],System.Int32)">
-            <summary>
-            Get all subsets from the specified number of the values to take.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The array.</param>
-            <param name="count">The number of elements you want to take.</param>
-            <returns>
-            The subsets of the list.
-            For example, if the input array is <c>[1, 2, 3]</c> and the argument <paramref name="count"/> is 2, the result will be
-            <code>
-            [[1, 2], [1, 3], [2, 3]]
-            </code>
-            3 cases.
-            </returns>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.GetExtractedCombinations``1(``0[][])">
-            <summary>
-            Get all combinations that each sub-array only choose one.
-            </summary>
-            <param name="this">The jigsaw array.</param>
-            <returns>
-            All combinations that each sub-array choose one.
-            For example, if one array is <c>[[1, 2, 3], [1, 3], [1, 4, 7, 10]]</c>, the final combinations will be
-            <code>
-            [
-                [1, 1, 1], [1, 1, 4], [1, 1, 7], [1, 1, 10],
-                [1, 3, 1], [1, 3, 4], [1, 3, 7], [1, 3, 10],
-                [2, 1, 1], [2, 1, 4], [2, 1, 7], [2, 1, 10],
-                [2, 3, 1], [2, 3, 4], [2, 3, 7], [2, 3, 10],
-                [3, 1, 1], [3, 1, 4], [3, 1, 7], [3, 1, 10],
-                [3, 3, 1], [3, 3, 4], [3, 3, 7], [3, 3, 10]
-            ]
-            </code>
-            24 cases.
-            </returns>
-        </member>
-        <member name="T:System.Linq.ArrayListEnumerable">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Collections.ArrayList"/>.
-            </summary>
-            <seealso cref="T:System.Collections.ArrayList"/>
-        </member>
-        <member name="M:System.Linq.ArrayListEnumerable.Select``1(System.Collections.ArrayList,System.Func{System.Object,``0})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
-        </member>
-        <member name="T:System.Linq.EnumFlagsEnumerable">
-            <summary>
-            Provides with some extension methods for enumeration types.
-            </summary>
-        </member>
-        <member name="M:System.Linq.EnumFlagsEnumerable.Select``2(``0,System.Func{``0,``1})">
-            <summary>
-            Try to get all <typeparamref name="T"/> elements as flags stored in argument <paramref name="this"/>,
-            and convert them into an array of <typeparamref name="TResult"/> instances via specified argument <paramref name="selector"/>,
-            then return the array.
-            </summary>
-            <typeparam name="T">The type of the enumeration.</typeparam>
-            <typeparam name="TResult">The type of the result elements.</typeparam>
-            <param name="this">The enumeration type field.</param>
-            <param name="selector">The selector that can convert the enumeration field into the target-typed instance.</param>
-            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the enumeration type is not marked <see cref="T:System.FlagsAttribute"/>.
-            </exception>
-        </member>
-        <member name="T:System.Linq.ImmutableArrayEnumerable">
-            <summary>
-            Provides with LINQ methods of <see cref="T:System.Collections.Immutable.ImmutableArray`1"/> values comsumed by users.
-            </summary>
-            <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>
-        </member>
-        <member name="M:System.Linq.ImmutableArrayEnumerable.SequenceEquals``1(System.Collections.Immutable.ImmutableArray{``0},System.Collections.Immutable.ImmutableArray{``0},)">
-            <summary>
-            Determines whether two sequences are equal according to an equality comparer method, specified as a function pointer.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The fist collection to be compared.</param>
-            <param name="other">The second collection to be compared.</param>
-            <param name="comparison">
-            The function pointer that points to a function that compares two <typeparamref name="T"/> instances,
-            and returns a <see cref="T:System.Boolean"/> value indicating whether they are considered equal.
-            </param>
-            <returns><see langword="true"/> to indicate the sequences are equal; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:System.Linq.ImmutableArrayEnumerable.Count``1(System.Collections.Immutable.ImmutableArray{``0},System.Predicate{``0})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Count``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
-        </member>
-        <member name="M:System.Linq.ImmutableArrayEnumerable.Sum``2(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,``1})">
-            <summary>
-            Computes the sum of sequence of <typeparamref name="TResult"/> values that are obtained
-            by invoking a transform function on each element of the input sequence.
-            </summary>
-            <typeparam name="T">The type of the elements in the array.</typeparam>
-            <typeparam name="TResult">
-            The result selected. The type must be a number type that implements interface type <see cref="T:System.Numerics.INumber`1"/>.
-            For example, a <see cref="T:System.Decimal"/> type.
-            </typeparam>
-            <param name="this">The array.</param>
-            <param name="selector">
-            The selector method that converts each elements to an instance of type <typeparamref name="TResult"/>.
-            </param>
-            <returns>The sum of the projected values.</returns>
-        </member>
-        <member name="M:System.Linq.ImmutableArrayEnumerable.CastToNotNull``1(System.Collections.Immutable.ImmutableArray{System.Nullable{``0}})">
-            <summary>
-            Casts the current array elements into target typed values.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The array to be casted.</param>
-            <returns>The casted array.</returns>
-        </member>
-        <member name="M:System.Linq.ImmutableArrayEnumerable.CastToNotNull``1(System.Collections.Immutable.ImmutableArray{``0})">
-            <summary>
-            Casts the current array elements into target typed values.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The array to be casted.</param>
-            <returns>The casted array.</returns>
-        </member>
-        <member name="T:System.Linq.ListEnumerable">
-            <summary>
-            Represents with LINQ methods for <see cref="T:System.Collections.Generic.List`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.List`1"/>
-        </member>
-        <member name="M:System.Linq.ListEnumerable.Count``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
-        </member>
-        <member name="M:System.Linq.ListEnumerable.Where``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
-        </member>
-        <member name="M:System.Linq.ListEnumerable.Select``2(System.Collections.Generic.List{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
-        </member>
-        <member name="T:System.Linq.MaskEnumerable">
-            <summary>
-            Represents a set of operation that iterates on each bit in a <see cref="T:System.Int16"/> instance like LINQ.
-            </summary>
-            <seealso cref="T:System.Int16"/>
-        </member>
-        <member name="M:System.Linq.MaskEnumerable.Select``1(System.Int16,System.Func{System.Int32,``0})">
-            <summary>
-            Projects each bit from a specified mask, converting it into a (an) <typeparamref name="T"/> instance,
-            with specified method to be called.
-            </summary>
-            <typeparam name="T">The target type of values for each bit converted.</typeparam>
-            <param name="this">A mask instance.</param>
-            <param name="selector">The selector method to be converted.</param>
-            <returns>A list of converted result, encapsulated by a <see cref="T:System.ReadOnlySpan`1"/> type.</returns>
-        </member>
-        <member name="T:System.Linq.SpanEnumerable">
-            <summary>
-            Provides LINQ-based extension methods on <see cref="T:System.ReadOnlySpan`1"/>.
-            </summary>
-            <seealso cref="T:System.ReadOnlySpan`1"/>
-        </member>
-        <member name="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
-            <summary>
-            Projects each element in the current instance into the target-typed span of element type <typeparamref name="TResult"/>,
-            using the specified function to convert.
-            </summary>
-            <typeparam name="T">The type of each elements in the span.</typeparam>
-            <typeparam name="TResult">The type of target value.</typeparam>
-            <param name="this">The source elements.</param>
-            <param name="selector">The selector.</param>
-            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
-        </member>
-        <member name="M:System.Linq.SpanEnumerable.SelectMany``3(System.ReadOnlySpan{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"/>
-        </member>
-        <member name="M:System.Linq.SpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/summary"/>
-            </summary>
-            <param name="this">A <see cref="T:System.ReadOnlySpan`1"/> to filter.</param>
-            <param name="predicate">
-            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/param[@name='predicate']"/>
-            </param>
-            <returns>A <typeparamref name="T"/>[] that contains elements form the input sequence that satisfy the condition.</returns>
-        </member>
-        <member name="M:System.Linq.SpanEnumerable.OrderBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
-        </member>
-        <member name="M:System.Linq.SpanEnumerable.FirstOrDefault``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
-        </member>
-        <member name="M:System.Linq.SpanEnumerable.GetSubsets``1(System.ReadOnlySpan{``0},System.Int32)">
-            <summary>
-            Get all subsets from the specified number of the values to take.
-            </summary>
-            <param name="this">The array.</param>
-            <param name="count">The number of elements you want to take.</param>
-            <returns>All subsets.</returns>
-        </member>
-        <member name="T:System.Linq.StringEnumerable">
-            <summary>
-            Provides with LINQ methods on a <see cref="T:System.String"/> value.
-            </summary>
-        </member>
-        <member name="M:System.Linq.StringEnumerable.Select``1(System.String,System.Func{System.Char,``0})">
-            <summary>
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
-            </summary>
-            <param name="this">The string instance.</param>
-            <param name="selector">
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
-            </param>
-            <returns>
-            A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TResult"/> whose elements are the result of invoking the transfrom function
-            on each element of <paramref name="this"/>.
-            </returns>
-        </member>
-        <member name="M:System.Linq.StringEnumerable.Where(System.String,System.Func{System.Char,System.Boolean})">
-            <summary>
-            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/summary"/>
-            </summary>
-            <param name="this">The string instance.</param>
-            <param name="predicate">
-            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/param[@name='selector']"/>
-            </param>
-            <returns>
-            A new <see cref="T:System.String"/> instance that contains characters from the input sequence that satisfy the condition.
-            </returns>
-        </member>
         <member name="T:System.EnumExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Enum"/>.
@@ -2870,6 +2504,383 @@ fixed (short* ptr = instance)
             </param>
             <returns>
             A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
+            </returns>
+        </member>
+        <member name="T:System.Linq.ArrayEnumerable">
+            <summary>
+            Provides with the LINQ-related methods on type <see cref="T:System.Array"/>, especially for the one-dimensional array.
+            </summary>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Cast``1(System.Object[])">
+            <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})">
+            <summary>
+            Totals up the number of elements that satisfy the specified condition.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array.</param>
+            <param name="predicate">The condition.</param>
+            <returns>The number of elements satisfying the specified condition.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
+            </summary>
+            <param name="this">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='source']"/>
+            </param>
+            <param name="selector">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
+            </param>
+            <returns>
+            An array of <typeparamref name="TResult"/> instances being the result of invoking the transform function on each element of <paramref name="this"/>.
+            </returns>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
+            <summary>
+            Projects each element of a sequence of a collection, flattens the resulting sequence into one sequence,
+            and invokes a result selector function on each element therein.
+            </summary>
+            <typeparam name="TSource">
+            <inheritdoc
+                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
+                path="/typeparam[@name='TSource']"/>
+            </typeparam>
+            <typeparam name="TCollection">
+            <inheritdoc
+                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
+                path="/typeparam[@name='TCollection']"/>
+            </typeparam>
+            <typeparam name="TResult">
+            <inheritdoc
+                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
+                path="/typeparam[@name='TResult']"/>
+            </typeparam>
+            <param name="source">
+            <inheritdoc
+                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
+                path="/param[@name='source']"/>
+            </param>
+            <param name="collectionSelector">
+            <inheritdoc
+                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
+                path="/param[@name='collectionSelector']"/>
+            </param>
+            <param name="resultSelector">
+            <inheritdoc
+                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
+                path="/param[@name='resultSelector']"/>
+            </param>
+            <returns>
+            A same type of collection whose elements are the result of invoking the one-to-many transform function
+            <paramref name="collectionSelector"/> on each element of <paramref name="source"/> and then mapping each of those sequence elements
+            and their corresponding source element to a result element.
+            </returns>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Where``1(``0[],System.Func{``0,System.Boolean})">
+            <summary>
+            Filters a sequence of values based on a predicate.
+            </summary>
+            <typeparam name="T">The type of the elements of source.</typeparam>
+            <param name="this">A (An) <typeparamref name="T"/>[] to filter.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <returns>A (An) <typeparamref name="T"/>[] that contains elements from the input sequence that satisfy the condition.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Aggregate``1(``0[],System.Func{``0,``0,``0})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" path="/summary"/>
+            </summary>
+            <typeparam name="TSource">
+            <inheritdoc
+                cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"
+                path="/typeparam[@name='TSource']"/>
+            </typeparam>
+            <param name="this">An array of <typeparamref name="TSource"/> elementsto aggregate over.</param>
+            <param name="func">
+            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" path="/param[@name='func']"/>
+            </param>
+            <returns>
+            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" path="/returns"/>
+            </returns>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Zip``2(``0[],``1[])">
+            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})"/>
+            <param name="this">
+            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})" path="/param[@name='first']"/>
+            </param>
+            <param name="other">
+            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})" path="/param[@name='second']"/>
+            </param>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.SequenceEquals``1(``0[],``0[])">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.SequenceEquals``1(``0[],``0[],System.Func{``0,``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.SequenceEquals``1(``0[],``0[],System.Func{``0,``0,System.Boolean})">
+            <summary>
+            Compares elements from two arrays one by one respetively.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array to be compared.</param>
+            <param name="other">The other array to be compared.</param>
+            <param name="equalityComparer">
+            A method that compares two <typeparamref name="T"/> elements, and returns a <see cref="T:System.Boolean"/> result
+            indicating whether two elements are considered equal.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether two arrays are considered equal.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.GetSubsets``1(``0[],System.Int32)">
+            <summary>
+            Get all subsets from the specified number of the values to take.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array.</param>
+            <param name="count">The number of elements you want to take.</param>
+            <returns>
+            The subsets of the list.
+            For example, if the input array is <c>[1, 2, 3]</c> and the argument <paramref name="count"/> is 2, the result will be
+            <code>
+            [[1, 2], [1, 3], [2, 3]]
+            </code>
+            3 cases.
+            </returns>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.GetExtractedCombinations``1(``0[][])">
+            <summary>
+            Get all combinations that each sub-array only choose one.
+            </summary>
+            <param name="this">The jigsaw array.</param>
+            <returns>
+            All combinations that each sub-array choose one.
+            For example, if one array is <c>[[1, 2, 3], [1, 3], [1, 4, 7, 10]]</c>, the final combinations will be
+            <code>
+            [
+                [1, 1, 1], [1, 1, 4], [1, 1, 7], [1, 1, 10],
+                [1, 3, 1], [1, 3, 4], [1, 3, 7], [1, 3, 10],
+                [2, 1, 1], [2, 1, 4], [2, 1, 7], [2, 1, 10],
+                [2, 3, 1], [2, 3, 4], [2, 3, 7], [2, 3, 10],
+                [3, 1, 1], [3, 1, 4], [3, 1, 7], [3, 1, 10],
+                [3, 3, 1], [3, 3, 4], [3, 3, 7], [3, 3, 10]
+            ]
+            </code>
+            24 cases.
+            </returns>
+        </member>
+        <member name="T:System.Linq.ArrayListEnumerable">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.ArrayList"/>.
+            </summary>
+            <seealso cref="T:System.Collections.ArrayList"/>
+        </member>
+        <member name="M:System.Linq.ArrayListEnumerable.Select``1(System.Collections.ArrayList,System.Func{System.Object,``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="T:System.Linq.Enumerable2">
+            <summary>
+            The extension for <see cref="T:System.Linq.Enumerable"/>.
+            </summary>
+            <seealso cref="T:System.Linq.Enumerable"/>
+        </member>
+        <member name="M:System.Linq.Enumerable2.None(System.Collections.IEnumerable)">
+            <summary>
+            Determines whether an <see cref="T:System.Collections.IEnumerable"/> collection has no elements in it.
+            </summary>
+            <param name="this">The element.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Linq.Enumerable2.None``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Determines whether an <see cref="T:System.Collections.Generic.IEnumerable`1"/> collection has no elements in it.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The element.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Linq.Enumerable2.HasOnlyOneElement``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Check whether the specified list has only one element.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="this">The list.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:System.Linq.EnumFlagsEnumerable">
+            <summary>
+            Provides with some extension methods for enumeration types.
+            </summary>
+        </member>
+        <member name="M:System.Linq.EnumFlagsEnumerable.Select``2(``0,System.Func{``0,``1})">
+            <summary>
+            Try to get all <typeparamref name="T"/> elements as flags stored in argument <paramref name="this"/>,
+            and convert them into an array of <typeparamref name="TResult"/> instances via specified argument <paramref name="selector"/>,
+            then return the array.
+            </summary>
+            <typeparam name="T">The type of the enumeration.</typeparam>
+            <typeparam name="TResult">The type of the result elements.</typeparam>
+            <param name="this">The enumeration type field.</param>
+            <param name="selector">The selector that can convert the enumeration field into the target-typed instance.</param>
+            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the enumeration type is not marked <see cref="T:System.FlagsAttribute"/>.
+            </exception>
+        </member>
+        <member name="T:System.Linq.ImmutableArrayEnumerable">
+            <summary>
+            Provides with LINQ methods of <see cref="T:System.Collections.Immutable.ImmutableArray`1"/> values comsumed by users.
+            </summary>
+            <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>
+        </member>
+        <member name="M:System.Linq.ImmutableArrayEnumerable.SequenceEquals``1(System.Collections.Immutable.ImmutableArray{``0},System.Collections.Immutable.ImmutableArray{``0},)">
+            <summary>
+            Determines whether two sequences are equal according to an equality comparer method, specified as a function pointer.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The fist collection to be compared.</param>
+            <param name="other">The second collection to be compared.</param>
+            <param name="comparison">
+            The function pointer that points to a function that compares two <typeparamref name="T"/> instances,
+            and returns a <see cref="T:System.Boolean"/> value indicating whether they are considered equal.
+            </param>
+            <returns><see langword="true"/> to indicate the sequences are equal; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:System.Linq.ImmutableArrayEnumerable.Count``1(System.Collections.Immutable.ImmutableArray{``0},System.Predicate{``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Count``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.ImmutableArrayEnumerable.Sum``2(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,``1})">
+            <summary>
+            Computes the sum of sequence of <typeparamref name="TResult"/> values that are obtained
+            by invoking a transform function on each element of the input sequence.
+            </summary>
+            <typeparam name="T">The type of the elements in the array.</typeparam>
+            <typeparam name="TResult">
+            The result selected. The type must be a number type that implements interface type <see cref="T:System.Numerics.INumber`1"/>.
+            For example, a <see cref="T:System.Decimal"/> type.
+            </typeparam>
+            <param name="this">The array.</param>
+            <param name="selector">
+            The selector method that converts each elements to an instance of type <typeparamref name="TResult"/>.
+            </param>
+            <returns>The sum of the projected values.</returns>
+        </member>
+        <member name="M:System.Linq.ImmutableArrayEnumerable.CastToNotNull``1(System.Collections.Immutable.ImmutableArray{System.Nullable{``0}})">
+            <summary>
+            Casts the current array elements into target typed values.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array to be casted.</param>
+            <returns>The casted array.</returns>
+        </member>
+        <member name="M:System.Linq.ImmutableArrayEnumerable.CastToNotNull``1(System.Collections.Immutable.ImmutableArray{``0})">
+            <summary>
+            Casts the current array elements into target typed values.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array to be casted.</param>
+            <returns>The casted array.</returns>
+        </member>
+        <member name="T:System.Linq.ListEnumerable">
+            <summary>
+            Represents with LINQ methods for <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.List`1"/>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.Count``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.Where``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.Select``2(System.Collections.Generic.List{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="T:System.Linq.MaskEnumerable">
+            <summary>
+            Represents a set of operation that iterates on each bit in a <see cref="T:System.Int16"/> instance like LINQ.
+            </summary>
+            <seealso cref="T:System.Int16"/>
+        </member>
+        <member name="M:System.Linq.MaskEnumerable.Select``1(System.Int16,System.Func{System.Int32,``0})">
+            <summary>
+            Projects each bit from a specified mask, converting it into a (an) <typeparamref name="T"/> instance,
+            with specified method to be called.
+            </summary>
+            <typeparam name="T">The target type of values for each bit converted.</typeparam>
+            <param name="this">A mask instance.</param>
+            <param name="selector">The selector method to be converted.</param>
+            <returns>A list of converted result, encapsulated by a <see cref="T:System.ReadOnlySpan`1"/> type.</returns>
+        </member>
+        <member name="T:System.Linq.SpanEnumerable">
+            <summary>
+            Provides LINQ-based extension methods on <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <seealso cref="T:System.ReadOnlySpan`1"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
+            <summary>
+            Projects each element in the current instance into the target-typed span of element type <typeparamref name="TResult"/>,
+            using the specified function to convert.
+            </summary>
+            <typeparam name="T">The type of each elements in the span.</typeparam>
+            <typeparam name="TResult">The type of target value.</typeparam>
+            <param name="this">The source elements.</param>
+            <param name="selector">The selector.</param>
+            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.SelectMany``3(System.ReadOnlySpan{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/summary"/>
+            </summary>
+            <param name="this">A <see cref="T:System.ReadOnlySpan`1"/> to filter.</param>
+            <param name="predicate">
+            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/param[@name='predicate']"/>
+            </param>
+            <returns>A <typeparamref name="T"/>[] that contains elements form the input sequence that satisfy the condition.</returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.OrderBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.FirstOrDefault``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.GetSubsets``1(System.ReadOnlySpan{``0},System.Int32)">
+            <summary>
+            Get all subsets from the specified number of the values to take.
+            </summary>
+            <param name="this">The array.</param>
+            <param name="count">The number of elements you want to take.</param>
+            <returns>All subsets.</returns>
+        </member>
+        <member name="T:System.Linq.StringEnumerable">
+            <summary>
+            Provides with LINQ methods on a <see cref="T:System.String"/> value.
+            </summary>
+        </member>
+        <member name="M:System.Linq.StringEnumerable.Select``1(System.String,System.Func{System.Char,``0})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
+            </summary>
+            <param name="this">The string instance.</param>
+            <param name="selector">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
+            </param>
+            <returns>
+            A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TResult"/> whose elements are the result of invoking the transfrom function
+            on each element of <paramref name="this"/>.
+            </returns>
+        </member>
+        <member name="M:System.Linq.StringEnumerable.Where(System.String,System.Func{System.Char,System.Boolean})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/summary"/>
+            </summary>
+            <param name="this">The string instance.</param>
+            <param name="predicate">
+            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/param[@name='selector']"/>
+            </param>
+            <returns>
+            A new <see cref="T:System.String"/> instance that contains characters from the input sequence that satisfy the condition.
             </returns>
         </member>
         <member name="T:System.Numerics.BitOperationsExtensions">
