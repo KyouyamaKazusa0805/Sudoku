@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Runtime.MaskServices;
+namespace Sudoku.Runtime.MaskServices;
 
 /// <summary>
 /// Indicates the enumerator of the current instance.
