@@ -2047,7 +2047,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	QiuDeadlyPatternType1,
 
 	/// <summary>
@@ -2055,7 +2055,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	QiuDeadlyPatternType2,
 
 	/// <summary>
@@ -2063,7 +2063,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	QiuDeadlyPatternType3,
 
 	/// <summary>
@@ -2071,7 +2071,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	QiuDeadlyPatternType4,
 
 	/// <summary>
@@ -2079,7 +2079,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	LockedQiuDeadlyPattern,
 	#endregion
 
