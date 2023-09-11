@@ -126,16 +126,17 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					scoped ref int appearedParts
 				)
 				{
+					if (map is not [var c1, var c2])
+					{
+						return;
+					}
+
 					var flag = false;
-					var offsets = (Cell[])[.. map];
-					var c1 = offsets[0];
-					var c2 = offsets[1];
 					if (!EmptyCells.Contains(c1))
 					{
 						var d1 = grid.GetDigit(c1);
 						distinctionMask ^= (Mask)(1 << d1);
 						appearedDigitsMask |= (Mask)(1 << d1);
-
 						flag = true;
 					}
 					if (!EmptyCells.Contains(c2))
@@ -143,7 +144,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 						var d2 = grid.GetDigit(c2);
 						distinctionMask ^= (Mask)(1 << d2);
 						appearedDigitsMask |= (Mask)(1 << d2);
-
 						flag = true;
 					}
 
@@ -156,9 +156,8 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				continue;
 			}
 
-			var pairMask = grid[pair];
-
 			// Iterate on each combination.
+			var pairMask = grid[pair];
 			for (var size = 2; size < PopCount((uint)pairMask); size++)
 			{
 				foreach (var digits in pairMask.GetAllSets().GetSubsets(size))
