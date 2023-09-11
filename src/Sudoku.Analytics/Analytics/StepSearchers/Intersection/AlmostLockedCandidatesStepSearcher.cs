@@ -144,14 +144,12 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			var conclusions = new List<Conclusion>();
 			foreach (var aCell in a)
 			{
-				if (cells.Contains(aCell))
+				if (!cells.Contains(aCell))
 				{
-					continue;
-				}
-
-				foreach (var digit in (Mask)(mask & grid.GetCandidates(aCell)))
-				{
-					conclusions.Add(new(Elimination, aCell, digit));
+					foreach (var digit in (Mask)(mask & grid.GetCandidates(aCell)))
+					{
+						conclusions.Add(new(Elimination, aCell, digit));
+					}
 				}
 			}
 			foreach (var digit in (Mask)(Grid.MaxCandidatesMask & ~mask))
