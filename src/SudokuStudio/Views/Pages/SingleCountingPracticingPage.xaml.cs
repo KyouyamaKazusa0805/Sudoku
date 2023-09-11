@@ -248,7 +248,6 @@ file static class Generator
 				}
 
 				targetCandidate = cell * 9 + digits[^1];
-
 				break;
 			}
 			case GeneratingMode.NakedSingle:
@@ -276,7 +275,6 @@ file static class Generator
 				}
 
 				targetCandidate = cell * 9 + digits[^1];
-
 				break;
 			}
 			default:
