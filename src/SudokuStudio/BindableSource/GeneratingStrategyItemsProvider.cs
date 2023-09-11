@@ -104,7 +104,13 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 		};
 
 	private static TechniqueSelector TechniqueMustIncludedControlCreator()
-		=> new() { SelectedIndex = (int)((App)Application.Current).Preference.UIPreferences.SelectedTechnique };
+	{
+		var previousSelectedTechnique = ((App)Application.Current).Preference.UIPreferences.SelectedTechnique;
+		var result = new TechniqueSelector();
+		var foundIndex = Array.FindIndex(result.ItemsSource, element => element.Technique == previousSelectedTechnique);
+		result.SelectedIndex = foundIndex == -1 ? 0 : foundIndex;
+		return result;
+	}
 
 	private static ToggleSwitch IsMinimalControlCreator()
 		=> new() { IsOn = ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBeMinimal };
@@ -145,7 +151,11 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 	private static void TechniqueMustIncludedValueRouter(FrameworkElement c)
 		=> ((App)Application.Current).Preference.UIPreferences.SelectedTechnique = c switch
 		{
-			TechniqueSelector { ItemsSource: var source, SelectedIndex: var index } => index switch { -1 => Technique.None, _ => source[index].Technique },
+			TechniqueSelector { ItemsSource: var source, SelectedIndex: var index } => index switch
+			{
+				-1 => Technique.None,
+				_ => source[index].Technique
+			},
 			_ => throw new InvalidOperationException("The status is invalid.")
 		};
 
