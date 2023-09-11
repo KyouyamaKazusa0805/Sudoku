@@ -481,7 +481,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 		foreach (var houseIndex in extraCellsMap.CoveredHouses)
 		{
-			foreach (var (digit, otherDigit) in stackalloc[] { (d1, d2), (d2, d1) })
+			foreach (var (digit, otherDigit) in ((d1, d2), (d2, d1)))
 			{
 				var map = HousesMap[houseIndex] & CandidatesMap[digit];
 				if (map != (HousesMap[houseIndex] & loop))

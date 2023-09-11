@@ -126,7 +126,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 		{
 			// Iterate on different cases on whether searcher finds mutant fishes.
 			// If false, search for franken fishes.
-			foreach (var checkMutant in stackalloc[] { false, true })
+			foreach (var checkMutant in (false, true))
 			{
 				// Then iterate on each elimination.
 				foreach (var cell in pomElimsOfThisDigit)

@@ -264,7 +264,7 @@ file static class Generator
 				}
 
 				var cells = CellMap.Empty;
-				foreach (var index in stackalloc[] { 0, 2, 4, 7, 9, 11, 14, 16, 18 })
+				foreach (var index in (0, 2, 4, 7, 9, 11, 14, 16, 18))
 				{
 					cells.Add(peers[index]);
 				}

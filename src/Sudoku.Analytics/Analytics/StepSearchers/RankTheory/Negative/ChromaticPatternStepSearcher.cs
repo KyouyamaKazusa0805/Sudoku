@@ -61,13 +61,12 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 		var diagonalCases = (int[][])[[0, 10, 20], [1, 11, 18], [2, 9, 19]];
 		var antidiagonalCases = (int[][])[[0, 11, 19], [1, 9, 20], [2, 10, 18]];
 		var patternOffsetsList = new List<(int[], int[], int[], int[])>();
-		foreach (var (aCase, bCase, cCase, dCase) in stackalloc[]
-		{
+		foreach (var (aCase, bCase, cCase, dCase) in (
 			(true, false, false, false),
 			(false, true, false, false),
 			(false, false, true, false),
 			(false, false, false, true)
-		})
+		))
 		{
 			// Phase 1.
 			foreach (var a in aCase ? diagonalCases : antidiagonalCases)

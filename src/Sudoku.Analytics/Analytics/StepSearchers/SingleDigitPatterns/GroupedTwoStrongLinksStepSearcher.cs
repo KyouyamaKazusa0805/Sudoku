@@ -74,13 +74,12 @@ public sealed partial class GroupedTwoStrongLinksStepSearcher : StepSearcher
 						scoped ref var currentMap = ref cellsForHouse2[1];
 						currentMap.Add(HouseCells[h2][pos]);
 					}
-					foreach (var (cells1, cells2, headCells, tailCells) in stackalloc[]
-					{
+					foreach (var (cells1, cells2, headCells, tailCells) in (
 						(cellsForHouse1[0], cellsForHouse2[0], cellsForHouse1[1], cellsForHouse2[1]),
 						(cellsForHouse1[0], cellsForHouse2[1], cellsForHouse1[1], cellsForHouse2[0]),
 						(cellsForHouse1[1], cellsForHouse2[0], cellsForHouse1[0], cellsForHouse2[1]),
 						(cellsForHouse1[1], cellsForHouse2[1], cellsForHouse1[0], cellsForHouse2[0])
-					})
+					))
 					{
 						// Check whether they are in a same house.
 						if (!(cells1 | cells2).InOneHouse(out var weakLinkHouse) || !!(cells1 & cells2))

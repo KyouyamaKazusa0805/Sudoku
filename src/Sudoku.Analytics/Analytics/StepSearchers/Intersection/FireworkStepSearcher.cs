@@ -420,17 +420,16 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 
 		foreach (var digits in digitsMask.GetAllSets().GetSubsets(4))
 		{
-			scoped var cases = (stackalloc[]
-			{
+			scoped var cases = (ReadOnlySpan<((Digit, Digit), (Digit, Digit))>)([
 				((digits[0], digits[1]), (digits[2], digits[3])),
 				((digits[0], digits[2]), (digits[1], digits[3])),
 				((digits[0], digits[3]), (digits[1], digits[2])),
 				((digits[1], digits[2]), (digits[0], digits[3])),
 				((digits[1], digits[3]), (digits[0], digits[2])),
 				((digits[2], digits[3]), (digits[0], digits[1]))
-			});
+			]);
 
-			foreach (var (pivot1, pivot2) in stackalloc[] { (c1, c4), (c2, c3) })
+			foreach (var (pivot1, pivot2) in ((c1, c4), (c2, c3)))
 			{
 				var nonPivot1Cells = (map - pivot1) & (HousesMap[pivot1.ToHouseIndex(HouseType.Row)] | HousesMap[pivot1.ToHouseIndex(HouseType.Column)]);
 				var nonPivot2Cells = (map - pivot2) & (HousesMap[pivot2.ToHouseIndex(HouseType.Row)] | HousesMap[pivot2.ToHouseIndex(HouseType.Column)]);

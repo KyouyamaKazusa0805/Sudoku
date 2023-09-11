@@ -759,7 +759,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				continue;
 			}
 
-			foreach (var digit in stackalloc[] { d1, d2 })
+			foreach (var digit in (d1, d2))
 			{
 				if (!IsConjugatePair(digit, otherCellsMap, houseIndex))
 				{
@@ -977,9 +977,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var c1 = corner1.ToHouseIndex(HouseType.Column);
 		var r2 = corner2.ToHouseIndex(HouseType.Row);
 		var c2 = corner2.ToHouseIndex(HouseType.Column);
-		foreach (var digit in stackalloc[] { d1, d2 })
+		foreach (var digit in (d1, d2))
 		{
-			foreach (var (h1, h2) in stackalloc[] { (r1, r2), (c1, c2) })
+			foreach (var (h1, h2) in ((r1, r2), (c1, c2)))
 			{
 				gather(grid, otherCellsMap, h1 is >= 9 and < 18, digit, h1, h2);
 			}
@@ -1099,7 +1099,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var abyCell = adjacentCellsMap[1];
 		var r = abzCell.ToHouseIndex(HouseType.Row);
 		var c = abzCell.ToHouseIndex(HouseType.Column);
-		foreach (var digit in stackalloc[] { d1, d2 })
+		foreach (var digit in (d1, d2))
 		{
 			var map1 = CellsMap[abzCell] + abxCell;
 			var map2 = CellsMap[abzCell] + abyCell;
@@ -1356,8 +1356,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			return;
 		}
 
-		scoped ReadOnlySpan<Digit> digits = (stackalloc[] { d1, d2 });
-		foreach (var cell in stackalloc[] { corner1, corner2 })
+		scoped var digits = (ReadOnlySpan<Digit>)([d1, d2]);
+		foreach (var cell in (corner1, corner2))
 		{
 			foreach (var otherCell in otherCellsMap)
 			{
@@ -1532,7 +1532,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			return;
 		}
 
-		foreach (var cell in stackalloc[] { corner1, corner2 })
+		foreach (var cell in (corner1, corner2))
 		{
 			foreach (var otherCell in otherCellsMap)
 			{
@@ -1548,7 +1548,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						continue;
 					}
 
-					foreach (var digit in stackalloc[] { d1, d2 })
+					foreach (var digit in (d1, d2))
 					{
 						if (!IsConjugatePair(digit, [cell, otherCell], house))
 						{
@@ -1843,7 +1843,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 		var abzCell = GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = otherCellsMap - abzCell;
-		foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
+		foreach (var (a, b) in ((d1, d2), (d2, d1)))
 		{
 			var abxCell = adjacentCellsMap[0];
 			var abyCell = adjacentCellsMap[1];
@@ -1971,7 +1971,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var abyCell = adjacentCellsMap[1];
 		scoped var digitPairs = (ReadOnlySpan<(Digit, Digit)>)([(d1, d2), (d2, d1)]);
 		scoped var digits = (ReadOnlySpan<Digit>)([d1, d2]);
-		foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
+		foreach (var (begin, end) in ((abxCell, abyCell), (abyCell, abxCell)))
 		{
 			var linkMap = CellsMap[begin] + abzCell;
 			foreach (var (a, b) in digitPairs)
@@ -2097,10 +2097,10 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
-		foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
+		foreach (var (begin, end) in ((abxCell, abyCell), (abyCell, abxCell)))
 		{
 			var linkMap = CellsMap[begin] + abzCell;
-			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
+			foreach (var (a, b) in ((d1, d2), (d2, d1)))
 			{
 				if (!IsConjugatePair(b, linkMap, linkMap.CoveredLine))
 				{
@@ -2220,10 +2220,10 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
-		foreach (var (begin, end) in stackalloc[] { (abxCell, abyCell), (abyCell, abxCell) })
+		foreach (var (begin, end) in ((abxCell, abyCell), (abyCell, abxCell)))
 		{
 			var linkMap = CellsMap[begin] + abzCell;
-			foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
+			foreach (var (a, b) in ((d1, d2), (d2, d1)))
 			{
 				if (!IsConjugatePair(a, linkMap, linkMap.CoveredLine))
 				{
@@ -2337,7 +2337,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	)
 	{
 		var link1Map = CellsMap[corner1] + corner2;
-		foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
+		foreach (var (a, b) in ((d1, d2), (d2, d1)))
 		{
 			if (!IsConjugatePair(a, link1Map, link1Map.CoveredLine))
 			{
@@ -2346,7 +2346,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 			var abwCell = GetDiagonalCell(urCells, corner1);
 			var abzCell = (otherCellsMap - abwCell)[0];
-			foreach (var (head, begin, end, extra) in stackalloc[] { (corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell) })
+			foreach (var (head, begin, end, extra) in ((corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell)))
 			{
 				var link2Map = CellsMap[begin] + end;
 				if (!IsConjugatePair(b, link2Map, link2Map.CoveredLine))
@@ -2489,7 +2489,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	{
 		var link1Map = CellsMap[corner1] + corner2;
 		scoped var innerMaps = (stackalloc CellMap[2]);
-		foreach (var (a, b) in stackalloc[] { (d1, d2), (d2, d1) })
+		foreach (var (a, b) in ((d1, d2), (d2, d1)))
 		{
 			if (!IsConjugatePair(a, link1Map, link1Map.CoveredLine))
 			{
@@ -2498,7 +2498,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 			var end = GetDiagonalCell(urCells, corner1);
 			var extra = (otherCellsMap - end)[0];
-			foreach (var (abx, aby, abw, abz) in stackalloc[] { (corner2, corner1, extra, end), (corner1, corner2, end, extra) })
+			foreach (var (abx, aby, abw, abz) in ((corner2, corner1, extra, end), (corner1, corner2, end, extra)))
 			{
 				var link2Map = CellsMap[aby] + abw;
 				if (!IsConjugatePair(a, link2Map, link2Map.CoveredLine))
@@ -3047,7 +3047,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var block = (byte)TrailingZeroCount(otherCellsMap.CoveredHouses & ~(1 << line));
 		var (a, _, _, d) = IntersectionMaps[new(line, block)];
 		using scoped var list = new ValueList<CellMap>(4);
-		foreach (var cannibalMode in stackalloc[] { false, true })
+		foreach (var cannibalMode in (false, true))
 		{
 			foreach (var otherBlock in d)
 			{
@@ -4125,7 +4125,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		// Iterates on each digit, checking whether the current digit forms a guardian pattern but the other digit not.
-		foreach (var (guardianDigit, nonGuardianDigit) in stackalloc[] { (d1, d2), (d2, d1) })
+		foreach (var (guardianDigit, nonGuardianDigit) in ((d1, d2), (d2, d1)))
 		{
 			// Iterates on each pair of houses where the UR pattern located.
 			foreach (var houses in cells.Houses.GetAllSets().GetSubsets(2))
@@ -4360,7 +4360,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 		// Iterates on each digit, checking whether the current digit forms a guardian pattern but the other digit not.
 		// Here the variable 'xDigit' has a same concept as guardian digit.
-		foreach (var (xDigit, nonGuardianDigit) in stackalloc[] { (d1, d2), (d2, d1) })
+		foreach (var (xDigit, nonGuardianDigit) in ((d1, d2), (d2, d1)))
 		{
 			// Iterates on each pair of houses where the UR pattern located.
 			foreach (var houses in cells.Houses.GetAllSets().GetSubsets(2))
@@ -4876,7 +4876,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				continue;
 			}
 
-			foreach (var (zDigit, xDigit) in stackalloc[] { (d1, d2), (d2, d1) })
+			foreach (var (zDigit, xDigit) in ((d1, d2), (d2, d1)))
 			{
 				var xDigitGuardianCells = CandidatesMap[xDigit] & guardianCells;
 				var zDigitGuardianCells = CandidatesMap[zDigit] & guardianCells;
@@ -5152,7 +5152,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private static bool CheckPreconditionsOnIncomplete(scoped in Grid grid, Cell[] urCells, Digit d1, Digit d2)
 	{
 		// Same-sided cells cannot contain only one digit of two digits 'd1' and 'd2'.
-		foreach (var (a, b) in stackalloc[] { (0, 1), (2, 3), (0, 2), (1, 3) })
+		foreach (var (a, b) in ((0, 1), (2, 3), (0, 2), (1, 3)))
 		{
 			var gatheredMask = (Mask)(grid.GetCandidates(urCells[a]) | grid.GetCandidates(urCells[b]));
 			if ((gatheredMask >> d1 & 1) == 0 || (gatheredMask >> d2 & 1) == 0)

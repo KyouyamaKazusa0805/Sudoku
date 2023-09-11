@@ -51,7 +51,7 @@ public sealed partial class MultiBranchWWingStepSearcher : StepSearcher
 						// Iterates on each digit, to fix the digit as the X digit.
 						// W-Wing pattern requires a pair of W digits as the first and the last place,
 						// and requires the X digits are in the body of the pattern (i.e. non-terminal nodes).
-						foreach (var xDigit in stackalloc[] { digit1, digit2 })
+						foreach (var xDigit in (digit1, digit2))
 						{
 							// Gets the target house that can place root cells.
 							foreach (var house in (AllRowsMask | AllColumnsMask) & ~cells.Houses)

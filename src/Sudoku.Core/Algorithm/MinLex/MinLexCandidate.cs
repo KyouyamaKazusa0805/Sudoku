@@ -173,7 +173,7 @@ public unsafe struct MinLexCandidate
 		resultBuffer[7] = (byte)(minTopRowScore >> 1 & 1);
 		resultBuffer[8] = (byte)(minTopRowScore & 1);
 		resultBuffer[81] = 0;
-		foreach (var nowTransposed in stackalloc[] { false, true })
+		foreach (var nowTransposed in (false, true))
 		{
 			if (minTopRowScores[nowTransposed ? 1 : 0] > minTopRowScore)
 			{

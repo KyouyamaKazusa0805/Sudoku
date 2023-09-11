@@ -33,7 +33,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 
 		scoped ref readonly var grid = ref context.Grid;
 		using scoped var list = new ValueList<CellMap>(4);
-		foreach (var cannibalMode in stackalloc[] { false, true })
+		foreach (var cannibalMode in (false, true))
 		{
 			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{

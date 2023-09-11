@@ -695,6 +695,35 @@
             <param name="value">The value.</param>
             <returns>The value itself.</returns>
         </member>
+        <member name="T:System.ComplexValueTupleEnumerator`2">
+            <summary>
+            Defines a complex value tuple enumerator.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TRest">The type that encapsulate for a list of rest elements.</typeparam>
+        </member>
+        <member name="F:System.ComplexValueTupleEnumerator`2._values">
+            <summary>
+            Indicates the internal values to be iterated.
+            </summary>
+        </member>
+        <member name="F:System.ComplexValueTupleEnumerator`2._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="M:System.ComplexValueTupleEnumerator`2.#ctor(System.ValueTuple{`0,`0,`0,`0,`0,`0,`0,`1})">
+            <summary>
+            Initializes a <see cref="T:System.ComplexValueTupleEnumerator`2"/> instance.
+            </summary>
+            <param name="tuple">The tuple.</param>
+        </member>
+        <member name="P:System.ComplexValueTupleEnumerator`2.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:System.ComplexValueTupleEnumerator`2.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.StringSyntax">
             <summary>
             Represents a list of <see cref="T:System.String"/> constants being used by <see cref="T:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute"/>.
@@ -4256,6 +4285,138 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.Utf8String.op_LessThanOrEqual(System.Utf8String,System.Utf8String)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:System.ValueTupleEnumerator`1">
+            <summary>
+            Provides with a mechanism to iterate a value tuple instance of a uniform type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The uniform type of a pair of instances.</typeparam>
+        </member>
+        <member name="F:System.ValueTupleEnumerator`1._limit">
+            <summary>
+            Indicates the maximum number of values to be iterated.
+            </summary>
+        </member>
+        <member name="F:System.ValueTupleEnumerator`1._innerTuple">
+            <summary>
+            Indicates the internal tuple.
+            </summary>
+        </member>
+        <member name="F:System.ValueTupleEnumerator`1._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="M:System.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0})">
+            <summary>
+            Initializes a <see cref="T:System.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`2"/> instance.
+            </summary>
+            <param name="pair">A pair instance to be iterated.</param>
+        </member>
+        <member name="M:System.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0})">
+            <summary>
+            Initializes a <see cref="T:System.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`3"/> instance.
+            </summary>
+            <param name="triple">A triple instance to be iterated.</param>
+        </member>
+        <member name="M:System.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0,`0})">
+            <summary>
+            Initializes a <see cref="T:System.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`4"/> instance.
+            </summary>
+            <param name="quadruple">A quadruple instance to be iterated.</param>
+        </member>
+        <member name="M:System.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0,`0,`0})">
+            <summary>
+            Initializes a <see cref="T:System.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`5"/> instance.
+            </summary>
+            <param name="quintuple">A quintuple instance to be iterated.</param>
+        </member>
+        <member name="M:System.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0,`0,`0,`0})">
+            <summary>
+            Initializes a <see cref="T:System.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`6"/> instance.
+            </summary>
+            <param name="sextuple">A sextuple instance to be iterated.</param>
+        </member>
+        <member name="M:System.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0,`0,`0,`0,`0})">
+            <summary>
+            Initializes a <see cref="T:System.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`7"/> instance.
+            </summary>
+            <param name="septuple">A septuple instance to be iterated.</param>
+        </member>
+        <member name="P:System.ValueTupleEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:System.ValueTupleEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="T:System.ValueTupleExtensions">
+            <summary>
+            Represents with extension methods for value tuple type set.
+            </summary>
+        </member>
+        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0})">
+            <summary>
+            Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
+            via a value tuple <see cref="T:System.ValueTuple`2"/> of a uniform type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The uniform type that two instances defined in pair are.</typeparam>
+            <param name="this">The instance to be iterated.</param>
+            <returns>An enumerator instance.</returns>
+        </member>
+        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0})">
+            <summary>
+            Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
+            via a value tuple <see cref="T:System.ValueTuple`3"/> of a uniform type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The uniform type that two instances defined in pair are.</typeparam>
+            <param name="this">The instance to be iterated.</param>
+            <returns>An enumerator instance.</returns>
+        </member>
+        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0})">
+            <summary>
+            Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
+            via a value tuple <see cref="T:System.ValueTuple`4"/> of a uniform type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The uniform type that two instances defined in pair are.</typeparam>
+            <param name="this">The instance to be iterated.</param>
+            <returns>An enumerator instance.</returns>
+        </member>
+        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0,``0})">
+            <summary>
+            Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
+            via a value tuple <see cref="T:System.ValueTuple`5"/> of a uniform type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The uniform type that two instances defined in pair are.</typeparam>
+            <param name="this">The instance to be iterated.</param>
+            <returns>An enumerator instance.</returns>
+        </member>
+        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0,``0,``0})">
+            <summary>
+            Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
+            via a value tuple <see cref="T:System.ValueTuple`6"/> of a uniform type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The uniform type that two instances defined in pair are.</typeparam>
+            <param name="this">The instance to be iterated.</param>
+            <returns>An enumerator instance.</returns>
+        </member>
+        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0,``0,``0,``0})">
+            <summary>
+            Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
+            via a value tuple <see cref="T:System.ValueTuple`7"/> of a uniform type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The uniform type that two instances defined in pair are.</typeparam>
+            <param name="this">The instance to be iterated.</param>
+            <returns>An enumerator instance.</returns>
+        </member>
+        <member name="M:System.ValueTupleExtensions.GetEnumerator``2(System.ValueTuple{``0,``0,``0,``0,``0,``0,``0,``1})">
+            <summary>
+            Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
+            via a value tuple <see cref="T:System.ValueTuple`8"/> of a uniform type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The uniform type that two instances defined in pair are.</typeparam>
+            <typeparam name="TRest">The type that encapsulates a list of rest elements.</typeparam>
+            <param name="this">The instance to be iterated.</param>
+            <returns>An enumerator instance.</returns>
         </member>
     </members>
 </doc>
