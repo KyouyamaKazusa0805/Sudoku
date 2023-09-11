@@ -1,10 +1,8 @@
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
-using Sudoku.DataModel;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
-using Sudoku.Runtime.MaskServices;
 
 namespace Sudoku.Analytics.StepSearchers;
 
@@ -26,675 +24,398 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// All different patterns.
+	/// Indicates the patterns for case 1.
 	/// </summary>
-	private static readonly QiuDeadlyPattern[] Patterns;
+	private static readonly Pattern1[] PatternsForCase1;
+
+	/// <summary>
+	/// Indicates the patterns for case 2.
+	/// </summary>
+	private static readonly Pattern2[] PatternsForCase2;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static QiuDeadlyPatternStepSearcher()
 	{
-		var baseLineIteratorValues = (int[][])[
-			[9, 10], [9, 11], [10, 11], [12, 13], [12, 14], [13, 14],
-			[15, 16], [15, 17], [16, 17], [18, 19], [18, 20], [19, 20],
-			[21, 22], [21, 23], [22, 23], [24, 25], [24, 26], [25, 26]
-		];
-		var startCells = (int[][])[
-			[0, 1], [0, 2], [1, 2], [3, 4], [3, 5], [4, 5],
-			[6, 7], [6, 8], [7, 8], [0, 9], [0, 18], [9, 18],
-			[27, 36], [27, 45], [36, 45], [54, 63], [54, 72], [63, 72]
-		];
-
-		var patterns = new List<QiuDeadlyPattern>();
-		for (var (i, n, length) = (0, 0, baseLineIteratorValues.Length); i < length >> 1; i++)
+		// Case 1: 2 lines + 2 cells.
+		var lineOffsets = (int[][])[[0, 1, 2], [0, 2, 1], [1, 2, 0], [3, 4, 5], [3, 5, 4], [4, 5, 3], [6, 7, 8], [6, 8, 7], [7, 8, 6]];
+		var patternsForCase1 = new List<Pattern1>();
+		foreach (var isRow in (true, false))
 		{
-			var isRow = i < length >> 2;
-			var baseLineMap = HousesMap[baseLineIteratorValues[i][0]] | HousesMap[baseLineIteratorValues[i][1]];
-			for (var (j, z) = (isRow ? 0 : 9, 0); z < length >> 2; j++, z++)
+			var (@base, fullHousesMask) = isRow ? (9, AllRowsMask) : (18, AllColumnsMask);
+			foreach (var lineOffsetPair in lineOffsets)
 			{
-				for (var (k, c1, c2) = (0, startCells[j][0], startCells[j][1]); k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
+				var (l1, l2, l3) = (lineOffsetPair[0] + @base, lineOffsetPair[1] + @base, lineOffsetPair[2] + @base);
+				var linesMask = 1 << l1 | 1 << l2;
+				foreach (var cornerHouse in fullHousesMask & ~linesMask & ~(1 << l3))
 				{
-					var pairMap = CellsMap[c1] + c2;
-					if (baseLineMap && pairMap)
+					foreach (var posPair in lineOffsets)
 					{
-						continue;
+						patternsForCase1.Add(new([HouseCells[cornerHouse][posPair[0]], HouseCells[cornerHouse][posPair[1]]], linesMask));
 					}
-
-					if (baseLineMap && HousesMap[c1.ToHouseIndex(HouseType.Block)] | HousesMap[c2.ToHouseIndex(HouseType.Block)])
-					{
-						continue;
-					}
-
-					var squareMap = baseLineMap & (
-						HousesMap[c1.ToHouseIndex(isRow ? HouseType.Column : HouseType.Row)]
-							| HousesMap[c2.ToHouseIndex(isRow ? HouseType.Column : HouseType.Row)]
-					);
-					if (!squareMap)
-					{
-						continue;
-					}
-					patterns.Add(new(squareMap, baseLineMap - squareMap, pairMap));
 				}
 			}
 		}
+		PatternsForCase1 = [.. patternsForCase1];
 
-		Patterns = [.. patterns];
+		// Case 2: 2 rows + 2 columns.
+		var patternsForCase2 = new List<Pattern2>();
+		scoped var rows = AllRowsMask.GetAllSets();
+		scoped var columns = AllColumnsMask.GetAllSets();
+		foreach (var lineOffsetPairRow in lineOffsets)
+		{
+			var rowsMask = 1 << rows[lineOffsetPairRow[0]] | 1 << rows[lineOffsetPairRow[1]];
+			foreach (var lineOffsetPairColumn in lineOffsets)
+			{
+				var columnsMask = 1 << columns[lineOffsetPairColumn[0]] | 1 << columns[lineOffsetPairColumn[1]];
+				patternsForCase2.Add(new(rowsMask, columnsMask));
+			}
+		}
+		PatternsForCase2 = [.. patternsForCase2];
 	}
 
 
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
+		// Handle for case 1.
+		foreach (var pattern in PatternsForCase1)
+		{
+			if (Collect(ref context, pattern) is { } step)
+			{
+				return step;
+			}
+		}
+
+		// Handle for case 2.
+		foreach (var pattern in PatternsForCase2)
+		{
+			if (Collect(ref context, pattern) is { } step)
+			{
+				return step;
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// <inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/summary"/>
+	/// </summary>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="pattern">The target pattern.</param>
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
+	private QiuDeadlyPatternStep? Collect(scoped ref AnalysisContext context, scoped in Pattern1 pattern)
+	{
 		scoped ref readonly var grid = ref context.Grid;
-		for (var (i, length) = (0, Patterns.Length); i < length; i++)
+
+		// We should check for the distinction for the lines.
+		var lines = pattern.Lines;
+		var l1 = TrailingZeroCount(lines);
+		var l2 = lines.GetNextSet(l1);
+		var valueCellsInBothLines = CellMap.Empty;
+		foreach (var cell in HousesMap[l1] | HousesMap[l2])
 		{
-			var isRow = i < length >> 1;
-			if (Patterns[i] is not { Pair: [var pairFirst, var pairSecond] pair, Square: var square, BaseLine: var baseLine } pattern)
+			if (grid.GetState(cell) != CellState.Empty)
 			{
-				continue;
+				valueCellsInBothLines.Add(cell);
 			}
+		}
 
-			// To check whether both two pair cells are empty.
-			if (!EmptyCells.Contains(pairFirst) || !EmptyCells.Contains(pairSecond))
-			{
-				continue;
-			}
+		if (pattern.Corner - EmptyCells)
+		{
+			// Corners cannot be non-empty.
+			return null;
+		}
 
-			// Step 1: To determine whether the distinction degree of base line is 1.
-			var appearedDigitsMask = (Mask)0;
-			var distinctionMask = (Mask)0;
-			var appearedParts = 0;
-			for (var (j, house) = (0, isRow ? 18 : 9); j < 9; j++, house++)
-			{
-				var houseMap = HousesMap[house];
-				if ((baseLine & houseMap) is var tempMap and not [])
-				{
-					f(grid, tempMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
-				}
-				else if ((square & houseMap) is var squareMap and not [])
-				{
-					// Don't forget to record the square cells.
-					f(grid, squareMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
-				}
-
-
-				static void f(
-					scoped in Grid grid,
-					scoped in CellMap map,
-					scoped ref Mask appearedDigitsMask,
-					scoped ref Mask distinctionMask,
-					scoped ref int appearedParts
-				)
-				{
-					if (map is not [var c1, var c2])
-					{
-						return;
-					}
-
-					var flag = false;
-					if (!EmptyCells.Contains(c1))
-					{
-						var d1 = grid.GetDigit(c1);
-						distinctionMask ^= (Mask)(1 << d1);
-						appearedDigitsMask |= (Mask)(1 << d1);
-						flag = true;
-					}
-					if (!EmptyCells.Contains(c2))
-					{
-						var d2 = grid.GetDigit(c2);
-						distinctionMask ^= (Mask)(1 << d2);
-						appearedDigitsMask |= (Mask)(1 << d2);
-						flag = true;
-					}
-
-					appearedParts += flag ? 1 : 0;
-				}
-			}
-
-			if (!IsPow2(distinctionMask) || appearedParts != PopCount((uint)appearedDigitsMask))
-			{
-				continue;
-			}
-
-			// Iterate on each combination.
-			var pairMask = grid[pair];
-			for (var size = 2; size < PopCount((uint)pairMask); size++)
-			{
-				foreach (var digits in pairMask.GetAllSets().GetSubsets(size))
-				{
-					// Step 2: To determine whether the digits in pair cells
-					// will only appears in square cells.
-					var tempMap = CellMap.Empty;
-					foreach (var digit in digits)
-					{
-						tempMap |= CandidatesMap[digit];
-					}
-					var appearingMap = tempMap & square;
-					if (appearingMap.Count != 4)
-					{
-						continue;
-					}
-
-					var flag = false;
-					foreach (var digit in digits)
-					{
-						if (!(square & CandidatesMap[digit]))
-						{
-							flag = true;
-							break;
-						}
-					}
-					if (flag)
-					{
-						continue;
-					}
-
-					var comparer = MaskOperations.Create(digits);
-					var otherDigitsMask = (Mask)(pairMask & ~comparer);
-					if (appearingMap == (tempMap & HousesMap[TrailingZeroCount(square.BlockMask)]))
-					{
-						// Qdp forms.
-						// Now check each type.
-						if (CheckType1(context.Accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask, context.OnlyFindOne) is { } type1Step)
-						{
-							return type1Step;
-						}
-						if (CheckType2(context.Accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask, context.OnlyFindOne) is { } type2Step)
-						{
-							return type2Step;
-						}
-						if (CheckType3(context.Accumulator, grid, isRow, pair, square, baseLine, pattern, comparer, otherDigitsMask, context.OnlyFindOne) is { } type3Step)
-						{
-							return type3Step;
-						}
-					}
-				}
-			}
-
-			if (CheckType4(context.Accumulator, isRow, pair, square, baseLine, pattern, pairMask, context.OnlyFindOne) is { } type4Step)
-			{
-				return type4Step;
-			}
-			if (CheckLockedType(context.Accumulator, grid, isRow, pair, square, baseLine, pattern, pairMask, context.OnlyFindOne) is { } typeLockedStep)
-			{
-				return typeLockedStep;
-			}
+		var isRow = l1 is >= 9 and < 18;
+		if (CheckForBaseType(ref context, grid, pattern, valueCellsInBothLines, isRow) is { } type1Step)
+		{
+			return type1Step;
 		}
 
 		return null;
 	}
 
 	/// <summary>
-	/// Check for type 1.
+	/// <inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/summary"/>
 	/// </summary>
-	private QiuDeadlyPatternType1Step? CheckType1(
-		List<Step>? accumulator,
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="pattern">The target pattern.</param>
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
+	private QiuDeadlyPatternStep? Collect(scoped ref AnalysisContext context, scoped in Pattern2 pattern)
+	{
+		// TODO: Re-implement later.
+		return null;
+	}
+
+	/// <summary>
+	/// Check for base type.
+	/// </summary>
+	private QiuDeadlyPatternStep? CheckForBaseType(
+		scoped ref AnalysisContext context,
 		scoped in Grid grid,
-		bool isRow,
-		scoped in CellMap pair,
-		scoped in CellMap square,
-		scoped in CellMap baseLine,
-		scoped in QiuDeadlyPattern pattern,
-		Mask comparer,
-		Mask otherDigitsMask,
-		bool onlyFindOne
+		scoped in Pattern1 pattern,
+		scoped in CellMap valueCellsInBothLines,
+		bool isRow
 	)
 	{
-		if (!IsPow2(otherDigitsMask))
+		// Check whether the distinction is 1.
+		var lines = pattern.Lines;
+		var l1 = TrailingZeroCount(lines);
+		var l2 = lines.GetNextSet(l1);
+		var columnAlignedMask = (Mask)0;
+		var (l1AlignedMask, l2AlignedMask) = ((Mask)0, (Mask)0);
+		for (var pos = 0; pos < 9; pos++)
 		{
-			return null;
-		}
-
-		var extraDigit = TrailingZeroCount(otherDigitsMask);
-		var map = pair & CandidatesMap[extraDigit];
-		if (map is not [var elimCell])
-		{
-			return null;
-		}
-
-		var mask = (Mask)(grid.GetCandidates(elimCell) & ~(1 << extraDigit));
-		if (mask == 0)
-		{
-			return null;
-		}
-
-		var cellMap = square | pair;
-		var cellOffsets = new CellViewNode[cellMap.Count];
-		var i = 0;
-		foreach (var cell in cellMap)
-		{
-			cellOffsets[i++] = new(WellKnownColorIdentifier.Normal, cell);
-		}
-
-		var candidateOffsets = new List<CandidateViewNode>();
-		foreach (var digit in comparer)
-		{
-			foreach (var cell in square & CandidatesMap[digit])
+			if (valueCellsInBothLines.Contains(HouseCells[l1][pos]))
 			{
-				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+				columnAlignedMask |= (Mask)(1 << pos);
+				l1AlignedMask |= (Mask)(1 << pos);
+			}
+			if (valueCellsInBothLines.Contains(HouseCells[l2][pos]))
+			{
+				columnAlignedMask |= (Mask)(1 << pos);
+				l2AlignedMask |= (Mask)(1 << pos);
 			}
 		}
-		var anotherCellInPair = (pair - map)[0];
-		foreach (var digit in grid.GetCandidates(anotherCellInPair))
+		if (PopCount((uint)(l1AlignedMask | l2AlignedMask)) > Math.Max(PopCount((uint)l1AlignedMask), PopCount((uint)l2AlignedMask)))
 		{
-			candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, anotherCellInPair * 9 + digit));
+			// Distinction is not 1.
+			return null;
 		}
 
-		var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
-		var offset = isRow ? 9 : 18;
-		var step = new QiuDeadlyPatternType1Step(
-			[.. from digit in mask select new Conclusion(Elimination, elimCell, digit)],
-			[
-				[
-					.. cellOffsets,
-					.. candidateOffsets,
-					.. from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
-				]
-			],
-			pattern,
-			elimCell * 9 + extraDigit
-		);
-		if (onlyFindOne)
-		{
-			return step;
-		}
-
-		accumulator!.Add(step);
-		return null;
-	}
-
-	/// <summary>
-	/// Check for type 2.
-	/// </summary>
-	private QiuDeadlyPatternType2Step? CheckType2(
-		List<Step>? accumulator,
-		scoped in Grid grid,
-		bool isRow,
-		scoped in CellMap pair,
-		scoped in CellMap square,
-		scoped in CellMap baseLine,
-		scoped in QiuDeadlyPattern pattern,
-		Mask comparer,
-		Mask otherDigitsMask,
-		bool onlyFindOne
-	)
-	{
-		if (!IsPow2(otherDigitsMask))
+		var crossline = pattern.Crossline;
+		crossline.InOneHouse(out var block);
+		var allDigitsMaskNotAppearedInCrossline = grid[HousesMap[block] - crossline];
+		var allDigitsMaskAppearedInCrossline = grid[crossline];
+		var digitsMask = allDigitsMaskAppearedInCrossline & ~allDigitsMaskNotAppearedInCrossline;
+		if (PopCount((uint)digitsMask) < 2)
 		{
 			return null;
 		}
 
-		var extraDigit = TrailingZeroCount(otherDigitsMask);
-		var map = pair & CandidatesMap[extraDigit];
-		if ((map.PeerIntersection & CandidatesMap[extraDigit]) is not (var elimMap and not []))
+		var corner = pattern.Corner;
+		var digitsMaskAppearedInCornerCells = grid[corner, false, GridMaskMergingMethod.And];
+		if ((digitsMask & digitsMaskAppearedInCornerCells) != digitsMaskAppearedInCornerCells)
 		{
+			// Not all digits intersected in corner cells are hold in crossline cells.
 			return null;
 		}
 
-		var cellMap = square | pair;
-		var cellOffsets = new CellViewNode[cellMap.Count];
-		var i = 0;
-		foreach (var cell in cellMap)
+		return checkFor4Types(ref context, grid, corner, crossline, l1, l2, digitsMaskAppearedInCornerCells) is { } foundStep ? foundStep : null;
+
+
+		static QiuDeadlyPatternStep? checkFor4Types(
+			scoped ref AnalysisContext context,
+			scoped in Grid grid,
+			scoped in CellMap corner,
+			scoped in CellMap crossline,
+			House l1,
+			House l2,
+			Mask digitsMaskAppearedInCornerCells
+		)
 		{
-			cellOffsets[i++] = new(WellKnownColorIdentifier.Normal, cell);
-		}
-		var candidateOffsets = new List<CandidateViewNode>();
-		foreach (var digit in comparer)
-		{
-			foreach (var cell in square & CandidatesMap[digit])
+			// One cell only holds those two and the other doesn't only hold them.
+			var (c1, c2) = (corner[0], corner[1]);
+			var extraDigitsMask = (grid.GetCandidates(c1) | grid.GetCandidates(c2)) & ~digitsMaskAppearedInCornerCells;
+			var cornerCellsContainingExtraDigit = corner;
+			var tempMap = CellMap.Empty;
+			foreach (var digit in extraDigitsMask)
 			{
-				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+				tempMap |= CandidatesMap[digit];
 			}
-		}
-		foreach (var cell in pair)
-		{
-			foreach (var digit in grid.GetCandidates(cell))
+			cornerCellsContainingExtraDigit &= tempMap;
+
+			if (cornerCellsContainingExtraDigit is [var targetCell])
 			{
-				candidateOffsets.Add(new(digit == extraDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell * 9 + digit));
-			}
-		}
-
-		var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
-		var offset = isRow ? 9 : 18;
-		var step = new QiuDeadlyPatternType2Step(
-			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
-			[[.. cellOffsets, .. candidateOffsets, .. from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)]],
-			pattern,
-			extraDigit
-		);
-		if (onlyFindOne)
-		{
-			return step;
-		}
-
-		accumulator!.Add(step);
-		return null;
-	}
-
-	/// <summary>
-	/// Check for type 3.
-	/// </summary>
-	private QiuDeadlyPatternType3Step? CheckType3(
-		List<Step>? accumulator,
-		scoped in Grid grid,
-		bool isRow,
-		scoped in CellMap pair,
-		scoped in CellMap square,
-		scoped in CellMap baseLine,
-		scoped in QiuDeadlyPattern pattern,
-		Mask comparer,
-		Mask otherDigitsMask,
-		bool onlyFindOne
-	)
-	{
-		foreach (var houseIndex in pair.CoveredHouses)
-		{
-			var allCellsMap = (HousesMap[houseIndex] & EmptyCells) - pair;
-			for (var (size, length) = (PopCount((uint)otherDigitsMask) - 1, allCellsMap.Count); size < length; size++)
-			{
-				foreach (var cells in allCellsMap.GetSubsets(size))
-				{
-					var mask = grid[cells];
-					if ((mask & comparer) != comparer || PopCount((uint)mask) != size + 1)
-					{
-						continue;
-					}
-
-					var conclusions = new List<Conclusion>();
-					foreach (var digit in mask)
-					{
-						foreach (var cell in allCellsMap - cells & CandidatesMap[digit])
-						{
-							conclusions.Add(new(Elimination, cell, digit));
-						}
-					}
-					if (conclusions.Count == 0)
-					{
-						continue;
-					}
-
-					var cellMap = square | pair;
-					var cellOffsets = new CellViewNode[cellMap.Count];
-					var i = 0;
-					foreach (var cell in cellMap)
-					{
-						cellOffsets[i++] = new(WellKnownColorIdentifier.Normal, cell);
-					}
-					var candidateOffsets = new List<CandidateViewNode>();
-					foreach (var digit in comparer)
-					{
-						foreach (var cell in square & CandidatesMap[digit])
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
-						}
-					}
-					foreach (var cell in pair)
-					{
-						foreach (var digit in grid.GetCandidates(cell))
-						{
-							candidateOffsets.Add(
-								new(
-									(otherDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
-									cell * 9 + digit
-								)
-							);
-						}
-					}
-					foreach (var cell in cells)
-					{
-						foreach (var digit in grid.GetCandidates(cell))
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
-						}
-					}
-
-					var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
-					var offset = isRow ? 9 : 18;
-					var step = new QiuDeadlyPatternType3Step(
-						[.. conclusions],
-						[
-							[
-								.. cellOffsets,
-								.. candidateOffsets,
-								.. from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
-							]
-						],
-						pattern,
-						cells,
-						mask,
-						true
-					);
-					if (onlyFindOne)
-					{
-						return step;
-					}
-
-					accumulator!.Add(step);
-				}
-			}
-		}
-
-		return null;
-	}
-
-	/// <summary>
-	/// Check for type 4.
-	/// </summary>
-	private QiuDeadlyPatternType4Step? CheckType4(
-		List<Step>? accumulator,
-		bool isRow,
-		scoped in CellMap pair,
-		scoped in CellMap square,
-		scoped in CellMap baseLine,
-		scoped in QiuDeadlyPattern pattern,
-		Mask comparer,
-		bool onlyFindOne
-	)
-	{
-		foreach (var houseIndex in pair.CoveredHouses)
-		{
-			foreach (var digit in comparer)
-			{
-				if ((CandidatesMap[digit] & HousesMap[houseIndex]) != pair)
-				{
-					continue;
-				}
-
-				var otherDigitsMask = (Mask)(comparer & ~(1 << digit));
-				var flag = false;
-				foreach (var d in otherDigitsMask)
-				{
-					if (!!(ValuesMap[d] & HousesMap[houseIndex]) || (HousesMap[houseIndex] & CandidatesMap[d]) != square)
-					{
-						flag = true;
-						break;
-					}
-				}
-				if (flag)
-				{
-					continue;
-				}
-
-				var elimDigit = TrailingZeroCount(comparer & ~(1 << digit));
-				var elimMap = pair & CandidatesMap[elimDigit];
-				if (!elimMap)
-				{
-					continue;
-				}
-
-				var conclusions = new List<Conclusion>();
-				foreach (var cell in elimMap)
-				{
-					conclusions.Add(new(Elimination, cell, elimDigit));
-				}
-
-				var cellMap = square | pair;
-				var cellOffsets = new CellViewNode[cellMap.Count];
-				var i = 0;
-				foreach (var cell in cellMap)
-				{
-					cellOffsets[i++] = new(WellKnownColorIdentifier.Normal, cell);
-				}
+				// Type 1.
+				var elimDigitsMask = (Mask)(grid.GetCandidates(targetCell) & digitsMaskAppearedInCornerCells);
 				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (var d in comparer)
+				foreach (var digit in digitsMaskAppearedInCornerCells)
 				{
-					foreach (var cell in square & CandidatesMap[d])
+					foreach (var cell in CandidatesMap[digit] & crossline)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + d));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 					}
 				}
-				foreach (var cell in pair)
+
+				var theOtherCornerCellNoElimination = (corner - targetCell)[0];
+				foreach (var digit in grid.GetCandidates(theOtherCornerCellNoElimination))
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, theOtherCornerCellNoElimination * 9 + digit));
 				}
 
-				var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
-				var offset = isRow ? 9 : 18;
-				var step = new QiuDeadlyPatternType4Step(
-					[.. conclusions],
+				var step = new QiuDeadlyPatternType1Step(
+					[.. from digit in elimDigitsMask select new Conclusion(Elimination, targetCell, digit)],
 					[
 						[
-							.. cellOffsets,
 							.. candidateOffsets,
-							.. from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
+							new HouseViewNode(WellKnownColorIdentifier.Normal, l1),
+							new HouseViewNode(WellKnownColorIdentifier.Normal, l2),
+							new CellViewNode(WellKnownColorIdentifier.Normal, corner[0]),
+							new CellViewNode(WellKnownColorIdentifier.Normal, corner[1])
 						]
 					],
-					pattern,
-					new(pair, digit)
+					true,
+					1 << l1 | 1 << l2,
+					corner[0],
+					corner[1],
+					targetCell,
+					elimDigitsMask
 				);
-				if (onlyFindOne)
+				if (context.OnlyFindOne)
 				{
 					return step;
 				}
 
-				accumulator!.Add(step);
+				context.Accumulator.Add(step);
+			}
+
+			if (IsPow2(extraDigitsMask))
+			{
+				// Type 2.
+				var extraDigit = Log2((uint)extraDigitsMask);
+				var elimMap = corner % CandidatesMap[extraDigit];
+				if (!elimMap)
+				{
+					return null;
+				}
+
+				var candidateOffsets = new List<CandidateViewNode>();
+				foreach (var cell in cornerCellsContainingExtraDigit)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(
+							new(
+								digit == extraDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
+								cell * 9 + digit
+							)
+						);
+					}
+				}
+
+				var step = new QiuDeadlyPatternType2Step(
+					[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
+					[
+						[
+							.. candidateOffsets,
+							new HouseViewNode(WellKnownColorIdentifier.Normal, l1),
+							new HouseViewNode(WellKnownColorIdentifier.Normal, l2),
+							new CellViewNode(WellKnownColorIdentifier.Normal, corner[0]),
+							new CellViewNode(WellKnownColorIdentifier.Normal, corner[1])
+						]
+					],
+					true,
+					1 << l1 | 1 << l2,
+					corner[0],
+					corner[1],
+					extraDigit
+				);
+				if (context.OnlyFindOne)
+				{
+					return step;
+				}
+
+				context.Accumulator.Add(step);
+			}
+
+
+
+			return null;
+		}
+	}
+
+
+	/// <summary>
+	/// Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
+	/// <code><![CDATA[
+	/// .-------.-------.-------.
+	/// | . . . | . . . | . . . |
+	/// | . . . | . . . | . . . |
+	/// | P P . | . . . | . . . |
+	/// :-------+-------+-------:
+	/// | S S B | B B B | B B B |
+	/// | S S B | B B B | B B B |
+	/// | . . . | . . . | . . . |
+	/// :-------+-------+-------:
+	/// | . . . | . . . | . . . |
+	/// | . . . | . . . | . . . |
+	/// | . . . | . . . | . . . |
+	/// '-------'-------'-------'
+	/// ]]></code>
+	/// Where:
+	/// <list type="table">
+	/// <item><term>P</term><description>Corner Cells.</description></item>
+	/// <item><term>S</term><description>Cross-line Cells.</description></item>
+	/// <item><term>B</term><description>Base-line Cells.</description></item>
+	/// </list>
+	/// </summary>
+	/// <param name="Corner">The corner cells that is <c>P</c> in that sketch.</param>
+	/// <param name="Lines">The base-line cells that is <c>B</c> in that sketch.</param>
+	private readonly record struct Pattern1(scoped in CellMap Corner, HouseMask Lines)
+	{
+		/// <summary>
+		/// Indicates the crossline cells.
+		/// </summary>
+		public CellMap Crossline
+		{
+			get
+			{
+				var l1 = TrailingZeroCount(Lines);
+				var l2 = Lines.GetNextSet(l1);
+				return (HousesMap[l1] | HousesMap[l2]) & PeersMap[Corner[0]] | (HousesMap[l1] | HousesMap[l2]) & PeersMap[Corner[1]];
 			}
 		}
-
-		return null;
 	}
 
 	/// <summary>
-	/// Check for locked type.
+	/// Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
+	/// <code><![CDATA[
+	/// .-------.-------.-------.
+	/// | B B . | . . . | . . . |
+	/// | B B . | . . . | . . . |
+	/// | B B . | . . . | . . . |
+	/// :-------+-------+-------:
+	/// | S S B | B B B | B B B |
+	/// | S S B | B B B | B B B |
+	/// | B B . | . . . | . . . |
+	/// :-------+-------+-------:
+	/// | B B . | . . . | . . . |
+	/// | B B . | . . . | . . . |
+	/// | B B . | . . . | . . . |
+	/// '-------'-------'-------'
+	/// ]]></code>
+	/// Where:
+	/// <list type="table">
+	/// <item><term>S</term><description>Cross-line Cells.</description></item>
+	/// <item><term>B</term><description>Base-line Cells.</description></item>
+	/// </list>
 	/// </summary>
-	private QiuDeadlyPatternLockedTypeStep? CheckLockedType(
-		List<Step>? accumulator,
-		scoped in Grid grid,
-		bool isRow,
-		scoped in CellMap pair,
-		scoped in CellMap square,
-		scoped in CellMap baseLine,
-		scoped in QiuDeadlyPattern pattern,
-		Mask comparer,
-		bool onlyFindOne
-	)
+	/// <param name="Lines1">The first pair of lines.</param>
+	/// <param name="Lines2">The second pair of lines.</param>
+	private readonly record struct Pattern2(HouseMask Lines1, HouseMask Lines2)
 	{
-		// Firstly, we should check the cells in the block that the square cells lying on.
-		var block = TrailingZeroCount(square.BlockMask);
-		var otherCellsMap = (HousesMap[block] & EmptyCells) - square;
-		var tempMap = CellMap.Empty;
-		scoped var pairDigits = comparer.GetAllSets();
-
-		var flag = false;
-		foreach (var digit in pairDigits)
+		/// <summary>
+		/// Indicates the crossline cells.
+		/// </summary>
+		public CellMap Crossline
 		{
-			if (ValuesMap[digit] && HousesMap[block])
+			get
 			{
-				flag = true;
-				break;
-			}
-
-			tempMap |= CandidatesMap[digit];
-		}
-		if (flag)
-		{
-			return null;
-		}
-
-		otherCellsMap &= tempMap;
-		if (otherCellsMap is [] or { Count: > 5 })
-		{
-			return null;
-		}
-
-		// May be in one house or span two houses. Now we check for this case.
-		var candidates = CandidateMap.Empty;
-		foreach (var cell in otherCellsMap)
-		{
-			foreach (var digit in pairDigits)
-			{
-				if (CandidatesMap[digit].Contains(cell))
+				var l11 = TrailingZeroCount(Lines1);
+				var l21 = Lines1.GetNextSet(l11);
+				var l12 = TrailingZeroCount(Lines2);
+				var l22 = Lines2.GetNextSet(l12);
+				var result = CellMap.Empty;
+				foreach (var (a, b) in ((l11, l12), (l11, l22), (l21, l12), (l21, l22)))
 				{
-					candidates.Add(cell * 9 + digit);
+					result |= HousesMap[a] & HousesMap[b];
 				}
+
+				return result;
 			}
 		}
-
-		if (candidates.PeerIntersection is not (var elimMap and not []))
-		{
-			return null;
-		}
-
-		var conclusions = new List<Conclusion>();
-		foreach (var candidate in elimMap)
-		{
-			if (CandidatesMap[candidate % 9].Contains(candidate / 9))
-			{
-				conclusions.Add(new(Elimination, candidate));
-			}
-		}
-		if (conclusions.Count == 0)
-		{
-			return null;
-		}
-
-		var cellMap = square | pair;
-		var cellOffsets = new CellViewNode[cellMap.Count];
-		var i = 0;
-		foreach (var cell in cellMap)
-		{
-			cellOffsets[i++] = new(WellKnownColorIdentifier.Normal, cell);
-		}
-		var candidateOffsets = new List<CandidateViewNode>();
-		foreach (var d in comparer)
-		{
-			foreach (var cell in square & CandidatesMap[d])
-			{
-				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + d));
-			}
-		}
-		foreach (var cell in pair)
-		{
-			foreach (var digit in grid.GetCandidates(cell))
-			{
-				candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
-			}
-		}
-		foreach (var candidate in candidates)
-		{
-			candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, candidate));
-		}
-
-		var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
-		var offset = isRow ? 9 : 18;
-		var step = new QiuDeadlyPatternLockedTypeStep(
-			[.. conclusions],
-			[
-				[
-					.. cellOffsets,
-					.. candidateOffsets,
-					.. from pos in lineMask.GetAllSets() select new HouseViewNode(WellKnownColorIdentifier.Normal, pos + offset)
-				]
-			],
-			pattern,
-			candidates
-		);
-		if (onlyFindOne)
-		{
-			return step;
-		}
-
-		accumulator!.Add(step);
-		return null;
 	}
 }

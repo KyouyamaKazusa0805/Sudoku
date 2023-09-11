@@ -5351,9 +5351,14 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Patterns">
+        <member name="F:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.PatternsForCase1">
             <summary>
-            All different patterns.
+            Indicates the patterns for case 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.PatternsForCase2">
+            <summary>
+            Indicates the patterns for case 2.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.#cctor">
@@ -5372,29 +5377,157 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.DataModel.QiuDeadlyPattern@,System.Int16,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@,Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern1@)">
             <summary>
-            Check for type 1.
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/summary"/>
+            </summary>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <param name="pattern">The target pattern.</param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@,Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern2@)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/summary"/>
+            </summary>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <param name="pattern">The target pattern.</param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckForBaseType(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern1@,Sudoku.Concepts.CellMap@,System.Boolean)">
+            <summary>
+            Check for base type.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.DataModel.QiuDeadlyPattern@,System.Int16,System.Int16,System.Boolean)">
+        <member name="T:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern1">
             <summary>
-            Check for type 2.
+            Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | P P . | . . . | . . . |
+            :-------+-------+-------:
+            | S S B | B B B | B B B |
+            | S S B | B B B | B B B |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>Corner Cells.</description></item>
+            <item><term>S</term><description>Cross-line Cells.</description></item>
+            <item><term>B</term><description>Base-line Cells.</description></item>
+            </list>
+            </summary>
+            <param name="Corner">The corner cells that is <c>P</c> in that sketch.</param>
+            <param name="Lines">The base-line cells that is <c>B</c> in that sketch.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern1.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | P P . | . . . | . . . |
+            :-------+-------+-------:
+            | S S B | B B B | B B B |
+            | S S B | B B B | B B B |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>Corner Cells.</description></item>
+            <item><term>S</term><description>Cross-line Cells.</description></item>
+            <item><term>B</term><description>Base-line Cells.</description></item>
+            </list>
+            </summary>
+            <param name="Corner">The corner cells that is <c>P</c> in that sketch.</param>
+            <param name="Lines">The base-line cells that is <c>B</c> in that sketch.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern1.Corner">
+            <summary>The corner cells that is <c>P</c> in that sketch.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern1.Lines">
+            <summary>The base-line cells that is <c>B</c> in that sketch.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern1.Crossline">
+            <summary>
+            Indicates the crossline cells.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckType3(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.DataModel.QiuDeadlyPattern@,System.Int16,System.Int16,System.Boolean)">
+        <member name="T:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern2">
             <summary>
-            Check for type 3.
+            Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | B B . | . . . | . . . |
+            | B B . | . . . | . . . |
+            | B B . | . . . | . . . |
+            :-------+-------+-------:
+            | S S B | B B B | B B B |
+            | S S B | B B B | B B B |
+            | B B . | . . . | . . . |
+            :-------+-------+-------:
+            | B B . | . . . | . . . |
+            | B B . | . . . | . . . |
+            | B B . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>S</term><description>Cross-line Cells.</description></item>
+            <item><term>B</term><description>Base-line Cells.</description></item>
+            </list>
             </summary>
+            <param name="Lines1">The first pair of lines.</param>
+            <param name="Lines2">The second pair of lines.</param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Step},System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.DataModel.QiuDeadlyPattern@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern2.#ctor(System.Int32,System.Int32)">
             <summary>
-            Check for type 4.
+            Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | B B . | . . . | . . . |
+            | B B . | . . . | . . . |
+            | B B . | . . . | . . . |
+            :-------+-------+-------:
+            | S S B | B B B | B B B |
+            | S S B | B B B | B B B |
+            | B B . | . . . | . . . |
+            :-------+-------+-------:
+            | B B . | . . . | . . . |
+            | B B . | . . . | . . . |
+            | B B . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>S</term><description>Cross-line Cells.</description></item>
+            <item><term>B</term><description>Base-line Cells.</description></item>
+            </list>
             </summary>
+            <param name="Lines1">The first pair of lines.</param>
+            <param name="Lines2">The second pair of lines.</param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.CheckLockedType(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.DataModel.QiuDeadlyPattern@,System.Int16,System.Boolean)">
+        <member name="P:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern2.Lines1">
+            <summary>The first pair of lines.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern2.Lines2">
+            <summary>The second pair of lines.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern2.Crossline">
             <summary>
-            Check for locked type.
+            Indicates the crossline cells.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher">
@@ -9896,16 +10029,22 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
+            <param name="is2LinesWith2Cells"><inheritdoc/></param>
+            <param name="houses"><inheritdoc/></param>
+            <param name="corner1"><inheritdoc/></param>
+            <param name="corner2"><inheritdoc/></param>
             <param name="candidates">Indicates the candidates used as locked one.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.DataModel.QiuDeadlyPattern@,Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},Sudoku.Concepts.CandidateMap@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Locked Type</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
+            <param name="is2LinesWith2Cells"><inheritdoc/></param>
+            <param name="houses"><inheritdoc/></param>
+            <param name="corner1"><inheritdoc/></param>
+            <param name="corner2"><inheritdoc/></param>
             <param name="candidates">Indicates the candidates used as locked one.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.Type">
@@ -9928,15 +10067,33 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="pattern">Indicates the pattern.</param>
+            <param name="is2LinesWith2Cells">
+            Indicates whether the pattern contains 2 lines and 2 cells. If not, the pattern should be 2 rows and 2 columns intersected.
+            </param>
+            <param name="houses">Indicates all houses used in the pattern.</param>
+            <param name="corner1">
+            Indicates the corner cell 1. The value can be <see langword="null"/> if <paramref name="is2LinesWith2Cells"/> is <see langword="false"/>.
+            </param>
+            <param name="corner2">
+            Indicates the corner cell 2. The value can be <see langword="null"/> if <paramref name="is2LinesWith2Cells"/> is <see langword="false"/>.
+            </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.DataModel.QiuDeadlyPattern@)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="pattern">Indicates the pattern.</param>
+            <param name="is2LinesWith2Cells">
+            Indicates whether the pattern contains 2 lines and 2 cells. If not, the pattern should be 2 rows and 2 columns intersected.
+            </param>
+            <param name="houses">Indicates all houses used in the pattern.</param>
+            <param name="corner1">
+            Indicates the corner cell 1. The value can be <see langword="null"/> if <paramref name="is2LinesWith2Cells"/> is <see langword="false"/>.
+            </param>
+            <param name="corner2">
+            Indicates the corner cell 2. The value can be <see langword="null"/> if <paramref name="is2LinesWith2Cells"/> is <see langword="false"/>.
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.BaseDifficulty">
             <inheritdoc/>
@@ -9951,7 +10108,27 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.Pattern">
             <summary>
-            The generated property declaration for parameter <c>pattern</c>.
+            Indicates the internal pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.Is2LinesWith2Cells">
+            <summary>
+            The generated property declaration for parameter <c>is2LinesWith2Cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.Houses">
+            <summary>
+            The generated property declaration for parameter <c>houses</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.Corner1">
+            <summary>
+            The generated property declaration for parameter <c>corner1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.Corner2">
+            <summary>
+            The generated property declaration for parameter <c>corner2</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step">
@@ -9960,17 +10137,25 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
-            <param name="candidate">Indicates the target candidate.</param>
+            <param name="is2LinesWith2Cells"><inheritdoc/></param>
+            <param name="houses"><inheritdoc/></param>
+            <param name="corner1"><inheritdoc/></param>
+            <param name="corner2"><inheritdoc/></param>
+            <param name="targetCell">Indicates the target cell.</param>
+            <param name="targetDigits">Indicates the target digits.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.DataModel.QiuDeadlyPattern@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.Int16)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 1</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
-            <param name="candidate">Indicates the target candidate.</param>
+            <param name="is2LinesWith2Cells"><inheritdoc/></param>
+            <param name="houses"><inheritdoc/></param>
+            <param name="corner1"><inheritdoc/></param>
+            <param name="corner2"><inheritdoc/></param>
+            <param name="targetCell">Indicates the target cell.</param>
+            <param name="targetDigits">Indicates the target digits.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.Type">
             <inheritdoc/>
@@ -9978,9 +10163,14 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.Candidate">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.TargetCell">
             <summary>
-            The generated property declaration for parameter <c>candidate</c>.
+            The generated property declaration for parameter <c>targetCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.TargetDigits">
+            <summary>
+            The generated property declaration for parameter <c>targetDigits</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step">
@@ -9989,17 +10179,23 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
-            <param name="extraDigit">Indicates the extra digit used.</param>
+            <param name="is2LinesWith2Cells"><inheritdoc/></param>
+            <param name="houses"><inheritdoc/></param>
+            <param name="corner1"><inheritdoc/></param>
+            <param name="corner2"><inheritdoc/></param>
+            <param name="targetDigit">Indicates the target digit.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.DataModel.QiuDeadlyPattern@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 2</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
-            <param name="extraDigit">Indicates the extra digit used.</param>
+            <param name="is2LinesWith2Cells"><inheritdoc/></param>
+            <param name="houses"><inheritdoc/></param>
+            <param name="corner1"><inheritdoc/></param>
+            <param name="corner2"><inheritdoc/></param>
+            <param name="targetDigit">Indicates the target digit.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.Type">
             <inheritdoc/>
@@ -10010,9 +10206,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.ExtraDigit">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.TargetDigit">
             <summary>
-            The generated property declaration for parameter <c>extraDigit</c>.
+            The generated property declaration for parameter <c>targetDigit</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step">
@@ -10021,18 +10217,24 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
+            <param name="is2LinesWith2Cells"><inheritdoc/></param>
+            <param name="houses"><inheritdoc/></param>
+            <param name="corner1"><inheritdoc/></param>
+            <param name="corner2"><inheritdoc/></param>
             <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
             <param name="subsetCells">Indicates the subset cells used.</param>
             <param name="isNaked">Indicates whether the subset is naked one.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.DataModel.QiuDeadlyPattern@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
+            <param name="is2LinesWith2Cells"><inheritdoc/></param>
+            <param name="houses"><inheritdoc/></param>
+            <param name="corner1"><inheritdoc/></param>
+            <param name="corner2"><inheritdoc/></param>
             <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
             <param name="subsetCells">Indicates the subset cells used.</param>
             <param name="isNaked">Indicates whether the subset is naked one.</param>
@@ -10067,16 +10269,22 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
+            <param name="is2LinesWith2Cells"><inheritdoc/></param>
+            <param name="houses"><inheritdoc/></param>
+            <param name="corner1"><inheritdoc/></param>
+            <param name="corner2"><inheritdoc/></param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.DataModel.QiuDeadlyPattern@,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 4</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
+            <param name="is2LinesWith2Cells"><inheritdoc/></param>
+            <param name="houses"><inheritdoc/></param>
+            <param name="corner1"><inheritdoc/></param>
+            <param name="corner2"><inheritdoc/></param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.Type">
@@ -16577,7 +16785,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_QiuDeadlyPatternType1Step">
             <summary>
-              Looks up a localized string similar to Cells {0} will be a deadly pattern if {1} is false.
+              Looks up a localized string similar to Cells {0} will be a deadly pattern if arbitary one digit {1} is true in cell {2}.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_QiuDeadlyPatternType2Step">
@@ -18492,78 +18700,6 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.DataModel.Exocet.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.DataModel.QiuDeadlyPattern">
-            <summary>
-            Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | P P . | . . . | . . . |
-            :-------+-------+-------:
-            | S S B | B B B | B B B |
-            | S S B | B B B | B B B |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>P</term><description>Pair Cells.</description></item>
-            <item><term>S</term><description>Square Cells.</description></item>
-            <item><term>B</term><description>Base-line Cells.</description></item>
-            </list>
-            </summary>
-            <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
-            <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
-            <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
-        </member>
-        <member name="M:Sudoku.DataModel.QiuDeadlyPattern.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | P P . | . . . | . . . |
-            :-------+-------+-------:
-            | S S B | B B B | B B B |
-            | S S B | B B B | B B B |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>P</term><description>Pair Cells.</description></item>
-            <item><term>S</term><description>Square Cells.</description></item>
-            <item><term>B</term><description>Base-line Cells.</description></item>
-            </list>
-            </summary>
-            <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
-            <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
-            <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
-        </member>
-        <member name="P:Sudoku.DataModel.QiuDeadlyPattern.Square">
-            <summary>The square cells that is <c>S</c> in that sketch.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.QiuDeadlyPattern.BaseLine">
-            <summary>The base-line cells that is <c>B</c> in that sketch.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.QiuDeadlyPattern.Pair">
-            <summary>The pair cells that is <c>P</c> in that sketch.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.QiuDeadlyPattern.Map">
-            <summary>
-            Indicates the full map of all cells used in this pattern.
-            </summary>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>

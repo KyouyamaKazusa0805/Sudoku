@@ -1,5 +1,4 @@
 using System.SourceGeneration;
-using Sudoku.DataModel;
 using Sudoku.Rendering;
 using Sudoku.Text;
 using Sudoku.Text.Notation;
@@ -11,21 +10,31 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
-/// <param name="pattern"><inheritdoc/></param>
-/// <param name="candidate">Indicates the target candidate.</param>
+/// <param name="is2LinesWith2Cells"><inheritdoc/></param>
+/// <param name="houses"><inheritdoc/></param>
+/// <param name="corner1"><inheritdoc/></param>
+/// <param name="corner2"><inheritdoc/></param>
+/// <param name="targetCell">Indicates the target cell.</param>
+/// <param name="targetDigits">Indicates the target digits.</param>
 public sealed partial class QiuDeadlyPatternType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	scoped in QiuDeadlyPattern pattern,
-	[DataMember] Candidate candidate
-) : QiuDeadlyPatternStep(conclusions, views, pattern)
+	bool is2LinesWith2Cells,
+	HouseMask houses,
+	Cell? corner1,
+	Cell? corner2,
+	[DataMember] Cell targetCell,
+	[DataMember] Mask targetDigits
+) : QiuDeadlyPatternStep(conclusions, views, is2LinesWith2Cells, houses, corner1, corner2)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
-		=> [new(EnglishLanguage, [PatternStr, CandidateStr]), new(ChineseLanguage, [CandidateStr, PatternStr])];
+		=> [new(EnglishLanguage, [PatternStr, TargetDigitsStr, CandidatesStr]), new(ChineseLanguage, [PatternStr, CandidatesStr, TargetDigitsStr])];
 
-	private string CandidateStr => CandidateNotation.ToString(Candidate);
+	private string CandidatesStr => CandidateNotation.ToCollectionString([.. from digit in TargetDigits select TargetCell * 9 + digit]);
+
+	private string TargetDigitsStr => DigitNotation.ToString(TargetDigits);
 }

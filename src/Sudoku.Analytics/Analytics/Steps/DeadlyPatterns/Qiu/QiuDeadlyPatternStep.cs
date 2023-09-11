@@ -1,6 +1,5 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
-using Sudoku.DataModel;
 using Sudoku.Rendering;
 
 namespace Sudoku.Analytics.Steps;
@@ -10,11 +9,23 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
-/// <param name="pattern">Indicates the pattern.</param>
+/// <param name="is2LinesWith2Cells">
+/// Indicates whether the pattern contains 2 lines and 2 cells. If not, the pattern should be 2 rows and 2 columns intersected.
+/// </param>
+/// <param name="houses">Indicates all houses used in the pattern.</param>
+/// <param name="corner1">
+/// Indicates the corner cell 1. The value can be <see langword="null"/> if <paramref name="is2LinesWith2Cells"/> is <see langword="false"/>.
+/// </param>
+/// <param name="corner2">
+/// Indicates the corner cell 2. The value can be <see langword="null"/> if <paramref name="is2LinesWith2Cells"/> is <see langword="false"/>.
+/// </param>
 public abstract partial class QiuDeadlyPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[DataMember] scoped in QiuDeadlyPattern pattern
+	[DataMember] bool is2LinesWith2Cells,
+	[DataMember] HouseMask houses,
+	[DataMember] Cell? corner1,
+	[DataMember] Cell? corner2
 ) : DeadlyPatternStep(conclusions, views)
 {
 	/// <inheritdoc/>
@@ -28,5 +39,22 @@ public abstract partial class QiuDeadlyPatternStep(
 	/// <inheritdoc/>
 	public sealed override Technique Code => Type == 5 ? Technique.LockedQiuDeadlyPattern : Enum.Parse<Technique>($"QiuDeadlyPatternType{Type}");
 
-	private protected string PatternStr => Pattern.Map.ToString();
+	private protected string PatternStr => Pattern.ToString();
+
+	/// <summary>
+	/// Indicates the internal pattern.
+	/// </summary>
+	private CellMap Pattern
+	{
+		get
+		{
+			var result = CellMap.Empty;
+			foreach (var house in houses)
+			{
+				result |= HousesMap[house];
+			}
+
+			return result;
+		}
+	}
 }

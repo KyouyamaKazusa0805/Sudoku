@@ -391,7 +391,7 @@
     <value>Cells {0} will be a deadly pattern if{1}{2} {3} {4} {5} false</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternType1Step" xml:space="preserve">
-    <value>Cells {0} will be a deadly pattern if {1} is false</value>
+    <value>Cells {0} will be a deadly pattern if arbitary one digit {1} is true in cell {2}</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternType2Step" xml:space="preserve">
     <value>Cells {0} will be a deadly pattern if all the extra digits {1} in pair cells is false</value>

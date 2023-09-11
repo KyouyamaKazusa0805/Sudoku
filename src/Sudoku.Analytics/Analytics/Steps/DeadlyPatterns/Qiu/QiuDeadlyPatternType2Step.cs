@@ -1,6 +1,5 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Rating;
-using Sudoku.DataModel;
 using Sudoku.Rendering;
 using Sudoku.Text;
 using Sudoku.Text.Notation;
@@ -12,14 +11,20 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
-/// <param name="pattern"><inheritdoc/></param>
-/// <param name="extraDigit">Indicates the extra digit used.</param>
+/// <param name="is2LinesWith2Cells"><inheritdoc/></param>
+/// <param name="houses"><inheritdoc/></param>
+/// <param name="corner1"><inheritdoc/></param>
+/// <param name="corner2"><inheritdoc/></param>
+/// <param name="targetDigit">Indicates the target digit.</param>
 public sealed partial class QiuDeadlyPatternType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	scoped in QiuDeadlyPattern pattern,
-	[DataMember] Digit extraDigit
-) : QiuDeadlyPatternStep(conclusions, views, pattern)
+	bool is2LinesWith2Cells,
+	HouseMask houses,
+	Cell? corner1,
+	Cell? corner2,
+	[DataMember] Digit targetDigit
+) : QiuDeadlyPatternStep(conclusions, views, is2LinesWith2Cells, houses, corner1, corner2)
 {
 	/// <inheritdoc/>
 	public override int Type => 2;
@@ -31,5 +36,5 @@ public sealed partial class QiuDeadlyPatternType2Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [PatternStr, ExtraDigitStr]), new(ChineseLanguage, [PatternStr, ExtraDigitStr])];
 
-	private string ExtraDigitStr => DigitNotation.ToString(ExtraDigit);
+	private string ExtraDigitStr => DigitNotation.ToString(TargetDigit);
 }

@@ -1,6 +1,5 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Rating;
-using Sudoku.DataModel;
 using Sudoku.Rendering;
 using Sudoku.Text;
 
@@ -11,14 +10,20 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
-/// <param name="pattern"><inheritdoc/></param>
+/// <param name="is2LinesWith2Cells"><inheritdoc/></param>
+/// <param name="houses"><inheritdoc/></param>
+/// <param name="corner1"><inheritdoc/></param>
+/// <param name="corner2"><inheritdoc/></param>
 /// <param name="candidates">Indicates the candidates used as locked one.</param>
 public sealed partial class QiuDeadlyPatternLockedTypeStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	scoped in QiuDeadlyPattern pattern,
+	bool is2LinesWith2Cells,
+	HouseMask houses,
+	Cell? corner1,
+	Cell? corner2,
 	[DataMember(NamingRule = ">@Locked")] scoped in CandidateMap candidates
-) : QiuDeadlyPatternStep(conclusions, views, pattern)
+) : QiuDeadlyPatternStep(conclusions, views, is2LinesWith2Cells, houses, corner1, corner2)
 {
 	/// <inheritdoc/>
 	public override int Type => 5;

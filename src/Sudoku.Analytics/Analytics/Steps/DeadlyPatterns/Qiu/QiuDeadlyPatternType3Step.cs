@@ -1,6 +1,5 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Rating;
-using Sudoku.DataModel;
 using Sudoku.Facts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -13,18 +12,24 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
-/// <param name="pattern"><inheritdoc/></param>
+/// <param name="is2LinesWith2Cells"><inheritdoc/></param>
+/// <param name="houses"><inheritdoc/></param>
+/// <param name="corner1"><inheritdoc/></param>
+/// <param name="corner2"><inheritdoc/></param>
 /// <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
 /// <param name="subsetCells">Indicates the subset cells used.</param>
 /// <param name="isNaked">Indicates whether the subset is naked one.</param>
 public sealed partial class QiuDeadlyPatternType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	scoped in QiuDeadlyPattern pattern,
+	bool is2LinesWith2Cells,
+	HouseMask houses,
+	Cell? corner1,
+	Cell? corner2,
 	[DataMember] scoped in CellMap subsetCells,
 	[DataMember] Mask subsetDigitsMask,
 	[DataMember] bool isNaked
-) : QiuDeadlyPatternStep(conclusions, views, pattern)
+) : QiuDeadlyPatternStep(conclusions, views, is2LinesWith2Cells, houses, corner1, corner2)
 {
 	/// <inheritdoc/>
 	public override int Type => 3;

@@ -5245,7 +5245,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cells {0} will be a deadly pattern if {1} is false.
+        ///   Looks up a localized string similar to Cells {0} will be a deadly pattern if arbitary one digit {1} is true in cell {2}.
         /// </summary>
         public static string TechniqueFormat_QiuDeadlyPatternType1Step {
             get {

@@ -397,7 +397,7 @@
     <value>如果所有这 {0} 个候选数都为假的话，单元格 {1} 将产生致命形式</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternType1Step" xml:space="preserve">
-    <value>如果 {0} 全为假的话，单元格 {1} 将产生致命形式</value>
+    <value>但凡 {1} 的数字 {2} 为真，单元格 {0} 都将产生致命形式</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternType2Step" xml:space="preserve">
     <value>如果所有位于单元格 {0} 里的数字 {1} 全部为假的话，则结构将产生致命形式</value>
