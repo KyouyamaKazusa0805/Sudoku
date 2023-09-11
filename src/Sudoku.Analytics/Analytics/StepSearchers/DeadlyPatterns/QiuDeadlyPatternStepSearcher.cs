@@ -170,24 +170,54 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var lines = pattern.Lines;
 		var l1 = TrailingZeroCount(lines);
 		var l2 = lines.GetNextSet(l1);
-		var columnAlignedMask = (Mask)0;
+		var alignedPosMask = (Mask)0;
 		var (l1AlignedMask, l2AlignedMask) = ((Mask)0, (Mask)0);
 		for (var pos = 0; pos < 9; pos++)
 		{
 			if (valueCellsInBothLines.Contains(HouseCells[l1][pos]))
 			{
-				columnAlignedMask |= (Mask)(1 << pos);
+				alignedPosMask |= (Mask)(1 << pos);
 				l1AlignedMask |= (Mask)(1 << pos);
 			}
 			if (valueCellsInBothLines.Contains(HouseCells[l2][pos]))
 			{
-				columnAlignedMask |= (Mask)(1 << pos);
+				alignedPosMask |= (Mask)(1 << pos);
 				l2AlignedMask |= (Mask)(1 << pos);
 			}
 		}
 		if (PopCount((uint)(l1AlignedMask | l2AlignedMask)) > Math.Max(PopCount((uint)l1AlignedMask), PopCount((uint)l2AlignedMask)))
 		{
 			// Distinction is not 1.
+			return null;
+		}
+
+		// Check whether the paired cells contain at least 2 empty cells and not in a block.
+		var emptyCellsInPairedCells = CellMap.Empty;
+		foreach (var pos in alignedPosMask)
+		{
+			var cell1 = HouseCells[l1][pos];
+			if (grid.GetState(cell1) == CellState.Empty)
+			{
+				emptyCellsInPairedCells.Add(cell1);
+			}
+
+			var cell2 = HouseCells[l2][pos];
+			if (grid.GetState(cell2) == CellState.Empty)
+			{
+				emptyCellsInPairedCells.Add(cell2);
+			}
+		}
+		if (emptyCellsInPairedCells.Count >= 2)
+		{
+			// Distinction is not 1.
+			return null;
+		}
+
+		// Check whether the digits contain only 1 digit different.
+		var nonEmptyCellsDigitsMaskForLine1 = grid[valueCellsInBothLines & HousesMap[l1]];
+		var nonEmptyCellsDigitsMaskForLine2 = grid[valueCellsInBothLines & HousesMap[l2]];
+		if (PopCount((uint)(nonEmptyCellsDigitsMaskForLine1 ^ nonEmptyCellsDigitsMaskForLine2)) >= 2)
+		{
 			return null;
 		}
 
