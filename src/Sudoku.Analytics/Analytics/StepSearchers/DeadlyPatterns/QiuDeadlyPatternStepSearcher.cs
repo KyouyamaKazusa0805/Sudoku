@@ -264,7 +264,9 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			return type2Step;
 		}
 
-		if (BaseType_Type4(ref context, corner, crossline, l1, l2, digitsMaskAppearedInCornerCells, cornerCellsContainingExtraDigit) is { } type4Step)
+		if (BaseType_Type4(
+			ref context, corner, crossline, l1, l2,
+			digitsMaskAppearedInCornerCells, cornerCellsContainingExtraDigit) is { } type4Step)
 		{
 			return type4Step;
 		}
