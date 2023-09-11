@@ -258,12 +258,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			return null;
 		}
 
-		var conclusions = new List<Conclusion>();
-		foreach (var digit in mask)
-		{
-			conclusions.Add(new(Elimination, elimCell, digit));
-		}
-
 		var cellMap = square | pair;
 		var cellOffsets = new CellViewNode[cellMap.Count];
 		var i = 0;
@@ -289,7 +283,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 		var offset = isRow ? 9 : 18;
 		var step = new QiuDeadlyPatternType1Step(
-			[.. conclusions],
+			[.. from digit in mask select new Conclusion(Elimination, elimCell, digit)],
 			[
 				[
 					.. cellOffsets,
