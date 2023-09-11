@@ -61,6 +61,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	/// <param name="b">The right grid map.</param>
 	/// <param name="c">The intersection.</param>
 	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
 	/// <para>
 	/// The diagrams:
 	/// <code><![CDATA[
@@ -97,10 +98,10 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 
 		// Iterate on each cell combination.
-		foreach (var cells in (a & EmptyCells).GetSubsets(size - 1))
+		foreach (var alsCells in (a & EmptyCells).GetSubsets(size - 1))
 		{
 			// Gather the mask. The cell combination must contain the specified number of digits.
-			var mask = grid[cells];
+			var mask = grid[alsCells];
 			if (PopCount((uint)mask) != size)
 			{
 				continue;
@@ -144,7 +145,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			var conclusions = new List<Conclusion>();
 			foreach (var aCell in a)
 			{
-				if (!cells.Contains(aCell))
+				if (!alsCells.Contains(aCell))
 				{
 					foreach (var digit in (Mask)(mask & grid.GetCandidates(aCell)))
 					{
@@ -170,7 +171,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (var digit in mask)
 			{
-				foreach (var cell in cells & CandidatesMap[digit])
+				foreach (var cell in alsCells & CandidatesMap[digit])
 				{
 					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 				}
@@ -190,28 +191,47 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 				}
 			}
 
-			var map = (cells | ahsCells) - EmptyCells;
-			var valueCells = new List<CellViewNode>(map.Count);
-			foreach (var cell in map)
+			var babaGroupingNodes = new List<BabaGroupViewNode>(alsCells.Count + ahsCells.Count);
+			var character = (Utf8Char)'a';
+			foreach (var cell in alsCells)
 			{
-				valueCells.Add(new(WellKnownColorIdentifier.Normal, cell));
+				babaGroupingNodes.Add(new(WellKnownColorIdentifier.Normal, cell, character++, grid.GetCandidates(cell)));
 			}
 
-			var hasValueCell = valueCells.Count != 0;
+			character = (Utf8Char)'a';
+			foreach (var cell in ahsCells)
+			{
+				babaGroupingNodes.Add(new(WellKnownColorIdentifier.Normal, cell, character++, grid.GetCandidates(cell)));
+			}
+
+			foreach (var cell in c & EmptyCells)
+			{
+				babaGroupingNodes.Add(new(WellKnownColorIdentifier.Normal, cell, (Utf8Char)(char)('a' - 1 + size), grid.GetCandidates(cell)));
+			}
+
+			scoped var valueCells =
+				from cell in (alsCells | ahsCells) - EmptyCells
+				select new CellViewNode(WellKnownColorIdentifier.Normal, cell);
 			var step = new AlmostLockedCandidatesStep(
 				[.. conclusions],
 				[
 					[
-						.. hasValueCell ? valueCells : [],
+						.. valueCells,
 						.. candidateOffsets,
+						new HouseViewNode(WellKnownColorIdentifier.Normal, baseSet),
+						new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, coverSet)
+					],
+					[
+						.. valueCells,
+						.. babaGroupingNodes,
 						new HouseViewNode(WellKnownColorIdentifier.Normal, baseSet),
 						new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, coverSet)
 					]
 				],
 				mask,
-				cells,
+				alsCells,
 				ahsCells,
-				hasValueCell
+				valueCells.Length != 0
 			);
 
 			if (context.OnlyFindOne)

@@ -6878,9 +6878,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
              <summary>
-             <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/summary"/>
+             <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/summary" />
              </summary>
-             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']" /></param>
              <param name="size">The size.</param>
              <param name="baseSet">The base set.</param>
              <param name="coverSet">The cover set.</param>
@@ -6888,6 +6888,11 @@ if (student is (name: var name, age: >= 18))
              <param name="b">The right grid map.</param>
              <param name="c">The intersection.</param>
              <remarks>
+             <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
              <para>
              The diagrams:
              <code><![CDATA[
