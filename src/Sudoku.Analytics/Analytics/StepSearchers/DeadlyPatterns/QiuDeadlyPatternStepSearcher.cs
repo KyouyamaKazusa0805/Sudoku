@@ -188,7 +188,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		if (PopCount((uint)(l1AlignedMask | l2AlignedMask)) > Math.Max(PopCount((uint)l1AlignedMask), PopCount((uint)l2AlignedMask)))
 		{
 			// Distinction is not 1.
-			return null;
+			goto FastReturn;
 		}
 
 		// Check whether the paired cells contain at least 2 empty cells and not in a block.
@@ -210,7 +210,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		if (emptyCellsInPairedCells.Count >= 2)
 		{
 			// Distinction is not 1.
-			return null;
+			goto FastReturn;
 		}
 
 		// Check whether the digits contain only 1 digit different.
@@ -218,7 +218,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var nonEmptyCellsDigitsMaskForLine2 = grid[valueCellsInBothLines & HousesMap[l2]];
 		if (PopCount((uint)(nonEmptyCellsDigitsMaskForLine1 ^ nonEmptyCellsDigitsMaskForLine2)) >= 2)
 		{
-			return null;
+			goto FastReturn;
 		}
 
 		var crossline = pattern.Crossline;
@@ -228,7 +228,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var digitsMask = allDigitsMaskAppearedInCrossline & ~allDigitsMaskNotAppearedInCrossline;
 		if (PopCount((uint)digitsMask) < 2)
 		{
-			return null;
+			goto FastReturn;
 		}
 
 		var corner = pattern.Corner;
@@ -236,7 +236,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		if ((digitsMask & digitsMaskAppearedInCornerCells) != digitsMaskAppearedInCornerCells)
 		{
 			// Not all digits intersected in corner cells are hold in crossline cells.
-			return null;
+			goto FastReturn;
 		}
 
 		// One cell only holds those two and the other doesn't only hold them.
@@ -271,6 +271,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			return type4Step;
 		}
 
+	FastReturn:
 		return null;
 	}
 
