@@ -152,6 +152,13 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for base type.
 	/// </summary>
+	/// <example>
+	/// Test example:
+	/// <code><![CDATA[
+	/// # Type 1, 2, 4
+	/// 12...+4+35..731.5..+4+4...23..1...8..41.+8+145.2..3...4.+158.....17.+49.913+48..+574..+5.+13.:715 632 833 341 641 543 643 645 955 661 663 665 271 671 672 673 299
+	/// ]]></code>
+	/// </example>
 	private QiuDeadlyPatternStep? CheckForBaseType(
 		scoped ref AnalysisContext context,
 		scoped in Grid grid,
@@ -236,7 +243,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				{
 					foreach (var cell in CandidatesMap[digit] & crossline)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
 					}
 				}
 
@@ -295,6 +302,13 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 						);
 					}
 				}
+				foreach (var digit in digitsMaskAppearedInCornerCells)
+				{
+					foreach (var cell in CandidatesMap[digit] & crossline)
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
+					}
+				}
 
 				var step = new QiuDeadlyPatternType2Step(
 					[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
@@ -321,7 +335,66 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				context.Accumulator.Add(step);
 			}
 
+			foreach (var digit in digitsMaskAppearedInCornerCells)
+			{
+				foreach (var cornerCellCoveredHouse in (corner & CandidatesMap[digit]).CoveredHouses)
+				{
+					if ((CandidatesMap[digit] & HousesMap[cornerCellCoveredHouse]) == corner)
+					{
+						// Type 4.
+						var conclusions = new List<Conclusion>();
+						foreach (var elimDigit in (Mask)(digitsMaskAppearedInCornerCells & ~(1 << digit)))
+						{
+							foreach (var cell in CandidatesMap[elimDigit] & corner)
+							{
+								conclusions.Add(new(Elimination, cell, elimDigit));
+							}
+						}
+						if (conclusions.Count == 0)
+						{
+							continue;
+						}
 
+						var candidateOffsets = new List<CandidateViewNode>();
+						foreach (var d in digitsMaskAppearedInCornerCells)
+						{
+							foreach (var cell in CandidatesMap[d] & crossline)
+							{
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d));
+							}
+						}
+						foreach (var cell in cornerCellsContainingExtraDigit)
+						{
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+						}
+
+						var step = new QiuDeadlyPatternType4Step(
+							[.. conclusions],
+							[
+								[
+									.. candidateOffsets,
+									new HouseViewNode(WellKnownColorIdentifier.Normal, l1),
+									new HouseViewNode(WellKnownColorIdentifier.Normal, l2),
+									new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, cornerCellCoveredHouse),
+									new CellViewNode(WellKnownColorIdentifier.Normal, corner[0]),
+									new CellViewNode(WellKnownColorIdentifier.Normal, corner[1])
+								]
+							],
+							true,
+							1 << l1 | 1 << l2,
+							corner[0],
+							corner[1],
+							new(corner, digit)
+						);
+						if (context.OnlyFindOne)
+						{
+							return step;
+						}
+
+						context.Accumulator.Add(step);
+					}
+				}
+			}
 
 			return null;
 		}
