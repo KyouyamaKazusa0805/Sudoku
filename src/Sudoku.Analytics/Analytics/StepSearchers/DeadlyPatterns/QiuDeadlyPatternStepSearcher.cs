@@ -155,7 +155,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <example>
 	/// Test example:
 	/// <code><![CDATA[
-	/// # Type 1, 2, 4
 	/// 12...+4+35..731.5..+4+4...23..1...8..41.+8+145.2..3...4.+158.....17.+49.913+48..+574..+5.+13.:715 632 833 341 641 543 643 645 955 661 663 665 271 671 672 673 299
 	/// ]]></code>
 	/// </example>
@@ -210,194 +209,243 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			return null;
 		}
 
-		return checkFor4Types(ref context, grid, corner, crossline, l1, l2, digitsMaskAppearedInCornerCells) is { } foundStep ? foundStep : null;
-
-
-		static QiuDeadlyPatternStep? checkFor4Types(
-			scoped ref AnalysisContext context,
-			scoped in Grid grid,
-			scoped in CellMap corner,
-			scoped in CellMap crossline,
-			House l1,
-			House l2,
-			Mask digitsMaskAppearedInCornerCells
-		)
+		// One cell only holds those two and the other doesn't only hold them.
+		var (c1, c2) = (corner[0], corner[1]);
+		var extraDigitsMask = (Mask)((grid.GetCandidates(c1) | grid.GetCandidates(c2)) & ~digitsMaskAppearedInCornerCells);
+		var cornerCellsContainingExtraDigit = corner;
+		var tempMap = CellMap.Empty;
+		foreach (var digit in extraDigitsMask)
 		{
-			// One cell only holds those two and the other doesn't only hold them.
-			var (c1, c2) = (corner[0], corner[1]);
-			var extraDigitsMask = (grid.GetCandidates(c1) | grid.GetCandidates(c2)) & ~digitsMaskAppearedInCornerCells;
-			var cornerCellsContainingExtraDigit = corner;
-			var tempMap = CellMap.Empty;
-			foreach (var digit in extraDigitsMask)
-			{
-				tempMap |= CandidatesMap[digit];
-			}
-			cornerCellsContainingExtraDigit &= tempMap;
+			tempMap |= CandidatesMap[digit];
+		}
+		cornerCellsContainingExtraDigit &= tempMap;
 
-			if (cornerCellsContainingExtraDigit is [var targetCell])
-			{
-				// Type 1.
-				var elimDigitsMask = (Mask)(grid.GetCandidates(targetCell) & digitsMaskAppearedInCornerCells);
-				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (var digit in digitsMaskAppearedInCornerCells)
-				{
-					foreach (var cell in CandidatesMap[digit] & crossline)
-					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
-					}
-				}
+		if (BaseType_Type1(
+			ref context, corner, crossline, grid, l1, l2,
+			digitsMaskAppearedInCornerCells, cornerCellsContainingExtraDigit) is { } type1Step)
+		{
+			return type1Step;
+		}
 
-				var theOtherCornerCellNoElimination = (corner - targetCell)[0];
-				foreach (var digit in grid.GetCandidates(theOtherCornerCellNoElimination))
-				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, theOtherCornerCellNoElimination * 9 + digit));
-				}
+		if (BaseType_Type2(
+			ref context, corner, crossline, grid, l1, l2, digitsMaskAppearedInCornerCells,
+			extraDigitsMask, cornerCellsContainingExtraDigit) is { } type2Step)
+		{
+			return type2Step;
+		}
 
-				var step = new QiuDeadlyPatternType1Step(
-					[.. from digit in elimDigitsMask select new Conclusion(Elimination, targetCell, digit)],
-					[
-						[
-							.. candidateOffsets,
-							new HouseViewNode(WellKnownColorIdentifier.Normal, l1),
-							new HouseViewNode(WellKnownColorIdentifier.Normal, l2),
-							new CellViewNode(WellKnownColorIdentifier.Normal, corner[0]),
-							new CellViewNode(WellKnownColorIdentifier.Normal, corner[1])
-						]
-					],
-					true,
-					1 << l1 | 1 << l2,
-					corner[0],
-					corner[1],
-					targetCell,
-					elimDigitsMask
-				);
-				if (context.OnlyFindOne)
-				{
-					return step;
-				}
+		if (BaseType_Type4(ref context, corner, crossline, l1, l2, digitsMaskAppearedInCornerCells, cornerCellsContainingExtraDigit) is { } type4Step)
+		{
+			return type4Step;
+		}
 
-				context.Accumulator.Add(step);
-			}
+		return null;
+	}
 
-			if (IsPow2(extraDigitsMask))
-			{
-				// Type 2.
-				var extraDigit = Log2((uint)extraDigitsMask);
-				var elimMap = corner % CandidatesMap[extraDigit];
-				if (!elimMap)
-				{
-					return null;
-				}
-
-				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (var cell in cornerCellsContainingExtraDigit)
-				{
-					foreach (var digit in grid.GetCandidates(cell))
-					{
-						candidateOffsets.Add(
-							new(
-								digit == extraDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
-								cell * 9 + digit
-							)
-						);
-					}
-				}
-				foreach (var digit in digitsMaskAppearedInCornerCells)
-				{
-					foreach (var cell in CandidatesMap[digit] & crossline)
-					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
-					}
-				}
-
-				var step = new QiuDeadlyPatternType2Step(
-					[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
-					[
-						[
-							.. candidateOffsets,
-							new HouseViewNode(WellKnownColorIdentifier.Normal, l1),
-							new HouseViewNode(WellKnownColorIdentifier.Normal, l2),
-							new CellViewNode(WellKnownColorIdentifier.Normal, corner[0]),
-							new CellViewNode(WellKnownColorIdentifier.Normal, corner[1])
-						]
-					],
-					true,
-					1 << l1 | 1 << l2,
-					corner[0],
-					corner[1],
-					extraDigit
-				);
-				if (context.OnlyFindOne)
-				{
-					return step;
-				}
-
-				context.Accumulator.Add(step);
-			}
-
+	private QiuDeadlyPatternType1Step? BaseType_Type1(
+		scoped ref AnalysisContext context,
+		scoped in CellMap corner,
+		scoped in CellMap crossline,
+		scoped in Grid grid,
+		House l1,
+		House l2,
+		Mask digitsMaskAppearedInCornerCells,
+		scoped in CellMap cornerCellsContainingExtraDigit
+	)
+	{
+		if (cornerCellsContainingExtraDigit is [var targetCell])
+		{
+			// Type 1.
+			var elimDigitsMask = (Mask)(grid.GetCandidates(targetCell) & digitsMaskAppearedInCornerCells);
+			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (var digit in digitsMaskAppearedInCornerCells)
 			{
-				foreach (var cornerCellCoveredHouse in (corner & CandidatesMap[digit]).CoveredHouses)
+				foreach (var cell in CandidatesMap[digit] & crossline)
 				{
-					if ((CandidatesMap[digit] & HousesMap[cornerCellCoveredHouse]) == corner)
-					{
-						// Type 4.
-						var conclusions = new List<Conclusion>();
-						foreach (var elimDigit in (Mask)(digitsMaskAppearedInCornerCells & ~(1 << digit)))
-						{
-							foreach (var cell in CandidatesMap[elimDigit] & corner)
-							{
-								conclusions.Add(new(Elimination, cell, elimDigit));
-							}
-						}
-						if (conclusions.Count == 0)
-						{
-							continue;
-						}
-
-						var candidateOffsets = new List<CandidateViewNode>();
-						foreach (var d in digitsMaskAppearedInCornerCells)
-						{
-							foreach (var cell in CandidatesMap[d] & crossline)
-							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d));
-							}
-						}
-						foreach (var cell in cornerCellsContainingExtraDigit)
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
-						}
-
-						var step = new QiuDeadlyPatternType4Step(
-							[.. conclusions],
-							[
-								[
-									.. candidateOffsets,
-									new HouseViewNode(WellKnownColorIdentifier.Normal, l1),
-									new HouseViewNode(WellKnownColorIdentifier.Normal, l2),
-									new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, cornerCellCoveredHouse),
-									new CellViewNode(WellKnownColorIdentifier.Normal, corner[0]),
-									new CellViewNode(WellKnownColorIdentifier.Normal, corner[1])
-								]
-							],
-							true,
-							1 << l1 | 1 << l2,
-							corner[0],
-							corner[1],
-							new(corner, digit)
-						);
-						if (context.OnlyFindOne)
-						{
-							return step;
-						}
-
-						context.Accumulator.Add(step);
-					}
+					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
 				}
 			}
 
-			return null;
+			var theOtherCornerCellNoElimination = (corner - targetCell)[0];
+			foreach (var digit in grid.GetCandidates(theOtherCornerCellNoElimination))
+			{
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, theOtherCornerCellNoElimination * 9 + digit));
+			}
+
+			var step = new QiuDeadlyPatternType1Step(
+				[.. from digit in elimDigitsMask select new Conclusion(Elimination, targetCell, digit)],
+				[
+					[
+						.. candidateOffsets,
+						new HouseViewNode(WellKnownColorIdentifier.Normal, l1),
+						new HouseViewNode(WellKnownColorIdentifier.Normal, l2),
+						new CellViewNode(WellKnownColorIdentifier.Normal, corner[0]),
+						new CellViewNode(WellKnownColorIdentifier.Normal, corner[1])
+					]
+				],
+				true,
+				1 << l1 | 1 << l2,
+				corner[0],
+				corner[1],
+				targetCell,
+				elimDigitsMask
+			);
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+
+			context.Accumulator.Add(step);
 		}
+
+		return null;
+	}
+
+
+	private QiuDeadlyPatternType2Step? BaseType_Type2(
+		scoped ref AnalysisContext context,
+		scoped in CellMap corner,
+		scoped in CellMap crossline,
+		scoped in Grid grid,
+		House l1,
+		House l2,
+		Mask digitsMaskAppearedInCornerCells,
+		Mask extraDigitsMask,
+		scoped in CellMap cornerCellsContainingExtraDigit
+	)
+	{
+		if (IsPow2(extraDigitsMask))
+		{
+			// Type 2.
+			var extraDigit = Log2((uint)extraDigitsMask);
+			var elimMap = corner % CandidatesMap[extraDigit];
+			if (!elimMap)
+			{
+				return null;
+			}
+
+			var candidateOffsets = new List<CandidateViewNode>();
+			foreach (var cell in cornerCellsContainingExtraDigit)
+			{
+				foreach (var digit in grid.GetCandidates(cell))
+				{
+					candidateOffsets.Add(
+						new(
+							digit == extraDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
+							cell * 9 + digit
+						)
+					);
+				}
+			}
+			foreach (var digit in digitsMaskAppearedInCornerCells)
+			{
+				foreach (var cell in CandidatesMap[digit] & crossline)
+				{
+					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
+				}
+			}
+
+			var step = new QiuDeadlyPatternType2Step(
+				[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
+				[
+					[
+						.. candidateOffsets,
+						new HouseViewNode(WellKnownColorIdentifier.Normal, l1),
+						new HouseViewNode(WellKnownColorIdentifier.Normal, l2),
+						new CellViewNode(WellKnownColorIdentifier.Normal, corner[0]),
+						new CellViewNode(WellKnownColorIdentifier.Normal, corner[1])
+					]
+				],
+				true,
+				1 << l1 | 1 << l2,
+				corner[0],
+				corner[1],
+				extraDigit
+			);
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+
+			context.Accumulator.Add(step);
+		}
+
+		return null;
+	}
+
+
+	private QiuDeadlyPatternType4Step? BaseType_Type4(
+		scoped ref AnalysisContext context,
+		scoped in CellMap corner,
+		scoped in CellMap crossline,
+		House l1,
+		House l2,
+		Mask digitsMaskAppearedInCornerCells,
+		scoped in CellMap cornerCellsContainingExtraDigit
+	)
+	{
+		foreach (var digit in digitsMaskAppearedInCornerCells)
+		{
+			foreach (var cornerCellCoveredHouse in (corner & CandidatesMap[digit]).CoveredHouses)
+			{
+				if ((CandidatesMap[digit] & HousesMap[cornerCellCoveredHouse]) == corner)
+				{
+					// Type 4.
+					var conclusions = new List<Conclusion>();
+					foreach (var elimDigit in (Mask)(digitsMaskAppearedInCornerCells & ~(1 << digit)))
+					{
+						foreach (var cell in CandidatesMap[elimDigit] & corner)
+						{
+							conclusions.Add(new(Elimination, cell, elimDigit));
+						}
+					}
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					var candidateOffsets = new List<CandidateViewNode>();
+					foreach (var d in digitsMaskAppearedInCornerCells)
+					{
+						foreach (var cell in CandidatesMap[d] & crossline)
+						{
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d));
+						}
+					}
+					foreach (var cell in corner)
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+					}
+
+					var step = new QiuDeadlyPatternType4Step(
+						[.. conclusions],
+						[
+							[
+								.. candidateOffsets,
+								new HouseViewNode(WellKnownColorIdentifier.Normal, l1),
+								new HouseViewNode(WellKnownColorIdentifier.Normal, l2),
+								new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, cornerCellCoveredHouse),
+								new CellViewNode(WellKnownColorIdentifier.Normal, corner[0]),
+								new CellViewNode(WellKnownColorIdentifier.Normal, corner[1])
+							]
+						],
+						true,
+						1 << l1 | 1 << l2,
+						corner[0],
+						corner[1],
+						new(corner, digit)
+					);
+					if (context.OnlyFindOne)
+					{
+						return step;
+					}
+
+					context.Accumulator.Add(step);
+				}
+			}
+		}
+
+		return null;
 	}
 
 
