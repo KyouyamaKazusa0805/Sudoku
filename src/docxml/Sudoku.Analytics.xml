@@ -5467,6 +5467,19 @@ if (student is (name: var name, age: >= 18))
             <param name="cornerContainingExtraDigit">Indicates the cells which are corner cells and contain extra digit.</param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.BaseType_TypeLocked(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int16)">
+            <summary>
+            Check for base type (locked type).
+            </summary>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <param name="corner">Indicates the corner cells used in a pattern.</param>
+            <param name="crossline">Indicates the cross-line cells used in a pattern.</param>
+            <param name="grid">The grid used.</param>
+            <param name="l1">The line 1.</param>
+            <param name="l2">The line 2.</param>
+            <param name="cornerLockedDigitsMask">A mask value that holds digits locked in cross-line cells.</param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern1">
             <summary>
             Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
