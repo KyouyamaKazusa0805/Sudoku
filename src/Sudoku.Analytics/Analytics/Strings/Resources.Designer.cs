@@ -5263,6 +5263,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cells {0} will be a deadly pattern if all digits {1} are false in cell {2}.
+        /// </summary>
+        public static string TechniqueFormat_QiuDeadlyPatternExternalType1Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_QiuDeadlyPatternExternalType1Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cells {0} will be a deadly pattern if{1}{2} {3} {4} {5} false.
         /// </summary>
         public static string TechniqueFormat_QiuDeadlyPatternLockedTypeStep {

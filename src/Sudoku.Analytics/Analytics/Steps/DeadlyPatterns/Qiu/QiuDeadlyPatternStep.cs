@@ -29,7 +29,7 @@ public abstract partial class QiuDeadlyPatternStep(
 ) : DeadlyPatternStep(conclusions, views)
 {
 	/// <inheritdoc/>
-	public sealed override decimal BaseDifficulty => 5.8M;
+	public override decimal BaseDifficulty => 5.8M;
 
 	/// <summary>
 	/// Indicates the type of the current technique.
@@ -37,7 +37,7 @@ public abstract partial class QiuDeadlyPatternStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public sealed override Technique Code => Type == 5 ? Technique.LockedQiuDeadlyPattern : Enum.Parse<Technique>($"QiuDeadlyPatternType{Type}");
+	public override Technique Code => Type == 5 ? Technique.LockedQiuDeadlyPattern : Enum.Parse<Technique>($"QiuDeadlyPatternType{Type}");
 
 	private protected string PatternStr => Pattern.ToString();
 

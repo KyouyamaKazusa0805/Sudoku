@@ -20,6 +20,7 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	Technique.QiuDeadlyPatternType1, Technique.QiuDeadlyPatternType2,
 	Technique.QiuDeadlyPatternType3, Technique.QiuDeadlyPatternType4, Technique.LockedQiuDeadlyPattern,
+	Technique.QiuDeadlyPatternExternalType1, Technique.QiuDeadlyPatternExternalType2, Technique.QiuDeadlyPatternExternalType3,
 	Flags = ConditionalFlags.Standard)]
 public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 {
@@ -152,18 +153,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for base type.
 	/// </summary>
-	/// <example>
-	/// Test example:
-	/// <code><![CDATA[
-	/// 12...+4+35..731.5..+4+4...23..1...8..41.+8+145.2..3...4.+158.....17.+49.913+48..+574..+5.+13.:715 632 833 341 641 543 643 645 955 661 663 665 271 671 672 673 299
-	/// .48.163.736...2.4.5..3.....+4.....+1.8...451+7..1.....+4..+7....9..4.2.1...736.478.21+9:918 938 862 574
-	/// +4+6+2+9+517+38.7.+843..6.+83+62+7..474+8+3+6+25.....7+89+6+4...6+4+1+5.878.+7+13+64.+53..57+4+86.6+542+9+8.+7.:928 938 252 159 262 967 189
-	/// 1+6.72+48.....65.....57....6+4.2647+59+1....+1.+2+6...+71.8654+2+79..+6.42+1+6...19+7...+18.47+3+96:326 329 331 931 359 374 583 584 884
-	/// 5....4+762..+4...5+9.....6.41.2.+7.5..34..6+48+32+7.43..7...9.72.9..+4...1.+4....84.3.+6..7:321 126 331 942 144 867 677 379 879 687 588 389 889
-	/// 1+85+43.62.+9.4.8....7....1...6..8....+1+2186+9473+5+5....3..6+8..3....4+4...2.3..+351+74.9.2:222 234 537 938 942 746 962 467 672 973 578 983 688
-	/// +412..39+5+7+3+97.4+5..86+8+5..+7.4+3.+2..7.38..+3.5.1....69+32.....5..+3...19+7..5.8+3..+437..59.:624 227 161 274 876 284
-	/// ]]></code>
-	/// </example>
 	private QiuDeadlyPatternStep? CheckForBaseType(
 		scoped ref AnalysisContext context,
 		scoped in Grid grid,
@@ -259,11 +248,15 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			goto FastReturn;
 		}
 
+		var cornerDigitsMask = grid[corner];
+
+		// Okay. Now we have a rigorous pattern. Now check for mask and determine its sub-type that can be categorized.
+		// Part 1: check for corner cells.
 		var maskIntersected = cornerLockedDigitsMask & cornerDigitsMaskIntersected;
 		if (maskIntersected == cornerDigitsMaskIntersected)
 		{
 			// One cell only holds those two and the other doesn't only hold them.
-			var cornerExtraDigitsMask = (Mask)(grid[corner] & ~cornerDigitsMaskIntersected);
+			var cornerExtraDigitsMask = (Mask)(cornerDigitsMask & ~cornerDigitsMaskIntersected);
 			var cornerContainingExtraDigit = corner;
 			var tempMap = CellMap.Empty;
 			foreach (var digit in cornerExtraDigitsMask)
@@ -304,7 +297,18 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			}
 		}
 
+		// Part 2: check for mirror cells.
+		if ((grid[crossline] & cornerDigitsMask) == cornerDigitsMask)
+		{
+			var mirror = pattern.MirrorStrict;
+			if (BaseType_ExternalType1(ref context, corner, crossline, mirror, grid, l1, l2, cornerDigitsMask) is { } externalType1Step)
+			{
+				return externalType1Step;
+			}
+		}
+
 	FastReturn:
+		// No valid steps found. Return null.
 		return null;
 	}
 
@@ -320,6 +324,18 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="digitsMaskAppearedInCorner">A mask value that holds a list of digits appeared in corner cells.</param>
 	/// <param name="cornerContainingExtraDigit">Indicates the cells which are corner cells and contain extra digit.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <example>
+	/// Test example:
+	/// <code><![CDATA[
+	/// 12...+4+35..731.5..+4+4...23..1...8..41.+8+145.2..3...4.+158.....17.+49.913+48..+574..+5.+13.:715 632 833 341 641 543 643 645 955 661 663 665 271 671 672 673 299
+	/// .48.163.736...2.4.5..3.....+4.....+1.8...451+7..1.....+4..+7....9..4.2.1...736.478.21+9:918 938 862 574
+	/// +4+6+2+9+517+38.7.+843..6.+83+62+7..474+8+3+6+25.....7+89+6+4...6+4+1+5.878.+7+13+64.+53..57+4+86.6+542+9+8.+7.:928 938 252 159 262 967 189
+	/// 1+6.72+48.....65.....57....6+4.2647+59+1....+1.+2+6...+71.8654+2+79..+6.42+1+6...19+7...+18.47+3+96:326 329 331 931 359 374 583 584 884
+	/// 5....4+762..+4...5+9.....6.41.2.+7.5..34..6+48+32+7.43..7...9.72.9..+4...1.+4....84.3.+6..7:321 126 331 942 144 867 677 379 879 687 588 389 889
+	/// 1+85+43.62.+9.4.8....7....1...6..8....+1+2186+9473+5+5....3..6+8..3....4+4...2.3..+351+74.9.2:222 234 537 938 942 746 962 467 672 973 578 983 688
+	/// +412..39+5+7+3+97.4+5..86+8+5..+7.4+3.+2..7.38..+3.5.1....69+32.....5..+3...19+7..5.8+3..+437..59.:624 227 161 274 876 284
+	/// ]]></code>
+	/// </example>
 	private QiuDeadlyPatternType1Step? BaseType_Type1(
 		scoped ref AnalysisContext context,
 		scoped in CellMap corner,
@@ -744,7 +760,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				candidateOffsets.Add(
 					new(
 						(digitsShouldBeLocked >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
-						cell * 9 + digit	
+						cell * 9 + digit
 					)
 				);
 			}
@@ -777,6 +793,94 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			corner[0],
 			corner[1],
 			lockedMap
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	/// <summary>
+	/// Check for base type (external type 1).
+	/// </summary>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="corner">Indicates the corner cells used in a pattern.</param>
+	/// <param name="crossline">Indicates the cross-line cells used in a pattern.</param>
+	/// <param name="mirror">Indicates the mirror cells used in a pattern.</param>
+	/// <param name="grid">The grid used.</param>
+	/// <param name="l1">The line 1.</param>
+	/// <param name="l2">The line 2.</param>
+	/// <param name="externalDigitsMaskToBeChecked">A mask value that holds digits should be checked.</param>
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <example>
+	/// Test examples:
+	/// <code><![CDATA[
+	/// ...45....+6+58...+43...+46+8..+5.....7+6+9+4+5....+4178+646+7+8+9+5.+1......+4.2....9+3.5.4.+43..8...:224 129 171 871 172 872 173 177 677 179 779 979 191 991 194 294 195
+	/// ]]></code>
+	/// </example>
+	private QiuDeadlyPatternExtenalType1Step? BaseType_ExternalType1(
+		scoped ref AnalysisContext context,
+		scoped in CellMap corner,
+		scoped in CellMap crossline,
+		scoped in CellMap mirror,
+		scoped in Grid grid,
+		House l1,
+		House l2,
+		Mask externalDigitsMaskToBeChecked
+	)
+	{
+		if ((mirror & EmptyCells) is not [var targetCell])
+		{
+			return null;
+		}
+
+		if (PopCount((uint)grid[corner]) != 4 - (crossline - EmptyCells).Count)
+		{
+			return null;
+		}
+
+		var elimDigits = (Mask)(grid.GetCandidates(targetCell) & ~externalDigitsMaskToBeChecked);
+		if (elimDigits == 0)
+		{
+			return null;
+		}
+
+		var candidateOffsets = new List<CandidateViewNode>();
+		foreach (var cell in crossline & EmptyCells)
+		{
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & externalDigitsMaskToBeChecked))
+			{
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+			}
+		}
+		foreach (var cell in corner)
+		{
+			foreach (var digit in grid.GetCandidates(cell))
+			{
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+			}
+		}
+
+		var step = new QiuDeadlyPatternExtenalType1Step(
+			[.. from digit in elimDigits select new Conclusion(Elimination, targetCell, digit)],
+			[
+				[
+					.. candidateOffsets,
+					new HouseViewNode(WellKnownColorIdentifier.Normal, l1),
+					new HouseViewNode(WellKnownColorIdentifier.Normal, l2),
+					new CellViewNode(WellKnownColorIdentifier.Normal, corner[0]),
+					new CellViewNode(WellKnownColorIdentifier.Normal, corner[1])
+				]
+			],
+			true,
+			1 << l1 | 1 << l2,
+			corner[0],
+			corner[1],
+			targetCell,
+			externalDigitsMaskToBeChecked
 		);
 		if (context.OnlyFindOne)
 		{
@@ -828,6 +932,25 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				return (HousesMap[l1] | HousesMap[l2]) & PeersMap[Corner[0]] | (HousesMap[l1] | HousesMap[l2]) & PeersMap[Corner[1]];
 			}
 		}
+
+		/// <summary>
+		/// Indicates the mirror cells.
+		/// </summary>
+		public CellMap Mirror
+		{
+			get
+			{
+				Crossline.InOneHouse(out var block);
+				var l1 = TrailingZeroCount(Lines);
+				var l2 = Lines.GetNextSet(l1);
+				return HousesMap[block] - (HousesMap[l1] | HousesMap[l2]);
+			}
+		}
+
+		/// <summary>
+		/// Indicates the mirror cells, with strict check.
+		/// </summary>
+		public CellMap MirrorStrict => Mirror & Corner.ExpandedPeers;
 	}
 
 	/// <summary>

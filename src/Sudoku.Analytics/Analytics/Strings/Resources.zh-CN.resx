@@ -2321,4 +2321,7 @@
     <value>淑芬致命结构外部类型 3</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="TechniqueFormat_QiuDeadlyPatternExternalType1Step" xml:space="preserve">
+    <value>如果 {1} 的数字 {2} 全部去掉的话，单元格 {0} 将形成致命形式</value>
+  </data>
 </root>
