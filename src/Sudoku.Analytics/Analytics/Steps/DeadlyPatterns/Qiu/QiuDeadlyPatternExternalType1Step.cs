@@ -16,7 +16,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="corner2"><inheritdoc/></param>
 /// <param name="targetCell">Indicates the target cell.</param>
 /// <param name="targetDigits">Indicates the target digits.</param>
-public sealed partial class QiuDeadlyPatternExtenalType1Step(
+public sealed partial class QiuDeadlyPatternExternalType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	bool is2LinesWith2Cells,

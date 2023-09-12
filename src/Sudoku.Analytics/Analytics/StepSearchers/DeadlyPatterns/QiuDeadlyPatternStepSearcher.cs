@@ -300,10 +300,21 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// Part 2: check for mirror cells.
 		if ((grid[crossline] & cornerDigitsMask) == cornerDigitsMask)
 		{
+			// Check whether the number of empty cross-line cells are same as the number of locked digits.
+			if (PopCount((uint)cornerDigitsMask) > (crossline & EmptyCells).Count)
+			{
+				return null;
+			}
+
 			var mirror = pattern.MirrorStrict;
 			if (BaseType_ExternalType1(ref context, corner, crossline, mirror, grid, l1, l2, cornerDigitsMask) is { } externalType1Step)
 			{
 				return externalType1Step;
+			}
+
+			if (BaseType_ExternalType2(ref context, corner, crossline, mirror, grid, l1, l2, cornerDigitsMask) is { } externalType2Step)
+			{
+				return externalType2Step;
 			}
 		}
 
@@ -821,7 +832,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// ...45....+6+58...+43...+46+8..+5.....7+6+9+4+5....+4178+646+7+8+9+5.+1......+4.2....9+3.5.4.+43..8...:224 129 171 871 172 872 173 177 677 179 779 979 191 991 194 294 195
 	/// ]]></code>
 	/// </example>
-	private QiuDeadlyPatternExtenalType1Step? BaseType_ExternalType1(
+	private QiuDeadlyPatternExternalType1Step? BaseType_ExternalType1(
 		scoped ref AnalysisContext context,
 		scoped in CellMap corner,
 		scoped in CellMap crossline,
@@ -837,11 +848,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			return null;
 		}
 
-		if (PopCount((uint)grid[corner]) != 4 - (crossline - EmptyCells).Count)
-		{
-			return null;
-		}
-
 		var elimDigits = (Mask)(grid.GetCandidates(targetCell) & ~externalDigitsMaskToBeChecked);
 		if (elimDigits == 0)
 		{
@@ -853,7 +859,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		{
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & externalDigitsMaskToBeChecked))
 			{
-				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
 			}
 		}
 		foreach (var cell in corner)
@@ -864,7 +870,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			}
 		}
 
-		var step = new QiuDeadlyPatternExtenalType1Step(
+		var step = new QiuDeadlyPatternExternalType1Step(
 			[.. from digit in elimDigits select new Conclusion(Elimination, targetCell, digit)],
 			[
 				[
@@ -881,6 +887,95 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			corner[1],
 			targetCell,
 			externalDigitsMaskToBeChecked
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	/// <summary>
+	/// Check for base type (external type 2).
+	/// </summary>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="corner">Indicates the corner cells used in a pattern.</param>
+	/// <param name="crossline">Indicates the cross-line cells used in a pattern.</param>
+	/// <param name="mirror">Indicates the mirror cells used in a pattern.</param>
+	/// <param name="grid">The grid used.</param>
+	/// <param name="l1">The line 1.</param>
+	/// <param name="l2">The line 2.</param>
+	/// <param name="externalDigitsMaskToBeChecked">A mask value that holds digits should be checked.</param>
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <example>
+	/// Test examples:
+	/// <code><![CDATA[
+	/// ...45....+6+58...+43...+46+8..+5.....7+6+9+4+5....+4178+646+7+8+9+5.+1......+4.2....9+3.5.4.+43..8...:224 129 171 871 172 872 173 177 677 179 779 979 191 991 194 294 195
+	/// ]]></code>
+	/// </example>
+	private QiuDeadlyPatternExternalType2Step? BaseType_ExternalType2(
+		scoped ref AnalysisContext context,
+		scoped in CellMap corner,
+		scoped in CellMap crossline,
+		scoped in CellMap mirror,
+		scoped in Grid grid,
+		House l1,
+		House l2,
+		Mask externalDigitsMaskToBeChecked
+	)
+	{
+		var elimDigits = (Mask)(grid[mirror] & externalDigitsMaskToBeChecked);
+		if (!IsPow2(elimDigits))
+		{
+			return null;
+		}
+
+		var elimDigit = Log2((uint)elimDigits);
+		var elimMap = mirror.PeerIntersection & CandidatesMap[elimDigit];
+		if (!elimMap)
+		{
+			return null;
+		}
+
+		var candidateOffsets = new List<CandidateViewNode>();
+		foreach (var cell in crossline & EmptyCells)
+		{
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & externalDigitsMaskToBeChecked))
+			{
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
+			}
+		}
+		foreach (var cell in corner)
+		{
+			foreach (var digit in grid.GetCandidates(cell))
+			{
+				candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+			}
+		}
+		foreach (var cell in mirror)
+		{
+			candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + elimDigit));
+		}
+
+		var step = new QiuDeadlyPatternExternalType2Step(
+			[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
+			[
+				[
+					.. candidateOffsets,
+					new HouseViewNode(WellKnownColorIdentifier.Normal, l1),
+					new HouseViewNode(WellKnownColorIdentifier.Normal, l2),
+					new CellViewNode(WellKnownColorIdentifier.Normal, corner[0]),
+					new CellViewNode(WellKnownColorIdentifier.Normal, corner[1])
+				]
+			],
+			true,
+			1 << l1 | 1 << l2,
+			corner[0],
+			corner[1],
+			mirror,
+			elimDigit
 		);
 		if (context.OnlyFindOne)
 		{

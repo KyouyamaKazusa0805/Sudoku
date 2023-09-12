@@ -5522,6 +5522,26 @@ if (student is (name: var name, age: >= 18))
             ]]></code>
             </example>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.BaseType_ExternalType2(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int16)">
+            <summary>
+            Check for base type (external type 2).
+            </summary>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <param name="corner">Indicates the corner cells used in a pattern.</param>
+            <param name="crossline">Indicates the cross-line cells used in a pattern.</param>
+            <param name="mirror">Indicates the mirror cells used in a pattern.</param>
+            <param name="grid">The grid used.</param>
+            <param name="l1">The line 1.</param>
+            <param name="l2">The line 2.</param>
+            <param name="externalDigitsMaskToBeChecked">A mask value that holds digits should be checked.</param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+            <example>
+            Test examples:
+            <code><![CDATA[
+            ...45....+6+58...+43...+46+8..+5.....7+6+9+4+5....+4178+646+7+8+9+5.+1......+4.2....9+3.5.4.+43..8...:224 129 171 871 172 872 173 177 677 179 779 979 191 991 194 294 195
+            ]]></code>
+            </example>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern1">
             <summary>
             Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
@@ -10157,7 +10177,7 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>conjugateHouse</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.QiuDeadlyPatternExtenalType1Step">
+        <member name="T:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType1Step">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern External Type 1</b> technique.
             </summary>
@@ -10170,7 +10190,7 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCell">Indicates the target cell.</param>
             <param name="targetDigits">Indicates the target digits.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternExtenalType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.Int16)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern External Type 1</b> technique.
             </summary>
@@ -10183,20 +10203,62 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCell">Indicates the target cell.</param>
             <param name="targetDigits">Indicates the target digits.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExtenalType1Step.Type">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType1Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExtenalType1Step.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType1Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExtenalType1Step.TargetCell">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType1Step.TargetCell">
             <summary>
             The generated property declaration for parameter <c>targetCell</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExtenalType1Step.TargetDigits">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType1Step.TargetDigits">
             <summary>
             The generated property declaration for parameter <c>targetDigits</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType2Step">
+            <summary>
+            Provides with a step that is a <b>Qiu's Deadly Pattern External Type 2</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="is2LinesWith2Cells"><inheritdoc/></param>
+            <param name="houses"><inheritdoc/></param>
+            <param name="corner1"><inheritdoc/></param>
+            <param name="corner2"><inheritdoc/></param>
+            <param name="mirrorCells">Indicates the mirror cells.</param>
+            <param name="targetDigit">Indicates the target digit.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Qiu's Deadly Pattern External Type 2</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="is2LinesWith2Cells"><inheritdoc/></param>
+            <param name="houses"><inheritdoc/></param>
+            <param name="corner1"><inheritdoc/></param>
+            <param name="corner2"><inheritdoc/></param>
+            <param name="mirrorCells">Indicates the mirror cells.</param>
+            <param name="targetDigit">Indicates the target digit.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType2Step.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType2Step.MirrorCells">
+            <summary>
+            The generated property declaration for parameter <c>mirrorCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType2Step.TargetDigit">
+            <summary>
+            The generated property declaration for parameter <c>targetDigit</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalTypeStep">
@@ -17000,6 +17062,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_QiuDeadlyPatternExternalType1Step">
             <summary>
               Looks up a localized string similar to Cells {0} will be a deadly pattern if all digits {1} are false in cell {2}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_QiuDeadlyPatternExternalType2Step">
+            <summary>
+              Looks up a localized string similar to Cells {0} will be a deadly pattern if digit {1} is false in cells {2}.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_QiuDeadlyPatternLockedTypeStep">

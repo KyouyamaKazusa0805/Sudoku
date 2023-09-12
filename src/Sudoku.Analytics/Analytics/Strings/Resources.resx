@@ -2190,4 +2190,7 @@
   <data name="TechniqueFormat_QiuDeadlyPatternExternalType1Step" xml:space="preserve">
     <value>Cells {0} will be a deadly pattern if all digits {1} are false in cell {2}</value>
   </data>
+  <data name="TechniqueFormat_QiuDeadlyPatternExternalType2Step" xml:space="preserve">
+    <value>Cells {0} will be a deadly pattern if digit {1} is false in cells {2}</value>
+  </data>
 </root>
