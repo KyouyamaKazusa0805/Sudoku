@@ -49,7 +49,7 @@ public abstract partial class QiuDeadlyPatternStep(
 		get
 		{
 			var result = CellMap.Empty;
-			foreach (var house in houses)
+			foreach (var house in Houses)
 			{
 				result |= HousesMap[house];
 			}
