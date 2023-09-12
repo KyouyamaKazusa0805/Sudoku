@@ -294,11 +294,6 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </item>
 	/// </list>
 	/// </returns>
-	/// <remarks>
-	/// For example, the expression <c>cells | 3</c> is equivalent to all possible cases
-	/// coming from <c><![CDATA[cells & 1]]></c>,
-	/// <c><![CDATA[cells & 2]]></c> and <c><![CDATA[cells & 3]]></c>.
-	/// </remarks>
 	public virtual TSelf[] GetAllSubsets(int limitSubsetSize)
 	{
 		if (limitSubsetSize == 0 || Count == 0)
