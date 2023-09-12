@@ -208,14 +208,11 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var emptyCellsInPairedCells = CellMap.Empty;
 		foreach (var pos in alignedPosMask)
 		{
-			var cell1 = HouseCells[l1][pos];
-			if (grid.GetState(cell1) == CellState.Empty)
+			if (HouseCells[l1][pos] is var cell1 && grid.GetState(cell1) == CellState.Empty)
 			{
 				emptyCellsInPairedCells.Add(cell1);
 			}
-
-			var cell2 = HouseCells[l2][pos];
-			if (grid.GetState(cell2) == CellState.Empty)
+			if (HouseCells[l2][pos] is var cell2 && grid.GetState(cell2) == CellState.Empty)
 			{
 				emptyCellsInPairedCells.Add(cell2);
 			}
@@ -234,9 +231,9 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			goto FastReturn;
 		}
 
-		// Check whether all four cross-line cells aren't empty.
+		// Check whether at least 2 cells is empty in cross-line.
 		var crossline = pattern.Crossline;
-		if ((crossline - EmptyCells).Count == 4)
+		if ((crossline - EmptyCells).Count >= 3)
 		{
 			goto FastReturn;
 		}
@@ -252,16 +249,20 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var corner = pattern.Corner;
+
+		// Check whether corner cells intersect with at least 1 digit. e.g. Digits [1, 2, 3] & [1, 4].
+		// This is necessary because we should guarantee the target eliminations should cover at least one digit.
+		// For example, digits [1, 2, 3] and [1, 4] intersect with digit [1]. If the cross-line locks the digit [1, 2],
+		// then we can conclude that if 1 is set in [1, 4] and 2 is set in [1, 2, 3], the target pattern will form a deadly pattern.
 		var digitsMaskAppearedInCorner = grid[corner, false, GridMaskMergingMethod.And];
 		if (digitsMaskAppearedInCorner == 0)
 		{
-			// Corner cells cannot intersect with at least 1 digit. e.g. Digits [1, 2, 3] & [7, 8].
 			goto FastReturn;
 		}
 
+		// Check whether all intersection digits in corner cells are hold in crossline cells.
 		if ((digitsMask & digitsMaskAppearedInCorner) != digitsMaskAppearedInCorner)
 		{
-			// Not all digits intersected in corner cells are hold in crossline cells.
 			goto FastReturn;
 		}
 
