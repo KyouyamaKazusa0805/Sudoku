@@ -160,6 +160,8 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// +4+6+2+9+517+38.7.+843..6.+83+62+7..474+8+3+6+25.....7+89+6+4...6+4+1+5.878.+7+13+64.+53..57+4+86.6+542+9+8.+7.:928 938 252 159 262 967 189
 	/// 1+6.72+48.....65.....57....6+4.2647+59+1....+1.+2+6...+71.8654+2+79..+6.42+1+6...19+7...+18.47+3+96:326 329 331 931 359 374 583 584 884
 	/// 5....4+762..+4...5+9.....6.41.2.+7.5..34..6+48+32+7.43..7...9.72.9..+4...1.+4....84.3.+6..7:321 126 331 942 144 867 677 379 879 687 588 389 889
+	/// 1+85+43.62.+9.4.8....7....1...6..8....+1+2186+9473+5+5....3..6+8..3....4+4...2.3..+351+74.9.2:222 234 537 938 942 746 962 467 672 973 578 983 688
+	/// +412..39+5+7+3+97.4+5..86+8+5..+7.4+3.+2..7.38..+3.5.1....69+32.....5..+3...19+7..5.8+3..+437..59.:624 227 161 274 876 284
 	/// ]]></code>
 	/// </example>
 	private QiuDeadlyPatternStep? CheckForBaseType(
@@ -236,8 +238,8 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var corner = pattern.Corner;
-		var digitsMaskAppearedInCornerCells = grid[corner, false, GridMaskMergingMethod.And];
-		if ((digitsMask & digitsMaskAppearedInCornerCells) != digitsMaskAppearedInCornerCells)
+		var digitsMaskAppearedInCorner = grid[corner, false, GridMaskMergingMethod.And];
+		if ((digitsMask & digitsMaskAppearedInCorner) != digitsMaskAppearedInCorner)
 		{
 			// Not all digits intersected in corner cells are hold in crossline cells.
 			goto FastReturn;
@@ -245,32 +247,28 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 
 		// One cell only holds those two and the other doesn't only hold them.
 		var (c1, c2) = (corner[0], corner[1]);
-		var extraDigitsMask = (Mask)((grid.GetCandidates(c1) | grid.GetCandidates(c2)) & ~digitsMaskAppearedInCornerCells);
-		var cornerCellsContainingExtraDigit = corner;
+		var extraDigitsMask = (Mask)((grid.GetCandidates(c1) | grid.GetCandidates(c2)) & ~digitsMaskAppearedInCorner);
+		var cornerContainingExtraDigit = corner;
 		var tempMap = CellMap.Empty;
 		foreach (var digit in extraDigitsMask)
 		{
 			tempMap |= CandidatesMap[digit];
 		}
-		cornerCellsContainingExtraDigit &= tempMap;
+		cornerContainingExtraDigit &= tempMap;
 
-		if (BaseType_Type1(
-			ref context, corner, crossline, grid, l1, l2,
-			digitsMaskAppearedInCornerCells, cornerCellsContainingExtraDigit) is { } type1Step)
+		if (BaseType_Type1(ref context, corner, crossline, grid, l1, l2, digitsMaskAppearedInCorner, cornerContainingExtraDigit) is { } type1Step)
 		{
 			return type1Step;
 		}
 
 		if (BaseType_Type2(
-			ref context, corner, crossline, grid, l1, l2, digitsMaskAppearedInCornerCells,
-			extraDigitsMask, cornerCellsContainingExtraDigit) is { } type2Step)
+			ref context, corner, crossline, grid, l1, l2, digitsMaskAppearedInCorner,
+			extraDigitsMask, cornerContainingExtraDigit) is { } type2Step)
 		{
 			return type2Step;
 		}
 
-		if (BaseType_Type4(
-			ref context, corner, crossline, l1, l2,
-			digitsMaskAppearedInCornerCells, cornerCellsContainingExtraDigit) is { } type4Step)
+		if (BaseType_Type4(ref context, corner, crossline, l1, l2, digitsMaskAppearedInCorner, cornerContainingExtraDigit) is { } type4Step)
 		{
 			return type4Step;
 		}
@@ -279,6 +277,18 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		return null;
 	}
 
+	/// <summary>
+	/// Check for base type (type 1).
+	/// </summary>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="corner">Indicates the corner cells used in a pattern.</param>
+	/// <param name="crossline">Indicates the cross-line cells used in a pattern.</param>
+	/// <param name="grid">The grid used.</param>
+	/// <param name="l1">The line 1.</param>
+	/// <param name="l2">The line 2.</param>
+	/// <param name="digitsMaskAppearedInCorner">A mask value that holds a list of digits appeared in corner cells.</param>
+	/// <param name="cornerContainingExtraDigit">Indicates the cells which are corner cells and contain extra digit.</param>
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private QiuDeadlyPatternType1Step? BaseType_Type1(
 		scoped ref AnalysisContext context,
 		scoped in CellMap corner,
@@ -286,16 +296,16 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		scoped in Grid grid,
 		House l1,
 		House l2,
-		Mask digitsMaskAppearedInCornerCells,
-		scoped in CellMap cornerCellsContainingExtraDigit
+		Mask digitsMaskAppearedInCorner,
+		scoped in CellMap cornerContainingExtraDigit
 	)
 	{
-		if (cornerCellsContainingExtraDigit is [var targetCell])
+		if (cornerContainingExtraDigit is [var targetCell])
 		{
 			// Type 1.
-			var elimDigitsMask = (Mask)(grid.GetCandidates(targetCell) & digitsMaskAppearedInCornerCells);
+			var elimDigitsMask = (Mask)(grid.GetCandidates(targetCell) & digitsMaskAppearedInCorner);
 			var candidateOffsets = new List<CandidateViewNode>();
-			foreach (var digit in digitsMaskAppearedInCornerCells)
+			foreach (var digit in digitsMaskAppearedInCorner)
 			{
 				foreach (var cell in CandidatesMap[digit] & crossline)
 				{
@@ -338,7 +348,19 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		return null;
 	}
 
-
+	/// <summary>
+	/// Check for base type (type 2).
+	/// </summary>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="corner">Indicates the corner cells used in a pattern.</param>
+	/// <param name="crossline">Indicates the cross-line cells used in a pattern.</param>
+	/// <param name="grid">The grid used.</param>
+	/// <param name="l1">The line 1.</param>
+	/// <param name="l2">The line 2.</param>
+	/// <param name="digitsMaskAppearedInCorner">A mask value that holds a list of digits appeared in corner cells.</param>
+	/// <param name="extraDigitsMask">Indicates a mask value that holds extra digits.</param>
+	/// <param name="cornerContainingExtraDigit">Indicates the cells which are corner cells and contain extra digit.</param>
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private QiuDeadlyPatternType2Step? BaseType_Type2(
 		scoped ref AnalysisContext context,
 		scoped in CellMap corner,
@@ -346,9 +368,9 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		scoped in Grid grid,
 		House l1,
 		House l2,
-		Mask digitsMaskAppearedInCornerCells,
+		Mask digitsMaskAppearedInCorner,
 		Mask extraDigitsMask,
-		scoped in CellMap cornerCellsContainingExtraDigit
+		scoped in CellMap cornerContainingExtraDigit
 	)
 	{
 		if (IsPow2(extraDigitsMask))
@@ -362,7 +384,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			}
 
 			var candidateOffsets = new List<CandidateViewNode>();
-			foreach (var cell in cornerCellsContainingExtraDigit)
+			foreach (var cell in cornerContainingExtraDigit)
 			{
 				foreach (var digit in grid.GetCandidates(cell))
 				{
@@ -374,7 +396,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					);
 				}
 			}
-			foreach (var digit in digitsMaskAppearedInCornerCells)
+			foreach (var digit in digitsMaskAppearedInCorner)
 			{
 				foreach (var cell in CandidatesMap[digit] & crossline)
 				{
@@ -410,18 +432,28 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		return null;
 	}
 
-
+	/// <summary>
+	/// Check for base type (type 4).
+	/// </summary>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="corner">Indicates the corner cells used in a pattern.</param>
+	/// <param name="crossline">Indicates the cross-line cells used in a pattern.</param>
+	/// <param name="l1">The line 1.</param>
+	/// <param name="l2">The line 2.</param>
+	/// <param name="digitsMaskAppearedInCorner">A mask value that holds a list of digits appeared in corner cells.</param>
+	/// <param name="cornerContainingExtraDigit">Indicates the cells which are corner cells and contain extra digit.</param>
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private QiuDeadlyPatternType4Step? BaseType_Type4(
 		scoped ref AnalysisContext context,
 		scoped in CellMap corner,
 		scoped in CellMap crossline,
 		House l1,
 		House l2,
-		Mask digitsMaskAppearedInCornerCells,
-		scoped in CellMap cornerCellsContainingExtraDigit
+		Mask digitsMaskAppearedInCorner,
+		scoped in CellMap cornerContainingExtraDigit
 	)
 	{
-		foreach (var digit in digitsMaskAppearedInCornerCells)
+		foreach (var digit in digitsMaskAppearedInCorner)
 		{
 			foreach (var cornerCellCoveredHouse in (corner & CandidatesMap[digit]).CoveredHouses)
 			{
@@ -429,7 +461,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				{
 					// Type 4.
 					var conclusions = new List<Conclusion>();
-					foreach (var elimDigit in (Mask)(digitsMaskAppearedInCornerCells & ~(1 << digit)))
+					foreach (var elimDigit in (Mask)(digitsMaskAppearedInCorner & ~(1 << digit)))
 					{
 						foreach (var cell in CandidatesMap[elimDigit] & corner)
 						{
@@ -442,7 +474,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					}
 
 					var candidateOffsets = new List<CandidateViewNode>();
-					foreach (var d in digitsMaskAppearedInCornerCells)
+					foreach (var d in digitsMaskAppearedInCorner)
 					{
 						foreach (var cell in CandidatesMap[d] & crossline)
 						{
