@@ -2309,4 +2309,16 @@
     <value>结构双强链</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="QiuDeadlyPatternExternalType1" xml:space="preserve">
+    <value>淑芬致命结构外部类型 1</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="QiuDeadlyPatternExternalType2" xml:space="preserve">
+    <value>淑芬致命结构外部类型 2</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="QiuDeadlyPatternExternalType3" xml:space="preserve">
+    <value>淑芬致命结构外部类型 3</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

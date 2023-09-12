@@ -2081,6 +2081,30 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	LockedQiuDeadlyPattern,
+
+	/// <summary>
+	/// Indicates Qiu's deadly pattern external type 1.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	QiuDeadlyPatternExternalType1,
+
+	/// <summary>
+	/// Indicates Qiu's deadly pattern external type 2.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	QiuDeadlyPatternExternalType2,
+
+	/// <summary>
+	/// Indicates Qiu's deadly pattern external type 3.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	QiuDeadlyPatternExternalType3,
 	#endregion
 
 	//

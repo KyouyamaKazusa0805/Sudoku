@@ -2177,6 +2177,21 @@ if (student is (name: var name, age: >= 18))
             Indicates locked Qiu's deadly pattern.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.QiuDeadlyPatternExternalType1">
+            <summary>
+            Indicates Qiu's deadly pattern external type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.QiuDeadlyPatternExternalType2">
+            <summary>
+            Indicates Qiu's deadly pattern external type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.QiuDeadlyPatternExternalType3">
+            <summary>
+            Indicates Qiu's deadly pattern external type 3.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueMatrixType1">
             <summary>
             Indicates unique matrix type 1.
@@ -15315,6 +15330,21 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.PurpleCow">
             <summary>
               Looks up a localized string similar to Purple Cow.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.QiuDeadlyPatternExternalType1">
+            <summary>
+              Looks up a localized string similar to Qiu&apos;s Deadly Pattern External Type 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.QiuDeadlyPatternExternalType2">
+            <summary>
+              Looks up a localized string similar to Qiu&apos;s Deadly Pattern External Type 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.QiuDeadlyPatternExternalType3">
+            <summary>
+              Looks up a localized string similar to Qiu&apos;s Deadly Pattern External Type 3.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.QiuDeadlyPatternType1">

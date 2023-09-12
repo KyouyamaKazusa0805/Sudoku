@@ -2178,4 +2178,13 @@
   <data name="StepSearcherName_GroupedTwoStrongLinksStepSearcher" xml:space="preserve">
     <value>Grouped Two-Strong Links</value>
   </data>
+  <data name="QiuDeadlyPatternExternalType1" xml:space="preserve">
+    <value>Qiu's Deadly Pattern External Type 1</value>
+  </data>
+  <data name="QiuDeadlyPatternExternalType2" xml:space="preserve">
+    <value>Qiu's Deadly Pattern External Type 2</value>
+  </data>
+  <data name="QiuDeadlyPatternExternalType3" xml:space="preserve">
+    <value>Qiu's Deadly Pattern External Type 3</value>
+  </data>
 </root>
