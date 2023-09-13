@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Text.Json;
@@ -8,6 +9,7 @@ using Sudoku.Concepts.Primitive;
 using Sudoku.Linq;
 using Sudoku.Text.Notation;
 using static System.Math;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Concepts;
 

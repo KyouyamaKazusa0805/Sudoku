@@ -113,28 +113,28 @@ internal static class ComparisonOperatorsHandler
 		{
 			Behavior.Default or Behavior.DefaultButDeprecated
 				=> $$"""
-				/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
+				/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator >({{scopedKeywordString}}{{fullTypeNameString}} left, {{scopedKeywordString}}{{fullTypeNameString}} right)
 							=> {{i1}};
 
-						/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator <({{scopedKeywordString}}{{fullTypeNameString}} left, {{scopedKeywordString}}{{fullTypeNameString}} right)
 							=> {{i2}};
 
-						/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator >=({{scopedKeywordString}}{{fullTypeNameString}} left, {{scopedKeywordString}}{{fullTypeNameString}} right)
 							=> {{i3}};
 
-						/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
@@ -143,28 +143,28 @@ internal static class ComparisonOperatorsHandler
 				""",
 			Behavior.WithScopedIn or Behavior.WithScopedInButDeprecated
 				=> $$"""
-				/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
+				/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator >(scoped in {{scopedKeywordString}}{{fullTypeNameString}} left, scoped in {{scopedKeywordString}}{{fullTypeNameString}} right)
 							=> {{i1}};
 
-						/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator <(scoped in {{scopedKeywordString}}{{fullTypeNameString}} left, scoped in {{scopedKeywordString}}{{fullTypeNameString}} right)
 							=> {{i2}};
 
-						/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator >=(scoped in {{scopedKeywordString}}{{fullTypeNameString}} left, scoped in {{scopedKeywordString}}{{fullTypeNameString}} right)
 							=> {{i3}};
 
-						/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
@@ -175,28 +175,28 @@ internal static class ComparisonOperatorsHandler
 				""",
 			Behavior.WithScopedRefReadOnly or Behavior.WithScopedRefReadOnlyButDeprecated
 				=> $$"""
-				/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
+				/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator >(scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}} left, scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}} right)
 							=> {{i1}};
 
-						/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator <(scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}} left, scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}} right)
 							=> {{i2}};
 
-						/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator >(scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}} left, scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}} right)
 							=> {{i3}};
 
-						/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]

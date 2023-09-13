@@ -12,8 +12,10 @@
 // Many thanks for letting me use it!
 
 using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using Sudoku.Algorithm.Solving;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Algorithm.Generating;
 

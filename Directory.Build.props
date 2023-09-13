@@ -67,8 +67,6 @@
 		<Using Include="System.Half" Alias="@half" />
 		<Using Include="System.Int128" Alias="@llong" />
 		<Using Include="System.UInt128" Alias="@ullong" />
-		<Using Include="System.Numerics" />
-		<Using Include="System.Numerics.BitOperations" Static="true" />
 		<Using Include="System.Runtime.InteropServices" />
 		<Using Include="System.Runtime.CompilerServices.Unsafe" Static="true" />
 		<Using Include="System.Runtime.CompilerServices.Unsafe2" Static="true" />

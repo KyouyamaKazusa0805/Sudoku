@@ -1,3 +1,5 @@
+using System.Numerics;
+
 namespace Sudoku.Concepts.Primitive;
 
 /// <summary>

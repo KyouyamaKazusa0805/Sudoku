@@ -1,3 +1,6 @@
+using System.Numerics;
+using static System.Numerics.BitOperations;
+
 namespace System.Linq;
 
 /// <summary>

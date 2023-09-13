@@ -1,3 +1,5 @@
+using static System.Numerics.BitOperations;
+
 namespace Sudoku;
 
 /// <summary>

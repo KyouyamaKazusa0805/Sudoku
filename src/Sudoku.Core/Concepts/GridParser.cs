@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Sudoku.Text.Formatting;
 using Sudoku.Text.Notation;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Concepts;
 

@@ -4,9 +4,11 @@
 
 using System.Buffers;
 using System.Collections;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Text;
+using static System.Numerics.BitOperations;
 
 namespace System;
 

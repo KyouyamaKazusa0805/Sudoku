@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
 using System.SourceGeneration;
@@ -13,6 +14,7 @@ using Sudoku.Concepts.Primitive;
 using Sudoku.Rendering;
 using Sudoku.Runtime.MaskServices;
 using Sudoku.Text.Formatting;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Concepts;
 
