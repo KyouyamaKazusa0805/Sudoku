@@ -240,6 +240,11 @@ public static unsafe class GridTransformations
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(@this.IsSolved, true);
 
+		if (digit1 == digit2)
+		{
+			return ref @this;
+		}
+
 		var thisCopied = @this;
 
 		@this.Unfix();
