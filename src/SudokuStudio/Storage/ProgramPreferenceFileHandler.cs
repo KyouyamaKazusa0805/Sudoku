@@ -24,7 +24,7 @@ public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<
 
 
 	/// <inheritdoc/>
-	public static ProgramPreference? Read(string filePath) => Deserialize<ProgramPreference>(File.ReadAllText(filePath), Options);
+	public static ProgramPreference? Read(string filePath) => JsonSerializer.Deserialize<ProgramPreference>(File.ReadAllText(filePath), Options);
 
 	/// <inheritdoc/>
 	public static void Write(string filePath, ProgramPreference instance)
@@ -35,6 +35,6 @@ public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<
 			Directory.CreateDirectory(directory);
 		}
 
-		File.WriteAllText(filePath, Serialize(instance, Options));
+		File.WriteAllText(filePath, JsonSerializer.Serialize(instance, Options));
 	}
 }

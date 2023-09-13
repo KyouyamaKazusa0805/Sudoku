@@ -2,6 +2,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using Sudoku.Analytics.Categorization;
 using Windows.UI;
+using static System.Numerics.BitOperations;
 
 namespace SudokuStudio.Interaction.Conversions;
 

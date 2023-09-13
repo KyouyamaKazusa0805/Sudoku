@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Text.Json;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Sudoku.Analytics;
@@ -32,7 +33,7 @@ public sealed partial class StepSearcherListView : UserControl
 	{
 		if (e is { Data: var dataPackage, Items: [StepSearcherInfo stepSearcherInfo] })
 		{
-			dataPackage.SetText(Serialize(stepSearcherInfo));
+			dataPackage.SetText(JsonSerializer.Serialize(stepSearcherInfo));
 			dataPackage.RequestedOperation = DataPackageOperation.Move;
 		}
 	}
@@ -54,7 +55,7 @@ public sealed partial class StepSearcherListView : UserControl
 		}
 
 		var def = e.GetDeferral();
-		if (Deserialize<StepSearcherInfo>(await e.DataView.GetTextAsync()) is not { TypeName: var typeName } instance
+		if (JsonSerializer.Deserialize<StepSearcherInfo>(await e.DataView.GetTextAsync()) is not { TypeName: var typeName } instance
 			|| StepSearcherPool.GetStepSearchers(typeName, false)[0].IsFixed)
 		{
 			return;

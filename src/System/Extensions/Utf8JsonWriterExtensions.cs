@@ -17,7 +17,7 @@ public static class Utf8JsonWriterExtensions
 	/// <param name="options">The options.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void WriteNestedObject<T>(this Utf8JsonWriter @this, T instance, JsonSerializerOptions? options = null)
-		=> Serialize(@this, instance, options);
+		=> JsonSerializer.Serialize(@this, instance, options);
 
 	/// <summary>
 	/// To write an array of element type <typeparamref name="T"/>.

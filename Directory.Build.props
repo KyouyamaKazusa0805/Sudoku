@@ -67,10 +67,8 @@
 		<Using Include="System.Half" Alias="@half" />
 		<Using Include="System.Int128" Alias="@llong" />
 		<Using Include="System.UInt128" Alias="@ullong" />
-		<Using Include="System.Runtime.InteropServices" />
 		<Using Include="System.Runtime.CompilerServices.Unsafe" Static="true" />
 		<Using Include="System.Runtime.CompilerServices.Unsafe2" Static="true" />
-		<Using Include="System.Text.Json.JsonSerializer" Static="true" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0' and '$(MSBuildProjectFile.Contains(`SystemExtensions`))'=='false'">
 		<Using Include="Sudoku.Analytics.ConclusionType" Static="true" />

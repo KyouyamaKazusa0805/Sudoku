@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using Microsoft.UI.Text;
 using Microsoft.UI.Xaml;

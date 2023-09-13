@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.SourceGeneration;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -1127,7 +1128,7 @@ file sealed class Converter : JsonConverter<CellMap>
 	public override CellMap Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		var result = CellMap.Empty;
-		var parts = Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
+		var parts = JsonSerializer.Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
 		foreach (var part in parts)
 		{
 			result |= CellNotation.ParseCollection(part);

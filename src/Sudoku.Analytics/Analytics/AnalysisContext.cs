@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using System.SourceGeneration;
 
 namespace Sudoku.Analytics;

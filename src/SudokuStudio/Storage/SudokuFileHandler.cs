@@ -20,8 +20,8 @@ public sealed class SudokuFileHandler : IProgramSupportedFileHandler<GridInfo[]>
 
 
 	/// <inheritdoc/>
-	public static GridInfo[]? Read(string filePath) => Deserialize<GridInfo[]>(File.ReadAllText(filePath), Options);
+	public static GridInfo[]? Read(string filePath) => JsonSerializer.Deserialize<GridInfo[]>(File.ReadAllText(filePath), Options);
 
 	/// <inheritdoc/>
-	public static void Write(string filePath, GridInfo[] instance) => File.WriteAllText(filePath, Serialize(instance, Options));
+	public static void Write(string filePath, GridInfo[] instance) => File.WriteAllText(filePath, JsonSerializer.Serialize(instance, Options));
 }

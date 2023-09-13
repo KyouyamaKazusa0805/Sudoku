@@ -1,3 +1,4 @@
+using System.Numerics;
 using Windows.System;
 
 namespace SudokuStudio.Input;

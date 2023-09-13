@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 using System.SourceGeneration;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -18,6 +19,7 @@ using Windows.Storage;
 using Windows.Storage.Search;
 using Windows.UI;
 using WinRT;
+using static System.Numerics.BitOperations;
 
 namespace SudokuStudio.Views.Controls;
 

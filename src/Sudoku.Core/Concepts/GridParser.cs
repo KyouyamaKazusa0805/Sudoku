@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.SourceGeneration;
 using System.Text;
 using System.Text.RegularExpressions;
