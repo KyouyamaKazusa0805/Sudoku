@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace SudokuStudio.Collection;
 
 partial struct DashArray

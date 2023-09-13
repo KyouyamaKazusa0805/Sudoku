@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Sudoku.Algorithm.Ittoryu;
 
 /// <summary>

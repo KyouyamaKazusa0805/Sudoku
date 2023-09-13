@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Sudoku.Linq;
 using Sudoku.Rendering.Nodes;
 

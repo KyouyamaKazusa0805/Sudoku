@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Text.Notation;
 

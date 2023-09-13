@@ -1,4 +1,6 @@
-﻿namespace System.Text;
+using System.Runtime.CompilerServices;
+
+namespace System.Text;
 
 /// <summary>
 /// Provides extension methods on <see cref="StringBuilder"/>.

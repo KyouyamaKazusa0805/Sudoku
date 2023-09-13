@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using Sudoku.Runtime.MaskServices;
 
 namespace Sudoku.Gdip;

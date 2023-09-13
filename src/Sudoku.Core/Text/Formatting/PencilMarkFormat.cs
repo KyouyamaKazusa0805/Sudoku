@@ -1,4 +1,5 @@
 using System.Algorithm;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Runtime.MaskServices;
 using static System.Math;

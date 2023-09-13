@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace System.Collections.Generic;
 
 partial struct ValueList<T>

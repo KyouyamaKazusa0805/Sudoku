@@ -3,6 +3,8 @@
 // https://github.com/dotnet/runtime/blob/4aadfea70082ae23e6c54a449268341e9429434e/src/libraries/System.Utf8String.Experimental/src/System/Utf8String.Portable.cs
 
 using System.Buffers;
+using System.Collections;
+using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Text;
 

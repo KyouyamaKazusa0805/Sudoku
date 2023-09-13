@@ -1,4 +1,5 @@
 #pragma warning disable IDE0032
+using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Text;
 

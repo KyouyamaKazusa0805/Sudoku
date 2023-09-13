@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Sudoku.Analytics.Categorization;
 using Windows.UI;
 

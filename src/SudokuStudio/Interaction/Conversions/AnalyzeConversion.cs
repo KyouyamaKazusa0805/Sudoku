@@ -1,3 +1,4 @@
+using System.Collections;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Documents;
 using Sudoku.Analytics;

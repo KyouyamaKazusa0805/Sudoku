@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.SourceGeneration;
 using System.Text.Json.Serialization;
 using Sudoku.Rendering.Nodes;

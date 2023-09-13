@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics;
 

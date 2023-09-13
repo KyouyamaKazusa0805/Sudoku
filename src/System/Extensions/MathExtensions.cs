@@ -1,4 +1,6 @@
-﻿namespace System;
+using System.Runtime.CompilerServices;
+
+namespace System;
 
 /// <summary>
 /// Provides extension methods on <see cref="Math"/>.

@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Text.Formatting;
+using System.Runtime.CompilerServices;
+
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Provides with a formatter that allows a <see cref="Grid"/> instance being formatted as Hodoku library format.

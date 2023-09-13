@@ -1,4 +1,6 @@
-﻿namespace System.Drawing;
+using System.Runtime.CompilerServices;
+
+namespace System.Drawing;
 
 /// <summary>
 /// Provides extension methods on <see cref="Rectangle"/>.

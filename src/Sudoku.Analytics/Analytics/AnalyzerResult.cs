@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;

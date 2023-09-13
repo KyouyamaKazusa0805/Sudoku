@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace Sudoku.Algorithm.Solving;
 
 /// <summary>

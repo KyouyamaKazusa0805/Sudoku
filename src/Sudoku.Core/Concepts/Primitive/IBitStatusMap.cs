@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Linq;
 using static System.Math;

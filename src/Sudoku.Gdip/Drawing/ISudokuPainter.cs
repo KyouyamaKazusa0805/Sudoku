@@ -1,5 +1,7 @@
+using System.Collections.Immutable;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Runtime.CompilerServices;
 using Sudoku.Analytics;
 using Sudoku.Drawing.TextRendering;
 using Sudoku.Gdip;

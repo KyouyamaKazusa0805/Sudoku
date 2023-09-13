@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using SkiaSharp;
 using Sudoku.Rendering;
 

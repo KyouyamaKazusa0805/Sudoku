@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Concepts;
+using System.Runtime.CompilerServices;
+
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Inference"/>.

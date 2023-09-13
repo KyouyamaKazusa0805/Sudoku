@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media;
 

@@ -1,4 +1,6 @@
-﻿namespace System.Text.Json;
+using System.Runtime.CompilerServices;
+
+namespace System.Text.Json;
 
 /// <summary>
 /// Provides extension methods on <see cref="Utf8JsonWriter"/>.

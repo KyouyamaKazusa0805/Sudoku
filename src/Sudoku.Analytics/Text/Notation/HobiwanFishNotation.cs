@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Sudoku.Analytics.Steps;
 
 namespace Sudoku.Text.Notation;

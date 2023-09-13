@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Runtime.CompilerServices;
+
 namespace Sudoku.Rendering;
 
 partial class View

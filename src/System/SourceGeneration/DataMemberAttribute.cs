@@ -1,4 +1,6 @@
 #pragma warning disable CS9113
+using System.Diagnostics.CodeAnalysis;
+
 namespace System.SourceGeneration;
 
 /// <summary>

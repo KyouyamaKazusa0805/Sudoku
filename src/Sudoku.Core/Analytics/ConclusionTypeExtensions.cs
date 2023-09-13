@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Analytics;
+using System.Runtime.CompilerServices;
+
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Provides with extension methods on <see cref="ConclusionType"/>.
