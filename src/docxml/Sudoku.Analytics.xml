@@ -68,6 +68,12 @@
             Indicates hte digits string.
             </summary>
         </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.RearrangeToIttoryu(Sudoku.Concepts.Grid@)">
+            <summary>
+            Shuffles the current grid by changing digits' order via the specified ittoryu path, to change the puzzle to real ittoryu puzzle.
+            </summary>
+            <param name="grid">The grid to be shuffled.</param>
+        </member>
         <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.Equals(Sudoku.Algorithm.Ittoryu.DigitPath)">
             <inheritdoc/>
         </member>

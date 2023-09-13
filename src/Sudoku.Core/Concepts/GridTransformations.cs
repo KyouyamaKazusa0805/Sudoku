@@ -227,6 +227,32 @@ public static unsafe class GridTransformations
 	}
 
 	/// <summary>
+	/// Swap two digits.
+	/// </summary>
+	/// <param name="this">The grid.</param>
+	/// <param name="digit1">The digit 1 to be swapped.</param>
+	/// <param name="digit2">The digit 2 to be swapped.</param>
+	/// <returns>The result.</returns>
+	/// <exception cref="ArgumentException">Throws when the puzzle is not solved.</exception>
+	public static ref Grid SwapTwoDigits(this ref Grid @this, Digit digit1, Digit digit2)
+	{
+		ArgumentOutOfRangeException.ThrowIfNotEqual(@this.IsSolved, true);
+
+		var thisCopied = @this;
+
+		@this.Unfix();
+		var digits1Map = @this.ValuesMap[digit1];
+		var digits2Map = @this.ValuesMap[digit2];
+		foreach (var cell in digits1Map) { @this.SetDigit(cell, -1); }
+		foreach (var cell in digits2Map) { @this.SetDigit(cell, -1); }
+		foreach (var cell in digits1Map) { @this.SetDigit(cell, digit2); }
+		foreach (var cell in digits2Map) { @this.SetDigit(cell, digit1); }
+		foreach (var cell in thisCopied.GivenCells) { @this.SetState(cell, CellState.Given); }
+
+		return ref @this;
+	}
+
+	/// <summary>
 	/// Swap to houses.
 	/// </summary>
 	/// <param name="this">The grid.</param>

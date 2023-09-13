@@ -3655,6 +3655,16 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="F:System.Math.PI"/>
         </member>
+        <member name="M:Sudoku.Concepts.GridTransformations.SwapTwoDigits(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Swap two digits.
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="digit1">The digit 1 to be swapped.</param>
+            <param name="digit2">The digit 2 to be swapped.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the puzzle is not solved.</exception>
+        </member>
         <member name="M:Sudoku.Concepts.GridTransformations.SwapTwoHouses(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
             <summary>
             Swap to houses.
