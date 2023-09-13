@@ -393,8 +393,14 @@
   <data name="AnalyzePage_InitialGridFormat" xml:space="preserve">
     <value>初盘格式</value>
   </data>
+  <data name="AnalyzePage_IsAMinimal" xml:space="preserve">
+    <value>为最简题</value>
+  </data>
   <data name="AnalyzePage_IsMinimal" xml:space="preserve">
     <value>是否为最小题：</value>
+  </data>
+  <data name="AnalyzePage_IsNotMinimal" xml:space="preserve">
+    <value>不限制最简题</value>
   </data>
   <data name="AnalyzePage_LeftRightSwapButton" xml:space="preserve">
     <value>左右镜面翻转</value>

@@ -390,8 +390,14 @@
   <data name="AnalyzePage_InitialGridFormat" xml:space="preserve">
     <value>Initial grid format</value>
   </data>
+  <data name="AnalyzePage_IsAMinimal" xml:space="preserve">
+    <value>Is a minimal</value>
+  </data>
   <data name="AnalyzePage_IsMinimal" xml:space="preserve">
     <value>Is Minimal puzzle: </value>
+  </data>
+  <data name="AnalyzePage_IsNotMinimal" xml:space="preserve">
+    <value>Not a minimal</value>
   </data>
   <data name="AnalyzePage_LeftRightSwapButton" xml:space="preserve">
     <value>Left-Right swap</value>

@@ -4792,9 +4792,19 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Initial grid format.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_IsAMinimal">
+            <summary>
+              Looks up a localized string similar to Is a minimal.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_IsMinimal">
             <summary>
               Looks up a localized string similar to Is Minimal puzzle: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_IsNotMinimal">
+            <summary>
+              Looks up a localized string similar to Not a minimal.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_LeftRightSwapButton">

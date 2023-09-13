@@ -44,16 +44,13 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			[
 				new Run { Text = GetString("AnalyzePage_GeneratingStrategySelected") },
 				new Run { Text = openBrace },
-				new Run { Text = GetString("AnalyzePage_PleaseSelectDifficultyLevel") },
 				new Run { Text = DifficultyLevelConversion.GetName(uiPref.GeneratorDifficultyLevel) }.SingletonSpan<Bold>(),
 				new Run { Text = comma },
-				new Run { Text = GetString("AnalyzePage_PleaseSelectSymmetricPattern") },
 				new Run
 				{
 					Text = GetString($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}")
 				}.SingletonSpan<Bold>(),
 				new Run { Text = comma },
-				new Run { Text = GetString("AnalyzePage_TechniqueMustAppear") },
 				new Run
 				{
 					Text = uiPref.SelectedTechnique switch
@@ -63,10 +60,11 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					}
 				}.SingletonSpan<Bold>(),
 				new Run { Text = comma },
-				new Run { Text = GetString("AnalyzePage_GenerateForMinimalPuzzle") },
-				new Run { Text = uiPref.GeneratedPuzzleShouldBeMinimal ? GetString("Yes") : GetString("No") }.SingletonSpan<Bold>(),
+				new Run
+				{
+					Text = uiPref.GeneratedPuzzleShouldBeMinimal ? GetString("AnalyzePage_IsAMinimal") : GetString("AnalyzePage_IsNotMinimal")
+				}.SingletonSpan<Bold>(),
 				new Run { Text = comma },
-				new Run { Text = GetString("TechniqueSelector_ShouleBePearlPuzzle") },
 				new Run
 				{
 					Text = uiPref.GeneratedPuzzleShouldBePearl switch

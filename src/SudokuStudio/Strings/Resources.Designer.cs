@@ -1096,11 +1096,29 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is a minimal.
+        /// </summary>
+        internal static string AnalyzePage_IsAMinimal {
+            get {
+                return ResourceManager.GetString("AnalyzePage_IsAMinimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is Minimal puzzle: .
         /// </summary>
         internal static string AnalyzePage_IsMinimal {
             get {
                 return ResourceManager.GetString("AnalyzePage_IsMinimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not a minimal.
+        /// </summary>
+        internal static string AnalyzePage_IsNotMinimal {
+            get {
+                return ResourceManager.GetString("AnalyzePage_IsNotMinimal", resourceCulture);
             }
         }
         
