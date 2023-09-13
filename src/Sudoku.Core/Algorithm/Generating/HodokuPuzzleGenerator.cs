@@ -445,7 +445,7 @@ public ref struct HodokuPuzzleGenerator
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Generate(int cluesCount = AutoClues, SymmetricType symmetricType = SymmetricType.Central, CancellationToken cancellationToken = default)
 		=> symmetricType.IsFlag()
-			? cluesCount is >= 17 and <= 80
+			? cluesCount is >= 17 and <= 80 or AutoClues
 				? new HodokuPuzzleGenerator().Generate(cluesCount, symmetricType, CellMap.Empty, cancellationToken)
 				: throw new NotSupportedException($"The argument '{nameof(cluesCount)}' has an invalid value that the current function cannot support.")
 			: throw new ArgumentException($"The argument '{nameof(symmetricType)}' is invalid because it holds multiple flags.");
