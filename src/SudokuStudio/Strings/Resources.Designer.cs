@@ -1033,6 +1033,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} givens.
+        /// </summary>
+        internal static string AnalyzePage_GeneratedPuzzleGivensIs {
+            get {
+                return ResourceManager.GetString("AnalyzePage_GeneratedPuzzleGivensIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Any number of givens.
+        /// </summary>
+        internal static string AnalyzePage_GeneratedPuzzleGivensNoRestriction {
+            get {
+                return ResourceManager.GetString("AnalyzePage_GeneratedPuzzleGivensNoRestriction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Should Be Minimal? .
         /// </summary>
         internal static string AnalyzePage_GenerateForMinimalPuzzle {
@@ -2005,6 +2023,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Limit the number of givens: .
+        /// </summary>
+        internal static string GeneratingStrategyPage_CanRestrictGeneratingGivensCount {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_CanRestrictGeneratingGivensCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Diamond.
         /// </summary>
         internal static string GeneratingStrategyPage_DiamondPuzzle {
@@ -2037,6 +2064,24 @@ namespace SudokuStudio.Strings {
         internal static string GeneratingStrategyPage_FirstAssignmentAttribute {
             get {
                 return ResourceManager.GetString("GeneratingStrategyPage_FirstAssignmentAttribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of givens: .
+        /// </summary>
+        internal static string GeneratingStrategyPage_GeneratedPuzzleGivensCount {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_GeneratedPuzzleGivensCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} givens.
+        /// </summary>
+        internal static string GeneratingStrategyPage_GivensHave {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_GivensHave", resourceCulture);
             }
         }
         

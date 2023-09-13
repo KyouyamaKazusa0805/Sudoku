@@ -61,6 +61,24 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 					FirstAssignmentAttributeInitializedValueDisplayer,
 					FirstAssignmentAttributeValueRouter
 				)
+			),
+			new(
+				"GeneratingStrategyPage_CanRestrictGeneratingGivensCount",
+				new(
+					"GeneratingStrategyPage_CanRestrictGeneratingGivensCount",
+					CanRestrictGeneratingGivensCountControlCreator,
+					CanRestrictGeneratingGivensCountInitializedValueDisplayer,
+					CanRestrictGeneratingGivensCountValueRouter
+				)
+			),
+			new(
+				"GeneratingStrategyPage_GeneratedPuzzleGivensCount",
+				new(
+					"GeneratingStrategyPage_GeneratedPuzzleGivensCount",
+					GeneratedPuzzleGivensCountControlCreator,
+					GeneratedPuzzleGivensCountInitializedValueDisplayer,
+					GeneratedPuzzleGivensCountValueRouter
+				)
 			)
 		];
 
@@ -119,8 +137,17 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 	private static ToggleSwitch FirstAssignmentAttributeControlCreator()
 		=> new() { IsOn = ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBePearl };
 
+	private static ToggleSwitch CanRestrictGeneratingGivensCountControlCreator()
+		=> new() { IsOn = ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount };
+
+	private static IntegerBox GeneratedPuzzleGivensCountControlCreator()
+		=> new() { Minimum = 17, Maximum = 80, SmallChange = 1, LargeChange = 4 };
+
 	private static string DifficultyLevelInitializedValueDisplayer()
-		=> DifficultyLevelConversion.GetName(((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel);
+		=> DifficultyLevelConversion.GetNameWithDefault(
+			((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel,
+			GetString("DifficultyLevel_None")
+		);
 
 	private static string SymmetricTypeInitializedValueDisplayer()
 		=> GetString($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}");
@@ -142,6 +169,17 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 			false => GetString("GeneratingStrategyPage_NormalPuzzle"),
 			//_ => GetString("GeneratingStrategyPage_DiamondPuzzle")
 		};
+
+	private static string CanRestrictGeneratingGivensCountInitializedValueDisplayer()
+		=> ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount ? GetString("Yes") : GetString("No");
+
+	private static string GeneratedPuzzleGivensCountInitializedValueDisplayer()
+		=> ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount
+			? string.Format(
+				GetString("GeneratingStrategyPage_GivensHave"),
+				((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleGivensCount
+			)
+			: "/";
 
 	private static void DifficultyLevelValueRouter(FrameworkElement c)
 		=> ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel = (DifficultyLevel)((ComboBoxItem)((ComboBox)c).SelectedItem).Tag!;
@@ -165,4 +203,12 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 
 	private static void FirstAssignmentAttributeValueRouter(FrameworkElement c)
 		=> ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBePearl = ((ToggleSwitch)c).IsOn;
+
+	private static void CanRestrictGeneratingGivensCountValueRouter(FrameworkElement c)
+		=> ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount = ((ToggleSwitch)c).IsOn;
+
+	private static void GeneratedPuzzleGivensCountValueRouter(FrameworkElement c)
+		=> ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleGivensCount = ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount
+			? ((IntegerBox)c).Value
+			: -1;
 }

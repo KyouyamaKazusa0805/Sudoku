@@ -369,6 +369,12 @@
   <data name="AnalyzePage_GenerateDate" xml:space="preserve">
     <value>Generate date:</value>
   </data>
+  <data name="AnalyzePage_GeneratedPuzzleGivensIs" xml:space="preserve">
+    <value>{0} givens</value>
+  </data>
+  <data name="AnalyzePage_GeneratedPuzzleGivensNoRestriction" xml:space="preserve">
+    <value>Any number of givens</value>
+  </data>
   <data name="AnalyzePage_GenerateForMinimalPuzzle" xml:space="preserve">
     <value>Should Be Minimal? </value>
   </data>
@@ -693,6 +699,9 @@
   <data name="GeneratingStrategyPage_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="GeneratingStrategyPage_CanRestrictGeneratingGivensCount" xml:space="preserve">
+    <value>Limit the number of givens: </value>
+  </data>
   <data name="GeneratingStrategyPage_DiamondPuzzle" xml:space="preserve">
     <value>Diamond</value>
   </data>
@@ -704,6 +713,12 @@
   </data>
   <data name="GeneratingStrategyPage_FirstAssignmentAttribute" xml:space="preserve">
     <value>Attribute on first assignment: </value>
+  </data>
+  <data name="GeneratingStrategyPage_GeneratedPuzzleGivensCount" xml:space="preserve">
+    <value>Number of givens: </value>
+  </data>
+  <data name="GeneratingStrategyPage_GivensHave" xml:space="preserve">
+    <value>{0} givens</value>
   </data>
   <data name="GeneratingStrategyPage_Intro" xml:space="preserve">
     <value>This page provides with configured generating strategies used by analyzer page. The puzzle will be generated via the specified strategy displayed in this page.</value>

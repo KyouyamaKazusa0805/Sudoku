@@ -44,12 +44,21 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			[
 				new Run { Text = GetString("AnalyzePage_GeneratingStrategySelected") },
 				new Run { Text = openBrace },
-				new Run { Text = DifficultyLevelConversion.GetName(uiPref.GeneratorDifficultyLevel) }.SingletonSpan<Bold>(),
+				new Run
+				{
+					Text = (uiPref.CanRestrictGeneratingGivensCount, uiPref.GeneratedPuzzleGivensCount) switch
+					{
+						(false, _) or (_, -1) => GetString("AnalyzePage_GeneratedPuzzleGivensNoRestriction"),
+						_ => string.Format(GetString("AnalyzePage_GeneratedPuzzleGivensIs"), uiPref.GeneratedPuzzleGivensCount)
+					}
+				}.SingletonSpan<Bold>(),
 				new Run { Text = comma },
 				new Run
 				{
-					Text = GetString($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}")
+					Text = DifficultyLevelConversion.GetNameWithDefault(uiPref.GeneratorDifficultyLevel, GetString("DifficultyLevel_None"))
 				}.SingletonSpan<Bold>(),
+				new Run { Text = comma },
+				new Run { Text = GetString($"SymmetricType_{uiPref.GeneratorSymmetricPattern}") }.SingletonSpan<Bold>(),
 				new Run { Text = comma },
 				new Run
 				{
@@ -92,6 +101,11 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var minimal = preferences.GeneratedPuzzleShouldBeMinimal;
 		var pearl = preferences.GeneratedPuzzleShouldBePearl;
 		var technique = preferences.SelectedTechnique;
+		var givensCount = preferences switch
+		{
+			{ CanRestrictGeneratingGivensCount: true, GeneratedPuzzleGivensCount: var count and not -1 } => count,
+			_ => HodokuPuzzleGenerator.AutoClues
+		};
 		var analyzer = ((App)Application.Current).Analyzer
 			.WithStepSearchers(((App)Application.Current).GetStepSearchers(), difficultyLevel)
 			.WithRuntimeIdentifierSetters(BasePage.SudokuPane);
@@ -100,7 +114,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		try
 		{
-			var grid = await Task.Run(() => gridCreator(analyzer, new(difficultyLevel, symmetry, minimal, pearl, technique)));
+			var grid = await Task.Run(() => gridCreator(analyzer, new(difficultyLevel, symmetry, minimal, pearl, technique, givensCount)));
 			if (grid.IsUndefined)
 			{
 				return;
@@ -150,14 +164,15 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			try
 			{
 				for (
-					var (count, progress, (difficultyLevel, symmetry, minimal, pearl, technique)) = (
+					var (count, progress, (difficultyLevel, symmetry, minimal, pearl, technique, givensCount)) = (
 						0,
 						new SelfReportingProgress<GeneratorProgress>(reportingAction),
 						details
 					); ; count++, progress.Report(new(count)), cancellationToken.ThrowIfCancellationRequested()
 				)
 				{
-					if (HodokuPuzzleGenerator.Generate(HodokuPuzzleGenerator.AutoClues, symmetry, cancellationToken) is var grid
+					if (HodokuPuzzleGenerator.Generate(givensCount, symmetry, cancellationToken) is var grid
+						&& (givensCount != -1 && grid.GivensCount == givensCount || givensCount == -1)
 						&& analyzer.Analyze(grid) is { IsSolved: true, IsPearl: var isPearl, DifficultyLevel: var puzzleDifficultyLevel } analyzerResult
 						&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
 						&& (minimal && grid.IsMinimal || !minimal)
@@ -195,10 +210,12 @@ file sealed class SelfReportingProgress<T>(Action<T> handler) : Progress<T>(hand
 /// <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
 /// <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
 /// <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
+/// <param name="CountOfGivens">Indicates the limit of givens count.</param>
 file readonly record struct GeneratingDetails(
 	DifficultyLevel DifficultyLevel,
 	SymmetricType SymmetricPattern,
 	bool ShouldBeMinimal,
 	bool ShouldBePearl,
-	Technique SelectedTechnique
+	Technique SelectedTechnique,
+	int CountOfGivens
 );

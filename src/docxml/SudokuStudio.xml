@@ -1279,6 +1279,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacter"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCountProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCount"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCount"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScaleProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale"/>.
@@ -1356,6 +1362,12 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleGivensCountProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleGivensCount"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleGivensCount"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontNameProperty">
             <summary>
@@ -1647,6 +1659,11 @@
             Indicates the default empty character you want to use. The value can be '0' or '.'.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCount">
+            <summary>
+            Indicates whether the generator will limit the number of givens. The value should be used with another property 'GeneratingGivensCount'.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale"/>
         </member>
@@ -1703,6 +1720,11 @@
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSavingProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSavingProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleGivensCount">
+            <summary>
+            Indicates how many the number of givens will be used for generating. The value must be -1 or between 17 and 80. -1 is for no restriction for generating a puzzle on limiting with the number of givens.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontName">
             <summary>
@@ -4757,6 +4779,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Generate date:.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GeneratedPuzzleGivensIs">
+            <summary>
+              Looks up a localized string similar to {0} givens.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GeneratedPuzzleGivensNoRestriction">
+            <summary>
+              Looks up a localized string similar to Any number of givens.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GenerateForMinimalPuzzle">
             <summary>
               Looks up a localized string similar to Should Be Minimal? .
@@ -5297,6 +5329,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Cancel.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_CanRestrictGeneratingGivensCount">
+            <summary>
+              Looks up a localized string similar to Limit the number of givens: .
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_DiamondPuzzle">
             <summary>
               Looks up a localized string similar to Diamond.
@@ -5315,6 +5352,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_FirstAssignmentAttribute">
             <summary>
               Looks up a localized string similar to Attribute on first assignment: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_GeneratedPuzzleGivensCount">
+            <summary>
+              Looks up a localized string similar to Number of givens: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_GivensHave">
+            <summary>
+              Looks up a localized string similar to {0} givens.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Intro">
@@ -9640,8 +9687,9 @@ if (student is (name: var name, age: >= 18))
             <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
             <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
             <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
+            <param name="CountOfGivens">Indicates the limit of givens count.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingDetails.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Concepts.SymmetricType,System.Boolean,System.Boolean,Sudoku.Analytics.Categorization.Technique)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingDetails.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Concepts.SymmetricType,System.Boolean,System.Boolean,Sudoku.Analytics.Categorization.Technique,System.Int32)">
             <summary>
             The encapsulated type to describe the details for generating puzzles.
             </summary>
@@ -9650,6 +9698,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
             <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
             <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
+            <param name="CountOfGivens">Indicates the limit of givens count.</param>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.DifficultyLevel">
             <summary>Indicates the difficulty level selected.</summary>
@@ -9665,6 +9714,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.SelectedTechnique">
             <summary>Indicates the selected technique that you want it to be appeared in generated puzzles.</summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.CountOfGivens">
+            <summary>Indicates the limit of givens count.</summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.PrintingOperation">
             <summary>

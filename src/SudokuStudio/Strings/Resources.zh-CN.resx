@@ -372,6 +372,12 @@
   <data name="AnalyzePage_GenerateDate" xml:space="preserve">
     <value>生成日期：</value>
   </data>
+  <data name="AnalyzePage_GeneratedPuzzleGivensIs" xml:space="preserve">
+    <value>{0} 个提示数</value>
+  </data>
+  <data name="AnalyzePage_GeneratedPuzzleGivensNoRestriction" xml:space="preserve">
+    <value>提示数数量不限制</value>
+  </data>
   <data name="AnalyzePage_GenerateForMinimalPuzzle" xml:space="preserve">
     <value>是否为最小题？</value>
   </data>
@@ -696,6 +702,9 @@
   <data name="GeneratingStrategyPage_Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="GeneratingStrategyPage_CanRestrictGeneratingGivensCount" xml:space="preserve">
+    <value>是否限制提示数数量：</value>
+  </data>
   <data name="GeneratingStrategyPage_DiamondPuzzle" xml:space="preserve">
     <value>钻石题</value>
   </data>
@@ -707,6 +716,12 @@
   </data>
   <data name="GeneratingStrategyPage_FirstAssignmentAttribute" xml:space="preserve">
     <value>首步出数特性：</value>
+  </data>
+  <data name="GeneratingStrategyPage_GeneratedPuzzleGivensCount" xml:space="preserve">
+    <value>提示数数量：</value>
+  </data>
+  <data name="GeneratingStrategyPage_GivensHave" xml:space="preserve">
+    <value>{0} 个提示数</value>
   </data>
   <data name="GeneratingStrategyPage_Intro" xml:space="preserve">
     <value>该页面列举的是用户配置的一些生成题目使用的出题策略。它们会被分析器页面使用。你指定的是什么配置内容，那个页面就生成满足这些指定参数的题目。</value>
