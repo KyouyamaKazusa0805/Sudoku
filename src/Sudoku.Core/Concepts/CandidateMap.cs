@@ -12,6 +12,7 @@ using Sudoku.Linq;
 using Sudoku.Text.Notation;
 using static System.Math;
 using static System.Numerics.BitOperations;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
 

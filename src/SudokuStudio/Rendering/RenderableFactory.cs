@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using Sudoku.Analytics;
+using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using Sudoku.Text.Notation;
@@ -19,6 +20,7 @@ using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Text;
 using WinRT;
+using static Sudoku.Analytics.ConclusionType;
 
 namespace SudokuStudio.Rendering;
 

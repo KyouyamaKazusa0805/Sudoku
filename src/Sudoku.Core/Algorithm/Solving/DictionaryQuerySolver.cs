@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using Sudoku.Concepts;
 using static System.Math;
 
 namespace Sudoku.Algorithm.Solving;

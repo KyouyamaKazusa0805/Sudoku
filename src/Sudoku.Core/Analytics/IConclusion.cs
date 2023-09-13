@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using static Sudoku.Analytics.ConclusionType;
 
 namespace Sudoku.Analytics;
 

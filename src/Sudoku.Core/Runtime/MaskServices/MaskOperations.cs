@@ -1,5 +1,6 @@
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using Sudoku.Concepts;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Runtime.MaskServices;

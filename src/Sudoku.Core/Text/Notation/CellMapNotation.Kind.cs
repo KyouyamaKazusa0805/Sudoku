@@ -1,3 +1,5 @@
+using Sudoku.Concepts;
+
 namespace Sudoku.Text.Notation;
 
 partial class CellMapNotation

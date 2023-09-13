@@ -3,6 +3,7 @@ using System.SourceGeneration;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Text.Notation;
+using static Sudoku.Analytics.ConclusionType;
 
 namespace Sudoku.Analytics;
 

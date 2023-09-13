@@ -70,11 +70,6 @@
 		<Using Include="System.Runtime.CompilerServices.Unsafe" Static="true" />
 		<Using Include="System.Runtime.CompilerServices.Unsafe2" Static="true" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0' and '$(MSBuildProjectFile.Contains(`SystemExtensions`))'=='false'">
-		<Using Include="Sudoku.Analytics.ConclusionType" Static="true" />
-		<Using Include="Sudoku.Concepts" />
-		<Using Include="Sudoku.SolutionWideReadOnlyFields" Static="true" />
-	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
 		<Using Include="System.Collections.Immutable" />
 		<Using Include="System.Runtime.CompilerServices" />

@@ -1,9 +1,11 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.CompilerServices;
+using Sudoku.Concepts;
 using Sudoku.Linq;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
+using static Sudoku.Analytics.ConclusionType;
 
 namespace Sudoku.Gdip;
 

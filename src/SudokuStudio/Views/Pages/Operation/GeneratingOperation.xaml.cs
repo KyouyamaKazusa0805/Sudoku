@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Documents;
 using Sudoku.Algorithm.Generating;
 using Sudoku.Analytics;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Concepts;
 using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction.Conversions;
 using SudokuStudio.Views.Attached;

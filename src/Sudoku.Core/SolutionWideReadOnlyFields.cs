@@ -1,3 +1,4 @@
+using Sudoku.Concepts;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku;

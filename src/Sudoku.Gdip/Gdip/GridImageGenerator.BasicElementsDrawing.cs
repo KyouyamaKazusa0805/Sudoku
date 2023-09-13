@@ -1,6 +1,7 @@
 using System.Drawing;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using Sudoku.Concepts;
 using Sudoku.Runtime.MaskServices;
 
 namespace Sudoku.Gdip;

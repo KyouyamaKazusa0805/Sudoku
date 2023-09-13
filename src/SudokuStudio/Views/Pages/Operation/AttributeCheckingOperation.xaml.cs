@@ -8,6 +8,7 @@ using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using SudokuStudio.ComponentModel;
 using WinRT;
+using static Sudoku.Analytics.ConclusionType;
 
 namespace SudokuStudio.Views.Pages.Operation;
 

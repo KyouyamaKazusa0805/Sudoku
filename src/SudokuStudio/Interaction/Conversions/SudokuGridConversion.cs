@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using Sudoku.Algorithm.Solving;
+using Sudoku.Concepts;
 using Sudoku.Text.Notation;
 
 namespace SudokuStudio.Interaction.Conversions;

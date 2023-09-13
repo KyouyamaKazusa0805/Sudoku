@@ -1,3 +1,5 @@
+using Sudoku.Concepts;
+
 namespace Sudoku.Algorithm.Solving;
 
 /// <summary>

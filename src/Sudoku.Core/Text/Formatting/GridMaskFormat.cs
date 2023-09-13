@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Text;
+using Sudoku.Concepts;
 
 namespace Sudoku.Text.Formatting;
 

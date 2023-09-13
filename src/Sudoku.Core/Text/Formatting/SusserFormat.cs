@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Text;
 using System.Text.RegularExpressions;
+using Sudoku.Concepts;
 using Sudoku.Text.Notation;
 
 namespace Sudoku.Text.Formatting;

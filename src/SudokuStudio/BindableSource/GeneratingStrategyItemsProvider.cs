@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Concepts;
 using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction;
 using SudokuStudio.Interaction.Conversions;

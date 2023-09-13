@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using static System.Math;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
 

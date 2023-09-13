@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Sudoku.Concepts;
 
 namespace Sudoku.Text.Notation;
 

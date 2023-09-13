@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Runtime.CompilerServices;
 using Sudoku.Analytics;
+using Sudoku.Concepts;
 using Sudoku.Rendering;
 
 namespace Sudoku.Gdip;

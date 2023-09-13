@@ -15,7 +15,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Sudoku.Algorithm.Solving;
+using Sudoku.Concepts;
 using static System.Numerics.BitOperations;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Algorithm.Generating;
 

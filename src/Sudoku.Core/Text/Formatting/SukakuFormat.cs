@@ -2,6 +2,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Text;
+using Sudoku.Concepts;
 using static System.Math;
 
 namespace Sudoku.Text.Formatting;

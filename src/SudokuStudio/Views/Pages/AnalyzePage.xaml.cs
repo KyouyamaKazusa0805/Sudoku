@@ -10,6 +10,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Sudoku.Analytics;
 using Sudoku.Analytics.Metadata;
+using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using Sudoku.Text.Formatting;
@@ -34,6 +35,7 @@ using Windows.System;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using WinRT;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace SudokuStudio.Views.Pages;
 

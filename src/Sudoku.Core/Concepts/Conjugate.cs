@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Concepts.Primitive;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
 

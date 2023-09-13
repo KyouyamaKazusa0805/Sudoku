@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+using Sudoku.Concepts;
 
 namespace Sudoku.Text.Formatting;
 

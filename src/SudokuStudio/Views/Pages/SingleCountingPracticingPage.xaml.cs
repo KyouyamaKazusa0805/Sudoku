@@ -3,10 +3,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.SourceGeneration;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Sudoku.Concepts;
 using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction;
 using SudokuStudio.Views.Controls;
 using WinRT;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace SudokuStudio.Views.Pages;
 

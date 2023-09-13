@@ -1,6 +1,8 @@
 using Microsoft.UI.Xaml.Media;
+using Sudoku.Concepts;
 using Windows.UI;
 using static System.Numerics.BitOperations;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace SudokuStudio.Interaction.Conversions;
 

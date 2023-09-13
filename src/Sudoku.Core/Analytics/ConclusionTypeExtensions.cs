@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using static Sudoku.Analytics.ConclusionType;
 
 namespace Sudoku.Analytics;
 

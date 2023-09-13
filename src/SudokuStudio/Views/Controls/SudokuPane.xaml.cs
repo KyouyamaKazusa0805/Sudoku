@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Sudoku.Analytics;
+using Sudoku.Concepts;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Collection;
 using SudokuStudio.ComponentModel;
@@ -20,6 +21,8 @@ using Windows.Storage.Search;
 using Windows.UI;
 using WinRT;
 using static System.Numerics.BitOperations;
+using static Sudoku.Analytics.ConclusionType;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace SudokuStudio.Views.Controls;
 

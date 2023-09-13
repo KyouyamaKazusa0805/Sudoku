@@ -15,6 +15,8 @@ using Sudoku.Rendering;
 using Sudoku.Runtime.MaskServices;
 using Sudoku.Text.Formatting;
 using static System.Numerics.BitOperations;
+using static Sudoku.Analytics.ConclusionType;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
 

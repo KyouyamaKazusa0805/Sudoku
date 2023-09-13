@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
+using Sudoku.Concepts;
 using Sudoku.Text.Formatting;
 
 namespace Sudoku.Text.Notation;

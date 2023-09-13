@@ -1,6 +1,7 @@
 using System.Drawing;
 using Sudoku.Linq;
 using Sudoku.Rendering.Nodes;
+using static Sudoku.Analytics.ConclusionType;
 
 namespace Sudoku.Gdip;
 
