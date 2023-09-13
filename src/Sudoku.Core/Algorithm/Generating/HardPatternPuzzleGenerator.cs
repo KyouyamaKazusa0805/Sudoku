@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Sudoku.Algorithm.Solving;
 using Sudoku.Concepts;
 using static Sudoku.SolutionWideReadOnlyFields;
@@ -43,13 +44,13 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 		{
 			fixed (char* pEmptyString = Grid.EmptyString)
 			{
-				CopyBlock(puzzle, pEmptyString, sizeof(char) * 81);
-				CopyBlock(solution, pEmptyString, sizeof(char) * 81);
+				Unsafe.CopyBlock(puzzle, pEmptyString, sizeof(char) * 81);
+				Unsafe.CopyBlock(solution, pEmptyString, sizeof(char) * 81);
 			}
 
 			GenerateAnswerGrid(puzzle, solution);
 
-			InitBlock(holeCells, 0, 81 * sizeof(Cell));
+			Unsafe.InitBlock(holeCells, 0, 81 * sizeof(Cell));
 			CreatePattern(holeCells);
 			for (var trial = 0; trial < 1000; trial++)
 			{

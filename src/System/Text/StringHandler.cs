@@ -207,7 +207,10 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public StringHandler(string initialString)
 	{
-		CopyBlock(ref AsByteRef(ref AsRef(_chars[0])), ref AsByteRef(ref AsRef(initialString[0])), (uint)(sizeof(char) * initialString.Length));
+		Unsafe.CopyBlock(
+			ref Unsafe2.AsByteRef(ref Unsafe.AsRef(_chars[0])),
+			ref Unsafe2.AsByteRef(ref Unsafe.AsRef(initialString[0])), (uint)(sizeof(char) * initialString.Length)
+		);
 
 		_arrayToReturnToPool = null;
 	}
@@ -240,7 +243,7 @@ public unsafe ref partial struct StringHandler
 	/// </summary>
 	/// <param name="handler">The collection.</param>
 	public readonly void CopyTo(scoped ref StringHandler handler)
-		=> CopyBlock(ref AsByteRef(ref handler._chars[0]), ref AsByteRef(ref _chars[0]), (uint)(sizeof(char) * Length));
+		=> Unsafe.CopyBlock(ref Unsafe2.AsByteRef(ref handler._chars[0]), ref Unsafe2.AsByteRef(ref _chars[0]), (uint)(sizeof(char) * Length));
 
 	/// <summary>
 	/// Determine whether the specified <see cref="StringHandler"/> instance hold a same character set
@@ -344,9 +347,9 @@ public unsafe ref partial struct StringHandler
 				var pos = Length;
 				if ((uint)pos < chars.Length - 1)
 				{
-					WriteUnaligned(
-						ref AsByteRef(ref Add(ref MemoryMarshal.GetReference(chars), pos)),
-						ReadUnaligned<int>(ref AsByteRef(ref AsRef(value[0]))));
+					Unsafe.WriteUnaligned(
+						ref Unsafe2.AsByteRef(ref Unsafe.Add(ref MemoryMarshal.GetReference(chars), pos)),
+						Unsafe.ReadUnaligned<int>(ref Unsafe2.AsByteRef(ref Unsafe.AsRef(value[0]))));
 
 					Length = pos + 2;
 				}
@@ -682,12 +685,12 @@ public unsafe ref partial struct StringHandler
 	/// </exception>
 	public void AppendRangeWithSeparatorRef<T>(scoped in T list, int length, delegate*<in T, string?> converter, string separator)
 	{
-		ArgumentNullRefException.ThrowIfNullRef(ref AsRef(list));
+		ArgumentNullRefException.ThrowIfNullRef(ref Unsafe.AsRef(list));
 		ArgumentNullException.ThrowIfNull(converter);
 
 		for (var i = 0; i < length; i++)
 		{
-			scoped ref readonly var element = ref AddByteOffset(ref AsRef(list), i);
+			scoped ref readonly var element = ref Unsafe.AddByteOffset(ref Unsafe.AsRef(list), i);
 			AppendFormatted(converter(in element));
 			AppendFormatted(separator);
 		}
@@ -711,11 +714,11 @@ public unsafe ref partial struct StringHandler
 	/// </exception>
 	public void AppendRangeWithSeparatorRef<T>(scoped in T list, int length, StringHandlerRefAppender<T> converter, string separator)
 	{
-		ArgumentNullRefException.ThrowIfNullRef(ref AsRef(list));
+		ArgumentNullRefException.ThrowIfNullRef(ref Unsafe.AsRef(list));
 
 		for (var i = 0; i < length; i++)
 		{
-			scoped ref readonly var element = ref AddByteOffset(ref AsRef(list), i);
+			scoped ref readonly var element = ref Unsafe.AddByteOffset(ref Unsafe.AsRef(list), i);
 			AppendFormatted(converter(in element));
 			AppendFormatted(separator);
 		}

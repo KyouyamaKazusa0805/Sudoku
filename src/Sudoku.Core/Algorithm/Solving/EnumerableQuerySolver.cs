@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Sudoku.Concepts;
 
 namespace Sudoku.Algorithm.Solving;
@@ -25,7 +26,7 @@ public sealed class EnumerableQuerySolver : ISolver
 	/// <inheritdoc/>
 	public bool? Solve(scoped in Grid grid, out Grid result)
 	{
-		SkipInit(out result);
+		Unsafe.SkipInit(out result);
 		var (_, @return) = solve(grid.ToString()) switch
 		{
 			[] => (Grid.Undefined, default(bool?)),

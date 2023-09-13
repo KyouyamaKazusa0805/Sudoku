@@ -18,8 +18,8 @@ public static unsafe class EnumExtensions
 	public static bool IsFlag<T>(this T @this) where T : unmanaged, Enum
 		=> sizeof(T) switch
 		{
-			1 or 2 or 4 when As<T, int>(ref @this) is var l => (l & l - 1) == 0,
-			8 when As<T, long>(ref @this) is var l => (l & l - 1) == 0,
+			1 or 2 or 4 when Unsafe.As<T, int>(ref @this) is var l => (l & l - 1) == 0,
+			8 when Unsafe.As<T, long>(ref @this) is var l => (l & l - 1) == 0,
 			_ => false
 		};
 
@@ -50,7 +50,7 @@ public static unsafe class EnumExtensions
 		var result = new T[i];
 		fixed (T* ptr = result)
 		{
-			CopyBlock(ptr, buffer, (uint)(sizeof(T) * i));
+			Unsafe.CopyBlock(ptr, buffer, (uint)(sizeof(T) * i));
 		}
 
 		// Returns the value.
@@ -86,6 +86,6 @@ public static unsafe class EnumExtensions
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static TResult fastConvert<TResult>(T value) => As<T, TResult>(ref value);
+		static TResult fastConvert<TResult>(T value) => Unsafe.As<T, TResult>(ref value);
 	}
 }

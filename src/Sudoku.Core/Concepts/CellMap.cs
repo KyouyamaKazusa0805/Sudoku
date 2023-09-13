@@ -912,7 +912,7 @@ public partial struct CellMap :
 		}
 
 	ReturnFalse:
-		SkipInit(out result);
+		Unsafe.SkipInit(out result);
 		return false;
 	}
 

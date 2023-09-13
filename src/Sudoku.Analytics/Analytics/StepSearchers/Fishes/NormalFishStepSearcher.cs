@@ -69,8 +69,8 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 	{
 		var r = stackalloc int*[9];
 		var c = stackalloc int*[9];
-		InitBlock(r, 0, (uint)sizeof(int*) * 9);
-		InitBlock(c, 0, (uint)sizeof(int*) * 9);
+		Unsafe.InitBlock(r, 0, (uint)sizeof(int*) * 9);
+		Unsafe.InitBlock(c, 0, (uint)sizeof(int*) * 9);
 
 		scoped ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
@@ -93,7 +93,7 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 						if (r[digit] == null)
 						{
 							var ptr = stackalloc int[10];
-							InitBlock(ptr, 0, 10 * sizeof(int));
+							Unsafe.InitBlock(ptr, 0, 10 * sizeof(int));
 
 							r[digit] = ptr;
 						}
@@ -105,7 +105,7 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 						if (c[digit] == null)
 						{
 							var ptr = stackalloc int[10];
-							InitBlock(ptr, 0, 10 * sizeof(int));
+							Unsafe.InitBlock(ptr, 0, 10 * sizeof(int));
 
 							c[digit] = ptr;
 						}

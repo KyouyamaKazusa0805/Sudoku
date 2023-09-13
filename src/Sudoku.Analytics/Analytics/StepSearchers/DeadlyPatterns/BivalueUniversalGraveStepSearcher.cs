@@ -133,7 +133,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		static bool checkForSingleDigit(scoped in CandidateMap trueCandidates)
 		{
 			var i = 0;
-			SkipInit(out Digit comparer);
+			Unsafe.SkipInit(out Digit comparer);
 			foreach (var trueCandidate in trueCandidates)
 			{
 				if (i++ == 0)

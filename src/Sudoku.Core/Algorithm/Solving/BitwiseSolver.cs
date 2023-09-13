@@ -382,7 +382,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 			solutions = InternalSolve(pPuzzleStr, solutionStr, 2);
 		}
 
-		SkipInit(out result);
+		Unsafe.SkipInit(out result);
 		var (_, @return) = solutions switch
 		{
 			0 => (Grid.Undefined, null),
@@ -414,7 +414,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 		var solutionsCount = InternalSolve(puzzle, solutionStr, limit);
 		if (solution != null)
 		{
-			CopyBlock(solution, solutionStr, sizeof(char) * BufferLength);
+			Unsafe.CopyBlock(solution, solutionStr, sizeof(char) * BufferLength);
 		}
 		return solutionsCount;
 	}
@@ -437,7 +437,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 			var result = InternalSolve(p, solutionStr, limit);
 			if (solution != null)
 			{
-				CopyBlock(solution, solutionStr, sizeof(char) * BufferLength);
+				Unsafe.CopyBlock(solution, solutionStr, sizeof(char) * BufferLength);
 			}
 			return result;
 		}
@@ -639,7 +639,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 				g->Bands[band] = BitSet27;
 			}
 
-			InitBlock(g->PrevBands, 0, 27 * sizeof(uint));
+			Unsafe.InitBlock(g->PrevBands, 0, 27 * sizeof(uint));
 			g->UnsolvedCells[0] = g->UnsolvedCells[1] = g->UnsolvedCells[2] = BitSet27;
 			g->UnsolvedRows[0] = g->UnsolvedRows[1] = g->UnsolvedRows[2] = BitSet27;
 			g->Pairs[0] = g->Pairs[1] = g->Pairs[2] = 0;
@@ -1157,7 +1157,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 						if (--tries != 0)
 						{
 							// First of pair.
-							CopyBlock(_g + 1, _g, (uint)sizeof(BitwiseSolverState));
+							Unsafe.CopyBlock(_g + 1, _g, (uint)sizeof(BitwiseSolverState));
 							_g->Bands[band] ^= map;
 							_g++;
 							SetSolvedMask(band, map);
@@ -1208,7 +1208,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 				if ((_g->Bands[band] & cellMask) != 0)
 				{
 					// Eliminate option in the current stack entry.
-					CopyBlock(_g + 1, _g, (uint)sizeof(BitwiseSolverState));
+					Unsafe.CopyBlock(_g + 1, _g, (uint)sizeof(BitwiseSolverState));
 					_g->Bands[band] ^= cellMask;
 					_g++;
 					SetSolvedMask(band, cellMask); // And try it out in a nested stack entry.

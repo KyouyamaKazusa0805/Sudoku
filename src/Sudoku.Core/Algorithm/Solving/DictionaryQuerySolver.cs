@@ -94,7 +94,7 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// </returns>
 	public bool? Solve(scoped in Grid grid, out Grid result)
 	{
-		SkipInit(out result);
+		Unsafe.SkipInit(out result);
 
 		var rawResult = Search(ParseGrid(grid.ToString("0")));
 		if (rawResult is null)

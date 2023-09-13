@@ -80,7 +80,7 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatVa
 		// Step 2: gets the maximal number of candidates in a cell, used for aligning by columns.
 		const int bufferLength = 9;
 		var maxLengths = stackalloc int[bufferLength];
-		InitBlock(maxLengths, 0, sizeof(int) * bufferLength);
+		Unsafe.InitBlock(maxLengths, 0, sizeof(int) * bufferLength);
 
 		foreach (var (i, _) in valuesByColumn)
 		{

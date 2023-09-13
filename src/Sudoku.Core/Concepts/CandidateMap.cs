@@ -259,7 +259,7 @@ public partial struct CandidateMap :
 		var target = Offsets;
 		fixed (Candidate* pTarget = target)
 		{
-			CopyBlock(arr, pTarget, (uint)(sizeof(Candidate) * length));
+			Unsafe.CopyBlock(arr, pTarget, (uint)(sizeof(Candidate) * length));
 		}
 	}
 
@@ -546,7 +546,7 @@ public partial struct CandidateMap :
 		}
 		catch (FormatException)
 		{
-			SkipInit(out result);
+			Unsafe.SkipInit(out result);
 			return false;
 		}
 	}
@@ -587,7 +587,7 @@ public partial struct CandidateMap :
 		}
 
 	ReturnFalse:
-		SkipInit(out result);
+		Unsafe.SkipInit(out result);
 		return false;
 	}
 

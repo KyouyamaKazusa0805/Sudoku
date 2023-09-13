@@ -194,7 +194,7 @@ public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] by
 		var result = new T?[_length];
 		fixed (T?* pResult = result)
 		{
-			CopyBlock(pResult, _startPtr, (uint)(sizeof(T) * _length));
+			Unsafe.CopyBlock(pResult, _startPtr, (uint)(sizeof(T) * _length));
 		}
 
 		return result;

@@ -56,7 +56,7 @@ public sealed partial class CellNotation : INotation<CellNotation, CellMap, Cell
 				{
 					if (NotationPatterns.CellOrCellListPattern_RxCy().Matches(s) is not { Count: not 0 } matches)
 					{
-						SkipInit(out result);
+						Unsafe.SkipInit(out result);
 						return false;
 					}
 
@@ -130,7 +130,7 @@ public sealed partial class CellNotation : INotation<CellNotation, CellMap, Cell
 					return true;
 
 				ReturnInvalid:
-					SkipInit(out result);
+					Unsafe.SkipInit(out result);
 					return false;
 				}
 			}

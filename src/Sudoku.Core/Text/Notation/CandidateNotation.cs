@@ -112,7 +112,7 @@ public sealed partial class CandidateNotation : INotation<CandidateNotation, Can
 					return true;
 
 				ReturnInvalid:
-					SkipInit(out result);
+					Unsafe.SkipInit(out result);
 					return false;
 				}
 
@@ -144,7 +144,7 @@ public sealed partial class CandidateNotation : INotation<CandidateNotation, Can
 					return true;
 
 				ReturnInvalid:
-					SkipInit(out result);
+					Unsafe.SkipInit(out result);
 					return false;
 				}
 
@@ -175,7 +175,7 @@ public sealed partial class CandidateNotation : INotation<CandidateNotation, Can
 					return true;
 
 				ReturnInvalid:
-					SkipInit(out result);
+					Unsafe.SkipInit(out result);
 					return false;
 				}
 
@@ -206,7 +206,7 @@ public sealed partial class CandidateNotation : INotation<CandidateNotation, Can
 					return true;
 
 				ReturnInvalid:
-					SkipInit(out result);
+					Unsafe.SkipInit(out result);
 					return false;
 				}
 			}

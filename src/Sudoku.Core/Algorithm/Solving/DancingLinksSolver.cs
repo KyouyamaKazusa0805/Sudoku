@@ -39,7 +39,7 @@ public sealed class DancingLinksSolver : ISolver
 	/// <inheritdoc/>
 	public bool? Solve(scoped in Grid grid, out Grid result)
 	{
-		SkipInit(out result);
+		Unsafe.SkipInit(out result);
 
 		var gridValue = grid.ToArray();
 		var dlx = new DancingLink(new(-1));

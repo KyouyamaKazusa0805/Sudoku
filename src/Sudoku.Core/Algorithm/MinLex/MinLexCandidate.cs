@@ -35,7 +35,7 @@ public unsafe struct MinLexCandidate
 	/// Skips for initialization for <see langword="this"/>
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public MinLexCandidate() => SkipInit(out this);
+	public MinLexCandidate() => Unsafe.SkipInit(out this);
 
 
 	/// <inheritdoc cref="object.ToString"/>
@@ -158,7 +158,7 @@ public unsafe struct MinLexCandidate
 	/// <param name="patternOnly">Indicates whether the method only studies with pattern.</param>
 	public static void PatCanon(string source, out string result, bool patternOnly = false)
 	{
-		SkipInit(out int nCurCandidates);
+		Unsafe.SkipInit(out int nCurCandidates);
 		var candidates = stackalloc MinLexCandidate[CandListSize];
 		var candidates1 = stackalloc MinLexCandidate[CandListSize];
 		var pPair = stackalloc GridPattern[2];
@@ -339,7 +339,7 @@ public unsafe struct MinLexCandidate
 						toColsInStack[Perm[colsPerm2][1] + 6] = toTriplets[2] + 1;
 						toColsInStack[Perm[colsPerm2][2] + 6] = toTriplets[2] + 2;
 
-						InitBlock(labelPerm, 0, sizeof(int) * 10);
+						Unsafe.InitBlock(labelPerm, 0, sizeof(int) * 10);
 						var nextFreeLabel = 1;
 						for (var toRow = 0; toRow < 9; toRow++)
 						{

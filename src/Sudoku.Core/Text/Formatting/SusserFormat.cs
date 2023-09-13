@@ -207,7 +207,11 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 					case []:
 					{
 						// Can't find any simplifications.
-						CopyBlock(ref AsByteRef(ref AsRef(resultSpan[characterIndexStart])), ref AsByteRef(ref AsRef(sliced[0])), sizeof(char) * 9);
+						Unsafe.CopyBlock(
+							ref Unsafe2.AsByteRef(ref Unsafe.AsRef(resultSpan[characterIndexStart])),
+							ref Unsafe2.AsByteRef(ref Unsafe.AsRef(sliced[0])),
+							sizeof(char) * 9
+						);
 						spanIndex += 9;
 						break;
 					}

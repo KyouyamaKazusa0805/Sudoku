@@ -75,8 +75,8 @@ public unsafe struct GridPattern
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(text.Length, 81);
 
-		SkipInit(out normal);
-		SkipInit(out transposed);
+		Unsafe.SkipInit(out normal);
+		Unsafe.SkipInit(out transposed);
 		fixed (GridPattern* pNormal = &normal, pTransposed = &transposed)
 		{
 			FromStringUnsafe(text, pNormal, pTransposed);
