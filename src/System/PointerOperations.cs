@@ -30,8 +30,8 @@ public static unsafe class PointerOperations
 	/// </summary>
 	/// <typeparam name="T">The type of the pointer element.</typeparam>
 	/// <param name="ptr">The pointer.</param>
-	/// <param name="length">The length of the array that pointer points to.</param>
 	/// <param name="index">The start index that you want to pick from.</param>
+	/// <param name="length">The length of the array that pointer points to.</param>
 	/// <returns>The array of elements.</returns>
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
@@ -42,7 +42,7 @@ public static unsafe class PointerOperations
 	/// the parameter <paramref name="length"/> should keep the value 5 because the array contains
 	/// 5 elements in this case.
 	/// </remarks>
-	public static T[] Slice<T>(T* ptr, int length, int index)
+	public static T[] Slice<T>(T* ptr, int index, int length)
 	{
 		ArgumentNullException.ThrowIfNull(ptr);
 
@@ -101,6 +101,6 @@ public static unsafe class PointerOperations
 			return result;
 		}
 
-		return Slice(ptr, length, index);
+		return Slice(ptr, index, length);
 	}
 }

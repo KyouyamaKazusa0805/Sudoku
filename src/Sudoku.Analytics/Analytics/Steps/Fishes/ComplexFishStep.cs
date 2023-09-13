@@ -82,7 +82,7 @@ public sealed partial class ComplexFishStep(
 			}
 
 			// Parses via the buffer, and returns the result.
-			return Enum.Parse<Technique>(new string(PointerOperations.Slice(buffer, bufferLength, 0)));
+			return Enum.Parse<Technique>(new string(PointerOperations.Slice(buffer, 0, bufferLength)));
 
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
