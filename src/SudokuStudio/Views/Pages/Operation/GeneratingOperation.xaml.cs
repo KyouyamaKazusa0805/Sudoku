@@ -36,7 +36,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	private void SetMemoryOptions()
 	{
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
-		var comma = GetString("_Token_Comma2");
+		var comma = GetString("_Token_Comma");
 		var openBrace = GetString("_Token_OpenBrace");
 		var closedBrace = GetString("_Token_ClosedBrace");
 		TextBlockBindable.SetInlines(
