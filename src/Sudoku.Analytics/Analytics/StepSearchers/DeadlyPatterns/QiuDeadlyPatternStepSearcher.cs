@@ -10,17 +10,28 @@ namespace Sudoku.Analytics.StepSearchers;
 /// Provides with a <b>Qiu's Deadly Pattern</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
+/// <item>
+/// Standard types:
+/// <list type="bullet">
 /// <item>Qiu's Deadly Pattern Type 1</item>
 /// <item>Qiu's Deadly Pattern Type 2</item>
 /// <item>Qiu's Deadly Pattern Type 3</item>
 /// <item>Qiu's Deadly Pattern Type 4</item>
 /// <item>Qiu's Deadly Pattern Locked Type</item>
 /// </list>
+/// </item>
+/// <item>
+/// External types:
+/// <list type="bullet">
+/// <item>Qiu's Deadly Pattern External Type 1</item>
+/// <item>Qiu's Deadly Pattern External Type 2</item>
+/// </list>
+/// </item>
+/// </list>
 /// </summary>
 [StepSearcher(
-	Technique.QiuDeadlyPatternType1, Technique.QiuDeadlyPatternType2,
-	Technique.QiuDeadlyPatternType3, Technique.QiuDeadlyPatternType4, Technique.LockedQiuDeadlyPattern,
-	Technique.QiuDeadlyPatternExternalType1, Technique.QiuDeadlyPatternExternalType2, Technique.QiuDeadlyPatternExternalType3,
+	Technique.QiuDeadlyPatternType1, Technique.QiuDeadlyPatternType2, Technique.QiuDeadlyPatternType3, Technique.QiuDeadlyPatternType4,
+	Technique.LockedQiuDeadlyPattern, Technique.QiuDeadlyPatternExternalType1, Technique.QiuDeadlyPatternExternalType2,
 	Flags = ConditionalFlags.Standard)]
 public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 {

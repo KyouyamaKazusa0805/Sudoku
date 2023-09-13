@@ -2464,15 +2464,6 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern External Type 3.
-        /// </summary>
-        public static string QiuDeadlyPatternExternalType3 {
-            get {
-                return ResourceManager.GetString("QiuDeadlyPatternExternalType3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 1.
         /// </summary>
         public static string QiuDeadlyPatternType1 {
