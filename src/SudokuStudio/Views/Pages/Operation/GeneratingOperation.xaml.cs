@@ -158,7 +158,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					); ; count++, progress.Report(new(count)), cancellationToken.ThrowIfCancellationRequested()
 				)
 				{
-					if (HodokuPuzzleGenerator.Generate(symmetry, cancellationToken) is var grid
+					if (HodokuPuzzleGenerator.Generate(HodokuPuzzleGenerator.AutoClues, symmetry, cancellationToken) is var grid
 						&& analyzer.Analyze(grid) is { IsSolved: true, IsPearl: var isPearl, DifficultyLevel: var puzzleDifficultyLevel } analyzerResult
 						&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
 						&& (minimal && grid.IsMinimal || !minimal)

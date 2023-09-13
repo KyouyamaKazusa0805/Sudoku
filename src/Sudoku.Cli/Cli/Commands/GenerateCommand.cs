@@ -29,7 +29,7 @@ public sealed class GenerateCommand : Command, ICommand<GenerateCommand>
 			limitCount = limitCount == 0 ? int.MaxValue : limitCount;
 			for (var (count, analyzer) = (0, PredefinedAnalyzers.Balanced); count < limitCount; count++)
 			{
-				var puzzle = HodokuPuzzleGenerator.Generate(symmetricType);
+				var puzzle = HodokuPuzzleGenerator.Generate(HodokuPuzzleGenerator.AutoClues, symmetricType);
 				if (analyzer.Analyze(puzzle) is { IsSolved: true, DifficultyLevel: var dl, Steps: var steps }
 					&& (difficultyLevel != 0 && dl == difficultyLevel || difficultyLevel == 0)
 					&& (technique != 0 && Array.Exists(steps, step => step.Code == technique) || technique == 0))

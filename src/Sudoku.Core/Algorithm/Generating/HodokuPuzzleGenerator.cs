@@ -16,17 +16,15 @@ using Sudoku.Algorithm.Solving;
 namespace Sudoku.Algorithm.Generating;
 
 /// <summary>
-/// Represents a generator that is implemented by HoDoKu.
+/// Represents a generator, implemented by HoDoKu.
 /// </summary>
-/// <remarks><b>
-/// This type is special: we strongly recommend use <see langword="static"/> method
-/// <see cref="Generate(SymmetricType, CancellationToken)"/> or <see cref="Generate(SymmetricType, in CellMap, CancellationToken)"/>
-/// instead of calling parameterless constructor due to the internal mechanism.
-/// </b></remarks>
-/// <seealso cref="Generate(SymmetricType, CancellationToken)"/>
-/// <seealso cref="Generate(SymmetricType, in CellMap, CancellationToken)"/>
 public ref struct HodokuPuzzleGenerator
 {
+	/// <summary>
+	/// Indicates the auto clues count.
+	/// </summary>
+	public const int AutoClues = -1;
+
 	/// <summary>
 	/// Maximum number of tries when generating a puzzle using a pattern.
 	/// </summary>
@@ -78,18 +76,21 @@ public ref struct HodokuPuzzleGenerator
 
 
 	/// <summary>
-	/// <inheritdoc cref="Generate(SymmetricType, CancellationToken)" path="/summary"/>
+	/// <inheritdoc cref="Generate(int, SymmetricType, CancellationToken)" path="/summary"/>
 	/// </summary>
+	/// <param name="cluesCount">
+	/// <inheritdoc cref="Generate(int, SymmetricType, CancellationToken)" path="/param[@name='symmetricType']"/>
+	/// </param>
 	/// <param name="symmetricType">
-	/// <inheritdoc cref="Generate(SymmetricType, CancellationToken)" path="/param[@name='symmetricType']"/>
+	/// <inheritdoc cref="Generate(int, SymmetricType, CancellationToken)" path="/param[@name='symmetricType']"/>
 	/// </param>
 	/// <param name="pattern">The pattern indicating the states of selection on all cells.</param>
 	/// <param name="cancellationToken">
-	/// <inheritdoc cref="Generate(SymmetricType, CancellationToken)" path="/param[@name='cancellationToken']"/>
+	/// <inheritdoc cref="Generate(int, SymmetricType, CancellationToken)" path="/param[@name='cancellationToken']"/>
 	/// </param>
-	/// <returns><inheritdoc cref="Generate(SymmetricType, CancellationToken)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="Generate(int, SymmetricType, CancellationToken)" path="/returns"/></returns>
 	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
-	private Grid Generate(SymmetricType symmetricType, scoped in CellMap pattern, CancellationToken cancellationToken = default)
+	private Grid Generate(int cluesCount, SymmetricType symmetricType, scoped in CellMap pattern, CancellationToken cancellationToken = default)
 	{
 		try
 		{
@@ -112,7 +113,7 @@ public ref struct HodokuPuzzleGenerator
 			}
 			else
 			{
-				GenerateInitPos(symmetricType, cancellationToken);
+				GenerateInitPos(cluesCount, symmetricType, cancellationToken);
 			}
 
 			return _newValidSudoku.FixedGrid;
@@ -127,20 +128,23 @@ public ref struct HodokuPuzzleGenerator
 	/// Takes a full sudoku from <see cref="_newFullSudoku"/> and generates a valid puzzle by deleting cells.
 	/// If a deletion produces a grid with more than one solution it is of course undone.
 	/// </summary>
+	/// <param name="cluesCount">
+	/// <inheritdoc cref="Generate(int, SymmetricType, CancellationToken)" path="/param[@name='symmetricType']"/>
+	/// </param>
 	/// <param name="symmetricType">
-	/// <inheritdoc cref="Generate(SymmetricType, CancellationToken)" path="/param[@name='symmetricType']"/>
+	/// <inheritdoc cref="Generate(int, SymmetricType, CancellationToken)" path="/param[@name='symmetricType']"/>
 	/// </param>
 	/// <param name="cancellationToken">
-	/// <inheritdoc cref="Generate(SymmetricType, CancellationToken)" path="/param[@name='cancellationToken']"/>
+	/// <inheritdoc cref="Generate(int, SymmetricType, CancellationToken)" path="/param[@name='cancellationToken']"/>
 	/// </param>
-	private void GenerateInitPos(SymmetricType symmetricType, CancellationToken cancellationToken = default)
+	private void GenerateInitPos(int cluesCount, SymmetricType symmetricType, CancellationToken cancellationToken = default)
 	{
 		// We start with the full board.
-		(var maxPosToFill, var used, var usedCount, _newValidSudoku, var remainingClues) = (17, CellMap.Empty, 81, _newFullSudoku, 81);
+		(var used, var usedCount, _newValidSudoku, var remainingClues) = (CellMap.Empty, 81, _newFullSudoku, 81);
 		using scoped var candidateCells = new ValueList<Cell>(8);
 
 		// Do until we have only 17 clues left or until all cells have been tried.
-		while (remainingClues > maxPosToFill && usedCount > 1)
+		while (remainingClues > (cluesCount == -1 ? 17 : cluesCount) && usedCount > 1)
 		{
 			// Get the next position to try.
 			var cell = Rng.Next(81);
@@ -213,7 +217,7 @@ public ref struct HodokuPuzzleGenerator
 	/// </summary>
 	/// <param name="pattern">The pattern.</param>
 	/// <param name="cancellationToken">
-	/// <inheritdoc cref="Generate(SymmetricType, CancellationToken)" path="/param[@name='cancellationToken']"/>
+	/// <inheritdoc cref="Generate(int, SymmetricType, CancellationToken)" path="/param[@name='cancellationToken']"/>
 	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating whether the pattern is valid to be used.</returns>
 	private bool? GenerateInitPos(scoped in CellMap pattern, CancellationToken cancellationToken = default)
@@ -417,6 +421,14 @@ public ref struct HodokuPuzzleGenerator
 	/// <summary>
 	/// <inheritdoc cref="IPuzzleGenerator.Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/summary"/>
 	/// </summary>
+	/// <param name="cluesCount">
+	/// <para>Indicates the number of clues the generator supports for <b>approximately</b>.</para>
+	/// <para>
+	/// Please note that the target puzzle may not contain the same number of givens as this value.
+	/// If the number of givens from a puzzle is below this value but it also has a unique solution,
+	/// this puzzle will be still treated as valid one.
+	/// </para>
+	/// </param>
 	/// <param name="symmetricType">The symmetric type to be specified. The value is <see cref="SymmetricType.Central"/> by default.</param>
 	/// <param name="cancellationToken">
 	/// <inheritdoc
@@ -425,9 +437,12 @@ public ref struct HodokuPuzzleGenerator
 	/// </param>
 	/// <returns><inheritdoc cref="IPuzzleGenerator.Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/returns"/></returns>
 	/// <exception cref="ArgumentException">Throws when the argument <paramref name="symmetricType"/> holds multiple flags.</exception>
+	/// <exception cref="NotSupportedException">Throws when the argument <paramref name="cluesCount"/> is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Generate(SymmetricType symmetricType = SymmetricType.Central, CancellationToken cancellationToken = default)
+	public static Grid Generate(int cluesCount = AutoClues, SymmetricType symmetricType = SymmetricType.Central, CancellationToken cancellationToken = default)
 		=> symmetricType.IsFlag()
-			? new HodokuPuzzleGenerator().Generate(symmetricType, CellMap.Empty, cancellationToken)
+			? cluesCount is >= 17 and <= 80
+				? new HodokuPuzzleGenerator().Generate(cluesCount, symmetricType, CellMap.Empty, cancellationToken)
+				: throw new NotSupportedException($"The argument '{nameof(cluesCount)}' has an invalid value that the current function cannot support.")
 			: throw new ArgumentException($"The argument '{nameof(symmetricType)}' is invalid because it holds multiple flags.");
 }

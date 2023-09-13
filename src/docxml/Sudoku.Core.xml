@@ -82,15 +82,13 @@
         </member>
         <member name="T:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator">
             <summary>
-            Represents a generator that is implemented by HoDoKu.
+            Represents a generator, implemented by HoDoKu.
             </summary>
-            <remarks><b>
-            This type is special: we strongly recommend use <see langword="static"/> method
-            <see cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)"/> or <see cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)"/>
-            instead of calling parameterless constructor due to the internal mechanism.
-            </b></remarks>
-            <seealso cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)"/>
-            <seealso cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.AutoClues">
+            <summary>
+            Indicates the auto clues count.
+            </summary>
         </member>
         <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.MaxTries">
             <summary>
@@ -141,29 +139,35 @@
 			</target>
             </remarks>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/summary"/>
             </summary>
+            <param name="cluesCount">
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='symmetricType']"/>
+            </param>
             <param name="symmetricType">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='symmetricType']"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='symmetricType']"/>
             </param>
             <param name="pattern">The pattern indicating the states of selection on all cells.</param>
             <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
             </param>
-            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/returns"/></returns>
+            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateInitPos(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateInitPos(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
             <summary>
             Takes a full sudoku from <see cref="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
             If a deletion produces a grid with more than one solution it is of course undone.
             </summary>
+            <param name="cluesCount">
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='symmetricType']"/>
+            </param>
             <param name="symmetricType">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='symmetricType']"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='symmetricType']"/>
             </param>
             <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
             </param>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateInitPos(Sudoku.Concepts.CellMap@,System.Threading.CancellationToken)">
@@ -174,7 +178,7 @@
             </summary>
             <param name="pattern">The pattern.</param>
             <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
             </param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the pattern is valid to be used.</returns>
         </member>
@@ -184,10 +188,18 @@
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether the generation operation is succeeded.</returns>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
             <summary>
             <inheritdoc cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/summary"/>
             </summary>
+            <param name="cluesCount">
+            <para>Indicates the number of clues the generator supports for <b>approximately</b>.</para>
+            <para>
+            Please note that the target puzzle may not contain the same number of givens as this value.
+            If the number of givens from a puzzle is below this value but it also has a unique solution,
+            this puzzle will be still treated as valid one.
+            </para>
+            </param>
             <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.Concepts.SymmetricType.Central"/> by default.</param>
             <param name="cancellationToken">
             <inheritdoc
@@ -196,6 +208,7 @@
             </param>
             <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/returns"/></returns>
             <exception cref="T:System.ArgumentException">Throws when the argument <paramref name="symmetricType"/> holds multiple flags.</exception>
+            <exception cref="T:System.NotSupportedException">Throws when the argument <paramref name="cluesCount"/> is invalid.</exception>
         </member>
         <member name="T:Sudoku.Algorithm.Generating.IPuzzleGenerator">
             <summary>
