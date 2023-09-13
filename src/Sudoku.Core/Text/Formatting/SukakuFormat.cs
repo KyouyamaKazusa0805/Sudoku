@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using System.Text;
 using static System.Math;
 
 namespace Sudoku.Text.Formatting;

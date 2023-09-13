@@ -1,4 +1,6 @@
 using System.SourceGeneration;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Sudoku.Text.Notation;
 
 namespace Sudoku.Analytics;

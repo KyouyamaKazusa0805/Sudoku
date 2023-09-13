@@ -1,3 +1,4 @@
+using System.Text;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;

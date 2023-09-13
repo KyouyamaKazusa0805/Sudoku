@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Sudoku.Text.Formatting;
 
 /// <summary>

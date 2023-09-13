@@ -1,3 +1,4 @@
+using System.Text;
 using Sudoku.Analytics;
 
 namespace Sudoku.Text.Notation;

@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.UI.Xaml;
 using Sudoku.Analytics;
 using Sudoku.Analytics.Metadata;

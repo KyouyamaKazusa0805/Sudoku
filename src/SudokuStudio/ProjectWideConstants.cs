@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.UI.Xaml.Media.Animation;
 using Sudoku.Analytics;
 

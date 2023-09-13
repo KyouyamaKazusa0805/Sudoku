@@ -1,4 +1,6 @@
 using System.SourceGeneration;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using WinRT;

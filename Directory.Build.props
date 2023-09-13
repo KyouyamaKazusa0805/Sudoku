@@ -73,16 +73,11 @@
 		<Using Include="System.Diagnostics.CodeAnalysis" />
 		<Using Include="System.Numerics" />
 		<Using Include="System.Numerics.BitOperations" Static="true" />
-		<Using Include="System.Reflection" />
 		<Using Include="System.Runtime.CompilerServices" />
 		<Using Include="System.Runtime.InteropServices" />
 		<Using Include="System.Runtime.CompilerServices.Unsafe" Static="true" />
 		<Using Include="System.Runtime.CompilerServices.Unsafe2" Static="true" />
-		<Using Include="System.Text" />
-		<Using Include="System.Text.Json" />
 		<Using Include="System.Text.Json.JsonSerializer" Static="true" />
-		<Using Include="System.Text.Json.Serialization" />
-		<Using Include="System.Text.RegularExpressions" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)'!='netstandard2.0' and '$(MSBuildProjectFile.Contains(`SystemExtensions`))'=='false'">
 		<Using Include="Sudoku.Analytics.ConclusionType" Static="true" />

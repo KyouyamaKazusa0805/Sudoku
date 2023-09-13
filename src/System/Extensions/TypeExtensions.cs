@@ -1,4 +1,4 @@
-namespace System;
+namespace System.Reflection;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Type"/>.

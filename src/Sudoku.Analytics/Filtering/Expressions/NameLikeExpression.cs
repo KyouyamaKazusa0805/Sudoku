@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Expressive;
 using Expressive.Expressions;
 using Expressive.Expressions.Binary;

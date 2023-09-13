@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.SourceGeneration;
 using System.Timers;
 using Sudoku.Analytics.Metadata;

@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Text.Formatting;
+using System.Text.RegularExpressions;
+
+namespace Sudoku.Text.Formatting;
 
 /// <summary>
 /// Represents with a Susser format, but only extracts for pre-eliminations.

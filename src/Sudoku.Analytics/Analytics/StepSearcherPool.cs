@@ -1,3 +1,4 @@
+using System.Reflection;
 using Sudoku.Analytics.Metadata;
 
 namespace Sudoku.Analytics;

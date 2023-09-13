@@ -863,6 +863,31 @@
             </list>
             </returns>
         </member>
+        <member name="T:System.Reflection.TypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Type"/>.
+            </summary>
+            <seealso cref="T:System.Type"/>
+        </member>
+        <member name="M:System.Reflection.TypeExtensions.IsGenericAssignableTo(System.Type,System.Type)">
+            <summary>
+            Determines whether the current type can be assigned to a variable of the specified
+            <paramref name="targetType"/>, although it is with generic parameters.
+            </summary>
+            <param name="this">The current type.</param>
+            <param name="targetType">The type to compare with the current type.</param>
+            <returns>Returns <see langword="true"/> if the target type is matched, without generic constraints.</returns>
+            <seealso href="https://stackoverflow.com/questions/74616/how-to-detect-if-type-is-another-generic-type/1075059#1075059">
+            Question: How to detect if type is another generic type
+            </seealso>
+        </member>
+        <member name="M:System.Reflection.TypeExtensions.HasParameterlessConstructor(System.Type)">
+            <summary>
+            Determines whether the type has a parameterless constructor.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:System.DelegateExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Delegate"/>.
@@ -2297,31 +2322,6 @@ fixed (short* ptr = instance)
                         ○ Match a whitespace character atomically at least once.<br/>
             </code>
             </remarks>
-        </member>
-        <member name="T:System.TypeExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Type"/>.
-            </summary>
-            <seealso cref="T:System.Type"/>
-        </member>
-        <member name="M:System.TypeExtensions.IsGenericAssignableTo(System.Type,System.Type)">
-            <summary>
-            Determines whether the current type can be assigned to a variable of the specified
-            <paramref name="targetType"/>, although it is with generic parameters.
-            </summary>
-            <param name="this">The current type.</param>
-            <param name="targetType">The type to compare with the current type.</param>
-            <returns>Returns <see langword="true"/> if the target type is matched, without generic constraints.</returns>
-            <seealso href="https://stackoverflow.com/questions/74616/how-to-detect-if-type-is-another-generic-type/1075059#1075059">
-            Question: How to detect if type is another generic type
-            </seealso>
-        </member>
-        <member name="M:System.TypeExtensions.HasParameterlessConstructor(System.Type)">
-            <summary>
-            Determines whether the type has a parameterless constructor.
-            </summary>
-            <param name="type">The type.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:System.Utf8StringExtensions">
             <summary>

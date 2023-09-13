@@ -1,3 +1,4 @@
+using System.Reflection;
 using Sudoku.Analytics.Categorization;
 
 namespace Sudoku.Compatibility.Hodoku;

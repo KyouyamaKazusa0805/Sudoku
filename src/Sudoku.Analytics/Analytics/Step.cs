@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Reflection;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Rating;

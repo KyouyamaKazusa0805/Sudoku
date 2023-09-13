@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Expressive;
 using Expressive.Exceptions;
 using Sudoku.Analytics;

@@ -1,4 +1,6 @@
 using System.SourceGeneration;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Sudoku.Text.Notation;
 

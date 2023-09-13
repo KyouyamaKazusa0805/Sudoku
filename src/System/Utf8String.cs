@@ -4,6 +4,7 @@
 
 using System.Buffers;
 using System.SourceGeneration;
+using System.Text;
 
 namespace System;
 

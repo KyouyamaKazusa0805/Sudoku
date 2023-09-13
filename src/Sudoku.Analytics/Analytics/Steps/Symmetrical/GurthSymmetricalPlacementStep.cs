@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using System.Text;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Rendering;
 using Sudoku.Text;

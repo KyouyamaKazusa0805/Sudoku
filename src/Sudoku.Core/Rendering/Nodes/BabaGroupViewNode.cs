@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using System.Text.Json.Serialization;
 using Sudoku.Text.Notation;
 
 namespace Sudoku.Rendering.Nodes;

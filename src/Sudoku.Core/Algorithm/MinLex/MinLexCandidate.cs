@@ -1,3 +1,4 @@
+using System.Text;
 using static System.Math;
 
 namespace Sudoku.Algorithm.MinLex;
