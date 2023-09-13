@@ -3141,8 +3141,8 @@ fixed (short* ptr = instance)
             Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
             </exception>
             <remarks>
-            For example, the pointer is the address of the first element in an array <c>{ 0, 1, 3, 6, 10 }</c>,
-            if parameter <paramref name="index"/> is 2, the return array will be <c>{ 3, 6, 10 }</c>. Note that
+            For example, the pointer is the address of the first element in an array <c>[0, 1, 3, 6, 10]</c>,
+            if parameter <paramref name="index"/> is 2, the return array will be <c>[3, 6, 10]</c>. Note that
             the parameter <paramref name="length"/> should keep the value 5 because the array contains
             5 elements in this case.
             </remarks>
@@ -3163,8 +3163,8 @@ fixed (short* ptr = instance)
             Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
             </exception>
             <remarks>
-            For example, the pointer is the address of the first element in an array <c>{ 0, 1, 3, 6, 10 }</c>,
-            if parameter <paramref name="index"/> is 2, the return array will be <c>{ 3, 6, 10 }</c>. Note that
+            For example, the pointer is the address of the first element in an array <c>[0, 1, 3, 6, 10]</c>,
+            if parameter <paramref name="index"/> is 2, the return array will be <c>[3, 6, 10]</c>. Note that
             the parameter <paramref name="length"/> should keep the value 5 because the array contains
             5 elements in this case.
             </remarks>
