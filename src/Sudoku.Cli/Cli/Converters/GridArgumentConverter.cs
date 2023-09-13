@@ -1,4 +1,5 @@
 using System.CommandLine.Parsing;
+using Sudoku.Concepts;
 
 namespace Sudoku.Cli.Converters;
 

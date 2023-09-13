@@ -1,4 +1,4 @@
-﻿namespace Microsoft.CodeAnalysis;
+namespace Microsoft.CodeAnalysis;
 
 /// <summary>
 /// Provides extended <see cref="SymbolDisplayFormat"/>s instance that is for types.

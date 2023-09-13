@@ -1,4 +1,4 @@
-﻿namespace Microsoft.CodeAnalysis;
+namespace Microsoft.CodeAnalysis;
 
 /// <summary>
 /// Provides with extension methods on <see cref="AttributeData"/>.

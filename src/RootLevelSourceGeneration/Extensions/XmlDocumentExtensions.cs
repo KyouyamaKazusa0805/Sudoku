@@ -1,4 +1,6 @@
-﻿namespace System.Xml;
+using System.Runtime.CompilerServices;
+
+namespace System.Xml;
 
 /// <summary>
 /// Provides extension methods on <see cref="XmlDocument"/>.

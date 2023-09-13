@@ -3,6 +3,7 @@ using Sudoku.Algorithm.Generating;
 using Sudoku.Analytics;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Cli.Options;
+using Sudoku.Concepts;
 
 namespace Sudoku.Cli.Commands;
 

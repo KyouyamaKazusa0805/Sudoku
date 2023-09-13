@@ -1,5 +1,6 @@
 using System.CommandLine;
 using System.CommandLine.Parsing;
+using System.Diagnostics.CodeAnalysis;
 using Sudoku.Cli.Converters;
 
 namespace Sudoku.Cli.Options;

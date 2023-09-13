@@ -1,4 +1,7 @@
-﻿namespace Microsoft.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using Microsoft.CodeAnalysis.CSharp;
+
+namespace Microsoft.CodeAnalysis;
 
 /// <summary>
 /// Provides with extension methods on <see cref="string"/>.

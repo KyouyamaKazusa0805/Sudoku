@@ -70,19 +70,6 @@
 		<Using Include="System.Runtime.CompilerServices.Unsafe" Static="true" />
 		<Using Include="System.Runtime.CompilerServices.Unsafe2" Static="true" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-		<Using Include="System.Collections.Immutable" />
-		<Using Include="System.Runtime.CompilerServices" />
-		<Using Include="System.Reflection" />
-		<Using Include="System.Text" />
-		<Using Include="Microsoft.CodeAnalysis" />
-		<Using Include="Microsoft.CodeAnalysis.CSharp" />
-		<Using Include="Microsoft.CodeAnalysis.CSharp.Syntax" />
-		<Using Include="Microsoft.CodeAnalysis.Text" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(MSBuildProjectFile.Contains(`Sudoku.Cli`))'=='true'">
-		<Using Remove="System.Runtime.CompilerServices.Unsafe2" />
-	</ItemGroup>
 
 	<!--
 	SOURCE GENEARTOR PROJECTS CONFIGURATION

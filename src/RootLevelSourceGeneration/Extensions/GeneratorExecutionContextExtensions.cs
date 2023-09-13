@@ -1,4 +1,8 @@
-﻿namespace Microsoft.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using System.Text;
+using Microsoft.CodeAnalysis.Text;
+
+namespace Microsoft.CodeAnalysis;
 
 /// <summary>
 /// Provides extension methods on <see cref="GeneratorExecutionContext"/>.
