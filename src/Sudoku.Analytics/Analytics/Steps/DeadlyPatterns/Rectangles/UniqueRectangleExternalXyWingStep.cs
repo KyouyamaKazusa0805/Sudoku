@@ -50,7 +50,7 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 		=> [
 			new(ExtraDifficultyCaseNames.Guardian, Sequences.A004526(GuardianCells.Count) * .1M),
 			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
-			new(ExtraDifficultyCaseNames.Incompleteness, isIncomplete ? .1M : 0)
+			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
 		];
 
 	/// <inheritdoc/>

@@ -49,5 +49,5 @@ public sealed partial class UniqueRectangleType2Step(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr])
 		];
 
-	private string ExtraDigitStr => DigitNotation.ToString(extraDigit);
+	private string ExtraDigitStr => DigitNotation.ToString(ExtraDigit);
 }

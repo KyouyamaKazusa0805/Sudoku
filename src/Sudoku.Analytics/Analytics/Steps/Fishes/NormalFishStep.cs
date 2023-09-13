@@ -83,7 +83,7 @@ public sealed partial class NormalFishStep(
 	{
 		get
 		{
-			var finModifier = isSashimi switch { true => "Sashimi ", false => "Finned ", _ => string.Empty };
+			var finModifier = IsSashimi switch { true => "Sashimi ", false => "Finned ", _ => string.Empty };
 			var fishName = Size switch { 2 => "X-Wing", 3 => "Swordfish", 4 => "Jellyfish" };
 			return $"{finModifier}{fishName}";
 		}
