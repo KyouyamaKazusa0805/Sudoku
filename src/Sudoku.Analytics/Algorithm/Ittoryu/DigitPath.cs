@@ -18,21 +18,6 @@ public readonly record struct DigitPath(Digit[] Digits)
 	private string[] DigitsString => from digit in Digits select (digit + 1).ToString();
 
 
-	/// <summary>
-	/// Shuffles the current grid by changing digits' order via the specified ittoryu path, to change the puzzle to real ittoryu puzzle.
-	/// </summary>
-	/// <param name="grid">The grid to be shuffled.</param>
-	public void RearrangeToIttoryu(scoped ref Grid grid)
-	{
-		var temp = grid.SolutionGrid;
-		for (var currentDigitIndex = 0; currentDigitIndex < 9; currentDigitIndex++)
-		{
-			temp.SwapTwoDigits(Digits[currentDigitIndex], currentDigitIndex);
-		}
-
-		grid = temp.ResetGrid;
-	}
-
 	/// <inheritdoc/>
 	public bool Equals(DigitPath other) => GetHashCode() == other.GetHashCode();
 

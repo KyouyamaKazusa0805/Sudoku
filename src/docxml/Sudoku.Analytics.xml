@@ -68,12 +68,6 @@
             Indicates hte digits string.
             </summary>
         </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.RearrangeToIttoryu(Sudoku.Concepts.Grid@)">
-            <summary>
-            Shuffles the current grid by changing digits' order via the specified ittoryu path, to change the puzzle to real ittoryu puzzle.
-            </summary>
-            <param name="grid">The grid to be shuffled.</param>
-        </member>
         <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.Equals(Sudoku.Algorithm.Ittoryu.DigitPath)">
             <inheritdoc/>
         </member>
@@ -18847,6 +18841,20 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Concepts.EqualityComparer.GetHashCode(Sudoku.Concepts.ChainNode)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.GridExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridExtensions.MakeIttoryu(Sudoku.Concepts.Grid@,Sudoku.Algorithm.Ittoryu.DigitPath)">
+            <summary>
+            Try to recover the specified grid to an ittoryu grid via the specified path calculated by <see cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>.
+            </summary>
+            <param name="this">The grid to be adjusted.</param>
+            <param name="ittoryuPath">The path to be used.</param>
+            <seealso cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>
         </member>
         <member name="T:Sudoku.DataModel.Exocet">
             <summary>
