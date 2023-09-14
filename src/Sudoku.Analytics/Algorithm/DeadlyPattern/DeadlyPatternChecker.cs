@@ -1,3 +1,7 @@
+using System.Numerics;
+using Sudoku.Concepts;
+using static Sudoku.SolutionWideReadOnlyFields;
+
 namespace Sudoku.Algorithm.DeadlyPattern;
 
 /// <summary>

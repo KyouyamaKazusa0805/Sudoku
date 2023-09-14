@@ -1,4 +1,9 @@
+using System.Numerics;
+using System.Runtime.CompilerServices;
+using Sudoku.Concepts;
 using Sudoku.Runtime.MaskServices;
+using static System.Numerics.BitOperations;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Algorithm.TrueCandidates;
 

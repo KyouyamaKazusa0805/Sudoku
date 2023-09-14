@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Sudoku.Algorithm.Ittoryu;
 
 namespace Sudoku.Concepts;

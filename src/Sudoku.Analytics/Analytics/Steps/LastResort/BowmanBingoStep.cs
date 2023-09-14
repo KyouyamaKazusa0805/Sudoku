@@ -4,6 +4,7 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Rating;
 using Sudoku.Rendering;
 using Sudoku.Text;
+using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
 

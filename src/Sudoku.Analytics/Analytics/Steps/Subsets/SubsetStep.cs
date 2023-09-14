@@ -1,5 +1,7 @@
 using System.SourceGeneration;
+using Sudoku.Concepts;
 using Sudoku.Rendering;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Analytics.Steps;
 

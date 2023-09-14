@@ -1,7 +1,10 @@
 using System.Diagnostics;
+using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Steps;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
 

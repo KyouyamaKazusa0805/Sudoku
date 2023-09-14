@@ -1,4 +1,6 @@
+using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Categorization;
+using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Facts;
 

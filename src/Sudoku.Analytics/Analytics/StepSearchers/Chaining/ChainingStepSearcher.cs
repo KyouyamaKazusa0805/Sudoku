@@ -1,4 +1,9 @@
+using System.Numerics;
 using Sudoku.Analytics.Metadata;
+using Sudoku.Concepts;
+using static System.Numerics.BitOperations;
+using static Sudoku.Analytics.CachedFields;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.StepSearchers;
 

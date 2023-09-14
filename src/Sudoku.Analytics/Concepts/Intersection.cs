@@ -1,3 +1,5 @@
+using static Sudoku.SolutionWideReadOnlyFields;
+
 namespace Sudoku.Concepts;
 
 /// <summary>

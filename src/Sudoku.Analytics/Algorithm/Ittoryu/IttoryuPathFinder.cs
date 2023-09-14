@@ -1,5 +1,9 @@
+using System.Numerics;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Concepts;
 using Sudoku.Runtime.MaskServices;
+using static System.Numerics.BitOperations;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Algorithm.Ittoryu;
 

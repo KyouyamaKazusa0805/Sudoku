@@ -4,6 +4,9 @@ using System.SourceGeneration;
 using System.Timers;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.StepSearchers;
+using Sudoku.Concepts;
+using static Sudoku.Analytics.CachedFields;
+using static Sudoku.Analytics.ConclusionType;
 
 namespace Sudoku.Analytics;
 

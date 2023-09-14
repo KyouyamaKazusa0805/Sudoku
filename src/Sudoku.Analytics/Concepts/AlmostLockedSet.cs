@@ -1,5 +1,10 @@
+using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Text.Notation;
+using static System.Numerics.BitOperations;
+using static Sudoku.Analytics.Strings.StringsAccessor;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
 
