@@ -38,7 +38,7 @@ namespace System.SourceGeneration;
 /// <para>If you want to learn more information about this attribute type, please visit the metadata of the type.</para>
 /// </remarks>
 [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
-public sealed class DataMemberAttribute(string memberKind = MemberKinds.Property) : Attribute
+public sealed partial class DataMemberAttribute([DataMember] string memberKind = MemberKinds.Property) : Attribute
 {
 	/// <summary>
 	/// Indicates the extra setter expression. The expression is same declaration as auto-implemented properties.

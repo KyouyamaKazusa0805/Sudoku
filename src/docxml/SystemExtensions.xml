@@ -3444,6 +3444,11 @@ fixed (short* ptr = instance)
             </para>
             </remarks>
         </member>
+        <member name="P:System.SourceGeneration.DataMemberAttribute.MemberKind">
+            <summary>
+            The generated property declaration for parameter <c>memberKind</c>.
+            </summary>
+        </member>
         <member name="T:System.SourceGeneration.DuckTypingAttribute">
             <summary>
             Represents an attribute type that can be used as a duck-typing implementation by source generators.
