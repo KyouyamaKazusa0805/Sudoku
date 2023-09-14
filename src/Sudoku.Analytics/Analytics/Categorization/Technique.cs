@@ -144,9 +144,7 @@ public enum Technique
 	/// Indicates almost locked triple value type.
 	/// The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
 	/// </summary>
-	[SudokuExplainerDifficultyRating(5.2, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
-	[Abbreviation("ALT")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AlmostLockedTripleValueType,
 
@@ -155,7 +153,6 @@ public enum Technique
 	/// The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
-	[Abbreviation("ALQ")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AlmostLockedQuadrupleValueType,
 	#endregion
