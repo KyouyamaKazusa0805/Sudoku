@@ -70,13 +70,7 @@ public sealed class IttoryuPathFinder
 			_foundSequences.Clear();
 			foreach (var digit in MaskOperations.Create(from node in foundNodes select node.Digit))
 			{
-				dfs(
-					grid,
-					digit,
-					digitsStack,
-					from node in foundNodes where node.Digit == digit select node,
-					0
-				);
+				dfs(grid, digit, digitsStack, from node in foundNodes where node.Digit == digit select node, 0);
 			}
 		}
 		catch (InvalidOperationException)
