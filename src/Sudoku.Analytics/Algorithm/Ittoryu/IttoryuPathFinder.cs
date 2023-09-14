@@ -83,7 +83,7 @@ public sealed class IttoryuPathFinder
 			return null;
 		}
 
-		return (from sequence in _foundSequences orderby sequence.Length descending, sequence.ToId() select sequence).First();
+		return (from sequence in _foundSequences orderby sequence.Length descending, sequence.ToDecimalValue() select sequence).First();
 
 
 		void dfs(Grid grid, Digit digit, Stack<Digit> digitsStack, scoped ReadOnlySpan<PathNode> foundNodes, Mask finishedDigits)
@@ -222,7 +222,13 @@ public sealed class IttoryuPathFinder
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
-	public static int ToId(this Digit[] digits)
+	/// <summary>
+	/// Try to expand each digit, merging every digit into a single value that describes the current decimal digit series.
+	/// For example, digits [1, 2, 4] will be merged into a value 124.
+	/// </summary>
+	/// <param name="digits">The digits.</param>
+	/// <returns>The merged value.</returns>
+	public static int ToDecimalValue(this Digit[] digits)
 	{
 		var result = 0;
 		var multiplicativeIdentify = 1;
