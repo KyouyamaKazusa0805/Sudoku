@@ -5,9 +5,6 @@ VisualStudioVersion = 17.0.31410.414
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5A289988-A100-41DA-B297-F4A3DE001B78}"
 	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		.filenesting.json = .filenesting.json
-		Directory.Build.props = Directory.Build.props
 		README-zh-cn.md = README-zh-cn.md
 		README.md = README.md
 	EndProjectSection
@@ -50,6 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Cli", "src\Sudoku.Cl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Miscellaneous", "Miscellaneous", "{984A4BA8-BFA8-40DE-9C1E-E9FE2D765282}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.filenesting.json = .filenesting.json
+		Directory.Build.props = Directory.Build.props
 		global-doc-comments.xml = global-doc-comments.xml
 		misspelling-exclusion.dic = misspelling-exclusion.dic
 		NuGet.config = NuGet.config
@@ -370,9 +370,9 @@ Global
 		{984A4BA8-BFA8-40DE-9C1E-E9FE2D765282} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		RESX_ShowErrorsInErrorList = False
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\SudokuTutorial\SudokuTutorial.projitems*{597d5691-2e11-43c7-ae3b-826e979450da}*SharedItemsImports = 13
