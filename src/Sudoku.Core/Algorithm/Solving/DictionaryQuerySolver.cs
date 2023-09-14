@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Sudoku.Concepts;
-using static System.Math;
 
 namespace Sudoku.Algorithm.Solving;
 
@@ -166,7 +165,7 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// <returns>The final zipped collection.</returns>
 	private string[][] Zip(string[] a, string[] b)
 	{
-		var n = Min(a.Length, b.Length);
+		var n = Math.Min(a.Length, b.Length);
 		var sd = new string[n][];
 
 		for (var i = 0; i < n; i++)

@@ -9,7 +9,6 @@ using System.Text.Json.Serialization;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Linq;
 using Sudoku.Text.Notation;
-using static System.Math;
 using static System.Numerics.BitOperations;
 using static Sudoku.SolutionWideReadOnlyFields;
 
@@ -565,7 +564,7 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IComparable<>))]
 	public readonly int CompareTo(scoped in CellMap other)
-		=> _count > other._count ? 1 : _count < other._count ? -1 : Sign($"{this:b}".CompareTo($"{other:b}"));
+		=> _count > other._count ? 1 : _count < other._count ? -1 : Math.Sign($"{this:b}".CompareTo($"{other:b}"));
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -686,7 +685,7 @@ public partial struct CellMap :
 		}
 
 		var (n, desiredSize) = (_count, 0);
-		var length = Min(n, limitSubsetSize);
+		var length = Math.Min(n, limitSubsetSize);
 		for (var i = 1; i <= length; i++)
 		{
 			desiredSize += PascalTriangle[n - 1][i - 1];

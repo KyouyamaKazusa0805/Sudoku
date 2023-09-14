@@ -7,7 +7,6 @@ using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using Sudoku.Text;
 using Sudoku.Text.Notation;
-using static System.Math;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -113,5 +112,5 @@ public sealed partial class BlossomLoopStep(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static int IComparableStep<BlossomLoopStep>.Compare(BlossomLoopStep left, BlossomLoopStep right) => Sign(left.Difficulty - right.Difficulty);
+	static int IComparableStep<BlossomLoopStep>.Compare(BlossomLoopStep left, BlossomLoopStep right) => Math.Sign(left.Difficulty - right.Difficulty);
 }

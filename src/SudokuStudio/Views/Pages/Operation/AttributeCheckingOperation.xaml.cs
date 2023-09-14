@@ -9,6 +9,8 @@ using Sudoku.Rendering.Nodes;
 using SudokuStudio.ComponentModel;
 using WinRT;
 using static Sudoku.Analytics.ConclusionType;
+using static SudokuStudio.ProjectWideConstants;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Views.Pages.Operation;
 

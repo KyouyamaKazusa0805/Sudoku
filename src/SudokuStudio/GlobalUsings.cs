@@ -1,6 +1,3 @@
-global using static System.Math;
-global using static SudokuStudio.ProjectWideConstants;
-global using static SudokuStudio.Strings.StringsAccessor;
 global using Colors = Microsoft.UI.Colors;
 global using DispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue;
 global using GridLayout = Microsoft.UI.Xaml.Controls.Grid;

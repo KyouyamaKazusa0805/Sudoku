@@ -9,6 +9,7 @@ using SudokuStudio.Interaction;
 using SudokuStudio.Views.Controls;
 using WinRT;
 using static Sudoku.SolutionWideReadOnlyFields;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Views.Pages;
 

@@ -3,7 +3,6 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Linq;
-using static System.Math;
 using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts.Primitive;
@@ -306,7 +305,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 		}
 
 		var (n, desiredSize) = (Count, 0);
-		var length = Min(n, limitSubsetSize);
+		var length = Math.Min(n, limitSubsetSize);
 		for (var i = 1; i <= length; i++)
 		{
 			var target = PascalTriangle[n - 1][i - 1];

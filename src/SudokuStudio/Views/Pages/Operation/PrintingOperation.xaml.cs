@@ -9,6 +9,7 @@ using SudokuStudio.Interaction;
 using SudokuStudio.Interaction.Conversions;
 using SudokuStudio.Storage;
 using Windows.Storage.Pickers;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Views.Pages.Operation;
 

@@ -36,6 +36,8 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using WinRT;
 using static Sudoku.SolutionWideReadOnlyFields;
+using static SudokuStudio.ProjectWideConstants;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Views.Pages;
 
@@ -1219,7 +1221,7 @@ public sealed partial class AnalyzePage : Page
 						SudokuPane._temporarySelectedCell = cell;
 						foreach (var element in getAppBarButtons(MainMenuFlyout))
 						{
-							element.IsEnabled = (puzzle.GetCandidates(cell) >> Abs((int)element.Tag) - 1 & 1) != 0;
+							element.IsEnabled = (puzzle.GetCandidates(cell) >> Math.Abs((int)element.Tag) - 1 & 1) != 0;
 						}
 
 						MainMenuFlyout.ShowAt(SudokuPane);
@@ -1275,7 +1277,7 @@ public sealed partial class AnalyzePage : Page
 	{
 		if ((sender, SudokuPane) is (AppBarButton { Tag: int rawDigit }, { _temporarySelectedCell: var cell and not -1 }))
 		{
-			SudokuPane.SetOrDeleteDigit(cell, Abs(rawDigit) - 1, rawDigit > 0);
+			SudokuPane.SetOrDeleteDigit(cell, Math.Abs(rawDigit) - 1, rawDigit > 0);
 		}
 	}
 

@@ -26,7 +26,7 @@ public static class DragEventArgsExtensions
 			var itemHeight = sampleItem.ActualHeight + sampleItem.Margin.Top + sampleItem.Margin.Bottom;
 
 			// Find index based on dividing number of items by height of each item.
-			index = Min(target.Items.Count - 1, (int)(pos.Y / itemHeight));
+			index = Math.Min(target.Items.Count - 1, (int)(pos.Y / itemHeight));
 
 			// Find the item being dropped on top of.
 			var targetItem = (ListViewItem)target.ContainerFromIndex(index);
@@ -40,7 +40,7 @@ public static class DragEventArgsExtensions
 			}
 
 			// Don't go out of bounds.
-			index = Min(target.Items.Count, index);
+			index = Math.Min(target.Items.Count, index);
 		}
 
 		return index;

@@ -8,6 +8,7 @@ using Sudoku.Concepts;
 using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction.Conversions;
 using SudokuStudio.Views.Attached;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Views.Pages.Operation;
 

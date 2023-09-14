@@ -5,7 +5,6 @@ using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
-using static System.Math;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
@@ -48,7 +47,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 		// Note that the greatest size is determined by two factors: the size that you specified
 		// and the number of bi-value cells in the grid.
 		scoped ref readonly var grid = ref context.Grid;
-		for (var size = 3; size <= Min(MaxSearchingPivotsCount, BivalueCells.Count); size++)
+		for (var size = 3; size <= Math.Min(MaxSearchingPivotsCount, BivalueCells.Count); size++)
 		{
 			// Iterate on each pivot cell.
 			foreach (var pivot in EmptyCells)

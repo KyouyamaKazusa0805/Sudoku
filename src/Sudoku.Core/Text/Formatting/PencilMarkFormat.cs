@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Concepts;
 using Sudoku.Runtime.MaskServices;
-using static System.Math;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Text.Formatting;
@@ -98,15 +97,15 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatVa
 				candidatesCount += PopCount((uint)value);
 
 				// Compares the values.
-				var comparer = Max(
+				var comparer = Math.Max(
 					candidatesCount,
 					MaskOperations.MaskToCellState(value) switch
 					{
 						// The output will be '<digit>' and consist of 3 characters.
-						CellState.Given => Max(candidatesCount, TreatValueAsGiven is null ? 1 : 3),
+						CellState.Given => Math.Max(candidatesCount, TreatValueAsGiven is null ? 1 : 3),
 
 						// The output will be '*digit*' and consist of 3 characters.
-						CellState.Modifiable => Max(candidatesCount, TreatValueAsGiven is null ? 1 : 3),
+						CellState.Modifiable => Math.Max(candidatesCount, TreatValueAsGiven is null ? 1 : 3),
 
 						// Normal output: 'series' (at least 1 character).
 						_ => candidatesCount

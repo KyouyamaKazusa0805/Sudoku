@@ -6,7 +6,6 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
-using static System.Math;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics;
@@ -600,7 +599,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 					{
 						var difficulty = solvingStep.Difficulty;
 						currentTotal += difficulty;
-						currentMinimum = Min(currentMinimum, difficulty);
+						currentMinimum = Math.Min(currentMinimum, difficulty);
 					}
 
 					sb.Append(currentMinimum, 6, "0.0");

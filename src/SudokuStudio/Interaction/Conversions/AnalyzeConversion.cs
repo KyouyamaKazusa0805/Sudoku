@@ -11,6 +11,7 @@ using Sudoku.Rendering;
 using Sudoku.Text.Notation;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Collection;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Interaction.Conversions;
 

@@ -1,4 +1,5 @@
 using SudokuStudio.Configuration;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.BindableSource;
 

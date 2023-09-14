@@ -1,4 +1,5 @@
 using Microsoft.UI.Xaml.Markup;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Markup;
 

@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Text;
 using Sudoku.Concepts;
-using static System.Math;
 
 namespace Sudoku.Text.Formatting;
 
@@ -85,7 +84,7 @@ public sealed partial record SukakuFormat(bool Multiline = false) : IGridFormatt
 				var maxLength = 0;
 				for (var p = 0; p < 9; p++)
 				{
-					maxLength = Max(maxLength, builders[p * 9 + column].Length);
+					maxLength = Math.Max(maxLength, builders[p * 9 + column].Length);
 				}
 
 				span[column] = maxLength;

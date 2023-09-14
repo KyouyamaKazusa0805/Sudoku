@@ -9,6 +9,8 @@ using SudokuStudio.Views.Pages;
 using SudokuStudio.Views.Pages.Manuals;
 using Windows.Graphics;
 using WinRT.Interop;
+using static SudokuStudio.ProjectWideConstants;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Views.Windows;
 

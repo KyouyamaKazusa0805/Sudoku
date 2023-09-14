@@ -23,6 +23,7 @@ using WinRT;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.ConclusionType;
 using static Sudoku.SolutionWideReadOnlyFields;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Views.Controls;
 

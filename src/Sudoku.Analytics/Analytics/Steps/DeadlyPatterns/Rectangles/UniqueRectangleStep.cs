@@ -4,7 +4,6 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text.Notation;
-using static System.Math;
 
 namespace Sudoku.Analytics.Steps;
 
@@ -70,5 +69,5 @@ public abstract partial class UniqueRectangleStep(
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static int IComparableStep<UniqueRectangleStep>.Compare(UniqueRectangleStep left, UniqueRectangleStep right)
-		=> Sign(left.Code - right.Code) switch { 0 => Sign(left.AbsoluteOffset - right.AbsoluteOffset), var result => result };
+		=> Math.Sign(left.Code - right.Code) switch { 0 => Math.Sign(left.AbsoluteOffset - right.AbsoluteOffset), var result => result };
 }

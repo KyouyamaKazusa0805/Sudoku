@@ -5,7 +5,6 @@ using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
-using static System.Math;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
@@ -148,7 +147,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				// other types will only use 1 or 2 empty cells.
 				for (
 					var incrementStep = (valuesMap.Count & 1) == 0 ? 2 : 1;
-					incrementStep <= Min(18 - d1Counter - d2Counter, MaxSearchingEmptyCellsCount);
+					incrementStep <= Math.Min(18 - d1Counter - d2Counter, MaxSearchingEmptyCellsCount);
 					incrementStep += 2
 				)
 				{

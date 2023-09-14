@@ -1,3 +1,5 @@
+using static SudokuStudio.Strings.StringsAccessor;
+
 namespace SudokuStudio.Interaction.Conversions;
 
 internal static class GeneratingStrategyConversion

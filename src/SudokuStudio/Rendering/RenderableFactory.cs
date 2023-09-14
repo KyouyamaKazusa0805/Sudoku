@@ -704,7 +704,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 	/// <summary>
 	/// Indicates the rotate angle (45 degrees).
 	/// </summary>
-	private const double RotateAngle = PI / 4;
+	private const double RotateAngle = Math.PI / 4;
 
 	/// <summary>
 	/// Indicates the square root of 2.
@@ -774,7 +774,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 
 					var deltaX = pt2.X - pt1.X;
 					var deltaY = pt2.Y - pt1.Y;
-					var alpha = Atan2(deltaY, deltaX);
+					var alpha = Math.Atan2(deltaY, deltaX);
 					adjust(pt1, pt2, out var p1, out _, alpha, cs);
 
 					// Check if another candidate lies in the direct line.
@@ -791,8 +791,8 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 
 						var dx2 = point.X - p1.X;
 						var dy2 = point.Y - p1.Y;
-						if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
-							&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
+						if (Math.Sign(dx1) == Math.Sign(dx2) && Math.Sign(dy1) == Math.Sign(dy2)
+							&& Math.Abs(dx2) <= Math.Abs(dx1) && Math.Abs(dy2) <= Math.Abs(dy1)
 							&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
 						{
 							through = true;
@@ -814,11 +814,11 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						rotate(oldPt2, ref pt2, RotateAngle);
 
 						var interim1Alpha = alpha - RotateAngle;
-						var bx1 = pt1.X + bezierLength * Cos(interim1Alpha);
-						var by1 = pt1.Y + bezierLength * Sin(interim1Alpha);
+						var bx1 = pt1.X + bezierLength * Math.Cos(interim1Alpha);
+						var by1 = pt1.Y + bezierLength * Math.Sin(interim1Alpha);
 						var interim2Alpha = alpha + RotateAngle;
-						var bx2 = pt2.X - bezierLength * Cos(interim2Alpha);
-						var by2 = pt2.Y - bezierLength * Sin(interim2Alpha);
+						var bx2 = pt2.X - bezierLength * Math.Cos(interim2Alpha);
+						var by2 = pt2.Y - bezierLength * Math.Sin(interim2Alpha);
 
 						correctOffsetOfPoint(ref pt1, ow, oh);
 						correctOffsetOfPoint(ref pt2, ow, oh);
@@ -899,7 +899,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			pt2.Y -= pt1.Y;
 
 			// Rotate.
-			var (sinAngle, cosAngle, (xAct, yAct)) = (Sin(angle), Cos(angle), pt2);
+			var (sinAngle, cosAngle, (xAct, yAct)) = (Math.Sin(angle), Math.Cos(angle), pt2);
 			pt2.X = xAct * cosAngle - yAct * sinAngle;
 			pt2.Y = xAct * sinAngle + yAct * cosAngle;
 
@@ -911,7 +911,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		static void adjust(Point pt1, Point pt2, out Point p1, out Point p2, double alpha, double cs)
 		{
 			(p1, p2, var tempDelta) = (pt1, pt2, cs / 2);
-			var (px, py) = (tempDelta * Cos(alpha), tempDelta * Sin(alpha));
+			var (px, py) = (tempDelta * Math.Cos(alpha), tempDelta * Math.Sin(alpha));
 
 			p1.X += px;
 			p1.Y += py;
@@ -923,8 +923,8 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		static void cut(scoped ref Point pt1, scoped ref Point pt2, double cs)
 		{
 			var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
-			var slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
-			var (x, y) = (cs / Sqrt(1 + slope * slope), cs * Sqrt(slope * slope / (1 + slope * slope)));
+			var slope = Math.Abs((pt2y - pt1y) / (pt2x - pt1x));
+			var (x, y) = (cs / Math.Sqrt(1 + slope * slope), cs * Math.Sqrt(slope * slope / (1 + slope * slope)));
 			if (pt1y > pt2y && pt1x.NearlyEquals(pt2x))
 			{
 				pt1.Y -= cs / 2;
@@ -1023,13 +1023,13 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 	{
 		var arrowLength = 10.0;
 		var theta = 30.0;
-		var angle = Atan2(pt1.Y - pt2.Y, pt1.X - pt2.X) * 180 / PI;
-		var angle1 = (angle + theta) * PI / 180;
-		var angle2 = (angle - theta) * PI / 180;
-		var topX = arrowLength * Cos(angle1);
-		var topY = arrowLength * Sin(angle1);
-		var bottomX = arrowLength * Cos(angle2);
-		var bottomY = arrowLength * Sin(angle2);
+		var angle = Math.Atan2(pt1.Y - pt2.Y, pt1.X - pt2.X) * 180 / Math.PI;
+		var angle1 = (angle + theta) * Math.PI / 180;
+		var angle2 = (angle - theta) * Math.PI / 180;
+		var topX = arrowLength * Math.Cos(angle1);
+		var topY = arrowLength * Math.Sin(angle1);
+		var bottomX = arrowLength * Math.Cos(angle2);
+		var bottomY = arrowLength * Math.Sin(angle2);
 		return [
 			new LineGeometry { StartPoint = new(pt2.X + topX, pt2.Y + topY), EndPoint = pt2 },
 			new LineGeometry { StartPoint = new(pt2.X + bottomX, pt2.Y + bottomY), EndPoint = pt2 }

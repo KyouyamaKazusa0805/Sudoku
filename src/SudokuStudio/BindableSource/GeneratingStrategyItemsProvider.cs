@@ -6,6 +6,7 @@ using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction;
 using SudokuStudio.Interaction.Conversions;
 using SudokuStudio.Views.Controls;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.BindableSource;
 

@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using Sudoku.Analytics.Categorization;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Interaction.Conversions;
 

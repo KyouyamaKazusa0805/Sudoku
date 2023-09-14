@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
-using static System.Math;
 
 namespace Sudoku.Concepts;
 
@@ -113,5 +112,5 @@ file sealed class CellOrDigitComparer : IComparer<byte>
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int Compare(byte x, byte y) => Sign(x - y);
+	public int Compare(byte x, byte y) => Math.Sign(x - y);
 }

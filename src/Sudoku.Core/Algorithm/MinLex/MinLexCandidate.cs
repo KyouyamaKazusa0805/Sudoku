@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
-using static System.Math;
 
 namespace Sudoku.Algorithm.MinLex;
 
@@ -164,7 +163,7 @@ public unsafe struct MinLexCandidate
 		var pPair = stackalloc GridPattern[2];
 		GridPattern.FromStringUnsafe(source, pPair);
 		scoped var minTopRowScores = (ReadOnlySpan<int>)[pPair[0].BestTopRowScore, pPair[1].BestTopRowScore];
-		var minTopRowScore = Min(minTopRowScores[0], minTopRowScores[1]);
+		var minTopRowScore = Math.Min(minTopRowScores[0], minTopRowScores[1]);
 		var resultBuffer = stackalloc byte[82];
 		resultBuffer[0] = (byte)(minTopRowScore >> 8 & 1);
 		resultBuffer[1] = (byte)(minTopRowScore >> 7 & 1);
