@@ -14,6 +14,28 @@ namespace Sudoku.Algorithm.Ittoryu;
 public sealed class IttoryuPathFinder
 {
 	/// <summary>
+	/// Indicates the technique set that all single techniques are included.
+	/// </summary>
+	public static readonly Technique[] AllTechniquesIncluded = [
+		Technique.FullHouse,
+		Technique.HiddenSingleBlock,
+		Technique.HiddenSingleRow,
+		Technique.HiddenSingleColumn,
+		Technique.NakedSingle
+	];
+
+	/// <summary>
+	/// Indicates the technique set that excludes naked singles.
+	/// </summary>
+	public static readonly Technique[] NoNakedSingle = [Technique.FullHouse, Technique.HiddenSingleBlock, Technique.HiddenSingleRow, Technique.HiddenSingleColumn];
+
+	/// <summary>
+	/// Indicates the technique set that only contains full houses and hidden singles in block.
+	/// </summary>
+	public static readonly Technique[] BlockHiddenSingle = [Technique.FullHouse, Technique.HiddenSingleBlock];
+
+
+	/// <summary>
 	/// Indicates the found possible digit sequences.
 	/// </summary>
 	private readonly List<Digit[]> _foundSequences = [];
@@ -22,13 +44,7 @@ public sealed class IttoryuPathFinder
 	/// <summary>
 	/// Indicates the supported techniques. By default, all singles are included.
 	/// </summary>
-	public Technique[] SupportedTechniques { get; init; } = [
-		Technique.FullHouse,
-		Technique.HiddenSingleBlock,
-		Technique.HiddenSingleRow,
-		Technique.HiddenSingleColumn,
-		Technique.NakedSingle
-	];
+	public Technique[] SupportedTechniques { get; init; } = AllTechniquesIncluded;
 
 
 	/// <summary>

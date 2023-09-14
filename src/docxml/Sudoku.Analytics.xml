@@ -92,6 +92,21 @@
             This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
             </summary>
         </member>
+        <member name="F:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.AllTechniquesIncluded">
+            <summary>
+            Indicates the technique set that all single techniques are included.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.NoNakedSingle">
+            <summary>
+            Indicates the technique set that excludes naked singles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.BlockHiddenSingle">
+            <summary>
+            Indicates the technique set that only contains full houses and hidden singles in block.
+            </summary>
+        </member>
         <member name="F:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder._foundSequences">
             <summary>
             Indicates the found possible digit sequences.
