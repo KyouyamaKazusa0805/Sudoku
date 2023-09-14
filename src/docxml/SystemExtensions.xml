@@ -701,6 +701,15 @@
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
             <typeparam name="TRest">The type that encapsulate for a list of rest elements.</typeparam>
+            <param name="tuple">The tuple.</param>
+        </member>
+        <member name="M:System.ComplexValueTupleEnumerator`2.#ctor(System.ValueTuple{`0,`0,`0,`0,`0,`0,`0,`1})">
+            <summary>
+            Defines a complex value tuple enumerator.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TRest">The type that encapsulate for a list of rest elements.</typeparam>
+            <param name="tuple">The tuple.</param>
         </member>
         <member name="F:System.ComplexValueTupleEnumerator`2._values">
             <summary>
@@ -711,12 +720,6 @@
             <summary>
             Indicates the index.
             </summary>
-        </member>
-        <member name="M:System.ComplexValueTupleEnumerator`2.#ctor(System.ValueTuple{`0,`0,`0,`0,`0,`0,`0,`1})">
-            <summary>
-            Initializes a <see cref="T:System.ComplexValueTupleEnumerator`2"/> instance.
-            </summary>
-            <param name="tuple">The tuple.</param>
         </member>
         <member name="P:System.ComplexValueTupleEnumerator`2.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
@@ -2323,6 +2326,77 @@ fixed (short* ptr = instance)
             </code>
             </remarks>
         </member>
+        <member name="T:System.Runtime.CompilerServices.TupleExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Runtime.CompilerServices.ITuple"/>.
+            </summary>
+            <seealso cref="T:System.Runtime.CompilerServices.ITuple"/>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.TupleExtensions.GetEnumerator(System.Runtime.CompilerServices.ITuple)">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.Unsafe2">
+            <summary>
+            Provides extra methods that is an extension of type <see cref="T:System.Runtime.CompilerServices.Unsafe"/>.
+            </summary>
+            <seealso cref="T:System.Runtime.CompilerServices.Unsafe"/>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.Unsafe2.RefMoveNext``1(``0@)">
+            <summary>
+            Moves the reference to the next position. Simply calls <see cref="M:System.Runtime.CompilerServices.Unsafe.AddByteOffset``1(``0@,System.IntPtr)"/> with arguments
+            <paramref name="ref"/> and 1.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="ref">The reference.</param>
+            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.AddByteOffset``1(``0@,System.IntPtr)"/>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.Unsafe2.RefMovePrevious``1(``0@)">
+            <summary>
+            Moves the reference to the previous position. Simply calls <see cref="M:System.Runtime.CompilerServices.Unsafe.SubtractByteOffset``1(``0@,System.IntPtr)"/> with arguments
+            <paramref name="ref"/> and 1.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="ref">The reference.</param>
+            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.SubtractByteOffset``1(``0@,System.IntPtr)"/>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.Unsafe2.AsByteRef``1(``0@)">
+            <summary>
+            Simply invokes the method <see cref="M:System.Runtime.CompilerServices.Unsafe.As``2(``0@)"/>, but with target generic type being fixed type <see cref="T:System.Byte"/>.
+            </summary>
+            <typeparam name="T">The base type that is converted from.</typeparam>
+            <param name="ref">
+            The reference to the value. Generally speaking the value should be a <see langword="ref readonly"/> parameter, but C# disallows it,
+            using <see langword="ref readonly"/> as a combined parameter modifier.
+            </param>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.TupleEnumerator">
+            <summary>
+            Represents for an enumerator that iterates on each elements stored in a <see cref="T:System.Runtime.CompilerServices.ITuple"/>.
+            </summary>
+            <param name="tuple">A tuple instance.</param>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.#ctor(System.Runtime.CompilerServices.ITuple)">
+            <summary>
+            Represents for an enumerator that iterates on each elements stored in a <see cref="T:System.Runtime.CompilerServices.ITuple"/>.
+            </summary>
+            <param name="tuple">A tuple instance.</param>
+        </member>
+        <member name="F:System.Runtime.CompilerServices.TupleEnumerator._index">
+            <summary>
+            The current index.
+            </summary>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.TupleEnumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="F:System.Runtime.CompilerServices.TupleEnumerator._tuple">
+            <summary>
+            The generated field declaration for parameter <c>tuple</c>.
+            </summary>
+        </member>
         <member name="T:System.Utf8StringExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Utf8String"/>.
@@ -2949,6 +3023,18 @@ fixed (short* ptr = instance)
             A new <see cref="T:System.String"/> instance that contains characters from the input sequence that satisfy the condition.
             </returns>
         </member>
+        <member name="T:System.Linq.TupleEnumerable">
+            <summary>
+            Provides with LINQ methods for <see cref="T:System.Runtime.CompilerServices.ITuple"/> instances.
+            </summary>
+            <seealso cref="T:System.Runtime.CompilerServices.ITuple"/>
+        </member>
+        <member name="M:System.Linq.TupleEnumerable.Cast``1(System.Runtime.CompilerServices.ITuple)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
+        </member>
+        <member name="M:System.Linq.TupleEnumerable.Select``2(System.Runtime.CompilerServices.ITuple,System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
         <member name="T:System.Numerics.BitOperationsExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Numerics.BitOperations"/>.
@@ -3169,40 +3255,6 @@ fixed (short* ptr = instance)
             5 elements in this case.
             </remarks>
             <seealso cref="M:System.PointerOperations.Slice``1(``0*,System.Int32,System.Int32)"/>
-        </member>
-        <member name="T:System.Runtime.CompilerServices.Unsafe2">
-            <summary>
-            Provides extra methods that is an extension of type <see cref="T:System.Runtime.CompilerServices.Unsafe"/>.
-            </summary>
-            <seealso cref="T:System.Runtime.CompilerServices.Unsafe"/>
-        </member>
-        <member name="M:System.Runtime.CompilerServices.Unsafe2.RefMoveNext``1(``0@)">
-            <summary>
-            Moves the reference to the next position. Simply calls <see cref="M:System.Runtime.CompilerServices.Unsafe.AddByteOffset``1(``0@,System.IntPtr)"/> with arguments
-            <paramref name="ref"/> and 1.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="ref">The reference.</param>
-            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.AddByteOffset``1(``0@,System.IntPtr)"/>
-        </member>
-        <member name="M:System.Runtime.CompilerServices.Unsafe2.RefMovePrevious``1(``0@)">
-            <summary>
-            Moves the reference to the previous position. Simply calls <see cref="M:System.Runtime.CompilerServices.Unsafe.SubtractByteOffset``1(``0@,System.IntPtr)"/> with arguments
-            <paramref name="ref"/> and 1.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="ref">The reference.</param>
-            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.SubtractByteOffset``1(``0@,System.IntPtr)"/>
-        </member>
-        <member name="M:System.Runtime.CompilerServices.Unsafe2.AsByteRef``1(``0@)">
-            <summary>
-            Simply invokes the method <see cref="M:System.Runtime.CompilerServices.Unsafe.As``2(``0@)"/>, but with target generic type being fixed type <see cref="T:System.Byte"/>.
-            </summary>
-            <typeparam name="T">The base type that is converted from.</typeparam>
-            <param name="ref">
-            The reference to the value. Generally speaking the value should be a <see langword="ref readonly"/> parameter, but C# disallows it,
-            using <see langword="ref readonly"/> as a combined parameter modifier.
-            </param>
         </member>
         <member name="T:System.SourceGeneration.Accessibility">
             <summary>
