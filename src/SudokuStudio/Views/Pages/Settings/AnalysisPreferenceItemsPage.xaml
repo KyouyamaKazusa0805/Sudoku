@@ -81,7 +81,15 @@
 						Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.ReverseBugMaxSearchingEmptyCellsCount,Mode=TwoWay}" />
 				</w:SettingsCard>
 			</w:SettingsGroup>
-			<w:SettingsGroup Header="{m:R Key=SettingsPage_AlmostLockedSetsGroup}">
+			<w:SettingsGroup Header="{m:R Key=SettingsPage_AlmostLockedSetsAndIntersectionsGroup}">
+				<w:SettingsCard Header="{m:R Key=SettingsPage_CheckValueTypes}">
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.CheckValueTypes,Mode=TwoWay}" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=SettingsPage_AllowAlmostLockedQuadruples}">
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.CheckAlmostLockedQuadruple,Mode=TwoWay}" />
+				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_AllowCollisionOnAlmostLockedSetXzRule}">
 					<ToggleSwitch
 						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXzRule,Mode=TwoWay}" />

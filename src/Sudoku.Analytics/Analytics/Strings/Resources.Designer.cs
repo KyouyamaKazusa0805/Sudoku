@@ -133,6 +133,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extended Almost Locked Quadruple.
+        /// </summary>
+        public static string AlmostLockedQuadrupleValueType {
+            get {
+                return ResourceManager.GetString("AlmostLockedQuadrupleValueType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Almost Locked Sets Chain.
         /// </summary>
         public static string AlmostLockedSetsChain {
@@ -165,6 +174,15 @@ namespace Sudoku.Analytics.Strings {
         public static string AlmostLockedTriple {
             get {
                 return ResourceManager.GetString("AlmostLockedTriple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Almost Locked Triple.
+        /// </summary>
+        public static string AlmostLockedTripleValueType {
+            get {
+                return ResourceManager.GetString("AlmostLockedTripleValueType", resourceCulture);
             }
         }
         

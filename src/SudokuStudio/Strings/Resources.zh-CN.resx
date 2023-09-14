@@ -918,6 +918,9 @@
   <data name="SettingsPage_AllLevelsAllowed" xml:space="preserve">
     <value>所有难度级别均允许</value>
   </data>
+  <data name="SettingsPage_AllowAlmostLockedQuadruples" xml:space="preserve">
+    <value>允许搜索欠一四数组技巧</value>
+  </data>
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
     <value>允许 ALS-XY-Wing 技巧里的 ALS 结构重叠</value>
   </data>
@@ -930,11 +933,11 @@
   <data name="SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule" xml:space="preserve">
     <value>允许 ALS-XZ 成环</value>
   </data>
+  <data name="SettingsPage_AlmostLockedSetsAndIntersectionsGroup" xml:space="preserve">
+    <value>待定数组（ALS）和类区块技巧</value>
+  </data>
   <data name="SettingsPage_AlmostLockedSetsColors" xml:space="preserve">
     <value>待定数组结构配色</value>
-  </data>
-  <data name="SettingsPage_AlmostLockedSetsGroup" xml:space="preserve">
-    <value>待定数组（ALS）</value>
   </data>
   <data name="SettingsPage_AlsoDisplayEnglishNameOfTheStep" xml:space="preserve">
     <value>同时显示分析后的步骤的技巧英文名</value>
@@ -1010,6 +1013,9 @@
   </data>
   <data name="SettingsPage_ChainStrokeThicknessTitle" xml:space="preserve">
     <value>链的粗细</value>
+  </data>
+  <data name="SettingsPage_CheckValueTypes" xml:space="preserve">
+    <value>允许搜索带明数的欠一数组</value>
   </data>
   <data name="SettingsPage_Colors" xml:space="preserve">
     <value>配色</value>

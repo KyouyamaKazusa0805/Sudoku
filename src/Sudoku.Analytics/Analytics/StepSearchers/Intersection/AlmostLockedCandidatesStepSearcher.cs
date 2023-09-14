@@ -17,37 +17,64 @@ namespace Sudoku.Analytics.StepSearchers;
 /// Provides with an <b>Almost Locked Candidates</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
+/// <item>
+/// Basic types:
+/// <list type="bullet">
 /// <item>Almost Locked Pair</item>
 /// <item>Almost Locked Triple</item>
-/// <item>Almost Locked Quadruple (Maybe unnecessary)</item>
+/// </list>
+/// </item>
+/// <item>
+/// Extended types (contains value cells):
+/// <list type="bullet">
+/// <item>Extended Almost Locked Triple</item>
+/// <item>Extended Almost Locked Quadruple</item>
+/// </list>
+/// </item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.AlmostLockedPair, Technique.AlmostLockedTriple, Technique.AlmostLockedQuadruple)]
+[StepSearcher(
+	Technique.AlmostLockedPair, Technique.AlmostLockedTriple, Technique.AlmostLockedQuadruple,
+	Technique.AlmostLockedTripleValueType, Technique.AlmostLockedQuadrupleValueType)]
 public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// Indicates whether the user checks the almost locked quadruple.
+	/// Indicates whether the searcher checks the almost locked quadruple.
 	/// </summary>
 	[RuntimeIdentifier(RuntimeIdentifier.CheckAlmostLockedQuadruple)]
 	public bool CheckAlmostLockedQuadruple { get; set; }
+
+	/// <summary>
+	/// Indicates whether the searcher checks for value types.
+	/// </summary>
+	[RuntimeIdentifier(RuntimeIdentifier.CheckValueTypes)]
+	public bool CheckValueTypes { get; set; }
 
 
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
-		for (var size = 2; size <= (CheckAlmostLockedQuadruple ? 4 : 3); size++)
+		foreach (var checkValueCells in (false, true))
 		{
-			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
+			if (checkValueCells && !CheckValueTypes)
 			{
-				if (c && EmptyCells)
+				continue;
+			}
+
+			for (var size = 2; size <= (CheckAlmostLockedQuadruple && checkValueCells ? 4 : 3); size++)
+			{
+				foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 				{
-					if (Collect(ref context, size, baseSet, coverSet, a, b, c) is { } step1)
+					if (c && EmptyCells)
 					{
-						return step1;
-					}
-					if (Collect(ref context, size, coverSet, baseSet, b, a, c) is { } step2)
-					{
-						return step2;
+						if (Collect(ref context, size, baseSet, coverSet, a, b, c, checkValueCells) is { } step1)
+						{
+							return step1;
+						}
+						if (Collect(ref context, size, coverSet, baseSet, b, a, c, checkValueCells) is { } step2)
+						{
+							return step2;
+						}
 					}
 				}
 			}
@@ -66,6 +93,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	/// <param name="a">The left grid map.</param>
 	/// <param name="b">The right grid map.</param>
 	/// <param name="c">The intersection.</param>
+	/// <param name="checkValueCells">Indicates whether the method checks for value cells.</param>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
 	/// <para>
@@ -98,16 +126,17 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 		House coverSet,
 		scoped in CellMap a,
 		scoped in CellMap b,
-		scoped in CellMap c
+		scoped in CellMap c,
+		bool checkValueCells
 	)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 
 		// Iterate on each cell combination.
-		foreach (var alsCells in (a & EmptyCells).GetSubsets(size - 1))
+		foreach (var alsCells in (checkValueCells ? a : a & EmptyCells).GetSubsets(size - 1))
 		{
 			// Gather the mask. The cell combination must contain the specified number of digits.
-			var mask = grid[alsCells];
+			var mask = grid[alsCells, checkValueCells];
 			if (PopCount((uint)mask) != size)
 			{
 				continue;
@@ -145,6 +174,13 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			foreach (var pos in ahsMask)
 			{
 				ahsCells.Add(HouseCells[coverSet][pos]);
+			}
+
+			// Value cells checker.
+			var valueCells = (alsCells | ahsCells) - EmptyCells;
+			if (checkValueCells && !valueCells)
+			{
+				continue;
 			}
 
 			// Gather all eliminations.
@@ -215,20 +251,18 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 				babaGroupingNodes.Add(new(WellKnownColorIdentifier.Normal, cell, (Utf8Char)(char)('a' - 1 + size), grid.GetCandidates(cell)));
 			}
 
-			scoped var valueCells =
-				from cell in (alsCells | ahsCells) - EmptyCells
-				select new CellViewNode(WellKnownColorIdentifier.Normal, cell);
+			scoped var valueCellNodes = from cell in valueCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell);
 			var step = new AlmostLockedCandidatesStep(
 				[.. conclusions],
 				[
 					[
-						.. valueCells,
+						.. valueCellNodes,
 						.. candidateOffsets,
 						new HouseViewNode(WellKnownColorIdentifier.Normal, baseSet),
 						new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, coverSet)
 					],
 					[
-						.. valueCells,
+						.. valueCellNodes,
 						.. babaGroupingNodes,
 						new HouseViewNode(WellKnownColorIdentifier.Normal, baseSet),
 						new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, coverSet)
@@ -237,7 +271,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 				mask,
 				alsCells,
 				ahsCells,
-				valueCells.Length != 0
+				valueCellNodes.Length != 0
 			);
 
 			if (context.OnlyFindOne)

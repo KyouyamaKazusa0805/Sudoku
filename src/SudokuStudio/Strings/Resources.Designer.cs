@@ -2716,6 +2716,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow Almost Locked Quadruples (ALQs).
+        /// </summary>
+        internal static string SettingsPage_AllowAlmostLockedQuadruples {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowAlmostLockedQuadruples", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow collision on ALS-XY-Wing.
         /// </summary>
         internal static string SettingsPage_AllowCollisionOnAlmostLockedSetXyWing {
@@ -2752,20 +2761,20 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Sets (ALS) &amp; Intersections.
+        /// </summary>
+        internal static string SettingsPage_AlmostLockedSetsAndIntersectionsGroup {
+            get {
+                return ResourceManager.GetString("SettingsPage_AlmostLockedSetsAndIntersectionsGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Colors of Almost Locked Sets.
         /// </summary>
         internal static string SettingsPage_AlmostLockedSetsColors {
             get {
                 return ResourceManager.GetString("SettingsPage_AlmostLockedSetsColors", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Almost Locked Sets (ALS).
-        /// </summary>
-        internal static string SettingsPage_AlmostLockedSetsGroup {
-            get {
-                return ResourceManager.GetString("SettingsPage_AlmostLockedSetsGroup", resourceCulture);
             }
         }
         
@@ -2991,6 +3000,15 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_ChainStrokeThicknessTitle {
             get {
                 return ResourceManager.GetString("SettingsPage_ChainStrokeThicknessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for Extended Almost Locked Candidates.
+        /// </summary>
+        internal static string SettingsPage_CheckValueTypes {
+            get {
+                return ResourceManager.GetString("SettingsPage_CheckValueTypes", resourceCulture);
             }
         }
         

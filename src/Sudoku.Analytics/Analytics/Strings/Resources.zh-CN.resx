@@ -2323,4 +2323,12 @@
   <data name="TechniqueFormat_QiuDeadlyPatternExternalType2Step" xml:space="preserve">
     <value>如果数字 {2} 全部从 {1} 去掉的话，单元格 {0} 将形成致命形式</value>
   </data>
+  <data name="AlmostLockedTripleValueType" xml:space="preserve">
+    <value>欠一三数组・明数类型</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="AlmostLockedQuadrupleValueType" xml:space="preserve">
+    <value>欠一四数组・明数类型</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

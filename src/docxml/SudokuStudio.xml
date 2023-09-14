@@ -820,6 +820,18 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchExtendedBivalueUniversalGraveTypes"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.CheckValueTypesProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.CheckValueTypes"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.CheckValueTypes"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.CheckAlmostLockedQuadrupleProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.CheckAlmostLockedQuadruple"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.CheckAlmostLockedQuadruple"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXzRuleProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXzRule"/>.
@@ -942,6 +954,12 @@
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchExtendedBivalueUniversalGraveTypes">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.CheckValueTypes">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.CheckAlmostLockedQuadruple">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowCollisionOnAlmostLockedSetXzRule">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.AllowCollision"/>
@@ -5714,6 +5732,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Allow all levels.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AllowAlmostLockedQuadruples">
+            <summary>
+              Looks up a localized string similar to Allow Almost Locked Quadruples (ALQs).
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AllowCollisionOnAlmostLockedSetXyWing">
             <summary>
               Looks up a localized string similar to Allow collision on ALS-XY-Wing.
@@ -5734,14 +5757,14 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Allow Doubly-Linked ALS-XZ.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AlmostLockedSetsAndIntersectionsGroup">
+            <summary>
+              Looks up a localized string similar to Almost Locked Sets (ALS) &amp; Intersections.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AlmostLockedSetsColors">
             <summary>
               Looks up a localized string similar to Colors of Almost Locked Sets.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AlmostLockedSetsGroup">
-            <summary>
-              Looks up a localized string similar to Almost Locked Sets (ALS).
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AlsoDisplayEnglishNameOfTheStep">
@@ -5867,6 +5890,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_ChainStrokeThicknessTitle">
             <summary>
               Looks up a localized string similar to Stroke thickness of chain links.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_CheckValueTypes">
+            <summary>
+              Looks up a localized string similar to Check for Extended Almost Locked Candidates.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Colors">
@@ -6882,6 +6910,11 @@ if (student is (name: var name, age: >= 18))
             Defines a attached property that binds with setter and getter methods <c>BowmanBingoMaxLength</c>.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypesProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>CheckValueTypes</c>.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadrupleProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <c>CheckAlmostLockedQuadruple</c>.
@@ -7127,6 +7160,18 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLengthProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLengthProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetCheckValueTypes(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypesProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetCheckValueTypes(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypesProperty" />
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetCheckAlmostLockedQuadruple(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>

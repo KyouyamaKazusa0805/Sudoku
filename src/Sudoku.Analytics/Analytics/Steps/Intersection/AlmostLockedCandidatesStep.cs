@@ -37,7 +37,12 @@ public sealed partial class AlmostLockedCandidatesStep(
 	public int Size => PopCount((uint)DigitsMask);
 
 	/// <inheritdoc/>
-	public override Technique Code => (Technique)((int)Technique.AlmostLockedPair + Size - 2);
+	public override Technique Code
+		=> HasValueCell switch
+		{
+			true => Size switch { 3 => Technique.AlmostLockedTripleValueType, 4 => Technique.AlmostLockedQuadrupleValueType },
+			_ => (Technique)((int)Technique.AlmostLockedPair + Size - 2)
+		};
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases

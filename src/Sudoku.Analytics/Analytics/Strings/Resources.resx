@@ -2190,4 +2190,10 @@
   <data name="TechniqueFormat_QiuDeadlyPatternExternalType2Step" xml:space="preserve">
     <value>Cells {0} will be a deadly pattern if digit {1} is false in cells {2}</value>
   </data>
+  <data name="AlmostLockedTripleValueType" xml:space="preserve">
+    <value>Extended Almost Locked Triple</value>
+  </data>
+  <data name="AlmostLockedQuadrupleValueType" xml:space="preserve">
+    <value>Extended Almost Locked Quadruple</value>
+  </data>
 </root>

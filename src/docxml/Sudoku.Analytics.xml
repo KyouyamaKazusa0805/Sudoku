@@ -1077,6 +1077,18 @@ if (student is (name: var name, age: >= 18))
             The technique may not be useful because it'll be replaced with Sue de Coq.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AlmostLockedTripleValueType">
+            <summary>
+            Indicates almost locked triple value type.
+            The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AlmostLockedQuadrupleValueType">
+            <summary>
+            Indicates almost locked quadruple value type.
+            The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FireworkPairType1">
             <summary>
             Indicates firework pair type 1.
@@ -3280,6 +3292,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.CheckAlmostLockedQuadruple">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.CheckValueTypes">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.LogicalSolverIsFullApplying">
             <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
@@ -7188,21 +7203,37 @@ if (student is (name: var name, age: >= 18))
             Provides with an <b>Almost Locked Candidates</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
+            <item>
+            Basic types:
+            <list type="bullet">
             <item>Almost Locked Pair</item>
             <item>Almost Locked Triple</item>
-            <item>Almost Locked Quadruple (Maybe unnecessary)</item>
+            </list>
+            </item>
+            <item>
+            Extended types (contains value cells):
+            <list type="bullet">
+            <item>Extended Almost Locked Triple</item>
+            <item>Extended Almost Locked Quadruple</item>
+            </list>
+            </item>
             </list>
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple">
             <summary>
-            Indicates whether the user checks the almost locked quadruple.
+            Indicates whether the searcher checks the almost locked quadruple.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckValueTypes">
+            <summary>
+            Indicates whether the searcher checks for value types.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
              <summary>
              <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/summary" />
              </summary>
@@ -7213,6 +7244,7 @@ if (student is (name: var name, age: >= 18))
              <param name="a">The left grid map.</param>
              <param name="b">The right grid map.</param>
              <param name="c">The intersection.</param>
+             <param name="checkValueCells">Indicates whether the method checks for value cells.</param>
              <remarks>
              <developer-notes>
 		<para>
@@ -14248,6 +14280,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Almost Locked Quadruple.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.AlmostLockedQuadrupleValueType">
+            <summary>
+              Looks up a localized string similar to Extended Almost Locked Quadruple.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.AlmostLockedSetsChain">
             <summary>
               Looks up a localized string similar to Almost Locked Sets Chain.
@@ -14266,6 +14303,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.AlmostLockedTriple">
             <summary>
               Looks up a localized string similar to Almost Locked Triple.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.AlmostLockedTripleValueType">
+            <summary>
+              Looks up a localized string similar to Extended Almost Locked Triple.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.AlternatingInferenceChain">

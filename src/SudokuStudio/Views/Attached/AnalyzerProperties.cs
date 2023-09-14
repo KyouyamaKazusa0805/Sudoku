@@ -35,6 +35,7 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<int>(RuntimeIdentifier.MaxSizeOfComplexFish, DefaultValue = 5)]
 [AttachedProperty<bool>(RuntimeIdentifier.TemplateDeleteOnly)]
 [AttachedProperty<int>(RuntimeIdentifier.BowmanBingoMaxLength, DefaultValue = 64)]
+[AttachedProperty<bool>(RuntimeIdentifier.CheckValueTypes)]
 [AttachedProperty<bool>(RuntimeIdentifier.CheckAlmostLockedQuadruple)]
 [AttachedProperty<bool>(RuntimeIdentifier.CheckAdvancedJuniorExocet, DefaultValue = true)]
 [AttachedProperty<bool>(RuntimeIdentifier.CheckAdvancedSeniorExocet, DefaultValue = true)]
@@ -174,6 +175,10 @@ public static partial class AnalyzerProperties
 	[Callback]
 	private static void CheckAlmostLockedQuadruplePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<AlmostLockedCandidatesStepSearcher>(d, s => s.CheckAlmostLockedQuadruple = (bool)e.NewValue);
+
+	[Callback]
+	private static void CheckValueTypesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<AlmostLockedCandidatesStepSearcher>(d, s => s.CheckValueTypes = (bool)e.NewValue);
 
 	[Callback]
 	private static void DisableFinnedOrSashimiXWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

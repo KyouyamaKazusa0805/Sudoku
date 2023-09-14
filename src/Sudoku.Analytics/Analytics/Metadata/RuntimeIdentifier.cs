@@ -75,6 +75,9 @@ public static class RuntimeIdentifier
 	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
 	public const string CheckAlmostLockedQuadruple = nameof(CheckAlmostLockedQuadruple);
 
+	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
+	public const string CheckValueTypes = nameof(CheckValueTypes);
+
 	//
 	// Analyzer & Collector property names
 	//

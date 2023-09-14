@@ -139,6 +139,25 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AlmostLockedQuadruple,
+
+	/// <summary>
+	/// Indicates almost locked triple value type.
+	/// The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
+	/// </summary>
+	[SudokuExplainerDifficultyRating(5.2, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
+	[Abbreviation("ALT")]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	AlmostLockedTripleValueType,
+
+	/// <summary>
+	/// Indicates almost locked quadruple value type.
+	/// The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
+	[Abbreviation("ALQ")]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	AlmostLockedQuadrupleValueType,
 	#endregion
 
 	//
