@@ -1,4 +1,9 @@
-foreach (var element in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20))
-{
-	Console.WriteLine(element);
-}
+using System.CommandLine;
+using Sudoku.Cli.Commands;
+
+var rootCommand = new RootCommand("A modern program that operates with sudoku puzzles using command line interface.");
+rootCommand.AddCommand<GenerateCommand>();
+rootCommand.AddCommand<AnalyzeCommand>();
+rootCommand.AddCommand<OutputCommand>();
+
+return rootCommand.Invoke(args);
