@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.OCR;
 using Emgu.CV.Structure;
+using Sudoku.Concepts;
 
 namespace Sudoku.Recognition;
 
