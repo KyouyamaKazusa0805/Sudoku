@@ -126,6 +126,13 @@
             The target digit path. If none found, a longest path will be returned.
             </returns>
         </member>
+        <member name="T:Sudoku.Algorithm.Ittoryu.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
         <member name="T:Sudoku.Algorithm.Ittoryu.PathNode">
             <summary>
             Represents for a path node in a whole solving path via ittoryu solving logic.
