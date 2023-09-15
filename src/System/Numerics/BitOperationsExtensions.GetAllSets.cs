@@ -13,7 +13,7 @@ partial class BitOperationsExtensions
 	{
 		if (@this == 0)
 		{
-			return ReadOnlySpan<int>.Empty;
+			return [];
 		}
 
 		var length = PopCount((uint)@this);
@@ -34,7 +34,7 @@ partial class BitOperationsExtensions
 	{
 		if (@this == 0)
 		{
-			return ReadOnlySpan<int>.Empty;
+			return [];
 		}
 
 		var length = PopCount((uint)@this);
@@ -55,7 +55,7 @@ partial class BitOperationsExtensions
 	{
 		if (@this == 0)
 		{
-			return ReadOnlySpan<int>.Empty;
+			return [];
 		}
 
 		var length = PopCount((uint)@this);
@@ -76,7 +76,7 @@ partial class BitOperationsExtensions
 	{
 		if (@this == 0)
 		{
-			return ReadOnlySpan<int>.Empty;
+			return [];
 		}
 
 		var length = PopCount((uint)@this);
@@ -97,7 +97,7 @@ partial class BitOperationsExtensions
 	{
 		if (@this == 0)
 		{
-			return ReadOnlySpan<int>.Empty;
+			return [];
 		}
 
 		var length = PopCount((uint)@this);
@@ -118,7 +118,7 @@ partial class BitOperationsExtensions
 	{
 		if (@this == 0)
 		{
-			return ReadOnlySpan<int>.Empty;
+			return [];
 		}
 
 		var length = PopCount(@this);
@@ -139,7 +139,7 @@ partial class BitOperationsExtensions
 	{
 		if (@this == 0)
 		{
-			return ReadOnlySpan<int>.Empty;
+			return [];
 		}
 
 		var length = PopCount((ulong)@this);
@@ -160,7 +160,7 @@ partial class BitOperationsExtensions
 	{
 		if (@this == 0)
 		{
-			return ReadOnlySpan<int>.Empty;
+			return [];
 		}
 
 		var length = PopCount(@this);
@@ -181,7 +181,7 @@ partial class BitOperationsExtensions
 	{
 		if (@this == 0)
 		{
-			return ReadOnlySpan<int>.Empty;
+			return [];
 		}
 
 		var length = PopCount((nuint)@this);
@@ -202,7 +202,7 @@ partial class BitOperationsExtensions
 	{
 		if (@this == 0)
 		{
-			return ReadOnlySpan<int>.Empty;
+			return [];
 		}
 
 		var length = PopCount(@this);

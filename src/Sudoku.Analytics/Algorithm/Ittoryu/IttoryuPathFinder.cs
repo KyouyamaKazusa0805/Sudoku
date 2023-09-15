@@ -53,17 +53,9 @@ public sealed class IttoryuPathFinder
 		var digitsStack = new Stack<Digit>();
 		try
 		{
-			var foundNodes = new List<PathNode>();
 			for (var digit = 0; digit < 9; digit++)
 			{
-				fullHouses(in grid, foundNodes, digit);
-				hiddenSingles(in grid, foundNodes, digit);
-				nakedSingles(in grid, foundNodes, digit);
-			}
-
-			foreach (var digit in MaskOperations.Create(from node in foundNodes select node.Digit))
-			{
-				dfs(grid, digit, digitsStack, from node in foundNodes where node.Digit == digit select node, 0);
+				dfs(grid, digit, digitsStack, [], 0, true);
 			}
 		}
 		catch (InvalidOperationException)
@@ -74,10 +66,23 @@ public sealed class IttoryuPathFinder
 		return null;
 
 
-		void dfs(Grid grid, Digit digit, Stack<Digit> digitsStack, scoped ReadOnlySpan<PathNode> foundNodes, Mask finishedDigits)
+		void dfs(
+			Grid grid,
+			Digit digit,
+			Stack<Digit> digitsStack,
+			scoped ReadOnlySpan<PathNode> foundNodes,
+			Mask finishedDigits,
+			bool skipApplying = false
+		)
 		{
+			if (skipApplying)
+			{
+				goto StartCheckingWithoutApplying;
+			}
+
 			if (foundNodes.Length == 0)
 			{
+				// No available steps can be applied.
 				return;
 			}
 
@@ -90,6 +95,7 @@ public sealed class IttoryuPathFinder
 				}
 			}
 
+		StartCheckingWithoutApplying:
 			if (grid.ValuesMap[digit].Count != 9)
 			{
 				// If the current digit is not completed, we should continue searching for this digit.
@@ -98,7 +104,7 @@ public sealed class IttoryuPathFinder
 				hiddenSingles(in grid, tempNodes, digit);
 				nakedSingles(in grid, tempNodes, digit);
 
-				dfs(grid, digit, digitsStack, tempNodes.ToArray(), finishedDigits);
+				dfs(grid, digit, digitsStack, [.. tempNodes], finishedDigits);
 			}
 			else
 			{
@@ -150,8 +156,7 @@ public sealed class IttoryuPathFinder
 			var emptyCells = grid.EmptyCells;
 			for (var house = 0; house < 27; house++)
 			{
-				if ((emptyCells & HousesMap[house]) is [var fullHouseCell]
-					&& TrailingZeroCount(grid[HousesMap[house] - fullHouseCell]) == digit)
+				if ((emptyCells & HousesMap[house]) is [var fullHouseCell] && TrailingZeroCount(grid.GetCandidates(fullHouseCell)) == digit)
 				{
 					foundNodes.Add(new(in grid, house, fullHouseCell * 9 + digit));
 				}
