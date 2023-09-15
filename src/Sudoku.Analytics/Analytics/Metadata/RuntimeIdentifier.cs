@@ -1,3 +1,4 @@
+using Sudoku.Algorithm.Ittoryu;
 using Sudoku.Analytics.StepSearchers;
 
 namespace Sudoku.Analytics.Metadata;
@@ -95,4 +96,7 @@ public static class RuntimeIdentifier
 
 	/// <inheritdoc cref="StepCollector.MaxStepsGathered"/>
 	public const string StepGathererMaxStepsGathered = nameof(StepGathererMaxStepsGathered);
+
+	/// <inheritdoc cref="IttoryuPathFinder.SupportedTechniques"/>
+	public const string IttoryuSupportedTechniques = nameof(IttoryuSupportedTechniques);
 }

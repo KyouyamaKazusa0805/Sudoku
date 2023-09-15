@@ -26,6 +26,7 @@
 			<Setter Property="Padding" Value="0,12" />
 		</Style>
 		<vcvt:StepTooltipDisplayItemToBooleanConverter x:Key="StepDisplayItemConverter" />
+		<vcvt:IttoryuSupportedTechniquesValueConverter x:Key="IttoryuConverter" />
 	</Page.Resources>
 
 	<ScrollViewer>
@@ -286,6 +287,44 @@
 						<ComboBoxItem Content="{m:R Key=SettingsPage_AllLevelsAllowed}" />
 					</ComboBox>
 				</w:SettingsCard>
+			</w:SettingsGroup>
+			<w:SettingsGroup Header="{m:R Key=SettingsPage_IttoryuSettingsGroup}" Description="{m:R Key=SettingsPage_IttoryuSettingsGroupDescription}">
+				<w:SettingsExpander
+					Header="{m:R Key=SettingsPage_IttoryuSupportedTechniques}"
+					Description="{m:R Key=SettingsPage_IttoryuSupportedTechniquesDescription}">
+					<w:SettingsExpander.Items>
+						<w:SettingsCard ContentAlignment="Left">
+							<CheckBox
+								Content="{m:R Key=SettingsPage_IttoryuTechnique_FullHouse}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=TwoWay,
+								Converter={StaticResource IttoryuConverter},ConverterParameter='FullHouse'}" />
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left">
+							<CheckBox
+								Content="{m:R Key=SettingsPage_IttoryuTechnique_HiddenSingleBlock}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=TwoWay,
+								Converter={StaticResource IttoryuConverter},ConverterParameter='HiddenSingleBlock'}" />
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left">
+							<CheckBox
+								Content="{m:R Key=SettingsPage_IttoryuTechnique_HiddenSingleRow}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=TwoWay,
+								Converter={StaticResource IttoryuConverter},ConverterParameter='HiddenSingleRow'}" />
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left">
+							<CheckBox
+								Content="{m:R Key=SettingsPage_IttoryuTechnique_HiddenSingleColumn}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=TwoWay,
+								Converter={StaticResource IttoryuConverter},ConverterParameter='HiddenSingleColumn'}" />
+						</w:SettingsCard>
+						<w:SettingsCard ContentAlignment="Left">
+							<CheckBox
+								Content="{m:R Key=SettingsPage_IttoryuTechnique_NakedSingle}"
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=TwoWay,
+								Converter={StaticResource IttoryuConverter},ConverterParameter='NakedSingle'}" />
+						</w:SettingsCard>
+					</w:SettingsExpander.Items>
+				</w:SettingsExpander>
 			</w:SettingsGroup>
 			<w:SettingsGroup Header="{m:R Key=Settings_Compatibility}">
 				<w:SettingsCard

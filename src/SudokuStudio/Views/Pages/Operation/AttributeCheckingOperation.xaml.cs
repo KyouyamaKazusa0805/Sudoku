@@ -96,7 +96,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 			return;
 		}
 
-		var ittoryuFinder = new IttoryuPathFinder();
+		var ittoryuFinder = new IttoryuPathFinder { SupportedTechniques = [.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques] };
 		var digitPath = ittoryuFinder.FindPath(in puzzle);
 		if (!digitPath.IsComplete)
 		{

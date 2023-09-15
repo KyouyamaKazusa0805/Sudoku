@@ -3306,6 +3306,9 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.StepGathererMaxStepsGathered">
             <inheritdoc cref="P:Sudoku.Analytics.StepCollector.MaxStepsGathered"/>
         </member>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.IttoryuSupportedTechniques">
+            <inheritdoc cref="P:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.SupportedTechniques"/>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.RuntimeIdentifierAttribute">
             <summary>
             Represents an attribute that can be applied to a property in a <see cref="T:Sudoku.Analytics.StepSearcher"/>,

@@ -3501,6 +3501,87 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ittoryu.
+        /// </summary>
+        internal static string SettingsPage_IttoryuSettingsGroup {
+            get {
+                return ResourceManager.GetString("SettingsPage_IttoryuSettingsGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to finish all candidate positions of digit 1, and then finish for digit 2s, 3s, 4s and so on..
+        /// </summary>
+        internal static string SettingsPage_IttoryuSettingsGroupDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_IttoryuSettingsGroupDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support techniques to be used via check ittoryu.
+        /// </summary>
+        internal static string SettingsPage_IttoryuSupportedTechniques {
+            get {
+                return ResourceManager.GetString("SettingsPage_IttoryuSupportedTechniques", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current expander displays for techniques which will be used in checking whether a puzzle is an ittoryu puzzle or not. By default, all single techniques will be included: Hidden Singles, Naked Singles and Full Houses. Last Digits will be replaced with Hidden Singles in Block..
+        /// </summary>
+        internal static string SettingsPage_IttoryuSupportedTechniquesDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_IttoryuSupportedTechniquesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full House (Cannot be disabled).
+        /// </summary>
+        internal static string SettingsPage_IttoryuTechnique_FullHouse {
+            get {
+                return ResourceManager.GetString("SettingsPage_IttoryuTechnique_FullHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hidden Single in Block (Not suggested for disabled).
+        /// </summary>
+        internal static string SettingsPage_IttoryuTechnique_HiddenSingleBlock {
+            get {
+                return ResourceManager.GetString("SettingsPage_IttoryuTechnique_HiddenSingleBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hidden Single in Column.
+        /// </summary>
+        internal static string SettingsPage_IttoryuTechnique_HiddenSingleColumn {
+            get {
+                return ResourceManager.GetString("SettingsPage_IttoryuTechnique_HiddenSingleColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hidden Single in Row.
+        /// </summary>
+        internal static string SettingsPage_IttoryuTechnique_HiddenSingleRow {
+            get {
+                return ResourceManager.GetString("SettingsPage_IttoryuTechnique_HiddenSingleRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Single.
+        /// </summary>
+        internal static string SettingsPage_IttoryuTechnique_NakedSingle {
+            get {
+                return ResourceManager.GetString("SettingsPage_IttoryuTechnique_NakedSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum size of Hobiwan Fish to be searched for.
         /// </summary>
         internal static string SettingsPage_MaxSizeOfComplexFish {

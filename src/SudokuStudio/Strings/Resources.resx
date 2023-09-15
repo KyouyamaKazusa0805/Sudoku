@@ -1178,6 +1178,33 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_Intro" xml:space="preserve">
     <value>Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting.</value>
   </data>
+  <data name="SettingsPage_IttoryuSettingsGroup" xml:space="preserve">
+    <value>Ittoryu</value>
+  </data>
+  <data name="SettingsPage_IttoryuSettingsGroupDescription" xml:space="preserve">
+    <value>finish all candidate positions of digit 1, and then finish for digit 2s, 3s, 4s and so on.</value>
+  </data>
+  <data name="SettingsPage_IttoryuSupportedTechniques" xml:space="preserve">
+    <value>Support techniques to be used via check ittoryu</value>
+  </data>
+  <data name="SettingsPage_IttoryuSupportedTechniquesDescription" xml:space="preserve">
+    <value>The current expander displays for techniques which will be used in checking whether a puzzle is an ittoryu puzzle or not. By default, all single techniques will be included: Hidden Singles, Naked Singles and Full Houses. Last Digits will be replaced with Hidden Singles in Block.</value>
+  </data>
+  <data name="SettingsPage_IttoryuTechnique_FullHouse" xml:space="preserve">
+    <value>Full House (Cannot be disabled)</value>
+  </data>
+  <data name="SettingsPage_IttoryuTechnique_HiddenSingleBlock" xml:space="preserve">
+    <value>Hidden Single in Block (Not suggested for disabled)</value>
+  </data>
+  <data name="SettingsPage_IttoryuTechnique_HiddenSingleColumn" xml:space="preserve">
+    <value>Hidden Single in Column</value>
+  </data>
+  <data name="SettingsPage_IttoryuTechnique_HiddenSingleRow" xml:space="preserve">
+    <value>Hidden Single in Row</value>
+  </data>
+  <data name="SettingsPage_IttoryuTechnique_NakedSingle" xml:space="preserve">
+    <value>Naked Single</value>
+  </data>
   <data name="SettingsPage_MaxSizeOfComplexFish" xml:space="preserve">
     <value>Maximum size of Hobiwan Fish to be searched for</value>
   </data>

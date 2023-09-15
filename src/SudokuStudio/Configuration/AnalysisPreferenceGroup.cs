@@ -1,4 +1,6 @@
+using Sudoku.Algorithm.Ittoryu;
 using Sudoku.Analytics;
+using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.StepSearchers;
 using SudokuStudio.ComponentModel;
@@ -36,4 +38,15 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<int>(RuntimeIdentifier.MaxSizeOfComplexFish, DefaultValue = 5, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(ComplexFishStepSearcher)}.{nameof(ComplexFishStepSearcher.MaxSize)}")]
 [DependencyProperty<int>(RuntimeIdentifier.StepGathererMaxStepsGathered, DefaultValue = 1000, DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(StepCollector)}.{nameof(StepCollector.MaxStepsGathered)}")]
 [DependencyProperty<int>(RuntimeIdentifier.DifficultyLevelMode, DefaultValue = 0, DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(StepCollector)}.{nameof(StepCollector.DifficultyLevelMode)}")]
-public sealed partial class AnalysisPreferenceGroup : PreferenceGroup;
+[DependencyProperty<List<Technique>>(RuntimeIdentifier.IttoryuSupportedTechniques, DocReferencedMemberName = $"global::Sudoku.Algorithm.Ittoryu.{nameof(IttoryuPathFinder)}.{nameof(IttoryuPathFinder.SupportedTechniques)}")]
+public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
+{
+	[Default]
+	private static readonly List<Technique> IttoryuSupportedTechniquesDefaultValue = [
+		Technique.FullHouse,
+		Technique.HiddenSingleBlock,
+		Technique.HiddenSingleRow,
+		Technique.HiddenSingleColumn,
+		Technique.NakedSingle
+	];
+}

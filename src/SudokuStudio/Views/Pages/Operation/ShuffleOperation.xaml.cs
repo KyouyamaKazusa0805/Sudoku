@@ -80,7 +80,7 @@ public sealed partial class ShuffleOperation : Page, IOperationProviderPage
 	private void AdjustToMakeIttoryuButton_Click(object sender, RoutedEventArgs e)
 	{
 		var modified = BasePage.SudokuPane.Puzzle;
-		var ittoryuPathFinder = new IttoryuPathFinder();
+		var ittoryuPathFinder = new IttoryuPathFinder { SupportedTechniques = [.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques] };
 		var path = ittoryuPathFinder.FindPath(in modified);
 		if (!path.IsComplete)
 		{
