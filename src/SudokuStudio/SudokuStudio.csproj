@@ -14,9 +14,12 @@
 		<DocumentationFile>..\docxml\SudokuStudio.xml</DocumentationFile>
 		<Description>The project represents with user interfaces that operates with sudoku puzzles.</Description>
 
-		<!--.NET 8 RC1 has a breaking change that failed to compile the application.-->
-		<!--https://github.com/dotnet/maui/issues/17330-->
-		<!--https://learn.microsoft.com/en-us/dotnet/core/compatibility/sdk/8.0/rid-graph-->
+		<!--
+		.NET 8 RC1 has a breaking change that failed to compile the application.
+		For more information please visit the following links:
+		https://github.com/dotnet/maui/issues/17330
+		https://learn.microsoft.com/en-us/dotnet/core/compatibility/sdk/8.0/rid-graph
+		-->
 		<UseRidGraph>true</UseRidGraph>
 		<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
 
