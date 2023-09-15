@@ -99,7 +99,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// Handle for case 1.
 		foreach (var pattern in PatternsForCase1)
 		{
-			if (Collect(ref context, pattern) is { } step)
+			if (Collect(ref context, in pattern) is { } step)
 			{
 				return step;
 			}
@@ -108,7 +108,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// Handle for case 2.
 		foreach (var pattern in PatternsForCase2)
 		{
-			if (Collect(ref context, pattern) is { } step)
+			if (Collect(ref context, in pattern) is { } step)
 			{
 				return step;
 			}
@@ -147,7 +147,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var isRow = l1 is >= 9 and < 18;
-		if (CheckForBaseType(ref context, grid, pattern, in valueCellsInBothLines, isRow) is { } type1Step)
+		if (CheckForBaseType(ref context, in grid, in pattern, in valueCellsInBothLines, isRow) is { } type1Step)
 		{
 			return type1Step;
 		}
@@ -283,21 +283,21 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			cornerContainingExtraDigit &= tempMap;
 
 			if (BaseType_Type1(
-				ref context, in corner, in crossline, grid, l1, l2,
+				ref context, in corner, in crossline, in grid, l1, l2,
 				cornerDigitsMaskIntersected, in cornerContainingExtraDigit) is { } type1Step)
 			{
 				return type1Step;
 			}
 
 			if (BaseType_Type2(
-				ref context, in corner, in crossline, grid, l1, l2, cornerDigitsMaskIntersected,
+				ref context, in corner, in crossline, in grid, l1, l2, cornerDigitsMaskIntersected,
 				cornerExtraDigitsMask, in cornerContainingExtraDigit) is { } type2Step)
 			{
 				return type2Step;
 			}
 
 			if (BaseType_Type3(
-				ref context, in corner, in crossline, grid, l1, l2, cornerDigitsMaskIntersected,
+				ref context, in corner, in crossline, in grid, l1, l2, cornerDigitsMaskIntersected,
 				cornerExtraDigitsMask, in cornerContainingExtraDigit) is { } type3Step)
 			{
 				return type3Step;
@@ -312,7 +312,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 		else if (maskIntersected != 0)
 		{
-			if (BaseType_TypeLocked(ref context, in corner, in crossline, grid, l1, l2, cornerLockedDigitsMask) is { } typeLockedStep)
+			if (BaseType_TypeLocked(ref context, in corner, in crossline, in grid, l1, l2, cornerLockedDigitsMask) is { } typeLockedStep)
 			{
 				return typeLockedStep;
 			}
@@ -328,12 +328,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			}
 
 			var mirror = pattern.MirrorStrict;
-			if (BaseType_ExternalType1(ref context, in corner, in crossline, in mirror, grid, l1, l2, cornerDigitsMask) is { } externalType1Step)
+			if (BaseType_ExternalType1(ref context, in corner, in crossline, in mirror, in grid, l1, l2, cornerDigitsMask) is { } externalType1Step)
 			{
 				return externalType1Step;
 			}
 
-			if (BaseType_ExternalType2(ref context, in corner, in crossline, in mirror, grid, l1, l2, cornerDigitsMask) is { } externalType2Step)
+			if (BaseType_ExternalType2(ref context, in corner, in crossline, in mirror, in grid, l1, l2, cornerDigitsMask) is { } externalType2Step)
 			{
 				return externalType2Step;
 			}
@@ -566,7 +566,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 
 			foreach (var extraCells in emptyCellsInCurrentHouse.GetSubsets(size))
 			{
-				var currentDigitsMask = grid[extraCells];
+				var currentDigitsMask = grid[in extraCells];
 				if (currentDigitsMask != extraDigitsMask)
 				{
 					continue;
@@ -630,7 +630,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					1 << l1 | 1 << l2,
 					corner[0],
 					corner[1],
-					extraCells,
+					in extraCells,
 					extraDigitsMask,
 					true
 				);
@@ -721,7 +721,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 						1 << l1 | 1 << l2,
 						corner[0],
 						corner[1],
-						new(corner, digit)
+						new(in corner, digit)
 					);
 					if (context.OnlyFindOne)
 					{
@@ -764,7 +764,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		Mask cornerLockedDigitsMask
 	)
 	{
-		var currentDigitsMask = grid[corner];
+		var currentDigitsMask = grid[in corner];
 		if (PopCount((uint)currentDigitsMask) > 4)
 		{
 			// Corner cells hold at least 5 digits, which is disallowed in the pattern.
@@ -955,7 +955,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		Mask externalDigitsMaskToBeChecked
 	)
 	{
-		var elimDigits = (Mask)(grid[mirror] & externalDigitsMaskToBeChecked);
+		var elimDigits = (Mask)(grid[in mirror] & externalDigitsMaskToBeChecked);
 		if (!IsPow2(elimDigits))
 		{
 			return null;
@@ -1003,7 +1003,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			1 << l1 | 1 << l2,
 			corner[0],
 			corner[1],
-			mirror,
+			in mirror,
 			elimDigit
 		);
 		if (context.OnlyFindOne)

@@ -22,7 +22,7 @@ public sealed partial class ExtendedRectangleType2Step(
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
 	[DataMember] Digit extraDigit
-) : ExtendedRectangleStep(conclusions, views, cells, digitsMask)
+) : ExtendedRectangleStep(conclusions, views, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 2;

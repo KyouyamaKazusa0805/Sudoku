@@ -806,7 +806,7 @@ if (student is (name: var name, age: >= 18))
             <param name="size">The size of the picture.</param>
             <param name="padding">The padding.</param>
         </member>
-        <member name="M:Sudoku.Gdip.PointCalculator.#ctor(System.Drawing.SizeF@,System.Single)">
+        <member name="M:Sudoku.Gdip.PointCalculator.#ctor(System.Drawing.SizeF,System.Single)">
             <summary>
             Initializes a <see cref="T:Sudoku.Gdip.PointCalculator"/> instance with the specified picture size instance and padding value.
             </summary>

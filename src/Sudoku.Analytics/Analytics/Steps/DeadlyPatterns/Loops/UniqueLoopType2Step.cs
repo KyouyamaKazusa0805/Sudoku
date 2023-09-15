@@ -23,7 +23,7 @@ public sealed partial class UniqueLoopType2Step(
 	Digit digit2,
 	scoped ref readonly CellMap loop,
 	[DataMember] Digit extraDigit
-) : UniqueLoopStep(conclusions, views, digit1, digit2, loop)
+) : UniqueLoopStep(conclusions, views, digit1, digit2, in loop)
 {
 	/// <inheritdoc/>
 	public override int Type => 2;

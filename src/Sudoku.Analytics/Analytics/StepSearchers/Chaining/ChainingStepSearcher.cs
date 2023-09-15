@@ -103,7 +103,7 @@ public abstract class ChainingStepSearcher(
 	protected NodeSet GetOffToOn(
 		scoped ref readonly Grid grid,
 		ChainNode p,
-		scoped ref readonly Grid? source,
+		scoped in Grid? source,
 		NodeSet offPotentials,
 		bool isX,
 		bool isY,

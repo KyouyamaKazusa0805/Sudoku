@@ -38,7 +38,7 @@ public sealed partial class UniqueRectangleExternalType4Step(
 	isAvoidable ? Technique.AvoidableRectangleExternalType4 : Technique.UniqueRectangleExternalType4,
 	digit1,
 	digit2,
-	cells,
+	in cells,
 	isAvoidable,
 	absoluteOffset
 )

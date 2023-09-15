@@ -241,19 +241,19 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				centerMask |= grid.GetCandidates(c4);
 			}
 
-			if (CheckType1(accumulator, grid, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type1Step)
+			if (CheckType1(accumulator, in grid, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type1Step)
 			{
 				return type1Step;
 			}
-			if (CheckType2(accumulator, grid, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type2Step)
+			if (CheckType2(accumulator, in grid, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type2Step)
 			{
 				return type2Step;
 			}
-			if (CheckType3(accumulator, grid, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type3Step)
+			if (CheckType3(accumulator, in grid, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type3Step)
 			{
 				return type3Step;
 			}
-			if (CheckType4(accumulator, grid, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type4Step)
+			if (CheckType4(accumulator, in grid, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type4Step)
 			{
 				return type4Step;
 			}
@@ -319,7 +319,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				}
 			}
 
-			var step = new BorescoperDeadlyPatternType1Step([.. conclusions], [[.. candidateOffsets]], map, tempMask);
+			var step = new BorescoperDeadlyPatternType1Step([.. conclusions], [[.. candidateOffsets]], in map, tempMask);
 			if (findOnlyOne)
 			{
 				return step;
@@ -379,7 +379,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				}
 			}
 
-			var step = new BorescoperDeadlyPatternType2Step([.. conclusions], [[.. candidateOffsets]], map, tempMask, otherDigit);
+			var step = new BorescoperDeadlyPatternType2Step([.. conclusions], [[.. candidateOffsets]], in map, tempMask, otherDigit);
 			if (findOnlyOne)
 			{
 				return step;
@@ -427,7 +427,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				{
 					foreach (var combination in iterationCellsMap.GetSubsets(size))
 					{
-						var comparer = grid[combination];
+						var comparer = grid[in combination];
 						if ((tempMask & comparer) != 0 || PopCount((uint)tempMask) - 1 != size || (tempMask & otherDigitsMask) != otherDigitsMask)
 						{
 							continue;
@@ -484,9 +484,9 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 						var step = new BorescoperDeadlyPatternType3Step(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)]],
-							map,
+							in map,
 							tempMask,
-							combination,
+							in combination,
 							otherDigitsMask
 						);
 						if (findOnlyOne)
@@ -612,7 +612,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 					var step = new BorescoperDeadlyPatternType4Step(
 						[.. conclusions],
 						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)]],
-						map,
+						in map,
 						otherMask,
 						in currentMap,
 						combinationMask

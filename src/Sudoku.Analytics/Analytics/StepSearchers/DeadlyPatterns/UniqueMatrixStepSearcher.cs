@@ -92,20 +92,20 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				continue;
 			}
 
-			var mask = grid[pattern];
-			if (CheckType1(accumulator, grid, onlyFindOne, pattern, mask) is { } type1Step)
+			var mask = grid[in pattern];
+			if (CheckType1(accumulator, in grid, onlyFindOne, in pattern, mask) is { } type1Step)
 			{
 				return type1Step;
 			}
-			if (CheckType2(accumulator, onlyFindOne, pattern, mask) is { } type2Step)
+			if (CheckType2(accumulator, onlyFindOne, in pattern, mask) is { } type2Step)
 			{
 				return type2Step;
 			}
-			if (CheckType3(accumulator, grid, onlyFindOne, pattern, mask) is { } type3Step)
+			if (CheckType3(accumulator, in grid, onlyFindOne, in pattern, mask) is { } type3Step)
 			{
 				return type3Step;
 			}
-			if (CheckType4(accumulator, grid, onlyFindOne, pattern, mask) is { } type4Step)
+			if (CheckType4(accumulator, in grid, onlyFindOne, in pattern, mask) is { } type4Step)
 			{
 				return type4Step;
 			}
@@ -162,7 +162,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				}
 			}
 
-			var step = new UniqueMatrixType1Step([.. conclusions], [[.. candidateOffsets]], pattern, digitsMask, elimCell * 9 + extraDigit);
+			var step = new UniqueMatrixType1Step([.. conclusions], [[.. candidateOffsets]], in pattern, digitsMask, elimCell * 9 + extraDigit);
 			if (onlyFindOne)
 			{
 				return step;
@@ -213,7 +213,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + extraDigit));
 			}
 
-			var step = new UniqueMatrixType2Step([.. conclusions], [[.. candidateOffsets]], pattern, digitsMask, extraDigit);
+			var step = new UniqueMatrixType2Step([.. conclusions], [[.. candidateOffsets]], in pattern, digitsMask, extraDigit);
 			if (onlyFindOne)
 			{
 				return step;
@@ -258,7 +258,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				{
 					foreach (var cells in allCells.GetSubsets(size))
 					{
-						var tempMask = grid[cells];
+						var tempMask = grid[in cells];
 						if (PopCount((uint)tempMask) != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)
 						{
 							continue;
@@ -301,9 +301,9 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 						var step = new UniqueMatrixType3Step(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
-							pattern,
+							in pattern,
 							digitsMask,
-							cells,
+							in cells,
 							extraDigitsMask
 						);
 						if (onlyFindOne)
@@ -407,7 +407,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				var step = new UniqueMatrixType4Step(
 					[.. conclusions],
 					[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
-					pattern,
+					in pattern,
 					digitsMask,
 					d1,
 					d2,

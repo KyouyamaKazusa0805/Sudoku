@@ -25,7 +25,7 @@ public sealed partial class UniqueMatrixType4Step(
 	[DataMember] Digit digit1,
 	[DataMember] Digit digit2,
 	[DataMember] scoped ref readonly CellMap conjugateHouse
-) : UniqueMatrixStep(conclusions, views, cells, digitsMask)
+) : UniqueMatrixStep(conclusions, views, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 4;

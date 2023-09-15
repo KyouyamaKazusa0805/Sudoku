@@ -156,7 +156,7 @@ public unsafe partial struct Grid : GridImpl
 	/// </exception>
 	private Grid(scoped ref readonly Digit firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
-		ArgumentNullRefException.ThrowIfNullRef(ref Unsafe.AsRef(firstElement));
+		ArgumentNullRefException.ThrowIfNullRef(ref Unsafe.AsRef(in firstElement));
 
 		// Firstly we should initialize the inner values.
 		this = Empty;
@@ -165,7 +165,7 @@ public unsafe partial struct Grid : GridImpl
 		var minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
 		for (var i = 0; i < 81; i++)
 		{
-			var value = Unsafe.AddByteOffset(ref Unsafe.AsRef(firstElement), (nuint)(i * sizeof(Digit)));
+			var value = Unsafe.AddByteOffset(ref Unsafe.AsRef(in firstElement), (nuint)(i * sizeof(Digit)));
 			if ((minusOneEnabled ? value - 1 : value) is var realValue and not -1)
 			{
 				// Calls the indexer to trigger the event (Clear the candidates in peer cells).
@@ -375,7 +375,14 @@ public unsafe partial struct Grid : GridImpl
 	}
 
 	/// <inheritdoc/>
-	public readonly Grid ResetGrid => Preserve(GivenCells);
+	public readonly Grid ResetGrid
+	{
+		get
+		{
+			var givenCells = GivenCells;
+			return Preserve(in givenCells);
+		}
+	}
 
 	/// <inheritdoc/>
 	public readonly Grid UnfixedGrid
@@ -406,7 +413,8 @@ public unsafe partial struct Grid : GridImpl
 	{
 		get
 		{
-			return BackingSolver.Solve(this) is { IsUndefined: false } solution ? unfix(in solution, GivenCells) : Undefined;
+			var givenCells = GivenCells;
+			return BackingSolver.Solve(in this) is { IsUndefined: false } solution ? unfix(in solution, in givenCells) : Undefined;
 
 
 			static Grid unfix(scoped ref readonly Grid solution, scoped ref readonly CellMap pattern)
@@ -523,7 +531,7 @@ public unsafe partial struct Grid : GridImpl
 			{
 				if (!withValueCells && GetState(cell) == CellState.Empty || withValueCells)
 				{
-					mergingFunctionPtr(ref result, this, cell);
+					mergingFunctionPtr(ref result, in this, cell);
 				}
 			}
 
@@ -539,15 +547,16 @@ public unsafe partial struct Grid : GridImpl
 	}
 
 	/// <inheritdoc/>
-	readonly ref Mask GridImpl.this[Cell cell] => ref Unsafe.AsRef(this[cell]);
+	readonly ref Mask GridImpl.this[Cell cell] => ref Unsafe.AsRef(in this[cell]);
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(scoped ref readonly Grid other)
 		=> InternalEqualsByRef(
-			ref Unsafe2.AsByteRef(ref Unsafe.AsRef(this[0])),
-			ref Unsafe2.AsByteRef(ref Unsafe.AsRef(other[0])), sizeof(Mask) * 81
+			in Unsafe2.AsByteRef(ref Unsafe.AsRef(in this[0])),
+			in Unsafe2.AsByteRef(ref Unsafe.AsRef(in other[0])),
+			sizeof(Mask) * 81
 		);
 
 	/// <inheritdoc/>
@@ -696,7 +705,7 @@ public unsafe partial struct Grid : GridImpl
 		{
 			{ IsEmpty: true } => $"<{nameof(Empty)}>",
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
-			_ => GridFormatterFactory.GetBuiltInFormatter(format)?.ToString(this) ?? throw new FormatException("The specified format is invalid.")
+			_ => GridFormatterFactory.GetBuiltInFormatter(format)?.ToString(in this) ?? throw new FormatException("The specified format is invalid.")
 		};
 
 	/// <summary>
@@ -749,7 +758,7 @@ public unsafe partial struct Grid : GridImpl
 		{
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
 			{ IsEmpty: true } => $"<{nameof(Empty)}>",
-			_ => gridFormatter.ToString(this)
+			_ => gridFormatter.ToString(in this)
 		};
 
 	/// <inheritdoc/>
@@ -1069,7 +1078,8 @@ public unsafe partial struct Grid : GridImpl
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Create(scoped ReadOnlySpan<Digit> gridValues, GridCreatingOption creatingOption = 0) => new(gridValues[0], creatingOption);
+	public static Grid Create(scoped ReadOnlySpan<Digit> gridValues, GridCreatingOption creatingOption = 0)
+		=> new(in gridValues[0], creatingOption);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1183,7 +1193,7 @@ public unsafe partial struct Grid : GridImpl
 	/// The .NET Foundation licenses this file to you under the MIT license.
 	/// https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
 	/// -->
-	private static bool InternalEqualsByRef(ref byte first, ref byte second, nuint length)
+	private static bool InternalEqualsByRef(scoped ref readonly byte first, scoped ref readonly byte second, nuint length)
 	{
 		bool result;
 
@@ -1204,12 +1214,12 @@ public unsafe partial struct Grid : GridImpl
 			var offset = length & 2;
 			if (offset != 0)
 			{
-				differentBits = loadUshort(ref first);
-				differentBits -= loadUshort(ref second);
+				differentBits = loadUshort(in first);
+				differentBits -= loadUshort(in second);
 			}
 			if ((length & 1) != 0)
 			{
-				differentBits |= (uint)Unsafe.AddByteOffset(ref first, offset) - Unsafe.AddByteOffset(ref second, offset);
+				differentBits |= (uint)Unsafe.AddByteOffset(ref Unsafe.AsRef(in first), offset) - Unsafe.AddByteOffset(ref Unsafe.AsRef(in second), offset);
 			}
 
 			result = differentBits == 0;
@@ -1220,8 +1230,8 @@ public unsafe partial struct Grid : GridImpl
 		else
 		{
 			var offset = length - sizeof(uint);
-			var differentBits = loadUint(ref first) - loadUint(ref second);
-			differentBits |= loadUint2(ref first, offset) - loadUint2(ref second, offset);
+			var differentBits = loadUint(in first) - loadUint(in second);
+			differentBits |= loadUint2(in first, offset) - loadUint2(in second, offset);
 			result = differentBits == 0;
 
 			goto Result;
@@ -1229,7 +1239,7 @@ public unsafe partial struct Grid : GridImpl
 #endif
 	Longer:
 		// Only check that the ref is the same if buffers are large, and hence its worth avoiding doing unnecessary comparisons.
-		if (!Unsafe.AreSame(ref first, ref second))
+		if (!Unsafe.AreSame(in first, in second))
 		{
 			// C# compiler inverts this test, making the outer goto the conditional jmp.
 			goto Vector;
@@ -1260,7 +1270,7 @@ public unsafe partial struct Grid : GridImpl
 				{
 					do
 					{
-						if (Vector256.LoadUnsafe(ref first, offset) != Vector256.LoadUnsafe(ref second, offset))
+						if (Vector256.LoadUnsafe(in first, offset) != Vector256.LoadUnsafe(in second, offset))
 						{
 							goto NotEqual;
 						}
@@ -1270,7 +1280,7 @@ public unsafe partial struct Grid : GridImpl
 				}
 
 				// Do final compare as Vector256<byte>.Count from end rather than start.
-				if (Vector256.LoadUnsafe(ref first, lengthToExamine) == Vector256.LoadUnsafe(ref second, lengthToExamine))
+				if (Vector256.LoadUnsafe(in first, lengthToExamine) == Vector256.LoadUnsafe(in second, lengthToExamine))
 				{
 					// C# compiler inverts this test, making the outer goto the conditional jmp.
 					goto Equal;
@@ -1291,7 +1301,7 @@ public unsafe partial struct Grid : GridImpl
 				{
 					do
 					{
-						if (Vector128.LoadUnsafe(ref first, offset) != Vector128.LoadUnsafe(ref second, offset))
+						if (Vector128.LoadUnsafe(in first, offset) != Vector128.LoadUnsafe(in second, offset))
 						{
 							goto NotEqual;
 						}
@@ -1301,7 +1311,7 @@ public unsafe partial struct Grid : GridImpl
 				}
 
 				// Do final compare as Vector128<byte>.Count from end rather than start.
-				if (Vector128.LoadUnsafe(ref first, lengthToExamine) == Vector128.LoadUnsafe(ref second, lengthToExamine))
+				if (Vector128.LoadUnsafe(in first, lengthToExamine) == Vector128.LoadUnsafe(in second, lengthToExamine))
 				{
 					// C# compiler inverts this test, making the outer goto the conditional jmp.
 					goto Equal;
@@ -1322,7 +1332,7 @@ public unsafe partial struct Grid : GridImpl
 			{
 				do
 				{
-					if (loadVector(ref first, offset) != loadVector(ref second, offset))
+					if (loadVector(in first, offset) != loadVector(in second, offset))
 					{
 						goto NotEqual;
 					}
@@ -1332,7 +1342,7 @@ public unsafe partial struct Grid : GridImpl
 			}
 
 			// Do final compare as Vector<byte>.Count from end rather than start.
-			if (loadVector(ref first, lengthToExamine) == loadVector(ref second, lengthToExamine))
+			if (loadVector(in first, lengthToExamine) == loadVector(in second, lengthToExamine))
 			{
 				// C# compiler inverts this test, making the outer goto the conditional jmp.
 				goto Equal;
@@ -1348,8 +1358,8 @@ public unsafe partial struct Grid : GridImpl
 			Debug.Assert(length <= (nuint)sizeof(nuint) * 2);
 
 			var offset = length - (nuint)sizeof(nuint);
-			var differentBits = loadNuint(ref first) - loadNuint(ref second);
-			differentBits |= loadUint2(ref first, offset) - loadUint2(ref second, offset);
+			var differentBits = loadNuint(in first) - loadNuint(in second);
+			differentBits |= loadUint2(in first, offset) - loadUint2(in second, offset);
 			result = differentBits == 0;
 			goto Result;
 		}
@@ -1367,7 +1377,7 @@ public unsafe partial struct Grid : GridImpl
 				do
 				{
 					// Compare unsigned so not do a sign extend mov on 64 bit.
-					if (loadNuint2(ref first, offset) != loadNuint2(ref second, offset))
+					if (loadNuint2(in first, offset) != loadNuint2(in second, offset))
 					{
 						goto NotEqual;
 					}
@@ -1376,7 +1386,7 @@ public unsafe partial struct Grid : GridImpl
 			}
 
 			// Do final compare as sizeof(nuint) from end rather than start.
-			result = loadNuint2(ref first, lengthToExamine) == loadNuint2(ref second, lengthToExamine);
+			result = loadNuint2(in first, lengthToExamine) == loadNuint2(in second, lengthToExamine);
 			goto Result;
 		}
 
@@ -1390,25 +1400,27 @@ public unsafe partial struct Grid : GridImpl
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static ushort loadUshort(scoped ref byte start) => Unsafe.ReadUnaligned<ushort>(ref start);
+		static ushort loadUshort(scoped ref readonly byte start) => Unsafe.ReadUnaligned<ushort>(in start);
 
 #if TARGET_64BIT
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static uint loadUint(scoped ref byte start) => Unsafe.ReadUnaligned<uint>(ref start);
+		static uint loadUint(scoped ref readonly byte start) => Unsafe.ReadUnaligned<uint>(in start);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static uint loadUint2(scoped ref byte start, nuint offset) => Unsafe.ReadUnaligned<uint>(ref Unsafe.AddByteOffset(ref start, offset));
+		static uint loadUint2(scoped ref readonly byte start, nuint offset)
+			=> Unsafe.ReadUnaligned<uint>(ref Unsafe.AddByteOffset(ref Unsafe.AsRef(in start), offset));
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static nuint loadNuint(scoped ref byte start) => Unsafe.ReadUnaligned<nuint>(ref start);
+		static nuint loadNuint(scoped ref readonly byte start) => Unsafe.ReadUnaligned<nuint>(in start);
 #endif
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static nuint loadNuint2(scoped ref byte start, nuint offset) => Unsafe.ReadUnaligned<nuint>(ref Unsafe.AddByteOffset(ref start, offset));
+		static nuint loadNuint2(scoped ref readonly byte start, nuint offset)
+			=> Unsafe.ReadUnaligned<nuint>(ref Unsafe.AddByteOffset(ref Unsafe.AsRef(in start), offset));
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static Vector<byte> loadVector(scoped ref byte start, nuint offset)
-			=> Unsafe.ReadUnaligned<Vector<byte>>(ref Unsafe.AddByteOffset(ref start, offset));
+		static Vector<byte> loadVector(scoped ref readonly byte start, nuint offset)
+			=> Unsafe.ReadUnaligned<Vector<byte>>(ref Unsafe.AddByteOffset(ref Unsafe.AsRef(in start), offset));
 	}
 
 	/// <summary>

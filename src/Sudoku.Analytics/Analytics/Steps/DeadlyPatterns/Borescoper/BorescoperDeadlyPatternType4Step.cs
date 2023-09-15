@@ -23,7 +23,7 @@ public sealed partial class BorescoperDeadlyPatternType4Step(
 	Mask digitsMask,
 	[DataMember] scoped ref readonly CellMap conjugateHouse,
 	[DataMember] Mask extraDigitsMask
-) : BorescoperDeadlyPatternStep(conclusions, views, cells, digitsMask)
+) : BorescoperDeadlyPatternStep(conclusions, views, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.5M;

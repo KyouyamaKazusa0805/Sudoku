@@ -23,7 +23,7 @@ public sealed partial class ChromaticPatternType1Step(
 	scoped ref readonly CellMap pattern,
 	[DataMember] Cell extraCell,
 	Mask digitsMask
-) : ChromaticPatternStep(conclusions, views, blocks, pattern, digitsMask)
+) : ChromaticPatternStep(conclusions, views, blocks, in pattern, digitsMask)
 {
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

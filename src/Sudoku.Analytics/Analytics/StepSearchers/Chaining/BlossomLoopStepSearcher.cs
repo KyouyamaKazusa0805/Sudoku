@@ -25,7 +25,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		var result = Collect(grid);
+		var result = Collect(in grid);
 		if (result.Count == 0)
 		{
 			return null;
@@ -64,7 +64,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 					DoChaining(grid, onToOn, [], false, false);
 
 					// Do house chaining.
-					DoHouseChaining(grid, result, cell, digit, onToOn);
+					DoHouseChaining(in grid, result, cell, digit, onToOn);
 				}
 			}
 		}
@@ -124,8 +124,8 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 				}
 
 				// Check for target types.
-				CheckForCellTargetType(posToOn, in potentialPositions, baseDigit, grid, houseIndex, result);
-				CheckForHouseTargetType(posToOn, in potentialPositions, baseDigit, grid, houseIndex, result);
+				CheckForCellTargetType(posToOn, in potentialPositions, baseDigit, in grid, houseIndex, result);
+				CheckForHouseTargetType(posToOn, in potentialPositions, baseDigit, in grid, houseIndex, result);
 			}
 		}
 	}
@@ -185,13 +185,13 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 			// Due to the design of the chaining rule, we cannot determine the connection between each branch
 			// and its corresponding cell from starting house.
 			// We should manually check for this, and determine whether the corresponding relations are "1 to 1".
-			if (!IsOneToOneRelationBetweenStartAndEndNodes(selectedPotentials, potentialPositions, baseDigit, out var projectedStartNodes))
+			if (!IsOneToOneRelationBetweenStartAndEndNodes(selectedPotentials, in potentialPositions, baseDigit, out var projectedStartNodes))
 			{
 				continue;
 			}
 
 			var step = CreateStepCellType(
-				grid,
+				in grid,
 				houseIndex,
 				baseDigit,
 				projectedStartNodes,
@@ -257,13 +257,13 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 					continue;
 				}
 
-				if (!IsOneToOneRelationBetweenStartAndEndNodes(selectedPotentials, potentialPositions, baseDigit, out var projectedStartNodes))
+				if (!IsOneToOneRelationBetweenStartAndEndNodes(selectedPotentials, in potentialPositions, baseDigit, out var projectedStartNodes))
 				{
 					continue;
 				}
 
 				var step = CreateStepHouseType(
-					grid,
+					in grid,
 					houseIndex,
 					baseDigit,
 					projectedStartNodes,
@@ -393,7 +393,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	)
 	{
 		// Eliminates with all possible weak links in the whole loop.
-		var conclusions = CollectLoopEliminations(outcomes, grid, digit);
+		var conclusions = CollectLoopEliminations(outcomes, in grid, digit);
 
 		// Eliminates with digits from the target cell.
 		foreach (var elimDigit in elimDigitsMask)
@@ -436,7 +436,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 		byte targetDigit
 	)
 	{
-		var conclusions = CollectLoopEliminations(outcomes, grid, digit);
+		var conclusions = CollectLoopEliminations(outcomes, in grid, digit);
 		foreach (var cell in elimCells)
 		{
 			conclusions.Add(new(Elimination, cell, targetDigit));

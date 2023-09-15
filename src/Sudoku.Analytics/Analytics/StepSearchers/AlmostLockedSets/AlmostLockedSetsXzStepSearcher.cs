@@ -51,7 +51,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : AlmostLockedSetsSte
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var house = (stackalloc House[2]);
-		var alses = GatherAlmostLockedSets(grid);
+		var alses = GatherAlmostLockedSets(in grid);
 		for (var (i, length) = (0, alses.Length); i < length - 1; i++)
 		{
 			var als1 = alses[i];

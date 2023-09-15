@@ -26,7 +26,7 @@ public sealed partial class UniqueMatrixType3Step(
 	Mask digitsMask,
 	[DataMember] scoped ref readonly CellMap subsetCells,
 	[DataMember] Mask subsetDigitsMask
-) : UniqueMatrixStep(conclusions, views, cells, digitsMask)
+) : UniqueMatrixStep(conclusions, views, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 3;

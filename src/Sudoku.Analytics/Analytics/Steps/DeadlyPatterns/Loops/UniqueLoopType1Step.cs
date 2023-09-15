@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit2"><inheritdoc/></param>
 /// <param name="loop"><inheritdoc/></param>
 public sealed class UniqueLoopType1Step(Conclusion[] conclusions, View[]? views, Digit digit1, Digit digit2, scoped ref readonly CellMap loop) :
-	UniqueLoopStep(conclusions, views, digit1, digit2, loop)
+	UniqueLoopStep(conclusions, views, digit1, digit2, in loop)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

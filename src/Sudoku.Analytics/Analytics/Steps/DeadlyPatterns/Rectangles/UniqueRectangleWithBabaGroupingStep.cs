@@ -35,7 +35,7 @@ public sealed partial class UniqueRectangleWithBabaGroupingStep(
 	Technique.UniqueRectangleBabaGrouping,
 	digit1,
 	digit2,
-	cells,
+	in cells,
 	false,
 	absoluteOffset
 )

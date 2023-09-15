@@ -46,7 +46,7 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 	},
 	digit1,
 	digit2,
-	cells,
+	in cells,
 	false,
 	absoluteOffset
 )

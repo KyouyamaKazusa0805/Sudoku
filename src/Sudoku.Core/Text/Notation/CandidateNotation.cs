@@ -268,7 +268,7 @@ public sealed partial class CandidateNotation : INotation<CandidateNotation, Can
 	/// <param name="collection"><inheritdoc cref="ToString(Candidate)" path="/param[@name='value']"/></param>
 	/// <returns><inheritdoc cref="ToString(Candidate)" path="/returns"/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCollectionString(scoped ref readonly CandidateMap collection) => ToCollectionString(collection, Kind.RxCy);
+	public static string ToCollectionString(scoped ref readonly CandidateMap collection) => ToCollectionString(in collection, Kind.RxCy);
 
 	/// <inheritdoc cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(TCollection, TConceptKindPresenter)"/>
 	/// <exception cref="NotSupportedException">Throws when <paramref name="notation"/> is <see cref="Kind.K9"/>.</exception>
@@ -313,7 +313,7 @@ public sealed partial class CandidateNotation : INotation<CandidateNotation, Can
 				{
 					[] => string.Empty,
 					[var p] => $"{p % 9 + 1}{p / 9 / 9 + 1}{p / 9 % 9 + 1}",
-					_ => f(collection)
+					_ => f(in collection)
 				};
 
 

@@ -26,7 +26,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : AlmostLockedSets
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		var alses = GatherAlmostLockedSets(grid);
+		var alses = GatherAlmostLockedSets(in grid);
 
 		// Gather all conjugate pairs.
 		var conjugatePairs = CollectConjugatePairs();

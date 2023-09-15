@@ -44,7 +44,7 @@ public sealed partial class UniqueRectangleType3Step(
 	isAvoidable ? Technique.AvoidableRectangleType3 : Technique.UniqueRectangleType3,
 	digit1,
 	digit2,
-	cells,
+	in cells,
 	isAvoidable,
 	absoluteOffset
 )

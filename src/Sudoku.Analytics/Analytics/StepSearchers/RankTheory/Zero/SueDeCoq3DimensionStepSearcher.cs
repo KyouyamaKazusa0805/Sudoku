@@ -49,7 +49,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 
 			foreach (var rbCurrentMap in rbList)
 			{
-				var rbSelectedInterMask = grid[rbCurrentMap];
+				var rbSelectedInterMask = grid[in rbCurrentMap];
 				if (PopCount((uint)rbSelectedInterMask) <= rbCurrentMap.Count + 1)
 				{
 					continue;
@@ -57,7 +57,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 
 				foreach (var cbCurrentMap in cbList)
 				{
-					var cbSelectedInterMask = grid[cbCurrentMap];
+					var cbSelectedInterMask = grid[in cbCurrentMap];
 					if (PopCount((uint)cbSelectedInterMask) <= cbCurrentMap.Count + 1)
 					{
 						continue;
@@ -78,7 +78,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 					{
 						foreach (var selectedBlockCells in blockMap.GetSubsets(i))
 						{
-							var blockMask = grid[selectedBlockCells];
+							var blockMask = grid[in selectedBlockCells];
 							var elimMapBlock = CellMap.Empty;
 
 							// Get the elimination map in the block.
@@ -92,7 +92,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 							{
 								foreach (var selectedRowCells in rowMap.GetSubsets(j))
 								{
-									var rowMask = grid[selectedRowCells];
+									var rowMask = grid[in selectedRowCells];
 									var elimMapRow = CellMap.Empty;
 
 									foreach (var digit in rowMask)
@@ -105,7 +105,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 									{
 										foreach (var selectedColumnCells in columnMap.GetSubsets(k))
 										{
-											var columnMask = grid[selectedColumnCells];
+											var columnMask = grid[in selectedColumnCells];
 											var elimMapColumn = CellMap.Empty;
 
 											foreach (var digit in columnMask)

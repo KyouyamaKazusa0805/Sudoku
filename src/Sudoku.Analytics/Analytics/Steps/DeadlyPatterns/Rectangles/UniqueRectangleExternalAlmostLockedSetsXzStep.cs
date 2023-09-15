@@ -39,7 +39,7 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 	isAvoidable ? Technique.AvoidableRectangleExternalAlmostLockedSetsXz : Technique.UniqueRectangleExternalAlmostLockedSetsXz,
 	digit1,
 	digit2,
-	cells,
+	in cells,
 	isAvoidable,
 	absoluteOffset
 )

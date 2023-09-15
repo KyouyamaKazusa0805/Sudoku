@@ -41,7 +41,7 @@ public sealed partial class UniqueRectangleWithWWingStep(
 	code,
 	digit1,
 	digit2,
-	cells,
+	in cells,
 	isAvoidable,
 	absoluteOffset
 )

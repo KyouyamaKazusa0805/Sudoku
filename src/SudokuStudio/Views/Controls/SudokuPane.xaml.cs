@@ -291,7 +291,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		InitializeComponent();
 		InitializeChildrenControls();
-		UpdateCellData(_puzzle = Grid.Empty);
+
+		_puzzle = Grid.Empty;
+
+		UpdateCellData(in _puzzle);
 		InitializeEvents();
 	}
 
@@ -450,7 +453,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Try to update grid state.
 	/// </summary>
 	/// <param name="newGrid">The new grid to be used for assigning to the target.</param>
-	public void UpdateGrid(scoped ref readonly Grid newGrid) => SetPuzzleInternal(newGrid, PuzzleUpdatingMethod.Programmatic);
+	public void UpdateGrid(scoped ref readonly Grid newGrid) => SetPuzzleInternal(in newGrid, PuzzleUpdatingMethod.Programmatic);
 
 	/// <summary>
 	/// <para>Triggers <see cref="GridUpdated"/> event.</para>
@@ -480,7 +483,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </param>
 	/// <seealso cref="SudokuPaneCell"/>
 	internal void SetPuzzleInternal(scoped ref readonly Grid value, PuzzleUpdatingMethod method, bool clearStack = false)
-		=> SetPuzzleCore(value, new(method, clearStack, false));
+		=> SetPuzzleCore(in value, new(method, clearStack, false));
 
 	/// <inheritdoc cref="UpdateViewUnit(ViewUnitBindableSource?)"/>
 	private void UpdateViewUnit() => UpdateViewUnit(ViewUnit);
@@ -601,7 +604,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		// Assigns the puzzle.
 		_puzzle = value;
 
-		UpdateCellData(value);
+		UpdateCellData(in value);
 		switch (clearStack, whileUndoingOrRedoing)
 		{
 			case (true, _) when EnableUndoRedoStacking:
@@ -631,7 +634,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		if (value.IsSolved)
 		{
-			PuzzleCompleted?.Invoke(this, new(value));
+			PuzzleCompleted?.Invoke(this, new(in value));
 		}
 	}
 

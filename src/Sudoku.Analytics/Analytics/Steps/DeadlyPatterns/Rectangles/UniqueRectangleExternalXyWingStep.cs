@@ -39,7 +39,7 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 	isAvoidable ? Technique.AvoidableRectangleExternalXyWing : Technique.UniqueRectangleExternalXyWing,
 	digit1,
 	digit2,
-	cells,
+	in cells,
 	isAvoidable,
 	absoluteOffset
 )

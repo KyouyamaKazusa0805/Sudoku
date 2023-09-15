@@ -31,7 +31,7 @@ public partial class UniqueRectangleWithConjugatePairStep(
 	bool isAvoidable,
 	[DataMember] Conjugate[] conjugatePairs,
 	int absoluteOffset
-) : UniqueRectangleStep(conclusions, views, code, digit1, digit2, cells, isAvoidable, absoluteOffset)
+) : UniqueRectangleStep(conclusions, views, code, digit1, digit2, in cells, isAvoidable, absoluteOffset)
 {
 	/// <inheritdoc/>
 	public sealed override decimal BaseDifficulty => 4.4M;

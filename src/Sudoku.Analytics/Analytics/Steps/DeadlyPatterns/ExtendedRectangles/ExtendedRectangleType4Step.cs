@@ -21,7 +21,7 @@ public sealed partial class ExtendedRectangleType4Step(
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
 	[DataMember] scoped ref readonly Conjugate conjugatePair
-) : ExtendedRectangleStep(conclusions, views, cells, digitsMask)
+) : ExtendedRectangleStep(conclusions, views, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 4;

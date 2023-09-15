@@ -24,7 +24,7 @@ public sealed partial class BorescoperDeadlyPatternType3Step(
 	Mask digitsMask,
 	[DataMember] scoped ref readonly CellMap subsetCells,
 	[DataMember] Mask subsetDigitsMask
-) : BorescoperDeadlyPatternStep(conclusions, views, cells, digitsMask)
+) : BorescoperDeadlyPatternStep(conclusions, views, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 3;

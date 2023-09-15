@@ -52,7 +52,7 @@ public abstract class SubsetStepSearcher(
 				// Iterate on each combination.
 				foreach (var cells in currentEmptyMap.GetSubsets(size))
 				{
-					var digitsMask = grid[cells];
+					var digitsMask = grid[in cells];
 					if (PopCount((uint)digitsMask) != size)
 					{
 						continue;
@@ -92,7 +92,7 @@ public abstract class SubsetStepSearcher(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
 							house,
-							cells,
+							in cells,
 							digitsMask,
 							isLocked
 						);
@@ -156,7 +156,7 @@ public abstract class SubsetStepSearcher(
 							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 						}
 
-						cellOffsets.AddRange(GetCrosshatchBaseCells(grid, digit, house, in map));
+						cellOffsets.AddRange(GetCrosshatchBaseCells(in grid, digit, house, in map));
 					}
 
 					var isLocked = map.IsInIntersection;
@@ -221,7 +221,7 @@ public abstract class SubsetStepSearcher(
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
 	private CellViewNode[] GetCrosshatchBaseCells(scoped ref readonly Grid grid, Digit digit, House house, scoped ref readonly CellMap cells)
 	{
-		var info = Crosshatching.GetCrosshatchingInfo(grid, digit, house, cells);
+		var info = Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in cells);
 		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
 		{
 			return [];

@@ -35,7 +35,7 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 	Technique.UniqueRectangleExternalTurbotFish,
 	digit1,
 	digit2,
-	cells,
+	in cells,
 	false,
 	absoluteOffset
 )

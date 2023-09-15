@@ -36,7 +36,7 @@ public sealed partial class AvoidableRectangleWithHiddenSingleStep(
 	(Technique)((int)Technique.AvoidableRectangleHiddenSingleBlock + (int)house.ToHouseType()),
 	digit1,
 	digit2,
-	cells,
+	in cells,
 	true,
 	absoluteOffset
 )

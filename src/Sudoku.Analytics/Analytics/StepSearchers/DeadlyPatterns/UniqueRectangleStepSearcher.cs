@@ -183,8 +183,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 
 		// Iterate on mode (whether use AR or UR mode to search).
-		Collect(list, grid, false);
-		Collect(list, grid, true);
+		Collect(list, in grid, false);
+		Collect(list, in grid, true);
 
 		if (list.Count == 0)
 		{
@@ -213,7 +213,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void Collect(List<UniqueRectangleStep> gathered, scoped ref readonly Grid grid, bool arMode)
 	{
 		// Search for ALSes. This result will be used by UR External ALS-XZ structures.
-		var alses = AlmostLockedSetsStepSearcher.GatherAlmostLockedSets(grid);
+		var alses = AlmostLockedSetsStepSearcher.GatherAlmostLockedSets(in grid);
 
 		// Iterate on each possible UR pattern.
 		for (var index = 0; index < CountOfPatterns; index++)
@@ -221,7 +221,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var urCells = UniqueRectanglePatterns[index];
 
 			// Check preconditions.
-			if (!CheckPreconditions(grid, urCells, arMode))
+			if (!CheckPreconditions(in grid, urCells, arMode))
 			{
 				continue;
 			}
@@ -256,17 +256,17 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 					if (SearchForExtendedUniqueRectangles)
 					{
-						CheckBabaGroupingUnique(gathered, grid, urCells, comparer, d1, d2, index);
-						CheckExternalType1Or2(gathered, grid, urCells, d1, d2, index, arMode);
-						CheckExternalType3(gathered, grid, urCells, comparer, d1, d2, index, arMode);
-						CheckExternalType4(gathered, grid, urCells, comparer, d1, d2, index, arMode);
-						CheckExternalXyWing(gathered, grid, urCells, comparer, d1, d2, index, arMode);
-						CheckExternalAlmostLockedSetsXz(gathered, grid, urCells, alses, comparer, d1, d2, index, arMode);
+						CheckBabaGroupingUnique(gathered, in grid, urCells, comparer, d1, d2, index);
+						CheckExternalType1Or2(gathered, in grid, urCells, d1, d2, index, arMode);
+						CheckExternalType3(gathered, in grid, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalType4(gathered, in grid, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalXyWing(gathered, in grid, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalAlmostLockedSetsXz(gathered, in grid, urCells, alses, comparer, d1, d2, index, arMode);
 
 						if (!arMode)
 						{
-							CheckExternalTurbotFish(gathered, grid, urCells, comparer, d1, d2, index);
-							CheckExternalWWing(gathered, grid, urCells, comparer, d1, d2, index);
+							CheckExternalTurbotFish(gathered, in grid, urCells, comparer, d1, d2, index);
+							CheckExternalWWing(gathered, in grid, urCells, comparer, d1, d2, index);
 						}
 					}
 
@@ -276,17 +276,17 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						var corner1 = urCells[c1];
 						var otherCellsMap = (CellMap)urCells - corner1;
 
-						CheckType1(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
-						CheckType5(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
-						CheckHidden(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
+						CheckType1(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
+						CheckType5(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
+						CheckHidden(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
 
 						if (!arMode && SearchForExtendedUniqueRectangles)
 						{
-							Check3X(gathered, grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3X2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3N2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3U2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3E2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3X(gathered, in grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3X2SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3N2SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3U2SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3E2SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
 						}
 
 						// If we aim to a single cell, all four cells should be checked.
@@ -304,15 +304,12 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							var tempOtherCellsMap = otherCellsMap - corner2;
 
 							// Both diagonal and non-diagonal.
-							CheckType2(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+							CheckType2(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 							if (SearchForExtendedUniqueRectangles)
 							{
-								CheckRegularWing(
-									gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2,
-									in tempOtherCellsMap, index, (c1, c2) is (0, 3) or (1, 2)
-								);
-								//CheckWWing(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+								CheckRegularWing(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index, (c1, c2) is (0, 3) or (1, 2));
+								//CheckWWing(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 							}
 
 							switch (c1, c2)
@@ -324,17 +321,17 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									{
 										if (SearchForExtendedUniqueRectangles)
 										{
-											CheckHiddenSingleAvoidable(gathered, grid, urCells, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											CheckHiddenSingleAvoidable(gathered, in grid, urCells, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 										}
 									}
 									else
 									{
-										CheckType6(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+										CheckType6(gathered, in grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 										if (SearchForExtendedUniqueRectangles)
 										{
-											Check2D(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
-											Check2D1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check2D(gathered, in grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check2D1SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 										}
 									}
 
@@ -344,23 +341,23 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								// Non-diagonal type.
 								default:
 								{
-									CheckType3(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+									CheckType3(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 									if (!arMode)
 									{
-										CheckType4(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+										CheckType4(gathered, in grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 										if (SearchForExtendedUniqueRectangles)
 										{
-											Check2B1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
-											Check4X3SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
-											Check4C3SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check2B1SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check4X3SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check4C3SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 										}
 									}
 
 									if (SearchForExtendedUniqueRectangles)
 									{
-										CheckSueDeCoq(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+										CheckSueDeCoq(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 									}
 
 									break;
@@ -409,7 +406,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	)
 	{
 		// Get the summary mask.
-		var mask = grid[otherCellsMap];
+		var mask = grid[in otherCellsMap];
 		if (mask != comparer)
 		{
 			return;
@@ -501,7 +498,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	)
 	{
 		// Get the summary mask.
-		var mask = grid[otherCellsMap];
+		var mask = grid[in otherCellsMap];
 		if (mask != comparer)
 		{
 			return;
@@ -627,7 +624,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			return;
 		}
 
-		var mask = grid[otherCellsMap];
+		var mask = grid[in otherCellsMap];
 		if ((mask & comparer) != comparer)
 		{
 			return;
@@ -646,7 +643,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			{
 				foreach (var iteratedCells in iterationMap.GetSubsets(size))
 				{
-					var tempMask = grid[iteratedCells];
+					var tempMask = grid[in iteratedCells];
 					if ((tempMask & comparer) != 0 || PopCount((uint)tempMask) - 1 != size || (tempMask & otherDigitsMask) != otherDigitsMask)
 					{
 						continue;
@@ -705,7 +702,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							d1,
 							d2,
 							[.. urCells],
-							iteratedCells,
+							in iteratedCells,
 							otherDigitsMask,
 							houseIndex,
 							arMode,
@@ -770,7 +767,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 			foreach (var digit in (d1, d2))
 			{
-				if (!IsConjugatePair(digit, otherCellsMap, houseIndex))
+				if (!IsConjugatePair(digit, in otherCellsMap, houseIndex))
 				{
 					continue;
 				}
@@ -881,7 +878,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		// Get the summary mask.
-		var otherCellsMask = grid[otherCellsMap];
+		var otherCellsMask = grid[in otherCellsMap];
 
 		// Degenerate to type 1.
 		var extraMask = (Mask)(otherCellsMask ^ comparer);
@@ -990,7 +987,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		{
 			foreach (var (h1, h2) in ((r1, r2), (c1, c2)))
 			{
-				gather(grid, otherCellsMap, h1 is >= 9 and < 18, digit, h1, h2);
+				gather(in grid, in otherCellsMap, h1 is >= 9 and < 18, digit, h1, h2);
 			}
 		}
 
@@ -2726,7 +2723,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				// Here we should check for pivot digit for case 'pivotDigit == -1'.
 				if (pivotDigit == -1)
 				{
-					var mergedMask = grid[combination, false, GridMaskMergingMethod.And];
+					var mergedMask = grid[in combination, false, GridMaskMergingMethod.And];
 					if (!IsPow2(mergedMask))
 					{
 						// No pivot digit can be found, meaning no eliminations can be found.
@@ -2736,7 +2733,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					finalPivotDigit = TrailingZeroCount(mergedMask);
 				}
 
-				var maskToCompare = pivotDigit == -1 ? grid[combination] & ~(1 << finalPivotDigit) : grid[combination];
+				var maskToCompare = pivotDigit == -1 ? grid[in combination] & ~(1 << finalPivotDigit) : grid[in combination];
 				if (((otherCell1Mask | otherCell2Mask) & ~comparer) != maskToCompare)
 				{
 					// Digits are not matched.
@@ -2815,8 +2812,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						d2,
 						in cells,
 						arMode,
-						combination,
-						otherCellsMap,
+						in combination,
+						in otherCellsMap,
 						otherDigitsMask,
 						index
 					)
@@ -2977,7 +2974,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						in cells,
 						isAvoidable,
 						wDigit,
-						otherCellsMap,
+						in otherCellsMap,
 						[endCell1, endCell2],
 						index
 					)
@@ -3091,7 +3088,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				// Iterate on each intersection combination.
 				foreach (var currentInterMap in list)
 				{
-					var selectedInterMask = grid[currentInterMap];
+					var selectedInterMask = grid[in currentInterMap];
 					if (PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
 					{
 						// The intersection combination is an ALS or a normal subset,
@@ -3130,7 +3127,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							var elimMapLine = CellMap.Empty;
 
 							// Get the links of the block.
-							var blockMask = grid[selectedCellsInBlock];
+							var blockMask = grid[in selectedCellsInBlock];
 
 							// Get the elimination map in the block.
 							foreach (var digit in blockMask)
@@ -3146,10 +3143,10 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							elimMapLine &= lineMap - currentInterMap;
 
 							checkGeneralizedSdc(
-								accumulator, grid, arMode, cannibalMode, d1, d2, urCells,
+								accumulator, in grid, arMode, cannibalMode, d1, d2, urCells,
 								line, otherBlock, otherDigitsMask, blockMask, selectedInterMask,
-								otherDigitsMask, in elimMapLine, in elimMapBlock, otherCellsMap, in currentBlockMap,
-								currentInterMap, i, 0, index
+								otherDigitsMask, in elimMapLine, in elimMapBlock, in otherCellsMap, in currentBlockMap,
+								in currentInterMap, i, 0, index
 							);
 						}
 					}
@@ -3296,9 +3293,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						selectedInterMask,
 						cannibalMode,
 						maskIsolated,
-						currentBlockMap,
-						currentLineMap,
-						currentInterMap,
+						in currentBlockMap,
+						in currentLineMap,
+						in currentInterMap,
 						index
 					)
 				);
@@ -3351,9 +3348,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		int index
 	)
 	{
-		checkType1(grid);
+		checkType1(in grid);
 #if IMPLEMENTED
-		checkType2(grid);
+		checkType2(in grid);
 #endif
 
 
@@ -3654,8 +3651,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	)
 	{
 		var cells = (CellMap)urCells;
-
-		if (!CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
 			return;
 		}
@@ -3777,8 +3773,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	)
 	{
 		var cells = (CellMap)urCells;
-
-		if (!CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
 			return;
 		}
@@ -3835,7 +3830,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					{
 						foreach (var otherCells in houseCells.GetSubsets(size - 1))
 						{
-							var subsetDigitsMask = (Mask)(grid[otherCells] | comparer);
+							var subsetDigitsMask = (Mask)(grid[in otherCells] | comparer);
 							if (PopCount((uint)subsetDigitsMask) != size)
 							{
 								// The subset cannot formed.
@@ -3919,8 +3914,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									d1,
 									d2,
 									in cells,
-									guardianCellPair,
-									otherCells,
+									in guardianCellPair,
+									in otherCells,
 									subsetDigitsMask,
 									isIncomplete,
 									arMode,
@@ -3957,8 +3952,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	)
 	{
 		var cells = (CellMap)urCells;
-
-		if (!CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
 			return;
 		}
@@ -4008,7 +4002,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var possibleConjugatePairDigitsMask = (Mask)(grid[guardianCellPair] & ~comparer);
+				var possibleConjugatePairDigitsMask = (Mask)(grid[in guardianCellPair] & ~comparer);
 				foreach (var house in houses)
 				{
 					foreach (var conjugatePairDigit in possibleConjugatePairDigitsMask)
@@ -4094,8 +4088,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								d1,
 								d2,
 								in cells,
-								guardianCellPair,
-								new(guardianCellPair, conjugatePairDigit),
+								in guardianCellPair,
+								new(in guardianCellPair, conjugatePairDigit),
 								isIncomplete,
 								arMode,
 								index
@@ -4128,7 +4122,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	)
 	{
 		var cells = (CellMap)urCells;
-		if (!CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
 			return;
 		}
@@ -4362,7 +4356,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		var cells = (CellMap)urCells;
-		if (!CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
 			return;
 		}
@@ -4552,7 +4546,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	)
 	{
 		var cells = (CellMap)urCells;
-		if (!CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
 			return;
 		}
@@ -4586,8 +4580,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				continue;
 			}
 
-			//forOneEndoLeaf(grid, in cellsToEnumerate, in guardianCells, houseCombination);
-			forBothExoLeaves(grid, in cellsToEnumerate, in guardianCells, houseCombination);
+			//forOneEndoLeaf(in grid, in cellsToEnumerate, in guardianCells, houseCombination);
+			forBothExoLeaves(in grid, in cellsToEnumerate, in guardianCells, houseCombination);
 		}
 
 
@@ -4694,7 +4688,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							d1,
 							d2,
 							in cells,
-							guardianCells,
+							in guardianCells,
 							in cellPair,
 							isIncomplete,
 							arMode,
@@ -4815,8 +4809,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						d1,
 						d2,
 						in cells,
-						guardianCells,
-						cellPair,
+						in guardianCells,
+						in cellPair,
 						isIncomplete,
 						arMode,
 						index
@@ -4851,8 +4845,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	)
 	{
 		var cells = (CellMap)urCells;
-
-		if (!CheckPreconditionsOnIncomplete(grid, urCells, d1, d2))
+		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
 			return;
 		}

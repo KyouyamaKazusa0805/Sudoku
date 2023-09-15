@@ -27,7 +27,7 @@ public sealed partial class UniqueLoopType3Step(
 	scoped ref readonly CellMap loop,
 	[DataMember] scoped ref readonly CellMap subsetCells,
 	[DataMember] Mask subsetDigitsMask
-) : UniqueLoopStep(conclusions, views, digit1, digit2, loop)
+) : UniqueLoopStep(conclusions, views, digit1, digit2, in loop)
 {
 	/// <inheritdoc/>
 	public override int Type => 3;

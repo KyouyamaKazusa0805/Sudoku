@@ -30,7 +30,7 @@ public sealed class UniqueRectangleType1Step(
 	isAvoidable ? Technique.AvoidableRectangleType1 : Technique.UniqueRectangleType1,
 	digit1,
 	digit2,
-	cells,
+	in cells,
 	isAvoidable,
 	absoluteOffset
 )

@@ -44,7 +44,7 @@ public sealed class PointCalculator
 	/// in order to correct the position on drawing. The default value is <c>10F</c>, which is defined by <see cref="DefaultPadding"/>
 	/// </param>
 	/// <seealso cref="DefaultPadding"/>
-	private PointCalculator(scoped ref readonly SizeF size, float padding)
+	private PointCalculator(SizeF size, float padding)
 	{
 		// Initialize sizes.
 		ControlSize = size;

@@ -26,7 +26,7 @@ public sealed partial class ReverseBivalueUniversalGraveType2Step(
 	[DataMember] Digit extraDigit,
 	scoped ref readonly CellMap pattern,
 	scoped ref readonly CellMap emptyCells
-) : ReverseBivalueUniversalGraveStep(conclusions, views, digit1, digit2, pattern, emptyCells)
+) : ReverseBivalueUniversalGraveStep(conclusions, views, digit1, digit2, in pattern, in emptyCells)
 {
 	/// <inheritdoc/>
 	public override int Type => 2;

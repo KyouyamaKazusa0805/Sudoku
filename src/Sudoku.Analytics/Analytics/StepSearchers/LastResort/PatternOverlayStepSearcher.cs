@@ -26,7 +26,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
-		var templates = GetInvalidPos(context.Grid);
+		var templates = GetInvalidPos(in context.Grid);
 		for (var digit = 0; digit < 9; digit++)
 		{
 			if (templates[digit] is not (var template and not []))

@@ -125,19 +125,19 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 
 		for (var size = 2; size <= 4; size++)
 		{
-			if (Collect(accumulator, grid, size, r, c, false, true, onlyFindOne) is { } finlessRowFish)
+			if (Collect(accumulator, in grid, size, r, c, false, true, onlyFindOne) is { } finlessRowFish)
 			{
 				return finlessRowFish;
 			}
-			if (Collect(accumulator, grid, size, r, c, false, false, onlyFindOne) is { } finlessColumnFish)
+			if (Collect(accumulator, in grid, size, r, c, false, false, onlyFindOne) is { } finlessColumnFish)
 			{
 				return finlessColumnFish;
 			}
-			if (Collect(accumulator, grid, size, r, c, true, true, onlyFindOne) is { } finnedRowFish)
+			if (Collect(accumulator, in grid, size, r, c, true, true, onlyFindOne) is { } finnedRowFish)
 			{
 				return finnedRowFish;
 			}
-			if (Collect(accumulator, grid, size, r, c, true, false, onlyFindOne) is { } finnedColumnFish)
+			if (Collect(accumulator, in grid, size, r, c, true, false, onlyFindOne) is { } finnedColumnFish)
 			{
 				return finnedColumnFish;
 			}

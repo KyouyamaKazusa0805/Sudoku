@@ -568,7 +568,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => CellNotation.ToCollectionString(this);
+	public override readonly string ToString() => CellNotation.ToCollectionString(in this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -744,7 +744,7 @@ public partial struct CellMap :
 		var i = 0;
 		foreach (var (key, value) in dictionary)
 		{
-			result[i++] = new(key, value);
+			result[i++] = new(key, in value);
 		}
 
 		return result;

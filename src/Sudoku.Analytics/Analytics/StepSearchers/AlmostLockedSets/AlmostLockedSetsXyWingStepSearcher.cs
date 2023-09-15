@@ -33,7 +33,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : AlmostLockedSet
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var rccList = new List<(AlmostLockedSet Left, AlmostLockedSet Right, Mask Mask)>();
-		var alses = GatherAlmostLockedSets(grid);
+		var alses = GatherAlmostLockedSets(in grid);
 
 		// Gather all RCCs.
 		for (var (i, length) = (0, alses.Length); i < length - 1; i++)

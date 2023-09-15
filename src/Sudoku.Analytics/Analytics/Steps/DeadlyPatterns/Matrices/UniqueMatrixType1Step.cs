@@ -21,7 +21,7 @@ public sealed partial class UniqueMatrixType1Step(
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
 	[DataMember] Candidate candidate
-) : UniqueMatrixStep(conclusions, views, cells, digitsMask)
+) : UniqueMatrixStep(conclusions, views, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

@@ -22,7 +22,7 @@ public sealed partial class UniqueMatrixType2Step(
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
 	[DataMember] Digit extraDigit
-) : UniqueMatrixStep(conclusions, views, cells, digitsMask)
+) : UniqueMatrixStep(conclusions, views, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 2;

@@ -22,7 +22,7 @@ public sealed partial class UniqueLoopType4Step(
 	Digit digit2,
 	scoped ref readonly CellMap loop,
 	[DataMember] scoped ref readonly Conjugate conjugatePair
-) : UniqueLoopStep(conclusions, views, digit1, digit2, loop)
+) : UniqueLoopStep(conclusions, views, digit1, digit2, in loop)
 {
 	/// <inheritdoc/>
 	public override int Type => 4;

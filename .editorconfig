@@ -431,9 +431,6 @@ dotnet_diagnostic.CS9084.severity = error
 # CS9193: Argument should be a variable because it is passed to a 'ref readonly' parameter
 dotnet_diagnostic.CS9193.severity = silent
 
-# CS9195: Argument should be passed with the 'in' keyword
-dotnet_diagnostic.CS9195.severity = silent
-
 
 # IDE0001: Simplify Names
 dotnet_diagnostic.IDE0001.severity = suggestion

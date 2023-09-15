@@ -27,7 +27,7 @@ public sealed partial class ExtendedRectangleType3Step(
 	[DataMember] scoped ref readonly CellMap subsetCells,
 	[DataMember] Mask subsetDigitsMask,
 	[DataMember] House house
-) : ExtendedRectangleStep(conclusions, views, cells, digitsMask)
+) : ExtendedRectangleStep(conclusions, views, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 3;

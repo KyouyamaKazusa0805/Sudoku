@@ -34,7 +34,7 @@ public sealed partial class UniqueRectangle2DOr3XStep(
 	[DataMember] Digit yDigit,
 	[DataMember] Cell xyCell,
 	int absoluteOffset
-) : UniqueRectangleStep(conclusions, views, code, digit1, digit2, cells, isAvoidable, absoluteOffset)
+) : UniqueRectangleStep(conclusions, views, code, digit1, digit2, in cells, isAvoidable, absoluteOffset)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
