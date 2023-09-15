@@ -295,7 +295,7 @@
 					<w:SettingsExpander.Items>
 						<w:SettingsCard ContentAlignment="Left">
 							<CheckBox
-								Content="{m:R Key=SettingsPage_IttoryuTechnique_FullHouse}"
+								Content="{m:R Key=SettingsPage_IttoryuTechnique_FullHouse}" IsEnabled="False"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=TwoWay,
 								Converter={StaticResource IttoryuConverter},ConverterParameter='FullHouse'}" />
 						</w:SettingsCard>
