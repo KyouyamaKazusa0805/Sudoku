@@ -1,5 +1,7 @@
 using System.Diagnostics;
+using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.SourceGeneration;
 
 namespace Sudoku.Algorithm.Ittoryu;
 
@@ -7,7 +9,8 @@ namespace Sudoku.Algorithm.Ittoryu;
 /// Indicates the target digit path.
 /// </summary>
 /// <param name="Digits">The digits path.</param>
-public readonly record struct DigitPath(Digit[] Digits)
+[ComparisonOperators]
+public readonly partial record struct DigitPath(Digit[] Digits) : IComparable<DigitPath>, IComparisonOperators<DigitPath, DigitPath, bool>
 {
 	/// <summary>
 	/// Indicates whethe the pattern is complete.
@@ -22,13 +25,18 @@ public readonly record struct DigitPath(Digit[] Digits)
 
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public int CompareTo(DigitPath other) => GetHashCode().CompareTo(other.GetHashCode());
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(DigitPath other) => GetHashCode() == other.GetHashCode();
 
 	/// <inheritdoc/>
 	public override int GetHashCode()
 	{
 		var (result, multiplicativeIdentity) = (0, 1);
-		foreach (var digit in Digits)
+		foreach (var digit in Digits.EnumerateReversely())
 		{
 			result += digit * multiplicativeIdentity;
 			multiplicativeIdentity *= 10;

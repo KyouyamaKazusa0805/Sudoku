@@ -36,12 +36,6 @@ public sealed class IttoryuPathFinder
 
 
 	/// <summary>
-	/// Indicates the found possible digit sequences.
-	/// </summary>
-	private readonly List<Digit[]> _foundSequences = [];
-
-
-	/// <summary>
 	/// Indicates the supported techniques. By default, all singles are included.
 	/// </summary>
 	public Technique[] SupportedTechniques { get; init; } = AllTechniquesIncluded;
@@ -67,7 +61,6 @@ public sealed class IttoryuPathFinder
 				nakedSingles(in grid, foundNodes, digit);
 			}
 
-			_foundSequences.Clear();
 			foreach (var digit in MaskOperations.Create(from node in foundNodes select node.Digit))
 			{
 				dfs(grid, digit, digitsStack, from node in foundNodes where node.Digit == digit select node, 0);
@@ -78,12 +71,7 @@ public sealed class IttoryuPathFinder
 			return digitsStack.Reverse().ToArray();
 		}
 
-		if (_foundSequences.Count == 0)
-		{
-			return null;
-		}
-
-		return (from sequence in _foundSequences orderby sequence.Length descending, sequence.ToDecimalValue() select sequence).First();
+		return null;
 
 
 		void dfs(Grid grid, Digit digit, Stack<Digit> digitsStack, scoped ReadOnlySpan<PathNode> foundNodes, Mask finishedDigits)
@@ -91,12 +79,6 @@ public sealed class IttoryuPathFinder
 			if (foundNodes.Length == 0)
 			{
 				return;
-			}
-
-			if (digitsStack.Count == 9)
-			{
-				// Just find one.
-				throw new InvalidOperationException();
 			}
 
 			// Apply all digits for the currently-found nodes.
@@ -128,11 +110,9 @@ public sealed class IttoryuPathFinder
 				// the last works are not necessary, just throw an exception to escape here.
 				if (finishedDigits == Grid.MaxCandidatesMask)
 				{
+					// Just find one.
 					throw new InvalidOperationException();
 				}
-
-				// Add a new sequence.
-				_foundSequences.Add([.. digitsStack.Reverse()]);
 
 				// If not, we should search for available path nodes agagin, and iterate on them.
 				var tempNodes = new List<PathNode>(16);
@@ -216,28 +196,5 @@ public sealed class IttoryuPathFinder
 				}
 			}
 		}
-	}
-}
-
-/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
-file static class Extensions
-{
-	/// <summary>
-	/// Try to expand each digit, merging every digit into a single value that describes the current decimal digit series.
-	/// For example, digits [1, 2, 4] will be merged into a value 124.
-	/// </summary>
-	/// <param name="digits">The digits.</param>
-	/// <returns>The merged value.</returns>
-	public static int ToDecimalValue(this Digit[] digits)
-	{
-		var result = 0;
-		var multiplicativeIdentify = 1;
-		foreach (var digit in digits.EnumerateReversely())
-		{
-			result += digit * multiplicativeIdentify;
-			multiplicativeIdentify *= 10;
-		}
-
-		return result;
 	}
 }

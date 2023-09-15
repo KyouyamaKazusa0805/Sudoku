@@ -68,6 +68,9 @@
             Indicates hte digits string.
             </summary>
         </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.CompareTo(Sudoku.Algorithm.Ittoryu.DigitPath)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.Equals(Sudoku.Algorithm.Ittoryu.DigitPath)">
             <inheritdoc/>
         </member>
@@ -85,6 +88,18 @@
             Implicit cast from a <see cref="T:System.Int32"/> sequence into a <see cref="T:Sudoku.Algorithm.Ittoryu.DigitPath"/>.
             </summary>
             <param name="digitSequence">A digit sequence. Please note that the value can be <see langword="null"/>.</param>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.op_GreaterThan(Sudoku.Algorithm.Ittoryu.DigitPath,Sudoku.Algorithm.Ittoryu.DigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.op_LessThan(Sudoku.Algorithm.Ittoryu.DigitPath,Sudoku.Algorithm.Ittoryu.DigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.op_GreaterThanOrEqual(Sudoku.Algorithm.Ittoryu.DigitPath,Sudoku.Algorithm.Ittoryu.DigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.op_LessThanOrEqual(Sudoku.Algorithm.Ittoryu.DigitPath,Sudoku.Algorithm.Ittoryu.DigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder">
             <summary>
@@ -107,11 +122,6 @@
             Indicates the technique set that only contains full houses and hidden singles in block.
             </summary>
         </member>
-        <member name="F:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder._foundSequences">
-            <summary>
-            Indicates the found possible digit sequences.
-            </summary>
-        </member>
         <member name="P:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.SupportedTechniques">
             <summary>
             Indicates the supported techniques. By default, all singles are included.
@@ -125,21 +135,6 @@
             <returns>
             The target digit path. If none found, a longest path will be returned.
             </returns>
-        </member>
-        <member name="T:Sudoku.Algorithm.Ittoryu.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.Extensions.ToDecimalValue(System.Int32[])">
-            <summary>
-            Try to expand each digit, merging every digit into a single value that describes the current decimal digit series.
-            For example, digits [1, 2, 4] will be merged into a value 124.
-            </summary>
-            <param name="digits">The digits.</param>
-            <returns>The merged value.</returns>
         </member>
         <member name="T:Sudoku.Algorithm.Ittoryu.PathNode">
             <summary>

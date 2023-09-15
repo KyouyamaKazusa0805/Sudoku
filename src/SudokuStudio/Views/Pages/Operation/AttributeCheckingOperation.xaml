@@ -28,6 +28,6 @@
 			Click="TrueCandidateButton_ClickAsync" />
 		<AppBarButton
 			x:Name="DisorderedIttoryuButton" Icon="Message" Label="{m:R Key=AnalyzePage_DisorderedIttoryu}"
-			Click="DisorderedIttoryuButton_ClickAsync" />
+			Click="DisorderedIttoryuButton_Click" />
 	</CommandBar>
 </Page>

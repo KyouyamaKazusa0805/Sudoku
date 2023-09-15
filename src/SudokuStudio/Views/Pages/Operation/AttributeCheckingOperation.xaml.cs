@@ -86,7 +86,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		]);
 	}
 
-	private async void DisorderedIttoryuButton_ClickAsync(object sender, RoutedEventArgs e)
+	private void DisorderedIttoryuButton_Click(object sender, RoutedEventArgs e)
 	{
 		var puzzle = BasePage.SudokuPane.Puzzle;
 		if (!puzzle.IsValid)
@@ -97,7 +97,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		}
 
 		var ittoryuFinder = new IttoryuPathFinder();
-		var digitPath = await Task.Run(() => ittoryuFinder.FindPath(in puzzle));
+		var digitPath = ittoryuFinder.FindPath(in puzzle);
 		if (!digitPath.IsComplete)
 		{
 			InfoDialog_DisorderedIttoryuDigitSequence.Subtitle = GetString("AnalyzePage_DisorderedIttoryuDoesNotExist");
