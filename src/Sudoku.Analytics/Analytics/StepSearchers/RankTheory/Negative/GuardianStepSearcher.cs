@@ -10,7 +10,7 @@ using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.StepSearchers;
 
-using unsafe CollectorPredicateFunc = delegate*<in CellMap, bool>;
+using unsafe CollectorPredicateFunc = delegate*<ref readonly CellMap, bool>;
 
 /// <summary>
 /// Provides with a <b>Guardian</b> step searcher.
@@ -91,8 +91,8 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 						[.. from c in elimMap select new Conclusion(Elimination, c, digit)],
 						[[.. candidateOffsets]],
 						digit,
-						loop,
-						guardians
+						in loop,
+						in guardians
 					)
 				);
 			}
@@ -124,11 +124,11 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 	/// </returns>
 	private static unsafe Pattern[] CollectGuardianLoops(Digit digit)
 	{
-		static bool predicate(scoped in CellMap loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
+		static bool predicate(scoped ref readonly CellMap loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
 		var result = new List<Pattern>();
 		foreach (var cell in CandidatesMap[digit])
 		{
-			dfs(cell, cell, 0, CellsMap[cell], CellMap.Empty, digit, &predicate, result);
+			dfs(cell, cell, 0, in CellsMap[cell], in CellMap.Empty, digit, &predicate, result);
 		}
 
 		return [.. result.Distinct()];
@@ -138,8 +138,8 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 			Cell startCell,
 			Cell lastCell,
 			House lastHouse,
-			scoped in CellMap currentLoop,
-			scoped in CellMap currentGuardians,
+			scoped ref readonly CellMap currentLoop,
+			scoped ref readonly CellMap currentGuardians,
 			Digit digit,
 			CollectorPredicateFunc condition,
 			List<Pattern> result
@@ -176,10 +176,10 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 					}
 
 					var tempGuardians = (CandidatesMap[digit] & HousesMap[house]) - tempCell - lastCell;
-					if (tempCell == startCell && condition(currentLoop)
+					if (tempCell == startCell && condition(in currentLoop)
 						&& !!((currentGuardians | tempGuardians).PeerIntersection & CandidatesMap[digit]))
 					{
-						result.Add(new(currentLoop, currentGuardians | tempGuardians, digit));
+						result.Add(new(in currentLoop, currentGuardians | tempGuardians, digit));
 
 						// Exit the current of this recursion frame.
 						return;
@@ -214,5 +214,5 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 	/// <param name="LoopCells">Indicates the cells used in this whole guardian loop.</param>
 	/// <param name="Guardians">Indicates the extra cells that is used as guardians.</param>
 	/// <param name="Digit">Indicates the digit used.</param>
-	private readonly record struct Pattern(scoped in CellMap LoopCells, scoped in CellMap Guardians, Digit Digit);
+	private readonly record struct Pattern(scoped ref readonly CellMap LoopCells, scoped ref readonly CellMap Guardians, Digit Digit);
 }

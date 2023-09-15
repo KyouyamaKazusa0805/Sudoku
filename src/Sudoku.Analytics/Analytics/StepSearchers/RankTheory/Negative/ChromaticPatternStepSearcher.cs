@@ -54,11 +54,16 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// All possible blocks combinations being reserved for chromatic pattern searcher's usages.
 	/// </summary>
-	private static readonly Mask[] ChromaticPatternBlocksCombinations =
-	[
-		0b000_011_011, 0b000_101_101, 0b000_110_110,
-		0b011_000_011, 0b101_000_101, 0b110_000_110,
-		0b011_011_000, 0b101_101_000, 0b110_110_000
+	private static readonly Mask[] ChromaticPatternBlocksCombinations = [
+		0b000_011_011,
+		0b000_101_101,
+		0b000_110_110,
+		0b011_000_011,
+		0b101_000_101,
+		0b110_000_110,
+		0b011_011_000,
+		0b101_101_000,
+		0b110_110_000
 	];
 
 
@@ -181,11 +186,11 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 				}
 
 				// Gather steps.
-				if (CheckType1(ref context, pattern, blocks) is { } type1Step)
+				if (CheckType1(ref context, in pattern, blocks) is { } type1Step)
 				{
 					return type1Step;
 				}
-				if (CheckXz(ref context, pattern, blocks) is { } typeXzStep)
+				if (CheckXz(ref context, in pattern, blocks) is { } typeXzStep)
 				{
 					return typeXzStep;
 				}
@@ -212,13 +217,13 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// </item>
 	/// </list>
 	/// </summary>
-	private ChromaticPatternType1Step? CheckType1(scoped ref AnalysisContext context, scoped in CellMap pattern, House[] blocks)
+	private ChromaticPatternType1Step? CheckType1(scoped ref AnalysisContext context, scoped ref readonly CellMap pattern, House[] blocks)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var extraCell in pattern)
 		{
 			var otherCells = pattern - extraCell;
-			var digitsMask = grid[otherCells];
+			var digitsMask = grid[in otherCells];
 			if (PopCount((uint)digitsMask) != 3)
 			{
 				continue;
@@ -250,7 +255,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 				[.. conclusions],
 				[[.. candidateOffsets, .. from house in blocks select new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
 				blocks,
-				pattern,
+				in pattern,
 				extraCell,
 				digitsMask
 			);
@@ -276,10 +281,10 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// </item>
 	/// </list>
 	/// </summary>
-	private ChromaticPatternXzStep? CheckXz(scoped ref AnalysisContext context, scoped in CellMap pattern, House[] blocks)
+	private ChromaticPatternXzStep? CheckXz(scoped ref AnalysisContext context, scoped ref readonly CellMap pattern, House[] blocks)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		var allDigitsMask = grid[pattern];
+		var allDigitsMask = grid[in pattern];
 		if (PopCount((uint)allDigitsMask) != 5)
 		{
 			// The pattern cannot find any possible eliminations because the number of extra digits
@@ -350,8 +355,8 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 						]
 					],
 					blocks,
-					pattern,
-					otherDigitsCells,
+					in pattern,
+					in otherDigitsCells,
 					extraCell,
 					patternDigitsMask,
 					otherDigitsMask

@@ -14,7 +14,7 @@ namespace Sudoku.Linq;
 /// <typeparam name="TKey">The type of the key in the group.</typeparam>
 /// <param name="key">Indicates the key used.</param>
 /// <param name="values">Indicates the candidates.</param>
-public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>([DataMember] TKey key, [DataMember] scoped in TMap values)
+public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>([DataMember] TKey key, [DataMember] scoped ref readonly TMap values)
 	where TMap : unmanaged, IBitStatusMap<TMap, TElement>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TKey : notnull

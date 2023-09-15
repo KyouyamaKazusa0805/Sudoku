@@ -23,8 +23,8 @@ public sealed partial class AlmostLockedCandidatesStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	[DataMember] Mask digitsMask,
-	[DataMember] scoped in CellMap baseCells,
-	[DataMember] scoped in CellMap targetCells,
+	[DataMember] scoped ref readonly CellMap baseCells,
+	[DataMember] scoped ref readonly CellMap targetCells,
 	[DataMember] bool hasValueCell
 ) : IntersectionStep(conclusions, views)
 {

@@ -229,11 +229,11 @@ public sealed partial class CellNotation : INotation<CellNotation, CellMap, Cell
 	/// <param name="collection"><inheritdoc cref="ToString(Cell)" path="/param[@name='value']"/></param>
 	/// <returns><inheritdoc cref="ToString(Cell)" path="/returns"/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCollectionString(scoped in CellMap collection) => ToCollectionString(collection, Kind.RxCy);
+	public static string ToCollectionString(scoped ref readonly CellMap collection) => ToCollectionString(in collection, Kind.RxCy);
 
 	/// <inheritdoc cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(TCollection, TConceptKindPresenter)"/>
 	[ExplicitInterfaceImpl(typeof(INotation<,,,>))]
-	public static string ToCollectionString(scoped in CellMap collection, Kind notation)
+	public static string ToCollectionString(scoped ref readonly CellMap collection, Kind notation)
 	{
 		static string i(Digit v) => DigitNotation.ToString(v);
 		switch (notation)
@@ -244,11 +244,11 @@ public sealed partial class CellNotation : INotation<CellNotation, CellMap, Cell
 				{
 					[] => string.Empty,
 					[var p] => ToString(p),
-					_ => r(collection) is var a && c(collection) is var b && a.Length <= b.Length ? a : b
+					_ => r(in collection) is var a && c(in collection) is var b && a.Length <= b.Length ? a : b
 				};
 
 
-				static unsafe string r(scoped in CellMap cells)
+				static unsafe string r(scoped ref readonly CellMap cells)
 				{
 					scoped var sbRow = new StringHandler(50);
 					var dic = new Dictionary<int, List<int>>(9);
@@ -274,7 +274,7 @@ public sealed partial class CellNotation : INotation<CellNotation, CellMap, Cell
 					return sbRow.ToStringAndClear();
 				}
 
-				static unsafe string c(scoped in CellMap cells)
+				static unsafe string c(scoped ref readonly CellMap cells)
 				{
 					var dic = new Dictionary<int, List<int>>(9);
 					scoped var sbColumn = new StringHandler(50);
@@ -307,11 +307,11 @@ public sealed partial class CellNotation : INotation<CellNotation, CellMap, Cell
 				{
 					[] => string.Empty,
 					[var p] => ToString(p, Kind.K9),
-					_ => r(collection) is var a && c(collection) is var b && a.Length <= b.Length ? a : b
+					_ => r(in collection) is var a && c(in collection) is var b && a.Length <= b.Length ? a : b
 				};
 
 
-				static unsafe string r(scoped in CellMap cells)
+				static unsafe string r(scoped ref readonly CellMap cells)
 				{
 					scoped var sbRow = new StringHandler(18);
 					var dic = new Dictionary<int, List<int>>(9);
@@ -335,7 +335,7 @@ public sealed partial class CellNotation : INotation<CellNotation, CellMap, Cell
 					return sbRow.ToStringAndClear();
 				}
 
-				static unsafe string c(scoped in CellMap cells)
+				static unsafe string c(scoped ref readonly CellMap cells)
 				{
 					var dic = new Dictionary<int, List<int>>(9);
 					scoped var sbColumn = new StringHandler(18);

@@ -64,7 +64,7 @@ internal static class ComparisonOperatorsHandler
 		var scopedKeywordString = isRefStruct ? "scoped " : string.Empty;
 		var attributesMarked = behavior switch
 		{
-			Behavior.WithScopedInButDeprecated or Behavior.WithScopedRefReadOnlyButDeprecated or Behavior.DefaultButDeprecated
+			Behavior.WithScopedInButDeprecated or Behavior.DefaultButDeprecated
 				=> """
 				[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 						[global::System.ObsoleteAttribute("This operator is not recommended to be defined in a record struct, because it'll be auto-generated a pair of equality operators by compiler, without any modifiers modified two parameters.", false)]
@@ -74,12 +74,18 @@ internal static class ComparisonOperatorsHandler
 				[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 				"""
 		};
-		var (i1, i2, i3, i4) = ("left.CompareTo(right) > 0", "left.CompareTo(right) < 0", "left.CompareTo(right) >= 0", "left.CompareTo(right) <= 0");
+		var inKeyword = isLargeStructure ? "in " : string.Empty;
+		var (i1, i2, i3, i4) = (
+			$"left.CompareTo({inKeyword}right) > 0",
+			$"left.CompareTo({inKeyword}right) < 0",
+			$"left.CompareTo({inKeyword}right) >= 0",
+			$"left.CompareTo({inKeyword}right) <= 0"
+		);
 
 		var explicitImplementation = string.Empty;
 		var equalityOperatorsType = compilation.GetTypeByMetadataName("System.Numerics.IComparisonOperators`3")!
 			.Construct(type, type, compilation.GetSpecialType(System_Boolean));
-		if (behavior is Behavior.WithScopedIn or Behavior.WithScopedInButDeprecated or Behavior.WithScopedRefReadOnly or Behavior.WithScopedRefReadOnlyButDeprecated
+		if (behavior is Behavior.WithScopedIn or Behavior.WithScopedInButDeprecated
 			&& type.AllInterfaces.Contains(equalityOperatorsType, SymbolEqualityComparer.Default))
 		{
 			explicitImplementation =
@@ -173,38 +179,6 @@ internal static class ComparisonOperatorsHandler
 
 						{{explicitImplementation}}
 				""",
-			Behavior.WithScopedRefReadOnly or Behavior.WithScopedRefReadOnlyButDeprecated
-				=> $$"""
-				/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
-						{{attributesMarked}}
-						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
-						public static bool operator >(scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}} left, scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}} right)
-							=> {{i1}};
-
-						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
-						{{attributesMarked}}
-						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
-						public static bool operator <(scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}} left, scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}} right)
-							=> {{i2}};
-
-						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
-						{{attributesMarked}}
-						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
-						public static bool operator >(scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}} left, scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}} right)
-							=> {{i3}};
-
-						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
-						{{attributesMarked}}
-						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ComparisonOperatorsHandler).FullName}}", "{{Value}}")]
-						public static bool operator <(scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}} left, scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}} right)
-							=> {{i4}};
-
-						{{explicitImplementation}}
-				""",
 			_ => null
 		};
 		if (operatorDeclaration is null)
@@ -244,7 +218,5 @@ file enum Behavior
 	Default,
 	DefaultButDeprecated,
 	WithScopedIn,
-	WithScopedRefReadOnly,
 	WithScopedInButDeprecated,
-	WithScopedRefReadOnlyButDeprecated
 }

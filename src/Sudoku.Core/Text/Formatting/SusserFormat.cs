@@ -121,7 +121,7 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 
 
 	/// <inheritdoc/>
-	public virtual string ToString(scoped in Grid grid)
+	public virtual string ToString(scoped ref readonly Grid grid)
 	{
 		scoped var sb = new StringHandler(162);
 		var originalGrid = this switch
@@ -185,7 +185,7 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 			}
 		}
 
-		var elimsStr = CandidateNotation.ToCollectionString(eliminatedCandidates, CandidateNotation.Kind.HodokuTriplet);
+		var elimsStr = CandidateNotation.ToCollectionString(in eliminatedCandidates, CandidateNotation.Kind.HodokuTriplet);
 		var @base = sb.ToStringAndClear();
 		return ShortenSusser
 			? shorten(@base, Placeholder)
@@ -208,7 +208,7 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 					{
 						// Can't find any simplifications.
 						Unsafe.CopyBlock(
-							ref Unsafe2.AsByteRef(ref Unsafe.AsRef(resultSpan[characterIndexStart])),
+							ref Unsafe2.AsByteRef(ref Unsafe.AsRef(in resultSpan[characterIndexStart])),
 							ref Unsafe2.AsByteRef(ref Unsafe.AsRef(sliced[0])),
 							sizeof(char) * 9
 						);

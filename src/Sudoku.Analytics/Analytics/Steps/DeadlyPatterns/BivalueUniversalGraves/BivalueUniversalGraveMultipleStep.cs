@@ -18,7 +18,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BivalueUniversalGraveMultipleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[DataMember] scoped in CandidateMap trueCandidates
+	[DataMember] scoped ref readonly CandidateMap trueCandidates
 ) : BivalueUniversalGraveStep(conclusions, views)
 {
 	/// <summary>

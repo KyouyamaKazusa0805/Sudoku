@@ -143,7 +143,7 @@ public partial struct CandidateMap :
 						cells.Add(candidate / 9);
 					}
 
-					sb.Append(CellNotation.ToCollectionString(cells));
+					sb.Append(CellNotation.ToCollectionString(in cells));
 					sb.Append('(');
 					sb.Append(digitGroup.Key + 1);
 					sb.Append(')');
@@ -267,7 +267,7 @@ public partial struct CandidateMap :
 	public readonly bool Contains(Candidate offset) => (_bits[offset >> 6] >> (offset & 63) & 1) != 0;
 
 	/// <inheritdoc/>
-	public readonly bool Equals(scoped in CandidateMap other) => _bits == other._bits;
+	public readonly bool Equals(scoped ref readonly CandidateMap other) => _bits == other._bits;
 
 	/// <inheritdoc/>
 	public readonly void ForEach(Action<Candidate> action)

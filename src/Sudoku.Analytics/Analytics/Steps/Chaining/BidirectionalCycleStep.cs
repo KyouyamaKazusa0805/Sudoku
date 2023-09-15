@@ -42,7 +42,7 @@ public sealed partial class BidirectionalCycleStep(
 
 
 	/// <inheritdoc/>
-	protected internal override View[] CreateViews(scoped in Grid grid)
+	protected internal override View[] CreateViews(scoped ref readonly Grid grid)
 	{
 		var result = new View[ViewsCount];
 		var i = 0;
@@ -61,7 +61,7 @@ public sealed partial class BidirectionalCycleStep(
 			var view = new View();
 			GetNestedOnPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate)));
 			GetNestedOffPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, candidate)));
-			GetPartiallyOffPotentials(grid, i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, candidate)));
+			GetPartiallyOffPotentials(in grid, i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, candidate)));
 			view.AddRange(GetNestedLinks(i));
 
 			result[i] = view;

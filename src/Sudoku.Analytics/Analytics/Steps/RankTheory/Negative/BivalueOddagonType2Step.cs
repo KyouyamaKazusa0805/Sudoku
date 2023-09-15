@@ -20,11 +20,11 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BivalueOddagonType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	scoped in CellMap loopCells,
+	scoped ref readonly CellMap loopCells,
 	Digit digit1,
 	Digit digit2,
 	[DataMember] Digit extraDigit
-) : BivalueOddagonStep(conclusions, views, loopCells, digit1, digit2)
+) : BivalueOddagonStep(conclusions, views, in loopCells, digit1, digit2)
 {
 	/// <inheritdoc/>
 	public override int Type => 2;

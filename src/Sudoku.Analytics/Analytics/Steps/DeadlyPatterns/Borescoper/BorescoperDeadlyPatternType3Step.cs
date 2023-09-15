@@ -20,9 +20,9 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BorescoperDeadlyPatternType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	scoped in CellMap cells,
+	scoped ref readonly CellMap cells,
 	Mask digitsMask,
-	[DataMember] scoped in CellMap subsetCells,
+	[DataMember] scoped ref readonly CellMap subsetCells,
 	[DataMember] Mask subsetDigitsMask
 ) : BorescoperDeadlyPatternStep(conclusions, views, cells, digitsMask)
 {

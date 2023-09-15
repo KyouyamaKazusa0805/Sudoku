@@ -99,16 +99,15 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 
 
 	/// <inheritdoc/>
-	protected override void OnAdvanced(NodeList pendingOn, NodeList pendingOff, NodeSet toOff, scoped in Grid grid, scoped in Grid original)
+	protected override void OnAdvanced(NodeList pendingOn, NodeList pendingOff, NodeSet toOff, scoped ref readonly Grid grid, scoped ref readonly Grid original)
 	{
 		if (pendingOn.Count == 0 && pendingOff.Count == 0 && DynamicNestingLevel > 0)
 		{
-			foreach (var pOff in GetAdvancedPotentials(grid, original, toOff))
+			foreach (var pOff in GetAdvancedPotentials(in grid, in original, toOff))
 			{
-				if (!toOff.Contains(pOff))
+				if (toOff.Add(pOff))
 				{
 					// Not processed yet.
-					toOff.Add(pOff);
 					pendingOff.AddLast(pOff);
 				}
 			}
@@ -122,14 +121,14 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	/// <param name="original">Indicates the original grid state.</param>
 	/// <param name="offPotentials">
 	/// <inheritdoc
-	///     cref="ChainingStepSearcher.OnAdvanced(NodeList, NodeList, NodeSet, in Grid, in Grid)"
+	///     cref="ChainingStepSearcher.OnAdvanced(NodeList, NodeList, NodeSet, ref readonly Grid, ref readonly Grid)"
 	///     path="/param[@name='toOff']"/>
 	/// </param>
 	/// <returns>Found <see cref="ChainNode"/> instances.</returns>
 	[MemberNotNull(nameof(_otherStepSearchers))]
 	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private NodeList GetAdvancedPotentials(scoped in Grid grid, scoped in Grid original, NodeSet offPotentials)
+	private NodeList GetAdvancedPotentials(scoped ref readonly Grid grid, scoped ref readonly Grid original, NodeSet offPotentials)
 	{
 		_otherStepSearchers ??= [
 			(1, [new LockedCandidatesStepSearcher(), new LockedSubsetStepSearcher(), new NormalFishStepSearcher(), new NormalSubsetStepSearcher()]),
@@ -147,29 +146,29 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	/// Try to create a binary forcing chain hint on "on" state.
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private BinaryForcingChainsStep CreateChainingOnStep(scoped in Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
+	private BinaryForcingChainsStep CreateChainingOnStep(scoped ref readonly Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
 	{
 		var conclusion = (Conclusion[])[new(Assignment, target.Candidate)];
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
-		return new(result, result.CreateViews(grid));
+		return new(result, result.CreateViews(in grid));
 	}
 
 	/// <summary>
 	/// Try to create a binary forcing chain hint on "off" state.
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private BinaryForcingChainsStep CreateChainingOffStep(scoped in Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
+	private BinaryForcingChainsStep CreateChainingOffStep(scoped ref readonly Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
 	{
 		var conclusion = (Conclusion[])[new(Elimination, target.Candidate)];
 		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
-		return new(result, result.CreateViews(grid));
+		return new(result, result.CreateViews(in grid));
 	}
 
 	/// <summary>
 	/// Try to create a cell forcing chain hint.
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private CellForcingChainsStep CreateCellForcingStep(scoped in Grid grid, byte srcCell, ChainNode target, ChainBranch outcomes)
+	private CellForcingChainsStep CreateCellForcingStep(scoped ref readonly Grid grid, byte srcCell, ChainNode target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
 		var conclusion = (Conclusion[])[new(targetIsOn ? Assignment : Elimination, targetCell, targetDigit)];
@@ -186,14 +185,14 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 		}
 
 		var result = new CellForcingChainsStep(conclusion, srcCell, chains, AllowDynamic, DynamicNestingLevel);
-		return new(result, result.CreateViews(grid));
+		return new(result, result.CreateViews(in grid));
 	}
 
 	/// <summary>
 	/// Try to create a region (house) forcing chain hint.
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private RegionForcingChainsStep CreateHouseForcingStep(scoped in Grid grid, House houseIndex, byte digit, ChainNode target, ChainBranch outcomes)
+	private RegionForcingChainsStep CreateHouseForcingStep(scoped ref readonly Grid grid, House houseIndex, byte digit, ChainNode target, ChainBranch outcomes)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
 		var conclusions = (Conclusion[])[new(targetIsOn ? Assignment : Elimination, targetCell, targetDigit)];
@@ -207,6 +206,6 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 		}
 
 		var result = new RegionForcingChainsStep(conclusions, houseIndex, digit, chains, AllowDynamic, DynamicNestingLevel);
-		return new(result, result.CreateViews(grid));
+		return new(result, result.CreateViews(in grid));
 	}
 }

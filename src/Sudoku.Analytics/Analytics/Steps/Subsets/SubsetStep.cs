@@ -17,7 +17,7 @@ public abstract partial class SubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	[DataMember] House house,
-	[DataMember] scoped in CellMap cells,
+	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] Mask digitsMask
 ) : Step(conclusions, views)
 {

@@ -38,6 +38,6 @@ public static class SymmetricTypeExtensions
 					(8 - column) * 9 + (8 - row)
 				],
 			SymmetricType.None => [row * 9 + column],
-			_ => []
+			_ => (Cell[])[]
 		};
 }

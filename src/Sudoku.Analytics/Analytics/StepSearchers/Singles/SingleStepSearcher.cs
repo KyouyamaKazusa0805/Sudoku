@@ -111,7 +111,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		CheckForHiddenSingle:
 			for (var house = 0; house < 27; house++)
 			{
-				if (CheckForHiddenSingleAndLastDigit(grid, digit, house) is not { } step)
+				if (CheckForHiddenSingleAndLastDigit(in grid, digit, house) is not { } step)
 				{
 					continue;
 				}
@@ -144,7 +144,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. GetNakedSingleExcluders(grid, cell, digit)]], cell, digit);
+				var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. GetNakedSingleExcluders(in grid, cell, digit)]], cell, digit);
 				if (context.OnlyFindOne)
 				{
 					context.PreviousSetDigit = digit;
@@ -216,7 +216,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				for (var digit = 0; digit < 9; digit++)
 				{
-					if (CheckForHiddenSingleAndLastDigit(grid, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(in grid, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -235,7 +235,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				for (var digit = 0; digit < 9; digit++)
 				{
-					if (CheckForHiddenSingleAndLastDigit(grid, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(in grid, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -258,7 +258,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				for (var house = 0; house < 27; house++)
 				{
-					if (CheckForHiddenSingleAndLastDigit(grid, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(in grid, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -287,7 +287,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			}
 
 			var digit = TrailingZeroCount(mask);
-			var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. GetNakedSingleExcluders(grid, cell, digit)]], cell, digit);
+			var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. GetNakedSingleExcluders(in grid, cell, digit)]], cell, digit);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -314,7 +314,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// that only appears once indeed.
 	/// </para>
 	/// </remarks>
-	private HiddenSingleStep? CheckForHiddenSingleAndLastDigit(scoped in Grid grid, Digit digit, House house)
+	private HiddenSingleStep? CheckForHiddenSingleAndLastDigit(scoped ref readonly Grid grid, Digit digit, House house)
 	{
 		var (count, resultCell, flag) = (0, -1, true);
 		foreach (var cell in HousesMap[house])
@@ -360,7 +360,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			[
 				[
 					.. enableAndIsLastDigit ? cellOffsets : [],
-					.. enableAndIsLastDigit ? [] : GetHiddenSingleExcluders(grid, digit, house, resultCell),
+					.. enableAndIsLastDigit ? [] : GetHiddenSingleExcluders(in grid, digit, house, resultCell),
 					.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
 				]
 			],
@@ -379,9 +379,9 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <param name="house">The house.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private CellViewNode[] GetHiddenSingleExcluders(scoped in Grid grid, Digit digit, House house, Cell cell)
+	private CellViewNode[] GetHiddenSingleExcluders(scoped ref readonly Grid grid, Digit digit, House house, Cell cell)
 	{
-		var info = Crosshatching.GetCrosshatchingInfo(grid, digit, house, CellsMap[cell]);
+		var info = Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in CellsMap[cell]);
 		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
 		{
 			return [];
@@ -408,7 +408,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private CellViewNode[] GetNakedSingleExcluders(scoped in Grid grid, Cell cell, Digit digit)
+	private CellViewNode[] GetNakedSingleExcluders(scoped ref readonly Grid grid, Cell cell, Digit digit)
 	{
 		var (result, i) = (new CellViewNode[8], 0);
 		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & ~(1 << digit)))

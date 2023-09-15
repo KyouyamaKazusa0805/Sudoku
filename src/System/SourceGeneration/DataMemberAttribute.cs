@@ -151,8 +151,8 @@ public sealed partial class DataMemberAttribute([DataMember] string memberKind =
 	/// <item><see langword="in"/></item>
 	/// <item><see langword="scoped ref"/></item>
 	/// <item><see langword="scoped ref readonly"/> (Supported for C# 12)</item>
-	/// <item><see langword="scoped in"/></item>
-	/// <item><see langword="scoped in scoped"/> (May not be supported for C# 12)</item>
+	/// <item><see langword="scoped ref readonly"/></item>
+	/// <item><see langword="scoped ref readonly scoped"/> (May not be supported for C# 12)</item>
 	/// <item><see langword="scoped ref scoped"/> (May not be supported for C# 12)</item>
 	/// <item><see langword="scoped ref readonly scoped"/> (May not be supported for C# 12)</item>
 	/// </list>

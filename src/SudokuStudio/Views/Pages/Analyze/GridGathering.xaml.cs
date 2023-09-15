@@ -124,7 +124,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 			{
 				lock (AnalyzingRelatedSyncRoot)
 				{
-					return collector.Collect(grid, new Progress<AnalyzerProgress>(progress => DispatcherQueue.TryEnqueue(() =>
+					return collector.Collect(in grid, new Progress<AnalyzerProgress>(progress => DispatcherQueue.TryEnqueue(() =>
 					{
 						var (stepSearcherName, percent) = progress;
 						BasePage.ProgressPercent = percent * 100;

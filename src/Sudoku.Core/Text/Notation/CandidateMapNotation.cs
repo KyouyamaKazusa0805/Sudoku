@@ -23,11 +23,11 @@ public sealed partial class CandidateMapNotation : INotation<CandidateMapNotatio
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(INotation<,,>))]
-	public static string ToString(scoped in CandidateMap value, Kind notation)
+	public static string ToString(scoped ref readonly CandidateMap value, Kind notation)
 		=> notation switch
 		{
-			Kind.RxCy => CandidateNotation.ToCollectionString(value, CandidateNotation.Kind.RxCy),
-			Kind.K9 => CandidateNotation.ToCollectionString(value, CandidateNotation.Kind.K9),
+			Kind.RxCy => CandidateNotation.ToCollectionString(in value, CandidateNotation.Kind.RxCy),
+			Kind.K9 => CandidateNotation.ToCollectionString(in value, CandidateNotation.Kind.K9),
 			_ => throw new ArgumentOutOfRangeException(nameof(notation)),
 		};
 }

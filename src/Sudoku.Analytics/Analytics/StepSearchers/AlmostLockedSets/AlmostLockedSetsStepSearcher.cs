@@ -24,16 +24,16 @@ public abstract class AlmostLockedSetsStepSearcher(
 	StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering
 ) : StepSearcher(priority, level, runningArea)
 {
-	/// <inheritdoc cref="AlmostLockedSet.Gather(in Grid)"/>
+	/// <inheritdoc cref="AlmostLockedSet.Gather(ref readonly Grid)"/>
 	/// <remarks><b>This method uses <see cref="CachedFields"/>.</b></remarks>
 	/// <seealso cref="CachedFields"/>
-	protected internal static AlmostLockedSet[] GatherAlmostLockedSets(scoped in Grid @this)
+	protected internal static AlmostLockedSet[] GatherAlmostLockedSets(scoped ref readonly Grid @this)
 	{
 		// Get all bi-value-cell ALSes.
 		var result = new List<AlmostLockedSet>();
 		foreach (var cell in BivalueCells)
 		{
-			result.Add(new(@this.GetCandidates(cell), CellsMap[cell], PeersMap[cell] & EmptyCells));
+			result.Add(new(@this.GetCandidates(cell), in CellsMap[cell], PeersMap[cell] & EmptyCells));
 		}
 
 		// Get all non-bi-value-cell ALSes.
@@ -70,7 +70,7 @@ public abstract class AlmostLockedSetsStepSearcher(
 					result.Add(
 						new(
 							digitsMask,
-							map,
+							in map,
 							houseIndex < 9 && coveredLine is >= 9 and not InvalidTrailingZeroCountMethodFallback
 								? ((HousesMap[houseIndex] | HousesMap[coveredLine]) & EmptyCells) - map
 								: tempMap - map

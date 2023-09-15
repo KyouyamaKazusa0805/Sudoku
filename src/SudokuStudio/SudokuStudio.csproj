@@ -6,7 +6,6 @@
 		<RootNamespace>SudokuStudio</RootNamespace>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Platforms>x86;x64;ARM64</Platforms>
-		<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
 		<PublishProfile>win10-$(Platform).pubxml</PublishProfile>
 		<UseWinUI>true</UseWinUI>
 		<EnableMsixTooling>true</EnableMsixTooling>
@@ -14,6 +13,12 @@
 		<DefineConstants>UI_FEATURE_CUSTOMIZED_TITLE_BAR</DefineConstants>
 		<DocumentationFile>..\docxml\SudokuStudio.xml</DocumentationFile>
 		<Description>The project represents with user interfaces that operates with sudoku puzzles.</Description>
+
+		<!--.NET 8 RC1 has a breaking change that failed to compile the application.-->
+		<!--https://github.com/dotnet/maui/issues/17330-->
+		<!--https://learn.microsoft.com/en-us/dotnet/core/compatibility/sdk/8.0/rid-graph-->
+		<UseRidGraph>true</UseRidGraph>
+		<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
 
 		<!--A bug fix.-->
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>

@@ -154,7 +154,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 						pivot,
 						PopCount((uint)mask),
 						union,
-						petals
+						in petals
 					);
 
 					if (context.OnlyFindOne)

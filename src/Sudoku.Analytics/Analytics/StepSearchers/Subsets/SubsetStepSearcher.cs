@@ -118,7 +118,7 @@ public abstract class SubsetStepSearcher(
 					continue;
 				}
 
-				var mask = grid[traversingMap];
+				var mask = grid[in traversingMap];
 				foreach (var digits in mask.GetAllSets().GetSubsets(size))
 				{
 					var (tempMask, digitsMask, map) = (mask, (Mask)0, CellMap.Empty);
@@ -156,7 +156,7 @@ public abstract class SubsetStepSearcher(
 							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 						}
 
-						cellOffsets.AddRange(GetCrosshatchBaseCells(grid, digit, house, map));
+						cellOffsets.AddRange(GetCrosshatchBaseCells(grid, digit, house, in map));
 					}
 
 					var isLocked = map.IsInIntersection;
@@ -192,7 +192,7 @@ public abstract class SubsetStepSearcher(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house), .. cellOffsets]],
 							house,
-							map,
+							in map,
 							digitsMask,
 							isLocked && containsExtraEliminations
 						);
@@ -219,7 +219,7 @@ public abstract class SubsetStepSearcher(
 	/// <param name="house">The house.</param>
 	/// <param name="cells">The cells.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private CellViewNode[] GetCrosshatchBaseCells(scoped in Grid grid, Digit digit, House house, scoped in CellMap cells)
+	private CellViewNode[] GetCrosshatchBaseCells(scoped ref readonly Grid grid, Digit digit, House house, scoped ref readonly CellMap cells)
 	{
 		var info = Crosshatching.GetCrosshatchingInfo(grid, digit, house, cells);
 		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))

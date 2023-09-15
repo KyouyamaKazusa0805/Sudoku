@@ -18,9 +18,9 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ExtendedRectangleType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	scoped in CellMap cells,
+	scoped ref readonly CellMap cells,
 	Mask digitsMask,
-	[DataMember] scoped in Conjugate conjugatePair
+	[DataMember] scoped ref readonly Conjugate conjugatePair
 ) : ExtendedRectangleStep(conclusions, views, cells, digitsMask)
 {
 	/// <inheritdoc/>

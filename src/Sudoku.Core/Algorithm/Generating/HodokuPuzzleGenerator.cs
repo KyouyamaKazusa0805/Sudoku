@@ -96,7 +96,7 @@ public ref struct HodokuPuzzleGenerator
 	/// </param>
 	/// <returns><inheritdoc cref="Generate(int, SymmetricType, CancellationToken)" path="/returns"/></returns>
 	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
-	private Grid Generate(int cluesCount, SymmetricType symmetricType, scoped in CellMap pattern, CancellationToken cancellationToken = default)
+	private Grid Generate(int cluesCount, SymmetricType symmetricType, scoped ref readonly CellMap pattern, CancellationToken cancellationToken = default)
 	{
 		try
 		{
@@ -107,7 +107,7 @@ public ref struct HodokuPuzzleGenerator
 				var ok = (bool?)false;
 				for (var i = 0; i < MaxTries; i++)
 				{
-					if ((ok = GenerateInitPos(pattern, cancellationToken)) is not false)
+					if ((ok = GenerateInitPos(in pattern, cancellationToken)) is not false)
 					{
 						break;
 					}
@@ -226,7 +226,7 @@ public ref struct HodokuPuzzleGenerator
 	/// <inheritdoc cref="Generate(int, SymmetricType, CancellationToken)" path="/param[@name='cancellationToken']"/>
 	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating whether the pattern is valid to be used.</returns>
-	private bool? GenerateInitPos(scoped in CellMap pattern, CancellationToken cancellationToken = default)
+	private bool? GenerateInitPos(scoped ref readonly CellMap pattern, CancellationToken cancellationToken = default)
 	{
 		_newValidSudoku = _newFullSudoku;
 		for (var cell = 0; cell < 81; cell++)
@@ -336,7 +336,7 @@ public ref struct HodokuPuzzleGenerator
 				scoped ref var targetGrid = ref _stack[level].SudokuGrid;
 				targetGrid = _stack[level - 1].SudokuGrid;
 				targetGrid.SetDigit(_stack[level].Cell, nextCandidate);
-				if (!checkValidityOnDuplicate(targetGrid, _stack[level].Cell))
+				if (!checkValidityOnDuplicate(in targetGrid, _stack[level].Cell))
 				{
 					// Invalid -> try next candidate.
 					continue;
@@ -356,7 +356,7 @@ public ref struct HodokuPuzzleGenerator
 		return false;
 
 
-		static bool checkValidityOnDuplicate(scoped in Grid grid, Cell cell)
+		static bool checkValidityOnDuplicate(scoped ref readonly Grid grid, Cell cell)
 		{
 			foreach (var peer in Peers[cell])
 			{
@@ -394,7 +394,7 @@ public ref struct HodokuPuzzleGenerator
 						// Hidden single.
 						var cell = HouseCells[house][TrailingZeroCount(houseMask)];
 						grid.SetDigit(cell, digit);
-						if (!checkValidityOnDuplicate(grid, cell))
+						if (!checkValidityOnDuplicate(in grid, cell))
 						{
 							// Invalid.
 							return false;
@@ -410,7 +410,7 @@ public ref struct HodokuPuzzleGenerator
 				if (IsPow2(mask))
 				{
 					grid.SetDigit(cell, TrailingZeroCount(mask));
-					if (!checkValidityOnDuplicate(grid, cell))
+					if (!checkValidityOnDuplicate(in grid, cell))
 					{
 						// Invalid.
 						return false;
@@ -448,7 +448,7 @@ public ref struct HodokuPuzzleGenerator
 	public static Grid Generate(int cluesCount = AutoClues, SymmetricType symmetricType = SymmetricType.Central, CancellationToken cancellationToken = default)
 		=> symmetricType.IsFlag()
 			? cluesCount is >= 17 and <= 80 or AutoClues
-				? new HodokuPuzzleGenerator().Generate(cluesCount, symmetricType, CellMap.Empty, cancellationToken)
+				? new HodokuPuzzleGenerator().Generate(cluesCount, symmetricType, in CellMap.Empty, cancellationToken)
 				: throw new NotSupportedException($"The argument '{nameof(cluesCount)}' has an invalid value that the current function cannot support.")
 			: throw new ArgumentException($"The argument '{nameof(symmetricType)}' is invalid because it holds multiple flags.");
 }

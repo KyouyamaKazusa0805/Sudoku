@@ -28,5 +28,5 @@ public sealed record SusserFormatTreatingValuesAsGivens : SusserFormat, IGridFor
 
 
 	/// <inheritdoc/>
-	public override string ToString(in Grid grid) => base.ToString(grid).RemoveAll(ModifiablePrefix);
+	public override string ToString(scoped ref readonly Grid grid) => base.ToString(in grid).RemoveAll(ModifiablePrefix);
 }

@@ -24,7 +24,7 @@ public sealed class EnumerableQuerySolver : ISolver
 
 
 	/// <inheritdoc/>
-	public bool? Solve(scoped in Grid grid, out Grid result)
+	public bool? Solve(scoped ref readonly Grid grid, out Grid result)
 	{
 		Unsafe.SkipInit(out result);
 		var (_, @return) = solve(grid.ToString()) switch
@@ -38,8 +38,8 @@ public sealed class EnumerableQuerySolver : ISolver
 
 		static ReadOnlySpan<string> solve(string puzzle)
 		{
-			var result = (ReadOnlySpan<string>)[puzzle];
-			while (result is [var r, ..] && r.IndexOf('.') != -1)
+			var result = (ReadOnlySpan<string>)(string[])[puzzle];
+			while (result is [var r, ..] && r.Contains('.'))
 			{
 				result = (
 					from solution in result

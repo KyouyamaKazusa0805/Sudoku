@@ -151,17 +151,17 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 				continue;
 			}
 
-			if (!CheckTargetCells(currentJe.TargetQ1, currentJe.TargetQ2, baseCellsDigitsMask, grid, out var otherDigitsMaskQArea))
+			if (!CheckTargetCells(currentJe.TargetQ1, currentJe.TargetQ2, baseCellsDigitsMask, in grid, out var otherDigitsMaskQArea))
 			{
 				continue;
 			}
 
-			if (!CheckTargetCells(currentJe.TargetR1, currentJe.TargetR2, baseCellsDigitsMask, grid, out var otherDigitsMaskRArea))
+			if (!CheckTargetCells(currentJe.TargetR1, currentJe.TargetR2, baseCellsDigitsMask, in grid, out var otherDigitsMaskRArea))
 			{
 				continue;
 			}
 
-			if (!CheckCrossLineCells(currentJe, baseCellsDigitsMask))
+			if (!CheckCrossLineCells(in currentJe, baseCellsDigitsMask))
 			{
 				continue;
 			}
@@ -195,10 +195,10 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 				}
 			}
 
-			gatherEliminations(currentJe.TargetQ1, baseCellsDigitsMask, otherDigitsMaskQArea, grid);
-			gatherEliminations(currentJe.TargetQ2, baseCellsDigitsMask, otherDigitsMaskQArea, grid);
-			gatherEliminations(currentJe.TargetR1, baseCellsDigitsMask, otherDigitsMaskRArea, grid);
-			gatherEliminations(currentJe.TargetR2, baseCellsDigitsMask, otherDigitsMaskRArea, grid);
+			gatherEliminations(currentJe.TargetQ1, baseCellsDigitsMask, otherDigitsMaskQArea, in grid);
+			gatherEliminations(currentJe.TargetQ2, baseCellsDigitsMask, otherDigitsMaskQArea, in grid);
+			gatherEliminations(currentJe.TargetR1, baseCellsDigitsMask, otherDigitsMaskRArea, in grid);
+			gatherEliminations(currentJe.TargetR2, baseCellsDigitsMask, otherDigitsMaskRArea, in grid);
 			if (eliminations.Count == 0)
 			{
 				continue;
@@ -213,7 +213,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 			context.Accumulator.Add(step);
 
 
-			void gatherEliminations(Cell targetCell, Mask baseCellsDigits, Mask otherDigits, scoped in Grid grid)
+			void gatherEliminations(Cell targetCell, Mask baseCellsDigits, Mask otherDigits, scoped ref readonly Grid grid)
 			{
 				var elimDigitsMask = (Mask)(grid.GetCandidates(targetCell) & ~(baseCellsDigits | otherDigits));
 				if (EmptyCells.Contains(targetCell))
@@ -255,7 +255,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 		Cell targetCell1,
 		Cell targetCell2,
 		Mask baseCellsDigitsMask,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		out Mask resultOtherDigitsMask
 	)
 	{
@@ -338,7 +338,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 	/// <param name="currentJe">The current JE pattern.</param>
 	/// <param name="digitsNeedChecking">The digits need checking.</param>
 	/// <returns>A <see cref="bool"/> indicating that.</returns>
-	private bool CheckCrossLineCells(scoped in Exocet currentJe, Mask digitsNeedChecking)
+	private bool CheckCrossLineCells(scoped ref readonly Exocet currentJe, Mask digitsNeedChecking)
 	{
 		foreach (var digitNeedChecking in digitsNeedChecking)
 		{

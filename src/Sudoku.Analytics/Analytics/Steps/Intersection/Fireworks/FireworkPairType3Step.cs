@@ -19,7 +19,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class FireworkPairType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	[DataMember] scoped in CellMap cells,
+	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] Mask digitsMask,
 	[DataMember] House emptyRectangleBlock
 ) : FireworkStep(conclusions, views)

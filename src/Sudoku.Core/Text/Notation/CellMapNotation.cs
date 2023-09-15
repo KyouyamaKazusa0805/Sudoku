@@ -28,24 +28,24 @@ public sealed partial class CellMapNotation : INotation<CellMapNotation, CellMap
 			_ => throw new ArgumentOutOfRangeException(nameof(notation))
 		};
 
-	/// <inheritdoc cref="CellNotation.ToCollectionString(in CellMap)"/>
-	/// <param name="value"><inheritdoc cref="CellNotation.ToCollectionString(in CellMap)" path="/param[@name='collection']"/></param>
+	/// <inheritdoc cref="CellNotation.ToCollectionString(ref readonly CellMap)"/>
+	/// <param name="value"><inheritdoc cref="CellNotation.ToCollectionString(ref readonly CellMap)" path="/param[@name='collection']"/></param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToString(scoped in CellMap value) => CellNotation.ToCollectionString(value);
+	public static string ToString(scoped ref readonly CellMap value) => CellNotation.ToCollectionString(in value);
 
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"/>
 	[ExplicitInterfaceImpl(typeof(INotation<,,>))]
-	public static string ToString(scoped in CellMap value, Kind notation)
+	public static string ToString(scoped ref readonly CellMap value, Kind notation)
 	{
 		switch (notation)
 		{
 			case Kind.RxCy:
 			{
-				return CellNotation.ToCollectionString(value, CellNotation.Kind.RxCy);
+				return CellNotation.ToCollectionString(in value, CellNotation.Kind.RxCy);
 			}
 			case Kind.K9:
 			{
-				return CellNotation.ToCollectionString(value, CellNotation.Kind.K9);
+				return CellNotation.ToCollectionString(in value, CellNotation.Kind.K9);
 			}
 			case Kind.Binary:
 			{

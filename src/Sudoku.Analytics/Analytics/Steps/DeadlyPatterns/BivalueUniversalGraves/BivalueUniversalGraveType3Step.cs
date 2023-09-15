@@ -23,9 +23,9 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BivalueUniversalGraveType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	[DataMember] scoped in CandidateMap trueCandidates,
+	[DataMember] scoped ref readonly CandidateMap trueCandidates,
 	[DataMember] Mask subsetDigitsMask,
-	[DataMember] scoped in CellMap cells,
+	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] bool isNaked
 ) : BivalueUniversalGraveStep(conclusions, views)
 {

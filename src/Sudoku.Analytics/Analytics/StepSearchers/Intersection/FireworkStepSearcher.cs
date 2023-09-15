@@ -152,7 +152,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					}
 #endif
 
-					if (CheckTriple(accumulator, grid, onlyFindOne, pattern, digitsMask, pivot) is { } stepTriple)
+					if (CheckTriple(accumulator, in grid, onlyFindOne, in pattern, digitsMask, pivot) is { } stepTriple)
 					{
 						return stepTriple;
 					}
@@ -161,7 +161,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 				}
 				case null when PopCount((uint)digitsMask) >= 4:
 				{
-					if (CheckQuadruple(accumulator, grid, onlyFindOne, pattern) is { } step)
+					if (CheckQuadruple(accumulator, in grid, onlyFindOne, in pattern) is { } step)
 					{
 						return step;
 					}
@@ -179,9 +179,9 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// </summary>
 	private FireworkPairType1Step? CheckPairType1(
 		List<Step> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		bool onlyFindOne,
-		scoped in Pattern pattern,
+		scoped ref readonly Pattern pattern,
 		Cell pivot
 	)
 	{
@@ -189,7 +189,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		var nonPivotCells = map - pivot;
 		var cell1 = nonPivotCells[0];
 		var cell2 = nonPivotCells[1];
-		var satisfiedDigitsMask = GetFireworkDigits(cell1, cell2, pivot, grid, out var house1CellsExcluded, out var house2CellsExcluded);
+		var satisfiedDigitsMask = GetFireworkDigits(cell1, cell2, pivot, in grid, out var house1CellsExcluded, out var house2CellsExcluded);
 		if (PopCount((uint)satisfiedDigitsMask) < 2)
 		{
 			// No possible digits found as a firework digit.
@@ -265,7 +265,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					var step = new FireworkPairType1Step(
 						[.. conclusions],
 						[[.. candidateOffsets], [.. candidateOffsets, .. cellOffsets]],
-						map,
+						in map,
 						currentDigitsMask,
 						extraCell1,
 						extraCell2
@@ -288,9 +288,9 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// </summary>
 	private FireworkTripleStep? CheckTriple(
 		List<Step> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		bool onlyFindOne,
-		scoped in Pattern pattern,
+		scoped ref readonly Pattern pattern,
 		Mask digitsMask,
 		Cell pivot
 	)
@@ -298,7 +298,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		var nonPivotCells = pattern.Map - pivot;
 		var cell1 = nonPivotCells[0];
 		var cell2 = nonPivotCells[1];
-		var satisfiedDigitsMask = GetFireworkDigits(cell1, cell2, pivot, grid, out var house1CellsExcluded, out var house2CellsExcluded);
+		var satisfiedDigitsMask = GetFireworkDigits(cell1, cell2, pivot, in grid, out var house1CellsExcluded, out var house2CellsExcluded);
 		if (satisfiedDigitsMask == 0)
 		{
 			// No possible digits found as a firework digit.
@@ -411,14 +411,14 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <summary>
 	/// Checks for firework quadruple steps.
 	/// </summary>
-	private FireworkQuadrupleStep? CheckQuadruple(List<Step> accumulator, scoped in Grid grid, bool onlyFindOne, scoped in Pattern pattern)
+	private FireworkQuadrupleStep? CheckQuadruple(List<Step> accumulator, scoped ref readonly Grid grid, bool onlyFindOne, scoped ref readonly Pattern pattern)
 	{
 		if (pattern is not { Map: [var c1, var c2, var c3, var c4] map })
 		{
 			return null;
 		}
 
-		var digitsMask = grid[map];
+		var digitsMask = grid[in map];
 		if (PopCount((uint)digitsMask) < 4)
 		{
 			return null;
@@ -448,10 +448,10 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					var pair1DigitsMask = (Mask)(1 << d1 | 1 << d2);
 					var pair2DigitsMask = (Mask)(1 << d3 | 1 << d4);
 					var satisfiedDigitsMaskPivot1 = GetFireworkDigits(
-						cell1Pivot1, cell2Pivot1, pivot1, grid, out var house1CellsExcludedPivot1, out var house2CellsExcludedPivot1
+						cell1Pivot1, cell2Pivot1, pivot1, in grid, out var house1CellsExcludedPivot1, out var house2CellsExcludedPivot1
 					);
 					var satisfiedDigitsMaskPivot2 = GetFireworkDigits(
-						cell1Pivot2, cell2Pivot2, pivot2, grid, out var house1CellsExcludedPivot2, out var house2CellsExcludedPivot2
+						cell1Pivot2, cell2Pivot2, pivot2, in grid, out var house1CellsExcludedPivot2, out var house2CellsExcludedPivot2
 					);
 					if ((satisfiedDigitsMaskPivot1 & pair1DigitsMask) != pair1DigitsMask
 						|| (satisfiedDigitsMaskPivot2 & pair2DigitsMask) != pair2DigitsMask)
@@ -555,7 +555,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					var step = new FireworkQuadrupleStep(
 						[.. conclusions],
 						[[.. candidateOffsets], [.. cellOffsets1, .. candidateOffsetsView2], [.. cellOffsets2, .. candidateOffsetsView3]],
-						map,
+						in map,
 						fourDigitsMask
 					);
 					if (onlyFindOne)
@@ -594,7 +594,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		Cell c1,
 		Cell c2,
 		Cell pivot,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		out CellMap house1CellsExcluded,
 		out CellMap house2CellsExcluded
 	)
@@ -605,7 +605,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		var finalMask = (Mask)0;
 		foreach (var digit in grid[[c1, c2, pivot]])
 		{
-			if (isFireworkFor(digit, excluded1, grid) && isFireworkFor(digit, excluded2, grid))
+			if (isFireworkFor(digit, in excluded1, in grid) && isFireworkFor(digit, in excluded2, in grid))
 			{
 				finalMask |= (Mask)(1 << digit);
 			}
@@ -615,7 +615,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		return finalMask;
 
 
-		static bool isFireworkFor(Digit digit, scoped in CellMap houseCellsExcluded, scoped in Grid grid)
+		static bool isFireworkFor(Digit digit, scoped ref readonly CellMap houseCellsExcluded, scoped ref readonly Grid grid)
 		{
 			foreach (var cell in houseCellsExcluded)
 			{
@@ -654,5 +654,5 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="Map">Indicates the full map of all cells used.</param>
 	/// <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
-	private readonly record struct Pattern(scoped in CellMap Map, Cell? Pivot);
+	private readonly record struct Pattern(scoped ref readonly CellMap Map, Cell? Pivot);
 }

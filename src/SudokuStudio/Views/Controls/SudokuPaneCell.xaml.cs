@@ -116,7 +116,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 		}
 
 		modified.SetDigit(cell, digit);
-		BasePane.SetPuzzleInternal(modified, PuzzleUpdatingMethod.UserUpdating);
+		BasePane.SetPuzzleInternal(in modified, PuzzleUpdatingMethod.UserUpdating);
 
 		BasePane.TriggerGridUpdated(GridUpdatedBehavior.Assignment, cell * 9 + digit);
 	}
@@ -141,7 +141,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 		}
 
 		modified.SetCandidateIsOn(cell, digit, false);
-		BasePane.SetPuzzleInternal(modified, PuzzleUpdatingMethod.UserUpdating);
+		BasePane.SetPuzzleInternal(in modified, PuzzleUpdatingMethod.UserUpdating);
 
 		BasePane.TriggerGridUpdated(GridUpdatedBehavior.Elimination, cell * 9 + digit);
 	}

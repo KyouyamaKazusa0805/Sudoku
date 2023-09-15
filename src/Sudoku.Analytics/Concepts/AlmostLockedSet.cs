@@ -21,8 +21,8 @@ namespace Sudoku.Concepts;
 /// </remarks>
 public sealed partial class AlmostLockedSet(
 	[DataMember] Mask digitsMask,
-	[DataMember] scoped in CellMap cells,
-	[DataMember] scoped in CellMap possibleEliminationMap
+	[DataMember] scoped ref readonly CellMap cells,
+	[DataMember] scoped ref readonly CellMap possibleEliminationMap
 )
 {
 	/// <summary>
@@ -85,7 +85,7 @@ public sealed partial class AlmostLockedSet(
 	/// <param name="digit">The digit.</param>
 	/// <param name="result">The result.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
-	public bool ContainsDigit(scoped in Grid grid, Digit digit, out CellMap result)
+	public bool ContainsDigit(scoped ref readonly Grid grid, Digit digit, out CellMap result)
 	{
 		result = CellMap.Empty;
 		foreach (var cell in Cells)
@@ -114,7 +114,7 @@ public sealed partial class AlmostLockedSet(
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>All possible found <see cref="AlmostLockedSet"/> instances.</returns>
-	public static AlmostLockedSet[] Gather(scoped in Grid grid)
+	public static AlmostLockedSet[] Gather(scoped ref readonly Grid grid)
 	{
 		_ = grid is { EmptyCells: var emptyMap, BivalueCells: var bivalueMap };
 
@@ -122,7 +122,7 @@ public sealed partial class AlmostLockedSet(
 		var result = new List<AlmostLockedSet>();
 		foreach (var cell in bivalueMap)
 		{
-			result.Add(new(grid.GetCandidates(cell), CellsMap[cell], PeersMap[cell] & emptyMap));
+			result.Add(new(grid.GetCandidates(cell), in CellsMap[cell], PeersMap[cell] & emptyMap));
 		}
 
 		// Get all non-bi-value-cell ALSes.
@@ -146,7 +146,7 @@ public sealed partial class AlmostLockedSet(
 					}
 
 					// Get all candidates in these cells.
-					var digitsMask = grid[map];
+					var digitsMask = grid[in map];
 					if (PopCount((uint)digitsMask) - 1 != size)
 					{
 						continue;
@@ -156,7 +156,7 @@ public sealed partial class AlmostLockedSet(
 					result.Add(
 						new(
 							digitsMask,
-							map,
+							in map,
 							house < 9 && coveredLine is >= 9 and not InvalidTrailingZeroCountMethodFallback
 								? ((HousesMap[house] | HousesMap[coveredLine]) & emptyMap) - map
 								: tempMap - map

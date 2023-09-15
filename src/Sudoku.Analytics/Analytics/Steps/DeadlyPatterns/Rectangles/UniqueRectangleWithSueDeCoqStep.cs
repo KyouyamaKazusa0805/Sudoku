@@ -36,7 +36,7 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 	View[]? views,
 	Digit digit1,
 	Digit digit2,
-	scoped in CellMap cells,
+	scoped ref readonly CellMap cells,
 	bool isAvoidable,
 	[DataMember] House block,
 	[DataMember] House line,
@@ -45,9 +45,9 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 	[DataMember] Mask intersectionMask,
 	[DataMember] bool isCannibalistic,
 	[DataMember] Mask isolatedDigitsMask,
-	[DataMember] scoped in CellMap blockCells,
-	[DataMember] scoped in CellMap lineCells,
-	[DataMember] scoped in CellMap intersectionCells,
+	[DataMember] scoped ref readonly CellMap blockCells,
+	[DataMember] scoped ref readonly CellMap lineCells,
+	[DataMember] scoped ref readonly CellMap intersectionCells,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,

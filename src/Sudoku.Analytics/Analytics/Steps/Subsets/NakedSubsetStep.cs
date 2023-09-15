@@ -38,10 +38,10 @@ public sealed partial class NakedSubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	House house,
-	scoped in CellMap cells,
+	scoped ref readonly CellMap cells,
 	Mask digitsMask,
 	[DataMember] bool? isLocked
-) : SubsetStep(conclusions, views, house, cells, digitsMask)
+) : SubsetStep(conclusions, views, house, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override Technique Code

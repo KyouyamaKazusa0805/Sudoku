@@ -32,7 +32,7 @@ public ref struct ValueTupleEnumerator<T>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ValueTupleEnumerator((T, T) pair)
 	{
-		_innerTuple = [pair.Item1, pair.Item2];
+		_innerTuple = (T[])[pair.Item1, pair.Item2];
 		_limit = 2;
 	}
 
@@ -43,7 +43,7 @@ public ref struct ValueTupleEnumerator<T>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ValueTupleEnumerator((T, T, T) triple)
 	{
-		_innerTuple = [triple.Item1, triple.Item2, triple.Item3];
+		_innerTuple = (T[])[triple.Item1, triple.Item2, triple.Item3];
 		_limit = 3;
 	}
 
@@ -54,7 +54,7 @@ public ref struct ValueTupleEnumerator<T>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ValueTupleEnumerator((T, T, T, T) quadruple)
 	{
-		_innerTuple = [quadruple.Item1, quadruple.Item2, quadruple.Item3, quadruple.Item4];
+		_innerTuple = (T[])[quadruple.Item1, quadruple.Item2, quadruple.Item3, quadruple.Item4];
 		_limit = 4;
 	}
 
@@ -65,7 +65,7 @@ public ref struct ValueTupleEnumerator<T>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ValueTupleEnumerator((T, T, T, T, T) quintuple)
 	{
-		_innerTuple = [quintuple.Item1, quintuple.Item2, quintuple.Item3, quintuple.Item4, quintuple.Item5];
+		_innerTuple = (T[])[quintuple.Item1, quintuple.Item2, quintuple.Item3, quintuple.Item4, quintuple.Item5];
 		_limit = 5;
 	}
 
@@ -76,7 +76,7 @@ public ref struct ValueTupleEnumerator<T>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ValueTupleEnumerator((T, T, T, T, T, T) sextuple)
 	{
-		_innerTuple = [sextuple.Item1, sextuple.Item2, sextuple.Item3, sextuple.Item4, sextuple.Item5, sextuple.Item6];
+		_innerTuple = (T[])[sextuple.Item1, sextuple.Item2, sextuple.Item3, sextuple.Item4, sextuple.Item5, sextuple.Item6];
 		_limit = 6;
 	}
 
@@ -87,7 +87,7 @@ public ref struct ValueTupleEnumerator<T>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ValueTupleEnumerator((T, T, T, T, T, T, T) septuple)
 	{
-		_innerTuple = [septuple.Item1, septuple.Item2, septuple.Item3, septuple.Item4, septuple.Item5, septuple.Item6, septuple.Item7];
+		_innerTuple = (T[])[septuple.Item1, septuple.Item2, septuple.Item3, septuple.Item4, septuple.Item5, septuple.Item6, septuple.Item7];
 		_limit = 7;
 	}
 

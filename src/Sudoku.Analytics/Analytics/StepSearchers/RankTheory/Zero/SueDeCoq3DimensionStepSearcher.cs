@@ -122,14 +122,14 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 											var fullMap = rbCurrentMap | cbCurrentMap | selectedRowCells | selectedColumnCells | selectedBlockCells;
 											var otherMap_row = fullMap - (selectedRowCells | rbCurrentMap);
 											var otherMap_column = fullMap - (selectedColumnCells | cbCurrentMap);
-											var mask = grid[otherMap_row];
+											var mask = grid[in otherMap_row];
 											if ((mask & rowMask) != 0)
 											{
 												// At least one digit spanned two houses.
 												continue;
 											}
 
-											mask = grid[otherMap_column];
+											mask = grid[in otherMap_column];
 											if ((mask & columnMask) != 0)
 											{
 												continue;

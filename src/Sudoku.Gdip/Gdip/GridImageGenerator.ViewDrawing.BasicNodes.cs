@@ -219,7 +219,7 @@ partial class GridImageGenerator
 
 			arrowPen.DashStyle = inference switch { Inference.Strong => DashStyle.Solid, Inference.Weak => DashStyle.Dot, _ => DashStyle.Dash };
 
-			_ = (calc.GetMouseCenter(start), calc.GetMouseCenter(end)) is (var pt1 and var (pt1x, pt1y), var pt2 and var (pt2x, pt2y));
+			_ = (calc.GetMouseCenter(in start), calc.GetMouseCenter(in end)) is (var pt1 and var (pt1x, pt1y), var pt2 and var (pt2x, pt2y));
 
 			var penToDraw = inference != Inference.Default ? arrowPen : linePen;
 			if (inference == Inference.Default)

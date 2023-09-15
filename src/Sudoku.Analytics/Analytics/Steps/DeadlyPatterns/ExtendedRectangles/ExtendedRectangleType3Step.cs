@@ -22,9 +22,9 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ExtendedRectangleType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	scoped in CellMap cells,
+	scoped ref readonly CellMap cells,
 	Mask digitsMask,
-	[DataMember] scoped in CellMap subsetCells,
+	[DataMember] scoped ref readonly CellMap subsetCells,
 	[DataMember] Mask subsetDigitsMask,
 	[DataMember] House house
 ) : ExtendedRectangleStep(conclusions, views, cells, digitsMask)

@@ -74,19 +74,19 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
-	public AnalyzerResult Analyze(scoped in Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
+	public AnalyzerResult Analyze(scoped ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved)
 		{
 			throw new InvalidOperationException("This puzzle has already been solved.");
 		}
 
-		var result = new AnalyzerResult(puzzle) { IsSolved = false };
+		var result = new AnalyzerResult(in puzzle) { IsSolved = false };
 		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } isSukaku)
 		{
 			try
 			{
-				return analyzeInternal(puzzle, solution, isSukaku, result, progress, cancellationToken);
+				return analyzeInternal(in puzzle, in solution, isSukaku, result, progress, cancellationToken);
 			}
 			catch (Exception ex)
 			{
@@ -109,8 +109,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 
 		AnalyzerResult analyzeInternal(
-			scoped in Grid puzzle,
-			scoped in Grid solution,
+			scoped ref readonly Grid puzzle,
+			scoped ref readonly Grid solution,
 			bool isSukaku,
 			AnalyzerResult resultBase,
 			IProgress<AnalyzerProgress>? progress = null,
@@ -124,7 +124,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			scoped var stopwatch = ValueStopwatch.NewInstance;
 
 		Again:
-			Initialize(playground, solution);
+			Initialize(in playground, in solution);
 			foreach (var searcher in stepSearchers)
 			{
 				switch (isSukaku, searcher, this)
@@ -153,7 +153,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 						foreach (var foundStep in accumulator)
 						{
-							if (verifyConclusionValidity(solution, foundStep))
+							if (verifyConclusionValidity(in solution, foundStep))
 							{
 								if (recordingStep(
 									recordedSteps, foundStep, ref playground, ref stopwatch, stepGrids,
@@ -164,7 +164,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 							}
 							else
 							{
-								throw new WrongStepException(playground, foundStep);
+								throw new WrongStepException(in playground, foundStep);
 							}
 						}
 
@@ -183,7 +183,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 							}
 							case var foundStep:
 							{
-								if (verifyConclusionValidity(solution, foundStep))
+								if (verifyConclusionValidity(in solution, foundStep))
 								{
 									if (recordingStep(
 										recordedSteps, foundStep, ref playground, ref stopwatch, stepGrids,
@@ -194,7 +194,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 								}
 								else
 								{
-									throw new WrongStepException(playground, foundStep);
+									throw new WrongStepException(in playground, foundStep);
 								}
 
 								// The puzzle has not been finished, we should turn to the first step finder
@@ -224,7 +224,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			goto Again;
 
 
-			static bool verifyConclusionValidity(scoped in Grid solution, Step step)
+			static bool verifyConclusionValidity(scoped ref readonly Grid solution, Step step)
 			{
 				foreach (var (t, c, d) in step.Conclusions)
 				{
@@ -306,10 +306,10 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	/// <param name="puzzle">The puzzle.</param>
 	/// <returns>The first steps found.</returns>
 	/// <exception cref="InvalidOperationException">
-	/// <inheritdoc cref="Analyze(in Grid, IProgress{AnalyzerProgress}?, CancellationToken)" path="/exception[@cref='InvalidOperationException']"/>
+	/// <inheritdoc cref="Analyze(ref readonly Grid, IProgress{AnalyzerProgress}?, CancellationToken)" path="/exception[@cref='InvalidOperationException']"/>
 	/// </exception>
 	/// <seealso cref="IsFullApplying"/>
-	public Step[]? AnalyzeOneStep(scoped in Grid puzzle)
+	public Step[]? AnalyzeOneStep(scoped ref readonly Grid puzzle)
 	{
 		if (puzzle.IsSolved)
 		{
@@ -318,7 +318,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } isSukaku)
 		{
-			Initialize(puzzle, puzzle.SolutionGrid);
+			Initialize(in puzzle, puzzle.SolutionGrid);
 			foreach (var searcher in ResultStepSearchers)
 			{
 				switch (isSukaku, searcher, this)
@@ -348,7 +348,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 						var steps = new List<Step>();
 						foreach (var step in accumulator)
 						{
-							steps.Add(verifyConclusionValidity(solution, step) ? step : throw new WrongStepException(puzzle, step));
+							steps.Add(verifyConclusionValidity(in solution, step) ? step : throw new WrongStepException(in puzzle, step));
 						}
 
 						return [.. steps];
@@ -361,7 +361,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 							continue;
 						}
 
-						return verifyConclusionValidity(solution, step) ? [step] : throw new WrongStepException(puzzle, step);
+						return verifyConclusionValidity(in solution, step) ? [step] : throw new WrongStepException(in puzzle, step);
 					}
 				}
 			}
@@ -370,7 +370,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 		return null;
 
 
-		static bool verifyConclusionValidity(scoped in Grid solution, Step step)
+		static bool verifyConclusionValidity(scoped ref readonly Grid solution, Step step)
 		{
 			foreach (var (t, c, d) in step.Conclusions)
 			{

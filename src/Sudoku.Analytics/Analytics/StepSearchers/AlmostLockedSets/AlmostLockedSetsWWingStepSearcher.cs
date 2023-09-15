@@ -213,7 +213,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : AlmostLockedSets
 			{
 				if ((HousesMap[houseIndex] & CandidatesMap[digit]) is { Count: 2 } temp)
 				{
-					(conjugatePairs[digit] ??= []).Add(new(temp, digit));
+					(conjugatePairs[digit] ??= []).Add(new(in temp, digit));
 				}
 			}
 		}

@@ -26,7 +26,7 @@ public sealed partial class RegularWingStep(
 	[DataMember] Cell pivot,
 	[DataMember] int pivotCandidatesCount,
 	[DataMember] Mask digitsMask,
-	[DataMember] scoped in CellMap petals
+	[DataMember] scoped ref readonly CellMap petals
 ) : WingStep(conclusions, views)
 {
 	/// <summary>

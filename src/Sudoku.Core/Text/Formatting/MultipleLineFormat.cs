@@ -59,7 +59,7 @@ public sealed partial record MultipleLineFormat(bool SubtleGridLines = true, boo
 
 
 	/// <inheritdoc/>
-	public string ToString(scoped in Grid grid)
+	public string ToString(scoped ref readonly Grid grid)
 	{
 		var t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : Placeholder.ToString());
 		return new StringBuilder()

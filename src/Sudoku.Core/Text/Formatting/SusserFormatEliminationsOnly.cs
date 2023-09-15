@@ -32,8 +32,8 @@ public sealed partial record SusserFormatEliminationsOnly : SusserFormat, IGridF
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString(scoped in Grid grid)
-		=> EliminationPattern().Match(base.ToString(grid)) switch
+	public override string ToString(scoped ref readonly Grid grid)
+		=> EliminationPattern().Match(base.ToString(in grid)) switch
 		{
 			{ Success: true, Value: var value } => value,
 			_ => string.Empty

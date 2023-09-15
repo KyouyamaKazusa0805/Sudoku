@@ -351,7 +351,7 @@ public sealed partial class AnalyzePage : Page
 				{
 					await File.WriteAllTextAsync(
 						filePath,
-						string.Join("\r\n\r\n", [.. from formatter in gridFormatters select ((IGridFormatter)formatter).ToString(grid)])
+						string.Join("\r\n\r\n", [.. from formatter in gridFormatters select ((IGridFormatter)formatter).ToString(in grid)])
 					);
 				}
 				break;
@@ -375,7 +375,7 @@ public sealed partial class AnalyzePage : Page
 						_ => [
 							..
 							from formatter in gridFormatters
-							select ((IGridFormatter)formatter).ToString(grid) into gridString
+							select ((IGridFormatter)formatter).ToString(in grid) into gridString
 							select new GridInfo
 							{
 								BaseGrid = grid,
@@ -1122,7 +1122,7 @@ public sealed partial class AnalyzePage : Page
 			{
 				lock (AnalyzingRelatedSyncRoot)
 				{
-					return analyzer.Analyze(puzzle, new Progress<AnalyzerProgress>(progress => DispatcherQueue.TryEnqueue(() =>
+					return analyzer.Analyze(in puzzle, new Progress<AnalyzerProgress>(progress => DispatcherQueue.TryEnqueue(() =>
 					{
 						var (stepSearcherName, percent) = progress;
 						ProgressPercent = progress.Percent * 100;

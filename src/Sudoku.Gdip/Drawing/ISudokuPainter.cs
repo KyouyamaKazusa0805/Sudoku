@@ -197,7 +197,7 @@ file sealed class SudokuPainter(int defaultSize, int defaultOffset) : ISudokuPai
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ISudokuPainter WithGrid(scoped in Grid grid)
+	public ISudokuPainter WithGrid(scoped ref readonly Grid grid)
 	{
 		GridImageGenerator.Puzzle = grid;
 		return this;

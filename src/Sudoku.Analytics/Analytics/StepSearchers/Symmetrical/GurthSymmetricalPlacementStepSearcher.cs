@@ -23,7 +23,11 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 	/// <summary>
 	/// The methods.
 	/// </summary>
-	private static readonly delegate*<in Grid, GurthSymmetricalPlacementStep?>[] Methods = [&CheckDiagonal, &CheckAntiDiagonal, &CheckCentral];
+	private static readonly delegate*<ref readonly Grid, GurthSymmetricalPlacementStep?>[] Methods = [
+		&CheckDiagonal,
+		&CheckAntiDiagonal,
+		&CheckCentral
+	];
 
 
 	/// <inheritdoc/>
@@ -32,7 +36,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 		scoped ref readonly var grid = ref context.Grid;
 		for (var i = 0; i < 3; i++)
 		{
-			if (Methods[i](grid) is not { } step)
+			if (Methods[i](in grid) is not { } step)
 			{
 				continue;
 			}
@@ -55,7 +59,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 	/// <param name="grid">The grid as reference.</param>
 	/// <param name="cellOffsets">The target collection.</param>
 	/// <param name="mapping">The mapping relation.</param>
-	private static void RecordHighlightCells(scoped in Grid grid, List<CellViewNode> cellOffsets, Digit?[] mapping)
+	private static void RecordHighlightCells(scoped ref readonly Grid grid, List<CellViewNode> cellOffsets, Digit?[] mapping)
 	{
 		scoped var colorIndices = (stackalloc Digit[9]);
 		for (var (digit, colorIndexCurrent, digitsMaskBucket) = (0, 0, (Mask)0); digit < 9; digit++)
@@ -89,7 +93,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckDiagonal(in Grid grid)
+	private static GurthSymmetricalPlacementStep? CheckDiagonal(scoped ref readonly Grid grid)
 	{
 		var diagonalHasEmptyCell = false;
 		for (var i = 0; i < 9; i++)
@@ -198,7 +202,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 				conclusions.Add(new(Elimination, cell, digit));
 			}
 		}
-		RecordHighlightCells(grid, cellOffsets, mapping);
+		RecordHighlightCells(in grid, cellOffsets, mapping);
 
 		return conclusions.Count == 0
 			? null
@@ -210,7 +214,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckAntiDiagonal(in Grid grid)
+	private static GurthSymmetricalPlacementStep? CheckAntiDiagonal(scoped ref readonly Grid grid)
 	{
 		var antiDiagonalHasEmptyCell = false;
 		for (var i = 0; i < 9; i++)
@@ -319,7 +323,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 				conclusions.Add(new(Elimination, cell, digit));
 			}
 		}
-		RecordHighlightCells(grid, cellOffsets, mapping);
+		RecordHighlightCells(in grid, cellOffsets, mapping);
 
 		return conclusions.Count == 0
 			? null
@@ -331,7 +335,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckCentral(in Grid grid)
+	private static GurthSymmetricalPlacementStep? CheckCentral(scoped ref readonly Grid grid)
 	{
 		if (grid.GetState(40) != CellState.Empty)
 		{
@@ -403,7 +407,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			}
 
 			var cellOffsets = new List<CellViewNode>();
-			RecordHighlightCells(grid, cellOffsets, mapping);
+			RecordHighlightCells(in grid, cellOffsets, mapping);
 
 			return new(
 				[new(Assignment, 40, digit)],

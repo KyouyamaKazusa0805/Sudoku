@@ -100,7 +100,7 @@ namespace Sudoku.Text.Formatting;
 /// 
 ///	    static IGridFormatter IGridFormatter.Instance => Default;
 ///	
-///     public string ToString(scoped in Grid grid)
+///     public string ToString(scoped ref readonly Grid grid)
 ///     {
 ///         // Define your own logic here.
 ///     }
@@ -129,5 +129,5 @@ public interface IGridFormatter
 	/// </summary>
 	/// <param name="grid">A <see cref="Grid"/> instance to be formatted.</param>
 	/// <returns>A <see cref="string"/> representation as result.</returns>
-	public abstract string ToString(scoped in Grid grid);
+	public abstract string ToString(scoped ref readonly Grid grid);
 }

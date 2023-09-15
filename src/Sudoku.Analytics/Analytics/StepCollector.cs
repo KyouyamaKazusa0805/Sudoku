@@ -60,7 +60,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 	/// The result. If cancelled, the return value will be <see langword="null"/>; otherwise, a real list even though it may be empty.
 	/// </returns>
 	/// <exception cref="InvalidOperationException">Throws when property <see cref="DifficultyLevelMode"/> is not defined.</exception>
-	public IEnumerable<Step>? Collect(scoped in Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
+	public IEnumerable<Step>? Collect(scoped ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		if (!Enum.IsDefined(DifficultyLevelMode))
 		{
@@ -74,7 +74,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 
 		try
 		{
-			return searchInternal(sukaku, progress, puzzle, cancellationToken);
+			return searchInternal(sukaku, progress, in puzzle, cancellationToken);
 		}
 		catch (Exception ex)
 		{
@@ -87,14 +87,14 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 		}
 
 
-		List<Step> searchInternal(bool sukaku, IProgress<AnalyzerProgress>? progress, scoped in Grid puzzle, CancellationToken cancellationToken)
+		List<Step> searchInternal(bool sukaku, IProgress<AnalyzerProgress>? progress, scoped ref readonly Grid puzzle, CancellationToken cancellationToken)
 		{
 			const int defaultLevel = int.MaxValue;
 
 			var possibleStepSearchers = ResultStepSearchers;
 			var totalSearchersCount = possibleStepSearchers.Length;
 
-			Initialize(puzzle, puzzle.SolutionGrid);
+			Initialize(in puzzle, puzzle.SolutionGrid);
 
 			var (lastLevel, bag, currentSearcherIndex) = (defaultLevel, new List<Step>(), 0);
 			foreach (var searcher in possibleStepSearchers)

@@ -19,12 +19,20 @@ internal static class EqualsHandler
 					TypeParameters: var typeParameters,
 					ContainingNamespace: var @namespace,
 					ContainingType: null // Must be top-level type.
-				}
+				} type,
+				SemanticModel.Compilation: var compilation
 			})
 		{
 			return null;
 		}
 
+		const string largeStructAttributeName = "System.SourceGeneration.LargeStructureAttribute";
+		if (compilation.GetTypeByMetadataName(largeStructAttributeName) is not { } largeStructAttribute)
+		{
+			return null;
+		}
+
+		var isLargeStructure = type.GetAttributes().Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, largeStructAttribute));
 		var namespaceString = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
 		var behavior = attribute switch
 		{
@@ -51,10 +59,11 @@ internal static class EqualsHandler
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
 		var typeNameString = $"{typeName}{typeArgumentsString}";
 		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
+		var inKeyword = isLargeStructure ? "in " : string.Empty;
 		var expressionString = behavior switch
 		{
 			Behavior.ReturnFalse => "false",
-			Behavior.IsCast => $"obj is {fullTypeNameString} comparer && Equals(comparer)",
+			Behavior.IsCast => $"obj is {fullTypeNameString} comparer && Equals({inKeyword}comparer)",
 			Behavior.AsCast => $"Equals(obj as {fullTypeNameString})",
 			Behavior.Throw => """throw new global::System.NotSupportedException("This method is not supported or disallowed by author.")""",
 			_ => throw new InvalidOperationException("Invalid state.")

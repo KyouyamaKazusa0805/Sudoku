@@ -18,7 +18,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class MultisectorLockedSetsStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[DataMember] scoped in CellMap cells
+	[DataMember] scoped ref readonly CellMap cells
 ) : ZeroRankStep(conclusions, views)
 {
 	/// <inheritdoc/>

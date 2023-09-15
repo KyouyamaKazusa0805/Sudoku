@@ -52,7 +52,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The 9 maps for invalid positions of each digit.</returns>
-	private static CellMap[] GetInvalidPos(scoped in Grid grid)
+	private static CellMap[] GetInvalidPos(scoped ref readonly Grid grid)
 	{
 		var result = new CellMap[9];
 		var invalidPos = new CellMap[9];

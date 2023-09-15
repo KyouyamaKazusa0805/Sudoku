@@ -19,7 +19,7 @@ public static class TrueCandidatesSearcher
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>All true candidates.</returns>
 	/// <exception cref="ArgumentException">Throws when the puzzle is invalid.</exception>
-	public static CandidateMap GetAllTrueCandidates(scoped in Grid grid, CancellationToken cancellationToken = default)
+	public static CandidateMap GetAllTrueCandidates(scoped ref readonly Grid grid, CancellationToken cancellationToken = default)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.IsValid, true);
 

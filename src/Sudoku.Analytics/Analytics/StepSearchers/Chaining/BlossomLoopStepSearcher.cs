@@ -47,7 +47,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	/// </summary>
 	/// <param name="grid">The grid on which to search for hints.</param>
 	/// <returns>The hints found.</returns>
-	private List<BlossomLoopStep> Collect(scoped in Grid grid)
+	private List<BlossomLoopStep> Collect(scoped ref readonly Grid grid)
 	{
 		var result = new List<BlossomLoopStep>();
 
@@ -75,10 +75,12 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	/// <summary>
 	/// Search for region (house) forcing chains.
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.Collect(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid">
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/>
+	/// </param>
 	/// <param name="result">
 	/// <inheritdoc
-	///     cref="NonMultipleChainingStepSearcher.DoUnaryChaining(in Grid, ChainNode, List{ChainingStep}, bool, bool)"
+	///     cref="NonMultipleChainingStepSearcher.DoUnaryChaining(ref readonly Grid, ChainNode, List{ChainingStep}, bool, bool)"
 	///     path="/param[@name='result']"/>
 	/// </param>
 	/// <param name="baseCell">Indicates the starting cell.</param>
@@ -86,11 +88,11 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	/// <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
 	/// <remarks>
 	/// This method is nearly same with
-	/// <see cref="MultipleChainingStepSearcher.DoHouseChaining(in Grid, List{ChainingStep}, byte, byte, NodeSet, NodeSet)"/>,
+	/// <see cref="MultipleChainingStepSearcher.DoHouseChaining(ref readonly Grid, List{ChainingStep}, byte, byte, NodeSet, NodeSet)"/>,
 	/// with variables <c>houseToOn</c> and <c>houseToOff</c> removed.
 	/// </remarks>
-	/// <seealso cref="MultipleChainingStepSearcher.DoHouseChaining(in Grid, List{ChainingStep}, byte, byte, NodeSet, NodeSet)"/>
-	private void DoHouseChaining(scoped in Grid grid, List<BlossomLoopStep> result, byte baseCell, byte baseDigit, NodeSet onToOn)
+	/// <seealso cref="MultipleChainingStepSearcher.DoHouseChaining(ref readonly Grid, List{ChainingStep}, byte, byte, NodeSet, NodeSet)"/>
+	private void DoHouseChaining(scoped ref readonly Grid grid, List<BlossomLoopStep> result, byte baseCell, byte baseDigit, NodeSet onToOn)
 	{
 		foreach (var houseType in HouseTypes)
 		{
@@ -122,8 +124,8 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 				}
 
 				// Check for target types.
-				CheckForCellTargetType(posToOn, potentialPositions, baseDigit, grid, houseIndex, result);
-				CheckForHouseTargetType(posToOn, potentialPositions, baseDigit, grid, houseIndex, result);
+				CheckForCellTargetType(posToOn, in potentialPositions, baseDigit, grid, houseIndex, result);
+				CheckForHouseTargetType(posToOn, in potentialPositions, baseDigit, grid, houseIndex, result);
 			}
 		}
 	}
@@ -133,9 +135,9 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	/// </summary>
 	private void CheckForCellTargetType(
 		ChainBranch posToOn,
-		scoped in CellMap potentialPositions,
+		scoped ref readonly CellMap potentialPositions,
 		byte baseDigit,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		House houseIndex,
 		List<BlossomLoopStep> result
 	)
@@ -208,9 +210,9 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	/// </summary>
 	private void CheckForHouseTargetType(
 		ChainBranch posToOn,
-		scoped in CellMap potentialPositions,
+		scoped ref readonly CellMap potentialPositions,
 		byte baseDigit,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		House houseIndex,
 		List<BlossomLoopStep> result
 	)
@@ -286,7 +288,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	/// <returns>A <see cref="bool"/> indicating that.</returns>
 	private bool IsOneToOneRelationBetweenStartAndEndNodes(
 		NodeList selectedPotentials,
-		scoped in CellMap potentialPositions,
+		scoped ref readonly CellMap potentialPositions,
 		byte baseDigit,
 		[NotNullWhen(true)] out ChainNodeListWithHeadCandidate? projectedStartNodes
 	)
@@ -337,7 +339,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="baseDigit">The base digit.</param>
 	/// <returns>All possible eliminations. If none found, an empty list.</returns>
-	private List<Conclusion> CollectLoopEliminations(ChainNodeListWithHeadCandidate outcomes, scoped in Grid grid, byte baseDigit)
+	private List<Conclusion> CollectLoopEliminations(ChainNodeListWithHeadCandidate outcomes, scoped ref readonly Grid grid, byte baseDigit)
 	{
 		var conclusions = new List<Conclusion>();
 		foreach (var (branch, headCandidate) in outcomes)
@@ -382,7 +384,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	/// <param name="targetCell">Indicates the target cell which makes all branches end with.</param>
 	/// <param name="elimDigitsMask">Indicates mask of digits can be eliminated in target cell.</param>
 	private BlossomLoopStep? CreateStepCellType(
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		House houseIndex,
 		byte digit,
 		ChainNodeListWithHeadCandidate outcomes,
@@ -426,11 +428,11 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 	/// <param name="elimCells">Indicates cells can be eliminated in the target house.</param>
 	/// <param name="targetDigit">Indicates the target digit.</param>
 	private BlossomLoopStep? CreateStepHouseType(
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		House houseIndex,
 		byte digit,
 		ChainNodeListWithHeadCandidate outcomes,
-		scoped in CellMap elimCells,
+		scoped ref readonly CellMap elimCells,
 		byte targetDigit
 	)
 	{

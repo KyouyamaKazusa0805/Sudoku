@@ -39,7 +39,7 @@ public sealed record OpenSudokuFormat : IGridFormatter
 
 
 	/// <inheritdoc/>
-	public unsafe string ToString(scoped in Grid grid)
+	public unsafe string ToString(scoped ref readonly Grid grid)
 	{
 		// Calculates the length of the result string.
 		const int length = 1 + (81 * 3 - 1 << 1);

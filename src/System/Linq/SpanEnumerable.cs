@@ -45,7 +45,7 @@ public static class SpanEnumerable
 			}
 		}
 
-		return [.. result];
+		return (TResult[])[.. result];
 	}
 
 	/// <summary>

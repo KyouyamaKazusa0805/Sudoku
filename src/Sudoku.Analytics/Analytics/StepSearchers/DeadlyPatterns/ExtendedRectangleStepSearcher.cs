@@ -219,13 +219,13 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 				if (extraCellsMap.Count == 1)
 				{
-					if (CheckType1(accumulator, grid, allCellsMap, extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step1)
+					if (CheckType1(accumulator, in grid, in allCellsMap, in extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step1)
 					{
 						return step1;
 					}
 				}
 
-				if (CheckType2(accumulator, grid, allCellsMap, extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step2)
+				if (CheckType2(accumulator, in grid, in allCellsMap, in extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step2)
 				{
 					return step2;
 				}
@@ -250,12 +250,12 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (CheckType3Naked(accumulator, grid, allCellsMap, normalDigits, extraDigits, extraCellsMap, onlyFindOne) is { } step3)
+				if (CheckType3Naked(accumulator, in grid, in allCellsMap, normalDigits, extraDigits, in extraCellsMap, onlyFindOne) is { } step3)
 				{
 					return step3;
 				}
 
-				if (CheckType14(accumulator, grid, allCellsMap, normalDigits, extraCellsMap, onlyFindOne) is { } step14)
+				if (CheckType14(accumulator, in grid, in allCellsMap, normalDigits, in extraCellsMap, onlyFindOne) is { } step14)
 				{
 					return step14;
 				}
@@ -278,9 +278,9 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <returns>The first found step if worth.</returns>
 	private ExtendedRectangleType1Step? CheckType1(
 		List<Step> accumulator,
-		scoped in Grid grid,
-		scoped in CellMap allCellsMap,
-		scoped in CellMap extraCells,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CellMap allCellsMap,
+		scoped ref readonly CellMap extraCells,
 		Mask normalDigits,
 		Digit extraDigit,
 		bool onlyFindOne
@@ -313,7 +313,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			goto ReturnNull;
 		}
 
-		var step = new ExtendedRectangleType1Step([.. conclusions], [[.. candidateOffsets]], allCellsMap, normalDigits);
+		var step = new ExtendedRectangleType1Step([.. conclusions], [[.. candidateOffsets]], in allCellsMap, normalDigits);
 		if (onlyFindOne)
 		{
 			return step;
@@ -338,9 +338,9 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <returns>The first found step if worth.</returns>
 	private ExtendedRectangleType2Step? CheckType2(
 		List<Step> accumulator,
-		scoped in Grid grid,
-		scoped in CellMap allCellsMap,
-		scoped in CellMap extraCells,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CellMap allCellsMap,
+		scoped ref readonly CellMap extraCells,
 		Mask normalDigits,
 		Digit extraDigit,
 		bool onlyFindOne
@@ -365,7 +365,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		var step = new ExtendedRectangleType2Step(
 			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 			[[.. candidateOffsets]],
-			allCellsMap,
+			in allCellsMap,
 			normalDigits,
 			extraDigit
 		);
@@ -393,11 +393,11 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <returns>The first found step if worth.</returns>
 	private ExtendedRectangleType3Step? CheckType3Naked(
 		List<Step> accumulator,
-		scoped in Grid grid,
-		scoped in CellMap allCellsMap,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CellMap allCellsMap,
 		Mask normalDigits,
 		Mask extraDigits,
-		scoped in CellMap extraCellsMap,
+		scoped ref readonly CellMap extraCellsMap,
 		bool onlyFindOne
 	)
 	{
@@ -408,7 +408,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			{
 				foreach (var cells in otherCells.GetSubsets(size))
 				{
-					var mask = grid[cells];
+					var mask = grid[in cells];
 					if ((mask & extraDigits) != extraDigits || PopCount((uint)mask) != size + 1)
 					{
 						continue;
@@ -464,9 +464,9 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					var step = new ExtendedRectangleType3Step(
 						[.. conclusions],
 						[[.. candidateOffsets, new HouseViewNode(0, houseIndex)]],
-						allCellsMap,
+						in allCellsMap,
 						normalDigits,
-						cells,
+						in cells,
 						mask,
 						houseIndex
 					);
@@ -486,7 +486,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 	/// <summary>
 	/// Check type 4 and a part of type 1 that the method
-	/// <see cref="CheckType1(List{Step}, in Grid, in CellMap, in CellMap, Mask, Digit, bool)"/>
+	/// <see cref="CheckType1(List{Step}, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, Mask, Digit, bool)"/>
 	/// cannot be found.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
@@ -498,10 +498,10 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <returns>The first found step if worth.</returns>
 	private Step? CheckType14(
 		List<Step> accumulator,
-		scoped in Grid grid,
-		scoped in CellMap allCellsMap,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CellMap allCellsMap,
 		Mask normalDigits,
-		scoped in CellMap extraCellsMap,
+		scoped ref readonly CellMap extraCellsMap,
 		bool onlyFindOne
 	)
 	{
@@ -540,7 +540,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					}
 				}
 
-				var step = new ExtendedRectangleType1Step([.. conclusions], [[.. candidateOffsets]], allCellsMap, normalDigits);
+				var step = new ExtendedRectangleType1Step([.. conclusions], [[.. candidateOffsets]],in allCellsMap, normalDigits);
 				if (onlyFindOne)
 				{
 					return step;
@@ -601,9 +601,9 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						var step = new ExtendedRectangleType4Step(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(0, houseIndex)]],
-							allCellsMap,
+							in allCellsMap,
 							normalDigits,
-							new(extraCellsMap, conjugateDigit)
+							new(in extraCellsMap, conjugateDigit)
 						);
 
 						if (onlyFindOne)

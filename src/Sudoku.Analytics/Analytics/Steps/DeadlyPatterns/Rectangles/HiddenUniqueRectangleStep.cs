@@ -20,7 +20,7 @@ public sealed class HiddenUniqueRectangleStep(
 	View[]? views,
 	Digit digit1,
 	Digit digit2,
-	scoped in CellMap cells,
+	scoped ref readonly CellMap cells,
 	bool isAvoidable,
 	Conjugate[] conjugatePairs,
 	int absoluteOffset

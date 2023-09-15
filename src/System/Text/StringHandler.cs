@@ -208,7 +208,7 @@ public unsafe ref partial struct StringHandler
 	public StringHandler(string initialString)
 	{
 		Unsafe.CopyBlock(
-			ref Unsafe2.AsByteRef(ref Unsafe.AsRef(_chars[0])),
+			ref Unsafe2.AsByteRef(ref _chars[0]),
 			ref Unsafe2.AsByteRef(ref Unsafe.AsRef(initialString[0])), (uint)(sizeof(char) * initialString.Length)
 		);
 
@@ -349,7 +349,8 @@ public unsafe ref partial struct StringHandler
 				{
 					Unsafe.WriteUnaligned(
 						ref Unsafe2.AsByteRef(ref Unsafe.Add(ref MemoryMarshal.GetReference(chars), pos)),
-						Unsafe.ReadUnaligned<int>(ref Unsafe2.AsByteRef(ref Unsafe.AsRef(value[0]))));
+						Unsafe.ReadUnaligned<int>(ref Unsafe2.AsByteRef(ref Unsafe.AsRef(value[0])))
+					);
 
 					Length = pos + 2;
 				}
@@ -683,14 +684,19 @@ public unsafe ref partial struct StringHandler
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="converter"/> is <see langword="null"/>.
 	/// </exception>
-	public void AppendRangeWithSeparatorRef<T>(scoped in T list, int length, delegate*<in T, string?> converter, string separator)
+	public void AppendRangeWithSeparatorRef<T>(
+		scoped ref readonly T list,
+		int length,
+		delegate*<ref readonly T, string?> converter,
+		string separator
+	)
 	{
-		ArgumentNullRefException.ThrowIfNullRef(ref Unsafe.AsRef(list));
+		ArgumentNullRefException.ThrowIfNullRef(ref Unsafe.AsRef(in list));
 		ArgumentNullException.ThrowIfNull(converter);
 
 		for (var i = 0; i < length; i++)
 		{
-			scoped ref readonly var element = ref Unsafe.AddByteOffset(ref Unsafe.AsRef(list), i);
+			scoped ref readonly var element = ref Unsafe.AddByteOffset(ref Unsafe.AsRef(in list), i);
 			AppendFormatted(converter(in element));
 			AppendFormatted(separator);
 		}
@@ -712,13 +718,13 @@ public unsafe ref partial struct StringHandler
 	/// <exception cref="ArgumentNullRefException">
 	/// Throws when the argument <paramref name="list"/> is <see langword="null"/>.
 	/// </exception>
-	public void AppendRangeWithSeparatorRef<T>(scoped in T list, int length, StringHandlerRefAppender<T> converter, string separator)
+	public void AppendRangeWithSeparatorRef<T>(scoped ref readonly T list, int length, StringHandlerRefAppender<T> converter, string separator)
 	{
-		ArgumentNullRefException.ThrowIfNullRef(ref Unsafe.AsRef(list));
+		ArgumentNullRefException.ThrowIfNullRef(ref Unsafe.AsRef(in list));
 
 		for (var i = 0; i < length; i++)
 		{
-			scoped ref readonly var element = ref Unsafe.AddByteOffset(ref Unsafe.AsRef(list), i);
+			scoped ref readonly var element = ref Unsafe.AddByteOffset(ref Unsafe.AsRef(in list), i);
 			AppendFormatted(converter(in element));
 			AppendFormatted(separator);
 		}
@@ -746,7 +752,7 @@ public unsafe ref partial struct StringHandler
 	/// </summary>
 	/// <param name="value">The value to write.</param>
 	/// <typeparam name="T">The type of the value to write.</typeparam>
-	public void AppendLargeObjectFormatted<T>(scoped in T value)
+	public void AppendLargeObjectFormatted<T>(scoped ref readonly T value)
 	{
 		switch (value)
 		{
@@ -791,7 +797,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="value">The value to write.</param>
 	/// <param name="format">The format string.</param>
 	/// <typeparam name="T">The type of the value to write.</typeparam>
-	public void AppendLargeObjectFormatted<T>(scoped in T value, string? format)
+	public void AppendLargeObjectFormatted<T>(scoped ref readonly T value, string? format)
 	{
 		switch (value)
 		{
@@ -839,7 +845,7 @@ public unsafe ref partial struct StringHandler
 	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
 	/// </param>
 	/// <typeparam name="T">The type of the value to write.</typeparam>
-	public void AppendLargeObjectFormatted<T>(scoped in T value, int alignment)
+	public void AppendLargeObjectFormatted<T>(scoped ref readonly T value, int alignment)
 	{
 		var startingPos = Length;
 		AppendFormatted(value);
@@ -859,7 +865,7 @@ public unsafe ref partial struct StringHandler
 	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
 	/// </param>
 	/// <typeparam name="T">The type of the value to write.</typeparam>
-	public void AppendLargeObjectFormatted<T>(scoped in T value, int alignment, string? format)
+	public void AppendLargeObjectFormatted<T>(scoped ref readonly T value, int alignment, string? format)
 	{
 		var startingPos = Length;
 		AppendFormatted(value, format);
@@ -1491,12 +1497,12 @@ public unsafe ref partial struct StringHandler
 	/// <remarks>
 	/// You can put this method as the argument into the method invocation
 	/// <see cref="AppendRangeWithSeparatorUnsafe{T}(in T, int, delegate*{in T, string?}, string)"/>
-	/// or <see cref="AppendRangeWithSeparatorRef{T}(in T, int, StringHandlerRefAppender{T}, string)"/>.
+	/// or <see cref="AppendRangeWithSeparatorRef{T}(ref readonly T, int, StringHandlerRefAppender{T}, string)"/>.
 	/// </remarks>
 	/// <seealso cref="AppendRangeWithSeparatorUnsafe{T}(in T, int, delegate*{in T, string?}, string)"/>
-	/// <seealso cref="AppendRangeWithSeparatorRef{T}(in T, int, StringHandlerRefAppender{T}, string)"/>
+	/// <seealso cref="AppendRangeWithSeparatorRef{T}(ref readonly T, int, StringHandlerRefAppender{T}, string)"/>
 #pragma warning restore CS1584, CS1658
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ElementToStringConverter<T>(scoped in T @this) where T : notnull
+	public static string ElementToStringConverter<T>(scoped ref readonly T @this) where T : notnull
 		=> @this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
 }

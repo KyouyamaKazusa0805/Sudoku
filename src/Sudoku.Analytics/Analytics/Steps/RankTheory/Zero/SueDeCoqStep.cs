@@ -36,9 +36,9 @@ public sealed partial class SueDeCoqStep(
 	[DataMember] Mask intersectionMask,
 	[DataMember] bool isCannibalistic,
 	[DataMember] Mask isolatedDigitsMask,
-	[DataMember] scoped in CellMap blockCells,
-	[DataMember] scoped in CellMap lineCells,
-	[DataMember] scoped in CellMap intersectionCells
+	[DataMember] scoped ref readonly CellMap blockCells,
+	[DataMember] scoped ref readonly CellMap lineCells,
+	[DataMember] scoped ref readonly CellMap intersectionCells
 ) : ZeroRankStep(conclusions, views)
 {
 	/// <inheritdoc/>

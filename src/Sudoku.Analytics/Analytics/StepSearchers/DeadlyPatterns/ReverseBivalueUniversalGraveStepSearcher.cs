@@ -154,25 +154,25 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 					foreach (var cellsChosen in emptyCells.GetSubsets(incrementStep))
 					{
 						var completePattern = valuesMap | cellsChosen;
-						if (!IsGeneralizedUniqueLoop(completePattern))
+						if (!IsGeneralizedUniqueLoop(in completePattern))
 						{
 							// This pattern is invalid.
 							continue;
 						}
 
-						if (CheckType1(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type1Step)
+						if (CheckType1(accumulator, ref context, d1, d2, comparer, in completePattern, in cellsChosen) is { } type1Step)
 						{
 							return type1Step;
 						}
-						if (CheckType2(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type2Step)
+						if (CheckType2(accumulator, ref context, d1, d2, comparer, in completePattern, in cellsChosen) is { } type2Step)
 						{
 							return type2Step;
 						}
-						if (CheckType3(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type3Step)
+						if (CheckType3(accumulator, ref context, d1, d2, comparer, in completePattern, in cellsChosen) is { } type3Step)
 						{
 							return type3Step;
 						}
-						if (CheckType4(accumulator, ref context, d1, d2, comparer, completePattern, cellsChosen) is { } type4Step)
+						if (CheckType4(accumulator, ref context, d1, d2, comparer, in completePattern, in cellsChosen) is { } type4Step)
 						{
 							return type4Step;
 						}
@@ -206,8 +206,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		Digit d1,
 		Digit d2,
 		Mask comparer,
-		scoped in CellMap completePattern,
-		scoped in CellMap cellsChosen
+		scoped ref readonly CellMap completePattern,
+		scoped ref readonly CellMap cellsChosen
 	)
 	{
 		if (cellsChosen is not [var extraCell])
@@ -235,8 +235,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			[[.. cellOffsets]],
 			d1,
 			d2,
-			completePattern,
-			cellsChosen
+			in completePattern,
+			in cellsChosen
 		);
 		if (context.OnlyFindOne)
 		{
@@ -264,11 +264,11 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		Digit d1,
 		Digit d2,
 		Mask comparer,
-		scoped in CellMap completePattern,
-		scoped in CellMap cellsChosen
+		scoped ref readonly CellMap completePattern,
+		scoped ref readonly CellMap cellsChosen
 	)
 	{
-		var lastDigitsMask = (Mask)(context.Grid[cellsChosen] & ~comparer);
+		var lastDigitsMask = (Mask)(context.Grid[in cellsChosen] & ~comparer);
 		if (!IsPow2(lastDigitsMask))
 		{
 			return null;
@@ -299,8 +299,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			d1,
 			d2,
 			extraDigit,
-			completePattern,
-			cellsChosen
+			in completePattern,
+			in cellsChosen
 		);
 		if (context.OnlyFindOne)
 		{
@@ -329,8 +329,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		Digit d1,
 		Digit d2,
 		Mask comparer,
-		scoped in CellMap completePattern,
-		scoped in CellMap cellsChosen
+		scoped ref readonly CellMap completePattern,
+		scoped ref readonly CellMap cellsChosen
 	)
 	{
 		if (cellsChosen is not [var cell1, var cell2])
@@ -365,7 +365,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 
 			foreach (var cells in otherEmptyCells.GetSubsets(numbersOfOtherDigits - 1))
 			{
-				if (grid[cells] != otherDigitsMask)
+				if (grid[in cells] != otherDigitsMask)
 				{
 					// The subset is not matched.
 					continue;
@@ -421,8 +421,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 					d2,
 					house,
 					otherDigitsMask,
-					completePattern,
-					cellsChosen
+					in completePattern,
+					in cellsChosen
 				);
 				if (context.OnlyFindOne)
 				{
@@ -453,8 +453,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		Digit d1,
 		Digit d2,
 		Mask comparer,
-		scoped in CellMap completePattern,
-		scoped in CellMap cellsChosen
+		scoped ref readonly CellMap completePattern,
+		scoped ref readonly CellMap cellsChosen
 	)
 	{
 		if (cellsChosen is not [var cell1, var cell2])
@@ -525,9 +525,9 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				],
 				d1,
 				d2,
-				completePattern,
-				cellsChosen,
-				new(possibleConjugatePairCells, selectedDigit)
+				in completePattern,
+				in cellsChosen,
+				new(in possibleConjugatePairCells, selectedDigit)
 			);
 			if (context.OnlyFindOne)
 			{
@@ -551,7 +551,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <para>
 	/// <i>
 	/// However, this method contains a little bug for checking loops, leading to returning <see langword="true"/> for this method,
-	/// and returning <see langword="false"/> for the method <see cref="UniqueLoopStepSearcher.IsValidLoop(in ValueList{int})"/> above this.
+	/// and returning <see langword="false"/> for the method <see cref="UniqueLoopStepSearcher.IsValidLoop(ref readonly ValueList{int})"/>
+	/// above this.
 	/// If a pattern is like:
 	/// </i>
 	/// <code><![CDATA[
@@ -579,10 +580,10 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// ~~~~~~~~~~~~~~~~~~~~~~~~~
 	/// ]]></code>
 	/// </para>
-	/// <para><inheritdoc cref="UniqueLoopStepSearcher.IsValidLoop(in ValueList{int})" path="//remarks/para[2]"/></para>
+	/// <para><inheritdoc cref="UniqueLoopStepSearcher.IsValidLoop(ref readonly ValueList{int})" path="//remarks/para[2]"/></para>
 	/// </remarks>
-	/// <seealso cref="UniqueLoopStepSearcher.IsValidLoop(in ValueList{int})"/>
-	private static bool IsGeneralizedUniqueLoop(scoped in CellMap loop)
+	/// <seealso cref="UniqueLoopStepSearcher.IsValidLoop(ref readonly ValueList{int})"/>
+	private static bool IsGeneralizedUniqueLoop(scoped ref readonly CellMap loop)
 	{
 		// The length of the loop pattern must be at least 4, and an even.
 		_ = loop is { Count: var length, Houses: var houses, RowMask: var r, ColumnMask: var c, BlockMask: var b };

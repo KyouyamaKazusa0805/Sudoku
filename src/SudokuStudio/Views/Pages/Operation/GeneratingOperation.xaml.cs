@@ -174,7 +174,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				{
 					if (HodokuPuzzleGenerator.Generate(givensCount, symmetry, cancellationToken) is var grid
 						&& (givensCount != -1 && grid.GivensCount == givensCount || givensCount == -1)
-						&& analyzer.Analyze(grid) is { IsSolved: true, IsPearl: var isPearl, DifficultyLevel: var puzzleDifficultyLevel } analyzerResult
+						&& analyzer.Analyze(in grid) is { IsSolved: true, IsPearl: var isPearl, DifficultyLevel: var puzzleDifficultyLevel } analyzerResult
 						&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
 						&& (minimal && grid.IsMinimal || !minimal)
 						&& (pearl && isPearl is true || !pearl)

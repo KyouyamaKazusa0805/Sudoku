@@ -33,5 +33,5 @@ public sealed record HodokuLibraryFormat : SusserFormat, IGridFormatter
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString(scoped in Grid grid) => $"{FormatPrefix}{base.ToString(grid)}{FormatSuffix}";
+	public override string ToString(scoped ref readonly Grid grid) => $"{FormatPrefix}{base.ToString(in grid)}{FormatSuffix}";
 }

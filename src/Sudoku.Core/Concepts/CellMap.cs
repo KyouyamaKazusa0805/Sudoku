@@ -526,7 +526,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(scoped in CellMap other) => _low == other._low && _high == other._high;
+	public readonly bool Equals(scoped ref readonly CellMap other) => _low == other._low && _high == other._high;
 
 	/// <summary>
 	/// <inheritdoc cref="IComparable{TSelf}.CompareTo(TSelf)" path="/summary"/>
@@ -563,7 +563,7 @@ public partial struct CellMap :
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IComparable<>))]
-	public readonly int CompareTo(scoped in CellMap other)
+	public readonly int CompareTo(scoped ref readonly CellMap other)
 		=> _count > other._count ? 1 : _count < other._count ? -1 : Math.Sign($"{this:b}".CompareTo($"{other:b}"));
 
 	/// <inheritdoc cref="object.ToString"/>
@@ -805,7 +805,7 @@ public partial struct CellMap :
 		ArgumentNullException.ThrowIfNull(obj);
 
 		return obj is CellMap other
-			? CompareTo(other)
+			? CompareTo(in other)
 			: throw new ArgumentException($"The argument must be of type '{nameof(CellMap)}'.", nameof(obj));
 	}
 
@@ -888,7 +888,7 @@ public partial struct CellMap :
 	/// <param name="llong">The <see cref="llong"/> integer.</param>
 	/// <returns>The result instance created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap CreateByInt128(scoped in llong llong) => CreateByBits((long)(ulong)(llong >> 64), (long)(ulong)(llong & ulong.MaxValue));
+	public static CellMap CreateByInt128(scoped ref readonly llong llong) => CreateByBits((long)(ulong)(llong >> 64), (long)(ulong)(llong & ulong.MaxValue));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1104,7 +1104,7 @@ public partial struct CellMap :
 	/// </summary>
 	/// <param name="value">A <see cref="llong"/> value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator CellMap(llong value) => CreateByInt128(value);
+	public static implicit operator CellMap(llong value) => CreateByInt128(in value);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

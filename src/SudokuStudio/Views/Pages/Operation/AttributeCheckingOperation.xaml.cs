@@ -43,7 +43,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		{
 			lock (AnalyzingRelatedSyncRoot)
 			{
-				return BackdoorSearcher.GetBackdoors(puzzle);
+				return BackdoorSearcher.GetBackdoors(in puzzle);
 			}
 		});
 
@@ -70,7 +70,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		{
 			lock (AnalyzingRelatedSyncRoot)
 			{
-				return TrueCandidatesSearcher.GetAllTrueCandidates(puzzle);
+				return TrueCandidatesSearcher.GetAllTrueCandidates(in puzzle);
 			}
 		});
 		if (trueCandidates.Count == 0)
@@ -97,7 +97,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		}
 
 		var ittoryuFinder = new IttoryuPathFinder();
-		var digitPath = await Task.Run(() => ittoryuFinder.FindPath(puzzle));
+		var digitPath = await Task.Run(() => ittoryuFinder.FindPath(in puzzle));
 		if (!digitPath.IsComplete)
 		{
 			InfoDialog_DisorderedIttoryuDigitSequence.Subtitle = GetString("AnalyzePage_DisorderedIttoryuDoesNotExist");

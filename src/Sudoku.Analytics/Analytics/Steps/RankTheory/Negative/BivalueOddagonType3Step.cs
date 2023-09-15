@@ -21,10 +21,10 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BivalueOddagonType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	scoped in CellMap loopCells,
+	scoped ref readonly CellMap loopCells,
 	Digit digit1,
 	Digit digit2,
-	[DataMember] scoped in CellMap extraCells,
+	[DataMember] scoped ref readonly CellMap extraCells,
 	[DataMember] Mask extraDigitsMask
 ) : BivalueOddagonStep(conclusions, views, loopCells, digit1, digit2)
 {

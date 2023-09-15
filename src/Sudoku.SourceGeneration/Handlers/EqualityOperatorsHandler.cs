@@ -100,7 +100,7 @@ internal static class EqualityOperatorsHandler
 		{
 			Behavior.StaticAbstract
 				=> "\r\n\t\t",
-			Behavior.WithScopedInButDeprecated or Behavior.WithScopedRefReadOnlyButDeprecated or Behavior.DefaultButDeprecated
+			Behavior.WithScopedInButDeprecated or Behavior.DefaultButDeprecated
 				=> """
 				[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 						[global::System.ObsoleteAttribute("This operator is not recommended to be defined in a record struct, because it'll be auto-generated a pair of equality operators by compiler, without any modifiers modified two parameters.", false)]
@@ -110,16 +110,20 @@ internal static class EqualityOperatorsHandler
 				[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 				"""
 		};
+		var inKeyword = isLargeStructure ? "in " : string.Empty;
 		var (i1, i2) = nullabilityToken switch
 		{
-			nullableToken => ("(left, right) switch { (null, null) => true, ({ } a, { } b) => a.Equals(b), _ => false }", "!(left == right)"),
-			_ => ("left.Equals(right)", "!(left == right)")
+			nullableToken => (
+				$$"""(left, right) switch { (null, null) => true, ({ } a, { } b) => a.Equals({{inKeyword}}b), _ => false }""",
+				"!(left == right)"
+			),
+			_ => ($"left.Equals({inKeyword}right)", $"!(left == right)")
 		};
 
 		var explicitImplementation = string.Empty;
 		var equalityOperatorsType = compilation.GetTypeByMetadataName("System.Numerics.IEqualityOperators`3")!
 			.Construct(type, type, compilation.GetSpecialType(System_Boolean));
-		if (behavior is Behavior.WithScopedIn or Behavior.WithScopedInButDeprecated or Behavior.WithScopedRefReadOnly or Behavior.WithScopedRefReadOnlyButDeprecated
+		if (behavior is Behavior.WithScopedIn or Behavior.WithScopedInButDeprecated
 			&& type.AllInterfaces.Contains(equalityOperatorsType, SymbolEqualityComparer.Default))
 		{
 			explicitImplementation =
@@ -170,24 +174,6 @@ internal static class EqualityOperatorsHandler
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
 						public static bool operator !=(scoped in {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, scoped in {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
-							=> {{i2}};
-
-						{{explicitImplementation}}
-				""",
-			Behavior.WithScopedRefReadOnly or Behavior.WithScopedRefReadOnlyButDeprecated
-				=> $$"""
-				/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
-						{{attributesMarked}}
-						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
-						public static bool operator ==(scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
-							=> {{i1}};
-
-						/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
-						{{attributesMarked}}
-						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
-						public static bool operator !=(scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, scoped ref readonly {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i2}};
 
 						{{explicitImplementation}}
@@ -261,9 +247,7 @@ file enum Behavior
 	Default,
 	DefaultButDeprecated,
 	WithScopedIn,
-	WithScopedRefReadOnly,
 	WithScopedInButDeprecated,
-	WithScopedRefReadOnlyButDeprecated,
 	StaticVirtual,
 	StaticAbstract
 }

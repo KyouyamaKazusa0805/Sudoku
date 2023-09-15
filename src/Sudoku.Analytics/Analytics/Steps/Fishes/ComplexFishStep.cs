@@ -55,8 +55,8 @@ public sealed partial class ComplexFishStep(
 	Digit digit,
 	HouseMask baseSetsMask,
 	HouseMask coverSetsMask,
-	[DataMember] scoped in CellMap exofins,
-	[DataMember] scoped in CellMap endofins,
+	[DataMember] scoped ref readonly CellMap exofins,
+	[DataMember] scoped ref readonly CellMap endofins,
 	[DataMember] bool isFranken,
 	[DataMember] bool? isSashimi
 ) : FishStep(conclusions, views, digit, baseSetsMask, coverSetsMask), IEquatableStep<ComplexFishStep>

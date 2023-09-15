@@ -48,5 +48,5 @@ public interface ISolver
 	/// </item>
 	/// </list>
 	/// </returns>
-	public abstract bool? Solve(scoped in Grid grid, out Grid result);
+	public abstract bool? Solve(scoped ref readonly Grid grid, out Grid result);
 }

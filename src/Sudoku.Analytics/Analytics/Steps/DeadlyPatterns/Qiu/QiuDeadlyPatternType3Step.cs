@@ -29,7 +29,7 @@ public sealed partial class QiuDeadlyPatternType3Step(
 	HouseMask houses,
 	Cell? corner1,
 	Cell? corner2,
-	[DataMember] scoped in CellMap subsetCells,
+	[DataMember] scoped ref readonly CellMap subsetCells,
 	[DataMember] Mask subsetDigitsMask,
 	[DataMember] bool isNaked
 ) : QiuDeadlyPatternStep(conclusions, views, is2LinesWith2Cells, houses, corner1, corner2)

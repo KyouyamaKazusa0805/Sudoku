@@ -30,7 +30,7 @@ public sealed record ExcelFormat : IGridFormatter
 
 
 	/// <inheritdoc/>
-	public string ToString(scoped in Grid grid)
+	public string ToString(scoped ref readonly Grid grid)
 	{
 		scoped var span = grid.ToString(SusserFormat.Default with { Placeholder = Zero }).AsSpan();
 		scoped var sb = new StringHandler(81 + 72 + 9);

@@ -61,7 +61,7 @@ public sealed partial record SukakuFormat(bool Multiline = false) : IGridFormatt
 
 
 	/// <inheritdoc/>
-	public string ToString(scoped in Grid grid)
+	public string ToString(scoped ref readonly Grid grid)
 	{
 		if (Multiline)
 		{

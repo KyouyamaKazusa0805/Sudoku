@@ -12,8 +12,8 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc/></param>
 /// <param name="cells"><inheritdoc/></param>
 /// <param name="digitsMask"><inheritdoc/></param>
-public sealed class BorescoperDeadlyPatternType1Step(Conclusion[] conclusions, View[]? views, scoped in CellMap cells, Mask digitsMask) :
-	BorescoperDeadlyPatternStep(conclusions, views, cells, digitsMask)
+public sealed class BorescoperDeadlyPatternType1Step(Conclusion[] conclusions, View[]? views, scoped ref readonly CellMap cells, Mask digitsMask) :
+	BorescoperDeadlyPatternStep(conclusions, views, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

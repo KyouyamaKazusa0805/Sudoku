@@ -4507,7 +4507,9 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Search for region (house) forcing chains.
             </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="grid">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
+            </param>
             <param name="result">
             <inheritdoc
                 cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Boolean,System.Boolean)"
@@ -4617,9 +4619,13 @@ if (student is (name: var name, age: >= 18))
             Get the set of all <see cref="T:Sudoku.Concepts.ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
             (i.e. if its value is the correct one for the cell).
             </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="grid">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
+            </param>
             <param name="p">The potential that is assumed to be "on"</param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <param name="isY">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/>
+            </param>
             <returns>The set of potentials that must be "off".</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.GetOffToOn(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainNode,System.Nullable{Sudoku.Concepts.Grid}@,Sudoku.Concepts.NodeSet,System.Boolean,System.Boolean,System.Boolean)">
@@ -4627,7 +4633,9 @@ if (student is (name: var name, age: >= 18))
             Get the set of all <see cref="T:Sudoku.Concepts.ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
             (i.e. if its value is the correct one for the cell).
             </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="grid">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
+            </param>
             <param name="p">The potential that is assumed to be "off"</param>
             <param name="source">
             <inheritdoc
@@ -4635,8 +4643,12 @@ if (student is (name: var name, age: >= 18))
                 path="/param[@name='source']"/>
             </param>
             <param name="offPotentials">Indicates the <see cref="T:Sudoku.Concepts.ChainNode"/> instances that are already set "off".</param>
-            <param name="isX"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
+            <param name="isX">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/>
+            </param>
+            <param name="isY">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/>
+            </param>
             <param name="allowDynamic"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
             <returns>The set of potentials that must be "off".</returns>
         </member>
@@ -4645,7 +4657,9 @@ if (student is (name: var name, age: >= 18))
             Given the initial sets of potentials that are assumed to be "on" and "off",
             complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
             </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="grid">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
+            </param>
             <param name="toOn">The potentials that are assumed to be "on".</param>
             <param name="toOff">The potentials that are assumed to be "off".</param>
             <param name="allowNishio"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.AllowNishio" path="/summary"/></param>
@@ -4779,7 +4793,9 @@ if (student is (name: var name, age: >= 18))
             Note that if a potential belongs to all the four sets, the sudoku has no solution. This is not checked.
             </para>
             </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="grid">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
+            </param>
             <param name="pOn"></param>
             <param name="pOff"></param>
             <param name="result">
@@ -4796,7 +4812,9 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Search for region (house) forcing chains.
             </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
+            <param name="grid">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
+            </param>
             <param name="result">
             <inheritdoc
                 cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Boolean,System.Boolean)"
@@ -5833,7 +5851,8 @@ if (student is (name: var name, age: >= 18))
             <para>
             <i>
             However, this method contains a little bug for checking loops, leading to returning <see langword="true"/> for this method,
-            and returning <see langword="false"/> for the method <see cref="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)"/> above this.
+            and returning <see langword="false"/> for the method <see cref="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)"/>
+            above this.
             If a pattern is like:
             </i>
             <code><![CDATA[

@@ -24,12 +24,12 @@ public sealed partial class ChromaticPatternXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	House[] blocks,
-	scoped in CellMap pattern,
-	[DataMember] scoped in CellMap cells,
+	scoped ref readonly CellMap pattern,
+	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] Cell extraCell,
 	Mask digitsMask,
 	[DataMember] Mask extraDigitsMask
-) : ChromaticPatternStep(conclusions, views, blocks, pattern, digitsMask)
+) : ChromaticPatternStep(conclusions, views, blocks, in pattern, digitsMask)
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.ChromaticPatternXzRule;

@@ -36,7 +36,7 @@ public abstract class FishStepSearcher(
 	/// <inheritdoc cref="ComplexFishStep.IsSashimi" path="/remarks"/>
 	/// </para>
 	/// </returns>
-	protected static bool? IsSashimi(House[] baseSets, scoped in CellMap fins, Digit digit)
+	protected static bool? IsSashimi(House[] baseSets, scoped ref readonly CellMap fins, Digit digit)
 	{
 		if (!fins)
 		{

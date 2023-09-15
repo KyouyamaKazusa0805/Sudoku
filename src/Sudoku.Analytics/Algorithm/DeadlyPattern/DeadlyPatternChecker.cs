@@ -23,7 +23,7 @@ public static class DeadlyPatternChecker
 	/// </b></remarks>
 	/// <seealso cref="Grid.ValueChanged"/>
 	/// <seealso cref="Grid.RefreshingCandidates"/>
-	public static bool IsDeadlyPattern(scoped in Grid grid)
+	public static bool IsDeadlyPattern(scoped ref readonly Grid grid)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.IsValid, false);
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.EmptiesCount, 81);
@@ -51,7 +51,7 @@ public static class DeadlyPatternChecker
 		// Step 1: Get all solutions for that pattern.
 		var playground = grid;
 		var solutions = new List<Grid>();
-		dfsSearching(ref playground, cellsUsed, solutions, 0);
+		dfsSearching(ref playground, in cellsUsed, solutions, 0);
 		if (solutions.Count == 0)
 		{
 			return false;
@@ -76,7 +76,7 @@ public static class DeadlyPatternChecker
 			// Step 3: Try to get solutions for that pattern, then determine whether any solutions to the current state exists.
 			var tempSolutions = new List<Grid>();
 			var playgroundCopied = solution;
-			dfsSearching(ref playgroundCopied, cellsUsed, tempSolutions, 0);
+			dfsSearching(ref playgroundCopied, in cellsUsed, tempSolutions, 0);
 			if (tempSolutions.Count == 0)
 			{
 				return false;
@@ -87,7 +87,7 @@ public static class DeadlyPatternChecker
 		return true;
 
 
-		static void dfsSearching(scoped ref Grid grid, scoped in CellMap cellsRange, List<Grid> solutions, Cell currentCell)
+		static void dfsSearching(scoped ref Grid grid, scoped ref readonly CellMap cellsRange, List<Grid> solutions, Cell currentCell)
 		{
 			if (currentCell == 81)
 			{
@@ -97,7 +97,7 @@ public static class DeadlyPatternChecker
 
 			if (!cellsRange.Contains(currentCell))
 			{
-				dfsSearching(ref grid, cellsRange, solutions, currentCell + 1);
+				dfsSearching(ref grid, in cellsRange, solutions, currentCell + 1);
 			}
 			else
 			{
@@ -108,9 +108,9 @@ public static class DeadlyPatternChecker
 				foreach (var digit in digits)
 				{
 					grid[currentCell] = (Mask)(Grid.ModifiableMask | (Mask)(1 << digit));
-					if (isValid(grid, r, c))
+					if (isValid(in grid, r, c))
 					{
-						dfsSearching(ref grid, cellsRange, solutions, currentCell + 1);
+						dfsSearching(ref grid, in cellsRange, solutions, currentCell + 1);
 					}
 				}
 
@@ -118,7 +118,7 @@ public static class DeadlyPatternChecker
 			}
 
 
-			static bool isValid(scoped in Grid grid, int r, int c)
+			static bool isValid(scoped ref readonly Grid grid, int r, int c)
 			{
 				var number = grid.GetDigit(r * 9 + c);
 				for (var i = 0; i < 9; i++)

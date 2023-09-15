@@ -13,7 +13,7 @@ public interface IPuzzleGenerator
 	/// </summary>
 	/// <param name="progress">
 	/// <inheritdoc
-	///     cref="IAnalyzer{TSelf, TResult}.Analyze(in Grid, IProgress{AnalyzerProgress}?, CancellationToken)"
+	///     cref="IAnalyzer{TSelf, TResult}.Analyze(ref readonly Grid, IProgress{AnalyzerProgress}?, CancellationToken)"
 	///     path="/param[@name='progress']"/>
 	/// </param>
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>

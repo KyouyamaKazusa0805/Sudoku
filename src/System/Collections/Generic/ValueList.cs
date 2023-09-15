@@ -159,13 +159,13 @@ public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] by
 		return format switch
 		{
 			null or "L" or "l" => $"ValueList<{typeof(T).Name}> {{ Count = {_length}, Capacity = {_capacity} }}",
-			"C" or "c" => toContentString(this),
+			"C" or "c" => toContentString(in this),
 			"S" or "s" => $"ValueList<{typeof(T).Name}> {{ Size = {sizeof(T) * _length} }}",
 			_ => throw new FormatException("The specified format doesn't support.")
 		};
 
 
-		static string toContentString(scoped in ValueList<T> @this)
+		static string toContentString(scoped ref readonly ValueList<T> @this)
 		{
 			const string separator = ", ";
 			scoped var sb = new StringHandler();
@@ -182,7 +182,7 @@ public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] by
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Enumerator GetEnumerator() => new(this);
+	public readonly Enumerator GetEnumerator() => new(in this);
 
 	/// <summary>
 	/// Converts the current instance into an array of type <typeparamref name="T"/>.

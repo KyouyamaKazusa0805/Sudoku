@@ -46,12 +46,12 @@ public sealed partial class GridNotation : INotation<GridNotation, Grid, GridNot
 	/// <returns>The string representation of the grid.</returns>
 	/// <seealso cref="Grid.ToString()"/>
 	[ExplicitInterfaceImpl(typeof(INotation<,>))]
-	public static string ToString(scoped in Grid value) => value.ToString();
+	public static string ToString(scoped ref readonly Grid value) => value.ToString();
 
 	/// <inheritdoc cref="INotation{TSelf, TElement, TConceptKindPresenter}.ToString(TElement, TConceptKindPresenter)"/>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="notation"/> is not defined.</exception>
 	[ExplicitInterfaceImpl(typeof(INotation<,,>))]
-	public static string ToString(scoped in Grid value, Kind notation)
+	public static string ToString(scoped ref readonly Grid value, Kind notation)
 		=> value.ToString(
 			notation switch
 			{

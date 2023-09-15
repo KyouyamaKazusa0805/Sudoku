@@ -44,7 +44,7 @@ public sealed class PointCalculator
 	/// in order to correct the position on drawing. The default value is <c>10F</c>, which is defined by <see cref="DefaultPadding"/>
 	/// </param>
 	/// <seealso cref="DefaultPadding"/>
-	private PointCalculator(scoped in SizeF size, float padding)
+	private PointCalculator(scoped ref readonly SizeF size, float padding)
 	{
 		// Initialize sizes.
 		ControlSize = size;
@@ -162,7 +162,7 @@ public sealed class PointCalculator
 	/// <returns>The center mouse point.</returns>
 	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PointF GetMouseCenter(scoped in CandidateMap map)
+	public PointF GetMouseCenter(scoped ref readonly CandidateMap map)
 	{
 		switch (map)
 		{
@@ -190,7 +190,7 @@ public sealed class PointCalculator
 	/// <returns>The center mouse point.</returns>
 	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PointF GetMouseCenter(scoped in LockedTarget lockedTarget)
+	public PointF GetMouseCenter(scoped ref readonly LockedTarget lockedTarget)
 	{
 		switch (lockedTarget)
 		{
@@ -219,7 +219,7 @@ public sealed class PointCalculator
 	/// <returns>The rectangle.</returns>
 	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public RectangleF GetMouseRectangle(scoped in CandidateMap map)
+	public RectangleF GetMouseRectangle(scoped ref readonly CandidateMap map)
 	{
 		switch (map, CandidateSize)
 		{

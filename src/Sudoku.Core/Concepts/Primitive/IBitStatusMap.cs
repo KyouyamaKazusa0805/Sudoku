@@ -214,7 +214,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
-	public abstract bool Equals(scoped in TSelf other);
+	public abstract bool Equals(scoped ref readonly TSelf other);
 
 	/// <summary>
 	/// Get all offsets whose bits are set <see langword="true"/>.
@@ -398,7 +398,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 		var i = 0;
 		foreach (var (key, value) in dictionary)
 		{
-			result[i++] = new(key, value);
+			result[i++] = new(key, in value);
 		}
 
 		return result;

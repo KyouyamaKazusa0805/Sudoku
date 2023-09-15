@@ -18,12 +18,12 @@ public static class ArrayExtensions
 	/// </remarks>
 	/// <seealso cref="Sort{T}(T[], delegate*{T, T, int}, int, int)"/>
 #pragma warning restore CS1658, CS1584
-	public static unsafe void Sort<T>(this T[] @this, delegate*<in T, in T, int> comparer)
+	public static unsafe void Sort<T>(this T[] @this, delegate*<ref readonly T, ref readonly T, int> comparer)
 	{
 		q(0, @this.Length - 1, @this, comparer);
 
 
-		static void q(int l, int r, T[] @this, delegate*<in T, in T, int> comparer)
+		static void q(int l, int r, T[] @this, delegate*<ref readonly T, ref readonly T, int> comparer)
 		{
 			if (l < r)
 			{
@@ -31,8 +31,8 @@ public static class ArrayExtensions
 				var middle = @this[(l + r) / 2];
 				while (true)
 				{
-					while (i < r && comparer(@this[i], middle) < 0) { i++; }
-					while (j > 0 && comparer(@this[j], middle) > 0) { j--; }
+					while (i < r && comparer(in @this[i], in middle) < 0) { i++; }
+					while (j > 0 && comparer(in @this[j], in middle) > 0) { j--; }
 					if (i == j)
 					{
 						break;
@@ -40,7 +40,7 @@ public static class ArrayExtensions
 
 					(@this[i], @this[j]) = (@this[j], @this[i]);
 
-					if (comparer(@this[i], @this[j]) == 0) { j--; }
+					if (comparer(in @this[i], in @this[j]) == 0) { j--; }
 				}
 
 				q(l, i, @this, comparer);

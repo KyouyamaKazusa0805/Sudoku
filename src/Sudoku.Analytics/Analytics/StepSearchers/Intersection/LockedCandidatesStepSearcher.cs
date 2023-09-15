@@ -68,7 +68,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 			}
 
 			// Gather the masks in cells A, B and C.
-			var (maskA, maskB, maskC) = (grid[a], grid[b], grid[c]);
+			var (maskA, maskB, maskC) = (grid[in a], grid[in b], grid[in c]);
 
 			// Use the formula, and check whether the equation is correct.
 			// If so, the mask 'm' will hold the digits that form locked candidates structures.
@@ -101,7 +101,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 							.. from cell in intersection select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
 							new HouseViewNode(WellKnownColorIdentifier.Normal, realBaseSet),
 							new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, realCoverSet),
-							.. GetCrosshatchBaseCells(grid, digit, realBaseSet, intersection)
+							.. GetCrosshatchBaseCells(in grid, digit, realBaseSet, in intersection)
 						]
 					],
 					digit,
@@ -129,9 +129,9 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 	/// <param name="house">The house.</param>
 	/// <param name="cells">The cells.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private CellViewNode[] GetCrosshatchBaseCells(scoped in Grid grid, Digit digit, House house, scoped in CellMap cells)
+	private CellViewNode[] GetCrosshatchBaseCells(scoped ref readonly Grid grid, Digit digit, House house, scoped ref readonly CellMap cells)
 	{
-		var info = Crosshatching.GetCrosshatchingInfo(grid, digit, house, cells);
+		var info = Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in cells);
 		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
 		{
 			return [];

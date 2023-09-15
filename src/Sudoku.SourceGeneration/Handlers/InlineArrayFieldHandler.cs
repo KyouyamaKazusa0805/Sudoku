@@ -24,14 +24,23 @@ internal static class InlineArrayFieldHandler
 					IsRecord: false,
 					IsReadOnly: false,
 					IsFileLocal: false
-				}
+				} type,
+				SemanticModel.Compilation: var compilation
 			})
 		{
 			return null;
 		}
 
+		const string largeStructAttributeName = "System.SourceGeneration.LargeStructureAttribute";
+		if (compilation.GetTypeByMetadataName(largeStructAttributeName) is not { } largeStructAttribute)
+		{
+			return null;
+		}
+
+		var isLargeStructure = type.GetAttributes().Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, largeStructAttribute));
 		var namespaceString = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
 		var typeParametersString = typeParameters is not [] ? $"<{string.Join(", ", typeParameters)}>" : string.Empty;
+		var inKeyword = isLargeStructure ? "in " : string.Empty;
 		var finalString =
 			$$"""
 			namespace {{namespaceString}}
@@ -69,12 +78,12 @@ internal static class InlineArrayFieldHandler
 						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(InlineArrayFieldHandler).FullName}}", "{{Value}}")]
-						public override readonly bool Equals([global::System.Diagnostics.CodeAnalysis.NotNullWhenAttribute(true)] object? obj) => obj is __InternalBuffer comparer && Equals(comparer);
+						public override readonly bool Equals([global::System.Diagnostics.CodeAnalysis.NotNullWhenAttribute(true)] object? obj) => obj is __InternalBuffer comparer && Equals({{inKeyword}}comparer);
 
 						/// <inheritdoc/>
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(InlineArrayFieldHandler).FullName}}", "{{Value}}")]
-						public readonly bool Equals(scoped in __InternalBuffer other)
+						public readonly bool Equals(scoped ref readonly __InternalBuffer other)
 						{
 							for (var i = 0; i < {{length}}; i++)
 							{
@@ -105,14 +114,14 @@ internal static class InlineArrayFieldHandler
 						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(InlineArrayFieldHandler).FullName}}", "{{Value}}")]
-						readonly bool global::System.IEquatable<__InternalBuffer>.Equals(__InternalBuffer other) => Equals(other);
+						readonly bool global::System.IEquatable<__InternalBuffer>.Equals(__InternalBuffer other) => Equals({{inKeyword}}other);
 
 
 						/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(InlineArrayFieldHandler).FullName}}", "{{Value}}")]
-						public static bool operator ==(scoped in __InternalBuffer left, scoped in __InternalBuffer right) => left.Equals(right);
+						public static bool operator ==(scoped in __InternalBuffer left, scoped in __InternalBuffer right) => left.Equals({{inKeyword}}right);
 
 						/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]

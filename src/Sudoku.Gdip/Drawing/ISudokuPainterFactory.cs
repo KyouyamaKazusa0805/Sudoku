@@ -33,7 +33,7 @@ public interface ISudokuPainterFactory
 	/// </summary>
 	/// <param name="grid">The new grid.</param>
 	/// <returns>The target painter.</returns>
-	public abstract ISudokuPainter WithGrid(scoped in Grid grid);
+	public abstract ISudokuPainter WithGrid(scoped ref readonly Grid grid);
 
 	/// <summary>
 	/// Sets the grid of the canvas, with the string representation.

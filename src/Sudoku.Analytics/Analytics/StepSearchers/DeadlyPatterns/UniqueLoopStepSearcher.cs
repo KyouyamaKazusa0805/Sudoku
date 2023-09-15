@@ -50,7 +50,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			using scoped var tempLoop = new ValueList<Cell>(14);
 			var loopMap = CellMap.Empty;
 			var patterns = new HashSet<Pattern>();
-			CollectUniqueLoops(grid, cell, d1, d2, tempLoop, ref loopMap, patterns);
+			CollectUniqueLoops(in grid, cell, d1, d2, tempLoop, ref loopMap, patterns);
 
 			if (patterns.Count == 0)
 			{
@@ -70,7 +70,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					}
 					case 1:
 					{
-						if (CheckType1(resultAccumulator, d1, d2, loop, extraCellsMap, onlyFindOne, path) is { } step1)
+						if (CheckType1(resultAccumulator, d1, d2, in loop, in extraCellsMap, onlyFindOne, path) is { } step1)
 						{
 							return step1;
 						}
@@ -80,15 +80,15 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					default:
 					{
 						// Type 2, 3, 4.
-						if (CheckType2(resultAccumulator, grid, d1, d2, loop, extraCellsMap, comparer, onlyFindOne, path) is { } step2)
+						if (CheckType2(resultAccumulator, in grid, d1, d2, in loop, in extraCellsMap, comparer, onlyFindOne, path) is { } step2)
 						{
 							return step2;
 						}
-						if (CheckType3(resultAccumulator, grid, d1, d2, loop, extraCellsMap, comparer, onlyFindOne, path) is { } step3)
+						if (CheckType3(resultAccumulator, in grid, d1, d2, in loop, in extraCellsMap, comparer, onlyFindOne, path) is { } step3)
 						{
 							return step3;
 						}
-						if (CheckType4(resultAccumulator, grid, d1, d2, loop, extraCellsMap, comparer, onlyFindOne, path) is { } step4)
+						if (CheckType4(resultAccumulator, in grid, d1, d2, in loop, in extraCellsMap, comparer, onlyFindOne, path) is { } step4)
 						{
 							return step4;
 						}
@@ -130,8 +130,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		List<UniqueLoopStep> accumulator,
 		Digit d1,
 		Digit d2,
-		scoped in CellMap loop,
-		scoped in CellMap extraCellsMap,
+		scoped ref readonly CellMap loop,
+		scoped ref readonly CellMap extraCellsMap,
 		bool onlyFindOne,
 		Cell[] path
 	)
@@ -158,7 +158,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d2));
 		}
 
-		var step = new UniqueLoopType1Step([.. conclusions], [[.. candidateOffsets, .. GetLoopLinks(path)]], d1, d2, loop);
+		var step = new UniqueLoopType1Step([.. conclusions], [[.. candidateOffsets, .. GetLoopLinks(path)]], d1, d2, in loop);
 		if (onlyFindOne)
 		{
 			return step;
@@ -185,17 +185,17 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <returns>The step is worth.</returns>
 	private UniqueLoopType2Step? CheckType2(
 		List<UniqueLoopStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Digit d1,
 		Digit d2,
-		scoped in CellMap loop,
-		scoped in CellMap extraCellsMap,
+		scoped ref readonly CellMap loop,
+		scoped ref readonly CellMap extraCellsMap,
 		Mask comparer,
 		bool onlyFindOne,
 		Cell[] path
 	)
 	{
-		var mask = (Mask)(grid[extraCellsMap] & ~comparer);
+		var mask = (Mask)(grid[in extraCellsMap] & ~comparer);
 		if (!IsPow2(mask))
 		{
 			return null;
@@ -222,7 +222,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			[[.. candidateOffsets, .. GetLoopLinks(path)]],
 			d1,
 			d2,
-			loop,
+			in loop,
 			extraDigit
 		);
 
@@ -252,11 +252,11 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <returns>The step is worth.</returns>
 	private UniqueLoopType3Step? CheckType3(
 		List<UniqueLoopStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Digit d1,
 		Digit d2,
-		scoped in CellMap loop,
-		scoped in CellMap extraCellsMap,
+		scoped ref readonly CellMap loop,
+		scoped ref readonly CellMap extraCellsMap,
 		Mask comparer,
 		bool onlyFindOne,
 		Cell[] path
@@ -281,7 +281,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 		// Gather the union result of digits appeared, and check whether the result mask
 		// contains both digit 1 and 2.
-		var m = grid[extraCellsMap];
+		var m = grid[in extraCellsMap];
 		if ((m & comparer) != comparer)
 		{
 			return null;
@@ -308,7 +308,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				{
 					foreach (var cells in otherCells.GetSubsets(size))
 					{
-						var mask = grid[cells];
+						var mask = grid[in cells];
 						if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
 						{
 							continue;
@@ -358,8 +358,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
 							d1,
 							d2,
-							loop,
-							cells,
+							in loop,
+							in cells,
 							mask
 						);
 
@@ -388,7 +388,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			{
 				foreach (var cells in otherCells.GetSubsets(size))
 				{
-					var mask = grid[cells];
+					var mask = grid[in cells];
 					if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
 					{
 						continue;
@@ -438,8 +438,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						[[.. candidateOffsets, .. GetLoopLinks(path)]],
 						d1,
 						d2,
-						loop,
-						cells,
+						in loop,
+						in cells,
 						mask
 					);
 					if (onlyFindOne)
@@ -470,11 +470,11 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <returns>The step is worth.</returns>
 	private UniqueLoopType4Step? CheckType4(
 		List<UniqueLoopStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Digit d1,
 		Digit d2,
-		scoped in CellMap loop,
-		scoped in CellMap extraCellsMap,
+		scoped ref readonly CellMap loop,
+		scoped ref readonly CellMap extraCellsMap,
 		Mask comparer,
 		bool onlyFindOne,
 		Cell[] path
@@ -529,7 +529,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
 					d1,
 					d2,
-					loop,
+					in loop,
 					new(first, second, digit)
 				);
 
@@ -562,7 +562,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <param name="allowedEx">Indicates how many cells the current loop can exist, with extra digits stored.</param>
 	/// <param name="lastHouseType">The last house type. This is a temporary variable.</param>
 	private static void CollectUniqueLoops(
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell cell,
 		Digit d1,
 		Digit d2,
@@ -586,10 +586,10 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 			foreach (var next in HousesMap[cell.ToHouseIndex(houseType)] & EmptyCells)
 			{
-				if (loopPath[0] == next && loopPath.Count >= 6 && IsValidLoop(loopPath))
+				if (loopPath[0] == next && loopPath.Count >= 6 && IsValidLoop(in loopPath))
 				{
 					// Yeah. The loop is closed.
-					result.Add(new(loopMap, [.. loopPath], (Mask)(1 << d1 | 1 << d2)));
+					result.Add(new(in loopMap, [.. loopPath], (Mask)(1 << d1 | 1 << d2)));
 				}
 				else if (!loopMap.Contains(next))
 				{
@@ -607,7 +607,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						if (count == 2 || IsPow2(extraDigits) || allowedEx != 0)
 						{
 							var newAllowedEx = count > 2 ? allowedEx - 1 : allowedEx;
-							CollectUniqueLoops(grid, next, d1, d2, loopPath, ref loopMap, result, extraDigits, newAllowedEx, houseType);
+							CollectUniqueLoops(in grid, next, d1, d2, loopPath, ref loopMap, result, extraDigits, newAllowedEx, houseType);
 						}
 					}
 				}
@@ -640,7 +640,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// can also make this method return <see langword="true"/>.
 	/// </para>
 	/// </remarks>
-	internal static bool IsValidLoop(scoped in ValueList<Cell> loopPath)
+	internal static bool IsValidLoop(scoped ref readonly ValueList<Cell> loopPath)
 	{
 		var (visitedOdd, visitedEven, isOdd) = (0, 0, false);
 		foreach (var cell in loopPath)
@@ -705,7 +705,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <param name="Loop">Indicates the cells used in this whole unique loop.</param>
 	/// <param name="Path">Indicates the detail path of the loop.</param>
 	/// <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="Mask"/>.</param>
-	private readonly record struct Pattern(scoped in CellMap Loop, Cell[] Path, Mask DigitsMask)
+	private readonly record struct Pattern(scoped ref readonly CellMap Loop, Cell[] Path, Mask DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override int GetHashCode() => Loop.GetHashCode();

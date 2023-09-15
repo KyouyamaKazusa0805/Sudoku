@@ -18,10 +18,10 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BorescoperDeadlyPatternType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	scoped in CellMap cells,
+	scoped ref readonly CellMap cells,
 	Mask digitsMask,
 	[DataMember] Digit extraDigit
-) : BorescoperDeadlyPatternStep(conclusions, views, cells, digitsMask)
+) : BorescoperDeadlyPatternStep(conclusions, views, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;

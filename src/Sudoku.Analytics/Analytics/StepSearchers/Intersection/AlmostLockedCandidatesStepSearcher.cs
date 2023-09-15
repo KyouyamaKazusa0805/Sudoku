@@ -67,11 +67,11 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 				{
 					if (c && EmptyCells)
 					{
-						if (Collect(ref context, size, baseSet, coverSet, a, b, c, checkValueCells) is { } step1)
+						if (Collect(ref context, size, baseSet, coverSet, in a, in b, in c, checkValueCells) is { } step1)
 						{
 							return step1;
 						}
-						if (Collect(ref context, size, coverSet, baseSet, b, a, c, checkValueCells) is { } step2)
+						if (Collect(ref context, size, coverSet, baseSet, in b, in a, in c, checkValueCells) is { } step2)
 						{
 							return step2;
 						}
@@ -124,9 +124,9 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 		int size,
 		House baseSet,
 		House coverSet,
-		scoped in CellMap a,
-		scoped in CellMap b,
-		scoped in CellMap c,
+		scoped ref readonly CellMap a,
+		scoped ref readonly CellMap b,
+		scoped ref readonly CellMap c,
 		bool checkValueCells
 	)
 	{
@@ -136,7 +136,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 		foreach (var alsCells in (checkValueCells ? a : a & EmptyCells).GetSubsets(size - 1))
 		{
 			// Gather the mask. The cell combination must contain the specified number of digits.
-			var mask = grid[alsCells, checkValueCells];
+			var mask = grid[in alsCells, checkValueCells];
 			if (PopCount((uint)mask) != size)
 			{
 				continue;
@@ -269,8 +269,8 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 					]
 				],
 				mask,
-				alsCells,
-				ahsCells,
+				in alsCells,
+				in ahsCells,
 				valueCellNodes.Length != 0
 			);
 

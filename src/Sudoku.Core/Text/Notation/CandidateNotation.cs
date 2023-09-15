@@ -268,12 +268,12 @@ public sealed partial class CandidateNotation : INotation<CandidateNotation, Can
 	/// <param name="collection"><inheritdoc cref="ToString(Candidate)" path="/param[@name='value']"/></param>
 	/// <returns><inheritdoc cref="ToString(Candidate)" path="/returns"/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCollectionString(scoped in CandidateMap collection) => ToCollectionString(collection, Kind.RxCy);
+	public static string ToCollectionString(scoped ref readonly CandidateMap collection) => ToCollectionString(collection, Kind.RxCy);
 
 	/// <inheritdoc cref="INotation{TSelf, TCollection, TElement, TConceptKindPresenter}.ToCollectionString(TCollection, TConceptKindPresenter)"/>
 	/// <exception cref="NotSupportedException">Throws when <paramref name="notation"/> is <see cref="Kind.K9"/>.</exception>
 	[ExplicitInterfaceImpl(typeof(INotation<,,,>))]
-	public static string ToCollectionString(scoped in CandidateMap collection, Kind notation)
+	public static string ToCollectionString(scoped ref readonly CandidateMap collection, Kind notation)
 	{
 		switch (notation)
 		{
@@ -293,7 +293,7 @@ public sealed partial class CandidateNotation : INotation<CandidateNotation, Can
 						cells.Add(candidate / 9);
 					}
 
-					sb.Append(CellNotation.ToCollectionString(cells));
+					sb.Append(CellNotation.ToCollectionString(in cells));
 					sb.Append('(');
 					sb.Append(digitGroup.Key + 1);
 					sb.Append(')');
@@ -317,7 +317,7 @@ public sealed partial class CandidateNotation : INotation<CandidateNotation, Can
 				};
 
 
-				static string f(scoped in CandidateMap collection)
+				static string f(scoped ref readonly CandidateMap collection)
 				{
 					scoped var sb = new StringHandler();
 					foreach (var candidate in collection)

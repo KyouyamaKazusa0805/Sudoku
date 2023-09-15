@@ -370,7 +370,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool? Solve(scoped in Grid grid, out Grid result)
+	public bool? Solve(scoped ref readonly Grid grid, out Grid result)
 	{
 		ClearStack();
 
@@ -533,7 +533,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <returns>The solution. If failed to solve, <see cref="Grid.Undefined"/>.</returns>
 	/// <seealso cref="Grid.Undefined"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Grid Solve(scoped in Grid puzzle) => Solve(puzzle, out var result) is true ? result : Grid.Undefined;
+	public Grid Solve(scoped ref readonly Grid puzzle) => Solve(in puzzle, out var result) is true ? result : Grid.Undefined;
 
 	/// <summary>
 	/// To clear the field <see cref="_stack"/>.

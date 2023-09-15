@@ -25,9 +25,9 @@ public sealed partial class SueDeCoq3DimensionStep(
 	[DataMember] Mask rowDigitsMask,
 	[DataMember] Mask columnDigitsMask,
 	[DataMember] Mask blockDigitsMask,
-	[DataMember] scoped in CellMap rowCells,
-	[DataMember] scoped in CellMap columnCells,
-	[DataMember] scoped in CellMap blockCells
+	[DataMember] scoped ref readonly CellMap rowCells,
+	[DataMember] scoped ref readonly CellMap columnCells,
+	[DataMember] scoped ref readonly CellMap blockCells
 ) : ZeroRankStep(conclusions, views)
 {
 	/// <inheritdoc/>

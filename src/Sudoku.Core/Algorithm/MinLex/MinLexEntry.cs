@@ -12,7 +12,7 @@ namespace Sudoku.Algorithm.MinLex;
 /// </remarks>
 public static class MinLexFinder
 {
-	/// <inheritdoc cref="Find(in Grid, bool)"/>
+	/// <inheritdoc cref="Find(ref readonly Grid, bool)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string Find(string gridString, bool findForPattern = false)
 	{
@@ -27,7 +27,7 @@ public static class MinLexFinder
 	/// <param name="findForPattern">Indicates whether the grid only searches for its minimal pattern.</param>
 	/// <returns>The minimal result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Find(scoped in Grid grid, bool findForPattern = false)
+	public static Grid Find(scoped ref readonly Grid grid, bool findForPattern = false)
 	{
 		MinLexCandidate.PatCanon(grid.ToString(), out var result, findForPattern);
 		return Grid.Parse(result);

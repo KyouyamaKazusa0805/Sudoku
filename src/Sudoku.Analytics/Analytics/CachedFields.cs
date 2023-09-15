@@ -15,9 +15,9 @@ namespace Sudoku.Analytics;
 /// Sometimes, such values may only be calculated only once, and we just use those return values after the value had been calculated.
 /// For the consideration of the calculation result caching, those results will be stored here as <see langword="static"/> fields,
 /// we can use them if we can ensure that such fields have already been initialized.
-/// For calling the method <see cref="Initialize(in Grid, in Grid)"/>, we can ensure those fields are initialized, in order to be used later.
+/// For calling the method <see cref="Initialize(ref readonly Grid, ref readonly Grid)"/>, we can ensure those fields are initialized, in order to be used later.
 /// In other words,
-/// <b>you must ensure the method <see cref="Initialize(in Grid, in Grid)"/> having been called before using such fields if you want to use them</b>;
+/// <b>you must ensure the method <see cref="Initialize(ref readonly Grid, ref readonly Grid)"/> having been called before using such fields if you want to use them</b>;
 /// otherwise, <see cref="NullReferenceException"/> will be thrown for cached fields whose types are reference ones.
 /// </para>
 /// <para>
@@ -27,7 +27,7 @@ namespace Sudoku.Analytics;
 /// </para>
 /// <para>Some <see cref="StepSearcher"/>s may rely on this type.</para>
 /// </summary>
-/// <seealso cref="Initialize(in Grid, in Grid)"/>
+/// <seealso cref="Initialize(ref readonly Grid, ref readonly Grid)"/>
 /// <seealso cref="Analyzer"/>
 /// <seealso cref="StepSearcher"/>
 /// <seealso cref="Grid"/>
@@ -37,10 +37,10 @@ public static class CachedFields
 	/// <inheritdoc cref="Grid.EmptyCells"/>
 	/// </summary>
 	/// <remarks>
-	/// This map <b>should</b> be used after <see cref="Initialize(in Grid, in Grid)"/> called, and you<b>'d better</b>
+	/// This map <b>should</b> be used after <see cref="Initialize(ref readonly Grid, ref readonly Grid)"/> called, and you<b>'d better</b>
 	/// not use this field on instances which are set <see langword="true"/> for property <see cref="StepSearcherAttribute.IsPure"/>.
 	/// </remarks>
-	/// <seealso cref="Initialize(in Grid, in Grid)"/>
+	/// <seealso cref="Initialize(ref readonly Grid, ref readonly Grid)"/>
 	/// <seealso cref="StepSearcherAttribute.IsPure"/>
 	internal static CellMap EmptyCells;
 
@@ -91,7 +91,7 @@ public static class CachedFields
 	/// <param name="g">The grid.</param>
 	/// <param name="s">The solution of <paramref name="g"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static void Initialize(scoped in Grid g, scoped in Grid s)
+	internal static void Initialize(scoped ref readonly Grid g, scoped ref readonly Grid s)
 	{
 		EmptyCells = g.EmptyCells;
 		BivalueCells = g.BivalueCells;

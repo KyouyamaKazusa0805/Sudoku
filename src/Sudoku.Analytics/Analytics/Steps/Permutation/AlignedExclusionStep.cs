@@ -19,7 +19,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class AlignedExclusionStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[DataMember] scoped in CellMap cells,
+	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] (Digit[], Cell)[] lockedCombinations
 ) : Step(conclusions, views), IEquatableStep<AlignedExclusionStep>
 {

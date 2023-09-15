@@ -91,7 +91,7 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// due to not being aware of the uniqueness of the puzzle.
 	/// </para>
 	/// </returns>
-	public bool? Solve(scoped in Grid grid, out Grid result)
+	public bool? Solve(scoped ref readonly Grid grid, out Grid result)
 	{
 		Unsafe.SkipInit(out result);
 

@@ -20,7 +20,7 @@ public sealed partial class ChromaticPatternType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	House[] blocks,
-	scoped in CellMap pattern,
+	scoped ref readonly CellMap pattern,
 	[DataMember] Cell extraCell,
 	Mask digitsMask
 ) : ChromaticPatternStep(conclusions, views, blocks, pattern, digitsMask)

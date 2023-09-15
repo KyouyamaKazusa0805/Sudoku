@@ -54,7 +54,7 @@ public sealed class IttoryuPathFinder
 	/// <returns>
 	/// The target digit path. If none found, a longest path will be returned.
 	/// </returns>
-	public DigitPath FindPath(scoped in Grid grid)
+	public DigitPath FindPath(scoped ref readonly Grid grid)
 	{
 		var digitsStack = new Stack<Digit>();
 		try
@@ -62,9 +62,9 @@ public sealed class IttoryuPathFinder
 			var foundNodes = new List<PathNode>();
 			for (var digit = 0; digit < 9; digit++)
 			{
-				fullHouses(grid, foundNodes, digit);
-				hiddenSingles(grid, foundNodes, digit);
-				nakedSingles(grid, foundNodes, digit);
+				fullHouses(in grid, foundNodes, digit);
+				hiddenSingles(in grid, foundNodes, digit);
+				nakedSingles(in grid, foundNodes, digit);
 			}
 
 			_foundSequences.Clear();
@@ -112,9 +112,9 @@ public sealed class IttoryuPathFinder
 			{
 				// If the current digit is not completed, we should continue searching for this digit.
 				var tempNodes = new List<PathNode>(16);
-				fullHouses(grid, tempNodes, digit);
-				hiddenSingles(grid, tempNodes, digit);
-				nakedSingles(grid, tempNodes, digit);
+				fullHouses(in grid, tempNodes, digit);
+				hiddenSingles(in grid, tempNodes, digit);
+				nakedSingles(in grid, tempNodes, digit);
 
 				dfs(grid, digit, digitsStack, tempNodes.ToArray(), finishedDigits);
 			}
@@ -132,15 +132,15 @@ public sealed class IttoryuPathFinder
 				}
 
 				// Add a new sequence.
-				_foundSequences.Add(digitsStack.Reverse().ToArray());
+				_foundSequences.Add([.. digitsStack.Reverse()]);
 
 				// If not, we should search for available path nodes agagin, and iterate on them.
 				var tempNodes = new List<PathNode>(16);
 				foreach (var anotherDigit in (Mask)(Grid.MaxCandidatesMask & ~finishedDigits))
 				{
-					fullHouses(grid, tempNodes, anotherDigit);
-					hiddenSingles(grid, tempNodes, anotherDigit);
-					nakedSingles(grid, tempNodes, anotherDigit);
+					fullHouses(in grid, tempNodes, anotherDigit);
+					hiddenSingles(in grid, tempNodes, anotherDigit);
+					nakedSingles(in grid, tempNodes, anotherDigit);
 				}
 
 				// Iterate on found path nodes.
@@ -160,7 +160,7 @@ public sealed class IttoryuPathFinder
 			}
 		}
 
-		void fullHouses(scoped in Grid grid, List<PathNode> foundNodes, Digit digit)
+		void fullHouses(scoped ref readonly Grid grid, List<PathNode> foundNodes, Digit digit)
 		{
 			if (Array.IndexOf(SupportedTechniques, Technique.FullHouse) == -1)
 			{
@@ -173,12 +173,12 @@ public sealed class IttoryuPathFinder
 				if ((emptyCells & HousesMap[house]) is [var fullHouseCell]
 					&& TrailingZeroCount(grid[HousesMap[house] - fullHouseCell]) == digit)
 				{
-					foundNodes.Add(new(grid, house, fullHouseCell * 9 + digit));
+					foundNodes.Add(new(in grid, house, fullHouseCell * 9 + digit));
 				}
 			}
 		}
 
-		void hiddenSingles(scoped in Grid grid, List<PathNode> foundNodes, Digit digit)
+		void hiddenSingles(scoped ref readonly Grid grid, List<PathNode> foundNodes, Digit digit)
 		{
 			var candidatesMap = grid.CandidatesMap;
 			for (var house = 0; house < 27; house++)
@@ -196,12 +196,12 @@ public sealed class IttoryuPathFinder
 
 				if ((HousesMap[house] & candidatesMap[digit]) / house is var mask && IsPow2((uint)mask))
 				{
-					foundNodes.Add(new(grid, house, HouseCells[house][Log2((uint)mask)] * 9 + digit));
+					foundNodes.Add(new(in grid, house, HouseCells[house][Log2((uint)mask)] * 9 + digit));
 				}
 			}
 		}
 
-		void nakedSingles(scoped in Grid grid, List<PathNode> foundNodes, Digit digit)
+		void nakedSingles(scoped ref readonly Grid grid, List<PathNode> foundNodes, Digit digit)
 		{
 			if (Array.IndexOf(SupportedTechniques, Technique.NakedSingle) == -1)
 			{
@@ -212,7 +212,7 @@ public sealed class IttoryuPathFinder
 			{
 				if (grid.GetCandidates(cell) == 1 << digit)
 				{
-					foundNodes.Add(new(grid, -1, cell * 9 + digit));
+					foundNodes.Add(new(in grid, -1, cell * 9 + digit));
 				}
 			}
 		}

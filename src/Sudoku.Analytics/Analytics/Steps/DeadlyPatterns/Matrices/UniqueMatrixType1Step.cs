@@ -18,7 +18,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueMatrixType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	scoped in CellMap cells,
+	scoped ref readonly CellMap cells,
 	Mask digitsMask,
 	[DataMember] Candidate candidate
 ) : UniqueMatrixStep(conclusions, views, cells, digitsMask)

@@ -22,7 +22,7 @@ public abstract partial class UniqueLoopStep(
 	View[]? views,
 	[DataMember] Digit digit1,
 	[DataMember] Digit digit2,
-	[DataMember] scoped in CellMap loop
+	[DataMember] scoped ref readonly CellMap loop
 ) : DeadlyPatternStep(conclusions, views), IEquatableStep<UniqueLoopStep>
 {
 	/// <inheritdoc/>

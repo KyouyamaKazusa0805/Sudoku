@@ -20,8 +20,8 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class MultiBranchWWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[DataMember] scoped in CellMap leaves,
-	[DataMember] scoped in CellMap root,
+	[DataMember] scoped ref readonly CellMap leaves,
+	[DataMember] scoped ref readonly CellMap root,
 	[DataMember] House house
 ) : IrregularWingStep(conclusions, views)
 {

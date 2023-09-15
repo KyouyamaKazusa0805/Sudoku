@@ -20,11 +20,11 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueMatrixType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	scoped in CellMap cells,
+	scoped ref readonly CellMap cells,
 	Mask digitsMask,
 	[DataMember] Digit digit1,
 	[DataMember] Digit digit2,
-	[DataMember] scoped in CellMap conjugateHouse
+	[DataMember] scoped ref readonly CellMap conjugateHouse
 ) : UniqueMatrixStep(conclusions, views, cells, digitsMask)
 {
 	/// <inheritdoc/>

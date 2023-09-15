@@ -25,7 +25,7 @@ public sealed class AnalyzeCommand : Command, ICommand<AnalyzeCommand>
 		this.SetHandler(static (grid, technique) =>
 		{
 			var analyzer = PredefinedAnalyzers.Balanced;
-			switch (technique, analyzer.Analyze(grid))
+			switch (technique, analyzer.Analyze(in grid))
 			{
 				case (0, var analyzerResult):
 				{

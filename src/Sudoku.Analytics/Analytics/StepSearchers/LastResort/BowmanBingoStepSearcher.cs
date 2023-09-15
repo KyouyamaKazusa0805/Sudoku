@@ -53,13 +53,13 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 			foreach (var cell in CandidatesMap[digit])
 			{
 				_tempConclusions.Add(new(Assignment, cell, digit));
-				var (candList, mask) = RecordUndoInfo(tempGrid, cell, digit);
+				var (candList, mask) = RecordUndoInfo(in tempGrid, cell, digit);
 
 				// Try to fill this cell.
 				tempGrid.SetDigit(cell, digit);
 				var startCandidate = cell * 9 + digit;
 
-				if (IsValidGrid(grid, cell))
+				if (IsValidGrid(in grid, cell))
 				{
 					Collect(tempAccumulator, ref tempGrid, onlyFindOne, startCandidate, MaxLength - 1);
 				}
@@ -120,10 +120,10 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		// Try to fill.
 		_ = singleInfo.Conclusions[0] is { Cell: var c, Digit: var d } conclusion;
 		_tempConclusions.Add(conclusion);
-		var (candList, mask) = RecordUndoInfo(grid, c, d);
+		var (candList, mask) = RecordUndoInfo(in grid, c, d);
 
 		grid.SetDigit(c, d);
-		if (IsValidGrid(grid, c))
+		if (IsValidGrid(in grid, c))
 		{
 			// Sounds good.
 			if (Collect(result, ref grid, onlyFindOne, startCand, length - 1) is { } nestedStep)
@@ -182,7 +182,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result.</returns>
-	private static (List<Candidate> CandidateList, Mask Mask) RecordUndoInfo(scoped in Grid grid, Cell cell, Digit digit)
+	private static (List<Candidate> CandidateList, Mask Mask) RecordUndoInfo(scoped ref readonly Grid grid, Cell cell, Digit digit)
 	{
 		var list = new List<Candidate>();
 		foreach (var c in PeersMap[cell] & CandidatesMap[digit])
@@ -217,7 +217,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>The result.</returns>
-	private static bool IsValidGrid(scoped in Grid grid, Cell cell)
+	private static bool IsValidGrid(scoped ref readonly Grid grid, Cell cell)
 	{
 		var result = true;
 		foreach (var peerCell in Peers[cell])

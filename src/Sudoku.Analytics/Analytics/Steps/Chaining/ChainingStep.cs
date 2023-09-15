@@ -256,7 +256,7 @@ public abstract partial class ChainingStep(
 	/// <param name="initialGrid">The initial grid.</param>
 	/// <param name="currentGrid">The current grid.</param>
 	/// <returns>All found potentials.</returns>
-	internal List<ChainNode> GetRuleParents(scoped in Grid initialGrid, scoped in Grid currentGrid)
+	internal List<ChainNode> GetRuleParents(scoped ref readonly Grid initialGrid, scoped ref readonly Grid currentGrid)
 	{
 		var result = new List<ChainNode>();
 
@@ -265,7 +265,7 @@ public abstract partial class ChainingStep(
 		foreach (var target in ChainsTargets)
 		{
 			// Iterate on chain targets.
-			CollectRuleParents(initialGrid, currentGrid, result, target);
+			CollectRuleParents(in initialGrid, in currentGrid, result, target);
 		}
 
 		return result;
@@ -276,7 +276,7 @@ public abstract partial class ChainingStep(
 	/// </summary>
 	/// <param name="grid">The grid used.</param>
 	/// <returns>The values.</returns>
-	protected internal virtual View[] CreateViews(scoped in Grid grid)
+	protected internal virtual View[] CreateViews(scoped ref readonly Grid grid)
 	{
 		var globalView = new View();
 		var result = new View[ViewsCount];
@@ -308,7 +308,7 @@ public abstract partial class ChainingStep(
 			var view = new View();
 			GetNestedOnPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate)));
 			GetNestedOffPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, candidate)));
-			GetPartiallyOffPotentials(grid, i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, candidate)));
+			GetPartiallyOffPotentials(in grid, i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, candidate)));
 			view.AddRange(GetNestedLinks(i));
 
 			result[i] = view;
@@ -320,7 +320,7 @@ public abstract partial class ChainingStep(
 	/// <summary><b><i>
 	/// This method will be implemented later.
 	/// </i></b></summary>
-	protected void CollectRuleParents(scoped in Grid initialGrid, scoped in Grid currentGrid, List<ChainNode> result, ChainNode target)
+	protected void CollectRuleParents(scoped ref readonly Grid initialGrid, scoped ref readonly Grid currentGrid, List<ChainNode> result, ChainNode target)
 	{
 		return;
 	}
@@ -388,7 +388,7 @@ public abstract partial class ChainingStep(
 	/// <param name="grid">The grid as a candidate reference.</param>
 	/// <param name="viewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected CandidateMap GetPartiallyOffPotentials(scoped in Grid grid, int viewIndex)
+	protected CandidateMap GetPartiallyOffPotentials(scoped ref readonly Grid grid, int viewIndex)
 	{
 		var result = CandidateMap.Empty;
 
@@ -412,7 +412,7 @@ public abstract partial class ChainingStep(
 			// Use the rule's parent collector.
 			var blues = new List<ChainNode>();
 			var nestedTarget = step.GetChainTargetAt(nestedViewNum);
-			step.CollectRuleParents(grid, nestedGrid, blues, nestedTarget);
+			step.CollectRuleParents(in grid, in nestedGrid, blues, nestedTarget);
 
 			foreach (var (candidate, _) in blues)
 			{
@@ -563,9 +563,8 @@ public abstract partial class ChainingStep(
 			var next = new List<ChainNode>();
 			foreach (var p in todo)
 			{
-				if (!ancestors.Contains(p))
+				if (ancestors.Add(p))
 				{
-					ancestors.Add(p);
 					next.AddRange(p.Parents);
 				}
 			}

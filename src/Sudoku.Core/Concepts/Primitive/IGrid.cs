@@ -241,31 +241,31 @@ public partial interface IGrid<TSelf, THouseMask, TConjugateMask, TMask, TCell, 
 	/// </summary>
 	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
 	/// <returns>A mask of type <typeparamref name="TMask"/> that represents the usages of digits 1 to 9.</returns>
-	public abstract TMask this[scoped in TBitStatusMap cells] { get; set; }
+	public abstract TMask this[scoped ref readonly TBitStatusMap cells] { get; set; }
 
 	/// <summary>
-	/// <inheritdoc cref="this[in TBitStatusMap]" path="/summary"/>
+	/// <inheritdoc cref="this[ref readonly TBitStatusMap]" path="/summary"/>
 	/// </summary>
-	/// <param name="cells"><inheritdoc cref="this[in TBitStatusMap]" path="/param[@name='cells']"/></param>
+	/// <param name="cells"><inheritdoc cref="this[ref readonly TBitStatusMap]" path="/param[@name='cells']"/></param>
 	/// <param name="withValueCells">
 	/// Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
 	/// If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
 	/// </param>
-	/// <returns><inheritdoc cref="this[in TBitStatusMap]" path="/returns"/></returns>
-	public abstract TMask this[scoped in TBitStatusMap cells, bool withValueCells] { get; }
+	/// <returns><inheritdoc cref="this[ref readonly TBitStatusMap]" path="/returns"/></returns>
+	public abstract TMask this[scoped ref readonly TBitStatusMap cells, bool withValueCells] { get; }
 
 	/// <summary>
-	/// <inheritdoc cref="this[in TBitStatusMap]" path="/summary"/>
+	/// <inheritdoc cref="this[ref readonly TBitStatusMap]" path="/summary"/>
 	/// </summary>
-	/// <param name="cells"><inheritdoc cref="this[in TBitStatusMap]" path="/param[@name='cells']"/></param>
+	/// <param name="cells"><inheritdoc cref="this[ref readonly TBitStatusMap]" path="/param[@name='cells']"/></param>
 	/// <param name="withValueCells">
-	/// <inheritdoc cref="this[in TBitStatusMap, bool]" path="/param[@name='withValueCells']"/>
+	/// <inheritdoc cref="this[ref readonly TBitStatusMap, bool]" path="/param[@name='withValueCells']"/>
 	/// </param>
 	/// <param name="mergingMethod">
 	/// </param>
-	/// <returns><inheritdoc cref="this[in TBitStatusMap]" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="this[ref readonly TBitStatusMap]" path="/returns"/></returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
-	public abstract TMask this[scoped in TBitStatusMap cells, bool withValueCells, GridMaskMergingMethod mergingMethod] { get; }
+	public abstract TMask this[scoped ref readonly TBitStatusMap cells, bool withValueCells, GridMaskMergingMethod mergingMethod] { get; }
 
 
 	/// <summary>
@@ -274,7 +274,7 @@ public partial interface IGrid<TSelf, THouseMask, TConjugateMask, TMask, TCell, 
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
-	public abstract bool Equals(scoped in TSelf other);
+	public abstract bool Equals(scoped ref readonly TSelf other);
 
 	/// <summary>
 	/// Determine whether the digit in the target cell may be duplicated with a certain cell in the peers of the current cell,
@@ -583,7 +583,7 @@ public partial interface IGrid<TSelf, THouseMask, TConjugateMask, TMask, TCell, 
 	/// <returns>The map.</returns>
 	/// <seealso cref="EmptyCells"/>
 	/// <seealso cref="BivalueCells"/>
-	protected virtual unsafe TBitStatusMap GetMap(delegate*<in TSelf, TCell, bool> predicate)
+	protected virtual unsafe TBitStatusMap GetMap(delegate*<ref readonly TSelf, TCell, bool> predicate)
 	{
 		var result = TBitStatusMap.Empty;
 		for (var (cell, i) = (TCell.Zero, 0); i < 81; cell++, i++)
@@ -605,7 +605,7 @@ public partial interface IGrid<TSelf, THouseMask, TConjugateMask, TMask, TCell, 
 	/// <seealso cref="CandidatesMap"/>
 	/// <seealso cref="DigitsMap"/>
 	/// <seealso cref="ValuesMap"/>
-	protected virtual unsafe TBitStatusMap[] GetMaps(delegate*<in TSelf, TCell, TDigit, bool> predicate)
+	protected virtual unsafe TBitStatusMap[] GetMaps(delegate*<ref readonly TSelf, TCell, TDigit, bool> predicate)
 	{
 		var result = new TBitStatusMap[9];
 		for (var (digit, i) = (TDigit.Zero, 0); i < 9; digit++, i++)
@@ -628,7 +628,7 @@ public partial interface IGrid<TSelf, THouseMask, TConjugateMask, TMask, TCell, 
 	/// </summary>
 	/// <param name="pattern">The pattern.</param>
 	/// <returns>The result grid.</returns>
-	protected virtual TSelf Preserve(scoped in TBitStatusMap pattern)
+	protected virtual TSelf Preserve(scoped ref readonly TBitStatusMap pattern)
 	{
 		var result = (TSelf)this;
 		foreach (var cell in ~pattern)

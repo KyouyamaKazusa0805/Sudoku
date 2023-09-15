@@ -34,11 +34,15 @@ public abstract class ChainingStepSearcher(
 	/// Get the set of all <see cref="ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
 	/// (i.e. if its value is the correct one for the cell).
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.Collect(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid">
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/>
+	/// </param>
 	/// <param name="p">The potential that is assumed to be "on"</param>
-	/// <param name="isY"><inheritdoc cref="NonMultipleChainingStepSearcher.Collect(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
+	/// <param name="isY">
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='isY']"/>
+	/// </param>
 	/// <returns>The set of potentials that must be "off".</returns>
-	protected NodeSet GetOnToOff(scoped in Grid grid, ChainNode p, bool isY)
+	protected NodeSet GetOnToOff(scoped ref readonly Grid grid, ChainNode p, bool isY)
 	{
 		var result = new NodeSet();
 		var cell = p.Cell;
@@ -78,22 +82,28 @@ public abstract class ChainingStepSearcher(
 	/// Get the set of all <see cref="ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
 	/// (i.e. if its value is the correct one for the cell).
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.Collect(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid">
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/>
+	/// </param>
 	/// <param name="p">The potential that is assumed to be "off"</param>
 	/// <param name="source">
 	/// <inheritdoc
-	///     cref="NonMultipleChainingStepSearcher.DoCycles(in Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)"
+	///     cref="NonMultipleChainingStepSearcher.DoCycles(ref readonly Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)"
 	///     path="/param[@name='source']"/>
 	/// </param>
 	/// <param name="offPotentials">Indicates the <see cref="ChainNode"/> instances that are already set "off".</param>
-	/// <param name="isX"><inheritdoc cref="NonMultipleChainingStepSearcher.Collect(in Grid, bool, bool)" path="/param[@name='isX']"/></param>
-	/// <param name="isY"><inheritdoc cref="NonMultipleChainingStepSearcher.Collect(in Grid, bool, bool)" path="/param[@name='isY']"/></param>
+	/// <param name="isX">
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='isX']"/>
+	/// </param>
+	/// <param name="isY">
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='isY']"/>
+	/// </param>
 	/// <param name="allowDynamic"><inheritdoc cref="MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
 	/// <returns>The set of potentials that must be "off".</returns>
 	protected NodeSet GetOffToOn(
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		ChainNode p,
-		scoped in Grid? source,
+		scoped ref readonly Grid? source,
 		NodeSet offPotentials,
 		bool isX,
 		bool isY,
@@ -113,7 +123,7 @@ public abstract class ChainingStepSearcher(
 				var pOn = new ChainNode(cell, otherDigit, true) { SingletonParent = p };
 				if (source is { } original)
 				{
-					addHiddenParentsOfCell(ref pOn, grid, original, offPotentials);
+					addHiddenParentsOfCell(ref pOn, in grid, in original, offPotentials);
 				}
 
 				result.Add(pOn);
@@ -132,7 +142,7 @@ public abstract class ChainingStepSearcher(
 					var pOn = new ChainNode((byte)otherCell, digit, true) { SingletonParent = p };
 					if (source is { } original)
 					{
-						addHiddenParentsOfHouse(ref pOn, grid, original, houseType, offPotentials);
+						addHiddenParentsOfHouse(ref pOn, in grid, in original, houseType, offPotentials);
 					}
 
 					result.Add(pOn);
@@ -143,7 +153,7 @@ public abstract class ChainingStepSearcher(
 		return result;
 
 
-		static void addHiddenParentsOfCell(scoped ref ChainNode p, scoped in Grid current, scoped in Grid original, NodeSet offPotentials)
+		static void addHiddenParentsOfCell(scoped ref ChainNode p, scoped ref readonly Grid current, scoped ref readonly Grid original, NodeSet offPotentials)
 		{
 			var cell = p.Cell;
 			for (byte digit = 0; digit < 9; digit++)
@@ -163,8 +173,8 @@ public abstract class ChainingStepSearcher(
 
 		static void addHiddenParentsOfHouse(
 			scoped ref ChainNode p,
-			scoped in Grid current,
-			scoped in Grid original,
+			scoped ref readonly Grid current,
+			scoped ref readonly Grid original,
 			HouseType currentHouseType,
 			NodeSet offPotentials
 		)
@@ -173,7 +183,7 @@ public abstract class ChainingStepSearcher(
 			var houseIndex = cell.ToHouseIndex(currentHouseType);
 
 			// Get positions of the potential value that have been removed.
-			foreach (var pos in (Mask)(g(original, houseIndex, digit) & ~g(current, houseIndex, digit)))
+			foreach (var pos in (Mask)(g(in original, houseIndex, digit) & ~g(in current, houseIndex, digit)))
 			{
 				// Add a hidden parent.
 				if (offPotentials.GetNullable(new((byte)HouseCells[houseIndex][pos], digit, false)) is not { } parent)
@@ -185,7 +195,7 @@ public abstract class ChainingStepSearcher(
 			}
 
 
-			static Mask g(scoped in Grid grid, House houseIndex, Digit digit)
+			static Mask g(scoped ref readonly Grid grid, House houseIndex, Digit digit)
 			{
 				var result = (Mask)0;
 				for (var i = 0; i < 9; i++)
@@ -205,7 +215,9 @@ public abstract class ChainingStepSearcher(
 	/// Given the initial sets of potentials that are assumed to be "on" and "off",
 	/// complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.Collect(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid">
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/>
+	/// </param>
 	/// <param name="toOn">The potentials that are assumed to be "on".</param>
 	/// <param name="toOff">The potentials that are assumed to be "off".</param>
 	/// <param name="allowNishio"><inheritdoc cref="MultipleChainingStepSearcher.AllowNishio" path="/summary"/></param>
@@ -220,7 +232,7 @@ public abstract class ChainingStepSearcher(
 			if (pendingOn.Count > 0)
 			{
 				var p = pendingOn.RemoveFirst();
-				foreach (var pOff in GetOnToOff(grid, p, !allowNishio))
+				foreach (var pOff in GetOnToOff(in grid, p, !allowNishio))
 				{
 					var pOn = new ChainNode(pOff, true); // Conjugate.
 					if (toOn.GetNullable(pOn) is { } pOnInSet)
@@ -229,10 +241,9 @@ public abstract class ChainingStepSearcher(
 						return (pOnInSet, pOff); // Cannot be both on and off at the same time.
 					}
 
-					if (!toOff.Contains(pOff))
+					// Not processed yet.
+					if (toOff.Add(pOff))
 					{
-						// Not processed yet.
-						toOff.Add(pOff);
 						pendingOff.AddLast(pOff);
 					}
 				}
@@ -240,7 +251,7 @@ public abstract class ChainingStepSearcher(
 			else
 			{
 				var p = pendingOff.RemoveFirst();
-				var makeOn = GetOffToOn(grid, p, originalGrid, toOff, true, !allowNishio, allowDynamic);
+				var makeOn = GetOffToOn(in grid, p, originalGrid, toOff, true, !allowNishio, allowDynamic);
 
 				if (allowDynamic)
 				{
@@ -257,16 +268,15 @@ public abstract class ChainingStepSearcher(
 						return (pOn, pOffInSet); // Cannot be both on and off at the same time.
 					}
 
-					if (!toOn.Contains(pOn))
+					if (toOn.Add(pOn))
 					{
 						// Not processed yet.
-						toOn.Add(pOn);
 						pendingOn.AddLast(pOn);
 					}
 				}
 			}
 
-			OnAdvanced(pendingOn, pendingOff, toOff, grid, originalGrid);
+			OnAdvanced(pendingOn, pendingOff, toOff, in grid, in originalGrid);
 		}
 
 		return null;
@@ -278,14 +288,14 @@ public abstract class ChainingStepSearcher(
 	/// <param name="pendingOn">The pending potentials that are assumed to be "on".</param>
 	/// <param name="pendingOff">The pending potentials that are assumed to be "off".</param>
 	/// <param name="toOff">The original potentials that are assumed to be "off".</param>
-	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.Collect(in Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="original">Indicates the original grid.</param>
 	protected virtual void OnAdvanced(
 		NodeList pendingOn,
 		NodeList pendingOff,
 		NodeSet toOff,
-		scoped in Grid grid,
-		scoped in Grid original
+		scoped ref readonly Grid grid,
+		scoped ref readonly Grid original
 	)
 	{
 		return;

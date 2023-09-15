@@ -37,7 +37,7 @@ public sealed class DancingLinksSolver : ISolver
 
 
 	/// <inheritdoc/>
-	public bool? Solve(scoped in Grid grid, out Grid result)
+	public bool? Solve(scoped ref readonly Grid grid, out Grid result)
 	{
 		Unsafe.SkipInit(out result);
 

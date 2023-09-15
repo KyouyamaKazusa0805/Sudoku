@@ -22,9 +22,9 @@ public static class BackdoorSearcher
 	/// <param name="grid">The grid to be checked.</param>
 	/// <returns>A list of backdoors.</returns>
 	/// <exception cref="ArgumentException">Throws when the grid is not unique, or the puzzle is too easy.</exception>
-	public static Conclusion[] GetBackdoors(scoped in Grid grid)
+	public static Conclusion[] GetBackdoors(scoped ref readonly Grid grid)
 	{
-		switch (grid, SstsChecker.Analyze(grid))
+		switch (grid, SstsChecker.Analyze(in grid))
 		{
 			case ({ IsValid: false } or { IsSolved: true }, _):
 			{
@@ -50,7 +50,7 @@ public static class BackdoorSearcher
 					var case1Playground = grid;
 					case1Playground.SetDigit(cell, solution.GetDigit(cell));
 
-					if (SstsChecker.Analyze(case1Playground).IsSolved)
+					if (SstsChecker.Analyze(in case1Playground).IsSolved)
 					{
 						assignment.Add(new(Assignment, cell, solution.GetDigit(cell)));
 
@@ -60,7 +60,7 @@ public static class BackdoorSearcher
 							var case2Playground = grid;
 							case2Playground.SetCandidateIsOn(cell, digit, false);
 
-							if (SstsChecker.Analyze(case2Playground).IsSolved)
+							if (SstsChecker.Analyze(in case2Playground).IsSolved)
 							{
 								elimination.Add(new(Elimination, cell, digit));
 							}

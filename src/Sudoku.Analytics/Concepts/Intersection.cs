@@ -48,7 +48,7 @@ internal static class Intersection
 				scoped ref readonly var bm = ref HousesMap[bs];
 				scoped ref readonly var cm = ref HousesMap[cs];
 				var i = bm & cm;
-				dic.Add(new(bs, cs), new(bm - i, cm - i, i, intersectionBlockTable[(bs - 9) * 3 + j]));
+				dic.Add(new(bs, cs), new(bm - i, cm - i, in i, intersectionBlockTable[(bs - 9) * 3 + j]));
 			}
 		}
 

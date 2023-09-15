@@ -16,7 +16,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class UniqueMatrixStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	[DataMember] scoped in CellMap cells,
+	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] Mask digitsMask
 ) : DeadlyPatternStep(conclusions, views)
 {

@@ -54,7 +54,7 @@ public sealed class OutputCommand : Command, ICommand<OutputCommand>
 				case ".jpg" or ".jpeg" or ".png" or ".bmp" or ".gif" or ".wmf":
 				{
 					ISudokuPainter.Create(1000, 20)
-						.WithGrid(grid)
+						.WithGrid(in grid)
 						.WithFontScale(1, .4M)
 						.SaveTo(path);
 

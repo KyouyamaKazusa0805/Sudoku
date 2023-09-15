@@ -28,7 +28,7 @@ public sealed partial class UniqueRectangle2DOr3XStep(
 	Technique code,
 	Digit digit1,
 	Digit digit2,
-	scoped in CellMap cells,
+	scoped ref readonly CellMap cells,
 	bool isAvoidable,
 	[DataMember] Digit xDigit,
 	[DataMember] Digit yDigit,

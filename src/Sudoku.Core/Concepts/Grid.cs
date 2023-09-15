@@ -154,7 +154,7 @@ public unsafe partial struct Grid : GridImpl
 	/// <exception cref="ArgumentNullRefException">
 	/// Throws when the argument <paramref name="firstElement"/> is <see langword="null"/> reference.
 	/// </exception>
-	private Grid(scoped in Digit firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
+	private Grid(scoped ref readonly Digit firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
 		ArgumentNullRefException.ThrowIfNullRef(ref Unsafe.AsRef(firstElement));
 
@@ -365,7 +365,7 @@ public unsafe partial struct Grid : GridImpl
 				{
 					if ((houseMap & cellsMap) is { Count: 2 } temp)
 					{
-						conjugatePairs.Add(new(temp, digit));
+						conjugatePairs.Add(new(in temp, digit));
 					}
 				}
 			}
@@ -406,10 +406,10 @@ public unsafe partial struct Grid : GridImpl
 	{
 		get
 		{
-			return BackingSolver.Solve(this) is { IsUndefined: false } solution ? unfix(solution, GivenCells) : Undefined;
+			return BackingSolver.Solve(this) is { IsUndefined: false } solution ? unfix(in solution, GivenCells) : Undefined;
 
 
-			static Grid unfix(scoped in Grid solution, scoped in CellMap pattern)
+			static Grid unfix(scoped ref readonly Grid solution, scoped ref readonly CellMap pattern)
 			{
 				var result = solution;
 				foreach (var cell in ~pattern)
@@ -457,7 +457,7 @@ public unsafe partial struct Grid : GridImpl
 
 
 	/// <inheritdoc/>
-	public Mask this[scoped in CellMap cells]
+	public Mask this[scoped ref readonly CellMap cells]
 	{
 		readonly get
 		{
@@ -481,7 +481,7 @@ public unsafe partial struct Grid : GridImpl
 	}
 
 	/// <inheritdoc/>
-	public readonly Mask this[scoped in CellMap cells, bool withValueCells]
+	public readonly Mask this[scoped ref readonly CellMap cells, bool withValueCells]
 	{
 		get
 		{
@@ -499,7 +499,7 @@ public unsafe partial struct Grid : GridImpl
 	}
 
 	/// <inheritdoc/>
-	public readonly unsafe Mask this[scoped in CellMap cells, bool withValueCells, GridMaskMergingMethod mergingMethod]
+	public readonly unsafe Mask this[scoped ref readonly CellMap cells, bool withValueCells, GridMaskMergingMethod mergingMethod]
 	{
 		get
 		{
@@ -516,7 +516,7 @@ public unsafe partial struct Grid : GridImpl
 				GridMaskMergingMethod.AndNot => &andNot,
 				GridMaskMergingMethod.And => &and,
 				GridMaskMergingMethod.Or => &or,
-				_ => default(delegate*<ref Mask, in Grid, Cell, void>)
+				_ => default(delegate*<ref Mask, ref readonly Grid, Cell, void>)
 			};
 
 			foreach (var cell in cells)
@@ -530,11 +530,11 @@ public unsafe partial struct Grid : GridImpl
 			return result;
 
 
-			static void andNot(scoped ref Mask result, scoped in Grid grid, Cell cell) => result &= (Mask)~grid[cell];
+			static void andNot(scoped ref Mask result, scoped ref readonly Grid grid, Cell cell) => result &= (Mask)~grid[cell];
 
-			static void and(scoped ref Mask result, scoped in Grid grid, Cell cell) => result &= grid[cell];
+			static void and(scoped ref Mask result, scoped ref readonly Grid grid, Cell cell) => result &= grid[cell];
 
-			static void or(scoped ref Mask result, scoped in Grid grid, Cell cell) => result |= grid[cell];
+			static void or(scoped ref Mask result, scoped ref readonly Grid grid, Cell cell) => result |= grid[cell];
 		}
 	}
 
@@ -544,7 +544,7 @@ public unsafe partial struct Grid : GridImpl
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(scoped in Grid other)
+	public readonly bool Equals(scoped ref readonly Grid other)
 		=> InternalEqualsByRef(
 			ref Unsafe2.AsByteRef(ref Unsafe.AsRef(this[0])),
 			ref Unsafe2.AsByteRef(ref Unsafe.AsRef(other[0])), sizeof(Mask) * 81
@@ -960,15 +960,15 @@ public unsafe partial struct Grid : GridImpl
 
 
 #pragma warning disable CS1584, CS1658
-	/// <inheritdoc cref="GridImpl.GetMap(delegate*{in TSelf, int, bool})"/>
+	/// <inheritdoc cref="GridImpl.GetMap(delegate*{ref readonly TSelf, int, bool})"/>
 #pragma warning restore CS1584, CS1658
 	[ExplicitInterfaceImpl(typeof(IGrid<,,,,,,,,,,>))]
-	private readonly CellMap GetMap(delegate*<in Grid, Cell, bool> predicate)
+	private readonly CellMap GetMap(delegate*<ref readonly Grid, Cell, bool> predicate)
 	{
 		var result = CellMap.Empty;
 		for (var cell = 0; cell < 81; cell++)
 		{
-			if (predicate(this, cell))
+			if (predicate(in this, cell))
 			{
 				result.Add(cell);
 			}
@@ -978,10 +978,10 @@ public unsafe partial struct Grid : GridImpl
 	}
 
 #pragma warning disable CS1584, CS1658
-	/// <inheritdoc cref="GridImpl.GetMaps(delegate*{in Grid, int, int, bool})"/>
+	/// <inheritdoc cref="GridImpl.GetMaps(delegate*{ref readonly Grid, int, int, bool})"/>
 #pragma warning restore CS1584, CS1658
 	[ExplicitInterfaceImpl(typeof(IGrid<,,,,,,,,,,>))]
-	private readonly CellMap[] GetMaps(delegate*<in Grid, Cell, Digit, bool> predicate)
+	private readonly CellMap[] GetMaps(delegate*<ref readonly Grid, Cell, Digit, bool> predicate)
 	{
 		var result = new CellMap[9];
 		for (var digit = 0; digit < 9; digit++)
@@ -989,7 +989,7 @@ public unsafe partial struct Grid : GridImpl
 			scoped ref var map = ref result[digit];
 			for (var cell = 0; cell < 81; cell++)
 			{
-				if (predicate(this, cell, digit))
+				if (predicate(in this, cell, digit))
 				{
 					map.Add(cell);
 				}
@@ -999,9 +999,8 @@ public unsafe partial struct Grid : GridImpl
 		return result;
 	}
 
-	/// <inheritdoc cref="IGrid{TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, TCandidate, THouse, TBitStatusMap, TConclusion, TConjugate}.Preserve(in TBitStatusMap)"/>
-	[ExplicitInterfaceImpl(typeof(IGrid<,,,,,,,,,,>))]
-	private readonly Grid Preserve(scoped in CellMap pattern)
+	/// <inheritdoc cref="IGrid{TSelf, THouseMask, TConjuagteMask, TMask, TCell, TDigit, TCandidate, THouse, TBitStatusMap, TConclusion, TConjugate}.Preserve(ref readonly TBitStatusMap)"/>
+	private readonly Grid Preserve(scoped ref readonly CellMap pattern)
 	{
 		var result = this;
 		foreach (var cell in ~pattern)
@@ -1015,7 +1014,7 @@ public unsafe partial struct Grid : GridImpl
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Create(Digit[] gridValues, GridCreatingOption creatingOption = 0) => new(gridValues[0], creatingOption);
+	public static Grid Create(Digit[] gridValues, GridCreatingOption creatingOption = 0) => new(in gridValues[0], creatingOption);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1529,26 +1528,26 @@ file static class GridCellPredicates
 	/// <param name="g">The grid.</param>
 	/// <param name="cell">The cell to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public static bool GivenCells(scoped in Grid g, Cell cell) => g.GetState(cell) == CellState.Given;
+	public static bool GivenCells(scoped ref readonly Grid g, Cell cell) => g.GetState(cell) == CellState.Given;
 
 	/// <summary>
 	/// Determines whether the specified cell in the specified grid is a modifiable cell.
 	/// </summary>
-	/// <inheritdoc cref="GivenCells(in Grid, int)"/>
-	public static bool ModifiableCells(scoped in Grid g, Cell cell) => g.GetState(cell) == CellState.Modifiable;
+	/// <inheritdoc cref="GivenCells(ref readonly Grid, int)"/>
+	public static bool ModifiableCells(scoped ref readonly Grid g, Cell cell) => g.GetState(cell) == CellState.Modifiable;
 
 	/// <summary>
 	/// Determines whether the specified cell in the specified grid is an empty cell.
 	/// </summary>
-	/// <inheritdoc cref="GivenCells(in Grid, int)"/>
-	public static bool EmptyCells(scoped in Grid g, Cell cell) => g.GetState(cell) == CellState.Empty;
+	/// <inheritdoc cref="GivenCells(ref readonly Grid, int)"/>
+	public static bool EmptyCells(scoped ref readonly Grid g, Cell cell) => g.GetState(cell) == CellState.Empty;
 
 	/// <summary>
 	/// Determines whether the specified cell in the specified grid is a bi-value cell, which means the cell is an empty cell,
 	/// and contains and only contains 2 candidates.
 	/// </summary>
-	/// <inheritdoc cref="GivenCells(in Grid, int)"/>
-	public static bool BivalueCells(scoped in Grid g, Cell cell) => PopCount((uint)g.GetCandidates(cell)) == 2;
+	/// <inheritdoc cref="GivenCells(ref readonly Grid, int)"/>
+	public static bool BivalueCells(scoped ref readonly Grid g, Cell cell) => PopCount((uint)g.GetCandidates(cell)) == 2;
 
 	/// <summary>
 	/// Checks the existence of the specified digit in the specified cell.
@@ -1557,17 +1556,17 @@ file static class GridCellPredicates
 	/// <param name="cell">The cell to be checked.</param>
 	/// <param name="digit">The digit to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public static bool CandidatesMap(scoped in Grid g, Cell cell, Digit digit) => g.Exists(cell, digit) is true;
+	public static bool CandidatesMap(scoped ref readonly Grid g, Cell cell, Digit digit) => g.Exists(cell, digit) is true;
 
 	/// <summary>
 	/// Checks the existence of the specified digit in the specified cell, or whether the cell is a value cell, being filled by the digit.
 	/// </summary>
-	/// <inheritdoc cref="CandidatesMap(in Grid, int, int)"/>
-	public static bool DigitsMap(scoped in Grid g, Cell cell, Digit digit) => (g.GetCandidates(cell) >> digit & 1) != 0;
+	/// <inheritdoc cref="CandidatesMap(ref readonly Grid, int, int)"/>
+	public static bool DigitsMap(scoped ref readonly Grid g, Cell cell, Digit digit) => (g.GetCandidates(cell) >> digit & 1) != 0;
 
 	/// <summary>
 	/// Checks whether the cell is a value cell, being filled by the digit.
 	/// </summary>
-	/// <inheritdoc cref="CandidatesMap(in Grid, int, int)"/>
-	public static bool ValuesMap(scoped in Grid g, Cell cell, Digit digit) => g.GetDigit(cell) == digit;
+	/// <inheritdoc cref="CandidatesMap(ref readonly Grid, int, int)"/>
+	public static bool ValuesMap(scoped ref readonly Grid g, Cell cell, Digit digit) => g.GetDigit(cell) == digit;
 }

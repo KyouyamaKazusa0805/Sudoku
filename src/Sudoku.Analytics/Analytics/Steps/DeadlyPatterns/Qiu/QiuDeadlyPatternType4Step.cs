@@ -24,7 +24,7 @@ public sealed partial class QiuDeadlyPatternType4Step(
 	HouseMask houses,
 	Cell? corner1,
 	Cell? corner2,
-	[DataMember] scoped in Conjugate conjugatePair
+	[DataMember] scoped ref readonly Conjugate conjugatePair
 ) : QiuDeadlyPatternStep(conclusions, views, is2LinesWith2Cells, houses, corner1, corner2)
 {
 	/// <inheritdoc/>

@@ -25,7 +25,7 @@ public sealed partial class AvoidableRectangleWithHiddenSingleStep(
 	View[]? views,
 	Digit digit1,
 	Digit digit2,
-	scoped in CellMap cells,
+	scoped ref readonly CellMap cells,
 	[DataMember] Cell baseCell,
 	[DataMember] Cell targetCell,
 	[DataMember] House house,

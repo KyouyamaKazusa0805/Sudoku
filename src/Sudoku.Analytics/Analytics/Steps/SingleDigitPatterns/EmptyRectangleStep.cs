@@ -21,7 +21,7 @@ public sealed partial class EmptyRectangleStep(
 	View[]? views,
 	Digit digit,
 	[DataMember] House block,
-	[DataMember] scoped in Conjugate conjugatePair
+	[DataMember] scoped ref readonly Conjugate conjugatePair
 ) : SingleDigitPatternStep(conclusions, views, digit)
 {
 	/// <inheritdoc/>

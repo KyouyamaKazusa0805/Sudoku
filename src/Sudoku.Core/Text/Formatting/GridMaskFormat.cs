@@ -34,11 +34,10 @@ public sealed record GridMaskFormat(string Separator = ", ") : IGridFormatter
 
 
 	/// <inheritdoc/>
-	public unsafe string ToString(scoped in Grid grid)
+	public unsafe string ToString(scoped ref readonly Grid grid)
 	{
 		scoped var sb = new StringHandler(400);
-		sb.AppendRangeWithSeparatorRef(grid[0], 81, &StringHandler.ElementToStringConverter, Separator);
-
+		sb.AppendRangeWithSeparatorRef(in grid[0], 81, &StringHandler.ElementToStringConverter, Separator);
 		return sb.ToStringAndClear();
 	}
 }

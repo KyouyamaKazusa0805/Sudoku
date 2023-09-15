@@ -63,7 +63,7 @@ public sealed record PencilMarkFormat(bool SubtleGridLines = true, bool? TreatVa
 
 
 	/// <inheritdoc/>
-	public unsafe string ToString(scoped in Grid grid)
+	public unsafe string ToString(scoped ref readonly Grid grid)
 	{
 		// Step 1: gets the candidates information grouped by columns.
 		var valuesByColumn = CreateTempDictionary();

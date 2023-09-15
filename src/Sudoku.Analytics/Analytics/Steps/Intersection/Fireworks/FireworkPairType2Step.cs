@@ -23,9 +23,9 @@ public sealed partial class FireworkPairType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	[DataMember] Mask digitsMask,
-	[DataMember] scoped in CellMap pattern1Map,
+	[DataMember] scoped ref readonly CellMap pattern1Map,
 	[DataMember] Cell? pattern1Pivot,
-	[DataMember] scoped in CellMap pattern2Map,
+	[DataMember] scoped ref readonly CellMap pattern2Map,
 	[DataMember] Cell? pattern2Pivot,
 	[DataMember] Cell extraCell
 ) : FireworkStep(conclusions, views)

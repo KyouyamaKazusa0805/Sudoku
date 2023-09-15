@@ -93,7 +93,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 			scoped ref readonly var pomElimsOfThisDigit = ref pomElims[digit];
 
 			// Create a background thread to work on searching for fishes of this digit.
-			if (!!pomElimsOfThisDigit && Collect(tempList, tempGrid, pomElimsOfThisDigit, digit, context.OnlyFindOne) is { } step)
+			if (!!pomElimsOfThisDigit && Collect(tempList, in tempGrid, pomElimsOfThisDigit, digit, context.OnlyFindOne) is { } step)
 			{
 				return step;
 			}
@@ -119,8 +119,8 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 	/// <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
 	private unsafe ComplexFishStep? Collect(
 		List<ComplexFishStep> accumulator,
-		scoped in Grid grid,
-		scoped in CellMap pomElimsOfThisDigit,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CellMap pomElimsOfThisDigit,
 		Digit digit,
 		bool onlyFindOne
 	)
@@ -430,10 +430,10 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 									digit,
 									baseSetsMask,
 									coverSetsMask,
-									exofins,
-									endofins,
+									in exofins,
+									in endofins,
 									!checkMutant,
-									IsSashimi(baseSets, fins, digit)
+									IsSashimi(baseSets, in fins, digit)
 								);
 								if (onlyFindOne)
 								{
@@ -461,7 +461,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
-	private static CellMap[] GetPomEliminationsFirstly(scoped in Grid grid)
+	private static CellMap[] GetPomEliminationsFirstly(scoped ref readonly Grid grid)
 	{
 		var tempList = new List<Step>();
 		scoped var context = new AnalysisContext(tempList, grid, false);

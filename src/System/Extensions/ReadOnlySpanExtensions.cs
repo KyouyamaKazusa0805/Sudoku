@@ -33,7 +33,7 @@ public static class ReadOnlySpanExtensions
 	{
 		foreach (ref readonly var element in @this)
 		{
-			action(element);
+			action(in element);
 		}
 	}
 }

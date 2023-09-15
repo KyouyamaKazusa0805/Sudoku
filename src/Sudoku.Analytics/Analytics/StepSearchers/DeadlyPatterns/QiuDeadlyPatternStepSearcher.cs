@@ -123,7 +123,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="pattern">The target pattern.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private QiuDeadlyPatternStep? Collect(scoped ref AnalysisContext context, scoped in Pattern1 pattern)
+	private QiuDeadlyPatternStep? Collect(scoped ref AnalysisContext context, scoped ref readonly Pattern1 pattern)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 
@@ -147,7 +147,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var isRow = l1 is >= 9 and < 18;
-		if (CheckForBaseType(ref context, grid, pattern, valueCellsInBothLines, isRow) is { } type1Step)
+		if (CheckForBaseType(ref context, grid, pattern, in valueCellsInBothLines, isRow) is { } type1Step)
 		{
 			return type1Step;
 		}
@@ -161,7 +161,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="pattern">The target pattern.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private QiuDeadlyPatternStep? Collect(scoped ref AnalysisContext context, scoped in Pattern2 pattern)
+	private QiuDeadlyPatternStep? Collect(scoped ref AnalysisContext context, scoped ref readonly Pattern2 pattern)
 	{
 		// TODO: Re-implement later.
 		return null;
@@ -172,9 +172,9 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// </summary>
 	private QiuDeadlyPatternStep? CheckForBaseType(
 		scoped ref AnalysisContext context,
-		scoped in Grid grid,
-		scoped in Pattern1 pattern,
-		scoped in CellMap valueCellsInBothLines,
+		scoped ref readonly Grid grid,
+		scoped ref readonly Pattern1 pattern,
+		scoped ref readonly CellMap valueCellsInBothLines,
 		bool isRow
 	)
 	{
@@ -246,7 +246,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// Check whether the number of locked digits appeared in cross-line is at least 2.
 		crossline.InOneHouse(out var block);
 		var allDigitsMaskNotAppearedInCrossline = grid[HousesMap[block] - crossline];
-		var allDigitsMaskAppearedInCrossline = grid[crossline];
+		var allDigitsMaskAppearedInCrossline = grid[in crossline];
 		var cornerLockedDigitsMask = (Mask)(allDigitsMaskAppearedInCrossline & ~allDigitsMaskNotAppearedInCrossline);
 		if (PopCount((uint)cornerLockedDigitsMask) < 2)
 		{
@@ -259,13 +259,13 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// This is necessary because we should guarantee the target eliminations should cover at least one digit.
 		// For example, digits [1, 2, 3] and [1, 4] intersect with digit [1]. If the cross-line locks the digit [1, 2],
 		// then we can conclude that if 1 is set in [1, 4] and 2 is set in [1, 2, 3], the target pattern will form a deadly pattern.
-		var cornerDigitsMaskIntersected = grid[corner, false, GridMaskMergingMethod.And];
+		var cornerDigitsMaskIntersected = grid[in corner, false, GridMaskMergingMethod.And];
 		if (cornerDigitsMaskIntersected == 0)
 		{
 			goto FastReturn;
 		}
 
-		var cornerDigitsMask = grid[corner];
+		var cornerDigitsMask = grid[in corner];
 
 		// Okay. Now we have a rigorous pattern. Now check for mask and determine its sub-type that can be categorized.
 		// Part 1: check for corner cells.
@@ -282,40 +282,44 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			}
 			cornerContainingExtraDigit &= tempMap;
 
-			if (BaseType_Type1(ref context, corner, crossline, grid, l1, l2, cornerDigitsMaskIntersected, cornerContainingExtraDigit) is { } type1Step)
+			if (BaseType_Type1(
+				ref context, in corner, in crossline, grid, l1, l2,
+				cornerDigitsMaskIntersected, in cornerContainingExtraDigit) is { } type1Step)
 			{
 				return type1Step;
 			}
 
 			if (BaseType_Type2(
-				ref context, corner, crossline, grid, l1, l2, cornerDigitsMaskIntersected,
-				cornerExtraDigitsMask, cornerContainingExtraDigit) is { } type2Step)
+				ref context, in corner, in crossline, grid, l1, l2, cornerDigitsMaskIntersected,
+				cornerExtraDigitsMask, in cornerContainingExtraDigit) is { } type2Step)
 			{
 				return type2Step;
 			}
 
 			if (BaseType_Type3(
-				ref context, corner, crossline, grid, l1, l2, cornerDigitsMaskIntersected,
-				cornerExtraDigitsMask, cornerContainingExtraDigit) is { } type3Step)
+				ref context, in corner, in crossline, grid, l1, l2, cornerDigitsMaskIntersected,
+				cornerExtraDigitsMask, in cornerContainingExtraDigit) is { } type3Step)
 			{
 				return type3Step;
 			}
 
-			if (BaseType_Type4(ref context, corner, crossline, l1, l2, cornerDigitsMaskIntersected, cornerContainingExtraDigit) is { } type4Step)
+			if (BaseType_Type4(
+				ref context, in corner, in crossline, l1, l2,
+				cornerDigitsMaskIntersected, in cornerContainingExtraDigit) is { } type4Step)
 			{
 				return type4Step;
 			}
 		}
 		else if (maskIntersected != 0)
 		{
-			if (BaseType_TypeLocked(ref context, corner, crossline, grid, l1, l2, cornerLockedDigitsMask) is { } typeLockedStep)
+			if (BaseType_TypeLocked(ref context, in corner, in crossline, grid, l1, l2, cornerLockedDigitsMask) is { } typeLockedStep)
 			{
 				return typeLockedStep;
 			}
 		}
 
 		// Part 2: check for mirror cells.
-		if ((grid[crossline] & cornerDigitsMask) == cornerDigitsMask)
+		if ((grid[in crossline] & cornerDigitsMask) == cornerDigitsMask)
 		{
 			// Check whether the number of empty cross-line cells are same as the number of locked digits.
 			if (PopCount((uint)cornerDigitsMask) > (crossline & EmptyCells).Count)
@@ -324,12 +328,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			}
 
 			var mirror = pattern.MirrorStrict;
-			if (BaseType_ExternalType1(ref context, corner, crossline, mirror, grid, l1, l2, cornerDigitsMask) is { } externalType1Step)
+			if (BaseType_ExternalType1(ref context, in corner, in crossline, in mirror, grid, l1, l2, cornerDigitsMask) is { } externalType1Step)
 			{
 				return externalType1Step;
 			}
 
-			if (BaseType_ExternalType2(ref context, corner, crossline, mirror, grid, l1, l2, cornerDigitsMask) is { } externalType2Step)
+			if (BaseType_ExternalType2(ref context, in corner, in crossline, in mirror, grid, l1, l2, cornerDigitsMask) is { } externalType2Step)
 			{
 				return externalType2Step;
 			}
@@ -368,13 +372,13 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// </example>
 	private QiuDeadlyPatternType1Step? BaseType_Type1(
 		scoped ref AnalysisContext context,
-		scoped in CellMap corner,
-		scoped in CellMap crossline,
-		scoped in Grid grid,
+		scoped ref readonly CellMap corner,
+		scoped ref readonly CellMap crossline,
+		scoped ref readonly Grid grid,
 		House l1,
 		House l2,
 		Mask digitsMaskAppearedInCorner,
-		scoped in CellMap cornerContainingExtraDigit
+		scoped ref readonly CellMap cornerContainingExtraDigit
 	)
 	{
 		if (cornerContainingExtraDigit is not [var targetCell])
@@ -440,14 +444,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private QiuDeadlyPatternType2Step? BaseType_Type2(
 		scoped ref AnalysisContext context,
-		scoped in CellMap corner,
-		scoped in CellMap crossline,
-		scoped in Grid grid,
+		scoped ref readonly CellMap corner,
+		scoped ref readonly CellMap crossline,
+		scoped ref readonly Grid grid,
 		House l1,
 		House l2,
 		Mask digitsMaskAppearedInCorner,
 		Mask extraDigitsMask,
-		scoped in CellMap cornerContainingExtraDigit
+		scoped ref readonly CellMap cornerContainingExtraDigit
 	)
 	{
 		if (!IsPow2(extraDigitsMask))
@@ -524,14 +528,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private QiuDeadlyPatternType3Step? BaseType_Type3(
 		scoped ref AnalysisContext context,
-		scoped in CellMap corner,
-		scoped in CellMap crossline,
-		scoped in Grid grid,
+		scoped ref readonly CellMap corner,
+		scoped ref readonly CellMap crossline,
+		scoped ref readonly Grid grid,
 		House l1,
 		House l2,
 		Mask digitsMaskAppearedInCorner,
 		Mask extraDigitsMask,
-		scoped in CellMap cornerContainingExtraDigit
+		scoped ref readonly CellMap cornerContainingExtraDigit
 	)
 	{
 		if (IsPow2((uint)digitsMaskAppearedInCorner))
@@ -655,12 +659,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private QiuDeadlyPatternType4Step? BaseType_Type4(
 		scoped ref AnalysisContext context,
-		scoped in CellMap corner,
-		scoped in CellMap crossline,
+		scoped ref readonly CellMap corner,
+		scoped ref readonly CellMap crossline,
 		House l1,
 		House l2,
 		Mask digitsMaskAppearedInCorner,
-		scoped in CellMap cornerContainingExtraDigit
+		scoped ref readonly CellMap cornerContainingExtraDigit
 	)
 	{
 		foreach (var digit in digitsMaskAppearedInCorner)
@@ -746,9 +750,9 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// </example>
 	private QiuDeadlyPatternLockedTypeStep? BaseType_TypeLocked(
 		scoped ref AnalysisContext context,
-		scoped in CellMap corner,
-		scoped in CellMap crossline,
-		scoped in Grid grid,
+		scoped ref readonly CellMap corner,
+		scoped ref readonly CellMap crossline,
+		scoped ref readonly Grid grid,
 		House l1,
 		House l2,
 		Mask cornerLockedDigitsMask
@@ -822,7 +826,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			1 << l1 | 1 << l2,
 			corner[0],
 			corner[1],
-			lockedMap
+			in lockedMap
 		);
 		if (context.OnlyFindOne)
 		{
@@ -853,10 +857,10 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// </example>
 	private QiuDeadlyPatternExternalType1Step? BaseType_ExternalType1(
 		scoped ref AnalysisContext context,
-		scoped in CellMap corner,
-		scoped in CellMap crossline,
-		scoped in CellMap mirror,
-		scoped in Grid grid,
+		scoped ref readonly CellMap corner,
+		scoped ref readonly CellMap crossline,
+		scoped ref readonly CellMap mirror,
+		scoped ref readonly Grid grid,
 		House l1,
 		House l2,
 		Mask externalDigitsMaskToBeChecked
@@ -936,10 +940,10 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// </example>
 	private QiuDeadlyPatternExternalType2Step? BaseType_ExternalType2(
 		scoped ref AnalysisContext context,
-		scoped in CellMap corner,
-		scoped in CellMap crossline,
-		scoped in CellMap mirror,
-		scoped in Grid grid,
+		scoped ref readonly CellMap corner,
+		scoped ref readonly CellMap crossline,
+		scoped ref readonly CellMap mirror,
+		scoped ref readonly Grid grid,
 		House l1,
 		House l2,
 		Mask externalDigitsMaskToBeChecked
@@ -1032,7 +1036,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="Corner">The corner cells that is <c>P</c> in that sketch.</param>
 	/// <param name="Lines">The base-line cells that is <c>B</c> in that sketch.</param>
-	private readonly record struct Pattern1(scoped in CellMap Corner, HouseMask Lines)
+	private readonly record struct Pattern1(scoped ref readonly CellMap Corner, HouseMask Lines)
 	{
 		/// <summary>
 		/// Indicates the crossline cells.

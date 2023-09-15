@@ -162,7 +162,7 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 	/// <returns>The first found step.</returns>
 	private unsafe NormalFishStep? Collect(
 		List<Step> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		int size,
 		int** r,
 		int** c,
@@ -291,12 +291,12 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 					// Gather the result.
 					var step = new NormalFishStep(
 						[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
-						[[.. candidateOffsets, .. houseOffsets], GetDirectView(digit, bs, cs, fins, searchRow)],
+						[[.. candidateOffsets, .. houseOffsets], GetDirectView(digit, bs, cs, in fins, searchRow)],
 						digit,
 						baseSetsMask,
 						coverSetsMask,
-						fins,
-						IsSashimi(bs, fins, digit)
+						in fins,
+						IsSashimi(bs, in fins, digit)
 					);
 
 					if (onlyFindOne)
@@ -321,7 +321,7 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 	/// <param name="fins">The cells of the fin in the current fish.</param>
 	/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 	/// <returns>The view.</returns>
-	private static View GetDirectView(Digit digit, House[] baseSets, House[] coverSets, scoped in CellMap fins, bool searchRow)
+	private static View GetDirectView(Digit digit, House[] baseSets, House[] coverSets, scoped ref readonly CellMap fins, bool searchRow)
 	{
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = fins ? new List<CandidateViewNode>() : null;

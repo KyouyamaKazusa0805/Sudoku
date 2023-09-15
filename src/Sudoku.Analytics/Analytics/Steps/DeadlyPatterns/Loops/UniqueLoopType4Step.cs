@@ -20,8 +20,8 @@ public sealed partial class UniqueLoopType4Step(
 	View[]? views,
 	Digit digit1,
 	Digit digit2,
-	scoped in CellMap loop,
-	[DataMember] scoped in Conjugate conjugatePair
+	scoped ref readonly CellMap loop,
+	[DataMember] scoped ref readonly Conjugate conjugatePair
 ) : UniqueLoopStep(conclusions, views, digit1, digit2, loop)
 {
 	/// <inheritdoc/>

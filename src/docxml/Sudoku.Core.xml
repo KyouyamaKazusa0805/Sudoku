@@ -694,7 +694,7 @@
 		<b>
 			<i>
 				This is a large structure, which means it may cost more time to copy instance than normal structures.
-				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				I strongly recommend you append <see langword="scoped ref readonly" /> to modify the type, as parameter or local variable modifiers,
 				to tell runtime that it should be copied by its reference instead of internal value.
 			</i>
 		</b>
@@ -1106,7 +1106,8 @@
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerProgress">
             <summary>
-            Represents a progress used by <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
+            Represents a progress used by
+            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
             </summary>
             <param name="StepSearcherName">Indicates the currently used step searcher.</param>
             <param name="Percent">The percent value.</param>
@@ -1114,7 +1115,8 @@
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerProgress.#ctor(System.String,System.Double)">
             <summary>
-            Represents a progress used by <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
+            Represents a progress used by
+            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
             </summary>
             <param name="StepSearcherName">Indicates the currently used step searcher.</param>
             <param name="Percent">The percent value.</param>
@@ -1493,7 +1495,7 @@ if (student is (name: var name, age: >= 18))
 		<b>
 			<i>
 				This is a large structure, which means it may cost more time to copy instance than normal structures.
-				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				I strongly recommend you append <see langword="scoped ref readonly" /> to modify the type, as parameter or local variable modifiers,
 				to tell runtime that it should be copied by its reference instead of internal value.
 			</i>
 		</b>
@@ -1821,7 +1823,7 @@ if (student is (name: var name, age: >= 18))
 		<b>
 			<i>
 				This is a large structure, which means it may cost more time to copy instance than normal structures.
-				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				I strongly recommend you append <see langword="scoped ref readonly" /> to modify the type, as parameter or local variable modifiers,
 				to tell runtime that it should be copied by its reference instead of internal value.
 			</i>
 		</b>
@@ -2506,7 +2508,7 @@ if (student is (name: var name, age: >= 18))
 		<b>
 			<i>
 				This is a large structure, which means it may cost more time to copy instance than normal structures.
-				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				I strongly recommend you append <see langword="scoped ref readonly" /> to modify the type, as parameter or local variable modifiers,
 				to tell runtime that it should be copied by its reference instead of internal value.
 			</i>
 		</b>
@@ -2898,10 +2900,10 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMap()">
-            <inheritdoc cref="!:GridImpl.GetMap(delegate*&lt;in TSelf, int, bool&gt;)"/>
+            <inheritdoc cref="!:GridImpl.GetMap(delegate*&lt;ref readonly TSelf, int, bool&gt;)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMaps()">
-            <inheritdoc cref="!:GridImpl.GetMaps(delegate*&lt;in Grid, int, int, bool&gt;)"/>
+            <inheritdoc cref="!:GridImpl.GetMaps(delegate*&lt;ref readonly Grid, int, int, bool&gt;)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Preserve(Sudoku.Concepts.CellMap@)">
             <inheritdoc cref="M:Sudoku.Concepts.Primitive.IGrid`11.Preserve(`8@)"/>
@@ -3043,9 +3045,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitive#IGrid{Sudoku#Concepts#Grid,System#Int32,System#Int32,System#Int16,System#Int32,System#Int32,System#Int32,System#Int32,Sudoku#Concepts#CellMap,Sudoku#Analytics#Conclusion,Sudoku#Concepts#Conjugate}#GetMaps()">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitive#IGrid{Sudoku#Concepts#Grid,System#Int32,System#Int32,System#Int16,System#Int32,System#Int32,System#Int32,System#Int32,Sudoku#Concepts#CellMap,Sudoku#Analytics#Conclusion,Sudoku#Concepts#Conjugate}#Preserve(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Converter">
@@ -3861,7 +3860,7 @@ if (student is (name: var name, age: >= 18))
 		<b>
 			<i>
 				This is a large structure, which means it may cost more time to copy instance than normal structures.
-				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				I strongly recommend you append <see langword="scoped ref readonly" /> to modify the type, as parameter or local variable modifiers,
 				to tell runtime that it should be copied by its reference instead of internal value.
 			</i>
 		</b>
@@ -3880,7 +3879,7 @@ if (student is (name: var name, age: >= 18))
 		<b>
 			<i>
 				This is a large structure, which means it may cost more time to copy instance than normal structures.
-				I strongly recommend you append <see langword="scoped in" /> to modify the type, as parameter or local variable modifiers,
+				I strongly recommend you append <see langword="scoped ref readonly" /> to modify the type, as parameter or local variable modifiers,
 				to tell runtime that it should be copied by its reference instead of internal value.
 			</i>
 		</b>
@@ -7252,7 +7251,7 @@ if (student is (name: var name, age: >= 18))
             
                 static IGridFormatter IGridFormatter.Instance => Default;
             
-                public string ToString(scoped in Grid grid)
+                public string ToString(scoped ref readonly Grid grid)
                 {
                     // Define your own logic here.
                 }

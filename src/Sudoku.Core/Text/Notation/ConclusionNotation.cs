@@ -157,7 +157,7 @@ public sealed partial class ConclusionNotation : INotation<ConclusionNotation, C
 		};
 
 
-		static int cmp(scoped in Conclusion left, scoped in Conclusion right) => left.CompareTo(right);
+		static int cmp(scoped ref readonly Conclusion left, scoped ref readonly Conclusion right) => left.CompareTo(right);
 		static string toString(Conclusion[] c)
 		{
 			var conclusions = new Conclusion[c.Length];

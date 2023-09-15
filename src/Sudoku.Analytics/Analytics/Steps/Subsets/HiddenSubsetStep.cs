@@ -34,10 +34,10 @@ public sealed partial class HiddenSubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	House house,
-	scoped in CellMap cells,
+	scoped ref readonly CellMap cells,
 	Mask digitsMask,
 	[DataMember] bool isLocked
-) : SubsetStep(conclusions, views, house, cells, digitsMask)
+) : SubsetStep(conclusions, views, house, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .4M;

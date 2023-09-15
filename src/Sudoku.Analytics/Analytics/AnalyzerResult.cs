@@ -14,7 +14,7 @@ namespace Sudoku.Analytics;
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
 /// </summary>
 /// <param name="Puzzle"><inheritdoc cref="IAnalyzerResult{TSolver, TSolverResult}.Puzzle" path="/summary"/></param>
-public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerResult<Analyzer, AnalyzerResult>, IEnumerable<Step>
+public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : IAnalyzerResult<Analyzer, AnalyzerResult>, IEnumerable<Step>
 {
 	/// <inheritdoc/>
 	[MemberNotNullWhen(true, nameof(Steps), nameof(StepGrids), nameof(SolvingPath), nameof(PearlStep), nameof(DiamondStep))]
@@ -344,7 +344,7 @@ public sealed partial record AnalyzerResult(scoped in Grid Puzzle) : IAnalyzerRe
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the specified puzzle cannot correspond to a paired <see cref="Step"/> instance.
 	/// </exception>
-	public Step this[scoped in Grid grid]
+	public Step this[scoped ref readonly Grid grid]
 	{
 		get
 		{

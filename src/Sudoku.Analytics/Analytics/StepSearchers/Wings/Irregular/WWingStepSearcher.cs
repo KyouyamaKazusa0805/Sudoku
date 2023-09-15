@@ -160,7 +160,7 @@ public sealed partial class WWingStepSearcher : StepSearcher
 								],
 								c1,
 								c2,
-								bridge
+								in bridge
 							)
 						};
 						if (context.OnlyFindOne)

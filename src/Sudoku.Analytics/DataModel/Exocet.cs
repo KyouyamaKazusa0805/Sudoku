@@ -54,11 +54,11 @@ public sealed record Exocet(
 	Cell TargetQ2,
 	Cell TargetR1,
 	Cell TargetR2,
-	scoped in CellMap CrossLine,
-	scoped in CellMap MirrorQ1,
-	scoped in CellMap MirrorQ2,
-	scoped in CellMap MirrorR1,
-	scoped in CellMap MirrorR2
+	scoped ref readonly CellMap CrossLine,
+	scoped ref readonly CellMap MirrorQ1,
+	scoped ref readonly CellMap MirrorQ2,
+	scoped ref readonly CellMap MirrorR1,
+	scoped ref readonly CellMap MirrorR2
 )
 {
 	/// <inheritdoc/>
@@ -87,7 +87,7 @@ public sealed record Exocet(
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(scoped in Exocet other)
+	public bool Equals(scoped ref readonly Exocet other)
 		=> Base1 == other.Base1 && Base2 == other.Base2 && TargetQ1 == other.TargetQ1 && TargetQ2 == other.TargetQ2
 		&& TargetR1 == other.TargetR1 && TargetR2 == other.TargetR2 && MirrorQ1 == other.MirrorQ1
 		&& MirrorQ2 == other.MirrorQ2 && MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2

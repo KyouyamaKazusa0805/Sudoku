@@ -86,6 +86,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private const int CountOfPatterns = 486;
 
 
+#pragma warning disable format
 	/// <summary>
 	/// The table of all <b>Unique Rectangle</b> cells.
 	/// </summary>
@@ -145,6 +146,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		[16, 17, 61, 62], [16, 17, 70, 71], [16, 17, 79, 80], [25, 26, 34, 35], [25, 26, 43, 44], [25, 26, 52, 53], [25, 26, 61, 62], [25, 26, 70, 71], [25, 26, 79, 80],
 		[34, 35, 61, 62], [34, 35, 70, 71], [34, 35, 79, 80], [43, 44, 61, 62], [43, 44, 70, 71], [43, 44, 79, 80], [52, 53, 61, 62], [52, 53, 70, 71], [52, 53, 79, 80]
 	];
+#pragma warning restore format
 
 
 	/// <summary>
@@ -208,7 +210,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="gathered"><inheritdoc cref="AnalysisContext.Accumulator" path="/summary"/></param>
 	/// <param name="grid"><inheritdoc cref="AnalysisContext.Grid" path="/summary"/></param>
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
-	private void Collect(List<UniqueRectangleStep> gathered, scoped in Grid grid, bool arMode)
+	private void Collect(List<UniqueRectangleStep> gathered, scoped ref readonly Grid grid, bool arMode)
 	{
 		// Search for ALSes. This result will be used by UR External ALS-XZ structures.
 		var alses = AlmostLockedSetsStepSearcher.GatherAlmostLockedSets(grid);
@@ -274,17 +276,17 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						var corner1 = urCells[c1];
 						var otherCellsMap = (CellMap)urCells - corner1;
 
-						CheckType1(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
-						CheckType5(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
-						CheckHidden(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
+						CheckType1(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
+						CheckType5(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
+						CheckHidden(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
 
 						if (!arMode && SearchForExtendedUniqueRectangles)
 						{
-							Check3X(gathered, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
-							Check3X2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
-							Check3N2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
-							Check3U2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
-							Check3E2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, otherCellsMap, index);
+							Check3X(gathered, grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3X2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3N2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3U2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3E2SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
 						}
 
 						// If we aim to a single cell, all four cells should be checked.
@@ -302,13 +304,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							var tempOtherCellsMap = otherCellsMap - corner2;
 
 							// Both diagonal and non-diagonal.
-							CheckType2(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+							CheckType2(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 							if (SearchForExtendedUniqueRectangles)
 							{
 								CheckRegularWing(
 									gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2,
-									tempOtherCellsMap, index, (c1, c2) is (0, 3) or (1, 2)
+									in tempOtherCellsMap, index, (c1, c2) is (0, 3) or (1, 2)
 								);
 								//CheckWWing(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
 							}
@@ -322,17 +324,17 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									{
 										if (SearchForExtendedUniqueRectangles)
 										{
-											CheckHiddenSingleAvoidable(gathered, grid, urCells, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+											CheckHiddenSingleAvoidable(gathered, grid, urCells, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 										}
 									}
 									else
 									{
-										CheckType6(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+										CheckType6(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 										if (SearchForExtendedUniqueRectangles)
 										{
-											Check2D(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-											Check2D1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+											Check2D(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check2D1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 										}
 									}
 
@@ -342,23 +344,23 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								// Non-diagonal type.
 								default:
 								{
-									CheckType3(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+									CheckType3(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 									if (!arMode)
 									{
-										CheckType4(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+										CheckType4(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 										if (SearchForExtendedUniqueRectangles)
 										{
-											Check2B1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-											Check4X3SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
-											Check4C3SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+											Check2B1SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check4X3SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check4C3SL(gathered, grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 										}
 									}
 
 									if (SearchForExtendedUniqueRectangles)
 									{
-										CheckSueDeCoq(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, tempOtherCellsMap, index);
+										CheckSueDeCoq(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 									}
 
 									break;
@@ -395,14 +397,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void CheckType1(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
 		Digit d1,
 		Digit d2,
 		Cell cornerCell,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -486,7 +488,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void CheckType2(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -494,7 +496,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell corner1,
 		Cell corner2,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -591,7 +593,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void CheckType3(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -599,7 +601,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell corner1,
 		Cell corner2,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -741,7 +743,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void CheckType4(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -749,7 +751,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell corner1,
 		Cell corner2,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -862,14 +864,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void CheckType5(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
 		Digit d1,
 		Digit d2,
 		Cell cornerCell,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -961,7 +963,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void CheckType6(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -969,7 +971,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell corner1,
 		Cell corner2,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -993,7 +995,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 
-		void gather(scoped in Grid grid, scoped in CellMap otherCellsMap, bool isRow, Digit digit, House house1, House house2)
+		void gather(scoped ref readonly Grid grid, scoped ref readonly CellMap otherCellsMap, bool isRow, Digit digit, House house1, House house2)
 		{
 			var precheck = isRow && IsConjugatePair(digit, [corner1, o1], house1) && IsConjugatePair(digit, [corner2, o2], house2)
 				|| !isRow && IsConjugatePair(digit, [corner1, o2], house1) && IsConjugatePair(digit, [corner2, o1], house2);
@@ -1083,14 +1085,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void CheckHidden(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
 		Digit d1,
 		Digit d2,
 		Cell cornerCell,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -1117,7 +1119,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				continue;
 			}
 
-			if (!IsConjugatePair(digit, map1, m1cl) || !IsConjugatePair(digit, map2, m2cl))
+			if (!IsConjugatePair(digit, in map1, m1cl) || !IsConjugatePair(digit, in map2, m2cl))
 			{
 				continue;
 			}
@@ -1215,7 +1217,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void Check2D(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -1223,7 +1225,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell corner1,
 		Cell corner2,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -1346,7 +1348,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void Check2B1SL(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -1354,7 +1356,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell corner1,
 		Cell corner2,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -1522,7 +1524,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void Check2D1SL(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -1530,7 +1532,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell corner1,
 		Cell corner2,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -1694,14 +1696,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void Check3X(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
 		Digit d1,
 		Digit d2,
 		Cell cornerCell,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -1832,14 +1834,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void Check3X2SL(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
 		Digit d1,
 		Digit d2,
 		Cell cornerCell,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -1856,7 +1858,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var abyCell = adjacentCellsMap[1];
 			var map1 = CellsMap[abzCell] + abxCell;
 			var map2 = CellsMap[abzCell] + abyCell;
-			if (!IsConjugatePair(b, map1, map1.CoveredLine) || !IsConjugatePair(a, map2, map2.CoveredLine))
+			if (!IsConjugatePair(b, in map1, map1.CoveredLine) || !IsConjugatePair(a, in map2, map2.CoveredLine))
 			{
 				continue;
 			}
@@ -1955,14 +1957,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void Check3N2SL(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
 		Digit d1,
 		Digit d2,
 		Cell cornerCell,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -1983,14 +1985,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var linkMap = CellsMap[begin] + abzCell;
 			foreach (var (a, b) in digitPairs)
 			{
-				if (!IsConjugatePair(b, linkMap, linkMap.CoveredLine))
+				if (!IsConjugatePair(b, in linkMap, linkMap.CoveredLine))
 				{
 					continue;
 				}
 
 				// Step 2: Get the link cell that is adjacent to 'cornerCell' and check the strong link.
 				var secondLinkMap = CellsMap[cornerCell] + begin;
-				if (!IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
+				if (!IsConjugatePair(a, in secondLinkMap, secondLinkMap.CoveredLine))
 				{
 					continue;
 				}
@@ -2084,14 +2086,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void Check3U2SL(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
 		Digit d1,
 		Digit d2,
 		Cell cornerCell,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -2109,13 +2111,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var linkMap = CellsMap[begin] + abzCell;
 			foreach (var (a, b) in ((d1, d2), (d2, d1)))
 			{
-				if (!IsConjugatePair(b, linkMap, linkMap.CoveredLine))
+				if (!IsConjugatePair(b, in linkMap, linkMap.CoveredLine))
 				{
 					continue;
 				}
 
 				var secondLinkMap = CellsMap[cornerCell] + end;
-				if (!IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
+				if (!IsConjugatePair(a, in secondLinkMap, secondLinkMap.CoveredLine))
 				{
 					continue;
 				}
@@ -2207,14 +2209,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void Check3E2SL(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
 		Digit d1,
 		Digit d2,
 		Cell cornerCell,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -2232,13 +2234,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var linkMap = CellsMap[begin] + abzCell;
 			foreach (var (a, b) in ((d1, d2), (d2, d1)))
 			{
-				if (!IsConjugatePair(a, linkMap, linkMap.CoveredLine))
+				if (!IsConjugatePair(a, in linkMap, linkMap.CoveredLine))
 				{
 					continue;
 				}
 
 				var secondLinkMap = CellsMap[cornerCell] + end;
-				if (!IsConjugatePair(a, secondLinkMap, secondLinkMap.CoveredLine))
+				if (!IsConjugatePair(a, in secondLinkMap, secondLinkMap.CoveredLine))
 				{
 					continue;
 				}
@@ -2331,7 +2333,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void Check4X3SL(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -2339,14 +2341,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell corner1,
 		Cell corner2,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
 		var link1Map = CellsMap[corner1] + corner2;
 		foreach (var (a, b) in ((d1, d2), (d2, d1)))
 		{
-			if (!IsConjugatePair(a, link1Map, link1Map.CoveredLine))
+			if (!IsConjugatePair(a, in link1Map, link1Map.CoveredLine))
 			{
 				continue;
 			}
@@ -2356,13 +2358,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			foreach (var (head, begin, end, extra) in ((corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell)))
 			{
 				var link2Map = CellsMap[begin] + end;
-				if (!IsConjugatePair(b, link2Map, link2Map.CoveredLine))
+				if (!IsConjugatePair(b, in link2Map, link2Map.CoveredLine))
 				{
 					continue;
 				}
 
 				var link3Map = CellsMap[end] + extra;
-				if (!IsConjugatePair(a, link3Map, link3Map.CoveredLine))
+				if (!IsConjugatePair(a, in link3Map, link3Map.CoveredLine))
 				{
 					continue;
 				}
@@ -2482,7 +2484,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void Check4C3SL(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -2490,7 +2492,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell corner1,
 		Cell corner2,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -2498,7 +2500,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		scoped var innerMaps = (stackalloc CellMap[2]);
 		foreach (var (a, b) in ((d1, d2), (d2, d1)))
 		{
-			if (!IsConjugatePair(a, link1Map, link1Map.CoveredLine))
+			if (!IsConjugatePair(a, in link1Map, link1Map.CoveredLine))
 			{
 				continue;
 			}
@@ -2508,7 +2510,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			foreach (var (abx, aby, abw, abz) in ((corner2, corner1, extra, end), (corner1, corner2, end, extra)))
 			{
 				var link2Map = CellsMap[aby] + abw;
-				if (!IsConjugatePair(a, link2Map, link2Map.CoveredLine))
+				if (!IsConjugatePair(a, in link2Map, link2Map.CoveredLine))
 				{
 					continue;
 				}
@@ -2520,7 +2522,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				for (var i = 0; i < 2; i++)
 				{
 					var linkMap = innerMaps[i];
-					if (!IsConjugatePair(b, link3Map1, link3Map1.CoveredLine))
+					if (!IsConjugatePair(b, in link3Map1, link3Map1.CoveredLine))
 					{
 						continue;
 					}
@@ -2635,7 +2637,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void CheckRegularWing(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -2643,7 +2645,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell corner1,
 		Cell corner2,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index,
 		bool areCornerCellsAligned
 	)
@@ -2680,7 +2682,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				(cellsGroups, var tempIndex) = (new Cell[PopCount((uint)otherDigitsMask)][], 0);
 				foreach (var lastDigit in otherDigitsMask)
 				{
-					cellsGroups[tempIndex++] = (cells % CandidatesMap[lastDigit] & BivalueCells).ToArray();
+					cellsGroups[tempIndex++] = [.. cells % CandidatesMap[lastDigit] & BivalueCells];
 				}
 			}
 			else
@@ -2696,7 +2698,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				foreach (var lastDigit in lastDigitsMask)
 				{
 					scoped ref var currentCellGroup = ref cellsGroups[tempIndex++];
-					currentCellGroup = (cells % CandidatesMap[lastDigit] & CandidatesMap[pivotDigit] & BivalueCells).ToArray();
+					currentCellGroup = [.. cells % CandidatesMap[lastDigit] & CandidatesMap[pivotDigit] & BivalueCells];
 					if (currentCellGroup.Length == 0)
 					{
 						atLeastOneGroupIsEmpty = true;
@@ -2811,7 +2813,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						},
 						d1,
 						d2,
-						cells,
+						in cells,
 						arMode,
 						combination,
 						otherCellsMap,
@@ -2864,7 +2866,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void CheckWWing(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -2872,7 +2874,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell corner1,
 		Cell corner2,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -2972,7 +2974,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						isAvoidable ? Technique.AvoidableRectangleWWing : Technique.UniqueRectangleWWing,
 						d1,
 						d2,
-						cells,
+						in cells,
 						isAvoidable,
 						wDigit,
 						otherCellsMap,
@@ -3011,7 +3013,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void CheckSueDeCoq(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -3019,7 +3021,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell corner1,
 		Cell corner2,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -3146,7 +3148,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							checkGeneralizedSdc(
 								accumulator, grid, arMode, cannibalMode, d1, d2, urCells,
 								line, otherBlock, otherDigitsMask, blockMask, selectedInterMask,
-								otherDigitsMask, elimMapLine, elimMapBlock, otherCellsMap, currentBlockMap,
+								otherDigitsMask, in elimMapLine, in elimMapBlock, otherCellsMap, in currentBlockMap,
 								currentInterMap, i, 0, index
 							);
 						}
@@ -3158,7 +3160,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 		static void checkGeneralizedSdc(
 			List<UniqueRectangleStep> accumulator,
-			scoped in Grid grid,
+			scoped ref readonly Grid grid,
 			bool arMode,
 			bool cannibalMode,
 			Digit digit1,
@@ -3170,11 +3172,11 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			Mask blockMask,
 			Mask selectedInterMask,
 			Mask otherDigitsMask,
-			scoped in CellMap elimMapLine,
-			scoped in CellMap elimMapBlock,
-			scoped in CellMap currentLineMap,
-			scoped in CellMap currentBlockMap,
-			scoped in CellMap currentInterMap,
+			scoped ref readonly CellMap elimMapLine,
+			scoped ref readonly CellMap elimMapBlock,
+			scoped ref readonly CellMap currentLineMap,
+			scoped ref readonly CellMap currentBlockMap,
+			scoped ref readonly CellMap currentInterMap,
 			int i,
 			int j,
 			int index
@@ -3341,7 +3343,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void CheckBabaGroupingUnique(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		Mask comparer,
 		Digit d1,
@@ -3355,7 +3357,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 #endif
 
 
-		void checkType1(scoped in Grid grid)
+		void checkType1(scoped ref readonly Grid grid)
 		{
 			var cells = (CellMap)urCells;
 
@@ -3421,7 +3423,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						var resultCell = (cells - urCellInSameBlock - anotherCell - targetCell)[0];
 						var map = CellsMap[targetCell] + resultCell;
 						var line = map.CoveredLine;
-						if (!IsConjugatePair(extraDigit, map, line))
+						if (!IsConjugatePair(extraDigit, in map, line))
 						{
 							continue;
 						}
@@ -3512,7 +3514,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						// The extra digit should form a conjugate pair in that line.
 						var anotherMap = CellsMap[urCellInSameBlock] + anotherCell;
 						var anotherLine = anotherMap.CoveredLine;
-						if (!IsConjugatePair(extraDigit, anotherMap, anotherLine))
+						if (!IsConjugatePair(extraDigit, in anotherMap, anotherLine))
 						{
 							continue;
 						}
@@ -3621,7 +3623,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 #if false
-		void checkType2(scoped in Grid grid)
+		void checkType2(scoped ref readonly Grid grid)
 		{
 			// TODO: Check type 2.
 		}
@@ -3643,7 +3645,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="arMode"></param>
 	private void CheckExternalType1Or2(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		Digit d1,
 		Digit d2,
@@ -3741,7 +3743,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						d1,
 						d2,
 						[.. urCells],
-						guardianMap,
+						in guardianMap,
 						guardianDigit,
 						isIncomplete,
 						arMode,
@@ -3765,7 +3767,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="arMode"></param>
 	private void CheckExternalType3(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		Mask comparer,
 		Digit d1,
@@ -3916,7 +3918,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									],
 									d1,
 									d2,
-									cells,
+									in cells,
 									guardianCellPair,
 									otherCells,
 									subsetDigitsMask,
@@ -3945,7 +3947,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="arMode"></param>
 	private void CheckExternalType4(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		Mask comparer,
 		Digit d1,
@@ -4091,7 +4093,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								],
 								d1,
 								d2,
-								cells,
+								in cells,
 								guardianCellPair,
 								new(guardianCellPair, conjugatePairDigit),
 								isIncomplete,
@@ -4117,7 +4119,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="index">The mask index.</param>
 	private void CheckExternalTurbotFish(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		Mask comparer,
 		Digit d1,
@@ -4204,7 +4206,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				}
 
 				// Check whether guardian cells cannot create links to form a turbot fish.
-				var (a, b) = (getAvailableHouses(houses[0], guardianCells), getAvailableHouses(houses[1], guardianCells));
+				var (a, b) = (getAvailableHouses(houses[0], in guardianCells), getAvailableHouses(houses[1], in guardianCells));
 				if (a == 0 && b == 0)
 				{
 					continue;
@@ -4272,8 +4274,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									],
 									d1,
 									d2,
-									cells,
-									guardianCells,
+									in cells,
+									in guardianCells,
 									isIncomplete,
 									index
 								)
@@ -4286,7 +4288,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static HouseMask getAvailableHouses(House house, scoped in CellMap guardianCells)
+		static HouseMask getAvailableHouses(House house, scoped ref readonly CellMap guardianCells)
 		{
 			var intersection = guardianCells & HousesMap[house];
 			return house switch
@@ -4320,7 +4322,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="index">The mask index.</param>
 	private void CheckExternalWWing(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		Mask comparer,
 		Digit d1,
@@ -4417,7 +4419,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				}
 
 				// Check whether guardian cells cannot create links to form a W-Wing.
-				var (a, b) = (getAvailableHouses(houses[0], guardianCells), getAvailableHouses(houses[1], guardianCells));
+				var (a, b) = (getAvailableHouses(houses[0], in guardianCells), getAvailableHouses(houses[1], in guardianCells));
 				if (a == 0 || b == 0)
 				{
 					continue;
@@ -4489,8 +4491,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									],
 									d1,
 									d2,
-									cells,
-									guardianCells,
+									in cells,
+									in guardianCells,
 									[startCell, endCell],
 									isIncomplete,
 									false,
@@ -4505,7 +4507,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static HouseMask getAvailableHouses(House house, scoped in CellMap guardianCells)
+		static HouseMask getAvailableHouses(House house, scoped ref readonly CellMap guardianCells)
 		{
 			var intersection = guardianCells & HousesMap[house];
 			return house switch
@@ -4540,7 +4542,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="arMode"></param>
 	private void CheckExternalXyWing(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		Mask comparer,
 		Digit d1,
@@ -4584,13 +4586,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				continue;
 			}
 
-			//forOneEndoLeaf(grid, cellsToEnumerate, guardianCells, houseCombination);
-			forBothExoLeaves(grid, cellsToEnumerate, guardianCells, houseCombination);
+			//forOneEndoLeaf(grid, in cellsToEnumerate, in guardianCells, houseCombination);
+			forBothExoLeaves(grid, in cellsToEnumerate, in guardianCells, houseCombination);
 		}
 
 
 #pragma warning disable CS8321
-		void forOneEndoLeaf(scoped in Grid grid, scoped in CellMap cellsToEnumerate, scoped in CellMap guardianCells, House[] houseCombination)
+		void forOneEndoLeaf(scoped ref readonly Grid grid, scoped ref readonly CellMap cellsToEnumerate, scoped ref readonly CellMap guardianCells, House[] houseCombination)
 		{
 			foreach (var cell1 in guardianCells)
 			{
@@ -4691,9 +4693,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							[[.. cellOffsets, .. candidateOffsets]],
 							d1,
 							d2,
-							cells,
+							in cells,
 							guardianCells,
-							cellPair,
+							in cellPair,
 							isIncomplete,
 							arMode,
 							index
@@ -4704,7 +4706,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 #pragma warning restore CS8321
 
-		void forBothExoLeaves(scoped in Grid grid, scoped in CellMap cellsToEnumerate, scoped in CellMap guardianCells, House[] houseCombination)
+		void forBothExoLeaves(scoped ref readonly Grid grid, scoped ref readonly CellMap cellsToEnumerate, scoped ref readonly CellMap guardianCells, House[] houseCombination)
 		{
 			foreach (var cellPair in cellsToEnumerate.GetSubsets(2))
 			{
@@ -4812,7 +4814,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						],
 						d1,
 						d2,
-						cells,
+						in cells,
 						guardianCells,
 						cellPair,
 						isIncomplete,
@@ -4838,7 +4840,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="arMode"></param>
 	private void CheckExternalAlmostLockedSetsXz(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		AlmostLockedSet[] alses,
 		Mask comparer,
@@ -4982,8 +4984,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							[[.. candidateOffsets, .. cellOffsets, new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet1, alsHouse)]],
 							d1,
 							d2,
-							cells,
-							guardianCells,
+							in cells,
+							in guardianCells,
 							als,
 							isIncomplete,
 							arMode,
@@ -5024,13 +5026,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </remarks>
 	private void CheckHiddenSingleAvoidable(
 		List<UniqueRectangleStep> accumulator,
-		scoped in Grid grid,
+		scoped ref readonly Grid grid,
 		Cell[] urCells,
 		Digit d1,
 		Digit d2,
 		Cell corner1,
 		Cell corner2,
-		scoped in CellMap otherCellsMap,
+		scoped ref readonly CellMap otherCellsMap,
 		int index
 	)
 	{
@@ -5119,7 +5121,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
 	/// <returns>Indicates whether the UR is passed to check.</returns>
-	private static bool CheckPreconditions(scoped in Grid grid, Cell[] urCells, bool arMode)
+	private static bool CheckPreconditions(scoped ref readonly Grid grid, Cell[] urCells, bool arMode)
 	{
 		var emptyCountWhenArMode = (byte)0;
 		var modifiableCount = (byte)0;
@@ -5156,7 +5158,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="d1">The first digit used.</param>
 	/// <param name="d2">The second digit used.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	private static bool CheckPreconditionsOnIncomplete(scoped in Grid grid, Cell[] urCells, Digit d1, Digit d2)
+	private static bool CheckPreconditionsOnIncomplete(scoped ref readonly Grid grid, Cell[] urCells, Digit d1, Digit d2)
 	{
 		// Same-sided cells cannot contain only one digit of two digits 'd1' and 'd2'.
 		foreach (var (a, b) in ((0, 1), (2, 3), (0, 2), (1, 3)))
@@ -5191,7 +5193,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="houseIndex">The house index.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static bool IsConjugatePair(Digit digit, scoped in CellMap map, House houseIndex)
+	private static bool IsConjugatePair(Digit digit, scoped ref readonly CellMap map, House houseIndex)
 		=> (HousesMap[houseIndex] & CandidatesMap[digit]) == map;
 
 	/// <summary>

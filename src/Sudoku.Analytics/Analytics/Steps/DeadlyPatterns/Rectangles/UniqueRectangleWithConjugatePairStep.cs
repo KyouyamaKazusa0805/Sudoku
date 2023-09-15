@@ -27,7 +27,7 @@ public partial class UniqueRectangleWithConjugatePairStep(
 	Technique code,
 	Digit digit1,
 	Digit digit2,
-	scoped in CellMap cells,
+	scoped ref readonly CellMap cells,
 	bool isAvoidable,
 	[DataMember] Conjugate[] conjugatePairs,
 	int absoluteOffset

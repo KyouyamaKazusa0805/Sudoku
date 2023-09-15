@@ -34,7 +34,7 @@ public abstract partial class UniqueRectangleStep(
 	Technique code,
 	[DataMember] Digit digit1,
 	[DataMember] Digit digit2,
-	[DataMember] scoped in CellMap cells,
+	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] bool isAvoidable,
 	[DataMember] int absoluteOffset
 ) : DeadlyPatternStep(conclusions, views), IComparableStep<UniqueRectangleStep>, IEquatableStep<UniqueRectangleStep>
