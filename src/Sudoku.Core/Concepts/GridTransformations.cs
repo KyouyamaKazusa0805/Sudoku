@@ -9,6 +9,7 @@ namespace Sudoku.Concepts;
 /// <seealso cref="Grid"/>
 public static unsafe class GridTransformations
 {
+#pragma warning disable format
 	/// <summary>
 	/// The table of clockwise rotation.
 	/// </summary>
@@ -61,6 +62,7 @@ public static unsafe class GridTransformations
 		(9, 10), (9, 11), (10, 11), (12, 13), (12, 14), (13, 14), (15, 16), (15, 17), (16, 17),
 		(18, 19), (18, 20), (19, 20), (21, 22), (21, 23), (22, 23), (24, 25), (24, 26), (25, 26)
 	];
+#pragma warning restore format
 
 
 	/// <summary>
@@ -237,14 +239,10 @@ public static unsafe class GridTransformations
 	/// <exception cref="ArgumentException">Throws when the puzzle is not solved.</exception>
 	public static ref Grid SwapTwoDigits(this ref Grid @this, Digit digit1, Digit digit2)
 	{
-		ArgumentOutOfRangeException.ThrowIfNotEqual(@this.IsSolved, true);
-
 		if (digit1 == digit2)
 		{
 			return ref @this;
 		}
-
-		var thisCopied = @this;
 
 		@this.Unfix();
 		var digits1Map = @this.ValuesMap[digit1];
@@ -253,7 +251,7 @@ public static unsafe class GridTransformations
 		foreach (var cell in digits2Map) { @this.SetDigit(cell, -1); }
 		foreach (var cell in digits1Map) { @this.SetDigit(cell, digit2); }
 		foreach (var cell in digits2Map) { @this.SetDigit(cell, digit1); }
-		foreach (var cell in thisCopied.GivenCells) { @this.SetState(cell, CellState.Given); }
+		@this.Fix();
 
 		return ref @this;
 	}

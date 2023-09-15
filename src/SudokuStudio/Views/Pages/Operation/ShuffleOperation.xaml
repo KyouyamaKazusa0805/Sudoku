@@ -7,6 +7,13 @@
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:po="using:SudokuStudio.Views.Pages.Operation"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=po:ShuffleOperation}">
+	<Page.Resources>
+		<TeachingTip
+			x:Name="InfoDialog_DisorderedIttoryuDigitSequence" IsLightDismissEnabled="True" Target="{x:Bind AdjustToMakeIttoryuButton}"
+			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_DisorderedIttoryuOrderResult}"
+			Subtitle="{m:R Key=AnalyzePage_DisorderedIttoryuDoesNotExist}" />
+	</Page.Resources>
+
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
 		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_LeftRightSwapButton}" Click="LeftRightSwapButton_Click" />
 		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_TopBottomSwapButton}" Click="TopBottomSwapButton_Click" />
@@ -15,5 +22,9 @@
 		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_RotateClockwiseButton}" Click="RotateClockwiseButton_Click" />
 		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_RotateCounterclockwiseButton}" Click="RotateCounterclockwiseButton_Click" />
 		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_RotatePiButton}" Click="RotatePiButton_Click" />
+		<AppBarSeparator />
+		<AppBarButton
+			x:Name="AdjustToMakeIttoryuButton" Icon="Placeholder" Label="{m:R Key=AnalyzePage_AdjustToMakeIttoryuButton}"
+			Click="AdjustToMakeIttoryuButton_Click" />
 	</CommandBar>
 </Page>

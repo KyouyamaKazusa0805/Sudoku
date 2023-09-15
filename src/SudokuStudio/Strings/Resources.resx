@@ -189,6 +189,9 @@
   <data name="AnalyzePage_Abbreviation" xml:space="preserve">
     <value>Abbreviation:</value>
   </data>
+  <data name="AnalyzePage_AdjustToMakeIttoryuButton" xml:space="preserve">
+    <value>Rearrange to ittoryu</value>
+  </data>
   <data name="AnalyzePage_Aliases" xml:space="preserve">
     <value>Aliases:</value>
   </data>

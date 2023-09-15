@@ -493,6 +493,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rearrange to ittoryu.
+        /// </summary>
+        internal static string AnalyzePage_AdjustToMakeIttoryuButton {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AdjustToMakeIttoryuButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aliases:.
         /// </summary>
         internal static string AnalyzePage_Aliases {

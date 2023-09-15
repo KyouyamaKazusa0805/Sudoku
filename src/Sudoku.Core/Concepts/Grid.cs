@@ -375,14 +375,7 @@ public unsafe partial struct Grid : GridImpl
 	}
 
 	/// <inheritdoc/>
-	public readonly Grid ResetGrid
-	{
-		get
-		{
-			var givenCells = GivenCells;
-			return Preserve(in givenCells);
-		}
-	}
+	public readonly Grid ResetGrid => Preserve(GivenCells);
 
 	/// <inheritdoc/>
 	public readonly Grid UnfixedGrid
@@ -413,8 +406,7 @@ public unsafe partial struct Grid : GridImpl
 	{
 		get
 		{
-			var givenCells = GivenCells;
-			return BackingSolver.Solve(in this) is { IsUndefined: false } solution ? unfix(in solution, in givenCells) : Undefined;
+			return BackingSolver.Solve(in this) is { IsUndefined: false } solution ? unfix(in solution, GivenCells) : Undefined;
 
 
 			static Grid unfix(scoped ref readonly Grid solution, scoped ref readonly CellMap pattern)

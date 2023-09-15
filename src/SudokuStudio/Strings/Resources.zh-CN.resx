@@ -189,6 +189,9 @@
   <data name="AnalyzePage_Abbreviation" xml:space="preserve">
     <value>缩写：</value>
   </data>
+  <data name="AnalyzePage_AdjustToMakeIttoryuButton" xml:space="preserve">
+    <value>重排序至一刀流</value>
+  </data>
   <data name="AnalyzePage_Aliases" xml:space="preserve">
     <value>别名：</value>
   </data>

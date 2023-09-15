@@ -4482,6 +4482,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Abbreviation:.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_AdjustToMakeIttoryuButton">
+            <summary>
+              Looks up a localized string similar to Rearrange to ittoryu.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_Aliases">
             <summary>
               Looks up a localized string similar to Aliases:.

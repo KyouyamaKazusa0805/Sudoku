@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Sudoku.Algorithm.Ittoryu;
 using Sudoku.Concepts;
 using SudokuStudio.ComponentModel;
 
@@ -73,6 +74,21 @@ public sealed partial class ShuffleOperation : Page, IOperationProviderPage
 		var modified = BasePage.SudokuPane.Puzzle;
 		modified.RotatePi();
 
+		BasePage.SudokuPane.Puzzle = modified;
+	}
+
+	private void AdjustToMakeIttoryuButton_Click(object sender, RoutedEventArgs e)
+	{
+		var modified = BasePage.SudokuPane.Puzzle;
+		var ittoryuPathFinder = new IttoryuPathFinder();
+		var path = ittoryuPathFinder.FindPath(in modified);
+		if (!path.IsComplete)
+		{
+			InfoDialog_DisorderedIttoryuDigitSequence.IsOpen = true;
+			return;
+		}
+
+		modified.MakeIttoryu(path);
 		BasePage.SudokuPane.Puzzle = modified;
 	}
 }
