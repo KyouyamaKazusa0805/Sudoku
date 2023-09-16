@@ -119,12 +119,7 @@ public partial struct CandidateMap :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			return this switch
-			{
-				{ _count: 0 } => [],
-				[var a] => [CandidateNotation.ToString(a)],
-				_ => f(Offsets)
-			};
+			return this switch { { _count: 0 } => [], [var a] => [CandidateNotation.ToString(a)], _ => f(Offsets) };
 
 
 			static string[] f(Candidate[] offsets)
